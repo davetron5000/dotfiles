@@ -1,0 +1,80 @@
+*javax.management.MBeanServerBuilder* *MBeanServerBuilder* This class represents
+
+public class MBeanServerBuilder
+  extends    |java.lang.Object|
+
+|javax.management.MBeanServerBuilder_Description|
+|javax.management.MBeanServerBuilder_Fields|
+|javax.management.MBeanServerBuilder_Constructors|
+|javax.management.MBeanServerBuilder_Methods|
+
+================================================================================
+
+*javax.management.MBeanServerBuilder_Constructors*
+|javax.management.MBeanServerBuilder()|Public default constructor.
+
+*javax.management.MBeanServerBuilder_Methods*
+|javax.management.MBeanServerBuilder.newMBeanServer(String,MBeanServer,MBeanServerDelegate)|
+|javax.management.MBeanServerBuilder.newMBeanServerDelegate()|This method creat
+
+*javax.management.MBeanServerBuilder_Description*
+
+This class represents a builder that creates a default 
+(|javax.management.MBeanServer|) implementation. The JMX 
+(|javax.management.MBeanServerFactory|) allows applications to provide their 
+custom MBeanServer implementation by providing a subclass of this class. 
+
+
+*javax.management.MBeanServerBuilder()*
+
+public MBeanServerBuilder()
+
+Public default constructor. 
+
+
+*javax.management.MBeanServerBuilder.newMBeanServer(String,MBeanServer,MBeanServerDelegate)*
+
+public |javax.management.MBeanServer| newMBeanServer(
+  java.lang.String defaultDomain,
+  javax.management.MBeanServer outer,
+  javax.management.MBeanServerDelegate delegate)
+
+This method creates a new MBeanServer implementation object. When creating a 
+new MBeanServer the (|javax.management.MBeanServerFactory|) first calls 
+newMBeanServerDelegate() in order to obtain a new 
+(|javax.management.MBeanServerDelegate|) for the new MBeanServer. Then it calls 
+newMBeanServer(defaultDomain,outer,delegate) passing the delegate that should 
+be used by the MBeanServer implementation. Note that the passed delegate might 
+not be directly the MBeanServerDelegate that was returned by this 
+implementation. It could be, for instance, a new object wrapping the previously 
+returned delegate. The outer parameter is a pointer to the MBeanServer that 
+should be passed to the (|javax.management.MBeanRegistration|) interface when 
+registering MBeans inside the MBeanServer. If outer is null, then the 
+MBeanServer implementation must use its own this reference when invoking the 
+(|javax.management.MBeanRegistration|) interface. This makes it possible for a 
+MBeanServer implementation to wrap another MBeanServer implementation, in order 
+to implement, e.g, security checks, or to prevent access to the actual 
+MBeanServer implementation by returning a pointer to a wrapping object. 
+
+    defaultDomain - Default domain of the new MBeanServer. 
+    outer - A pointer to the MBeanServer object that must be passed to the MBeans when 
+       invoking their {@link javax.management.MBeanRegistration} interface. 
+    delegate - A pointer to the MBeanServerDelegate associated with the new MBeanServer. The 
+       new MBeanServer must register this MBean in its MBean repository. 
+
+    Returns: A new private implementation of an MBeanServer. 
+*javax.management.MBeanServerBuilder.newMBeanServerDelegate()*
+
+public |javax.management.MBeanServerDelegate| newMBeanServerDelegate()
+
+This method creates a new MBeanServerDelegate for a new MBeanServer. When 
+creating a new MBeanServer the (|javax.management.MBeanServerFactory|) first 
+calls this method in order to create a new MBeanServerDelegate. Then it calls 
+newMBeanServer(defaultDomain,outer,delegate) passing the delegate that should 
+be used by the MBeanServer implementation. Note that the passed delegate might 
+not be directly the MBeanServerDelegate that was returned by this method. It 
+could be, for instance, a new object wrapping the previously returned object. 
+
+
+    Returns: A new {@link javax.management.MBeanServerDelegate}. 
+

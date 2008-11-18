@@ -1,0 +1,104 @@
+*javax.management.MBeanNotificationInfo* *MBeanNotificationInfo* The MBeanNotifi
+
+public class MBeanNotificationInfo
+  extends    |javax.management.MBeanFeatureInfo|
+  implements |java.lang.Cloneable|
+             |java.io.Serializable|
+
+|javax.management.MBeanNotificationInfo_Description|
+|javax.management.MBeanNotificationInfo_Fields|
+|javax.management.MBeanNotificationInfo_Constructors|
+|javax.management.MBeanNotificationInfo_Methods|
+
+================================================================================
+
+*javax.management.MBeanNotificationInfo_Constructors*
+|javax.management.MBeanNotificationInfo(String[],String,String)|Constructs an M
+
+*javax.management.MBeanNotificationInfo_Methods*
+|javax.management.MBeanNotificationInfo.clone()|Returns a shallow clone of this
+|javax.management.MBeanNotificationInfo.equals(Object)|Compare this MBeanAttrib
+|javax.management.MBeanNotificationInfo.getNotifTypes()|Returns the array of st
+|javax.management.MBeanNotificationInfo.hashCode()|
+
+*javax.management.MBeanNotificationInfo_Description*
+
+The MBeanNotificationInfo class is used to describe the characteristics of the 
+different notification instances emitted by an MBean, for a given Java class of 
+notification. If an MBean emits notifications that can be instances of 
+different Java classes, then the metadata for that MBean should provide an 
+MBeanNotificationInfo object for each of these notification Java classes. 
+
+Instances of this class are immutable. Subclasses may be mutable but this is 
+not recommended. 
+
+This class extends javax.management.MBeanFeatureInfo and thus provides name and 
+description fields. The name field should be the fully qualified Java class 
+name of the notification objects described by this class. 
+
+The getNotifTypes method returns an array of strings containing the 
+notification types that the MBean may emit. The notification type is a 
+dot-notation string which describes what the emitted notification is about, not 
+the Java class of the notification. A single generic notification class can be 
+used to send notifications of several types. All of these types are returned in 
+the string array result of the getNotifTypes method. 
+
+
+*javax.management.MBeanNotificationInfo(String[],String,String)*
+
+public MBeanNotificationInfo(
+  java.lang.String[] notifTypes,
+  java.lang.String name,
+  java.lang.String description)
+  throws |java.lang.IllegalArgumentException|
+         
+Constructs an MBeanNotificationInfo object. 
+
+    notifTypes - The array of strings (in dot notation) containing the notification types that 
+       the MBean may emit. This may be null with the same effect as a 
+       zero-length array. 
+    name - The fully qualified Java class name of the described notifications. 
+    description - A human readable description of the data. 
+
+*javax.management.MBeanNotificationInfo.clone()*
+
+public |java.lang.Object| clone()
+
+Returns a shallow clone of this instance. The clone is obtained by simply 
+calling super.clone(), thus calling the default native shallow cloning 
+mechanism implemented by Object.clone(). No deeper cloning of any internal 
+field is made. 
+
+
+*javax.management.MBeanNotificationInfo.equals(Object)*
+
+public boolean equals(java.lang.Object o)
+
+Compare this MBeanAttributeInfo to another. 
+
+    o - the object to compare to. 
+
+    Returns: true iff o is an MBeanNotificationInfo such that its {@link #getName()}, {@link 
+             #getDescription()}, and {@link #getNotifTypes()} values are equal 
+             (not necessarily identical) to those of this 
+             MBeanNotificationInfo. Two notification type arrays are equal if 
+             their corresponding elements are equal. They are not equal if they 
+             have the same elements but in a different order. 
+*javax.management.MBeanNotificationInfo.getNotifTypes()*
+
+public |java.lang.String| getNotifTypes()
+
+Returns the array of strings (in dot notation) containing the notification 
+types that the MBean may emit. 
+
+
+    Returns: the array of strings. Changing the returned array has no effect on this 
+             MBeanNotificationInfo. 
+*javax.management.MBeanNotificationInfo.hashCode()*
+
+public int hashCode()
+
+
+
+
+

@@ -1,0 +1,121 @@
+*javax.management.NotificationFilterSupport* *NotificationFilterSupport* Provide
+
+public class NotificationFilterSupport
+  extends    |java.lang.Object|
+  implements |javax.management.NotificationFilter|
+             |java.io.Serializable|
+
+|javax.management.NotificationFilterSupport_Description|
+|javax.management.NotificationFilterSupport_Fields|
+|javax.management.NotificationFilterSupport_Constructors|
+|javax.management.NotificationFilterSupport_Methods|
+
+================================================================================
+
+*javax.management.NotificationFilterSupport_Constructors*
+|javax.management.NotificationFilterSupport()|
+
+*javax.management.NotificationFilterSupport_Methods*
+|javax.management.NotificationFilterSupport.disableAllTypes()|Disables all noti
+|javax.management.NotificationFilterSupport.disableType(String)|Removes the giv
+|javax.management.NotificationFilterSupport.enableType(String)|Enables all the 
+|javax.management.NotificationFilterSupport.getEnabledTypes()|Gets all the enab
+|javax.management.NotificationFilterSupport.isNotificationEnabled(Notification)|
+
+*javax.management.NotificationFilterSupport_Description*
+
+Provides an implementation of the (|javax.management.NotificationFilter|) 
+interface. The filtering is performed on the notification type attribute. 
+
+Manages a list of enabled notification types. A method allows users to 
+enable/disable as many notification types as required. 
+
+Then, before sending a notification to a listener registered with a filter, the 
+notification broadcaster compares this notification type with all notification 
+types enabled by the filter. The notification will be sent to the listener only 
+if its filter enables this notification type. 
+
+Example: 
+
+
+
+NotificationFilterSupport myFilter = new NotificationFilterSupport(); 
+myFilter.enableType("my_example.my_type"); 
+myBroadcaster.addListener(myListener, myFilter, null); 
+
+The listener myListener will only receive notifications the type of which 
+equals/starts with "my_example.my_type". 
+
+
+*javax.management.NotificationFilterSupport()*
+
+public NotificationFilterSupport()
+
+
+
+
+*javax.management.NotificationFilterSupport.disableAllTypes()*
+
+public synchronized void disableAllTypes()
+
+Disables all notification types. 
+
+
+*javax.management.NotificationFilterSupport.disableType(String)*
+
+public synchronized void disableType(java.lang.String prefix)
+
+Removes the given prefix from the prefix list. If the specified prefix is not 
+in the list of enabled notification types, this method has no effect. 
+
+    prefix - The prefix. 
+
+*javax.management.NotificationFilterSupport.enableType(String)*
+
+public synchronized void enableType(java.lang.String prefix)
+  throws |java.lang.IllegalArgumentException|
+         
+Enables all the notifications the type of which starts with the specified 
+prefix to be sent to the listener. If the specified prefix is already in the 
+list of enabled notification types, this method has no effect. 
+
+Example: 
+
+
+
+// Enables all notifications the type of which starts with "my_example" to be 
+sent. myFilter.enableType("my_example"); // Enables all notifications the type 
+of which is "my_example.my_type" to be sent. 
+myFilter.enableType("my_example.my_type"); 
+
+
+
+Note that: 
+
+myFilter.enableType("my_example.*"); 
+
+will no match any notification type. 
+
+    prefix - The prefix. 
+
+*javax.management.NotificationFilterSupport.getEnabledTypes()*
+
+public synchronized |java.util.Vector| getEnabledTypes()
+
+Gets all the enabled notification types for this filter. 
+
+
+    Returns: The list containing all the enabled notification types. 
+*javax.management.NotificationFilterSupport.isNotificationEnabled(Notification)*
+
+public synchronized boolean isNotificationEnabled(javax.management.Notification notification)
+
+Invoked before sending the specified notification to the listener. This filter 
+compares the type of the specified notification with each enabled type. If the 
+notification type matches one of the enabled types, the notification should be 
+sent to the listener and this method returns true. 
+
+    notification - The notification to be sent. 
+
+    Returns: true if the notification should be sent to the listener, false otherwise. 
+

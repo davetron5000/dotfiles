@@ -1,0 +1,306 @@
+*java.lang.ProcessBuilder* *ProcessBuilder* This class is used to create operati
+
+public final class ProcessBuilder
+  extends    |java.lang.Object|
+
+|java.lang.ProcessBuilder_Description|
+|java.lang.ProcessBuilder_Fields|
+|java.lang.ProcessBuilder_Constructors|
+|java.lang.ProcessBuilder_Methods|
+
+================================================================================
+
+*java.lang.ProcessBuilder_Constructors*
+|java.lang.ProcessBuilder(List)|Constructs a process builder with the specified
+|java.lang.ProcessBuilder(String[])|Constructs a process builder with the speci
+
+*java.lang.ProcessBuilder_Methods*
+|java.lang.ProcessBuilder.command()|Returns this process builder's operating sy
+|java.lang.ProcessBuilder.command(List)|Sets this process builder's operating s
+|java.lang.ProcessBuilder.command(String[])|Sets this process builder's operati
+|java.lang.ProcessBuilder.directory()|Returns this process builder's working di
+|java.lang.ProcessBuilder.directory(File)|Sets this process builder's working d
+|java.lang.ProcessBuilder.environment()|Returns a string map view of this proce
+|java.lang.ProcessBuilder.redirectErrorStream()|Tells whether this process buil
+|java.lang.ProcessBuilder.redirectErrorStream(boolean)|Sets this process builde
+|java.lang.ProcessBuilder.start()|Starts a new process using the attributes of 
+
+*java.lang.ProcessBuilder_Description*
+
+This class is used to create operating system processes. 
+
+Each ProcessBuilder instance manages a collection of process attributes. The 
+(|java.lang.ProcessBuilder|) method creates a new (|java.lang.Process|) 
+instance with those attributes. The (|java.lang.ProcessBuilder|) method can be 
+invoked repeatedly from the same instance to create new subprocesses with 
+identical or related attributes. 
+
+Each process builder manages these process attributes: 
+
+
+
+a command, a list of strings which signifies the external program file to be 
+invoked and its arguments, if any. Which string lists represent a valid 
+operating system command is system-dependent. For example, it is common for 
+each conceptual argument to be an element in this list, but there are operating 
+systems where programs are expected to tokenize command line strings themselves 
+- on such a system a Java implementation might require commands to contain 
+exactly two elements. 
+
+an environment, which is a system-dependent mapping from variables to values. 
+The initial value is a copy of the environment of the current process (see 
+(|java.lang.System|) ). 
+
+a working directory. The default value is the current working directory of the 
+current process, usually the directory named by the system property user.dir. 
+
+a redirectErrorStream property. Initially, this property is false, meaning that 
+the standard output and error output of a subprocess are sent to two separate 
+streams, which can be accessed using the (|java.lang.Process|) and 
+(|java.lang.Process|) methods. If the value is set to true, the standard error 
+is merged with the standard output. This makes it easier to correlate error 
+messages with the corresponding output. In this case, the merged data can be 
+read from the stream returned by (|java.lang.Process|) , while reading from the 
+stream returned by (|java.lang.Process|) will get an immediate end of file. 
+
+
+
+Modifying a process builder's attributes will affect processes subsequently 
+started by that object's (|java.lang.ProcessBuilder|) method, but will never 
+affect previously started processes or the Java process itself. 
+
+Most error checking is performed by the (|java.lang.ProcessBuilder|) method. It 
+is possible to modify the state of an object so that 
+(|java.lang.ProcessBuilder|) will fail. For example, setting the command 
+attribute to an empty list will not throw an exception unless 
+(|java.lang.ProcessBuilder|) is invoked. 
+
+Note that this class is not synchronized. If multiple threads access a 
+ProcessBuilder instance concurrently, and at least one of the threads modifies 
+one of the attributes structurally, it must be synchronized externally. 
+
+Starting a new process which uses the default working directory and environment 
+is easy: 
+
+
+
+Process p = new ProcessBuilder("myCommand", "myArg").start(); 
+
+Here is an example that starts a process with a modified working directory and 
+environment: 
+
+
+
+ProcessBuilder pb = new ProcessBuilder("myCommand", "myArg1", "myArg2"); 
+Map<String, String> env = pb.environment(); env.put("VAR1", "myValue"); 
+env.remove("OTHERVAR"); env.put("VAR2", env.get("VAR1") + "suffix"); 
+pb.directory("myDir"); Process p = pb.start(); 
+
+To start a process with an explicit set of environment variables, first call 
+Map.clear()(|java.util.Map|) before adding environment variables. 
+
+
+*java.lang.ProcessBuilder(List)*
+
+public ProcessBuilder(java.util.List command)
+
+Constructs a process builder with the specified operating system program and 
+arguments. This constructor does not make a copy of the command list. 
+Subsequent updates to the list will be reflected in the state of the process 
+builder. It is not checked whether command corresponds to a valid operating 
+system command. 
+
+    command - The list containing the program and its arguments 
+
+*java.lang.ProcessBuilder(String[])*
+
+public ProcessBuilder(java.lang.String[] command)
+
+Constructs a process builder with the specified operating system program and 
+arguments. This is a convenience constructor that sets the process builder's 
+command to a string list containing the same strings as the command array, in 
+the same order. It is not checked whether command corresponds to a valid 
+operating system command. 
+
+    command - A string array containing the program and its arguments 
+
+*java.lang.ProcessBuilder.command()*
+
+public |java.util.List| command()
+
+Returns this process builder's operating system program and arguments. The 
+returned list is not a copy. Subsequent updates to the list will be reflected 
+in the state of this process builder. 
+
+
+    Returns: This process builder's program and its arguments 
+*java.lang.ProcessBuilder.command(List)*
+
+public |java.lang.ProcessBuilder| command(java.util.List command)
+
+Sets this process builder's operating system program and arguments. This method 
+does not make a copy of the command list. Subsequent updates to the list will 
+be reflected in the state of the process builder. It is not checked whether 
+command corresponds to a valid operating system command. 
+
+    command - The list containing the program and its arguments 
+
+    Returns: This process builder 
+*java.lang.ProcessBuilder.command(String[])*
+
+public |java.lang.ProcessBuilder| command(java.lang.String[] command)
+
+Sets this process builder's operating system program and arguments. This is a 
+convenience method that sets the command to a string list containing the same 
+strings as the command array, in the same order. It is not checked whether 
+command corresponds to a valid operating system command. 
+
+    command - A string array containing the program and its arguments 
+
+    Returns: This process builder 
+*java.lang.ProcessBuilder.directory()*
+
+public |java.io.File| directory()
+
+Returns this process builder's working directory. 
+
+Subprocesses subsequently started by this object's (|java.lang.ProcessBuilder|) 
+method will use this as their working directory. The returned value may be null 
+-- this means to use the working directory of the current Java process, usually 
+the directory named by the system property user.dir, as the working directory 
+of the child process. 
+
+
+    Returns: This process builder's working directory 
+*java.lang.ProcessBuilder.directory(File)*
+
+public |java.lang.ProcessBuilder| directory(java.io.File directory)
+
+Sets this process builder's working directory. 
+
+Subprocesses subsequently started by this object's (|java.lang.ProcessBuilder|) 
+method will use this as their working directory. The argument may be null -- 
+this means to use the working directory of the current Java process, usually 
+the directory named by the system property user.dir, as the working directory 
+of the child process. 
+
+    directory - The new working directory 
+
+    Returns: This process builder 
+*java.lang.ProcessBuilder.environment()*
+
+public |java.util.Map| environment()
+
+Returns a string map view of this process builder's environment. 
+
+Whenever a process builder is created, the environment is initialized to a copy 
+of the current process environment (see (|java.lang.System|) ). Subprocesses 
+subsequently started by this object's (|java.lang.ProcessBuilder|) method will 
+use this map as their environment. 
+
+The returned object may be modified using ordinary Map(|java.util.Map|) 
+operations. These modifications will be visible to subprocesses started via the 
+(|java.lang.ProcessBuilder|) method. Two ProcessBuilder instances always 
+contain independent process environments, so changes to the returned map will 
+never be reflected in any other ProcessBuilder instance or the values returned 
+by System.getenv(|java.lang.System|) . 
+
+If the system does not support environment variables, an empty map is returned. 
+
+The returned map does not permit null keys or values. Attempting to insert or 
+query the presence of a null key or value will throw a 
+(|java.lang.NullPointerException|) . Attempting to query the presence of a key 
+or value which is not of type (|java.lang.String|) will throw a 
+(|java.lang.ClassCastException|) . 
+
+The behavior of the returned map is system-dependent. A system may not allow 
+modifications to environment variables or may forbid certain variable names or 
+values. For this reason, attempts to modify the map may fail with 
+(|java.lang.UnsupportedOperationException|) or 
+(|java.lang.IllegalArgumentException|) if the modification is not permitted by 
+the operating system. 
+
+Since the external format of environment variable names and values is 
+system-dependent, there may not be a one-to-one mapping between them and Java's 
+Unicode strings. Nevertheless, the map is implemented in such a way that 
+environment variables which are not modified by Java code will have an 
+unmodified native representation in the subprocess. 
+
+The returned map and its collection views may not obey the general contract of 
+the (|java.lang.Object|) and (|java.lang.Object|) methods. 
+
+The returned map is typically case-sensitive on all platforms. 
+
+If a security manager exists, its checkPermission(|java.lang.SecurityManager|) 
+method is called with a (|java.lang.RuntimePermission|) ("getenv.*") 
+permission. This may result in a (|java.lang.SecurityException|) being thrown. 
+
+When passing information to a Java subprocess, system properties are generally 
+preferred over environment variables. 
+
+
+    Returns: This process builder's environment 
+*java.lang.ProcessBuilder.redirectErrorStream()*
+
+public boolean redirectErrorStream()
+
+Tells whether this process builder merges standard error and standard output. 
+
+If this property is true, then any error output generated by subprocesses 
+subsequently started by this object's (|java.lang.ProcessBuilder|) method will 
+be merged with the standard output, so that both can be read using the 
+(|java.lang.Process|) method. This makes it easier to correlate error messages 
+with the corresponding output. The initial value is false. 
+
+
+    Returns: This process builder's redirectErrorStream property 
+*java.lang.ProcessBuilder.redirectErrorStream(boolean)*
+
+public |java.lang.ProcessBuilder| redirectErrorStream(boolean redirectErrorStream)
+
+Sets this process builder's redirectErrorStream property. 
+
+If this property is true, then any error output generated by subprocesses 
+subsequently started by this object's (|java.lang.ProcessBuilder|) method will 
+be merged with the standard output, so that both can be read using the 
+(|java.lang.Process|) method. This makes it easier to correlate error messages 
+with the corresponding output. The initial value is false. 
+
+    redirectErrorStream - The new property value 
+
+    Returns: This process builder 
+*java.lang.ProcessBuilder.start()*
+
+public |java.lang.Process| start()
+  throws |java.io.IOException|
+         
+Starts a new process using the attributes of this process builder. 
+
+The new process will invoke the command and arguments given by 
+(|java.lang.ProcessBuilder|) , in a working directory as given by 
+(|java.lang.ProcessBuilder|) , with a process environment as given by 
+(|java.lang.ProcessBuilder|) . 
+
+This method checks that the command is a valid operating system command. Which 
+commands are valid is system-dependent, but at the very least the command must 
+be a non-empty list of non-null strings. 
+
+If there is a security manager, its checkExec(|java.lang.SecurityManager|) 
+method is called with the first component of this object's command array as its 
+argument. This may result in a (|java.lang.SecurityException|) being thrown. 
+
+Starting an operating system process is highly system-dependent. Among the many 
+things that can go wrong are: 
+
+The operating system program file was not found. Access to the program file was 
+denied. The working directory does not exist. 
+
+In such cases an exception will be thrown. The exact nature of the exception is 
+system-dependent, but it will always be a subclass of (|java.io.IOException|) . 
+
+Subsequent modifications to this process builder will not affect the returned 
+(|java.lang.Process|) . 
+
+
+    Returns: A new {@link Process} object for managing the subprocess 
+

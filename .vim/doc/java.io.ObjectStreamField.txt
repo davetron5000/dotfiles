@@ -1,0 +1,154 @@
+*java.io.ObjectStreamField* *ObjectStreamField* A description of a Serializable 
+
+public class ObjectStreamField
+  extends    |java.lang.Object|
+  implements |java.lang.Comparable|
+
+|java.io.ObjectStreamField_Description|
+|java.io.ObjectStreamField_Fields|
+|java.io.ObjectStreamField_Constructors|
+|java.io.ObjectStreamField_Methods|
+
+================================================================================
+
+*java.io.ObjectStreamField_Constructors*
+|java.io.ObjectStreamField(String,Class)|Create a Serializable field with the s
+|java.io.ObjectStreamField(String,Class,boolean)|Creates an ObjectStreamField r
+
+*java.io.ObjectStreamField_Methods*
+|java.io.ObjectStreamField.compareTo(Object)|Compare this field with another Ob
+|java.io.ObjectStreamField.getName()|Get the name of this field.
+|java.io.ObjectStreamField.getOffset()|Offset of field within instance data.
+|java.io.ObjectStreamField.getType()|Get the type of the field.
+|java.io.ObjectStreamField.getTypeCode()|Returns character encoding of field ty
+|java.io.ObjectStreamField.getTypeString()|Return the JVM type signature.
+|java.io.ObjectStreamField.isPrimitive()|Return true if this field has a primit
+|java.io.ObjectStreamField.isUnshared()|Returns boolean value indicating whethe
+|java.io.ObjectStreamField.setOffset(int)|Offset within instance data.
+|java.io.ObjectStreamField.toString()|Return a string that describes this field
+
+*java.io.ObjectStreamField_Description*
+
+A description of a Serializable field from a Serializable class. An array of 
+ObjectStreamFields is used to declare the Serializable fields of a class. 
+
+
+*java.io.ObjectStreamField(String,Class)*
+
+public ObjectStreamField(
+  java.lang.String name,
+  java.lang.Class type)
+
+Create a Serializable field with the specified type. This field should be 
+documented with a serialField tag. 
+
+    name - the name of the serializable field 
+    type - the Class object of the serializable field 
+
+*java.io.ObjectStreamField(String,Class,boolean)*
+
+public ObjectStreamField(
+  java.lang.String name,
+  java.lang.Class type,
+  boolean unshared)
+
+Creates an ObjectStreamField representing a serializable field with the given 
+name and type. If unshared is false, values of the represented field are 
+serialized and deserialized in the default manner--if the field is 
+non-primitive, object values are serialized and deserialized as if they had 
+been written and read by calls to writeObject and readObject. If unshared is 
+true, values of the represented field are serialized and deserialized as if 
+they had been written and read by calls to writeUnshared and readUnshared. 
+
+    name - field name 
+    type - field type 
+    unshared - if false, write/read field values in the same manner as writeObject/readObject; 
+       if true, write/read in the same manner as writeUnshared/readUnshared 
+
+*java.io.ObjectStreamField.compareTo(Object)*
+
+public int compareTo(java.lang.Object obj)
+
+Compare this field with another ObjectStreamField. Return -1 if this is 
+smaller, 0 if equal, 1 if greater. Types that are primitives are "smaller" than 
+object types. If equal, the field names are compared. 
+
+
+*java.io.ObjectStreamField.getName()*
+
+public |java.lang.String| getName()
+
+Get the name of this field. 
+
+
+    Returns: a String representing the name of the serializable field 
+*java.io.ObjectStreamField.getOffset()*
+
+public int getOffset()
+
+Offset of field within instance data. 
+
+
+    Returns: the offset of this field 
+*java.io.ObjectStreamField.getType()*
+
+public |java.lang.Class| getType()
+
+Get the type of the field. If the type is non-primitive and this 
+ObjectStreamField was obtained from a deserialized 
+(|java.io.ObjectStreamClass|) instance, then Object.class is returned. 
+Otherwise, the Class object for the type of the field is returned. 
+
+
+    Returns: a Class object representing the type of the serializable field 
+*java.io.ObjectStreamField.getTypeCode()*
+
+public char getTypeCode()
+
+Returns character encoding of field type. The encoding is as follows: 
+
+B byte C char D double F float I int J long L class or interface S short Z 
+boolean [ array 
+
+
+    Returns: the typecode of the serializable field 
+*java.io.ObjectStreamField.getTypeString()*
+
+public |java.lang.String| getTypeString()
+
+Return the JVM type signature. 
+
+
+    Returns: null if this field has a primitive type. 
+*java.io.ObjectStreamField.isPrimitive()*
+
+public boolean isPrimitive()
+
+Return true if this field has a primitive type. 
+
+
+    Returns: true if and only if this field corresponds to a primitive type 
+*java.io.ObjectStreamField.isUnshared()*
+
+public boolean isUnshared()
+
+Returns boolean value indicating whether or not the serializable field 
+represented by this ObjectStreamField instance is unshared. 
+
+
+*java.io.ObjectStreamField.setOffset(int)*
+
+protected void setOffset(int offset)
+
+Offset within instance data. 
+
+    offset - the offset of the field 
+
+*java.io.ObjectStreamField.toString()*
+
+public |java.lang.String| toString()
+
+Return a string that describes this field. 
+
+
+

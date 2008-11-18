@@ -1,0 +1,251 @@
+*javax.swing.DefaultDesktopManager* *DefaultDesktopManager* This is an implement
+
+public class DefaultDesktopManager
+  extends    |java.lang.Object|
+  implements |javax.swing.DesktopManager|
+             |java.io.Serializable|
+
+|javax.swing.DefaultDesktopManager_Description|
+|javax.swing.DefaultDesktopManager_Fields|
+|javax.swing.DefaultDesktopManager_Constructors|
+|javax.swing.DefaultDesktopManager_Methods|
+
+================================================================================
+
+*javax.swing.DefaultDesktopManager_Constructors*
+|javax.swing.DefaultDesktopManager()|
+
+*javax.swing.DefaultDesktopManager_Methods*
+|javax.swing.DefaultDesktopManager.activateFrame(JInternalFrame)|This will acti
+|javax.swing.DefaultDesktopManager.beginDraggingFrame(JComponent)|
+|javax.swing.DefaultDesktopManager.beginResizingFrame(JComponent,int)|
+|javax.swing.DefaultDesktopManager.closeFrame(JInternalFrame)|Removes the frame
+|javax.swing.DefaultDesktopManager.deactivateFrame(JInternalFrame)|
+|javax.swing.DefaultDesktopManager.deiconifyFrame(JInternalFrame)|Removes the d
+|javax.swing.DefaultDesktopManager.dragFrame(JComponent,int,int)|Moves the visi
+|javax.swing.DefaultDesktopManager.endDraggingFrame(JComponent)|
+|javax.swing.DefaultDesktopManager.endResizingFrame(JComponent)|
+|javax.swing.DefaultDesktopManager.getBoundsForIconOf(JInternalFrame)|The iconi
+|javax.swing.DefaultDesktopManager.getPreviousBounds(JInternalFrame)|Gets the n
+|javax.swing.DefaultDesktopManager.iconifyFrame(JInternalFrame)|Removes the fra
+|javax.swing.DefaultDesktopManager.maximizeFrame(JInternalFrame)|Resizes the fr
+|javax.swing.DefaultDesktopManager.minimizeFrame(JInternalFrame)|Restores the f
+|javax.swing.DefaultDesktopManager.openFrame(JInternalFrame)|Normally this meth
+|javax.swing.DefaultDesktopManager.removeIconFor(JInternalFrame)|Convenience me
+|javax.swing.DefaultDesktopManager.resizeFrame(JComponent,int,int,int,int)|Call
+|javax.swing.DefaultDesktopManager.setBoundsForFrame(JComponent,int,int,int,int)|
+|javax.swing.DefaultDesktopManager.setPreviousBounds(JInternalFrame,Rectangle)|
+|javax.swing.DefaultDesktopManager.setWasIcon(JInternalFrame,Boolean)|Sets that
+|javax.swing.DefaultDesktopManager.wasIcon(JInternalFrame)|Returns true if the 
+
+*javax.swing.DefaultDesktopManager_Description*
+
+This is an implementation of the DesktopManager. It currently implements the 
+basic behaviors for managing JInternalFrames in an arbitrary parent. 
+JInternalFrames that are not children of a JDesktop will use this component to 
+handle their desktop-like actions. This class provides a policy for the various 
+JInternalFrame methods, it is not meant to be called directly rather the 
+various JInternalFrame methods will call into the DesktopManager. 
+
+
+*javax.swing.DefaultDesktopManager()*
+
+public DefaultDesktopManager()
+
+
+
+
+*javax.swing.DefaultDesktopManager.activateFrame(JInternalFrame)*
+
+public void activateFrame(javax.swing.JInternalFrame f)
+
+This will activate f moving it to the front. It will set the current active 
+frame's (if any) IS_SELECTED_PROPERTY to false. There can be only one active 
+frame across all Layers. 
+
+    f - the JInternalFrame to be activated 
+
+*javax.swing.DefaultDesktopManager.beginDraggingFrame(JComponent)*
+
+public void beginDraggingFrame(javax.swing.JComponent f)
+
+
+
+
+*javax.swing.DefaultDesktopManager.beginResizingFrame(JComponent,int)*
+
+public void beginResizingFrame(
+  javax.swing.JComponent f,
+  int direction)
+
+
+
+
+*javax.swing.DefaultDesktopManager.closeFrame(JInternalFrame)*
+
+public void closeFrame(javax.swing.JInternalFrame f)
+
+Removes the frame, and, if necessary, the desktopIcon, from its parent. 
+
+    f - the JInternalFrame to be removed 
+
+*javax.swing.DefaultDesktopManager.deactivateFrame(JInternalFrame)*
+
+public void deactivateFrame(javax.swing.JInternalFrame f)
+
+
+
+
+*javax.swing.DefaultDesktopManager.deiconifyFrame(JInternalFrame)*
+
+public void deiconifyFrame(javax.swing.JInternalFrame f)
+
+Removes the desktopIcon from its parent and adds its frame to the parent. 
+
+    f - the JInternalFrame to be de-iconified 
+
+*javax.swing.DefaultDesktopManager.dragFrame(JComponent,int,int)*
+
+public void dragFrame(
+  javax.swing.JComponent f,
+  int newX,
+  int newY)
+
+Moves the visible location of the frame being dragged to the location 
+specified. The means by which this occurs can vary depending on the dragging 
+algorithm being used. The actual logical location of the frame might not change 
+until endDraggingFrame is called. 
+
+
+*javax.swing.DefaultDesktopManager.endDraggingFrame(JComponent)*
+
+public void endDraggingFrame(javax.swing.JComponent f)
+
+
+
+
+*javax.swing.DefaultDesktopManager.endResizingFrame(JComponent)*
+
+public void endResizingFrame(javax.swing.JComponent f)
+
+
+
+
+*javax.swing.DefaultDesktopManager.getBoundsForIconOf(JInternalFrame)*
+
+protected |java.awt.Rectangle| getBoundsForIconOf(javax.swing.JInternalFrame f)
+
+The iconifyFrame() code calls this to determine the proper bounds for the 
+desktopIcon. 
+
+
+*javax.swing.DefaultDesktopManager.getPreviousBounds(JInternalFrame)*
+
+protected |java.awt.Rectangle| getPreviousBounds(javax.swing.JInternalFrame f)
+
+Gets the normal bounds of the component prior to the component being maximized. 
+
+    f - the JInternalFrame of interest 
+
+    Returns: the normal bounds of the component 
+*javax.swing.DefaultDesktopManager.iconifyFrame(JInternalFrame)*
+
+public void iconifyFrame(javax.swing.JInternalFrame f)
+
+Removes the frame from its parent and adds its desktopIcon to the parent. 
+
+    f - the JInternalFrame to be iconified 
+
+*javax.swing.DefaultDesktopManager.maximizeFrame(JInternalFrame)*
+
+public void maximizeFrame(javax.swing.JInternalFrame f)
+
+Resizes the frame to fill its parents bounds. 
+
+    f - the frame to be resized 
+
+*javax.swing.DefaultDesktopManager.minimizeFrame(JInternalFrame)*
+
+public void minimizeFrame(javax.swing.JInternalFrame f)
+
+Restores the frame back to its size and position prior to a maximizeFrame call. 
+
+    f - the JInternalFrame to be restored 
+
+*javax.swing.DefaultDesktopManager.openFrame(JInternalFrame)*
+
+public void openFrame(javax.swing.JInternalFrame f)
+
+Normally this method will not be called. If it is, it try to determine the 
+appropriate parent from the desktopIcon of the frame. Will remove the 
+desktopIcon from its parent if it successfully adds the frame. 
+
+
+*javax.swing.DefaultDesktopManager.removeIconFor(JInternalFrame)*
+
+protected void removeIconFor(javax.swing.JInternalFrame f)
+
+Convenience method to remove the desktopIcon of f is necessary. 
+
+
+*javax.swing.DefaultDesktopManager.resizeFrame(JComponent,int,int,int,int)*
+
+public void resizeFrame(
+  javax.swing.JComponent f,
+  int newX,
+  int newY,
+  int newWidth,
+  int newHeight)
+
+Calls setBoundsForFrame with the new values. 
+
+    f - the component to be resized 
+    newX - the new x-coordinate 
+    newY - the new y-coordinate 
+    newWidth - the new width 
+    newHeight - the new height 
+
+*javax.swing.DefaultDesktopManager.setBoundsForFrame(JComponent,int,int,int,int)*
+
+public void setBoundsForFrame(
+  javax.swing.JComponent f,
+  int newX,
+  int newY,
+  int newWidth,
+  int newHeight)
+
+This moves the JComponent and repaints the damaged areas. 
+
+
+*javax.swing.DefaultDesktopManager.setPreviousBounds(JInternalFrame,Rectangle)*
+
+protected void setPreviousBounds(
+  javax.swing.JInternalFrame f,
+  java.awt.Rectangle r)
+
+Stores the bounds of the component just before a maximize call. 
+
+    f - the component about to be resized 
+    r - the normal bounds to be saved away 
+
+*javax.swing.DefaultDesktopManager.setWasIcon(JInternalFrame,Boolean)*
+
+protected void setWasIcon(
+  javax.swing.JInternalFrame f,
+  java.lang.Boolean value)
+
+Sets that the component has been iconized and the bounds of the desktopIcon are 
+valid. 
+
+
+*javax.swing.DefaultDesktopManager.wasIcon(JInternalFrame)*
+
+protected boolean wasIcon(javax.swing.JInternalFrame f)
+
+Returns true if the component has been iconized and the bounds of the 
+desktopIcon are valid, otherwise returns false. 
+
+    f - the JInternalFrame of interest 
+
+    Returns: true if the component has been iconized; otherwise returns false 
+

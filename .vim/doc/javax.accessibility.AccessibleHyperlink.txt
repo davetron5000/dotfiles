@@ -1,0 +1,127 @@
+*javax.accessibility.AccessibleHyperlink* *AccessibleHyperlink* Encapsulation of
+
+public abstract class AccessibleHyperlink
+  extends    |java.lang.Object|
+  implements |javax.accessibility.AccessibleAction|
+
+|javax.accessibility.AccessibleHyperlink_Description|
+|javax.accessibility.AccessibleHyperlink_Fields|
+|javax.accessibility.AccessibleHyperlink_Constructors|
+|javax.accessibility.AccessibleHyperlink_Methods|
+
+================================================================================
+
+*javax.accessibility.AccessibleHyperlink_Constructors*
+|javax.accessibility.AccessibleHyperlink()|
+
+*javax.accessibility.AccessibleHyperlink_Methods*
+|javax.accessibility.AccessibleHyperlink.doAccessibleAction(int)|Performs the s
+|javax.accessibility.AccessibleHyperlink.getAccessibleActionAnchor(int)|Returns
+|javax.accessibility.AccessibleHyperlink.getAccessibleActionCount()|Returns the
+|javax.accessibility.AccessibleHyperlink.getAccessibleActionDescription(int)|Re
+|javax.accessibility.AccessibleHyperlink.getAccessibleActionObject(int)|Returns
+|javax.accessibility.AccessibleHyperlink.getEndIndex()|Gets the index with the 
+|javax.accessibility.AccessibleHyperlink.getStartIndex()|Gets the index with th
+|javax.accessibility.AccessibleHyperlink.isValid()|Since the document a link is
+
+*javax.accessibility.AccessibleHyperlink_Description*
+
+Encapsulation of a link, or set of links (e.g. client side imagemap) in a 
+Hypertext document 
+
+
+*javax.accessibility.AccessibleHyperlink()*
+
+public AccessibleHyperlink()
+
+
+
+
+*javax.accessibility.AccessibleHyperlink.doAccessibleAction(int)*
+
+public abstract boolean doAccessibleAction(int i)
+
+Performs the specified Action on the object 
+
+    i - zero-based index of actions 
+
+    Returns: true if the action was performed; otherwise false. 
+*javax.accessibility.AccessibleHyperlink.getAccessibleActionAnchor(int)*
+
+public abstract |java.lang.Object| getAccessibleActionAnchor(int i)
+
+Returns an object that represents the link anchor, as appropriate for that 
+link. E.g. from HTML: <a href="http://www.sun.com/access">Accessibility</a> 
+this method would return a String containing the text: "Accessibility". 
+
+Similarly, from this HTML: <a HREF="#top"><img src="top-hat.gif" alt="top 
+hat"></a> this might return the object ImageIcon("top-hat.gif", "top hat"); 
+
+    i - zero-based index of the actions 
+
+    Returns: an Object representing the hypertext anchor 
+*javax.accessibility.AccessibleHyperlink.getAccessibleActionCount()*
+
+public abstract int getAccessibleActionCount()
+
+Returns the number of accessible actions available in this Link If there are 
+more than one, the first one is NOT considered the "default" action of this 
+LINK object (e.g. in an HTML imagemap). In general, links will have only one 
+AccessibleAction in them. 
+
+
+    Returns: the zero-based number of Actions in this object 
+*javax.accessibility.AccessibleHyperlink.getAccessibleActionDescription(int)*
+
+public abstract |java.lang.String| getAccessibleActionDescription(int i)
+
+Returns a String description of this particular link action. This should be a 
+text string associated with anchoring text, this should be the anchor text. 
+E.g. from HTML: <a HREF="http://www.sun.com/access">Accessibility</a> this 
+method would return "Accessibility". 
+
+Similarly, from this HTML: <a HREF="#top"><img src="top-hat.gif" alt="top 
+hat"></a> this method would return "top hat" 
+
+    i - zero-based index of the actions 
+
+    Returns: a String description of the action 
+*javax.accessibility.AccessibleHyperlink.getAccessibleActionObject(int)*
+
+public abstract |java.lang.Object| getAccessibleActionObject(int i)
+
+Returns an object that represents the link action, as appropriate for that 
+link. E.g. from HTML: <a HREF="http://www.sun.com/access">Accessibility</a> 
+this method would return a java.net.URL("http://www.sun.com/access.html"); 
+
+    i - zero-based index of the actions 
+
+    Returns: an Object representing the hypertext link itself 
+*javax.accessibility.AccessibleHyperlink.getEndIndex()*
+
+public abstract int getEndIndex()
+
+Gets the index with the hypertext document at which this link ends 
+
+
+    Returns: index of end of link 
+*javax.accessibility.AccessibleHyperlink.getStartIndex()*
+
+public abstract int getStartIndex()
+
+Gets the index with the hypertext document at which this link begins 
+
+
+    Returns: index of start of link 
+*javax.accessibility.AccessibleHyperlink.isValid()*
+
+public abstract boolean isValid()
+
+Since the document a link is associated with may have changed, this method 
+returns whether or not this Link is still valid (with respect to the document 
+it references). 
+
+
+    Returns: a flag indicating whether this link is still valid with respect to the 
+             AccessibleHypertext it belongs to 
+

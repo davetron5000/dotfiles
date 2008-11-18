@@ -1,0 +1,600 @@
+*java.awt.geom.Line2D* *Line2D* This Line2D represents a line segment in (x,y)
+ 
+
+public abstract class Line2D
+  extends    |java.lang.Object|
+  implements |java.awt.Shape|
+             |java.lang.Cloneable|
+
+|java.awt.geom.Line2D_Description|
+|java.awt.geom.Line2D_Fields|
+|java.awt.geom.Line2D_Constructors|
+|java.awt.geom.Line2D_Methods|
+
+================================================================================
+
+*java.awt.geom.Line2D_Constructors*
+|java.awt.geom.Line2D()|This is an abstract class that cannot be instantiated d
+
+*java.awt.geom.Line2D_Methods*
+|java.awt.geom.Line2D.clone()|Creates a new object of the same class as this ob
+|java.awt.geom.Line2D.contains(double,double)|Tests if a specified coordinate i
+|java.awt.geom.Line2D.contains(double,double,double,double)|Tests if the interi
+|java.awt.geom.Line2D.contains(Point2D)|Tests if a given Point2D is inside the 
+|java.awt.geom.Line2D.contains(Rectangle2D)|Tests if the interior of this Line2
+|java.awt.geom.Line2D.getBounds()|Returns the bounding box of this Line2D.
+|java.awt.geom.Line2D.getP1()|Returns the starting Point2D of this  Line2D.
+|java.awt.geom.Line2D.getP2()|Returns the end Point2D of this Line2D.
+|java.awt.geom.Line2D.getPathIterator(AffineTransform)|Returns an iteration obj
+|java.awt.geom.Line2D.getPathIterator(AffineTransform,double)|Returns an iterat
+|java.awt.geom.Line2D.getX1()|Returns the X coordinate of the start point in do
+|java.awt.geom.Line2D.getX2()|Returns the X coordinate of the end point in doub
+|java.awt.geom.Line2D.getY1()|Returns the Y coordinate of the start point in do
+|java.awt.geom.Line2D.getY2()|Returns the Y coordinate of the end point in doub
+|java.awt.geom.Line2D.intersects(double,double,double,double)|Tests if this Lin
+|java.awt.geom.Line2D.intersects(Rectangle2D)|Tests if this Line2D intersects t
+|java.awt.geom.Line2D.intersectsLine(double,double,double,double)|Tests if the 
+|java.awt.geom.Line2D.intersectsLine(Line2D)|Tests if the specified line segmen
+|java.awt.geom.Line2D.linesIntersect(double,double,double,double,double,double,double,double)|
+|java.awt.geom.Line2D.ptLineDist(double,double)|Returns the distance from a poi
+|java.awt.geom.Line2D.ptLineDist(double,double,double,double,double,double)|Ret
+|java.awt.geom.Line2D.ptLineDist(Point2D)|Returns the distance from a Point2D t
+|java.awt.geom.Line2D.ptLineDistSq(double,double)|Returns the square of the dis
+|java.awt.geom.Line2D.ptLineDistSq(double,double,double,double,double,double)|R
+|java.awt.geom.Line2D.ptLineDistSq(Point2D)|Returns the square of the distance 
+|java.awt.geom.Line2D.ptSegDist(double,double)|Returns the distance from a poin
+|java.awt.geom.Line2D.ptSegDist(double,double,double,double,double,double)|Retu
+|java.awt.geom.Line2D.ptSegDist(Point2D)|Returns the distance from a Point2D to
+|java.awt.geom.Line2D.ptSegDistSq(double,double)|Returns the square of the dist
+|java.awt.geom.Line2D.ptSegDistSq(double,double,double,double,double,double)|Re
+|java.awt.geom.Line2D.ptSegDistSq(Point2D)|Returns the square of the distance f
+|java.awt.geom.Line2D.relativeCCW(double,double)|Returns an indicator of where 
+|java.awt.geom.Line2D.relativeCCW(double,double,double,double,double,double)|Re
+|java.awt.geom.Line2D.relativeCCW(Point2D)|Returns an indicator of where the sp
+|java.awt.geom.Line2D.setLine(double,double,double,double)|Sets the location of
+|java.awt.geom.Line2D.setLine(Line2D)|Sets the location of the endpoints of thi
+|java.awt.geom.Line2D.setLine(Point2D,Point2D)|Sets the location of the endpoin
+
+*java.awt.geom.Line2D_Description*
+
+This Line2D represents a line segment in (x,y) coordinate space. This class, 
+like all of the Java 2D API, uses a default coordinate system called user space 
+in which the y-axis values increase downward and x-axis values increase to the 
+right. For more information on the user space coordinate system, see the 
+
+Coordinate Systems section of the Java 2D Programmer's Guide. 
+
+This class is only the abstract superclass for all objects that store a 2D line 
+segment. The actual storage representation of the coordinates is left to the 
+subclass. 
+
+
+*java.awt.geom.Line2D()*
+
+protected Line2D()
+
+This is an abstract class that cannot be instantiated directly. Type-specific 
+implementation subclasses are available for instantiation and provide a number 
+of formats for storing the information necessary to satisfy the various 
+accessory methods below. 
+
+
+*java.awt.geom.Line2D.clone()*
+
+public |java.lang.Object| clone()
+
+Creates a new object of the same class as this object. 
+
+
+    Returns: a clone of this instance. 
+*java.awt.geom.Line2D.contains(double,double)*
+
+public boolean contains(
+  double x,
+  double y)
+
+Tests if a specified coordinate is inside the boundary of this Line2D. This 
+method is required to implement the (|java.awt.Shape|) interface, but in the 
+case of Line2D objects it always returns false since a line contains no area. 
+
+    x,&nbsp;y - the coordinates of the specified point 
+
+    Returns: false because a Line2D contains no area. 
+*java.awt.geom.Line2D.contains(double,double,double,double)*
+
+public boolean contains(
+  double x,
+  double y,
+  double w,
+  double h)
+
+Tests if the interior of this Line2D entirely contains the specified set of 
+rectangular coordinates. This method is required to implement the Shape 
+interface, but in the case of Line2D objects it always returns false since a 
+line contains no area. 
+
+    x,&nbsp;y - the coordinates of the top-left corner of the specified rectangular area 
+    w - the width of the specified rectangular area 
+    h - the height of the specified rectangular area 
+
+    Returns: false because a Line2D contains no area. 
+*java.awt.geom.Line2D.contains(Point2D)*
+
+public boolean contains(java.awt.geom.Point2D p)
+
+Tests if a given Point2D is inside the boundary of this Line2D. This method is 
+required to implement the Shape interface, but in the case of Line2D objects it 
+always returns false since a line contains no area. 
+
+    p - the specified Point2D to be tested 
+
+    Returns: false because a Line2D contains no area. 
+*java.awt.geom.Line2D.contains(Rectangle2D)*
+
+public boolean contains(java.awt.geom.Rectangle2D r)
+
+Tests if the interior of this Line2D entirely contains the specified 
+Rectangle2D. This method is required to implement the Shape interface, but in 
+the case of Line2D objects it always returns false since a line contains no 
+area. 
+
+    r - the specified Rectangle2D to be tested 
+
+    Returns: false because a Line2D contains no area. 
+*java.awt.geom.Line2D.getBounds()*
+
+public |java.awt.Rectangle| getBounds()
+
+Returns the bounding box of this Line2D. 
+
+
+    Returns: a {@link Rectangle} that is the bounding box of the Line2D. 
+*java.awt.geom.Line2D.getP1()*
+
+public abstract |java.awt.geom.Point2D| getP1()
+
+Returns the starting Point2D of this Line2D. 
+
+
+    Returns: the starting Point2D of this Line2D. 
+*java.awt.geom.Line2D.getP2()*
+
+public abstract |java.awt.geom.Point2D| getP2()
+
+Returns the end Point2D of this Line2D. 
+
+
+    Returns: a Point2D that is the endpoint of this Line2D. 
+*java.awt.geom.Line2D.getPathIterator(AffineTransform)*
+
+public |java.awt.geom.PathIterator| getPathIterator(java.awt.geom.AffineTransform at)
+
+Returns an iteration object that defines the boundary of this Line2D. The 
+iterator for this class is not multi-threaded safe, which means that this 
+Line2D class does not guarantee that modifications to the geometry of this 
+Line2D object do not affect any iterations of that geometry that are already in 
+process. 
+
+    at - the specified {@link AffineTransform} 
+
+    Returns: a {@link PathIterator} that defines the boundary of this Line2D. 
+*java.awt.geom.Line2D.getPathIterator(AffineTransform,double)*
+
+public |java.awt.geom.PathIterator| getPathIterator(
+  java.awt.geom.AffineTransform at,
+  double flatness)
+
+Returns an iteration object that defines the boundary of this flattened Line2D. 
+The iterator for this class is not multi-threaded safe, which means that this 
+Line2D class does not guarantee that modifications to the geometry of this 
+Line2D object do not affect any iterations of that geometry that are already in 
+process. 
+
+    at - the specified AffineTransform 
+    flatness - the maximum amount that the control points for a given curve can vary from 
+       colinear before a subdivided curve is replaced by a straight line 
+       connecting the endpoints. Since a Line2D object is always flat, this 
+       parameter is ignored. 
+
+    Returns: a PathIterator that defines the boundary of the flattened Line2D 
+*java.awt.geom.Line2D.getX1()*
+
+public abstract double getX1()
+
+Returns the X coordinate of the start point in double precision. 
+
+
+    Returns: the X coordinate of this Line2D object's starting point. 
+*java.awt.geom.Line2D.getX2()*
+
+public abstract double getX2()
+
+Returns the X coordinate of the end point in double precision. 
+
+
+    Returns: the X coordinate of this Line2D object's starting point. 
+*java.awt.geom.Line2D.getY1()*
+
+public abstract double getY1()
+
+Returns the Y coordinate of the start point in double precision. 
+
+
+    Returns: the Y coordinate of this Line2D object's starting point. 
+*java.awt.geom.Line2D.getY2()*
+
+public abstract double getY2()
+
+Returns the Y coordinate of the end point in double precision. 
+
+
+    Returns: the Y coordinate of this Line2D object's starting point. 
+*java.awt.geom.Line2D.intersects(double,double,double,double)*
+
+public boolean intersects(
+  double x,
+  double y,
+  double w,
+  double h)
+
+Tests if this Line2D intersects the interior of a specified set of rectangular 
+coordinates. 
+
+    x,&nbsp;y - the coordinates of the top-left corner of the specified rectangular area 
+    w - the width of the specified rectangular area 
+    h - the height of the specified rectangular area 
+
+    Returns: true if this Line2D intersects the interior of the specified set of rectangular 
+             coordinates; false otherwise. 
+*java.awt.geom.Line2D.intersects(Rectangle2D)*
+
+public boolean intersects(java.awt.geom.Rectangle2D r)
+
+Tests if this Line2D intersects the interior of a specified Rectangle2D. 
+
+    r - the specified Rectangle2D to be tested 
+
+    Returns: true if this Line2D intersects the interior of the specified Rectangle2D; false 
+             otherwise. 
+*java.awt.geom.Line2D.intersectsLine(double,double,double,double)*
+
+public boolean intersectsLine(
+  double X1,
+  double Y1,
+  double X2,
+  double Y2)
+
+Tests if the line segment from (X1,Y1) to (X2,Y2) intersects this line segment. 
+
+    X1,&nbsp;Y1 - the coordinates of the beginning of the specified line segment 
+    X2,&nbsp;Y2 - the coordinates of the end of the specified line segment 
+
+    Returns: if this line segment and the specified line segment intersect each other; false 
+             otherwise. 
+*java.awt.geom.Line2D.intersectsLine(Line2D)*
+
+public boolean intersectsLine(java.awt.geom.Line2D l)
+
+Tests if the specified line segment intersects this line segment. 
+
+    l - the specified Line2D 
+
+    Returns: true if this line segment and the specified line segment intersect each other; 
+             false otherwise. 
+*java.awt.geom.Line2D.linesIntersect(double,double,double,double,double,double,double,double)*
+
+public static boolean linesIntersect(
+  double X1,
+  double Y1,
+  double X2,
+  double Y2,
+  double X3,
+  double Y3,
+  double X4,
+  double Y4)
+
+Tests if the line segment from (X1,Y1) to (X2,Y2) intersects the line segment 
+from (X3,Y3) to (X4,Y4). 
+
+    X1,&nbsp;Y1 - the coordinates of the beginning of the first specified line segment 
+    X2,&nbsp;Y2 - the coordinates of the end of the first specified line segment 
+    X3,&nbsp;Y3 - the coordinates of the beginning of the second specified line segment 
+    X4,&nbsp;Y4 - the coordinates of the end of the second specified line segment 
+
+    Returns: true if the first specified line segment and the second specified line segment 
+             intersect each other; false otherwise. 
+*java.awt.geom.Line2D.ptLineDist(double,double)*
+
+public double ptLineDist(
+  double PX,
+  double PY)
+
+Returns the distance from a point to this line. The distance measured is the 
+distance between the specified point and the closest point on the 
+infinitely-extended line defined by this Line2D. If the specified point 
+intersects the line, this method returns 0.0. 
+
+    PX,&nbsp;PY - the coordinates of the specified point being measured against this line 
+
+    Returns: a double value that is the distance from a specified point to the current line. 
+*java.awt.geom.Line2D.ptLineDist(double,double,double,double,double,double)*
+
+public static double ptLineDist(
+  double X1,
+  double Y1,
+  double X2,
+  double Y2,
+  double PX,
+  double PY)
+
+Returns the distance from a point to a line. The distance measured is the 
+distance between the specified point and the closest point on the 
+infinitely-extended line defined by the specified coordinates. If the specified 
+point intersects the line, this method returns 0.0. 
+
+    X1,&nbsp;Y1 - the coordinates of one point on the specified line 
+    X2,&nbsp;Y2 - the coordinates of another point on the specified line 
+    PX,&nbsp;PY - the coordinates of the specified point being measured against the specified 
+       line 
+
+    Returns: a double value that is the distance from the specified point to the specified 
+             line. 
+*java.awt.geom.Line2D.ptLineDist(Point2D)*
+
+public double ptLineDist(java.awt.geom.Point2D pt)
+
+Returns the distance from a Point2D to this line. The distance measured is the 
+distance between the specified point and the closest point on the 
+infinitely-extended line defined by this Line2D. If the specified point 
+intersects the line, this method returns 0.0. 
+
+    pt - the specified Point2D being measured 
+
+    Returns: a double value that is the distance from a specified Point2D to the current 
+             line. 
+*java.awt.geom.Line2D.ptLineDistSq(double,double)*
+
+public double ptLineDistSq(
+  double PX,
+  double PY)
+
+Returns the square of the distance from a point to this line. The distance 
+measured is the distance between the specified point and the closest point on 
+the infinitely-extended line defined by this Line2D. If the specified point 
+intersects the line, this method returns 0.0. 
+
+    PX,&nbsp;PY - the coordinates of the specified point being measured against this line 
+
+    Returns: a double value that is the square of the distance from a specified point to the 
+             current line. 
+*java.awt.geom.Line2D.ptLineDistSq(double,double,double,double,double,double)*
+
+public static double ptLineDistSq(
+  double X1,
+  double Y1,
+  double X2,
+  double Y2,
+  double PX,
+  double PY)
+
+Returns the square of the distance from a point to a line. The distance 
+measured is the distance between the specified point and the closest point on 
+the infinitely-extended line defined by the specified coordinates. If the 
+specified point intersects the line, this method returns 0.0. 
+
+    X1,&nbsp;Y1 - the coordinates of one point on the specified line 
+    X2,&nbsp;Y2 - the coordinates of another point on the specified line 
+    PX,&nbsp;PY - the coordinates of the specified point being measured against the specified 
+       line 
+
+    Returns: a double value that is the square of the distance from the specified point to 
+             the specified line. 
+*java.awt.geom.Line2D.ptLineDistSq(Point2D)*
+
+public double ptLineDistSq(java.awt.geom.Point2D pt)
+
+Returns the square of the distance from a specified Point2D to this line. The 
+distance measured is the distance between the specified point and the closest 
+point on the infinitely-extended line defined by this Line2D. If the specified 
+point intersects the line, this method returns 0.0. 
+
+    pt - the specified Point2D being measured against this line 
+
+    Returns: a double value that is the square of the distance from a specified Point2D to 
+             the current line. 
+*java.awt.geom.Line2D.ptSegDist(double,double)*
+
+public double ptSegDist(
+  double PX,
+  double PY)
+
+Returns the distance from a point to this line segment. The distance measured 
+is the distance between the specified point and the closest point between the 
+current line's endpoints. If the specified point intersects the line segment in 
+between the endpoints, this method returns 0.0. 
+
+    PX,&nbsp;PY - the coordinates of the specified point being measured against this line segment 
+
+    Returns: a double value that is the distance from the specified point to the current 
+             line segment. 
+*java.awt.geom.Line2D.ptSegDist(double,double,double,double,double,double)*
+
+public static double ptSegDist(
+  double X1,
+  double Y1,
+  double X2,
+  double Y2,
+  double PX,
+  double PY)
+
+Returns the distance from a point to a line segment. The distance measured is 
+the distance between the specified point and the closest point between the 
+specified endpoints. If the specified point intersects the line segment in 
+between the endpoints, this method returns 0.0. 
+
+    X1,&nbsp;Y1 - the coordinates of the beginning of the specified line segment 
+    X2,&nbsp;Y2 - the coordinates of the end of the specified line segment 
+    PX,&nbsp;PY - the coordinates of the specified point being measured against the specified 
+       line segment 
+
+    Returns: a double value that is the distance from the specified point to the specified 
+             line segment. 
+*java.awt.geom.Line2D.ptSegDist(Point2D)*
+
+public double ptSegDist(java.awt.geom.Point2D pt)
+
+Returns the distance from a Point2D to this line segment. The distance measured 
+is the distance between the specified point and the closest point between the 
+current line's endpoints. If the specified point intersects the line segment in 
+between the endpoints, this method returns 0.0. 
+
+    pt - the specified Point2D being measured against this line segment 
+
+    Returns: a double value that is the distance from the specified Point2D to the current 
+             line segment. 
+*java.awt.geom.Line2D.ptSegDistSq(double,double)*
+
+public double ptSegDistSq(
+  double PX,
+  double PY)
+
+Returns the square of the distance from a point to this line segment. The 
+distance measured is the distance between the specified point and the closest 
+point between the current line's endpoints. If the specified point intersects 
+the line segment in between the endpoints, this method returns 0.0. 
+
+    PX,&nbsp;PY - the coordinates of the specified point being measured against this line segment 
+
+    Returns: a double value that is the square of the distance from the specified point to 
+             the current line segment. 
+*java.awt.geom.Line2D.ptSegDistSq(double,double,double,double,double,double)*
+
+public static double ptSegDistSq(
+  double X1,
+  double Y1,
+  double X2,
+  double Y2,
+  double PX,
+  double PY)
+
+Returns the square of the distance from a point to a line segment. The distance 
+measured is the distance between the specified point and the closest point 
+between the specified endpoints. If the specified point intersects the line 
+segment in between the endpoints, this method returns 0.0. 
+
+    X1,&nbsp;Y1 - the coordinates of the beginning of the specified line segment 
+    X2,&nbsp;Y2 - the coordinates of the end of the specified line segment 
+    PX,&nbsp;PY - the coordinates of the specified point being measured against the specified 
+       line segment 
+
+    Returns: a double value that is the square of the distance from the specified point to 
+             the specified line segment. 
+*java.awt.geom.Line2D.ptSegDistSq(Point2D)*
+
+public double ptSegDistSq(java.awt.geom.Point2D pt)
+
+Returns the square of the distance from a Point2D to this line segment. The 
+distance measured is the distance between the specified point and the closest 
+point between the current line's endpoints. If the specified point intersects 
+the line segment in between the endpoints, this method returns 0.0. 
+
+    pt - the specified Point2D being measured against this line segment. 
+
+    Returns: a double value that is the square of the distance from the specified Point2D to 
+             the current line segment. 
+*java.awt.geom.Line2D.relativeCCW(double,double)*
+
+public int relativeCCW(
+  double PX,
+  double PY)
+
+Returns an indicator of where the specified point (PX,PY) lies with respect to 
+this line segment. See the method comments of (|java.awt.geom.Line2D|) to 
+interpret the return value. 
+
+    PX,&nbsp;PY - the coordinates of the specified point to be compared with the current line 
+       segment 
+
+    Returns: an integer that indicates the position of the specified coordinates with 
+             respect to the current line segment. 
+*java.awt.geom.Line2D.relativeCCW(double,double,double,double,double,double)*
+
+public static int relativeCCW(
+  double X1,
+  double Y1,
+  double X2,
+  double Y2,
+  double PX,
+  double PY)
+
+Returns an indicator of where the specified point (PX,PY) lies with respect to 
+the line segment from (X1,Y1) to (X2,Y2). The return value can be either 1, -1, 
+or 0 and indicates in which direction the specified line must pivot around its 
+first endpoint, (X1,Y1), in order to point at the specified point (PX,PY). A 
+return value of 1 indicates that the line segment must turn in the direction 
+that takes the positive X axis towards the negative Y axis. In the default 
+coordinate system used by Java 2D, this direction is counterclockwise. A return 
+value of -1 indicates that the line segment must turn in the direction that 
+takes the positive X axis towards the positive Y axis. In the default 
+coordinate system, this direction is clockwise. A return value of 0 indicates 
+that the point lies exactly on the line segment. Note that an indicator value 
+of 0 is rare and not useful for determining colinearity because of floating 
+point rounding issues. If the point is colinear with the line segment, but not 
+between the endpoints, then the value will be -1 if the point lies "beyond 
+(X1,Y1)" or 1 if the point lies "beyond (X2,Y2)". 
+
+    X1,&nbsp;Y1 - the coordinates of the beginning of the specified line segment 
+    X2,&nbsp;Y2 - the coordinates of the end of the specified line segment 
+    PX,&nbsp;PY - the coordinates of the specified point to be compared with the specified line 
+       segment 
+
+    Returns: an integer that indicates the position of the third specified coordinates with 
+             respect to the line segment formed by the first two specified 
+             coordinates. 
+*java.awt.geom.Line2D.relativeCCW(Point2D)*
+
+public int relativeCCW(java.awt.geom.Point2D p)
+
+Returns an indicator of where the specified Point2D lies with respect to this 
+line segment. See the method comments of (|java.awt.geom.Line2D|) to interpret 
+the return value. 
+
+    p - the specified Point2D to be compared with the current line segment 
+
+    Returns: an integer that indicates the position of the Point2D with respect to the 
+             current line segment. 
+*java.awt.geom.Line2D.setLine(double,double,double,double)*
+
+public abstract void setLine(
+  double X1,
+  double Y1,
+  double X2,
+  double Y2)
+
+Sets the location of the endpoints of this Line2D to the specified double 
+coordinates. 
+
+    X1,&nbsp;Y1 - the first specified coordinate 
+    X2,&nbsp;Y2 - the second specified coordinate 
+
+*java.awt.geom.Line2D.setLine(Line2D)*
+
+public void setLine(java.awt.geom.Line2D l)
+
+Sets the location of the endpoints of this Line2D to the same as those 
+endpoints of the specified Line2D. 
+
+    l - the specified Line2D 
+
+*java.awt.geom.Line2D.setLine(Point2D,Point2D)*
+
+public void setLine(
+  java.awt.geom.Point2D p1,
+  java.awt.geom.Point2D p2)
+
+Sets the location of the endpoints of this Line2D to the specified Point2D 
+coordinates. 
+
+    p1,&nbsp;p2 - the specified Point2D objects 
+
+

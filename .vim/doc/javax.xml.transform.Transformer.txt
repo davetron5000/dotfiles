@@ -1,0 +1,264 @@
+*javax.xml.transform.Transformer* *Transformer* An instance of this abstract cla
+
+public abstract class Transformer
+  extends    |java.lang.Object|
+
+|javax.xml.transform.Transformer_Description|
+|javax.xml.transform.Transformer_Fields|
+|javax.xml.transform.Transformer_Constructors|
+|javax.xml.transform.Transformer_Methods|
+
+================================================================================
+
+*javax.xml.transform.Transformer_Constructors*
+|javax.xml.transform.Transformer()|Default constructor is protected on purpose.
+
+*javax.xml.transform.Transformer_Methods*
+|javax.xml.transform.Transformer.clearParameters()|Clear all parameters set wit
+|javax.xml.transform.Transformer.getErrorListener()|Get the error event handler
+|javax.xml.transform.Transformer.getOutputProperties()|Get a copy of the output
+|javax.xml.transform.Transformer.getOutputProperty(String)|Get an output proper
+|javax.xml.transform.Transformer.getParameter(String)|Get a parameter that was 
+|javax.xml.transform.Transformer.getURIResolver()|Get an object that will be us
+|javax.xml.transform.Transformer.reset()|Reset this Transformer to its original
+|javax.xml.transform.Transformer.setErrorListener(ErrorListener)|Set the error 
+|javax.xml.transform.Transformer.setOutputProperties(Properties)|Set the output
+|javax.xml.transform.Transformer.setOutputProperty(String,String)|Set an output
+|javax.xml.transform.Transformer.setParameter(String,Object)|Add a parameter fo
+|javax.xml.transform.Transformer.setURIResolver(URIResolver)|Set an object that
+|javax.xml.transform.Transformer.transform(Source,Result)|Transform the XML Sou
+
+*javax.xml.transform.Transformer_Description*
+
+An instance of this abstract class can transform a source tree into a result 
+tree. 
+
+An instance of this class can be obtained with the 
+TransformerFactory.newTransformer(|javax.xml.transform.TransformerFactory|) 
+method. This instance may then be used to process XML from a variety of sources 
+and write the transformation output to a variety of sinks. 
+
+An object of this class may not be used in multiple threads running 
+concurrently. Different Transformers may be used concurrently by different 
+threads. 
+
+A Transformer may be used multiple times. Parameters and output properties are 
+preserved across transformations. 
+
+
+*javax.xml.transform.Transformer()*
+
+protected Transformer()
+
+Default constructor is protected on purpose. 
+
+
+*javax.xml.transform.Transformer.clearParameters()*
+
+public abstract void clearParameters()
+
+Clear all parameters set with setParameter. 
+
+
+*javax.xml.transform.Transformer.getErrorListener()*
+
+public abstract |javax.xml.transform.ErrorListener| getErrorListener()
+
+Get the error event handler in effect for the transformation. Implementations 
+must provide a default error listener. 
+
+
+    Returns: The current error handler, which should never be null. 
+*javax.xml.transform.Transformer.getOutputProperties()*
+
+public abstract |java.util.Properties| getOutputProperties()
+
+Get a copy of the output properties for the transformation. 
+
+The properties returned should contain properties set by the user, and 
+properties set by the stylesheet, and these properties are "defaulted" by 
+default properties specified by section 16 of the XSL Transformations (XSLT) 
+W3C Recommendation. The properties that were specifically set by the user or 
+the stylesheet should be in the base Properties list, while the XSLT default 
+properties that were not specifically set should be the default Properties 
+list. Thus, getOutputProperties().getProperty(String key) will obtain any 
+property in that was set by (|javax.xml.transform.Transformer|) , 
+(|javax.xml.transform.Transformer|) , in the stylesheet, or the default 
+properties, while getOutputProperties().get(String key) will only retrieve 
+properties that were explicitly set by (|javax.xml.transform.Transformer|) , 
+(|javax.xml.transform.Transformer|) , or in the stylesheet. 
+
+Note that mutation of the Properties object returned will not effect the 
+properties that the transformer contains. 
+
+If any of the argument keys are not recognized and are not namespace qualified, 
+the property will be ignored and not returned. In other words the behaviour is 
+not orthogonal with setOutputProperties(|javax.xml.transform.Transformer|) . 
+
+
+    Returns: A copy of the set of output properties in effect for the next transformation. 
+*javax.xml.transform.Transformer.getOutputProperty(String)*
+
+public abstract |java.lang.String| getOutputProperty(java.lang.String name)
+  throws |java.lang.IllegalArgumentException|
+         
+Get an output property that is in effect for the transformer. The property 
+specified may be a property that was set with setOutputProperty, or it may be a 
+property specified in the stylesheet. 
+
+    name - A non-null String that specifies an output property name, which may be 
+       namespace qualified. 
+
+    Returns: The string value of the output property, or null if no property was found. 
+*javax.xml.transform.Transformer.getParameter(String)*
+
+public abstract |java.lang.Object| getParameter(java.lang.String name)
+
+Get a parameter that was explicitly set with setParameter. 
+
+This method does not return a default parameter value, which cannot be 
+determined until the node context is evaluated during the transformation 
+process. 
+
+    name - of Object to get 
+
+    Returns: A parameter that has been set with setParameter. 
+*javax.xml.transform.Transformer.getURIResolver()*
+
+public abstract |javax.xml.transform.URIResolver| getURIResolver()
+
+Get an object that will be used to resolve URIs used in document(). 
+
+
+    Returns: An object that implements the URIResolver interface, or null. 
+*javax.xml.transform.Transformer.reset()*
+
+public void reset()
+
+Reset this Transformer to its original configuration. 
+
+Transformer is reset to the same state as when it was created with 
+(|javax.xml.transform.TransformerFactory|) , 
+(|javax.xml.transform.TransformerFactory|) or (|javax.xml.transform.Templates|) 
+. reset() is designed to allow the reuse of existing Transformers thus saving 
+resources associated with the creation of new Transformers. 
+
+The reset Transformer is not guaranteed to have the same 
+(|javax.xml.transform.URIResolver|) or (|javax.xml.transform.ErrorListener|) 
+Objects, e.g. (|java.lang.Object|) . It is guaranteed to have a functionally 
+equal URIResolver and ErrorListener. 
+
+
+*javax.xml.transform.Transformer.setErrorListener(ErrorListener)*
+
+public abstract void setErrorListener(javax.xml.transform.ErrorListener listener)
+  throws |java.lang.IllegalArgumentException|
+         
+Set the error event listener in effect for the transformation. 
+
+    listener - The new error listener. 
+
+*javax.xml.transform.Transformer.setOutputProperties(Properties)*
+
+public abstract void setOutputProperties(java.util.Properties oformat)
+
+Set the output properties for the transformation. These properties will 
+override properties set in the Templates with xsl:output. 
+
+If argument to this function is null, any properties previously set are 
+removed, and the value will revert to the value defined in the templates 
+object. 
+
+Pass a qualified property key name as a two-part string, the namespace URI 
+enclosed in curly braces ({}), followed by the local name. If the name has a 
+null URL, the String only contain the local name. An application can safely 
+check for a non-null URI by testing to see if the first character of the name 
+is a '{' character. For example, if a URI and local name were obtained from an 
+element defined with <xyz:foo xmlns:xyz="http://xyz.foo.com/yada/baz.html"/>, 
+then the qualified name would be "{http://xyz.foo.com/yada/baz.html}foo". Note 
+that no prefix is used. An IllegalArgumentException is thrown if any of the 
+argument keys are not recognized and are not namespace qualified. 
+
+    oformat - A set of output properties that will be used to override any of the same 
+       properties in affect for the transformation. 
+
+*javax.xml.transform.Transformer.setOutputProperty(String,String)*
+
+public abstract void setOutputProperty(
+  java.lang.String name,
+  java.lang.String value)
+  throws |java.lang.IllegalArgumentException|
+         
+Set an output property that will be in effect for the transformation. 
+
+Pass a qualified property name as a two-part string, the namespace URI enclosed 
+in curly braces ({}), followed by the local name. If the name has a null URL, 
+the String only contain the local name. An application can safely check for a 
+non-null URI by testing to see if the first character of the name is a '{' 
+character. For example, if a URI and local name were obtained from an element 
+defined with <xyz:foo xmlns:xyz="http://xyz.foo.com/yada/baz.html"/>, then the 
+qualified name would be "{http://xyz.foo.com/yada/baz.html}foo". Note that no 
+prefix is used. 
+
+The Properties object that was passed to (|javax.xml.transform.Transformer|) 
+won't be effected by calling this method. 
+
+    name - A non-null String that specifies an output property name, which may be 
+       namespace qualified. 
+    value - The non-null string value of the output property. 
+
+*javax.xml.transform.Transformer.setParameter(String,Object)*
+
+public abstract void setParameter(
+  java.lang.String name,
+  java.lang.Object value)
+
+Add a parameter for the transformation. 
+
+Pass a qualified name as a two-part string, the namespace URI enclosed in curly 
+braces ({}), followed by the local name. If the name has a null URL, the String 
+only contain the local name. An application can safely check for a non-null URI 
+by testing to see if the first character of the name is a '{' character. For 
+example, if a URI and local name were obtained from an element defined with 
+<xyz:foo xmlns:xyz="http://xyz.foo.com/yada/baz.html"/>, then the qualified 
+name would be "{http://xyz.foo.com/yada/baz.html}foo". Note that no prefix is 
+used. 
+
+    name - The name of the parameter, which may begin with a namespace URI in curly braces 
+       ({}). 
+    value - The value object. This can be any valid Java object. It is up to the processor 
+       to provide the proper object coersion or to simply pass the object on 
+       for use in an extension. 
+
+*javax.xml.transform.Transformer.setURIResolver(URIResolver)*
+
+public abstract void setURIResolver(javax.xml.transform.URIResolver resolver)
+
+Set an object that will be used to resolve URIs used in document(). 
+
+If the resolver argument is null, the URIResolver value will be cleared and the 
+transformer will no longer have a resolver. 
+
+    resolver - An object that implements the URIResolver interface, or null. 
+
+*javax.xml.transform.Transformer.transform(Source,Result)*
+
+public abstract void transform(
+  javax.xml.transform.Source xmlSource,
+  javax.xml.transform.Result outputTarget)
+  throws |javax.xml.transform.TransformerException|
+         
+Transform the XML Source to a Result. Specific transformation behavior is 
+determined by the settings of the TransformerFactory in effect when the 
+Transformer was instantiated and any modifications made to the Transformer 
+instance. 
+
+An empty Source is represented as an empty document as constructed by 
+(|javax.xml.parsers.DocumentBuilder|) . The result of transforming an empty 
+Source depends on the transformation behavior; it is not always an empty 
+Result. 
+
+    xmlSource - The XML input to transform. 
+    outputTarget - The Result of transforming the xmlSource. 
+
+

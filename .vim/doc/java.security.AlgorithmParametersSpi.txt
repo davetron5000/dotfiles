@@ -1,0 +1,121 @@
+*java.security.AlgorithmParametersSpi* *AlgorithmParametersSpi* This class defin
+
+public abstract class AlgorithmParametersSpi
+  extends    |java.lang.Object|
+
+|java.security.AlgorithmParametersSpi_Description|
+|java.security.AlgorithmParametersSpi_Fields|
+|java.security.AlgorithmParametersSpi_Constructors|
+|java.security.AlgorithmParametersSpi_Methods|
+
+================================================================================
+
+*java.security.AlgorithmParametersSpi_Constructors*
+|java.security.AlgorithmParametersSpi()|
+
+*java.security.AlgorithmParametersSpi_Methods*
+|java.security.AlgorithmParametersSpi.engineGetEncoded()|Returns the parameters
+|java.security.AlgorithmParametersSpi.engineGetEncoded(String)|Returns the para
+|java.security.AlgorithmParametersSpi.engineGetParameterSpec(Class)|Returns a (
+|java.security.AlgorithmParametersSpi.engineInit(AlgorithmParameterSpec)|Initia
+|java.security.AlgorithmParametersSpi.engineInit(byte[])|Imports the specified 
+|java.security.AlgorithmParametersSpi.engineInit(byte[],String)|Imports the par
+|java.security.AlgorithmParametersSpi.engineToString()|Returns a formatted stri
+
+*java.security.AlgorithmParametersSpi_Description*
+
+This class defines the Service Provider Interface (SPI) for the 
+AlgorithmParameters class, which is used to manage algorithm parameters. 
+
+All the abstract methods in this class must be implemented by each 
+cryptographic service provider who wishes to supply parameter management for a 
+particular algorithm. 
+
+
+*java.security.AlgorithmParametersSpi()*
+
+public AlgorithmParametersSpi()
+
+
+
+
+*java.security.AlgorithmParametersSpi.engineGetEncoded()*
+
+protected abstract byte engineGetEncoded()
+  throws |java.io.IOException|
+         
+Returns the parameters in their primary encoding format. The primary encoding 
+format for parameters is ASN.1, if an ASN.1 specification for this type of 
+parameters exists. 
+
+
+    Returns: the parameters encoded using the specified encoding scheme. 
+*java.security.AlgorithmParametersSpi.engineGetEncoded(String)*
+
+protected abstract byte engineGetEncoded(java.lang.String format)
+  throws |java.io.IOException|
+         
+Returns the parameters encoded in the specified format. If format is null, the 
+primary encoding format for parameters is used. The primary encoding format is 
+ASN.1, if an ASN.1 specification for these parameters exists. 
+
+    format - the name of the encoding format. 
+
+    Returns: the parameters encoded using the specified encoding scheme. 
+*java.security.AlgorithmParametersSpi.engineGetParameterSpec(Class)*
+
+protected abstract |java.security.spec.AlgorithmParameterSpec| engineGetParameterSpec(java.lang.Class paramSpec)
+  throws |java.security.spec.InvalidParameterSpecException|
+         
+Returns a (transparent) specification of this parameters object. paramSpec 
+identifies the specification class in which the parameters should be returned. 
+It could, for example, be DSAParameterSpec.class, to indicate that the 
+parameters should be returned in an instance of the DSAParameterSpec class. 
+
+    paramSpec - the the specification class in which the parameters should be returned. 
+
+    Returns: the parameter specification. 
+*java.security.AlgorithmParametersSpi.engineInit(AlgorithmParameterSpec)*
+
+protected abstract void engineInit(java.security.spec.AlgorithmParameterSpec paramSpec)
+  throws |java.security.spec.InvalidParameterSpecException|
+         
+Initializes this parameters object using the parameters specified in paramSpec. 
+
+    paramSpec - the parameter specification. 
+
+*java.security.AlgorithmParametersSpi.engineInit(byte[])*
+
+protected abstract void engineInit(byte[] params)
+  throws |java.io.IOException|
+         
+Imports the specified parameters and decodes them according to the primary 
+decoding format for parameters. The primary decoding format for parameters is 
+ASN.1, if an ASN.1 specification for this type of parameters exists. 
+
+    params - the encoded parameters. 
+
+*java.security.AlgorithmParametersSpi.engineInit(byte[],String)*
+
+protected abstract void engineInit(
+  byte[] params,
+  java.lang.String format)
+  throws |java.io.IOException|
+         
+Imports the parameters from params and decodes them according to the specified 
+decoding format. If format is null, the primary decoding format for parameters 
+is used. The primary decoding format is ASN.1, if an ASN.1 specification for 
+these parameters exists. 
+
+    params - the encoded parameters. 
+    format - the name of the decoding format. 
+
+*java.security.AlgorithmParametersSpi.engineToString()*
+
+protected abstract |java.lang.String| engineToString()
+
+Returns a formatted string describing the parameters. 
+
+
+    Returns: a formatted string describing the parameters. 
+

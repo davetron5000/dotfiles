@@ -1,0 +1,46 @@
+*javax.persistence.OrderBy* *OrderBy* This annotation specifies the ordering of 
+
+public interface class OrderBy
+
+  implements |java.lang.annotation.Annotation|
+
+|javax.persistence.OrderBy_Description|
+|javax.persistence.OrderBy_Fields|
+|javax.persistence.OrderBy_Constructors|
+|javax.persistence.OrderBy_Methods|
+
+================================================================================
+
+*javax.persistence.OrderBy_Description*
+
+This annotation specifies the ordering of the elements of a collection valued 
+association at the point when the association is retrieved. 
+
+The syntax of the value ordering element is an orderby_list, as follows: 
+
+
+
+orderby_list::= orderby_item [,orderby_item]* orderby_item::= 
+property_or_field_name [ASC | DESC] 
+
+If ASC or DESC is not specified, ASC (ascending order) is assumed. 
+
+If the ordering element is not specified, ordering by the primary key of the 
+associated entity is assumed. 
+
+The property or field name must correspond to that of a persistent property or 
+field of the associated class. The properties or fields used in the ordering 
+must correspond to columns for which comparison operators are supported. 
+
+
+
+Example: 
+
+Entity public class Course { ... ManyToMany OrderBy("lastname ASC") public List 
+getStudents() {...}; ... } 
+
+Entity public class Student { ... ManyToMany(mappedBy="students") OrderBy // PK 
+is assumed public List getCourses() {...}; ... } 
+
+
+

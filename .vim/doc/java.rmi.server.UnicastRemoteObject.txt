@@ -1,0 +1,195 @@
+*java.rmi.server.UnicastRemoteObject* *UnicastRemoteObject* Used for exporting a
+
+public class UnicastRemoteObject
+  extends    |java.rmi.server.RemoteServer|
+
+|java.rmi.server.UnicastRemoteObject_Description|
+|java.rmi.server.UnicastRemoteObject_Fields|
+|java.rmi.server.UnicastRemoteObject_Constructors|
+|java.rmi.server.UnicastRemoteObject_Methods|
+
+================================================================================
+
+*java.rmi.server.UnicastRemoteObject_Constructors*
+|java.rmi.server.UnicastRemoteObject()|Creates and exports a new UnicastRemoteO
+|java.rmi.server.UnicastRemoteObject(int)|Creates and exports a new UnicastRemo
+|java.rmi.server.UnicastRemoteObject(int,RMIClientSocketFactory,RMIServerSocketFactory)|
+
+*java.rmi.server.UnicastRemoteObject_Methods*
+|java.rmi.server.UnicastRemoteObject.clone()|Returns a clone of the remote obje
+|java.rmi.server.UnicastRemoteObject.exportObject(Remote)|Exports the remote ob
+|java.rmi.server.UnicastRemoteObject.exportObject(Remote,int)|Exports the remot
+|java.rmi.server.UnicastRemoteObject.exportObject(Remote,int,RMIClientSocketFactory,RMIServerSocketFactory)|
+|java.rmi.server.UnicastRemoteObject.unexportObject(Remote,boolean)|Removes the
+
+*java.rmi.server.UnicastRemoteObject_Description*
+
+Used for exporting a remote object with JRMP and obtaining a stub that 
+communicates to the remote object. 
+
+For the constructors and static exportObject methods below, the stub for a 
+remote object being exported is obtained as follows: 
+
+
+
+If the remote object is exported using the 
+UnicastRemoteObject.exportObject(Remote)(|java.rmi.server.UnicastRemoteObject|) 
+method, a stub class (typically pregenerated from the remote object's class 
+using the rmic tool) is loaded and an instance of that stub class is 
+constructed as follows. 
+
+A "root class" is determined as follows: if the remote object's class directly 
+implements an interface that extends (|java.rmi.Remote|) , then the remote 
+object's class is the root class; otherwise, the root class is the most derived 
+superclass of the remote object's class that directly implements an interface 
+that extends Remote. 
+
+The name of the stub class to load is determined by concatenating the binary 
+name of the root class with the suffix "_Stub". 
+
+The stub class is loaded by name using the class loader of the root class. The 
+stub class must extend (|java.rmi.server.RemoteStub|) and must have a public 
+constructor that has one parameter, of type (|java.rmi.server.RemoteRef|) . 
+
+Finally, an instance of the stub class is constructed with a 
+(|java.rmi.server.RemoteRef|) . 
+
+If the appropriate stub class could not be found, or the stub class could not 
+be loaded, or a problem occurs creating the stub instance, a 
+(|java.rmi.StubNotFoundException|) is thrown. 
+
+For all other means of exporting: 
+
+If the remote object's stub class (as defined above) could not be loaded or the 
+system property java.rmi.server.ignoreStubClasses is set to "true" (case 
+insensitive), a (|java.lang.reflect.Proxy|) instance is constructed with the 
+following properties: 
+
+
+
+The proxy's class is defined by the class loader of the remote object's class. 
+
+The proxy implements all the remote interfaces implemented by the remote 
+object's class. 
+
+The proxy's invocation handler is a 
+(|java.rmi.server.RemoteObjectInvocationHandler|) instance constructed with a 
+(|java.rmi.server.RemoteRef|) . 
+
+If the proxy could not be created, a (|java.rmi.StubNotFoundException|) will be 
+thrown. 
+
+Otherwise, an instance of the remote object's stub class (as described above) 
+is used as the stub. 
+
+
+
+
+*java.rmi.server.UnicastRemoteObject()*
+
+protected UnicastRemoteObject()
+  throws |java.rmi.RemoteException|
+         
+Creates and exports a new UnicastRemoteObject object using an anonymous port. 
+
+
+*java.rmi.server.UnicastRemoteObject(int)*
+
+protected UnicastRemoteObject(int port)
+  throws |java.rmi.RemoteException|
+         
+Creates and exports a new UnicastRemoteObject object using the particular 
+supplied port. 
+
+    port - the port number on which the remote object receives calls (if port is zero, an 
+       anonymous port is chosen) 
+
+*java.rmi.server.UnicastRemoteObject(int,RMIClientSocketFactory,RMIServerSocketFactory)*
+
+protected UnicastRemoteObject(
+  int port,
+  java.rmi.server.RMIClientSocketFactory csf,
+  java.rmi.server.RMIServerSocketFactory ssf)
+  throws |java.rmi.RemoteException|
+         
+Creates and exports a new UnicastRemoteObject object using the particular 
+supplied port and socket factories. 
+
+    port - the port number on which the remote object receives calls (if port is zero, an 
+       anonymous port is chosen) 
+    csf - the client-side socket factory for making calls to the remote object 
+    ssf - the server-side socket factory for receiving remote calls 
+
+*java.rmi.server.UnicastRemoteObject.clone()*
+
+public |java.lang.Object| clone()
+  throws |java.lang.CloneNotSupportedException|
+         
+Returns a clone of the remote object that is distinct from the original. 
+
+
+    Returns: the new remote object 
+*java.rmi.server.UnicastRemoteObject.exportObject(Remote)*
+
+public static |java.rmi.server.RemoteStub| exportObject(java.rmi.Remote obj)
+  throws |java.rmi.RemoteException|
+         
+Exports the remote object to make it available to receive incoming calls using 
+an anonymous port. 
+
+    obj - the remote object to be exported 
+
+    Returns: remote object stub 
+*java.rmi.server.UnicastRemoteObject.exportObject(Remote,int)*
+
+public static |java.rmi.Remote| exportObject(
+  java.rmi.Remote obj,
+  int port)
+  throws |java.rmi.RemoteException|
+         
+Exports the remote object to make it available to receive incoming calls, using 
+the particular supplied port. 
+
+    obj - the remote object to be exported 
+    port - the port to export the object on 
+
+    Returns: remote object stub 
+*java.rmi.server.UnicastRemoteObject.exportObject(Remote,int,RMIClientSocketFactory,RMIServerSocketFactory)*
+
+public static |java.rmi.Remote| exportObject(
+  java.rmi.Remote obj,
+  int port,
+  java.rmi.server.RMIClientSocketFactory csf,
+  java.rmi.server.RMIServerSocketFactory ssf)
+  throws |java.rmi.RemoteException|
+         
+Exports the remote object to make it available to receive incoming calls, using 
+a transport specified by the given socket factory. 
+
+    obj - the remote object to be exported 
+    port - the port to export the object on 
+    csf - the client-side socket factory for making calls to the remote object 
+    ssf - the server-side socket factory for receiving remote calls 
+
+    Returns: remote object stub 
+*java.rmi.server.UnicastRemoteObject.unexportObject(Remote,boolean)*
+
+public static boolean unexportObject(
+  java.rmi.Remote obj,
+  boolean force)
+  throws |java.rmi.NoSuchObjectException|
+         
+Removes the remote object, obj, from the RMI runtime. If successful, the object 
+can no longer accept incoming RMI calls. If the force parameter is true, the 
+object is forcibly unexported even if there are pending calls to the remote 
+object or the remote object still has calls in progress. If the force parameter 
+is false, the object is only unexported if there are no pending or in progress 
+calls to the object. 
+
+    obj - the remote object to be unexported 
+    force - if true, unexports the object even if there are pending or in-progress calls; 
+       if false, only unexports the object if there are no pending or 
+       in-progress calls 
+
+    Returns: true if operation is successful, false otherwise 
+

@@ -1,0 +1,243 @@
+*java.awt.image.RenderedImage* *RenderedImage* RenderedImage is a common interfa
+
+public interface interface RenderedImage
+
+
+|java.awt.image.RenderedImage_Description|
+|java.awt.image.RenderedImage_Fields|
+|java.awt.image.RenderedImage_Constructors|
+|java.awt.image.RenderedImage_Methods|
+
+================================================================================
+
+*java.awt.image.RenderedImage_Methods*
+|java.awt.image.RenderedImage.copyData(WritableRaster)|Computes an arbitrary re
+|java.awt.image.RenderedImage.getColorModel()|Returns the ColorModel associated
+|java.awt.image.RenderedImage.getData()|Returns the image as one large tile (fo
+|java.awt.image.RenderedImage.getData(Rectangle)|Computes and returns an arbitr
+|java.awt.image.RenderedImage.getHeight()|Returns the height of the RenderedIma
+|java.awt.image.RenderedImage.getMinTileX()|Returns the minimum tile index in t
+|java.awt.image.RenderedImage.getMinTileY()|Returns the minimum tile index in t
+|java.awt.image.RenderedImage.getMinX()|Returns the minimum X coordinate (inclu
+|java.awt.image.RenderedImage.getMinY()|Returns the minimum Y coordinate (inclu
+|java.awt.image.RenderedImage.getNumXTiles()|Returns the number of tiles in the
+|java.awt.image.RenderedImage.getNumYTiles()|Returns the number of tiles in the
+|java.awt.image.RenderedImage.getProperty(String)|Gets a property from the prop
+|java.awt.image.RenderedImage.getPropertyNames()|Returns an array of names reco
+|java.awt.image.RenderedImage.getSampleModel()|Returns the SampleModel associat
+|java.awt.image.RenderedImage.getSources()|Returns a vector of RenderedImages t
+|java.awt.image.RenderedImage.getTile(int,int)|Returns tile (tileX, tileY).
+|java.awt.image.RenderedImage.getTileGridXOffset()|Returns the X offset of the 
+|java.awt.image.RenderedImage.getTileGridYOffset()|Returns the Y offset of the 
+|java.awt.image.RenderedImage.getTileHeight()|Returns the tile height in pixels
+|java.awt.image.RenderedImage.getTileWidth()|Returns the tile width in pixels.
+|java.awt.image.RenderedImage.getWidth()|Returns the width of the RenderedImage
+
+*java.awt.image.RenderedImage_Description*
+
+RenderedImage is a common interface for objects which contain or can produce 
+image data in the form of Rasters. The image data may be stored/produced as a 
+single tile or a regular array of tiles. 
+
+
+*java.awt.image.RenderedImage.copyData(WritableRaster)*
+
+public |java.awt.image.WritableRaster| copyData(java.awt.image.WritableRaster raster)
+
+Computes an arbitrary rectangular region of the RenderedImage and copies it 
+into a caller-supplied WritableRaster. The region to be computed is determined 
+from the bounds of the supplied WritableRaster. The supplied WritableRaster 
+must have a SampleModel that is compatible with this image. If raster is null, 
+an appropriate WritableRaster is created. 
+
+    raster - a WritableRaster to hold the returned portion of the image, or null. 
+
+    Returns: a reference to the supplied or created WritableRaster. 
+*java.awt.image.RenderedImage.getColorModel()*
+
+public |java.awt.image.ColorModel| getColorModel()
+
+Returns the ColorModel associated with this image. All Rasters returned from 
+this image will have this as their ColorModel. This can return null. 
+
+
+    Returns: the ColorModel of this image. 
+*java.awt.image.RenderedImage.getData()*
+
+public |java.awt.image.Raster| getData()
+
+Returns the image as one large tile (for tile based images this will require 
+fetching the whole image and copying the image data over). The Raster returned 
+is a copy of the image data and will not be updated if the image is changed. 
+
+
+    Returns: the image as one large tile. 
+*java.awt.image.RenderedImage.getData(Rectangle)*
+
+public |java.awt.image.Raster| getData(java.awt.Rectangle rect)
+
+Computes and returns an arbitrary region of the RenderedImage. The Raster 
+returned is a copy of the image data and will not be updated if the image is 
+changed. 
+
+    rect - the region of the RenderedImage to be returned. 
+
+    Returns: the region of the RenderedImage indicated by the specified Rectangle. 
+*java.awt.image.RenderedImage.getHeight()*
+
+public int getHeight()
+
+Returns the height of the RenderedImage. 
+
+
+    Returns: the height of this RenderedImage. 
+*java.awt.image.RenderedImage.getMinTileX()*
+
+public int getMinTileX()
+
+Returns the minimum tile index in the X direction. 
+
+
+    Returns: the minimum tile index in the X direction. 
+*java.awt.image.RenderedImage.getMinTileY()*
+
+public int getMinTileY()
+
+Returns the minimum tile index in the Y direction. 
+
+
+    Returns: the minimum tile index in the X direction. 
+*java.awt.image.RenderedImage.getMinX()*
+
+public int getMinX()
+
+Returns the minimum X coordinate (inclusive) of the RenderedImage. 
+
+
+    Returns: the X coordinate of this RenderedImage. 
+*java.awt.image.RenderedImage.getMinY()*
+
+public int getMinY()
+
+Returns the minimum Y coordinate (inclusive) of the RenderedImage. 
+
+
+    Returns: the Y coordinate of this RenderedImage. 
+*java.awt.image.RenderedImage.getNumXTiles()*
+
+public int getNumXTiles()
+
+Returns the number of tiles in the X direction. 
+
+
+    Returns: the number of tiles in the X direction. 
+*java.awt.image.RenderedImage.getNumYTiles()*
+
+public int getNumYTiles()
+
+Returns the number of tiles in the Y direction. 
+
+
+    Returns: the number of tiles in the Y direction. 
+*java.awt.image.RenderedImage.getProperty(String)*
+
+public |java.lang.Object| getProperty(java.lang.String name)
+
+Gets a property from the property set of this image. The set of properties and 
+whether it is immutable is determined by the implementing class. This method 
+returns java.awt.Image.UndefinedProperty if the specified property is not 
+defined for this RenderedImage. 
+
+    name - the name of the property 
+
+    Returns: the property indicated by the specified name. 
+*java.awt.image.RenderedImage.getPropertyNames()*
+
+public |java.lang.String| getPropertyNames()
+
+Returns an array of names recognized by 
+getProperty(String)(|java.awt.image.RenderedImage|) or null, if no property 
+names are recognized. 
+
+
+    Returns: a String array containing all of the property names that getProperty(String) 
+             recognizes; or null if no property names are recognized. 
+*java.awt.image.RenderedImage.getSampleModel()*
+
+public |java.awt.image.SampleModel| getSampleModel()
+
+Returns the SampleModel associated with this image. All Rasters returned from 
+this image will have this as their SampleModel. 
+
+
+    Returns: the SampleModel of this image. 
+*java.awt.image.RenderedImage.getSources()*
+
+public |java.util.Vector| getSources()
+
+Returns a vector of RenderedImages that are the immediate sources of image data 
+for this RenderedImage. This method returns null if the RenderedImage object 
+has no information about its immediate sources. It returns an empty Vector if 
+the RenderedImage object has no immediate sources. 
+
+
+    Returns: a Vector of RenderedImage objects. 
+*java.awt.image.RenderedImage.getTile(int,int)*
+
+public |java.awt.image.Raster| getTile(
+  int tileX,
+  int tileY)
+
+Returns tile (tileX, tileY). Note that tileX and tileY are indices into the 
+tile array, not pixel locations. The Raster that is returned is live and will 
+be updated if the image is changed. 
+
+    tileX - the X index of the requested tile in the tile array 
+    tileY - the Y index of the requested tile in the tile array 
+
+    Returns: the tile given the specified indices. 
+*java.awt.image.RenderedImage.getTileGridXOffset()*
+
+public int getTileGridXOffset()
+
+Returns the X offset of the tile grid relative to the origin, i.e., the X 
+coordinate of the upper-left pixel of tile (0, 0). (Note that tile (0, 0) may 
+not actually exist.) 
+
+
+    Returns: the X offset of the tile grid relative to the origin. 
+*java.awt.image.RenderedImage.getTileGridYOffset()*
+
+public int getTileGridYOffset()
+
+Returns the Y offset of the tile grid relative to the origin, i.e., the Y 
+coordinate of the upper-left pixel of tile (0, 0). (Note that tile (0, 0) may 
+not actually exist.) 
+
+
+    Returns: the Y offset of the tile grid relative to the origin. 
+*java.awt.image.RenderedImage.getTileHeight()*
+
+public int getTileHeight()
+
+Returns the tile height in pixels. All tiles must have the same height. 
+
+
+    Returns: the tile height in pixels. 
+*java.awt.image.RenderedImage.getTileWidth()*
+
+public int getTileWidth()
+
+Returns the tile width in pixels. All tiles must have the same width. 
+
+
+    Returns: the tile width in pixels. 
+*java.awt.image.RenderedImage.getWidth()*
+
+public int getWidth()
+
+Returns the width of the RenderedImage. 
+
+
+    Returns: the width of this RenderedImage. 
+

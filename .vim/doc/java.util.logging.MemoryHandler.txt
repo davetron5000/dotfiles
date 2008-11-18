@@ -1,0 +1,161 @@
+*java.util.logging.MemoryHandler* *MemoryHandler* Handler that buffers requests 
+
+public class MemoryHandler
+  extends    |java.util.logging.Handler|
+
+|java.util.logging.MemoryHandler_Description|
+|java.util.logging.MemoryHandler_Fields|
+|java.util.logging.MemoryHandler_Constructors|
+|java.util.logging.MemoryHandler_Methods|
+
+================================================================================
+
+*java.util.logging.MemoryHandler_Constructors*
+|java.util.logging.MemoryHandler()|Create a MemoryHandler and configure it base
+|java.util.logging.MemoryHandler(Handler,int,Level)|Create a MemoryHandler.
+
+*java.util.logging.MemoryHandler_Methods*
+|java.util.logging.MemoryHandler.close()|Close the Handler and free all associa
+|java.util.logging.MemoryHandler.flush()|Causes a flush on the target Handler.
+|java.util.logging.MemoryHandler.getPushLevel()|Get the pushLevel.
+|java.util.logging.MemoryHandler.isLoggable(LogRecord)|Check if this Handler wo
+|java.util.logging.MemoryHandler.publish(LogRecord)|Store a LogRecord in an int
+|java.util.logging.MemoryHandler.push()|Push any buffered output to the target 
+|java.util.logging.MemoryHandler.setPushLevel(Level)|Set the pushLevel.
+
+*java.util.logging.MemoryHandler_Description*
+
+Handler that buffers requests in a circular buffer in memory. 
+
+Normally this Handler simply stores incoming LogRecords into its memory buffer 
+and discards earlier records. This buffering is very cheap and avoids 
+formatting costs. On certain trigger conditions, the MemoryHandler will push 
+out its current buffer contents to a target Handler, which will typically 
+publish them to the outside world. 
+
+There are three main models for triggering a push of the buffer: 
+
+An incoming LogRecord has a type that is greater than a pre-defined level, the 
+pushLevel. 
+
+An external class calls the push method explicitly. 
+
+A subclass overrides the log method and scans each incoming LogRecord and calls 
+push if a record matches some desired criteria. 
+
+Configuration: By default each MemoryHandler is initialized using the following 
+LogManager configuration properties. If properties are not defined (or have 
+invalid values) then the specified default values are used. If no default value 
+is defined then a RuntimeException is thrown. 
+
+java.util.logging.MemoryHandler.level specifies the level for the Handler 
+(defaults to Level.ALL). java.util.logging.MemoryHandler.filter specifies the 
+name of a Filter class to use (defaults to no Filter). 
+java.util.logging.MemoryHandler.size defines the buffer size (defaults to 
+1000). java.util.logging.MemoryHandler.push defines the pushLevel (defaults to 
+level.SEVERE). java.util.logging.MemoryHandler.target specifies the name of the 
+target Handler class. (no default). 
+
+
+*java.util.logging.MemoryHandler()*
+
+public MemoryHandler()
+
+Create a MemoryHandler and configure it based on LogManager configuration 
+properties. 
+
+
+*java.util.logging.MemoryHandler(Handler,int,Level)*
+
+public MemoryHandler(
+  java.util.logging.Handler target,
+  int size,
+  java.util.logging.Level pushLevel)
+
+Create a MemoryHandler. 
+
+The MemoryHandler is configured based on LogManager properties (or their 
+default values) except that the given pushLevel argument and buffer size 
+argument are used. 
+
+    target - the Handler to which to publish output. 
+    size - the number of log records to buffer (must be greater than zero) 
+    pushLevel - message level to push on 
+
+*java.util.logging.MemoryHandler.close()*
+
+public void close()
+  throws |java.lang.SecurityException|
+         
+Close the Handler and free all associated resources. This will also close the 
+target Handler. 
+
+
+*java.util.logging.MemoryHandler.flush()*
+
+public void flush()
+
+Causes a flush on the target Handler. 
+
+Note that the current contents of the MemoryHandler buffer are not written out. 
+That requires a "push". 
+
+
+*java.util.logging.MemoryHandler.getPushLevel()*
+
+public synchronized |java.util.logging.Level| getPushLevel()
+
+Get the pushLevel. 
+
+
+    Returns: the value of the pushLevel 
+*java.util.logging.MemoryHandler.isLoggable(LogRecord)*
+
+public boolean isLoggable(java.util.logging.LogRecord record)
+
+Check if this Handler would actually log a given LogRecord into its internal 
+buffer. 
+
+This method checks if the LogRecord has an appropriate level and whether it 
+satisfies any Filter. However it does not check whether the LogRecord would 
+result in a "push" of the buffer contents. It will return false if the 
+LogRecord is Null. 
+
+    record - a LogRecord 
+
+    Returns: true if the LogRecord would be logged. 
+*java.util.logging.MemoryHandler.publish(LogRecord)*
+
+public synchronized void publish(java.util.logging.LogRecord record)
+
+Store a LogRecord in an internal buffer. 
+
+If there is a Filter, its isLoggable method is called to check if the given log 
+record is loggable. If not we return. Otherwise the given record is copied into 
+an internal circular buffer. Then the record's level property is compared with 
+the pushLevel. If the given level is greater than or equal to the pushLevel 
+then push is called to write all buffered records to the target output Handler. 
+
+    record - description of the log event. A null record is silently ignored and is not 
+       published 
+
+*java.util.logging.MemoryHandler.push()*
+
+public synchronized void push()
+
+Push any buffered output to the target Handler. 
+
+The buffer is then cleared. 
+
+
+*java.util.logging.MemoryHandler.setPushLevel(Level)*
+
+public void setPushLevel(java.util.logging.Level newLevel)
+  throws |java.lang.SecurityException|
+         
+Set the pushLevel. After a LogRecord is copied into our internal buffer, if its 
+level is greater than or equal to the pushLevel, then push will be called. 
+
+    newLevel - the new value of the pushLevel 
+
+

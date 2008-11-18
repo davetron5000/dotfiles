@@ -1,0 +1,122 @@
+*java.io.PipedOutputStream* *PipedOutputStream* A piped output stream can be con
+
+public class PipedOutputStream
+  extends    |java.io.OutputStream|
+
+|java.io.PipedOutputStream_Description|
+|java.io.PipedOutputStream_Fields|
+|java.io.PipedOutputStream_Constructors|
+|java.io.PipedOutputStream_Methods|
+
+================================================================================
+
+*java.io.PipedOutputStream_Constructors*
+|java.io.PipedOutputStream()|Creates a piped output stream that is not yet conn
+|java.io.PipedOutputStream(PipedInputStream)|Creates a piped output stream conn
+
+*java.io.PipedOutputStream_Methods*
+|java.io.PipedOutputStream.close()|Closes this piped output stream and releases
+|java.io.PipedOutputStream.connect(PipedInputStream)|Connects this piped output
+|java.io.PipedOutputStream.flush()|Flushes this output stream and forces any bu
+|java.io.PipedOutputStream.write(byte[],int,int)|Writes len bytes from the spec
+|java.io.PipedOutputStream.write(int)|Writes the specified byte to the piped ou
+
+*java.io.PipedOutputStream_Description*
+
+A piped output stream can be connected to a piped input stream to create a 
+communications pipe. The piped output stream is the sending end of the pipe. 
+Typically, data is written to a PipedOutputStream object by one thread and data 
+is read from the connected PipedInputStream by some other thread. Attempting to 
+use both objects from a single thread is not recommended as it may deadlock the 
+thread. 
+
+
+*java.io.PipedOutputStream()*
+
+public PipedOutputStream()
+
+Creates a piped output stream that is not yet connected to a piped input 
+stream. It must be connected to a piped input stream, either by the receiver or 
+the sender, before being used. 
+
+
+*java.io.PipedOutputStream(PipedInputStream)*
+
+public PipedOutputStream(java.io.PipedInputStream snk)
+  throws |java.io.IOException|
+         
+Creates a piped output stream connected to the specified piped input stream. 
+Data bytes written to this stream will then be available as input from snk. 
+
+    snk - The piped input stream to connect to. 
+
+*java.io.PipedOutputStream.close()*
+
+public void close()
+  throws |java.io.IOException|
+         
+Closes this piped output stream and releases any system resources associated 
+with this stream. This stream may no longer be used for writing bytes. 
+
+
+*java.io.PipedOutputStream.connect(PipedInputStream)*
+
+public synchronized void connect(java.io.PipedInputStream snk)
+  throws |java.io.IOException|
+         
+Connects this piped output stream to a receiver. If this object is already 
+connected to some other piped input stream, an IOException is thrown. 
+
+If snk is an unconnected piped input stream and src is an unconnected piped 
+output stream, they may be connected by either the call: 
+
+src.connect(snk) 
+
+or the call: 
+
+snk.connect(src) 
+
+The two calls have the same effect. 
+
+    snk - the piped input stream to connect to. 
+
+*java.io.PipedOutputStream.flush()*
+
+public synchronized void flush()
+  throws |java.io.IOException|
+         
+Flushes this output stream and forces any buffered output bytes to be written 
+out. This will notify any readers that bytes are waiting in the pipe. 
+
+
+*java.io.PipedOutputStream.write(byte[],int,int)*
+
+public void write(
+  byte[] b,
+  int off,
+  int len)
+  throws |java.io.IOException|
+         
+Writes len bytes from the specified byte array starting at offset off to this 
+piped output stream. If a thread was reading data bytes from the connected 
+piped input stream, but the thread is no longer alive, then an IOException is 
+thrown. 
+
+    b - the data. 
+    off - the start offset in the data. 
+    len - the number of bytes to write. 
+
+*java.io.PipedOutputStream.write(int)*
+
+public void write(int b)
+  throws |java.io.IOException|
+         
+Writes the specified byte to the piped output stream. If a thread was reading 
+data bytes from the connected piped input stream, but the thread is no longer 
+alive, then an IOException is thrown. 
+
+Implements the write method of OutputStream. 
+
+    b - the byte to be written. 
+
+

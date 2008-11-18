@@ -1,0 +1,113 @@
+*org.xml.sax.SAXException* *SAXException* Encapsulate a general SAX error or war
+
+public class SAXException
+  extends    |java.lang.Exception|
+
+|org.xml.sax.SAXException_Description|
+|org.xml.sax.SAXException_Fields|
+|org.xml.sax.SAXException_Constructors|
+|org.xml.sax.SAXException_Methods|
+
+================================================================================
+
+*org.xml.sax.SAXException_Constructors*
+|org.xml.sax.SAXException()|Create a new SAXException.
+|org.xml.sax.SAXException(Exception)|Create a new SAXException wrapping an exis
+|org.xml.sax.SAXException(String)|Create a new SAXException.
+|org.xml.sax.SAXException(String,Exception)|Create a new SAXException from an e
+
+*org.xml.sax.SAXException_Methods*
+|org.xml.sax.SAXException.getException()|Return the embedded exception, if any.
+|org.xml.sax.SAXException.getMessage()|Return a detail message for this excepti
+|org.xml.sax.SAXException.toString()|Override toString to pick up any embedded 
+
+*org.xml.sax.SAXException_Description*
+
+Encapsulate a general SAX error or warning. 
+
+This module, both source code and documentation, is in the Public Domain, and 
+comes with NO WARRANTY. See http://www.saxproject.org for further information. 
+
+This class can contain basic error or warning information from either the XML 
+parser or the application: a parser writer or application writer can subclass 
+it to provide additional functionality. SAX handlers may throw this exception 
+or any exception subclassed from it. 
+
+If the application needs to pass through other types of exceptions, it must 
+wrap those exceptions in a SAXException or an exception derived from a 
+SAXException. 
+
+If the parser or application needs to include information about a specific 
+location in an XML document, it should use the 
+SAXParseException(|org.xml.sax.SAXParseException|) subclass. 
+
+
+*org.xml.sax.SAXException()*
+
+public SAXException()
+
+Create a new SAXException. 
+
+
+*org.xml.sax.SAXException(Exception)*
+
+public SAXException(java.lang.Exception e)
+
+Create a new SAXException wrapping an existing exception. 
+
+The existing exception will be embedded in the new one, and its message will 
+become the default message for the SAXException. 
+
+    e - The exception to be wrapped in a SAXException. 
+
+*org.xml.sax.SAXException(String)*
+
+public SAXException(java.lang.String message)
+
+Create a new SAXException. 
+
+    message - The error or warning message. 
+
+*org.xml.sax.SAXException(String,Exception)*
+
+public SAXException(
+  java.lang.String message,
+  java.lang.Exception e)
+
+Create a new SAXException from an existing exception. 
+
+The existing exception will be embedded in the new one, but the new exception 
+will have its own message. 
+
+    message - The detail message. 
+    e - The exception to be wrapped in a SAXException. 
+
+*org.xml.sax.SAXException.getException()*
+
+public |java.lang.Exception| getException()
+
+Return the embedded exception, if any. 
+
+
+    Returns: The embedded exception, or null if there is none. 
+*org.xml.sax.SAXException.getMessage()*
+
+public |java.lang.String| getMessage()
+
+Return a detail message for this exception. 
+
+If there is an embedded exception, and if the SAXException has no detail 
+message of its own, this method will return the detail message from the 
+embedded exception. 
+
+
+    Returns: The error or warning message. 
+*org.xml.sax.SAXException.toString()*
+
+public |java.lang.String| toString()
+
+Override toString to pick up any embedded exception. 
+
+
+    Returns: A string representation of this exception. 
+

@@ -1,0 +1,42 @@
+*java.util.concurrent.ThreadFactory* *ThreadFactory* An object that creates new 
+
+public interface interface ThreadFactory
+
+
+|java.util.concurrent.ThreadFactory_Description|
+|java.util.concurrent.ThreadFactory_Fields|
+|java.util.concurrent.ThreadFactory_Constructors|
+|java.util.concurrent.ThreadFactory_Methods|
+
+================================================================================
+
+*java.util.concurrent.ThreadFactory_Methods*
+|java.util.concurrent.ThreadFactory.newThread(Runnable)|Constructs a new Thread
+
+*java.util.concurrent.ThreadFactory_Description*
+
+An object that creates new threads on demand. Using thread factories removes 
+hardwiring of calls to new Thread(|java.lang.Thread|) , enabling applications 
+to use special thread subclasses, priorities, etc. 
+
+The simplest implementation of this interface is just: 
+
+class SimpleThreadFactory implements ThreadFactory { public Thread 
+newThread(Runnable r) { return new Thread(r); } } 
+
+The (|java.util.concurrent.Executors|) method provides a more useful simple 
+implementation, that sets the created thread context to known values before 
+returning it. 
+
+
+*java.util.concurrent.ThreadFactory.newThread(Runnable)*
+
+public |java.lang.Thread| newThread(java.lang.Runnable r)
+
+Constructs a new Thread. Implementations may also initialize priority, name, 
+daemon status, ThreadGroup, etc. 
+
+    r - a runnable to be executed by new thread instance 
+
+    Returns: constructed thread 
+

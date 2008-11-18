@@ -1,0 +1,1083 @@
+*java.awt.Container* *Container* A generic Abstract Window Toolkit(AWT) containe
+
+public class Container
+  extends    |java.awt.Component|
+
+|java.awt.Container_Description|
+|java.awt.Container_Fields|
+|java.awt.Container_Constructors|
+|java.awt.Container_Methods|
+
+================================================================================
+
+*java.awt.Container_Constructors*
+|java.awt.Container()|Constructs a new Container.
+
+*java.awt.Container_Methods*
+|java.awt.Container.add(Component)|Appends the specified component to the end o
+|java.awt.Container.add(Component,int)|Adds the specified component to this con
+|java.awt.Container.add(Component,Object)|Adds the specified component to the e
+|java.awt.Container.add(Component,Object,int)|Adds the specified component to t
+|java.awt.Container.add(String,Component)|Adds the specified component to this 
+|java.awt.Container.addContainerListener(ContainerListener)|Adds the specified 
+|java.awt.Container.addImpl(Component,Object,int)|Adds the specified component 
+|java.awt.Container.addNotify()|Makes this Container displayable by connecting 
+|java.awt.Container.addPropertyChangeListener(PropertyChangeListener)|Adds a Pr
+|java.awt.Container.addPropertyChangeListener(String,PropertyChangeListener)|Ad
+|java.awt.Container.applyComponentOrientation(ComponentOrientation)|Sets the Co
+|java.awt.Container.areFocusTraversalKeysSet(int)|Returns whether the Set of fo
+|java.awt.Container.countComponents()|
+|java.awt.Container.deliverEvent(Event)|
+|java.awt.Container.doLayout()|Causes this container to lay out its components.
+|java.awt.Container.findComponentAt(int,int)|Locates the visible child componen
+|java.awt.Container.findComponentAt(Point)|Locates the visible child component 
+|java.awt.Container.getAlignmentX()|Returns the alignment along the x axis.
+|java.awt.Container.getAlignmentY()|Returns the alignment along the y axis.
+|java.awt.Container.getComponent(int)|Gets the nth component in this container.
+|java.awt.Container.getComponentAt(int,int)|Locates the component that contains
+|java.awt.Container.getComponentAt(Point)|Gets the component that contains the 
+|java.awt.Container.getComponentCount()|Gets the number of components in this p
+|java.awt.Container.getComponents()|Gets all the components in this container.
+|java.awt.Container.getComponentZOrder(Component)|Returns the z-order index of 
+|java.awt.Container.getContainerListeners()|Returns an array of all the contain
+|java.awt.Container.getFocusTraversalKeys(int)|Returns the Set of focus travers
+|java.awt.Container.getFocusTraversalPolicy()|Returns the focus traversal polic
+|java.awt.Container.getInsets()|Determines the insets of this container, which 
+|java.awt.Container.getLayout()|Gets the layout manager for this container.
+|java.awt.Container.getListeners(Class)|Returns an array of all the objects cur
+|java.awt.Container.getMaximumSize()|Returns the maximum size of this container
+|java.awt.Container.getMinimumSize()|Returns the minimum size of this container
+|java.awt.Container.getMousePosition(boolean)|Returns the position of the mouse
+|java.awt.Container.getPreferredSize()|Returns the preferred size of this conta
+|java.awt.Container.insets()|
+|java.awt.Container.invalidate()|Invalidates the container.
+|java.awt.Container.isAncestorOf(Component)|Checks if the component is containe
+|java.awt.Container.isFocusCycleRoot()|Returns whether this Container is the ro
+|java.awt.Container.isFocusCycleRoot(Container)|Returns whether the specified C
+|java.awt.Container.isFocusTraversalPolicyProvider()|Returns whether this conta
+|java.awt.Container.isFocusTraversalPolicySet()|Returns whether the focus trave
+|java.awt.Container.layout()|
+|java.awt.Container.list(PrintStream,int)|Prints a listing of this container to
+|java.awt.Container.list(PrintWriter,int)|Prints out a list, starting at the sp
+|java.awt.Container.locate(int,int)|
+|java.awt.Container.minimumSize()|
+|java.awt.Container.paint(Graphics)|Paints the container.
+|java.awt.Container.paintComponents(Graphics)|Paints each of the components in 
+|java.awt.Container.paramString()|Returns a string representing the state of th
+|java.awt.Container.preferredSize()|
+|java.awt.Container.print(Graphics)|Prints the container.
+|java.awt.Container.printComponents(Graphics)|Prints each of the components in 
+|java.awt.Container.processContainerEvent(ContainerEvent)|Processes container e
+|java.awt.Container.processEvent(AWTEvent)|Processes events on this container.
+|java.awt.Container.remove(Component)|Removes the specified component from this
+|java.awt.Container.remove(int)|Removes the component, specified by index,   fr
+|java.awt.Container.removeAll()|Removes all the components from this container.
+|java.awt.Container.removeContainerListener(ContainerListener)|Removes the spec
+|java.awt.Container.removeNotify()|Makes this Container undisplayable by removi
+|java.awt.Container.setComponentZOrder(Component,int)|Moves the specified compo
+|java.awt.Container.setFocusCycleRoot(boolean)|Sets whether this Container is t
+|java.awt.Container.setFocusTraversalKeys(int,Set)|Sets the focus traversal key
+|java.awt.Container.setFocusTraversalPolicy(FocusTraversalPolicy)|Sets the focu
+|java.awt.Container.setFocusTraversalPolicyProvider(boolean)|Sets whether this 
+|java.awt.Container.setFont(Font)|Sets the font of this container.
+|java.awt.Container.setLayout(LayoutManager)|Sets the layout manager for this c
+|java.awt.Container.transferFocusBackward()|
+|java.awt.Container.transferFocusDownCycle()|Transfers the focus down one focus
+|java.awt.Container.update(Graphics)|Updates the container.
+|java.awt.Container.validate()|Validates this container and all of its subcompo
+|java.awt.Container.validateTree()|Recursively descends the container tree and 
+
+*java.awt.Container_Description*
+
+A generic Abstract Window Toolkit(AWT) container object is a component that can 
+contain other AWT components. 
+
+Components added to a container are tracked in a list. The order of the list 
+will define the components' front-to-back stacking order within the container. 
+If no index is specified when adding a component to a container, it will be 
+added to the end of the list (and hence to the bottom of the stacking order). 
+
+Note: For details on the focus subsystem, see 
+
+How to Use the Focus Subsystem, a section in The Java Tutorial, and the Focus 
+Specification for more information. 
+
+
+*java.awt.Container()*
+
+public Container()
+
+Constructs a new Container. Containers can be extended directly, but are 
+lightweight in this case and must be contained by a parent somewhere higher up 
+in the component tree that is native. (such as Frame for example). 
+
+
+*java.awt.Container.add(Component)*
+
+public |java.awt.Component| add(java.awt.Component comp)
+
+Appends the specified component to the end of this container. This is a 
+convenience method for (|java.awt.Container|) . 
+
+Note: If a component has been added to a container that has been displayed, 
+validate must be called on that container to display the new component. If 
+multiple components are being added, you can improve efficiency by calling 
+validate only once, after all the components have been added. 
+
+    comp - the component to be added 
+
+    Returns: the component argument 
+*java.awt.Container.add(Component,int)*
+
+public |java.awt.Component| add(
+  java.awt.Component comp,
+  int index)
+
+Adds the specified component to this container at the given position. This is a 
+convenience method for (|java.awt.Container|) . 
+
+Note: If a component has been added to a container that has been displayed, 
+validate must be called on that container to display the new component. If 
+multiple components are being added, you can improve efficiency by calling 
+validate only once, after all the components have been added. 
+
+    comp - the component to be added 
+    index - the position at which to insert the component, or -1 to append the component to 
+       the end 
+
+    Returns: the component comp 
+*java.awt.Container.add(Component,Object)*
+
+public void add(
+  java.awt.Component comp,
+  java.lang.Object constraints)
+
+Adds the specified component to the end of this container. Also notifies the 
+layout manager to add the component to this container's layout using the 
+specified constraints object. This is a convenience method for 
+(|java.awt.Container|) . 
+
+Note: If a component has been added to a container that has been displayed, 
+validate must be called on that container to display the new component. If 
+multiple components are being added, you can improve efficiency by calling 
+validate only once, after all the components have been added. 
+
+    comp - the component to be added 
+    constraints - an object expressing layout contraints for this component 
+
+*java.awt.Container.add(Component,Object,int)*
+
+public void add(
+  java.awt.Component comp,
+  java.lang.Object constraints,
+  int index)
+
+Adds the specified component to this container with the specified constraints 
+at the specified index. Also notifies the layout manager to add the component 
+to the this container's layout using the specified constraints object. This is 
+a convenience method for (|java.awt.Container|) . 
+
+Note: If a component has been added to a container that has been displayed, 
+validate must be called on that container to display the new component. If 
+multiple components are being added, you can improve efficiency by calling 
+validate only once, after all the components have been added. 
+
+    comp - the component to be added 
+    constraints - an object expressing layout contraints for this 
+    index - the position in the container's list at which to insert the component; -1 means 
+       insert at the end component 
+
+*java.awt.Container.add(String,Component)*
+
+public |java.awt.Component| add(
+  java.lang.String name,
+  java.awt.Component comp)
+
+Adds the specified component to this container. This is a convenience method 
+for (|java.awt.Container|) . 
+
+This method is obsolete as of 1.1. Please use the method add(Component, Object) 
+instead. 
+
+
+*java.awt.Container.addContainerListener(ContainerListener)*
+
+public synchronized void addContainerListener(java.awt.event.ContainerListener l)
+
+Adds the specified container listener to receive container events from this 
+container. If l is null, no exception is thrown and no action is performed. 
+
+    l - the container listener 
+
+*java.awt.Container.addImpl(Component,Object,int)*
+
+protected void addImpl(
+  java.awt.Component comp,
+  java.lang.Object constraints,
+  int index)
+
+Adds the specified component to this container at the specified index. This 
+method also notifies the layout manager to add the component to this 
+container's layout using the specified constraints object via the 
+addLayoutComponent method. 
+
+The constraints are defined by the particular layout manager being used. For 
+example, the BorderLayout class defines five constraints: BorderLayout.NORTH, 
+BorderLayout.SOUTH, BorderLayout.EAST, BorderLayout.WEST, and 
+BorderLayout.CENTER. 
+
+The GridBagLayout class requires a GridBagConstraints object. Failure to pass 
+the correct type of constraints object results in an IllegalArgumentException. 
+
+If the layout manager implements both the LayoutManager and LayoutManager2 
+interfaces, the LayoutManager2 methods are called. 
+
+Note that if the component already exists in this container or a child of this 
+container, it is removed from that container before being added to this 
+container. 
+
+This is the method to override if a program needs to track every add request to 
+a container as all other add methods defer to this one. An overriding method 
+should usually include a call to the superclass's version of the method: 
+
+super.addImpl(comp, constraints, index) 
+
+
+
+    comp - the component to be added 
+    constraints - an object expressing layout constraints for this component 
+    index - the position in the container's list at which to insert the component, where -1 
+       means append to the end 
+
+*java.awt.Container.addNotify()*
+
+public void addNotify()
+
+Makes this Container displayable by connecting it to a native screen resource. 
+Making a container displayable will cause all of its children to be made 
+displayable. This method is called internally by the toolkit and should not be 
+called directly by programs. 
+
+
+*java.awt.Container.addPropertyChangeListener(PropertyChangeListener)*
+
+public void addPropertyChangeListener(java.beans.PropertyChangeListener listener)
+
+Adds a PropertyChangeListener to the listener list. The listener is registered 
+for all bound properties of this class, including the following: 
+
+this Container's font ("font") this Container's background color ("background") 
+this Container's foreground color ("foreground") this Container's focusability 
+("focusable") this Container's focus traversal keys enabled state 
+("focusTraversalKeysEnabled") this Container's Set of FORWARD_TRAVERSAL_KEYS 
+("forwardFocusTraversalKeys") this Container's Set of BACKWARD_TRAVERSAL_KEYS 
+("backwardFocusTraversalKeys") this Container's Set of UP_CYCLE_TRAVERSAL_KEYS 
+("upCycleFocusTraversalKeys") this Container's Set of DOWN_CYCLE_TRAVERSAL_KEYS 
+("downCycleFocusTraversalKeys") this Container's focus traversal policy 
+("focusTraversalPolicy") 
+
+this Container's focus-cycle-root state ("focusCycleRoot") 
+
+Note that if this Container is inheriting a bound property, then no event will 
+be fired in response to a change in the inherited property. 
+
+If listener is null, no exception is thrown and no action is performed. 
+
+    listener - the PropertyChangeListener to be added 
+
+*java.awt.Container.addPropertyChangeListener(String,PropertyChangeListener)*
+
+public void addPropertyChangeListener(
+  java.lang.String propertyName,
+  java.beans.PropertyChangeListener listener)
+
+Adds a PropertyChangeListener to the listener list for a specific property. The 
+specified property may be user-defined, or one of the following defaults: 
+
+this Container's font ("font") this Container's background color ("background") 
+this Container's foreground color ("foreground") this Container's focusability 
+("focusable") this Container's focus traversal keys enabled state 
+("focusTraversalKeysEnabled") this Container's Set of FORWARD_TRAVERSAL_KEYS 
+("forwardFocusTraversalKeys") this Container's Set of BACKWARD_TRAVERSAL_KEYS 
+("backwardFocusTraversalKeys") this Container's Set of UP_CYCLE_TRAVERSAL_KEYS 
+("upCycleFocusTraversalKeys") this Container's Set of DOWN_CYCLE_TRAVERSAL_KEYS 
+("downCycleFocusTraversalKeys") this Container's focus traversal policy 
+("focusTraversalPolicy") 
+
+this Container's focus-cycle-root state ("focusCycleRoot") this Container's 
+focus-traversal-policy-provider state("focusTraversalPolicyProvider") this 
+Container's focus-traversal-policy-provider 
+state("focusTraversalPolicyProvider") 
+
+Note that if this Container is inheriting a bound property, then no event will 
+be fired in response to a change in the inherited property. 
+
+If listener is null, no exception is thrown and no action is performed. 
+
+    propertyName - one of the property names listed above 
+    listener - the PropertyChangeListener to be added 
+
+*java.awt.Container.applyComponentOrientation(ComponentOrientation)*
+
+public void applyComponentOrientation(java.awt.ComponentOrientation o)
+
+Sets the ComponentOrientation property of this container and all components 
+contained within it. 
+
+    o - the new component orientation of this container and the components contained 
+       within it. 
+
+*java.awt.Container.areFocusTraversalKeysSet(int)*
+
+public boolean areFocusTraversalKeysSet(int id)
+
+Returns whether the Set of focus traversal keys for the given focus traversal 
+operation has been explicitly defined for this Container. If this method 
+returns false, this Container is inheriting the Set from an ancestor, or from 
+the current KeyboardFocusManager. 
+
+    id - one of KeyboardFocusManager.FORWARD_TRAVERSAL_KEYS, 
+       KeyboardFocusManager.BACKWARD_TRAVERSAL_KEYS, 
+       KeyboardFocusManager.UP_CYCLE_TRAVERSAL_KEYS, or 
+       KeyboardFocusManager.DOWN_CYCLE_TRAVERSAL_KEYS 
+
+    Returns: true if the the Set of focus traversal keys for the given focus traversal 
+             operation has been explicitly defined for this Component; false 
+             otherwise. 
+*java.awt.Container.countComponents()*
+
+public int countComponents()
+
+
+
+
+*java.awt.Container.deliverEvent(Event)*
+
+public void deliverEvent(java.awt.Event e)
+
+
+
+
+*java.awt.Container.doLayout()*
+
+public void doLayout()
+
+Causes this container to lay out its components. Most programs should not call 
+this method directly, but should invoke the validate method instead. 
+
+
+*java.awt.Container.findComponentAt(int,int)*
+
+public |java.awt.Component| findComponentAt(
+  int x,
+  int y)
+
+Locates the visible child component that contains the specified position. The 
+top-most child component is returned in the case where there is overlap in the 
+components. If the containing child component is a Container, this method will 
+continue searching for the deepest nested child component. Components which are 
+not visible are ignored during the search. 
+
+The findComponentAt method is different from getComponentAt in that 
+getComponentAt only searches the Container's immediate children; if the 
+containing component is a Container, findComponentAt will search that child to 
+find a nested component. 
+
+    x - the x coordinate 
+    y - the y coordinate 
+
+    Returns: null if the component does not contain the position. If there is no child 
+             component at the requested point and the point is within the 
+             bounds of the container the container itself is returned. 
+*java.awt.Container.findComponentAt(Point)*
+
+public |java.awt.Component| findComponentAt(java.awt.Point p)
+
+Locates the visible child component that contains the specified point. The 
+top-most child component is returned in the case where there is overlap in the 
+components. If the containing child component is a Container, this method will 
+continue searching for the deepest nested child component. Components which are 
+not visible are ignored during the search. 
+
+The findComponentAt method is different from getComponentAt in that 
+getComponentAt only searches the Container's immediate children; if the 
+containing component is a Container, findComponentAt will search that child to 
+find a nested component. 
+
+    p - the point. 
+
+    Returns: null if the component does not contain the position. If there is no child 
+             component at the requested point and the point is within the 
+             bounds of the container the container itself is returned. 
+*java.awt.Container.getAlignmentX()*
+
+public float getAlignmentX()
+
+Returns the alignment along the x axis. This specifies how the component would 
+like to be aligned relative to other components. The value should be a number 
+between 0 and 1 where 0 represents alignment along the origin, 1 is aligned the 
+furthest away from the origin, 0.5 is centered, etc. 
+
+
+*java.awt.Container.getAlignmentY()*
+
+public float getAlignmentY()
+
+Returns the alignment along the y axis. This specifies how the component would 
+like to be aligned relative to other components. The value should be a number 
+between 0 and 1 where 0 represents alignment along the origin, 1 is aligned the 
+furthest away from the origin, 0.5 is centered, etc. 
+
+
+*java.awt.Container.getComponent(int)*
+
+public |java.awt.Component| getComponent(int n)
+
+Gets the nth component in this container. 
+
+    n - the index of the component to get. 
+
+    Returns: the nth component in this container. 
+*java.awt.Container.getComponentAt(int,int)*
+
+public |java.awt.Component| getComponentAt(
+  int x,
+  int y)
+
+Locates the component that contains the x,y position. The top-most child 
+component is returned in the case where there is overlap in the components. 
+This is determined by finding the component closest to the index 0 that claims 
+to contain the given point via Component.contains(), except that Components 
+which have native peers take precedence over those which do not (i.e., 
+lightweight Components). 
+
+    x - the x coordinate 
+    y - the y coordinate 
+
+    Returns: null if the component does not contain the position. If there is no child 
+             component at the requested point and the point is within the 
+             bounds of the container the container itself is returned; 
+             otherwise the top-most child is returned. 
+*java.awt.Container.getComponentAt(Point)*
+
+public |java.awt.Component| getComponentAt(java.awt.Point p)
+
+Gets the component that contains the specified point. 
+
+    p - the point. 
+
+    Returns: returns the component that contains the point, or null if the component does 
+             not contain the point. 
+*java.awt.Container.getComponentCount()*
+
+public int getComponentCount()
+
+Gets the number of components in this panel. 
+
+
+    Returns: the number of components in this panel. 
+*java.awt.Container.getComponents()*
+
+public |java.awt.Component| getComponents()
+
+Gets all the components in this container. 
+
+
+    Returns: an array of all the components in this container. 
+*java.awt.Container.getComponentZOrder(Component)*
+
+public final int getComponentZOrder(java.awt.Component comp)
+
+Returns the z-order index of the component inside the container. The higher a 
+component is in the z-order hierarchy, the lower its index. The component with 
+the lowest z-order index is painted last, above all other child components. 
+
+    comp - the component being queried 
+
+    Returns: the z-order index of the component; otherwise returns -1 if the component is 
+             null</code or doesn't belong to the container 
+*java.awt.Container.getContainerListeners()*
+
+public synchronized |java.awt.event.ContainerListener| getContainerListeners()
+
+Returns an array of all the container listeners registered on this container. 
+
+
+    Returns: all of this container's ContainerListeners or an empty array if no container 
+             listeners are currently registered 
+*java.awt.Container.getFocusTraversalKeys(int)*
+
+public |java.util.Set| getFocusTraversalKeys(int id)
+
+Returns the Set of focus traversal keys for a given traversal operation for 
+this Container. (See setFocusTraversalKeys for a full description of each key.) 
+
+If a Set of traversal keys has not been explicitly defined for this Container, 
+then this Container's parent's Set is returned. If no Set has been explicitly 
+defined for any of this Container's ancestors, then the current 
+KeyboardFocusManager's default Set is returned. 
+
+    id - one of KeyboardFocusManager.FORWARD_TRAVERSAL_KEYS, 
+       KeyboardFocusManager.BACKWARD_TRAVERSAL_KEYS, 
+       KeyboardFocusManager.UP_CYCLE_TRAVERSAL_KEYS, or 
+       KeyboardFocusManager.DOWN_CYCLE_TRAVERSAL_KEYS 
+
+    Returns: the Set of AWTKeyStrokes for the specified operation. The Set will be 
+             unmodifiable, and may be empty. null will never be returned. 
+*java.awt.Container.getFocusTraversalPolicy()*
+
+public |java.awt.FocusTraversalPolicy| getFocusTraversalPolicy()
+
+Returns the focus traversal policy that will manage keyboard traversal of this 
+Container's children, or null if this Container is not a focus cycle root. If 
+no traversal policy has been explicitly set for this Container, then this 
+Container's focus-cycle-root ancestor's policy is returned. 
+
+
+    Returns: this Container's focus traversal policy, or null if this Container is not a 
+             focus cycle root. 
+*java.awt.Container.getInsets()*
+
+public |java.awt.Insets| getInsets()
+
+Determines the insets of this container, which indicate the size of the 
+container's border. 
+
+A Frame object, for example, has a top inset that corresponds to the height of 
+the frame's title bar. 
+
+
+    Returns: the insets of this container. 
+*java.awt.Container.getLayout()*
+
+public |java.awt.LayoutManager| getLayout()
+
+Gets the layout manager for this container. 
+
+
+*java.awt.Container.getListeners(Class)*
+
+public |java.util.EventListener| getListeners(java.lang.Class listenerType)
+
+Returns an array of all the objects currently registered as FooListeners upon 
+this Container. FooListeners are registered using the addFooListener method. 
+
+You can specify the listenerType argument with a class literal, such as 
+FooListener.class. For example, you can query a Container c for its container 
+listeners with the following code: 
+
+ContainerListener[] cls = 
+(ContainerListener[])(c.getListeners(ContainerListener.class)); 
+
+If no such listeners exist, this method returns an empty array. 
+
+    listenerType - the type of listeners requested; this parameter should specify an interface 
+       that descends from java.util.EventListener 
+
+    Returns: an array of all objects registered as FooListeners on this container, or an 
+             empty array if no such listeners have been added 
+*java.awt.Container.getMaximumSize()*
+
+public |java.awt.Dimension| getMaximumSize()
+
+Returns the maximum size of this container. 
+
+
+*java.awt.Container.getMinimumSize()*
+
+public |java.awt.Dimension| getMinimumSize()
+
+Returns the minimum size of this container. 
+
+
+    Returns: an instance of Dimension that represents the minimum size of this container. 
+*java.awt.Container.getMousePosition(boolean)*
+
+public |java.awt.Point| getMousePosition(boolean allowChildren)
+  throws |java.awt.HeadlessException|
+         
+Returns the position of the mouse pointer in this Container's coordinate space 
+if the Container is under the mouse pointer, otherwise returns null. This 
+method is similar to (|java.awt.Component|) with the exception that it can take 
+the Container's children into account. If allowChildren is false, this method 
+will return a non-null value only if the mouse pointer is above the Container 
+directly, not above the part obscured by children. If allowChildren is true, 
+this method returns a non-null value if the mouse pointer is above Container or 
+any of its descendants. 
+
+    allowChildren - true if children should be taken into account 
+
+    Returns: mouse coordinates relative to this Component, or null 
+*java.awt.Container.getPreferredSize()*
+
+public |java.awt.Dimension| getPreferredSize()
+
+Returns the preferred size of this container. 
+
+
+    Returns: an instance of Dimension that represents the preferred size of this container. 
+*java.awt.Container.insets()*
+
+public |java.awt.Insets| insets()
+
+
+
+
+*java.awt.Container.invalidate()*
+
+public void invalidate()
+
+Invalidates the container. The container and all parents above it are marked as 
+needing to be laid out. This method can be called often, so it needs to execute 
+quickly. 
+
+
+*java.awt.Container.isAncestorOf(Component)*
+
+public boolean isAncestorOf(java.awt.Component c)
+
+Checks if the component is contained in the component hierarchy of this 
+container. 
+
+    c - the component 
+
+    Returns: true if it is an ancestor; false otherwise. 
+*java.awt.Container.isFocusCycleRoot()*
+
+public boolean isFocusCycleRoot()
+
+Returns whether this Container is the root of a focus traversal cycle. Once 
+focus enters a traversal cycle, typically it cannot leave it via focus 
+traversal unless one of the up- or down-cycle keys is pressed. Normal traversal 
+is limited to this Container, and all of this Container's descendants that are 
+not descendants of inferior focus cycle roots. Note that a FocusTraversalPolicy 
+may bend these restrictions, however. For example, 
+ContainerOrderFocusTraversalPolicy supports implicit down-cycle traversal. 
+
+
+    Returns: whether this Container is the root of a focus traversal cycle 
+*java.awt.Container.isFocusCycleRoot(Container)*
+
+public boolean isFocusCycleRoot(java.awt.Container container)
+
+Returns whether the specified Container is the focus cycle root of this 
+Container's focus traversal cycle. Each focus traversal cycle has only a single 
+focus cycle root and each Container which is not a focus cycle root belongs to 
+only a single focus traversal cycle. Containers which are focus cycle roots 
+belong to two cycles: one rooted at the Container itself, and one rooted at the 
+Container's nearest focus-cycle-root ancestor. This method will return true for 
+both such Containers in this case. 
+
+    container - the Container to be tested 
+
+    Returns: true if the specified Container is a focus-cycle- root of this Container; false 
+             otherwise 
+*java.awt.Container.isFocusTraversalPolicyProvider()*
+
+public final boolean isFocusTraversalPolicyProvider()
+
+Returns whether this container provides focus traversal policy. If this 
+property is set to true then when keyboard focus manager searches container 
+hierarchy for focus traversal policy and encounters this container before any 
+other container with this property as true or focus cycle roots then its focus 
+traversal policy will be used instead of focus cycle root's policy. 
+
+
+    Returns: true if this container provides focus traversal policy, false otherwise 
+*java.awt.Container.isFocusTraversalPolicySet()*
+
+public boolean isFocusTraversalPolicySet()
+
+Returns whether the focus traversal policy has been explicitly set for this 
+Container. If this method returns false, this Container will inherit its focus 
+traversal policy from an ancestor. 
+
+
+    Returns: true if the focus traversal policy has been explicitly set for this Container; 
+             false otherwise. 
+*java.awt.Container.layout()*
+
+public void layout()
+
+
+
+
+*java.awt.Container.list(PrintStream,int)*
+
+public void list(
+  java.io.PrintStream out,
+  int indent)
+
+Prints a listing of this container to the specified output stream. The listing 
+starts at the specified indentation. 
+
+The immediate children of the container are printed with an indentation of 
+indent+1. The children of those children are printed at indent+2 and so on. 
+
+    out - a print stream 
+    indent - the number of spaces to indent 
+
+*java.awt.Container.list(PrintWriter,int)*
+
+public void list(
+  java.io.PrintWriter out,
+  int indent)
+
+Prints out a list, starting at the specified indentation, to the specified 
+print writer. 
+
+The immediate children of the container are printed with an indentation of 
+indent+1. The children of those children are printed at indent+2 and so on. 
+
+    out - a print writer 
+    indent - the number of spaces to indent 
+
+*java.awt.Container.locate(int,int)*
+
+public |java.awt.Component| locate(
+  int x,
+  int y)
+
+
+
+
+*java.awt.Container.minimumSize()*
+
+public |java.awt.Dimension| minimumSize()
+
+
+
+
+*java.awt.Container.paint(Graphics)*
+
+public void paint(java.awt.Graphics g)
+
+Paints the container. This forwards the paint to any lightweight components 
+that are children of this container. If this method is reimplemented, 
+super.paint(g) should be called so that lightweight components are properly 
+rendered. If a child component is entirely clipped by the current clipping 
+setting in g, paint() will not be forwarded to that child. 
+
+    g - the specified Graphics window 
+
+*java.awt.Container.paintComponents(Graphics)*
+
+public void paintComponents(java.awt.Graphics g)
+
+Paints each of the components in this container. 
+
+    g - the graphics context. 
+
+*java.awt.Container.paramString()*
+
+protected |java.lang.String| paramString()
+
+Returns a string representing the state of this Container. This method is 
+intended to be used only for debugging purposes, and the content and format of 
+the returned string may vary between implementations. The returned string may 
+be empty but may not be null. 
+
+
+    Returns: the parameter string of this container 
+*java.awt.Container.preferredSize()*
+
+public |java.awt.Dimension| preferredSize()
+
+
+
+
+*java.awt.Container.print(Graphics)*
+
+public void print(java.awt.Graphics g)
+
+Prints the container. This forwards the print to any lightweight components 
+that are children of this container. If this method is reimplemented, 
+super.print(g) should be called so that lightweight components are properly 
+rendered. If a child component is entirely clipped by the current clipping 
+setting in g, print() will not be forwarded to that child. 
+
+    g - the specified Graphics window 
+
+*java.awt.Container.printComponents(Graphics)*
+
+public void printComponents(java.awt.Graphics g)
+
+Prints each of the components in this container. 
+
+    g - the graphics context. 
+
+*java.awt.Container.processContainerEvent(ContainerEvent)*
+
+protected void processContainerEvent(java.awt.event.ContainerEvent e)
+
+Processes container events occurring on this container by dispatching them to 
+any registered ContainerListener objects. NOTE: This method will not be called 
+unless container events are enabled for this component; this happens when one 
+of the following occurs: 
+
+A ContainerListener object is registered via addContainerListener Container 
+events are enabled via enableEvents 
+
+Note that if the event parameter is null the behavior is unspecified and may 
+result in an exception. 
+
+    e - the container event 
+
+*java.awt.Container.processEvent(AWTEvent)*
+
+protected void processEvent(java.awt.AWTEvent e)
+
+Processes events on this container. If the event is a ContainerEvent, it 
+invokes the processContainerEvent method, else it invokes its superclass's 
+processEvent. Note that if the event parameter is null the behavior is 
+unspecified and may result in an exception. 
+
+    e - the event 
+
+*java.awt.Container.remove(Component)*
+
+public void remove(java.awt.Component comp)
+
+Removes the specified component from this container. This method also notifies 
+the layout manager to remove the component from this container's layout via the 
+removeLayoutComponent method. 
+
+    comp - the component to be removed 
+
+*java.awt.Container.remove(int)*
+
+public void remove(int index)
+
+Removes the component, specified by index, from this container. This method 
+also notifies the layout manager to remove the component from this container's 
+layout via the removeLayoutComponent method. 
+
+    index - the index of the component to be removed 
+
+*java.awt.Container.removeAll()*
+
+public void removeAll()
+
+Removes all the components from this container. This method also notifies the 
+layout manager to remove the components from this container's layout via the 
+removeLayoutComponent method. 
+
+
+*java.awt.Container.removeContainerListener(ContainerListener)*
+
+public synchronized void removeContainerListener(java.awt.event.ContainerListener l)
+
+Removes the specified container listener so it no longer receives container 
+events from this container. If l is null, no exception is thrown and no action 
+is performed. 
+
+    l - the container listener 
+
+*java.awt.Container.removeNotify()*
+
+public void removeNotify()
+
+Makes this Container undisplayable by removing its connection to its native 
+screen resource. Making a container undisplayable will cause all of its 
+children to be made undisplayable. This method is called by the toolkit 
+internally and should not be called directly by programs. 
+
+
+*java.awt.Container.setComponentZOrder(Component,int)*
+
+public final void setComponentZOrder(
+  java.awt.Component comp,
+  int index)
+
+Moves the specified component to the specified z-order index in the container. 
+The z-order determines the order that components are painted; the component 
+with the highest z-order paints first and the component with the lowest z-order 
+paints last. Where components overlap, the component with the lower z-order 
+paints over the component with the higher z-order. 
+
+If the component is a child of some other container, it is removed from that 
+container before being added to this container. The important difference 
+between this method and java.awt.Container.add(Component, int) is that this 
+method doesn't call removeNotify on the component while removing it from its 
+previous container unless necessary and when allowed by the underlying native 
+windowing system. This way, if the component has the keyboard focus, it 
+maintains the focus when moved to the new position. 
+
+This property is guaranteed to apply only to lightweight non-Container 
+components. 
+
+Note: Not all platforms support changing the z-order of heavyweight components 
+from one container into another without the call to removeNotify. There is no 
+way to detect whether a platform supports this, so developers shouldn't make 
+any assumptions. 
+
+    comp - the component to be moved 
+    index - the position in the container's list to insert the component, where 
+       getComponentCount() appends to the end 
+
+*java.awt.Container.setFocusCycleRoot(boolean)*
+
+public void setFocusCycleRoot(boolean focusCycleRoot)
+
+Sets whether this Container is the root of a focus traversal cycle. Once focus 
+enters a traversal cycle, typically it cannot leave it via focus traversal 
+unless one of the up- or down-cycle keys is pressed. Normal traversal is 
+limited to this Container, and all of this Container's descendants that are not 
+descendants of inferior focus cycle roots. Note that a FocusTraversalPolicy may 
+bend these restrictions, however. For example, 
+ContainerOrderFocusTraversalPolicy supports implicit down-cycle traversal. 
+
+The alternative way to specify the traversal order of this Container's children 
+is to make this Container a focus traversal policy provider. 
+
+    focusCycleRoot - indicates whether this Container is the root of a focus traversal cycle 
+
+*java.awt.Container.setFocusTraversalKeys(int,Set)*
+
+public void setFocusTraversalKeys(
+  int id,
+  java.util.Set keystrokes)
+
+Sets the focus traversal keys for a given traversal operation for this 
+Container. 
+
+The default values for a Container's focus traversal keys are 
+implementation-dependent. Sun recommends that all implementations for a 
+particular native platform use the same default values. The recommendations for 
+Windows and Unix are listed below. These recommendations are used in the Sun 
+AWT implementations. 
+
+
+
+Identifier Meaning Default 
+
+KeyboardFocusManager.FORWARD_TRAVERSAL_KEYS Normal forward keyboard traversal 
+TAB on KEY_PRESSED, CTRL-TAB on KEY_PRESSED 
+
+KeyboardFocusManager.BACKWARD_TRAVERSAL_KEYS Normal reverse keyboard traversal 
+SHIFT-TAB on KEY_PRESSED, CTRL-SHIFT-TAB on KEY_PRESSED 
+
+KeyboardFocusManager.UP_CYCLE_TRAVERSAL_KEYS Go up one focus traversal cycle 
+none 
+
+KeyboardFocusManager.DOWN_CYCLE_TRAVERSAL_KEYS Go down one focus traversal 
+cycle none 
+
+
+
+To disable a traversal key, use an empty Set; Collections.EMPTY_SET is 
+recommended. 
+
+Using the AWTKeyStroke API, client code can specify on which of two specific 
+KeyEvents, KEY_PRESSED or KEY_RELEASED, the focus traversal operation will 
+occur. Regardless of which KeyEvent is specified, however, all KeyEvents 
+related to the focus traversal key, including the associated KEY_TYPED event, 
+will be consumed, and will not be dispatched to any Container. It is a runtime 
+error to specify a KEY_TYPED event as mapping to a focus traversal operation, 
+or to map the same event to multiple default focus traversal operations. 
+
+If a value of null is specified for the Set, this Container inherits the Set 
+from its parent. If all ancestors of this Container have null specified for the 
+Set, then the current KeyboardFocusManager's default Set is used. 
+
+    id - one of KeyboardFocusManager.FORWARD_TRAVERSAL_KEYS, 
+       KeyboardFocusManager.BACKWARD_TRAVERSAL_KEYS, 
+       KeyboardFocusManager.UP_CYCLE_TRAVERSAL_KEYS, or 
+       KeyboardFocusManager.DOWN_CYCLE_TRAVERSAL_KEYS 
+    keystrokes - the Set of AWTKeyStroke for the specified operation 
+
+*java.awt.Container.setFocusTraversalPolicy(FocusTraversalPolicy)*
+
+public void setFocusTraversalPolicy(java.awt.FocusTraversalPolicy policy)
+
+Sets the focus traversal policy that will manage keyboard traversal of this 
+Container's children, if this Container is a focus cycle root. If the argument 
+is null, this Container inherits its policy from its focus- cycle-root 
+ancestor. If the argument is non-null, this policy will be inherited by all 
+focus-cycle-root children that have no keyboard- traversal policy of their own 
+(as will, recursively, their focus-cycle- root children). 
+
+If this Container is not a focus cycle root, the policy will be remembered, but 
+will not be used or inherited by this or any other Containers until this 
+Container is made a focus cycle root. 
+
+    policy - the new focus traversal policy for this Container 
+
+*java.awt.Container.setFocusTraversalPolicyProvider(boolean)*
+
+public final void setFocusTraversalPolicyProvider(boolean provider)
+
+Sets whether this container will be used to provide focus traversal policy. 
+Container with this property as true will be used to acquire focus traversal 
+policy instead of closest focus cycle root ancestor. 
+
+    provide - indicates whether this container will be used to provide focus traversal policy 
+
+*java.awt.Container.setFont(Font)*
+
+public void setFont(java.awt.Font f)
+
+Sets the font of this container. 
+
+    f - The font to become this container's font. 
+
+*java.awt.Container.setLayout(LayoutManager)*
+
+public void setLayout(java.awt.LayoutManager mgr)
+
+Sets the layout manager for this container. 
+
+    mgr - the specified layout manager 
+
+*java.awt.Container.transferFocusBackward()*
+
+public void transferFocusBackward()
+
+
+
+
+*java.awt.Container.transferFocusDownCycle()*
+
+public void transferFocusDownCycle()
+
+Transfers the focus down one focus traversal cycle. If this Container is a 
+focus cycle root, then the focus owner is set to this Container's default 
+Component to focus, and the current focus cycle root is set to this Container. 
+If this Container is not a focus cycle root, then no focus traversal operation 
+occurs. 
+
+
+*java.awt.Container.update(Graphics)*
+
+public void update(java.awt.Graphics g)
+
+Updates the container. This forwards the update to any lightweight components 
+that are children of this container. If this method is reimplemented, 
+super.update(g) should be called so that lightweight components are properly 
+rendered. If a child component is entirely clipped by the current clipping 
+setting in g, update() will not be forwarded to that child. 
+
+    g - the specified Graphics window 
+
+*java.awt.Container.validate()*
+
+public void validate()
+
+Validates this container and all of its subcomponents. 
+
+The validate method is used to cause a container to lay out its subcomponents 
+again. It should be invoked when this container's subcomponents are modified 
+(added to or removed from the container, or layout-related information changed) 
+after the container has been displayed. 
+
+
+*java.awt.Container.validateTree()*
+
+protected void validateTree()
+
+Recursively descends the container tree and recomputes the layout for any 
+subtrees marked as needing it (those marked as invalid). Synchronization should 
+be provided by the method that calls this one: validate. 
+
+
+

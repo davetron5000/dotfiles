@@ -1,0 +1,1034 @@
+*javax.swing.text.AbstractDocument* *AbstractDocument* An implementation of the 
+
+public abstract class AbstractDocument
+  extends    |java.lang.Object|
+  implements |javax.swing.text.Document|
+             |java.io.Serializable|
+
+|javax.swing.text.AbstractDocument_Description|
+|javax.swing.text.AbstractDocument_Fields|
+|javax.swing.text.AbstractDocument_Constructors|
+|javax.swing.text.AbstractDocument_Methods|
+
+================================================================================
+
+*javax.swing.text.AbstractDocument_Fields*
+|java.lang.String_javax.swing.text.AbstractDocument.BAD_LOCATION|
+|java.lang.String_javax.swing.text.AbstractDocument.BidiElementName|
+|java.lang.String_javax.swing.text.AbstractDocument.ContentElementName|
+|java.lang.String_javax.swing.text.AbstractDocument.ElementNameAttribute|
+|javax.swing.event.EventListenerList_javax.swing.text.AbstractDocument.listenerList|
+|java.lang.String_javax.swing.text.AbstractDocument.ParagraphElementName|
+|java.lang.String_javax.swing.text.AbstractDocument.SectionElementName|
+
+*javax.swing.text.AbstractDocument_Constructors*
+|javax.swing.text.AbstractDocument(AbstractDocument.Content)|Constructs a new A
+|javax.swing.text.AbstractDocument(AbstractDocument.Content,AbstractDocument.AttributeContext)|
+
+*javax.swing.text.AbstractDocument_Methods*
+|javax.swing.text.AbstractDocument.addDocumentListener(DocumentListener)|Adds a
+|javax.swing.text.AbstractDocument.addUndoableEditListener(UndoableEditListener)|
+|javax.swing.text.AbstractDocument.createBranchElement(Element,AttributeSet)|Cr
+|javax.swing.text.AbstractDocument.createLeafElement(Element,AttributeSet,int,int)|
+|javax.swing.text.AbstractDocument.createPosition(int)|Returns a position that 
+|javax.swing.text.AbstractDocument.dump(PrintStream)|Gives a diagnostic dump.
+|javax.swing.text.AbstractDocument.fireChangedUpdate(DocumentEvent)|Notifies al
+|javax.swing.text.AbstractDocument.fireInsertUpdate(DocumentEvent)|Notifies all
+|javax.swing.text.AbstractDocument.fireRemoveUpdate(DocumentEvent)|Notifies all
+|javax.swing.text.AbstractDocument.fireUndoableEditUpdate(UndoableEditEvent)|No
+|javax.swing.text.AbstractDocument.getAsynchronousLoadPriority()|Gets the async
+|javax.swing.text.AbstractDocument.getAttributeContext()|Fetches the context fo
+|javax.swing.text.AbstractDocument.getBidiRootElement()|Returns the root elemen
+|javax.swing.text.AbstractDocument.getContent()|Gets the content for the docume
+|javax.swing.text.AbstractDocument.getCurrentWriter()|Fetches the current writi
+|javax.swing.text.AbstractDocument.getDefaultRootElement()|Returns the root ele
+|javax.swing.text.AbstractDocument.getDocumentFilter()|Returns the DocumentFilt
+|javax.swing.text.AbstractDocument.getDocumentListeners()|Returns an array of a
+|javax.swing.text.AbstractDocument.getDocumentProperties()|Supports managing a 
+|javax.swing.text.AbstractDocument.getEndPosition()|Returns a position that rep
+|javax.swing.text.AbstractDocument.getLength()|Returns the length of the data.
+|javax.swing.text.AbstractDocument.getListeners(Class)|Returns an array of all 
+|javax.swing.text.AbstractDocument.getParagraphElement(int)|Get the paragraph e
+|javax.swing.text.AbstractDocument.getProperty(Object)|A convenience method for
+|javax.swing.text.AbstractDocument.getRootElements()|Gets all root elements def
+|javax.swing.text.AbstractDocument.getStartPosition()|Returns a position that r
+|javax.swing.text.AbstractDocument.getText(int,int)|Gets a sequence of text fro
+|javax.swing.text.AbstractDocument.getText(int,int,Segment)|Fetches the text co
+|javax.swing.text.AbstractDocument.getUndoableEditListeners()|Returns an array 
+|javax.swing.text.AbstractDocument.insertString(int,String,AttributeSet)|Insert
+|javax.swing.text.AbstractDocument.insertUpdate(AbstractDocument.DefaultDocumentEvent,AttributeSet)|
+|javax.swing.text.AbstractDocument.postRemoveUpdate(AbstractDocument.DefaultDocumentEvent)|
+|javax.swing.text.AbstractDocument.putProperty(Object,Object)|A convenience met
+|javax.swing.text.AbstractDocument.readLock()|Acquires a lock to begin reading 
+|javax.swing.text.AbstractDocument.readUnlock()|Does a read unlock.
+|javax.swing.text.AbstractDocument.remove(int,int)|Removes some content from th
+|javax.swing.text.AbstractDocument.removeDocumentListener(DocumentListener)|Rem
+|javax.swing.text.AbstractDocument.removeUndoableEditListener(UndoableEditListener)|
+|javax.swing.text.AbstractDocument.removeUpdate(AbstractDocument.DefaultDocumentEvent)|
+|javax.swing.text.AbstractDocument.render(Runnable)|This allows the model to be
+|javax.swing.text.AbstractDocument.replace(int,int,String,AttributeSet)|Deletes
+|javax.swing.text.AbstractDocument.setAsynchronousLoadPriority(int)|Sets the as
+|javax.swing.text.AbstractDocument.setDocumentFilter(DocumentFilter)|Sets the D
+|javax.swing.text.AbstractDocument.setDocumentProperties(Dictionary)|Replaces t
+|javax.swing.text.AbstractDocument.writeLock()|Acquires a lock to begin mutatin
+|javax.swing.text.AbstractDocument.writeUnlock()|Releases a write lock previous
+
+*javax.swing.text.AbstractDocument_Description*
+
+An implementation of the document interface to serve as a basis for 
+implementing various kinds of documents. At this level there is very little 
+policy, so there is a corresponding increase in difficulty of use. 
+
+This class implements a locking mechanism for the document. It allows multiple 
+readers or one writer, and writers must wait until all observers of the 
+document have been notified of a previous change before beginning another 
+mutation to the document. The read lock is acquired and released using the 
+render method. A write lock is aquired by the methods that mutate the document, 
+and are held for the duration of the method call. Notification is done on the 
+thread that produced the mutation, and the thread has full read access to the 
+document for the duration of the notification, but other readers are kept out 
+until the notification has finished. The notification is a beans event 
+notification which does not allow any further mutations until all listeners 
+have been notified. 
+
+Any models subclassed from this class and used in conjunction with a text 
+component that has a look and feel implementation that is derived from 
+BasicTextUI may be safely updated asynchronously, because all access to the 
+View hierarchy is serialized by BasicTextUI if the document is of type 
+AbstractDocument. The locking assumes that an independant thread will access 
+the View hierarchy only from the DocumentListener methods, and that there will 
+be only one event thread active at a time. 
+
+If concurrency support is desired, there are the following additional 
+implications. The code path for any DocumentListener implementation and any 
+UndoListener implementation must be threadsafe, and not access the component 
+lock if trying to be safe from deadlocks. The repaint and revalidate methods on 
+JComponent are safe. 
+
+AbstractDocument models an implied break at the end of the document. Among 
+other things this allows you to position the caret after the last character. As 
+a result of this, getLength returns one less than the length of the Content. If 
+you create your own Content, be sure and initialize it to have an additional 
+character. Refer to StringContent and GapContent for examples of this. Another 
+implication of this is that Elements that model the implied end character will 
+have an endOffset == (getLength() + 1). For example, in DefaultStyledDocument 
+getParagraphElement(getLength()).getEndOffset() == getLength() + 1 . 
+
+Warning: Serialized objects of this class will not be compatible with future 
+Swing releases. The current serialization support is appropriate for short term 
+storage or RMI between applications running the same version of Swing. As of 
+1.4, support for long term storage of all JavaBeansTM has been added to the 
+java.beans package. Please see (|java.beans.XMLEncoder|) . 
+
+
+*java.lang.String_javax.swing.text.AbstractDocument.BAD_LOCATION*
+
+An implementation of the document interface to serve as a basis for 
+implementing various kinds of documents. At this level there is very little 
+policy, so there is a corresponding increase in difficulty of use. 
+
+This class implements a locking mechanism for the document. It allows multiple 
+readers or one writer, and writers must wait until all observers of the 
+document have been notified of a previous change before beginning another 
+mutation to the document. The read lock is acquired and released using the 
+render method. A write lock is aquired by the methods that mutate the document, 
+and are held for the duration of the method call. Notification is done on the 
+thread that produced the mutation, and the thread has full read access to the 
+document for the duration of the notification, but other readers are kept out 
+until the notification has finished. The notification is a beans event 
+notification which does not allow any further mutations until all listeners 
+have been notified. 
+
+Any models subclassed from this class and used in conjunction with a text 
+component that has a look and feel implementation that is derived from 
+BasicTextUI may be safely updated asynchronously, because all access to the 
+View hierarchy is serialized by BasicTextUI if the document is of type 
+AbstractDocument. The locking assumes that an independant thread will access 
+the View hierarchy only from the DocumentListener methods, and that there will 
+be only one event thread active at a time. 
+
+If concurrency support is desired, there are the following additional 
+implications. The code path for any DocumentListener implementation and any 
+UndoListener implementation must be threadsafe, and not access the component 
+lock if trying to be safe from deadlocks. The repaint and revalidate methods on 
+JComponent are safe. 
+
+AbstractDocument models an implied break at the end of the document. Among 
+other things this allows you to position the caret after the last character. As 
+a result of this, getLength returns one less than the length of the Content. If 
+you create your own Content, be sure and initialize it to have an additional 
+character. Refer to StringContent and GapContent for examples of this. Another 
+implication of this is that Elements that model the implied end character will 
+have an endOffset == (getLength() + 1). For example, in DefaultStyledDocument 
+getParagraphElement(getLength()).getEndOffset() == getLength() + 1 . 
+
+Warning: Serialized objects of this class will not be compatible with future 
+Swing releases. The current serialization support is appropriate for short term 
+storage or RMI between applications running the same version of Swing. As of 
+1.4, support for long term storage of all JavaBeansTM has been added to the 
+java.beans package. Please see (|java.beans.XMLEncoder|) . 
+
+
+*java.lang.String_javax.swing.text.AbstractDocument.BidiElementName*
+
+An implementation of the document interface to serve as a basis for 
+implementing various kinds of documents. At this level there is very little 
+policy, so there is a corresponding increase in difficulty of use. 
+
+This class implements a locking mechanism for the document. It allows multiple 
+readers or one writer, and writers must wait until all observers of the 
+document have been notified of a previous change before beginning another 
+mutation to the document. The read lock is acquired and released using the 
+render method. A write lock is aquired by the methods that mutate the document, 
+and are held for the duration of the method call. Notification is done on the 
+thread that produced the mutation, and the thread has full read access to the 
+document for the duration of the notification, but other readers are kept out 
+until the notification has finished. The notification is a beans event 
+notification which does not allow any further mutations until all listeners 
+have been notified. 
+
+Any models subclassed from this class and used in conjunction with a text 
+component that has a look and feel implementation that is derived from 
+BasicTextUI may be safely updated asynchronously, because all access to the 
+View hierarchy is serialized by BasicTextUI if the document is of type 
+AbstractDocument. The locking assumes that an independant thread will access 
+the View hierarchy only from the DocumentListener methods, and that there will 
+be only one event thread active at a time. 
+
+If concurrency support is desired, there are the following additional 
+implications. The code path for any DocumentListener implementation and any 
+UndoListener implementation must be threadsafe, and not access the component 
+lock if trying to be safe from deadlocks. The repaint and revalidate methods on 
+JComponent are safe. 
+
+AbstractDocument models an implied break at the end of the document. Among 
+other things this allows you to position the caret after the last character. As 
+a result of this, getLength returns one less than the length of the Content. If 
+you create your own Content, be sure and initialize it to have an additional 
+character. Refer to StringContent and GapContent for examples of this. Another 
+implication of this is that Elements that model the implied end character will 
+have an endOffset == (getLength() + 1). For example, in DefaultStyledDocument 
+getParagraphElement(getLength()).getEndOffset() == getLength() + 1 . 
+
+Warning: Serialized objects of this class will not be compatible with future 
+Swing releases. The current serialization support is appropriate for short term 
+storage or RMI between applications running the same version of Swing. As of 
+1.4, support for long term storage of all JavaBeansTM has been added to the 
+java.beans package. Please see (|java.beans.XMLEncoder|) . 
+
+
+*java.lang.String_javax.swing.text.AbstractDocument.ContentElementName*
+
+An implementation of the document interface to serve as a basis for 
+implementing various kinds of documents. At this level there is very little 
+policy, so there is a corresponding increase in difficulty of use. 
+
+This class implements a locking mechanism for the document. It allows multiple 
+readers or one writer, and writers must wait until all observers of the 
+document have been notified of a previous change before beginning another 
+mutation to the document. The read lock is acquired and released using the 
+render method. A write lock is aquired by the methods that mutate the document, 
+and are held for the duration of the method call. Notification is done on the 
+thread that produced the mutation, and the thread has full read access to the 
+document for the duration of the notification, but other readers are kept out 
+until the notification has finished. The notification is a beans event 
+notification which does not allow any further mutations until all listeners 
+have been notified. 
+
+Any models subclassed from this class and used in conjunction with a text 
+component that has a look and feel implementation that is derived from 
+BasicTextUI may be safely updated asynchronously, because all access to the 
+View hierarchy is serialized by BasicTextUI if the document is of type 
+AbstractDocument. The locking assumes that an independant thread will access 
+the View hierarchy only from the DocumentListener methods, and that there will 
+be only one event thread active at a time. 
+
+If concurrency support is desired, there are the following additional 
+implications. The code path for any DocumentListener implementation and any 
+UndoListener implementation must be threadsafe, and not access the component 
+lock if trying to be safe from deadlocks. The repaint and revalidate methods on 
+JComponent are safe. 
+
+AbstractDocument models an implied break at the end of the document. Among 
+other things this allows you to position the caret after the last character. As 
+a result of this, getLength returns one less than the length of the Content. If 
+you create your own Content, be sure and initialize it to have an additional 
+character. Refer to StringContent and GapContent for examples of this. Another 
+implication of this is that Elements that model the implied end character will 
+have an endOffset == (getLength() + 1). For example, in DefaultStyledDocument 
+getParagraphElement(getLength()).getEndOffset() == getLength() + 1 . 
+
+Warning: Serialized objects of this class will not be compatible with future 
+Swing releases. The current serialization support is appropriate for short term 
+storage or RMI between applications running the same version of Swing. As of 
+1.4, support for long term storage of all JavaBeansTM has been added to the 
+java.beans package. Please see (|java.beans.XMLEncoder|) . 
+
+
+*java.lang.String_javax.swing.text.AbstractDocument.ElementNameAttribute*
+
+An implementation of the document interface to serve as a basis for 
+implementing various kinds of documents. At this level there is very little 
+policy, so there is a corresponding increase in difficulty of use. 
+
+This class implements a locking mechanism for the document. It allows multiple 
+readers or one writer, and writers must wait until all observers of the 
+document have been notified of a previous change before beginning another 
+mutation to the document. The read lock is acquired and released using the 
+render method. A write lock is aquired by the methods that mutate the document, 
+and are held for the duration of the method call. Notification is done on the 
+thread that produced the mutation, and the thread has full read access to the 
+document for the duration of the notification, but other readers are kept out 
+until the notification has finished. The notification is a beans event 
+notification which does not allow any further mutations until all listeners 
+have been notified. 
+
+Any models subclassed from this class and used in conjunction with a text 
+component that has a look and feel implementation that is derived from 
+BasicTextUI may be safely updated asynchronously, because all access to the 
+View hierarchy is serialized by BasicTextUI if the document is of type 
+AbstractDocument. The locking assumes that an independant thread will access 
+the View hierarchy only from the DocumentListener methods, and that there will 
+be only one event thread active at a time. 
+
+If concurrency support is desired, there are the following additional 
+implications. The code path for any DocumentListener implementation and any 
+UndoListener implementation must be threadsafe, and not access the component 
+lock if trying to be safe from deadlocks. The repaint and revalidate methods on 
+JComponent are safe. 
+
+AbstractDocument models an implied break at the end of the document. Among 
+other things this allows you to position the caret after the last character. As 
+a result of this, getLength returns one less than the length of the Content. If 
+you create your own Content, be sure and initialize it to have an additional 
+character. Refer to StringContent and GapContent for examples of this. Another 
+implication of this is that Elements that model the implied end character will 
+have an endOffset == (getLength() + 1). For example, in DefaultStyledDocument 
+getParagraphElement(getLength()).getEndOffset() == getLength() + 1 . 
+
+Warning: Serialized objects of this class will not be compatible with future 
+Swing releases. The current serialization support is appropriate for short term 
+storage or RMI between applications running the same version of Swing. As of 
+1.4, support for long term storage of all JavaBeansTM has been added to the 
+java.beans package. Please see (|java.beans.XMLEncoder|) . 
+
+
+*javax.swing.event.EventListenerList_javax.swing.text.AbstractDocument.listenerList*
+
+An implementation of the document interface to serve as a basis for 
+implementing various kinds of documents. At this level there is very little 
+policy, so there is a corresponding increase in difficulty of use. 
+
+This class implements a locking mechanism for the document. It allows multiple 
+readers or one writer, and writers must wait until all observers of the 
+document have been notified of a previous change before beginning another 
+mutation to the document. The read lock is acquired and released using the 
+render method. A write lock is aquired by the methods that mutate the document, 
+and are held for the duration of the method call. Notification is done on the 
+thread that produced the mutation, and the thread has full read access to the 
+document for the duration of the notification, but other readers are kept out 
+until the notification has finished. The notification is a beans event 
+notification which does not allow any further mutations until all listeners 
+have been notified. 
+
+Any models subclassed from this class and used in conjunction with a text 
+component that has a look and feel implementation that is derived from 
+BasicTextUI may be safely updated asynchronously, because all access to the 
+View hierarchy is serialized by BasicTextUI if the document is of type 
+AbstractDocument. The locking assumes that an independant thread will access 
+the View hierarchy only from the DocumentListener methods, and that there will 
+be only one event thread active at a time. 
+
+If concurrency support is desired, there are the following additional 
+implications. The code path for any DocumentListener implementation and any 
+UndoListener implementation must be threadsafe, and not access the component 
+lock if trying to be safe from deadlocks. The repaint and revalidate methods on 
+JComponent are safe. 
+
+AbstractDocument models an implied break at the end of the document. Among 
+other things this allows you to position the caret after the last character. As 
+a result of this, getLength returns one less than the length of the Content. If 
+you create your own Content, be sure and initialize it to have an additional 
+character. Refer to StringContent and GapContent for examples of this. Another 
+implication of this is that Elements that model the implied end character will 
+have an endOffset == (getLength() + 1). For example, in DefaultStyledDocument 
+getParagraphElement(getLength()).getEndOffset() == getLength() + 1 . 
+
+Warning: Serialized objects of this class will not be compatible with future 
+Swing releases. The current serialization support is appropriate for short term 
+storage or RMI between applications running the same version of Swing. As of 
+1.4, support for long term storage of all JavaBeansTM has been added to the 
+java.beans package. Please see (|java.beans.XMLEncoder|) . 
+
+
+*java.lang.String_javax.swing.text.AbstractDocument.ParagraphElementName*
+
+An implementation of the document interface to serve as a basis for 
+implementing various kinds of documents. At this level there is very little 
+policy, so there is a corresponding increase in difficulty of use. 
+
+This class implements a locking mechanism for the document. It allows multiple 
+readers or one writer, and writers must wait until all observers of the 
+document have been notified of a previous change before beginning another 
+mutation to the document. The read lock is acquired and released using the 
+render method. A write lock is aquired by the methods that mutate the document, 
+and are held for the duration of the method call. Notification is done on the 
+thread that produced the mutation, and the thread has full read access to the 
+document for the duration of the notification, but other readers are kept out 
+until the notification has finished. The notification is a beans event 
+notification which does not allow any further mutations until all listeners 
+have been notified. 
+
+Any models subclassed from this class and used in conjunction with a text 
+component that has a look and feel implementation that is derived from 
+BasicTextUI may be safely updated asynchronously, because all access to the 
+View hierarchy is serialized by BasicTextUI if the document is of type 
+AbstractDocument. The locking assumes that an independant thread will access 
+the View hierarchy only from the DocumentListener methods, and that there will 
+be only one event thread active at a time. 
+
+If concurrency support is desired, there are the following additional 
+implications. The code path for any DocumentListener implementation and any 
+UndoListener implementation must be threadsafe, and not access the component 
+lock if trying to be safe from deadlocks. The repaint and revalidate methods on 
+JComponent are safe. 
+
+AbstractDocument models an implied break at the end of the document. Among 
+other things this allows you to position the caret after the last character. As 
+a result of this, getLength returns one less than the length of the Content. If 
+you create your own Content, be sure and initialize it to have an additional 
+character. Refer to StringContent and GapContent for examples of this. Another 
+implication of this is that Elements that model the implied end character will 
+have an endOffset == (getLength() + 1). For example, in DefaultStyledDocument 
+getParagraphElement(getLength()).getEndOffset() == getLength() + 1 . 
+
+Warning: Serialized objects of this class will not be compatible with future 
+Swing releases. The current serialization support is appropriate for short term 
+storage or RMI between applications running the same version of Swing. As of 
+1.4, support for long term storage of all JavaBeansTM has been added to the 
+java.beans package. Please see (|java.beans.XMLEncoder|) . 
+
+
+*java.lang.String_javax.swing.text.AbstractDocument.SectionElementName*
+
+An implementation of the document interface to serve as a basis for 
+implementing various kinds of documents. At this level there is very little 
+policy, so there is a corresponding increase in difficulty of use. 
+
+This class implements a locking mechanism for the document. It allows multiple 
+readers or one writer, and writers must wait until all observers of the 
+document have been notified of a previous change before beginning another 
+mutation to the document. The read lock is acquired and released using the 
+render method. A write lock is aquired by the methods that mutate the document, 
+and are held for the duration of the method call. Notification is done on the 
+thread that produced the mutation, and the thread has full read access to the 
+document for the duration of the notification, but other readers are kept out 
+until the notification has finished. The notification is a beans event 
+notification which does not allow any further mutations until all listeners 
+have been notified. 
+
+Any models subclassed from this class and used in conjunction with a text 
+component that has a look and feel implementation that is derived from 
+BasicTextUI may be safely updated asynchronously, because all access to the 
+View hierarchy is serialized by BasicTextUI if the document is of type 
+AbstractDocument. The locking assumes that an independant thread will access 
+the View hierarchy only from the DocumentListener methods, and that there will 
+be only one event thread active at a time. 
+
+If concurrency support is desired, there are the following additional 
+implications. The code path for any DocumentListener implementation and any 
+UndoListener implementation must be threadsafe, and not access the component 
+lock if trying to be safe from deadlocks. The repaint and revalidate methods on 
+JComponent are safe. 
+
+AbstractDocument models an implied break at the end of the document. Among 
+other things this allows you to position the caret after the last character. As 
+a result of this, getLength returns one less than the length of the Content. If 
+you create your own Content, be sure and initialize it to have an additional 
+character. Refer to StringContent and GapContent for examples of this. Another 
+implication of this is that Elements that model the implied end character will 
+have an endOffset == (getLength() + 1). For example, in DefaultStyledDocument 
+getParagraphElement(getLength()).getEndOffset() == getLength() + 1 . 
+
+Warning: Serialized objects of this class will not be compatible with future 
+Swing releases. The current serialization support is appropriate for short term 
+storage or RMI between applications running the same version of Swing. As of 
+1.4, support for long term storage of all JavaBeansTM has been added to the 
+java.beans package. Please see (|java.beans.XMLEncoder|) . 
+
+
+
+*javax.swing.text.AbstractDocument(AbstractDocument.Content)*
+
+protected AbstractDocument(javax.swing.text.AbstractDocument.Content data)
+
+Constructs a new AbstractDocument, wrapped around some specified content 
+storage mechanism. 
+
+    data - the content 
+
+*javax.swing.text.AbstractDocument(AbstractDocument.Content,AbstractDocument.AttributeContext)*
+
+protected AbstractDocument(
+  javax.swing.text.AbstractDocument.Content data,
+  javax.swing.text.AbstractDocument.AttributeContext context)
+
+Constructs a new AbstractDocument, wrapped around some specified content 
+storage mechanism. 
+
+    data - the content 
+    context - the attribute context 
+
+*javax.swing.text.AbstractDocument.addDocumentListener(DocumentListener)*
+
+public void addDocumentListener(javax.swing.event.DocumentListener listener)
+
+Adds a document listener for notification of any changes. 
+
+    listener - the DocumentListener to add 
+
+*javax.swing.text.AbstractDocument.addUndoableEditListener(UndoableEditListener)*
+
+public void addUndoableEditListener(javax.swing.event.UndoableEditListener listener)
+
+Adds an undo listener for notification of any changes. Undo/Redo operations 
+performed on the UndoableEdit will cause the appropriate DocumentEvent to be 
+fired to keep the view(s) in sync with the model. 
+
+    listener - the UndoableEditListener to add 
+
+*javax.swing.text.AbstractDocument.createBranchElement(Element,AttributeSet)*
+
+protected |javax.swing.text.Element| createBranchElement(
+  javax.swing.text.Element parent,
+  javax.swing.text.AttributeSet a)
+
+Creates a document branch element, that can contain other elements. 
+
+    parent - the parent element 
+    a - the attributes 
+
+    Returns: 
+*javax.swing.text.AbstractDocument.createLeafElement(Element,AttributeSet,int,int)*
+
+protected |javax.swing.text.Element| createLeafElement(
+  javax.swing.text.Element parent,
+  javax.swing.text.AttributeSet a,
+  int p0,
+  int p1)
+
+Creates a document leaf element. Hook through which elements are created to 
+represent the document structure. Because this implementation keeps structure 
+and content separate, elements grow automatically when content is extended so 
+splits of existing elements follow. The document itself gets to decide how to 
+generate elements to give flexibility in the type of elements used. 
+
+    parent - the parent element 
+    a - the attributes for the element 
+    p0 - the beginning of the range >= 0 
+    p1 - the end of the range >= p0 
+
+    Returns: the new element 
+*javax.swing.text.AbstractDocument.createPosition(int)*
+
+public synchronized |javax.swing.text.Position| createPosition(int offs)
+  throws |javax.swing.text.BadLocationException|
+         
+Returns a position that will track change as the document is altered. 
+
+This method is thread safe, although most Swing methods are not. Please see 
+Threads and Swing for more information. 
+
+    offs - the position in the model >= 0 
+
+    Returns: 
+*javax.swing.text.AbstractDocument.dump(PrintStream)*
+
+public void dump(java.io.PrintStream out)
+
+Gives a diagnostic dump. 
+
+    out - the output stream 
+
+*javax.swing.text.AbstractDocument.fireChangedUpdate(DocumentEvent)*
+
+protected void fireChangedUpdate(javax.swing.event.DocumentEvent e)
+
+Notifies all listeners that have registered interest for notification on this 
+event type. The event instance is lazily created using the parameters passed 
+into the fire method. 
+
+    e - the event 
+
+*javax.swing.text.AbstractDocument.fireInsertUpdate(DocumentEvent)*
+
+protected void fireInsertUpdate(javax.swing.event.DocumentEvent e)
+
+Notifies all listeners that have registered interest for notification on this 
+event type. The event instance is lazily created using the parameters passed 
+into the fire method. 
+
+    e - the event 
+
+*javax.swing.text.AbstractDocument.fireRemoveUpdate(DocumentEvent)*
+
+protected void fireRemoveUpdate(javax.swing.event.DocumentEvent e)
+
+Notifies all listeners that have registered interest for notification on this 
+event type. The event instance is lazily created using the parameters passed 
+into the fire method. 
+
+    e - the event 
+
+*javax.swing.text.AbstractDocument.fireUndoableEditUpdate(UndoableEditEvent)*
+
+protected void fireUndoableEditUpdate(javax.swing.event.UndoableEditEvent e)
+
+Notifies all listeners that have registered interest for notification on this 
+event type. The event instance is lazily created using the parameters passed 
+into the fire method. 
+
+    e - the event 
+
+*javax.swing.text.AbstractDocument.getAsynchronousLoadPriority()*
+
+public int getAsynchronousLoadPriority()
+
+Gets the asynchronous loading priority. If less than zero, the document should 
+not be loaded asynchronously. 
+
+
+    Returns: the asynchronous loading priority, or -1 if the document should not be loaded 
+             asynchronously 
+*javax.swing.text.AbstractDocument.getAttributeContext()*
+
+protected final |javax.swing.text.AbstractDocument.AttributeContext| getAttributeContext()
+
+Fetches the context for managing attributes. This method effectively 
+establishes the strategy used for compressing AttributeSet information. 
+
+
+    Returns: 
+*javax.swing.text.AbstractDocument.getBidiRootElement()*
+
+public |javax.swing.text.Element| getBidiRootElement()
+
+Returns the root element of the bidirectional structure for this document. Its 
+children represent character runs with a given Unicode bidi level. 
+
+
+*javax.swing.text.AbstractDocument.getContent()*
+
+protected final |javax.swing.text.AbstractDocument.Content| getContent()
+
+Gets the content for the document. 
+
+
+    Returns: 
+*javax.swing.text.AbstractDocument.getCurrentWriter()*
+
+protected final synchronized |java.lang.Thread| getCurrentWriter()
+
+Fetches the current writing thread if there is one. This can be used to 
+distinguish whether a method is being called as part of an existing 
+modification or if a lock needs to be acquired and a new transaction started. 
+
+
+    Returns: the thread actively modifying the document or null if there are no 
+             modifications in progress 
+*javax.swing.text.AbstractDocument.getDefaultRootElement()*
+
+public abstract |javax.swing.text.Element| getDefaultRootElement()
+
+Returns the root element that views should be based upon unless some other 
+mechanism for assigning views to element structures is provided. 
+
+
+    Returns: the root element 
+*javax.swing.text.AbstractDocument.getDocumentFilter()*
+
+public |javax.swing.text.DocumentFilter| getDocumentFilter()
+
+Returns the DocumentFilter that is responsible for filtering of 
+insertion/removal. A null return value implies no filtering is to occur. 
+
+
+    Returns: the DocumentFilter 
+*javax.swing.text.AbstractDocument.getDocumentListeners()*
+
+public |javax.swing.event.DocumentListener| getDocumentListeners()
+
+Returns an array of all the document listeners registered on this document. 
+
+
+    Returns: all of this document's DocumentListeners or an empty array if no document 
+             listeners are currently registered 
+*javax.swing.text.AbstractDocument.getDocumentProperties()*
+
+public |java.util.Dictionary| getDocumentProperties()
+
+Supports managing a set of properties. Callers can use the documentProperties 
+dictionary to annotate the document with document-wide properties. 
+
+
+    Returns: a non-null Dictionary 
+*javax.swing.text.AbstractDocument.getEndPosition()*
+
+public final |javax.swing.text.Position| getEndPosition()
+
+Returns a position that represents the end of the document. The position 
+returned can be counted on to track change and stay located at the end of the 
+document. 
+
+
+    Returns: 
+*javax.swing.text.AbstractDocument.getLength()*
+
+public int getLength()
+
+Returns the length of the data. This is the number of characters of content 
+that represents the users data. 
+
+
+    Returns: the length >= 0 
+*javax.swing.text.AbstractDocument.getListeners(Class)*
+
+public |java.util.EventListener| getListeners(java.lang.Class listenerType)
+
+Returns an array of all the objects currently registered as FooListeners upon 
+this document. FooListeners are registered using the addFooListener method. 
+
+You can specify the listenerType argument with a class literal, such as 
+FooListener.class. For example, you can query a document d for its document 
+listeners with the following code: 
+
+DocumentListener[] mls = 
+(DocumentListener[])(d.getListeners(DocumentListener.class)); 
+
+If no such listeners exist, this method returns an empty array. 
+
+    listenerType - the type of listeners requested; this parameter should specify an interface 
+       that descends from java.util.EventListener 
+
+    Returns: an array of all objects registered as FooListeners on this component, or an 
+             empty array if no such listeners have been added 
+*javax.swing.text.AbstractDocument.getParagraphElement(int)*
+
+public abstract |javax.swing.text.Element| getParagraphElement(int pos)
+
+Get the paragraph element containing the given position. Sub-classes must 
+define for themselves what exactly constitutes a paragraph. They should keep in 
+mind however that a paragraph should at least be the unit of text over which to 
+run the Unicode bidirectional algorithm. 
+
+    pos - the starting offset >= 0 
+
+    Returns: 
+*javax.swing.text.AbstractDocument.getProperty(Object)*
+
+public final |java.lang.Object| getProperty(java.lang.Object key)
+
+A convenience method for looking up a property value. It is equivalent to: 
+
+getDocumentProperties().get(key); 
+
+    key - the non-null property key 
+
+    Returns: the value of this property or null 
+*javax.swing.text.AbstractDocument.getRootElements()*
+
+public |javax.swing.text.Element| getRootElements()
+
+Gets all root elements defined. Typically, there will only be one so the 
+default implementation is to return the default root element. 
+
+
+    Returns: the root element 
+*javax.swing.text.AbstractDocument.getStartPosition()*
+
+public final |javax.swing.text.Position| getStartPosition()
+
+Returns a position that represents the start of the document. The position 
+returned can be counted on to track change and stay located at the beginning of 
+the document. 
+
+
+    Returns: 
+*javax.swing.text.AbstractDocument.getText(int,int)*
+
+public |java.lang.String| getText(
+  int offset,
+  int length)
+  throws |javax.swing.text.BadLocationException|
+         
+Gets a sequence of text from the document. 
+
+    offset - the starting offset >= 0 
+    length - the number of characters to retrieve >= 0 
+
+    Returns: 
+*javax.swing.text.AbstractDocument.getText(int,int,Segment)*
+
+public void getText(
+  int offset,
+  int length,
+  javax.swing.text.Segment txt)
+  throws |javax.swing.text.BadLocationException|
+         
+Fetches the text contained within the given portion of the document. 
+
+If the partialReturn property on the txt parameter is false, the data returned 
+in the Segment will be the entire length requested and may or may not be a copy 
+depending upon how the data was stored. If the partialReturn property is true, 
+only the amount of text that can be returned without creating a copy is 
+returned. Using partial returns will give better performance for situations 
+where large parts of the document are being scanned. The following is an 
+example of using the partial return to access the entire document: 
+
+
+
+int nleft = doc.getDocumentLength(); Segment text = new Segment(); int offs = 
+0; text.setPartialReturn(true); while (nleft > 0) { doc.getText(offs, nleft, 
+text); // do something with text nleft -= text.count; offs += text.count; } 
+
+    offset - the starting offset >= 0 
+    length - the number of characters to retrieve >= 0 
+    txt - the Segment object to retrieve the text into 
+
+*javax.swing.text.AbstractDocument.getUndoableEditListeners()*
+
+public |javax.swing.event.UndoableEditListener| getUndoableEditListeners()
+
+Returns an array of all the undoable edit listeners registered on this 
+document. 
+
+
+    Returns: all of this document's UndoableEditListeners or an empty array if no undoable 
+             edit listeners are currently registered 
+*javax.swing.text.AbstractDocument.insertString(int,String,AttributeSet)*
+
+public void insertString(
+  int offs,
+  java.lang.String str,
+  javax.swing.text.AttributeSet a)
+  throws |javax.swing.text.BadLocationException|
+         
+Inserts some content into the document. Inserting content causes a write lock 
+to be held while the actual changes are taking place, followed by notification 
+to the observers on the thread that grabbed the write lock. 
+
+This method is thread safe, although most Swing methods are not. Please see 
+Threads and Swing for more information. 
+
+    offs - the starting offset >= 0 
+    str - the string to insert; does nothing with null/empty strings 
+    a - the attributes for the inserted content 
+
+*javax.swing.text.AbstractDocument.insertUpdate(AbstractDocument.DefaultDocumentEvent,AttributeSet)*
+
+protected void insertUpdate(
+  javax.swing.text.AbstractDocument.DefaultDocumentEvent chng,
+  javax.swing.text.AttributeSet attr)
+
+Updates document structure as a result of text insertion. This will happen 
+within a write lock. If a subclass of this class reimplements this method, it 
+should delegate to the superclass as well. 
+
+    chng - a description of the change 
+    attr - the attributes for the change 
+
+*javax.swing.text.AbstractDocument.postRemoveUpdate(AbstractDocument.DefaultDocumentEvent)*
+
+protected void postRemoveUpdate(javax.swing.text.AbstractDocument.DefaultDocumentEvent chng)
+
+Updates any document structure as a result of text removal. This method is 
+called after the text has been removed from the Content. This will happen 
+within a write lock. If a subclass of this class reimplements this method, it 
+should delegate to the superclass as well. 
+
+    chng - a description of the change 
+
+*javax.swing.text.AbstractDocument.putProperty(Object,Object)*
+
+public final void putProperty(
+  java.lang.Object key,
+  java.lang.Object value)
+
+A convenience method for storing up a property value. It is equivalent to: 
+
+getDocumentProperties().put(key, value); 
+
+If value is null this method will remove the property. 
+
+    key - the non-null key 
+    value - the property value 
+
+*javax.swing.text.AbstractDocument.readLock()*
+
+public final synchronized void readLock()
+
+Acquires a lock to begin reading some state from the document. There can be 
+multiple readers at the same time. Writing blocks the readers until 
+notification of the change to the listeners has been completed. This method 
+should be used very carefully to avoid unintended compromise of the document. 
+It should always be balanced with a readUnlock. 
+
+
+*javax.swing.text.AbstractDocument.readUnlock()*
+
+public final synchronized void readUnlock()
+
+Does a read unlock. This signals that one of the readers is done. If there are 
+no more readers then writing can begin again. This should be balanced with a 
+readLock, and should occur in a finally statement so that the balance is 
+guaranteed. The following is an example. 
+
+readLock(); try { // do something } finally { readUnlock(); } 
+
+
+*javax.swing.text.AbstractDocument.remove(int,int)*
+
+public void remove(
+  int offs,
+  int len)
+  throws |javax.swing.text.BadLocationException|
+         
+Removes some content from the document. Removing content causes a write lock to 
+be held while the actual changes are taking place. Observers are notified of 
+the change on the thread that called this method. 
+
+This method is thread safe, although most Swing methods are not. Please see 
+Threads and Swing for more information. 
+
+    offs - the starting offset >= 0 
+    len - the number of characters to remove >= 0 
+
+*javax.swing.text.AbstractDocument.removeDocumentListener(DocumentListener)*
+
+public void removeDocumentListener(javax.swing.event.DocumentListener listener)
+
+Removes a document listener. 
+
+    listener - the DocumentListener to remove 
+
+*javax.swing.text.AbstractDocument.removeUndoableEditListener(UndoableEditListener)*
+
+public void removeUndoableEditListener(javax.swing.event.UndoableEditListener listener)
+
+Removes an undo listener. 
+
+    listener - the UndoableEditListener to remove 
+
+*javax.swing.text.AbstractDocument.removeUpdate(AbstractDocument.DefaultDocumentEvent)*
+
+protected void removeUpdate(javax.swing.text.AbstractDocument.DefaultDocumentEvent chng)
+
+Updates any document structure as a result of text removal. This method is 
+called before the text is actually removed from the Content. This will happen 
+within a write lock. If a subclass of this class reimplements this method, it 
+should delegate to the superclass as well. 
+
+    chng - a description of the change 
+
+*javax.swing.text.AbstractDocument.render(Runnable)*
+
+public void render(java.lang.Runnable r)
+
+This allows the model to be safely rendered in the presence of currency, if the 
+model supports being updated asynchronously. The given runnable will be 
+executed in a way that allows it to safely read the model with no changes while 
+the runnable is being executed. The runnable itself may not make any mutations. 
+
+This is implemented to aquire a read lock for the duration of the runnables 
+execution. There may be multiple runnables executing at the same time, and all 
+writers will be blocked while there are active rendering runnables. If the 
+runnable throws an exception, its lock will be safely released. There is no 
+protection against a runnable that never exits, which will effectively leave 
+the document locked for it's lifetime. 
+
+If the given runnable attempts to make any mutations in this implementation, a 
+deadlock will occur. There is no tracking of individual rendering threads to 
+enable detecting this situation, but a subclass could incur the overhead of 
+tracking them and throwing an error. 
+
+This method is thread safe, although most Swing methods are not. Please see 
+Threads and Swing for more information. 
+
+    r - the renderer to execute 
+
+*javax.swing.text.AbstractDocument.replace(int,int,String,AttributeSet)*
+
+public void replace(
+  int offset,
+  int length,
+  java.lang.String text,
+  javax.swing.text.AttributeSet attrs)
+  throws |javax.swing.text.BadLocationException|
+         
+Deletes the region of text from offset to offset + length, and replaces it with 
+text. It is up to the implementation as to how this is implemented, some 
+implementations may treat this as two distinct operations: a remove followed by 
+an insert, others may treat the replace as one atomic operation. 
+
+    offset - index of child element 
+    length - length of text to delete, may be 0 indicating don't delete anything 
+    text - text to insert, null indicates no text to insert 
+    attrs - AttributeSet indicating attributes of inserted text, null is legal, and 
+       typically treated as an empty attributeset, but exact interpretation is 
+       left to the subclass 
+
+*javax.swing.text.AbstractDocument.setAsynchronousLoadPriority(int)*
+
+public void setAsynchronousLoadPriority(int p)
+
+Sets the asynchronous loading priority. 
+
+    p - the new asynchronous loading priority; a value less than zero indicates that 
+       the document should not be loaded asynchronously 
+
+*javax.swing.text.AbstractDocument.setDocumentFilter(DocumentFilter)*
+
+public void setDocumentFilter(javax.swing.text.DocumentFilter filter)
+
+Sets the DocumentFilter. The DocumentFilter is passed insert and remove to 
+conditionally allow inserting/deleting of the text. A null value indicates that 
+no filtering will occur. 
+
+    filter - the DocumentFilter used to constrain text 
+
+*javax.swing.text.AbstractDocument.setDocumentProperties(Dictionary)*
+
+public void setDocumentProperties(java.util.Dictionary x)
+
+Replaces the document properties dictionary for this document. 
+
+    x - the new dictionary 
+
+*javax.swing.text.AbstractDocument.writeLock()*
+
+protected final synchronized void writeLock()
+
+Acquires a lock to begin mutating the document this lock protects. There can be 
+no writing, notification of changes, or reading going on in order to gain the 
+lock. Additionally a thread is allowed to gain more than one writeLock, as long 
+as it doesn't attempt to gain additional writeLocks from within document 
+notification. Attempting to gain a writeLock from within a DocumentListener 
+notification will result in an IllegalStateException. The ability to obtain 
+more than one writeLock per thread allows subclasses to gain a writeLock, 
+perform a number of operations, then release the lock. 
+
+Calls to writeLock must be balanced with calls to writeUnlock, else the 
+Document will be left in a locked state so that no reading or writing can be 
+done. 
+
+
+*javax.swing.text.AbstractDocument.writeUnlock()*
+
+protected final synchronized void writeUnlock()
+
+Releases a write lock previously obtained via writeLock. After decrementing the 
+lock count if there are no oustanding locks this will allow a new writer, or 
+readers. 
+
+
+

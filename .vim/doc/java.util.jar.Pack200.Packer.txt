@@ -1,0 +1,954 @@
+*java.util.jar.Pack200.Packer* *Pack200.Packer* The packer engine applies variou
+
+public static interface interface Pack200.Packer
+
+
+|java.util.jar.Pack200.Packer_Description|
+|java.util.jar.Pack200.Packer_Fields|
+|java.util.jar.Pack200.Packer_Constructors|
+|java.util.jar.Pack200.Packer_Methods|
+
+================================================================================
+
+*java.util.jar.Pack200.Packer_Fields*
+|java.lang.String_java.util.jar.Pack200.Packer.CLASS_ATTRIBUTE_PFX|
+|java.lang.String_java.util.jar.Pack200.Packer.CODE_ATTRIBUTE_PFX|
+|java.lang.String_java.util.jar.Pack200.Packer.DEFLATE_HINT|
+|java.lang.String_java.util.jar.Pack200.Packer.EFFORT|
+|java.lang.String_java.util.jar.Pack200.Packer.ERROR|
+|java.lang.String_java.util.jar.Pack200.Packer.FALSE|
+|java.lang.String_java.util.jar.Pack200.Packer.FIELD_ATTRIBUTE_PFX|
+|java.lang.String_java.util.jar.Pack200.Packer.KEEP|
+|java.lang.String_java.util.jar.Pack200.Packer.KEEP_FILE_ORDER|
+|java.lang.String_java.util.jar.Pack200.Packer.LATEST|
+|java.lang.String_java.util.jar.Pack200.Packer.METHOD_ATTRIBUTE_PFX|
+|java.lang.String_java.util.jar.Pack200.Packer.MODIFICATION_TIME|
+|java.lang.String_java.util.jar.Pack200.Packer.PASS|
+|java.lang.String_java.util.jar.Pack200.Packer.PASS_FILE_PFX|
+|java.lang.String_java.util.jar.Pack200.Packer.PROGRESS|
+|java.lang.String_java.util.jar.Pack200.Packer.SEGMENT_LIMIT|
+|java.lang.String_java.util.jar.Pack200.Packer.STRIP|
+|java.lang.String_java.util.jar.Pack200.Packer.TRUE|
+|java.lang.String_java.util.jar.Pack200.Packer.UNKNOWN_ATTRIBUTE|
+
+*java.util.jar.Pack200.Packer_Methods*
+|java.util.jar.Pack200.Packer.addPropertyChangeListener(PropertyChangeListener)|
+|java.util.jar.Pack200.Packer.pack(JarFile,OutputStream)|Takes a JarFile and co
+|java.util.jar.Pack200.Packer.pack(JarInputStream,OutputStream)|Takes a JarInpu
+|java.util.jar.Pack200.Packer.properties()|Get the set of this engine's propert
+|java.util.jar.Pack200.Packer.removePropertyChangeListener(PropertyChangeListener)|
+
+*java.util.jar.Pack200.Packer_Description*
+
+The packer engine applies various transformations to the input JAR file, making 
+the pack stream highly compressible by a compressor such as gzip or zip. An 
+instance of the engine can be obtained using (|java.util.jar.Pack200.Packer|) . 
+
+The high degree of compression is achieved by using a number of techniques 
+described in the JSR 200 specification. Some of the techniques are sorting, 
+re-ordering and co-location of the constant pool. 
+
+The pack engine is initialized to an initial state as described by their 
+properties below. The initial state can be manipulated by getting the engine 
+properties (using (|java.util.jar.Pack200.Packer|) ) and storing the modified 
+properties on the map. The resource files will be passed through with no 
+changes at all. The class files will not contain identical bytes, since the 
+unpacker is free to change minor class file features such as constant pool 
+order. However, the class files will be semantically identical, as specified in 
+the Java Virtual Machine Specification 
+http://java.sun.com/docs/books/vmspec/html/ClassFile.doc.html. 
+
+By default, the packer does not change the order of JAR elements. Also, the 
+modification time and deflation hint of each JAR element is passed unchanged. 
+(Any other ZIP-archive information, such as extra attributes giving Unix file 
+permissions, are lost.) 
+
+Note that packing and unpacking a JAR will in general alter the bytewise 
+contents of classfiles in the JAR. This means that packing and unpacking will 
+in general invalidate any digital signatures which rely on bytewise images of 
+JAR elements. In order both to sign and to pack a JAR, you must first pack and 
+unpack the JAR to "normalize" it, then compute signatures on the unpacked JAR 
+elements, and finally repack the signed JAR. Both packing steps should use 
+precisely the same options, and the segment limit may also need to be set to 
+"-1", to prevent accidental variation of segment boundaries as class file sizes 
+change slightly. 
+
+(Here's why this works: Any reordering the packer does of any classfile 
+structures is idempotent, so the second packing does not change the orderings 
+produced by the first packing. Also, the unpacker is guaranteed by the JSR 200 
+specification to produce a specific bytewise image for any given transmission 
+ordering of archive elements.) 
+
+
+*java.lang.String_java.util.jar.Pack200.Packer.CLASS_ATTRIBUTE_PFX*
+
+The packer engine applies various transformations to the input JAR file, making 
+the pack stream highly compressible by a compressor such as gzip or zip. An 
+instance of the engine can be obtained using (|java.util.jar.Pack200.Packer|) . 
+
+The high degree of compression is achieved by using a number of techniques 
+described in the JSR 200 specification. Some of the techniques are sorting, 
+re-ordering and co-location of the constant pool. 
+
+The pack engine is initialized to an initial state as described by their 
+properties below. The initial state can be manipulated by getting the engine 
+properties (using (|java.util.jar.Pack200.Packer|) ) and storing the modified 
+properties on the map. The resource files will be passed through with no 
+changes at all. The class files will not contain identical bytes, since the 
+unpacker is free to change minor class file features such as constant pool 
+order. However, the class files will be semantically identical, as specified in 
+the Java Virtual Machine Specification 
+http://java.sun.com/docs/books/vmspec/html/ClassFile.doc.html. 
+
+By default, the packer does not change the order of JAR elements. Also, the 
+modification time and deflation hint of each JAR element is passed unchanged. 
+(Any other ZIP-archive information, such as extra attributes giving Unix file 
+permissions, are lost.) 
+
+Note that packing and unpacking a JAR will in general alter the bytewise 
+contents of classfiles in the JAR. This means that packing and unpacking will 
+in general invalidate any digital signatures which rely on bytewise images of 
+JAR elements. In order both to sign and to pack a JAR, you must first pack and 
+unpack the JAR to "normalize" it, then compute signatures on the unpacked JAR 
+elements, and finally repack the signed JAR. Both packing steps should use 
+precisely the same options, and the segment limit may also need to be set to 
+"-1", to prevent accidental variation of segment boundaries as class file sizes 
+change slightly. 
+
+(Here's why this works: Any reordering the packer does of any classfile 
+structures is idempotent, so the second packing does not change the orderings 
+produced by the first packing. Also, the unpacker is guaranteed by the JSR 200 
+specification to produce a specific bytewise image for any given transmission 
+ordering of archive elements.) 
+
+
+*java.lang.String_java.util.jar.Pack200.Packer.CODE_ATTRIBUTE_PFX*
+
+The packer engine applies various transformations to the input JAR file, making 
+the pack stream highly compressible by a compressor such as gzip or zip. An 
+instance of the engine can be obtained using (|java.util.jar.Pack200.Packer|) . 
+
+The high degree of compression is achieved by using a number of techniques 
+described in the JSR 200 specification. Some of the techniques are sorting, 
+re-ordering and co-location of the constant pool. 
+
+The pack engine is initialized to an initial state as described by their 
+properties below. The initial state can be manipulated by getting the engine 
+properties (using (|java.util.jar.Pack200.Packer|) ) and storing the modified 
+properties on the map. The resource files will be passed through with no 
+changes at all. The class files will not contain identical bytes, since the 
+unpacker is free to change minor class file features such as constant pool 
+order. However, the class files will be semantically identical, as specified in 
+the Java Virtual Machine Specification 
+http://java.sun.com/docs/books/vmspec/html/ClassFile.doc.html. 
+
+By default, the packer does not change the order of JAR elements. Also, the 
+modification time and deflation hint of each JAR element is passed unchanged. 
+(Any other ZIP-archive information, such as extra attributes giving Unix file 
+permissions, are lost.) 
+
+Note that packing and unpacking a JAR will in general alter the bytewise 
+contents of classfiles in the JAR. This means that packing and unpacking will 
+in general invalidate any digital signatures which rely on bytewise images of 
+JAR elements. In order both to sign and to pack a JAR, you must first pack and 
+unpack the JAR to "normalize" it, then compute signatures on the unpacked JAR 
+elements, and finally repack the signed JAR. Both packing steps should use 
+precisely the same options, and the segment limit may also need to be set to 
+"-1", to prevent accidental variation of segment boundaries as class file sizes 
+change slightly. 
+
+(Here's why this works: Any reordering the packer does of any classfile 
+structures is idempotent, so the second packing does not change the orderings 
+produced by the first packing. Also, the unpacker is guaranteed by the JSR 200 
+specification to produce a specific bytewise image for any given transmission 
+ordering of archive elements.) 
+
+
+*java.lang.String_java.util.jar.Pack200.Packer.DEFLATE_HINT*
+
+The packer engine applies various transformations to the input JAR file, making 
+the pack stream highly compressible by a compressor such as gzip or zip. An 
+instance of the engine can be obtained using (|java.util.jar.Pack200.Packer|) . 
+
+The high degree of compression is achieved by using a number of techniques 
+described in the JSR 200 specification. Some of the techniques are sorting, 
+re-ordering and co-location of the constant pool. 
+
+The pack engine is initialized to an initial state as described by their 
+properties below. The initial state can be manipulated by getting the engine 
+properties (using (|java.util.jar.Pack200.Packer|) ) and storing the modified 
+properties on the map. The resource files will be passed through with no 
+changes at all. The class files will not contain identical bytes, since the 
+unpacker is free to change minor class file features such as constant pool 
+order. However, the class files will be semantically identical, as specified in 
+the Java Virtual Machine Specification 
+http://java.sun.com/docs/books/vmspec/html/ClassFile.doc.html. 
+
+By default, the packer does not change the order of JAR elements. Also, the 
+modification time and deflation hint of each JAR element is passed unchanged. 
+(Any other ZIP-archive information, such as extra attributes giving Unix file 
+permissions, are lost.) 
+
+Note that packing and unpacking a JAR will in general alter the bytewise 
+contents of classfiles in the JAR. This means that packing and unpacking will 
+in general invalidate any digital signatures which rely on bytewise images of 
+JAR elements. In order both to sign and to pack a JAR, you must first pack and 
+unpack the JAR to "normalize" it, then compute signatures on the unpacked JAR 
+elements, and finally repack the signed JAR. Both packing steps should use 
+precisely the same options, and the segment limit may also need to be set to 
+"-1", to prevent accidental variation of segment boundaries as class file sizes 
+change slightly. 
+
+(Here's why this works: Any reordering the packer does of any classfile 
+structures is idempotent, so the second packing does not change the orderings 
+produced by the first packing. Also, the unpacker is guaranteed by the JSR 200 
+specification to produce a specific bytewise image for any given transmission 
+ordering of archive elements.) 
+
+
+*java.lang.String_java.util.jar.Pack200.Packer.EFFORT*
+
+The packer engine applies various transformations to the input JAR file, making 
+the pack stream highly compressible by a compressor such as gzip or zip. An 
+instance of the engine can be obtained using (|java.util.jar.Pack200.Packer|) . 
+
+The high degree of compression is achieved by using a number of techniques 
+described in the JSR 200 specification. Some of the techniques are sorting, 
+re-ordering and co-location of the constant pool. 
+
+The pack engine is initialized to an initial state as described by their 
+properties below. The initial state can be manipulated by getting the engine 
+properties (using (|java.util.jar.Pack200.Packer|) ) and storing the modified 
+properties on the map. The resource files will be passed through with no 
+changes at all. The class files will not contain identical bytes, since the 
+unpacker is free to change minor class file features such as constant pool 
+order. However, the class files will be semantically identical, as specified in 
+the Java Virtual Machine Specification 
+http://java.sun.com/docs/books/vmspec/html/ClassFile.doc.html. 
+
+By default, the packer does not change the order of JAR elements. Also, the 
+modification time and deflation hint of each JAR element is passed unchanged. 
+(Any other ZIP-archive information, such as extra attributes giving Unix file 
+permissions, are lost.) 
+
+Note that packing and unpacking a JAR will in general alter the bytewise 
+contents of classfiles in the JAR. This means that packing and unpacking will 
+in general invalidate any digital signatures which rely on bytewise images of 
+JAR elements. In order both to sign and to pack a JAR, you must first pack and 
+unpack the JAR to "normalize" it, then compute signatures on the unpacked JAR 
+elements, and finally repack the signed JAR. Both packing steps should use 
+precisely the same options, and the segment limit may also need to be set to 
+"-1", to prevent accidental variation of segment boundaries as class file sizes 
+change slightly. 
+
+(Here's why this works: Any reordering the packer does of any classfile 
+structures is idempotent, so the second packing does not change the orderings 
+produced by the first packing. Also, the unpacker is guaranteed by the JSR 200 
+specification to produce a specific bytewise image for any given transmission 
+ordering of archive elements.) 
+
+
+*java.lang.String_java.util.jar.Pack200.Packer.ERROR*
+
+The packer engine applies various transformations to the input JAR file, making 
+the pack stream highly compressible by a compressor such as gzip or zip. An 
+instance of the engine can be obtained using (|java.util.jar.Pack200.Packer|) . 
+
+The high degree of compression is achieved by using a number of techniques 
+described in the JSR 200 specification. Some of the techniques are sorting, 
+re-ordering and co-location of the constant pool. 
+
+The pack engine is initialized to an initial state as described by their 
+properties below. The initial state can be manipulated by getting the engine 
+properties (using (|java.util.jar.Pack200.Packer|) ) and storing the modified 
+properties on the map. The resource files will be passed through with no 
+changes at all. The class files will not contain identical bytes, since the 
+unpacker is free to change minor class file features such as constant pool 
+order. However, the class files will be semantically identical, as specified in 
+the Java Virtual Machine Specification 
+http://java.sun.com/docs/books/vmspec/html/ClassFile.doc.html. 
+
+By default, the packer does not change the order of JAR elements. Also, the 
+modification time and deflation hint of each JAR element is passed unchanged. 
+(Any other ZIP-archive information, such as extra attributes giving Unix file 
+permissions, are lost.) 
+
+Note that packing and unpacking a JAR will in general alter the bytewise 
+contents of classfiles in the JAR. This means that packing and unpacking will 
+in general invalidate any digital signatures which rely on bytewise images of 
+JAR elements. In order both to sign and to pack a JAR, you must first pack and 
+unpack the JAR to "normalize" it, then compute signatures on the unpacked JAR 
+elements, and finally repack the signed JAR. Both packing steps should use 
+precisely the same options, and the segment limit may also need to be set to 
+"-1", to prevent accidental variation of segment boundaries as class file sizes 
+change slightly. 
+
+(Here's why this works: Any reordering the packer does of any classfile 
+structures is idempotent, so the second packing does not change the orderings 
+produced by the first packing. Also, the unpacker is guaranteed by the JSR 200 
+specification to produce a specific bytewise image for any given transmission 
+ordering of archive elements.) 
+
+
+*java.lang.String_java.util.jar.Pack200.Packer.FALSE*
+
+The packer engine applies various transformations to the input JAR file, making 
+the pack stream highly compressible by a compressor such as gzip or zip. An 
+instance of the engine can be obtained using (|java.util.jar.Pack200.Packer|) . 
+
+The high degree of compression is achieved by using a number of techniques 
+described in the JSR 200 specification. Some of the techniques are sorting, 
+re-ordering and co-location of the constant pool. 
+
+The pack engine is initialized to an initial state as described by their 
+properties below. The initial state can be manipulated by getting the engine 
+properties (using (|java.util.jar.Pack200.Packer|) ) and storing the modified 
+properties on the map. The resource files will be passed through with no 
+changes at all. The class files will not contain identical bytes, since the 
+unpacker is free to change minor class file features such as constant pool 
+order. However, the class files will be semantically identical, as specified in 
+the Java Virtual Machine Specification 
+http://java.sun.com/docs/books/vmspec/html/ClassFile.doc.html. 
+
+By default, the packer does not change the order of JAR elements. Also, the 
+modification time and deflation hint of each JAR element is passed unchanged. 
+(Any other ZIP-archive information, such as extra attributes giving Unix file 
+permissions, are lost.) 
+
+Note that packing and unpacking a JAR will in general alter the bytewise 
+contents of classfiles in the JAR. This means that packing and unpacking will 
+in general invalidate any digital signatures which rely on bytewise images of 
+JAR elements. In order both to sign and to pack a JAR, you must first pack and 
+unpack the JAR to "normalize" it, then compute signatures on the unpacked JAR 
+elements, and finally repack the signed JAR. Both packing steps should use 
+precisely the same options, and the segment limit may also need to be set to 
+"-1", to prevent accidental variation of segment boundaries as class file sizes 
+change slightly. 
+
+(Here's why this works: Any reordering the packer does of any classfile 
+structures is idempotent, so the second packing does not change the orderings 
+produced by the first packing. Also, the unpacker is guaranteed by the JSR 200 
+specification to produce a specific bytewise image for any given transmission 
+ordering of archive elements.) 
+
+
+*java.lang.String_java.util.jar.Pack200.Packer.FIELD_ATTRIBUTE_PFX*
+
+The packer engine applies various transformations to the input JAR file, making 
+the pack stream highly compressible by a compressor such as gzip or zip. An 
+instance of the engine can be obtained using (|java.util.jar.Pack200.Packer|) . 
+
+The high degree of compression is achieved by using a number of techniques 
+described in the JSR 200 specification. Some of the techniques are sorting, 
+re-ordering and co-location of the constant pool. 
+
+The pack engine is initialized to an initial state as described by their 
+properties below. The initial state can be manipulated by getting the engine 
+properties (using (|java.util.jar.Pack200.Packer|) ) and storing the modified 
+properties on the map. The resource files will be passed through with no 
+changes at all. The class files will not contain identical bytes, since the 
+unpacker is free to change minor class file features such as constant pool 
+order. However, the class files will be semantically identical, as specified in 
+the Java Virtual Machine Specification 
+http://java.sun.com/docs/books/vmspec/html/ClassFile.doc.html. 
+
+By default, the packer does not change the order of JAR elements. Also, the 
+modification time and deflation hint of each JAR element is passed unchanged. 
+(Any other ZIP-archive information, such as extra attributes giving Unix file 
+permissions, are lost.) 
+
+Note that packing and unpacking a JAR will in general alter the bytewise 
+contents of classfiles in the JAR. This means that packing and unpacking will 
+in general invalidate any digital signatures which rely on bytewise images of 
+JAR elements. In order both to sign and to pack a JAR, you must first pack and 
+unpack the JAR to "normalize" it, then compute signatures on the unpacked JAR 
+elements, and finally repack the signed JAR. Both packing steps should use 
+precisely the same options, and the segment limit may also need to be set to 
+"-1", to prevent accidental variation of segment boundaries as class file sizes 
+change slightly. 
+
+(Here's why this works: Any reordering the packer does of any classfile 
+structures is idempotent, so the second packing does not change the orderings 
+produced by the first packing. Also, the unpacker is guaranteed by the JSR 200 
+specification to produce a specific bytewise image for any given transmission 
+ordering of archive elements.) 
+
+
+*java.lang.String_java.util.jar.Pack200.Packer.KEEP*
+
+The packer engine applies various transformations to the input JAR file, making 
+the pack stream highly compressible by a compressor such as gzip or zip. An 
+instance of the engine can be obtained using (|java.util.jar.Pack200.Packer|) . 
+
+The high degree of compression is achieved by using a number of techniques 
+described in the JSR 200 specification. Some of the techniques are sorting, 
+re-ordering and co-location of the constant pool. 
+
+The pack engine is initialized to an initial state as described by their 
+properties below. The initial state can be manipulated by getting the engine 
+properties (using (|java.util.jar.Pack200.Packer|) ) and storing the modified 
+properties on the map. The resource files will be passed through with no 
+changes at all. The class files will not contain identical bytes, since the 
+unpacker is free to change minor class file features such as constant pool 
+order. However, the class files will be semantically identical, as specified in 
+the Java Virtual Machine Specification 
+http://java.sun.com/docs/books/vmspec/html/ClassFile.doc.html. 
+
+By default, the packer does not change the order of JAR elements. Also, the 
+modification time and deflation hint of each JAR element is passed unchanged. 
+(Any other ZIP-archive information, such as extra attributes giving Unix file 
+permissions, are lost.) 
+
+Note that packing and unpacking a JAR will in general alter the bytewise 
+contents of classfiles in the JAR. This means that packing and unpacking will 
+in general invalidate any digital signatures which rely on bytewise images of 
+JAR elements. In order both to sign and to pack a JAR, you must first pack and 
+unpack the JAR to "normalize" it, then compute signatures on the unpacked JAR 
+elements, and finally repack the signed JAR. Both packing steps should use 
+precisely the same options, and the segment limit may also need to be set to 
+"-1", to prevent accidental variation of segment boundaries as class file sizes 
+change slightly. 
+
+(Here's why this works: Any reordering the packer does of any classfile 
+structures is idempotent, so the second packing does not change the orderings 
+produced by the first packing. Also, the unpacker is guaranteed by the JSR 200 
+specification to produce a specific bytewise image for any given transmission 
+ordering of archive elements.) 
+
+
+*java.lang.String_java.util.jar.Pack200.Packer.KEEP_FILE_ORDER*
+
+The packer engine applies various transformations to the input JAR file, making 
+the pack stream highly compressible by a compressor such as gzip or zip. An 
+instance of the engine can be obtained using (|java.util.jar.Pack200.Packer|) . 
+
+The high degree of compression is achieved by using a number of techniques 
+described in the JSR 200 specification. Some of the techniques are sorting, 
+re-ordering and co-location of the constant pool. 
+
+The pack engine is initialized to an initial state as described by their 
+properties below. The initial state can be manipulated by getting the engine 
+properties (using (|java.util.jar.Pack200.Packer|) ) and storing the modified 
+properties on the map. The resource files will be passed through with no 
+changes at all. The class files will not contain identical bytes, since the 
+unpacker is free to change minor class file features such as constant pool 
+order. However, the class files will be semantically identical, as specified in 
+the Java Virtual Machine Specification 
+http://java.sun.com/docs/books/vmspec/html/ClassFile.doc.html. 
+
+By default, the packer does not change the order of JAR elements. Also, the 
+modification time and deflation hint of each JAR element is passed unchanged. 
+(Any other ZIP-archive information, such as extra attributes giving Unix file 
+permissions, are lost.) 
+
+Note that packing and unpacking a JAR will in general alter the bytewise 
+contents of classfiles in the JAR. This means that packing and unpacking will 
+in general invalidate any digital signatures which rely on bytewise images of 
+JAR elements. In order both to sign and to pack a JAR, you must first pack and 
+unpack the JAR to "normalize" it, then compute signatures on the unpacked JAR 
+elements, and finally repack the signed JAR. Both packing steps should use 
+precisely the same options, and the segment limit may also need to be set to 
+"-1", to prevent accidental variation of segment boundaries as class file sizes 
+change slightly. 
+
+(Here's why this works: Any reordering the packer does of any classfile 
+structures is idempotent, so the second packing does not change the orderings 
+produced by the first packing. Also, the unpacker is guaranteed by the JSR 200 
+specification to produce a specific bytewise image for any given transmission 
+ordering of archive elements.) 
+
+
+*java.lang.String_java.util.jar.Pack200.Packer.LATEST*
+
+The packer engine applies various transformations to the input JAR file, making 
+the pack stream highly compressible by a compressor such as gzip or zip. An 
+instance of the engine can be obtained using (|java.util.jar.Pack200.Packer|) . 
+
+The high degree of compression is achieved by using a number of techniques 
+described in the JSR 200 specification. Some of the techniques are sorting, 
+re-ordering and co-location of the constant pool. 
+
+The pack engine is initialized to an initial state as described by their 
+properties below. The initial state can be manipulated by getting the engine 
+properties (using (|java.util.jar.Pack200.Packer|) ) and storing the modified 
+properties on the map. The resource files will be passed through with no 
+changes at all. The class files will not contain identical bytes, since the 
+unpacker is free to change minor class file features such as constant pool 
+order. However, the class files will be semantically identical, as specified in 
+the Java Virtual Machine Specification 
+http://java.sun.com/docs/books/vmspec/html/ClassFile.doc.html. 
+
+By default, the packer does not change the order of JAR elements. Also, the 
+modification time and deflation hint of each JAR element is passed unchanged. 
+(Any other ZIP-archive information, such as extra attributes giving Unix file 
+permissions, are lost.) 
+
+Note that packing and unpacking a JAR will in general alter the bytewise 
+contents of classfiles in the JAR. This means that packing and unpacking will 
+in general invalidate any digital signatures which rely on bytewise images of 
+JAR elements. In order both to sign and to pack a JAR, you must first pack and 
+unpack the JAR to "normalize" it, then compute signatures on the unpacked JAR 
+elements, and finally repack the signed JAR. Both packing steps should use 
+precisely the same options, and the segment limit may also need to be set to 
+"-1", to prevent accidental variation of segment boundaries as class file sizes 
+change slightly. 
+
+(Here's why this works: Any reordering the packer does of any classfile 
+structures is idempotent, so the second packing does not change the orderings 
+produced by the first packing. Also, the unpacker is guaranteed by the JSR 200 
+specification to produce a specific bytewise image for any given transmission 
+ordering of archive elements.) 
+
+
+*java.lang.String_java.util.jar.Pack200.Packer.METHOD_ATTRIBUTE_PFX*
+
+The packer engine applies various transformations to the input JAR file, making 
+the pack stream highly compressible by a compressor such as gzip or zip. An 
+instance of the engine can be obtained using (|java.util.jar.Pack200.Packer|) . 
+
+The high degree of compression is achieved by using a number of techniques 
+described in the JSR 200 specification. Some of the techniques are sorting, 
+re-ordering and co-location of the constant pool. 
+
+The pack engine is initialized to an initial state as described by their 
+properties below. The initial state can be manipulated by getting the engine 
+properties (using (|java.util.jar.Pack200.Packer|) ) and storing the modified 
+properties on the map. The resource files will be passed through with no 
+changes at all. The class files will not contain identical bytes, since the 
+unpacker is free to change minor class file features such as constant pool 
+order. However, the class files will be semantically identical, as specified in 
+the Java Virtual Machine Specification 
+http://java.sun.com/docs/books/vmspec/html/ClassFile.doc.html. 
+
+By default, the packer does not change the order of JAR elements. Also, the 
+modification time and deflation hint of each JAR element is passed unchanged. 
+(Any other ZIP-archive information, such as extra attributes giving Unix file 
+permissions, are lost.) 
+
+Note that packing and unpacking a JAR will in general alter the bytewise 
+contents of classfiles in the JAR. This means that packing and unpacking will 
+in general invalidate any digital signatures which rely on bytewise images of 
+JAR elements. In order both to sign and to pack a JAR, you must first pack and 
+unpack the JAR to "normalize" it, then compute signatures on the unpacked JAR 
+elements, and finally repack the signed JAR. Both packing steps should use 
+precisely the same options, and the segment limit may also need to be set to 
+"-1", to prevent accidental variation of segment boundaries as class file sizes 
+change slightly. 
+
+(Here's why this works: Any reordering the packer does of any classfile 
+structures is idempotent, so the second packing does not change the orderings 
+produced by the first packing. Also, the unpacker is guaranteed by the JSR 200 
+specification to produce a specific bytewise image for any given transmission 
+ordering of archive elements.) 
+
+
+*java.lang.String_java.util.jar.Pack200.Packer.MODIFICATION_TIME*
+
+The packer engine applies various transformations to the input JAR file, making 
+the pack stream highly compressible by a compressor such as gzip or zip. An 
+instance of the engine can be obtained using (|java.util.jar.Pack200.Packer|) . 
+
+The high degree of compression is achieved by using a number of techniques 
+described in the JSR 200 specification. Some of the techniques are sorting, 
+re-ordering and co-location of the constant pool. 
+
+The pack engine is initialized to an initial state as described by their 
+properties below. The initial state can be manipulated by getting the engine 
+properties (using (|java.util.jar.Pack200.Packer|) ) and storing the modified 
+properties on the map. The resource files will be passed through with no 
+changes at all. The class files will not contain identical bytes, since the 
+unpacker is free to change minor class file features such as constant pool 
+order. However, the class files will be semantically identical, as specified in 
+the Java Virtual Machine Specification 
+http://java.sun.com/docs/books/vmspec/html/ClassFile.doc.html. 
+
+By default, the packer does not change the order of JAR elements. Also, the 
+modification time and deflation hint of each JAR element is passed unchanged. 
+(Any other ZIP-archive information, such as extra attributes giving Unix file 
+permissions, are lost.) 
+
+Note that packing and unpacking a JAR will in general alter the bytewise 
+contents of classfiles in the JAR. This means that packing and unpacking will 
+in general invalidate any digital signatures which rely on bytewise images of 
+JAR elements. In order both to sign and to pack a JAR, you must first pack and 
+unpack the JAR to "normalize" it, then compute signatures on the unpacked JAR 
+elements, and finally repack the signed JAR. Both packing steps should use 
+precisely the same options, and the segment limit may also need to be set to 
+"-1", to prevent accidental variation of segment boundaries as class file sizes 
+change slightly. 
+
+(Here's why this works: Any reordering the packer does of any classfile 
+structures is idempotent, so the second packing does not change the orderings 
+produced by the first packing. Also, the unpacker is guaranteed by the JSR 200 
+specification to produce a specific bytewise image for any given transmission 
+ordering of archive elements.) 
+
+
+*java.lang.String_java.util.jar.Pack200.Packer.PASS*
+
+The packer engine applies various transformations to the input JAR file, making 
+the pack stream highly compressible by a compressor such as gzip or zip. An 
+instance of the engine can be obtained using (|java.util.jar.Pack200.Packer|) . 
+
+The high degree of compression is achieved by using a number of techniques 
+described in the JSR 200 specification. Some of the techniques are sorting, 
+re-ordering and co-location of the constant pool. 
+
+The pack engine is initialized to an initial state as described by their 
+properties below. The initial state can be manipulated by getting the engine 
+properties (using (|java.util.jar.Pack200.Packer|) ) and storing the modified 
+properties on the map. The resource files will be passed through with no 
+changes at all. The class files will not contain identical bytes, since the 
+unpacker is free to change minor class file features such as constant pool 
+order. However, the class files will be semantically identical, as specified in 
+the Java Virtual Machine Specification 
+http://java.sun.com/docs/books/vmspec/html/ClassFile.doc.html. 
+
+By default, the packer does not change the order of JAR elements. Also, the 
+modification time and deflation hint of each JAR element is passed unchanged. 
+(Any other ZIP-archive information, such as extra attributes giving Unix file 
+permissions, are lost.) 
+
+Note that packing and unpacking a JAR will in general alter the bytewise 
+contents of classfiles in the JAR. This means that packing and unpacking will 
+in general invalidate any digital signatures which rely on bytewise images of 
+JAR elements. In order both to sign and to pack a JAR, you must first pack and 
+unpack the JAR to "normalize" it, then compute signatures on the unpacked JAR 
+elements, and finally repack the signed JAR. Both packing steps should use 
+precisely the same options, and the segment limit may also need to be set to 
+"-1", to prevent accidental variation of segment boundaries as class file sizes 
+change slightly. 
+
+(Here's why this works: Any reordering the packer does of any classfile 
+structures is idempotent, so the second packing does not change the orderings 
+produced by the first packing. Also, the unpacker is guaranteed by the JSR 200 
+specification to produce a specific bytewise image for any given transmission 
+ordering of archive elements.) 
+
+
+*java.lang.String_java.util.jar.Pack200.Packer.PASS_FILE_PFX*
+
+The packer engine applies various transformations to the input JAR file, making 
+the pack stream highly compressible by a compressor such as gzip or zip. An 
+instance of the engine can be obtained using (|java.util.jar.Pack200.Packer|) . 
+
+The high degree of compression is achieved by using a number of techniques 
+described in the JSR 200 specification. Some of the techniques are sorting, 
+re-ordering and co-location of the constant pool. 
+
+The pack engine is initialized to an initial state as described by their 
+properties below. The initial state can be manipulated by getting the engine 
+properties (using (|java.util.jar.Pack200.Packer|) ) and storing the modified 
+properties on the map. The resource files will be passed through with no 
+changes at all. The class files will not contain identical bytes, since the 
+unpacker is free to change minor class file features such as constant pool 
+order. However, the class files will be semantically identical, as specified in 
+the Java Virtual Machine Specification 
+http://java.sun.com/docs/books/vmspec/html/ClassFile.doc.html. 
+
+By default, the packer does not change the order of JAR elements. Also, the 
+modification time and deflation hint of each JAR element is passed unchanged. 
+(Any other ZIP-archive information, such as extra attributes giving Unix file 
+permissions, are lost.) 
+
+Note that packing and unpacking a JAR will in general alter the bytewise 
+contents of classfiles in the JAR. This means that packing and unpacking will 
+in general invalidate any digital signatures which rely on bytewise images of 
+JAR elements. In order both to sign and to pack a JAR, you must first pack and 
+unpack the JAR to "normalize" it, then compute signatures on the unpacked JAR 
+elements, and finally repack the signed JAR. Both packing steps should use 
+precisely the same options, and the segment limit may also need to be set to 
+"-1", to prevent accidental variation of segment boundaries as class file sizes 
+change slightly. 
+
+(Here's why this works: Any reordering the packer does of any classfile 
+structures is idempotent, so the second packing does not change the orderings 
+produced by the first packing. Also, the unpacker is guaranteed by the JSR 200 
+specification to produce a specific bytewise image for any given transmission 
+ordering of archive elements.) 
+
+
+*java.lang.String_java.util.jar.Pack200.Packer.PROGRESS*
+
+The packer engine applies various transformations to the input JAR file, making 
+the pack stream highly compressible by a compressor such as gzip or zip. An 
+instance of the engine can be obtained using (|java.util.jar.Pack200.Packer|) . 
+
+The high degree of compression is achieved by using a number of techniques 
+described in the JSR 200 specification. Some of the techniques are sorting, 
+re-ordering and co-location of the constant pool. 
+
+The pack engine is initialized to an initial state as described by their 
+properties below. The initial state can be manipulated by getting the engine 
+properties (using (|java.util.jar.Pack200.Packer|) ) and storing the modified 
+properties on the map. The resource files will be passed through with no 
+changes at all. The class files will not contain identical bytes, since the 
+unpacker is free to change minor class file features such as constant pool 
+order. However, the class files will be semantically identical, as specified in 
+the Java Virtual Machine Specification 
+http://java.sun.com/docs/books/vmspec/html/ClassFile.doc.html. 
+
+By default, the packer does not change the order of JAR elements. Also, the 
+modification time and deflation hint of each JAR element is passed unchanged. 
+(Any other ZIP-archive information, such as extra attributes giving Unix file 
+permissions, are lost.) 
+
+Note that packing and unpacking a JAR will in general alter the bytewise 
+contents of classfiles in the JAR. This means that packing and unpacking will 
+in general invalidate any digital signatures which rely on bytewise images of 
+JAR elements. In order both to sign and to pack a JAR, you must first pack and 
+unpack the JAR to "normalize" it, then compute signatures on the unpacked JAR 
+elements, and finally repack the signed JAR. Both packing steps should use 
+precisely the same options, and the segment limit may also need to be set to 
+"-1", to prevent accidental variation of segment boundaries as class file sizes 
+change slightly. 
+
+(Here's why this works: Any reordering the packer does of any classfile 
+structures is idempotent, so the second packing does not change the orderings 
+produced by the first packing. Also, the unpacker is guaranteed by the JSR 200 
+specification to produce a specific bytewise image for any given transmission 
+ordering of archive elements.) 
+
+
+*java.lang.String_java.util.jar.Pack200.Packer.SEGMENT_LIMIT*
+
+The packer engine applies various transformations to the input JAR file, making 
+the pack stream highly compressible by a compressor such as gzip or zip. An 
+instance of the engine can be obtained using (|java.util.jar.Pack200.Packer|) . 
+
+The high degree of compression is achieved by using a number of techniques 
+described in the JSR 200 specification. Some of the techniques are sorting, 
+re-ordering and co-location of the constant pool. 
+
+The pack engine is initialized to an initial state as described by their 
+properties below. The initial state can be manipulated by getting the engine 
+properties (using (|java.util.jar.Pack200.Packer|) ) and storing the modified 
+properties on the map. The resource files will be passed through with no 
+changes at all. The class files will not contain identical bytes, since the 
+unpacker is free to change minor class file features such as constant pool 
+order. However, the class files will be semantically identical, as specified in 
+the Java Virtual Machine Specification 
+http://java.sun.com/docs/books/vmspec/html/ClassFile.doc.html. 
+
+By default, the packer does not change the order of JAR elements. Also, the 
+modification time and deflation hint of each JAR element is passed unchanged. 
+(Any other ZIP-archive information, such as extra attributes giving Unix file 
+permissions, are lost.) 
+
+Note that packing and unpacking a JAR will in general alter the bytewise 
+contents of classfiles in the JAR. This means that packing and unpacking will 
+in general invalidate any digital signatures which rely on bytewise images of 
+JAR elements. In order both to sign and to pack a JAR, you must first pack and 
+unpack the JAR to "normalize" it, then compute signatures on the unpacked JAR 
+elements, and finally repack the signed JAR. Both packing steps should use 
+precisely the same options, and the segment limit may also need to be set to 
+"-1", to prevent accidental variation of segment boundaries as class file sizes 
+change slightly. 
+
+(Here's why this works: Any reordering the packer does of any classfile 
+structures is idempotent, so the second packing does not change the orderings 
+produced by the first packing. Also, the unpacker is guaranteed by the JSR 200 
+specification to produce a specific bytewise image for any given transmission 
+ordering of archive elements.) 
+
+
+*java.lang.String_java.util.jar.Pack200.Packer.STRIP*
+
+The packer engine applies various transformations to the input JAR file, making 
+the pack stream highly compressible by a compressor such as gzip or zip. An 
+instance of the engine can be obtained using (|java.util.jar.Pack200.Packer|) . 
+
+The high degree of compression is achieved by using a number of techniques 
+described in the JSR 200 specification. Some of the techniques are sorting, 
+re-ordering and co-location of the constant pool. 
+
+The pack engine is initialized to an initial state as described by their 
+properties below. The initial state can be manipulated by getting the engine 
+properties (using (|java.util.jar.Pack200.Packer|) ) and storing the modified 
+properties on the map. The resource files will be passed through with no 
+changes at all. The class files will not contain identical bytes, since the 
+unpacker is free to change minor class file features such as constant pool 
+order. However, the class files will be semantically identical, as specified in 
+the Java Virtual Machine Specification 
+http://java.sun.com/docs/books/vmspec/html/ClassFile.doc.html. 
+
+By default, the packer does not change the order of JAR elements. Also, the 
+modification time and deflation hint of each JAR element is passed unchanged. 
+(Any other ZIP-archive information, such as extra attributes giving Unix file 
+permissions, are lost.) 
+
+Note that packing and unpacking a JAR will in general alter the bytewise 
+contents of classfiles in the JAR. This means that packing and unpacking will 
+in general invalidate any digital signatures which rely on bytewise images of 
+JAR elements. In order both to sign and to pack a JAR, you must first pack and 
+unpack the JAR to "normalize" it, then compute signatures on the unpacked JAR 
+elements, and finally repack the signed JAR. Both packing steps should use 
+precisely the same options, and the segment limit may also need to be set to 
+"-1", to prevent accidental variation of segment boundaries as class file sizes 
+change slightly. 
+
+(Here's why this works: Any reordering the packer does of any classfile 
+structures is idempotent, so the second packing does not change the orderings 
+produced by the first packing. Also, the unpacker is guaranteed by the JSR 200 
+specification to produce a specific bytewise image for any given transmission 
+ordering of archive elements.) 
+
+
+*java.lang.String_java.util.jar.Pack200.Packer.TRUE*
+
+The packer engine applies various transformations to the input JAR file, making 
+the pack stream highly compressible by a compressor such as gzip or zip. An 
+instance of the engine can be obtained using (|java.util.jar.Pack200.Packer|) . 
+
+The high degree of compression is achieved by using a number of techniques 
+described in the JSR 200 specification. Some of the techniques are sorting, 
+re-ordering and co-location of the constant pool. 
+
+The pack engine is initialized to an initial state as described by their 
+properties below. The initial state can be manipulated by getting the engine 
+properties (using (|java.util.jar.Pack200.Packer|) ) and storing the modified 
+properties on the map. The resource files will be passed through with no 
+changes at all. The class files will not contain identical bytes, since the 
+unpacker is free to change minor class file features such as constant pool 
+order. However, the class files will be semantically identical, as specified in 
+the Java Virtual Machine Specification 
+http://java.sun.com/docs/books/vmspec/html/ClassFile.doc.html. 
+
+By default, the packer does not change the order of JAR elements. Also, the 
+modification time and deflation hint of each JAR element is passed unchanged. 
+(Any other ZIP-archive information, such as extra attributes giving Unix file 
+permissions, are lost.) 
+
+Note that packing and unpacking a JAR will in general alter the bytewise 
+contents of classfiles in the JAR. This means that packing and unpacking will 
+in general invalidate any digital signatures which rely on bytewise images of 
+JAR elements. In order both to sign and to pack a JAR, you must first pack and 
+unpack the JAR to "normalize" it, then compute signatures on the unpacked JAR 
+elements, and finally repack the signed JAR. Both packing steps should use 
+precisely the same options, and the segment limit may also need to be set to 
+"-1", to prevent accidental variation of segment boundaries as class file sizes 
+change slightly. 
+
+(Here's why this works: Any reordering the packer does of any classfile 
+structures is idempotent, so the second packing does not change the orderings 
+produced by the first packing. Also, the unpacker is guaranteed by the JSR 200 
+specification to produce a specific bytewise image for any given transmission 
+ordering of archive elements.) 
+
+
+*java.lang.String_java.util.jar.Pack200.Packer.UNKNOWN_ATTRIBUTE*
+
+The packer engine applies various transformations to the input JAR file, making 
+the pack stream highly compressible by a compressor such as gzip or zip. An 
+instance of the engine can be obtained using (|java.util.jar.Pack200.Packer|) . 
+
+The high degree of compression is achieved by using a number of techniques 
+described in the JSR 200 specification. Some of the techniques are sorting, 
+re-ordering and co-location of the constant pool. 
+
+The pack engine is initialized to an initial state as described by their 
+properties below. The initial state can be manipulated by getting the engine 
+properties (using (|java.util.jar.Pack200.Packer|) ) and storing the modified 
+properties on the map. The resource files will be passed through with no 
+changes at all. The class files will not contain identical bytes, since the 
+unpacker is free to change minor class file features such as constant pool 
+order. However, the class files will be semantically identical, as specified in 
+the Java Virtual Machine Specification 
+http://java.sun.com/docs/books/vmspec/html/ClassFile.doc.html. 
+
+By default, the packer does not change the order of JAR elements. Also, the 
+modification time and deflation hint of each JAR element is passed unchanged. 
+(Any other ZIP-archive information, such as extra attributes giving Unix file 
+permissions, are lost.) 
+
+Note that packing and unpacking a JAR will in general alter the bytewise 
+contents of classfiles in the JAR. This means that packing and unpacking will 
+in general invalidate any digital signatures which rely on bytewise images of 
+JAR elements. In order both to sign and to pack a JAR, you must first pack and 
+unpack the JAR to "normalize" it, then compute signatures on the unpacked JAR 
+elements, and finally repack the signed JAR. Both packing steps should use 
+precisely the same options, and the segment limit may also need to be set to 
+"-1", to prevent accidental variation of segment boundaries as class file sizes 
+change slightly. 
+
+(Here's why this works: Any reordering the packer does of any classfile 
+structures is idempotent, so the second packing does not change the orderings 
+produced by the first packing. Also, the unpacker is guaranteed by the JSR 200 
+specification to produce a specific bytewise image for any given transmission 
+ordering of archive elements.) 
+
+
+
+*java.util.jar.Pack200.Packer.addPropertyChangeListener(PropertyChangeListener)*
+
+public void addPropertyChangeListener(java.beans.PropertyChangeListener listener)
+
+Registers a listener for PropertyChange events on the properties map. This is 
+typically used by applications to update a progress bar. 
+
+    listener - An object to be invoked when a property is changed. 
+
+*java.util.jar.Pack200.Packer.pack(JarFile,OutputStream)*
+
+public void pack(
+  java.util.jar.JarFile in,
+  java.io.OutputStream out)
+  throws |java.io.IOException|
+         
+Takes a JarFile and converts it into a Pack200 archive. 
+
+Closes its input but not its output. (Pack200 archives are appendable.) 
+
+    in - a JarFile 
+    out - an OutputStream 
+
+*java.util.jar.Pack200.Packer.pack(JarInputStream,OutputStream)*
+
+public void pack(
+  java.util.jar.JarInputStream in,
+  java.io.OutputStream out)
+  throws |java.io.IOException|
+         
+Takes a JarInputStream and converts it into a Pack200 archive. 
+
+Closes its input but not its output. (Pack200 archives are appendable.) 
+
+The modification time and deflation hint attributes are not available, for the 
+JAR manifest file and its containing directory. 
+
+    in - a JarInputStream 
+    out - an OutputStream 
+
+*java.util.jar.Pack200.Packer.properties()*
+
+public |java.util.SortedMap| properties()
+
+Get the set of this engine's properties. This set is a "live view", so that 
+changing its contents immediately affects the Packer engine, and changes from 
+the engine (such as progress indications) are immediately visible in the map. 
+
+The property map may contain pre-defined implementation specific and default 
+properties. Users are encouraged to read the information and fully understand 
+the implications, before modifying pre-existing properties. 
+
+Implementation specific properties are prefixed with a package name associated 
+with the implementor, beginning with com. or a similar prefix. All property 
+names beginning with pack. and unpack. are reserved for use by this API. 
+
+Unknown properties may be ignored or rejected with an unspecified error, and 
+invalid entries may cause an unspecified error to be thrown. 
+
+The returned map implements all optional (|java.util.SortedMap|) operations 
+
+
+    Returns: A sorted association of property key strings to property values. 
+*java.util.jar.Pack200.Packer.removePropertyChangeListener(PropertyChangeListener)*
+
+public void removePropertyChangeListener(java.beans.PropertyChangeListener listener)
+
+Remove a listener for PropertyChange events, added by the 
+(|java.util.jar.Pack200.Packer|) . 
+
+    listener - The PropertyChange listener to be removed. 
+
+

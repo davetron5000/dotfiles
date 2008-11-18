@@ -1,0 +1,216 @@
+*javax.xml.parsers.DocumentBuilder* *DocumentBuilder* Defines the API to obtain 
+
+public abstract class DocumentBuilder
+  extends    |java.lang.Object|
+
+|javax.xml.parsers.DocumentBuilder_Description|
+|javax.xml.parsers.DocumentBuilder_Fields|
+|javax.xml.parsers.DocumentBuilder_Constructors|
+|javax.xml.parsers.DocumentBuilder_Methods|
+
+================================================================================
+
+*javax.xml.parsers.DocumentBuilder_Constructors*
+|javax.xml.parsers.DocumentBuilder()|Protected constructor
+
+*javax.xml.parsers.DocumentBuilder_Methods*
+|javax.xml.parsers.DocumentBuilder.getDOMImplementation()|Obtain an instance of
+|javax.xml.parsers.DocumentBuilder.getSchema()|Get a reference to the theSchema
+|javax.xml.parsers.DocumentBuilder.isNamespaceAware()|Indicates whether or not 
+|javax.xml.parsers.DocumentBuilder.isValidating()|Indicates whether or not this
+|javax.xml.parsers.DocumentBuilder.isXIncludeAware()|Get the XInclude processin
+|javax.xml.parsers.DocumentBuilder.newDocument()|Obtain a new instance of a DOM
+|javax.xml.parsers.DocumentBuilder.parse(File)|Parse the content of the given f
+|javax.xml.parsers.DocumentBuilder.parse(InputSource)|Parse the content of the 
+|javax.xml.parsers.DocumentBuilder.parse(InputStream)|Parse the content of the 
+|javax.xml.parsers.DocumentBuilder.parse(InputStream,String)|Parse the content 
+|javax.xml.parsers.DocumentBuilder.parse(String)|Parse the content of the given
+|javax.xml.parsers.DocumentBuilder.reset()|Reset this DocumentBuilder to its or
+|javax.xml.parsers.DocumentBuilder.setEntityResolver(EntityResolver)|Specify th
+|javax.xml.parsers.DocumentBuilder.setErrorHandler(ErrorHandler)|Specify theErr
+
+*javax.xml.parsers.DocumentBuilder_Description*
+
+Defines the API to obtain DOM Document instances from an XML document. Using 
+this class, an application programmer can obtain a (|org.w3c.dom.Document|) 
+from XML. 
+
+An instance of this class can be obtained from the 
+(|javax.xml.parsers.DocumentBuilderFactory|) method. Once an instance of this 
+class is obtained, XML can be parsed from a variety of input sources. These 
+input sources are InputStreams, Files, URLs, and SAX InputSources. 
+
+Note that this class reuses several classes from the SAX API. This does not 
+require that the implementor of the underlying DOM implementation use a SAX 
+parser to parse XML document into a Document. It merely requires that the 
+implementation communicate with the application using these existing APIs. 
+
+
+*javax.xml.parsers.DocumentBuilder()*
+
+protected DocumentBuilder()
+
+Protected constructor 
+
+
+*javax.xml.parsers.DocumentBuilder.getDOMImplementation()*
+
+public abstract |org.w3c.dom.DOMImplementation| getDOMImplementation()
+
+Obtain an instance of a (|org.w3c.dom.DOMImplementation|) object. 
+
+
+    Returns: A new instance of a DOMImplementation. 
+*javax.xml.parsers.DocumentBuilder.getSchema()*
+
+public |javax.xml.validation.Schema| getSchema()
+
+Get a reference to the the (|javax.xml.validation.Schema|) being used by the 
+XML processor. 
+
+If no schema is being used, null is returned. 
+
+
+    Returns: {@link Schema} being used or null if none in use 
+*javax.xml.parsers.DocumentBuilder.isNamespaceAware()*
+
+public abstract boolean isNamespaceAware()
+
+Indicates whether or not this parser is configured to understand namespaces. 
+
+
+    Returns: true if this parser is configured to understand namespaces; false otherwise. 
+*javax.xml.parsers.DocumentBuilder.isValidating()*
+
+public abstract boolean isValidating()
+
+Indicates whether or not this parser is configured to validate XML documents. 
+
+
+    Returns: true if this parser is configured to validate XML documents; false otherwise. 
+*javax.xml.parsers.DocumentBuilder.isXIncludeAware()*
+
+public boolean isXIncludeAware()
+
+Get the XInclude processing mode for this parser. 
+
+
+    Returns: the return value of the {@link DocumentBuilderFactory#isXIncludeAware()} when 
+             this parser was created from factory. 
+*javax.xml.parsers.DocumentBuilder.newDocument()*
+
+public abstract |org.w3c.dom.Document| newDocument()
+
+Obtain a new instance of a DOM (|org.w3c.dom.Document|) object to build a DOM 
+tree with. 
+
+
+    Returns: A new instance of a DOM Document object. 
+*javax.xml.parsers.DocumentBuilder.parse(File)*
+
+public |org.w3c.dom.Document| parse(java.io.File f)
+  throws |java.io.IOException|
+         |org.xml.sax.SAXException|
+         
+Parse the content of the given file as an XML document and return a new DOM 
+(|org.w3c.dom.Document|) object. An IllegalArgumentException is thrown if the 
+File is null null. 
+
+    f - The file containing the XML to parse. 
+
+    Returns: A new DOM Document object. 
+*javax.xml.parsers.DocumentBuilder.parse(InputSource)*
+
+public abstract |org.w3c.dom.Document| parse(org.xml.sax.InputSource is)
+  throws |java.io.IOException|
+         |org.xml.sax.SAXException|
+         
+Parse the content of the given input source as an XML document and return a new 
+DOM (|org.w3c.dom.Document|) object. An IllegalArgumentException is thrown if 
+the InputSource is null null. 
+
+    is - InputSource containing the content to be parsed. 
+
+    Returns: A new DOM Document object. 
+*javax.xml.parsers.DocumentBuilder.parse(InputStream)*
+
+public |org.w3c.dom.Document| parse(java.io.InputStream is)
+  throws |java.io.IOException|
+         |org.xml.sax.SAXException|
+         
+Parse the content of the given InputStream as an XML document and return a new 
+DOM (|org.w3c.dom.Document|) object. An IllegalArgumentException is thrown if 
+the InputStream is null. 
+
+    is - InputStream containing the content to be parsed. 
+
+    Returns: Document result of parsing the InputStream 
+*javax.xml.parsers.DocumentBuilder.parse(InputStream,String)*
+
+public |org.w3c.dom.Document| parse(
+  java.io.InputStream is,
+  java.lang.String systemId)
+  throws |java.io.IOException|
+         |org.xml.sax.SAXException|
+         
+Parse the content of the given InputStream as an XML document and return a new 
+DOM (|org.w3c.dom.Document|) object. An IllegalArgumentException is thrown if 
+the InputStream is null. 
+
+    is - InputStream containing the content to be parsed. 
+    systemId - Provide a base for resolving relative URIs. 
+
+    Returns: A new DOM Document object. 
+*javax.xml.parsers.DocumentBuilder.parse(String)*
+
+public |org.w3c.dom.Document| parse(java.lang.String uri)
+  throws |java.io.IOException|
+         |org.xml.sax.SAXException|
+         
+Parse the content of the given URI as an XML document and return a new DOM 
+(|org.w3c.dom.Document|) object. An IllegalArgumentException is thrown if the 
+URI is null null. 
+
+    uri - The location of the content to be parsed. 
+
+    Returns: A new DOM Document object. 
+*javax.xml.parsers.DocumentBuilder.reset()*
+
+public void reset()
+
+Reset this DocumentBuilder to its original configuration. 
+
+DocumentBuilder is reset to the same state as when it was created with 
+(|javax.xml.parsers.DocumentBuilderFactory|) . reset() is designed to allow the 
+reuse of existing DocumentBuilders thus saving resources associated with the 
+creation of new DocumentBuilders. 
+
+The reset DocumentBuilder is not guaranteed to have the same 
+(|org.xml.sax.EntityResolver|) or (|org.xml.sax.ErrorHandler|) Objects, e.g. 
+(|java.lang.Object|) . It is guaranteed to have a functionally equal 
+EntityResolver and ErrorHandler. 
+
+
+*javax.xml.parsers.DocumentBuilder.setEntityResolver(EntityResolver)*
+
+public abstract void setEntityResolver(org.xml.sax.EntityResolver er)
+
+Specify the (|org.xml.sax.EntityResolver|) to be used to resolve entities 
+present in the XML document to be parsed. Setting this to null will result in 
+the underlying implementation using it's own default implementation and 
+behavior. 
+
+    er - The EntityResolver to be used to resolve entities present in the XML document 
+       to be parsed. 
+
+*javax.xml.parsers.DocumentBuilder.setErrorHandler(ErrorHandler)*
+
+public abstract void setErrorHandler(org.xml.sax.ErrorHandler eh)
+
+Specify the (|org.xml.sax.ErrorHandler|) to be used by the parser. Setting this 
+to null will result in the underlying implementation using it's own default 
+implementation and behavior. 
+
+    eh - The ErrorHandler to be used by the parser. 
+
+

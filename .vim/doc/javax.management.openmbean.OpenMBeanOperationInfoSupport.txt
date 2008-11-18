@@ -1,0 +1,123 @@
+*javax.management.openmbean.OpenMBeanOperationInfoSupport* *OpenMBeanOperationInfoSupport* 
+
+public class OpenMBeanOperationInfoSupport
+  extends    |javax.management.MBeanOperationInfo|
+  implements |javax.management.openmbean.OpenMBeanOperationInfo|
+             |java.io.Serializable|
+
+|javax.management.openmbean.OpenMBeanOperationInfoSupport_Description|
+|javax.management.openmbean.OpenMBeanOperationInfoSupport_Fields|
+|javax.management.openmbean.OpenMBeanOperationInfoSupport_Constructors|
+|javax.management.openmbean.OpenMBeanOperationInfoSupport_Methods|
+
+================================================================================
+
+*javax.management.openmbean.OpenMBeanOperationInfoSupport_Constructors*
+|javax.management.openmbean.OpenMBeanOperationInfoSupport(String,String,OpenMBeanParameterInfo[],OpenType,int)|
+
+*javax.management.openmbean.OpenMBeanOperationInfoSupport_Methods*
+|javax.management.openmbean.OpenMBeanOperationInfoSupport.equals(Object)|Compar
+|javax.management.openmbean.OpenMBeanOperationInfoSupport.getReturnOpenType()|R
+|javax.management.openmbean.OpenMBeanOperationInfoSupport.hashCode()|Returns th
+|javax.management.openmbean.OpenMBeanOperationInfoSupport.toString()|Returns a 
+
+*javax.management.openmbean.OpenMBeanOperationInfoSupport_Description*
+
+Describes an operation of an Open MBean. 
+
+
+*javax.management.openmbean.OpenMBeanOperationInfoSupport(String,String,OpenMBeanParameterInfo[],OpenType,int)*
+
+public OpenMBeanOperationInfoSupport(
+  java.lang.String name,
+  java.lang.String description,
+  javax.management.openmbean.OpenMBeanParameterInfo[] signature,
+  javax.management.openmbean.OpenType returnOpenType,
+  int impact)
+
+Constructs an OpenMBeanOperationInfoSupport instance, which describes the 
+operation of a class of open MBeans, with the specified name, description, 
+signature, returnOpenType and impact. 
+
+The signature array parameter is internally copied, so that subsequent changes 
+to the array referenced by signature have no effect on this instance. 
+
+    name - cannot be a null or empty string. 
+    description - cannot be a null or empty string. 
+    signature - can be null or empty if there are no parameters to describe. 
+    returnOpenType - cannot be null: use SimpleType.VOID for operations that return nothing. 
+    impact - can be only one of ACTION, ACTION_INFO or INFO. 
+
+*javax.management.openmbean.OpenMBeanOperationInfoSupport.equals(Object)*
+
+public boolean equals(java.lang.Object obj)
+
+Compares the specified obj parameter with this OpenMBeanOperationInfoSupport 
+instance for equality. 
+
+Returns true if and only if all of the following statements are true: 
+
+obj is non null, obj also implements the OpenMBeanOperationInfo interface, 
+their names are equal their signatures are equal their return open types are 
+equal their impacts are equal 
+
+This ensures that this equals method works properly for obj parameters which 
+are different implementations of the OpenMBeanOperationInfo interface. 
+
+    obj - the object to be compared for equality with this OpenMBeanOperationInfoSupport 
+       instance; 
+
+    Returns: true if the specified object is equal to this OpenMBeanOperationInfoSupport 
+             instance. 
+*javax.management.openmbean.OpenMBeanOperationInfoSupport.getReturnOpenType()*
+
+public |javax.management.openmbean.OpenType| getReturnOpenType()
+
+Returns the open type of the values returned by the operation described by this 
+OpenMBeanOperationInfo instance. 
+
+
+*javax.management.openmbean.OpenMBeanOperationInfoSupport.hashCode()*
+
+public int hashCode()
+
+Returns the hash code value for this OpenMBeanOperationInfoSupport instance. 
+
+The hash code of an OpenMBeanOperationInfoSupport instance is the sum of the 
+hash codes of all elements of information used in equals comparisons (ie: its 
+name, return open type, impact and signature, where the signature hashCode is 
+calculated by a call to java.util.Arrays.asList(this.getSignature).hashCode()). 
+
+This ensures that t1.equals(t2) implies that t1.hashCode()==t2.hashCode() for 
+any two OpenMBeanOperationInfoSupport instances t1 and t2, as required by the 
+general contract of the method Object.hashCode()(|java.lang.Object|) . 
+
+However, note that another instance of a class implementing the 
+OpenMBeanOperationInfo interface may be equal to this 
+OpenMBeanOperationInfoSupport instance as defined by 
+(|javax.management.openmbean.OpenMBeanOperationInfoSupport|) , but may have a 
+different hash code if it is calculated differently. 
+
+As OpenMBeanOperationInfoSupport instances are immutable, the hash code for 
+this instance is calculated once, on the first call to hashCode, and then the 
+same value is returned for subsequent calls. 
+
+
+    Returns: the hash code value for this OpenMBeanOperationInfoSupport instance 
+*javax.management.openmbean.OpenMBeanOperationInfoSupport.toString()*
+
+public |java.lang.String| toString()
+
+Returns a string representation of this OpenMBeanOperationInfoSupport instance. 
+
+The string representation consists of the name of this class (ie 
+javax.management.openmbean.OpenMBeanOperationInfoSupport), and the name, 
+signature, return open type and impact of the described operation. 
+
+As OpenMBeanOperationInfoSupport instances are immutable, the string 
+representation for this instance is calculated once, on the first call to 
+toString, and then the same value is returned for subsequent calls. 
+
+
+    Returns: a string representation of this OpenMBeanOperationInfoSupport instance 
+

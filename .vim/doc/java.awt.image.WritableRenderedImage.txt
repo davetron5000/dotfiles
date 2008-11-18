@@ -1,0 +1,141 @@
+*java.awt.image.WritableRenderedImage* *WritableRenderedImage* WriteableRendered
+
+public interface interface WritableRenderedImage
+
+  implements |java.awt.image.RenderedImage|
+
+|java.awt.image.WritableRenderedImage_Description|
+|java.awt.image.WritableRenderedImage_Fields|
+|java.awt.image.WritableRenderedImage_Constructors|
+|java.awt.image.WritableRenderedImage_Methods|
+
+================================================================================
+
+*java.awt.image.WritableRenderedImage_Methods*
+|java.awt.image.WritableRenderedImage.addTileObserver(TileObserver)|Adds an obs
+|java.awt.image.WritableRenderedImage.getWritableTile(int,int)|Checks out a til
+|java.awt.image.WritableRenderedImage.getWritableTileIndices()|Returns an array
+|java.awt.image.WritableRenderedImage.hasTileWriters()|Returns whether any tile
+|java.awt.image.WritableRenderedImage.isTileWritable(int,int)|Returns whether a
+|java.awt.image.WritableRenderedImage.releaseWritableTile(int,int)|Relinquishes
+|java.awt.image.WritableRenderedImage.removeTileObserver(TileObserver)|Removes 
+|java.awt.image.WritableRenderedImage.setData(Raster)|Sets a rect of the image 
+
+*java.awt.image.WritableRenderedImage_Description*
+
+WriteableRenderedImage is a common interface for objects which contain or can 
+produce image data in the form of Rasters and which can be modified and/or 
+written over. The image data may be stored/produced as a single tile or a 
+regular array of tiles. 
+
+WritableRenderedImage provides notification to other interested objects when a 
+tile is checked out for writing (via the getWritableTile method) and when the 
+last writer of a particular tile relinquishes its access (via a call to 
+releaseWritableTile). Additionally, it allows any caller to determine whether 
+any tiles are currently checked out (via hasTileWriters), and to obtain a list 
+of such tiles (via getWritableTileIndices, in the form of a Vector of Point 
+objects). 
+
+Objects wishing to be notified of changes in tile writability must implement 
+the TileObserver interface, and are added by a call to addTileObserver. 
+Multiple calls to addTileObserver for the same object will result in multiple 
+notifications. An existing observer may reduce its notifications by calling 
+removeTileObserver; if the observer had no notifications the operation is a 
+no-op. 
+
+It is necessary for a WritableRenderedImage to ensure that notifications occur 
+only when the first writer acquires a tile and the last writer releases it. 
+
+
+*java.awt.image.WritableRenderedImage.addTileObserver(TileObserver)*
+
+public void addTileObserver(java.awt.image.TileObserver to)
+
+Adds an observer. If the observer is already present, it will receive multiple 
+notifications. 
+
+    to - the specified TileObserver 
+
+*java.awt.image.WritableRenderedImage.getWritableTile(int,int)*
+
+public |java.awt.image.WritableRaster| getWritableTile(
+  int tileX,
+  int tileY)
+
+Checks out a tile for writing. 
+
+The WritableRenderedImage is responsible for notifying all of its TileObservers 
+when a tile goes from having no writers to having one writer. 
+
+    tileX - the X index of the tile. 
+    tileY - the Y index of the tile. 
+
+    Returns: a writable tile. 
+*java.awt.image.WritableRenderedImage.getWritableTileIndices()*
+
+public |java.awt.Point| getWritableTileIndices()
+
+Returns an array of Point objects indicating which tiles are checked out for 
+writing. Returns null if none are checked out. 
+
+
+    Returns: an array containing the locations of tiles that are checked out for writing. 
+*java.awt.image.WritableRenderedImage.hasTileWriters()*
+
+public boolean hasTileWriters()
+
+Returns whether any tile is checked out for writing. Semantically equivalent to 
+(getWritableTileIndices() != null). 
+
+
+    Returns: true if any tiles are checked out for writing; false otherwise. 
+*java.awt.image.WritableRenderedImage.isTileWritable(int,int)*
+
+public boolean isTileWritable(
+  int tileX,
+  int tileY)
+
+Returns whether a tile is currently checked out for writing. 
+
+    tileX - the X index of the tile. 
+    tileY - the Y index of the tile. 
+
+    Returns: true if specified tile is checked out for writing; false otherwise. 
+*java.awt.image.WritableRenderedImage.releaseWritableTile(int,int)*
+
+public void releaseWritableTile(
+  int tileX,
+  int tileY)
+
+Relinquishes the right to write to a tile. If the caller continues to write to 
+the tile, the results are undefined. Calls to this method should only appear in 
+matching pairs with calls to getWritableTile; any other use will lead to 
+undefined results. 
+
+The WritableRenderedImage is responsible for notifying all of its TileObservers 
+when a tile goes from having one writer to having no writers. 
+
+    tileX - the X index of the tile. 
+    tileY - the Y index of the tile. 
+
+*java.awt.image.WritableRenderedImage.removeTileObserver(TileObserver)*
+
+public void removeTileObserver(java.awt.image.TileObserver to)
+
+Removes an observer. If the observer was not registered, nothing happens. If 
+the observer was registered for multiple notifications, it will now be 
+registered for one fewer. 
+
+    to - the specified TileObserver 
+
+*java.awt.image.WritableRenderedImage.setData(Raster)*
+
+public void setData(java.awt.image.Raster r)
+
+Sets a rect of the image to the contents of the Raster r, which is assumed to 
+be in the same coordinate space as the WritableRenderedImage. The operation is 
+clipped to the bounds of the WritableRenderedImage. 
+
+    r - the specified Raster 
+
+

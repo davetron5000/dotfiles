@@ -1,0 +1,312 @@
+*javax.persistence.EntityManager* *EntityManager* Interface used to interact wit
+
+public interface interface EntityManager
+
+
+|javax.persistence.EntityManager_Description|
+|javax.persistence.EntityManager_Fields|
+|javax.persistence.EntityManager_Constructors|
+|javax.persistence.EntityManager_Methods|
+
+================================================================================
+
+*javax.persistence.EntityManager_Methods*
+|javax.persistence.EntityManager.clear()|Clear the persistence context, causing
+|javax.persistence.EntityManager.close()|Close an application-managed EntityMan
+|javax.persistence.EntityManager.contains(Object)|Check if the instance belongs
+|javax.persistence.EntityManager.createNamedQuery(String)|Create an instance of
+|javax.persistence.EntityManager.createNativeQuery(String)|Create an instance o
+|javax.persistence.EntityManager.createNativeQuery(String,Class)|Create an inst
+|javax.persistence.EntityManager.createNativeQuery(String,String)|Create an ins
+|javax.persistence.EntityManager.createQuery(String)|Create an instance of Quer
+|javax.persistence.EntityManager.find(Class<T>,Object)|Find by primary key.
+|javax.persistence.EntityManager.flush()|Synchronize the persistence context to
+|javax.persistence.EntityManager.getDelegate()|Return the underlying provider o
+|javax.persistence.EntityManager.getFlushMode()|Get the flush mode that applies
+|javax.persistence.EntityManager.getReference(Class<T>,Object)|Get an instance,
+|javax.persistence.EntityManager.getTransaction()|Returns the resource-level tr
+|javax.persistence.EntityManager.isOpen()|Determine whether the EntityManager i
+|javax.persistence.EntityManager.joinTransaction()|Indicate to the EntityManage
+|javax.persistence.EntityManager.lock(Object,LockModeType)|Set the lock mode fo
+|javax.persistence.EntityManager.merge(T)|Merge the state of the given entity i
+|javax.persistence.EntityManager.persist(Object)|Make an entity instance manage
+|javax.persistence.EntityManager.refresh(Object)|Refresh the state of the insta
+|javax.persistence.EntityManager.remove(Object)|Remove the entity instance.
+|javax.persistence.EntityManager.setFlushMode(FlushModeType)|Set the flush mode
+
+*javax.persistence.EntityManager_Description*
+
+Interface used to interact with the persistence context. 
+
+An EntityManager instance is associated with a persistence context. A 
+persistence context is a set of entity instances in which for any persistent 
+entity identity there is a unique entity instance. Within the persistence 
+context, the entity instances and their lifecycle are managed. This interface 
+defines the methods that are used to interact with the persistence context. The 
+EntityManager API is used to create and remove persistent entity instances, to 
+find entities by their primary key, and to query over entities. 
+
+The set of entities that can be managed by a given EntityManager instance is 
+defined by a persistence unit. A persistence unit defines the set of all 
+classes that are related or grouped by the application, and which must be 
+colocated in their mapping to a single database. 
+
+
+
+*javax.persistence.EntityManager.clear()*
+
+public void clear()
+
+Clear the persistence context, causing all managed entities to become detached. 
+Changes made to entities that have not been flushed to the database will not be 
+persisted. 
+
+
+
+*javax.persistence.EntityManager.close()*
+
+public void close()
+
+Close an application-managed EntityManager. After the close method has been 
+invoked, all methods on the EntityManager instance and any Query objects 
+obtained from it will throw the IllegalStateException except for getTransaction 
+and isOpen (which will return false). If this method is called when the 
+EntityManager is associated with an active transaction, the persistence context 
+remains managed until the transaction completes. 
+
+
+
+*javax.persistence.EntityManager.contains(Object)*
+
+public boolean contains(java.lang.Object entity)
+
+Check if the instance belongs to the current persistence context. 
+
+
+    entity - 
+
+    Returns: true if the instance belongs to the current persistence context. 
+
+*javax.persistence.EntityManager.createNamedQuery(String)*
+
+public |javax.persistence.Query| createNamedQuery(java.lang.String name)
+
+Create an instance of Query for executing a named query (in the Java 
+Persistence query language or in native SQL). 
+
+
+    name - the name of a query defined in metadata 
+
+    Returns: the new query instance 
+
+*javax.persistence.EntityManager.createNativeQuery(String)*
+
+public |javax.persistence.Query| createNativeQuery(java.lang.String sqlString)
+
+Create an instance of Query for executing a native SQL statement, e.g., for 
+update or delete. 
+
+
+    sqlString - a native SQL query string 
+
+    Returns: the new query instance 
+
+*javax.persistence.EntityManager.createNativeQuery(String,Class)*
+
+public |javax.persistence.Query| createNativeQuery(
+  java.lang.String sqlString,
+  java.lang.Class resultClass)
+
+Create an instance of Query for executing a native SQL query. 
+
+
+    sqlString - a native SQL query string 
+    resultClass - the class of the resulting instance(s) 
+
+    Returns: the new query instance 
+
+*javax.persistence.EntityManager.createNativeQuery(String,String)*
+
+public |javax.persistence.Query| createNativeQuery(
+  java.lang.String sqlString,
+  java.lang.String resultSetMapping)
+
+Create an instance of Query for executing a native SQL query. 
+
+
+    sqlString - a native SQL query string 
+    resultSetMapping - the name of the result set mapping 
+
+    Returns: the new query instance 
+
+*javax.persistence.EntityManager.createQuery(String)*
+
+public |javax.persistence.Query| createQuery(java.lang.String qlString)
+
+Create an instance of Query for executing a Java Persistence query language 
+statement. 
+
+
+    qlString - a Java Persistence query language query string 
+
+    Returns: the new query instance 
+
+*javax.persistence.EntityManager.find(Class<T>,Object)*
+
+public |T| find(
+  java.lang.Class<T> entityClass,
+  java.lang.Object primaryKey)
+
+Find by primary key. 
+
+
+    entityClass - 
+    primaryKey - 
+
+    Returns: the found entity instance or null if the entity does not exist 
+
+*javax.persistence.EntityManager.flush()*
+
+public void flush()
+
+Synchronize the persistence context to the underlying database. 
+
+
+
+*javax.persistence.EntityManager.getDelegate()*
+
+public |java.lang.Object| getDelegate()
+
+Return the underlying provider object for the EntityManager, if available. The 
+result of this method is implementation specific. 
+
+
+
+*javax.persistence.EntityManager.getFlushMode()*
+
+public |javax.persistence.FlushModeType| getFlushMode()
+
+Get the flush mode that applies to all objects contained in the persistence 
+context. 
+
+
+
+    Returns: 
+
+*javax.persistence.EntityManager.getReference(Class<T>,Object)*
+
+public |T| getReference(
+  java.lang.Class<T> entityClass,
+  java.lang.Object primaryKey)
+
+Get an instance, whose state may be lazily fetched. If the requested instance 
+does not exist in the database, throws 
+(|javax.persistence.EntityNotFoundException|) when the instance state is first 
+accessed. (The persistence provider runtime is permitted to throw 
+(|javax.persistence.EntityNotFoundException|) when 
+(|javax.persistence.EntityManager|) is called.) 
+
+The application should not expect that the instance state will be available 
+upon detachment, unless it was accessed by the application while the entity 
+manager was open. 
+
+
+    entityClass - 
+    primaryKey - 
+
+    Returns: the found entity instance 
+
+*javax.persistence.EntityManager.getTransaction()*
+
+public |javax.persistence.EntityTransaction| getTransaction()
+
+Returns the resource-level transaction object. The EntityTransaction instance 
+may be used serially to begin and commit multiple transactions. 
+
+
+
+    Returns: EntityTransaction instance 
+
+*javax.persistence.EntityManager.isOpen()*
+
+public boolean isOpen()
+
+Determine whether the EntityManager is open. 
+
+
+
+    Returns: true until the EntityManager has been closed. 
+
+*javax.persistence.EntityManager.joinTransaction()*
+
+public void joinTransaction()
+
+Indicate to the EntityManager that a JTA transaction is active. This method 
+should be called on a JTA application managed EntityManager that was created 
+outside the scope of the active transaction to associate it with the current 
+JTA transaction. 
+
+
+
+*javax.persistence.EntityManager.lock(Object,LockModeType)*
+
+public void lock(
+  java.lang.Object entity,
+  javax.persistence.LockModeType lockMode)
+
+Set the lock mode for an entity object contained in the persistence context. 
+
+
+    entity - 
+    lockMode - 
+
+*javax.persistence.EntityManager.merge(T)*
+
+public |T| merge(T entity)
+
+Merge the state of the given entity into the current persistence context. 
+
+
+    entity - 
+
+    Returns: the instance that the state was merged to 
+
+*javax.persistence.EntityManager.persist(Object)*
+
+public void persist(java.lang.Object entity)
+
+Make an entity instance managed and persistent. 
+
+
+    entity - 
+
+*javax.persistence.EntityManager.refresh(Object)*
+
+public void refresh(java.lang.Object entity)
+
+Refresh the state of the instance from the database, overwriting changes made 
+to the entity, if any. 
+
+
+    entity - 
+
+*javax.persistence.EntityManager.remove(Object)*
+
+public void remove(java.lang.Object entity)
+
+Remove the entity instance. 
+
+
+    entity - 
+
+*javax.persistence.EntityManager.setFlushMode(FlushModeType)*
+
+public void setFlushMode(javax.persistence.FlushModeType flushMode)
+
+Set the flush mode that applies to all objects contained in the persistence 
+context. 
+
+
+    flushMode - 
+
+

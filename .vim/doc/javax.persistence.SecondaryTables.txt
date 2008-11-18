@@ -1,0 +1,38 @@
+*javax.persistence.SecondaryTables* *SecondaryTables* This annotation is used to
+
+public interface class SecondaryTables
+
+  implements |java.lang.annotation.Annotation|
+
+|javax.persistence.SecondaryTables_Description|
+|javax.persistence.SecondaryTables_Fields|
+|javax.persistence.SecondaryTables_Constructors|
+|javax.persistence.SecondaryTables_Methods|
+
+================================================================================
+
+*javax.persistence.SecondaryTables_Description*
+
+This annotation is used to specify multiple secondary tables for an entity. 
+
+
+
+Example 1: Multiple secondary tables assuming primary key columns are named the 
+same in all tables. 
+
+Entity Table(name="EMPLOYEE") SecondaryTables({ 
+SecondaryTable(name="EMP_DETAIL"), SecondaryTable(name="EMP_HIST") }) public 
+class Employee { ... } 
+
+Example 2: Multiple secondary tables with differently named primary key 
+columns. 
+
+Entity Table(name="EMPLOYEE") SecondaryTables({ 
+SecondaryTable(name="EMP_DETAIL", 
+pkJoinColumns=PrimaryKeyJoinColumn(name="EMPL_ID")), 
+SecondaryTable(name="EMP_HIST", 
+pkJoinColumns=PrimaryKeyJoinColumn(name="EMPLOYEE_ID")) }) public class 
+Employee { ... } 
+
+
+

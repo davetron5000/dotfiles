@@ -1,0 +1,1256 @@
+*java.net.URLConnection* *URLConnection* The abstract class URLConnection is the
+
+public abstract class URLConnection
+  extends    |java.lang.Object|
+
+|java.net.URLConnection_Description|
+|java.net.URLConnection_Fields|
+|java.net.URLConnection_Constructors|
+|java.net.URLConnection_Methods|
+
+================================================================================
+
+*java.net.URLConnection_Fields*
+|boolean_java.net.URLConnection.allowUserInteraction|
+|boolean_java.net.URLConnection.connected|
+|boolean_java.net.URLConnection.doInput|
+|boolean_java.net.URLConnection.doOutput|
+|long_java.net.URLConnection.ifModifiedSince|
+|java.net.URL_java.net.URLConnection.url|
+|boolean_java.net.URLConnection.useCaches|
+
+*java.net.URLConnection_Constructors*
+|java.net.URLConnection(URL)|Constructs a URL connection to the specified URL.
+
+*java.net.URLConnection_Methods*
+|java.net.URLConnection.addRequestProperty(String,String)|Adds a general reques
+|java.net.URLConnection.connect()|Opens a communications link to the resource r
+|java.net.URLConnection.getAllowUserInteraction()|Returns the value of the allo
+|java.net.URLConnection.getConnectTimeout()|Returns setting for connect timeout
+|java.net.URLConnection.getContent()|Retrieves the contents of this URL connect
+|java.net.URLConnection.getContent(Class[])|Retrieves the contents of this URL 
+|java.net.URLConnection.getContentEncoding()|Returns the value of the content-e
+|java.net.URLConnection.getContentLength()|Returns the value of the content-len
+|java.net.URLConnection.getContentType()|Returns the value of the content-type 
+|java.net.URLConnection.getDate()|Returns the value of the date header field.
+|java.net.URLConnection.getDefaultAllowUserInteraction()|Returns the default va
+|java.net.URLConnection.getDefaultRequestProperty(String)|Returns the value of 
+|java.net.URLConnection.getDefaultUseCaches()|Returns the default value of a UR
+|java.net.URLConnection.getDoInput()|Returns the value of this URLConnection's 
+|java.net.URLConnection.getDoOutput()|Returns the value of this URLConnection's
+|java.net.URLConnection.getExpiration()|Returns the value of the expires header
+|java.net.URLConnection.getFileNameMap()|Loads filename map (a mimetable) from 
+|java.net.URLConnection.getHeaderField(int)|Returns the value for the nth heade
+|java.net.URLConnection.getHeaderField(String)|Returns the value of the named h
+|java.net.URLConnection.getHeaderFieldDate(String,long)|Returns the value of th
+|java.net.URLConnection.getHeaderFieldInt(String,int)|Returns the value of the 
+|java.net.URLConnection.getHeaderFieldKey(int)|Returns the key for the nth head
+|java.net.URLConnection.getHeaderFields()|Returns an unmodifiable Map of the he
+|java.net.URLConnection.getIfModifiedSince()|Returns the value of this object's
+|java.net.URLConnection.getInputStream()|Returns an input stream that reads fro
+|java.net.URLConnection.getLastModified()|Returns the value of the last-modifie
+|java.net.URLConnection.getOutputStream()|Returns an output stream that writes 
+|java.net.URLConnection.getPermission()|Returns a permission object representin
+|java.net.URLConnection.getReadTimeout()|Returns setting for read timeout.
+|java.net.URLConnection.getRequestProperties()|Returns an unmodifiable Map of g
+|java.net.URLConnection.getRequestProperty(String)|Returns the value of the nam
+|java.net.URLConnection.getURL()|Returns the value of this URLConnection's URL 
+|java.net.URLConnection.getUseCaches()|Returns the value of this URLConnection'
+|java.net.URLConnection.guessContentTypeFromName(String)|Tries to determine the
+|java.net.URLConnection.guessContentTypeFromStream(InputStream)|Tries to determ
+|java.net.URLConnection.setAllowUserInteraction(boolean)|Set the value of the a
+|java.net.URLConnection.setConnectTimeout(int)|Sets a specified timeout value, 
+|java.net.URLConnection.setContentHandlerFactory(ContentHandlerFactory)|Sets th
+|java.net.URLConnection.setDefaultAllowUserInteraction(boolean)|Sets the defaul
+|java.net.URLConnection.setDefaultRequestProperty(String,String)|Sets the defau
+|java.net.URLConnection.setDefaultUseCaches(boolean)|Sets the default value of 
+|java.net.URLConnection.setDoInput(boolean)|Sets the value of the doInput field
+|java.net.URLConnection.setDoOutput(boolean)|Sets the value of the doOutput fie
+|java.net.URLConnection.setFileNameMap(FileNameMap)|Sets the FileNameMap.
+|java.net.URLConnection.setIfModifiedSince(long)|Sets the value of the ifModifi
+|java.net.URLConnection.setReadTimeout(int)|Sets the read timeout to a specifie
+|java.net.URLConnection.setRequestProperty(String,String)|Sets the general requ
+|java.net.URLConnection.setUseCaches(boolean)|Sets the value of the useCaches f
+|java.net.URLConnection.toString()|Returns a String representation of this URL 
+
+*java.net.URLConnection_Description*
+
+The abstract class URLConnection is the superclass of all classes that 
+represent a communications link between the application and a URL. Instances of 
+this class can be used both to read from and to write to the resource 
+referenced by the URL. In general, creating a connection to a URL is a 
+multistep process: 
+
+openConnection() connect() Manipulate parameters that affect the connection to 
+the remote resource. Interact with the resource; query header fields and 
+contents. 
+
+----------------------------> time 
+
+The connection object is created by invoking the openConnection method on a 
+URL. The setup parameters and general request properties are manipulated. The 
+actual connection to the remote object is made, using the connect method. The 
+remote object becomes available. The header fields and the contents of the 
+remote object can be accessed. 
+
+The setup parameters are modified using the following methods: 
+
+setAllowUserInteraction setDoInput setDoOutput setIfModifiedSince setUseCaches 
+
+and the general request properties are modified using the method: 
+
+setRequestProperty 
+
+Default values for the AllowUserInteraction and UseCaches parameters can be set 
+using the methods setDefaultAllowUserInteraction and setDefaultUseCaches. 
+
+Each of the above set methods has a corresponding get method to retrieve the 
+value of the parameter or general request property. The specific parameters and 
+general request properties that are applicable are protocol specific. 
+
+The following methods are used to access the header fields and the contents 
+after the connection is made to the remote object: 
+
+getContent getHeaderField getInputStream getOutputStream 
+
+Certain header fields are accessed frequently. The methods: 
+
+getContentEncoding getContentLength getContentType getDate getExpiration 
+getLastModifed 
+
+provide convenient access to these fields. The getContentType method is used by 
+the getContent method to determine the type of the remote object; subclasses 
+may find it convenient to override the getContentType method. 
+
+In the common case, all of the pre-connection parameters and general request 
+properties can be ignored: the pre-connection parameters and request properties 
+default to sensible values. For most clients of this interface, there are only 
+two interesting methods: getInputStream and getContent, which are mirrored in 
+the URL class by convenience methods. 
+
+More information on the request properties and header fields of an http 
+connection can be found at: 
+
+http://www.ietf.org/rfc/rfc2068.txt 
+
+Note about fileNameMap: In versions prior to JDK 1.1.6, field fileNameMap of 
+URLConnection was public. In JDK 1.1.6 and later, fileNameMap is private; 
+accessor and mutator methods getFileNameMap(|java.net.URLConnection|) and 
+setFileNameMap(|java.net.URLConnection|) are added to access it. This change is 
+also described on the Compatibility page. 
+
+Invoking the close() methods on the InputStream or OutputStream of an 
+URLConnection after a request may free network resources associated with this 
+instance, unless particular protocol specifications specify different 
+behaviours for it. 
+
+
+*boolean_java.net.URLConnection.allowUserInteraction*
+
+The abstract class URLConnection is the superclass of all classes that 
+represent a communications link between the application and a URL. Instances of 
+this class can be used both to read from and to write to the resource 
+referenced by the URL. In general, creating a connection to a URL is a 
+multistep process: 
+
+openConnection() connect() Manipulate parameters that affect the connection to 
+the remote resource. Interact with the resource; query header fields and 
+contents. 
+
+----------------------------> time 
+
+The connection object is created by invoking the openConnection method on a 
+URL. The setup parameters and general request properties are manipulated. The 
+actual connection to the remote object is made, using the connect method. The 
+remote object becomes available. The header fields and the contents of the 
+remote object can be accessed. 
+
+The setup parameters are modified using the following methods: 
+
+setAllowUserInteraction setDoInput setDoOutput setIfModifiedSince setUseCaches 
+
+and the general request properties are modified using the method: 
+
+setRequestProperty 
+
+Default values for the AllowUserInteraction and UseCaches parameters can be set 
+using the methods setDefaultAllowUserInteraction and setDefaultUseCaches. 
+
+Each of the above set methods has a corresponding get method to retrieve the 
+value of the parameter or general request property. The specific parameters and 
+general request properties that are applicable are protocol specific. 
+
+The following methods are used to access the header fields and the contents 
+after the connection is made to the remote object: 
+
+getContent getHeaderField getInputStream getOutputStream 
+
+Certain header fields are accessed frequently. The methods: 
+
+getContentEncoding getContentLength getContentType getDate getExpiration 
+getLastModifed 
+
+provide convenient access to these fields. The getContentType method is used by 
+the getContent method to determine the type of the remote object; subclasses 
+may find it convenient to override the getContentType method. 
+
+In the common case, all of the pre-connection parameters and general request 
+properties can be ignored: the pre-connection parameters and request properties 
+default to sensible values. For most clients of this interface, there are only 
+two interesting methods: getInputStream and getContent, which are mirrored in 
+the URL class by convenience methods. 
+
+More information on the request properties and header fields of an http 
+connection can be found at: 
+
+http://www.ietf.org/rfc/rfc2068.txt 
+
+Note about fileNameMap: In versions prior to JDK 1.1.6, field fileNameMap of 
+URLConnection was public. In JDK 1.1.6 and later, fileNameMap is private; 
+accessor and mutator methods getFileNameMap(|java.net.URLConnection|) and 
+setFileNameMap(|java.net.URLConnection|) are added to access it. This change is 
+also described on the Compatibility page. 
+
+Invoking the close() methods on the InputStream or OutputStream of an 
+URLConnection after a request may free network resources associated with this 
+instance, unless particular protocol specifications specify different 
+behaviours for it. 
+
+
+*boolean_java.net.URLConnection.connected*
+
+The abstract class URLConnection is the superclass of all classes that 
+represent a communications link between the application and a URL. Instances of 
+this class can be used both to read from and to write to the resource 
+referenced by the URL. In general, creating a connection to a URL is a 
+multistep process: 
+
+openConnection() connect() Manipulate parameters that affect the connection to 
+the remote resource. Interact with the resource; query header fields and 
+contents. 
+
+----------------------------> time 
+
+The connection object is created by invoking the openConnection method on a 
+URL. The setup parameters and general request properties are manipulated. The 
+actual connection to the remote object is made, using the connect method. The 
+remote object becomes available. The header fields and the contents of the 
+remote object can be accessed. 
+
+The setup parameters are modified using the following methods: 
+
+setAllowUserInteraction setDoInput setDoOutput setIfModifiedSince setUseCaches 
+
+and the general request properties are modified using the method: 
+
+setRequestProperty 
+
+Default values for the AllowUserInteraction and UseCaches parameters can be set 
+using the methods setDefaultAllowUserInteraction and setDefaultUseCaches. 
+
+Each of the above set methods has a corresponding get method to retrieve the 
+value of the parameter or general request property. The specific parameters and 
+general request properties that are applicable are protocol specific. 
+
+The following methods are used to access the header fields and the contents 
+after the connection is made to the remote object: 
+
+getContent getHeaderField getInputStream getOutputStream 
+
+Certain header fields are accessed frequently. The methods: 
+
+getContentEncoding getContentLength getContentType getDate getExpiration 
+getLastModifed 
+
+provide convenient access to these fields. The getContentType method is used by 
+the getContent method to determine the type of the remote object; subclasses 
+may find it convenient to override the getContentType method. 
+
+In the common case, all of the pre-connection parameters and general request 
+properties can be ignored: the pre-connection parameters and request properties 
+default to sensible values. For most clients of this interface, there are only 
+two interesting methods: getInputStream and getContent, which are mirrored in 
+the URL class by convenience methods. 
+
+More information on the request properties and header fields of an http 
+connection can be found at: 
+
+http://www.ietf.org/rfc/rfc2068.txt 
+
+Note about fileNameMap: In versions prior to JDK 1.1.6, field fileNameMap of 
+URLConnection was public. In JDK 1.1.6 and later, fileNameMap is private; 
+accessor and mutator methods getFileNameMap(|java.net.URLConnection|) and 
+setFileNameMap(|java.net.URLConnection|) are added to access it. This change is 
+also described on the Compatibility page. 
+
+Invoking the close() methods on the InputStream or OutputStream of an 
+URLConnection after a request may free network resources associated with this 
+instance, unless particular protocol specifications specify different 
+behaviours for it. 
+
+
+*boolean_java.net.URLConnection.doInput*
+
+The abstract class URLConnection is the superclass of all classes that 
+represent a communications link between the application and a URL. Instances of 
+this class can be used both to read from and to write to the resource 
+referenced by the URL. In general, creating a connection to a URL is a 
+multistep process: 
+
+openConnection() connect() Manipulate parameters that affect the connection to 
+the remote resource. Interact with the resource; query header fields and 
+contents. 
+
+----------------------------> time 
+
+The connection object is created by invoking the openConnection method on a 
+URL. The setup parameters and general request properties are manipulated. The 
+actual connection to the remote object is made, using the connect method. The 
+remote object becomes available. The header fields and the contents of the 
+remote object can be accessed. 
+
+The setup parameters are modified using the following methods: 
+
+setAllowUserInteraction setDoInput setDoOutput setIfModifiedSince setUseCaches 
+
+and the general request properties are modified using the method: 
+
+setRequestProperty 
+
+Default values for the AllowUserInteraction and UseCaches parameters can be set 
+using the methods setDefaultAllowUserInteraction and setDefaultUseCaches. 
+
+Each of the above set methods has a corresponding get method to retrieve the 
+value of the parameter or general request property. The specific parameters and 
+general request properties that are applicable are protocol specific. 
+
+The following methods are used to access the header fields and the contents 
+after the connection is made to the remote object: 
+
+getContent getHeaderField getInputStream getOutputStream 
+
+Certain header fields are accessed frequently. The methods: 
+
+getContentEncoding getContentLength getContentType getDate getExpiration 
+getLastModifed 
+
+provide convenient access to these fields. The getContentType method is used by 
+the getContent method to determine the type of the remote object; subclasses 
+may find it convenient to override the getContentType method. 
+
+In the common case, all of the pre-connection parameters and general request 
+properties can be ignored: the pre-connection parameters and request properties 
+default to sensible values. For most clients of this interface, there are only 
+two interesting methods: getInputStream and getContent, which are mirrored in 
+the URL class by convenience methods. 
+
+More information on the request properties and header fields of an http 
+connection can be found at: 
+
+http://www.ietf.org/rfc/rfc2068.txt 
+
+Note about fileNameMap: In versions prior to JDK 1.1.6, field fileNameMap of 
+URLConnection was public. In JDK 1.1.6 and later, fileNameMap is private; 
+accessor and mutator methods getFileNameMap(|java.net.URLConnection|) and 
+setFileNameMap(|java.net.URLConnection|) are added to access it. This change is 
+also described on the Compatibility page. 
+
+Invoking the close() methods on the InputStream or OutputStream of an 
+URLConnection after a request may free network resources associated with this 
+instance, unless particular protocol specifications specify different 
+behaviours for it. 
+
+
+*boolean_java.net.URLConnection.doOutput*
+
+The abstract class URLConnection is the superclass of all classes that 
+represent a communications link between the application and a URL. Instances of 
+this class can be used both to read from and to write to the resource 
+referenced by the URL. In general, creating a connection to a URL is a 
+multistep process: 
+
+openConnection() connect() Manipulate parameters that affect the connection to 
+the remote resource. Interact with the resource; query header fields and 
+contents. 
+
+----------------------------> time 
+
+The connection object is created by invoking the openConnection method on a 
+URL. The setup parameters and general request properties are manipulated. The 
+actual connection to the remote object is made, using the connect method. The 
+remote object becomes available. The header fields and the contents of the 
+remote object can be accessed. 
+
+The setup parameters are modified using the following methods: 
+
+setAllowUserInteraction setDoInput setDoOutput setIfModifiedSince setUseCaches 
+
+and the general request properties are modified using the method: 
+
+setRequestProperty 
+
+Default values for the AllowUserInteraction and UseCaches parameters can be set 
+using the methods setDefaultAllowUserInteraction and setDefaultUseCaches. 
+
+Each of the above set methods has a corresponding get method to retrieve the 
+value of the parameter or general request property. The specific parameters and 
+general request properties that are applicable are protocol specific. 
+
+The following methods are used to access the header fields and the contents 
+after the connection is made to the remote object: 
+
+getContent getHeaderField getInputStream getOutputStream 
+
+Certain header fields are accessed frequently. The methods: 
+
+getContentEncoding getContentLength getContentType getDate getExpiration 
+getLastModifed 
+
+provide convenient access to these fields. The getContentType method is used by 
+the getContent method to determine the type of the remote object; subclasses 
+may find it convenient to override the getContentType method. 
+
+In the common case, all of the pre-connection parameters and general request 
+properties can be ignored: the pre-connection parameters and request properties 
+default to sensible values. For most clients of this interface, there are only 
+two interesting methods: getInputStream and getContent, which are mirrored in 
+the URL class by convenience methods. 
+
+More information on the request properties and header fields of an http 
+connection can be found at: 
+
+http://www.ietf.org/rfc/rfc2068.txt 
+
+Note about fileNameMap: In versions prior to JDK 1.1.6, field fileNameMap of 
+URLConnection was public. In JDK 1.1.6 and later, fileNameMap is private; 
+accessor and mutator methods getFileNameMap(|java.net.URLConnection|) and 
+setFileNameMap(|java.net.URLConnection|) are added to access it. This change is 
+also described on the Compatibility page. 
+
+Invoking the close() methods on the InputStream or OutputStream of an 
+URLConnection after a request may free network resources associated with this 
+instance, unless particular protocol specifications specify different 
+behaviours for it. 
+
+
+*long_java.net.URLConnection.ifModifiedSince*
+
+The abstract class URLConnection is the superclass of all classes that 
+represent a communications link between the application and a URL. Instances of 
+this class can be used both to read from and to write to the resource 
+referenced by the URL. In general, creating a connection to a URL is a 
+multistep process: 
+
+openConnection() connect() Manipulate parameters that affect the connection to 
+the remote resource. Interact with the resource; query header fields and 
+contents. 
+
+----------------------------> time 
+
+The connection object is created by invoking the openConnection method on a 
+URL. The setup parameters and general request properties are manipulated. The 
+actual connection to the remote object is made, using the connect method. The 
+remote object becomes available. The header fields and the contents of the 
+remote object can be accessed. 
+
+The setup parameters are modified using the following methods: 
+
+setAllowUserInteraction setDoInput setDoOutput setIfModifiedSince setUseCaches 
+
+and the general request properties are modified using the method: 
+
+setRequestProperty 
+
+Default values for the AllowUserInteraction and UseCaches parameters can be set 
+using the methods setDefaultAllowUserInteraction and setDefaultUseCaches. 
+
+Each of the above set methods has a corresponding get method to retrieve the 
+value of the parameter or general request property. The specific parameters and 
+general request properties that are applicable are protocol specific. 
+
+The following methods are used to access the header fields and the contents 
+after the connection is made to the remote object: 
+
+getContent getHeaderField getInputStream getOutputStream 
+
+Certain header fields are accessed frequently. The methods: 
+
+getContentEncoding getContentLength getContentType getDate getExpiration 
+getLastModifed 
+
+provide convenient access to these fields. The getContentType method is used by 
+the getContent method to determine the type of the remote object; subclasses 
+may find it convenient to override the getContentType method. 
+
+In the common case, all of the pre-connection parameters and general request 
+properties can be ignored: the pre-connection parameters and request properties 
+default to sensible values. For most clients of this interface, there are only 
+two interesting methods: getInputStream and getContent, which are mirrored in 
+the URL class by convenience methods. 
+
+More information on the request properties and header fields of an http 
+connection can be found at: 
+
+http://www.ietf.org/rfc/rfc2068.txt 
+
+Note about fileNameMap: In versions prior to JDK 1.1.6, field fileNameMap of 
+URLConnection was public. In JDK 1.1.6 and later, fileNameMap is private; 
+accessor and mutator methods getFileNameMap(|java.net.URLConnection|) and 
+setFileNameMap(|java.net.URLConnection|) are added to access it. This change is 
+also described on the Compatibility page. 
+
+Invoking the close() methods on the InputStream or OutputStream of an 
+URLConnection after a request may free network resources associated with this 
+instance, unless particular protocol specifications specify different 
+behaviours for it. 
+
+
+*java.net.URL_java.net.URLConnection.url*
+
+The abstract class URLConnection is the superclass of all classes that 
+represent a communications link between the application and a URL. Instances of 
+this class can be used both to read from and to write to the resource 
+referenced by the URL. In general, creating a connection to a URL is a 
+multistep process: 
+
+openConnection() connect() Manipulate parameters that affect the connection to 
+the remote resource. Interact with the resource; query header fields and 
+contents. 
+
+----------------------------> time 
+
+The connection object is created by invoking the openConnection method on a 
+URL. The setup parameters and general request properties are manipulated. The 
+actual connection to the remote object is made, using the connect method. The 
+remote object becomes available. The header fields and the contents of the 
+remote object can be accessed. 
+
+The setup parameters are modified using the following methods: 
+
+setAllowUserInteraction setDoInput setDoOutput setIfModifiedSince setUseCaches 
+
+and the general request properties are modified using the method: 
+
+setRequestProperty 
+
+Default values for the AllowUserInteraction and UseCaches parameters can be set 
+using the methods setDefaultAllowUserInteraction and setDefaultUseCaches. 
+
+Each of the above set methods has a corresponding get method to retrieve the 
+value of the parameter or general request property. The specific parameters and 
+general request properties that are applicable are protocol specific. 
+
+The following methods are used to access the header fields and the contents 
+after the connection is made to the remote object: 
+
+getContent getHeaderField getInputStream getOutputStream 
+
+Certain header fields are accessed frequently. The methods: 
+
+getContentEncoding getContentLength getContentType getDate getExpiration 
+getLastModifed 
+
+provide convenient access to these fields. The getContentType method is used by 
+the getContent method to determine the type of the remote object; subclasses 
+may find it convenient to override the getContentType method. 
+
+In the common case, all of the pre-connection parameters and general request 
+properties can be ignored: the pre-connection parameters and request properties 
+default to sensible values. For most clients of this interface, there are only 
+two interesting methods: getInputStream and getContent, which are mirrored in 
+the URL class by convenience methods. 
+
+More information on the request properties and header fields of an http 
+connection can be found at: 
+
+http://www.ietf.org/rfc/rfc2068.txt 
+
+Note about fileNameMap: In versions prior to JDK 1.1.6, field fileNameMap of 
+URLConnection was public. In JDK 1.1.6 and later, fileNameMap is private; 
+accessor and mutator methods getFileNameMap(|java.net.URLConnection|) and 
+setFileNameMap(|java.net.URLConnection|) are added to access it. This change is 
+also described on the Compatibility page. 
+
+Invoking the close() methods on the InputStream or OutputStream of an 
+URLConnection after a request may free network resources associated with this 
+instance, unless particular protocol specifications specify different 
+behaviours for it. 
+
+
+*boolean_java.net.URLConnection.useCaches*
+
+The abstract class URLConnection is the superclass of all classes that 
+represent a communications link between the application and a URL. Instances of 
+this class can be used both to read from and to write to the resource 
+referenced by the URL. In general, creating a connection to a URL is a 
+multistep process: 
+
+openConnection() connect() Manipulate parameters that affect the connection to 
+the remote resource. Interact with the resource; query header fields and 
+contents. 
+
+----------------------------> time 
+
+The connection object is created by invoking the openConnection method on a 
+URL. The setup parameters and general request properties are manipulated. The 
+actual connection to the remote object is made, using the connect method. The 
+remote object becomes available. The header fields and the contents of the 
+remote object can be accessed. 
+
+The setup parameters are modified using the following methods: 
+
+setAllowUserInteraction setDoInput setDoOutput setIfModifiedSince setUseCaches 
+
+and the general request properties are modified using the method: 
+
+setRequestProperty 
+
+Default values for the AllowUserInteraction and UseCaches parameters can be set 
+using the methods setDefaultAllowUserInteraction and setDefaultUseCaches. 
+
+Each of the above set methods has a corresponding get method to retrieve the 
+value of the parameter or general request property. The specific parameters and 
+general request properties that are applicable are protocol specific. 
+
+The following methods are used to access the header fields and the contents 
+after the connection is made to the remote object: 
+
+getContent getHeaderField getInputStream getOutputStream 
+
+Certain header fields are accessed frequently. The methods: 
+
+getContentEncoding getContentLength getContentType getDate getExpiration 
+getLastModifed 
+
+provide convenient access to these fields. The getContentType method is used by 
+the getContent method to determine the type of the remote object; subclasses 
+may find it convenient to override the getContentType method. 
+
+In the common case, all of the pre-connection parameters and general request 
+properties can be ignored: the pre-connection parameters and request properties 
+default to sensible values. For most clients of this interface, there are only 
+two interesting methods: getInputStream and getContent, which are mirrored in 
+the URL class by convenience methods. 
+
+More information on the request properties and header fields of an http 
+connection can be found at: 
+
+http://www.ietf.org/rfc/rfc2068.txt 
+
+Note about fileNameMap: In versions prior to JDK 1.1.6, field fileNameMap of 
+URLConnection was public. In JDK 1.1.6 and later, fileNameMap is private; 
+accessor and mutator methods getFileNameMap(|java.net.URLConnection|) and 
+setFileNameMap(|java.net.URLConnection|) are added to access it. This change is 
+also described on the Compatibility page. 
+
+Invoking the close() methods on the InputStream or OutputStream of an 
+URLConnection after a request may free network resources associated with this 
+instance, unless particular protocol specifications specify different 
+behaviours for it. 
+
+
+
+*java.net.URLConnection(URL)*
+
+protected URLConnection(java.net.URL url)
+
+Constructs a URL connection to the specified URL. A connection to the object 
+referenced by the URL is not created. 
+
+    url - the specified URL. 
+
+*java.net.URLConnection.addRequestProperty(String,String)*
+
+public void addRequestProperty(
+  java.lang.String key,
+  java.lang.String value)
+
+Adds a general request property specified by a key-value pair. This method will 
+not overwrite existing values associated with the same key. 
+
+    key - the keyword by which the request is known (e.g., "accept"). 
+    value - the value associated with it. 
+
+*java.net.URLConnection.connect()*
+
+public abstract void connect()
+  throws |java.io.IOException|
+         
+Opens a communications link to the resource referenced by this URL, if such a 
+connection has not already been established. 
+
+If the connect method is called when the connection has already been opened 
+(indicated by the connected field having the value true), the call is ignored. 
+
+URLConnection objects go through two phases: first they are created, then they 
+are connected. After being created, and before being connected, various options 
+can be specified (e.g., doInput and UseCaches). After connecting, it is an 
+error to try to set them. Operations that depend on being connected, like 
+getContentLength, will implicitly perform the connection, if necessary. 
+
+
+*java.net.URLConnection.getAllowUserInteraction()*
+
+public boolean getAllowUserInteraction()
+
+Returns the value of the allowUserInteraction field for this object. 
+
+
+    Returns: the value of the allowUserInteraction field for this object. 
+*java.net.URLConnection.getConnectTimeout()*
+
+public int getConnectTimeout()
+
+Returns setting for connect timeout. 
+
+0 return implies that the option is disabled (i.e., timeout of infinity). 
+
+
+    Returns: an int that indicates the connect timeout value in milliseconds 
+*java.net.URLConnection.getContent()*
+
+public |java.lang.Object| getContent()
+  throws |java.io.IOException|
+         
+Retrieves the contents of this URL connection. 
+
+This method first determines the content type of the object by calling the 
+getContentType method. If this is the first time that the application has seen 
+that specific content type, a content handler for that content type is created: 
+
+If the application has set up a content handler factory instance using the 
+setContentHandlerFactory method, the createContentHandler method of that 
+instance is called with the content type as an argument; the result is a 
+content handler for that content type. If no content handler factory has yet 
+been set up, or if the factory's createContentHandler method returns null, then 
+the application loads the class named: 
+
+sun.net.www.content.<contentType> 
+
+where <contentType> is formed by taking the content-type string, replacing all 
+slash characters with a period ('.'), and all other non-alphanumeric characters 
+with the underscore character '_'. The alphanumeric characters are specifically 
+the 26 uppercase ASCII letters 'A' through 'Z', the 26 lowercase ASCII letters 
+'a' through 'z', and the 10 ASCII digits '0' through '9'. If the specified 
+class does not exist, or is not a subclass of ContentHandler, then an 
+UnknownServiceException is thrown. 
+
+
+    Returns: the object fetched. The instanceof operator should be used to determine the 
+             specific kind of object returned. 
+*java.net.URLConnection.getContent(Class[])*
+
+public |java.lang.Object| getContent(java.lang.Class[] classes)
+  throws |java.io.IOException|
+         
+Retrieves the contents of this URL connection. 
+
+    classes - the Class array indicating the requested types 
+
+    Returns: the object fetched that is the first match of the type specified in the classes 
+             array. null if none of the requested types are supported. The 
+             instanceof operator should be used to determine the specific kind 
+             of object returned. 
+*java.net.URLConnection.getContentEncoding()*
+
+public |java.lang.String| getContentEncoding()
+
+Returns the value of the content-encoding header field. 
+
+
+    Returns: the content encoding of the resource that the URL references, or null if not 
+             known. 
+*java.net.URLConnection.getContentLength()*
+
+public int getContentLength()
+
+Returns the value of the content-length header field. 
+
+
+    Returns: the content length of the resource that this connection's URL references, or -1 
+             if the content length is not known. 
+*java.net.URLConnection.getContentType()*
+
+public |java.lang.String| getContentType()
+
+Returns the value of the content-type header field. 
+
+
+    Returns: the content type of the resource that the URL references, or null if not known. 
+*java.net.URLConnection.getDate()*
+
+public long getDate()
+
+Returns the value of the date header field. 
+
+
+    Returns: the sending date of the resource that the URL references, or 0 if not known. 
+             The value returned is the number of milliseconds since January 1, 
+             1970 GMT. 
+*java.net.URLConnection.getDefaultAllowUserInteraction()*
+
+public static boolean getDefaultAllowUserInteraction()
+
+Returns the default value of the allowUserInteraction field. 
+
+Ths default is "sticky", being a part of the static state of all 
+URLConnections. This flag applies to the next, and all following URLConnections 
+that are created. 
+
+
+    Returns: the default value of the allowUserInteraction field. 
+*java.net.URLConnection.getDefaultRequestProperty(String)*
+
+public static |java.lang.String| getDefaultRequestProperty(java.lang.String key)
+
+Returns the value of the default request property. Default request properties 
+are set for every connection. 
+
+    key - the keyword by which the request is known (e.g., "accept"). 
+
+    Returns: the value of the default request property for the specified key. 
+*java.net.URLConnection.getDefaultUseCaches()*
+
+public boolean getDefaultUseCaches()
+
+Returns the default value of a URLConnection's useCaches flag. 
+
+Ths default is "sticky", being a part of the static state of all 
+URLConnections. This flag applies to the next, and all following URLConnections 
+that are created. 
+
+
+    Returns: the default value of a URLConnection's useCaches flag. 
+*java.net.URLConnection.getDoInput()*
+
+public boolean getDoInput()
+
+Returns the value of this URLConnection's doInput flag. 
+
+
+    Returns: the value of this URLConnection's doInput flag. 
+*java.net.URLConnection.getDoOutput()*
+
+public boolean getDoOutput()
+
+Returns the value of this URLConnection's doOutput flag. 
+
+
+    Returns: the value of this URLConnection's doOutput flag. 
+*java.net.URLConnection.getExpiration()*
+
+public long getExpiration()
+
+Returns the value of the expires header field. 
+
+
+    Returns: the expiration date of the resource that this URL references, or 0 if not 
+             known. The value is the number of milliseconds since January 1, 
+             1970 GMT. 
+*java.net.URLConnection.getFileNameMap()*
+
+public static synchronized |java.net.FileNameMap| getFileNameMap()
+
+Loads filename map (a mimetable) from a data file. It will first try to load 
+the user-specific table, defined by content.types.user.table property. If that 
+fails, it tries to load the default built-in table at 
+lib/content-types.properties under java home. 
+
+
+    Returns: the FileNameMap 
+*java.net.URLConnection.getHeaderField(int)*
+
+public |java.lang.String| getHeaderField(int n)
+
+Returns the value for the nth header field. It returns null if there are fewer 
+than n+1fields. 
+
+This method can be used in conjunction with the 
+getHeaderFieldKey(|java.net.URLConnection|) method to iterate through all the 
+headers in the message. 
+
+    n - an index, where n>=0 
+
+    Returns: the value of the nth header field or null if there are fewer than n+1 fields 
+*java.net.URLConnection.getHeaderField(String)*
+
+public |java.lang.String| getHeaderField(java.lang.String name)
+
+Returns the value of the named header field. 
+
+If called on a connection that sets the same header multiple times with 
+possibly different values, only the last value is returned. 
+
+    name - the name of a header field. 
+
+    Returns: the value of the named header field, or null if there is no such field in the 
+             header. 
+*java.net.URLConnection.getHeaderFieldDate(String,long)*
+
+public long getHeaderFieldDate(
+  java.lang.String name,
+  long Default)
+
+Returns the value of the named field parsed as date. The result is the number 
+of milliseconds since January 1, 1970 GMT represented by the named field. 
+
+This form of getHeaderField exists because some connection types (e.g., 
+http-ng) have pre-parsed headers. Classes for that connection type can override 
+this method and short-circuit the parsing. 
+
+    name - the name of the header field. 
+    Default - a default value. 
+
+    Returns: the value of the field, parsed as a date. The value of the Default argument is 
+             returned if the field is missing or malformed. 
+*java.net.URLConnection.getHeaderFieldInt(String,int)*
+
+public int getHeaderFieldInt(
+  java.lang.String name,
+  int Default)
+
+Returns the value of the named field parsed as a number. 
+
+This form of getHeaderField exists because some connection types (e.g., 
+http-ng) have pre-parsed headers. Classes for that connection type can override 
+this method and short-circuit the parsing. 
+
+    name - the name of the header field. 
+    Default - the default value. 
+
+    Returns: the value of the named field, parsed as an integer. The Default value is 
+             returned if the field is missing or malformed. 
+*java.net.URLConnection.getHeaderFieldKey(int)*
+
+public |java.lang.String| getHeaderFieldKey(int n)
+
+Returns the key for the nth header field. It returns null if there are fewer 
+than n+1 fields. 
+
+    n - an index, where n>=0 
+
+    Returns: the key for the nth header field, or null if there are fewer than n+1 fields. 
+*java.net.URLConnection.getHeaderFields()*
+
+public |java.util.Map| getHeaderFields()
+
+Returns an unmodifiable Map of the header fields. The Map keys are Strings that 
+represent the response-header field names. Each Map value is an unmodifiable 
+List of Strings that represents the corresponding field values. 
+
+
+    Returns: a Map of header fields 
+*java.net.URLConnection.getIfModifiedSince()*
+
+public long getIfModifiedSince()
+
+Returns the value of this object's ifModifiedSince field. 
+
+
+    Returns: the value of this object's ifModifiedSince field. 
+*java.net.URLConnection.getInputStream()*
+
+public |java.io.InputStream| getInputStream()
+  throws |java.io.IOException|
+         
+Returns an input stream that reads from this open connection. 
+
+A SocketTimeoutException can be thrown when reading from the returned input 
+stream if the read timeout expires before data is available for read. 
+
+
+    Returns: an input stream that reads from this open connection. 
+*java.net.URLConnection.getLastModified()*
+
+public long getLastModified()
+
+Returns the value of the last-modified header field. The result is the number 
+of milliseconds since January 1, 1970 GMT. 
+
+
+    Returns: the date the resource referenced by this URLConnection was last modified, or 0 
+             if not known. 
+*java.net.URLConnection.getOutputStream()*
+
+public |java.io.OutputStream| getOutputStream()
+  throws |java.io.IOException|
+         
+Returns an output stream that writes to this connection. 
+
+
+    Returns: an output stream that writes to this connection. 
+*java.net.URLConnection.getPermission()*
+
+public |java.security.Permission| getPermission()
+  throws |java.io.IOException|
+         
+Returns a permission object representing the permission necessary to make the 
+connection represented by this object. This method returns null if no 
+permission is required to make the connection. By default, this method returns 
+java.security.AllPermission. Subclasses should override this method and return 
+the permission that best represents the permission required to make a a 
+connection to the URL. For example, a URLConnection representing a file: URL 
+would return a java.io.FilePermission object. 
+
+The permission returned may dependent upon the state of the connection. For 
+example, the permission before connecting may be different from that after 
+connecting. For example, an HTTP sever, say foo.com, may redirect the 
+connection to a different host, say bar.com. Before connecting the permission 
+returned by the connection will represent the permission needed to connect to 
+foo.com, while the permission returned after connecting will be to bar.com. 
+
+Permissions are generally used for two purposes: to protect caches of objects 
+obtained through URLConnections, and to check the right of a recipient to learn 
+about a particular URL. In the first case, the permission should be obtained 
+after the object has been obtained. For example, in an HTTP connection, this 
+will represent the permission to connect to the host from which the data was 
+ultimately fetched. In the second case, the permission should be obtained and 
+tested before connecting. 
+
+
+    Returns: the permission object representing the permission necessary to make the 
+             connection represented by this URLConnection. 
+*java.net.URLConnection.getReadTimeout()*
+
+public int getReadTimeout()
+
+Returns setting for read timeout. 0 return implies that the option is disabled 
+(i.e., timeout of infinity). 
+
+
+    Returns: an int that indicates the read timeout value in milliseconds 
+*java.net.URLConnection.getRequestProperties()*
+
+public |java.util.Map| getRequestProperties()
+
+Returns an unmodifiable Map of general request properties for this connection. 
+The Map keys are Strings that represent the request-header field names. Each 
+Map value is a unmodifiable List of Strings that represents the corresponding 
+field values. 
+
+
+    Returns: a Map of the general request properties for this connection. 
+*java.net.URLConnection.getRequestProperty(String)*
+
+public |java.lang.String| getRequestProperty(java.lang.String key)
+
+Returns the value of the named general request property for this connection. 
+
+    key - the keyword by which the request is known (e.g., "accept"). 
+
+    Returns: the value of the named general request property for this connection. If key is 
+             null, then null is returned. 
+*java.net.URLConnection.getURL()*
+
+public |java.net.URL| getURL()
+
+Returns the value of this URLConnection's URL field. 
+
+
+    Returns: the value of this URLConnection's URL field. 
+*java.net.URLConnection.getUseCaches()*
+
+public boolean getUseCaches()
+
+Returns the value of this URLConnection's useCaches field. 
+
+
+    Returns: the value of this URLConnection's useCaches field. 
+*java.net.URLConnection.guessContentTypeFromName(String)*
+
+public static |java.lang.String| guessContentTypeFromName(java.lang.String fname)
+
+Tries to determine the content type of an object, based on the specified "file" 
+component of a URL. This is a convenience method that can be used by subclasses 
+that override the getContentType method. 
+
+    fname - a filename. 
+
+    Returns: a guess as to what the content type of the object is, based upon its file name. 
+*java.net.URLConnection.guessContentTypeFromStream(InputStream)*
+
+public static |java.lang.String| guessContentTypeFromStream(java.io.InputStream is)
+  throws |java.io.IOException|
+         
+Tries to determine the type of an input stream based on the characters at the 
+beginning of the input stream. This method can be used by subclasses that 
+override the getContentType method. 
+
+Ideally, this routine would not be needed. But many http servers return the 
+incorrect content type; in addition, there are many nonstandard extensions. 
+Direct inspection of the bytes to determine the content type is often more 
+accurate than believing the content type claimed by the http server. 
+
+    is - an input stream that supports marks. 
+
+    Returns: a guess at the content type, or null if none can be determined. 
+*java.net.URLConnection.setAllowUserInteraction(boolean)*
+
+public void setAllowUserInteraction(boolean allowuserinteraction)
+
+Set the value of the allowUserInteraction field of this URLConnection. 
+
+    allowuserinteraction - the new value. 
+
+*java.net.URLConnection.setConnectTimeout(int)*
+
+public void setConnectTimeout(int timeout)
+
+Sets a specified timeout value, in milliseconds, to be used when opening a 
+communications link to the resource referenced by this URLConnection. If the 
+timeout expires before the connection can be established, a 
+java.net.SocketTimeoutException is raised. A timeout of zero is interpreted as 
+an infinite timeout. 
+
+Some non-standard implmentation of this method may ignore the specified 
+timeout. To see the connect timeout set, please call getConnectTimeout(). 
+
+    timeout - an int that specifies the connect timeout value in milliseconds 
+
+*java.net.URLConnection.setContentHandlerFactory(ContentHandlerFactory)*
+
+public static synchronized void setContentHandlerFactory(java.net.ContentHandlerFactory fac)
+
+Sets the ContentHandlerFactory of an application. It can be called at most once 
+by an application. 
+
+The ContentHandlerFactory instance is used to construct a content handler from 
+a content type 
+
+If there is a security manager, this method first calls the security manager's 
+checkSetFactory method to ensure the operation is allowed. This could result in 
+a SecurityException. 
+
+    fac - the desired factory. 
+
+*java.net.URLConnection.setDefaultAllowUserInteraction(boolean)*
+
+public static void setDefaultAllowUserInteraction(boolean defaultallowuserinteraction)
+
+Sets the default value of the allowUserInteraction field for all future 
+URLConnection objects to the specified value. 
+
+    defaultallowuserinteraction - the new value. 
+
+*java.net.URLConnection.setDefaultRequestProperty(String,String)*
+
+public static void setDefaultRequestProperty(
+  java.lang.String key,
+  java.lang.String value)
+
+Sets the default value of a general request property. When a URLConnection is 
+created, it is initialized with these properties. 
+
+    key - the keyword by which the request is known (e.g., "accept"). 
+    value - the value associated with the key. 
+
+*java.net.URLConnection.setDefaultUseCaches(boolean)*
+
+public void setDefaultUseCaches(boolean defaultusecaches)
+
+Sets the default value of the useCaches field to the specified value. 
+
+    defaultusecaches - the new value. 
+
+*java.net.URLConnection.setDoInput(boolean)*
+
+public void setDoInput(boolean doinput)
+
+Sets the value of the doInput field for this URLConnection to the specified 
+value. 
+
+A URL connection can be used for input and/or output. Set the DoInput flag to 
+true if you intend to use the URL connection for input, false if not. The 
+default is true. 
+
+    doinput - the new value. 
+
+*java.net.URLConnection.setDoOutput(boolean)*
+
+public void setDoOutput(boolean dooutput)
+
+Sets the value of the doOutput field for this URLConnection to the specified 
+value. 
+
+A URL connection can be used for input and/or output. Set the DoOutput flag to 
+true if you intend to use the URL connection for output, false if not. The 
+default is false. 
+
+    dooutput - the new value. 
+
+*java.net.URLConnection.setFileNameMap(FileNameMap)*
+
+public static void setFileNameMap(java.net.FileNameMap map)
+
+Sets the FileNameMap. 
+
+If there is a security manager, this method first calls the security manager's 
+checkSetFactory method to ensure the operation is allowed. This could result in 
+a SecurityException. 
+
+    map - the FileNameMap to be set 
+
+*java.net.URLConnection.setIfModifiedSince(long)*
+
+public void setIfModifiedSince(long ifmodifiedsince)
+
+Sets the value of the ifModifiedSince field of this URLConnection to the 
+specified value. 
+
+    ifmodifiedsince - the new value. 
+
+*java.net.URLConnection.setReadTimeout(int)*
+
+public void setReadTimeout(int timeout)
+
+Sets the read timeout to a specified timeout, in milliseconds. A non-zero value 
+specifies the timeout when reading from Input stream when a connection is 
+established to a resource. If the timeout expires before there is data 
+available for read, a java.net.SocketTimeoutException is raised. A timeout of 
+zero is interpreted as an infinite timeout. 
+
+Some non-standard implementation of this method ignores the specified timeout. 
+To see the read timeout set, please call getReadTimeout(). 
+
+    timeout - an int that specifies the timeout value to be used in milliseconds 
+
+*java.net.URLConnection.setRequestProperty(String,String)*
+
+public void setRequestProperty(
+  java.lang.String key,
+  java.lang.String value)
+
+Sets the general request property. If a property with the key already exists, 
+overwrite its value with the new value. 
+
+NOTE: HTTP requires all request properties which can legally have multiple 
+instances with the same key to use a comma-seperated list syntax which enables 
+multiple properties to be appended into a single property. 
+
+    key - the keyword by which the request is known (e.g., "accept"). 
+    value - the value associated with it. 
+
+*java.net.URLConnection.setUseCaches(boolean)*
+
+public void setUseCaches(boolean usecaches)
+
+Sets the value of the useCaches field of this URLConnection to the specified 
+value. 
+
+Some protocols do caching of documents. Occasionally, it is important to be 
+able to "tunnel through" and ignore the caches (e.g., the "reload" button in a 
+browser). If the UseCaches flag on a connection is true, the connection is 
+allowed to use whatever caches it can. If false, caches are to be ignored. The 
+default value comes from DefaultUseCaches, which defaults to true. 
+
+    usecaches - a boolean indicating whether or not to allow caching 
+
+*java.net.URLConnection.toString()*
+
+public |java.lang.String| toString()
+
+Returns a String representation of this URL connection. 
+
+
+    Returns: a string representation of this URLConnection. 
+

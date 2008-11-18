@@ -1,0 +1,58 @@
+*javax.sound.midi.Instrument* *Instrument* An instrument is a sound-synthesis al
+
+public abstract class Instrument
+  extends    |javax.sound.midi.SoundbankResource|
+
+|javax.sound.midi.Instrument_Description|
+|javax.sound.midi.Instrument_Fields|
+|javax.sound.midi.Instrument_Constructors|
+|javax.sound.midi.Instrument_Methods|
+
+================================================================================
+
+*javax.sound.midi.Instrument_Constructors*
+|javax.sound.midi.Instrument(Soundbank,Patch,String,Class)|Constructs a new MID
+
+*javax.sound.midi.Instrument_Methods*
+|javax.sound.midi.Instrument.getPatch()|Obtains the Patch object that indicates
+
+*javax.sound.midi.Instrument_Description*
+
+An instrument is a sound-synthesis algorithm with certain parameter settings, 
+usually designed to emulate a specific real-world musical instrument or to 
+achieve a specific sort of sound effect. Instruments are typically stored in 
+collections called soundbanks. Before the instrument can be used to play notes, 
+it must first be loaded onto a synthesizer, and then it must be selected for 
+use on one or more channels, via a program-change command. MIDI notes that are 
+subsequently received on those channels will be played using the sound of the 
+selected instrument. 
+
+
+*javax.sound.midi.Instrument(Soundbank,Patch,String,Class)*
+
+protected Instrument(
+  javax.sound.midi.Soundbank soundbank,
+  javax.sound.midi.Patch patch,
+  java.lang.String name,
+  java.lang.Class dataClass)
+
+Constructs a new MIDI instrument from the specified Patch. When a subsequent 
+request is made to load the instrument, the sound bank will search its contents 
+for this instrument's Patch, and the instrument will be loaded into the 
+synthesizer at the bank and program location indicated by the Patch object. 
+
+    soundbank - sound bank containing the instrument 
+    patch - the patch of this instrument 
+    name - the name of this instrument 
+    dataClass - the class used to represent the sample's data. 
+
+*javax.sound.midi.Instrument.getPatch()*
+
+public |javax.sound.midi.Patch| getPatch()
+
+Obtains the Patch object that indicates the bank and program numbers where this 
+instrument is to be stored in the synthesizer. 
+
+
+    Returns: this instrument's patch 
+

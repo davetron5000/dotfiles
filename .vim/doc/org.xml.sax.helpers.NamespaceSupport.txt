@@ -1,0 +1,393 @@
+*org.xml.sax.helpers.NamespaceSupport* *NamespaceSupport* Encapsulate Namespace 
+
+public class NamespaceSupport
+  extends    |java.lang.Object|
+
+|org.xml.sax.helpers.NamespaceSupport_Description|
+|org.xml.sax.helpers.NamespaceSupport_Fields|
+|org.xml.sax.helpers.NamespaceSupport_Constructors|
+|org.xml.sax.helpers.NamespaceSupport_Methods|
+
+================================================================================
+
+*org.xml.sax.helpers.NamespaceSupport_Fields*
+|java.lang.String_org.xml.sax.helpers.NamespaceSupport.NSDECL|
+|java.lang.String_org.xml.sax.helpers.NamespaceSupport.XMLNS|
+
+*org.xml.sax.helpers.NamespaceSupport_Constructors*
+|org.xml.sax.helpers.NamespaceSupport()|Create a new Namespace support object.
+
+*org.xml.sax.helpers.NamespaceSupport_Methods*
+|org.xml.sax.helpers.NamespaceSupport.declarePrefix(String,String)|Declare a Na
+|org.xml.sax.helpers.NamespaceSupport.getDeclaredPrefixes()|Return an enumerati
+|org.xml.sax.helpers.NamespaceSupport.getPrefix(String)|Return one of the prefi
+|org.xml.sax.helpers.NamespaceSupport.getPrefixes()|Return an enumeration of al
+|org.xml.sax.helpers.NamespaceSupport.getPrefixes(String)|Return an enumeration
+|org.xml.sax.helpers.NamespaceSupport.getURI(String)|Look up a prefix and get t
+|org.xml.sax.helpers.NamespaceSupport.isNamespaceDeclUris()|Returns true if nam
+|org.xml.sax.helpers.NamespaceSupport.popContext()|Revert to the previous Names
+|org.xml.sax.helpers.NamespaceSupport.processName(String,String[],boolean)|Proc
+|org.xml.sax.helpers.NamespaceSupport.pushContext()|Start a new Namespace conte
+|org.xml.sax.helpers.NamespaceSupport.reset()|Reset this Namespace support obje
+|org.xml.sax.helpers.NamespaceSupport.setNamespaceDeclUris(boolean)|Controls wh
+
+*org.xml.sax.helpers.NamespaceSupport_Description*
+
+Encapsulate Namespace logic for use by applications using SAX, or internally by 
+SAX drivers. 
+
+This module, both source code and documentation, is in the Public Domain, and 
+comes with NO WARRANTY. See http://www.saxproject.org for further information. 
+
+This class encapsulates the logic of Namespace processing: it tracks the 
+declarations currently in force for each context and automatically processes 
+qualified XML names into their Namespace parts; it can also be used in reverse 
+for generating XML qnames from Namespaces. 
+
+Namespace support objects are reusable, but the reset method must be invoked 
+between each session. 
+
+Here is a simple session: 
+
+
+
+String parts[] = new String[3]; NamespaceSupport support = new 
+NamespaceSupport(); 
+
+support.pushContext(); support.declarePrefix("", 
+"http://www.w3.org/1999/xhtml"); support.declarePrefix("dc", 
+"http://www.purl.org/dc#"); 
+
+parts = support.processName("p", parts, false); System.out.println("Namespace 
+URI: " + parts[0]); System.out.println("Local name: " + parts[1]); 
+System.out.println("Raw name: " + parts[2]); 
+
+parts = support.processName("dc:title", parts, false); 
+System.out.println("Namespace URI: " + parts[0]); System.out.println("Local 
+name: " + parts[1]); System.out.println("Raw name: " + parts[2]); 
+
+support.popContext(); 
+
+Note that this class is optimized for the use case where most elements do not 
+contain Namespace declarations: if the same prefix/URI mapping is repeated for 
+each context (for example), this class will be somewhat less efficient. 
+
+Although SAX drivers (parsers) may choose to use this class to implement 
+namespace handling, they are not required to do so. Applications must track 
+namespace information themselves if they want to use namespace information. 
+
+
+*java.lang.String_org.xml.sax.helpers.NamespaceSupport.NSDECL*
+
+Encapsulate Namespace logic for use by applications using SAX, or internally by 
+SAX drivers. 
+
+This module, both source code and documentation, is in the Public Domain, and 
+comes with NO WARRANTY. See http://www.saxproject.org for further information. 
+
+This class encapsulates the logic of Namespace processing: it tracks the 
+declarations currently in force for each context and automatically processes 
+qualified XML names into their Namespace parts; it can also be used in reverse 
+for generating XML qnames from Namespaces. 
+
+Namespace support objects are reusable, but the reset method must be invoked 
+between each session. 
+
+Here is a simple session: 
+
+
+
+String parts[] = new String[3]; NamespaceSupport support = new 
+NamespaceSupport(); 
+
+support.pushContext(); support.declarePrefix("", 
+"http://www.w3.org/1999/xhtml"); support.declarePrefix("dc", 
+"http://www.purl.org/dc#"); 
+
+parts = support.processName("p", parts, false); System.out.println("Namespace 
+URI: " + parts[0]); System.out.println("Local name: " + parts[1]); 
+System.out.println("Raw name: " + parts[2]); 
+
+parts = support.processName("dc:title", parts, false); 
+System.out.println("Namespace URI: " + parts[0]); System.out.println("Local 
+name: " + parts[1]); System.out.println("Raw name: " + parts[2]); 
+
+support.popContext(); 
+
+Note that this class is optimized for the use case where most elements do not 
+contain Namespace declarations: if the same prefix/URI mapping is repeated for 
+each context (for example), this class will be somewhat less efficient. 
+
+Although SAX drivers (parsers) may choose to use this class to implement 
+namespace handling, they are not required to do so. Applications must track 
+namespace information themselves if they want to use namespace information. 
+
+
+*java.lang.String_org.xml.sax.helpers.NamespaceSupport.XMLNS*
+
+Encapsulate Namespace logic for use by applications using SAX, or internally by 
+SAX drivers. 
+
+This module, both source code and documentation, is in the Public Domain, and 
+comes with NO WARRANTY. See http://www.saxproject.org for further information. 
+
+This class encapsulates the logic of Namespace processing: it tracks the 
+declarations currently in force for each context and automatically processes 
+qualified XML names into their Namespace parts; it can also be used in reverse 
+for generating XML qnames from Namespaces. 
+
+Namespace support objects are reusable, but the reset method must be invoked 
+between each session. 
+
+Here is a simple session: 
+
+
+
+String parts[] = new String[3]; NamespaceSupport support = new 
+NamespaceSupport(); 
+
+support.pushContext(); support.declarePrefix("", 
+"http://www.w3.org/1999/xhtml"); support.declarePrefix("dc", 
+"http://www.purl.org/dc#"); 
+
+parts = support.processName("p", parts, false); System.out.println("Namespace 
+URI: " + parts[0]); System.out.println("Local name: " + parts[1]); 
+System.out.println("Raw name: " + parts[2]); 
+
+parts = support.processName("dc:title", parts, false); 
+System.out.println("Namespace URI: " + parts[0]); System.out.println("Local 
+name: " + parts[1]); System.out.println("Raw name: " + parts[2]); 
+
+support.popContext(); 
+
+Note that this class is optimized for the use case where most elements do not 
+contain Namespace declarations: if the same prefix/URI mapping is repeated for 
+each context (for example), this class will be somewhat less efficient. 
+
+Although SAX drivers (parsers) may choose to use this class to implement 
+namespace handling, they are not required to do so. Applications must track 
+namespace information themselves if they want to use namespace information. 
+
+
+
+*org.xml.sax.helpers.NamespaceSupport()*
+
+public NamespaceSupport()
+
+Create a new Namespace support object. 
+
+
+*org.xml.sax.helpers.NamespaceSupport.declarePrefix(String,String)*
+
+public boolean declarePrefix(
+  java.lang.String prefix,
+  java.lang.String uri)
+
+Declare a Namespace prefix. All prefixes must be declared before they are 
+referenced. For example, a SAX driver (parser) would scan an element's 
+attributes in two passes: first for namespace declarations, then a second pass 
+using processName()(|org.xml.sax.helpers.NamespaceSupport|) to interpret 
+prefixes against (potentially redefined) prefixes. 
+
+This method declares a prefix in the current Namespace context; the prefix will 
+remain in force until this context is popped, unless it is shadowed in a 
+descendant context. 
+
+To declare the default element Namespace, use the empty string as the prefix. 
+
+Note that there is an asymmetry in this library: 
+getPrefix(|org.xml.sax.helpers.NamespaceSupport|) will not return the "" 
+prefix, even if you have declared a default element namespace. To check for a 
+default namespace, you have to look it up explicitly using 
+getURI(|org.xml.sax.helpers.NamespaceSupport|) . This asymmetry exists to make 
+it easier to look up prefixes for attribute names, where the default prefix is 
+not allowed. 
+
+    prefix - The prefix to declare, or the empty string to indicate the default element 
+       namespace. This may never have the value "xml" or "xmlns". 
+    uri - The Namespace URI to associate with the prefix. 
+
+    Returns: true if the prefix was legal, false otherwise 
+*org.xml.sax.helpers.NamespaceSupport.getDeclaredPrefixes()*
+
+public |java.util.Enumeration| getDeclaredPrefixes()
+
+Return an enumeration of all prefixes declared in this context. 
+
+The empty (default) prefix will be included in this enumeration; note that this 
+behaviour differs from that of (|org.xml.sax.helpers.NamespaceSupport|) and 
+(|org.xml.sax.helpers.NamespaceSupport|) . 
+
+
+    Returns: An enumeration of all prefixes declared in this context. 
+*org.xml.sax.helpers.NamespaceSupport.getPrefix(String)*
+
+public |java.lang.String| getPrefix(java.lang.String uri)
+
+Return one of the prefixes mapped to a Namespace URI. 
+
+If more than one prefix is currently mapped to the same URI, this method will 
+make an arbitrary selection; if you want all of the prefixes, use the 
+(|org.xml.sax.helpers.NamespaceSupport|) method instead. 
+
+Note: this will never return the empty (default) prefix; to check for a default 
+prefix, use the getURI(|org.xml.sax.helpers.NamespaceSupport|) method with an 
+argument of "". 
+
+    uri - the namespace URI 
+
+    Returns: one of the prefixes currently mapped to the URI supplied, or null if none is 
+             mapped or if the URI is assigned to the default namespace 
+*org.xml.sax.helpers.NamespaceSupport.getPrefixes()*
+
+public |java.util.Enumeration| getPrefixes()
+
+Return an enumeration of all prefixes whose declarations are active in the 
+current context. This includes declarations from parent contexts that have not 
+been overridden. 
+
+Note: if there is a default prefix, it will not be returned in this 
+enumeration; check for the default prefix using the 
+getURI(|org.xml.sax.helpers.NamespaceSupport|) with an argument of "". 
+
+
+    Returns: An enumeration of prefixes (never empty). 
+*org.xml.sax.helpers.NamespaceSupport.getPrefixes(String)*
+
+public |java.util.Enumeration| getPrefixes(java.lang.String uri)
+
+Return an enumeration of all prefixes for a given URI whose declarations are 
+active in the current context. This includes declarations from parent contexts 
+that have not been overridden. 
+
+This method returns prefixes mapped to a specific Namespace URI. The xml: 
+prefix will be included. If you want only one prefix that's mapped to the 
+Namespace URI, and you don't care which one you get, use the 
+getPrefix(|org.xml.sax.helpers.NamespaceSupport|) method instead. 
+
+Note: the empty (default) prefix is never included in this enumeration; to 
+check for the presence of a default Namespace, use the 
+getURI(|org.xml.sax.helpers.NamespaceSupport|) method with an argument of "". 
+
+    uri - The Namespace URI. 
+
+    Returns: An enumeration of prefixes (never empty). 
+*org.xml.sax.helpers.NamespaceSupport.getURI(String)*
+
+public |java.lang.String| getURI(java.lang.String prefix)
+
+Look up a prefix and get the currently-mapped Namespace URI. 
+
+This method looks up the prefix in the current context. Use the empty string 
+("") for the default Namespace. 
+
+    prefix - The prefix to look up. 
+
+    Returns: The associated Namespace URI, or null if the prefix is undeclared in this 
+             context. 
+*org.xml.sax.helpers.NamespaceSupport.isNamespaceDeclUris()*
+
+public boolean isNamespaceDeclUris()
+
+Returns true if namespace declaration attributes are placed into a namespace. 
+This behavior is not the default. 
+
+
+*org.xml.sax.helpers.NamespaceSupport.popContext()*
+
+public void popContext()
+
+Revert to the previous Namespace context. 
+
+Normally, you should pop the context at the end of each XML element. After 
+popping the context, all Namespace prefix mappings that were previously in 
+force are restored. 
+
+You must not attempt to declare additional Namespace prefixes after popping a 
+context, unless you push another context first. 
+
+
+*org.xml.sax.helpers.NamespaceSupport.processName(String,String[],boolean)*
+
+public |java.lang.String| processName(
+  java.lang.String qName,
+  java.lang.String[] parts,
+  boolean isAttribute)
+
+Process a raw XML qualified name, after all declarations in the current context 
+have been handled by declarePrefix()(|org.xml.sax.helpers.NamespaceSupport|) . 
+
+This method processes a raw XML qualified name in the current context by 
+removing the prefix and looking it up among the prefixes currently declared. 
+The return value will be the array supplied by the caller, filled in as 
+follows: 
+
+parts[0] The Namespace URI, or an empty string if none is in use. parts[1] The 
+local name (without prefix). parts[2] The original raw name. 
+
+All of the strings in the array will be internalized. If the raw name has a 
+prefix that has not been declared, then the return value will be null. 
+
+Note that attribute names are processed differently than element names: an 
+unprefixed element name will receive the default Namespace (if any), while an 
+unprefixed attribute name will not. 
+
+    qName - The XML qualified name to be processed. 
+    parts - An array supplied by the caller, capable of holding at least three members. 
+    isAttribute - A flag indicating whether this is an attribute name (true) or an element name 
+       (false). 
+
+    Returns: The supplied array holding three internalized strings representing the 
+             Namespace URI (or empty string), the local name, and the XML 
+             qualified name; or null if there is an undeclared prefix. 
+*org.xml.sax.helpers.NamespaceSupport.pushContext()*
+
+public void pushContext()
+
+Start a new Namespace context. The new context will automatically inherit the 
+declarations of its parent context, but it will also keep track of which 
+declarations were made within this context. 
+
+Event callback code should start a new context once per element. This means 
+being ready to call this in either of two places. For elements that don't 
+include namespace declarations, the ContentHandler.startElement() callback is 
+the right place. For elements with such a declaration, it'd done in the first 
+ContentHandler.startPrefixMapping() callback. A boolean flag can be used to 
+track whether a context has been started yet. When either of those methods is 
+called, it checks the flag to see if a new context needs to be started. If so, 
+it starts the context and sets the flag. After ContentHandler.startElement() 
+does that, it always clears the flag. 
+
+Normally, SAX drivers would push a new context at the beginning of each XML 
+element. Then they perform a first pass over the attributes to process all 
+namespace declarations, making ContentHandler.startPrefixMapping() callbacks. 
+Then a second pass is made, to determine the namespace-qualified names for all 
+attributes and for the element name. Finally all the information for the 
+ContentHandler.startElement() callback is available, so it can then be made. 
+
+The Namespace support object always starts with a base context already in 
+force: in this context, only the "xml" prefix is declared. 
+
+
+*org.xml.sax.helpers.NamespaceSupport.reset()*
+
+public void reset()
+
+Reset this Namespace support object for reuse. 
+
+It is necessary to invoke this method before reusing the Namespace support 
+object for a new session. If namespace declaration URIs are to be supported, 
+that flag must also be set to a non-default value. 
+
+
+*org.xml.sax.helpers.NamespaceSupport.setNamespaceDeclUris(boolean)*
+
+public void setNamespaceDeclUris(boolean value)
+
+Controls whether namespace declaration attributes are placed into the 
+NSDECL(|org.xml.sax.helpers.NamespaceSupport|) namespace by 
+processName()(|org.xml.sax.helpers.NamespaceSupport|) . This may only be 
+changed before any contexts have been pushed. 
+
+
+

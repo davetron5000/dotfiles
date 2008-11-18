@@ -1,0 +1,94 @@
+*javax.rmi.CORBA.ValueHandler* *ValueHandler* Defines methods which allow serial
+
+public interface interface ValueHandler
+
+
+|javax.rmi.CORBA.ValueHandler_Description|
+|javax.rmi.CORBA.ValueHandler_Fields|
+|javax.rmi.CORBA.ValueHandler_Constructors|
+|javax.rmi.CORBA.ValueHandler_Methods|
+
+================================================================================
+
+*javax.rmi.CORBA.ValueHandler_Methods*
+|javax.rmi.CORBA.ValueHandler.getRMIRepositoryID(Class)|Returns the CORBA Repos
+|javax.rmi.CORBA.ValueHandler.getRunTimeCodeBase()|Returns the CodeBase for thi
+|javax.rmi.CORBA.ValueHandler.isCustomMarshaled(Class)|Indicates whether the gi
+|javax.rmi.CORBA.ValueHandler.readValue(InputStream,int,Class,String,RunTime)|R
+|javax.rmi.CORBA.ValueHandler.writeReplace(Serializable)|If the value contains 
+|javax.rmi.CORBA.ValueHandler.writeValue(OutputStream,Serializable)|Writes a va
+
+*javax.rmi.CORBA.ValueHandler_Description*
+
+Defines methods which allow serialization of Java objects to and from GIOP 
+streams. 
+
+
+*javax.rmi.CORBA.ValueHandler.getRMIRepositoryID(Class)*
+
+public |java.lang.String| getRMIRepositoryID(java.lang.Class clz)
+
+Returns the CORBA RepositoryId for the given Java class. 
+
+    clz - a Java class. 
+
+    Returns: the CORBA RepositoryId for the class. 
+*javax.rmi.CORBA.ValueHandler.getRunTimeCodeBase()*
+
+public |org.omg.SendingContext.RunTime| getRunTimeCodeBase()
+
+Returns the CodeBase for this ValueHandler. This is used by the ORB runtime. 
+The server sends the service context containing the IOR for this CodeBase on 
+the first GIOP reply. The client does the same on the first GIOP request. 
+
+
+    Returns: the SendingContext.CodeBase of this ValueHandler. 
+*javax.rmi.CORBA.ValueHandler.isCustomMarshaled(Class)*
+
+public boolean isCustomMarshaled(java.lang.Class clz)
+
+Indicates whether the given class performs custom or default marshaling. 
+
+    clz - the class to test for custom marshaling. 
+
+    Returns: true if the class performs custom marshaling, false if it does not. 
+*javax.rmi.CORBA.ValueHandler.readValue(InputStream,int,Class,String,RunTime)*
+
+public |java.io.Serializable| readValue(
+  org.omg.CORBA.portable.InputStream in,
+  int offset,
+  java.lang.Class clz,
+  java.lang.String repositoryID,
+  org.omg.SendingContext.RunTime sender)
+
+Reads a value from the stream using Java semantics. 
+
+    in - the stream to read the value from. 
+    offset - the current position in the input stream. 
+    clz - the type of the value to be read in. 
+    repositoryID - the RepositoryId of the value to be read in. 
+    sender - the sending context runtime codebase. 
+
+    Returns: the value read from the stream. 
+*javax.rmi.CORBA.ValueHandler.writeReplace(Serializable)*
+
+public |java.io.Serializable| writeReplace(java.io.Serializable value)
+
+If the value contains a writeReplace method then the result is returned. 
+Otherwise, the value itself is returned. 
+
+    value - the value to be marshaled. 
+
+    Returns: the true value to marshal on the wire. 
+*javax.rmi.CORBA.ValueHandler.writeValue(OutputStream,Serializable)*
+
+public void writeValue(
+  org.omg.CORBA.portable.OutputStream out,
+  java.io.Serializable value)
+
+Writes a value to the stream using Java semantics. 
+
+    out - the stream to write the value to. 
+    value - the value to be written to the stream. 
+
+

@@ -1,0 +1,632 @@
+*java.awt.BasicStroke* *BasicStroke* The BasicStroke class defines a basic set o
+
+public class BasicStroke
+  extends    |java.lang.Object|
+  implements |java.awt.Stroke|
+
+|java.awt.BasicStroke_Description|
+|java.awt.BasicStroke_Fields|
+|java.awt.BasicStroke_Constructors|
+|java.awt.BasicStroke_Methods|
+
+================================================================================
+
+*java.awt.BasicStroke_Fields*
+|int_java.awt.BasicStroke.CAP_BUTT|
+|int_java.awt.BasicStroke.CAP_ROUND|
+|int_java.awt.BasicStroke.CAP_SQUARE|
+|int_java.awt.BasicStroke.JOIN_BEVEL|
+|int_java.awt.BasicStroke.JOIN_MITER|
+|int_java.awt.BasicStroke.JOIN_ROUND|
+
+*java.awt.BasicStroke_Constructors*
+|java.awt.BasicStroke()|Constructs a new BasicStroke with defaults for all   at
+|java.awt.BasicStroke(float)|Constructs a solid BasicStroke with the specified 
+|java.awt.BasicStroke(float,int,int)|Constructs a solid BasicStroke with the sp
+|java.awt.BasicStroke(float,int,int,float)|Constructs a solid BasicStroke with 
+|java.awt.BasicStroke(float,int,int,float,float[],float)|Constructs a new Basic
+
+*java.awt.BasicStroke_Methods*
+|java.awt.BasicStroke.createStrokedShape(Shape)|Returns a Shape whose interior 
+|java.awt.BasicStroke.equals(Object)|Tests if a specified object is equal to th
+|java.awt.BasicStroke.feedConsumer(PathConsumer,PathIterator)|
+|java.awt.BasicStroke.getDashArray()|Returns the array representing the lengths
+|java.awt.BasicStroke.getDashPhase()|Returns the current dash phase.
+|java.awt.BasicStroke.getEndCap()|Returns the end cap style.
+|java.awt.BasicStroke.getLineJoin()|Returns the line join style.
+|java.awt.BasicStroke.getLineWidth()|Returns the line width.
+|java.awt.BasicStroke.getMiterLimit()|Returns the limit of miter joins.
+|java.awt.BasicStroke.hashCode()|Returns the hashcode for this stroke.
+
+*java.awt.BasicStroke_Description*
+
+The BasicStroke class defines a basic set of rendering attributes for the 
+outlines of graphics primitives, which are rendered with a 
+(|java.awt.Graphics2D|) object that has its Stroke attribute set to this 
+BasicStroke. The rendering attributes defined by BasicStroke describe the shape 
+of the mark made by a pen drawn along the outline of a (|java.awt.Shape|) and 
+the decorations applied at the ends and joins of path segments of the Shape. 
+These rendering attributes include: 
+
+width The pen width, measured perpendicularly to the pen trajectory. end caps 
+The decoration applied to the ends of unclosed subpaths and dash segments. 
+Subpaths that start and end on the same point are still considered unclosed if 
+they do not have a CLOSE segment. See SEG_CLOSE(|java.awt.geom.PathIterator|) 
+for more information on the CLOSE segment. The three different decorations are: 
+(|java.awt.BasicStroke|) , (|java.awt.BasicStroke|) , and 
+(|java.awt.BasicStroke|) . line joins The decoration applied at the 
+intersection of two path segments and at the intersection of the endpoints of a 
+subpath that is closed using SEG_CLOSE(|java.awt.geom.PathIterator|) . The 
+three different decorations are: (|java.awt.BasicStroke|) , 
+(|java.awt.BasicStroke|) , and (|java.awt.BasicStroke|) . miter limit The limit 
+to trim a line join that has a JOIN_MITER decoration. A line join is trimmed 
+when the ratio of miter length to stroke width is greater than the miterlimit 
+value. The miter length is the diagonal length of the miter, which is the 
+distance between the inside corner and the outside corner of the intersection. 
+The smaller the angle formed by two line segments, the longer the miter length 
+and the sharper the angle of intersection. The default miterlimit value of 
+10.0f causes all angles less than 11 degrees to be trimmed. Trimming miters 
+converts the decoration of the line join to bevel. dash attributes The 
+definition of how to make a dash pattern by alternating between opaque and 
+transparent sections. 
+
+All attributes that specify measurements and distances controlling the shape of 
+the returned outline are measured in the same coordinate system as the original 
+unstroked Shape argument. When a Graphics2D object uses a Stroke object to 
+redefine a path during the execution of one of its draw methods, the geometry 
+is supplied in its original form before the Graphics2D transform attribute is 
+applied. Therefore, attributes such as the pen width are interpreted in the 
+user space coordinate system of the Graphics2D object and are subject to the 
+scaling and shearing effects of the user-space-to-device-space transform in 
+that particular Graphics2D. For example, the width of a rendered shape's 
+outline is determined not only by the width attribute of this BasicStroke, but 
+also by the transform attribute of the Graphics2D object. Consider this code: 
+
+// sets the Graphics2D object's Tranform attribute g2d.scale(10, 10); // sets 
+the Graphics2D object's Stroke attribute g2d.setStroke(new BasicStroke(1.5f)); 
+
+Assuming there are no other scaling transforms added to the Graphics2D object, 
+the resulting line will be approximately 15 pixels wide. As the example code 
+demonstrates, a floating-point line offers better precision, especially when 
+large transforms are used with a Graphics2D object. When a line is diagonal, 
+the exact width depends on how the rendering pipeline chooses which pixels to 
+fill as it traces the theoretical widened outline. The choice of which pixels 
+to turn on is affected by the antialiasing attribute because the antialiasing 
+rendering pipeline can choose to color partially-covered pixels. 
+
+For more information on the user space coordinate system and the rendering 
+process, see the Graphics2D class comments. 
+
+
+*int_java.awt.BasicStroke.CAP_BUTT*
+
+The BasicStroke class defines a basic set of rendering attributes for the 
+outlines of graphics primitives, which are rendered with a 
+(|java.awt.Graphics2D|) object that has its Stroke attribute set to this 
+BasicStroke. The rendering attributes defined by BasicStroke describe the shape 
+of the mark made by a pen drawn along the outline of a (|java.awt.Shape|) and 
+the decorations applied at the ends and joins of path segments of the Shape. 
+These rendering attributes include: 
+
+width The pen width, measured perpendicularly to the pen trajectory. end caps 
+The decoration applied to the ends of unclosed subpaths and dash segments. 
+Subpaths that start and end on the same point are still considered unclosed if 
+they do not have a CLOSE segment. See SEG_CLOSE(|java.awt.geom.PathIterator|) 
+for more information on the CLOSE segment. The three different decorations are: 
+(|java.awt.BasicStroke|) , (|java.awt.BasicStroke|) , and 
+(|java.awt.BasicStroke|) . line joins The decoration applied at the 
+intersection of two path segments and at the intersection of the endpoints of a 
+subpath that is closed using SEG_CLOSE(|java.awt.geom.PathIterator|) . The 
+three different decorations are: (|java.awt.BasicStroke|) , 
+(|java.awt.BasicStroke|) , and (|java.awt.BasicStroke|) . miter limit The limit 
+to trim a line join that has a JOIN_MITER decoration. A line join is trimmed 
+when the ratio of miter length to stroke width is greater than the miterlimit 
+value. The miter length is the diagonal length of the miter, which is the 
+distance between the inside corner and the outside corner of the intersection. 
+The smaller the angle formed by two line segments, the longer the miter length 
+and the sharper the angle of intersection. The default miterlimit value of 
+10.0f causes all angles less than 11 degrees to be trimmed. Trimming miters 
+converts the decoration of the line join to bevel. dash attributes The 
+definition of how to make a dash pattern by alternating between opaque and 
+transparent sections. 
+
+All attributes that specify measurements and distances controlling the shape of 
+the returned outline are measured in the same coordinate system as the original 
+unstroked Shape argument. When a Graphics2D object uses a Stroke object to 
+redefine a path during the execution of one of its draw methods, the geometry 
+is supplied in its original form before the Graphics2D transform attribute is 
+applied. Therefore, attributes such as the pen width are interpreted in the 
+user space coordinate system of the Graphics2D object and are subject to the 
+scaling and shearing effects of the user-space-to-device-space transform in 
+that particular Graphics2D. For example, the width of a rendered shape's 
+outline is determined not only by the width attribute of this BasicStroke, but 
+also by the transform attribute of the Graphics2D object. Consider this code: 
+
+// sets the Graphics2D object's Tranform attribute g2d.scale(10, 10); // sets 
+the Graphics2D object's Stroke attribute g2d.setStroke(new BasicStroke(1.5f)); 
+
+Assuming there are no other scaling transforms added to the Graphics2D object, 
+the resulting line will be approximately 15 pixels wide. As the example code 
+demonstrates, a floating-point line offers better precision, especially when 
+large transforms are used with a Graphics2D object. When a line is diagonal, 
+the exact width depends on how the rendering pipeline chooses which pixels to 
+fill as it traces the theoretical widened outline. The choice of which pixels 
+to turn on is affected by the antialiasing attribute because the antialiasing 
+rendering pipeline can choose to color partially-covered pixels. 
+
+For more information on the user space coordinate system and the rendering 
+process, see the Graphics2D class comments. 
+
+
+*int_java.awt.BasicStroke.CAP_ROUND*
+
+The BasicStroke class defines a basic set of rendering attributes for the 
+outlines of graphics primitives, which are rendered with a 
+(|java.awt.Graphics2D|) object that has its Stroke attribute set to this 
+BasicStroke. The rendering attributes defined by BasicStroke describe the shape 
+of the mark made by a pen drawn along the outline of a (|java.awt.Shape|) and 
+the decorations applied at the ends and joins of path segments of the Shape. 
+These rendering attributes include: 
+
+width The pen width, measured perpendicularly to the pen trajectory. end caps 
+The decoration applied to the ends of unclosed subpaths and dash segments. 
+Subpaths that start and end on the same point are still considered unclosed if 
+they do not have a CLOSE segment. See SEG_CLOSE(|java.awt.geom.PathIterator|) 
+for more information on the CLOSE segment. The three different decorations are: 
+(|java.awt.BasicStroke|) , (|java.awt.BasicStroke|) , and 
+(|java.awt.BasicStroke|) . line joins The decoration applied at the 
+intersection of two path segments and at the intersection of the endpoints of a 
+subpath that is closed using SEG_CLOSE(|java.awt.geom.PathIterator|) . The 
+three different decorations are: (|java.awt.BasicStroke|) , 
+(|java.awt.BasicStroke|) , and (|java.awt.BasicStroke|) . miter limit The limit 
+to trim a line join that has a JOIN_MITER decoration. A line join is trimmed 
+when the ratio of miter length to stroke width is greater than the miterlimit 
+value. The miter length is the diagonal length of the miter, which is the 
+distance between the inside corner and the outside corner of the intersection. 
+The smaller the angle formed by two line segments, the longer the miter length 
+and the sharper the angle of intersection. The default miterlimit value of 
+10.0f causes all angles less than 11 degrees to be trimmed. Trimming miters 
+converts the decoration of the line join to bevel. dash attributes The 
+definition of how to make a dash pattern by alternating between opaque and 
+transparent sections. 
+
+All attributes that specify measurements and distances controlling the shape of 
+the returned outline are measured in the same coordinate system as the original 
+unstroked Shape argument. When a Graphics2D object uses a Stroke object to 
+redefine a path during the execution of one of its draw methods, the geometry 
+is supplied in its original form before the Graphics2D transform attribute is 
+applied. Therefore, attributes such as the pen width are interpreted in the 
+user space coordinate system of the Graphics2D object and are subject to the 
+scaling and shearing effects of the user-space-to-device-space transform in 
+that particular Graphics2D. For example, the width of a rendered shape's 
+outline is determined not only by the width attribute of this BasicStroke, but 
+also by the transform attribute of the Graphics2D object. Consider this code: 
+
+// sets the Graphics2D object's Tranform attribute g2d.scale(10, 10); // sets 
+the Graphics2D object's Stroke attribute g2d.setStroke(new BasicStroke(1.5f)); 
+
+Assuming there are no other scaling transforms added to the Graphics2D object, 
+the resulting line will be approximately 15 pixels wide. As the example code 
+demonstrates, a floating-point line offers better precision, especially when 
+large transforms are used with a Graphics2D object. When a line is diagonal, 
+the exact width depends on how the rendering pipeline chooses which pixels to 
+fill as it traces the theoretical widened outline. The choice of which pixels 
+to turn on is affected by the antialiasing attribute because the antialiasing 
+rendering pipeline can choose to color partially-covered pixels. 
+
+For more information on the user space coordinate system and the rendering 
+process, see the Graphics2D class comments. 
+
+
+*int_java.awt.BasicStroke.CAP_SQUARE*
+
+The BasicStroke class defines a basic set of rendering attributes for the 
+outlines of graphics primitives, which are rendered with a 
+(|java.awt.Graphics2D|) object that has its Stroke attribute set to this 
+BasicStroke. The rendering attributes defined by BasicStroke describe the shape 
+of the mark made by a pen drawn along the outline of a (|java.awt.Shape|) and 
+the decorations applied at the ends and joins of path segments of the Shape. 
+These rendering attributes include: 
+
+width The pen width, measured perpendicularly to the pen trajectory. end caps 
+The decoration applied to the ends of unclosed subpaths and dash segments. 
+Subpaths that start and end on the same point are still considered unclosed if 
+they do not have a CLOSE segment. See SEG_CLOSE(|java.awt.geom.PathIterator|) 
+for more information on the CLOSE segment. The three different decorations are: 
+(|java.awt.BasicStroke|) , (|java.awt.BasicStroke|) , and 
+(|java.awt.BasicStroke|) . line joins The decoration applied at the 
+intersection of two path segments and at the intersection of the endpoints of a 
+subpath that is closed using SEG_CLOSE(|java.awt.geom.PathIterator|) . The 
+three different decorations are: (|java.awt.BasicStroke|) , 
+(|java.awt.BasicStroke|) , and (|java.awt.BasicStroke|) . miter limit The limit 
+to trim a line join that has a JOIN_MITER decoration. A line join is trimmed 
+when the ratio of miter length to stroke width is greater than the miterlimit 
+value. The miter length is the diagonal length of the miter, which is the 
+distance between the inside corner and the outside corner of the intersection. 
+The smaller the angle formed by two line segments, the longer the miter length 
+and the sharper the angle of intersection. The default miterlimit value of 
+10.0f causes all angles less than 11 degrees to be trimmed. Trimming miters 
+converts the decoration of the line join to bevel. dash attributes The 
+definition of how to make a dash pattern by alternating between opaque and 
+transparent sections. 
+
+All attributes that specify measurements and distances controlling the shape of 
+the returned outline are measured in the same coordinate system as the original 
+unstroked Shape argument. When a Graphics2D object uses a Stroke object to 
+redefine a path during the execution of one of its draw methods, the geometry 
+is supplied in its original form before the Graphics2D transform attribute is 
+applied. Therefore, attributes such as the pen width are interpreted in the 
+user space coordinate system of the Graphics2D object and are subject to the 
+scaling and shearing effects of the user-space-to-device-space transform in 
+that particular Graphics2D. For example, the width of a rendered shape's 
+outline is determined not only by the width attribute of this BasicStroke, but 
+also by the transform attribute of the Graphics2D object. Consider this code: 
+
+// sets the Graphics2D object's Tranform attribute g2d.scale(10, 10); // sets 
+the Graphics2D object's Stroke attribute g2d.setStroke(new BasicStroke(1.5f)); 
+
+Assuming there are no other scaling transforms added to the Graphics2D object, 
+the resulting line will be approximately 15 pixels wide. As the example code 
+demonstrates, a floating-point line offers better precision, especially when 
+large transforms are used with a Graphics2D object. When a line is diagonal, 
+the exact width depends on how the rendering pipeline chooses which pixels to 
+fill as it traces the theoretical widened outline. The choice of which pixels 
+to turn on is affected by the antialiasing attribute because the antialiasing 
+rendering pipeline can choose to color partially-covered pixels. 
+
+For more information on the user space coordinate system and the rendering 
+process, see the Graphics2D class comments. 
+
+
+*int_java.awt.BasicStroke.JOIN_BEVEL*
+
+The BasicStroke class defines a basic set of rendering attributes for the 
+outlines of graphics primitives, which are rendered with a 
+(|java.awt.Graphics2D|) object that has its Stroke attribute set to this 
+BasicStroke. The rendering attributes defined by BasicStroke describe the shape 
+of the mark made by a pen drawn along the outline of a (|java.awt.Shape|) and 
+the decorations applied at the ends and joins of path segments of the Shape. 
+These rendering attributes include: 
+
+width The pen width, measured perpendicularly to the pen trajectory. end caps 
+The decoration applied to the ends of unclosed subpaths and dash segments. 
+Subpaths that start and end on the same point are still considered unclosed if 
+they do not have a CLOSE segment. See SEG_CLOSE(|java.awt.geom.PathIterator|) 
+for more information on the CLOSE segment. The three different decorations are: 
+(|java.awt.BasicStroke|) , (|java.awt.BasicStroke|) , and 
+(|java.awt.BasicStroke|) . line joins The decoration applied at the 
+intersection of two path segments and at the intersection of the endpoints of a 
+subpath that is closed using SEG_CLOSE(|java.awt.geom.PathIterator|) . The 
+three different decorations are: (|java.awt.BasicStroke|) , 
+(|java.awt.BasicStroke|) , and (|java.awt.BasicStroke|) . miter limit The limit 
+to trim a line join that has a JOIN_MITER decoration. A line join is trimmed 
+when the ratio of miter length to stroke width is greater than the miterlimit 
+value. The miter length is the diagonal length of the miter, which is the 
+distance between the inside corner and the outside corner of the intersection. 
+The smaller the angle formed by two line segments, the longer the miter length 
+and the sharper the angle of intersection. The default miterlimit value of 
+10.0f causes all angles less than 11 degrees to be trimmed. Trimming miters 
+converts the decoration of the line join to bevel. dash attributes The 
+definition of how to make a dash pattern by alternating between opaque and 
+transparent sections. 
+
+All attributes that specify measurements and distances controlling the shape of 
+the returned outline are measured in the same coordinate system as the original 
+unstroked Shape argument. When a Graphics2D object uses a Stroke object to 
+redefine a path during the execution of one of its draw methods, the geometry 
+is supplied in its original form before the Graphics2D transform attribute is 
+applied. Therefore, attributes such as the pen width are interpreted in the 
+user space coordinate system of the Graphics2D object and are subject to the 
+scaling and shearing effects of the user-space-to-device-space transform in 
+that particular Graphics2D. For example, the width of a rendered shape's 
+outline is determined not only by the width attribute of this BasicStroke, but 
+also by the transform attribute of the Graphics2D object. Consider this code: 
+
+// sets the Graphics2D object's Tranform attribute g2d.scale(10, 10); // sets 
+the Graphics2D object's Stroke attribute g2d.setStroke(new BasicStroke(1.5f)); 
+
+Assuming there are no other scaling transforms added to the Graphics2D object, 
+the resulting line will be approximately 15 pixels wide. As the example code 
+demonstrates, a floating-point line offers better precision, especially when 
+large transforms are used with a Graphics2D object. When a line is diagonal, 
+the exact width depends on how the rendering pipeline chooses which pixels to 
+fill as it traces the theoretical widened outline. The choice of which pixels 
+to turn on is affected by the antialiasing attribute because the antialiasing 
+rendering pipeline can choose to color partially-covered pixels. 
+
+For more information on the user space coordinate system and the rendering 
+process, see the Graphics2D class comments. 
+
+
+*int_java.awt.BasicStroke.JOIN_MITER*
+
+The BasicStroke class defines a basic set of rendering attributes for the 
+outlines of graphics primitives, which are rendered with a 
+(|java.awt.Graphics2D|) object that has its Stroke attribute set to this 
+BasicStroke. The rendering attributes defined by BasicStroke describe the shape 
+of the mark made by a pen drawn along the outline of a (|java.awt.Shape|) and 
+the decorations applied at the ends and joins of path segments of the Shape. 
+These rendering attributes include: 
+
+width The pen width, measured perpendicularly to the pen trajectory. end caps 
+The decoration applied to the ends of unclosed subpaths and dash segments. 
+Subpaths that start and end on the same point are still considered unclosed if 
+they do not have a CLOSE segment. See SEG_CLOSE(|java.awt.geom.PathIterator|) 
+for more information on the CLOSE segment. The three different decorations are: 
+(|java.awt.BasicStroke|) , (|java.awt.BasicStroke|) , and 
+(|java.awt.BasicStroke|) . line joins The decoration applied at the 
+intersection of two path segments and at the intersection of the endpoints of a 
+subpath that is closed using SEG_CLOSE(|java.awt.geom.PathIterator|) . The 
+three different decorations are: (|java.awt.BasicStroke|) , 
+(|java.awt.BasicStroke|) , and (|java.awt.BasicStroke|) . miter limit The limit 
+to trim a line join that has a JOIN_MITER decoration. A line join is trimmed 
+when the ratio of miter length to stroke width is greater than the miterlimit 
+value. The miter length is the diagonal length of the miter, which is the 
+distance between the inside corner and the outside corner of the intersection. 
+The smaller the angle formed by two line segments, the longer the miter length 
+and the sharper the angle of intersection. The default miterlimit value of 
+10.0f causes all angles less than 11 degrees to be trimmed. Trimming miters 
+converts the decoration of the line join to bevel. dash attributes The 
+definition of how to make a dash pattern by alternating between opaque and 
+transparent sections. 
+
+All attributes that specify measurements and distances controlling the shape of 
+the returned outline are measured in the same coordinate system as the original 
+unstroked Shape argument. When a Graphics2D object uses a Stroke object to 
+redefine a path during the execution of one of its draw methods, the geometry 
+is supplied in its original form before the Graphics2D transform attribute is 
+applied. Therefore, attributes such as the pen width are interpreted in the 
+user space coordinate system of the Graphics2D object and are subject to the 
+scaling and shearing effects of the user-space-to-device-space transform in 
+that particular Graphics2D. For example, the width of a rendered shape's 
+outline is determined not only by the width attribute of this BasicStroke, but 
+also by the transform attribute of the Graphics2D object. Consider this code: 
+
+// sets the Graphics2D object's Tranform attribute g2d.scale(10, 10); // sets 
+the Graphics2D object's Stroke attribute g2d.setStroke(new BasicStroke(1.5f)); 
+
+Assuming there are no other scaling transforms added to the Graphics2D object, 
+the resulting line will be approximately 15 pixels wide. As the example code 
+demonstrates, a floating-point line offers better precision, especially when 
+large transforms are used with a Graphics2D object. When a line is diagonal, 
+the exact width depends on how the rendering pipeline chooses which pixels to 
+fill as it traces the theoretical widened outline. The choice of which pixels 
+to turn on is affected by the antialiasing attribute because the antialiasing 
+rendering pipeline can choose to color partially-covered pixels. 
+
+For more information on the user space coordinate system and the rendering 
+process, see the Graphics2D class comments. 
+
+
+*int_java.awt.BasicStroke.JOIN_ROUND*
+
+The BasicStroke class defines a basic set of rendering attributes for the 
+outlines of graphics primitives, which are rendered with a 
+(|java.awt.Graphics2D|) object that has its Stroke attribute set to this 
+BasicStroke. The rendering attributes defined by BasicStroke describe the shape 
+of the mark made by a pen drawn along the outline of a (|java.awt.Shape|) and 
+the decorations applied at the ends and joins of path segments of the Shape. 
+These rendering attributes include: 
+
+width The pen width, measured perpendicularly to the pen trajectory. end caps 
+The decoration applied to the ends of unclosed subpaths and dash segments. 
+Subpaths that start and end on the same point are still considered unclosed if 
+they do not have a CLOSE segment. See SEG_CLOSE(|java.awt.geom.PathIterator|) 
+for more information on the CLOSE segment. The three different decorations are: 
+(|java.awt.BasicStroke|) , (|java.awt.BasicStroke|) , and 
+(|java.awt.BasicStroke|) . line joins The decoration applied at the 
+intersection of two path segments and at the intersection of the endpoints of a 
+subpath that is closed using SEG_CLOSE(|java.awt.geom.PathIterator|) . The 
+three different decorations are: (|java.awt.BasicStroke|) , 
+(|java.awt.BasicStroke|) , and (|java.awt.BasicStroke|) . miter limit The limit 
+to trim a line join that has a JOIN_MITER decoration. A line join is trimmed 
+when the ratio of miter length to stroke width is greater than the miterlimit 
+value. The miter length is the diagonal length of the miter, which is the 
+distance between the inside corner and the outside corner of the intersection. 
+The smaller the angle formed by two line segments, the longer the miter length 
+and the sharper the angle of intersection. The default miterlimit value of 
+10.0f causes all angles less than 11 degrees to be trimmed. Trimming miters 
+converts the decoration of the line join to bevel. dash attributes The 
+definition of how to make a dash pattern by alternating between opaque and 
+transparent sections. 
+
+All attributes that specify measurements and distances controlling the shape of 
+the returned outline are measured in the same coordinate system as the original 
+unstroked Shape argument. When a Graphics2D object uses a Stroke object to 
+redefine a path during the execution of one of its draw methods, the geometry 
+is supplied in its original form before the Graphics2D transform attribute is 
+applied. Therefore, attributes such as the pen width are interpreted in the 
+user space coordinate system of the Graphics2D object and are subject to the 
+scaling and shearing effects of the user-space-to-device-space transform in 
+that particular Graphics2D. For example, the width of a rendered shape's 
+outline is determined not only by the width attribute of this BasicStroke, but 
+also by the transform attribute of the Graphics2D object. Consider this code: 
+
+// sets the Graphics2D object's Tranform attribute g2d.scale(10, 10); // sets 
+the Graphics2D object's Stroke attribute g2d.setStroke(new BasicStroke(1.5f)); 
+
+Assuming there are no other scaling transforms added to the Graphics2D object, 
+the resulting line will be approximately 15 pixels wide. As the example code 
+demonstrates, a floating-point line offers better precision, especially when 
+large transforms are used with a Graphics2D object. When a line is diagonal, 
+the exact width depends on how the rendering pipeline chooses which pixels to 
+fill as it traces the theoretical widened outline. The choice of which pixels 
+to turn on is affected by the antialiasing attribute because the antialiasing 
+rendering pipeline can choose to color partially-covered pixels. 
+
+For more information on the user space coordinate system and the rendering 
+process, see the Graphics2D class comments. 
+
+
+
+*java.awt.BasicStroke()*
+
+public BasicStroke()
+
+Constructs a new BasicStroke with defaults for all attributes. The default 
+attributes are a solid line of width 1.0, CAP_SQUARE, JOIN_MITER, a miter limit 
+of 10.0. 
+
+
+*java.awt.BasicStroke(float)*
+
+public BasicStroke(float width)
+
+Constructs a solid BasicStroke with the specified line width and with default 
+values for the cap and join styles. 
+
+    width - the width of the BasicStroke 
+
+*java.awt.BasicStroke(float,int,int)*
+
+public BasicStroke(
+  float width,
+  int cap,
+  int join)
+
+Constructs a solid BasicStroke with the specified attributes. The miterlimit 
+parameter is unnecessary in cases where the default is allowable or the line 
+joins are not specified as JOIN_MITER. 
+
+    width - the width of the BasicStroke 
+    cap - the decoration of the ends of a BasicStroke 
+    join - the decoration applied where path segments meet 
+
+*java.awt.BasicStroke(float,int,int,float)*
+
+public BasicStroke(
+  float width,
+  int cap,
+  int join,
+  float miterlimit)
+
+Constructs a solid BasicStroke with the specified attributes. 
+
+    width - the width of the BasicStroke 
+    cap - the decoration of the ends of a BasicStroke 
+    join - the decoration applied where path segments meet 
+    miterlimit - the limit to trim the miter join 
+
+*java.awt.BasicStroke(float,int,int,float,float[],float)*
+
+public BasicStroke(
+  float width,
+  int cap,
+  int join,
+  float miterlimit,
+  float[] dash,
+  float dash_phase)
+
+Constructs a new BasicStroke with the specified attributes. 
+
+    width - the width of this BasicStroke. The width must be greater than or equal to 0.0f. 
+       If width is set to 0.0f, the stroke is rendered as the thinnest possible 
+       line for the target device and the antialias hint setting. 
+    cap - the decoration of the ends of a BasicStroke 
+    join - the decoration applied where path segments meet 
+    miterlimit - the limit to trim the miter join. The miterlimit must be greater than or equal 
+       to 1.0f. 
+    dash - the array representing the dashing pattern 
+    dash_phase - the offset to start the dashing pattern 
+
+*java.awt.BasicStroke.createStrokedShape(Shape)*
+
+public |java.awt.Shape| createStrokedShape(java.awt.Shape s)
+
+Returns a Shape whose interior defines the stroked outline of a specified 
+Shape. 
+
+    s - the Shape boundary be stroked 
+
+    Returns: the Shape of the stroked outline. 
+*java.awt.BasicStroke.equals(Object)*
+
+public boolean equals(java.lang.Object obj)
+
+Tests if a specified object is equal to this BasicStroke by first testing if it 
+is a BasicStroke and then comparing its width, join, cap, miter limit, dash, 
+and dash phase attributes with those of this BasicStroke. 
+
+    obj - the specified object to compare to this BasicStroke 
+
+    Returns: true if the width, join, cap, miter limit, dash, and dash phase are the same 
+             for both objects; false otherwise. 
+*java.awt.BasicStroke.feedConsumer(PathConsumer,PathIterator)*
+
+public void feedConsumer(
+  sun.dc.path.PathConsumer consumer,
+  java.awt.geom.PathIterator pi)
+
+
+
+
+*java.awt.BasicStroke.getDashArray()*
+
+public float getDashArray()
+
+Returns the array representing the lengths of the dash segments. Alternate 
+entries in the array represent the user space lengths of the opaque and 
+transparent segments of the dashes. As the pen moves along the outline of the 
+Shape to be stroked, the user space distance that the pen travels is 
+accumulated. The distance value is used to index into the dash array. The pen 
+is opaque when its current cumulative distance maps to an even element of the 
+dash array and transparent otherwise. 
+
+
+    Returns: the dash array. 
+*java.awt.BasicStroke.getDashPhase()*
+
+public float getDashPhase()
+
+Returns the current dash phase. The dash phase is a distance specified in user 
+coordinates that represents an offset into the dashing pattern. In other words, 
+the dash phase defines the point in the dashing pattern that will correspond to 
+the beginning of the stroke. 
+
+
+    Returns: the dash phase as a float value. 
+*java.awt.BasicStroke.getEndCap()*
+
+public int getEndCap()
+
+Returns the end cap style. 
+
+
+    Returns: the end cap style of this BasicStroke as one of the static int values that 
+             define possible end cap styles. 
+*java.awt.BasicStroke.getLineJoin()*
+
+public int getLineJoin()
+
+Returns the line join style. 
+
+
+    Returns: the line join style of the BasicStroke as one of the static int values that 
+             define possible line join styles. 
+*java.awt.BasicStroke.getLineWidth()*
+
+public float getLineWidth()
+
+Returns the line width. Line width is represented in user space, which is the 
+default-coordinate space used by Java 2D. See the Graphics2D class comments for 
+more information on the user space coordinate system. 
+
+
+    Returns: the line width of this BasicStroke. 
+*java.awt.BasicStroke.getMiterLimit()*
+
+public float getMiterLimit()
+
+Returns the limit of miter joins. 
+
+
+    Returns: the limit of miter joins of the BasicStroke. 
+*java.awt.BasicStroke.hashCode()*
+
+public int hashCode()
+
+Returns the hashcode for this stroke. 
+
+
+    Returns: a hash code for this stroke. 
+

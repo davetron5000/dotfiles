@@ -1,0 +1,32 @@
+*javax.persistence.FieldResult* *FieldResult* Is used to map the columns specifi
+
+public interface class FieldResult
+
+  implements |java.lang.annotation.Annotation|
+
+|javax.persistence.FieldResult_Description|
+|javax.persistence.FieldResult_Fields|
+|javax.persistence.FieldResult_Constructors|
+|javax.persistence.FieldResult_Methods|
+
+================================================================================
+
+*javax.persistence.FieldResult_Description*
+
+Is used to map the columns specified in the SELECT list of the query to the 
+properties or fields of the entity class. 
+
+
+
+Example: Query q = em.createNativeQuery( "SELECT o.id AS order_id, " + 
+"o.quantity AS order_quantity, " + "o.item AS order_item, " + "FROM Order o, 
+Item i " + "WHERE (order_quantity > 25) AND (order_item = i.id)", 
+"OrderResults"); 
+
+SqlResultSetMapping(name="OrderResults", entities={ 
+EntityResult(entityClass=com.acme.Order.class, fields={ FieldResult(name="id", 
+column="order_id"), FieldResult(name="quantity", column="order_quantity"), 
+FieldResult(name="item", column="order_item")}) }) 
+
+
+

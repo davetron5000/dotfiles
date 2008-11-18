@@ -1,0 +1,170 @@
+*org.omg.PortableServer.Servant* *Servant* Defines the native Servant type.
+
+public abstract class Servant
+  extends    |java.lang.Object|
+
+|org.omg.PortableServer.Servant_Description|
+|org.omg.PortableServer.Servant_Fields|
+|org.omg.PortableServer.Servant_Constructors|
+|org.omg.PortableServer.Servant_Methods|
+
+================================================================================
+
+*org.omg.PortableServer.Servant_Constructors*
+|org.omg.PortableServer.Servant()|
+
+*org.omg.PortableServer.Servant_Methods*
+|org.omg.PortableServer.Servant._all_interfaces(POA,byte[])|Used by the ORB to 
+|org.omg.PortableServer.Servant._default_POA()|Returns the  root POA from the O
+|org.omg.PortableServer.Servant._get_delegate()|Gets the ORB vendor-specific im
+|org.omg.PortableServer.Servant._get_interface_def()|Returns an InterfaceDef ob
+|org.omg.PortableServer.Servant._is_a(String)|Checks to see if the specified re
+|org.omg.PortableServer.Servant._non_existent()|Checks for the existence of an 
+|org.omg.PortableServer.Servant._object_id()|Allows easy execution of  common m
+|org.omg.PortableServer.Servant._orb()|Returns the instance of the ORB   curren
+|org.omg.PortableServer.Servant._poa()|Allows easy execution of common methods,
+|org.omg.PortableServer.Servant._set_delegate(Delegate)|Supports the Java ORB p
+|org.omg.PortableServer.Servant._this_object()|Allows the servant to obtain the
+|org.omg.PortableServer.Servant._this_object(ORB)|Allows the servant to obtain 
+
+*org.omg.PortableServer.Servant_Description*
+
+Defines the native Servant type. In Java, the Servant type is mapped to the 
+Java org.omg.PortableServer.Servant class. It serves as the base class for all 
+POA servant implementations and provides a number of methods that may be 
+invoked by the application programmer, as well as methods which are invoked by 
+the POA itself and may be overridden by the user to control aspects of servant 
+behavior. Based on IDL to Java spec. (CORBA V2.3.1) ptc/00-01-08.pdf. 
+
+
+*org.omg.PortableServer.Servant()*
+
+public Servant()
+
+
+
+
+*org.omg.PortableServer.Servant._all_interfaces(POA,byte[])*
+
+public abstract |java.lang.String| _all_interfaces(
+  org.omg.PortableServer.POA poa,
+  byte[] objectId)
+
+Used by the ORB to obtain complete type information from the servant. 
+
+    poa - POA with which the servant is associated. 
+    objectId - is the id corresponding to the object associated with this servant. 
+
+    Returns: list of type information for the object. 
+*org.omg.PortableServer.Servant._default_POA()*
+
+public |org.omg.PortableServer.POA| _default_POA()
+
+Returns the root POA from the ORB instance associated with the servant. 
+Subclasses may override this method to return a different POA. 
+
+
+    Returns: default_POA the POA associated with the Servant. 
+*org.omg.PortableServer.Servant._get_delegate()*
+
+public final |org.omg.PortableServer.portable.Delegate| _get_delegate()
+
+Gets the ORB vendor-specific implementation of PortableServer::Servant. 
+
+
+    Returns: _delegate the ORB vendor-specific implementation of PortableServer::Servant. 
+*org.omg.PortableServer.Servant._get_interface_def()*
+
+public |org.omg.CORBA.Object| _get_interface_def()
+
+Returns an InterfaceDef object as a CORBA::Object that defines the runtime type 
+of the CORBA::Object implemented by the Servant. The invoker of 
+_get_interface_def must narrow the result to an InterfaceDef in order to use 
+it. This default implementation of _get_interface_def() can be overridden by 
+derived servants if the default behavior is not adequate. As defined in the 
+CORBA 2.3.1 specification, section 11.3.1, the default behavior of 
+_get_interface_def() is to use the most derived interface of a static servant 
+or the most derived interface retrieved from a dynamic servant to obtain the 
+InterfaceDef. This behavior must be supported by the Delegate that implements 
+the Servant. 
+
+
+    Returns: get_interface_def an InterfaceDef object as a CORBA::Object that defines the 
+             runtime type of the CORBA::Object implemented by the Servant. 
+*org.omg.PortableServer.Servant._is_a(String)*
+
+public boolean _is_a(java.lang.String repository_id)
+
+Checks to see if the specified repository_id is present on the list returned by 
+_all_interfaces() or is the repository_id for the generic CORBA Object. 
+
+    repository_id - the repository_id to be checked in the repository list or against the id of 
+       generic CORBA objects. 
+
+    Returns: is_a boolean indicating whether the specified repository_id is in the 
+             repository list or is same as a generic CORBA object. 
+*org.omg.PortableServer.Servant._non_existent()*
+
+public boolean _non_existent()
+
+Checks for the existence of an Object. The Servant provides a default 
+implementation of _non_existent() that can be overridden by derived servants. 
+
+
+    Returns: non_existent true if that object does not exist, false otherwise. 
+*org.omg.PortableServer.Servant._object_id()*
+
+public final byte _object_id()
+
+Allows easy execution of common methods, equivalent to calling 
+PortableServer::Current::get_object_id. 
+
+
+    Returns: object_id the Object ID associated with this servant. 
+*org.omg.PortableServer.Servant._orb()*
+
+public final |org.omg.CORBA.ORB| _orb()
+
+Returns the instance of the ORB currently associated with the Servant 
+(convenience method). 
+
+
+    Returns: orb the instance of the ORB currently associated with the Servant. 
+*org.omg.PortableServer.Servant._poa()*
+
+public final |org.omg.PortableServer.POA| _poa()
+
+Allows easy execution of common methods, equivalent to 
+PortableServer::Current:get_POA. 
+
+
+    Returns: poa POA associated with the servant. 
+*org.omg.PortableServer.Servant._set_delegate(Delegate)*
+
+public final void _set_delegate(org.omg.PortableServer.portable.Delegate delegate)
+
+Supports the Java ORB portability interfaces by providing a method for classes 
+that support ORB portability through delegation to set their delegate. 
+
+    delegate - ORB vendor-specific implementation of the PortableServer::Servant. 
+
+*org.omg.PortableServer.Servant._this_object()*
+
+public final |org.omg.CORBA.Object| _this_object()
+
+Allows the servant to obtain the object reference for the target CORBA object 
+it is incarnating for that request. 
+
+
+    Returns: this_object Object reference associated with the request. 
+*org.omg.PortableServer.Servant._this_object(ORB)*
+
+public final |org.omg.CORBA.Object| _this_object(org.omg.CORBA.ORB orb)
+
+Allows the servant to obtain the object reference for the target CORBA Object 
+it is incarnating for that request. 
+
+    orb - ORB with which the servant is associated. 
+
+    Returns: _this_object reference associated with the request. 
+

@@ -1,0 +1,220 @@
+*javax.swing.text.DefaultFormatterFactory* *DefaultFormatterFactory* An implemen
+
+public class DefaultFormatterFactory
+  extends    |javax.swing.JFormattedTextField.AbstractFormatterFactory|
+  implements |java.io.Serializable|
+
+|javax.swing.text.DefaultFormatterFactory_Description|
+|javax.swing.text.DefaultFormatterFactory_Fields|
+|javax.swing.text.DefaultFormatterFactory_Constructors|
+|javax.swing.text.DefaultFormatterFactory_Methods|
+
+================================================================================
+
+*javax.swing.text.DefaultFormatterFactory_Constructors*
+|javax.swing.text.DefaultFormatterFactory()|
+|javax.swing.text.DefaultFormatterFactory(JFormattedTextField.AbstractFormatter)|
+|javax.swing.text.DefaultFormatterFactory(JFormattedTextField.AbstractFormatter,JFormattedTextField.AbstractFormatter)|
+|javax.swing.text.DefaultFormatterFactory(JFormattedTextField.AbstractFormatter,JFormattedTextField.AbstractFormatter,JFormattedTextField.AbstractFormatter)|
+|javax.swing.text.DefaultFormatterFactory(JFormattedTextField.AbstractFormatter,JFormattedTextField.AbstractFormatter,JFormattedTextField.AbstractFormatter,JFormattedTextField.AbstractFormatter)|
+
+*javax.swing.text.DefaultFormatterFactory_Methods*
+|javax.swing.text.DefaultFormatterFactory.getDefaultFormatter()|Returns the JFo
+|javax.swing.text.DefaultFormatterFactory.getDisplayFormatter()|Returns the JFo
+|javax.swing.text.DefaultFormatterFactory.getEditFormatter()|Returns the JForma
+|javax.swing.text.DefaultFormatterFactory.getFormatter(JFormattedTextField)|Ret
+|javax.swing.text.DefaultFormatterFactory.getNullFormatter()|Returns the format
+|javax.swing.text.DefaultFormatterFactory.setDefaultFormatter(JFormattedTextField.AbstractFormatter)|
+|javax.swing.text.DefaultFormatterFactory.setDisplayFormatter(JFormattedTextField.AbstractFormatter)|
+|javax.swing.text.DefaultFormatterFactory.setEditFormatter(JFormattedTextField.AbstractFormatter)|
+|javax.swing.text.DefaultFormatterFactory.setNullFormatter(JFormattedTextField.AbstractFormatter)|
+
+*javax.swing.text.DefaultFormatterFactory_Description*
+
+An implementation of JFormattedTextField.AbstractFormatterFactory. 
+DefaultFormatterFactory allows specifying a number of different 
+JFormattedTextField.AbstractFormatters that are to be used. The most important 
+one is the default one (setDefaultFormatter). The default formatter will be 
+used if a more specific formatter could not be found. The following process is 
+used to determine the appropriate formatter to use. 
+
+Is the passed in value null? Use the null formatter. Does the 
+JFormattedTextField have focus? Use the edit formatter. Otherwise, use the 
+display formatter. If a non-null AbstractFormatter has not been found, use the 
+default formatter. 
+
+The following code shows how to configure a JFormattedTextField with two 
+JFormattedTextField.AbstractFormatters, one for display and one for editing. 
+
+JFormattedTextField.AbstractFormatter editFormatter = ...; 
+JFormattedTextField.AbstractFormatter displayFormatter = ...; 
+DefaultFormatterFactory factory = new DefaultFormatterFactory( 
+displayFormatter, displayFormatter, editFormatter); JFormattedTextField tf = 
+new JFormattedTextField(factory); 
+
+Warning: Serialized objects of this class will not be compatible with future 
+Swing releases. The current serialization support is appropriate for short term 
+storage or RMI between applications running the same version of Swing. As of 
+1.4, support for long term storage of all JavaBeansTM has been added to the 
+java.beans package. Please see (|java.beans.XMLEncoder|) . 
+
+
+*javax.swing.text.DefaultFormatterFactory()*
+
+public DefaultFormatterFactory()
+
+
+
+
+*javax.swing.text.DefaultFormatterFactory(JFormattedTextField.AbstractFormatter)*
+
+public DefaultFormatterFactory(javax.swing.JFormattedTextField.AbstractFormatter defaultFormat)
+
+Creates a DefaultFormatterFactory with the specified 
+JFormattedTextField.AbstractFormatter. 
+
+    defaultFormat - JFormattedTextField.AbstractFormatter to be used if a more specific 
+       JFormattedTextField.AbstractFormatter can not be found. 
+
+*javax.swing.text.DefaultFormatterFactory(JFormattedTextField.AbstractFormatter,JFormattedTextField.AbstractFormatter)*
+
+public DefaultFormatterFactory(
+  javax.swing.JFormattedTextField.AbstractFormatter defaultFormat,
+  javax.swing.JFormattedTextField.AbstractFormatter displayFormat)
+
+Creates a DefaultFormatterFactory with the specified 
+JFormattedTextField.AbstractFormatters. 
+
+    defaultFormat - JFormattedTextField.AbstractFormatter to be used if a more specific 
+       JFormattedTextField.AbstractFormatter can not be found. 
+    displayFormat - JFormattedTextField.AbstractFormatter to be used when the JFormattedTextField 
+       does not have focus. 
+
+*javax.swing.text.DefaultFormatterFactory(JFormattedTextField.AbstractFormatter,JFormattedTextField.AbstractFormatter,JFormattedTextField.AbstractFormatter)*
+
+public DefaultFormatterFactory(
+  javax.swing.JFormattedTextField.AbstractFormatter defaultFormat,
+  javax.swing.JFormattedTextField.AbstractFormatter displayFormat,
+  javax.swing.JFormattedTextField.AbstractFormatter editFormat)
+
+Creates a DefaultFormatterFactory with the specified 
+JFormattedTextField.AbstractFormatters. 
+
+    defaultFormat - JFormattedTextField.AbstractFormatter to be used if a more specific 
+       JFormattedTextField.AbstractFormatter can not be found. 
+    displayFormat - JFormattedTextField.AbstractFormatter to be used when the JFormattedTextField 
+       does not have focus. 
+    editFormat - JFormattedTextField.AbstractFormatter to be used when the JFormattedTextField 
+       has focus. 
+
+*javax.swing.text.DefaultFormatterFactory(JFormattedTextField.AbstractFormatter,JFormattedTextField.AbstractFormatter,JFormattedTextField.AbstractFormatter,JFormattedTextField.AbstractFormatter)*
+
+public DefaultFormatterFactory(
+  javax.swing.JFormattedTextField.AbstractFormatter defaultFormat,
+  javax.swing.JFormattedTextField.AbstractFormatter displayFormat,
+  javax.swing.JFormattedTextField.AbstractFormatter editFormat,
+  javax.swing.JFormattedTextField.AbstractFormatter nullFormat)
+
+Creates a DefaultFormatterFactory with the specified 
+JFormattedTextField.AbstractFormatters. 
+
+    defaultFormat - JFormattedTextField.AbstractFormatter to be used if a more specific 
+       JFormattedTextField.AbstractFormatter can not be found. 
+    displayFormat - JFormattedTextField.AbstractFormatter to be used when the JFormattedTextField 
+       does not have focus. 
+    editFormat - JFormattedTextField.AbstractFormatter to be used when the JFormattedTextField 
+       has focus. 
+    nullFormat - JFormattedTextField.AbstractFormatter to be used when the JFormattedTextField 
+       has a null value. 
+
+*javax.swing.text.DefaultFormatterFactory.getDefaultFormatter()*
+
+public |javax.swing.JFormattedTextField.AbstractFormatter| getDefaultFormatter()
+
+Returns the JFormattedTextField.AbstractFormatter to use as a last resort, eg 
+in case a display, edit or null JFormattedTextField.AbstractFormatter has not 
+been specified. 
+
+
+    Returns: JFormattedTextField.AbstractFormatter used if a more specific one is not 
+             specified. 
+*javax.swing.text.DefaultFormatterFactory.getDisplayFormatter()*
+
+public |javax.swing.JFormattedTextField.AbstractFormatter| getDisplayFormatter()
+
+Returns the JFormattedTextField.AbstractFormatter to use if the 
+JFormattedTextField is not being edited and either the value is not-null, or 
+the value is null and a null formatter has has not been specified. 
+
+
+    Returns: JFormattedTextField.AbstractFormatter to use when the JFormattedTextField does 
+             not have focus 
+*javax.swing.text.DefaultFormatterFactory.getEditFormatter()*
+
+public |javax.swing.JFormattedTextField.AbstractFormatter| getEditFormatter()
+
+Returns the JFormattedTextField.AbstractFormatter to use if the 
+JFormattedTextField is being edited and either the value is not-null, or the 
+value is null and a null formatter has has not been specified. 
+
+
+    Returns: JFormattedTextField.AbstractFormatter to use when the component has focus 
+*javax.swing.text.DefaultFormatterFactory.getFormatter(JFormattedTextField)*
+
+public |javax.swing.JFormattedTextField.AbstractFormatter| getFormatter(javax.swing.JFormattedTextField source)
+
+Returns either the default formatter, display formatter, editor formatter or 
+null formatter based on the state of the JFormattedTextField. 
+
+    source - JFormattedTextField requesting JFormattedTextField.AbstractFormatter 
+
+    Returns: JFormattedTextField.AbstractFormatter to handle formatting duties. 
+*javax.swing.text.DefaultFormatterFactory.getNullFormatter()*
+
+public |javax.swing.JFormattedTextField.AbstractFormatter| getNullFormatter()
+
+Returns the formatter to use if the value is null. 
+
+
+    Returns: JFormattedTextField.AbstractFormatter to use when the value is null 
+*javax.swing.text.DefaultFormatterFactory.setDefaultFormatter(JFormattedTextField.AbstractFormatter)*
+
+public void setDefaultFormatter(javax.swing.JFormattedTextField.AbstractFormatter atf)
+
+Sets the JFormattedTextField.AbstractFormatter to use as a last resort, eg in 
+case a display, edit or null JFormattedTextField.AbstractFormatter has not been 
+specified. 
+
+    atf - JFormattedTextField.AbstractFormatter used if a more specific is not specified 
+
+*javax.swing.text.DefaultFormatterFactory.setDisplayFormatter(JFormattedTextField.AbstractFormatter)*
+
+public void setDisplayFormatter(javax.swing.JFormattedTextField.AbstractFormatter atf)
+
+Sets the JFormattedTextField.AbstractFormatter to use if the 
+JFormattedTextField is not being edited and either the value is not-null, or 
+the value is null and a null formatter has has not been specified. 
+
+    atf - JFormattedTextField.AbstractFormatter to use when the JFormattedTextField does 
+       not have focus 
+
+*javax.swing.text.DefaultFormatterFactory.setEditFormatter(JFormattedTextField.AbstractFormatter)*
+
+public void setEditFormatter(javax.swing.JFormattedTextField.AbstractFormatter atf)
+
+Sets the JFormattedTextField.AbstractFormatter to use if the 
+code>JFormattedTextField is being edited and either the value is not-null, or 
+the value is null and a null formatter has has not been specified. 
+
+    atf - JFormattedTextField.AbstractFormatter to use when the component has focus 
+
+*javax.swing.text.DefaultFormatterFactory.setNullFormatter(JFormattedTextField.AbstractFormatter)*
+
+public void setNullFormatter(javax.swing.JFormattedTextField.AbstractFormatter atf)
+
+Sets the formatter to use if the value of the JFormattedTextField is null. 
+
+    atf - JFormattedTextField.AbstractFormatter to use when the value of the 
+       JFormattedTextField is null. 
+
+

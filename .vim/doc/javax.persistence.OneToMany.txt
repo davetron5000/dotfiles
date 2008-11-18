@@ -1,0 +1,49 @@
+*javax.persistence.OneToMany* *OneToMany* Defines a many-valued association with
+
+public interface class OneToMany
+
+  implements |java.lang.annotation.Annotation|
+
+|javax.persistence.OneToMany_Description|
+|javax.persistence.OneToMany_Fields|
+|javax.persistence.OneToMany_Constructors|
+|javax.persistence.OneToMany_Methods|
+
+================================================================================
+
+*javax.persistence.OneToMany_Description*
+
+Defines a many-valued association with one-to-many multiplicity. 
+
+If the collection is defined using generics to specify the element type, the 
+associated target entity type need not be specified; otherwise the target 
+entity class must be specified. 
+
+
+
+Example 1: One-to-Many association using generics 
+
+In Customer class: 
+
+OneToMany(cascade=ALL, mappedBy="customer") public Set getOrders() { return 
+orders; } 
+
+In Order class: 
+
+ManyToOne JoinColumn(name="CUST_ID", nullable=false) public Customer 
+getCustomer() { return customer; } 
+
+Example 2: One-to-Many association without using generics 
+
+In Customer class: 
+
+OneToMany(targetEntity=com.acme.Order.class, cascade=ALL, mappedBy="customer") 
+public Set getOrders() { return orders; } 
+
+In Order class: 
+
+ManyToOne JoinColumn(name="CUST_ID", nullable=false) public Customer 
+getCustomer() { return customer; } 
+
+
+

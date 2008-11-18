@@ -1,0 +1,137 @@
+*java.awt.geom.FlatteningPathIterator* *FlatteningPathIterator* The FlatteningPa
+
+public class FlatteningPathIterator
+  extends    |java.lang.Object|
+  implements |java.awt.geom.PathIterator|
+
+|java.awt.geom.FlatteningPathIterator_Description|
+|java.awt.geom.FlatteningPathIterator_Fields|
+|java.awt.geom.FlatteningPathIterator_Constructors|
+|java.awt.geom.FlatteningPathIterator_Methods|
+
+================================================================================
+
+*java.awt.geom.FlatteningPathIterator_Constructors*
+|java.awt.geom.FlatteningPathIterator(PathIterator,double)|Constructs a new Fla
+|java.awt.geom.FlatteningPathIterator(PathIterator,double,int)|Constructs a new
+
+*java.awt.geom.FlatteningPathIterator_Methods*
+|java.awt.geom.FlatteningPathIterator.currentSegment(double[])|Returns the coor
+|java.awt.geom.FlatteningPathIterator.currentSegment(float[])|Returns the coord
+|java.awt.geom.FlatteningPathIterator.getFlatness()|Returns the flatness of thi
+|java.awt.geom.FlatteningPathIterator.getRecursionLimit()|Returns the recursion
+|java.awt.geom.FlatteningPathIterator.getWindingRule()|Returns the winding rule
+|java.awt.geom.FlatteningPathIterator.isDone()|Tests if the iteration is comple
+|java.awt.geom.FlatteningPathIterator.next()|Moves the iterator to the next seg
+
+*java.awt.geom.FlatteningPathIterator_Description*
+
+The FlatteningPathIterator class returns a flattened view of another 
+(|java.awt.geom.PathIterator|) object. Other Shape(|java.awt.Shape|) classes 
+can use this class to provide flattening behavior for their paths without 
+having to perform the interpolation calculations themselves. 
+
+
+*java.awt.geom.FlatteningPathIterator(PathIterator,double)*
+
+public FlatteningPathIterator(
+  java.awt.geom.PathIterator src,
+  double flatness)
+
+Constructs a new FlatteningPathIterator object that flattens a path as it 
+iterates over it. The iterator does not subdivide any curve read from the 
+source iterator to more than 10 levels of subdivision which yields a maximum of 
+1024 line segments per curve. 
+
+    src - the original unflattened path being iterated over 
+    flatness - the maximum allowable distance between the control points and the flattened 
+       curve 
+
+*java.awt.geom.FlatteningPathIterator(PathIterator,double,int)*
+
+public FlatteningPathIterator(
+  java.awt.geom.PathIterator src,
+  double flatness,
+  int limit)
+
+Constructs a new FlatteningPathIterator object that flattens a path as it 
+iterates over it. The limit parameter allows you to control the maximum number 
+of recursive subdivisions that the iterator can make before it assumes that the 
+curve is flat enough without measuring against the flatness parameter. The 
+flattened iteration therefore never generates more than a maximum of (2^limit) 
+line segments per curve. 
+
+    src - the original unflattened path being iterated over 
+    flatness - the maximum allowable distance between the control points and the flattened 
+       curve 
+    limit - the maximum number of recursive subdivisions allowed for any curved segment 
+
+*java.awt.geom.FlatteningPathIterator.currentSegment(double[])*
+
+public int currentSegment(double[] coords)
+
+Returns the coordinates and type of the current path segment in the iteration. 
+The return value is the path segment type: SEG_MOVETO, SEG_LINETO, or 
+SEG_CLOSE. A double array of length 6 must be passed in and can be used to 
+store the coordinates of the point(s). Each point is stored as a pair of double 
+x,y coordinates. SEG_MOVETO and SEG_LINETO types return one point, and 
+SEG_CLOSE does not return any points. 
+
+    coords - an array that holds the data returned from this method 
+
+    Returns: the path segment type of the current path segment. 
+*java.awt.geom.FlatteningPathIterator.currentSegment(float[])*
+
+public int currentSegment(float[] coords)
+
+Returns the coordinates and type of the current path segment in the iteration. 
+The return value is the path segment type: SEG_MOVETO, SEG_LINETO, or 
+SEG_CLOSE. A float array of length 6 must be passed in and can be used to store 
+the coordinates of the point(s). Each point is stored as a pair of float x,y 
+coordinates. SEG_MOVETO and SEG_LINETO types return one point, and SEG_CLOSE 
+does not return any points. 
+
+    coords - an array that holds the data returned from this method 
+
+    Returns: the path segment type of the current path segment. 
+*java.awt.geom.FlatteningPathIterator.getFlatness()*
+
+public double getFlatness()
+
+Returns the flatness of this iterator. 
+
+
+    Returns: the flatness of this FlatteningPathIterator. 
+*java.awt.geom.FlatteningPathIterator.getRecursionLimit()*
+
+public int getRecursionLimit()
+
+Returns the recursion limit of this iterator. 
+
+
+    Returns: the recursion limit of this FlatteningPathIterator. 
+*java.awt.geom.FlatteningPathIterator.getWindingRule()*
+
+public int getWindingRule()
+
+Returns the winding rule for determining the interior of the path. 
+
+
+    Returns: the winding rule of the original unflattened path being iterated over. 
+*java.awt.geom.FlatteningPathIterator.isDone()*
+
+public boolean isDone()
+
+Tests if the iteration is complete. 
+
+
+    Returns: true if all the segments have been read; false otherwise. 
+*java.awt.geom.FlatteningPathIterator.next()*
+
+public void next()
+
+Moves the iterator to the next segment of the path forwards along the primary 
+direction of traversal as long as there are more points in that direction. 
+
+
+

@@ -1,0 +1,197 @@
+*javax.swing.text.ComponentView* *ComponentView* Component decorator that implem
+
+public class ComponentView
+  extends    |javax.swing.text.View|
+
+|javax.swing.text.ComponentView_Description|
+|javax.swing.text.ComponentView_Fields|
+|javax.swing.text.ComponentView_Constructors|
+|javax.swing.text.ComponentView_Methods|
+
+================================================================================
+
+*javax.swing.text.ComponentView_Constructors*
+|javax.swing.text.ComponentView(Element)|Creates a new ComponentView object.
+
+*javax.swing.text.ComponentView_Methods*
+|javax.swing.text.ComponentView.createComponent()|Create the component that is 
+|javax.swing.text.ComponentView.getAlignment(int)|Determines the desired alignm
+|javax.swing.text.ComponentView.getComponent()|Fetch the component associated w
+|javax.swing.text.ComponentView.getMaximumSpan(int)|Determines the maximum span
+|javax.swing.text.ComponentView.getMinimumSpan(int)|Determines the minimum span
+|javax.swing.text.ComponentView.getPreferredSpan(int)|Determines the preferred 
+|javax.swing.text.ComponentView.modelToView(int,Shape,Position.Bias)|Provides a
+|javax.swing.text.ComponentView.paint(Graphics,Shape)|The real paint behavior o
+|javax.swing.text.ComponentView.setParent(View)|Sets the parent for a child vie
+|javax.swing.text.ComponentView.viewToModel(float,float,Shape,Position.Bias[])|
+
+*javax.swing.text.ComponentView_Description*
+
+Component decorator that implements the view interface. The entire element is 
+used to represent the component. This acts as a gateway from the display-only 
+View implementations to interactive lightweight components (ie it allows 
+components to be embedded into the View hierarchy). 
+
+The component is placed relative to the text baseline according to the value 
+returned by Component.getAlignmentY. For Swing components this value can be 
+conveniently set using the method JComponent.setAlignmentY. For example, 
+setting a value of 0.75 will cause 75 percent of the component to be above the 
+baseline, and 25 percent of the component to be below the baseline. 
+
+This class is implemented to do the extra work necessary to work properly in 
+the presence of multiple threads (i.e. from asynchronous notification of model 
+changes for example) by ensuring that all component access is done on the event 
+thread. 
+
+The component used is determined by the return value of the createComponent 
+method. The default implementation of this method is to return the component 
+held as an attribute of the element (by calling StyleConstants.getComponent). A 
+limitation of this behavior is that the component cannot be used by more than 
+one text component (i.e. with a shared model). Subclasses can remove this 
+constraint by implementing the createComponent to actually create a component 
+based upon some kind of specification contained in the attributes. The 
+ObjectView class in the html package is an example of a ComponentView 
+implementation that supports multiple component views of a shared model. 
+
+
+*javax.swing.text.ComponentView(Element)*
+
+public ComponentView(javax.swing.text.Element elem)
+
+Creates a new ComponentView object. 
+
+    elem - the element to decorate 
+
+*javax.swing.text.ComponentView.createComponent()*
+
+protected |java.awt.Component| createComponent()
+
+Create the component that is associated with this view. This will be called 
+when it has been determined that a new component is needed. This would result 
+from a call to setParent or as a result of being notified that attributes have 
+changed. 
+
+
+*javax.swing.text.ComponentView.getAlignment(int)*
+
+public float getAlignment(int axis)
+
+Determines the desired alignment for this view along an axis. This is 
+implemented to give the alignment of the embedded component. 
+
+    axis - may be either View.X_AXIS or View.Y_AXIS 
+
+    Returns: the desired alignment. This should be a value between 0.0 and 1.0 where 0 
+             indicates alignment at the origin and 1.0 indicates alignment to 
+             the full span away from the origin. An alignment of 0.5 would be 
+             the center of the view. 
+*javax.swing.text.ComponentView.getComponent()*
+
+public final |java.awt.Component| getComponent()
+
+Fetch the component associated with the view. 
+
+
+*javax.swing.text.ComponentView.getMaximumSpan(int)*
+
+public float getMaximumSpan(int axis)
+
+Determines the maximum span for this view along an axis. This is implemented to 
+return the value returned by Component.getMaximumSize along the axis of 
+interest. 
+
+    axis - may be either View.X_AXIS or View.Y_AXIS 
+
+    Returns: the span the view would like to be rendered into >= 0. Typically the view is 
+             told to render into the span that is returned, although there is 
+             no guarantee. The parent may choose to resize or break the view. 
+*javax.swing.text.ComponentView.getMinimumSpan(int)*
+
+public float getMinimumSpan(int axis)
+
+Determines the minimum span for this view along an axis. This is implemented to 
+return the value returned by Component.getMinimumSize along the axis of 
+interest. 
+
+    axis - may be either View.X_AXIS or View.Y_AXIS 
+
+    Returns: the span the view would like to be rendered into >= 0. Typically the view is 
+             told to render into the span that is returned, although there is 
+             no guarantee. The parent may choose to resize or break the view. 
+*javax.swing.text.ComponentView.getPreferredSpan(int)*
+
+public float getPreferredSpan(int axis)
+
+Determines the preferred span for this view along an axis. This is implemented 
+to return the value returned by Component.getPreferredSize along the axis of 
+interest. 
+
+    axis - may be either View.X_AXIS or View.Y_AXIS 
+
+    Returns: the span the view would like to be rendered into >= 0. Typically the view is 
+             told to render into the span that is returned, although there is 
+             no guarantee. The parent may choose to resize or break the view. 
+*javax.swing.text.ComponentView.modelToView(int,Shape,Position.Bias)*
+
+public |java.awt.Shape| modelToView(
+  int pos,
+  java.awt.Shape a,
+  javax.swing.text.Position.Bias b)
+  throws |javax.swing.text.BadLocationException|
+         
+Provides a mapping from the coordinate space of the model to that of the view. 
+
+    pos - the position to convert >= 0 
+    a - the allocated region to render into 
+
+    Returns: the bounding box of the given position is returned 
+*javax.swing.text.ComponentView.paint(Graphics,Shape)*
+
+public void paint(
+  java.awt.Graphics g,
+  java.awt.Shape a)
+
+The real paint behavior occurs naturally from the association that the 
+component has with its parent container (the same container hosting this view). 
+This is implemented to do nothing. 
+
+    g - the graphics context 
+    a - the shape 
+
+*javax.swing.text.ComponentView.setParent(View)*
+
+public void setParent(javax.swing.text.View p)
+
+Sets the parent for a child view. The parent calls this on the child to tell it 
+who its parent is, giving the view access to things like the hosting Container. 
+The superclass behavior is executed, followed by a call to createComponent if 
+the parent view parameter is non-null and a component has not yet been created. 
+The embedded components parent is then set to the value returned by 
+getContainer. If the parent view parameter is null, this view is being cleaned 
+up, thus the component is removed from its parent. 
+
+The changing of the component hierarchy will touch the component lock, which is 
+the one thing that is not safe from the View hierarchy. Therefore, this 
+functionality is executed immediately if on the event thread, or is queued on 
+the event queue if called from another thread (notification of change from an 
+asynchronous update). 
+
+    p - the parent 
+
+*javax.swing.text.ComponentView.viewToModel(float,float,Shape,Position.Bias[])*
+
+public int viewToModel(
+  float x,
+  float y,
+  java.awt.Shape a,
+  javax.swing.text.Position.Bias[] bias)
+
+Provides a mapping from the view coordinate space to the logical coordinate 
+space of the model. 
+
+    x - the X coordinate >= 0 
+    y - the Y coordinate >= 0 
+    a - the allocated region to render into 
+
+    Returns: the location within the model that best represents the given point in the view 
+

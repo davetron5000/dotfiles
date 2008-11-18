@@ -1,0 +1,218 @@
+*javax.swing.text.InternationalFormatter* *InternationalFormatter* International
+
+public class InternationalFormatter
+  extends    |javax.swing.text.DefaultFormatter|
+
+|javax.swing.text.InternationalFormatter_Description|
+|javax.swing.text.InternationalFormatter_Fields|
+|javax.swing.text.InternationalFormatter_Constructors|
+|javax.swing.text.InternationalFormatter_Methods|
+
+================================================================================
+
+*javax.swing.text.InternationalFormatter_Constructors*
+|javax.swing.text.InternationalFormatter()|Creates an InternationalFormatter wi
+|javax.swing.text.InternationalFormatter(Format)|Creates an InternationalFormat
+
+*javax.swing.text.InternationalFormatter_Methods*
+|javax.swing.text.InternationalFormatter.clone()|Creates a copy of the DefaultF
+|javax.swing.text.InternationalFormatter.getActions()|If getSupportsIncrement r
+|javax.swing.text.InternationalFormatter.getFields(int)|Returns the Format.Fiel
+|javax.swing.text.InternationalFormatter.getFormat()|Returns the format that di
+|javax.swing.text.InternationalFormatter.getMaximum()|Returns the maximum permi
+|javax.swing.text.InternationalFormatter.getMinimum()|Returns the minimum permi
+|javax.swing.text.InternationalFormatter.install(JFormattedTextField)|Installs 
+|javax.swing.text.InternationalFormatter.setFormat(Format)|Sets the format that
+|javax.swing.text.InternationalFormatter.setMaximum(Comparable)|Sets the maximu
+|javax.swing.text.InternationalFormatter.setMinimum(Comparable)|Sets the minimu
+|javax.swing.text.InternationalFormatter.stringToValue(String)|Returns the Obje
+|javax.swing.text.InternationalFormatter.valueToString(Object)|Returns a String
+
+*javax.swing.text.InternationalFormatter_Description*
+
+InternationalFormatter extends DefaultFormatter, using an instance of 
+java.text.Format to handle the conversion to a String, and the conversion from 
+a String. 
+
+If getAllowsInvalid() is false, this will ask the Format to format the current 
+text on every edit. 
+
+You can specify a minimum and maximum value by way of the setMinimum and 
+setMaximum methods. In order for this to work the values returned from 
+stringToValue must be comparable to the min/max values by way of the Comparable 
+interface. 
+
+Be careful how you configure the Format and the InternationalFormatter, as it 
+is possible to create a situation where certain values can not be input. 
+Consider the date format 'M/d/yy', an InternationalFormatter that is always 
+valid (setAllowsInvalid(false)), is in overwrite mode (setOverwriteMode(true)) 
+and the date 7/1/99. In this case the user will not be able to enter a two 
+digit month or day of month. To avoid this, the format should be 'MM/dd/yy'. 
+
+If InternationalFormatter is configured to only allow valid values 
+(setAllowsInvalid(false)), every valid edit will result in the text of the 
+JFormattedTextField being completely reset from the Format. The cursor position 
+will also be adjusted as literal characters are added/removed from the 
+resulting String. 
+
+InternationalFormatter's behavior of stringToValue is slightly different than 
+that of DefaultTextFormatter, it does the following: 
+
+parseObject is invoked on the Format specified by setFormat If a Class has been 
+set for the values (setValueClass), supers implementation is invoked to convert 
+the value returned from parseObject to the appropriate class. If a 
+ParseException has not been thrown, and the value is outside the min/max a 
+ParseException is thrown. The value is returned. 
+
+InternationalFormatter implements stringToValue in this manner so that you can 
+specify an alternate Class than Format may return. 
+
+Warning: Serialized objects of this class will not be compatible with future 
+Swing releases. The current serialization support is appropriate for short term 
+storage or RMI between applications running the same version of Swing. As of 
+1.4, support for long term storage of all JavaBeansTM has been added to the 
+java.beans package. Please see (|java.beans.XMLEncoder|) . 
+
+
+*javax.swing.text.InternationalFormatter()*
+
+public InternationalFormatter()
+
+Creates an InternationalFormatter with no Format specified. 
+
+
+*javax.swing.text.InternationalFormatter(Format)*
+
+public InternationalFormatter(java.text.Format format)
+
+Creates an InternationalFormatter with the specified Format instance. 
+
+    format - Format instance used for converting from/to Strings 
+
+*javax.swing.text.InternationalFormatter.clone()*
+
+public |java.lang.Object| clone()
+  throws |java.lang.CloneNotSupportedException|
+         
+Creates a copy of the DefaultFormatter. 
+
+
+    Returns: copy of the DefaultFormatter 
+*javax.swing.text.InternationalFormatter.getActions()*
+
+protected |javax.swing.Action| getActions()
+
+If getSupportsIncrement returns true, this returns two Actions suitable for 
+incrementing/decrementing the value. 
+
+
+*javax.swing.text.InternationalFormatter.getFields(int)*
+
+public |java.text.Format.Field| getFields(int offset)
+
+Returns the Format.Field constants associated with the text at offset. If 
+offset is not a valid location into the current text, this will return an empty 
+array. 
+
+    offset - offset into text to be examined 
+
+    Returns: Format.Field constants associated with the text at the given position. 
+*javax.swing.text.InternationalFormatter.getFormat()*
+
+public |java.text.Format| getFormat()
+
+Returns the format that dictates the legal values that can be edited and 
+displayed. 
+
+
+    Returns: Format instance used for converting from/to Strings 
+*javax.swing.text.InternationalFormatter.getMaximum()*
+
+public |java.lang.Comparable| getMaximum()
+
+Returns the maximum permissible value. 
+
+
+    Returns: Maximum legal value that can be input 
+*javax.swing.text.InternationalFormatter.getMinimum()*
+
+public |java.lang.Comparable| getMinimum()
+
+Returns the minimum permissible value. 
+
+
+    Returns: Minimum legal value that can be input 
+*javax.swing.text.InternationalFormatter.install(JFormattedTextField)*
+
+public void install(javax.swing.JFormattedTextField ftf)
+
+Installs the DefaultFormatter onto a particular JFormattedTextField. This will 
+invoke valueToString to convert the current value from the JFormattedTextField 
+to a String. This will then install the Actions from getActions, the 
+DocumentFilter returned from getDocumentFilter and the NavigationFilter 
+returned from getNavigationFilter onto the JFormattedTextField. 
+
+Subclasses will typically only need to override this if they wish to install 
+additional listeners on the JFormattedTextField. 
+
+If there is a ParseException in converting the current value to a String, this 
+will set the text to an empty String, and mark the JFormattedTextField as being 
+in an invalid state. 
+
+While this is a public method, this is typically only useful for subclassers of 
+JFormattedTextField. JFormattedTextField will invoke this method at the 
+appropriate times when the value changes, or its internal state changes. 
+
+    ftf - JFormattedTextField to format for, may be null indicating uninstall from 
+       current JFormattedTextField. 
+
+*javax.swing.text.InternationalFormatter.setFormat(Format)*
+
+public void setFormat(java.text.Format format)
+
+Sets the format that dictates the legal values that can be edited and 
+displayed. 
+
+    format - Format instance used for converting from/to Strings 
+
+*javax.swing.text.InternationalFormatter.setMaximum(Comparable)*
+
+public void setMaximum(java.lang.Comparable max)
+
+Sets the maximum permissible value. If the valueClass has not been specified, 
+and max is non null, the valueClass will be set to that of the class of max. 
+
+    max - Maximum legal value that can be input 
+
+*javax.swing.text.InternationalFormatter.setMinimum(Comparable)*
+
+public void setMinimum(java.lang.Comparable minimum)
+
+Sets the minimum permissible value. If the valueClass has not been specified, 
+and minimum is non null, the valueClass will be set to that of the class of 
+minimum. 
+
+    minimum - Minimum legal value that can be input 
+
+*javax.swing.text.InternationalFormatter.stringToValue(String)*
+
+public |java.lang.Object| stringToValue(java.lang.String text)
+  throws |java.text.ParseException|
+         
+Returns the Object representation of the String text. 
+
+    text - String to convert 
+
+    Returns: Object representation of text 
+*javax.swing.text.InternationalFormatter.valueToString(Object)*
+
+public |java.lang.String| valueToString(java.lang.Object value)
+  throws |java.text.ParseException|
+         
+Returns a String representation of the Object value. This invokes format on the 
+current Format. 
+
+    value - Value to convert 
+
+    Returns: String representation of value 
+

@@ -1,0 +1,575 @@
+*java.lang.System* *System* The System class contains several useful class field
+
+public final class System
+  extends    |java.lang.Object|
+
+|java.lang.System_Description|
+|java.lang.System_Fields|
+|java.lang.System_Constructors|
+|java.lang.System_Methods|
+
+================================================================================
+
+*java.lang.System_Fields*
+|java.io.PrintStream_java.lang.System.err|
+|java.io.InputStream_java.lang.System.in|
+|java.io.PrintStream_java.lang.System.out|
+
+*java.lang.System_Methods*
+|java.lang.System.arraycopy(Object,int,Object,int,int)|Copies an array from the
+|java.lang.System.clearProperty(String)|Removes the system property indicated b
+|java.lang.System.currentTimeMillis()|Returns the current time in milliseconds.
+|java.lang.System.exit(int)|Terminates the currently running Java Virtual Machi
+|java.lang.System.gc()|Runs the garbage collector.
+|java.lang.System.getenv()|Returns an unmodifiable string map view of the curre
+|java.lang.System.getenv(String)|Gets the value of the specified environment va
+|java.lang.System.getProperties()|Determines the current system properties.
+|java.lang.System.getProperty(String)|Gets the system property indicated by the
+|java.lang.System.getProperty(String,String)|Gets the system property indicated
+|java.lang.System.getSecurityManager()|Gets the system security interface.
+|java.lang.System.identityHashCode(Object)|Returns the same hash code for the g
+|java.lang.System.inheritedChannel()|Returns the channel inherited from the ent
+|java.lang.System.load(String)|Loads a code file with the specified filename fr
+|java.lang.System.loadLibrary(String)|Loads the system library specified by the
+|java.lang.System.mapLibraryName(String)|Maps a library name into a platform-sp
+|java.lang.System.nanoTime()|Returns the current value of the most precise avai
+|java.lang.System.runFinalization()|Runs the finalization methods of any object
+|java.lang.System.runFinalizersOnExit(boolean)|Enable or disable finalization o
+|java.lang.System.setErr(PrintStream)|Reassigns the "standard" error output str
+|java.lang.System.setIn(InputStream)|Reassigns the "standard" input stream.
+|java.lang.System.setOut(PrintStream)|Reassigns the "standard" output stream.
+|java.lang.System.setProperties(Properties)|Sets the system properties to the P
+|java.lang.System.setProperty(String,String)|Sets the system property indicated
+|java.lang.System.setSecurityManager(SecurityManager)|Sets the System security.
+
+*java.lang.System_Description*
+
+The System class contains several useful class fields and methods. It cannot be 
+instantiated. 
+
+Among the facilities provided by the System class are standard input, standard 
+output, and error output streams; access to externally defined properties and 
+environment variables; a means of loading files and libraries; and a utility 
+method for quickly copying a portion of an array. 
+
+
+*java.io.PrintStream_java.lang.System.err*
+
+The System class contains several useful class fields and methods. It cannot be 
+instantiated. 
+
+Among the facilities provided by the System class are standard input, standard 
+output, and error output streams; access to externally defined properties and 
+environment variables; a means of loading files and libraries; and a utility 
+method for quickly copying a portion of an array. 
+
+
+*java.io.InputStream_java.lang.System.in*
+
+The System class contains several useful class fields and methods. It cannot be 
+instantiated. 
+
+Among the facilities provided by the System class are standard input, standard 
+output, and error output streams; access to externally defined properties and 
+environment variables; a means of loading files and libraries; and a utility 
+method for quickly copying a portion of an array. 
+
+
+*java.io.PrintStream_java.lang.System.out*
+
+The System class contains several useful class fields and methods. It cannot be 
+instantiated. 
+
+Among the facilities provided by the System class are standard input, standard 
+output, and error output streams; access to externally defined properties and 
+environment variables; a means of loading files and libraries; and a utility 
+method for quickly copying a portion of an array. 
+
+
+
+*java.lang.System.arraycopy(Object,int,Object,int,int)*
+
+public static native void arraycopy(
+  java.lang.Object src,
+  int srcPos,
+  java.lang.Object dest,
+  int destPos,
+  int length)
+
+Copies an array from the specified source array, beginning at the specified 
+position, to the specified position of the destination array. A subsequence of 
+array components are copied from the source array referenced by src to the 
+destination array referenced by dest. The number of components copied is equal 
+to the length argument. The components at positions srcPos through 
+srcPos+length-1 in the source array are copied into positions destPos through 
+destPos+length-1, respectively, of the destination array. 
+
+If the src and dest arguments refer to the same array object, then the copying 
+is performed as if the components at positions srcPos through srcPos+length-1 
+were first copied to a temporary array with length components and then the 
+contents of the temporary array were copied into positions destPos through 
+destPos+length-1 of the destination array. 
+
+If dest is null, then a NullPointerException is thrown. 
+
+If src is null, then a NullPointerException is thrown and the destination array 
+is not modified. 
+
+Otherwise, if any of the following is true, an ArrayStoreException is thrown 
+and the destination is not modified: 
+
+The src argument refers to an object that is not an array. The dest argument 
+refers to an object that is not an array. The src argument and dest argument 
+refer to arrays whose component types are different primitive types. The src 
+argument refers to an array with a primitive component type and the dest 
+argument refers to an array with a reference component type. The src argument 
+refers to an array with a reference component type and the dest argument refers 
+to an array with a primitive component type. 
+
+Otherwise, if any of the following is true, an IndexOutOfBoundsException is 
+thrown and the destination is not modified: 
+
+The srcPos argument is negative. The destPos argument is negative. The length 
+argument is negative. srcPos+length is greater than src.length, the length of 
+the source array. destPos+length is greater than dest.length, the length of the 
+destination array. 
+
+Otherwise, if any actual component of the source array from position srcPos 
+through srcPos+length-1 cannot be converted to the component type of the 
+destination array by assignment conversion, an ArrayStoreException is thrown. 
+In this case, let k be the smallest nonnegative integer less than length such 
+that src[srcPos+k] cannot be converted to the component type of the destination 
+array; when the exception is thrown, source array components from positions 
+srcPos through srcPos+k-1 will already have been copied to destination array 
+positions destPos through destPos+k-1 and no other positions of the destination 
+array will have been modified. (Because of the restrictions already itemized, 
+this paragraph effectively applies only to the situation where both arrays have 
+component types that are reference types.) 
+
+    src - the source array. 
+    srcPos - starting position in the source array. 
+    dest - the destination array. 
+    destPos - starting position in the destination data. 
+    length - the number of array elements to be copied. 
+
+*java.lang.System.clearProperty(String)*
+
+public static |java.lang.String| clearProperty(java.lang.String key)
+
+Removes the system property indicated by the specified key. 
+
+First, if a security manager exists, its SecurityManager.checkPermission method 
+is called with a PropertyPermission(key, "write") permission. This may result 
+in a SecurityException being thrown. If no exception is thrown, the specified 
+property is removed. 
+
+    key - the name of the system property to be removed. 
+
+    Returns: the previous string value of the system property, or null if there was no 
+             property with that key. 
+*java.lang.System.currentTimeMillis()*
+
+public static native long currentTimeMillis()
+
+Returns the current time in milliseconds. Note that while the unit of time of 
+the return value is a millisecond, the granularity of the value depends on the 
+underlying operating system and may be larger. For example, many operating 
+systems measure time in units of tens of milliseconds. 
+
+See the description of the class Date for a discussion of slight discrepancies 
+that may arise between "computer time" and coordinated universal time (UTC). 
+
+
+    Returns: the difference, measured in milliseconds, between the current time and 
+             midnight, January 1, 1970 UTC. 
+*java.lang.System.exit(int)*
+
+public static void exit(int status)
+
+Terminates the currently running Java Virtual Machine. The argument serves as a 
+status code; by convention, a nonzero status code indicates abnormal 
+termination. 
+
+This method calls the exit method in class Runtime. This method never returns 
+normally. 
+
+The call System.exit(n) is effectively equivalent to the call: 
+
+Runtime.getRuntime().exit(n) 
+
+    status - exit status. 
+
+*java.lang.System.gc()*
+
+public static void gc()
+
+Runs the garbage collector. 
+
+Calling the gc method suggests that the Java Virtual Machine expend effort 
+toward recycling unused objects in order to make the memory they currently 
+occupy available for quick reuse. When control returns from the method call, 
+the Java Virtual Machine has made a best effort to reclaim space from all 
+discarded objects. 
+
+The call System.gc() is effectively equivalent to the call: 
+
+Runtime.getRuntime().gc() 
+
+
+*java.lang.System.getenv()*
+
+public static |java.util.Map| getenv()
+
+Returns an unmodifiable string map view of the current system environment. The 
+environment is a system-dependent mapping from names to values which is passed 
+from parent to child processes. 
+
+If the system does not support environment variables, an empty map is returned. 
+
+The returned map will never contain null keys or values. Attempting to query 
+the presence of a null key or value will throw a 
+(|java.lang.NullPointerException|) . Attempting to query the presence of a key 
+or value which is not of type (|java.lang.String|) will throw a 
+(|java.lang.ClassCastException|) . 
+
+The returned map and its collection views may not obey the general contract of 
+the (|java.lang.Object|) and (|java.lang.Object|) methods. 
+
+The returned map is typically case-sensitive on all platforms. 
+
+If a security manager exists, its checkPermission(|java.lang.SecurityManager|) 
+method is called with a (|java.lang.RuntimePermission|) ("getenv.*") 
+permission. This may result in a (|java.lang.SecurityException|) being thrown. 
+
+When passing information to a Java subprocess, system properties are generally 
+preferred over environment variables. 
+
+
+    Returns: the environment as a map of variable names to values 
+*java.lang.System.getenv(String)*
+
+public static |java.lang.String| getenv(java.lang.String name)
+
+Gets the value of the specified environment variable. An environment variable 
+is a system-dependent external named value. 
+
+If a security manager exists, its checkPermission(|java.lang.SecurityManager|) 
+method is called with a (|java.lang.RuntimePermission|) ("getenv."+name) 
+permission. This may result in a (|java.lang.SecurityException|) being thrown. 
+If no exception is thrown the value of the variable name is returned. 
+
+System properties and environment variables are both conceptually mappings 
+between names and values. Both mechanisms can be used to pass user-defined 
+information to a Java process. Environment variables have a more global effect, 
+because they are visible to all descendants of the process which defines them, 
+not just the immediate Java subprocess. They can have subtly different 
+semantics, such as case insensitivity, on different operating systems. For 
+these reasons, environment variables are more likely to have unintended side 
+effects. It is best to use system properties where possible. Environment 
+variables should be used when a global effect is desired, or when an external 
+system interface requires an environment variable (such as PATH). 
+
+On UNIX systems the alphabetic case of name is typically significant, while on 
+Microsoft Windows systems it is typically not. For example, the expression 
+System.getenv("FOO").equals(System.getenv("foo")) is likely to be true on 
+Microsoft Windows. 
+
+    name - the name of the environment variable 
+
+    Returns: the string value of the variable, or null if the variable is not defined in the 
+             system environment 
+*java.lang.System.getProperties()*
+
+public static |java.util.Properties| getProperties()
+
+Determines the current system properties. 
+
+First, if there is a security manager, its checkPropertiesAccess method is 
+called with no arguments. This may result in a security exception. 
+
+The current set of system properties for use by the (|java.lang.System|) method 
+is returned as a Properties object. If there is no current set of system 
+properties, a set of system properties is first created and initialized. This 
+set of system properties always includes values for the following keys: 
+
+Key Description of Associated Value java.version Java Runtime Environment 
+version java.vendor Java Runtime Environment vendorjava.vendor.url Java vendor 
+URL java.home Java installation directory java.vm.specification.version Java 
+Virtual Machine specification version java.vm.specification.vendor Java Virtual 
+Machine specification vendor java.vm.specification.name Java Virtual Machine 
+specification name java.vm.version Java Virtual Machine implementation version 
+java.vm.vendor Java Virtual Machine implementation vendor java.vm.name Java 
+Virtual Machine implementation name java.specification.version Java Runtime 
+Environment specification version java.specification.vendor Java Runtime 
+Environment specification vendor java.specification.name Java Runtime 
+Environment specification name java.class.version Java class format version 
+number java.class.path Java class path java.library.path List of paths to 
+search when loading libraries java.io.tmpdir Default temp file path 
+java.compiler Name of JIT compiler to use java.ext.dirs Path of extension 
+directory or directories os.name Operating system name os.arch Operating system 
+architecture os.version Operating system version file.separator File separator 
+("/" on UNIX) path.separator Path separator (":" on UNIX) line.separator Line 
+separator ("\n" on UNIX) user.name User's account name user.home User's home 
+directory user.dir User's current working directory 
+
+Multiple paths in a system property value are separated by the path separator 
+character of the platform. 
+
+Note that even if the security manager does not permit the getProperties 
+operation, it may choose to permit the (|java.lang.System|) operation. 
+
+
+    Returns: the system properties 
+*java.lang.System.getProperty(String)*
+
+public static |java.lang.String| getProperty(java.lang.String key)
+
+Gets the system property indicated by the specified key. 
+
+First, if there is a security manager, its checkPropertyAccess method is called 
+with the key as its argument. This may result in a SecurityException. 
+
+If there is no current set of system properties, a set of system properties is 
+first created and initialized in the same manner as for the getProperties 
+method. 
+
+    key - the name of the system property. 
+
+    Returns: the string value of the system property, or null if there is no property with 
+             that key. 
+*java.lang.System.getProperty(String,String)*
+
+public static |java.lang.String| getProperty(
+  java.lang.String key,
+  java.lang.String def)
+
+Gets the system property indicated by the specified key. 
+
+First, if there is a security manager, its checkPropertyAccess method is called 
+with the key as its argument. 
+
+If there is no current set of system properties, a set of system properties is 
+first created and initialized in the same manner as for the getProperties 
+method. 
+
+    key - the name of the system property. 
+    def - a default value. 
+
+    Returns: the string value of the system property, or the default value if there is no 
+             property with that key. 
+*java.lang.System.getSecurityManager()*
+
+public static |java.lang.SecurityManager| getSecurityManager()
+
+Gets the system security interface. 
+
+
+    Returns: if a security manager has already been established for the current application, 
+             then that security manager is returned; otherwise, null is 
+             returned. 
+*java.lang.System.identityHashCode(Object)*
+
+public static native int identityHashCode(java.lang.Object x)
+
+Returns the same hash code for the given object as would be returned by the 
+default method hashCode(), whether or not the given object's class overrides 
+hashCode(). The hash code for the null reference is zero. 
+
+    x - object for which the hashCode is to be calculated 
+
+    Returns: 
+*java.lang.System.inheritedChannel()*
+
+public static |java.nio.channels.Channel| inheritedChannel()
+  throws |java.io.IOException|
+         
+Returns the channel inherited from the entity that created this Java virtual 
+machine. 
+
+This method returns the channel obtained by invoking the 
+inheritedChannel(|java.nio.channels.spi.SelectorProvider|) method of the 
+system-wide default (|java.nio.channels.spi.SelectorProvider|) object. 
+
+In addition to the network-oriented channels described in 
+inheritedChannel(|java.nio.channels.spi.SelectorProvider|) , this method may 
+return other kinds of channels in the future. 
+
+
+    Returns: The inherited channel, if any, otherwise null. 
+*java.lang.System.load(String)*
+
+public static void load(java.lang.String filename)
+
+Loads a code file with the specified filename from the local file system as a 
+dynamic library. The filename argument must be a complete path name. 
+
+The call System.load(name) is effectively equivalent to the call: 
+
+Runtime.getRuntime().load(name) 
+
+    filename - the file to load. 
+
+*java.lang.System.loadLibrary(String)*
+
+public static void loadLibrary(java.lang.String libname)
+
+Loads the system library specified by the libname argument. The manner in which 
+a library name is mapped to the actual system library is system dependent. 
+
+The call System.loadLibrary(name) is effectively equivalent to the call 
+
+Runtime.getRuntime().loadLibrary(name) 
+
+    libname - the name of the library. 
+
+*java.lang.System.mapLibraryName(String)*
+
+public static native |java.lang.String| mapLibraryName(java.lang.String libname)
+
+Maps a library name into a platform-specific string representing a native 
+library. 
+
+    libname - the name of the library. 
+
+    Returns: a platform-dependent native library name. 
+*java.lang.System.nanoTime()*
+
+public static native long nanoTime()
+
+Returns the current value of the most precise available system timer, in 
+nanoseconds. 
+
+This method can only be used to measure elapsed time and is not related to any 
+other notion of system or wall-clock time. The value returned represents 
+nanoseconds since some fixed but arbitrary time (perhaps in the future, so 
+values may be negative). This method provides nanosecond precision, but not 
+necessarily nanosecond accuracy. No guarantees are made about how frequently 
+values change. Differences in successive calls that span greater than 
+approximately 292 years (263 nanoseconds) will not accurately compute elapsed 
+time due to numerical overflow. 
+
+For example, to measure how long some code takes to execute: 
+
+long startTime = System.nanoTime(); // ... the code being measured ... long 
+estimatedTime = System.nanoTime() - startTime; 
+
+
+    Returns: The current value of the system timer, in nanoseconds. 
+*java.lang.System.runFinalization()*
+
+public static void runFinalization()
+
+Runs the finalization methods of any objects pending finalization. 
+
+Calling this method suggests that the Java Virtual Machine expend effort toward 
+running the finalize methods of objects that have been found to be discarded 
+but whose finalize methods have not yet been run. When control returns from the 
+method call, the Java Virtual Machine has made a best effort to complete all 
+outstanding finalizations. 
+
+The call System.runFinalization() is effectively equivalent to the call: 
+
+Runtime.getRuntime().runFinalization() 
+
+
+*java.lang.System.runFinalizersOnExit(boolean)*
+
+public static void runFinalizersOnExit(boolean value)
+
+Enable or disable finalization on exit; doing so specifies that the finalizers 
+of all objects that have finalizers that have not yet been automatically 
+invoked are to be run before the Java runtime exits. By default, finalization 
+on exit is disabled. 
+
+If there is a security manager, its checkExit method is first called with 0 as 
+its argument to ensure the exit is allowed. This could result in a 
+SecurityException. 
+
+    value - indicating enabling or disabling of finalization 
+
+*java.lang.System.setErr(PrintStream)*
+
+public static void setErr(java.io.PrintStream err)
+
+Reassigns the "standard" error output stream. 
+
+First, if there is a security manager, its checkPermission method is called 
+with a RuntimePermission("setIO") permission to see if it's ok to reassign the 
+"standard" error output stream. 
+
+    err - the new standard error output stream. 
+
+*java.lang.System.setIn(InputStream)*
+
+public static void setIn(java.io.InputStream in)
+
+Reassigns the "standard" input stream. 
+
+First, if there is a security manager, its checkPermission method is called 
+with a RuntimePermission("setIO") permission to see if it's ok to reassign the 
+"standard" input stream. 
+
+    in - the new standard input stream. 
+
+*java.lang.System.setOut(PrintStream)*
+
+public static void setOut(java.io.PrintStream out)
+
+Reassigns the "standard" output stream. 
+
+First, if there is a security manager, its checkPermission method is called 
+with a RuntimePermission("setIO") permission to see if it's ok to reassign the 
+"standard" output stream. 
+
+    out - the new standard output stream 
+
+*java.lang.System.setProperties(Properties)*
+
+public static void setProperties(java.util.Properties props)
+
+Sets the system properties to the Properties argument. 
+
+First, if there is a security manager, its checkPropertiesAccess method is 
+called with no arguments. This may result in a security exception. 
+
+The argument becomes the current set of system properties for use by the 
+(|java.lang.System|) method. If the argument is null, then the current set of 
+system properties is forgotten. 
+
+    props - the new system properties. 
+
+*java.lang.System.setProperty(String,String)*
+
+public static |java.lang.String| setProperty(
+  java.lang.String key,
+  java.lang.String value)
+
+Sets the system property indicated by the specified key. 
+
+First, if a security manager exists, its SecurityManager.checkPermission method 
+is called with a PropertyPermission(key, "write") permission. This may result 
+in a SecurityException being thrown. If no exception is thrown, the specified 
+property is set to the given value. 
+
+    key - the name of the system property. 
+    value - the value of the system property. 
+
+    Returns: the previous value of the system property, or null if it did not have one. 
+*java.lang.System.setSecurityManager(SecurityManager)*
+
+public static void setSecurityManager(java.lang.SecurityManager s)
+
+Sets the System security. 
+
+If there is a security manager already installed, this method first calls the 
+security manager's checkPermission method with a 
+RuntimePermission("setSecurityManager") permission to ensure it's ok to replace 
+the existing security manager. This may result in throwing a SecurityException. 
+
+Otherwise, the argument is established as the current security manager. If the 
+argument is null and no security manager has been established, then no action 
+is taken and the method simply returns. 
+
+    s - the security manager. 
+
+

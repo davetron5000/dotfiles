@@ -1,0 +1,240 @@
+*java.awt.Image* *Image* The abstract class Image is the superclass of all 
+ cla
+
+public abstract class Image
+  extends    |java.lang.Object|
+
+|java.awt.Image_Description|
+|java.awt.Image_Fields|
+|java.awt.Image_Constructors|
+|java.awt.Image_Methods|
+
+================================================================================
+
+*java.awt.Image_Fields*
+|float_java.awt.Image.accelerationPriority|
+|int_java.awt.Image.SCALE_AREA_AVERAGING|
+|int_java.awt.Image.SCALE_DEFAULT|
+|int_java.awt.Image.SCALE_FAST|
+|int_java.awt.Image.SCALE_REPLICATE|
+|int_java.awt.Image.SCALE_SMOOTH|
+|java.lang.Object_java.awt.Image.UndefinedProperty|
+
+*java.awt.Image_Constructors*
+|java.awt.Image()|
+
+*java.awt.Image_Methods*
+|java.awt.Image.flush()|Flushes all resources being used by this Image object.
+|java.awt.Image.getAccelerationPriority()|Returns the current value of the acce
+|java.awt.Image.getCapabilities(GraphicsConfiguration)|Returns an ImageCapabili
+|java.awt.Image.getGraphics()|Creates a graphics context for drawing to an off-
+|java.awt.Image.getHeight(ImageObserver)|Determines the height of the image.
+|java.awt.Image.getProperty(String,ImageObserver)|Gets a property of this image
+|java.awt.Image.getScaledInstance(int,int,int)|Creates a scaled version of this
+|java.awt.Image.getSource()|Gets the object that produces the pixels for the im
+|java.awt.Image.getWidth(ImageObserver)|Determines the width of the image.
+|java.awt.Image.setAccelerationPriority(float)|Sets a hint for this image about
+
+*java.awt.Image_Description*
+
+The abstract class Image is the superclass of all classes that represent 
+graphical images. The image must be obtained in a platform-specific manner. 
+
+
+*float_java.awt.Image.accelerationPriority*
+
+The abstract class Image is the superclass of all classes that represent 
+graphical images. The image must be obtained in a platform-specific manner. 
+
+
+*int_java.awt.Image.SCALE_AREA_AVERAGING*
+
+The abstract class Image is the superclass of all classes that represent 
+graphical images. The image must be obtained in a platform-specific manner. 
+
+
+*int_java.awt.Image.SCALE_DEFAULT*
+
+The abstract class Image is the superclass of all classes that represent 
+graphical images. The image must be obtained in a platform-specific manner. 
+
+
+*int_java.awt.Image.SCALE_FAST*
+
+The abstract class Image is the superclass of all classes that represent 
+graphical images. The image must be obtained in a platform-specific manner. 
+
+
+*int_java.awt.Image.SCALE_REPLICATE*
+
+The abstract class Image is the superclass of all classes that represent 
+graphical images. The image must be obtained in a platform-specific manner. 
+
+
+*int_java.awt.Image.SCALE_SMOOTH*
+
+The abstract class Image is the superclass of all classes that represent 
+graphical images. The image must be obtained in a platform-specific manner. 
+
+
+*java.lang.Object_java.awt.Image.UndefinedProperty*
+
+The abstract class Image is the superclass of all classes that represent 
+graphical images. The image must be obtained in a platform-specific manner. 
+
+
+
+*java.awt.Image()*
+
+public Image()
+
+
+
+
+*java.awt.Image.flush()*
+
+public abstract void flush()
+
+Flushes all resources being used by this Image object. This includes any pixel 
+data that is being cached for rendering to the screen as well as any system 
+resources that are being used to store data or pixels for the image. The image 
+is reset to a state similar to when it was first created so that if it is again 
+rendered, the image data will have to be recreated or fetched again from its 
+source. 
+
+This method always leaves the image in a state such that it can be 
+reconstructed. This means the method applies only to cached or other secondary 
+representations of images such as those that have been generated from an 
+ImageProducer (read from a file, for example). It does nothing for off-screen 
+images that have only one copy of their data. 
+
+
+*java.awt.Image.getAccelerationPriority()*
+
+public float getAccelerationPriority()
+
+Returns the current value of the acceleration priority hint. 
+
+
+    Returns: value between 0 and 1, inclusive, which represents the current priority value 
+*java.awt.Image.getCapabilities(GraphicsConfiguration)*
+
+public |java.awt.ImageCapabilities| getCapabilities(java.awt.GraphicsConfiguration gc)
+
+Returns an ImageCapabilities object which can be inquired as to the 
+capabilities of this Image on the specified GraphicsConfiguration. This allows 
+programmers to find out more runtime information on the specific Image object 
+that they have created. For example, the user might create a BufferedImage but 
+the system may have no video memory left for creating an image of that size on 
+the given GraphicsConfiguration, so although the object may be acceleratable in 
+general, it is does not have that capability on this GraphicsConfiguration. 
+
+    gc - a GraphicsConfiguration object. A value of null for this parameter will result 
+       in getting the image capabilities for the default GraphicsConfiguration. 
+
+    Returns: an ImageCapabilities object that contains the capabilities of this Image on the 
+             specified GraphicsConfiguration. 
+*java.awt.Image.getGraphics()*
+
+public abstract |java.awt.Graphics| getGraphics()
+
+Creates a graphics context for drawing to an off-screen image. This method can 
+only be called for off-screen images. 
+
+
+    Returns: a graphics context to draw to the off-screen image. 
+*java.awt.Image.getHeight(ImageObserver)*
+
+public abstract int getHeight(java.awt.image.ImageObserver observer)
+
+Determines the height of the image. If the height is not yet known, this method 
+returns -1 and the specified ImageObserver object is notified later. 
+
+    observer - an object waiting for the image to be loaded. 
+
+    Returns: the height of this image, or -1 if the height is not yet known. 
+*java.awt.Image.getProperty(String,ImageObserver)*
+
+public abstract |java.lang.Object| getProperty(
+  java.lang.String name,
+  java.awt.image.ImageObserver observer)
+
+Gets a property of this image by name. 
+
+Individual property names are defined by the various image formats. If a 
+property is not defined for a particular image, this method returns the 
+UndefinedProperty object. 
+
+If the properties for this image are not yet known, this method returns null, 
+and the ImageObserver object is notified later. 
+
+The property name "comment" should be used to store an optional comment which 
+can be presented to the application as a description of the image, its source, 
+or its author. 
+
+    name - a property name. 
+    observer - an object waiting for this image to be loaded. 
+
+    Returns: the value of the named property. 
+*java.awt.Image.getScaledInstance(int,int,int)*
+
+public |java.awt.Image| getScaledInstance(
+  int width,
+  int height,
+  int hints)
+
+Creates a scaled version of this image. A new Image object is returned which 
+will render the image at the specified width and height by default. The new 
+Image object may be loaded asynchronously even if the original source image has 
+already been loaded completely. 
+
+
+
+If either width or height is a negative number then a value is substituted to 
+maintain the aspect ratio of the original image dimensions. If both width and 
+height are negative, then the original image dimensions are used. 
+
+    width - the width to which to scale the image. 
+    height - the height to which to scale the image. 
+    hints - flags to indicate the type of algorithm to use for image resampling. 
+
+    Returns: a scaled version of the image. 
+*java.awt.Image.getSource()*
+
+public abstract |java.awt.image.ImageProducer| getSource()
+
+Gets the object that produces the pixels for the image. This method is called 
+by the image filtering classes and by methods that perform image conversion and 
+scaling. 
+
+
+    Returns: the image producer that produces the pixels for this image. 
+*java.awt.Image.getWidth(ImageObserver)*
+
+public abstract int getWidth(java.awt.image.ImageObserver observer)
+
+Determines the width of the image. If the width is not yet known, this method 
+returns -1 and the specified ImageObserver object is notified later. 
+
+    observer - an object waiting for the image to be loaded. 
+
+    Returns: the width of this image, or -1 if the width is not yet known. 
+*java.awt.Image.setAccelerationPriority(float)*
+
+public void setAccelerationPriority(float priority)
+
+Sets a hint for this image about how important acceleration is. This priority 
+hint is used to compare to the priorities of other Image objects when 
+determining how to use scarce acceleration resources such as video memory. When 
+and if it is possible to accelerate this Image, if there are not enough 
+resources available to provide that acceleration but enough can be freed up by 
+de-acceleration some other image of lower priority, then that other Image may 
+be de-accelerated in deference to this one. Images that have the same priority 
+take up resources on a first-come, first-served basis. 
+
+    priority - a value between 0 and 1, inclusive, where higher values indicate more 
+       importance for acceleration. A value of 0 means that this Image should 
+       never be accelerated. Other values are used simply to determine 
+       acceleration priority relative to other Images. 
+
+

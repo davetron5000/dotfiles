@@ -1,0 +1,154 @@
+*org.w3c.dom.css.CSSStyleDeclaration* *CSSStyleDeclaration* The CSSStyleDeclarat
+
+public interface interface CSSStyleDeclaration
+
+
+|org.w3c.dom.css.CSSStyleDeclaration_Description|
+|org.w3c.dom.css.CSSStyleDeclaration_Fields|
+|org.w3c.dom.css.CSSStyleDeclaration_Constructors|
+|org.w3c.dom.css.CSSStyleDeclaration_Methods|
+
+================================================================================
+
+*org.w3c.dom.css.CSSStyleDeclaration_Methods*
+|org.w3c.dom.css.CSSStyleDeclaration.getCssText()|The parsable textual represen
+|org.w3c.dom.css.CSSStyleDeclaration.getLength()|The number of properties that 
+|org.w3c.dom.css.CSSStyleDeclaration.getParentRule()|The CSS rule that contains
+|org.w3c.dom.css.CSSStyleDeclaration.getPropertyCSSValue(String)|Used to retrie
+|org.w3c.dom.css.CSSStyleDeclaration.getPropertyPriority(String)|Used to retrie
+|org.w3c.dom.css.CSSStyleDeclaration.getPropertyValue(String)|Used to retrieve 
+|org.w3c.dom.css.CSSStyleDeclaration.item(int)|Used to retrieve the properties 
+|org.w3c.dom.css.CSSStyleDeclaration.removeProperty(String)|Used to remove a CS
+|org.w3c.dom.css.CSSStyleDeclaration.setCssText(String)|
+|org.w3c.dom.css.CSSStyleDeclaration.setProperty(String,String,String)|Used to 
+
+*org.w3c.dom.css.CSSStyleDeclaration_Description*
+
+The CSSStyleDeclaration interface represents a single CSS declaration block. 
+This interface may be used to determine the style properties currently set in a 
+block or to set style properties explicitly within the block. While an 
+implementation may not recognize all CSS properties within a CSS declaration 
+block, it is expected to provide access to all specified properties in the 
+style sheet through the CSSStyleDeclaration interface. Furthermore, 
+implementations that support a specific level of CSS should correctly handle 
+CSS shorthand properties for that level. For a further discussion of shorthand 
+properties, see the CSS2Properties interface. This interface is also used to 
+provide a read-only access to the computed values of an element. See also the 
+ViewCSS interface. The CSS Object Model doesn't provide an access to the 
+specified or actual values of the CSS cascade. See also the Document Object 
+Model (DOM) Level 2 Style Specification. 
+
+
+*org.w3c.dom.css.CSSStyleDeclaration.getCssText()*
+
+public |java.lang.String| getCssText()
+
+The parsable textual representation of the declaration block (excluding the 
+surrounding curly braces). Setting this attribute will result in the parsing of 
+the new value and resetting of all the properties in the declaration block 
+including the removal or addition of properties. 
+
+
+*org.w3c.dom.css.CSSStyleDeclaration.getLength()*
+
+public int getLength()
+
+The number of properties that have been explicitly set in this declaration 
+block. The range of valid indices is 0 to length-1 inclusive. 
+
+
+*org.w3c.dom.css.CSSStyleDeclaration.getParentRule()*
+
+public |org.w3c.dom.css.CSSRule| getParentRule()
+
+The CSS rule that contains this declaration block or null if this 
+CSSStyleDeclaration is not attached to a CSSRule. 
+
+
+*org.w3c.dom.css.CSSStyleDeclaration.getPropertyCSSValue(String)*
+
+public |org.w3c.dom.css.CSSValue| getPropertyCSSValue(java.lang.String propertyName)
+
+Used to retrieve the object representation of the value of a CSS property if it 
+has been explicitly set within this declaration block. This method returns null 
+if the property is a shorthand property. Shorthand property values can only be 
+accessed and modified as strings, using the getPropertyValue and setProperty 
+methods. 
+
+    propertyName - The name of the CSS property. See the CSS property index. 
+
+    Returns: Returns the value of the property if it has been explicitly set for this 
+             declaration block. Returns null if the property has not been set. 
+*org.w3c.dom.css.CSSStyleDeclaration.getPropertyPriority(String)*
+
+public |java.lang.String| getPropertyPriority(java.lang.String propertyName)
+
+Used to retrieve the priority of a CSS property (e.g. the "important" 
+qualifier) if the property has been explicitly set in this declaration block. 
+
+    propertyName - The name of the CSS property. See the CSS property index. 
+
+    Returns: A string representing the priority (e.g. "important") if one exists. The empty 
+             string if none exists. 
+*org.w3c.dom.css.CSSStyleDeclaration.getPropertyValue(String)*
+
+public |java.lang.String| getPropertyValue(java.lang.String propertyName)
+
+Used to retrieve the value of a CSS property if it has been explicitly set 
+within this declaration block. 
+
+    propertyName - The name of the CSS property. See the CSS property index. 
+
+    Returns: Returns the value of the property if it has been explicitly set for this 
+             declaration block. Returns the empty string if the property has 
+             not been set. 
+*org.w3c.dom.css.CSSStyleDeclaration.item(int)*
+
+public |java.lang.String| item(int index)
+
+Used to retrieve the properties that have been explicitly set in this 
+declaration block. The order of the properties retrieved using this method does 
+not have to be the order in which they were set. This method can be used to 
+iterate over all properties in this declaration block. 
+
+    index - Index of the property name to retrieve. 
+
+    Returns: The name of the property at this ordinal position. The empty string if no 
+             property exists at this position. 
+*org.w3c.dom.css.CSSStyleDeclaration.removeProperty(String)*
+
+public |java.lang.String| removeProperty(java.lang.String propertyName)
+  throws |org.w3c.dom.DOMException|
+         
+Used to remove a CSS property if it has been explicitly set within this 
+declaration block. 
+
+    propertyName - The name of the CSS property. See the CSS property index. 
+
+    Returns: Returns the value of the property if it has been explicitly set for this 
+             declaration block. Returns the empty string if the property has 
+             not been set or the property name does not correspond to a known 
+             CSS property. 
+*org.w3c.dom.css.CSSStyleDeclaration.setCssText(String)*
+
+public void setCssText(java.lang.String cssText)
+  throws |org.w3c.dom.DOMException|
+         
+
+
+
+*org.w3c.dom.css.CSSStyleDeclaration.setProperty(String,String,String)*
+
+public void setProperty(
+  java.lang.String propertyName,
+  java.lang.String value,
+  java.lang.String priority)
+  throws |org.w3c.dom.DOMException|
+         
+Used to set a property value and priority within this declaration block. 
+
+    propertyName - The name of the CSS property. See the CSS property index. 
+    value - The new value of the property. 
+    priority - The new priority of the property (e.g. "important"). 
+
+

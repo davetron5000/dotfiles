@@ -1,0 +1,131 @@
+*javax.swing.text.Element* *Element* Interface to describe a structural piece of
+
+public interface interface Element
+
+
+|javax.swing.text.Element_Description|
+|javax.swing.text.Element_Fields|
+|javax.swing.text.Element_Constructors|
+|javax.swing.text.Element_Methods|
+
+================================================================================
+
+*javax.swing.text.Element_Methods*
+|javax.swing.text.Element.getAttributes()|Fetches the collection of attributes 
+|javax.swing.text.Element.getDocument()|Fetches the document associated with th
+|javax.swing.text.Element.getElement(int)|Fetches the child element at the give
+|javax.swing.text.Element.getElementCount()|Gets the number of child elements c
+|javax.swing.text.Element.getElementIndex(int)|Gets the child element index clo
+|javax.swing.text.Element.getEndOffset()|Fetches the offset from the beginning 
+|javax.swing.text.Element.getName()|Fetches the name of the element.
+|javax.swing.text.Element.getParentElement()|Fetches the parent element.
+|javax.swing.text.Element.getStartOffset()|Fetches the offset from the beginnin
+|javax.swing.text.Element.isLeaf()|Is this element a leaf element? An element t
+
+*javax.swing.text.Element_Description*
+
+Interface to describe a structural piece of a document. It is intended to 
+capture the spirit of an SGML element. 
+
+
+*javax.swing.text.Element.getAttributes()*
+
+public |javax.swing.text.AttributeSet| getAttributes()
+
+Fetches the collection of attributes this element contains. 
+
+
+    Returns: the attributes for the element 
+*javax.swing.text.Element.getDocument()*
+
+public |javax.swing.text.Document| getDocument()
+
+Fetches the document associated with this element. 
+
+
+    Returns: 
+*javax.swing.text.Element.getElement(int)*
+
+public |javax.swing.text.Element| getElement(int index)
+
+Fetches the child element at the given index. 
+
+    index - the specified index >= 0 
+
+    Returns: the child element 
+*javax.swing.text.Element.getElementCount()*
+
+public int getElementCount()
+
+Gets the number of child elements contained by this element. If this element is 
+a leaf, a count of zero is returned. 
+
+
+    Returns: the number of child elements >= 0 
+*javax.swing.text.Element.getElementIndex(int)*
+
+public int getElementIndex(int offset)
+
+Gets the child element index closest to the given offset. The offset is 
+specified relative to the beginning of the document. Returns -1 if the Element 
+is a leaf, otherwise returns the index of the Element that best represents the 
+given location. Returns 0 if the location is less than the start offset. 
+Returns getElementCount() - 1 if the location is greater than or equal to the 
+end offset. 
+
+    offset - the specified offset >= 0 
+
+    Returns: the element index >= 0 
+*javax.swing.text.Element.getEndOffset()*
+
+public int getEndOffset()
+
+Fetches the offset from the beginning of the document that this element ends 
+at. If this element has children, this will be the end offset of the last 
+child. As a document position, there is an implied backward bias. 
+
+All the default Document implementations descend from AbstractDocument. 
+AbstractDocument models an implied break at the end of the document. As a 
+result of this, it is possible for this to return a value greater than the 
+length of the document. 
+
+
+    Returns: the ending offset > getStartOffset() and <= getDocument().getLength() + 1 
+*javax.swing.text.Element.getName()*
+
+public |java.lang.String| getName()
+
+Fetches the name of the element. If the element is used to represent some type 
+of structure, this would be the type name. 
+
+
+    Returns: the element name 
+*javax.swing.text.Element.getParentElement()*
+
+public |javax.swing.text.Element| getParentElement()
+
+Fetches the parent element. If the element is a root level element returns 
+null. 
+
+
+    Returns: the parent element 
+*javax.swing.text.Element.getStartOffset()*
+
+public int getStartOffset()
+
+Fetches the offset from the beginning of the document that this element begins 
+at. If this element has children, this will be the offset of the first child. 
+As a document position, there is an implied forward bias. 
+
+
+    Returns: the starting offset >= 0 and < getEndOffset(); 
+*javax.swing.text.Element.isLeaf()*
+
+public boolean isLeaf()
+
+Is this element a leaf element? An element that may have children, even if it 
+currently has no children, would return false. 
+
+
+    Returns: true if a leaf element else false 
+

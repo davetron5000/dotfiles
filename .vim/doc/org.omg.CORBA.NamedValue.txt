@@ -1,0 +1,94 @@
+*org.omg.CORBA.NamedValue* *NamedValue* An object used in the DII and DSI to des
+
+public abstract class NamedValue
+  extends    |java.lang.Object|
+
+|org.omg.CORBA.NamedValue_Description|
+|org.omg.CORBA.NamedValue_Fields|
+|org.omg.CORBA.NamedValue_Constructors|
+|org.omg.CORBA.NamedValue_Methods|
+
+================================================================================
+
+*org.omg.CORBA.NamedValue_Constructors*
+|org.omg.CORBA.NamedValue()|
+
+*org.omg.CORBA.NamedValue_Methods*
+|org.omg.CORBA.NamedValue.flags()|Retrieves the argument mode flag for this Nam
+|org.omg.CORBA.NamedValue.name()|Retrieves the name for this NamedValue object.
+|org.omg.CORBA.NamedValue.value()|Retrieves the value for this NamedValue objec
+
+*org.omg.CORBA.NamedValue_Description*
+
+An object used in the DII and DSI to describe arguments and return values. 
+NamedValue objects are also used in the Context object routines to pass lists 
+of property names and values. 
+
+A NamedValue object contains: 
+
+a name -- If the NamedValue object is used to describe arguments to a request, 
+the name will be an argument identifier specified in the OMG IDL interface 
+definition for the operation being described. a value -- an Any object an 
+argument mode flag -- one of the following: 
+
+ARG_IN.value ARG_OUT.value ARG_INOUT.value zero -- if this NamedValue object 
+represents a property in a Context object rather than a parameter or return 
+value 
+
+
+
+The class NamedValue has three methods, which access its fields. The following 
+code fragment demonstrates creating a NamedValue object and then accessing its 
+fields: 
+
+ORB orb = ORB.init(args, null); String s = "argument_1"; org.omg.CORBA.Any 
+myAny = orb.create_any(); myAny.insert_long(12345); int in = 
+org.omg.CORBA.ARG_IN.value; 
+
+org.omg.CORBA.NamedValue nv = orb.create_named_value( s, myAny, in); 
+System.out.println("This nv name is " + nv.name()); try { 
+System.out.println("This nv value is " + nv.value().extract_long()); 
+System.out.println("This nv flag is " + nv.flags()); } catch 
+(org.omg.CORBA.BAD_OPERATION b) { System.out.println("extract failed"); } 
+
+If this code fragment were put into a main method, the output would be 
+something like the following: 
+
+This nv name is argument_1 This nv value is 12345 This nv flag is 1 
+
+Note that the method value returns an Any object. In order to access the long 
+contained in the Any object, we used the method extract_long. 
+
+
+*org.omg.CORBA.NamedValue()*
+
+public NamedValue()
+
+
+
+
+*org.omg.CORBA.NamedValue.flags()*
+
+public abstract int flags()
+
+Retrieves the argument mode flag for this NamedValue object. 
+
+
+    Returns: an int representing the argument mode for this NamedValue object 
+*org.omg.CORBA.NamedValue.name()*
+
+public abstract |java.lang.String| name()
+
+Retrieves the name for this NamedValue object. 
+
+
+    Returns: a String object representing the name of this NamedValue object 
+*org.omg.CORBA.NamedValue.value()*
+
+public abstract |org.omg.CORBA.Any| value()
+
+Retrieves the value for this NamedValue object. 
+
+
+    Returns: an Any object containing the value of this NamedValue object 
+

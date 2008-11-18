@@ -1,0 +1,854 @@
+*javax.sound.sampled.AudioFormat* *AudioFormat* AudioFormat is the class that sp
+
+public class AudioFormat
+  extends    |java.lang.Object|
+
+|javax.sound.sampled.AudioFormat_Description|
+|javax.sound.sampled.AudioFormat_Fields|
+|javax.sound.sampled.AudioFormat_Constructors|
+|javax.sound.sampled.AudioFormat_Methods|
+
+================================================================================
+
+*javax.sound.sampled.AudioFormat_Fields*
+|boolean_javax.sound.sampled.AudioFormat.bigEndian|
+|int_javax.sound.sampled.AudioFormat.channels|
+|javax.sound.sampled.AudioFormat.Encoding_javax.sound.sampled.AudioFormat.encoding|
+|float_javax.sound.sampled.AudioFormat.frameRate|
+|int_javax.sound.sampled.AudioFormat.frameSize|
+|float_javax.sound.sampled.AudioFormat.sampleRate|
+|int_javax.sound.sampled.AudioFormat.sampleSizeInBits|
+
+*javax.sound.sampled.AudioFormat_Constructors*
+|javax.sound.sampled.AudioFormat(AudioFormat.Encoding,float,int,int,int,float,boolean)|
+|javax.sound.sampled.AudioFormat(AudioFormat.Encoding,float,int,int,int,float,boolean,Map)|
+|javax.sound.sampled.AudioFormat(float,int,int,boolean,boolean)|Constructs an A
+
+*javax.sound.sampled.AudioFormat_Methods*
+|javax.sound.sampled.AudioFormat.getChannels()|Obtains the number of channels.
+|javax.sound.sampled.AudioFormat.getEncoding()|Obtains the type of encoding for
+|javax.sound.sampled.AudioFormat.getFrameRate()|Obtains the frame rate in frame
+|javax.sound.sampled.AudioFormat.getFrameSize()|Obtains the frame size in bytes
+|javax.sound.sampled.AudioFormat.getProperty(String)|Obtain the property value 
+|javax.sound.sampled.AudioFormat.getSampleRate()|Obtains the sample rate.
+|javax.sound.sampled.AudioFormat.getSampleSizeInBits()|Obtains the size of a sa
+|javax.sound.sampled.AudioFormat.isBigEndian()|Indicates whether the audio data
+|javax.sound.sampled.AudioFormat.matches(AudioFormat)|Indicates whether this fo
+|javax.sound.sampled.AudioFormat.properties()|Obtain an unmodifiable map of pro
+|javax.sound.sampled.AudioFormat.toString()|Returns a string that describes the
+
+*javax.sound.sampled.AudioFormat_Description*
+
+AudioFormat is the class that specifies a particular arrangement of data in a 
+sound stream. By examing the information stored in the audio format, you can 
+discover how to interpret the bits in the binary sound data. 
+
+Every data line has an audio format associated with its data stream. The audio 
+format of a source (playback) data line indicates what kind of data the data 
+line expects to receive for output. For a target (capture) data line, the audio 
+format specifies the kind of the data that can be read from the line. Sound 
+files also have audio formats, of course. The 
+(|javax.sound.sampled.AudioFileFormat|) class encapsulates an AudioFormat in 
+addition to other, file-specific information. Similarly, an 
+(|javax.sound.sampled.AudioInputStream|) has an AudioFormat. 
+
+The AudioFormat class accommodates a number of common sound-file encoding 
+techniques, including pulse-code modulation (PCM), mu-law encoding, and a-law 
+encoding. These encoding techniques are predefined, but service providers can 
+create new encoding types. The encoding that a specific format uses is named by 
+its encoding field. 
+
+In addition to the encoding, the audio format includes other properties that 
+further specify the exact arrangement of the data. These include the number of 
+channels, sample rate, sample size, byte order, frame rate, and frame size. 
+Sounds may have different numbers of audio channels: one for mono, two for 
+stereo. The sample rate measures how many "snapshots" (samples) of the sound 
+pressure are taken per second, per channel. (If the sound is stereo rather than 
+mono, two samples are actually measured at each instant of time: one for the 
+left channel, and another for the right channel; however, the sample rate still 
+measures the number per channel, so the rate is the same regardless of the 
+number of channels. This is the standard use of the term.) The sample size 
+indicates how many bits are used to store each snapshot; 8 and 16 are typical 
+values. For 16-bit samples (or any other sample size larger than a byte), byte 
+order is important; the bytes in each sample are arranged in either the 
+"little-endian" or "big-endian" style. For encodings like PCM, a frame consists 
+of the set of samples for all channels at a given point in time, and so the 
+size of a frame (in bytes) is always equal to the size of a sample (in bytes) 
+times the number of channels. However, with some other sorts of encodings a 
+frame can contain a bundle of compressed data for a whole series of samples, as 
+well as additional, non-sample data. For such encodings, the sample rate and 
+sample size refer to the data after it is decoded into PCM, and so they are 
+completely different from the frame rate and frame size. 
+
+An AudioFormat object can include a set of properties. A property is a pair of 
+key and value: the key is of type String, the associated property value is an 
+arbitrary object. Properties specify additional format specifications, like the 
+bit rate for compressed formats. Properties are mainly used as a means to 
+transport additional information of the audio format to and from the service 
+providers. Therefore, properties are ignored in the 
+(|javax.sound.sampled.AudioFormat|) method. However, methods which rely on the 
+installed service providers, like (AudioFormat, AudioFormat) 
+isConversionSupported(|javax.sound.sampled.AudioSystem|) may consider 
+properties, depending on the respective service provider implementation. 
+
+The following table lists some common properties which service providers should 
+use, if applicable: 
+
+
+
+Property key Value type Description 
+
+bitrate Integer(|java.lang.Integer|) average bit rate in bits per second 
+
+vbr Boolean(|java.lang.Boolean|) true, if the file is encoded in variable bit 
+rate (VBR) 
+
+quality Integer(|java.lang.Integer|) encoding/conversion quality, 1..100 
+
+
+
+Vendors of service providers (plugins) are encouraged to seek information about 
+other already established properties in third party plugins, and follow the 
+same conventions. 
+
+
+*boolean_javax.sound.sampled.AudioFormat.bigEndian*
+
+AudioFormat is the class that specifies a particular arrangement of data in a 
+sound stream. By examing the information stored in the audio format, you can 
+discover how to interpret the bits in the binary sound data. 
+
+Every data line has an audio format associated with its data stream. The audio 
+format of a source (playback) data line indicates what kind of data the data 
+line expects to receive for output. For a target (capture) data line, the audio 
+format specifies the kind of the data that can be read from the line. Sound 
+files also have audio formats, of course. The 
+(|javax.sound.sampled.AudioFileFormat|) class encapsulates an AudioFormat in 
+addition to other, file-specific information. Similarly, an 
+(|javax.sound.sampled.AudioInputStream|) has an AudioFormat. 
+
+The AudioFormat class accommodates a number of common sound-file encoding 
+techniques, including pulse-code modulation (PCM), mu-law encoding, and a-law 
+encoding. These encoding techniques are predefined, but service providers can 
+create new encoding types. The encoding that a specific format uses is named by 
+its encoding field. 
+
+In addition to the encoding, the audio format includes other properties that 
+further specify the exact arrangement of the data. These include the number of 
+channels, sample rate, sample size, byte order, frame rate, and frame size. 
+Sounds may have different numbers of audio channels: one for mono, two for 
+stereo. The sample rate measures how many "snapshots" (samples) of the sound 
+pressure are taken per second, per channel. (If the sound is stereo rather than 
+mono, two samples are actually measured at each instant of time: one for the 
+left channel, and another for the right channel; however, the sample rate still 
+measures the number per channel, so the rate is the same regardless of the 
+number of channels. This is the standard use of the term.) The sample size 
+indicates how many bits are used to store each snapshot; 8 and 16 are typical 
+values. For 16-bit samples (or any other sample size larger than a byte), byte 
+order is important; the bytes in each sample are arranged in either the 
+"little-endian" or "big-endian" style. For encodings like PCM, a frame consists 
+of the set of samples for all channels at a given point in time, and so the 
+size of a frame (in bytes) is always equal to the size of a sample (in bytes) 
+times the number of channels. However, with some other sorts of encodings a 
+frame can contain a bundle of compressed data for a whole series of samples, as 
+well as additional, non-sample data. For such encodings, the sample rate and 
+sample size refer to the data after it is decoded into PCM, and so they are 
+completely different from the frame rate and frame size. 
+
+An AudioFormat object can include a set of properties. A property is a pair of 
+key and value: the key is of type String, the associated property value is an 
+arbitrary object. Properties specify additional format specifications, like the 
+bit rate for compressed formats. Properties are mainly used as a means to 
+transport additional information of the audio format to and from the service 
+providers. Therefore, properties are ignored in the 
+(|javax.sound.sampled.AudioFormat|) method. However, methods which rely on the 
+installed service providers, like (AudioFormat, AudioFormat) 
+isConversionSupported(|javax.sound.sampled.AudioSystem|) may consider 
+properties, depending on the respective service provider implementation. 
+
+The following table lists some common properties which service providers should 
+use, if applicable: 
+
+
+
+Property key Value type Description 
+
+bitrate Integer(|java.lang.Integer|) average bit rate in bits per second 
+
+vbr Boolean(|java.lang.Boolean|) true, if the file is encoded in variable bit 
+rate (VBR) 
+
+quality Integer(|java.lang.Integer|) encoding/conversion quality, 1..100 
+
+
+
+Vendors of service providers (plugins) are encouraged to seek information about 
+other already established properties in third party plugins, and follow the 
+same conventions. 
+
+
+*int_javax.sound.sampled.AudioFormat.channels*
+
+AudioFormat is the class that specifies a particular arrangement of data in a 
+sound stream. By examing the information stored in the audio format, you can 
+discover how to interpret the bits in the binary sound data. 
+
+Every data line has an audio format associated with its data stream. The audio 
+format of a source (playback) data line indicates what kind of data the data 
+line expects to receive for output. For a target (capture) data line, the audio 
+format specifies the kind of the data that can be read from the line. Sound 
+files also have audio formats, of course. The 
+(|javax.sound.sampled.AudioFileFormat|) class encapsulates an AudioFormat in 
+addition to other, file-specific information. Similarly, an 
+(|javax.sound.sampled.AudioInputStream|) has an AudioFormat. 
+
+The AudioFormat class accommodates a number of common sound-file encoding 
+techniques, including pulse-code modulation (PCM), mu-law encoding, and a-law 
+encoding. These encoding techniques are predefined, but service providers can 
+create new encoding types. The encoding that a specific format uses is named by 
+its encoding field. 
+
+In addition to the encoding, the audio format includes other properties that 
+further specify the exact arrangement of the data. These include the number of 
+channels, sample rate, sample size, byte order, frame rate, and frame size. 
+Sounds may have different numbers of audio channels: one for mono, two for 
+stereo. The sample rate measures how many "snapshots" (samples) of the sound 
+pressure are taken per second, per channel. (If the sound is stereo rather than 
+mono, two samples are actually measured at each instant of time: one for the 
+left channel, and another for the right channel; however, the sample rate still 
+measures the number per channel, so the rate is the same regardless of the 
+number of channels. This is the standard use of the term.) The sample size 
+indicates how many bits are used to store each snapshot; 8 and 16 are typical 
+values. For 16-bit samples (or any other sample size larger than a byte), byte 
+order is important; the bytes in each sample are arranged in either the 
+"little-endian" or "big-endian" style. For encodings like PCM, a frame consists 
+of the set of samples for all channels at a given point in time, and so the 
+size of a frame (in bytes) is always equal to the size of a sample (in bytes) 
+times the number of channels. However, with some other sorts of encodings a 
+frame can contain a bundle of compressed data for a whole series of samples, as 
+well as additional, non-sample data. For such encodings, the sample rate and 
+sample size refer to the data after it is decoded into PCM, and so they are 
+completely different from the frame rate and frame size. 
+
+An AudioFormat object can include a set of properties. A property is a pair of 
+key and value: the key is of type String, the associated property value is an 
+arbitrary object. Properties specify additional format specifications, like the 
+bit rate for compressed formats. Properties are mainly used as a means to 
+transport additional information of the audio format to and from the service 
+providers. Therefore, properties are ignored in the 
+(|javax.sound.sampled.AudioFormat|) method. However, methods which rely on the 
+installed service providers, like (AudioFormat, AudioFormat) 
+isConversionSupported(|javax.sound.sampled.AudioSystem|) may consider 
+properties, depending on the respective service provider implementation. 
+
+The following table lists some common properties which service providers should 
+use, if applicable: 
+
+
+
+Property key Value type Description 
+
+bitrate Integer(|java.lang.Integer|) average bit rate in bits per second 
+
+vbr Boolean(|java.lang.Boolean|) true, if the file is encoded in variable bit 
+rate (VBR) 
+
+quality Integer(|java.lang.Integer|) encoding/conversion quality, 1..100 
+
+
+
+Vendors of service providers (plugins) are encouraged to seek information about 
+other already established properties in third party plugins, and follow the 
+same conventions. 
+
+
+*javax.sound.sampled.AudioFormat.Encoding_javax.sound.sampled.AudioFormat.encoding*
+
+AudioFormat is the class that specifies a particular arrangement of data in a 
+sound stream. By examing the information stored in the audio format, you can 
+discover how to interpret the bits in the binary sound data. 
+
+Every data line has an audio format associated with its data stream. The audio 
+format of a source (playback) data line indicates what kind of data the data 
+line expects to receive for output. For a target (capture) data line, the audio 
+format specifies the kind of the data that can be read from the line. Sound 
+files also have audio formats, of course. The 
+(|javax.sound.sampled.AudioFileFormat|) class encapsulates an AudioFormat in 
+addition to other, file-specific information. Similarly, an 
+(|javax.sound.sampled.AudioInputStream|) has an AudioFormat. 
+
+The AudioFormat class accommodates a number of common sound-file encoding 
+techniques, including pulse-code modulation (PCM), mu-law encoding, and a-law 
+encoding. These encoding techniques are predefined, but service providers can 
+create new encoding types. The encoding that a specific format uses is named by 
+its encoding field. 
+
+In addition to the encoding, the audio format includes other properties that 
+further specify the exact arrangement of the data. These include the number of 
+channels, sample rate, sample size, byte order, frame rate, and frame size. 
+Sounds may have different numbers of audio channels: one for mono, two for 
+stereo. The sample rate measures how many "snapshots" (samples) of the sound 
+pressure are taken per second, per channel. (If the sound is stereo rather than 
+mono, two samples are actually measured at each instant of time: one for the 
+left channel, and another for the right channel; however, the sample rate still 
+measures the number per channel, so the rate is the same regardless of the 
+number of channels. This is the standard use of the term.) The sample size 
+indicates how many bits are used to store each snapshot; 8 and 16 are typical 
+values. For 16-bit samples (or any other sample size larger than a byte), byte 
+order is important; the bytes in each sample are arranged in either the 
+"little-endian" or "big-endian" style. For encodings like PCM, a frame consists 
+of the set of samples for all channels at a given point in time, and so the 
+size of a frame (in bytes) is always equal to the size of a sample (in bytes) 
+times the number of channels. However, with some other sorts of encodings a 
+frame can contain a bundle of compressed data for a whole series of samples, as 
+well as additional, non-sample data. For such encodings, the sample rate and 
+sample size refer to the data after it is decoded into PCM, and so they are 
+completely different from the frame rate and frame size. 
+
+An AudioFormat object can include a set of properties. A property is a pair of 
+key and value: the key is of type String, the associated property value is an 
+arbitrary object. Properties specify additional format specifications, like the 
+bit rate for compressed formats. Properties are mainly used as a means to 
+transport additional information of the audio format to and from the service 
+providers. Therefore, properties are ignored in the 
+(|javax.sound.sampled.AudioFormat|) method. However, methods which rely on the 
+installed service providers, like (AudioFormat, AudioFormat) 
+isConversionSupported(|javax.sound.sampled.AudioSystem|) may consider 
+properties, depending on the respective service provider implementation. 
+
+The following table lists some common properties which service providers should 
+use, if applicable: 
+
+
+
+Property key Value type Description 
+
+bitrate Integer(|java.lang.Integer|) average bit rate in bits per second 
+
+vbr Boolean(|java.lang.Boolean|) true, if the file is encoded in variable bit 
+rate (VBR) 
+
+quality Integer(|java.lang.Integer|) encoding/conversion quality, 1..100 
+
+
+
+Vendors of service providers (plugins) are encouraged to seek information about 
+other already established properties in third party plugins, and follow the 
+same conventions. 
+
+
+*float_javax.sound.sampled.AudioFormat.frameRate*
+
+AudioFormat is the class that specifies a particular arrangement of data in a 
+sound stream. By examing the information stored in the audio format, you can 
+discover how to interpret the bits in the binary sound data. 
+
+Every data line has an audio format associated with its data stream. The audio 
+format of a source (playback) data line indicates what kind of data the data 
+line expects to receive for output. For a target (capture) data line, the audio 
+format specifies the kind of the data that can be read from the line. Sound 
+files also have audio formats, of course. The 
+(|javax.sound.sampled.AudioFileFormat|) class encapsulates an AudioFormat in 
+addition to other, file-specific information. Similarly, an 
+(|javax.sound.sampled.AudioInputStream|) has an AudioFormat. 
+
+The AudioFormat class accommodates a number of common sound-file encoding 
+techniques, including pulse-code modulation (PCM), mu-law encoding, and a-law 
+encoding. These encoding techniques are predefined, but service providers can 
+create new encoding types. The encoding that a specific format uses is named by 
+its encoding field. 
+
+In addition to the encoding, the audio format includes other properties that 
+further specify the exact arrangement of the data. These include the number of 
+channels, sample rate, sample size, byte order, frame rate, and frame size. 
+Sounds may have different numbers of audio channels: one for mono, two for 
+stereo. The sample rate measures how many "snapshots" (samples) of the sound 
+pressure are taken per second, per channel. (If the sound is stereo rather than 
+mono, two samples are actually measured at each instant of time: one for the 
+left channel, and another for the right channel; however, the sample rate still 
+measures the number per channel, so the rate is the same regardless of the 
+number of channels. This is the standard use of the term.) The sample size 
+indicates how many bits are used to store each snapshot; 8 and 16 are typical 
+values. For 16-bit samples (or any other sample size larger than a byte), byte 
+order is important; the bytes in each sample are arranged in either the 
+"little-endian" or "big-endian" style. For encodings like PCM, a frame consists 
+of the set of samples for all channels at a given point in time, and so the 
+size of a frame (in bytes) is always equal to the size of a sample (in bytes) 
+times the number of channels. However, with some other sorts of encodings a 
+frame can contain a bundle of compressed data for a whole series of samples, as 
+well as additional, non-sample data. For such encodings, the sample rate and 
+sample size refer to the data after it is decoded into PCM, and so they are 
+completely different from the frame rate and frame size. 
+
+An AudioFormat object can include a set of properties. A property is a pair of 
+key and value: the key is of type String, the associated property value is an 
+arbitrary object. Properties specify additional format specifications, like the 
+bit rate for compressed formats. Properties are mainly used as a means to 
+transport additional information of the audio format to and from the service 
+providers. Therefore, properties are ignored in the 
+(|javax.sound.sampled.AudioFormat|) method. However, methods which rely on the 
+installed service providers, like (AudioFormat, AudioFormat) 
+isConversionSupported(|javax.sound.sampled.AudioSystem|) may consider 
+properties, depending on the respective service provider implementation. 
+
+The following table lists some common properties which service providers should 
+use, if applicable: 
+
+
+
+Property key Value type Description 
+
+bitrate Integer(|java.lang.Integer|) average bit rate in bits per second 
+
+vbr Boolean(|java.lang.Boolean|) true, if the file is encoded in variable bit 
+rate (VBR) 
+
+quality Integer(|java.lang.Integer|) encoding/conversion quality, 1..100 
+
+
+
+Vendors of service providers (plugins) are encouraged to seek information about 
+other already established properties in third party plugins, and follow the 
+same conventions. 
+
+
+*int_javax.sound.sampled.AudioFormat.frameSize*
+
+AudioFormat is the class that specifies a particular arrangement of data in a 
+sound stream. By examing the information stored in the audio format, you can 
+discover how to interpret the bits in the binary sound data. 
+
+Every data line has an audio format associated with its data stream. The audio 
+format of a source (playback) data line indicates what kind of data the data 
+line expects to receive for output. For a target (capture) data line, the audio 
+format specifies the kind of the data that can be read from the line. Sound 
+files also have audio formats, of course. The 
+(|javax.sound.sampled.AudioFileFormat|) class encapsulates an AudioFormat in 
+addition to other, file-specific information. Similarly, an 
+(|javax.sound.sampled.AudioInputStream|) has an AudioFormat. 
+
+The AudioFormat class accommodates a number of common sound-file encoding 
+techniques, including pulse-code modulation (PCM), mu-law encoding, and a-law 
+encoding. These encoding techniques are predefined, but service providers can 
+create new encoding types. The encoding that a specific format uses is named by 
+its encoding field. 
+
+In addition to the encoding, the audio format includes other properties that 
+further specify the exact arrangement of the data. These include the number of 
+channels, sample rate, sample size, byte order, frame rate, and frame size. 
+Sounds may have different numbers of audio channels: one for mono, two for 
+stereo. The sample rate measures how many "snapshots" (samples) of the sound 
+pressure are taken per second, per channel. (If the sound is stereo rather than 
+mono, two samples are actually measured at each instant of time: one for the 
+left channel, and another for the right channel; however, the sample rate still 
+measures the number per channel, so the rate is the same regardless of the 
+number of channels. This is the standard use of the term.) The sample size 
+indicates how many bits are used to store each snapshot; 8 and 16 are typical 
+values. For 16-bit samples (or any other sample size larger than a byte), byte 
+order is important; the bytes in each sample are arranged in either the 
+"little-endian" or "big-endian" style. For encodings like PCM, a frame consists 
+of the set of samples for all channels at a given point in time, and so the 
+size of a frame (in bytes) is always equal to the size of a sample (in bytes) 
+times the number of channels. However, with some other sorts of encodings a 
+frame can contain a bundle of compressed data for a whole series of samples, as 
+well as additional, non-sample data. For such encodings, the sample rate and 
+sample size refer to the data after it is decoded into PCM, and so they are 
+completely different from the frame rate and frame size. 
+
+An AudioFormat object can include a set of properties. A property is a pair of 
+key and value: the key is of type String, the associated property value is an 
+arbitrary object. Properties specify additional format specifications, like the 
+bit rate for compressed formats. Properties are mainly used as a means to 
+transport additional information of the audio format to and from the service 
+providers. Therefore, properties are ignored in the 
+(|javax.sound.sampled.AudioFormat|) method. However, methods which rely on the 
+installed service providers, like (AudioFormat, AudioFormat) 
+isConversionSupported(|javax.sound.sampled.AudioSystem|) may consider 
+properties, depending on the respective service provider implementation. 
+
+The following table lists some common properties which service providers should 
+use, if applicable: 
+
+
+
+Property key Value type Description 
+
+bitrate Integer(|java.lang.Integer|) average bit rate in bits per second 
+
+vbr Boolean(|java.lang.Boolean|) true, if the file is encoded in variable bit 
+rate (VBR) 
+
+quality Integer(|java.lang.Integer|) encoding/conversion quality, 1..100 
+
+
+
+Vendors of service providers (plugins) are encouraged to seek information about 
+other already established properties in third party plugins, and follow the 
+same conventions. 
+
+
+*float_javax.sound.sampled.AudioFormat.sampleRate*
+
+AudioFormat is the class that specifies a particular arrangement of data in a 
+sound stream. By examing the information stored in the audio format, you can 
+discover how to interpret the bits in the binary sound data. 
+
+Every data line has an audio format associated with its data stream. The audio 
+format of a source (playback) data line indicates what kind of data the data 
+line expects to receive for output. For a target (capture) data line, the audio 
+format specifies the kind of the data that can be read from the line. Sound 
+files also have audio formats, of course. The 
+(|javax.sound.sampled.AudioFileFormat|) class encapsulates an AudioFormat in 
+addition to other, file-specific information. Similarly, an 
+(|javax.sound.sampled.AudioInputStream|) has an AudioFormat. 
+
+The AudioFormat class accommodates a number of common sound-file encoding 
+techniques, including pulse-code modulation (PCM), mu-law encoding, and a-law 
+encoding. These encoding techniques are predefined, but service providers can 
+create new encoding types. The encoding that a specific format uses is named by 
+its encoding field. 
+
+In addition to the encoding, the audio format includes other properties that 
+further specify the exact arrangement of the data. These include the number of 
+channels, sample rate, sample size, byte order, frame rate, and frame size. 
+Sounds may have different numbers of audio channels: one for mono, two for 
+stereo. The sample rate measures how many "snapshots" (samples) of the sound 
+pressure are taken per second, per channel. (If the sound is stereo rather than 
+mono, two samples are actually measured at each instant of time: one for the 
+left channel, and another for the right channel; however, the sample rate still 
+measures the number per channel, so the rate is the same regardless of the 
+number of channels. This is the standard use of the term.) The sample size 
+indicates how many bits are used to store each snapshot; 8 and 16 are typical 
+values. For 16-bit samples (or any other sample size larger than a byte), byte 
+order is important; the bytes in each sample are arranged in either the 
+"little-endian" or "big-endian" style. For encodings like PCM, a frame consists 
+of the set of samples for all channels at a given point in time, and so the 
+size of a frame (in bytes) is always equal to the size of a sample (in bytes) 
+times the number of channels. However, with some other sorts of encodings a 
+frame can contain a bundle of compressed data for a whole series of samples, as 
+well as additional, non-sample data. For such encodings, the sample rate and 
+sample size refer to the data after it is decoded into PCM, and so they are 
+completely different from the frame rate and frame size. 
+
+An AudioFormat object can include a set of properties. A property is a pair of 
+key and value: the key is of type String, the associated property value is an 
+arbitrary object. Properties specify additional format specifications, like the 
+bit rate for compressed formats. Properties are mainly used as a means to 
+transport additional information of the audio format to and from the service 
+providers. Therefore, properties are ignored in the 
+(|javax.sound.sampled.AudioFormat|) method. However, methods which rely on the 
+installed service providers, like (AudioFormat, AudioFormat) 
+isConversionSupported(|javax.sound.sampled.AudioSystem|) may consider 
+properties, depending on the respective service provider implementation. 
+
+The following table lists some common properties which service providers should 
+use, if applicable: 
+
+
+
+Property key Value type Description 
+
+bitrate Integer(|java.lang.Integer|) average bit rate in bits per second 
+
+vbr Boolean(|java.lang.Boolean|) true, if the file is encoded in variable bit 
+rate (VBR) 
+
+quality Integer(|java.lang.Integer|) encoding/conversion quality, 1..100 
+
+
+
+Vendors of service providers (plugins) are encouraged to seek information about 
+other already established properties in third party plugins, and follow the 
+same conventions. 
+
+
+*int_javax.sound.sampled.AudioFormat.sampleSizeInBits*
+
+AudioFormat is the class that specifies a particular arrangement of data in a 
+sound stream. By examing the information stored in the audio format, you can 
+discover how to interpret the bits in the binary sound data. 
+
+Every data line has an audio format associated with its data stream. The audio 
+format of a source (playback) data line indicates what kind of data the data 
+line expects to receive for output. For a target (capture) data line, the audio 
+format specifies the kind of the data that can be read from the line. Sound 
+files also have audio formats, of course. The 
+(|javax.sound.sampled.AudioFileFormat|) class encapsulates an AudioFormat in 
+addition to other, file-specific information. Similarly, an 
+(|javax.sound.sampled.AudioInputStream|) has an AudioFormat. 
+
+The AudioFormat class accommodates a number of common sound-file encoding 
+techniques, including pulse-code modulation (PCM), mu-law encoding, and a-law 
+encoding. These encoding techniques are predefined, but service providers can 
+create new encoding types. The encoding that a specific format uses is named by 
+its encoding field. 
+
+In addition to the encoding, the audio format includes other properties that 
+further specify the exact arrangement of the data. These include the number of 
+channels, sample rate, sample size, byte order, frame rate, and frame size. 
+Sounds may have different numbers of audio channels: one for mono, two for 
+stereo. The sample rate measures how many "snapshots" (samples) of the sound 
+pressure are taken per second, per channel. (If the sound is stereo rather than 
+mono, two samples are actually measured at each instant of time: one for the 
+left channel, and another for the right channel; however, the sample rate still 
+measures the number per channel, so the rate is the same regardless of the 
+number of channels. This is the standard use of the term.) The sample size 
+indicates how many bits are used to store each snapshot; 8 and 16 are typical 
+values. For 16-bit samples (or any other sample size larger than a byte), byte 
+order is important; the bytes in each sample are arranged in either the 
+"little-endian" or "big-endian" style. For encodings like PCM, a frame consists 
+of the set of samples for all channels at a given point in time, and so the 
+size of a frame (in bytes) is always equal to the size of a sample (in bytes) 
+times the number of channels. However, with some other sorts of encodings a 
+frame can contain a bundle of compressed data for a whole series of samples, as 
+well as additional, non-sample data. For such encodings, the sample rate and 
+sample size refer to the data after it is decoded into PCM, and so they are 
+completely different from the frame rate and frame size. 
+
+An AudioFormat object can include a set of properties. A property is a pair of 
+key and value: the key is of type String, the associated property value is an 
+arbitrary object. Properties specify additional format specifications, like the 
+bit rate for compressed formats. Properties are mainly used as a means to 
+transport additional information of the audio format to and from the service 
+providers. Therefore, properties are ignored in the 
+(|javax.sound.sampled.AudioFormat|) method. However, methods which rely on the 
+installed service providers, like (AudioFormat, AudioFormat) 
+isConversionSupported(|javax.sound.sampled.AudioSystem|) may consider 
+properties, depending on the respective service provider implementation. 
+
+The following table lists some common properties which service providers should 
+use, if applicable: 
+
+
+
+Property key Value type Description 
+
+bitrate Integer(|java.lang.Integer|) average bit rate in bits per second 
+
+vbr Boolean(|java.lang.Boolean|) true, if the file is encoded in variable bit 
+rate (VBR) 
+
+quality Integer(|java.lang.Integer|) encoding/conversion quality, 1..100 
+
+
+
+Vendors of service providers (plugins) are encouraged to seek information about 
+other already established properties in third party plugins, and follow the 
+same conventions. 
+
+
+
+*javax.sound.sampled.AudioFormat(AudioFormat.Encoding,float,int,int,int,float,boolean)*
+
+public AudioFormat(
+  javax.sound.sampled.AudioFormat.Encoding encoding,
+  float sampleRate,
+  int sampleSizeInBits,
+  int channels,
+  int frameSize,
+  float frameRate,
+  boolean bigEndian)
+
+Constructs an AudioFormat with the given parameters. The encoding specifies the 
+convention used to represent the data. The other parameters are further 
+explained in the class description(|javax.sound.sampled.AudioFormat|) . 
+
+    encoding - the audio encoding technique 
+    sampleRate - the number of samples per second 
+    sampleSizeInBits - the number of bits in each sample 
+    channels - the number of channels (1 for mono, 2 for stereo, and so on) 
+    frameSize - the number of bytes in each frame 
+    frameRate - the number of frames per second 
+    bigEndian - indicates whether the data for a single sample is stored in big-endian byte 
+       order (false means little-endian) 
+
+*javax.sound.sampled.AudioFormat(AudioFormat.Encoding,float,int,int,int,float,boolean,Map)*
+
+public AudioFormat(
+  javax.sound.sampled.AudioFormat.Encoding encoding,
+  float sampleRate,
+  int sampleSizeInBits,
+  int channels,
+  int frameSize,
+  float frameRate,
+  boolean bigEndian,
+  java.util.Map properties)
+
+Constructs an AudioFormat with the given parameters. The encoding specifies the 
+convention used to represent the data. The other parameters are further 
+explained in the class description(|javax.sound.sampled.AudioFormat|) . 
+
+    encoding - the audio encoding technique 
+    sampleRate - the number of samples per second 
+    sampleSizeInBits - the number of bits in each sample 
+    channels - the number of channels (1 for mono, 2 for stereo, and so on) 
+    frameSize - the number of bytes in each frame 
+    frameRate - the number of frames per second 
+    bigEndian - indicates whether the data for a single sample is stored in big-endian byte 
+       order (false means little-endian) 
+    properties - a Map<String,Object> object containing format properties 
+
+*javax.sound.sampled.AudioFormat(float,int,int,boolean,boolean)*
+
+public AudioFormat(
+  float sampleRate,
+  int sampleSizeInBits,
+  int channels,
+  boolean signed,
+  boolean bigEndian)
+
+Constructs an AudioFormat with a linear PCM encoding and the given parameters. 
+The frame size is set to the number of bytes required to contain one sample 
+from each channel, and the frame rate is set to the sample rate. 
+
+    sampleRate - the number of samples per second 
+    sampleSizeInBits - the number of bits in each sample 
+    channels - the number of channels (1 for mono, 2 for stereo, and so on) 
+    signed - indicates whether the data is signed or unsigned 
+    bigEndian - indicates whether the data for a single sample is stored in big-endian byte 
+       order (false means little-endian) 
+
+*javax.sound.sampled.AudioFormat.getChannels()*
+
+public int getChannels()
+
+Obtains the number of channels. When this AudioFormat is used for queries (e.g. 
+AudioSystem.isConversionSupported(|javax.sound.sampled.AudioSystem|) ) or 
+capabilities (e.g. 
+DataLine.Info.getFormats(|javax.sound.sampled.DataLine.Info|) ), a return value 
+of AudioSystem.NOT_SPECIFIED means that any (positive) number of channels is 
+acceptable. 
+
+
+    Returns: The number of channels (1 for mono, 2 for stereo, etc.), or 
+             AudioSystem.NOT_SPECIFIED 
+*javax.sound.sampled.AudioFormat.getEncoding()*
+
+public |javax.sound.sampled.AudioFormat.Encoding| getEncoding()
+
+Obtains the type of encoding for sounds in this format. 
+
+
+    Returns: the encoding type 
+*javax.sound.sampled.AudioFormat.getFrameRate()*
+
+public float getFrameRate()
+
+Obtains the frame rate in frames per second. When this AudioFormat is used for 
+queries (e.g. 
+AudioSystem.isConversionSupported(|javax.sound.sampled.AudioSystem|) ) or 
+capabilities (e.g. 
+DataLine.Info.getFormats(|javax.sound.sampled.DataLine.Info|) ), a frame rate 
+of AudioSystem.NOT_SPECIFIED means that any frame rate is acceptable. 
+AudioSystem.NOT_SPECIFIED is also returned when the frame rate is not defined 
+for this audio format. 
+
+
+    Returns: the number of frames per second, or AudioSystem.NOT_SPECIFIED 
+*javax.sound.sampled.AudioFormat.getFrameSize()*
+
+public int getFrameSize()
+
+Obtains the frame size in bytes. When this AudioFormat is used for queries 
+(e.g. AudioSystem.isConversionSupported(|javax.sound.sampled.AudioSystem|) ) or 
+capabilities (e.g. 
+DataLine.Info.getFormats(|javax.sound.sampled.DataLine.Info|) ), a frame size 
+of AudioSystem.NOT_SPECIFIED means that any frame size is acceptable. 
+AudioSystem.NOT_SPECIFIED is also returned when the frame size is not defined 
+for this audio format. 
+
+
+    Returns: the number of bytes per frame, or AudioSystem.NOT_SPECIFIED 
+*javax.sound.sampled.AudioFormat.getProperty(String)*
+
+public |java.lang.Object| getProperty(java.lang.String key)
+
+Obtain the property value specified by the key. The concept of properties is 
+further explained in the class 
+description(|javax.sound.sampled.AudioFileFormat|) . 
+
+If the specified property is not defined for a particular file format, this 
+method returns null. 
+
+    key - the key of the desired property 
+
+    Returns: the value of the property with the specified key, or null if the property does 
+             not exist. 
+*javax.sound.sampled.AudioFormat.getSampleRate()*
+
+public float getSampleRate()
+
+Obtains the sample rate. For compressed formats, the return value is the sample 
+rate of the uncompressed audio data. When this AudioFormat is used for queries 
+(e.g. AudioSystem.isConversionSupported(|javax.sound.sampled.AudioSystem|) ) or 
+capabilities (e.g. 
+DataLine.Info.getFormats(|javax.sound.sampled.DataLine.Info|) ), a sample rate 
+of AudioSystem.NOT_SPECIFIED means that any sample rate is acceptable. 
+AudioSystem.NOT_SPECIFIED is also returned when the sample rate is not defined 
+for this audio format. 
+
+
+    Returns: the number of samples per second, or AudioSystem.NOT_SPECIFIED 
+*javax.sound.sampled.AudioFormat.getSampleSizeInBits()*
+
+public int getSampleSizeInBits()
+
+Obtains the size of a sample. For compressed formats, the return value is the 
+sample size of the uncompressed audio data. When this AudioFormat is used for 
+queries (e.g. 
+AudioSystem.isConversionSupported(|javax.sound.sampled.AudioSystem|) ) or 
+capabilities (e.g. 
+DataLine.Info.getFormats(|javax.sound.sampled.DataLine.Info|) ), a sample size 
+of AudioSystem.NOT_SPECIFIED means that any sample size is acceptable. 
+AudioSystem.NOT_SPECIFIED is also returned when the sample size is not defined 
+for this audio format. 
+
+
+    Returns: the number of bits in each sample, or AudioSystem.NOT_SPECIFIED 
+*javax.sound.sampled.AudioFormat.isBigEndian()*
+
+public boolean isBigEndian()
+
+Indicates whether the audio data is stored in big-endian or little-endian byte 
+order. If the sample size is not more than one byte, the return value is 
+irrelevant. 
+
+
+    Returns: true if the data is stored in big-endian byte order, false if little-endian 
+*javax.sound.sampled.AudioFormat.matches(AudioFormat)*
+
+public boolean matches(javax.sound.sampled.AudioFormat format)
+
+Indicates whether this format matches the one specified. To match, two formats 
+must have the same encoding, the same number of channels, and the same number 
+of bits per sample and bytes per frame. The two formats must also have the same 
+sample rate, unless the specified format has the sample rate value 
+AudioSystem.NOT_SPECIFIED, which any sample rate will match. The frame rates 
+must similarly be equal, unless the specified format has the frame rate value 
+AudioSystem.NOT_SPECIFIED. The byte order (big-endian or little-endian) must 
+match if the sample size is greater than one byte. 
+
+    format - format to test for match 
+
+    Returns: true if this format matches the one specified, false otherwise. 
+*javax.sound.sampled.AudioFormat.properties()*
+
+public |java.util.Map| properties()
+
+Obtain an unmodifiable map of properties. The concept of properties is further 
+explained in the class description(|javax.sound.sampled.AudioFileFormat|) . 
+
+
+    Returns: a Map<String,Object> object containing all properties. If no properties are 
+             recognized, an empty map is returned. 
+*javax.sound.sampled.AudioFormat.toString()*
+
+public |java.lang.String| toString()
+
+Returns a string that describes the format, such as: "PCM SIGNED 22050 Hz 16 
+bit mono big-endian". The contents of the string may vary between 
+implementations of Java Sound. 
+
+
+    Returns: a string that describes the format parameters 
+

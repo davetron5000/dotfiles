@@ -1,0 +1,2799 @@
+*javax.print.attribute.standard.Finishings* *Finishings* Class Finishings is a p
+
+public class Finishings
+  extends    |javax.print.attribute.EnumSyntax|
+  implements |javax.print.attribute.DocAttribute|
+             |javax.print.attribute.PrintRequestAttribute|
+             |javax.print.attribute.PrintJobAttribute|
+
+|javax.print.attribute.standard.Finishings_Description|
+|javax.print.attribute.standard.Finishings_Fields|
+|javax.print.attribute.standard.Finishings_Constructors|
+|javax.print.attribute.standard.Finishings_Methods|
+
+================================================================================
+
+*javax.print.attribute.standard.Finishings_Fields*
+|javax.print.attribute.standard.Finishings_javax.print.attribute.standard.Finishings.BIND|
+|javax.print.attribute.standard.Finishings_javax.print.attribute.standard.Finishings.COVER|
+|javax.print.attribute.standard.Finishings_javax.print.attribute.standard.Finishings.EDGE_STITCH|
+|javax.print.attribute.standard.Finishings_javax.print.attribute.standard.Finishings.EDGE_STITCH_BOTTOM|
+|javax.print.attribute.standard.Finishings_javax.print.attribute.standard.Finishings.EDGE_STITCH_LEFT|
+|javax.print.attribute.standard.Finishings_javax.print.attribute.standard.Finishings.EDGE_STITCH_RIGHT|
+|javax.print.attribute.standard.Finishings_javax.print.attribute.standard.Finishings.EDGE_STITCH_TOP|
+|javax.print.attribute.standard.Finishings_javax.print.attribute.standard.Finishings.NONE|
+|javax.print.attribute.standard.Finishings_javax.print.attribute.standard.Finishings.SADDLE_STITCH|
+|javax.print.attribute.standard.Finishings_javax.print.attribute.standard.Finishings.STAPLE|
+|javax.print.attribute.standard.Finishings_javax.print.attribute.standard.Finishings.STAPLE_BOTTOM_LEFT|
+|javax.print.attribute.standard.Finishings_javax.print.attribute.standard.Finishings.STAPLE_BOTTOM_RIGHT|
+|javax.print.attribute.standard.Finishings_javax.print.attribute.standard.Finishings.STAPLE_DUAL_BOTTOM|
+|javax.print.attribute.standard.Finishings_javax.print.attribute.standard.Finishings.STAPLE_DUAL_LEFT|
+|javax.print.attribute.standard.Finishings_javax.print.attribute.standard.Finishings.STAPLE_DUAL_RIGHT|
+|javax.print.attribute.standard.Finishings_javax.print.attribute.standard.Finishings.STAPLE_DUAL_TOP|
+|javax.print.attribute.standard.Finishings_javax.print.attribute.standard.Finishings.STAPLE_TOP_LEFT|
+|javax.print.attribute.standard.Finishings_javax.print.attribute.standard.Finishings.STAPLE_TOP_RIGHT|
+
+*javax.print.attribute.standard.Finishings_Constructors*
+|javax.print.attribute.standard.Finishings(int)|Construct a new finishings bind
+
+*javax.print.attribute.standard.Finishings_Methods*
+|javax.print.attribute.standard.Finishings.getCategory()|Get the printing attri
+|javax.print.attribute.standard.Finishings.getEnumValueTable()|Returns the enum
+|javax.print.attribute.standard.Finishings.getName()|Get the name of the catego
+|javax.print.attribute.standard.Finishings.getOffset()|Returns the lowest integ
+|javax.print.attribute.standard.Finishings.getStringTable()|Returns the string 
+
+*javax.print.attribute.standard.Finishings_Description*
+
+Class Finishings is a printing attribute class, an enumeration, that identifies 
+whether the printer applies a finishing operation of some kind of binding to 
+each copy of each printed document in the job. For multidoc print jobs (jobs 
+with multiple documents), the 
+MultipleDocumentHandling(|javax.print.attribute.standard.MultipleDocumentHandling|)
+attribute determines what constitutes a "copy" for purposes of finishing. 
+
+Standard Finishings values are: 
+
+
+
+
+
+<CODE>NONE</CODE>(|javax.print.attribute.standard.Finishings|) 
+<CODE>STAPLE</CODE>(|javax.print.attribute.standard.Finishings|) 
+<CODE>EDGE_STITCH</CODE>(|javax.print.attribute.standard.Finishings|) 
+
+
+
+
+
+<CODE>BIND</CODE>(|javax.print.attribute.standard.Finishings|) 
+<CODE>SADDLE_STITCH</CODE>(|javax.print.attribute.standard.Finishings|) 
+<CODE>COVER</CODE>(|javax.print.attribute.standard.Finishings|) 
+
+
+
+
+
+The following Finishings values are more specific; they indicate a corner or an 
+edge as if the document were a portrait document: 
+
+
+
+
+
+<CODE>STAPLE_TOP_LEFT</CODE>(|javax.print.attribute.standard.Finishings|) 
+<CODE>EDGE_STITCH_LEFT</CODE>(|javax.print.attribute.standard.Finishings|) 
+<CODE>STAPLE_DUAL_LEFT</CODE>(|javax.print.attribute.standard.Finishings|) 
+
+
+
+
+
+
+
+<CODE>STAPLE_BOTTOM_LEFT</CODE>(|javax.print.attribute.standard.Finishings|) 
+<CODE>EDGE_STITCH_TOP</CODE>(|javax.print.attribute.standard.Finishings|) 
+<CODE>STAPLE_DUAL_TOP</CODE>(|javax.print.attribute.standard.Finishings|) 
+
+
+
+
+
+
+
+<CODE>STAPLE_TOP_RIGHT</CODE>(|javax.print.attribute.standard.Finishings|) 
+<CODE>EDGE_STITCH_RIGHT</CODE>(|javax.print.attribute.standard.Finishings|) 
+<CODE>STAPLE_DUAL_RIGHT</CODE>(|javax.print.attribute.standard.Finishings|) 
+
+
+
+
+
+
+
+<CODE>STAPLE_BOTTOM_RIGHT</CODE>(|javax.print.attribute.standard.Finishings|) 
+<CODE>EDGE_STITCH_BOTTOM</CODE>(|javax.print.attribute.standard.Finishings|) 
+<CODE>STAPLE_DUAL_BOTTOM</CODE>(|javax.print.attribute.standard.Finishings|) 
+
+
+
+
+
+The STAPLE_XXX values are specified with respect to the document as if the 
+document were a portrait document. If the document is actually a landscape or a 
+reverse-landscape document, the client supplies the appropriate transformed 
+value. For example, to position a staple in the upper left hand corner of a 
+landscape document when held for reading, the client supplies the 
+STAPLE_BOTTOM_LEFT value (since landscape is defined as a +90 degree rotation 
+from portrait, i.e., anti-clockwise). On the other hand, to position a staple 
+in the upper left hand corner of a reverse-landscape document when held for 
+reading, the client supplies the STAPLE_TOP_RIGHT value (since 
+reverse-landscape is defined as a -90 degree rotation from portrait, i.e., 
+clockwise). 
+
+The angle (vertical, horizontal, angled) of each staple with respect to the 
+document depends on the implementation which may in turn depend on the value of 
+the attribute. 
+
+The effect of a Finishings attribute on a multidoc print job (a job with 
+multiple documents) depends on whether all the docs have the same binding 
+specified or whether different docs have different bindings specified, and on 
+the (perhaps defaulted) value of the 
+MultipleDocumentHandling(|javax.print.attribute.standard.MultipleDocumentHandling|)
+attribute. 
+
+If all the docs have the same binding specified, then any value of 
+MultipleDocumentHandling(|javax.print.attribute.standard.MultipleDocumentHandling|)
+makes sense, and the printer's processing depends on the 
+MultipleDocumentHandling(|javax.print.attribute.standard.MultipleDocumentHandling|)
+value: 
+
+SINGLE_DOCUMENT -- All the input docs will be bound together as one output 
+document with the specified binding. 
+
+SINGLE_DOCUMENT_NEW_SHEET -- All the input docs will be bound together as one 
+output document with the specified binding, and the first impression of each 
+input doc will always start on a new media sheet. 
+
+SEPARATE_DOCUMENTS_UNCOLLATED_COPIES -- Each input doc will be bound separately 
+with the specified binding. 
+
+SEPARATE_DOCUMENTS_COLLATED_COPIES -- Each input doc will be bound separately 
+with the specified binding. 
+
+
+
+If different docs have different bindings specified, then only two values of 
+MultipleDocumentHandling(|javax.print.attribute.standard.MultipleDocumentHandling|)
+make sense, and the printer reports an error when the job is submitted if any 
+other value is specified: 
+
+SEPARATE_DOCUMENTS_UNCOLLATED_COPIES -- Each input doc will be bound separately 
+with its own specified binding. 
+
+SEPARATE_DOCUMENTS_COLLATED_COPIES -- Each input doc will be bound separately 
+with its own specified binding. 
+
+
+
+IPP Compatibility: Class Finishings encapsulates some of the IPP enum values 
+that can be included in an IPP "finishings" attribute, which is a set of enums. 
+The category name returned by getName() is the IPP attribute name. The 
+enumeration's integer value is the IPP enum value. The toString() method 
+returns the IPP string representation of the attribute value. In IPP Finishings 
+is a multi-value attribute, this API currently allows only one binding to be 
+specified. 
+
+
+*javax.print.attribute.standard.Finishings_javax.print.attribute.standard.Finishings.BIND*
+
+Class Finishings is a printing attribute class, an enumeration, that identifies 
+whether the printer applies a finishing operation of some kind of binding to 
+each copy of each printed document in the job. For multidoc print jobs (jobs 
+with multiple documents), the 
+MultipleDocumentHandling(|javax.print.attribute.standard.MultipleDocumentHandling|)
+attribute determines what constitutes a "copy" for purposes of finishing. 
+
+Standard Finishings values are: 
+
+
+
+
+
+<CODE>NONE</CODE>(|javax.print.attribute.standard.Finishings|) 
+<CODE>STAPLE</CODE>(|javax.print.attribute.standard.Finishings|) 
+<CODE>EDGE_STITCH</CODE>(|javax.print.attribute.standard.Finishings|) 
+
+
+
+
+
+<CODE>BIND</CODE>(|javax.print.attribute.standard.Finishings|) 
+<CODE>SADDLE_STITCH</CODE>(|javax.print.attribute.standard.Finishings|) 
+<CODE>COVER</CODE>(|javax.print.attribute.standard.Finishings|) 
+
+
+
+
+
+The following Finishings values are more specific; they indicate a corner or an 
+edge as if the document were a portrait document: 
+
+
+
+
+
+<CODE>STAPLE_TOP_LEFT</CODE>(|javax.print.attribute.standard.Finishings|) 
+<CODE>EDGE_STITCH_LEFT</CODE>(|javax.print.attribute.standard.Finishings|) 
+<CODE>STAPLE_DUAL_LEFT</CODE>(|javax.print.attribute.standard.Finishings|) 
+
+
+
+
+
+
+
+<CODE>STAPLE_BOTTOM_LEFT</CODE>(|javax.print.attribute.standard.Finishings|) 
+<CODE>EDGE_STITCH_TOP</CODE>(|javax.print.attribute.standard.Finishings|) 
+<CODE>STAPLE_DUAL_TOP</CODE>(|javax.print.attribute.standard.Finishings|) 
+
+
+
+
+
+
+
+<CODE>STAPLE_TOP_RIGHT</CODE>(|javax.print.attribute.standard.Finishings|) 
+<CODE>EDGE_STITCH_RIGHT</CODE>(|javax.print.attribute.standard.Finishings|) 
+<CODE>STAPLE_DUAL_RIGHT</CODE>(|javax.print.attribute.standard.Finishings|) 
+
+
+
+
+
+
+
+<CODE>STAPLE_BOTTOM_RIGHT</CODE>(|javax.print.attribute.standard.Finishings|) 
+<CODE>EDGE_STITCH_BOTTOM</CODE>(|javax.print.attribute.standard.Finishings|) 
+<CODE>STAPLE_DUAL_BOTTOM</CODE>(|javax.print.attribute.standard.Finishings|) 
+
+
+
+
+
+The STAPLE_XXX values are specified with respect to the document as if the 
+document were a portrait document. If the document is actually a landscape or a 
+reverse-landscape document, the client supplies the appropriate transformed 
+value. For example, to position a staple in the upper left hand corner of a 
+landscape document when held for reading, the client supplies the 
+STAPLE_BOTTOM_LEFT value (since landscape is defined as a +90 degree rotation 
+from portrait, i.e., anti-clockwise). On the other hand, to position a staple 
+in the upper left hand corner of a reverse-landscape document when held for 
+reading, the client supplies the STAPLE_TOP_RIGHT value (since 
+reverse-landscape is defined as a -90 degree rotation from portrait, i.e., 
+clockwise). 
+
+The angle (vertical, horizontal, angled) of each staple with respect to the 
+document depends on the implementation which may in turn depend on the value of 
+the attribute. 
+
+The effect of a Finishings attribute on a multidoc print job (a job with 
+multiple documents) depends on whether all the docs have the same binding 
+specified or whether different docs have different bindings specified, and on 
+the (perhaps defaulted) value of the 
+MultipleDocumentHandling(|javax.print.attribute.standard.MultipleDocumentHandling|)
+attribute. 
+
+If all the docs have the same binding specified, then any value of 
+MultipleDocumentHandling(|javax.print.attribute.standard.MultipleDocumentHandling|)
+makes sense, and the printer's processing depends on the 
+MultipleDocumentHandling(|javax.print.attribute.standard.MultipleDocumentHandling|)
+value: 
+
+SINGLE_DOCUMENT -- All the input docs will be bound together as one output 
+document with the specified binding. 
+
+SINGLE_DOCUMENT_NEW_SHEET -- All the input docs will be bound together as one 
+output document with the specified binding, and the first impression of each 
+input doc will always start on a new media sheet. 
+
+SEPARATE_DOCUMENTS_UNCOLLATED_COPIES -- Each input doc will be bound separately 
+with the specified binding. 
+
+SEPARATE_DOCUMENTS_COLLATED_COPIES -- Each input doc will be bound separately 
+with the specified binding. 
+
+
+
+If different docs have different bindings specified, then only two values of 
+MultipleDocumentHandling(|javax.print.attribute.standard.MultipleDocumentHandling|)
+make sense, and the printer reports an error when the job is submitted if any 
+other value is specified: 
+
+SEPARATE_DOCUMENTS_UNCOLLATED_COPIES -- Each input doc will be bound separately 
+with its own specified binding. 
+
+SEPARATE_DOCUMENTS_COLLATED_COPIES -- Each input doc will be bound separately 
+with its own specified binding. 
+
+
+
+IPP Compatibility: Class Finishings encapsulates some of the IPP enum values 
+that can be included in an IPP "finishings" attribute, which is a set of enums. 
+The category name returned by getName() is the IPP attribute name. The 
+enumeration's integer value is the IPP enum value. The toString() method 
+returns the IPP string representation of the attribute value. In IPP Finishings 
+is a multi-value attribute, this API currently allows only one binding to be 
+specified. 
+
+
+*javax.print.attribute.standard.Finishings_javax.print.attribute.standard.Finishings.COVER*
+
+Class Finishings is a printing attribute class, an enumeration, that identifies 
+whether the printer applies a finishing operation of some kind of binding to 
+each copy of each printed document in the job. For multidoc print jobs (jobs 
+with multiple documents), the 
+MultipleDocumentHandling(|javax.print.attribute.standard.MultipleDocumentHandling|)
+attribute determines what constitutes a "copy" for purposes of finishing. 
+
+Standard Finishings values are: 
+
+
+
+
+
+<CODE>NONE</CODE>(|javax.print.attribute.standard.Finishings|) 
+<CODE>STAPLE</CODE>(|javax.print.attribute.standard.Finishings|) 
+<CODE>EDGE_STITCH</CODE>(|javax.print.attribute.standard.Finishings|) 
+
+
+
+
+
+<CODE>BIND</CODE>(|javax.print.attribute.standard.Finishings|) 
+<CODE>SADDLE_STITCH</CODE>(|javax.print.attribute.standard.Finishings|) 
+<CODE>COVER</CODE>(|javax.print.attribute.standard.Finishings|) 
+
+
+
+
+
+The following Finishings values are more specific; they indicate a corner or an 
+edge as if the document were a portrait document: 
+
+
+
+
+
+<CODE>STAPLE_TOP_LEFT</CODE>(|javax.print.attribute.standard.Finishings|) 
+<CODE>EDGE_STITCH_LEFT</CODE>(|javax.print.attribute.standard.Finishings|) 
+<CODE>STAPLE_DUAL_LEFT</CODE>(|javax.print.attribute.standard.Finishings|) 
+
+
+
+
+
+
+
+<CODE>STAPLE_BOTTOM_LEFT</CODE>(|javax.print.attribute.standard.Finishings|) 
+<CODE>EDGE_STITCH_TOP</CODE>(|javax.print.attribute.standard.Finishings|) 
+<CODE>STAPLE_DUAL_TOP</CODE>(|javax.print.attribute.standard.Finishings|) 
+
+
+
+
+
+
+
+<CODE>STAPLE_TOP_RIGHT</CODE>(|javax.print.attribute.standard.Finishings|) 
+<CODE>EDGE_STITCH_RIGHT</CODE>(|javax.print.attribute.standard.Finishings|) 
+<CODE>STAPLE_DUAL_RIGHT</CODE>(|javax.print.attribute.standard.Finishings|) 
+
+
+
+
+
+
+
+<CODE>STAPLE_BOTTOM_RIGHT</CODE>(|javax.print.attribute.standard.Finishings|) 
+<CODE>EDGE_STITCH_BOTTOM</CODE>(|javax.print.attribute.standard.Finishings|) 
+<CODE>STAPLE_DUAL_BOTTOM</CODE>(|javax.print.attribute.standard.Finishings|) 
+
+
+
+
+
+The STAPLE_XXX values are specified with respect to the document as if the 
+document were a portrait document. If the document is actually a landscape or a 
+reverse-landscape document, the client supplies the appropriate transformed 
+value. For example, to position a staple in the upper left hand corner of a 
+landscape document when held for reading, the client supplies the 
+STAPLE_BOTTOM_LEFT value (since landscape is defined as a +90 degree rotation 
+from portrait, i.e., anti-clockwise). On the other hand, to position a staple 
+in the upper left hand corner of a reverse-landscape document when held for 
+reading, the client supplies the STAPLE_TOP_RIGHT value (since 
+reverse-landscape is defined as a -90 degree rotation from portrait, i.e., 
+clockwise). 
+
+The angle (vertical, horizontal, angled) of each staple with respect to the 
+document depends on the implementation which may in turn depend on the value of 
+the attribute. 
+
+The effect of a Finishings attribute on a multidoc print job (a job with 
+multiple documents) depends on whether all the docs have the same binding 
+specified or whether different docs have different bindings specified, and on 
+the (perhaps defaulted) value of the 
+MultipleDocumentHandling(|javax.print.attribute.standard.MultipleDocumentHandling|)
+attribute. 
+
+If all the docs have the same binding specified, then any value of 
+MultipleDocumentHandling(|javax.print.attribute.standard.MultipleDocumentHandling|)
+makes sense, and the printer's processing depends on the 
+MultipleDocumentHandling(|javax.print.attribute.standard.MultipleDocumentHandling|)
+value: 
+
+SINGLE_DOCUMENT -- All the input docs will be bound together as one output 
+document with the specified binding. 
+
+SINGLE_DOCUMENT_NEW_SHEET -- All the input docs will be bound together as one 
+output document with the specified binding, and the first impression of each 
+input doc will always start on a new media sheet. 
+
+SEPARATE_DOCUMENTS_UNCOLLATED_COPIES -- Each input doc will be bound separately 
+with the specified binding. 
+
+SEPARATE_DOCUMENTS_COLLATED_COPIES -- Each input doc will be bound separately 
+with the specified binding. 
+
+
+
+If different docs have different bindings specified, then only two values of 
+MultipleDocumentHandling(|javax.print.attribute.standard.MultipleDocumentHandling|)
+make sense, and the printer reports an error when the job is submitted if any 
+other value is specified: 
+
+SEPARATE_DOCUMENTS_UNCOLLATED_COPIES -- Each input doc will be bound separately 
+with its own specified binding. 
+
+SEPARATE_DOCUMENTS_COLLATED_COPIES -- Each input doc will be bound separately 
+with its own specified binding. 
+
+
+
+IPP Compatibility: Class Finishings encapsulates some of the IPP enum values 
+that can be included in an IPP "finishings" attribute, which is a set of enums. 
+The category name returned by getName() is the IPP attribute name. The 
+enumeration's integer value is the IPP enum value. The toString() method 
+returns the IPP string representation of the attribute value. In IPP Finishings 
+is a multi-value attribute, this API currently allows only one binding to be 
+specified. 
+
+
+*javax.print.attribute.standard.Finishings_javax.print.attribute.standard.Finishings.EDGE_STITCH*
+
+Class Finishings is a printing attribute class, an enumeration, that identifies 
+whether the printer applies a finishing operation of some kind of binding to 
+each copy of each printed document in the job. For multidoc print jobs (jobs 
+with multiple documents), the 
+MultipleDocumentHandling(|javax.print.attribute.standard.MultipleDocumentHandling|)
+attribute determines what constitutes a "copy" for purposes of finishing. 
+
+Standard Finishings values are: 
+
+
+
+
+
+<CODE>NONE</CODE>(|javax.print.attribute.standard.Finishings|) 
+<CODE>STAPLE</CODE>(|javax.print.attribute.standard.Finishings|) 
+<CODE>EDGE_STITCH</CODE>(|javax.print.attribute.standard.Finishings|) 
+
+
+
+
+
+<CODE>BIND</CODE>(|javax.print.attribute.standard.Finishings|) 
+<CODE>SADDLE_STITCH</CODE>(|javax.print.attribute.standard.Finishings|) 
+<CODE>COVER</CODE>(|javax.print.attribute.standard.Finishings|) 
+
+
+
+
+
+The following Finishings values are more specific; they indicate a corner or an 
+edge as if the document were a portrait document: 
+
+
+
+
+
+<CODE>STAPLE_TOP_LEFT</CODE>(|javax.print.attribute.standard.Finishings|) 
+<CODE>EDGE_STITCH_LEFT</CODE>(|javax.print.attribute.standard.Finishings|) 
+<CODE>STAPLE_DUAL_LEFT</CODE>(|javax.print.attribute.standard.Finishings|) 
+
+
+
+
+
+
+
+<CODE>STAPLE_BOTTOM_LEFT</CODE>(|javax.print.attribute.standard.Finishings|) 
+<CODE>EDGE_STITCH_TOP</CODE>(|javax.print.attribute.standard.Finishings|) 
+<CODE>STAPLE_DUAL_TOP</CODE>(|javax.print.attribute.standard.Finishings|) 
+
+
+
+
+
+
+
+<CODE>STAPLE_TOP_RIGHT</CODE>(|javax.print.attribute.standard.Finishings|) 
+<CODE>EDGE_STITCH_RIGHT</CODE>(|javax.print.attribute.standard.Finishings|) 
+<CODE>STAPLE_DUAL_RIGHT</CODE>(|javax.print.attribute.standard.Finishings|) 
+
+
+
+
+
+
+
+<CODE>STAPLE_BOTTOM_RIGHT</CODE>(|javax.print.attribute.standard.Finishings|) 
+<CODE>EDGE_STITCH_BOTTOM</CODE>(|javax.print.attribute.standard.Finishings|) 
+<CODE>STAPLE_DUAL_BOTTOM</CODE>(|javax.print.attribute.standard.Finishings|) 
+
+
+
+
+
+The STAPLE_XXX values are specified with respect to the document as if the 
+document were a portrait document. If the document is actually a landscape or a 
+reverse-landscape document, the client supplies the appropriate transformed 
+value. For example, to position a staple in the upper left hand corner of a 
+landscape document when held for reading, the client supplies the 
+STAPLE_BOTTOM_LEFT value (since landscape is defined as a +90 degree rotation 
+from portrait, i.e., anti-clockwise). On the other hand, to position a staple 
+in the upper left hand corner of a reverse-landscape document when held for 
+reading, the client supplies the STAPLE_TOP_RIGHT value (since 
+reverse-landscape is defined as a -90 degree rotation from portrait, i.e., 
+clockwise). 
+
+The angle (vertical, horizontal, angled) of each staple with respect to the 
+document depends on the implementation which may in turn depend on the value of 
+the attribute. 
+
+The effect of a Finishings attribute on a multidoc print job (a job with 
+multiple documents) depends on whether all the docs have the same binding 
+specified or whether different docs have different bindings specified, and on 
+the (perhaps defaulted) value of the 
+MultipleDocumentHandling(|javax.print.attribute.standard.MultipleDocumentHandling|)
+attribute. 
+
+If all the docs have the same binding specified, then any value of 
+MultipleDocumentHandling(|javax.print.attribute.standard.MultipleDocumentHandling|)
+makes sense, and the printer's processing depends on the 
+MultipleDocumentHandling(|javax.print.attribute.standard.MultipleDocumentHandling|)
+value: 
+
+SINGLE_DOCUMENT -- All the input docs will be bound together as one output 
+document with the specified binding. 
+
+SINGLE_DOCUMENT_NEW_SHEET -- All the input docs will be bound together as one 
+output document with the specified binding, and the first impression of each 
+input doc will always start on a new media sheet. 
+
+SEPARATE_DOCUMENTS_UNCOLLATED_COPIES -- Each input doc will be bound separately 
+with the specified binding. 
+
+SEPARATE_DOCUMENTS_COLLATED_COPIES -- Each input doc will be bound separately 
+with the specified binding. 
+
+
+
+If different docs have different bindings specified, then only two values of 
+MultipleDocumentHandling(|javax.print.attribute.standard.MultipleDocumentHandling|)
+make sense, and the printer reports an error when the job is submitted if any 
+other value is specified: 
+
+SEPARATE_DOCUMENTS_UNCOLLATED_COPIES -- Each input doc will be bound separately 
+with its own specified binding. 
+
+SEPARATE_DOCUMENTS_COLLATED_COPIES -- Each input doc will be bound separately 
+with its own specified binding. 
+
+
+
+IPP Compatibility: Class Finishings encapsulates some of the IPP enum values 
+that can be included in an IPP "finishings" attribute, which is a set of enums. 
+The category name returned by getName() is the IPP attribute name. The 
+enumeration's integer value is the IPP enum value. The toString() method 
+returns the IPP string representation of the attribute value. In IPP Finishings 
+is a multi-value attribute, this API currently allows only one binding to be 
+specified. 
+
+
+*javax.print.attribute.standard.Finishings_javax.print.attribute.standard.Finishings.EDGE_STITCH_BOTTOM*
+
+Class Finishings is a printing attribute class, an enumeration, that identifies 
+whether the printer applies a finishing operation of some kind of binding to 
+each copy of each printed document in the job. For multidoc print jobs (jobs 
+with multiple documents), the 
+MultipleDocumentHandling(|javax.print.attribute.standard.MultipleDocumentHandling|)
+attribute determines what constitutes a "copy" for purposes of finishing. 
+
+Standard Finishings values are: 
+
+
+
+
+
+<CODE>NONE</CODE>(|javax.print.attribute.standard.Finishings|) 
+<CODE>STAPLE</CODE>(|javax.print.attribute.standard.Finishings|) 
+<CODE>EDGE_STITCH</CODE>(|javax.print.attribute.standard.Finishings|) 
+
+
+
+
+
+<CODE>BIND</CODE>(|javax.print.attribute.standard.Finishings|) 
+<CODE>SADDLE_STITCH</CODE>(|javax.print.attribute.standard.Finishings|) 
+<CODE>COVER</CODE>(|javax.print.attribute.standard.Finishings|) 
+
+
+
+
+
+The following Finishings values are more specific; they indicate a corner or an 
+edge as if the document were a portrait document: 
+
+
+
+
+
+<CODE>STAPLE_TOP_LEFT</CODE>(|javax.print.attribute.standard.Finishings|) 
+<CODE>EDGE_STITCH_LEFT</CODE>(|javax.print.attribute.standard.Finishings|) 
+<CODE>STAPLE_DUAL_LEFT</CODE>(|javax.print.attribute.standard.Finishings|) 
+
+
+
+
+
+
+
+<CODE>STAPLE_BOTTOM_LEFT</CODE>(|javax.print.attribute.standard.Finishings|) 
+<CODE>EDGE_STITCH_TOP</CODE>(|javax.print.attribute.standard.Finishings|) 
+<CODE>STAPLE_DUAL_TOP</CODE>(|javax.print.attribute.standard.Finishings|) 
+
+
+
+
+
+
+
+<CODE>STAPLE_TOP_RIGHT</CODE>(|javax.print.attribute.standard.Finishings|) 
+<CODE>EDGE_STITCH_RIGHT</CODE>(|javax.print.attribute.standard.Finishings|) 
+<CODE>STAPLE_DUAL_RIGHT</CODE>(|javax.print.attribute.standard.Finishings|) 
+
+
+
+
+
+
+
+<CODE>STAPLE_BOTTOM_RIGHT</CODE>(|javax.print.attribute.standard.Finishings|) 
+<CODE>EDGE_STITCH_BOTTOM</CODE>(|javax.print.attribute.standard.Finishings|) 
+<CODE>STAPLE_DUAL_BOTTOM</CODE>(|javax.print.attribute.standard.Finishings|) 
+
+
+
+
+
+The STAPLE_XXX values are specified with respect to the document as if the 
+document were a portrait document. If the document is actually a landscape or a 
+reverse-landscape document, the client supplies the appropriate transformed 
+value. For example, to position a staple in the upper left hand corner of a 
+landscape document when held for reading, the client supplies the 
+STAPLE_BOTTOM_LEFT value (since landscape is defined as a +90 degree rotation 
+from portrait, i.e., anti-clockwise). On the other hand, to position a staple 
+in the upper left hand corner of a reverse-landscape document when held for 
+reading, the client supplies the STAPLE_TOP_RIGHT value (since 
+reverse-landscape is defined as a -90 degree rotation from portrait, i.e., 
+clockwise). 
+
+The angle (vertical, horizontal, angled) of each staple with respect to the 
+document depends on the implementation which may in turn depend on the value of 
+the attribute. 
+
+The effect of a Finishings attribute on a multidoc print job (a job with 
+multiple documents) depends on whether all the docs have the same binding 
+specified or whether different docs have different bindings specified, and on 
+the (perhaps defaulted) value of the 
+MultipleDocumentHandling(|javax.print.attribute.standard.MultipleDocumentHandling|)
+attribute. 
+
+If all the docs have the same binding specified, then any value of 
+MultipleDocumentHandling(|javax.print.attribute.standard.MultipleDocumentHandling|)
+makes sense, and the printer's processing depends on the 
+MultipleDocumentHandling(|javax.print.attribute.standard.MultipleDocumentHandling|)
+value: 
+
+SINGLE_DOCUMENT -- All the input docs will be bound together as one output 
+document with the specified binding. 
+
+SINGLE_DOCUMENT_NEW_SHEET -- All the input docs will be bound together as one 
+output document with the specified binding, and the first impression of each 
+input doc will always start on a new media sheet. 
+
+SEPARATE_DOCUMENTS_UNCOLLATED_COPIES -- Each input doc will be bound separately 
+with the specified binding. 
+
+SEPARATE_DOCUMENTS_COLLATED_COPIES -- Each input doc will be bound separately 
+with the specified binding. 
+
+
+
+If different docs have different bindings specified, then only two values of 
+MultipleDocumentHandling(|javax.print.attribute.standard.MultipleDocumentHandling|)
+make sense, and the printer reports an error when the job is submitted if any 
+other value is specified: 
+
+SEPARATE_DOCUMENTS_UNCOLLATED_COPIES -- Each input doc will be bound separately 
+with its own specified binding. 
+
+SEPARATE_DOCUMENTS_COLLATED_COPIES -- Each input doc will be bound separately 
+with its own specified binding. 
+
+
+
+IPP Compatibility: Class Finishings encapsulates some of the IPP enum values 
+that can be included in an IPP "finishings" attribute, which is a set of enums. 
+The category name returned by getName() is the IPP attribute name. The 
+enumeration's integer value is the IPP enum value. The toString() method 
+returns the IPP string representation of the attribute value. In IPP Finishings 
+is a multi-value attribute, this API currently allows only one binding to be 
+specified. 
+
+
+*javax.print.attribute.standard.Finishings_javax.print.attribute.standard.Finishings.EDGE_STITCH_LEFT*
+
+Class Finishings is a printing attribute class, an enumeration, that identifies 
+whether the printer applies a finishing operation of some kind of binding to 
+each copy of each printed document in the job. For multidoc print jobs (jobs 
+with multiple documents), the 
+MultipleDocumentHandling(|javax.print.attribute.standard.MultipleDocumentHandling|)
+attribute determines what constitutes a "copy" for purposes of finishing. 
+
+Standard Finishings values are: 
+
+
+
+
+
+<CODE>NONE</CODE>(|javax.print.attribute.standard.Finishings|) 
+<CODE>STAPLE</CODE>(|javax.print.attribute.standard.Finishings|) 
+<CODE>EDGE_STITCH</CODE>(|javax.print.attribute.standard.Finishings|) 
+
+
+
+
+
+<CODE>BIND</CODE>(|javax.print.attribute.standard.Finishings|) 
+<CODE>SADDLE_STITCH</CODE>(|javax.print.attribute.standard.Finishings|) 
+<CODE>COVER</CODE>(|javax.print.attribute.standard.Finishings|) 
+
+
+
+
+
+The following Finishings values are more specific; they indicate a corner or an 
+edge as if the document were a portrait document: 
+
+
+
+
+
+<CODE>STAPLE_TOP_LEFT</CODE>(|javax.print.attribute.standard.Finishings|) 
+<CODE>EDGE_STITCH_LEFT</CODE>(|javax.print.attribute.standard.Finishings|) 
+<CODE>STAPLE_DUAL_LEFT</CODE>(|javax.print.attribute.standard.Finishings|) 
+
+
+
+
+
+
+
+<CODE>STAPLE_BOTTOM_LEFT</CODE>(|javax.print.attribute.standard.Finishings|) 
+<CODE>EDGE_STITCH_TOP</CODE>(|javax.print.attribute.standard.Finishings|) 
+<CODE>STAPLE_DUAL_TOP</CODE>(|javax.print.attribute.standard.Finishings|) 
+
+
+
+
+
+
+
+<CODE>STAPLE_TOP_RIGHT</CODE>(|javax.print.attribute.standard.Finishings|) 
+<CODE>EDGE_STITCH_RIGHT</CODE>(|javax.print.attribute.standard.Finishings|) 
+<CODE>STAPLE_DUAL_RIGHT</CODE>(|javax.print.attribute.standard.Finishings|) 
+
+
+
+
+
+
+
+<CODE>STAPLE_BOTTOM_RIGHT</CODE>(|javax.print.attribute.standard.Finishings|) 
+<CODE>EDGE_STITCH_BOTTOM</CODE>(|javax.print.attribute.standard.Finishings|) 
+<CODE>STAPLE_DUAL_BOTTOM</CODE>(|javax.print.attribute.standard.Finishings|) 
+
+
+
+
+
+The STAPLE_XXX values are specified with respect to the document as if the 
+document were a portrait document. If the document is actually a landscape or a 
+reverse-landscape document, the client supplies the appropriate transformed 
+value. For example, to position a staple in the upper left hand corner of a 
+landscape document when held for reading, the client supplies the 
+STAPLE_BOTTOM_LEFT value (since landscape is defined as a +90 degree rotation 
+from portrait, i.e., anti-clockwise). On the other hand, to position a staple 
+in the upper left hand corner of a reverse-landscape document when held for 
+reading, the client supplies the STAPLE_TOP_RIGHT value (since 
+reverse-landscape is defined as a -90 degree rotation from portrait, i.e., 
+clockwise). 
+
+The angle (vertical, horizontal, angled) of each staple with respect to the 
+document depends on the implementation which may in turn depend on the value of 
+the attribute. 
+
+The effect of a Finishings attribute on a multidoc print job (a job with 
+multiple documents) depends on whether all the docs have the same binding 
+specified or whether different docs have different bindings specified, and on 
+the (perhaps defaulted) value of the 
+MultipleDocumentHandling(|javax.print.attribute.standard.MultipleDocumentHandling|)
+attribute. 
+
+If all the docs have the same binding specified, then any value of 
+MultipleDocumentHandling(|javax.print.attribute.standard.MultipleDocumentHandling|)
+makes sense, and the printer's processing depends on the 
+MultipleDocumentHandling(|javax.print.attribute.standard.MultipleDocumentHandling|)
+value: 
+
+SINGLE_DOCUMENT -- All the input docs will be bound together as one output 
+document with the specified binding. 
+
+SINGLE_DOCUMENT_NEW_SHEET -- All the input docs will be bound together as one 
+output document with the specified binding, and the first impression of each 
+input doc will always start on a new media sheet. 
+
+SEPARATE_DOCUMENTS_UNCOLLATED_COPIES -- Each input doc will be bound separately 
+with the specified binding. 
+
+SEPARATE_DOCUMENTS_COLLATED_COPIES -- Each input doc will be bound separately 
+with the specified binding. 
+
+
+
+If different docs have different bindings specified, then only two values of 
+MultipleDocumentHandling(|javax.print.attribute.standard.MultipleDocumentHandling|)
+make sense, and the printer reports an error when the job is submitted if any 
+other value is specified: 
+
+SEPARATE_DOCUMENTS_UNCOLLATED_COPIES -- Each input doc will be bound separately 
+with its own specified binding. 
+
+SEPARATE_DOCUMENTS_COLLATED_COPIES -- Each input doc will be bound separately 
+with its own specified binding. 
+
+
+
+IPP Compatibility: Class Finishings encapsulates some of the IPP enum values 
+that can be included in an IPP "finishings" attribute, which is a set of enums. 
+The category name returned by getName() is the IPP attribute name. The 
+enumeration's integer value is the IPP enum value. The toString() method 
+returns the IPP string representation of the attribute value. In IPP Finishings 
+is a multi-value attribute, this API currently allows only one binding to be 
+specified. 
+
+
+*javax.print.attribute.standard.Finishings_javax.print.attribute.standard.Finishings.EDGE_STITCH_RIGHT*
+
+Class Finishings is a printing attribute class, an enumeration, that identifies 
+whether the printer applies a finishing operation of some kind of binding to 
+each copy of each printed document in the job. For multidoc print jobs (jobs 
+with multiple documents), the 
+MultipleDocumentHandling(|javax.print.attribute.standard.MultipleDocumentHandling|)
+attribute determines what constitutes a "copy" for purposes of finishing. 
+
+Standard Finishings values are: 
+
+
+
+
+
+<CODE>NONE</CODE>(|javax.print.attribute.standard.Finishings|) 
+<CODE>STAPLE</CODE>(|javax.print.attribute.standard.Finishings|) 
+<CODE>EDGE_STITCH</CODE>(|javax.print.attribute.standard.Finishings|) 
+
+
+
+
+
+<CODE>BIND</CODE>(|javax.print.attribute.standard.Finishings|) 
+<CODE>SADDLE_STITCH</CODE>(|javax.print.attribute.standard.Finishings|) 
+<CODE>COVER</CODE>(|javax.print.attribute.standard.Finishings|) 
+
+
+
+
+
+The following Finishings values are more specific; they indicate a corner or an 
+edge as if the document were a portrait document: 
+
+
+
+
+
+<CODE>STAPLE_TOP_LEFT</CODE>(|javax.print.attribute.standard.Finishings|) 
+<CODE>EDGE_STITCH_LEFT</CODE>(|javax.print.attribute.standard.Finishings|) 
+<CODE>STAPLE_DUAL_LEFT</CODE>(|javax.print.attribute.standard.Finishings|) 
+
+
+
+
+
+
+
+<CODE>STAPLE_BOTTOM_LEFT</CODE>(|javax.print.attribute.standard.Finishings|) 
+<CODE>EDGE_STITCH_TOP</CODE>(|javax.print.attribute.standard.Finishings|) 
+<CODE>STAPLE_DUAL_TOP</CODE>(|javax.print.attribute.standard.Finishings|) 
+
+
+
+
+
+
+
+<CODE>STAPLE_TOP_RIGHT</CODE>(|javax.print.attribute.standard.Finishings|) 
+<CODE>EDGE_STITCH_RIGHT</CODE>(|javax.print.attribute.standard.Finishings|) 
+<CODE>STAPLE_DUAL_RIGHT</CODE>(|javax.print.attribute.standard.Finishings|) 
+
+
+
+
+
+
+
+<CODE>STAPLE_BOTTOM_RIGHT</CODE>(|javax.print.attribute.standard.Finishings|) 
+<CODE>EDGE_STITCH_BOTTOM</CODE>(|javax.print.attribute.standard.Finishings|) 
+<CODE>STAPLE_DUAL_BOTTOM</CODE>(|javax.print.attribute.standard.Finishings|) 
+
+
+
+
+
+The STAPLE_XXX values are specified with respect to the document as if the 
+document were a portrait document. If the document is actually a landscape or a 
+reverse-landscape document, the client supplies the appropriate transformed 
+value. For example, to position a staple in the upper left hand corner of a 
+landscape document when held for reading, the client supplies the 
+STAPLE_BOTTOM_LEFT value (since landscape is defined as a +90 degree rotation 
+from portrait, i.e., anti-clockwise). On the other hand, to position a staple 
+in the upper left hand corner of a reverse-landscape document when held for 
+reading, the client supplies the STAPLE_TOP_RIGHT value (since 
+reverse-landscape is defined as a -90 degree rotation from portrait, i.e., 
+clockwise). 
+
+The angle (vertical, horizontal, angled) of each staple with respect to the 
+document depends on the implementation which may in turn depend on the value of 
+the attribute. 
+
+The effect of a Finishings attribute on a multidoc print job (a job with 
+multiple documents) depends on whether all the docs have the same binding 
+specified or whether different docs have different bindings specified, and on 
+the (perhaps defaulted) value of the 
+MultipleDocumentHandling(|javax.print.attribute.standard.MultipleDocumentHandling|)
+attribute. 
+
+If all the docs have the same binding specified, then any value of 
+MultipleDocumentHandling(|javax.print.attribute.standard.MultipleDocumentHandling|)
+makes sense, and the printer's processing depends on the 
+MultipleDocumentHandling(|javax.print.attribute.standard.MultipleDocumentHandling|)
+value: 
+
+SINGLE_DOCUMENT -- All the input docs will be bound together as one output 
+document with the specified binding. 
+
+SINGLE_DOCUMENT_NEW_SHEET -- All the input docs will be bound together as one 
+output document with the specified binding, and the first impression of each 
+input doc will always start on a new media sheet. 
+
+SEPARATE_DOCUMENTS_UNCOLLATED_COPIES -- Each input doc will be bound separately 
+with the specified binding. 
+
+SEPARATE_DOCUMENTS_COLLATED_COPIES -- Each input doc will be bound separately 
+with the specified binding. 
+
+
+
+If different docs have different bindings specified, then only two values of 
+MultipleDocumentHandling(|javax.print.attribute.standard.MultipleDocumentHandling|)
+make sense, and the printer reports an error when the job is submitted if any 
+other value is specified: 
+
+SEPARATE_DOCUMENTS_UNCOLLATED_COPIES -- Each input doc will be bound separately 
+with its own specified binding. 
+
+SEPARATE_DOCUMENTS_COLLATED_COPIES -- Each input doc will be bound separately 
+with its own specified binding. 
+
+
+
+IPP Compatibility: Class Finishings encapsulates some of the IPP enum values 
+that can be included in an IPP "finishings" attribute, which is a set of enums. 
+The category name returned by getName() is the IPP attribute name. The 
+enumeration's integer value is the IPP enum value. The toString() method 
+returns the IPP string representation of the attribute value. In IPP Finishings 
+is a multi-value attribute, this API currently allows only one binding to be 
+specified. 
+
+
+*javax.print.attribute.standard.Finishings_javax.print.attribute.standard.Finishings.EDGE_STITCH_TOP*
+
+Class Finishings is a printing attribute class, an enumeration, that identifies 
+whether the printer applies a finishing operation of some kind of binding to 
+each copy of each printed document in the job. For multidoc print jobs (jobs 
+with multiple documents), the 
+MultipleDocumentHandling(|javax.print.attribute.standard.MultipleDocumentHandling|)
+attribute determines what constitutes a "copy" for purposes of finishing. 
+
+Standard Finishings values are: 
+
+
+
+
+
+<CODE>NONE</CODE>(|javax.print.attribute.standard.Finishings|) 
+<CODE>STAPLE</CODE>(|javax.print.attribute.standard.Finishings|) 
+<CODE>EDGE_STITCH</CODE>(|javax.print.attribute.standard.Finishings|) 
+
+
+
+
+
+<CODE>BIND</CODE>(|javax.print.attribute.standard.Finishings|) 
+<CODE>SADDLE_STITCH</CODE>(|javax.print.attribute.standard.Finishings|) 
+<CODE>COVER</CODE>(|javax.print.attribute.standard.Finishings|) 
+
+
+
+
+
+The following Finishings values are more specific; they indicate a corner or an 
+edge as if the document were a portrait document: 
+
+
+
+
+
+<CODE>STAPLE_TOP_LEFT</CODE>(|javax.print.attribute.standard.Finishings|) 
+<CODE>EDGE_STITCH_LEFT</CODE>(|javax.print.attribute.standard.Finishings|) 
+<CODE>STAPLE_DUAL_LEFT</CODE>(|javax.print.attribute.standard.Finishings|) 
+
+
+
+
+
+
+
+<CODE>STAPLE_BOTTOM_LEFT</CODE>(|javax.print.attribute.standard.Finishings|) 
+<CODE>EDGE_STITCH_TOP</CODE>(|javax.print.attribute.standard.Finishings|) 
+<CODE>STAPLE_DUAL_TOP</CODE>(|javax.print.attribute.standard.Finishings|) 
+
+
+
+
+
+
+
+<CODE>STAPLE_TOP_RIGHT</CODE>(|javax.print.attribute.standard.Finishings|) 
+<CODE>EDGE_STITCH_RIGHT</CODE>(|javax.print.attribute.standard.Finishings|) 
+<CODE>STAPLE_DUAL_RIGHT</CODE>(|javax.print.attribute.standard.Finishings|) 
+
+
+
+
+
+
+
+<CODE>STAPLE_BOTTOM_RIGHT</CODE>(|javax.print.attribute.standard.Finishings|) 
+<CODE>EDGE_STITCH_BOTTOM</CODE>(|javax.print.attribute.standard.Finishings|) 
+<CODE>STAPLE_DUAL_BOTTOM</CODE>(|javax.print.attribute.standard.Finishings|) 
+
+
+
+
+
+The STAPLE_XXX values are specified with respect to the document as if the 
+document were a portrait document. If the document is actually a landscape or a 
+reverse-landscape document, the client supplies the appropriate transformed 
+value. For example, to position a staple in the upper left hand corner of a 
+landscape document when held for reading, the client supplies the 
+STAPLE_BOTTOM_LEFT value (since landscape is defined as a +90 degree rotation 
+from portrait, i.e., anti-clockwise). On the other hand, to position a staple 
+in the upper left hand corner of a reverse-landscape document when held for 
+reading, the client supplies the STAPLE_TOP_RIGHT value (since 
+reverse-landscape is defined as a -90 degree rotation from portrait, i.e., 
+clockwise). 
+
+The angle (vertical, horizontal, angled) of each staple with respect to the 
+document depends on the implementation which may in turn depend on the value of 
+the attribute. 
+
+The effect of a Finishings attribute on a multidoc print job (a job with 
+multiple documents) depends on whether all the docs have the same binding 
+specified or whether different docs have different bindings specified, and on 
+the (perhaps defaulted) value of the 
+MultipleDocumentHandling(|javax.print.attribute.standard.MultipleDocumentHandling|)
+attribute. 
+
+If all the docs have the same binding specified, then any value of 
+MultipleDocumentHandling(|javax.print.attribute.standard.MultipleDocumentHandling|)
+makes sense, and the printer's processing depends on the 
+MultipleDocumentHandling(|javax.print.attribute.standard.MultipleDocumentHandling|)
+value: 
+
+SINGLE_DOCUMENT -- All the input docs will be bound together as one output 
+document with the specified binding. 
+
+SINGLE_DOCUMENT_NEW_SHEET -- All the input docs will be bound together as one 
+output document with the specified binding, and the first impression of each 
+input doc will always start on a new media sheet. 
+
+SEPARATE_DOCUMENTS_UNCOLLATED_COPIES -- Each input doc will be bound separately 
+with the specified binding. 
+
+SEPARATE_DOCUMENTS_COLLATED_COPIES -- Each input doc will be bound separately 
+with the specified binding. 
+
+
+
+If different docs have different bindings specified, then only two values of 
+MultipleDocumentHandling(|javax.print.attribute.standard.MultipleDocumentHandling|)
+make sense, and the printer reports an error when the job is submitted if any 
+other value is specified: 
+
+SEPARATE_DOCUMENTS_UNCOLLATED_COPIES -- Each input doc will be bound separately 
+with its own specified binding. 
+
+SEPARATE_DOCUMENTS_COLLATED_COPIES -- Each input doc will be bound separately 
+with its own specified binding. 
+
+
+
+IPP Compatibility: Class Finishings encapsulates some of the IPP enum values 
+that can be included in an IPP "finishings" attribute, which is a set of enums. 
+The category name returned by getName() is the IPP attribute name. The 
+enumeration's integer value is the IPP enum value. The toString() method 
+returns the IPP string representation of the attribute value. In IPP Finishings 
+is a multi-value attribute, this API currently allows only one binding to be 
+specified. 
+
+
+*javax.print.attribute.standard.Finishings_javax.print.attribute.standard.Finishings.NONE*
+
+Class Finishings is a printing attribute class, an enumeration, that identifies 
+whether the printer applies a finishing operation of some kind of binding to 
+each copy of each printed document in the job. For multidoc print jobs (jobs 
+with multiple documents), the 
+MultipleDocumentHandling(|javax.print.attribute.standard.MultipleDocumentHandling|)
+attribute determines what constitutes a "copy" for purposes of finishing. 
+
+Standard Finishings values are: 
+
+
+
+
+
+<CODE>NONE</CODE>(|javax.print.attribute.standard.Finishings|) 
+<CODE>STAPLE</CODE>(|javax.print.attribute.standard.Finishings|) 
+<CODE>EDGE_STITCH</CODE>(|javax.print.attribute.standard.Finishings|) 
+
+
+
+
+
+<CODE>BIND</CODE>(|javax.print.attribute.standard.Finishings|) 
+<CODE>SADDLE_STITCH</CODE>(|javax.print.attribute.standard.Finishings|) 
+<CODE>COVER</CODE>(|javax.print.attribute.standard.Finishings|) 
+
+
+
+
+
+The following Finishings values are more specific; they indicate a corner or an 
+edge as if the document were a portrait document: 
+
+
+
+
+
+<CODE>STAPLE_TOP_LEFT</CODE>(|javax.print.attribute.standard.Finishings|) 
+<CODE>EDGE_STITCH_LEFT</CODE>(|javax.print.attribute.standard.Finishings|) 
+<CODE>STAPLE_DUAL_LEFT</CODE>(|javax.print.attribute.standard.Finishings|) 
+
+
+
+
+
+
+
+<CODE>STAPLE_BOTTOM_LEFT</CODE>(|javax.print.attribute.standard.Finishings|) 
+<CODE>EDGE_STITCH_TOP</CODE>(|javax.print.attribute.standard.Finishings|) 
+<CODE>STAPLE_DUAL_TOP</CODE>(|javax.print.attribute.standard.Finishings|) 
+
+
+
+
+
+
+
+<CODE>STAPLE_TOP_RIGHT</CODE>(|javax.print.attribute.standard.Finishings|) 
+<CODE>EDGE_STITCH_RIGHT</CODE>(|javax.print.attribute.standard.Finishings|) 
+<CODE>STAPLE_DUAL_RIGHT</CODE>(|javax.print.attribute.standard.Finishings|) 
+
+
+
+
+
+
+
+<CODE>STAPLE_BOTTOM_RIGHT</CODE>(|javax.print.attribute.standard.Finishings|) 
+<CODE>EDGE_STITCH_BOTTOM</CODE>(|javax.print.attribute.standard.Finishings|) 
+<CODE>STAPLE_DUAL_BOTTOM</CODE>(|javax.print.attribute.standard.Finishings|) 
+
+
+
+
+
+The STAPLE_XXX values are specified with respect to the document as if the 
+document were a portrait document. If the document is actually a landscape or a 
+reverse-landscape document, the client supplies the appropriate transformed 
+value. For example, to position a staple in the upper left hand corner of a 
+landscape document when held for reading, the client supplies the 
+STAPLE_BOTTOM_LEFT value (since landscape is defined as a +90 degree rotation 
+from portrait, i.e., anti-clockwise). On the other hand, to position a staple 
+in the upper left hand corner of a reverse-landscape document when held for 
+reading, the client supplies the STAPLE_TOP_RIGHT value (since 
+reverse-landscape is defined as a -90 degree rotation from portrait, i.e., 
+clockwise). 
+
+The angle (vertical, horizontal, angled) of each staple with respect to the 
+document depends on the implementation which may in turn depend on the value of 
+the attribute. 
+
+The effect of a Finishings attribute on a multidoc print job (a job with 
+multiple documents) depends on whether all the docs have the same binding 
+specified or whether different docs have different bindings specified, and on 
+the (perhaps defaulted) value of the 
+MultipleDocumentHandling(|javax.print.attribute.standard.MultipleDocumentHandling|)
+attribute. 
+
+If all the docs have the same binding specified, then any value of 
+MultipleDocumentHandling(|javax.print.attribute.standard.MultipleDocumentHandling|)
+makes sense, and the printer's processing depends on the 
+MultipleDocumentHandling(|javax.print.attribute.standard.MultipleDocumentHandling|)
+value: 
+
+SINGLE_DOCUMENT -- All the input docs will be bound together as one output 
+document with the specified binding. 
+
+SINGLE_DOCUMENT_NEW_SHEET -- All the input docs will be bound together as one 
+output document with the specified binding, and the first impression of each 
+input doc will always start on a new media sheet. 
+
+SEPARATE_DOCUMENTS_UNCOLLATED_COPIES -- Each input doc will be bound separately 
+with the specified binding. 
+
+SEPARATE_DOCUMENTS_COLLATED_COPIES -- Each input doc will be bound separately 
+with the specified binding. 
+
+
+
+If different docs have different bindings specified, then only two values of 
+MultipleDocumentHandling(|javax.print.attribute.standard.MultipleDocumentHandling|)
+make sense, and the printer reports an error when the job is submitted if any 
+other value is specified: 
+
+SEPARATE_DOCUMENTS_UNCOLLATED_COPIES -- Each input doc will be bound separately 
+with its own specified binding. 
+
+SEPARATE_DOCUMENTS_COLLATED_COPIES -- Each input doc will be bound separately 
+with its own specified binding. 
+
+
+
+IPP Compatibility: Class Finishings encapsulates some of the IPP enum values 
+that can be included in an IPP "finishings" attribute, which is a set of enums. 
+The category name returned by getName() is the IPP attribute name. The 
+enumeration's integer value is the IPP enum value. The toString() method 
+returns the IPP string representation of the attribute value. In IPP Finishings 
+is a multi-value attribute, this API currently allows only one binding to be 
+specified. 
+
+
+*javax.print.attribute.standard.Finishings_javax.print.attribute.standard.Finishings.SADDLE_STITCH*
+
+Class Finishings is a printing attribute class, an enumeration, that identifies 
+whether the printer applies a finishing operation of some kind of binding to 
+each copy of each printed document in the job. For multidoc print jobs (jobs 
+with multiple documents), the 
+MultipleDocumentHandling(|javax.print.attribute.standard.MultipleDocumentHandling|)
+attribute determines what constitutes a "copy" for purposes of finishing. 
+
+Standard Finishings values are: 
+
+
+
+
+
+<CODE>NONE</CODE>(|javax.print.attribute.standard.Finishings|) 
+<CODE>STAPLE</CODE>(|javax.print.attribute.standard.Finishings|) 
+<CODE>EDGE_STITCH</CODE>(|javax.print.attribute.standard.Finishings|) 
+
+
+
+
+
+<CODE>BIND</CODE>(|javax.print.attribute.standard.Finishings|) 
+<CODE>SADDLE_STITCH</CODE>(|javax.print.attribute.standard.Finishings|) 
+<CODE>COVER</CODE>(|javax.print.attribute.standard.Finishings|) 
+
+
+
+
+
+The following Finishings values are more specific; they indicate a corner or an 
+edge as if the document were a portrait document: 
+
+
+
+
+
+<CODE>STAPLE_TOP_LEFT</CODE>(|javax.print.attribute.standard.Finishings|) 
+<CODE>EDGE_STITCH_LEFT</CODE>(|javax.print.attribute.standard.Finishings|) 
+<CODE>STAPLE_DUAL_LEFT</CODE>(|javax.print.attribute.standard.Finishings|) 
+
+
+
+
+
+
+
+<CODE>STAPLE_BOTTOM_LEFT</CODE>(|javax.print.attribute.standard.Finishings|) 
+<CODE>EDGE_STITCH_TOP</CODE>(|javax.print.attribute.standard.Finishings|) 
+<CODE>STAPLE_DUAL_TOP</CODE>(|javax.print.attribute.standard.Finishings|) 
+
+
+
+
+
+
+
+<CODE>STAPLE_TOP_RIGHT</CODE>(|javax.print.attribute.standard.Finishings|) 
+<CODE>EDGE_STITCH_RIGHT</CODE>(|javax.print.attribute.standard.Finishings|) 
+<CODE>STAPLE_DUAL_RIGHT</CODE>(|javax.print.attribute.standard.Finishings|) 
+
+
+
+
+
+
+
+<CODE>STAPLE_BOTTOM_RIGHT</CODE>(|javax.print.attribute.standard.Finishings|) 
+<CODE>EDGE_STITCH_BOTTOM</CODE>(|javax.print.attribute.standard.Finishings|) 
+<CODE>STAPLE_DUAL_BOTTOM</CODE>(|javax.print.attribute.standard.Finishings|) 
+
+
+
+
+
+The STAPLE_XXX values are specified with respect to the document as if the 
+document were a portrait document. If the document is actually a landscape or a 
+reverse-landscape document, the client supplies the appropriate transformed 
+value. For example, to position a staple in the upper left hand corner of a 
+landscape document when held for reading, the client supplies the 
+STAPLE_BOTTOM_LEFT value (since landscape is defined as a +90 degree rotation 
+from portrait, i.e., anti-clockwise). On the other hand, to position a staple 
+in the upper left hand corner of a reverse-landscape document when held for 
+reading, the client supplies the STAPLE_TOP_RIGHT value (since 
+reverse-landscape is defined as a -90 degree rotation from portrait, i.e., 
+clockwise). 
+
+The angle (vertical, horizontal, angled) of each staple with respect to the 
+document depends on the implementation which may in turn depend on the value of 
+the attribute. 
+
+The effect of a Finishings attribute on a multidoc print job (a job with 
+multiple documents) depends on whether all the docs have the same binding 
+specified or whether different docs have different bindings specified, and on 
+the (perhaps defaulted) value of the 
+MultipleDocumentHandling(|javax.print.attribute.standard.MultipleDocumentHandling|)
+attribute. 
+
+If all the docs have the same binding specified, then any value of 
+MultipleDocumentHandling(|javax.print.attribute.standard.MultipleDocumentHandling|)
+makes sense, and the printer's processing depends on the 
+MultipleDocumentHandling(|javax.print.attribute.standard.MultipleDocumentHandling|)
+value: 
+
+SINGLE_DOCUMENT -- All the input docs will be bound together as one output 
+document with the specified binding. 
+
+SINGLE_DOCUMENT_NEW_SHEET -- All the input docs will be bound together as one 
+output document with the specified binding, and the first impression of each 
+input doc will always start on a new media sheet. 
+
+SEPARATE_DOCUMENTS_UNCOLLATED_COPIES -- Each input doc will be bound separately 
+with the specified binding. 
+
+SEPARATE_DOCUMENTS_COLLATED_COPIES -- Each input doc will be bound separately 
+with the specified binding. 
+
+
+
+If different docs have different bindings specified, then only two values of 
+MultipleDocumentHandling(|javax.print.attribute.standard.MultipleDocumentHandling|)
+make sense, and the printer reports an error when the job is submitted if any 
+other value is specified: 
+
+SEPARATE_DOCUMENTS_UNCOLLATED_COPIES -- Each input doc will be bound separately 
+with its own specified binding. 
+
+SEPARATE_DOCUMENTS_COLLATED_COPIES -- Each input doc will be bound separately 
+with its own specified binding. 
+
+
+
+IPP Compatibility: Class Finishings encapsulates some of the IPP enum values 
+that can be included in an IPP "finishings" attribute, which is a set of enums. 
+The category name returned by getName() is the IPP attribute name. The 
+enumeration's integer value is the IPP enum value. The toString() method 
+returns the IPP string representation of the attribute value. In IPP Finishings 
+is a multi-value attribute, this API currently allows only one binding to be 
+specified. 
+
+
+*javax.print.attribute.standard.Finishings_javax.print.attribute.standard.Finishings.STAPLE*
+
+Class Finishings is a printing attribute class, an enumeration, that identifies 
+whether the printer applies a finishing operation of some kind of binding to 
+each copy of each printed document in the job. For multidoc print jobs (jobs 
+with multiple documents), the 
+MultipleDocumentHandling(|javax.print.attribute.standard.MultipleDocumentHandling|)
+attribute determines what constitutes a "copy" for purposes of finishing. 
+
+Standard Finishings values are: 
+
+
+
+
+
+<CODE>NONE</CODE>(|javax.print.attribute.standard.Finishings|) 
+<CODE>STAPLE</CODE>(|javax.print.attribute.standard.Finishings|) 
+<CODE>EDGE_STITCH</CODE>(|javax.print.attribute.standard.Finishings|) 
+
+
+
+
+
+<CODE>BIND</CODE>(|javax.print.attribute.standard.Finishings|) 
+<CODE>SADDLE_STITCH</CODE>(|javax.print.attribute.standard.Finishings|) 
+<CODE>COVER</CODE>(|javax.print.attribute.standard.Finishings|) 
+
+
+
+
+
+The following Finishings values are more specific; they indicate a corner or an 
+edge as if the document were a portrait document: 
+
+
+
+
+
+<CODE>STAPLE_TOP_LEFT</CODE>(|javax.print.attribute.standard.Finishings|) 
+<CODE>EDGE_STITCH_LEFT</CODE>(|javax.print.attribute.standard.Finishings|) 
+<CODE>STAPLE_DUAL_LEFT</CODE>(|javax.print.attribute.standard.Finishings|) 
+
+
+
+
+
+
+
+<CODE>STAPLE_BOTTOM_LEFT</CODE>(|javax.print.attribute.standard.Finishings|) 
+<CODE>EDGE_STITCH_TOP</CODE>(|javax.print.attribute.standard.Finishings|) 
+<CODE>STAPLE_DUAL_TOP</CODE>(|javax.print.attribute.standard.Finishings|) 
+
+
+
+
+
+
+
+<CODE>STAPLE_TOP_RIGHT</CODE>(|javax.print.attribute.standard.Finishings|) 
+<CODE>EDGE_STITCH_RIGHT</CODE>(|javax.print.attribute.standard.Finishings|) 
+<CODE>STAPLE_DUAL_RIGHT</CODE>(|javax.print.attribute.standard.Finishings|) 
+
+
+
+
+
+
+
+<CODE>STAPLE_BOTTOM_RIGHT</CODE>(|javax.print.attribute.standard.Finishings|) 
+<CODE>EDGE_STITCH_BOTTOM</CODE>(|javax.print.attribute.standard.Finishings|) 
+<CODE>STAPLE_DUAL_BOTTOM</CODE>(|javax.print.attribute.standard.Finishings|) 
+
+
+
+
+
+The STAPLE_XXX values are specified with respect to the document as if the 
+document were a portrait document. If the document is actually a landscape or a 
+reverse-landscape document, the client supplies the appropriate transformed 
+value. For example, to position a staple in the upper left hand corner of a 
+landscape document when held for reading, the client supplies the 
+STAPLE_BOTTOM_LEFT value (since landscape is defined as a +90 degree rotation 
+from portrait, i.e., anti-clockwise). On the other hand, to position a staple 
+in the upper left hand corner of a reverse-landscape document when held for 
+reading, the client supplies the STAPLE_TOP_RIGHT value (since 
+reverse-landscape is defined as a -90 degree rotation from portrait, i.e., 
+clockwise). 
+
+The angle (vertical, horizontal, angled) of each staple with respect to the 
+document depends on the implementation which may in turn depend on the value of 
+the attribute. 
+
+The effect of a Finishings attribute on a multidoc print job (a job with 
+multiple documents) depends on whether all the docs have the same binding 
+specified or whether different docs have different bindings specified, and on 
+the (perhaps defaulted) value of the 
+MultipleDocumentHandling(|javax.print.attribute.standard.MultipleDocumentHandling|)
+attribute. 
+
+If all the docs have the same binding specified, then any value of 
+MultipleDocumentHandling(|javax.print.attribute.standard.MultipleDocumentHandling|)
+makes sense, and the printer's processing depends on the 
+MultipleDocumentHandling(|javax.print.attribute.standard.MultipleDocumentHandling|)
+value: 
+
+SINGLE_DOCUMENT -- All the input docs will be bound together as one output 
+document with the specified binding. 
+
+SINGLE_DOCUMENT_NEW_SHEET -- All the input docs will be bound together as one 
+output document with the specified binding, and the first impression of each 
+input doc will always start on a new media sheet. 
+
+SEPARATE_DOCUMENTS_UNCOLLATED_COPIES -- Each input doc will be bound separately 
+with the specified binding. 
+
+SEPARATE_DOCUMENTS_COLLATED_COPIES -- Each input doc will be bound separately 
+with the specified binding. 
+
+
+
+If different docs have different bindings specified, then only two values of 
+MultipleDocumentHandling(|javax.print.attribute.standard.MultipleDocumentHandling|)
+make sense, and the printer reports an error when the job is submitted if any 
+other value is specified: 
+
+SEPARATE_DOCUMENTS_UNCOLLATED_COPIES -- Each input doc will be bound separately 
+with its own specified binding. 
+
+SEPARATE_DOCUMENTS_COLLATED_COPIES -- Each input doc will be bound separately 
+with its own specified binding. 
+
+
+
+IPP Compatibility: Class Finishings encapsulates some of the IPP enum values 
+that can be included in an IPP "finishings" attribute, which is a set of enums. 
+The category name returned by getName() is the IPP attribute name. The 
+enumeration's integer value is the IPP enum value. The toString() method 
+returns the IPP string representation of the attribute value. In IPP Finishings 
+is a multi-value attribute, this API currently allows only one binding to be 
+specified. 
+
+
+*javax.print.attribute.standard.Finishings_javax.print.attribute.standard.Finishings.STAPLE_BOTTOM_LEFT*
+
+Class Finishings is a printing attribute class, an enumeration, that identifies 
+whether the printer applies a finishing operation of some kind of binding to 
+each copy of each printed document in the job. For multidoc print jobs (jobs 
+with multiple documents), the 
+MultipleDocumentHandling(|javax.print.attribute.standard.MultipleDocumentHandling|)
+attribute determines what constitutes a "copy" for purposes of finishing. 
+
+Standard Finishings values are: 
+
+
+
+
+
+<CODE>NONE</CODE>(|javax.print.attribute.standard.Finishings|) 
+<CODE>STAPLE</CODE>(|javax.print.attribute.standard.Finishings|) 
+<CODE>EDGE_STITCH</CODE>(|javax.print.attribute.standard.Finishings|) 
+
+
+
+
+
+<CODE>BIND</CODE>(|javax.print.attribute.standard.Finishings|) 
+<CODE>SADDLE_STITCH</CODE>(|javax.print.attribute.standard.Finishings|) 
+<CODE>COVER</CODE>(|javax.print.attribute.standard.Finishings|) 
+
+
+
+
+
+The following Finishings values are more specific; they indicate a corner or an 
+edge as if the document were a portrait document: 
+
+
+
+
+
+<CODE>STAPLE_TOP_LEFT</CODE>(|javax.print.attribute.standard.Finishings|) 
+<CODE>EDGE_STITCH_LEFT</CODE>(|javax.print.attribute.standard.Finishings|) 
+<CODE>STAPLE_DUAL_LEFT</CODE>(|javax.print.attribute.standard.Finishings|) 
+
+
+
+
+
+
+
+<CODE>STAPLE_BOTTOM_LEFT</CODE>(|javax.print.attribute.standard.Finishings|) 
+<CODE>EDGE_STITCH_TOP</CODE>(|javax.print.attribute.standard.Finishings|) 
+<CODE>STAPLE_DUAL_TOP</CODE>(|javax.print.attribute.standard.Finishings|) 
+
+
+
+
+
+
+
+<CODE>STAPLE_TOP_RIGHT</CODE>(|javax.print.attribute.standard.Finishings|) 
+<CODE>EDGE_STITCH_RIGHT</CODE>(|javax.print.attribute.standard.Finishings|) 
+<CODE>STAPLE_DUAL_RIGHT</CODE>(|javax.print.attribute.standard.Finishings|) 
+
+
+
+
+
+
+
+<CODE>STAPLE_BOTTOM_RIGHT</CODE>(|javax.print.attribute.standard.Finishings|) 
+<CODE>EDGE_STITCH_BOTTOM</CODE>(|javax.print.attribute.standard.Finishings|) 
+<CODE>STAPLE_DUAL_BOTTOM</CODE>(|javax.print.attribute.standard.Finishings|) 
+
+
+
+
+
+The STAPLE_XXX values are specified with respect to the document as if the 
+document were a portrait document. If the document is actually a landscape or a 
+reverse-landscape document, the client supplies the appropriate transformed 
+value. For example, to position a staple in the upper left hand corner of a 
+landscape document when held for reading, the client supplies the 
+STAPLE_BOTTOM_LEFT value (since landscape is defined as a +90 degree rotation 
+from portrait, i.e., anti-clockwise). On the other hand, to position a staple 
+in the upper left hand corner of a reverse-landscape document when held for 
+reading, the client supplies the STAPLE_TOP_RIGHT value (since 
+reverse-landscape is defined as a -90 degree rotation from portrait, i.e., 
+clockwise). 
+
+The angle (vertical, horizontal, angled) of each staple with respect to the 
+document depends on the implementation which may in turn depend on the value of 
+the attribute. 
+
+The effect of a Finishings attribute on a multidoc print job (a job with 
+multiple documents) depends on whether all the docs have the same binding 
+specified or whether different docs have different bindings specified, and on 
+the (perhaps defaulted) value of the 
+MultipleDocumentHandling(|javax.print.attribute.standard.MultipleDocumentHandling|)
+attribute. 
+
+If all the docs have the same binding specified, then any value of 
+MultipleDocumentHandling(|javax.print.attribute.standard.MultipleDocumentHandling|)
+makes sense, and the printer's processing depends on the 
+MultipleDocumentHandling(|javax.print.attribute.standard.MultipleDocumentHandling|)
+value: 
+
+SINGLE_DOCUMENT -- All the input docs will be bound together as one output 
+document with the specified binding. 
+
+SINGLE_DOCUMENT_NEW_SHEET -- All the input docs will be bound together as one 
+output document with the specified binding, and the first impression of each 
+input doc will always start on a new media sheet. 
+
+SEPARATE_DOCUMENTS_UNCOLLATED_COPIES -- Each input doc will be bound separately 
+with the specified binding. 
+
+SEPARATE_DOCUMENTS_COLLATED_COPIES -- Each input doc will be bound separately 
+with the specified binding. 
+
+
+
+If different docs have different bindings specified, then only two values of 
+MultipleDocumentHandling(|javax.print.attribute.standard.MultipleDocumentHandling|)
+make sense, and the printer reports an error when the job is submitted if any 
+other value is specified: 
+
+SEPARATE_DOCUMENTS_UNCOLLATED_COPIES -- Each input doc will be bound separately 
+with its own specified binding. 
+
+SEPARATE_DOCUMENTS_COLLATED_COPIES -- Each input doc will be bound separately 
+with its own specified binding. 
+
+
+
+IPP Compatibility: Class Finishings encapsulates some of the IPP enum values 
+that can be included in an IPP "finishings" attribute, which is a set of enums. 
+The category name returned by getName() is the IPP attribute name. The 
+enumeration's integer value is the IPP enum value. The toString() method 
+returns the IPP string representation of the attribute value. In IPP Finishings 
+is a multi-value attribute, this API currently allows only one binding to be 
+specified. 
+
+
+*javax.print.attribute.standard.Finishings_javax.print.attribute.standard.Finishings.STAPLE_BOTTOM_RIGHT*
+
+Class Finishings is a printing attribute class, an enumeration, that identifies 
+whether the printer applies a finishing operation of some kind of binding to 
+each copy of each printed document in the job. For multidoc print jobs (jobs 
+with multiple documents), the 
+MultipleDocumentHandling(|javax.print.attribute.standard.MultipleDocumentHandling|)
+attribute determines what constitutes a "copy" for purposes of finishing. 
+
+Standard Finishings values are: 
+
+
+
+
+
+<CODE>NONE</CODE>(|javax.print.attribute.standard.Finishings|) 
+<CODE>STAPLE</CODE>(|javax.print.attribute.standard.Finishings|) 
+<CODE>EDGE_STITCH</CODE>(|javax.print.attribute.standard.Finishings|) 
+
+
+
+
+
+<CODE>BIND</CODE>(|javax.print.attribute.standard.Finishings|) 
+<CODE>SADDLE_STITCH</CODE>(|javax.print.attribute.standard.Finishings|) 
+<CODE>COVER</CODE>(|javax.print.attribute.standard.Finishings|) 
+
+
+
+
+
+The following Finishings values are more specific; they indicate a corner or an 
+edge as if the document were a portrait document: 
+
+
+
+
+
+<CODE>STAPLE_TOP_LEFT</CODE>(|javax.print.attribute.standard.Finishings|) 
+<CODE>EDGE_STITCH_LEFT</CODE>(|javax.print.attribute.standard.Finishings|) 
+<CODE>STAPLE_DUAL_LEFT</CODE>(|javax.print.attribute.standard.Finishings|) 
+
+
+
+
+
+
+
+<CODE>STAPLE_BOTTOM_LEFT</CODE>(|javax.print.attribute.standard.Finishings|) 
+<CODE>EDGE_STITCH_TOP</CODE>(|javax.print.attribute.standard.Finishings|) 
+<CODE>STAPLE_DUAL_TOP</CODE>(|javax.print.attribute.standard.Finishings|) 
+
+
+
+
+
+
+
+<CODE>STAPLE_TOP_RIGHT</CODE>(|javax.print.attribute.standard.Finishings|) 
+<CODE>EDGE_STITCH_RIGHT</CODE>(|javax.print.attribute.standard.Finishings|) 
+<CODE>STAPLE_DUAL_RIGHT</CODE>(|javax.print.attribute.standard.Finishings|) 
+
+
+
+
+
+
+
+<CODE>STAPLE_BOTTOM_RIGHT</CODE>(|javax.print.attribute.standard.Finishings|) 
+<CODE>EDGE_STITCH_BOTTOM</CODE>(|javax.print.attribute.standard.Finishings|) 
+<CODE>STAPLE_DUAL_BOTTOM</CODE>(|javax.print.attribute.standard.Finishings|) 
+
+
+
+
+
+The STAPLE_XXX values are specified with respect to the document as if the 
+document were a portrait document. If the document is actually a landscape or a 
+reverse-landscape document, the client supplies the appropriate transformed 
+value. For example, to position a staple in the upper left hand corner of a 
+landscape document when held for reading, the client supplies the 
+STAPLE_BOTTOM_LEFT value (since landscape is defined as a +90 degree rotation 
+from portrait, i.e., anti-clockwise). On the other hand, to position a staple 
+in the upper left hand corner of a reverse-landscape document when held for 
+reading, the client supplies the STAPLE_TOP_RIGHT value (since 
+reverse-landscape is defined as a -90 degree rotation from portrait, i.e., 
+clockwise). 
+
+The angle (vertical, horizontal, angled) of each staple with respect to the 
+document depends on the implementation which may in turn depend on the value of 
+the attribute. 
+
+The effect of a Finishings attribute on a multidoc print job (a job with 
+multiple documents) depends on whether all the docs have the same binding 
+specified or whether different docs have different bindings specified, and on 
+the (perhaps defaulted) value of the 
+MultipleDocumentHandling(|javax.print.attribute.standard.MultipleDocumentHandling|)
+attribute. 
+
+If all the docs have the same binding specified, then any value of 
+MultipleDocumentHandling(|javax.print.attribute.standard.MultipleDocumentHandling|)
+makes sense, and the printer's processing depends on the 
+MultipleDocumentHandling(|javax.print.attribute.standard.MultipleDocumentHandling|)
+value: 
+
+SINGLE_DOCUMENT -- All the input docs will be bound together as one output 
+document with the specified binding. 
+
+SINGLE_DOCUMENT_NEW_SHEET -- All the input docs will be bound together as one 
+output document with the specified binding, and the first impression of each 
+input doc will always start on a new media sheet. 
+
+SEPARATE_DOCUMENTS_UNCOLLATED_COPIES -- Each input doc will be bound separately 
+with the specified binding. 
+
+SEPARATE_DOCUMENTS_COLLATED_COPIES -- Each input doc will be bound separately 
+with the specified binding. 
+
+
+
+If different docs have different bindings specified, then only two values of 
+MultipleDocumentHandling(|javax.print.attribute.standard.MultipleDocumentHandling|)
+make sense, and the printer reports an error when the job is submitted if any 
+other value is specified: 
+
+SEPARATE_DOCUMENTS_UNCOLLATED_COPIES -- Each input doc will be bound separately 
+with its own specified binding. 
+
+SEPARATE_DOCUMENTS_COLLATED_COPIES -- Each input doc will be bound separately 
+with its own specified binding. 
+
+
+
+IPP Compatibility: Class Finishings encapsulates some of the IPP enum values 
+that can be included in an IPP "finishings" attribute, which is a set of enums. 
+The category name returned by getName() is the IPP attribute name. The 
+enumeration's integer value is the IPP enum value. The toString() method 
+returns the IPP string representation of the attribute value. In IPP Finishings 
+is a multi-value attribute, this API currently allows only one binding to be 
+specified. 
+
+
+*javax.print.attribute.standard.Finishings_javax.print.attribute.standard.Finishings.STAPLE_DUAL_BOTTOM*
+
+Class Finishings is a printing attribute class, an enumeration, that identifies 
+whether the printer applies a finishing operation of some kind of binding to 
+each copy of each printed document in the job. For multidoc print jobs (jobs 
+with multiple documents), the 
+MultipleDocumentHandling(|javax.print.attribute.standard.MultipleDocumentHandling|)
+attribute determines what constitutes a "copy" for purposes of finishing. 
+
+Standard Finishings values are: 
+
+
+
+
+
+<CODE>NONE</CODE>(|javax.print.attribute.standard.Finishings|) 
+<CODE>STAPLE</CODE>(|javax.print.attribute.standard.Finishings|) 
+<CODE>EDGE_STITCH</CODE>(|javax.print.attribute.standard.Finishings|) 
+
+
+
+
+
+<CODE>BIND</CODE>(|javax.print.attribute.standard.Finishings|) 
+<CODE>SADDLE_STITCH</CODE>(|javax.print.attribute.standard.Finishings|) 
+<CODE>COVER</CODE>(|javax.print.attribute.standard.Finishings|) 
+
+
+
+
+
+The following Finishings values are more specific; they indicate a corner or an 
+edge as if the document were a portrait document: 
+
+
+
+
+
+<CODE>STAPLE_TOP_LEFT</CODE>(|javax.print.attribute.standard.Finishings|) 
+<CODE>EDGE_STITCH_LEFT</CODE>(|javax.print.attribute.standard.Finishings|) 
+<CODE>STAPLE_DUAL_LEFT</CODE>(|javax.print.attribute.standard.Finishings|) 
+
+
+
+
+
+
+
+<CODE>STAPLE_BOTTOM_LEFT</CODE>(|javax.print.attribute.standard.Finishings|) 
+<CODE>EDGE_STITCH_TOP</CODE>(|javax.print.attribute.standard.Finishings|) 
+<CODE>STAPLE_DUAL_TOP</CODE>(|javax.print.attribute.standard.Finishings|) 
+
+
+
+
+
+
+
+<CODE>STAPLE_TOP_RIGHT</CODE>(|javax.print.attribute.standard.Finishings|) 
+<CODE>EDGE_STITCH_RIGHT</CODE>(|javax.print.attribute.standard.Finishings|) 
+<CODE>STAPLE_DUAL_RIGHT</CODE>(|javax.print.attribute.standard.Finishings|) 
+
+
+
+
+
+
+
+<CODE>STAPLE_BOTTOM_RIGHT</CODE>(|javax.print.attribute.standard.Finishings|) 
+<CODE>EDGE_STITCH_BOTTOM</CODE>(|javax.print.attribute.standard.Finishings|) 
+<CODE>STAPLE_DUAL_BOTTOM</CODE>(|javax.print.attribute.standard.Finishings|) 
+
+
+
+
+
+The STAPLE_XXX values are specified with respect to the document as if the 
+document were a portrait document. If the document is actually a landscape or a 
+reverse-landscape document, the client supplies the appropriate transformed 
+value. For example, to position a staple in the upper left hand corner of a 
+landscape document when held for reading, the client supplies the 
+STAPLE_BOTTOM_LEFT value (since landscape is defined as a +90 degree rotation 
+from portrait, i.e., anti-clockwise). On the other hand, to position a staple 
+in the upper left hand corner of a reverse-landscape document when held for 
+reading, the client supplies the STAPLE_TOP_RIGHT value (since 
+reverse-landscape is defined as a -90 degree rotation from portrait, i.e., 
+clockwise). 
+
+The angle (vertical, horizontal, angled) of each staple with respect to the 
+document depends on the implementation which may in turn depend on the value of 
+the attribute. 
+
+The effect of a Finishings attribute on a multidoc print job (a job with 
+multiple documents) depends on whether all the docs have the same binding 
+specified or whether different docs have different bindings specified, and on 
+the (perhaps defaulted) value of the 
+MultipleDocumentHandling(|javax.print.attribute.standard.MultipleDocumentHandling|)
+attribute. 
+
+If all the docs have the same binding specified, then any value of 
+MultipleDocumentHandling(|javax.print.attribute.standard.MultipleDocumentHandling|)
+makes sense, and the printer's processing depends on the 
+MultipleDocumentHandling(|javax.print.attribute.standard.MultipleDocumentHandling|)
+value: 
+
+SINGLE_DOCUMENT -- All the input docs will be bound together as one output 
+document with the specified binding. 
+
+SINGLE_DOCUMENT_NEW_SHEET -- All the input docs will be bound together as one 
+output document with the specified binding, and the first impression of each 
+input doc will always start on a new media sheet. 
+
+SEPARATE_DOCUMENTS_UNCOLLATED_COPIES -- Each input doc will be bound separately 
+with the specified binding. 
+
+SEPARATE_DOCUMENTS_COLLATED_COPIES -- Each input doc will be bound separately 
+with the specified binding. 
+
+
+
+If different docs have different bindings specified, then only two values of 
+MultipleDocumentHandling(|javax.print.attribute.standard.MultipleDocumentHandling|)
+make sense, and the printer reports an error when the job is submitted if any 
+other value is specified: 
+
+SEPARATE_DOCUMENTS_UNCOLLATED_COPIES -- Each input doc will be bound separately 
+with its own specified binding. 
+
+SEPARATE_DOCUMENTS_COLLATED_COPIES -- Each input doc will be bound separately 
+with its own specified binding. 
+
+
+
+IPP Compatibility: Class Finishings encapsulates some of the IPP enum values 
+that can be included in an IPP "finishings" attribute, which is a set of enums. 
+The category name returned by getName() is the IPP attribute name. The 
+enumeration's integer value is the IPP enum value. The toString() method 
+returns the IPP string representation of the attribute value. In IPP Finishings 
+is a multi-value attribute, this API currently allows only one binding to be 
+specified. 
+
+
+*javax.print.attribute.standard.Finishings_javax.print.attribute.standard.Finishings.STAPLE_DUAL_LEFT*
+
+Class Finishings is a printing attribute class, an enumeration, that identifies 
+whether the printer applies a finishing operation of some kind of binding to 
+each copy of each printed document in the job. For multidoc print jobs (jobs 
+with multiple documents), the 
+MultipleDocumentHandling(|javax.print.attribute.standard.MultipleDocumentHandling|)
+attribute determines what constitutes a "copy" for purposes of finishing. 
+
+Standard Finishings values are: 
+
+
+
+
+
+<CODE>NONE</CODE>(|javax.print.attribute.standard.Finishings|) 
+<CODE>STAPLE</CODE>(|javax.print.attribute.standard.Finishings|) 
+<CODE>EDGE_STITCH</CODE>(|javax.print.attribute.standard.Finishings|) 
+
+
+
+
+
+<CODE>BIND</CODE>(|javax.print.attribute.standard.Finishings|) 
+<CODE>SADDLE_STITCH</CODE>(|javax.print.attribute.standard.Finishings|) 
+<CODE>COVER</CODE>(|javax.print.attribute.standard.Finishings|) 
+
+
+
+
+
+The following Finishings values are more specific; they indicate a corner or an 
+edge as if the document were a portrait document: 
+
+
+
+
+
+<CODE>STAPLE_TOP_LEFT</CODE>(|javax.print.attribute.standard.Finishings|) 
+<CODE>EDGE_STITCH_LEFT</CODE>(|javax.print.attribute.standard.Finishings|) 
+<CODE>STAPLE_DUAL_LEFT</CODE>(|javax.print.attribute.standard.Finishings|) 
+
+
+
+
+
+
+
+<CODE>STAPLE_BOTTOM_LEFT</CODE>(|javax.print.attribute.standard.Finishings|) 
+<CODE>EDGE_STITCH_TOP</CODE>(|javax.print.attribute.standard.Finishings|) 
+<CODE>STAPLE_DUAL_TOP</CODE>(|javax.print.attribute.standard.Finishings|) 
+
+
+
+
+
+
+
+<CODE>STAPLE_TOP_RIGHT</CODE>(|javax.print.attribute.standard.Finishings|) 
+<CODE>EDGE_STITCH_RIGHT</CODE>(|javax.print.attribute.standard.Finishings|) 
+<CODE>STAPLE_DUAL_RIGHT</CODE>(|javax.print.attribute.standard.Finishings|) 
+
+
+
+
+
+
+
+<CODE>STAPLE_BOTTOM_RIGHT</CODE>(|javax.print.attribute.standard.Finishings|) 
+<CODE>EDGE_STITCH_BOTTOM</CODE>(|javax.print.attribute.standard.Finishings|) 
+<CODE>STAPLE_DUAL_BOTTOM</CODE>(|javax.print.attribute.standard.Finishings|) 
+
+
+
+
+
+The STAPLE_XXX values are specified with respect to the document as if the 
+document were a portrait document. If the document is actually a landscape or a 
+reverse-landscape document, the client supplies the appropriate transformed 
+value. For example, to position a staple in the upper left hand corner of a 
+landscape document when held for reading, the client supplies the 
+STAPLE_BOTTOM_LEFT value (since landscape is defined as a +90 degree rotation 
+from portrait, i.e., anti-clockwise). On the other hand, to position a staple 
+in the upper left hand corner of a reverse-landscape document when held for 
+reading, the client supplies the STAPLE_TOP_RIGHT value (since 
+reverse-landscape is defined as a -90 degree rotation from portrait, i.e., 
+clockwise). 
+
+The angle (vertical, horizontal, angled) of each staple with respect to the 
+document depends on the implementation which may in turn depend on the value of 
+the attribute. 
+
+The effect of a Finishings attribute on a multidoc print job (a job with 
+multiple documents) depends on whether all the docs have the same binding 
+specified or whether different docs have different bindings specified, and on 
+the (perhaps defaulted) value of the 
+MultipleDocumentHandling(|javax.print.attribute.standard.MultipleDocumentHandling|)
+attribute. 
+
+If all the docs have the same binding specified, then any value of 
+MultipleDocumentHandling(|javax.print.attribute.standard.MultipleDocumentHandling|)
+makes sense, and the printer's processing depends on the 
+MultipleDocumentHandling(|javax.print.attribute.standard.MultipleDocumentHandling|)
+value: 
+
+SINGLE_DOCUMENT -- All the input docs will be bound together as one output 
+document with the specified binding. 
+
+SINGLE_DOCUMENT_NEW_SHEET -- All the input docs will be bound together as one 
+output document with the specified binding, and the first impression of each 
+input doc will always start on a new media sheet. 
+
+SEPARATE_DOCUMENTS_UNCOLLATED_COPIES -- Each input doc will be bound separately 
+with the specified binding. 
+
+SEPARATE_DOCUMENTS_COLLATED_COPIES -- Each input doc will be bound separately 
+with the specified binding. 
+
+
+
+If different docs have different bindings specified, then only two values of 
+MultipleDocumentHandling(|javax.print.attribute.standard.MultipleDocumentHandling|)
+make sense, and the printer reports an error when the job is submitted if any 
+other value is specified: 
+
+SEPARATE_DOCUMENTS_UNCOLLATED_COPIES -- Each input doc will be bound separately 
+with its own specified binding. 
+
+SEPARATE_DOCUMENTS_COLLATED_COPIES -- Each input doc will be bound separately 
+with its own specified binding. 
+
+
+
+IPP Compatibility: Class Finishings encapsulates some of the IPP enum values 
+that can be included in an IPP "finishings" attribute, which is a set of enums. 
+The category name returned by getName() is the IPP attribute name. The 
+enumeration's integer value is the IPP enum value. The toString() method 
+returns the IPP string representation of the attribute value. In IPP Finishings 
+is a multi-value attribute, this API currently allows only one binding to be 
+specified. 
+
+
+*javax.print.attribute.standard.Finishings_javax.print.attribute.standard.Finishings.STAPLE_DUAL_RIGHT*
+
+Class Finishings is a printing attribute class, an enumeration, that identifies 
+whether the printer applies a finishing operation of some kind of binding to 
+each copy of each printed document in the job. For multidoc print jobs (jobs 
+with multiple documents), the 
+MultipleDocumentHandling(|javax.print.attribute.standard.MultipleDocumentHandling|)
+attribute determines what constitutes a "copy" for purposes of finishing. 
+
+Standard Finishings values are: 
+
+
+
+
+
+<CODE>NONE</CODE>(|javax.print.attribute.standard.Finishings|) 
+<CODE>STAPLE</CODE>(|javax.print.attribute.standard.Finishings|) 
+<CODE>EDGE_STITCH</CODE>(|javax.print.attribute.standard.Finishings|) 
+
+
+
+
+
+<CODE>BIND</CODE>(|javax.print.attribute.standard.Finishings|) 
+<CODE>SADDLE_STITCH</CODE>(|javax.print.attribute.standard.Finishings|) 
+<CODE>COVER</CODE>(|javax.print.attribute.standard.Finishings|) 
+
+
+
+
+
+The following Finishings values are more specific; they indicate a corner or an 
+edge as if the document were a portrait document: 
+
+
+
+
+
+<CODE>STAPLE_TOP_LEFT</CODE>(|javax.print.attribute.standard.Finishings|) 
+<CODE>EDGE_STITCH_LEFT</CODE>(|javax.print.attribute.standard.Finishings|) 
+<CODE>STAPLE_DUAL_LEFT</CODE>(|javax.print.attribute.standard.Finishings|) 
+
+
+
+
+
+
+
+<CODE>STAPLE_BOTTOM_LEFT</CODE>(|javax.print.attribute.standard.Finishings|) 
+<CODE>EDGE_STITCH_TOP</CODE>(|javax.print.attribute.standard.Finishings|) 
+<CODE>STAPLE_DUAL_TOP</CODE>(|javax.print.attribute.standard.Finishings|) 
+
+
+
+
+
+
+
+<CODE>STAPLE_TOP_RIGHT</CODE>(|javax.print.attribute.standard.Finishings|) 
+<CODE>EDGE_STITCH_RIGHT</CODE>(|javax.print.attribute.standard.Finishings|) 
+<CODE>STAPLE_DUAL_RIGHT</CODE>(|javax.print.attribute.standard.Finishings|) 
+
+
+
+
+
+
+
+<CODE>STAPLE_BOTTOM_RIGHT</CODE>(|javax.print.attribute.standard.Finishings|) 
+<CODE>EDGE_STITCH_BOTTOM</CODE>(|javax.print.attribute.standard.Finishings|) 
+<CODE>STAPLE_DUAL_BOTTOM</CODE>(|javax.print.attribute.standard.Finishings|) 
+
+
+
+
+
+The STAPLE_XXX values are specified with respect to the document as if the 
+document were a portrait document. If the document is actually a landscape or a 
+reverse-landscape document, the client supplies the appropriate transformed 
+value. For example, to position a staple in the upper left hand corner of a 
+landscape document when held for reading, the client supplies the 
+STAPLE_BOTTOM_LEFT value (since landscape is defined as a +90 degree rotation 
+from portrait, i.e., anti-clockwise). On the other hand, to position a staple 
+in the upper left hand corner of a reverse-landscape document when held for 
+reading, the client supplies the STAPLE_TOP_RIGHT value (since 
+reverse-landscape is defined as a -90 degree rotation from portrait, i.e., 
+clockwise). 
+
+The angle (vertical, horizontal, angled) of each staple with respect to the 
+document depends on the implementation which may in turn depend on the value of 
+the attribute. 
+
+The effect of a Finishings attribute on a multidoc print job (a job with 
+multiple documents) depends on whether all the docs have the same binding 
+specified or whether different docs have different bindings specified, and on 
+the (perhaps defaulted) value of the 
+MultipleDocumentHandling(|javax.print.attribute.standard.MultipleDocumentHandling|)
+attribute. 
+
+If all the docs have the same binding specified, then any value of 
+MultipleDocumentHandling(|javax.print.attribute.standard.MultipleDocumentHandling|)
+makes sense, and the printer's processing depends on the 
+MultipleDocumentHandling(|javax.print.attribute.standard.MultipleDocumentHandling|)
+value: 
+
+SINGLE_DOCUMENT -- All the input docs will be bound together as one output 
+document with the specified binding. 
+
+SINGLE_DOCUMENT_NEW_SHEET -- All the input docs will be bound together as one 
+output document with the specified binding, and the first impression of each 
+input doc will always start on a new media sheet. 
+
+SEPARATE_DOCUMENTS_UNCOLLATED_COPIES -- Each input doc will be bound separately 
+with the specified binding. 
+
+SEPARATE_DOCUMENTS_COLLATED_COPIES -- Each input doc will be bound separately 
+with the specified binding. 
+
+
+
+If different docs have different bindings specified, then only two values of 
+MultipleDocumentHandling(|javax.print.attribute.standard.MultipleDocumentHandling|)
+make sense, and the printer reports an error when the job is submitted if any 
+other value is specified: 
+
+SEPARATE_DOCUMENTS_UNCOLLATED_COPIES -- Each input doc will be bound separately 
+with its own specified binding. 
+
+SEPARATE_DOCUMENTS_COLLATED_COPIES -- Each input doc will be bound separately 
+with its own specified binding. 
+
+
+
+IPP Compatibility: Class Finishings encapsulates some of the IPP enum values 
+that can be included in an IPP "finishings" attribute, which is a set of enums. 
+The category name returned by getName() is the IPP attribute name. The 
+enumeration's integer value is the IPP enum value. The toString() method 
+returns the IPP string representation of the attribute value. In IPP Finishings 
+is a multi-value attribute, this API currently allows only one binding to be 
+specified. 
+
+
+*javax.print.attribute.standard.Finishings_javax.print.attribute.standard.Finishings.STAPLE_DUAL_TOP*
+
+Class Finishings is a printing attribute class, an enumeration, that identifies 
+whether the printer applies a finishing operation of some kind of binding to 
+each copy of each printed document in the job. For multidoc print jobs (jobs 
+with multiple documents), the 
+MultipleDocumentHandling(|javax.print.attribute.standard.MultipleDocumentHandling|)
+attribute determines what constitutes a "copy" for purposes of finishing. 
+
+Standard Finishings values are: 
+
+
+
+
+
+<CODE>NONE</CODE>(|javax.print.attribute.standard.Finishings|) 
+<CODE>STAPLE</CODE>(|javax.print.attribute.standard.Finishings|) 
+<CODE>EDGE_STITCH</CODE>(|javax.print.attribute.standard.Finishings|) 
+
+
+
+
+
+<CODE>BIND</CODE>(|javax.print.attribute.standard.Finishings|) 
+<CODE>SADDLE_STITCH</CODE>(|javax.print.attribute.standard.Finishings|) 
+<CODE>COVER</CODE>(|javax.print.attribute.standard.Finishings|) 
+
+
+
+
+
+The following Finishings values are more specific; they indicate a corner or an 
+edge as if the document were a portrait document: 
+
+
+
+
+
+<CODE>STAPLE_TOP_LEFT</CODE>(|javax.print.attribute.standard.Finishings|) 
+<CODE>EDGE_STITCH_LEFT</CODE>(|javax.print.attribute.standard.Finishings|) 
+<CODE>STAPLE_DUAL_LEFT</CODE>(|javax.print.attribute.standard.Finishings|) 
+
+
+
+
+
+
+
+<CODE>STAPLE_BOTTOM_LEFT</CODE>(|javax.print.attribute.standard.Finishings|) 
+<CODE>EDGE_STITCH_TOP</CODE>(|javax.print.attribute.standard.Finishings|) 
+<CODE>STAPLE_DUAL_TOP</CODE>(|javax.print.attribute.standard.Finishings|) 
+
+
+
+
+
+
+
+<CODE>STAPLE_TOP_RIGHT</CODE>(|javax.print.attribute.standard.Finishings|) 
+<CODE>EDGE_STITCH_RIGHT</CODE>(|javax.print.attribute.standard.Finishings|) 
+<CODE>STAPLE_DUAL_RIGHT</CODE>(|javax.print.attribute.standard.Finishings|) 
+
+
+
+
+
+
+
+<CODE>STAPLE_BOTTOM_RIGHT</CODE>(|javax.print.attribute.standard.Finishings|) 
+<CODE>EDGE_STITCH_BOTTOM</CODE>(|javax.print.attribute.standard.Finishings|) 
+<CODE>STAPLE_DUAL_BOTTOM</CODE>(|javax.print.attribute.standard.Finishings|) 
+
+
+
+
+
+The STAPLE_XXX values are specified with respect to the document as if the 
+document were a portrait document. If the document is actually a landscape or a 
+reverse-landscape document, the client supplies the appropriate transformed 
+value. For example, to position a staple in the upper left hand corner of a 
+landscape document when held for reading, the client supplies the 
+STAPLE_BOTTOM_LEFT value (since landscape is defined as a +90 degree rotation 
+from portrait, i.e., anti-clockwise). On the other hand, to position a staple 
+in the upper left hand corner of a reverse-landscape document when held for 
+reading, the client supplies the STAPLE_TOP_RIGHT value (since 
+reverse-landscape is defined as a -90 degree rotation from portrait, i.e., 
+clockwise). 
+
+The angle (vertical, horizontal, angled) of each staple with respect to the 
+document depends on the implementation which may in turn depend on the value of 
+the attribute. 
+
+The effect of a Finishings attribute on a multidoc print job (a job with 
+multiple documents) depends on whether all the docs have the same binding 
+specified or whether different docs have different bindings specified, and on 
+the (perhaps defaulted) value of the 
+MultipleDocumentHandling(|javax.print.attribute.standard.MultipleDocumentHandling|)
+attribute. 
+
+If all the docs have the same binding specified, then any value of 
+MultipleDocumentHandling(|javax.print.attribute.standard.MultipleDocumentHandling|)
+makes sense, and the printer's processing depends on the 
+MultipleDocumentHandling(|javax.print.attribute.standard.MultipleDocumentHandling|)
+value: 
+
+SINGLE_DOCUMENT -- All the input docs will be bound together as one output 
+document with the specified binding. 
+
+SINGLE_DOCUMENT_NEW_SHEET -- All the input docs will be bound together as one 
+output document with the specified binding, and the first impression of each 
+input doc will always start on a new media sheet. 
+
+SEPARATE_DOCUMENTS_UNCOLLATED_COPIES -- Each input doc will be bound separately 
+with the specified binding. 
+
+SEPARATE_DOCUMENTS_COLLATED_COPIES -- Each input doc will be bound separately 
+with the specified binding. 
+
+
+
+If different docs have different bindings specified, then only two values of 
+MultipleDocumentHandling(|javax.print.attribute.standard.MultipleDocumentHandling|)
+make sense, and the printer reports an error when the job is submitted if any 
+other value is specified: 
+
+SEPARATE_DOCUMENTS_UNCOLLATED_COPIES -- Each input doc will be bound separately 
+with its own specified binding. 
+
+SEPARATE_DOCUMENTS_COLLATED_COPIES -- Each input doc will be bound separately 
+with its own specified binding. 
+
+
+
+IPP Compatibility: Class Finishings encapsulates some of the IPP enum values 
+that can be included in an IPP "finishings" attribute, which is a set of enums. 
+The category name returned by getName() is the IPP attribute name. The 
+enumeration's integer value is the IPP enum value. The toString() method 
+returns the IPP string representation of the attribute value. In IPP Finishings 
+is a multi-value attribute, this API currently allows only one binding to be 
+specified. 
+
+
+*javax.print.attribute.standard.Finishings_javax.print.attribute.standard.Finishings.STAPLE_TOP_LEFT*
+
+Class Finishings is a printing attribute class, an enumeration, that identifies 
+whether the printer applies a finishing operation of some kind of binding to 
+each copy of each printed document in the job. For multidoc print jobs (jobs 
+with multiple documents), the 
+MultipleDocumentHandling(|javax.print.attribute.standard.MultipleDocumentHandling|)
+attribute determines what constitutes a "copy" for purposes of finishing. 
+
+Standard Finishings values are: 
+
+
+
+
+
+<CODE>NONE</CODE>(|javax.print.attribute.standard.Finishings|) 
+<CODE>STAPLE</CODE>(|javax.print.attribute.standard.Finishings|) 
+<CODE>EDGE_STITCH</CODE>(|javax.print.attribute.standard.Finishings|) 
+
+
+
+
+
+<CODE>BIND</CODE>(|javax.print.attribute.standard.Finishings|) 
+<CODE>SADDLE_STITCH</CODE>(|javax.print.attribute.standard.Finishings|) 
+<CODE>COVER</CODE>(|javax.print.attribute.standard.Finishings|) 
+
+
+
+
+
+The following Finishings values are more specific; they indicate a corner or an 
+edge as if the document were a portrait document: 
+
+
+
+
+
+<CODE>STAPLE_TOP_LEFT</CODE>(|javax.print.attribute.standard.Finishings|) 
+<CODE>EDGE_STITCH_LEFT</CODE>(|javax.print.attribute.standard.Finishings|) 
+<CODE>STAPLE_DUAL_LEFT</CODE>(|javax.print.attribute.standard.Finishings|) 
+
+
+
+
+
+
+
+<CODE>STAPLE_BOTTOM_LEFT</CODE>(|javax.print.attribute.standard.Finishings|) 
+<CODE>EDGE_STITCH_TOP</CODE>(|javax.print.attribute.standard.Finishings|) 
+<CODE>STAPLE_DUAL_TOP</CODE>(|javax.print.attribute.standard.Finishings|) 
+
+
+
+
+
+
+
+<CODE>STAPLE_TOP_RIGHT</CODE>(|javax.print.attribute.standard.Finishings|) 
+<CODE>EDGE_STITCH_RIGHT</CODE>(|javax.print.attribute.standard.Finishings|) 
+<CODE>STAPLE_DUAL_RIGHT</CODE>(|javax.print.attribute.standard.Finishings|) 
+
+
+
+
+
+
+
+<CODE>STAPLE_BOTTOM_RIGHT</CODE>(|javax.print.attribute.standard.Finishings|) 
+<CODE>EDGE_STITCH_BOTTOM</CODE>(|javax.print.attribute.standard.Finishings|) 
+<CODE>STAPLE_DUAL_BOTTOM</CODE>(|javax.print.attribute.standard.Finishings|) 
+
+
+
+
+
+The STAPLE_XXX values are specified with respect to the document as if the 
+document were a portrait document. If the document is actually a landscape or a 
+reverse-landscape document, the client supplies the appropriate transformed 
+value. For example, to position a staple in the upper left hand corner of a 
+landscape document when held for reading, the client supplies the 
+STAPLE_BOTTOM_LEFT value (since landscape is defined as a +90 degree rotation 
+from portrait, i.e., anti-clockwise). On the other hand, to position a staple 
+in the upper left hand corner of a reverse-landscape document when held for 
+reading, the client supplies the STAPLE_TOP_RIGHT value (since 
+reverse-landscape is defined as a -90 degree rotation from portrait, i.e., 
+clockwise). 
+
+The angle (vertical, horizontal, angled) of each staple with respect to the 
+document depends on the implementation which may in turn depend on the value of 
+the attribute. 
+
+The effect of a Finishings attribute on a multidoc print job (a job with 
+multiple documents) depends on whether all the docs have the same binding 
+specified or whether different docs have different bindings specified, and on 
+the (perhaps defaulted) value of the 
+MultipleDocumentHandling(|javax.print.attribute.standard.MultipleDocumentHandling|)
+attribute. 
+
+If all the docs have the same binding specified, then any value of 
+MultipleDocumentHandling(|javax.print.attribute.standard.MultipleDocumentHandling|)
+makes sense, and the printer's processing depends on the 
+MultipleDocumentHandling(|javax.print.attribute.standard.MultipleDocumentHandling|)
+value: 
+
+SINGLE_DOCUMENT -- All the input docs will be bound together as one output 
+document with the specified binding. 
+
+SINGLE_DOCUMENT_NEW_SHEET -- All the input docs will be bound together as one 
+output document with the specified binding, and the first impression of each 
+input doc will always start on a new media sheet. 
+
+SEPARATE_DOCUMENTS_UNCOLLATED_COPIES -- Each input doc will be bound separately 
+with the specified binding. 
+
+SEPARATE_DOCUMENTS_COLLATED_COPIES -- Each input doc will be bound separately 
+with the specified binding. 
+
+
+
+If different docs have different bindings specified, then only two values of 
+MultipleDocumentHandling(|javax.print.attribute.standard.MultipleDocumentHandling|)
+make sense, and the printer reports an error when the job is submitted if any 
+other value is specified: 
+
+SEPARATE_DOCUMENTS_UNCOLLATED_COPIES -- Each input doc will be bound separately 
+with its own specified binding. 
+
+SEPARATE_DOCUMENTS_COLLATED_COPIES -- Each input doc will be bound separately 
+with its own specified binding. 
+
+
+
+IPP Compatibility: Class Finishings encapsulates some of the IPP enum values 
+that can be included in an IPP "finishings" attribute, which is a set of enums. 
+The category name returned by getName() is the IPP attribute name. The 
+enumeration's integer value is the IPP enum value. The toString() method 
+returns the IPP string representation of the attribute value. In IPP Finishings 
+is a multi-value attribute, this API currently allows only one binding to be 
+specified. 
+
+
+*javax.print.attribute.standard.Finishings_javax.print.attribute.standard.Finishings.STAPLE_TOP_RIGHT*
+
+Class Finishings is a printing attribute class, an enumeration, that identifies 
+whether the printer applies a finishing operation of some kind of binding to 
+each copy of each printed document in the job. For multidoc print jobs (jobs 
+with multiple documents), the 
+MultipleDocumentHandling(|javax.print.attribute.standard.MultipleDocumentHandling|)
+attribute determines what constitutes a "copy" for purposes of finishing. 
+
+Standard Finishings values are: 
+
+
+
+
+
+<CODE>NONE</CODE>(|javax.print.attribute.standard.Finishings|) 
+<CODE>STAPLE</CODE>(|javax.print.attribute.standard.Finishings|) 
+<CODE>EDGE_STITCH</CODE>(|javax.print.attribute.standard.Finishings|) 
+
+
+
+
+
+<CODE>BIND</CODE>(|javax.print.attribute.standard.Finishings|) 
+<CODE>SADDLE_STITCH</CODE>(|javax.print.attribute.standard.Finishings|) 
+<CODE>COVER</CODE>(|javax.print.attribute.standard.Finishings|) 
+
+
+
+
+
+The following Finishings values are more specific; they indicate a corner or an 
+edge as if the document were a portrait document: 
+
+
+
+
+
+<CODE>STAPLE_TOP_LEFT</CODE>(|javax.print.attribute.standard.Finishings|) 
+<CODE>EDGE_STITCH_LEFT</CODE>(|javax.print.attribute.standard.Finishings|) 
+<CODE>STAPLE_DUAL_LEFT</CODE>(|javax.print.attribute.standard.Finishings|) 
+
+
+
+
+
+
+
+<CODE>STAPLE_BOTTOM_LEFT</CODE>(|javax.print.attribute.standard.Finishings|) 
+<CODE>EDGE_STITCH_TOP</CODE>(|javax.print.attribute.standard.Finishings|) 
+<CODE>STAPLE_DUAL_TOP</CODE>(|javax.print.attribute.standard.Finishings|) 
+
+
+
+
+
+
+
+<CODE>STAPLE_TOP_RIGHT</CODE>(|javax.print.attribute.standard.Finishings|) 
+<CODE>EDGE_STITCH_RIGHT</CODE>(|javax.print.attribute.standard.Finishings|) 
+<CODE>STAPLE_DUAL_RIGHT</CODE>(|javax.print.attribute.standard.Finishings|) 
+
+
+
+
+
+
+
+<CODE>STAPLE_BOTTOM_RIGHT</CODE>(|javax.print.attribute.standard.Finishings|) 
+<CODE>EDGE_STITCH_BOTTOM</CODE>(|javax.print.attribute.standard.Finishings|) 
+<CODE>STAPLE_DUAL_BOTTOM</CODE>(|javax.print.attribute.standard.Finishings|) 
+
+
+
+
+
+The STAPLE_XXX values are specified with respect to the document as if the 
+document were a portrait document. If the document is actually a landscape or a 
+reverse-landscape document, the client supplies the appropriate transformed 
+value. For example, to position a staple in the upper left hand corner of a 
+landscape document when held for reading, the client supplies the 
+STAPLE_BOTTOM_LEFT value (since landscape is defined as a +90 degree rotation 
+from portrait, i.e., anti-clockwise). On the other hand, to position a staple 
+in the upper left hand corner of a reverse-landscape document when held for 
+reading, the client supplies the STAPLE_TOP_RIGHT value (since 
+reverse-landscape is defined as a -90 degree rotation from portrait, i.e., 
+clockwise). 
+
+The angle (vertical, horizontal, angled) of each staple with respect to the 
+document depends on the implementation which may in turn depend on the value of 
+the attribute. 
+
+The effect of a Finishings attribute on a multidoc print job (a job with 
+multiple documents) depends on whether all the docs have the same binding 
+specified or whether different docs have different bindings specified, and on 
+the (perhaps defaulted) value of the 
+MultipleDocumentHandling(|javax.print.attribute.standard.MultipleDocumentHandling|)
+attribute. 
+
+If all the docs have the same binding specified, then any value of 
+MultipleDocumentHandling(|javax.print.attribute.standard.MultipleDocumentHandling|)
+makes sense, and the printer's processing depends on the 
+MultipleDocumentHandling(|javax.print.attribute.standard.MultipleDocumentHandling|)
+value: 
+
+SINGLE_DOCUMENT -- All the input docs will be bound together as one output 
+document with the specified binding. 
+
+SINGLE_DOCUMENT_NEW_SHEET -- All the input docs will be bound together as one 
+output document with the specified binding, and the first impression of each 
+input doc will always start on a new media sheet. 
+
+SEPARATE_DOCUMENTS_UNCOLLATED_COPIES -- Each input doc will be bound separately 
+with the specified binding. 
+
+SEPARATE_DOCUMENTS_COLLATED_COPIES -- Each input doc will be bound separately 
+with the specified binding. 
+
+
+
+If different docs have different bindings specified, then only two values of 
+MultipleDocumentHandling(|javax.print.attribute.standard.MultipleDocumentHandling|)
+make sense, and the printer reports an error when the job is submitted if any 
+other value is specified: 
+
+SEPARATE_DOCUMENTS_UNCOLLATED_COPIES -- Each input doc will be bound separately 
+with its own specified binding. 
+
+SEPARATE_DOCUMENTS_COLLATED_COPIES -- Each input doc will be bound separately 
+with its own specified binding. 
+
+
+
+IPP Compatibility: Class Finishings encapsulates some of the IPP enum values 
+that can be included in an IPP "finishings" attribute, which is a set of enums. 
+The category name returned by getName() is the IPP attribute name. The 
+enumeration's integer value is the IPP enum value. The toString() method 
+returns the IPP string representation of the attribute value. In IPP Finishings 
+is a multi-value attribute, this API currently allows only one binding to be 
+specified. 
+
+
+
+*javax.print.attribute.standard.Finishings(int)*
+
+protected Finishings(int value)
+
+Construct a new finishings binding enumeration value with the given integer 
+value. 
+
+    value - Integer value. 
+
+*javax.print.attribute.standard.Finishings.getCategory()*
+
+public final |java.lang.Class| getCategory()
+
+Get the printing attribute class which is to be used as the "category" for this 
+printing attribute value. 
+
+For class Finishings and any vendor-defined subclasses, the category is class 
+Finishings itself. 
+
+
+    Returns: Printing attribute class (category), an instance of class {@link 
+             java.lang.Class java.lang.Class}. 
+*javax.print.attribute.standard.Finishings.getEnumValueTable()*
+
+protected |javax.print.attribute.EnumSyntax| getEnumValueTable()
+
+Returns the enumeration value table for class Finishings. 
+
+
+*javax.print.attribute.standard.Finishings.getName()*
+
+public final |java.lang.String| getName()
+
+Get the name of the category of which this attribute value is an instance. 
+
+For class Finishings and any vendor-defined subclasses, the category name is 
+"finishings". 
+
+
+    Returns: Attribute category name. 
+*javax.print.attribute.standard.Finishings.getOffset()*
+
+protected int getOffset()
+
+Returns the lowest integer value used by class Finishings. 
+
+
+*javax.print.attribute.standard.Finishings.getStringTable()*
+
+protected |java.lang.String| getStringTable()
+
+Returns the string table for class Finishings. 
+
+
+

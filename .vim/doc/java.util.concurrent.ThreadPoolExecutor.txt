@@ -1,0 +1,669 @@
+*java.util.concurrent.ThreadPoolExecutor* *ThreadPoolExecutor* AnExecutorService
+
+public class ThreadPoolExecutor
+  extends    |java.util.concurrent.AbstractExecutorService|
+
+|java.util.concurrent.ThreadPoolExecutor_Description|
+|java.util.concurrent.ThreadPoolExecutor_Fields|
+|java.util.concurrent.ThreadPoolExecutor_Constructors|
+|java.util.concurrent.ThreadPoolExecutor_Methods|
+
+================================================================================
+
+*java.util.concurrent.ThreadPoolExecutor_Constructors*
+|java.util.concurrent.ThreadPoolExecutor(int,int,long,TimeUnit,BlockingQueue)|C
+|java.util.concurrent.ThreadPoolExecutor(int,int,long,TimeUnit,BlockingQueue,RejectedExecutionHandler)|
+|java.util.concurrent.ThreadPoolExecutor(int,int,long,TimeUnit,BlockingQueue,ThreadFactory)|
+|java.util.concurrent.ThreadPoolExecutor(int,int,long,TimeUnit,BlockingQueue,ThreadFactory,RejectedExecutionHandler)|
+
+*java.util.concurrent.ThreadPoolExecutor_Methods*
+|java.util.concurrent.ThreadPoolExecutor.afterExecute(Runnable,Throwable)|Metho
+|java.util.concurrent.ThreadPoolExecutor.awaitTermination(long,TimeUnit)|
+|java.util.concurrent.ThreadPoolExecutor.beforeExecute(Thread,Runnable)|Method 
+|java.util.concurrent.ThreadPoolExecutor.execute(Runnable)|Executes the given t
+|java.util.concurrent.ThreadPoolExecutor.finalize()|Invokes shutdown when this 
+|java.util.concurrent.ThreadPoolExecutor.getActiveCount()|Returns the approxima
+|java.util.concurrent.ThreadPoolExecutor.getCompletedTaskCount()|Returns the ap
+|java.util.concurrent.ThreadPoolExecutor.getCorePoolSize()|Returns the core num
+|java.util.concurrent.ThreadPoolExecutor.getKeepAliveTime(TimeUnit)|Returns the
+|java.util.concurrent.ThreadPoolExecutor.getLargestPoolSize()|Returns the large
+|java.util.concurrent.ThreadPoolExecutor.getMaximumPoolSize()|Returns the maxim
+|java.util.concurrent.ThreadPoolExecutor.getPoolSize()|Returns the current numb
+|java.util.concurrent.ThreadPoolExecutor.getQueue()|Returns the task queue used
+|java.util.concurrent.ThreadPoolExecutor.getRejectedExecutionHandler()|Returns 
+|java.util.concurrent.ThreadPoolExecutor.getTaskCount()|Returns the approximate
+|java.util.concurrent.ThreadPoolExecutor.getThreadFactory()|Returns the thread 
+|java.util.concurrent.ThreadPoolExecutor.isShutdown()|
+|java.util.concurrent.ThreadPoolExecutor.isTerminated()|
+|java.util.concurrent.ThreadPoolExecutor.isTerminating()|Returns true if this e
+|java.util.concurrent.ThreadPoolExecutor.prestartAllCoreThreads()|Starts all co
+|java.util.concurrent.ThreadPoolExecutor.prestartCoreThread()|Starts a core thr
+|java.util.concurrent.ThreadPoolExecutor.purge()|Tries to remove from the work 
+|java.util.concurrent.ThreadPoolExecutor.remove(Runnable)|Removes this task fro
+|java.util.concurrent.ThreadPoolExecutor.setCorePoolSize(int)|Sets the core num
+|java.util.concurrent.ThreadPoolExecutor.setKeepAliveTime(long,TimeUnit)|Sets t
+|java.util.concurrent.ThreadPoolExecutor.setMaximumPoolSize(int)|Sets the maxim
+|java.util.concurrent.ThreadPoolExecutor.setRejectedExecutionHandler(RejectedExecutionHandler)|
+|java.util.concurrent.ThreadPoolExecutor.setThreadFactory(ThreadFactory)|Sets t
+|java.util.concurrent.ThreadPoolExecutor.shutdown()|Initiates an orderly shutdo
+|java.util.concurrent.ThreadPoolExecutor.shutdownNow()|Attempts to stop all act
+|java.util.concurrent.ThreadPoolExecutor.terminated()|Method invoked when the E
+
+*java.util.concurrent.ThreadPoolExecutor_Description*
+
+An (|java.util.concurrent.ExecutorService|) that executes each submitted task 
+using one of possibly several pooled threads, normally configured using 
+(|java.util.concurrent.Executors|) factory methods. 
+
+Thread pools address two different problems: they usually provide improved 
+performance when executing large numbers of asynchronous tasks, due to reduced 
+per-task invocation overhead, and they provide a means of bounding and managing 
+the resources, including threads, consumed when executing a collection of 
+tasks. Each ThreadPoolExecutor also maintains some basic statistics, such as 
+the number of completed tasks. 
+
+To be useful across a wide range of contexts, this class provides many 
+adjustable parameters and extensibility hooks. However, programmers are urged 
+to use the more convenient (|java.util.concurrent.Executors|) factory methods 
+(|java.util.concurrent.Executors|) (unbounded thread pool, with automatic 
+thread reclamation), (|java.util.concurrent.Executors|) (fixed size thread 
+pool) and (|java.util.concurrent.Executors|) (single background thread), that 
+preconfigure settings for the most common usage scenarios. Otherwise, use the 
+following guide when manually configuring and tuning this class: 
+
+
+
+Core and maximum pool sizes 
+
+A ThreadPoolExecutor will automatically adjust the pool size (see 
+(|java.util.concurrent.ThreadPoolExecutor|) ) according to the bounds set by 
+corePoolSize (see (|java.util.concurrent.ThreadPoolExecutor|) ) and 
+maximumPoolSize (see (|java.util.concurrent.ThreadPoolExecutor|) ). When a new 
+task is submitted in method (|java.util.concurrent.ThreadPoolExecutor|) , and 
+fewer than corePoolSize threads are running, a new thread is created to handle 
+the request, even if other worker threads are idle. If there are more than 
+corePoolSize but less than maximumPoolSize threads running, a new thread will 
+be created only if the queue is full. By setting corePoolSize and 
+maximumPoolSize the same, you create a fixed-size thread pool. By setting 
+maximumPoolSize to an essentially unbounded value such as Integer.MAX_VALUE, 
+you allow the pool to accommodate an arbitrary number of concurrent tasks. Most 
+typically, core and maximum pool sizes are set only upon construction, but they 
+may also be changed dynamically using 
+(|java.util.concurrent.ThreadPoolExecutor|) and 
+(|java.util.concurrent.ThreadPoolExecutor|) . 
+
+On-demand construction 
+
+By default, even core threads are initially created and started only when 
+needed by new tasks, but this can be overridden dynamically using method 
+(|java.util.concurrent.ThreadPoolExecutor|) or 
+(|java.util.concurrent.ThreadPoolExecutor|) . 
+
+Creating new threads 
+
+New threads are created using a (|java.util.concurrent.ThreadFactory|) . If not 
+otherwise specified, a (|java.util.concurrent.Executors|) is used, that creates 
+threads to all be in the same (|java.lang.ThreadGroup|) and with the same 
+NORM_PRIORITY priority and non-daemon status. By supplying a different 
+ThreadFactory, you can alter the thread's name, thread group, priority, daemon 
+status, etc. If a ThreadFactory fails to create a thread when asked by 
+returning null from newThread, the executor will continue, but might not be 
+able to execute any tasks. 
+
+Keep-alive times 
+
+If the pool currently has more than corePoolSize threads, excess threads will 
+be terminated if they have been idle for more than the keepAliveTime (see 
+(|java.util.concurrent.ThreadPoolExecutor|) ). This provides a means of 
+reducing resource consumption when the pool is not being actively used. If the 
+pool becomes more active later, new threads will be constructed. This parameter 
+can also be changed dynamically using method 
+(|java.util.concurrent.ThreadPoolExecutor|) . Using a value of Long.MAX_VALUE 
+(|java.util.concurrent.TimeUnit|) effectively disables idle threads from ever 
+terminating prior to shut down. 
+
+Queuing 
+
+Any (|java.util.concurrent.BlockingQueue|) may be used to transfer and hold 
+submitted tasks. The use of this queue interacts with pool sizing: 
+
+
+
+If fewer than corePoolSize threads are running, the Executor always prefers 
+adding a new thread rather than queuing. 
+
+If corePoolSize or more threads are running, the Executor always prefers 
+queuing a request rather than adding a new thread. 
+
+If a request cannot be queued, a new thread is created unless this would exceed 
+maximumPoolSize, in which case, the task will be rejected. 
+
+
+
+There are three general strategies for queuing: 
+
+Direct handoffs. A good default choice for a work queue is a 
+(|java.util.concurrent.SynchronousQueue|) that hands off tasks to threads 
+without otherwise holding them. Here, an attempt to queue a task will fail if 
+no threads are immediately available to run it, so a new thread will be 
+constructed. This policy avoids lockups when handling sets of requests that 
+might have internal dependencies. Direct handoffs generally require unbounded 
+maximumPoolSizes to avoid rejection of new submitted tasks. This in turn admits 
+the possibility of unbounded thread growth when commands continue to arrive on 
+average faster than they can be processed. 
+
+Unbounded queues. Using an unbounded queue (for example a 
+(|java.util.concurrent.LinkedBlockingQueue|) without a predefined capacity) 
+will cause new tasks to be queued in cases where all corePoolSize threads are 
+busy. Thus, no more than corePoolSize threads will ever be created. (And the 
+value of the maximumPoolSize therefore doesn't have any effect.) This may be 
+appropriate when each task is completely independent of others, so tasks cannot 
+affect each others execution; for example, in a web page server. While this 
+style of queuing can be useful in smoothing out transient bursts of requests, 
+it admits the possibility of unbounded work queue growth when commands continue 
+to arrive on average faster than they can be processed. 
+
+Bounded queues. A bounded queue (for example, an 
+(|java.util.concurrent.ArrayBlockingQueue|) ) helps prevent resource exhaustion 
+when used with finite maximumPoolSizes, but can be more difficult to tune and 
+control. Queue sizes and maximum pool sizes may be traded off for each other: 
+Using large queues and small pools minimizes CPU usage, OS resources, and 
+context-switching overhead, but can lead to artificially low throughput. If 
+tasks frequently block (for example if they are I/O bound), a system may be 
+able to schedule time for more threads than you otherwise allow. Use of small 
+queues generally requires larger pool sizes, which keeps CPUs busier but may 
+encounter unacceptable scheduling overhead, which also decreases throughput. 
+
+
+
+
+
+Rejected tasks 
+
+New tasks submitted in method (|java.util.concurrent.ThreadPoolExecutor|) will 
+be rejected when the Executor has been shut down, and also when the Executor 
+uses finite bounds for both maximum threads and work queue capacity, and is 
+saturated. In either case, the execute method invokes the 
+(|java.util.concurrent.RejectedExecutionHandler|) method of its 
+(|java.util.concurrent.RejectedExecutionHandler|) . Four predefined handler 
+policies are provided: 
+
+
+
+In the default (|java.util.concurrent.ThreadPoolExecutor.AbortPolicy|) , the 
+handler throws a runtime (|java.util.concurrent.RejectedExecutionException|) 
+upon rejection. 
+
+In (|java.util.concurrent.ThreadPoolExecutor.CallerRunsPolicy|) , the thread 
+that invokes execute itself runs the task. This provides a simple feedback 
+control mechanism that will slow down the rate that new tasks are submitted. 
+
+In (|java.util.concurrent.ThreadPoolExecutor.DiscardPolicy|) , a task that 
+cannot be executed is simply dropped. 
+
+In (|java.util.concurrent.ThreadPoolExecutor.DiscardOldestPolicy|) , if the 
+executor is not shut down, the task at the head of the work queue is dropped, 
+and then execution is retried (which can fail again, causing this to be 
+repeated.) 
+
+
+
+It is possible to define and use other kinds of 
+(|java.util.concurrent.RejectedExecutionHandler|) classes. Doing so requires 
+some care especially when policies are designed to work only under particular 
+capacity or queuing policies. 
+
+Hook methods 
+
+This class provides protected overridable 
+(|java.util.concurrent.ThreadPoolExecutor|) and 
+(|java.util.concurrent.ThreadPoolExecutor|) methods that are called before and 
+after execution of each task. These can be used to manipulate the execution 
+environment; for example, reinitializing ThreadLocals, gathering statistics, or 
+adding log entries. Additionally, method 
+(|java.util.concurrent.ThreadPoolExecutor|) can be overridden to perform any 
+special processing that needs to be done once the Executor has fully 
+terminated. 
+
+If hook or callback methods throw exceptions, internal worker threads may in 
+turn fail and abruptly terminate. 
+
+Queue maintenance 
+
+Method (|java.util.concurrent.ThreadPoolExecutor|) allows access to the work 
+queue for purposes of monitoring and debugging. Use of this method for any 
+other purpose is strongly discouraged. Two supplied methods, 
+(|java.util.concurrent.ThreadPoolExecutor|) and 
+(|java.util.concurrent.ThreadPoolExecutor|) are available to assist in storage 
+reclamation when large numbers of queued tasks become cancelled. 
+
+Extension example. Most extensions of this class override one or more of the 
+protected hook methods. For example, here is a subclass that adds a simple 
+pause/resume feature: 
+
+
+
+class PausableThreadPoolExecutor extends ThreadPoolExecutor { private boolean 
+isPaused; private ReentrantLock pauseLock = new ReentrantLock(); private 
+Condition unpaused = pauseLock.newCondition(); 
+
+public PausableThreadPoolExecutor(...) { super(...); } 
+
+protected void beforeExecute(Thread t, Runnable r) { super.beforeExecute(t, r); 
+pauseLock.lock(); try { while (isPaused) unpaused.await(); } 
+catch(InterruptedException ie) { t.interrupt(); } finally { pauseLock.unlock(); 
+} } 
+
+public void pause() { pauseLock.lock(); try { isPaused = true; } finally { 
+pauseLock.unlock(); } } 
+
+public void resume() { pauseLock.lock(); try { isPaused = false; 
+unpaused.signalAll(); } finally { pauseLock.unlock(); } } } 
+
+
+*java.util.concurrent.ThreadPoolExecutor(int,int,long,TimeUnit,BlockingQueue)*
+
+public ThreadPoolExecutor(
+  int corePoolSize,
+  int maximumPoolSize,
+  long keepAliveTime,
+  java.util.concurrent.TimeUnit unit,
+  java.util.concurrent.BlockingQueue workQueue)
+
+Creates a new ThreadPoolExecutor with the given initial parameters and default 
+thread factory and handler. It may be more convenient to use one of the 
+(|java.util.concurrent.Executors|) factory methods instead of this general 
+purpose constructor. 
+
+    corePoolSize - the number of threads to keep in the pool, even if they are idle. 
+    maximumPoolSize - the maximum number of threads to allow in the pool. 
+    keepAliveTime - when the number of threads is greater than the core, this is the maximum time 
+       that excess idle threads will wait for new tasks before terminating. 
+    unit - the time unit for the keepAliveTime argument. 
+    workQueue - the queue to use for holding tasks before they are executed. This queue will 
+       hold only the Runnable tasks submitted by the execute method. 
+
+*java.util.concurrent.ThreadPoolExecutor(int,int,long,TimeUnit,BlockingQueue,RejectedExecutionHandler)*
+
+public ThreadPoolExecutor(
+  int corePoolSize,
+  int maximumPoolSize,
+  long keepAliveTime,
+  java.util.concurrent.TimeUnit unit,
+  java.util.concurrent.BlockingQueue workQueue,
+  java.util.concurrent.RejectedExecutionHandler handler)
+
+Creates a new ThreadPoolExecutor with the given initial parameters. 
+
+    corePoolSize - the number of threads to keep in the pool, even if they are idle. 
+    maximumPoolSize - the maximum number of threads to allow in the pool. 
+    keepAliveTime - when the number of threads is greater than the core, this is the maximum time 
+       that excess idle threads will wait for new tasks before terminating. 
+    unit - the time unit for the keepAliveTime argument. 
+    workQueue - the queue to use for holding tasks before they are executed. This queue will 
+       hold only the Runnable tasks submitted by the execute method. 
+    handler - the handler to use when execution is blocked because the thread bounds and 
+       queue capacities are reached. 
+
+*java.util.concurrent.ThreadPoolExecutor(int,int,long,TimeUnit,BlockingQueue,ThreadFactory)*
+
+public ThreadPoolExecutor(
+  int corePoolSize,
+  int maximumPoolSize,
+  long keepAliveTime,
+  java.util.concurrent.TimeUnit unit,
+  java.util.concurrent.BlockingQueue workQueue,
+  java.util.concurrent.ThreadFactory threadFactory)
+
+Creates a new ThreadPoolExecutor with the given initial parameters. 
+
+    corePoolSize - the number of threads to keep in the pool, even if they are idle. 
+    maximumPoolSize - the maximum number of threads to allow in the pool. 
+    keepAliveTime - when the number of threads is greater than the core, this is the maximum time 
+       that excess idle threads will wait for new tasks before terminating. 
+    unit - the time unit for the keepAliveTime argument. 
+    workQueue - the queue to use for holding tasks before they are executed. This queue will 
+       hold only the Runnable tasks submitted by the execute method. 
+    threadFactory - the factory to use when the executor creates a new thread. 
+
+*java.util.concurrent.ThreadPoolExecutor(int,int,long,TimeUnit,BlockingQueue,ThreadFactory,RejectedExecutionHandler)*
+
+public ThreadPoolExecutor(
+  int corePoolSize,
+  int maximumPoolSize,
+  long keepAliveTime,
+  java.util.concurrent.TimeUnit unit,
+  java.util.concurrent.BlockingQueue workQueue,
+  java.util.concurrent.ThreadFactory threadFactory,
+  java.util.concurrent.RejectedExecutionHandler handler)
+
+Creates a new ThreadPoolExecutor with the given initial parameters. 
+
+    corePoolSize - the number of threads to keep in the pool, even if they are idle. 
+    maximumPoolSize - the maximum number of threads to allow in the pool. 
+    keepAliveTime - when the number of threads is greater than the core, this is the maximum time 
+       that excess idle threads will wait for new tasks before terminating. 
+    unit - the time unit for the keepAliveTime argument. 
+    workQueue - the queue to use for holding tasks before they are executed. This queue will 
+       hold only the Runnable tasks submitted by the execute method. 
+    threadFactory - the factory to use when the executor creates a new thread. 
+    handler - the handler to use when execution is blocked because the thread bounds and 
+       queue capacities are reached. 
+
+*java.util.concurrent.ThreadPoolExecutor.afterExecute(Runnable,Throwable)*
+
+protected void afterExecute(
+  java.lang.Runnable r,
+  java.lang.Throwable t)
+
+Method invoked upon completion of execution of the given Runnable. This method 
+is invoked by the thread that executed the task. If non-null, the Throwable is 
+the uncaught exception that caused execution to terminate abruptly. Note: To 
+properly nest multiple overridings, subclasses should generally invoke 
+super.afterExecute at the beginning of this method. 
+
+    r - the runnable that has completed. 
+    t - the exception that caused termination, or null if execution completed normally. 
+
+*java.util.concurrent.ThreadPoolExecutor.awaitTermination(long,TimeUnit)*
+
+public boolean awaitTermination(
+  long timeout,
+  java.util.concurrent.TimeUnit unit)
+  throws |java.lang.InterruptedException|
+         
+
+
+
+*java.util.concurrent.ThreadPoolExecutor.beforeExecute(Thread,Runnable)*
+
+protected void beforeExecute(
+  java.lang.Thread t,
+  java.lang.Runnable r)
+
+Method invoked prior to executing the given Runnable in the given thread. This 
+method is invoked by thread t that will execute task r, and may be used to 
+re-initialize ThreadLocals, or to perform logging. Note: To properly nest 
+multiple overridings, subclasses should generally invoke super.beforeExecute at 
+the end of this method. 
+
+    t - the thread that will run task r. 
+    r - the task that will be executed. 
+
+*java.util.concurrent.ThreadPoolExecutor.execute(Runnable)*
+
+public void execute(java.lang.Runnable command)
+
+Executes the given task sometime in the future. The task may execute in a new 
+thread or in an existing pooled thread. 
+
+If the task cannot be submitted for execution, either because this executor has 
+been shutdown or because its capacity has been reached, the task is handled by 
+the current RejectedExecutionHandler. 
+
+    command - the task to execute 
+
+*java.util.concurrent.ThreadPoolExecutor.finalize()*
+
+protected void finalize()
+
+Invokes shutdown when this executor is no longer referenced. 
+
+
+*java.util.concurrent.ThreadPoolExecutor.getActiveCount()*
+
+public int getActiveCount()
+
+Returns the approximate number of threads that are actively executing tasks. 
+
+
+    Returns: the number of threads 
+*java.util.concurrent.ThreadPoolExecutor.getCompletedTaskCount()*
+
+public long getCompletedTaskCount()
+
+Returns the approximate total number of tasks that have completed execution. 
+Because the states of tasks and threads may change dynamically during 
+computation, the returned value is only an approximation, but one that does not 
+ever decrease across successive calls. 
+
+
+    Returns: the number of tasks 
+*java.util.concurrent.ThreadPoolExecutor.getCorePoolSize()*
+
+public int getCorePoolSize()
+
+Returns the core number of threads. 
+
+
+    Returns: the core number of threads 
+*java.util.concurrent.ThreadPoolExecutor.getKeepAliveTime(TimeUnit)*
+
+public long getKeepAliveTime(java.util.concurrent.TimeUnit unit)
+
+Returns the thread keep-alive time, which is the amount of time which threads 
+in excess of the core pool size may remain idle before being terminated. 
+
+    unit - the desired time unit of the result 
+
+    Returns: the time limit 
+*java.util.concurrent.ThreadPoolExecutor.getLargestPoolSize()*
+
+public int getLargestPoolSize()
+
+Returns the largest number of threads that have ever simultaneously been in the 
+pool. 
+
+
+    Returns: the number of threads 
+*java.util.concurrent.ThreadPoolExecutor.getMaximumPoolSize()*
+
+public int getMaximumPoolSize()
+
+Returns the maximum allowed number of threads. 
+
+
+    Returns: the maximum allowed number of threads 
+*java.util.concurrent.ThreadPoolExecutor.getPoolSize()*
+
+public int getPoolSize()
+
+Returns the current number of threads in the pool. 
+
+
+    Returns: the number of threads 
+*java.util.concurrent.ThreadPoolExecutor.getQueue()*
+
+public |java.util.concurrent.BlockingQueue| getQueue()
+
+Returns the task queue used by this executor. Access to the task queue is 
+intended primarily for debugging and monitoring. This queue may be in active 
+use. Retrieving the task queue does not prevent queued tasks from executing. 
+
+
+    Returns: the task queue 
+*java.util.concurrent.ThreadPoolExecutor.getRejectedExecutionHandler()*
+
+public |java.util.concurrent.RejectedExecutionHandler| getRejectedExecutionHandler()
+
+Returns the current handler for unexecutable tasks. 
+
+
+    Returns: the current handler 
+*java.util.concurrent.ThreadPoolExecutor.getTaskCount()*
+
+public long getTaskCount()
+
+Returns the approximate total number of tasks that have been scheduled for 
+execution. Because the states of tasks and threads may change dynamically 
+during computation, the returned value is only an approximation, but one that 
+does not ever decrease across successive calls. 
+
+
+    Returns: the number of tasks 
+*java.util.concurrent.ThreadPoolExecutor.getThreadFactory()*
+
+public |java.util.concurrent.ThreadFactory| getThreadFactory()
+
+Returns the thread factory used to create new threads. 
+
+
+    Returns: the current thread factory 
+*java.util.concurrent.ThreadPoolExecutor.isShutdown()*
+
+public boolean isShutdown()
+
+
+
+
+*java.util.concurrent.ThreadPoolExecutor.isTerminated()*
+
+public boolean isTerminated()
+
+
+
+
+*java.util.concurrent.ThreadPoolExecutor.isTerminating()*
+
+public boolean isTerminating()
+
+Returns true if this executor is in the process of terminating after shutdown 
+or shutdownNow but has not completely terminated. This method may be useful for 
+debugging. A return of true reported a sufficient period after shutdown may 
+indicate that submitted tasks have ignored or suppressed interruption, causing 
+this executor not to properly terminate. 
+
+
+    Returns: true if terminating but not yet terminated. 
+*java.util.concurrent.ThreadPoolExecutor.prestartAllCoreThreads()*
+
+public int prestartAllCoreThreads()
+
+Starts all core threads, causing them to idly wait for work. This overrides the 
+default policy of starting core threads only when new tasks are executed. 
+
+
+    Returns: the number of threads started. 
+*java.util.concurrent.ThreadPoolExecutor.prestartCoreThread()*
+
+public boolean prestartCoreThread()
+
+Starts a core thread, causing it to idly wait for work. This overrides the 
+default policy of starting core threads only when new tasks are executed. This 
+method will return false if all core threads have already been started. 
+
+
+    Returns: true if a thread was started 
+*java.util.concurrent.ThreadPoolExecutor.purge()*
+
+public void purge()
+
+Tries to remove from the work queue all (|java.util.concurrent.Future|) tasks 
+that have been cancelled. This method can be useful as a storage reclamation 
+operation, that has no other impact on functionality. Cancelled tasks are never 
+executed, but may accumulate in work queues until worker threads can actively 
+remove them. Invoking this method instead tries to remove them now. However, 
+this method may fail to remove tasks in the presence of interference by other 
+threads. 
+
+
+*java.util.concurrent.ThreadPoolExecutor.remove(Runnable)*
+
+public boolean remove(java.lang.Runnable task)
+
+Removes this task from the executor's internal queue if it is present, thus 
+causing it not to be run if it has not already started. 
+
+This method may be useful as one part of a cancellation scheme. It may fail to 
+remove tasks that have been converted into other forms before being placed on 
+the internal queue. For example, a task entered using submit might be converted 
+into a form that maintains Future status. However, in such cases, method 
+(|java.util.concurrent.ThreadPoolExecutor|) may be used to remove those Futures 
+that have been cancelled. 
+
+    task - the task to remove 
+
+    Returns: true if the task was removed 
+*java.util.concurrent.ThreadPoolExecutor.setCorePoolSize(int)*
+
+public void setCorePoolSize(int corePoolSize)
+
+Sets the core number of threads. This overrides any value set in the 
+constructor. If the new value is smaller than the current value, excess 
+existing threads will be terminated when they next become idle. If larger, new 
+threads will, if needed, be started to execute any queued tasks. 
+
+    corePoolSize - the new core size 
+
+*java.util.concurrent.ThreadPoolExecutor.setKeepAliveTime(long,TimeUnit)*
+
+public void setKeepAliveTime(
+  long time,
+  java.util.concurrent.TimeUnit unit)
+
+Sets the time limit for which threads may remain idle before being terminated. 
+If there are more than the core number of threads currently in the pool, after 
+waiting this amount of time without processing a task, excess threads will be 
+terminated. This overrides any value set in the constructor. 
+
+    time - the time to wait. A time value of zero will cause excess threads to terminate 
+       immediately after executing tasks. 
+    unit - the time unit of the time argument 
+
+*java.util.concurrent.ThreadPoolExecutor.setMaximumPoolSize(int)*
+
+public void setMaximumPoolSize(int maximumPoolSize)
+
+Sets the maximum allowed number of threads. This overrides any value set in the 
+constructor. If the new value is smaller than the current value, excess 
+existing threads will be terminated when they next become idle. 
+
+    maximumPoolSize - the new maximum 
+
+*java.util.concurrent.ThreadPoolExecutor.setRejectedExecutionHandler(RejectedExecutionHandler)*
+
+public void setRejectedExecutionHandler(java.util.concurrent.RejectedExecutionHandler handler)
+
+Sets a new handler for unexecutable tasks. 
+
+    handler - the new handler 
+
+*java.util.concurrent.ThreadPoolExecutor.setThreadFactory(ThreadFactory)*
+
+public void setThreadFactory(java.util.concurrent.ThreadFactory threadFactory)
+
+Sets the thread factory used to create new threads. 
+
+    threadFactory - the new thread factory 
+
+*java.util.concurrent.ThreadPoolExecutor.shutdown()*
+
+public void shutdown()
+
+Initiates an orderly shutdown in which previously submitted tasks are executed, 
+but no new tasks will be accepted. Invocation has no additional effect if 
+already shut down. 
+
+
+*java.util.concurrent.ThreadPoolExecutor.shutdownNow()*
+
+public |java.util.List| shutdownNow()
+
+Attempts to stop all actively executing tasks, halts the processing of waiting 
+tasks, and returns a list of the tasks that were awaiting execution. 
+
+This implementation cancels tasks via (|java.lang.Thread|) , so if any tasks 
+mask or fail to respond to interrupts, they may never terminate. 
+
+
+    Returns: list of tasks that never commenced execution 
+*java.util.concurrent.ThreadPoolExecutor.terminated()*
+
+protected void terminated()
+
+Method invoked when the Executor has terminated. Default implementation does 
+nothing. Note: To properly nest multiple overridings, subclasses should 
+generally invoke super.terminated within this method. 
+
+
+

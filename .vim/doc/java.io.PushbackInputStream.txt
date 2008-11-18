@@ -1,0 +1,245 @@
+*java.io.PushbackInputStream* *PushbackInputStream* A PushbackInputStream adds
+ 
+
+public class PushbackInputStream
+  extends    |java.io.FilterInputStream|
+
+|java.io.PushbackInputStream_Description|
+|java.io.PushbackInputStream_Fields|
+|java.io.PushbackInputStream_Constructors|
+|java.io.PushbackInputStream_Methods|
+
+================================================================================
+
+*java.io.PushbackInputStream_Fields*
+|byte[]_java.io.PushbackInputStream.buf|
+|int_java.io.PushbackInputStream.pos|
+
+*java.io.PushbackInputStream_Constructors*
+|java.io.PushbackInputStream(InputStream)|Creates a PushbackInputStream  and sa
+|java.io.PushbackInputStream(InputStream,int)|Creates a PushbackInputStream  wi
+
+*java.io.PushbackInputStream_Methods*
+|java.io.PushbackInputStream.available()|Returns the number of bytes that can b
+|java.io.PushbackInputStream.close()|Closes this input stream and releases any 
+|java.io.PushbackInputStream.mark(int)|Marks the current position in this input
+|java.io.PushbackInputStream.markSupported()|Tests if this input stream support
+|java.io.PushbackInputStream.read()|Reads the next byte of data from this input
+|java.io.PushbackInputStream.read(byte[],int,int)|Reads up to len bytes of data
+|java.io.PushbackInputStream.reset()|Repositions this stream to the position at
+|java.io.PushbackInputStream.skip(long)|Skips over and discards n bytes of data
+|java.io.PushbackInputStream.unread(byte[])|Pushes back an array of bytes by co
+|java.io.PushbackInputStream.unread(byte[],int,int)|Pushes back a portion of an
+|java.io.PushbackInputStream.unread(int)|Pushes back a byte by copying it to th
+
+*java.io.PushbackInputStream_Description*
+
+A PushbackInputStream adds functionality to another input stream, namely the 
+ability to "push back" or "unread" one byte. This is useful in situations where 
+it is convenient for a fragment of code to read an indefinite number of data 
+bytes that are delimited by a particular byte value; after reading the 
+terminating byte, the code fragment can "unread" it, so that the next read 
+operation on the input stream will reread the byte that was pushed back. For 
+example, bytes representing the characters constituting an identifier might be 
+terminated by a byte representing an operator character; a method whose job is 
+to read just an identifier can read until it sees the operator and then push 
+the operator back to be re-read. 
+
+
+*byte[]_java.io.PushbackInputStream.buf*
+
+A PushbackInputStream adds functionality to another input stream, namely the 
+ability to "push back" or "unread" one byte. This is useful in situations where 
+it is convenient for a fragment of code to read an indefinite number of data 
+bytes that are delimited by a particular byte value; after reading the 
+terminating byte, the code fragment can "unread" it, so that the next read 
+operation on the input stream will reread the byte that was pushed back. For 
+example, bytes representing the characters constituting an identifier might be 
+terminated by a byte representing an operator character; a method whose job is 
+to read just an identifier can read until it sees the operator and then push 
+the operator back to be re-read. 
+
+
+*int_java.io.PushbackInputStream.pos*
+
+A PushbackInputStream adds functionality to another input stream, namely the 
+ability to "push back" or "unread" one byte. This is useful in situations where 
+it is convenient for a fragment of code to read an indefinite number of data 
+bytes that are delimited by a particular byte value; after reading the 
+terminating byte, the code fragment can "unread" it, so that the next read 
+operation on the input stream will reread the byte that was pushed back. For 
+example, bytes representing the characters constituting an identifier might be 
+terminated by a byte representing an operator character; a method whose job is 
+to read just an identifier can read until it sees the operator and then push 
+the operator back to be re-read. 
+
+
+
+*java.io.PushbackInputStream(InputStream)*
+
+public PushbackInputStream(java.io.InputStream in)
+
+Creates a PushbackInputStream and saves its argument, the input stream in, for 
+later use. Initially, there is no pushed-back byte (the field pushBack is 
+initialized to -1). 
+
+    in - the input stream from which bytes will be read. 
+
+*java.io.PushbackInputStream(InputStream,int)*
+
+public PushbackInputStream(
+  java.io.InputStream in,
+  int size)
+
+Creates a PushbackInputStream with a pushback buffer of the specified size, and 
+saves its argument, the input stream in, for later use. Initially, there is no 
+pushed-back byte (the field pushBack is initialized to -1). 
+
+    in - the input stream from which bytes will be read. 
+    size - the size of the pushback buffer. 
+
+*java.io.PushbackInputStream.available()*
+
+public int available()
+  throws |java.io.IOException|
+         
+Returns the number of bytes that can be read from this input stream without 
+blocking. This method calls the available method of the underlying input 
+stream; it returns that value plus the number of bytes that have been pushed 
+back. 
+
+
+    Returns: the number of bytes that can be read from the input stream without blocking. 
+*java.io.PushbackInputStream.close()*
+
+public synchronized void close()
+  throws |java.io.IOException|
+         
+Closes this input stream and releases any system resources associated with the 
+stream. 
+
+
+*java.io.PushbackInputStream.mark(int)*
+
+public synchronized void mark(int readlimit)
+
+Marks the current position in this input stream. 
+
+The mark method of PushbackInputStream does nothing. 
+
+    readlimit - the maximum limit of bytes that can be read before the mark position becomes 
+       invalid. 
+
+*java.io.PushbackInputStream.markSupported()*
+
+public boolean markSupported()
+
+Tests if this input stream supports the mark and reset methods, which it does 
+not. 
+
+
+    Returns: false, since this class does not support the mark and reset methods. 
+*java.io.PushbackInputStream.read()*
+
+public int read()
+  throws |java.io.IOException|
+         
+Reads the next byte of data from this input stream. The value byte is returned 
+as an int in the range 0 to 255. If no byte is available because the end of the 
+stream has been reached, the value -1 is returned. This method blocks until 
+input data is available, the end of the stream is detected, or an exception is 
+thrown. 
+
+This method returns the most recently pushed-back byte, if there is one, and 
+otherwise calls the read method of its underlying input stream and returns 
+whatever value that method returns. 
+
+
+    Returns: the next byte of data, or -1 if the end of the stream has been reached. 
+*java.io.PushbackInputStream.read(byte[],int,int)*
+
+public int read(
+  byte[] b,
+  int off,
+  int len)
+  throws |java.io.IOException|
+         
+Reads up to len bytes of data from this input stream into an array of bytes. 
+This method first reads any pushed-back bytes; after that, if fewer than len 
+bytes have been read then it reads from the underlying input stream. This 
+method blocks until at least 1 byte of input is available. 
+
+    b - the buffer into which the data is read. 
+    off - the start offset of the data. 
+    len - the maximum number of bytes read. 
+
+    Returns: the total number of bytes read into the buffer, or -1 if there is no more data 
+             because the end of the stream has been reached. 
+*java.io.PushbackInputStream.reset()*
+
+public synchronized void reset()
+  throws |java.io.IOException|
+         
+Repositions this stream to the position at the time the mark method was last 
+called on this input stream. 
+
+The method reset for class PushbackInputStream does nothing except throw an 
+IOException. 
+
+
+*java.io.PushbackInputStream.skip(long)*
+
+public long skip(long n)
+  throws |java.io.IOException|
+         
+Skips over and discards n bytes of data from this input stream. The skip method 
+may, for a variety of reasons, end up skipping over some smaller number of 
+bytes, possibly zero. If n is negative, no bytes are skipped. 
+
+The skip method of PushbackInputStream first skips over the bytes in the 
+pushback buffer, if any. It then calls the skip method of the underlying input 
+stream if more bytes need to be skipped. The actual number of bytes skipped is 
+returned. 
+
+    n - the number of bytes to be skipped. 
+
+    Returns: the actual number of bytes skipped. 
+*java.io.PushbackInputStream.unread(byte[])*
+
+public void unread(byte[] b)
+  throws |java.io.IOException|
+         
+Pushes back an array of bytes by copying it to the front of the pushback 
+buffer. After this method returns, the next byte to be read will have the value 
+b[0], the byte after that will have the value b[1], and so forth. 
+
+    b - the byte array to push back 
+
+*java.io.PushbackInputStream.unread(byte[],int,int)*
+
+public void unread(
+  byte[] b,
+  int off,
+  int len)
+  throws |java.io.IOException|
+         
+Pushes back a portion of an array of bytes by copying it to the front of the 
+pushback buffer. After this method returns, the next byte to be read will have 
+the value b[off], the byte after that will have the value b[off+1], and so 
+forth. 
+
+    b - the byte array to push back. 
+    off - the start offset of the data. 
+    len - the number of bytes to push back. 
+
+*java.io.PushbackInputStream.unread(int)*
+
+public void unread(int b)
+  throws |java.io.IOException|
+         
+Pushes back a byte by copying it to the front of the pushback buffer. After 
+this method returns, the next byte to be read will have the value (byte)b. 
+
+    b - the int value whose low-order byte is to be pushed back. 
+
+

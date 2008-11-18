@@ -1,0 +1,2369 @@
+*java.awt.font.TextAttribute* *TextAttribute* The TextAttribute class defines at
+
+public final class TextAttribute
+  extends    |java.text.AttributedCharacterIterator.Attribute|
+
+|java.awt.font.TextAttribute_Description|
+|java.awt.font.TextAttribute_Fields|
+|java.awt.font.TextAttribute_Constructors|
+|java.awt.font.TextAttribute_Methods|
+
+================================================================================
+
+*java.awt.font.TextAttribute_Fields*
+|java.awt.font.TextAttribute_java.awt.font.TextAttribute.BACKGROUND|
+|java.awt.font.TextAttribute_java.awt.font.TextAttribute.BIDI_EMBEDDING|
+|java.awt.font.TextAttribute_java.awt.font.TextAttribute.CHAR_REPLACEMENT|
+|java.awt.font.TextAttribute_java.awt.font.TextAttribute.FAMILY|
+|java.awt.font.TextAttribute_java.awt.font.TextAttribute.FONT|
+|java.awt.font.TextAttribute_java.awt.font.TextAttribute.FOREGROUND|
+|java.awt.font.TextAttribute_java.awt.font.TextAttribute.INPUT_METHOD_HIGHLIGHT|
+|java.awt.font.TextAttribute_java.awt.font.TextAttribute.INPUT_METHOD_UNDERLINE|
+|java.awt.font.TextAttribute_java.awt.font.TextAttribute.JUSTIFICATION|
+|java.lang.Float_java.awt.font.TextAttribute.JUSTIFICATION_FULL|
+|java.lang.Float_java.awt.font.TextAttribute.JUSTIFICATION_NONE|
+|java.awt.font.TextAttribute_java.awt.font.TextAttribute.NUMERIC_SHAPING|
+|java.awt.font.TextAttribute_java.awt.font.TextAttribute.POSTURE|
+|java.lang.Float_java.awt.font.TextAttribute.POSTURE_OBLIQUE|
+|java.lang.Float_java.awt.font.TextAttribute.POSTURE_REGULAR|
+|java.awt.font.TextAttribute_java.awt.font.TextAttribute.RUN_DIRECTION|
+|java.lang.Boolean_java.awt.font.TextAttribute.RUN_DIRECTION_LTR|
+|java.lang.Boolean_java.awt.font.TextAttribute.RUN_DIRECTION_RTL|
+|java.awt.font.TextAttribute_java.awt.font.TextAttribute.SIZE|
+|java.awt.font.TextAttribute_java.awt.font.TextAttribute.STRIKETHROUGH|
+|java.lang.Boolean_java.awt.font.TextAttribute.STRIKETHROUGH_ON|
+|java.awt.font.TextAttribute_java.awt.font.TextAttribute.SUPERSCRIPT|
+|java.lang.Integer_java.awt.font.TextAttribute.SUPERSCRIPT_SUB|
+|java.lang.Integer_java.awt.font.TextAttribute.SUPERSCRIPT_SUPER|
+|java.awt.font.TextAttribute_java.awt.font.TextAttribute.SWAP_COLORS|
+|java.lang.Boolean_java.awt.font.TextAttribute.SWAP_COLORS_ON|
+|java.awt.font.TextAttribute_java.awt.font.TextAttribute.TRANSFORM|
+|java.awt.font.TextAttribute_java.awt.font.TextAttribute.UNDERLINE|
+|java.lang.Integer_java.awt.font.TextAttribute.UNDERLINE_LOW_DASHED|
+|java.lang.Integer_java.awt.font.TextAttribute.UNDERLINE_LOW_DOTTED|
+|java.lang.Integer_java.awt.font.TextAttribute.UNDERLINE_LOW_GRAY|
+|java.lang.Integer_java.awt.font.TextAttribute.UNDERLINE_LOW_ONE_PIXEL|
+|java.lang.Integer_java.awt.font.TextAttribute.UNDERLINE_LOW_TWO_PIXEL|
+|java.lang.Integer_java.awt.font.TextAttribute.UNDERLINE_ON|
+|java.awt.font.TextAttribute_java.awt.font.TextAttribute.WEIGHT|
+|java.lang.Float_java.awt.font.TextAttribute.WEIGHT_BOLD|
+|java.lang.Float_java.awt.font.TextAttribute.WEIGHT_DEMIBOLD|
+|java.lang.Float_java.awt.font.TextAttribute.WEIGHT_DEMILIGHT|
+|java.lang.Float_java.awt.font.TextAttribute.WEIGHT_EXTRA_LIGHT|
+|java.lang.Float_java.awt.font.TextAttribute.WEIGHT_EXTRABOLD|
+|java.lang.Float_java.awt.font.TextAttribute.WEIGHT_HEAVY|
+|java.lang.Float_java.awt.font.TextAttribute.WEIGHT_LIGHT|
+|java.lang.Float_java.awt.font.TextAttribute.WEIGHT_MEDIUM|
+|java.lang.Float_java.awt.font.TextAttribute.WEIGHT_REGULAR|
+|java.lang.Float_java.awt.font.TextAttribute.WEIGHT_SEMIBOLD|
+|java.lang.Float_java.awt.font.TextAttribute.WEIGHT_ULTRABOLD|
+|java.awt.font.TextAttribute_java.awt.font.TextAttribute.WIDTH|
+|java.lang.Float_java.awt.font.TextAttribute.WIDTH_CONDENSED|
+|java.lang.Float_java.awt.font.TextAttribute.WIDTH_EXTENDED|
+|java.lang.Float_java.awt.font.TextAttribute.WIDTH_REGULAR|
+|java.lang.Float_java.awt.font.TextAttribute.WIDTH_SEMI_CONDENSED|
+|java.lang.Float_java.awt.font.TextAttribute.WIDTH_SEMI_EXTENDED|
+
+*java.awt.font.TextAttribute_Constructors*
+|java.awt.font.TextAttribute(String)|Constructs a TextAttribute with the specif
+
+*java.awt.font.TextAttribute_Methods*
+|java.awt.font.TextAttribute.readResolve()|Resolves instances being deserialize
+
+*java.awt.font.TextAttribute_Description*
+
+The TextAttribute class defines attribute keys and attribute values used for 
+text rendering. 
+
+TextAttribute instances are used as attribute keys to identify attributes in 
+AttributedCharacterIterator(|java.text.AttributedCharacterIterator|) , 
+Font(|java.awt.Font|) , and other classes handling text attributes. Other 
+constants defined in this class are used as attribute values. 
+
+For each text attribute, the documentation describes: 
+
+the type of their values, the valid values if there are limitations relevant 
+constants the default effect if the attribute is absent (or has a null value). 
+a description of the effect. the fallback behavior if the exact attribute 
+requested is not available. 
+
+Types of Values 
+
+The values of attributes must always be immutable. Where a list of limitations 
+is given, any value outside of that set is reserved for future use, and ignored 
+at present. If the value is null or not of the proper type then it has the 
+default effect. The effect of a particular value can be interpolated, 
+especially in the case of multiple master fonts. This interpolation is done 
+based on the nearest defined constants above and below the request: 
+
+interpolation = (request - below)/(above - below); 
+
+Interpolation 
+
+Fonts should interpolate values in certain circumstances. For example, when the 
+WEIGHT value is 2.13. If the nearest surrounding values in the font are 
+WEIGHT_BOLD = 2.0 and WEIGHT_HEAVY = 2.25 then font would then interpret the 
+WEIGHT request as being 52% of the way between what it considers BOLD and what 
+it considers HEAVY. If the nearest surrounding values are WEIGHT_SEMIBOLD = 
+1.25 and WEIGHT_ULTRABOLD = 2.75 then the WEIGHT request is interpreted as 
+being 58.67% of the way between SEMIBOLD and ULTRABOLD. Where a font does not 
+have enough capability to handle a given request, such as superscript, then it 
+should simulate it to the best of its ability. To determine if simulation is 
+being performed, the client should query the font to see what actual attributes 
+were used. 
+
+
+*java.awt.font.TextAttribute_java.awt.font.TextAttribute.BACKGROUND*
+
+The TextAttribute class defines attribute keys and attribute values used for 
+text rendering. 
+
+TextAttribute instances are used as attribute keys to identify attributes in 
+AttributedCharacterIterator(|java.text.AttributedCharacterIterator|) , 
+Font(|java.awt.Font|) , and other classes handling text attributes. Other 
+constants defined in this class are used as attribute values. 
+
+For each text attribute, the documentation describes: 
+
+the type of their values, the valid values if there are limitations relevant 
+constants the default effect if the attribute is absent (or has a null value). 
+a description of the effect. the fallback behavior if the exact attribute 
+requested is not available. 
+
+Types of Values 
+
+The values of attributes must always be immutable. Where a list of limitations 
+is given, any value outside of that set is reserved for future use, and ignored 
+at present. If the value is null or not of the proper type then it has the 
+default effect. The effect of a particular value can be interpolated, 
+especially in the case of multiple master fonts. This interpolation is done 
+based on the nearest defined constants above and below the request: 
+
+interpolation = (request - below)/(above - below); 
+
+Interpolation 
+
+Fonts should interpolate values in certain circumstances. For example, when the 
+WEIGHT value is 2.13. If the nearest surrounding values in the font are 
+WEIGHT_BOLD = 2.0 and WEIGHT_HEAVY = 2.25 then font would then interpret the 
+WEIGHT request as being 52% of the way between what it considers BOLD and what 
+it considers HEAVY. If the nearest surrounding values are WEIGHT_SEMIBOLD = 
+1.25 and WEIGHT_ULTRABOLD = 2.75 then the WEIGHT request is interpreted as 
+being 58.67% of the way between SEMIBOLD and ULTRABOLD. Where a font does not 
+have enough capability to handle a given request, such as superscript, then it 
+should simulate it to the best of its ability. To determine if simulation is 
+being performed, the client should query the font to see what actual attributes 
+were used. 
+
+
+*java.awt.font.TextAttribute_java.awt.font.TextAttribute.BIDI_EMBEDDING*
+
+The TextAttribute class defines attribute keys and attribute values used for 
+text rendering. 
+
+TextAttribute instances are used as attribute keys to identify attributes in 
+AttributedCharacterIterator(|java.text.AttributedCharacterIterator|) , 
+Font(|java.awt.Font|) , and other classes handling text attributes. Other 
+constants defined in this class are used as attribute values. 
+
+For each text attribute, the documentation describes: 
+
+the type of their values, the valid values if there are limitations relevant 
+constants the default effect if the attribute is absent (or has a null value). 
+a description of the effect. the fallback behavior if the exact attribute 
+requested is not available. 
+
+Types of Values 
+
+The values of attributes must always be immutable. Where a list of limitations 
+is given, any value outside of that set is reserved for future use, and ignored 
+at present. If the value is null or not of the proper type then it has the 
+default effect. The effect of a particular value can be interpolated, 
+especially in the case of multiple master fonts. This interpolation is done 
+based on the nearest defined constants above and below the request: 
+
+interpolation = (request - below)/(above - below); 
+
+Interpolation 
+
+Fonts should interpolate values in certain circumstances. For example, when the 
+WEIGHT value is 2.13. If the nearest surrounding values in the font are 
+WEIGHT_BOLD = 2.0 and WEIGHT_HEAVY = 2.25 then font would then interpret the 
+WEIGHT request as being 52% of the way between what it considers BOLD and what 
+it considers HEAVY. If the nearest surrounding values are WEIGHT_SEMIBOLD = 
+1.25 and WEIGHT_ULTRABOLD = 2.75 then the WEIGHT request is interpreted as 
+being 58.67% of the way between SEMIBOLD and ULTRABOLD. Where a font does not 
+have enough capability to handle a given request, such as superscript, then it 
+should simulate it to the best of its ability. To determine if simulation is 
+being performed, the client should query the font to see what actual attributes 
+were used. 
+
+
+*java.awt.font.TextAttribute_java.awt.font.TextAttribute.CHAR_REPLACEMENT*
+
+The TextAttribute class defines attribute keys and attribute values used for 
+text rendering. 
+
+TextAttribute instances are used as attribute keys to identify attributes in 
+AttributedCharacterIterator(|java.text.AttributedCharacterIterator|) , 
+Font(|java.awt.Font|) , and other classes handling text attributes. Other 
+constants defined in this class are used as attribute values. 
+
+For each text attribute, the documentation describes: 
+
+the type of their values, the valid values if there are limitations relevant 
+constants the default effect if the attribute is absent (or has a null value). 
+a description of the effect. the fallback behavior if the exact attribute 
+requested is not available. 
+
+Types of Values 
+
+The values of attributes must always be immutable. Where a list of limitations 
+is given, any value outside of that set is reserved for future use, and ignored 
+at present. If the value is null or not of the proper type then it has the 
+default effect. The effect of a particular value can be interpolated, 
+especially in the case of multiple master fonts. This interpolation is done 
+based on the nearest defined constants above and below the request: 
+
+interpolation = (request - below)/(above - below); 
+
+Interpolation 
+
+Fonts should interpolate values in certain circumstances. For example, when the 
+WEIGHT value is 2.13. If the nearest surrounding values in the font are 
+WEIGHT_BOLD = 2.0 and WEIGHT_HEAVY = 2.25 then font would then interpret the 
+WEIGHT request as being 52% of the way between what it considers BOLD and what 
+it considers HEAVY. If the nearest surrounding values are WEIGHT_SEMIBOLD = 
+1.25 and WEIGHT_ULTRABOLD = 2.75 then the WEIGHT request is interpreted as 
+being 58.67% of the way between SEMIBOLD and ULTRABOLD. Where a font does not 
+have enough capability to handle a given request, such as superscript, then it 
+should simulate it to the best of its ability. To determine if simulation is 
+being performed, the client should query the font to see what actual attributes 
+were used. 
+
+
+*java.awt.font.TextAttribute_java.awt.font.TextAttribute.FAMILY*
+
+The TextAttribute class defines attribute keys and attribute values used for 
+text rendering. 
+
+TextAttribute instances are used as attribute keys to identify attributes in 
+AttributedCharacterIterator(|java.text.AttributedCharacterIterator|) , 
+Font(|java.awt.Font|) , and other classes handling text attributes. Other 
+constants defined in this class are used as attribute values. 
+
+For each text attribute, the documentation describes: 
+
+the type of their values, the valid values if there are limitations relevant 
+constants the default effect if the attribute is absent (or has a null value). 
+a description of the effect. the fallback behavior if the exact attribute 
+requested is not available. 
+
+Types of Values 
+
+The values of attributes must always be immutable. Where a list of limitations 
+is given, any value outside of that set is reserved for future use, and ignored 
+at present. If the value is null or not of the proper type then it has the 
+default effect. The effect of a particular value can be interpolated, 
+especially in the case of multiple master fonts. This interpolation is done 
+based on the nearest defined constants above and below the request: 
+
+interpolation = (request - below)/(above - below); 
+
+Interpolation 
+
+Fonts should interpolate values in certain circumstances. For example, when the 
+WEIGHT value is 2.13. If the nearest surrounding values in the font are 
+WEIGHT_BOLD = 2.0 and WEIGHT_HEAVY = 2.25 then font would then interpret the 
+WEIGHT request as being 52% of the way between what it considers BOLD and what 
+it considers HEAVY. If the nearest surrounding values are WEIGHT_SEMIBOLD = 
+1.25 and WEIGHT_ULTRABOLD = 2.75 then the WEIGHT request is interpreted as 
+being 58.67% of the way between SEMIBOLD and ULTRABOLD. Where a font does not 
+have enough capability to handle a given request, such as superscript, then it 
+should simulate it to the best of its ability. To determine if simulation is 
+being performed, the client should query the font to see what actual attributes 
+were used. 
+
+
+*java.awt.font.TextAttribute_java.awt.font.TextAttribute.FONT*
+
+The TextAttribute class defines attribute keys and attribute values used for 
+text rendering. 
+
+TextAttribute instances are used as attribute keys to identify attributes in 
+AttributedCharacterIterator(|java.text.AttributedCharacterIterator|) , 
+Font(|java.awt.Font|) , and other classes handling text attributes. Other 
+constants defined in this class are used as attribute values. 
+
+For each text attribute, the documentation describes: 
+
+the type of their values, the valid values if there are limitations relevant 
+constants the default effect if the attribute is absent (or has a null value). 
+a description of the effect. the fallback behavior if the exact attribute 
+requested is not available. 
+
+Types of Values 
+
+The values of attributes must always be immutable. Where a list of limitations 
+is given, any value outside of that set is reserved for future use, and ignored 
+at present. If the value is null or not of the proper type then it has the 
+default effect. The effect of a particular value can be interpolated, 
+especially in the case of multiple master fonts. This interpolation is done 
+based on the nearest defined constants above and below the request: 
+
+interpolation = (request - below)/(above - below); 
+
+Interpolation 
+
+Fonts should interpolate values in certain circumstances. For example, when the 
+WEIGHT value is 2.13. If the nearest surrounding values in the font are 
+WEIGHT_BOLD = 2.0 and WEIGHT_HEAVY = 2.25 then font would then interpret the 
+WEIGHT request as being 52% of the way between what it considers BOLD and what 
+it considers HEAVY. If the nearest surrounding values are WEIGHT_SEMIBOLD = 
+1.25 and WEIGHT_ULTRABOLD = 2.75 then the WEIGHT request is interpreted as 
+being 58.67% of the way between SEMIBOLD and ULTRABOLD. Where a font does not 
+have enough capability to handle a given request, such as superscript, then it 
+should simulate it to the best of its ability. To determine if simulation is 
+being performed, the client should query the font to see what actual attributes 
+were used. 
+
+
+*java.awt.font.TextAttribute_java.awt.font.TextAttribute.FOREGROUND*
+
+The TextAttribute class defines attribute keys and attribute values used for 
+text rendering. 
+
+TextAttribute instances are used as attribute keys to identify attributes in 
+AttributedCharacterIterator(|java.text.AttributedCharacterIterator|) , 
+Font(|java.awt.Font|) , and other classes handling text attributes. Other 
+constants defined in this class are used as attribute values. 
+
+For each text attribute, the documentation describes: 
+
+the type of their values, the valid values if there are limitations relevant 
+constants the default effect if the attribute is absent (or has a null value). 
+a description of the effect. the fallback behavior if the exact attribute 
+requested is not available. 
+
+Types of Values 
+
+The values of attributes must always be immutable. Where a list of limitations 
+is given, any value outside of that set is reserved for future use, and ignored 
+at present. If the value is null or not of the proper type then it has the 
+default effect. The effect of a particular value can be interpolated, 
+especially in the case of multiple master fonts. This interpolation is done 
+based on the nearest defined constants above and below the request: 
+
+interpolation = (request - below)/(above - below); 
+
+Interpolation 
+
+Fonts should interpolate values in certain circumstances. For example, when the 
+WEIGHT value is 2.13. If the nearest surrounding values in the font are 
+WEIGHT_BOLD = 2.0 and WEIGHT_HEAVY = 2.25 then font would then interpret the 
+WEIGHT request as being 52% of the way between what it considers BOLD and what 
+it considers HEAVY. If the nearest surrounding values are WEIGHT_SEMIBOLD = 
+1.25 and WEIGHT_ULTRABOLD = 2.75 then the WEIGHT request is interpreted as 
+being 58.67% of the way between SEMIBOLD and ULTRABOLD. Where a font does not 
+have enough capability to handle a given request, such as superscript, then it 
+should simulate it to the best of its ability. To determine if simulation is 
+being performed, the client should query the font to see what actual attributes 
+were used. 
+
+
+*java.awt.font.TextAttribute_java.awt.font.TextAttribute.INPUT_METHOD_HIGHLIGHT*
+
+The TextAttribute class defines attribute keys and attribute values used for 
+text rendering. 
+
+TextAttribute instances are used as attribute keys to identify attributes in 
+AttributedCharacterIterator(|java.text.AttributedCharacterIterator|) , 
+Font(|java.awt.Font|) , and other classes handling text attributes. Other 
+constants defined in this class are used as attribute values. 
+
+For each text attribute, the documentation describes: 
+
+the type of their values, the valid values if there are limitations relevant 
+constants the default effect if the attribute is absent (or has a null value). 
+a description of the effect. the fallback behavior if the exact attribute 
+requested is not available. 
+
+Types of Values 
+
+The values of attributes must always be immutable. Where a list of limitations 
+is given, any value outside of that set is reserved for future use, and ignored 
+at present. If the value is null or not of the proper type then it has the 
+default effect. The effect of a particular value can be interpolated, 
+especially in the case of multiple master fonts. This interpolation is done 
+based on the nearest defined constants above and below the request: 
+
+interpolation = (request - below)/(above - below); 
+
+Interpolation 
+
+Fonts should interpolate values in certain circumstances. For example, when the 
+WEIGHT value is 2.13. If the nearest surrounding values in the font are 
+WEIGHT_BOLD = 2.0 and WEIGHT_HEAVY = 2.25 then font would then interpret the 
+WEIGHT request as being 52% of the way between what it considers BOLD and what 
+it considers HEAVY. If the nearest surrounding values are WEIGHT_SEMIBOLD = 
+1.25 and WEIGHT_ULTRABOLD = 2.75 then the WEIGHT request is interpreted as 
+being 58.67% of the way between SEMIBOLD and ULTRABOLD. Where a font does not 
+have enough capability to handle a given request, such as superscript, then it 
+should simulate it to the best of its ability. To determine if simulation is 
+being performed, the client should query the font to see what actual attributes 
+were used. 
+
+
+*java.awt.font.TextAttribute_java.awt.font.TextAttribute.INPUT_METHOD_UNDERLINE*
+
+The TextAttribute class defines attribute keys and attribute values used for 
+text rendering. 
+
+TextAttribute instances are used as attribute keys to identify attributes in 
+AttributedCharacterIterator(|java.text.AttributedCharacterIterator|) , 
+Font(|java.awt.Font|) , and other classes handling text attributes. Other 
+constants defined in this class are used as attribute values. 
+
+For each text attribute, the documentation describes: 
+
+the type of their values, the valid values if there are limitations relevant 
+constants the default effect if the attribute is absent (or has a null value). 
+a description of the effect. the fallback behavior if the exact attribute 
+requested is not available. 
+
+Types of Values 
+
+The values of attributes must always be immutable. Where a list of limitations 
+is given, any value outside of that set is reserved for future use, and ignored 
+at present. If the value is null or not of the proper type then it has the 
+default effect. The effect of a particular value can be interpolated, 
+especially in the case of multiple master fonts. This interpolation is done 
+based on the nearest defined constants above and below the request: 
+
+interpolation = (request - below)/(above - below); 
+
+Interpolation 
+
+Fonts should interpolate values in certain circumstances. For example, when the 
+WEIGHT value is 2.13. If the nearest surrounding values in the font are 
+WEIGHT_BOLD = 2.0 and WEIGHT_HEAVY = 2.25 then font would then interpret the 
+WEIGHT request as being 52% of the way between what it considers BOLD and what 
+it considers HEAVY. If the nearest surrounding values are WEIGHT_SEMIBOLD = 
+1.25 and WEIGHT_ULTRABOLD = 2.75 then the WEIGHT request is interpreted as 
+being 58.67% of the way between SEMIBOLD and ULTRABOLD. Where a font does not 
+have enough capability to handle a given request, such as superscript, then it 
+should simulate it to the best of its ability. To determine if simulation is 
+being performed, the client should query the font to see what actual attributes 
+were used. 
+
+
+*java.awt.font.TextAttribute_java.awt.font.TextAttribute.JUSTIFICATION*
+
+The TextAttribute class defines attribute keys and attribute values used for 
+text rendering. 
+
+TextAttribute instances are used as attribute keys to identify attributes in 
+AttributedCharacterIterator(|java.text.AttributedCharacterIterator|) , 
+Font(|java.awt.Font|) , and other classes handling text attributes. Other 
+constants defined in this class are used as attribute values. 
+
+For each text attribute, the documentation describes: 
+
+the type of their values, the valid values if there are limitations relevant 
+constants the default effect if the attribute is absent (or has a null value). 
+a description of the effect. the fallback behavior if the exact attribute 
+requested is not available. 
+
+Types of Values 
+
+The values of attributes must always be immutable. Where a list of limitations 
+is given, any value outside of that set is reserved for future use, and ignored 
+at present. If the value is null or not of the proper type then it has the 
+default effect. The effect of a particular value can be interpolated, 
+especially in the case of multiple master fonts. This interpolation is done 
+based on the nearest defined constants above and below the request: 
+
+interpolation = (request - below)/(above - below); 
+
+Interpolation 
+
+Fonts should interpolate values in certain circumstances. For example, when the 
+WEIGHT value is 2.13. If the nearest surrounding values in the font are 
+WEIGHT_BOLD = 2.0 and WEIGHT_HEAVY = 2.25 then font would then interpret the 
+WEIGHT request as being 52% of the way between what it considers BOLD and what 
+it considers HEAVY. If the nearest surrounding values are WEIGHT_SEMIBOLD = 
+1.25 and WEIGHT_ULTRABOLD = 2.75 then the WEIGHT request is interpreted as 
+being 58.67% of the way between SEMIBOLD and ULTRABOLD. Where a font does not 
+have enough capability to handle a given request, such as superscript, then it 
+should simulate it to the best of its ability. To determine if simulation is 
+being performed, the client should query the font to see what actual attributes 
+were used. 
+
+
+*java.lang.Float_java.awt.font.TextAttribute.JUSTIFICATION_FULL*
+
+The TextAttribute class defines attribute keys and attribute values used for 
+text rendering. 
+
+TextAttribute instances are used as attribute keys to identify attributes in 
+AttributedCharacterIterator(|java.text.AttributedCharacterIterator|) , 
+Font(|java.awt.Font|) , and other classes handling text attributes. Other 
+constants defined in this class are used as attribute values. 
+
+For each text attribute, the documentation describes: 
+
+the type of their values, the valid values if there are limitations relevant 
+constants the default effect if the attribute is absent (or has a null value). 
+a description of the effect. the fallback behavior if the exact attribute 
+requested is not available. 
+
+Types of Values 
+
+The values of attributes must always be immutable. Where a list of limitations 
+is given, any value outside of that set is reserved for future use, and ignored 
+at present. If the value is null or not of the proper type then it has the 
+default effect. The effect of a particular value can be interpolated, 
+especially in the case of multiple master fonts. This interpolation is done 
+based on the nearest defined constants above and below the request: 
+
+interpolation = (request - below)/(above - below); 
+
+Interpolation 
+
+Fonts should interpolate values in certain circumstances. For example, when the 
+WEIGHT value is 2.13. If the nearest surrounding values in the font are 
+WEIGHT_BOLD = 2.0 and WEIGHT_HEAVY = 2.25 then font would then interpret the 
+WEIGHT request as being 52% of the way between what it considers BOLD and what 
+it considers HEAVY. If the nearest surrounding values are WEIGHT_SEMIBOLD = 
+1.25 and WEIGHT_ULTRABOLD = 2.75 then the WEIGHT request is interpreted as 
+being 58.67% of the way between SEMIBOLD and ULTRABOLD. Where a font does not 
+have enough capability to handle a given request, such as superscript, then it 
+should simulate it to the best of its ability. To determine if simulation is 
+being performed, the client should query the font to see what actual attributes 
+were used. 
+
+
+*java.lang.Float_java.awt.font.TextAttribute.JUSTIFICATION_NONE*
+
+The TextAttribute class defines attribute keys and attribute values used for 
+text rendering. 
+
+TextAttribute instances are used as attribute keys to identify attributes in 
+AttributedCharacterIterator(|java.text.AttributedCharacterIterator|) , 
+Font(|java.awt.Font|) , and other classes handling text attributes. Other 
+constants defined in this class are used as attribute values. 
+
+For each text attribute, the documentation describes: 
+
+the type of their values, the valid values if there are limitations relevant 
+constants the default effect if the attribute is absent (or has a null value). 
+a description of the effect. the fallback behavior if the exact attribute 
+requested is not available. 
+
+Types of Values 
+
+The values of attributes must always be immutable. Where a list of limitations 
+is given, any value outside of that set is reserved for future use, and ignored 
+at present. If the value is null or not of the proper type then it has the 
+default effect. The effect of a particular value can be interpolated, 
+especially in the case of multiple master fonts. This interpolation is done 
+based on the nearest defined constants above and below the request: 
+
+interpolation = (request - below)/(above - below); 
+
+Interpolation 
+
+Fonts should interpolate values in certain circumstances. For example, when the 
+WEIGHT value is 2.13. If the nearest surrounding values in the font are 
+WEIGHT_BOLD = 2.0 and WEIGHT_HEAVY = 2.25 then font would then interpret the 
+WEIGHT request as being 52% of the way between what it considers BOLD and what 
+it considers HEAVY. If the nearest surrounding values are WEIGHT_SEMIBOLD = 
+1.25 and WEIGHT_ULTRABOLD = 2.75 then the WEIGHT request is interpreted as 
+being 58.67% of the way between SEMIBOLD and ULTRABOLD. Where a font does not 
+have enough capability to handle a given request, such as superscript, then it 
+should simulate it to the best of its ability. To determine if simulation is 
+being performed, the client should query the font to see what actual attributes 
+were used. 
+
+
+*java.awt.font.TextAttribute_java.awt.font.TextAttribute.NUMERIC_SHAPING*
+
+The TextAttribute class defines attribute keys and attribute values used for 
+text rendering. 
+
+TextAttribute instances are used as attribute keys to identify attributes in 
+AttributedCharacterIterator(|java.text.AttributedCharacterIterator|) , 
+Font(|java.awt.Font|) , and other classes handling text attributes. Other 
+constants defined in this class are used as attribute values. 
+
+For each text attribute, the documentation describes: 
+
+the type of their values, the valid values if there are limitations relevant 
+constants the default effect if the attribute is absent (or has a null value). 
+a description of the effect. the fallback behavior if the exact attribute 
+requested is not available. 
+
+Types of Values 
+
+The values of attributes must always be immutable. Where a list of limitations 
+is given, any value outside of that set is reserved for future use, and ignored 
+at present. If the value is null or not of the proper type then it has the 
+default effect. The effect of a particular value can be interpolated, 
+especially in the case of multiple master fonts. This interpolation is done 
+based on the nearest defined constants above and below the request: 
+
+interpolation = (request - below)/(above - below); 
+
+Interpolation 
+
+Fonts should interpolate values in certain circumstances. For example, when the 
+WEIGHT value is 2.13. If the nearest surrounding values in the font are 
+WEIGHT_BOLD = 2.0 and WEIGHT_HEAVY = 2.25 then font would then interpret the 
+WEIGHT request as being 52% of the way between what it considers BOLD and what 
+it considers HEAVY. If the nearest surrounding values are WEIGHT_SEMIBOLD = 
+1.25 and WEIGHT_ULTRABOLD = 2.75 then the WEIGHT request is interpreted as 
+being 58.67% of the way between SEMIBOLD and ULTRABOLD. Where a font does not 
+have enough capability to handle a given request, such as superscript, then it 
+should simulate it to the best of its ability. To determine if simulation is 
+being performed, the client should query the font to see what actual attributes 
+were used. 
+
+
+*java.awt.font.TextAttribute_java.awt.font.TextAttribute.POSTURE*
+
+The TextAttribute class defines attribute keys and attribute values used for 
+text rendering. 
+
+TextAttribute instances are used as attribute keys to identify attributes in 
+AttributedCharacterIterator(|java.text.AttributedCharacterIterator|) , 
+Font(|java.awt.Font|) , and other classes handling text attributes. Other 
+constants defined in this class are used as attribute values. 
+
+For each text attribute, the documentation describes: 
+
+the type of their values, the valid values if there are limitations relevant 
+constants the default effect if the attribute is absent (or has a null value). 
+a description of the effect. the fallback behavior if the exact attribute 
+requested is not available. 
+
+Types of Values 
+
+The values of attributes must always be immutable. Where a list of limitations 
+is given, any value outside of that set is reserved for future use, and ignored 
+at present. If the value is null or not of the proper type then it has the 
+default effect. The effect of a particular value can be interpolated, 
+especially in the case of multiple master fonts. This interpolation is done 
+based on the nearest defined constants above and below the request: 
+
+interpolation = (request - below)/(above - below); 
+
+Interpolation 
+
+Fonts should interpolate values in certain circumstances. For example, when the 
+WEIGHT value is 2.13. If the nearest surrounding values in the font are 
+WEIGHT_BOLD = 2.0 and WEIGHT_HEAVY = 2.25 then font would then interpret the 
+WEIGHT request as being 52% of the way between what it considers BOLD and what 
+it considers HEAVY. If the nearest surrounding values are WEIGHT_SEMIBOLD = 
+1.25 and WEIGHT_ULTRABOLD = 2.75 then the WEIGHT request is interpreted as 
+being 58.67% of the way between SEMIBOLD and ULTRABOLD. Where a font does not 
+have enough capability to handle a given request, such as superscript, then it 
+should simulate it to the best of its ability. To determine if simulation is 
+being performed, the client should query the font to see what actual attributes 
+were used. 
+
+
+*java.lang.Float_java.awt.font.TextAttribute.POSTURE_OBLIQUE*
+
+The TextAttribute class defines attribute keys and attribute values used for 
+text rendering. 
+
+TextAttribute instances are used as attribute keys to identify attributes in 
+AttributedCharacterIterator(|java.text.AttributedCharacterIterator|) , 
+Font(|java.awt.Font|) , and other classes handling text attributes. Other 
+constants defined in this class are used as attribute values. 
+
+For each text attribute, the documentation describes: 
+
+the type of their values, the valid values if there are limitations relevant 
+constants the default effect if the attribute is absent (or has a null value). 
+a description of the effect. the fallback behavior if the exact attribute 
+requested is not available. 
+
+Types of Values 
+
+The values of attributes must always be immutable. Where a list of limitations 
+is given, any value outside of that set is reserved for future use, and ignored 
+at present. If the value is null or not of the proper type then it has the 
+default effect. The effect of a particular value can be interpolated, 
+especially in the case of multiple master fonts. This interpolation is done 
+based on the nearest defined constants above and below the request: 
+
+interpolation = (request - below)/(above - below); 
+
+Interpolation 
+
+Fonts should interpolate values in certain circumstances. For example, when the 
+WEIGHT value is 2.13. If the nearest surrounding values in the font are 
+WEIGHT_BOLD = 2.0 and WEIGHT_HEAVY = 2.25 then font would then interpret the 
+WEIGHT request as being 52% of the way between what it considers BOLD and what 
+it considers HEAVY. If the nearest surrounding values are WEIGHT_SEMIBOLD = 
+1.25 and WEIGHT_ULTRABOLD = 2.75 then the WEIGHT request is interpreted as 
+being 58.67% of the way between SEMIBOLD and ULTRABOLD. Where a font does not 
+have enough capability to handle a given request, such as superscript, then it 
+should simulate it to the best of its ability. To determine if simulation is 
+being performed, the client should query the font to see what actual attributes 
+were used. 
+
+
+*java.lang.Float_java.awt.font.TextAttribute.POSTURE_REGULAR*
+
+The TextAttribute class defines attribute keys and attribute values used for 
+text rendering. 
+
+TextAttribute instances are used as attribute keys to identify attributes in 
+AttributedCharacterIterator(|java.text.AttributedCharacterIterator|) , 
+Font(|java.awt.Font|) , and other classes handling text attributes. Other 
+constants defined in this class are used as attribute values. 
+
+For each text attribute, the documentation describes: 
+
+the type of their values, the valid values if there are limitations relevant 
+constants the default effect if the attribute is absent (or has a null value). 
+a description of the effect. the fallback behavior if the exact attribute 
+requested is not available. 
+
+Types of Values 
+
+The values of attributes must always be immutable. Where a list of limitations 
+is given, any value outside of that set is reserved for future use, and ignored 
+at present. If the value is null or not of the proper type then it has the 
+default effect. The effect of a particular value can be interpolated, 
+especially in the case of multiple master fonts. This interpolation is done 
+based on the nearest defined constants above and below the request: 
+
+interpolation = (request - below)/(above - below); 
+
+Interpolation 
+
+Fonts should interpolate values in certain circumstances. For example, when the 
+WEIGHT value is 2.13. If the nearest surrounding values in the font are 
+WEIGHT_BOLD = 2.0 and WEIGHT_HEAVY = 2.25 then font would then interpret the 
+WEIGHT request as being 52% of the way between what it considers BOLD and what 
+it considers HEAVY. If the nearest surrounding values are WEIGHT_SEMIBOLD = 
+1.25 and WEIGHT_ULTRABOLD = 2.75 then the WEIGHT request is interpreted as 
+being 58.67% of the way between SEMIBOLD and ULTRABOLD. Where a font does not 
+have enough capability to handle a given request, such as superscript, then it 
+should simulate it to the best of its ability. To determine if simulation is 
+being performed, the client should query the font to see what actual attributes 
+were used. 
+
+
+*java.awt.font.TextAttribute_java.awt.font.TextAttribute.RUN_DIRECTION*
+
+The TextAttribute class defines attribute keys and attribute values used for 
+text rendering. 
+
+TextAttribute instances are used as attribute keys to identify attributes in 
+AttributedCharacterIterator(|java.text.AttributedCharacterIterator|) , 
+Font(|java.awt.Font|) , and other classes handling text attributes. Other 
+constants defined in this class are used as attribute values. 
+
+For each text attribute, the documentation describes: 
+
+the type of their values, the valid values if there are limitations relevant 
+constants the default effect if the attribute is absent (or has a null value). 
+a description of the effect. the fallback behavior if the exact attribute 
+requested is not available. 
+
+Types of Values 
+
+The values of attributes must always be immutable. Where a list of limitations 
+is given, any value outside of that set is reserved for future use, and ignored 
+at present. If the value is null or not of the proper type then it has the 
+default effect. The effect of a particular value can be interpolated, 
+especially in the case of multiple master fonts. This interpolation is done 
+based on the nearest defined constants above and below the request: 
+
+interpolation = (request - below)/(above - below); 
+
+Interpolation 
+
+Fonts should interpolate values in certain circumstances. For example, when the 
+WEIGHT value is 2.13. If the nearest surrounding values in the font are 
+WEIGHT_BOLD = 2.0 and WEIGHT_HEAVY = 2.25 then font would then interpret the 
+WEIGHT request as being 52% of the way between what it considers BOLD and what 
+it considers HEAVY. If the nearest surrounding values are WEIGHT_SEMIBOLD = 
+1.25 and WEIGHT_ULTRABOLD = 2.75 then the WEIGHT request is interpreted as 
+being 58.67% of the way between SEMIBOLD and ULTRABOLD. Where a font does not 
+have enough capability to handle a given request, such as superscript, then it 
+should simulate it to the best of its ability. To determine if simulation is 
+being performed, the client should query the font to see what actual attributes 
+were used. 
+
+
+*java.lang.Boolean_java.awt.font.TextAttribute.RUN_DIRECTION_LTR*
+
+The TextAttribute class defines attribute keys and attribute values used for 
+text rendering. 
+
+TextAttribute instances are used as attribute keys to identify attributes in 
+AttributedCharacterIterator(|java.text.AttributedCharacterIterator|) , 
+Font(|java.awt.Font|) , and other classes handling text attributes. Other 
+constants defined in this class are used as attribute values. 
+
+For each text attribute, the documentation describes: 
+
+the type of their values, the valid values if there are limitations relevant 
+constants the default effect if the attribute is absent (or has a null value). 
+a description of the effect. the fallback behavior if the exact attribute 
+requested is not available. 
+
+Types of Values 
+
+The values of attributes must always be immutable. Where a list of limitations 
+is given, any value outside of that set is reserved for future use, and ignored 
+at present. If the value is null or not of the proper type then it has the 
+default effect. The effect of a particular value can be interpolated, 
+especially in the case of multiple master fonts. This interpolation is done 
+based on the nearest defined constants above and below the request: 
+
+interpolation = (request - below)/(above - below); 
+
+Interpolation 
+
+Fonts should interpolate values in certain circumstances. For example, when the 
+WEIGHT value is 2.13. If the nearest surrounding values in the font are 
+WEIGHT_BOLD = 2.0 and WEIGHT_HEAVY = 2.25 then font would then interpret the 
+WEIGHT request as being 52% of the way between what it considers BOLD and what 
+it considers HEAVY. If the nearest surrounding values are WEIGHT_SEMIBOLD = 
+1.25 and WEIGHT_ULTRABOLD = 2.75 then the WEIGHT request is interpreted as 
+being 58.67% of the way between SEMIBOLD and ULTRABOLD. Where a font does not 
+have enough capability to handle a given request, such as superscript, then it 
+should simulate it to the best of its ability. To determine if simulation is 
+being performed, the client should query the font to see what actual attributes 
+were used. 
+
+
+*java.lang.Boolean_java.awt.font.TextAttribute.RUN_DIRECTION_RTL*
+
+The TextAttribute class defines attribute keys and attribute values used for 
+text rendering. 
+
+TextAttribute instances are used as attribute keys to identify attributes in 
+AttributedCharacterIterator(|java.text.AttributedCharacterIterator|) , 
+Font(|java.awt.Font|) , and other classes handling text attributes. Other 
+constants defined in this class are used as attribute values. 
+
+For each text attribute, the documentation describes: 
+
+the type of their values, the valid values if there are limitations relevant 
+constants the default effect if the attribute is absent (or has a null value). 
+a description of the effect. the fallback behavior if the exact attribute 
+requested is not available. 
+
+Types of Values 
+
+The values of attributes must always be immutable. Where a list of limitations 
+is given, any value outside of that set is reserved for future use, and ignored 
+at present. If the value is null or not of the proper type then it has the 
+default effect. The effect of a particular value can be interpolated, 
+especially in the case of multiple master fonts. This interpolation is done 
+based on the nearest defined constants above and below the request: 
+
+interpolation = (request - below)/(above - below); 
+
+Interpolation 
+
+Fonts should interpolate values in certain circumstances. For example, when the 
+WEIGHT value is 2.13. If the nearest surrounding values in the font are 
+WEIGHT_BOLD = 2.0 and WEIGHT_HEAVY = 2.25 then font would then interpret the 
+WEIGHT request as being 52% of the way between what it considers BOLD and what 
+it considers HEAVY. If the nearest surrounding values are WEIGHT_SEMIBOLD = 
+1.25 and WEIGHT_ULTRABOLD = 2.75 then the WEIGHT request is interpreted as 
+being 58.67% of the way between SEMIBOLD and ULTRABOLD. Where a font does not 
+have enough capability to handle a given request, such as superscript, then it 
+should simulate it to the best of its ability. To determine if simulation is 
+being performed, the client should query the font to see what actual attributes 
+were used. 
+
+
+*java.awt.font.TextAttribute_java.awt.font.TextAttribute.SIZE*
+
+The TextAttribute class defines attribute keys and attribute values used for 
+text rendering. 
+
+TextAttribute instances are used as attribute keys to identify attributes in 
+AttributedCharacterIterator(|java.text.AttributedCharacterIterator|) , 
+Font(|java.awt.Font|) , and other classes handling text attributes. Other 
+constants defined in this class are used as attribute values. 
+
+For each text attribute, the documentation describes: 
+
+the type of their values, the valid values if there are limitations relevant 
+constants the default effect if the attribute is absent (or has a null value). 
+a description of the effect. the fallback behavior if the exact attribute 
+requested is not available. 
+
+Types of Values 
+
+The values of attributes must always be immutable. Where a list of limitations 
+is given, any value outside of that set is reserved for future use, and ignored 
+at present. If the value is null or not of the proper type then it has the 
+default effect. The effect of a particular value can be interpolated, 
+especially in the case of multiple master fonts. This interpolation is done 
+based on the nearest defined constants above and below the request: 
+
+interpolation = (request - below)/(above - below); 
+
+Interpolation 
+
+Fonts should interpolate values in certain circumstances. For example, when the 
+WEIGHT value is 2.13. If the nearest surrounding values in the font are 
+WEIGHT_BOLD = 2.0 and WEIGHT_HEAVY = 2.25 then font would then interpret the 
+WEIGHT request as being 52% of the way between what it considers BOLD and what 
+it considers HEAVY. If the nearest surrounding values are WEIGHT_SEMIBOLD = 
+1.25 and WEIGHT_ULTRABOLD = 2.75 then the WEIGHT request is interpreted as 
+being 58.67% of the way between SEMIBOLD and ULTRABOLD. Where a font does not 
+have enough capability to handle a given request, such as superscript, then it 
+should simulate it to the best of its ability. To determine if simulation is 
+being performed, the client should query the font to see what actual attributes 
+were used. 
+
+
+*java.awt.font.TextAttribute_java.awt.font.TextAttribute.STRIKETHROUGH*
+
+The TextAttribute class defines attribute keys and attribute values used for 
+text rendering. 
+
+TextAttribute instances are used as attribute keys to identify attributes in 
+AttributedCharacterIterator(|java.text.AttributedCharacterIterator|) , 
+Font(|java.awt.Font|) , and other classes handling text attributes. Other 
+constants defined in this class are used as attribute values. 
+
+For each text attribute, the documentation describes: 
+
+the type of their values, the valid values if there are limitations relevant 
+constants the default effect if the attribute is absent (or has a null value). 
+a description of the effect. the fallback behavior if the exact attribute 
+requested is not available. 
+
+Types of Values 
+
+The values of attributes must always be immutable. Where a list of limitations 
+is given, any value outside of that set is reserved for future use, and ignored 
+at present. If the value is null or not of the proper type then it has the 
+default effect. The effect of a particular value can be interpolated, 
+especially in the case of multiple master fonts. This interpolation is done 
+based on the nearest defined constants above and below the request: 
+
+interpolation = (request - below)/(above - below); 
+
+Interpolation 
+
+Fonts should interpolate values in certain circumstances. For example, when the 
+WEIGHT value is 2.13. If the nearest surrounding values in the font are 
+WEIGHT_BOLD = 2.0 and WEIGHT_HEAVY = 2.25 then font would then interpret the 
+WEIGHT request as being 52% of the way between what it considers BOLD and what 
+it considers HEAVY. If the nearest surrounding values are WEIGHT_SEMIBOLD = 
+1.25 and WEIGHT_ULTRABOLD = 2.75 then the WEIGHT request is interpreted as 
+being 58.67% of the way between SEMIBOLD and ULTRABOLD. Where a font does not 
+have enough capability to handle a given request, such as superscript, then it 
+should simulate it to the best of its ability. To determine if simulation is 
+being performed, the client should query the font to see what actual attributes 
+were used. 
+
+
+*java.lang.Boolean_java.awt.font.TextAttribute.STRIKETHROUGH_ON*
+
+The TextAttribute class defines attribute keys and attribute values used for 
+text rendering. 
+
+TextAttribute instances are used as attribute keys to identify attributes in 
+AttributedCharacterIterator(|java.text.AttributedCharacterIterator|) , 
+Font(|java.awt.Font|) , and other classes handling text attributes. Other 
+constants defined in this class are used as attribute values. 
+
+For each text attribute, the documentation describes: 
+
+the type of their values, the valid values if there are limitations relevant 
+constants the default effect if the attribute is absent (or has a null value). 
+a description of the effect. the fallback behavior if the exact attribute 
+requested is not available. 
+
+Types of Values 
+
+The values of attributes must always be immutable. Where a list of limitations 
+is given, any value outside of that set is reserved for future use, and ignored 
+at present. If the value is null or not of the proper type then it has the 
+default effect. The effect of a particular value can be interpolated, 
+especially in the case of multiple master fonts. This interpolation is done 
+based on the nearest defined constants above and below the request: 
+
+interpolation = (request - below)/(above - below); 
+
+Interpolation 
+
+Fonts should interpolate values in certain circumstances. For example, when the 
+WEIGHT value is 2.13. If the nearest surrounding values in the font are 
+WEIGHT_BOLD = 2.0 and WEIGHT_HEAVY = 2.25 then font would then interpret the 
+WEIGHT request as being 52% of the way between what it considers BOLD and what 
+it considers HEAVY. If the nearest surrounding values are WEIGHT_SEMIBOLD = 
+1.25 and WEIGHT_ULTRABOLD = 2.75 then the WEIGHT request is interpreted as 
+being 58.67% of the way between SEMIBOLD and ULTRABOLD. Where a font does not 
+have enough capability to handle a given request, such as superscript, then it 
+should simulate it to the best of its ability. To determine if simulation is 
+being performed, the client should query the font to see what actual attributes 
+were used. 
+
+
+*java.awt.font.TextAttribute_java.awt.font.TextAttribute.SUPERSCRIPT*
+
+The TextAttribute class defines attribute keys and attribute values used for 
+text rendering. 
+
+TextAttribute instances are used as attribute keys to identify attributes in 
+AttributedCharacterIterator(|java.text.AttributedCharacterIterator|) , 
+Font(|java.awt.Font|) , and other classes handling text attributes. Other 
+constants defined in this class are used as attribute values. 
+
+For each text attribute, the documentation describes: 
+
+the type of their values, the valid values if there are limitations relevant 
+constants the default effect if the attribute is absent (or has a null value). 
+a description of the effect. the fallback behavior if the exact attribute 
+requested is not available. 
+
+Types of Values 
+
+The values of attributes must always be immutable. Where a list of limitations 
+is given, any value outside of that set is reserved for future use, and ignored 
+at present. If the value is null or not of the proper type then it has the 
+default effect. The effect of a particular value can be interpolated, 
+especially in the case of multiple master fonts. This interpolation is done 
+based on the nearest defined constants above and below the request: 
+
+interpolation = (request - below)/(above - below); 
+
+Interpolation 
+
+Fonts should interpolate values in certain circumstances. For example, when the 
+WEIGHT value is 2.13. If the nearest surrounding values in the font are 
+WEIGHT_BOLD = 2.0 and WEIGHT_HEAVY = 2.25 then font would then interpret the 
+WEIGHT request as being 52% of the way between what it considers BOLD and what 
+it considers HEAVY. If the nearest surrounding values are WEIGHT_SEMIBOLD = 
+1.25 and WEIGHT_ULTRABOLD = 2.75 then the WEIGHT request is interpreted as 
+being 58.67% of the way between SEMIBOLD and ULTRABOLD. Where a font does not 
+have enough capability to handle a given request, such as superscript, then it 
+should simulate it to the best of its ability. To determine if simulation is 
+being performed, the client should query the font to see what actual attributes 
+were used. 
+
+
+*java.lang.Integer_java.awt.font.TextAttribute.SUPERSCRIPT_SUB*
+
+The TextAttribute class defines attribute keys and attribute values used for 
+text rendering. 
+
+TextAttribute instances are used as attribute keys to identify attributes in 
+AttributedCharacterIterator(|java.text.AttributedCharacterIterator|) , 
+Font(|java.awt.Font|) , and other classes handling text attributes. Other 
+constants defined in this class are used as attribute values. 
+
+For each text attribute, the documentation describes: 
+
+the type of their values, the valid values if there are limitations relevant 
+constants the default effect if the attribute is absent (or has a null value). 
+a description of the effect. the fallback behavior if the exact attribute 
+requested is not available. 
+
+Types of Values 
+
+The values of attributes must always be immutable. Where a list of limitations 
+is given, any value outside of that set is reserved for future use, and ignored 
+at present. If the value is null or not of the proper type then it has the 
+default effect. The effect of a particular value can be interpolated, 
+especially in the case of multiple master fonts. This interpolation is done 
+based on the nearest defined constants above and below the request: 
+
+interpolation = (request - below)/(above - below); 
+
+Interpolation 
+
+Fonts should interpolate values in certain circumstances. For example, when the 
+WEIGHT value is 2.13. If the nearest surrounding values in the font are 
+WEIGHT_BOLD = 2.0 and WEIGHT_HEAVY = 2.25 then font would then interpret the 
+WEIGHT request as being 52% of the way between what it considers BOLD and what 
+it considers HEAVY. If the nearest surrounding values are WEIGHT_SEMIBOLD = 
+1.25 and WEIGHT_ULTRABOLD = 2.75 then the WEIGHT request is interpreted as 
+being 58.67% of the way between SEMIBOLD and ULTRABOLD. Where a font does not 
+have enough capability to handle a given request, such as superscript, then it 
+should simulate it to the best of its ability. To determine if simulation is 
+being performed, the client should query the font to see what actual attributes 
+were used. 
+
+
+*java.lang.Integer_java.awt.font.TextAttribute.SUPERSCRIPT_SUPER*
+
+The TextAttribute class defines attribute keys and attribute values used for 
+text rendering. 
+
+TextAttribute instances are used as attribute keys to identify attributes in 
+AttributedCharacterIterator(|java.text.AttributedCharacterIterator|) , 
+Font(|java.awt.Font|) , and other classes handling text attributes. Other 
+constants defined in this class are used as attribute values. 
+
+For each text attribute, the documentation describes: 
+
+the type of their values, the valid values if there are limitations relevant 
+constants the default effect if the attribute is absent (or has a null value). 
+a description of the effect. the fallback behavior if the exact attribute 
+requested is not available. 
+
+Types of Values 
+
+The values of attributes must always be immutable. Where a list of limitations 
+is given, any value outside of that set is reserved for future use, and ignored 
+at present. If the value is null or not of the proper type then it has the 
+default effect. The effect of a particular value can be interpolated, 
+especially in the case of multiple master fonts. This interpolation is done 
+based on the nearest defined constants above and below the request: 
+
+interpolation = (request - below)/(above - below); 
+
+Interpolation 
+
+Fonts should interpolate values in certain circumstances. For example, when the 
+WEIGHT value is 2.13. If the nearest surrounding values in the font are 
+WEIGHT_BOLD = 2.0 and WEIGHT_HEAVY = 2.25 then font would then interpret the 
+WEIGHT request as being 52% of the way between what it considers BOLD and what 
+it considers HEAVY. If the nearest surrounding values are WEIGHT_SEMIBOLD = 
+1.25 and WEIGHT_ULTRABOLD = 2.75 then the WEIGHT request is interpreted as 
+being 58.67% of the way between SEMIBOLD and ULTRABOLD. Where a font does not 
+have enough capability to handle a given request, such as superscript, then it 
+should simulate it to the best of its ability. To determine if simulation is 
+being performed, the client should query the font to see what actual attributes 
+were used. 
+
+
+*java.awt.font.TextAttribute_java.awt.font.TextAttribute.SWAP_COLORS*
+
+The TextAttribute class defines attribute keys and attribute values used for 
+text rendering. 
+
+TextAttribute instances are used as attribute keys to identify attributes in 
+AttributedCharacterIterator(|java.text.AttributedCharacterIterator|) , 
+Font(|java.awt.Font|) , and other classes handling text attributes. Other 
+constants defined in this class are used as attribute values. 
+
+For each text attribute, the documentation describes: 
+
+the type of their values, the valid values if there are limitations relevant 
+constants the default effect if the attribute is absent (or has a null value). 
+a description of the effect. the fallback behavior if the exact attribute 
+requested is not available. 
+
+Types of Values 
+
+The values of attributes must always be immutable. Where a list of limitations 
+is given, any value outside of that set is reserved for future use, and ignored 
+at present. If the value is null or not of the proper type then it has the 
+default effect. The effect of a particular value can be interpolated, 
+especially in the case of multiple master fonts. This interpolation is done 
+based on the nearest defined constants above and below the request: 
+
+interpolation = (request - below)/(above - below); 
+
+Interpolation 
+
+Fonts should interpolate values in certain circumstances. For example, when the 
+WEIGHT value is 2.13. If the nearest surrounding values in the font are 
+WEIGHT_BOLD = 2.0 and WEIGHT_HEAVY = 2.25 then font would then interpret the 
+WEIGHT request as being 52% of the way between what it considers BOLD and what 
+it considers HEAVY. If the nearest surrounding values are WEIGHT_SEMIBOLD = 
+1.25 and WEIGHT_ULTRABOLD = 2.75 then the WEIGHT request is interpreted as 
+being 58.67% of the way between SEMIBOLD and ULTRABOLD. Where a font does not 
+have enough capability to handle a given request, such as superscript, then it 
+should simulate it to the best of its ability. To determine if simulation is 
+being performed, the client should query the font to see what actual attributes 
+were used. 
+
+
+*java.lang.Boolean_java.awt.font.TextAttribute.SWAP_COLORS_ON*
+
+The TextAttribute class defines attribute keys and attribute values used for 
+text rendering. 
+
+TextAttribute instances are used as attribute keys to identify attributes in 
+AttributedCharacterIterator(|java.text.AttributedCharacterIterator|) , 
+Font(|java.awt.Font|) , and other classes handling text attributes. Other 
+constants defined in this class are used as attribute values. 
+
+For each text attribute, the documentation describes: 
+
+the type of their values, the valid values if there are limitations relevant 
+constants the default effect if the attribute is absent (or has a null value). 
+a description of the effect. the fallback behavior if the exact attribute 
+requested is not available. 
+
+Types of Values 
+
+The values of attributes must always be immutable. Where a list of limitations 
+is given, any value outside of that set is reserved for future use, and ignored 
+at present. If the value is null or not of the proper type then it has the 
+default effect. The effect of a particular value can be interpolated, 
+especially in the case of multiple master fonts. This interpolation is done 
+based on the nearest defined constants above and below the request: 
+
+interpolation = (request - below)/(above - below); 
+
+Interpolation 
+
+Fonts should interpolate values in certain circumstances. For example, when the 
+WEIGHT value is 2.13. If the nearest surrounding values in the font are 
+WEIGHT_BOLD = 2.0 and WEIGHT_HEAVY = 2.25 then font would then interpret the 
+WEIGHT request as being 52% of the way between what it considers BOLD and what 
+it considers HEAVY. If the nearest surrounding values are WEIGHT_SEMIBOLD = 
+1.25 and WEIGHT_ULTRABOLD = 2.75 then the WEIGHT request is interpreted as 
+being 58.67% of the way between SEMIBOLD and ULTRABOLD. Where a font does not 
+have enough capability to handle a given request, such as superscript, then it 
+should simulate it to the best of its ability. To determine if simulation is 
+being performed, the client should query the font to see what actual attributes 
+were used. 
+
+
+*java.awt.font.TextAttribute_java.awt.font.TextAttribute.TRANSFORM*
+
+The TextAttribute class defines attribute keys and attribute values used for 
+text rendering. 
+
+TextAttribute instances are used as attribute keys to identify attributes in 
+AttributedCharacterIterator(|java.text.AttributedCharacterIterator|) , 
+Font(|java.awt.Font|) , and other classes handling text attributes. Other 
+constants defined in this class are used as attribute values. 
+
+For each text attribute, the documentation describes: 
+
+the type of their values, the valid values if there are limitations relevant 
+constants the default effect if the attribute is absent (or has a null value). 
+a description of the effect. the fallback behavior if the exact attribute 
+requested is not available. 
+
+Types of Values 
+
+The values of attributes must always be immutable. Where a list of limitations 
+is given, any value outside of that set is reserved for future use, and ignored 
+at present. If the value is null or not of the proper type then it has the 
+default effect. The effect of a particular value can be interpolated, 
+especially in the case of multiple master fonts. This interpolation is done 
+based on the nearest defined constants above and below the request: 
+
+interpolation = (request - below)/(above - below); 
+
+Interpolation 
+
+Fonts should interpolate values in certain circumstances. For example, when the 
+WEIGHT value is 2.13. If the nearest surrounding values in the font are 
+WEIGHT_BOLD = 2.0 and WEIGHT_HEAVY = 2.25 then font would then interpret the 
+WEIGHT request as being 52% of the way between what it considers BOLD and what 
+it considers HEAVY. If the nearest surrounding values are WEIGHT_SEMIBOLD = 
+1.25 and WEIGHT_ULTRABOLD = 2.75 then the WEIGHT request is interpreted as 
+being 58.67% of the way between SEMIBOLD and ULTRABOLD. Where a font does not 
+have enough capability to handle a given request, such as superscript, then it 
+should simulate it to the best of its ability. To determine if simulation is 
+being performed, the client should query the font to see what actual attributes 
+were used. 
+
+
+*java.awt.font.TextAttribute_java.awt.font.TextAttribute.UNDERLINE*
+
+The TextAttribute class defines attribute keys and attribute values used for 
+text rendering. 
+
+TextAttribute instances are used as attribute keys to identify attributes in 
+AttributedCharacterIterator(|java.text.AttributedCharacterIterator|) , 
+Font(|java.awt.Font|) , and other classes handling text attributes. Other 
+constants defined in this class are used as attribute values. 
+
+For each text attribute, the documentation describes: 
+
+the type of their values, the valid values if there are limitations relevant 
+constants the default effect if the attribute is absent (or has a null value). 
+a description of the effect. the fallback behavior if the exact attribute 
+requested is not available. 
+
+Types of Values 
+
+The values of attributes must always be immutable. Where a list of limitations 
+is given, any value outside of that set is reserved for future use, and ignored 
+at present. If the value is null or not of the proper type then it has the 
+default effect. The effect of a particular value can be interpolated, 
+especially in the case of multiple master fonts. This interpolation is done 
+based on the nearest defined constants above and below the request: 
+
+interpolation = (request - below)/(above - below); 
+
+Interpolation 
+
+Fonts should interpolate values in certain circumstances. For example, when the 
+WEIGHT value is 2.13. If the nearest surrounding values in the font are 
+WEIGHT_BOLD = 2.0 and WEIGHT_HEAVY = 2.25 then font would then interpret the 
+WEIGHT request as being 52% of the way between what it considers BOLD and what 
+it considers HEAVY. If the nearest surrounding values are WEIGHT_SEMIBOLD = 
+1.25 and WEIGHT_ULTRABOLD = 2.75 then the WEIGHT request is interpreted as 
+being 58.67% of the way between SEMIBOLD and ULTRABOLD. Where a font does not 
+have enough capability to handle a given request, such as superscript, then it 
+should simulate it to the best of its ability. To determine if simulation is 
+being performed, the client should query the font to see what actual attributes 
+were used. 
+
+
+*java.lang.Integer_java.awt.font.TextAttribute.UNDERLINE_LOW_DASHED*
+
+The TextAttribute class defines attribute keys and attribute values used for 
+text rendering. 
+
+TextAttribute instances are used as attribute keys to identify attributes in 
+AttributedCharacterIterator(|java.text.AttributedCharacterIterator|) , 
+Font(|java.awt.Font|) , and other classes handling text attributes. Other 
+constants defined in this class are used as attribute values. 
+
+For each text attribute, the documentation describes: 
+
+the type of their values, the valid values if there are limitations relevant 
+constants the default effect if the attribute is absent (or has a null value). 
+a description of the effect. the fallback behavior if the exact attribute 
+requested is not available. 
+
+Types of Values 
+
+The values of attributes must always be immutable. Where a list of limitations 
+is given, any value outside of that set is reserved for future use, and ignored 
+at present. If the value is null or not of the proper type then it has the 
+default effect. The effect of a particular value can be interpolated, 
+especially in the case of multiple master fonts. This interpolation is done 
+based on the nearest defined constants above and below the request: 
+
+interpolation = (request - below)/(above - below); 
+
+Interpolation 
+
+Fonts should interpolate values in certain circumstances. For example, when the 
+WEIGHT value is 2.13. If the nearest surrounding values in the font are 
+WEIGHT_BOLD = 2.0 and WEIGHT_HEAVY = 2.25 then font would then interpret the 
+WEIGHT request as being 52% of the way between what it considers BOLD and what 
+it considers HEAVY. If the nearest surrounding values are WEIGHT_SEMIBOLD = 
+1.25 and WEIGHT_ULTRABOLD = 2.75 then the WEIGHT request is interpreted as 
+being 58.67% of the way between SEMIBOLD and ULTRABOLD. Where a font does not 
+have enough capability to handle a given request, such as superscript, then it 
+should simulate it to the best of its ability. To determine if simulation is 
+being performed, the client should query the font to see what actual attributes 
+were used. 
+
+
+*java.lang.Integer_java.awt.font.TextAttribute.UNDERLINE_LOW_DOTTED*
+
+The TextAttribute class defines attribute keys and attribute values used for 
+text rendering. 
+
+TextAttribute instances are used as attribute keys to identify attributes in 
+AttributedCharacterIterator(|java.text.AttributedCharacterIterator|) , 
+Font(|java.awt.Font|) , and other classes handling text attributes. Other 
+constants defined in this class are used as attribute values. 
+
+For each text attribute, the documentation describes: 
+
+the type of their values, the valid values if there are limitations relevant 
+constants the default effect if the attribute is absent (or has a null value). 
+a description of the effect. the fallback behavior if the exact attribute 
+requested is not available. 
+
+Types of Values 
+
+The values of attributes must always be immutable. Where a list of limitations 
+is given, any value outside of that set is reserved for future use, and ignored 
+at present. If the value is null or not of the proper type then it has the 
+default effect. The effect of a particular value can be interpolated, 
+especially in the case of multiple master fonts. This interpolation is done 
+based on the nearest defined constants above and below the request: 
+
+interpolation = (request - below)/(above - below); 
+
+Interpolation 
+
+Fonts should interpolate values in certain circumstances. For example, when the 
+WEIGHT value is 2.13. If the nearest surrounding values in the font are 
+WEIGHT_BOLD = 2.0 and WEIGHT_HEAVY = 2.25 then font would then interpret the 
+WEIGHT request as being 52% of the way between what it considers BOLD and what 
+it considers HEAVY. If the nearest surrounding values are WEIGHT_SEMIBOLD = 
+1.25 and WEIGHT_ULTRABOLD = 2.75 then the WEIGHT request is interpreted as 
+being 58.67% of the way between SEMIBOLD and ULTRABOLD. Where a font does not 
+have enough capability to handle a given request, such as superscript, then it 
+should simulate it to the best of its ability. To determine if simulation is 
+being performed, the client should query the font to see what actual attributes 
+were used. 
+
+
+*java.lang.Integer_java.awt.font.TextAttribute.UNDERLINE_LOW_GRAY*
+
+The TextAttribute class defines attribute keys and attribute values used for 
+text rendering. 
+
+TextAttribute instances are used as attribute keys to identify attributes in 
+AttributedCharacterIterator(|java.text.AttributedCharacterIterator|) , 
+Font(|java.awt.Font|) , and other classes handling text attributes. Other 
+constants defined in this class are used as attribute values. 
+
+For each text attribute, the documentation describes: 
+
+the type of their values, the valid values if there are limitations relevant 
+constants the default effect if the attribute is absent (or has a null value). 
+a description of the effect. the fallback behavior if the exact attribute 
+requested is not available. 
+
+Types of Values 
+
+The values of attributes must always be immutable. Where a list of limitations 
+is given, any value outside of that set is reserved for future use, and ignored 
+at present. If the value is null or not of the proper type then it has the 
+default effect. The effect of a particular value can be interpolated, 
+especially in the case of multiple master fonts. This interpolation is done 
+based on the nearest defined constants above and below the request: 
+
+interpolation = (request - below)/(above - below); 
+
+Interpolation 
+
+Fonts should interpolate values in certain circumstances. For example, when the 
+WEIGHT value is 2.13. If the nearest surrounding values in the font are 
+WEIGHT_BOLD = 2.0 and WEIGHT_HEAVY = 2.25 then font would then interpret the 
+WEIGHT request as being 52% of the way between what it considers BOLD and what 
+it considers HEAVY. If the nearest surrounding values are WEIGHT_SEMIBOLD = 
+1.25 and WEIGHT_ULTRABOLD = 2.75 then the WEIGHT request is interpreted as 
+being 58.67% of the way between SEMIBOLD and ULTRABOLD. Where a font does not 
+have enough capability to handle a given request, such as superscript, then it 
+should simulate it to the best of its ability. To determine if simulation is 
+being performed, the client should query the font to see what actual attributes 
+were used. 
+
+
+*java.lang.Integer_java.awt.font.TextAttribute.UNDERLINE_LOW_ONE_PIXEL*
+
+The TextAttribute class defines attribute keys and attribute values used for 
+text rendering. 
+
+TextAttribute instances are used as attribute keys to identify attributes in 
+AttributedCharacterIterator(|java.text.AttributedCharacterIterator|) , 
+Font(|java.awt.Font|) , and other classes handling text attributes. Other 
+constants defined in this class are used as attribute values. 
+
+For each text attribute, the documentation describes: 
+
+the type of their values, the valid values if there are limitations relevant 
+constants the default effect if the attribute is absent (or has a null value). 
+a description of the effect. the fallback behavior if the exact attribute 
+requested is not available. 
+
+Types of Values 
+
+The values of attributes must always be immutable. Where a list of limitations 
+is given, any value outside of that set is reserved for future use, and ignored 
+at present. If the value is null or not of the proper type then it has the 
+default effect. The effect of a particular value can be interpolated, 
+especially in the case of multiple master fonts. This interpolation is done 
+based on the nearest defined constants above and below the request: 
+
+interpolation = (request - below)/(above - below); 
+
+Interpolation 
+
+Fonts should interpolate values in certain circumstances. For example, when the 
+WEIGHT value is 2.13. If the nearest surrounding values in the font are 
+WEIGHT_BOLD = 2.0 and WEIGHT_HEAVY = 2.25 then font would then interpret the 
+WEIGHT request as being 52% of the way between what it considers BOLD and what 
+it considers HEAVY. If the nearest surrounding values are WEIGHT_SEMIBOLD = 
+1.25 and WEIGHT_ULTRABOLD = 2.75 then the WEIGHT request is interpreted as 
+being 58.67% of the way between SEMIBOLD and ULTRABOLD. Where a font does not 
+have enough capability to handle a given request, such as superscript, then it 
+should simulate it to the best of its ability. To determine if simulation is 
+being performed, the client should query the font to see what actual attributes 
+were used. 
+
+
+*java.lang.Integer_java.awt.font.TextAttribute.UNDERLINE_LOW_TWO_PIXEL*
+
+The TextAttribute class defines attribute keys and attribute values used for 
+text rendering. 
+
+TextAttribute instances are used as attribute keys to identify attributes in 
+AttributedCharacterIterator(|java.text.AttributedCharacterIterator|) , 
+Font(|java.awt.Font|) , and other classes handling text attributes. Other 
+constants defined in this class are used as attribute values. 
+
+For each text attribute, the documentation describes: 
+
+the type of their values, the valid values if there are limitations relevant 
+constants the default effect if the attribute is absent (or has a null value). 
+a description of the effect. the fallback behavior if the exact attribute 
+requested is not available. 
+
+Types of Values 
+
+The values of attributes must always be immutable. Where a list of limitations 
+is given, any value outside of that set is reserved for future use, and ignored 
+at present. If the value is null or not of the proper type then it has the 
+default effect. The effect of a particular value can be interpolated, 
+especially in the case of multiple master fonts. This interpolation is done 
+based on the nearest defined constants above and below the request: 
+
+interpolation = (request - below)/(above - below); 
+
+Interpolation 
+
+Fonts should interpolate values in certain circumstances. For example, when the 
+WEIGHT value is 2.13. If the nearest surrounding values in the font are 
+WEIGHT_BOLD = 2.0 and WEIGHT_HEAVY = 2.25 then font would then interpret the 
+WEIGHT request as being 52% of the way between what it considers BOLD and what 
+it considers HEAVY. If the nearest surrounding values are WEIGHT_SEMIBOLD = 
+1.25 and WEIGHT_ULTRABOLD = 2.75 then the WEIGHT request is interpreted as 
+being 58.67% of the way between SEMIBOLD and ULTRABOLD. Where a font does not 
+have enough capability to handle a given request, such as superscript, then it 
+should simulate it to the best of its ability. To determine if simulation is 
+being performed, the client should query the font to see what actual attributes 
+were used. 
+
+
+*java.lang.Integer_java.awt.font.TextAttribute.UNDERLINE_ON*
+
+The TextAttribute class defines attribute keys and attribute values used for 
+text rendering. 
+
+TextAttribute instances are used as attribute keys to identify attributes in 
+AttributedCharacterIterator(|java.text.AttributedCharacterIterator|) , 
+Font(|java.awt.Font|) , and other classes handling text attributes. Other 
+constants defined in this class are used as attribute values. 
+
+For each text attribute, the documentation describes: 
+
+the type of their values, the valid values if there are limitations relevant 
+constants the default effect if the attribute is absent (or has a null value). 
+a description of the effect. the fallback behavior if the exact attribute 
+requested is not available. 
+
+Types of Values 
+
+The values of attributes must always be immutable. Where a list of limitations 
+is given, any value outside of that set is reserved for future use, and ignored 
+at present. If the value is null or not of the proper type then it has the 
+default effect. The effect of a particular value can be interpolated, 
+especially in the case of multiple master fonts. This interpolation is done 
+based on the nearest defined constants above and below the request: 
+
+interpolation = (request - below)/(above - below); 
+
+Interpolation 
+
+Fonts should interpolate values in certain circumstances. For example, when the 
+WEIGHT value is 2.13. If the nearest surrounding values in the font are 
+WEIGHT_BOLD = 2.0 and WEIGHT_HEAVY = 2.25 then font would then interpret the 
+WEIGHT request as being 52% of the way between what it considers BOLD and what 
+it considers HEAVY. If the nearest surrounding values are WEIGHT_SEMIBOLD = 
+1.25 and WEIGHT_ULTRABOLD = 2.75 then the WEIGHT request is interpreted as 
+being 58.67% of the way between SEMIBOLD and ULTRABOLD. Where a font does not 
+have enough capability to handle a given request, such as superscript, then it 
+should simulate it to the best of its ability. To determine if simulation is 
+being performed, the client should query the font to see what actual attributes 
+were used. 
+
+
+*java.awt.font.TextAttribute_java.awt.font.TextAttribute.WEIGHT*
+
+The TextAttribute class defines attribute keys and attribute values used for 
+text rendering. 
+
+TextAttribute instances are used as attribute keys to identify attributes in 
+AttributedCharacterIterator(|java.text.AttributedCharacterIterator|) , 
+Font(|java.awt.Font|) , and other classes handling text attributes. Other 
+constants defined in this class are used as attribute values. 
+
+For each text attribute, the documentation describes: 
+
+the type of their values, the valid values if there are limitations relevant 
+constants the default effect if the attribute is absent (or has a null value). 
+a description of the effect. the fallback behavior if the exact attribute 
+requested is not available. 
+
+Types of Values 
+
+The values of attributes must always be immutable. Where a list of limitations 
+is given, any value outside of that set is reserved for future use, and ignored 
+at present. If the value is null or not of the proper type then it has the 
+default effect. The effect of a particular value can be interpolated, 
+especially in the case of multiple master fonts. This interpolation is done 
+based on the nearest defined constants above and below the request: 
+
+interpolation = (request - below)/(above - below); 
+
+Interpolation 
+
+Fonts should interpolate values in certain circumstances. For example, when the 
+WEIGHT value is 2.13. If the nearest surrounding values in the font are 
+WEIGHT_BOLD = 2.0 and WEIGHT_HEAVY = 2.25 then font would then interpret the 
+WEIGHT request as being 52% of the way between what it considers BOLD and what 
+it considers HEAVY. If the nearest surrounding values are WEIGHT_SEMIBOLD = 
+1.25 and WEIGHT_ULTRABOLD = 2.75 then the WEIGHT request is interpreted as 
+being 58.67% of the way between SEMIBOLD and ULTRABOLD. Where a font does not 
+have enough capability to handle a given request, such as superscript, then it 
+should simulate it to the best of its ability. To determine if simulation is 
+being performed, the client should query the font to see what actual attributes 
+were used. 
+
+
+*java.lang.Float_java.awt.font.TextAttribute.WEIGHT_BOLD*
+
+The TextAttribute class defines attribute keys and attribute values used for 
+text rendering. 
+
+TextAttribute instances are used as attribute keys to identify attributes in 
+AttributedCharacterIterator(|java.text.AttributedCharacterIterator|) , 
+Font(|java.awt.Font|) , and other classes handling text attributes. Other 
+constants defined in this class are used as attribute values. 
+
+For each text attribute, the documentation describes: 
+
+the type of their values, the valid values if there are limitations relevant 
+constants the default effect if the attribute is absent (or has a null value). 
+a description of the effect. the fallback behavior if the exact attribute 
+requested is not available. 
+
+Types of Values 
+
+The values of attributes must always be immutable. Where a list of limitations 
+is given, any value outside of that set is reserved for future use, and ignored 
+at present. If the value is null or not of the proper type then it has the 
+default effect. The effect of a particular value can be interpolated, 
+especially in the case of multiple master fonts. This interpolation is done 
+based on the nearest defined constants above and below the request: 
+
+interpolation = (request - below)/(above - below); 
+
+Interpolation 
+
+Fonts should interpolate values in certain circumstances. For example, when the 
+WEIGHT value is 2.13. If the nearest surrounding values in the font are 
+WEIGHT_BOLD = 2.0 and WEIGHT_HEAVY = 2.25 then font would then interpret the 
+WEIGHT request as being 52% of the way between what it considers BOLD and what 
+it considers HEAVY. If the nearest surrounding values are WEIGHT_SEMIBOLD = 
+1.25 and WEIGHT_ULTRABOLD = 2.75 then the WEIGHT request is interpreted as 
+being 58.67% of the way between SEMIBOLD and ULTRABOLD. Where a font does not 
+have enough capability to handle a given request, such as superscript, then it 
+should simulate it to the best of its ability. To determine if simulation is 
+being performed, the client should query the font to see what actual attributes 
+were used. 
+
+
+*java.lang.Float_java.awt.font.TextAttribute.WEIGHT_DEMIBOLD*
+
+The TextAttribute class defines attribute keys and attribute values used for 
+text rendering. 
+
+TextAttribute instances are used as attribute keys to identify attributes in 
+AttributedCharacterIterator(|java.text.AttributedCharacterIterator|) , 
+Font(|java.awt.Font|) , and other classes handling text attributes. Other 
+constants defined in this class are used as attribute values. 
+
+For each text attribute, the documentation describes: 
+
+the type of their values, the valid values if there are limitations relevant 
+constants the default effect if the attribute is absent (or has a null value). 
+a description of the effect. the fallback behavior if the exact attribute 
+requested is not available. 
+
+Types of Values 
+
+The values of attributes must always be immutable. Where a list of limitations 
+is given, any value outside of that set is reserved for future use, and ignored 
+at present. If the value is null or not of the proper type then it has the 
+default effect. The effect of a particular value can be interpolated, 
+especially in the case of multiple master fonts. This interpolation is done 
+based on the nearest defined constants above and below the request: 
+
+interpolation = (request - below)/(above - below); 
+
+Interpolation 
+
+Fonts should interpolate values in certain circumstances. For example, when the 
+WEIGHT value is 2.13. If the nearest surrounding values in the font are 
+WEIGHT_BOLD = 2.0 and WEIGHT_HEAVY = 2.25 then font would then interpret the 
+WEIGHT request as being 52% of the way between what it considers BOLD and what 
+it considers HEAVY. If the nearest surrounding values are WEIGHT_SEMIBOLD = 
+1.25 and WEIGHT_ULTRABOLD = 2.75 then the WEIGHT request is interpreted as 
+being 58.67% of the way between SEMIBOLD and ULTRABOLD. Where a font does not 
+have enough capability to handle a given request, such as superscript, then it 
+should simulate it to the best of its ability. To determine if simulation is 
+being performed, the client should query the font to see what actual attributes 
+were used. 
+
+
+*java.lang.Float_java.awt.font.TextAttribute.WEIGHT_DEMILIGHT*
+
+The TextAttribute class defines attribute keys and attribute values used for 
+text rendering. 
+
+TextAttribute instances are used as attribute keys to identify attributes in 
+AttributedCharacterIterator(|java.text.AttributedCharacterIterator|) , 
+Font(|java.awt.Font|) , and other classes handling text attributes. Other 
+constants defined in this class are used as attribute values. 
+
+For each text attribute, the documentation describes: 
+
+the type of their values, the valid values if there are limitations relevant 
+constants the default effect if the attribute is absent (or has a null value). 
+a description of the effect. the fallback behavior if the exact attribute 
+requested is not available. 
+
+Types of Values 
+
+The values of attributes must always be immutable. Where a list of limitations 
+is given, any value outside of that set is reserved for future use, and ignored 
+at present. If the value is null or not of the proper type then it has the 
+default effect. The effect of a particular value can be interpolated, 
+especially in the case of multiple master fonts. This interpolation is done 
+based on the nearest defined constants above and below the request: 
+
+interpolation = (request - below)/(above - below); 
+
+Interpolation 
+
+Fonts should interpolate values in certain circumstances. For example, when the 
+WEIGHT value is 2.13. If the nearest surrounding values in the font are 
+WEIGHT_BOLD = 2.0 and WEIGHT_HEAVY = 2.25 then font would then interpret the 
+WEIGHT request as being 52% of the way between what it considers BOLD and what 
+it considers HEAVY. If the nearest surrounding values are WEIGHT_SEMIBOLD = 
+1.25 and WEIGHT_ULTRABOLD = 2.75 then the WEIGHT request is interpreted as 
+being 58.67% of the way between SEMIBOLD and ULTRABOLD. Where a font does not 
+have enough capability to handle a given request, such as superscript, then it 
+should simulate it to the best of its ability. To determine if simulation is 
+being performed, the client should query the font to see what actual attributes 
+were used. 
+
+
+*java.lang.Float_java.awt.font.TextAttribute.WEIGHT_EXTRA_LIGHT*
+
+The TextAttribute class defines attribute keys and attribute values used for 
+text rendering. 
+
+TextAttribute instances are used as attribute keys to identify attributes in 
+AttributedCharacterIterator(|java.text.AttributedCharacterIterator|) , 
+Font(|java.awt.Font|) , and other classes handling text attributes. Other 
+constants defined in this class are used as attribute values. 
+
+For each text attribute, the documentation describes: 
+
+the type of their values, the valid values if there are limitations relevant 
+constants the default effect if the attribute is absent (or has a null value). 
+a description of the effect. the fallback behavior if the exact attribute 
+requested is not available. 
+
+Types of Values 
+
+The values of attributes must always be immutable. Where a list of limitations 
+is given, any value outside of that set is reserved for future use, and ignored 
+at present. If the value is null or not of the proper type then it has the 
+default effect. The effect of a particular value can be interpolated, 
+especially in the case of multiple master fonts. This interpolation is done 
+based on the nearest defined constants above and below the request: 
+
+interpolation = (request - below)/(above - below); 
+
+Interpolation 
+
+Fonts should interpolate values in certain circumstances. For example, when the 
+WEIGHT value is 2.13. If the nearest surrounding values in the font are 
+WEIGHT_BOLD = 2.0 and WEIGHT_HEAVY = 2.25 then font would then interpret the 
+WEIGHT request as being 52% of the way between what it considers BOLD and what 
+it considers HEAVY. If the nearest surrounding values are WEIGHT_SEMIBOLD = 
+1.25 and WEIGHT_ULTRABOLD = 2.75 then the WEIGHT request is interpreted as 
+being 58.67% of the way between SEMIBOLD and ULTRABOLD. Where a font does not 
+have enough capability to handle a given request, such as superscript, then it 
+should simulate it to the best of its ability. To determine if simulation is 
+being performed, the client should query the font to see what actual attributes 
+were used. 
+
+
+*java.lang.Float_java.awt.font.TextAttribute.WEIGHT_EXTRABOLD*
+
+The TextAttribute class defines attribute keys and attribute values used for 
+text rendering. 
+
+TextAttribute instances are used as attribute keys to identify attributes in 
+AttributedCharacterIterator(|java.text.AttributedCharacterIterator|) , 
+Font(|java.awt.Font|) , and other classes handling text attributes. Other 
+constants defined in this class are used as attribute values. 
+
+For each text attribute, the documentation describes: 
+
+the type of their values, the valid values if there are limitations relevant 
+constants the default effect if the attribute is absent (or has a null value). 
+a description of the effect. the fallback behavior if the exact attribute 
+requested is not available. 
+
+Types of Values 
+
+The values of attributes must always be immutable. Where a list of limitations 
+is given, any value outside of that set is reserved for future use, and ignored 
+at present. If the value is null or not of the proper type then it has the 
+default effect. The effect of a particular value can be interpolated, 
+especially in the case of multiple master fonts. This interpolation is done 
+based on the nearest defined constants above and below the request: 
+
+interpolation = (request - below)/(above - below); 
+
+Interpolation 
+
+Fonts should interpolate values in certain circumstances. For example, when the 
+WEIGHT value is 2.13. If the nearest surrounding values in the font are 
+WEIGHT_BOLD = 2.0 and WEIGHT_HEAVY = 2.25 then font would then interpret the 
+WEIGHT request as being 52% of the way between what it considers BOLD and what 
+it considers HEAVY. If the nearest surrounding values are WEIGHT_SEMIBOLD = 
+1.25 and WEIGHT_ULTRABOLD = 2.75 then the WEIGHT request is interpreted as 
+being 58.67% of the way between SEMIBOLD and ULTRABOLD. Where a font does not 
+have enough capability to handle a given request, such as superscript, then it 
+should simulate it to the best of its ability. To determine if simulation is 
+being performed, the client should query the font to see what actual attributes 
+were used. 
+
+
+*java.lang.Float_java.awt.font.TextAttribute.WEIGHT_HEAVY*
+
+The TextAttribute class defines attribute keys and attribute values used for 
+text rendering. 
+
+TextAttribute instances are used as attribute keys to identify attributes in 
+AttributedCharacterIterator(|java.text.AttributedCharacterIterator|) , 
+Font(|java.awt.Font|) , and other classes handling text attributes. Other 
+constants defined in this class are used as attribute values. 
+
+For each text attribute, the documentation describes: 
+
+the type of their values, the valid values if there are limitations relevant 
+constants the default effect if the attribute is absent (or has a null value). 
+a description of the effect. the fallback behavior if the exact attribute 
+requested is not available. 
+
+Types of Values 
+
+The values of attributes must always be immutable. Where a list of limitations 
+is given, any value outside of that set is reserved for future use, and ignored 
+at present. If the value is null or not of the proper type then it has the 
+default effect. The effect of a particular value can be interpolated, 
+especially in the case of multiple master fonts. This interpolation is done 
+based on the nearest defined constants above and below the request: 
+
+interpolation = (request - below)/(above - below); 
+
+Interpolation 
+
+Fonts should interpolate values in certain circumstances. For example, when the 
+WEIGHT value is 2.13. If the nearest surrounding values in the font are 
+WEIGHT_BOLD = 2.0 and WEIGHT_HEAVY = 2.25 then font would then interpret the 
+WEIGHT request as being 52% of the way between what it considers BOLD and what 
+it considers HEAVY. If the nearest surrounding values are WEIGHT_SEMIBOLD = 
+1.25 and WEIGHT_ULTRABOLD = 2.75 then the WEIGHT request is interpreted as 
+being 58.67% of the way between SEMIBOLD and ULTRABOLD. Where a font does not 
+have enough capability to handle a given request, such as superscript, then it 
+should simulate it to the best of its ability. To determine if simulation is 
+being performed, the client should query the font to see what actual attributes 
+were used. 
+
+
+*java.lang.Float_java.awt.font.TextAttribute.WEIGHT_LIGHT*
+
+The TextAttribute class defines attribute keys and attribute values used for 
+text rendering. 
+
+TextAttribute instances are used as attribute keys to identify attributes in 
+AttributedCharacterIterator(|java.text.AttributedCharacterIterator|) , 
+Font(|java.awt.Font|) , and other classes handling text attributes. Other 
+constants defined in this class are used as attribute values. 
+
+For each text attribute, the documentation describes: 
+
+the type of their values, the valid values if there are limitations relevant 
+constants the default effect if the attribute is absent (or has a null value). 
+a description of the effect. the fallback behavior if the exact attribute 
+requested is not available. 
+
+Types of Values 
+
+The values of attributes must always be immutable. Where a list of limitations 
+is given, any value outside of that set is reserved for future use, and ignored 
+at present. If the value is null or not of the proper type then it has the 
+default effect. The effect of a particular value can be interpolated, 
+especially in the case of multiple master fonts. This interpolation is done 
+based on the nearest defined constants above and below the request: 
+
+interpolation = (request - below)/(above - below); 
+
+Interpolation 
+
+Fonts should interpolate values in certain circumstances. For example, when the 
+WEIGHT value is 2.13. If the nearest surrounding values in the font are 
+WEIGHT_BOLD = 2.0 and WEIGHT_HEAVY = 2.25 then font would then interpret the 
+WEIGHT request as being 52% of the way between what it considers BOLD and what 
+it considers HEAVY. If the nearest surrounding values are WEIGHT_SEMIBOLD = 
+1.25 and WEIGHT_ULTRABOLD = 2.75 then the WEIGHT request is interpreted as 
+being 58.67% of the way between SEMIBOLD and ULTRABOLD. Where a font does not 
+have enough capability to handle a given request, such as superscript, then it 
+should simulate it to the best of its ability. To determine if simulation is 
+being performed, the client should query the font to see what actual attributes 
+were used. 
+
+
+*java.lang.Float_java.awt.font.TextAttribute.WEIGHT_MEDIUM*
+
+The TextAttribute class defines attribute keys and attribute values used for 
+text rendering. 
+
+TextAttribute instances are used as attribute keys to identify attributes in 
+AttributedCharacterIterator(|java.text.AttributedCharacterIterator|) , 
+Font(|java.awt.Font|) , and other classes handling text attributes. Other 
+constants defined in this class are used as attribute values. 
+
+For each text attribute, the documentation describes: 
+
+the type of their values, the valid values if there are limitations relevant 
+constants the default effect if the attribute is absent (or has a null value). 
+a description of the effect. the fallback behavior if the exact attribute 
+requested is not available. 
+
+Types of Values 
+
+The values of attributes must always be immutable. Where a list of limitations 
+is given, any value outside of that set is reserved for future use, and ignored 
+at present. If the value is null or not of the proper type then it has the 
+default effect. The effect of a particular value can be interpolated, 
+especially in the case of multiple master fonts. This interpolation is done 
+based on the nearest defined constants above and below the request: 
+
+interpolation = (request - below)/(above - below); 
+
+Interpolation 
+
+Fonts should interpolate values in certain circumstances. For example, when the 
+WEIGHT value is 2.13. If the nearest surrounding values in the font are 
+WEIGHT_BOLD = 2.0 and WEIGHT_HEAVY = 2.25 then font would then interpret the 
+WEIGHT request as being 52% of the way between what it considers BOLD and what 
+it considers HEAVY. If the nearest surrounding values are WEIGHT_SEMIBOLD = 
+1.25 and WEIGHT_ULTRABOLD = 2.75 then the WEIGHT request is interpreted as 
+being 58.67% of the way between SEMIBOLD and ULTRABOLD. Where a font does not 
+have enough capability to handle a given request, such as superscript, then it 
+should simulate it to the best of its ability. To determine if simulation is 
+being performed, the client should query the font to see what actual attributes 
+were used. 
+
+
+*java.lang.Float_java.awt.font.TextAttribute.WEIGHT_REGULAR*
+
+The TextAttribute class defines attribute keys and attribute values used for 
+text rendering. 
+
+TextAttribute instances are used as attribute keys to identify attributes in 
+AttributedCharacterIterator(|java.text.AttributedCharacterIterator|) , 
+Font(|java.awt.Font|) , and other classes handling text attributes. Other 
+constants defined in this class are used as attribute values. 
+
+For each text attribute, the documentation describes: 
+
+the type of their values, the valid values if there are limitations relevant 
+constants the default effect if the attribute is absent (or has a null value). 
+a description of the effect. the fallback behavior if the exact attribute 
+requested is not available. 
+
+Types of Values 
+
+The values of attributes must always be immutable. Where a list of limitations 
+is given, any value outside of that set is reserved for future use, and ignored 
+at present. If the value is null or not of the proper type then it has the 
+default effect. The effect of a particular value can be interpolated, 
+especially in the case of multiple master fonts. This interpolation is done 
+based on the nearest defined constants above and below the request: 
+
+interpolation = (request - below)/(above - below); 
+
+Interpolation 
+
+Fonts should interpolate values in certain circumstances. For example, when the 
+WEIGHT value is 2.13. If the nearest surrounding values in the font are 
+WEIGHT_BOLD = 2.0 and WEIGHT_HEAVY = 2.25 then font would then interpret the 
+WEIGHT request as being 52% of the way between what it considers BOLD and what 
+it considers HEAVY. If the nearest surrounding values are WEIGHT_SEMIBOLD = 
+1.25 and WEIGHT_ULTRABOLD = 2.75 then the WEIGHT request is interpreted as 
+being 58.67% of the way between SEMIBOLD and ULTRABOLD. Where a font does not 
+have enough capability to handle a given request, such as superscript, then it 
+should simulate it to the best of its ability. To determine if simulation is 
+being performed, the client should query the font to see what actual attributes 
+were used. 
+
+
+*java.lang.Float_java.awt.font.TextAttribute.WEIGHT_SEMIBOLD*
+
+The TextAttribute class defines attribute keys and attribute values used for 
+text rendering. 
+
+TextAttribute instances are used as attribute keys to identify attributes in 
+AttributedCharacterIterator(|java.text.AttributedCharacterIterator|) , 
+Font(|java.awt.Font|) , and other classes handling text attributes. Other 
+constants defined in this class are used as attribute values. 
+
+For each text attribute, the documentation describes: 
+
+the type of their values, the valid values if there are limitations relevant 
+constants the default effect if the attribute is absent (or has a null value). 
+a description of the effect. the fallback behavior if the exact attribute 
+requested is not available. 
+
+Types of Values 
+
+The values of attributes must always be immutable. Where a list of limitations 
+is given, any value outside of that set is reserved for future use, and ignored 
+at present. If the value is null or not of the proper type then it has the 
+default effect. The effect of a particular value can be interpolated, 
+especially in the case of multiple master fonts. This interpolation is done 
+based on the nearest defined constants above and below the request: 
+
+interpolation = (request - below)/(above - below); 
+
+Interpolation 
+
+Fonts should interpolate values in certain circumstances. For example, when the 
+WEIGHT value is 2.13. If the nearest surrounding values in the font are 
+WEIGHT_BOLD = 2.0 and WEIGHT_HEAVY = 2.25 then font would then interpret the 
+WEIGHT request as being 52% of the way between what it considers BOLD and what 
+it considers HEAVY. If the nearest surrounding values are WEIGHT_SEMIBOLD = 
+1.25 and WEIGHT_ULTRABOLD = 2.75 then the WEIGHT request is interpreted as 
+being 58.67% of the way between SEMIBOLD and ULTRABOLD. Where a font does not 
+have enough capability to handle a given request, such as superscript, then it 
+should simulate it to the best of its ability. To determine if simulation is 
+being performed, the client should query the font to see what actual attributes 
+were used. 
+
+
+*java.lang.Float_java.awt.font.TextAttribute.WEIGHT_ULTRABOLD*
+
+The TextAttribute class defines attribute keys and attribute values used for 
+text rendering. 
+
+TextAttribute instances are used as attribute keys to identify attributes in 
+AttributedCharacterIterator(|java.text.AttributedCharacterIterator|) , 
+Font(|java.awt.Font|) , and other classes handling text attributes. Other 
+constants defined in this class are used as attribute values. 
+
+For each text attribute, the documentation describes: 
+
+the type of their values, the valid values if there are limitations relevant 
+constants the default effect if the attribute is absent (or has a null value). 
+a description of the effect. the fallback behavior if the exact attribute 
+requested is not available. 
+
+Types of Values 
+
+The values of attributes must always be immutable. Where a list of limitations 
+is given, any value outside of that set is reserved for future use, and ignored 
+at present. If the value is null or not of the proper type then it has the 
+default effect. The effect of a particular value can be interpolated, 
+especially in the case of multiple master fonts. This interpolation is done 
+based on the nearest defined constants above and below the request: 
+
+interpolation = (request - below)/(above - below); 
+
+Interpolation 
+
+Fonts should interpolate values in certain circumstances. For example, when the 
+WEIGHT value is 2.13. If the nearest surrounding values in the font are 
+WEIGHT_BOLD = 2.0 and WEIGHT_HEAVY = 2.25 then font would then interpret the 
+WEIGHT request as being 52% of the way between what it considers BOLD and what 
+it considers HEAVY. If the nearest surrounding values are WEIGHT_SEMIBOLD = 
+1.25 and WEIGHT_ULTRABOLD = 2.75 then the WEIGHT request is interpreted as 
+being 58.67% of the way between SEMIBOLD and ULTRABOLD. Where a font does not 
+have enough capability to handle a given request, such as superscript, then it 
+should simulate it to the best of its ability. To determine if simulation is 
+being performed, the client should query the font to see what actual attributes 
+were used. 
+
+
+*java.awt.font.TextAttribute_java.awt.font.TextAttribute.WIDTH*
+
+The TextAttribute class defines attribute keys and attribute values used for 
+text rendering. 
+
+TextAttribute instances are used as attribute keys to identify attributes in 
+AttributedCharacterIterator(|java.text.AttributedCharacterIterator|) , 
+Font(|java.awt.Font|) , and other classes handling text attributes. Other 
+constants defined in this class are used as attribute values. 
+
+For each text attribute, the documentation describes: 
+
+the type of their values, the valid values if there are limitations relevant 
+constants the default effect if the attribute is absent (or has a null value). 
+a description of the effect. the fallback behavior if the exact attribute 
+requested is not available. 
+
+Types of Values 
+
+The values of attributes must always be immutable. Where a list of limitations 
+is given, any value outside of that set is reserved for future use, and ignored 
+at present. If the value is null or not of the proper type then it has the 
+default effect. The effect of a particular value can be interpolated, 
+especially in the case of multiple master fonts. This interpolation is done 
+based on the nearest defined constants above and below the request: 
+
+interpolation = (request - below)/(above - below); 
+
+Interpolation 
+
+Fonts should interpolate values in certain circumstances. For example, when the 
+WEIGHT value is 2.13. If the nearest surrounding values in the font are 
+WEIGHT_BOLD = 2.0 and WEIGHT_HEAVY = 2.25 then font would then interpret the 
+WEIGHT request as being 52% of the way between what it considers BOLD and what 
+it considers HEAVY. If the nearest surrounding values are WEIGHT_SEMIBOLD = 
+1.25 and WEIGHT_ULTRABOLD = 2.75 then the WEIGHT request is interpreted as 
+being 58.67% of the way between SEMIBOLD and ULTRABOLD. Where a font does not 
+have enough capability to handle a given request, such as superscript, then it 
+should simulate it to the best of its ability. To determine if simulation is 
+being performed, the client should query the font to see what actual attributes 
+were used. 
+
+
+*java.lang.Float_java.awt.font.TextAttribute.WIDTH_CONDENSED*
+
+The TextAttribute class defines attribute keys and attribute values used for 
+text rendering. 
+
+TextAttribute instances are used as attribute keys to identify attributes in 
+AttributedCharacterIterator(|java.text.AttributedCharacterIterator|) , 
+Font(|java.awt.Font|) , and other classes handling text attributes. Other 
+constants defined in this class are used as attribute values. 
+
+For each text attribute, the documentation describes: 
+
+the type of their values, the valid values if there are limitations relevant 
+constants the default effect if the attribute is absent (or has a null value). 
+a description of the effect. the fallback behavior if the exact attribute 
+requested is not available. 
+
+Types of Values 
+
+The values of attributes must always be immutable. Where a list of limitations 
+is given, any value outside of that set is reserved for future use, and ignored 
+at present. If the value is null or not of the proper type then it has the 
+default effect. The effect of a particular value can be interpolated, 
+especially in the case of multiple master fonts. This interpolation is done 
+based on the nearest defined constants above and below the request: 
+
+interpolation = (request - below)/(above - below); 
+
+Interpolation 
+
+Fonts should interpolate values in certain circumstances. For example, when the 
+WEIGHT value is 2.13. If the nearest surrounding values in the font are 
+WEIGHT_BOLD = 2.0 and WEIGHT_HEAVY = 2.25 then font would then interpret the 
+WEIGHT request as being 52% of the way between what it considers BOLD and what 
+it considers HEAVY. If the nearest surrounding values are WEIGHT_SEMIBOLD = 
+1.25 and WEIGHT_ULTRABOLD = 2.75 then the WEIGHT request is interpreted as 
+being 58.67% of the way between SEMIBOLD and ULTRABOLD. Where a font does not 
+have enough capability to handle a given request, such as superscript, then it 
+should simulate it to the best of its ability. To determine if simulation is 
+being performed, the client should query the font to see what actual attributes 
+were used. 
+
+
+*java.lang.Float_java.awt.font.TextAttribute.WIDTH_EXTENDED*
+
+The TextAttribute class defines attribute keys and attribute values used for 
+text rendering. 
+
+TextAttribute instances are used as attribute keys to identify attributes in 
+AttributedCharacterIterator(|java.text.AttributedCharacterIterator|) , 
+Font(|java.awt.Font|) , and other classes handling text attributes. Other 
+constants defined in this class are used as attribute values. 
+
+For each text attribute, the documentation describes: 
+
+the type of their values, the valid values if there are limitations relevant 
+constants the default effect if the attribute is absent (or has a null value). 
+a description of the effect. the fallback behavior if the exact attribute 
+requested is not available. 
+
+Types of Values 
+
+The values of attributes must always be immutable. Where a list of limitations 
+is given, any value outside of that set is reserved for future use, and ignored 
+at present. If the value is null or not of the proper type then it has the 
+default effect. The effect of a particular value can be interpolated, 
+especially in the case of multiple master fonts. This interpolation is done 
+based on the nearest defined constants above and below the request: 
+
+interpolation = (request - below)/(above - below); 
+
+Interpolation 
+
+Fonts should interpolate values in certain circumstances. For example, when the 
+WEIGHT value is 2.13. If the nearest surrounding values in the font are 
+WEIGHT_BOLD = 2.0 and WEIGHT_HEAVY = 2.25 then font would then interpret the 
+WEIGHT request as being 52% of the way between what it considers BOLD and what 
+it considers HEAVY. If the nearest surrounding values are WEIGHT_SEMIBOLD = 
+1.25 and WEIGHT_ULTRABOLD = 2.75 then the WEIGHT request is interpreted as 
+being 58.67% of the way between SEMIBOLD and ULTRABOLD. Where a font does not 
+have enough capability to handle a given request, such as superscript, then it 
+should simulate it to the best of its ability. To determine if simulation is 
+being performed, the client should query the font to see what actual attributes 
+were used. 
+
+
+*java.lang.Float_java.awt.font.TextAttribute.WIDTH_REGULAR*
+
+The TextAttribute class defines attribute keys and attribute values used for 
+text rendering. 
+
+TextAttribute instances are used as attribute keys to identify attributes in 
+AttributedCharacterIterator(|java.text.AttributedCharacterIterator|) , 
+Font(|java.awt.Font|) , and other classes handling text attributes. Other 
+constants defined in this class are used as attribute values. 
+
+For each text attribute, the documentation describes: 
+
+the type of their values, the valid values if there are limitations relevant 
+constants the default effect if the attribute is absent (or has a null value). 
+a description of the effect. the fallback behavior if the exact attribute 
+requested is not available. 
+
+Types of Values 
+
+The values of attributes must always be immutable. Where a list of limitations 
+is given, any value outside of that set is reserved for future use, and ignored 
+at present. If the value is null or not of the proper type then it has the 
+default effect. The effect of a particular value can be interpolated, 
+especially in the case of multiple master fonts. This interpolation is done 
+based on the nearest defined constants above and below the request: 
+
+interpolation = (request - below)/(above - below); 
+
+Interpolation 
+
+Fonts should interpolate values in certain circumstances. For example, when the 
+WEIGHT value is 2.13. If the nearest surrounding values in the font are 
+WEIGHT_BOLD = 2.0 and WEIGHT_HEAVY = 2.25 then font would then interpret the 
+WEIGHT request as being 52% of the way between what it considers BOLD and what 
+it considers HEAVY. If the nearest surrounding values are WEIGHT_SEMIBOLD = 
+1.25 and WEIGHT_ULTRABOLD = 2.75 then the WEIGHT request is interpreted as 
+being 58.67% of the way between SEMIBOLD and ULTRABOLD. Where a font does not 
+have enough capability to handle a given request, such as superscript, then it 
+should simulate it to the best of its ability. To determine if simulation is 
+being performed, the client should query the font to see what actual attributes 
+were used. 
+
+
+*java.lang.Float_java.awt.font.TextAttribute.WIDTH_SEMI_CONDENSED*
+
+The TextAttribute class defines attribute keys and attribute values used for 
+text rendering. 
+
+TextAttribute instances are used as attribute keys to identify attributes in 
+AttributedCharacterIterator(|java.text.AttributedCharacterIterator|) , 
+Font(|java.awt.Font|) , and other classes handling text attributes. Other 
+constants defined in this class are used as attribute values. 
+
+For each text attribute, the documentation describes: 
+
+the type of their values, the valid values if there are limitations relevant 
+constants the default effect if the attribute is absent (or has a null value). 
+a description of the effect. the fallback behavior if the exact attribute 
+requested is not available. 
+
+Types of Values 
+
+The values of attributes must always be immutable. Where a list of limitations 
+is given, any value outside of that set is reserved for future use, and ignored 
+at present. If the value is null or not of the proper type then it has the 
+default effect. The effect of a particular value can be interpolated, 
+especially in the case of multiple master fonts. This interpolation is done 
+based on the nearest defined constants above and below the request: 
+
+interpolation = (request - below)/(above - below); 
+
+Interpolation 
+
+Fonts should interpolate values in certain circumstances. For example, when the 
+WEIGHT value is 2.13. If the nearest surrounding values in the font are 
+WEIGHT_BOLD = 2.0 and WEIGHT_HEAVY = 2.25 then font would then interpret the 
+WEIGHT request as being 52% of the way between what it considers BOLD and what 
+it considers HEAVY. If the nearest surrounding values are WEIGHT_SEMIBOLD = 
+1.25 and WEIGHT_ULTRABOLD = 2.75 then the WEIGHT request is interpreted as 
+being 58.67% of the way between SEMIBOLD and ULTRABOLD. Where a font does not 
+have enough capability to handle a given request, such as superscript, then it 
+should simulate it to the best of its ability. To determine if simulation is 
+being performed, the client should query the font to see what actual attributes 
+were used. 
+
+
+*java.lang.Float_java.awt.font.TextAttribute.WIDTH_SEMI_EXTENDED*
+
+The TextAttribute class defines attribute keys and attribute values used for 
+text rendering. 
+
+TextAttribute instances are used as attribute keys to identify attributes in 
+AttributedCharacterIterator(|java.text.AttributedCharacterIterator|) , 
+Font(|java.awt.Font|) , and other classes handling text attributes. Other 
+constants defined in this class are used as attribute values. 
+
+For each text attribute, the documentation describes: 
+
+the type of their values, the valid values if there are limitations relevant 
+constants the default effect if the attribute is absent (or has a null value). 
+a description of the effect. the fallback behavior if the exact attribute 
+requested is not available. 
+
+Types of Values 
+
+The values of attributes must always be immutable. Where a list of limitations 
+is given, any value outside of that set is reserved for future use, and ignored 
+at present. If the value is null or not of the proper type then it has the 
+default effect. The effect of a particular value can be interpolated, 
+especially in the case of multiple master fonts. This interpolation is done 
+based on the nearest defined constants above and below the request: 
+
+interpolation = (request - below)/(above - below); 
+
+Interpolation 
+
+Fonts should interpolate values in certain circumstances. For example, when the 
+WEIGHT value is 2.13. If the nearest surrounding values in the font are 
+WEIGHT_BOLD = 2.0 and WEIGHT_HEAVY = 2.25 then font would then interpret the 
+WEIGHT request as being 52% of the way between what it considers BOLD and what 
+it considers HEAVY. If the nearest surrounding values are WEIGHT_SEMIBOLD = 
+1.25 and WEIGHT_ULTRABOLD = 2.75 then the WEIGHT request is interpreted as 
+being 58.67% of the way between SEMIBOLD and ULTRABOLD. Where a font does not 
+have enough capability to handle a given request, such as superscript, then it 
+should simulate it to the best of its ability. To determine if simulation is 
+being performed, the client should query the font to see what actual attributes 
+were used. 
+
+
+
+*java.awt.font.TextAttribute(String)*
+
+protected TextAttribute(java.lang.String name)
+
+Constructs a TextAttribute with the specified name. 
+
+    name - the attribute name to assign to this TextAttribute 
+
+*java.awt.font.TextAttribute.readResolve()*
+
+protected |java.lang.Object| readResolve()
+  throws |java.io.InvalidObjectException|
+         
+Resolves instances being deserialized to the predefined constants. 
+
+
+

@@ -1,0 +1,67 @@
+*javax.persistence.ManyToMany* *ManyToMany* Defines a many-valued association wi
+
+public interface class ManyToMany
+
+  implements |java.lang.annotation.Annotation|
+
+|javax.persistence.ManyToMany_Description|
+|javax.persistence.ManyToMany_Fields|
+|javax.persistence.ManyToMany_Constructors|
+|javax.persistence.ManyToMany_Methods|
+
+================================================================================
+
+*javax.persistence.ManyToMany_Description*
+
+Defines a many-valued association with many-to-many multiplicity. If the 
+Collection is defined using generics to specify the element type, the 
+associated target entity class does not need to be specified; otherwise it must 
+be specified. 
+
+Every many-to-many association has two sides, the owning side and the 
+non-owning, or inverse, side. The join table is specified on the owning side. 
+If the association is bidirectional, either side may be designated as the 
+owning side. 
+
+The same annotation elements for the (|javax.persistence.OneToMany|) annotation 
+apply to the ManyToMany annotation. 
+
+
+
+Example 1: 
+
+In Customer class: 
+
+ManyToMany JoinTable(name="CUST_PHONES") public Set getPhones() { return 
+phones; } 
+
+In PhoneNumber class: 
+
+ManyToMany(mappedBy="phones") public Set getCustomers() { return customers; } 
+
+Example 2: 
+
+In Customer class: 
+
+ManyToMany(targetEntity=com.acme.PhoneNumber.class) public Set getPhones() { 
+return phones; } 
+
+In PhoneNumber class: 
+
+ManyToMany(targetEntity=com.acme.Customer.class, mappedBy="phones") public Set 
+getCustomers() { return customers; } 
+
+Example 3: 
+
+In Customer class: 
+
+ManyToMany JoinTable(name="CUST_PHONE", joinColumns= JoinColumn(name="CUST_ID", 
+referencedColumnName="ID"), inverseJoinColumns= JoinColumn(name="PHONE_ID", 
+referencedColumnName="ID") ) public Set getPhones() { return phones; } 
+
+In PhoneNumberClass: 
+
+ManyToMany(mappedBy="phones") public Set getCustomers() { return customers; } 
+
+
+

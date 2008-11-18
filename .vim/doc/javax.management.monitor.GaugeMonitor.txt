@@ -1,0 +1,236 @@
+*javax.management.monitor.GaugeMonitor* *GaugeMonitor* Defines a monitor MBean d
+
+public class GaugeMonitor
+  extends    |javax.management.monitor.Monitor|
+  implements |javax.management.monitor.GaugeMonitorMBean|
+
+|javax.management.monitor.GaugeMonitor_Description|
+|javax.management.monitor.GaugeMonitor_Fields|
+|javax.management.monitor.GaugeMonitor_Constructors|
+|javax.management.monitor.GaugeMonitor_Methods|
+
+================================================================================
+
+*javax.management.monitor.GaugeMonitor_Constructors*
+|javax.management.monitor.GaugeMonitor()|Default constructor.
+
+*javax.management.monitor.GaugeMonitor_Methods*
+|javax.management.monitor.GaugeMonitor.getDerivedGauge()|Returns the derived ga
+|javax.management.monitor.GaugeMonitor.getDerivedGauge(ObjectName)|Gets the der
+|javax.management.monitor.GaugeMonitor.getDerivedGaugeTimeStamp()|Gets the deri
+|javax.management.monitor.GaugeMonitor.getDerivedGaugeTimeStamp(ObjectName)|Get
+|javax.management.monitor.GaugeMonitor.getDifferenceMode()|Gets the difference 
+|javax.management.monitor.GaugeMonitor.getHighThreshold()|Gets the high thresho
+|javax.management.monitor.GaugeMonitor.getLowThreshold()|Gets the low threshold
+|javax.management.monitor.GaugeMonitor.getNotificationInfo()|Returns a Notifica
+|javax.management.monitor.GaugeMonitor.getNotifyHigh()|Gets the high notificati
+|javax.management.monitor.GaugeMonitor.getNotifyLow()|Gets the low notification
+|javax.management.monitor.GaugeMonitor.setDifferenceMode(boolean)|Sets the diff
+|javax.management.monitor.GaugeMonitor.setGranularityPeriod(long)|Sets the gran
+|javax.management.monitor.GaugeMonitor.setNotifyHigh(boolean)|Sets the high not
+|javax.management.monitor.GaugeMonitor.setNotifyLow(boolean)|Sets the low notif
+|javax.management.monitor.GaugeMonitor.setThresholds(Number,Number)|Sets the hi
+|javax.management.monitor.GaugeMonitor.start()|Starts the gauge monitor.
+|javax.management.monitor.GaugeMonitor.stop()|Stops the gauge monitor.
+
+*javax.management.monitor.GaugeMonitor_Description*
+
+Defines a monitor MBean designed to observe the values of a gauge attribute. 
+
+A gauge monitor observes an attribute that is continuously variable with time. 
+A gauge monitor sends notifications as follows: 
+
+
+
+if the attribute value is increasing and becomes equal to or greater than the 
+high threshold value, a threshold high 
+notification(|javax.management.monitor.MonitorNotification|) is sent. The 
+notify high flag must be set to true 
+
+Subsequent crossings of the high threshold value do not cause further 
+notifications unless the attribute value becomes equal to or less than the low 
+threshold value. 
+
+if the attribute value is decreasing and becomes equal to or less than the low 
+threshold value, a threshold low 
+notification(|javax.management.monitor.MonitorNotification|) is sent. The 
+notify low flag must be set to true. 
+
+Subsequent crossings of the low threshold value do not cause further 
+notifications unless the attribute value becomes equal to or greater than the 
+high threshold value. 
+
+
+
+This provides a hysteresis mechanism to avoid repeated triggering of 
+notifications when the attribute value makes small oscillations around the high 
+or low threshold value. 
+
+If the gauge difference mode is used, the value of the derived gauge is 
+calculated as the difference between the observed gauge values for two 
+successive observations. 
+
+The derived gauge value (V[t]) is calculated using the following method: 
+
+V[t] = gauge[t] - gauge[t-GP] 
+
+This implementation of the gauge monitor requires the observed attribute to be 
+of the type integer or floating-point (Byte, Integer, Short, Long, Float, 
+Double). 
+
+
+*javax.management.monitor.GaugeMonitor()*
+
+public GaugeMonitor()
+
+Default constructor. 
+
+
+*javax.management.monitor.GaugeMonitor.getDerivedGauge()*
+
+public synchronized |java.lang.Number| getDerivedGauge()
+
+Returns the derived gauge of the first object in the set of observed MBeans. 
+
+
+    Returns: The derived gauge. 
+*javax.management.monitor.GaugeMonitor.getDerivedGauge(ObjectName)*
+
+public synchronized |java.lang.Number| getDerivedGauge(javax.management.ObjectName object)
+
+Gets the derived gauge of the specified object, if this object is contained in 
+the set of observed MBeans, or null otherwise. 
+
+    object - the name of the MBean. 
+
+    Returns: The derived gauge of the specified object. 
+*javax.management.monitor.GaugeMonitor.getDerivedGaugeTimeStamp()*
+
+public synchronized long getDerivedGaugeTimeStamp()
+
+Gets the derived gauge timestamp of the first object in the set of observed 
+MBeans. 
+
+
+    Returns: The derived gauge timestamp. 
+*javax.management.monitor.GaugeMonitor.getDerivedGaugeTimeStamp(ObjectName)*
+
+public synchronized long getDerivedGaugeTimeStamp(javax.management.ObjectName object)
+
+Gets the derived gauge timestamp of the specified object, if this object is 
+contained in the set of observed MBeans, or null otherwise. 
+
+    object - the name of the MBean. 
+
+    Returns: The derived gauge timestamp of the specified object. 
+*javax.management.monitor.GaugeMonitor.getDifferenceMode()*
+
+public synchronized boolean getDifferenceMode()
+
+Gets the difference mode flag value common to all observed MBeans. 
+
+
+    Returns: true if the difference mode is used, false otherwise. 
+*javax.management.monitor.GaugeMonitor.getHighThreshold()*
+
+public synchronized |java.lang.Number| getHighThreshold()
+
+Gets the high threshold value common to all observed MBeans. 
+
+
+    Returns: The high threshold value. 
+*javax.management.monitor.GaugeMonitor.getLowThreshold()*
+
+public synchronized |java.lang.Number| getLowThreshold()
+
+Gets the low threshold value common to all observed MBeans. 
+
+
+    Returns: The low threshold value. 
+*javax.management.monitor.GaugeMonitor.getNotificationInfo()*
+
+public |javax.management.MBeanNotificationInfo| getNotificationInfo()
+
+Returns a NotificationInfo object containing the name of the Java class of the 
+notification and the notification types sent by the gauge monitor. 
+
+
+*javax.management.monitor.GaugeMonitor.getNotifyHigh()*
+
+public synchronized boolean getNotifyHigh()
+
+Gets the high notification's on/off switch value common to all observed MBeans. 
+
+
+    Returns: true if the gauge monitor notifies when exceeding the high threshold, false 
+             otherwise. 
+*javax.management.monitor.GaugeMonitor.getNotifyLow()*
+
+public synchronized boolean getNotifyLow()
+
+Gets the low notification's on/off switch value common to all observed MBeans. 
+
+
+    Returns: true if the gauge monitor notifies when exceeding the low threshold, false 
+             otherwise. 
+*javax.management.monitor.GaugeMonitor.setDifferenceMode(boolean)*
+
+public synchronized void setDifferenceMode(boolean value)
+
+Sets the difference mode flag value common to all observed MBeans. 
+
+    value - The difference mode flag value. 
+
+*javax.management.monitor.GaugeMonitor.setGranularityPeriod(long)*
+
+public synchronized void setGranularityPeriod(long period)
+  throws |java.lang.IllegalArgumentException|
+         
+Sets the granularity period (in milliseconds). The default value of the 
+granularity period is 10 seconds. 
+
+    period - The granularity period value. 
+
+*javax.management.monitor.GaugeMonitor.setNotifyHigh(boolean)*
+
+public synchronized void setNotifyHigh(boolean value)
+
+Sets the high notification's on/off switch value common to all observed MBeans. 
+
+    value - The high notification's on/off switch value. 
+
+*javax.management.monitor.GaugeMonitor.setNotifyLow(boolean)*
+
+public synchronized void setNotifyLow(boolean value)
+
+Sets the low notification's on/off switch value common to all observed MBeans. 
+
+    value - The low notification's on/off switch value. 
+
+*javax.management.monitor.GaugeMonitor.setThresholds(Number,Number)*
+
+public synchronized void setThresholds(
+  java.lang.Number highValue,
+  java.lang.Number lowValue)
+  throws |java.lang.IllegalArgumentException|
+         
+Sets the high and the low threshold values common to all observed MBeans. 
+
+    highValue - The high threshold value. 
+    lowValue - The low threshold value. 
+
+*javax.management.monitor.GaugeMonitor.start()*
+
+public void start()
+
+Starts the gauge monitor. 
+
+
+*javax.management.monitor.GaugeMonitor.stop()*
+
+public void stop()
+
+Stops the gauge monitor. 
+
+
+

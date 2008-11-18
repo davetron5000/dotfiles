@@ -1,0 +1,133 @@
+*javax.swing.RootPaneContainer* *RootPaneContainer* This interface is implemente
+
+public interface interface RootPaneContainer
+
+
+|javax.swing.RootPaneContainer_Description|
+|javax.swing.RootPaneContainer_Fields|
+|javax.swing.RootPaneContainer_Constructors|
+|javax.swing.RootPaneContainer_Methods|
+
+================================================================================
+
+*javax.swing.RootPaneContainer_Methods*
+|javax.swing.RootPaneContainer.getContentPane()|Returns the contentPane.
+|javax.swing.RootPaneContainer.getGlassPane()|Returns the glassPane.
+|javax.swing.RootPaneContainer.getLayeredPane()|Returns the layeredPane.
+|javax.swing.RootPaneContainer.getRootPane()|Return this component's single JRo
+|javax.swing.RootPaneContainer.setContentPane(Container)|The "contentPane" is t
+|javax.swing.RootPaneContainer.setGlassPane(Component)|The glassPane is always 
+|javax.swing.RootPaneContainer.setLayeredPane(JLayeredPane)|A Container that ma
+
+*javax.swing.RootPaneContainer_Description*
+
+This interface is implemented by components that have a single JRootPane child: 
+JDialog, JFrame, JWindow, JApplet, JInternalFrame. The methods in this 
+interface are just covers for the JRootPane properties, e.g. getContentPane() 
+is generally implemented like this: 
+
+public Container getContentPane() { return getRootPane().getContentPane(); } 
+
+This interface serves as a marker for Swing GUI builders that need to treat 
+components like JFrame, that contain a single JRootPane, specially. For example 
+in a GUI builder, dropping a component on a RootPaneContainer would be 
+interpreted as frame.getContentPane().add(child). 
+
+For conveniance JFrame, JDialog, JWindow, JApplet and JInternalFrame, by 
+default, forward, by default, all calls to the add, remove and setLayout 
+methods, to the contentPane. This means you can call: 
+
+rootPaneContainer.add(component); 
+
+instead of: 
+
+rootPaneContainer.getContentPane().add(component); 
+
+The behavior of the add and setLayout methods for JFrame, JDialog, JWindow, 
+JApplet and JInternalFrame is controlled by the rootPaneCheckingEnabled 
+property. If this property is true (the default), then calls to these methods 
+are forwarded to the contentPane; if false, these methods operate directly on 
+the RootPaneContainer. This property is only intended for subclasses, and is 
+therefore protected. 
+
+
+*javax.swing.RootPaneContainer.getContentPane()*
+
+public |java.awt.Container| getContentPane()
+
+Returns the contentPane. 
+
+
+    Returns: the value of the contentPane property. 
+*javax.swing.RootPaneContainer.getGlassPane()*
+
+public |java.awt.Component| getGlassPane()
+
+Returns the glassPane. 
+
+
+    Returns: the value of the glassPane property. 
+*javax.swing.RootPaneContainer.getLayeredPane()*
+
+public |javax.swing.JLayeredPane| getLayeredPane()
+
+Returns the layeredPane. 
+
+
+    Returns: the value of the layeredPane property. 
+*javax.swing.RootPaneContainer.getRootPane()*
+
+public |javax.swing.JRootPane| getRootPane()
+
+Return this component's single JRootPane child. A conventional implementation 
+of this interface will have all of the other methods indirect through this one. 
+The rootPane has two children: the glassPane and the layeredPane. 
+
+
+    Returns: this components single JRootPane child. 
+*javax.swing.RootPaneContainer.setContentPane(Container)*
+
+public void setContentPane(java.awt.Container contentPane)
+
+The "contentPane" is the primary container for application specific components. 
+Applications should add children to the contentPane, set its layout manager, 
+and so on. 
+
+The contentPane my not be null. 
+
+Generally implemented with getRootPane().setContentPane(contentPane); 
+
+    contentPane - the Container to use for the contents of this JRootPane 
+
+*javax.swing.RootPaneContainer.setGlassPane(Component)*
+
+public void setGlassPane(java.awt.Component glassPane)
+
+The glassPane is always the first child of the rootPane and the rootPanes 
+layout manager ensures that it's always as big as the rootPane. By default it's 
+transparent and not visible. It can be used to temporarily grab all keyboard 
+and mouse input by adding listeners and then making it visible. by default it's 
+not visible. 
+
+The glassPane may not be null. 
+
+Generally implemented with getRootPane().setGlassPane(glassPane); 
+
+
+*javax.swing.RootPaneContainer.setLayeredPane(JLayeredPane)*
+
+public void setLayeredPane(javax.swing.JLayeredPane layeredPane)
+
+A Container that manages the contentPane and in some cases a menu bar. The 
+layeredPane can be used by descendants that want to add a child to the 
+RootPaneContainer that isn't layout managed. For example an internal dialog or 
+a drag and drop effect component. 
+
+The layeredPane may not be null. 
+
+Generally implemented with 
+
+getRootPane().setLayeredPane(layeredPane); 
+
+
+

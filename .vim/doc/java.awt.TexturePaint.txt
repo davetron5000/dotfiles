@@ -1,0 +1,92 @@
+*java.awt.TexturePaint* *TexturePaint* The TexturePaint class provides a way to 
+
+public class TexturePaint
+  extends    |java.lang.Object|
+  implements |java.awt.Paint|
+
+|java.awt.TexturePaint_Description|
+|java.awt.TexturePaint_Fields|
+|java.awt.TexturePaint_Constructors|
+|java.awt.TexturePaint_Methods|
+
+================================================================================
+
+*java.awt.TexturePaint_Constructors*
+|java.awt.TexturePaint(BufferedImage,Rectangle2D)|Constructs a TexturePaint obj
+
+*java.awt.TexturePaint_Methods*
+|java.awt.TexturePaint.createContext(ColorModel,Rectangle,Rectangle2D,AffineTransform,RenderingHints)|
+|java.awt.TexturePaint.getAnchorRect()|Returns a copy of the anchor rectangle w
+|java.awt.TexturePaint.getImage()|Returns the BufferedImage texture used to   f
+|java.awt.TexturePaint.getTransparency()|Returns the transparency mode for this
+
+*java.awt.TexturePaint_Description*
+
+The TexturePaint class provides a way to fill a (|java.awt.Shape|) with a 
+texture that is specified as a (|java.awt.image.BufferedImage|) . The size of 
+the BufferedImage object should be small because the BufferedImage data is 
+copied by the TexturePaint object. At construction time, the texture is 
+anchored to the upper left corner of a (|java.awt.geom.Rectangle2D|) that is 
+specified in user space. Texture is computed for locations in the device space 
+by conceptually replicating the specified Rectangle2D infinitely in all 
+directions in user space and mapping the BufferedImage to each replicated 
+Rectangle2D. 
+
+
+*java.awt.TexturePaint(BufferedImage,Rectangle2D)*
+
+public TexturePaint(
+  java.awt.image.BufferedImage txtr,
+  java.awt.geom.Rectangle2D anchor)
+
+Constructs a TexturePaint object. 
+
+    txtr - the BufferedImage object with the texture used for painting 
+    anchor - the Rectangle2D in user space used to anchor and replicate the texture 
+
+*java.awt.TexturePaint.createContext(ColorModel,Rectangle,Rectangle2D,AffineTransform,RenderingHints)*
+
+public |java.awt.PaintContext| createContext(
+  java.awt.image.ColorModel cm,
+  java.awt.Rectangle deviceBounds,
+  java.awt.geom.Rectangle2D userBounds,
+  java.awt.geom.AffineTransform xform,
+  java.awt.RenderingHints hints)
+
+Creates and returns a context used to generate the color pattern. 
+
+    cm - the {@link ColorModel} that receives the Paint data. This is used only as a 
+       hint. 
+    deviceBounds - the device space bounding box of the graphics primitive being rendered 
+    userBounds - the user space bounding box of the graphics primitive being rendered 
+    xform - the {@link AffineTransform} from user space into device space 
+    hints - a {@link RenderingHints} object that can be used to specify how the pattern is 
+       ultimately rendered 
+
+    Returns: the {@link PaintContext} used for generating color patterns. 
+*java.awt.TexturePaint.getAnchorRect()*
+
+public |java.awt.geom.Rectangle2D| getAnchorRect()
+
+Returns a copy of the anchor rectangle which positions and sizes the textured 
+image. 
+
+
+    Returns: the Rectangle2D used to anchor and size this TexturePaint. 
+*java.awt.TexturePaint.getImage()*
+
+public |java.awt.image.BufferedImage| getImage()
+
+Returns the BufferedImage texture used to fill the shapes. 
+
+
+    Returns: a BufferedImage. 
+*java.awt.TexturePaint.getTransparency()*
+
+public int getTransparency()
+
+Returns the transparency mode for this TexturePaint. 
+
+
+    Returns: the transparency mode for this TexturePaint as an integer value. 
+

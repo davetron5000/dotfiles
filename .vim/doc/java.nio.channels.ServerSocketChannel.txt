@@ -1,0 +1,115 @@
+*java.nio.channels.ServerSocketChannel* *ServerSocketChannel* A selectable chann
+
+public abstract class ServerSocketChannel
+  extends    |java.nio.channels.spi.AbstractSelectableChannel|
+
+|java.nio.channels.ServerSocketChannel_Description|
+|java.nio.channels.ServerSocketChannel_Fields|
+|java.nio.channels.ServerSocketChannel_Constructors|
+|java.nio.channels.ServerSocketChannel_Methods|
+
+================================================================================
+
+*java.nio.channels.ServerSocketChannel_Constructors*
+|java.nio.channels.ServerSocketChannel(SelectorProvider)|Initializes a new inst
+
+*java.nio.channels.ServerSocketChannel_Methods*
+|java.nio.channels.ServerSocketChannel.accept()|Accepts a connection made to th
+|java.nio.channels.ServerSocketChannel.open()|Opens a server-socket channel.
+|java.nio.channels.ServerSocketChannel.socket()|Retrieves a server socket assoc
+|java.nio.channels.ServerSocketChannel.validOps()|Returns an operation set iden
+
+*java.nio.channels.ServerSocketChannel_Description*
+
+A selectable channel for stream-oriented listening sockets. 
+
+Server-socket channels are not a complete abstraction of listening network 
+sockets. Binding and the manipulation of socket options must be done through an 
+associated (|java.net.ServerSocket|) object obtained by invoking the 
+socket(|java.nio.channels.ServerSocketChannel|) method. It is not possible to 
+create a channel for an arbitrary, pre-existing server socket, nor is it 
+possible to specify the (|java.net.SocketImpl|) object to be used by a server 
+socket associated with a server-socket channel. 
+
+A server-socket channel is created by invoking the 
+open(|java.nio.channels.ServerSocketChannel|) method of this class. A 
+newly-created server-socket channel is open but not yet bound. An attempt to 
+invoke the accept(|java.nio.channels.ServerSocketChannel|) method of an unbound 
+server-socket channel will cause a (|NotYetBoundException|) to be thrown. A 
+server-socket channel can be bound by invoking one of the 
+bind(|java.net.ServerSocket|) methods of an associated server socket. 
+
+Server-socket channels are safe for use by multiple concurrent threads. 
+
+
+*java.nio.channels.ServerSocketChannel(SelectorProvider)*
+
+protected ServerSocketChannel(java.nio.channels.spi.SelectorProvider provider)
+
+Initializes a new instance of this class. 
+
+
+*java.nio.channels.ServerSocketChannel.accept()*
+
+public abstract |java.nio.channels.SocketChannel| accept()
+  throws |java.io.IOException|
+         
+Accepts a connection made to this channel's socket. 
+
+If this channel is in non-blocking mode then this method will immediately 
+return null if there are no pending connections. Otherwise it will block 
+indefinitely until a new connection is available or an I/O error occurs. 
+
+The socket channel returned by this method, if any, will be in blocking mode 
+regardless of the blocking mode of this channel. 
+
+This method performs exactly the same security checks as the 
+accept(|java.net.ServerSocket|) method of the (|java.net.ServerSocket|) class. 
+That is, if a security manager has been installed then for each new connection 
+this method verifies that the address and port number of the connection's 
+remote endpoint are permitted by the security manager's 
+checkAccept(|java.lang.SecurityManager|) method. 
+
+
+    Returns: The socket channel for the new connection, or null if this channel is in 
+             non-blocking mode and no connection is available to be accepted 
+*java.nio.channels.ServerSocketChannel.open()*
+
+public static |java.nio.channels.ServerSocketChannel| open()
+  throws |java.io.IOException|
+         
+Opens a server-socket channel. 
+
+The new channel is created by invoking the 
+openServerSocketChannel(|java.nio.channels.spi.SelectorProvider|) method of the 
+system-wide default (|java.nio.channels.spi.SelectorProvider|) object. 
+
+The new channel's socket is initially unbound; it must be bound to a specific 
+address via one of its socket's bind(|java.net.ServerSocket|) methods before 
+connections can be accepted. 
+
+
+    Returns: A new socket channel 
+*java.nio.channels.ServerSocketChannel.socket()*
+
+public abstract |java.net.ServerSocket| socket()
+
+Retrieves a server socket associated with this channel. 
+
+The returned object will not declare any public methods that are not declared 
+in the (|java.net.ServerSocket|) class. 
+
+
+    Returns: A server socket associated with this channel 
+*java.nio.channels.ServerSocketChannel.validOps()*
+
+public final int validOps()
+
+Returns an operation set identifying this channel's supported operations. 
+
+Server-socket channels only support the accepting of new connections, so this 
+method returns (|java.nio.channels.SelectionKey|) . 
+
+
+    Returns: The valid-operation set 
+

@@ -1,0 +1,317 @@
+*javax.management.relation.RelationSupport* *RelationSupport* A RelationSupport 
+
+public class RelationSupport
+  extends    |java.lang.Object|
+  implements |javax.management.relation.RelationSupportMBean|
+             |javax.management.MBeanRegistration|
+
+|javax.management.relation.RelationSupport_Description|
+|javax.management.relation.RelationSupport_Fields|
+|javax.management.relation.RelationSupport_Constructors|
+|javax.management.relation.RelationSupport_Methods|
+
+================================================================================
+
+*javax.management.relation.RelationSupport_Constructors*
+|javax.management.relation.RelationSupport(String,ObjectName,MBeanServer,String,RoleList)|
+|javax.management.relation.RelationSupport(String,ObjectName,String,RoleList)|C
+
+*javax.management.relation.RelationSupport_Methods*
+|javax.management.relation.RelationSupport.getAllRoles()|Returns all roles pres
+|javax.management.relation.RelationSupport.getReferencedMBeans()|Retrieves MBea
+|javax.management.relation.RelationSupport.getRelationId()|Returns relation ide
+|javax.management.relation.RelationSupport.getRelationServiceName()|Returns Obj
+|javax.management.relation.RelationSupport.getRelationTypeName()|Returns name o
+|javax.management.relation.RelationSupport.getRole(String)|Retrieves role value
+|javax.management.relation.RelationSupport.getRoleCardinality(String)|Returns t
+|javax.management.relation.RelationSupport.getRoles(String[])|Retrieves values 
+|javax.management.relation.RelationSupport.handleMBeanUnregistration(ObjectName,String)|
+|javax.management.relation.RelationSupport.isInRelationService()|Returns an int
+|javax.management.relation.RelationSupport.postDeregister()|
+|javax.management.relation.RelationSupport.postRegister(Boolean)|
+|javax.management.relation.RelationSupport.preDeregister()|
+|javax.management.relation.RelationSupport.preRegister(MBeanServer,ObjectName)|
+|javax.management.relation.RelationSupport.retrieveAllRoles()|Returns all roles
+|javax.management.relation.RelationSupport.setRelationServiceManagementFlag(Boolean)|
+|javax.management.relation.RelationSupport.setRole(Role)|Sets the given role.
+|javax.management.relation.RelationSupport.setRoles(RoleList)|Sets the given ro
+
+*javax.management.relation.RelationSupport_Description*
+
+A RelationSupport object is used internally by the Relation Service to 
+represent simple relations (only roles, no properties or methods), with an 
+unlimited number of roles, of any relation type. As internal representation, it 
+is not exposed to the user. RelationSupport class conforms to the design 
+patterns of standard MBean. So the user can decide to instantiate a 
+RelationSupport object himself as a MBean (as it follows the MBean design 
+patterns), to register it in the MBean Server, and then to add it in the 
+Relation Service. The user can also, when creating his own MBean relation 
+class, have it extending RelationSupport, to retrieve the implementations of 
+required interfaces (see below). It is also possible to have in a user relation 
+MBean class a member being a RelationSupport object, and to implement the 
+required interfaces by delegating all to this member. RelationSupport 
+implements the Relation interface (to be handled by the Relation Service). It 
+implements also the MBeanRegistration interface to be able to retrieve the 
+MBean Server where it is registered (if registered as a MBean) to access to its 
+Relation Service. 
+
+
+*javax.management.relation.RelationSupport(String,ObjectName,MBeanServer,String,RoleList)*
+
+public RelationSupport(
+  java.lang.String theRelId,
+  javax.management.ObjectName theRelServiceName,
+  javax.management.MBeanServer theRelServiceMBeanServer,
+  java.lang.String theRelTypeName,
+  javax.management.relation.RoleList theRoleList)
+  throws |java.lang.IllegalArgumentException|
+         |javax.management.relation.InvalidRoleValueException|
+         
+Creates object. This constructor has to be used when the user relation MBean 
+implements the interfaces expected to be supported by a relation by delegating 
+to a RelationSupport object. This object needs to know the Relation Service 
+expected to handle the relation. So it has to know the MBean Server where the 
+Relation Service is registered. According to a limitation, a relation MBean 
+must be registered in the same MBean Server as the Relation Service expected to 
+handle it. So the user relation MBean has to be created and registered, and 
+then the wrapped RelationSupport object can be created with identified MBean 
+Server. Nothing is done at the Relation Service level, i.e. the RelationSupport 
+object is not added, and no check if the provided values are correct. The 
+object is always created, EXCEPT if: - one required parameter is not provided - 
+the same name is used for two roles. To be handled as a relation, the object 
+has then to be added in the Relation Service using the Relation Service method 
+addRelation(). 
+
+    theRelId - relation identifier, to identify the relation in the Relation Service. Expected 
+       to be unique in the given Relation Service. 
+    theRelServiceName - ObjectName of the Relation Service where the relation will be registered. It is 
+       required as this is the Relation Service that is aware of the definition 
+       of the relation type of given relation, so that will be able to check 
+       update operations (set). 
+    theRelServiceMBeanServer - MBean Server where the wrapping MBean is or will be registered. Expected to be 
+       the MBean Server where the Relation Service is or will be registered. 
+    theRelTypeName - Name of relation type. Expected to have been created in given Relation Service. 
+    theRoleList - list of roles (Role objects) to initialised the relation. Can be null. Expected 
+       to conform to relation info in associated relation type. 
+
+*javax.management.relation.RelationSupport(String,ObjectName,String,RoleList)*
+
+public RelationSupport(
+  java.lang.String theRelId,
+  javax.management.ObjectName theRelServiceName,
+  java.lang.String theRelTypeName,
+  javax.management.relation.RoleList theRoleList)
+  throws |java.lang.IllegalArgumentException|
+         |javax.management.relation.InvalidRoleValueException|
+         
+Creates object. This constructor has to be used when the RelationSupport object 
+will be registered as a MBean by the user, or when creating a user relation 
+MBean those class extends RelationSupport. Nothing is done at the Relation 
+Service level, i.e. the RelationSupport object is not added, and no check if 
+the provided values are correct. The object is always created, EXCEPT if: - one 
+mandatory parameter is not provided - the same name is used for two roles. To 
+be handled as a relation, the object has then to be added in the Relation 
+Service using Relation Service method addRelation(). 
+
+    theRelId - relation identifier, to identify the relation in the Relation Service. Expected 
+       to be unique in the given Relation Service. 
+    theRelServiceName - ObjectName of the Relation Service where the relation will be registered. It is 
+       required as this is the Relation Service that is aware of the definition 
+       of the relation type of given relation, so that will be able to check 
+       update operations (set). 
+    theRelTypeName - Name of relation type. Expected to have been created in given Relation Service. 
+    theRoleList - list of roles (Role objects) to initialised the relation. Can be null. Expected 
+       to conform to relation info in associated relation type. 
+
+*javax.management.relation.RelationSupport.getAllRoles()*
+
+public |javax.management.relation.RoleResult| getAllRoles()
+  throws |javax.management.relation.RelationServiceNotRegisteredException|
+         
+Returns all roles present in the relation. 
+
+
+    Returns: a RoleResult object, including a RoleList (for roles successfully retrieved) 
+             and a RoleUnresolvedList (for roles not readable). 
+*javax.management.relation.RelationSupport.getReferencedMBeans()*
+
+public |java.util.Map| getReferencedMBeans()
+
+Retrieves MBeans referenced in the various roles of the relation. 
+
+
+    Returns: a HashMap mapping: ObjectName -> ArrayList of String (role names) 
+*javax.management.relation.RelationSupport.getRelationId()*
+
+public |java.lang.String| getRelationId()
+
+Returns relation identifier (used to uniquely identify the relation inside the 
+Relation Service). 
+
+
+    Returns: the relation id. 
+*javax.management.relation.RelationSupport.getRelationServiceName()*
+
+public |javax.management.ObjectName| getRelationServiceName()
+
+Returns ObjectName of the Relation Service handling the relation. 
+
+
+    Returns: the ObjectName of the Relation Service. 
+*javax.management.relation.RelationSupport.getRelationTypeName()*
+
+public |java.lang.String| getRelationTypeName()
+
+Returns name of associated relation type. 
+
+
+*javax.management.relation.RelationSupport.getRole(String)*
+
+public |java.util.List| getRole(java.lang.String theRoleName)
+  throws |java.lang.IllegalArgumentException|
+         |javax.management.relation.RelationServiceNotRegisteredException|
+         |javax.management.relation.RoleNotFoundException|
+         
+Retrieves role value for given role name. Checks if the role exists and is 
+readable according to the relation type. 
+
+    theRoleName - name of role 
+
+    Returns: the ArrayList of ObjectName objects being the role value 
+*javax.management.relation.RelationSupport.getRoleCardinality(String)*
+
+public |java.lang.Integer| getRoleCardinality(java.lang.String theRoleName)
+  throws |java.lang.IllegalArgumentException|
+         |javax.management.relation.RoleNotFoundException|
+         
+Returns the number of MBeans currently referenced in the given role. 
+
+    theRoleName - name of role 
+
+    Returns: the number of currently referenced MBeans in that role 
+*javax.management.relation.RelationSupport.getRoles(String[])*
+
+public |javax.management.relation.RoleResult| getRoles(java.lang.String[] theRoleNameArray)
+  throws |java.lang.IllegalArgumentException|
+         |javax.management.relation.RelationServiceNotRegisteredException|
+         
+Retrieves values of roles with given names. Checks for each role if it exists 
+and is readable according to the relation type. 
+
+    theRoleNameArray - array of names of roles to be retrieved 
+
+    Returns: a RoleResult object, including a RoleList (for roles successfully retrieved) 
+             and a RoleUnresolvedList (for roles not retrieved). 
+*javax.management.relation.RelationSupport.handleMBeanUnregistration(ObjectName,String)*
+
+public void handleMBeanUnregistration(
+  javax.management.ObjectName theObjName,
+  java.lang.String theRoleName)
+  throws |java.lang.IllegalArgumentException|
+         |javax.management.relation.InvalidRoleValueException|
+         |javax.management.relation.RelationNotFoundException|
+         |javax.management.relation.RelationServiceNotRegisteredException|
+         |javax.management.relation.RelationTypeNotFoundException|
+         |javax.management.relation.RoleNotFoundException|
+         
+Callback used by the Relation Service when a MBean referenced in a role is 
+unregistered. The Relation Service will call this method to let the relation 
+take action to reflect the impact of such unregistration. BEWARE. the user is 
+not expected to call this method. Current implementation is to set the role 
+with its current value (list of ObjectNames of referenced MBeans) without the 
+unregistered one. 
+
+    theObjName - ObjectName of unregistered MBean 
+    theRoleName - name of role where the MBean is referenced 
+
+*javax.management.relation.RelationSupport.isInRelationService()*
+
+public |java.lang.Boolean| isInRelationService()
+
+Returns an internal flag specifying if the object is still handled by the 
+Relation Service. 
+
+
+*javax.management.relation.RelationSupport.postDeregister()*
+
+public void postDeregister()
+
+
+
+
+*javax.management.relation.RelationSupport.postRegister(Boolean)*
+
+public void postRegister(java.lang.Boolean registrationDone)
+
+
+
+
+*javax.management.relation.RelationSupport.preDeregister()*
+
+public void preDeregister()
+  throws |java.lang.Exception|
+         
+
+
+
+*javax.management.relation.RelationSupport.preRegister(MBeanServer,ObjectName)*
+
+public |javax.management.ObjectName| preRegister(
+  javax.management.MBeanServer server,
+  javax.management.ObjectName name)
+  throws |java.lang.Exception|
+         
+
+
+
+*javax.management.relation.RelationSupport.retrieveAllRoles()*
+
+public |javax.management.relation.RoleList| retrieveAllRoles()
+
+Returns all roles in the relation without checking read mode. 
+
+
+    Returns: 
+*javax.management.relation.RelationSupport.setRelationServiceManagementFlag(Boolean)*
+
+public void setRelationServiceManagementFlag(java.lang.Boolean theFlg)
+  throws |java.lang.IllegalArgumentException|
+         
+
+
+
+*javax.management.relation.RelationSupport.setRole(Role)*
+
+public void setRole(javax.management.relation.Role theRole)
+  throws |java.lang.IllegalArgumentException|
+         |javax.management.relation.InvalidRoleValueException|
+         |javax.management.relation.RelationNotFoundException|
+         |javax.management.relation.RelationServiceNotRegisteredException|
+         |javax.management.relation.RelationTypeNotFoundException|
+         |javax.management.relation.RoleNotFoundException|
+         
+Sets the given role. Will check the role according to its corresponding role 
+definition provided in relation's relation type Will send a notification 
+(RelationNotification with type RELATION_BASIC_UPDATE or RELATION_MBEAN_UPDATE, 
+depending if the relation is a MBean or not). 
+
+    theRole - role to be set (name and new value) 
+
+*javax.management.relation.RelationSupport.setRoles(RoleList)*
+
+public |javax.management.relation.RoleResult| setRoles(javax.management.relation.RoleList theRoleList)
+  throws |java.lang.IllegalArgumentException|
+         |javax.management.relation.RelationNotFoundException|
+         |javax.management.relation.RelationServiceNotRegisteredException|
+         |javax.management.relation.RelationTypeNotFoundException|
+         
+Sets the given roles. Will check the role according to its corresponding role 
+definition provided in relation's relation type Will send one notification 
+(RelationNotification with type RELATION_BASIC_UPDATE or RELATION_MBEAN_UPDATE, 
+depending if the relation is a MBean or not) per updated role. 
+
+    theRoleList - list of roles to be set 
+
+    Returns: a RoleResult object, including a RoleList (for roles successfully set) and a 
+             RoleUnresolvedList (for roles not set). 
+

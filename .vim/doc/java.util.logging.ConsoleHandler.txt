@@ -1,0 +1,70 @@
+*java.util.logging.ConsoleHandler* *ConsoleHandler* This Handler publishes log r
+
+public class ConsoleHandler
+  extends    |java.util.logging.StreamHandler|
+
+|java.util.logging.ConsoleHandler_Description|
+|java.util.logging.ConsoleHandler_Fields|
+|java.util.logging.ConsoleHandler_Constructors|
+|java.util.logging.ConsoleHandler_Methods|
+
+================================================================================
+
+*java.util.logging.ConsoleHandler_Constructors*
+|java.util.logging.ConsoleHandler()|Create a ConsoleHandler for System.err.
+
+*java.util.logging.ConsoleHandler_Methods*
+|java.util.logging.ConsoleHandler.close()|Override StreamHandler.close to do a 
+|java.util.logging.ConsoleHandler.publish(LogRecord)|Publish a LogRecord.
+
+*java.util.logging.ConsoleHandler_Description*
+
+This Handler publishes log records to System.err. By default the 
+SimpleFormatter is used to generate brief summaries. 
+
+Configuration: By default each ConsoleHandler is initialized using the 
+following LogManager configuration properties. If properties are not defined 
+(or have invalid values) then the specified default values are used. 
+
+java.util.logging.ConsoleHandler.level specifies the default level for the 
+Handler (defaults to Level.INFO). java.util.logging.ConsoleHandler.filter 
+specifies the name of a Filter class to use (defaults to no Filter). 
+java.util.logging.ConsoleHandler.formatter specifies the name of a Formatter 
+class to use (defaults to java.util.logging.SimpleFormatter). 
+java.util.logging.ConsoleHandler.encoding the name of the character set 
+encoding to use (defaults to the default platform encoding). 
+
+
+
+
+*java.util.logging.ConsoleHandler()*
+
+public ConsoleHandler()
+
+Create a ConsoleHandler for System.err. 
+
+The ConsoleHandler is configured based on LogManager properties (or their 
+default values). 
+
+
+*java.util.logging.ConsoleHandler.close()*
+
+public void close()
+
+Override StreamHandler.close to do a flush but not to close the output stream. 
+That is, we do not close System.err. 
+
+
+*java.util.logging.ConsoleHandler.publish(LogRecord)*
+
+public void publish(java.util.logging.LogRecord record)
+
+Publish a LogRecord. 
+
+The logging request was made initially to a Logger object, which initialized 
+the LogRecord and forwarded it here. 
+
+    record - description of the log event. A null record is silently ignored and is not 
+       published 
+
+

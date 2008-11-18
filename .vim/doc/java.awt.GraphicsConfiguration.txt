@@ -1,0 +1,297 @@
+*java.awt.GraphicsConfiguration* *GraphicsConfiguration* The GraphicsConfigurati
+
+public abstract class GraphicsConfiguration
+  extends    |java.lang.Object|
+
+|java.awt.GraphicsConfiguration_Description|
+|java.awt.GraphicsConfiguration_Fields|
+|java.awt.GraphicsConfiguration_Constructors|
+|java.awt.GraphicsConfiguration_Methods|
+
+================================================================================
+
+*java.awt.GraphicsConfiguration_Constructors*
+|java.awt.GraphicsConfiguration()|This is an abstract class that cannot be inst
+
+*java.awt.GraphicsConfiguration_Methods*
+|java.awt.GraphicsConfiguration.createCompatibleImage(int,int)|Returns aBuffere
+|java.awt.GraphicsConfiguration.createCompatibleImage(int,int,int)|Returns a Bu
+|java.awt.GraphicsConfiguration.createCompatibleVolatileImage(int,int)|Returns 
+|java.awt.GraphicsConfiguration.createCompatibleVolatileImage(int,int,ImageCapabilities)|
+|java.awt.GraphicsConfiguration.createCompatibleVolatileImage(int,int,ImageCapabilities,int)|
+|java.awt.GraphicsConfiguration.createCompatibleVolatileImage(int,int,int)|Retu
+|java.awt.GraphicsConfiguration.getBounds()|Returns the bounds of the GraphicsC
+|java.awt.GraphicsConfiguration.getBufferCapabilities()|Returns the buffering c
+|java.awt.GraphicsConfiguration.getColorModel()|Returns theColorModelassociated
+|java.awt.GraphicsConfiguration.getColorModel(int)|Returns the ColorModel assoc
+|java.awt.GraphicsConfiguration.getDefaultTransform()|Returns the defaultAffine
+|java.awt.GraphicsConfiguration.getDevice()|Returns theGraphicsDeviceassociated
+|java.awt.GraphicsConfiguration.getImageCapabilities()|Returns the image capabi
+|java.awt.GraphicsConfiguration.getNormalizingTransform()|Returns a AffineTrans
+
+*java.awt.GraphicsConfiguration_Description*
+
+The GraphicsConfiguration class describes the characteristics of a graphics 
+destination such as a printer or monitor. There can be many 
+GraphicsConfiguration objects associated with a single graphics device, 
+representing different drawing modes or capabilities. The corresponding native 
+structure will vary from platform to platform. For example, on X11 windowing 
+systems, each visual is a different GraphicsConfiguration. On Microsoft 
+Windows, GraphicsConfigurations represent PixelFormats available in the current 
+resolution and color depth. 
+
+In a virtual device multi-screen environment in which the desktop area could 
+span multiple physical screen devices, the bounds of the GraphicsConfiguration 
+objects are relative to the virtual coordinate system. When setting the 
+location of a component, use getBounds(|java.awt.GraphicsConfiguration|) to get 
+the bounds of the desired GraphicsConfiguration and offset the location with 
+the coordinates of the GraphicsConfiguration, as the following code sample 
+illustrates: 
+
+
+
+Frame f = new Frame(gc); // where gc is a GraphicsConfiguration Rectangle 
+bounds = gc.getBounds(); f.setLocation(10 + bounds.x, 10 + bounds.y); 
+
+To determine if your environment is a virtual device environment, call 
+getBounds on all of the GraphicsConfiguration objects in your system. If any of 
+the origins of the returned bounds is not (0,0), your environment is a virtual 
+device environment. 
+
+You can also use getBounds to determine the bounds of the virtual device. To do 
+this, first call getBounds on all of the GraphicsConfiguration objects in your 
+system. Then calculate the union of all of the bounds returned from the calls 
+to getBounds. The union is the bounds of the virtual device. The following code 
+sample calculates the bounds of the virtual device. 
+
+
+
+Rectangle virtualBounds = new Rectangle(); GraphicsEnvironment ge = 
+GraphicsEnvironment. getLocalGraphicsEnvironment(); GraphicsDevice[] gs = 
+ge.getScreenDevices(); for (int j = 0; j < gs.length; j++) { GraphicsDevice gd 
+= gs[j]; GraphicsConfiguration[] gc = gd.getConfigurations(); for (int i=0; i < 
+gc.length; i++) { virtualBounds = virtualBounds.union(gc[i].getBounds()); } } 
+
+
+*java.awt.GraphicsConfiguration()*
+
+protected GraphicsConfiguration()
+
+This is an abstract class that cannot be instantiated directly. Instances must 
+be obtained from a suitable factory or query method. 
+
+
+*java.awt.GraphicsConfiguration.createCompatibleImage(int,int)*
+
+public abstract |java.awt.image.BufferedImage| createCompatibleImage(
+  int width,
+  int height)
+
+Returns a (|java.awt.image.BufferedImage|) with a data layout and color model 
+compatible with this GraphicsConfiguration. This method has nothing to do with 
+memory-mapping a device. The returned BufferedImage has a layout and color 
+model that is closest to this native device configuration and can therefore be 
+optimally blitted to this device. 
+
+    width - the width of the returned BufferedImage 
+    height - the height of the returned BufferedImage 
+
+    Returns: a BufferedImage whose data layout and color model is compatible with this 
+             GraphicsConfiguration. 
+*java.awt.GraphicsConfiguration.createCompatibleImage(int,int,int)*
+
+public abstract |java.awt.image.BufferedImage| createCompatibleImage(
+  int width,
+  int height,
+  int transparency)
+
+Returns a BufferedImage that supports the specified transparency and has a data 
+layout and color model compatible with this GraphicsConfiguration. This method 
+has nothing to do with memory-mapping a device. The returned BufferedImage has 
+a layout and color model that can be optimally blitted to a device with this 
+GraphicsConfiguration. 
+
+    width - the width of the returned BufferedImage 
+    height - the height of the returned BufferedImage 
+    transparency - the specified transparency mode 
+
+    Returns: a BufferedImage whose data layout and color model is compatible with this 
+             GraphicsConfiguration and also supports the specified 
+             transparency. 
+*java.awt.GraphicsConfiguration.createCompatibleVolatileImage(int,int)*
+
+public abstract |java.awt.image.VolatileImage| createCompatibleVolatileImage(
+  int width,
+  int height)
+
+Returns a (|java.awt.image.VolatileImage|) with a data layout and color model 
+compatible with this GraphicsConfiguration. The returned VolatileImage may have 
+data that is stored optimally for the underlying graphics device and may 
+therefore benefit from platform-specific rendering acceleration. 
+
+    width - the width of the returned VolatileImage 
+    height - the height of the returned VolatileImage 
+
+    Returns: a VolatileImage whose data layout and color model is compatible with this 
+             GraphicsConfiguration. 
+*java.awt.GraphicsConfiguration.createCompatibleVolatileImage(int,int,ImageCapabilities)*
+
+public |java.awt.image.VolatileImage| createCompatibleVolatileImage(
+  int width,
+  int height,
+  java.awt.ImageCapabilities caps)
+  throws |java.awt.AWTException|
+         
+Returns a (|java.awt.image.VolatileImage|) with a data layout and color model 
+compatible with this GraphicsConfiguration, using the specified image 
+capabilities. The returned VolatileImage has a layout and color model that is 
+closest to this native device configuration and can therefore be optimally 
+blitted to this device. 
+
+    width - the width of the returned VolatileImage 
+    height - the height of the returned VolatileImage 
+    caps - the image capabilities 
+
+    Returns: a VolatileImage whose data layout and color model is compatible with this 
+             GraphicsConfiguration. 
+*java.awt.GraphicsConfiguration.createCompatibleVolatileImage(int,int,ImageCapabilities,int)*
+
+public |java.awt.image.VolatileImage| createCompatibleVolatileImage(
+  int width,
+  int height,
+  java.awt.ImageCapabilities caps,
+  int transparency)
+  throws |java.awt.AWTException|
+         
+Returns a (|java.awt.image.VolatileImage|) with a data layout and color model 
+compatible with this GraphicsConfiguration, using the specified image 
+capabilities and transparency value. The returned VolatileImage has a layout 
+and color model that is closest to this native device configuration and can 
+therefore be optimally blitted to this device. 
+
+    width - the width of the returned VolatileImage 
+    height - the height of the returned VolatileImage 
+    caps - the image capabilities 
+    transparency - the specified transparency mode 
+
+    Returns: a VolatileImage whose data layout and color model is compatible with this 
+             GraphicsConfiguration. 
+*java.awt.GraphicsConfiguration.createCompatibleVolatileImage(int,int,int)*
+
+public abstract |java.awt.image.VolatileImage| createCompatibleVolatileImage(
+  int width,
+  int height,
+  int transparency)
+
+Returns a (|java.awt.image.VolatileImage|) with a data layout and color model 
+compatible with this GraphicsConfiguration. The returned VolatileImage may have 
+data that is stored optimally for the underlying graphics device and may 
+therefore benefit from platform-specific rendering acceleration. 
+
+    width - the width of the returned VolatileImage 
+    height - the height of the returned VolatileImage 
+    transparency - the specified transparency mode 
+
+    Returns: a VolatileImage whose data layout and color model is compatible with this 
+             GraphicsConfiguration. 
+*java.awt.GraphicsConfiguration.getBounds()*
+
+public abstract |java.awt.Rectangle| getBounds()
+
+Returns the bounds of the GraphicsConfiguration in the device coordinates. In a 
+multi-screen environment with a virtual device, the bounds can have negative X 
+or Y origins. 
+
+
+    Returns: the bounds of the area covered by this GraphicsConfiguration. 
+*java.awt.GraphicsConfiguration.getBufferCapabilities()*
+
+public |java.awt.BufferCapabilities| getBufferCapabilities()
+
+Returns the buffering capabilities of this GraphicsConfiguration. 
+
+
+    Returns: the buffering capabilities of this graphics configuration object 
+*java.awt.GraphicsConfiguration.getColorModel()*
+
+public abstract |java.awt.image.ColorModel| getColorModel()
+
+Returns the (|java.awt.image.ColorModel|) associated with this 
+GraphicsConfiguration. 
+
+
+    Returns: a ColorModel object that is associated with this GraphicsConfiguration. 
+*java.awt.GraphicsConfiguration.getColorModel(int)*
+
+public abstract |java.awt.image.ColorModel| getColorModel(int transparency)
+
+Returns the ColorModel associated with this GraphicsConfiguration that supports 
+the specified transparency. 
+
+    transparency - the specified transparency mode 
+
+    Returns: a ColorModel object that is associated with this GraphicsConfiguration and 
+             supports the specified transparency or null if the transparency is 
+             not a valid value. 
+*java.awt.GraphicsConfiguration.getDefaultTransform()*
+
+public abstract |java.awt.geom.AffineTransform| getDefaultTransform()
+
+Returns the default (|java.awt.geom.AffineTransform|) for this 
+GraphicsConfiguration. This AffineTransform is typically the Identity transform 
+for most normal screens. The default AffineTransform maps coordinates onto the 
+device such that 72 user space coordinate units measure approximately 1 inch in 
+device space. The normalizing transform can be used to make this mapping more 
+exact. Coordinates in the coordinate space defined by the default 
+AffineTransform for screen and printer devices have the origin in the upper 
+left-hand corner of the target region of the device, with X coordinates 
+increasing to the right and Y coordinates increasing downwards. For image 
+buffers not associated with a device, such as those not created by 
+createCompatibleImage, this AffineTransform is the Identity transform. 
+
+
+    Returns: the default AffineTransform for this GraphicsConfiguration. 
+*java.awt.GraphicsConfiguration.getDevice()*
+
+public abstract |java.awt.GraphicsDevice| getDevice()
+
+Returns the (|java.awt.GraphicsDevice|) associated with this 
+GraphicsConfiguration. 
+
+
+    Returns: a GraphicsDevice object that is associated with this GraphicsConfiguration. 
+*java.awt.GraphicsConfiguration.getImageCapabilities()*
+
+public |java.awt.ImageCapabilities| getImageCapabilities()
+
+Returns the image capabilities of this GraphicsConfiguration. 
+
+
+    Returns: the image capabilities of this graphics configuration object 
+*java.awt.GraphicsConfiguration.getNormalizingTransform()*
+
+public abstract |java.awt.geom.AffineTransform| getNormalizingTransform()
+
+Returns a AffineTransform that can be concatenated with the default 
+AffineTransform of a GraphicsConfiguration so that 72 units in user space 
+equals 1 inch in device space. 
+
+For a particular (|java.awt.Graphics2D|) , g, one can reset the transformation 
+to create such a mapping by using the following pseudocode: 
+
+GraphicsConfiguration gc = g.getGraphicsConfiguration(); 
+
+g.setTransform(gc.getDefaultTransform()); 
+g.transform(gc.getNormalizingTransform()); 
+
+Note that sometimes this AffineTransform is identity, such as for printers or 
+metafile output, and that this AffineTransform is only as accurate as the 
+information supplied by the underlying system. For image buffers not associated 
+with a device, such as those not created by createCompatibleImage, this 
+AffineTransform is the Identity transform since there is no valid distance 
+measurement. 
+
+
+    Returns: an AffineTransform to concatenate to the default AffineTransform so that 72 
+             units in user space is mapped to 1 inch in device space. 
+

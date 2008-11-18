@@ -1,0 +1,259 @@
+*java.util.EnumSet* *EnumSet* A specializedSetimplementation for use with enum t
+
+public abstract class EnumSet
+  extends    |java.util.AbstractSet|
+  implements |java.lang.Cloneable|
+             |java.io.Serializable|
+
+|java.util.EnumSet_Description|
+|java.util.EnumSet_Fields|
+|java.util.EnumSet_Constructors|
+|java.util.EnumSet_Methods|
+
+================================================================================
+
+*java.util.EnumSet_Methods*
+|java.util.EnumSet.allOf(Class)|Creates an enum set containing all of the eleme
+|java.util.EnumSet.clone()|Returns a copy of this set.
+|java.util.EnumSet.complementOf(EnumSet)|Creates an enum set with the same elem
+|java.util.EnumSet.copyOf(Collection)|Creates an enum set initialized from the 
+|java.util.EnumSet.copyOf(EnumSet)|Creates an enum set with the same element ty
+|java.util.EnumSet.noneOf(Class)|Creates an empty enum set with the specified e
+|java.util.EnumSet.of(E)|Creates an enum set initially containing the specified
+|java.util.EnumSet.of(E,E)|Creates an enum set initially containing the specifi
+|java.util.EnumSet.of(E,E[])|Creates an enum set initially containing the speci
+|java.util.EnumSet.of(E,E,E)|Creates an enum set initially containing the speci
+|java.util.EnumSet.of(E,E,E,E)|Creates an enum set initially containing the spe
+|java.util.EnumSet.of(E,E,E,E,E)|Creates an enum set initially containing the s
+|java.util.EnumSet.range(E,E)|Creates an enum set initially containing all of t
+
+*java.util.EnumSet_Description*
+
+A specialized (|java.util.Set|) implementation for use with enum types. All of 
+the elements in an enum set must come from a single enum type that is 
+specified, explicitly or implicitly, when the set is created. Enum sets are 
+represented internally as bit vectors. This representation is extremely compact 
+and efficient. The space and time performance of this class should be good 
+enough to allow its use as a high-quality, typesafe alternative to traditional 
+int-based "bit flags." Even bulk operations (such as containsAll and retainAll) 
+should run very quickly if the specified collection is also an enum set. 
+
+The iterator returned by the iteratormethod traverses the elements in their 
+natural order (the order in which the enum constants are declared). The 
+returned iterator is weakly consistent: it will never throw 
+(|java.util.ConcurrentModificationException|) and it may or may not show the 
+effects of any modifications to the set that occur while the iteration is in 
+progress. 
+
+Null elements are not permitted. Attempts to insert a null element will throw 
+(|java.lang.NullPointerException|) . Attempts to test for the presence of a 
+null element or to remove one will, however, function properly. 
+
+Like most collection implementations EnumSet is not synchronized. If multiple 
+threads access an enum set concurrently, and at least one of the threads 
+modifies the set, it should be synchronized externally. This is typically 
+accomplished by synchronizing on some object that naturally encapsulates the 
+enum set. If no such object exists, the set should be "wrapped" using the 
+(|java.util.Collections|) method. This is best done at creation time, to 
+prevent accidental unsynchronized access: 
+
+
+
+Set<MyEnum> s = Collections.synchronizedSet(EnumSet.noneOf(Foo.class)); 
+
+Implementation note: All basic operations execute in constant time. They are 
+likely (though not guaranteed) to be much faster than their 
+(|java.util.HashSet|) counterparts. Even bulk operations, such as 
+(|java.util.EnumSet|) and (|java.util.EnumSet|) execute in constant time if the 
+parameter is another EnumSet instance. 
+
+This class is a member of the <a href="/../guide/collections/index.html"> Java 
+Collections Framework. 
+
+
+*java.util.EnumSet.allOf(Class)*
+
+public static |java.util.EnumSet| allOf(java.lang.Class elementType)
+
+Creates an enum set containing all of the elements in the specified element 
+type. 
+
+    elementType - the class object of the element type for this enum set 
+
+*java.util.EnumSet.clone()*
+
+public |java.util.EnumSet| clone()
+
+Returns a copy of this set. 
+
+
+    Returns: a copy of this set. 
+*java.util.EnumSet.complementOf(EnumSet)*
+
+public static |java.util.EnumSet| complementOf(java.util.EnumSet s)
+
+Creates an enum set with the same element type as the specified enum set, 
+initially containing all the elements of this type that are not contained in 
+the specified set. 
+
+    s - the enum set from whose complement to initialize this enum set 
+
+*java.util.EnumSet.copyOf(Collection)*
+
+public static |java.util.EnumSet| copyOf(java.util.Collection c)
+
+Creates an enum set initialized from the specified collection. If the specified 
+collection is an EnumSet instance, this static factory method behaves 
+identically to (|java.util.EnumSet|) . Otherwise, the specified collection must 
+contain at least one element (in order to determine the new enum set's element 
+type). 
+
+    c - the collection from which to initialize this enum set 
+
+*java.util.EnumSet.copyOf(EnumSet)*
+
+public static |java.util.EnumSet| copyOf(java.util.EnumSet s)
+
+Creates an enum set with the same element type as the specified enum set, 
+initially containing the same elements (if any). 
+
+    s - the enum set from which to initialize this enum set 
+
+*java.util.EnumSet.noneOf(Class)*
+
+public static |java.util.EnumSet| noneOf(java.lang.Class elementType)
+
+Creates an empty enum set with the specified element type. 
+
+    elementType - the class object of the element type for this enum set 
+
+*java.util.EnumSet.of(E)*
+
+public static |java.util.EnumSet| of(java.lang.Enum e)
+
+Creates an enum set initially containing the specified element. 
+
+Overloadings of this method exist to initialize an enum set with one through 
+five elements. A sixth overloading is provided that uses the varargs feature. 
+This overloading may be used to create an an enum set initially containing an 
+arbitrary number of elements, but is likely to run slower than the overloadings 
+that do not use varargs. 
+
+    e - the element that this set is to contain initially 
+
+    Returns: an enum set initially containing the specified element 
+*java.util.EnumSet.of(E,E)*
+
+public static |java.util.EnumSet| of(
+  java.lang.Enum e1,
+  java.lang.Enum e2)
+
+Creates an enum set initially containing the specified elements. 
+
+Overloadings of this method exist to initialize an enum set with one through 
+five elements. A sixth overloading is provided that uses the varargs feature. 
+This overloading may be used to create an an enum set initially containing an 
+arbitrary number of elements, but is likely to run slower than the overloadings 
+that do not use varargs. 
+
+    e1 - an element that this set is to contain initially 
+    e2 - another element that this set is to contain initially 
+
+    Returns: an enum set initially containing the specified elements 
+*java.util.EnumSet.of(E,E[])*
+
+public static |java.util.EnumSet| of(
+  java.lang.Enum first,
+  java.lang.Enum[] rest)
+
+Creates an enum set initially containing the specified elements. This factory, 
+whose parameter list uses the varargs feature, may be used to create an enum 
+set initially containing an arbitrary number of elements, but it is likely to 
+run slower than the overloadings that do not use varargs. 
+
+    first - an element that the set is to contain initially 
+    rest - the remaining elements the set is to contain initially 
+
+    Returns: an enum set initially containing the specified elements 
+*java.util.EnumSet.of(E,E,E)*
+
+public static |java.util.EnumSet| of(
+  java.lang.Enum e1,
+  java.lang.Enum e2,
+  java.lang.Enum e3)
+
+Creates an enum set initially containing the specified elements. 
+
+Overloadings of this method exist to initialize an enum set with one through 
+five elements. A sixth overloading is provided that uses the varargs feature. 
+This overloading may be used to create an an enum set initially containing an 
+arbitrary number of elements, but is likely to run slower than the overloadings 
+that do not use varargs. 
+
+    e1 - an element that this set is to contain initially 
+    e2 - another element that this set is to contain initially 
+    e3 - another element that this set is to contain initially 
+
+    Returns: an enum set initially containing the specified elements 
+*java.util.EnumSet.of(E,E,E,E)*
+
+public static |java.util.EnumSet| of(
+  java.lang.Enum e1,
+  java.lang.Enum e2,
+  java.lang.Enum e3,
+  java.lang.Enum e4)
+
+Creates an enum set initially containing the specified elements. 
+
+Overloadings of this method exist to initialize an enum set with one through 
+five elements. A sixth overloading is provided that uses the varargs feature. 
+This overloading may be used to create an an enum set initially containing an 
+arbitrary number of elements, but is likely to run slower than the overloadings 
+that do not use varargs. 
+
+    e1 - an element that this set is to contain initially 
+    e2 - another element that this set is to contain initially 
+    e3 - another element that this set is to contain initially 
+    e4 - another element that this set is to contain initially 
+
+    Returns: an enum set initially containing the specified elements 
+*java.util.EnumSet.of(E,E,E,E,E)*
+
+public static |java.util.EnumSet| of(
+  java.lang.Enum e1,
+  java.lang.Enum e2,
+  java.lang.Enum e3,
+  java.lang.Enum e4,
+  java.lang.Enum e5)
+
+Creates an enum set initially containing the specified elements. 
+
+Overloadings of this method exist to initialize an enum set with one through 
+five elements. A sixth overloading is provided that uses the varargs feature. 
+This overloading may be used to create an an enum set initially containing an 
+arbitrary number of elements, but is likely to run slower than the overloadings 
+that do not use varargs. 
+
+    e1 - an element that this set is to contain initially 
+    e2 - another element that this set is to contain initially 
+    e3 - another element that this set is to contain initially 
+    e4 - another element that this set is to contain initially 
+    e5 - another element that this set is to contain initially 
+
+    Returns: an enum set initially containing the specified elements 
+*java.util.EnumSet.range(E,E)*
+
+public static |java.util.EnumSet| range(
+  java.lang.Enum from,
+  java.lang.Enum to)
+
+Creates an enum set initially containing all of the elements in the range 
+defined by the two specified endpoints. The returned set will contain the 
+endpoints themselves, which may be identical but must not be out of order. 
+
+    from - the first element in the range 
+    to - the last element in the range 
+
+    Returns: an enum set initially containing all of the elements in the range defined by 
+             the two specified endpoints 
+

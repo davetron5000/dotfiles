@@ -1,0 +1,264 @@
+*javax.sql.rowset.serial.SerialClob* *SerialClob* A serialized mapping in the Ja
+
+public class SerialClob
+  extends    |java.lang.Object|
+  implements |java.sql.Clob|
+             |java.io.Serializable|
+             |java.lang.Cloneable|
+
+|javax.sql.rowset.serial.SerialClob_Description|
+|javax.sql.rowset.serial.SerialClob_Fields|
+|javax.sql.rowset.serial.SerialClob_Constructors|
+|javax.sql.rowset.serial.SerialClob_Methods|
+
+================================================================================
+
+*javax.sql.rowset.serial.SerialClob_Constructors*
+|javax.sql.rowset.serial.SerialClob(char[])|Constructs a SerialClob object that
+|javax.sql.rowset.serial.SerialClob(Clob)|Constructs a SerialClob object that i
+
+*javax.sql.rowset.serial.SerialClob_Methods*
+|javax.sql.rowset.serial.SerialClob.getAsciiStream()|Retrieves the CLOB value d
+|javax.sql.rowset.serial.SerialClob.getCharacterStream()|Returns this SerialClo
+|javax.sql.rowset.serial.SerialClob.getSubString(long,int)|Returns a copy of th
+|javax.sql.rowset.serial.SerialClob.length()|Retrieves the number of characters
+|javax.sql.rowset.serial.SerialClob.position(Clob,long)|Returns the position in
+|javax.sql.rowset.serial.SerialClob.position(String,long)|Returns the position 
+|javax.sql.rowset.serial.SerialClob.setAsciiStream(long)|Retrieves a stream to 
+|javax.sql.rowset.serial.SerialClob.setCharacterStream(long)|Retrieves a stream
+|javax.sql.rowset.serial.SerialClob.setString(long,String)|Writes the given Jav
+|javax.sql.rowset.serial.SerialClob.setString(long,String,int,int)|Writes len c
+|javax.sql.rowset.serial.SerialClob.truncate(long)|Truncates the CLOB value tha
+
+*javax.sql.rowset.serial.SerialClob_Description*
+
+A serialized mapping in the Java programming language of an SQL CLOB value. 
+
+The SerialClob class provides a constructor for creating an instance from a 
+Clob object. Note that the Clob object should have brought the SQL CLOB value's 
+data over to the client before a SerialClob object is constructed from it. The 
+data of an SQL CLOB value can be materialized on the client as a stream of 
+Unicode characters. 
+
+SerialClob methods make it possible to get a substring from a SerialClob object 
+or to locate the start of a pattern of characters. 
+
+
+*javax.sql.rowset.serial.SerialClob(char[])*
+
+public SerialClob(char[] ch)
+  throws |javax.sql.rowset.serial.SerialException|
+         |java.sql.SQLException|
+         
+Constructs a SerialClob object that is a serialized version of the given char 
+array. 
+
+The new SerialClob object is initialized with the data from the char array, 
+thus allowing disconnected RowSet objects to establish a serialized Clob object 
+without touching the data source. 
+
+    ch - the char array representing the Clob object to be serialized 
+
+*javax.sql.rowset.serial.SerialClob(Clob)*
+
+public SerialClob(java.sql.Clob clob)
+  throws |javax.sql.rowset.serial.SerialException|
+         |java.sql.SQLException|
+         
+Constructs a SerialClob object that is a serialized version of the given Clob 
+object. 
+
+The new SerialClob object is initialized with the data from the Clob object; 
+therefore, the Clob object should have previously brought the SQL CLOB value's 
+data over to the client from the database. Otherwise, the new SerialClob object 
+object will contain no data. 
+
+Note: The Clob object supplied to this constructor cannot return null for the 
+Clob.getCharacterStream() and Clob.getAsciiStream methods. This SerialClob 
+constructor cannot serialize a Clob object in this instance and will throw an 
+SQLException object. 
+
+    clob - the Clob object from which this SerialClob object is to be constructed; cannot 
+       be null 
+
+*javax.sql.rowset.serial.SerialClob.getAsciiStream()*
+
+public |java.io.InputStream| getAsciiStream()
+  throws |javax.sql.rowset.serial.SerialException|
+         |java.sql.SQLException|
+         
+Retrieves the CLOB value designated by this SerialClob object as an ascii 
+stream. This method forwards the getAsciiStream call to the underlying Clob 
+object in the event that this SerialClob object is instantiated with a Clob 
+object. If this SerialClob object is instantiated with a char array, a 
+SerialException object is thrown. 
+
+
+    Returns: a java.io.InputStream object containing this SerialClob object's data 
+*javax.sql.rowset.serial.SerialClob.getCharacterStream()*
+
+public |java.io.Reader| getCharacterStream()
+  throws |javax.sql.rowset.serial.SerialException|
+         
+Returns this SerialClob object's data as a stream of Unicode characters. Unlike 
+the related method, getAsciiStream, a stream is produced regardless of whether 
+the SerialClob object was created with a Clob object or a char array. 
+
+
+    Returns: a java.io.Reader object containing this SerialClob object's data 
+*javax.sql.rowset.serial.SerialClob.getSubString(long,int)*
+
+public |java.lang.String| getSubString(
+  long pos,
+  int length)
+  throws |javax.sql.rowset.serial.SerialException|
+         
+Returns a copy of the substring contained in this SerialClob object, starting 
+at the given position and continuing for the specified number or characters. 
+
+    pos - the position of the first character in the substring to be copied; the first 
+       character of the SerialClob object is at position 1; must not be less 
+       than 1, and the sum of the starting position and the length of the 
+       substring must be less than the length of this SerialClob object 
+    length - the number of characters in the substring to be returned; must not be greater 
+       than the length of this SerialClob object, and the sum of the starting 
+       position and the length of the substring must be less than the length of 
+       this SerialClob object 
+
+    Returns: a String object containing a substring of this SerialClob object beginning at 
+             the given position and containing the specified number of 
+             consecutive characters 
+*javax.sql.rowset.serial.SerialClob.length()*
+
+public long length()
+  throws |javax.sql.rowset.serial.SerialException|
+         
+Retrieves the number of characters in this SerialClob object's array of 
+characters. 
+
+
+    Returns: a long indicating the length in characters of this SerialClob object's array of 
+             character 
+*javax.sql.rowset.serial.SerialClob.position(Clob,long)*
+
+public long position(
+  java.sql.Clob searchStr,
+  long start)
+  throws |javax.sql.rowset.serial.SerialException|
+         |java.sql.SQLException|
+         
+Returns the position in this SerialClob object where the given Clob signature 
+begins, starting the search at the specified position. This method returns -1 
+if the pattern is not found. 
+
+    searchStr - the Clob object for which to search 
+    start - the position in this SerialClob object at which to begin the search; the first 
+       position is 1; must not be less than 1 nor greater than the length of 
+       this SerialClob object 
+
+    Returns: the position at which the given Clob object begins in this SerialClob object, 
+             at or after the specified starting position 
+*javax.sql.rowset.serial.SerialClob.position(String,long)*
+
+public long position(
+  java.lang.String searchStr,
+  long start)
+  throws |javax.sql.rowset.serial.SerialException|
+         |java.sql.SQLException|
+         
+Returns the position in this SerialClob object where the given String object 
+begins, starting the search at the specified position. This method returns -1 
+if the pattern is not found. 
+
+    searchStr - the String object for which to search 
+    start - the position in this SerialClob object at which to start the search; the first 
+       position is 1; must not be less than 1 nor greater than the length of 
+       this SerialClob object 
+
+    Returns: the position at which the given String object begins, starting the search at 
+             the specified position; -1 if the given String object is not found 
+             or the starting position is out of bounds; position numbering for 
+             the return value starts at 1 
+*javax.sql.rowset.serial.SerialClob.setAsciiStream(long)*
+
+public |java.io.OutputStream| setAsciiStream(long pos)
+  throws |javax.sql.rowset.serial.SerialException|
+         |java.sql.SQLException|
+         
+Retrieves a stream to be used to write Ascii characters to the CLOB value that 
+this SerialClob object represents, starting at position pos. This method 
+forwards the setAsciiStream() call to the underlying Clob object in the event 
+that this SerialClob object is instantiated with a Clob object. If this 
+SerialClob object is instantiated with a char array, a SerialException object 
+is thrown. 
+
+    pos - the position at which to start writing to the CLOB object 
+
+    Returns: the stream to which ASCII encoded characters can be written 
+*javax.sql.rowset.serial.SerialClob.setCharacterStream(long)*
+
+public |java.io.Writer| setCharacterStream(long pos)
+  throws |javax.sql.rowset.serial.SerialException|
+         |java.sql.SQLException|
+         
+Retrieves a stream to be used to write a stream of Unicode characters to the 
+CLOB value that this SerialClob object represents, at position pos. This method 
+forwards the setCharacterStream() call to the underlying Clob object in the 
+event that this SerialClob object is instantiated with a Clob object. If this 
+SerialClob object is instantiated with a char array, a SerialException is 
+thrown. 
+
+    pos - the position at which to start writing to the CLOB value 
+
+    Returns: a stream to which Unicode encoded characters can be written 
+*javax.sql.rowset.serial.SerialClob.setString(long,String)*
+
+public int setString(
+  long pos,
+  java.lang.String str)
+  throws |javax.sql.rowset.serial.SerialException|
+         
+Writes the given Java String to the CLOB value that this SerialClob object 
+represents, at the position pos. 
+
+    pos - the position at which to start writing to the CLOB value that this SerialClob 
+       object represents; the first position is 1; must not be less than 1 nor 
+       greater than the length of this SerialClob object 
+    str - the string to be written to the CLOB value that this SerialClob object 
+       represents 
+
+    Returns: the number of characters written 
+*javax.sql.rowset.serial.SerialClob.setString(long,String,int,int)*
+
+public int setString(
+  long pos,
+  java.lang.String str,
+  int offset,
+  int length)
+  throws |javax.sql.rowset.serial.SerialException|
+         
+Writes len characters of str, starting at character offset, to the CLOB value 
+that this Clob represents. 
+
+    pos - the position at which to start writing to the CLOB value that this SerialClob 
+       object represents; the first position is 1; must not be less than 1 nor 
+       greater than the length of this SerialClob object 
+    str - the string to be written to the CLOB value that this Clob object represents 
+    offset - the offset into str to start reading the characters to be written 
+    length - the number of characters to be written 
+
+    Returns: the number of characters written 
+*javax.sql.rowset.serial.SerialClob.truncate(long)*
+
+public void truncate(long length)
+  throws |javax.sql.rowset.serial.SerialException|
+         
+Truncates the CLOB value that this SerialClob object represents so that it has 
+a length of len characters. 
+
+Truncating a SerialClob object to length 0 has the effect of clearing its 
+contents. 
+
+    length - the length, in bytes, to which the CLOB value should be truncated 
+
+

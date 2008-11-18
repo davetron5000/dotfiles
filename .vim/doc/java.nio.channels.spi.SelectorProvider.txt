@@ -1,0 +1,183 @@
+*java.nio.channels.spi.SelectorProvider* *SelectorProvider* Service-provider cla
+
+public abstract class SelectorProvider
+  extends    |java.lang.Object|
+
+|java.nio.channels.spi.SelectorProvider_Description|
+|java.nio.channels.spi.SelectorProvider_Fields|
+|java.nio.channels.spi.SelectorProvider_Constructors|
+|java.nio.channels.spi.SelectorProvider_Methods|
+
+================================================================================
+
+*java.nio.channels.spi.SelectorProvider_Constructors*
+|java.nio.channels.spi.SelectorProvider()|Initializes a new instance of this cl
+
+*java.nio.channels.spi.SelectorProvider_Methods*
+|java.nio.channels.spi.SelectorProvider.inheritedChannel()|Returns the channel 
+|java.nio.channels.spi.SelectorProvider.openDatagramChannel()|Opens a datagram 
+|java.nio.channels.spi.SelectorProvider.openPipe()|Opens a pipe.
+|java.nio.channels.spi.SelectorProvider.openSelector()|Opens a selector.
+|java.nio.channels.spi.SelectorProvider.openServerSocketChannel()|Opens a serve
+|java.nio.channels.spi.SelectorProvider.openSocketChannel()|Opens a socket chan
+|java.nio.channels.spi.SelectorProvider.provider()|Returns the system-wide defa
+
+*java.nio.channels.spi.SelectorProvider_Description*
+
+Service-provider class for selectors and selectable channels. 
+
+A selector provider is a concrete subclass of this class that has a 
+zero-argument constructor and implements the abstract methods specified below. 
+A given invocation of the Java virtual machine maintains a single system-wide 
+default provider instance, which is returned by the 
+provider(|java.nio.channels.spi.SelectorProvider|) method. The first invocation 
+of that method will locate the default provider as specified below. 
+
+The system-wide default provider is used by the static open methods of the 
+DatagramChannel(|java.nio.channels.DatagramChannel|) , 
+Pipe(|java.nio.channels.Pipe|) , Selector(|java.nio.channels.Selector|) , 
+ServerSocketChannel(|java.nio.channels.ServerSocketChannel|) , and 
+SocketChannel(|java.nio.channels.SocketChannel|) classes. It is also used by 
+the System.inheritedChannel()(|java.lang.System|) method. A program may make 
+use of a provider other than the default provider by instantiating that 
+provider and then directly invoking the open methods defined in this class. 
+
+All of the methods in this class are safe for use by multiple concurrent 
+threads. 
+
+
+*java.nio.channels.spi.SelectorProvider()*
+
+protected SelectorProvider()
+
+Initializes a new instance of this class. 
+
+
+*java.nio.channels.spi.SelectorProvider.inheritedChannel()*
+
+public |java.nio.channels.Channel| inheritedChannel()
+  throws |java.io.IOException|
+         
+Returns the channel inherited from the entity that created this Java virtual 
+machine. 
+
+On many operating systems a process, such as a Java virtual machine, can be 
+started in a manner that allows the process to inherit a channel from the 
+entity that created the process. The manner in which this is done is system 
+dependent, as are the possible entities to which the channel may be connected. 
+For example, on UNIX systems, the Internet services daemon (inetd) is used to 
+start programs to service requests when a request arrives on an associated 
+network port. In this example, the process that is started, inherits a channel 
+representing a network socket. 
+
+In cases where the inherited channel represents a network socket then the 
+Channel(|java.nio.channels.Channel|) type returned by this method is determined 
+as follows: 
+
+
+
+If the inherited channel represents a stream-oriented connected socket then a 
+SocketChannel(|java.nio.channels.SocketChannel|) is returned. The socket 
+channel is, at least initially, in blocking mode, bound to a socket address, 
+and connected to a peer. 
+
+If the inherited channel represents a stream-oriented listening socket then a 
+ServerSocketChannel(|java.nio.channels.ServerSocketChannel|) is returned. The 
+server-socket channel is, at least initially, in blocking mode, and bound to a 
+socket address. 
+
+If the inherited channel is a datagram-oriented socket then a 
+DatagramChannel(|java.nio.channels.DatagramChannel|) is returned. The datagram 
+channel is, at least initially, in blocking mode, and bound to a socket 
+address. 
+
+
+
+In addition to the network-oriented channels described, this method may return 
+other kinds of channels in the future. 
+
+The first invocation of this method creates the channel that is returned. 
+Subsequent invocations of this method return the same channel. 
+
+
+    Returns: The inherited channel, if any, otherwise null. 
+*java.nio.channels.spi.SelectorProvider.openDatagramChannel()*
+
+public abstract |java.nio.channels.DatagramChannel| openDatagramChannel()
+  throws |java.io.IOException|
+         
+Opens a datagram channel. 
+
+
+    Returns: The new channel 
+*java.nio.channels.spi.SelectorProvider.openPipe()*
+
+public abstract |java.nio.channels.Pipe| openPipe()
+  throws |java.io.IOException|
+         
+Opens a pipe. 
+
+
+    Returns: 
+*java.nio.channels.spi.SelectorProvider.openSelector()*
+
+public abstract |java.nio.channels.spi.AbstractSelector| openSelector()
+  throws |java.io.IOException|
+         
+Opens a selector. 
+
+
+    Returns: The new selector 
+*java.nio.channels.spi.SelectorProvider.openServerSocketChannel()*
+
+public abstract |java.nio.channels.ServerSocketChannel| openServerSocketChannel()
+  throws |java.io.IOException|
+         
+Opens a server-socket channel. 
+
+
+    Returns: The new channel 
+*java.nio.channels.spi.SelectorProvider.openSocketChannel()*
+
+public abstract |java.nio.channels.SocketChannel| openSocketChannel()
+  throws |java.io.IOException|
+         
+Opens a socket channel. 
+
+
+    Returns: The new channel 
+*java.nio.channels.spi.SelectorProvider.provider()*
+
+public static |java.nio.channels.spi.SelectorProvider| provider()
+
+Returns the system-wide default selector provider for this invocation of the 
+Java virtual machine. 
+
+The first invocation of this method locates the default provider object as 
+follows: 
+
+
+
+If the system property java.nio.channels.spi.SelectorProvider is defined then 
+it is taken to be the fully-qualified name of a concrete provider class. The 
+class is loaded and instantiated; if this process fails then an unspecified 
+error is thrown. 
+
+If a provider class has been installed in a jar file that is visible to the 
+system class loader, and that jar file contains a provider-configuration file 
+named java.nio.channels.spi.SelectorProvider in the resource directory 
+META-INF/services, then the first class name specified in that file is taken. 
+The class is loaded and instantiated; if this process fails then an unspecified 
+error is thrown. 
+
+Finally, if no provider has been specified by any of the above means then the 
+system-default provider class is instantiated and the result is returned. 
+
+
+
+Subsequent invocations of this method return the provider that was returned by 
+the first invocation. 
+
+
+    Returns: The system-wide default selector provider 
+

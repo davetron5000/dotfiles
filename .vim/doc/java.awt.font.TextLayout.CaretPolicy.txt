@@ -1,0 +1,56 @@
+*java.awt.font.TextLayout.CaretPolicy* *TextLayout.CaretPolicy* Defines a policy
+
+public static class TextLayout.CaretPolicy
+  extends    |java.lang.Object|
+
+|java.awt.font.TextLayout.CaretPolicy_Description|
+|java.awt.font.TextLayout.CaretPolicy_Fields|
+|java.awt.font.TextLayout.CaretPolicy_Constructors|
+|java.awt.font.TextLayout.CaretPolicy_Methods|
+
+================================================================================
+
+*java.awt.font.TextLayout.CaretPolicy_Constructors*
+|java.awt.font.TextLayout.CaretPolicy()|Constructs a CaretPolicy.
+
+*java.awt.font.TextLayout.CaretPolicy_Methods*
+|java.awt.font.TextLayout.CaretPolicy.getStrongCaret(TextHitInfo,TextHitInfo,TextLayout)|
+
+*java.awt.font.TextLayout.CaretPolicy_Description*
+
+Defines a policy for determining the strong caret location. This class contains 
+one method, getStrongCaret, which is used to specify the policy that determines 
+the strong caret in dual-caret text. The strong caret is used to move the caret 
+to the left or right. Instances of this class can be passed to getCaretShapes, 
+getNextLeftHit and getNextRightHit to customize strong caret selection. 
+
+To specify alternate caret policies, subclass CaretPolicy and override 
+getStrongCaret. getStrongCaret should inspect the two TextHitInfo arguments and 
+choose one of them as the strong caret. 
+
+Most clients do not need to use this class. 
+
+
+*java.awt.font.TextLayout.CaretPolicy()*
+
+public TextLayout.CaretPolicy()
+
+Constructs a CaretPolicy. 
+
+
+*java.awt.font.TextLayout.CaretPolicy.getStrongCaret(TextHitInfo,TextHitInfo,TextLayout)*
+
+public |java.awt.font.TextHitInfo| getStrongCaret(
+  java.awt.font.TextHitInfo hit1,
+  java.awt.font.TextHitInfo hit2,
+  java.awt.font.TextLayout layout)
+
+Chooses one of the specified TextHitInfo instances as a strong caret in the 
+specified TextLayout. 
+
+    hit1 - a valid hit in layout 
+    hit2 - a valid hit in layout 
+    layout - the TextLayout in which hit1 and hit2 are used 
+
+    Returns: hit1 or hit2 (or an equivalent TextHitInfo), indicating the strong caret. 
+

@@ -1,0 +1,445 @@
+*org.xml.sax.helpers.XMLFilterImpl* *XMLFilterImpl* Base class for deriving an X
+
+public class XMLFilterImpl
+  extends    |java.lang.Object|
+  implements |org.xml.sax.XMLFilter|
+             |org.xml.sax.EntityResolver|
+             |org.xml.sax.DTDHandler|
+             |org.xml.sax.ContentHandler|
+             |org.xml.sax.ErrorHandler|
+
+|org.xml.sax.helpers.XMLFilterImpl_Description|
+|org.xml.sax.helpers.XMLFilterImpl_Fields|
+|org.xml.sax.helpers.XMLFilterImpl_Constructors|
+|org.xml.sax.helpers.XMLFilterImpl_Methods|
+
+================================================================================
+
+*org.xml.sax.helpers.XMLFilterImpl_Constructors*
+|org.xml.sax.helpers.XMLFilterImpl()|Construct an empty XML filter, with no par
+|org.xml.sax.helpers.XMLFilterImpl(XMLReader)|Construct an XML filter with the 
+
+*org.xml.sax.helpers.XMLFilterImpl_Methods*
+|org.xml.sax.helpers.XMLFilterImpl.characters(char[],int,int)|Filter a characte
+|org.xml.sax.helpers.XMLFilterImpl.endDocument()|Filter an end document event.
+|org.xml.sax.helpers.XMLFilterImpl.endElement(String,String,String)|Filter an e
+|org.xml.sax.helpers.XMLFilterImpl.endPrefixMapping(String)|Filter an end Names
+|org.xml.sax.helpers.XMLFilterImpl.error(SAXParseException)|Filter an error eve
+|org.xml.sax.helpers.XMLFilterImpl.fatalError(SAXParseException)|Filter a fatal
+|org.xml.sax.helpers.XMLFilterImpl.getContentHandler()|Get the content event ha
+|org.xml.sax.helpers.XMLFilterImpl.getDTDHandler()|Get the current DTD event ha
+|org.xml.sax.helpers.XMLFilterImpl.getEntityResolver()|Get the current entity r
+|org.xml.sax.helpers.XMLFilterImpl.getErrorHandler()|Get the current error even
+|org.xml.sax.helpers.XMLFilterImpl.getFeature(String)|Look up the value of a fe
+|org.xml.sax.helpers.XMLFilterImpl.getParent()|Get the parent reader.
+|org.xml.sax.helpers.XMLFilterImpl.getProperty(String)|Look up the value of a p
+|org.xml.sax.helpers.XMLFilterImpl.ignorableWhitespace(char[],int,int)|Filter a
+|org.xml.sax.helpers.XMLFilterImpl.notationDecl(String,String,String)|Filter a 
+|org.xml.sax.helpers.XMLFilterImpl.parse(InputSource)|Parse a document.
+|org.xml.sax.helpers.XMLFilterImpl.parse(String)|Parse a document.
+|org.xml.sax.helpers.XMLFilterImpl.processingInstruction(String,String)|Filter 
+|org.xml.sax.helpers.XMLFilterImpl.resolveEntity(String,String)|Filter an exter
+|org.xml.sax.helpers.XMLFilterImpl.setContentHandler(ContentHandler)|Set the co
+|org.xml.sax.helpers.XMLFilterImpl.setDocumentLocator(Locator)|Filter a new doc
+|org.xml.sax.helpers.XMLFilterImpl.setDTDHandler(DTDHandler)|Set the DTD event 
+|org.xml.sax.helpers.XMLFilterImpl.setEntityResolver(EntityResolver)|Set the en
+|org.xml.sax.helpers.XMLFilterImpl.setErrorHandler(ErrorHandler)|Set the error 
+|org.xml.sax.helpers.XMLFilterImpl.setFeature(String,boolean)|Set the value of 
+|org.xml.sax.helpers.XMLFilterImpl.setParent(XMLReader)|Set the parent reader.
+|org.xml.sax.helpers.XMLFilterImpl.setProperty(String,Object)|Set the value of 
+|org.xml.sax.helpers.XMLFilterImpl.skippedEntity(String)|Filter a skipped entit
+|org.xml.sax.helpers.XMLFilterImpl.startDocument()|Filter a start document even
+|org.xml.sax.helpers.XMLFilterImpl.startElement(String,String,String,Attributes)|
+|org.xml.sax.helpers.XMLFilterImpl.startPrefixMapping(String,String)|Filter a s
+|org.xml.sax.helpers.XMLFilterImpl.unparsedEntityDecl(String,String,String,String)|
+|org.xml.sax.helpers.XMLFilterImpl.warning(SAXParseException)|Filter a warning 
+
+*org.xml.sax.helpers.XMLFilterImpl_Description*
+
+Base class for deriving an XML filter. 
+
+This module, both source code and documentation, is in the Public Domain, and 
+comes with NO WARRANTY. See http://www.saxproject.org for further information. 
+
+This class is designed to sit between an XMLReader(|org.xml.sax.XMLReader|) and 
+the client application's event handlers. By default, it does nothing but pass 
+requests up to the reader and events on to the handlers unmodified, but 
+subclasses can override specific methods to modify the event stream or the 
+configuration requests as they pass through. 
+
+
+*org.xml.sax.helpers.XMLFilterImpl()*
+
+public XMLFilterImpl()
+
+Construct an empty XML filter, with no parent. 
+
+This filter will have no parent: you must assign a parent before you start a 
+parse or do any configuration with setFeature or setProperty, unless you use 
+this as a pure event consumer rather than as an (|org.xml.sax.XMLReader|) . 
+
+
+*org.xml.sax.helpers.XMLFilterImpl(XMLReader)*
+
+public XMLFilterImpl(org.xml.sax.XMLReader parent)
+
+Construct an XML filter with the specified parent. 
+
+
+*org.xml.sax.helpers.XMLFilterImpl.characters(char[],int,int)*
+
+public void characters(
+  char[] ch,
+  int start,
+  int length)
+  throws |org.xml.sax.SAXException|
+         
+Filter a character data event. 
+
+    ch - An array of characters. 
+    start - The starting position in the array. 
+    length - The number of characters to use from the array. 
+
+*org.xml.sax.helpers.XMLFilterImpl.endDocument()*
+
+public void endDocument()
+  throws |org.xml.sax.SAXException|
+         
+Filter an end document event. 
+
+
+*org.xml.sax.helpers.XMLFilterImpl.endElement(String,String,String)*
+
+public void endElement(
+  java.lang.String uri,
+  java.lang.String localName,
+  java.lang.String qName)
+  throws |org.xml.sax.SAXException|
+         
+Filter an end element event. 
+
+    uri - The element's Namespace URI, or the empty string. 
+    localName - The element's local name, or the empty string. 
+    qName - The element's qualified (prefixed) name, or the empty string. 
+
+*org.xml.sax.helpers.XMLFilterImpl.endPrefixMapping(String)*
+
+public void endPrefixMapping(java.lang.String prefix)
+  throws |org.xml.sax.SAXException|
+         
+Filter an end Namespace prefix mapping event. 
+
+    prefix - The Namespace prefix. 
+
+*org.xml.sax.helpers.XMLFilterImpl.error(SAXParseException)*
+
+public void error(org.xml.sax.SAXParseException e)
+  throws |org.xml.sax.SAXException|
+         
+Filter an error event. 
+
+    e - The error as an exception. 
+
+*org.xml.sax.helpers.XMLFilterImpl.fatalError(SAXParseException)*
+
+public void fatalError(org.xml.sax.SAXParseException e)
+  throws |org.xml.sax.SAXException|
+         
+Filter a fatal error event. 
+
+    e - The error as an exception. 
+
+*org.xml.sax.helpers.XMLFilterImpl.getContentHandler()*
+
+public |org.xml.sax.ContentHandler| getContentHandler()
+
+Get the content event handler. 
+
+
+    Returns: The current content handler, or null if none was set. 
+*org.xml.sax.helpers.XMLFilterImpl.getDTDHandler()*
+
+public |org.xml.sax.DTDHandler| getDTDHandler()
+
+Get the current DTD event handler. 
+
+
+    Returns: The current DTD handler, or null if none was set. 
+*org.xml.sax.helpers.XMLFilterImpl.getEntityResolver()*
+
+public |org.xml.sax.EntityResolver| getEntityResolver()
+
+Get the current entity resolver. 
+
+
+    Returns: The current entity resolver, or null if none was set. 
+*org.xml.sax.helpers.XMLFilterImpl.getErrorHandler()*
+
+public |org.xml.sax.ErrorHandler| getErrorHandler()
+
+Get the current error event handler. 
+
+
+    Returns: The current error handler, or null if none was set. 
+*org.xml.sax.helpers.XMLFilterImpl.getFeature(String)*
+
+public boolean getFeature(java.lang.String name)
+  throws |org.xml.sax.SAXNotRecognizedException|
+         |org.xml.sax.SAXNotSupportedException|
+         
+Look up the value of a feature. 
+
+This will always fail if the parent is null. 
+
+    name - The feature name. 
+
+    Returns: The current value of the feature. 
+*org.xml.sax.helpers.XMLFilterImpl.getParent()*
+
+public |org.xml.sax.XMLReader| getParent()
+
+Get the parent reader. 
+
+
+    Returns: The parent XML reader, or null if none is set. 
+*org.xml.sax.helpers.XMLFilterImpl.getProperty(String)*
+
+public |java.lang.Object| getProperty(java.lang.String name)
+  throws |org.xml.sax.SAXNotRecognizedException|
+         |org.xml.sax.SAXNotSupportedException|
+         
+Look up the value of a property. 
+
+    name - The property name. 
+
+    Returns: The current value of the property. 
+*org.xml.sax.helpers.XMLFilterImpl.ignorableWhitespace(char[],int,int)*
+
+public void ignorableWhitespace(
+  char[] ch,
+  int start,
+  int length)
+  throws |org.xml.sax.SAXException|
+         
+Filter an ignorable whitespace event. 
+
+    ch - An array of characters. 
+    start - The starting position in the array. 
+    length - The number of characters to use from the array. 
+
+*org.xml.sax.helpers.XMLFilterImpl.notationDecl(String,String,String)*
+
+public void notationDecl(
+  java.lang.String name,
+  java.lang.String publicId,
+  java.lang.String systemId)
+  throws |org.xml.sax.SAXException|
+         
+Filter a notation declaration event. 
+
+    name - The notation name. 
+    publicId - The notation's public identifier, or null. 
+    systemId - The notation's system identifier, or null. 
+
+*org.xml.sax.helpers.XMLFilterImpl.parse(InputSource)*
+
+public void parse(org.xml.sax.InputSource input)
+  throws |java.io.IOException|
+         |org.xml.sax.SAXException|
+         
+Parse a document. 
+
+    input - The input source for the document entity. 
+
+*org.xml.sax.helpers.XMLFilterImpl.parse(String)*
+
+public void parse(java.lang.String systemId)
+  throws |java.io.IOException|
+         |org.xml.sax.SAXException|
+         
+Parse a document. 
+
+    systemId - The system identifier as a fully-qualified URI. 
+
+*org.xml.sax.helpers.XMLFilterImpl.processingInstruction(String,String)*
+
+public void processingInstruction(
+  java.lang.String target,
+  java.lang.String data)
+  throws |org.xml.sax.SAXException|
+         
+Filter a processing instruction event. 
+
+    target - The processing instruction target. 
+    data - The text following the target. 
+
+*org.xml.sax.helpers.XMLFilterImpl.resolveEntity(String,String)*
+
+public |org.xml.sax.InputSource| resolveEntity(
+  java.lang.String publicId,
+  java.lang.String systemId)
+  throws |java.io.IOException|
+         |org.xml.sax.SAXException|
+         
+Filter an external entity resolution. 
+
+    publicId - The entity's public identifier, or null. 
+    systemId - The entity's system identifier. 
+
+    Returns: A new InputSource or null for the default. 
+*org.xml.sax.helpers.XMLFilterImpl.setContentHandler(ContentHandler)*
+
+public void setContentHandler(org.xml.sax.ContentHandler handler)
+
+Set the content event handler. 
+
+    handler - the new content handler 
+
+*org.xml.sax.helpers.XMLFilterImpl.setDocumentLocator(Locator)*
+
+public void setDocumentLocator(org.xml.sax.Locator locator)
+
+Filter a new document locator event. 
+
+    locator - The document locator. 
+
+*org.xml.sax.helpers.XMLFilterImpl.setDTDHandler(DTDHandler)*
+
+public void setDTDHandler(org.xml.sax.DTDHandler handler)
+
+Set the DTD event handler. 
+
+    handler - the new DTD handler 
+
+*org.xml.sax.helpers.XMLFilterImpl.setEntityResolver(EntityResolver)*
+
+public void setEntityResolver(org.xml.sax.EntityResolver resolver)
+
+Set the entity resolver. 
+
+    resolver - The new entity resolver. 
+
+*org.xml.sax.helpers.XMLFilterImpl.setErrorHandler(ErrorHandler)*
+
+public void setErrorHandler(org.xml.sax.ErrorHandler handler)
+
+Set the error event handler. 
+
+    handler - the new error handler 
+
+*org.xml.sax.helpers.XMLFilterImpl.setFeature(String,boolean)*
+
+public void setFeature(
+  java.lang.String name,
+  boolean value)
+  throws |org.xml.sax.SAXNotRecognizedException|
+         |org.xml.sax.SAXNotSupportedException|
+         
+Set the value of a feature. 
+
+This will always fail if the parent is null. 
+
+    name - The feature name. 
+    value - The requested feature value. 
+
+*org.xml.sax.helpers.XMLFilterImpl.setParent(XMLReader)*
+
+public void setParent(org.xml.sax.XMLReader parent)
+
+Set the parent reader. 
+
+This is the XMLReader(|org.xml.sax.XMLReader|) from which this filter will 
+obtain its events and to which it will pass its configuration requests. The 
+parent may itself be another filter. 
+
+If there is no parent reader set, any attempt to parse or to set or get a 
+feature or property will fail. 
+
+    parent - The parent XML reader. 
+
+*org.xml.sax.helpers.XMLFilterImpl.setProperty(String,Object)*
+
+public void setProperty(
+  java.lang.String name,
+  java.lang.Object value)
+  throws |org.xml.sax.SAXNotRecognizedException|
+         |org.xml.sax.SAXNotSupportedException|
+         
+Set the value of a property. 
+
+This will always fail if the parent is null. 
+
+    name - The property name. 
+    value - The requested property value. 
+
+*org.xml.sax.helpers.XMLFilterImpl.skippedEntity(String)*
+
+public void skippedEntity(java.lang.String name)
+  throws |org.xml.sax.SAXException|
+         
+Filter a skipped entity event. 
+
+    name - The name of the skipped entity. 
+
+*org.xml.sax.helpers.XMLFilterImpl.startDocument()*
+
+public void startDocument()
+  throws |org.xml.sax.SAXException|
+         
+Filter a start document event. 
+
+
+*org.xml.sax.helpers.XMLFilterImpl.startElement(String,String,String,Attributes)*
+
+public void startElement(
+  java.lang.String uri,
+  java.lang.String localName,
+  java.lang.String qName,
+  org.xml.sax.Attributes atts)
+  throws |org.xml.sax.SAXException|
+         
+Filter a start element event. 
+
+    uri - The element's Namespace URI, or the empty string. 
+    localName - The element's local name, or the empty string. 
+    qName - The element's qualified (prefixed) name, or the empty string. 
+    atts - The element's attributes. 
+
+*org.xml.sax.helpers.XMLFilterImpl.startPrefixMapping(String,String)*
+
+public void startPrefixMapping(
+  java.lang.String prefix,
+  java.lang.String uri)
+  throws |org.xml.sax.SAXException|
+         
+Filter a start Namespace prefix mapping event. 
+
+    prefix - The Namespace prefix. 
+    uri - The Namespace URI. 
+
+*org.xml.sax.helpers.XMLFilterImpl.unparsedEntityDecl(String,String,String,String)*
+
+public void unparsedEntityDecl(
+  java.lang.String name,
+  java.lang.String publicId,
+  java.lang.String systemId,
+  java.lang.String notationName)
+  throws |org.xml.sax.SAXException|
+         
+Filter an unparsed entity declaration event. 
+
+    name - The entity name. 
+    publicId - The entity's public identifier, or null. 
+    systemId - The entity's system identifier, or null. 
+    notationName - The name of the associated notation. 
+
+*org.xml.sax.helpers.XMLFilterImpl.warning(SAXParseException)*
+
+public void warning(org.xml.sax.SAXParseException e)
+  throws |org.xml.sax.SAXException|
+         
+Filter a warning event. 
+
+    e - The warning as an exception. 
+
+

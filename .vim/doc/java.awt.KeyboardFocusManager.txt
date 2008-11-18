@@ -1,0 +1,1127 @@
+*java.awt.KeyboardFocusManager* *KeyboardFocusManager* The KeyboardFocusManager 
+
+public abstract class KeyboardFocusManager
+  extends    |java.lang.Object|
+  implements |java.awt.KeyEventDispatcher|
+             |java.awt.KeyEventPostProcessor|
+
+|java.awt.KeyboardFocusManager_Description|
+|java.awt.KeyboardFocusManager_Fields|
+|java.awt.KeyboardFocusManager_Constructors|
+|java.awt.KeyboardFocusManager_Methods|
+
+================================================================================
+
+*java.awt.KeyboardFocusManager_Fields*
+|int_java.awt.KeyboardFocusManager.BACKWARD_TRAVERSAL_KEYS|
+|int_java.awt.KeyboardFocusManager.DOWN_CYCLE_TRAVERSAL_KEYS|
+|int_java.awt.KeyboardFocusManager.FORWARD_TRAVERSAL_KEYS|
+|int_java.awt.KeyboardFocusManager.UP_CYCLE_TRAVERSAL_KEYS|
+
+*java.awt.KeyboardFocusManager_Constructors*
+|java.awt.KeyboardFocusManager()|Initializes a KeyboardFocusManager.
+
+*java.awt.KeyboardFocusManager_Methods*
+|java.awt.KeyboardFocusManager.addKeyEventDispatcher(KeyEventDispatcher)|Adds a
+|java.awt.KeyboardFocusManager.addKeyEventPostProcessor(KeyEventPostProcessor)|
+|java.awt.KeyboardFocusManager.addPropertyChangeListener(PropertyChangeListener)|
+|java.awt.KeyboardFocusManager.addPropertyChangeListener(String,PropertyChangeListener)|
+|java.awt.KeyboardFocusManager.addVetoableChangeListener(String,VetoableChangeListener)|
+|java.awt.KeyboardFocusManager.addVetoableChangeListener(VetoableChangeListener)|
+|java.awt.KeyboardFocusManager.clearGlobalFocusOwner()|Clears the global focus 
+|java.awt.KeyboardFocusManager.dequeueKeyEvents(long,Component)|Called by the A
+|java.awt.KeyboardFocusManager.discardKeyEvents(Component)|Called by the AWT to
+|java.awt.KeyboardFocusManager.dispatchEvent(AWTEvent)|This method is called by
+|java.awt.KeyboardFocusManager.dispatchKeyEvent(KeyEvent)|Typically this method
+|java.awt.KeyboardFocusManager.downFocusCycle()|Moves the focus down one focus 
+|java.awt.KeyboardFocusManager.downFocusCycle(Container)|Moves the focus down o
+|java.awt.KeyboardFocusManager.enqueueKeyEvents(long,Component)|Called by the A
+|java.awt.KeyboardFocusManager.firePropertyChange(String,Object,Object)|Fires a
+|java.awt.KeyboardFocusManager.fireVetoableChange(String,Object,Object)|Fires a
+|java.awt.KeyboardFocusManager.focusNextComponent()|Focuses the Component after
+|java.awt.KeyboardFocusManager.focusNextComponent(Component)|Focuses the Compon
+|java.awt.KeyboardFocusManager.focusPreviousComponent()|Focuses the Component b
+|java.awt.KeyboardFocusManager.focusPreviousComponent(Component)|Focuses the Co
+|java.awt.KeyboardFocusManager.getActiveWindow()|Returns the active Window, if 
+|java.awt.KeyboardFocusManager.getCurrentFocusCycleRoot()|Returns the current f
+|java.awt.KeyboardFocusManager.getCurrentKeyboardFocusManager()|Returns the cur
+|java.awt.KeyboardFocusManager.getDefaultFocusTraversalKeys(int)|Returns a Set 
+|java.awt.KeyboardFocusManager.getDefaultFocusTraversalPolicy()|Returns the def
+|java.awt.KeyboardFocusManager.getFocusedWindow()|Returns the focused Window, i
+|java.awt.KeyboardFocusManager.getFocusOwner()|Returns the focus owner, if the 
+|java.awt.KeyboardFocusManager.getGlobalActiveWindow()|Returns the active Windo
+|java.awt.KeyboardFocusManager.getGlobalCurrentFocusCycleRoot()|Returns the cur
+|java.awt.KeyboardFocusManager.getGlobalFocusedWindow()|Returns the focused Win
+|java.awt.KeyboardFocusManager.getGlobalFocusOwner()|Returns the focus owner, e
+|java.awt.KeyboardFocusManager.getGlobalPermanentFocusOwner()|Returns the perma
+|java.awt.KeyboardFocusManager.getKeyEventDispatchers()|Returns this KeyboardFo
+|java.awt.KeyboardFocusManager.getKeyEventPostProcessors()|Returns this Keyboar
+|java.awt.KeyboardFocusManager.getPermanentFocusOwner()|Returns the permanent f
+|java.awt.KeyboardFocusManager.getPropertyChangeListeners()|Returns an array of
+|java.awt.KeyboardFocusManager.getPropertyChangeListeners(String)|Returns an ar
+|java.awt.KeyboardFocusManager.getVetoableChangeListeners()|Returns an array of
+|java.awt.KeyboardFocusManager.getVetoableChangeListeners(String)|Returns an ar
+|java.awt.KeyboardFocusManager.postProcessKeyEvent(KeyEvent)|This method will b
+|java.awt.KeyboardFocusManager.processKeyEvent(Component,KeyEvent)|This method 
+|java.awt.KeyboardFocusManager.redispatchEvent(Component,AWTEvent)|Redispatches
+|java.awt.KeyboardFocusManager.removeKeyEventDispatcher(KeyEventDispatcher)|Rem
+|java.awt.KeyboardFocusManager.removeKeyEventPostProcessor(KeyEventPostProcessor)|
+|java.awt.KeyboardFocusManager.removePropertyChangeListener(PropertyChangeListener)|
+|java.awt.KeyboardFocusManager.removePropertyChangeListener(String,PropertyChangeListener)|
+|java.awt.KeyboardFocusManager.removeVetoableChangeListener(String,VetoableChangeListener)|
+|java.awt.KeyboardFocusManager.removeVetoableChangeListener(VetoableChangeListener)|
+|java.awt.KeyboardFocusManager.setCurrentKeyboardFocusManager(KeyboardFocusManager)|
+|java.awt.KeyboardFocusManager.setDefaultFocusTraversalKeys(int,Set)|Sets the d
+|java.awt.KeyboardFocusManager.setDefaultFocusTraversalPolicy(FocusTraversalPolicy)|
+|java.awt.KeyboardFocusManager.setGlobalActiveWindow(Window)|Sets the active Wi
+|java.awt.KeyboardFocusManager.setGlobalCurrentFocusCycleRoot(Container)|Sets t
+|java.awt.KeyboardFocusManager.setGlobalFocusedWindow(Window)|Sets the focused 
+|java.awt.KeyboardFocusManager.setGlobalFocusOwner(Component)|Sets the focus ow
+|java.awt.KeyboardFocusManager.setGlobalPermanentFocusOwner(Component)|Sets the
+|java.awt.KeyboardFocusManager.upFocusCycle()|Moves the focus up one focus trav
+|java.awt.KeyboardFocusManager.upFocusCycle(Component)|Moves the focus up one f
+
+*java.awt.KeyboardFocusManager_Description*
+
+The KeyboardFocusManager is responsible for managing the active and focused 
+Windows, and the current focus owner. The focus owner is defined as the 
+Component in an application that will typically receive all KeyEvents generated 
+by the user. The focused Window is the Window that is, or contains, the focus 
+owner. Only a Frame or a Dialog can be the active Window. The native windowing 
+system may denote the active Window or its children with special decorations, 
+such as a highlighted title bar. The active Window is always either the focused 
+Window, or the first Frame or Dialog that is an owner of the focused Window. 
+
+The KeyboardFocusManager is both a centralized location for client code to 
+query for the focus owner and initiate focus changes, and an event dispatcher 
+for all FocusEvents, WindowEvents related to focus, and KeyEvents. 
+
+Some browsers partition applets in different code bases into separate contexts, 
+and establish walls between these contexts. In such a scenario, there will be 
+one KeyboardFocusManager per context. Other browsers place all applets into the 
+same context, implying that there will be only a single, global 
+KeyboardFocusManager for all applets. This behavior is 
+implementation-dependent. Consult your browser's documentation for more 
+information. No matter how many contexts there may be, however, there can never 
+be more than one focus owner, focused Window, or active Window, per 
+ClassLoader. 
+
+Please see 
+
+How to Use the Focus Subsystem, a section in The Java Tutorial, and the Focus 
+Specification for more information. 
+
+
+*int_java.awt.KeyboardFocusManager.BACKWARD_TRAVERSAL_KEYS*
+
+The KeyboardFocusManager is responsible for managing the active and focused 
+Windows, and the current focus owner. The focus owner is defined as the 
+Component in an application that will typically receive all KeyEvents generated 
+by the user. The focused Window is the Window that is, or contains, the focus 
+owner. Only a Frame or a Dialog can be the active Window. The native windowing 
+system may denote the active Window or its children with special decorations, 
+such as a highlighted title bar. The active Window is always either the focused 
+Window, or the first Frame or Dialog that is an owner of the focused Window. 
+
+The KeyboardFocusManager is both a centralized location for client code to 
+query for the focus owner and initiate focus changes, and an event dispatcher 
+for all FocusEvents, WindowEvents related to focus, and KeyEvents. 
+
+Some browsers partition applets in different code bases into separate contexts, 
+and establish walls between these contexts. In such a scenario, there will be 
+one KeyboardFocusManager per context. Other browsers place all applets into the 
+same context, implying that there will be only a single, global 
+KeyboardFocusManager for all applets. This behavior is 
+implementation-dependent. Consult your browser's documentation for more 
+information. No matter how many contexts there may be, however, there can never 
+be more than one focus owner, focused Window, or active Window, per 
+ClassLoader. 
+
+Please see 
+
+How to Use the Focus Subsystem, a section in The Java Tutorial, and the Focus 
+Specification for more information. 
+
+
+*int_java.awt.KeyboardFocusManager.DOWN_CYCLE_TRAVERSAL_KEYS*
+
+The KeyboardFocusManager is responsible for managing the active and focused 
+Windows, and the current focus owner. The focus owner is defined as the 
+Component in an application that will typically receive all KeyEvents generated 
+by the user. The focused Window is the Window that is, or contains, the focus 
+owner. Only a Frame or a Dialog can be the active Window. The native windowing 
+system may denote the active Window or its children with special decorations, 
+such as a highlighted title bar. The active Window is always either the focused 
+Window, or the first Frame or Dialog that is an owner of the focused Window. 
+
+The KeyboardFocusManager is both a centralized location for client code to 
+query for the focus owner and initiate focus changes, and an event dispatcher 
+for all FocusEvents, WindowEvents related to focus, and KeyEvents. 
+
+Some browsers partition applets in different code bases into separate contexts, 
+and establish walls between these contexts. In such a scenario, there will be 
+one KeyboardFocusManager per context. Other browsers place all applets into the 
+same context, implying that there will be only a single, global 
+KeyboardFocusManager for all applets. This behavior is 
+implementation-dependent. Consult your browser's documentation for more 
+information. No matter how many contexts there may be, however, there can never 
+be more than one focus owner, focused Window, or active Window, per 
+ClassLoader. 
+
+Please see 
+
+How to Use the Focus Subsystem, a section in The Java Tutorial, and the Focus 
+Specification for more information. 
+
+
+*int_java.awt.KeyboardFocusManager.FORWARD_TRAVERSAL_KEYS*
+
+The KeyboardFocusManager is responsible for managing the active and focused 
+Windows, and the current focus owner. The focus owner is defined as the 
+Component in an application that will typically receive all KeyEvents generated 
+by the user. The focused Window is the Window that is, or contains, the focus 
+owner. Only a Frame or a Dialog can be the active Window. The native windowing 
+system may denote the active Window or its children with special decorations, 
+such as a highlighted title bar. The active Window is always either the focused 
+Window, or the first Frame or Dialog that is an owner of the focused Window. 
+
+The KeyboardFocusManager is both a centralized location for client code to 
+query for the focus owner and initiate focus changes, and an event dispatcher 
+for all FocusEvents, WindowEvents related to focus, and KeyEvents. 
+
+Some browsers partition applets in different code bases into separate contexts, 
+and establish walls between these contexts. In such a scenario, there will be 
+one KeyboardFocusManager per context. Other browsers place all applets into the 
+same context, implying that there will be only a single, global 
+KeyboardFocusManager for all applets. This behavior is 
+implementation-dependent. Consult your browser's documentation for more 
+information. No matter how many contexts there may be, however, there can never 
+be more than one focus owner, focused Window, or active Window, per 
+ClassLoader. 
+
+Please see 
+
+How to Use the Focus Subsystem, a section in The Java Tutorial, and the Focus 
+Specification for more information. 
+
+
+*int_java.awt.KeyboardFocusManager.UP_CYCLE_TRAVERSAL_KEYS*
+
+The KeyboardFocusManager is responsible for managing the active and focused 
+Windows, and the current focus owner. The focus owner is defined as the 
+Component in an application that will typically receive all KeyEvents generated 
+by the user. The focused Window is the Window that is, or contains, the focus 
+owner. Only a Frame or a Dialog can be the active Window. The native windowing 
+system may denote the active Window or its children with special decorations, 
+such as a highlighted title bar. The active Window is always either the focused 
+Window, or the first Frame or Dialog that is an owner of the focused Window. 
+
+The KeyboardFocusManager is both a centralized location for client code to 
+query for the focus owner and initiate focus changes, and an event dispatcher 
+for all FocusEvents, WindowEvents related to focus, and KeyEvents. 
+
+Some browsers partition applets in different code bases into separate contexts, 
+and establish walls between these contexts. In such a scenario, there will be 
+one KeyboardFocusManager per context. Other browsers place all applets into the 
+same context, implying that there will be only a single, global 
+KeyboardFocusManager for all applets. This behavior is 
+implementation-dependent. Consult your browser's documentation for more 
+information. No matter how many contexts there may be, however, there can never 
+be more than one focus owner, focused Window, or active Window, per 
+ClassLoader. 
+
+Please see 
+
+How to Use the Focus Subsystem, a section in The Java Tutorial, and the Focus 
+Specification for more information. 
+
+
+
+*java.awt.KeyboardFocusManager()*
+
+public KeyboardFocusManager()
+
+Initializes a KeyboardFocusManager. 
+
+
+*java.awt.KeyboardFocusManager.addKeyEventDispatcher(KeyEventDispatcher)*
+
+public void addKeyEventDispatcher(java.awt.KeyEventDispatcher dispatcher)
+
+Adds a KeyEventDispatcher to this KeyboardFocusManager's dispatcher chain. This 
+KeyboardFocusManager will request that each KeyEventDispatcher dispatch 
+KeyEvents generated by the user before finally dispatching the KeyEvent itself. 
+KeyEventDispatchers will be notified in the order in which they were added. 
+Notifications will halt as soon as one KeyEventDispatcher returns true from its 
+dispatchKeyEvent method. There is no limit to the total number of 
+KeyEventDispatchers which can be added, nor to the number of times which a 
+particular KeyEventDispatcher instance can be added. 
+
+If a null dispatcher is specified, no action is taken and no exception is 
+thrown. 
+
+    dispatcher - the KeyEventDispatcher to add to the dispatcher chain 
+
+*java.awt.KeyboardFocusManager.addKeyEventPostProcessor(KeyEventPostProcessor)*
+
+public void addKeyEventPostProcessor(java.awt.KeyEventPostProcessor processor)
+
+Adds a KeyEventPostProcessor to this KeyboardFocusManager's post- processor 
+chain. After a KeyEvent has been dispatched to and handled by its target, 
+KeyboardFocusManager will request that each KeyEventPostProcessor perform any 
+necessary post-processing as part of the KeyEvent's final resolution. 
+KeyEventPostProcessors will be notified in the order in which they were added; 
+the current KeyboardFocusManager will be notified last. Notifications will halt 
+as soon as one KeyEventPostProcessor returns true from its postProcessKeyEvent 
+method. There is no limit to the the total number of KeyEventPostProcessors 
+that can be added, nor to the number of times that a particular 
+KeyEventPostProcessor instance can be added. 
+
+If a null post-processor is specified, no action is taken and no exception is 
+thrown. 
+
+    processor - the KeyEventPostProcessor to add to the post-processor chain 
+
+*java.awt.KeyboardFocusManager.addPropertyChangeListener(PropertyChangeListener)*
+
+public void addPropertyChangeListener(java.beans.PropertyChangeListener listener)
+
+Adds a PropertyChangeListener to the listener list. The listener is registered 
+for all bound properties of this class, including the following: 
+
+whether the KeyboardFocusManager is currently managing focus for this 
+application or applet's browser context ("managingFocus") the focus owner 
+("focusOwner") the permanent focus owner ("permanentFocusOwner") the focused 
+Window ("focusedWindow") the active Window ("activeWindow") the default focus 
+traversal policy ("defaultFocusTraversalPolicy") the Set of default 
+FORWARD_TRAVERSAL_KEYS ("forwardDefaultFocusTraversalKeys") the Set of default 
+BACKWARD_TRAVERSAL_KEYS ("backwardDefaultFocusTraversalKeys") the Set of 
+default UP_CYCLE_TRAVERSAL_KEYS ("upCycleDefaultFocusTraversalKeys") the Set of 
+default DOWN_CYCLE_TRAVERSAL_KEYS ("downCycleDefaultFocusTraversalKeys") the 
+current focus cycle root ("currentFocusCycleRoot") 
+
+If listener is null, no exception is thrown and no action is performed. 
+
+    listener - the PropertyChangeListener to be added 
+
+*java.awt.KeyboardFocusManager.addPropertyChangeListener(String,PropertyChangeListener)*
+
+public void addPropertyChangeListener(
+  java.lang.String propertyName,
+  java.beans.PropertyChangeListener listener)
+
+Adds a PropertyChangeListener to the listener list for a specific property. The 
+specified property may be user-defined, or one of the following: 
+
+whether the KeyboardFocusManager is currently managing focus for this 
+application or applet's browser context ("managingFocus") the focus owner 
+("focusOwner") the permanent focus owner ("permanentFocusOwner") the focused 
+Window ("focusedWindow") the active Window ("activeWindow") the default focus 
+traversal policy ("defaultFocusTraversalPolicy") the Set of default 
+FORWARD_TRAVERSAL_KEYS ("forwardDefaultFocusTraversalKeys") the Set of default 
+BACKWARD_TRAVERSAL_KEYS ("backwardDefaultFocusTraversalKeys") the Set of 
+default UP_CYCLE_TRAVERSAL_KEYS ("upCycleDefaultFocusTraversalKeys") the Set of 
+default DOWN_CYCLE_TRAVERSAL_KEYS ("downCycleDefaultFocusTraversalKeys") the 
+current focus cycle root ("currentFocusCycleRoot") 
+
+If listener is null, no exception is thrown and no action is performed. 
+
+    propertyName - one of the property names listed above 
+    listener - the PropertyChangeListener to be added 
+
+*java.awt.KeyboardFocusManager.addVetoableChangeListener(String,VetoableChangeListener)*
+
+public void addVetoableChangeListener(
+  java.lang.String propertyName,
+  java.beans.VetoableChangeListener listener)
+
+Adds a VetoableChangeListener to the listener list for a specific property. The 
+specified property may be user-defined, or one of the following: 
+
+the focus owner ("focusOwner") the permanent focus owner 
+("permanentFocusOwner") the focused Window ("focusedWindow") the active Window 
+("activeWindow") 
+
+If listener is null, no exception is thrown and no action is performed. 
+
+    propertyName - one of the property names listed above 
+    listener - the VetoableChangeListener to be added 
+
+*java.awt.KeyboardFocusManager.addVetoableChangeListener(VetoableChangeListener)*
+
+public void addVetoableChangeListener(java.beans.VetoableChangeListener listener)
+
+Adds a VetoableChangeListener to the listener list. The listener is registered 
+for all vetoable properties of this class, including the following: 
+
+the focus owner ("focusOwner") the permanent focus owner 
+("permanentFocusOwner") the focused Window ("focusedWindow") the active Window 
+("activeWindow") 
+
+If listener is null, no exception is thrown and no action is performed. 
+
+    listener - the VetoableChangeListener to be added 
+
+*java.awt.KeyboardFocusManager.clearGlobalFocusOwner()*
+
+public void clearGlobalFocusOwner()
+
+Clears the global focus owner at both the Java and native levels. If there 
+exists a focus owner, that Component will receive a permanent FOCUS_LOST event. 
+After this operation completes, the native windowing system will discard all 
+user-generated KeyEvents until the user selects a new Component to receive 
+focus, or a Component is given focus explicitly via a call to requestFocus(). 
+This operation does not change the focused or active Windows. 
+
+
+*java.awt.KeyboardFocusManager.dequeueKeyEvents(long,Component)*
+
+protected abstract void dequeueKeyEvents(
+  long after,
+  java.awt.Component untilFocused)
+
+Called by the AWT to notify the KeyboardFocusManager that it should cancel 
+delayed dispatching of KeyEvents. All KeyEvents which were enqueued because of 
+a call to enqueueKeyEvents with the same timestamp and Component should be 
+released for normal dispatching to the current focus owner. If the given 
+timestamp is less than zero, the outstanding enqueue request for the given 
+Component with the oldest timestamp (if any) should be cancelled. 
+
+    after - the timestamp specified in the call to enqueueKeyEvents, or any value < 0 
+    untilFocused - the Component specified in the call to enqueueKeyEvents 
+
+*java.awt.KeyboardFocusManager.discardKeyEvents(Component)*
+
+protected abstract void discardKeyEvents(java.awt.Component comp)
+
+Called by the AWT to notify the KeyboardFocusManager that it should cancel 
+delayed dispatching of KeyEvents. All KeyEvents which were enqueued because of 
+one or more calls to enqueueKeyEvents with the same Component should be 
+discarded. 
+
+    comp - the Component specified in one or more calls to enqueueKeyEvents 
+
+*java.awt.KeyboardFocusManager.dispatchEvent(AWTEvent)*
+
+public abstract boolean dispatchEvent(java.awt.AWTEvent e)
+
+This method is called by the AWT event dispatcher requesting that the current 
+KeyboardFocusManager dispatch the specified event on its behalf. It is expected 
+that all KeyboardFocusManagers will dispatch all FocusEvents, all WindowEvents 
+related to focus, and all KeyEvents. These events should be dispatched based on 
+the KeyboardFocusManager's notion of the focus owner and the focused and active 
+Windows, sometimes overriding the source of the specified AWTEvent. Dispatching 
+must be done using redispatchEvent to prevent the AWT event dispatcher from 
+recursively requesting that the KeyboardFocusManager dispatch the event again. 
+If this method returns false, then the AWT event dispatcher will attempt to 
+dispatch the event itself. 
+
+    e - the AWTEvent to be dispatched 
+
+    Returns: true if this method dispatched the event; false otherwise 
+*java.awt.KeyboardFocusManager.dispatchKeyEvent(KeyEvent)*
+
+public abstract boolean dispatchKeyEvent(java.awt.event.KeyEvent e)
+
+Typically this method will be called by dispatchEvent if no other 
+KeyEventDispatcher in the dispatcher chain dispatched the KeyEvent, or if no 
+other KeyEventDispatchers are registered. If an implementation of this method 
+returns false, dispatchEvent may try to dispatch the KeyEvent itself, or may 
+simply return false. If true is returned, dispatchEvent should return true as 
+well. 
+
+    e - the KeyEvent which the current KeyboardFocusManager has requested that this 
+       KeyEventDispatcher dispatch 
+
+    Returns: true if the KeyEvent was dispatched; false otherwise 
+*java.awt.KeyboardFocusManager.downFocusCycle()*
+
+public final void downFocusCycle()
+
+Moves the focus down one focus traversal cycle from the current focus owner, if 
+and only if the current focus owner is a Container that is a focus cycle root. 
+Typically, the focus owner is set to the current focus owner's default 
+Component to focus, and the current focus cycle root is set to the current 
+focus owner. If the current focus owner is not a Container that is a focus 
+cycle root, then no focus traversal operation occurs. 
+
+
+*java.awt.KeyboardFocusManager.downFocusCycle(Container)*
+
+public abstract void downFocusCycle(java.awt.Container aContainer)
+
+Moves the focus down one focus traversal cycle. Typically, if aContainer is a 
+focus cycle root, then the focus owner is set to aContainer's default Component 
+to focus, and the current focus cycle root is set to aContainer. If aContainer 
+is not a focus cycle root, then no focus traversal operation occurs. 
+
+    aContainer - the Container that is the basis for the focus traversal operation 
+
+*java.awt.KeyboardFocusManager.enqueueKeyEvents(long,Component)*
+
+protected abstract void enqueueKeyEvents(
+  long after,
+  java.awt.Component untilFocused)
+
+Called by the AWT to notify the KeyboardFocusManager that it should delay 
+dispatching of KeyEvents until the specified Component becomes the focus owner. 
+If client code requests a focus change, and the AWT determines that this 
+request might be granted by the native windowing system, then the AWT will call 
+this method. It is the responsibility of the KeyboardFocusManager to delay 
+dispatching of KeyEvents with timestamps later than the specified time stamp 
+until the specified Component receives a FOCUS_GAINED event, or the AWT cancels 
+the delay request by invoking dequeueKeyEvents or discardKeyEvents. 
+
+    after - timestamp of current event, or the current, system time if the current event 
+       has no timestamp, or the AWT cannot determine which event is currently 
+       being handled 
+    untilFocused - Component which should receive a FOCUS_GAINED event before any pending 
+       KeyEvents 
+
+*java.awt.KeyboardFocusManager.firePropertyChange(String,Object,Object)*
+
+protected void firePropertyChange(
+  java.lang.String propertyName,
+  java.lang.Object oldValue,
+  java.lang.Object newValue)
+
+Fires a PropertyChangeEvent in response to a change in a bound property. The 
+event will be delivered to all registered PropertyChangeListeners. No event 
+will be delivered if oldValue and newValue are the same. 
+
+    propertyName - the name of the property that has changed 
+    oldValue - the property's previous value 
+    newValue - the property's new value 
+
+*java.awt.KeyboardFocusManager.fireVetoableChange(String,Object,Object)*
+
+protected void fireVetoableChange(
+  java.lang.String propertyName,
+  java.lang.Object oldValue,
+  java.lang.Object newValue)
+  throws |java.beans.PropertyVetoException|
+         
+Fires a PropertyChangeEvent in response to a change in a vetoable property. The 
+event will be delivered to all registered VetoableChangeListeners. If a 
+VetoableChangeListener throws a PropertyVetoException, a new event is fired 
+reverting all VetoableChangeListeners to the old value and the exception is 
+then rethrown. No event will be delivered if oldValue and newValue are the 
+same. 
+
+    propertyName - the name of the property that has changed 
+    oldValue - the property's previous value 
+    newValue - the property's new value 
+
+*java.awt.KeyboardFocusManager.focusNextComponent()*
+
+public final void focusNextComponent()
+
+Focuses the Component after the current focus owner. 
+
+
+*java.awt.KeyboardFocusManager.focusNextComponent(Component)*
+
+public abstract void focusNextComponent(java.awt.Component aComponent)
+
+Focuses the Component after aComponent, typically based on a 
+FocusTraversalPolicy. 
+
+    aComponent - the Component that is the basis for the focus traversal operation 
+
+*java.awt.KeyboardFocusManager.focusPreviousComponent()*
+
+public final void focusPreviousComponent()
+
+Focuses the Component before the current focus owner. 
+
+
+*java.awt.KeyboardFocusManager.focusPreviousComponent(Component)*
+
+public abstract void focusPreviousComponent(java.awt.Component aComponent)
+
+Focuses the Component before aComponent, typically based on a 
+FocusTraversalPolicy. 
+
+    aComponent - the Component that is the basis for the focus traversal operation 
+
+*java.awt.KeyboardFocusManager.getActiveWindow()*
+
+public |java.awt.Window| getActiveWindow()
+
+Returns the active Window, if the active Window is in the same context as the 
+calling thread. Only a Frame or a Dialog can be the active Window. The native 
+windowing system may denote the active Window or its children with special 
+decorations, such as a highlighted title bar. The active Window is always 
+either the focused Window, or the first Frame or Dialog that is an owner of the 
+focused Window. 
+
+
+    Returns: the active Window, or null if the active Window is not a member of the calling 
+             thread's context 
+*java.awt.KeyboardFocusManager.getCurrentFocusCycleRoot()*
+
+public |java.awt.Container| getCurrentFocusCycleRoot()
+
+Returns the current focus cycle root, if the current focus cycle root is in the 
+same context as the calling thread. If the focus owner is itself a focus cycle 
+root, then it may be ambiguous as to which Components represent the next and 
+previous Components to focus during normal focus traversal. In that case, the 
+current focus cycle root is used to differentiate among the possibilities. 
+
+This method is intended to be used only by KeyboardFocusManagers and focus 
+implementations. It is not for general client use. 
+
+
+    Returns: the current focus cycle root, or null if the current focus cycle root is not a 
+             member of the calling thread's context 
+*java.awt.KeyboardFocusManager.getCurrentKeyboardFocusManager()*
+
+public static |java.awt.KeyboardFocusManager| getCurrentKeyboardFocusManager()
+
+Returns the current KeyboardFocusManager instance for the calling thread's 
+context. 
+
+
+    Returns: this thread's context's KeyboardFocusManager 
+*java.awt.KeyboardFocusManager.getDefaultFocusTraversalKeys(int)*
+
+public |java.util.Set| getDefaultFocusTraversalKeys(int id)
+
+Returns a Set of default focus traversal keys for a given traversal operation. 
+This traversal key Set will be in effect on all Windows that have no such Set 
+of their own explicitly defined. This Set will also be inherited, recursively, 
+by any child Component of those Windows that has no such Set of its own 
+explicitly defined. (See setDefaultFocusTraversalKeys for a full description of 
+each operation.) 
+
+    id - one of KeyboardFocusManager.FORWARD_TRAVERSAL_KEYS, 
+       KeyboardFocusManager.BACKWARD_TRAVERSAL_KEYS, 
+       KeyboardFocusManager.UP_CYCLE_TRAVERSAL_KEYS, or 
+       KeyboardFocusManager.DOWN_CYCLE_TRAVERSAL_KEYS 
+
+    Returns: the Set of AWTKeyStrokes for the specified operation; the Set will be 
+             unmodifiable, and may be empty; null will never be returned 
+*java.awt.KeyboardFocusManager.getDefaultFocusTraversalPolicy()*
+
+public synchronized |java.awt.FocusTraversalPolicy| getDefaultFocusTraversalPolicy()
+
+Returns the default FocusTraversalPolicy. Top-level components use this value 
+on their creation to initialize their own focus traversal policy by explicit 
+call to Container.setFocusTraversalPolicy. 
+
+
+    Returns: the default FocusTraversalPolicy. null will never be returned. 
+*java.awt.KeyboardFocusManager.getFocusedWindow()*
+
+public |java.awt.Window| getFocusedWindow()
+
+Returns the focused Window, if the focused Window is in the same context as the 
+calling thread. The focused Window is the Window that is or contains the focus 
+owner. 
+
+
+    Returns: the focused Window, or null if the focused Window is not a member of the 
+             calling thread's context 
+*java.awt.KeyboardFocusManager.getFocusOwner()*
+
+public |java.awt.Component| getFocusOwner()
+
+Returns the focus owner, if the focus owner is in the same context as the 
+calling thread. The focus owner is defined as the Component in an application 
+that will typically receive all KeyEvents generated by the user. KeyEvents 
+which map to the focus owner's focus traversal keys will not be delivered if 
+focus traversal keys are enabled for the focus owner. In addition, 
+KeyEventDispatchers may retarget or consume KeyEvents before they reach the 
+focus owner. 
+
+
+    Returns: the focus owner, or null if the focus owner is not a member of the calling 
+             thread's context 
+*java.awt.KeyboardFocusManager.getGlobalActiveWindow()*
+
+protected |java.awt.Window| getGlobalActiveWindow()
+  throws |java.lang.SecurityException|
+         
+Returns the active Window, even if the calling thread is in a different context 
+than the active Window. Only a Frame or a Dialog can be the active Window. The 
+native windowing system may denote the active Window or its children with 
+special decorations, such as a highlighted title bar. The active Window is 
+always either the focused Window, or the first Frame or Dialog that is an owner 
+of the focused Window. 
+
+This method will throw a SecurityException if this KeyboardFocusManager is not 
+the current KeyboardFocusManager for the calling thread's context. 
+
+
+    Returns: the active Window 
+*java.awt.KeyboardFocusManager.getGlobalCurrentFocusCycleRoot()*
+
+protected |java.awt.Container| getGlobalCurrentFocusCycleRoot()
+  throws |java.lang.SecurityException|
+         
+Returns the current focus cycle root, even if the calling thread is in a 
+different context than the current focus cycle root. If the focus owner is 
+itself a focus cycle root, then it may be ambiguous as to which Components 
+represent the next and previous Components to focus during normal focus 
+traversal. In that case, the current focus cycle root is used to differentiate 
+among the possibilities. 
+
+This method will throw a SecurityException if this KeyboardFocusManager is not 
+the current KeyboardFocusManager for the calling thread's context. 
+
+
+    Returns: the current focus cycle root, or null if the current focus cycle root is not a 
+             member of the calling thread's context 
+*java.awt.KeyboardFocusManager.getGlobalFocusedWindow()*
+
+protected |java.awt.Window| getGlobalFocusedWindow()
+  throws |java.lang.SecurityException|
+         
+Returns the focused Window, even if the calling thread is in a different 
+context than the focused Window. The focused Window is the Window that is or 
+contains the focus owner. 
+
+This method will throw a SecurityException if this KeyboardFocusManager is not 
+the current KeyboardFocusManager for the calling thread's context. 
+
+
+    Returns: the focused Window 
+*java.awt.KeyboardFocusManager.getGlobalFocusOwner()*
+
+protected |java.awt.Component| getGlobalFocusOwner()
+  throws |java.lang.SecurityException|
+         
+Returns the focus owner, even if the calling thread is in a different context 
+than the focus owner. The focus owner is defined as the Component in an 
+application that will typically receive all KeyEvents generated by the user. 
+KeyEvents which map to the focus owner's focus traversal keys will not be 
+delivered if focus traversal keys are enabled for the focus owner. In addition, 
+KeyEventDispatchers may retarget or consume KeyEvents before they reach the 
+focus owner. 
+
+This method will throw a SecurityException if this KeyboardFocusManager is not 
+the current KeyboardFocusManager for the calling thread's context. 
+
+
+    Returns: the focus owner 
+*java.awt.KeyboardFocusManager.getGlobalPermanentFocusOwner()*
+
+protected |java.awt.Component| getGlobalPermanentFocusOwner()
+  throws |java.lang.SecurityException|
+         
+Returns the permanent focus owner, even if the calling thread is in a different 
+context than the permanent focus owner. The permanent focus owner is defined as 
+the last Component in an application to receive a permanent FOCUS_GAINED event. 
+The focus owner and permanent focus owner are equivalent unless a temporary 
+focus change is currently in effect. In such a situation, the permanent focus 
+owner will again be the focus owner when the temporary focus change ends. 
+
+This method will throw a SecurityException if this KeyboardFocusManager is not 
+the current KeyboardFocusManager for the calling thread's context. 
+
+
+    Returns: the permanent focus owner 
+*java.awt.KeyboardFocusManager.getKeyEventDispatchers()*
+
+protected synchronized |java.util.List| getKeyEventDispatchers()
+
+Returns this KeyboardFocusManager's KeyEventDispatcher chain as a List. The 
+List will not include this KeyboardFocusManager unless it was explicitly 
+re-registered via a call to addKeyEventDispatcher. If no other 
+KeyEventDispatchers are registered, implementations are free to return null or 
+a List of length 0. Client code should not assume one behavior over another, 
+nor should it assume that the behavior, once established, will not change. 
+
+
+    Returns: a possibly null or empty List of KeyEventDispatchers 
+*java.awt.KeyboardFocusManager.getKeyEventPostProcessors()*
+
+protected |java.util.List| getKeyEventPostProcessors()
+
+Returns this KeyboardFocusManager's KeyEventPostProcessor chain as a List. The 
+List will not include this KeyboardFocusManager unless it was explicitly added 
+via a call to addKeyEventPostProcessor. If no KeyEventPostProcessors are 
+registered, implementations are free to return null or a List of length 0. 
+Client code should not assume one behavior over another, nor should it assume 
+that the behavior, once established, will not change. 
+
+
+    Returns: a possibly null or empty List of KeyEventPostProcessors 
+*java.awt.KeyboardFocusManager.getPermanentFocusOwner()*
+
+public |java.awt.Component| getPermanentFocusOwner()
+
+Returns the permanent focus owner, if the permanent focus owner is in the same 
+context as the calling thread. The permanent focus owner is defined as the last 
+Component in an application to receive a permanent FOCUS_GAINED event. The 
+focus owner and permanent focus owner are equivalent unless a temporary focus 
+change is currently in effect. In such a situation, the permanent focus owner 
+will again be the focus owner when the temporary focus change ends. 
+
+
+    Returns: the permanent focus owner, or null if the permanent focus owner is not a member 
+             of the calling thread's context 
+*java.awt.KeyboardFocusManager.getPropertyChangeListeners()*
+
+public synchronized |java.beans.PropertyChangeListener| getPropertyChangeListeners()
+
+Returns an array of all the property change listeners registered on this 
+keyboard focus manager. 
+
+
+    Returns: all of this keyboard focus manager's PropertyChangeListeners or an empty array 
+             if no property change listeners are currently registered 
+*java.awt.KeyboardFocusManager.getPropertyChangeListeners(String)*
+
+public synchronized |java.beans.PropertyChangeListener| getPropertyChangeListeners(java.lang.String propertyName)
+
+Returns an array of all the PropertyChangeListeners associated with the named 
+property. 
+
+
+    Returns: all of the PropertyChangeListeners associated with the named property or an 
+             empty array if no such listeners have been added. 
+*java.awt.KeyboardFocusManager.getVetoableChangeListeners()*
+
+public synchronized |java.beans.VetoableChangeListener| getVetoableChangeListeners()
+
+Returns an array of all the vetoable change listeners registered on this 
+keyboard focus manager. 
+
+
+    Returns: all of this keyboard focus manager's VetoableChangeListeners or an empty array 
+             if no vetoable change listeners are currently registered 
+*java.awt.KeyboardFocusManager.getVetoableChangeListeners(String)*
+
+public synchronized |java.beans.VetoableChangeListener| getVetoableChangeListeners(java.lang.String propertyName)
+
+Returns an array of all the VetoableChangeListeners associated with the named 
+property. 
+
+
+    Returns: all of the VetoableChangeListeners associated with the named property or an 
+             empty array if no such listeners have been added. 
+*java.awt.KeyboardFocusManager.postProcessKeyEvent(KeyEvent)*
+
+public abstract boolean postProcessKeyEvent(java.awt.event.KeyEvent e)
+
+This method will be called by dispatchKeyEvent. By default, this method will 
+handle any unconsumed KeyEvents that map to an AWT MenuShortcut by consuming 
+the event and activating the shortcut. 
+
+    e - the KeyEvent to post-process 
+
+    Returns: true to indicate that no other KeyEventPostProcessor will be notified of the 
+             KeyEvent. 
+*java.awt.KeyboardFocusManager.processKeyEvent(Component,KeyEvent)*
+
+public abstract void processKeyEvent(
+  java.awt.Component focusedComponent,
+  java.awt.event.KeyEvent e)
+
+This method initiates a focus traversal operation if and only if the KeyEvent 
+represents a focus traversal key for the specified focusedComponent. It is 
+expected that focusedComponent is the current focus owner, although this need 
+not be the case. If it is not, focus traversal will nevertheless proceed as if 
+focusedComponent were the current focus owner. 
+
+    focusedComponent - the Component that will be the basis for a focus traversal operation if the 
+       specified event represents a focus traversal key for the Component 
+    e - the event that may represent a focus traversal key 
+
+*java.awt.KeyboardFocusManager.redispatchEvent(Component,AWTEvent)*
+
+public final void redispatchEvent(
+  java.awt.Component target,
+  java.awt.AWTEvent e)
+
+Redispatches an AWTEvent in such a way that the AWT event dispatcher will not 
+recursively request that the KeyboardFocusManager, or any installed 
+KeyEventDispatchers, dispatch the event again. Client implementations of 
+dispatchEvent and client-defined KeyEventDispatchers must call 
+redispatchEvent(target, e) instead of target.dispatchEvent(e) to dispatch an 
+event. 
+
+This method is intended to be used only by KeyboardFocusManagers and 
+KeyEventDispatchers. It is not for general client use. 
+
+    target - the Component to which the event should be dispatched 
+    e - the event to dispatch 
+
+*java.awt.KeyboardFocusManager.removeKeyEventDispatcher(KeyEventDispatcher)*
+
+public void removeKeyEventDispatcher(java.awt.KeyEventDispatcher dispatcher)
+
+Removes a KeyEventDispatcher which was previously added to this 
+KeyboardFocusManager's dispatcher chain. This KeyboardFocusManager cannot 
+itself be removed, unless it was explicitly re-registered via a call to 
+addKeyEventDispatcher. 
+
+If a null dispatcher is specified, if the specified dispatcher is not in the 
+dispatcher chain, or if this KeyboardFocusManager is specified without having 
+been explicitly re-registered, no action is taken and no exception is thrown. 
+
+    dispatcher - the KeyEventDispatcher to remove from the dispatcher chain 
+
+*java.awt.KeyboardFocusManager.removeKeyEventPostProcessor(KeyEventPostProcessor)*
+
+public void removeKeyEventPostProcessor(java.awt.KeyEventPostProcessor processor)
+
+Removes a previously added KeyEventPostProcessor from this 
+KeyboardFocusManager's post-processor chain. This KeyboardFocusManager cannot 
+itself be entirely removed from the chain. Only additional references added via 
+addKeyEventPostProcessor can be removed. 
+
+If a null post-processor is specified, if the specified post-processor is not 
+in the post-processor chain, or if this KeyboardFocusManager is specified 
+without having been explicitly added, no action is taken and no exception is 
+thrown. 
+
+    processor - the KeyEventPostProcessor to remove from the post- processor chain 
+
+*java.awt.KeyboardFocusManager.removePropertyChangeListener(PropertyChangeListener)*
+
+public void removePropertyChangeListener(java.beans.PropertyChangeListener listener)
+
+Removes a PropertyChangeListener from the listener list. This method should be 
+used to remove the PropertyChangeListeners that were registered for all bound 
+properties of this class. 
+
+If listener is null, no exception is thrown and no action is performed. 
+
+    listener - the PropertyChangeListener to be removed 
+
+*java.awt.KeyboardFocusManager.removePropertyChangeListener(String,PropertyChangeListener)*
+
+public void removePropertyChangeListener(
+  java.lang.String propertyName,
+  java.beans.PropertyChangeListener listener)
+
+Removes a PropertyChangeListener from the listener list for a specific 
+property. This method should be used to remove PropertyChangeListeners that 
+were registered for a specific bound property. 
+
+If listener is null, no exception is thrown and no action is performed. 
+
+    propertyName - a valid property name 
+    listener - the PropertyChangeListener to be removed 
+
+*java.awt.KeyboardFocusManager.removeVetoableChangeListener(String,VetoableChangeListener)*
+
+public void removeVetoableChangeListener(
+  java.lang.String propertyName,
+  java.beans.VetoableChangeListener listener)
+
+Removes a VetoableChangeListener from the listener list for a specific 
+property. This method should be used to remove VetoableChangeListeners that 
+were registered for a specific bound property. 
+
+If listener is null, no exception is thrown and no action is performed. 
+
+    propertyName - a valid property name 
+    listener - the VetoableChangeListener to be removed 
+
+*java.awt.KeyboardFocusManager.removeVetoableChangeListener(VetoableChangeListener)*
+
+public void removeVetoableChangeListener(java.beans.VetoableChangeListener listener)
+
+Removes a VetoableChangeListener from the listener list. This method should be 
+used to remove the VetoableChangeListeners that were registered for all 
+vetoable properties of this class. 
+
+If listener is null, no exception is thrown and no action is performed. 
+
+    listener - the VetoableChangeListener to be removed 
+
+*java.awt.KeyboardFocusManager.setCurrentKeyboardFocusManager(KeyboardFocusManager)*
+
+public static void setCurrentKeyboardFocusManager(java.awt.KeyboardFocusManager newManager)
+  throws |java.lang.SecurityException|
+         
+Sets the current KeyboardFocusManager instance for the calling thread's 
+context. If null is specified, then the current KeyboardFocusManager is 
+replaced with a new instance of DefaultKeyboardFocusManager. 
+
+If a SecurityManager is installed, the calling thread must be granted the 
+AWTPermission "replaceKeyboardFocusManager" in order to replace the the current 
+KeyboardFocusManager. If this permission is not granted, this method will throw 
+a SecurityException, and the current KeyboardFocusManager will be unchanged. 
+
+    newManager - the new KeyboardFocusManager for this thread's context 
+
+*java.awt.KeyboardFocusManager.setDefaultFocusTraversalKeys(int,Set)*
+
+public void setDefaultFocusTraversalKeys(
+  int id,
+  java.util.Set keystrokes)
+
+Sets the default focus traversal keys for a given traversal operation. This 
+traversal key Set will be in effect on all Windows that have no such Set of 
+their own explicitly defined. This Set will also be inherited, recursively, by 
+any child Component of those Windows that has no such Set of its own explicitly 
+defined. 
+
+The default values for the default focus traversal keys are 
+implementation-dependent. Sun recommends that all implementations for a 
+particular native platform use the same default values. The recommendations for 
+Windows and Unix are listed below. These recommendations are used in the Sun 
+AWT implementations. 
+
+
+
+Identifier Meaning Default 
+
+KeyboardFocusManager.FORWARD_TRAVERSAL_KEYS Normal forward keyboard traversal 
+TAB on KEY_PRESSED, CTRL-TAB on KEY_PRESSED 
+
+KeyboardFocusManager.BACKWARD_TRAVERSAL_KEYS Normal reverse keyboard traversal 
+SHIFT-TAB on KEY_PRESSED, CTRL-SHIFT-TAB on KEY_PRESSED 
+
+KeyboardFocusManager.UP_CYCLE_TRAVERSAL_KEYS Go up one focus traversal cycle 
+none 
+
+KeyboardFocusManager.DOWN_CYCLE_TRAVERSAL_KEYS Go down one focus traversal 
+cycle none 
+
+
+
+To disable a traversal key, use an empty Set; Collections.EMPTY_SET is 
+recommended. 
+
+Using the AWTKeyStroke API, client code can specify on which of two specific 
+KeyEvents, KEY_PRESSED or KEY_RELEASED, the focus traversal operation will 
+occur. Regardless of which KeyEvent is specified, however, all KeyEvents 
+related to the focus traversal key, including the associated KEY_TYPED event, 
+will be consumed, and will not be dispatched to any Component. It is a runtime 
+error to specify a KEY_TYPED event as mapping to a focus traversal operation, 
+or to map the same event to multiple default focus traversal operations. 
+
+    id - one of KeyboardFocusManager.FORWARD_TRAVERSAL_KEYS, 
+       KeyboardFocusManager.BACKWARD_TRAVERSAL_KEYS, 
+       KeyboardFocusManager.UP_CYCLE_TRAVERSAL_KEYS, or 
+       KeyboardFocusManager.DOWN_CYCLE_TRAVERSAL_KEYS 
+    keystrokes - the Set of AWTKeyStrokes for the specified operation 
+
+*java.awt.KeyboardFocusManager.setDefaultFocusTraversalPolicy(FocusTraversalPolicy)*
+
+public void setDefaultFocusTraversalPolicy(java.awt.FocusTraversalPolicy defaultPolicy)
+
+Sets the default FocusTraversalPolicy. Top-level components use this value on 
+their creation to initialize their own focus traversal policy by explicit call 
+to Container.setFocusTraversalPolicy. Note: this call doesn't affect already 
+created components as they have their policy initialized. Only new components 
+will use this policy as their default policy. 
+
+    defaultPolicy - the new, default FocusTraversalPolicy 
+
+*java.awt.KeyboardFocusManager.setGlobalActiveWindow(Window)*
+
+protected void setGlobalActiveWindow(java.awt.Window activeWindow)
+
+Sets the active Window. Only a Frame or a Dialog can be the active Window. The 
+native windowing system may denote the active Window or its children with 
+special decorations, such as a highlighted title bar. The active Window is 
+always either the focused Window, or the first Frame or Dialog that is an owner 
+of the focused Window. 
+
+This method does not actually change the active Window as far as the native 
+windowing system is concerned. It merely stores the value to be subsequently 
+returned by getActiveWindow(). Use Component.requestFocus() or 
+Component.requestFocusInWindow()to change the active Window, subject to 
+platform limitations. 
+
+    activeWindow - the active Window 
+
+*java.awt.KeyboardFocusManager.setGlobalCurrentFocusCycleRoot(Container)*
+
+public void setGlobalCurrentFocusCycleRoot(java.awt.Container newFocusCycleRoot)
+
+Sets the current focus cycle root. If the focus owner is itself a focus cycle 
+root, then it may be ambiguous as to which Components represent the next and 
+previous Components to focus during normal focus traversal. In that case, the 
+current focus cycle root is used to differentiate among the possibilities. 
+
+This method is intended to be used only by KeyboardFocusManagers and focus 
+implementations. It is not for general client use. 
+
+    newFocusCycleRoot - the new focus cycle root 
+
+*java.awt.KeyboardFocusManager.setGlobalFocusedWindow(Window)*
+
+protected void setGlobalFocusedWindow(java.awt.Window focusedWindow)
+
+Sets the focused Window. The focused Window is the Window that is or contains 
+the focus owner. The operation will be cancelled if the specified Window to 
+focus is not a focusable Window. 
+
+This method does not actually change the focused Window as far as the native 
+windowing system is concerned. It merely stores the value to be subsequently 
+returned by getFocusedWindow(). Use Component.requestFocus() or 
+Component.requestFocusInWindow() to change the focused Window, subject to 
+platform limitations. 
+
+    focusedWindow - the focused Window 
+
+*java.awt.KeyboardFocusManager.setGlobalFocusOwner(Component)*
+
+protected void setGlobalFocusOwner(java.awt.Component focusOwner)
+
+Sets the focus owner. The operation will be cancelled if the Component is not 
+focusable. The focus owner is defined as the Component in an application that 
+will typically receive all KeyEvents generated by the user. KeyEvents which map 
+to the focus owner's focus traversal keys will not be delivered if focus 
+traversal keys are enabled for the focus owner. In addition, 
+KeyEventDispatchers may retarget or consume KeyEvents before they reach the 
+focus owner. 
+
+This method does not actually set the focus to the specified Component. It 
+merely stores the value to be subsequently returned by getFocusOwner(). Use 
+Component.requestFocus() or Component.requestFocusInWindow() to change the 
+focus owner, subject to platform limitations. 
+
+    focusOwner - the focus owner 
+
+*java.awt.KeyboardFocusManager.setGlobalPermanentFocusOwner(Component)*
+
+protected void setGlobalPermanentFocusOwner(java.awt.Component permanentFocusOwner)
+
+Sets the permanent focus owner. The operation will be cancelled if the 
+Component is not focusable. The permanent focus owner is defined as the last 
+Component in an application to receive a permanent FOCUS_GAINED event. The 
+focus owner and permanent focus owner are equivalent unless a temporary focus 
+change is currently in effect. In such a situation, the permanent focus owner 
+will again be the focus owner when the temporary focus change ends. 
+
+This method does not actually set the focus to the specified Component. It 
+merely stores the value to be subsequently returned by 
+getPermanentFocusOwner(). Use Component.requestFocus() or 
+Component.requestFocusInWindow() to change the focus owner, subject to platform 
+limitations. 
+
+    permanentFocusOwner - the permanent focus owner 
+
+*java.awt.KeyboardFocusManager.upFocusCycle()*
+
+public final void upFocusCycle()
+
+Moves the focus up one focus traversal cycle from the current focus owner. 
+Typically, the new focus owner is set to the current focus owner's focus cycle 
+root, and the current focus cycle root is set to the new focus owner's focus 
+cycle root. If, however, the current focus owner's focus cycle root is a 
+Window, then typically the focus owner is set to the focus cycle root's default 
+Component to focus, and the current focus cycle root is unchanged. 
+
+
+*java.awt.KeyboardFocusManager.upFocusCycle(Component)*
+
+public abstract void upFocusCycle(java.awt.Component aComponent)
+
+Moves the focus up one focus traversal cycle. Typically, the focus owner is set 
+to aComponent's focus cycle root, and the current focus cycle root is set to 
+the new focus owner's focus cycle root. If, however, aComponent's focus cycle 
+root is a Window, then typically the focus owner is set to the Window's default 
+Component to focus, and the current focus cycle root is unchanged. 
+
+    aComponent - the Component that is the basis for the focus traversal operation 
+
+

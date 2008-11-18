@@ -1,0 +1,160 @@
+*javax.swing.plaf.basic.BasicLookAndFeel* *BasicLookAndFeel* Implements the a st
+
+public abstract class BasicLookAndFeel
+  extends    |javax.swing.LookAndFeel|
+  implements |java.io.Serializable|
+
+|javax.swing.plaf.basic.BasicLookAndFeel_Description|
+|javax.swing.plaf.basic.BasicLookAndFeel_Fields|
+|javax.swing.plaf.basic.BasicLookAndFeel_Constructors|
+|javax.swing.plaf.basic.BasicLookAndFeel_Methods|
+
+================================================================================
+
+*javax.swing.plaf.basic.BasicLookAndFeel_Constructors*
+|javax.swing.plaf.basic.BasicLookAndFeel()|
+
+*javax.swing.plaf.basic.BasicLookAndFeel_Methods*
+|javax.swing.plaf.basic.BasicLookAndFeel.createAudioAction(Object)|Returns an A
+|javax.swing.plaf.basic.BasicLookAndFeel.getAudioActionMap()|Returns an ActionM
+|javax.swing.plaf.basic.BasicLookAndFeel.getDefaults()|
+|javax.swing.plaf.basic.BasicLookAndFeel.initClassDefaults(UIDefaults)|Initiali
+|javax.swing.plaf.basic.BasicLookAndFeel.initComponentDefaults(UIDefaults)|
+|javax.swing.plaf.basic.BasicLookAndFeel.initialize()|UIManager.setLookAndFeel 
+|javax.swing.plaf.basic.BasicLookAndFeel.initSystemColorDefaults(UIDefaults)|Lo
+|javax.swing.plaf.basic.BasicLookAndFeel.loadSystemColors(UIDefaults,String[],boolean)|
+|javax.swing.plaf.basic.BasicLookAndFeel.playSound(Action)|Decides whether to f
+|javax.swing.plaf.basic.BasicLookAndFeel.uninitialize()|UIManager.setLookAndFee
+
+*javax.swing.plaf.basic.BasicLookAndFeel_Description*
+
+Implements the a standard base LookAndFeel class from which standard desktop 
+LookAndFeel classes (JLF, Mac, Windows, etc.) can be derived. This class cannot 
+be instantiated directly, however the UI classes "Basic" defines can be. 
+
+Warning: Serialized objects of this class will not be compatible with future 
+Swing releases. The current serialization support is appropriate for short term 
+storage or RMI between applications running the same version of Swing. As of 
+1.4, support for long term storage of all JavaBeansTM has been added to the 
+java.beans package. Please see (|java.beans.XMLEncoder|) . 
+
+
+*javax.swing.plaf.basic.BasicLookAndFeel()*
+
+public BasicLookAndFeel()
+
+
+
+
+*javax.swing.plaf.basic.BasicLookAndFeel.createAudioAction(Object)*
+
+protected |javax.swing.Action| createAudioAction(java.lang.Object key)
+
+Returns an Action. 
+
+This Action contains the information and logic to render an auditory cue. The 
+Object that is passed to this method contains the information needed to render 
+the auditory cue. Normally, this Object is a String that points to an audio 
+file relative to the current package. This Action's actionPerformed method is 
+fired by the playSound method. 
+
+
+    Returns: an Action which knows how to render the auditory cue for one particular system 
+             or user activity 
+*javax.swing.plaf.basic.BasicLookAndFeel.getAudioActionMap()*
+
+protected |javax.swing.ActionMap| getAudioActionMap()
+
+Returns an ActionMap. 
+
+This ActionMap contains Actions that embody the ability to render an auditory 
+cue. These auditory cues map onto user and system activities that may be useful 
+for an end user to know about (such as a dialog box appearing). 
+
+At the appropriate time in a JComponent UI's lifecycle, the ComponentUI is 
+responsible for getting the appropriate Action out of the ActionMap and passing 
+it on to playSound. 
+
+The Actions in this ActionMap are created by the createAudioAction method. 
+
+
+    Returns: an ActionMap containing Actions responsible for rendering auditory cues 
+*javax.swing.plaf.basic.BasicLookAndFeel.getDefaults()*
+
+public |javax.swing.UIDefaults| getDefaults()
+
+
+
+
+*javax.swing.plaf.basic.BasicLookAndFeel.initClassDefaults(UIDefaults)*
+
+protected void initClassDefaults(javax.swing.UIDefaults table)
+
+Initialize the uiClassID to BasicComponentUI mapping. The JComponent classes 
+define their own uiClassID constants (see AbstractComponent.getUIClassID). This 
+table must map those constants to a BasicComponentUI class of the appropriate 
+type. 
+
+
+*javax.swing.plaf.basic.BasicLookAndFeel.initComponentDefaults(UIDefaults)*
+
+protected void initComponentDefaults(javax.swing.UIDefaults table)
+
+
+
+
+*javax.swing.plaf.basic.BasicLookAndFeel.initialize()*
+
+public void initialize()
+
+UIManager.setLookAndFeel calls this method before the first call (and typically 
+the only call) to getDefaults(). 
+
+
+*javax.swing.plaf.basic.BasicLookAndFeel.initSystemColorDefaults(UIDefaults)*
+
+protected void initSystemColorDefaults(javax.swing.UIDefaults table)
+
+Load the SystemColors into the defaults table. The keys for SystemColor 
+defaults are the same as the names of the public fields in SystemColor. If the 
+table is being created on a native Windows platform we use the SystemColor 
+values, otherwise we create color objects whose values match the defaults 
+Windows95 colors. 
+
+
+*javax.swing.plaf.basic.BasicLookAndFeel.loadSystemColors(UIDefaults,String[],boolean)*
+
+protected void loadSystemColors(
+  javax.swing.UIDefaults table,
+  java.lang.String[] systemColors,
+  boolean useNative)
+
+If this is the native look and feel the initial values for the system color 
+properties are the same as the SystemColor constants. If not we use the integer 
+color values in the systemColors argument. 
+
+
+*javax.swing.plaf.basic.BasicLookAndFeel.playSound(Action)*
+
+protected void playSound(javax.swing.Action audioAction)
+
+Decides whether to fire the Action that is passed into it and, if needed, fires 
+the Action's actionPerformed method. This has the effect of rendering the audio 
+appropriate for the situation. 
+
+The set of possible cues to be played are stored in the default table value 
+"AuditoryCues.cueList". The cues that will be played are stored in 
+"AuditoryCues.playList". 
+
+    audioAction - an Action that knows how to render the audio associated with the system or user 
+       activity that is occurring 
+
+*javax.swing.plaf.basic.BasicLookAndFeel.uninitialize()*
+
+public void uninitialize()
+
+UIManager.setLookAndFeel calls this method just before we're replaced by a new 
+default look and feel. 
+
+
+

@@ -1,0 +1,141 @@
+*javax.sql.DataSource* *DataSource* A factory for connections to the physical da
+
+public interface interface DataSource
+
+
+|javax.sql.DataSource_Description|
+|javax.sql.DataSource_Fields|
+|javax.sql.DataSource_Constructors|
+|javax.sql.DataSource_Methods|
+
+================================================================================
+
+*javax.sql.DataSource_Methods*
+|javax.sql.DataSource.getConnection()|Attempts to establish a connection with t
+|javax.sql.DataSource.getConnection(String,String)|Attempts to establish a conn
+|javax.sql.DataSource.getLoginTimeout()|Gets the maximum time in seconds that t
+|javax.sql.DataSource.getLogWriter()|Retrieves the log writer for this DataSour
+|javax.sql.DataSource.setLoginTimeout(int)|Sets the maximum time in seconds tha
+|javax.sql.DataSource.setLogWriter(PrintWriter)|Sets the log writer for this Da
+
+*javax.sql.DataSource_Description*
+
+A factory for connections to the physical data source that this DataSource 
+object represents. An alternative to the DriverManager facility, a DataSource 
+object is the preferred means of getting a connection. An object that 
+implements the DataSource interface will typically be registered with a naming 
+service based on the JavaTM Naming and Directory (JNDI) API. 
+
+The DataSource interface is implemented by a driver vendor. There are three 
+types of implementations: 
+
+Basic implementation -- produces a standard Connection object Connection 
+pooling implementation -- produces a Connection object that will automatically 
+participate in connection pooling. This implementation works with a middle-tier 
+connection pooling manager. Distributed transaction implementation -- produces 
+a Connection object that may be used for distributed transactions and almost 
+always participates in connection pooling. This implementation works with a 
+middle-tier transaction manager and almost always with a connection pooling 
+manager. 
+
+A DataSource object has properties that can be modified when necessary. For 
+example, if the data source is moved to a different server, the property for 
+the server can be changed. The benefit is that because the data source's 
+properties can be changed, any code accessing that data source does not need to 
+be changed. 
+
+A driver that is accessed via a DataSource object does not register itself with 
+the DriverManager. Rather, a DataSource object is retrieved though a lookup 
+operation and then used to create a Connection object. With a basic 
+implementation, the connection obtained through a DataSource object is 
+identical to a connection obtained through the DriverManager facility. 
+
+
+*javax.sql.DataSource.getConnection()*
+
+public |java.sql.Connection| getConnection()
+  throws |java.sql.SQLException|
+         
+Attempts to establish a connection with the data source that this DataSource 
+object represents. 
+
+
+    Returns: a connection to the data source 
+*javax.sql.DataSource.getConnection(String,String)*
+
+public |java.sql.Connection| getConnection(
+  java.lang.String username,
+  java.lang.String password)
+  throws |java.sql.SQLException|
+         
+Attempts to establish a connection with the data source that this DataSource 
+object represents. 
+
+    username - the database user on whose behalf the connection is being made 
+    password - the user's password 
+
+    Returns: a connection to the data source 
+*javax.sql.DataSource.getLoginTimeout()*
+
+public int getLoginTimeout()
+  throws |java.sql.SQLException|
+         
+Gets the maximum time in seconds that this data source can wait while 
+attempting to connect to a database. A value of zero means that the timeout is 
+the default system timeout if there is one; otherwise, it means that there is 
+no timeout. When a DataSource object is created, the login timeout is initially 
+zero. 
+
+
+    Returns: the data source login time limit 
+*javax.sql.DataSource.getLogWriter()*
+
+public |java.io.PrintWriter| getLogWriter()
+  throws |java.sql.SQLException|
+         
+Retrieves the log writer for this DataSource object. 
+
+The log writer is a character output stream to which all logging and tracing 
+messages for this data source will be printed. This includes messages printed 
+by the methods of this object, messages printed by methods of other objects 
+manufactured by this object, and so on. Messages printed to a data source 
+specific log writer are not printed to the log writer associated with the 
+java.sql.Drivermanager class. When a DataSource object is created, the log 
+writer is initially null; in other words, the default is for logging to be 
+disabled. 
+
+
+    Returns: the log writer for this data source or null if logging is disabled 
+*javax.sql.DataSource.setLoginTimeout(int)*
+
+public void setLoginTimeout(int seconds)
+  throws |java.sql.SQLException|
+         
+Sets the maximum time in seconds that this data source will wait while 
+attempting to connect to a database. A value of zero specifies that the timeout 
+is the default system timeout if there is one; otherwise, it specifies that 
+there is no timeout. When a DataSource object is created, the login timeout is 
+initially zero. 
+
+    seconds - the data source login time limit 
+
+*javax.sql.DataSource.setLogWriter(PrintWriter)*
+
+public void setLogWriter(java.io.PrintWriter out)
+  throws |java.sql.SQLException|
+         
+Sets the log writer for this DataSource object to the given java.io.PrintWriter 
+object. 
+
+The log writer is a character output stream to which all logging and tracing 
+messages for this data source will be printed. This includes messages printed 
+by the methods of this object, messages printed by methods of other objects 
+manufactured by this object, and so on. Messages printed to a data source- 
+specific log writer are not printed to the log writer associated with the 
+java.sql.Drivermanager class. When a DataSource object is created the log 
+writer is initially null; in other words, the default is for logging to be 
+disabled. 
+
+    out - the new log writer; to disable logging, set to null 
+
+

@@ -1,0 +1,1060 @@
+*javax.naming.directory.DirContext* *DirContext* The directory service interface
+
+public interface interface DirContext
+
+  implements |javax.naming.Context|
+
+|javax.naming.directory.DirContext_Description|
+|javax.naming.directory.DirContext_Fields|
+|javax.naming.directory.DirContext_Constructors|
+|javax.naming.directory.DirContext_Methods|
+
+================================================================================
+
+*javax.naming.directory.DirContext_Fields*
+|int_javax.naming.directory.DirContext.ADD_ATTRIBUTE|
+|int_javax.naming.directory.DirContext.REMOVE_ATTRIBUTE|
+|int_javax.naming.directory.DirContext.REPLACE_ATTRIBUTE|
+
+*javax.naming.directory.DirContext_Methods*
+|javax.naming.directory.DirContext.bind(Name,Object,Attributes)|Binds a name to
+|javax.naming.directory.DirContext.bind(String,Object,Attributes)|Binds a name 
+|javax.naming.directory.DirContext.createSubcontext(Name,Attributes)|Creates an
+|javax.naming.directory.DirContext.createSubcontext(String,Attributes)|Creates 
+|javax.naming.directory.DirContext.getAttributes(Name)|Retrieves all of the att
+|javax.naming.directory.DirContext.getAttributes(Name,String[])|Retrieves selec
+|javax.naming.directory.DirContext.getAttributes(String)|Retrieves all of the a
+|javax.naming.directory.DirContext.getAttributes(String,String[])|Retrieves sel
+|javax.naming.directory.DirContext.getSchema(Name)|Retrieves the schema associa
+|javax.naming.directory.DirContext.getSchema(String)|Retrieves the schema assoc
+|javax.naming.directory.DirContext.getSchemaClassDefinition(Name)|Retrieves a c
+|javax.naming.directory.DirContext.getSchemaClassDefinition(String)|Retrieves a
+|javax.naming.directory.DirContext.modifyAttributes(Name,int,Attributes)|Modifi
+|javax.naming.directory.DirContext.modifyAttributes(Name,ModificationItem[])|Mo
+|javax.naming.directory.DirContext.modifyAttributes(String,int,Attributes)|Modi
+|javax.naming.directory.DirContext.modifyAttributes(String,ModificationItem[])|
+|javax.naming.directory.DirContext.rebind(Name,Object,Attributes)|Binds a name 
+|javax.naming.directory.DirContext.rebind(String,Object,Attributes)|Binds a nam
+|javax.naming.directory.DirContext.search(Name,Attributes)|Searches in a single
+|javax.naming.directory.DirContext.search(Name,Attributes,String[])|Searches in
+|javax.naming.directory.DirContext.search(Name,String,Object[],SearchControls)|
+|javax.naming.directory.DirContext.search(Name,String,SearchControls)|Searches 
+|javax.naming.directory.DirContext.search(String,Attributes)|Searches in a sing
+|javax.naming.directory.DirContext.search(String,Attributes,String[])|Searches 
+|javax.naming.directory.DirContext.search(String,String,Object[],SearchControls)|
+|javax.naming.directory.DirContext.search(String,String,SearchControls)|Searche
+
+*javax.naming.directory.DirContext_Description*
+
+The directory service interface, containing methods for examining and updating 
+attributes associated with objects, and for searching the directory. 
+
+Names Each name passed as an argument to a DirContext method is relative to 
+that context. The empty name is used to name the context itself. The name 
+parameter may never be null. 
+
+Most of the methods have overloaded versions with one taking a Name parameter 
+and one taking a String. These overloaded versions are equivalent in that if 
+the Name and String parameters are just different representations of the same 
+name, then the overloaded versions of the same methods behave the same. In the 
+method descriptions below, only one version is documented. The second version 
+instead has a link to the first: the same documentation applies to both. 
+
+See Context for a discussion on the interpretation of the name argument to the 
+Context methods. These same rules apply to the name argument to the DirContext 
+methods. 
+
+Attribute Models There are two basic models of what attributes should be 
+associated with. First, attributes may be directly associated with a DirContext 
+object. In this model, an attribute operation on the named object is roughly 
+equivalent to a lookup on the name (which returns the DirContext object), 
+followed by the attribute operation invoked on the DirContext object in which 
+the caller supplies an empty name. The attributes can be viewed as being stored 
+along with the object (note that this does not imply that the implementation 
+must do so). 
+
+The second model is that attributes are associated with a name (typically an 
+atomic name) in a DirContext. In this model, an attribute operation on the 
+named object is roughly equivalent to a lookup on the name of the parent 
+DirContext of the named object, followed by the attribute operation invoked on 
+the parent in which the caller supplies the terminal atomic name. The 
+attributes can be viewed as being stored in the parent DirContext (again, this 
+does not imply that the implementation must do so). Objects that are not 
+DirContexts can have attributes, as long as their parents are DirContexts. 
+
+JNDI support both of these models. It is up to the individual service providers 
+to decide where to "store" attributes. JNDI clients are safest when they do not 
+make assumptions about whether an object's attributes are stored as part of the 
+object, or stored within the parent object and associated with the object's 
+name. 
+
+Attribute Type Names In the getAttributes() and search() methods, you can 
+supply the attributes to return by supplying a list of attribute names 
+(strings). The attributes that you get back might not have the same names as 
+the attribute names you have specified. This is because some directories 
+support features that cause them to return other attributes. Such features 
+include attribute subclassing, attribute name synonyms, and attribute language 
+codes. 
+
+In attribute subclassing, attributes are defined in a class hierarchy. In some 
+directories, for example, the "name" attribute might be the superclass of all 
+name-related attributes, including "commonName" and "surName". Asking for the 
+"name" attribute might return both the "commonName" and "surName" attributes. 
+
+With attribute type synonyms, a directory can assign multiple names to the same 
+attribute. For example, "cn" and "commonName" might both refer to the same 
+attribute. Asking for "cn" might return the "commonName" attribute. 
+
+Some directories support the language codes for attributes. Asking such a 
+directory for the "description" attribute, for example, might return all of the 
+following attributes: 
+
+description description;lang-en description;lang-de description;lang-fr 
+
+Operational Attributes 
+
+Some directories have the notion of "operational attributes" which are 
+attributes associated with a directory object for administrative purposes. An 
+example of operational attributes is the access control list for an object. 
+
+In the getAttributes() and search() methods, you can specify that all 
+attributes associated with the requested objects be returned by supply null as 
+the list of attributes to return. The attributes returned do not include 
+operational attributes. In order to retrieve operational attributes, you must 
+name them explicitly. 
+
+Named Context 
+
+There are certain methods in which the name must resolve to a context (for 
+example, when searching a single level context). The documentation of such 
+methods use the term named context to describe their name parameter. For these 
+methods, if the named object is not a DirContext, NotContextException is 
+thrown. Aside from these methods, there is no requirement that the named object 
+be a DirContext. 
+
+Parameters 
+
+An Attributes, SearchControls, or array object passed as a parameter to any 
+method will not be modified by the service provider. The service provider may 
+keep a reference to it for the duration of the operation, including any 
+enumeration of the method's results and the processing of any referrals 
+generated. The caller should not modify the object during this time. An 
+Attributes object returned by any method is owned by the caller. The caller may 
+subsequently modify it; the service provider will not. 
+
+Exceptions 
+
+All the methods in this interface can throw a NamingException or any of its 
+subclasses. See NamingException and their subclasses for details on each 
+exception. 
+
+
+*int_javax.naming.directory.DirContext.ADD_ATTRIBUTE*
+
+The directory service interface, containing methods for examining and updating 
+attributes associated with objects, and for searching the directory. 
+
+Names Each name passed as an argument to a DirContext method is relative to 
+that context. The empty name is used to name the context itself. The name 
+parameter may never be null. 
+
+Most of the methods have overloaded versions with one taking a Name parameter 
+and one taking a String. These overloaded versions are equivalent in that if 
+the Name and String parameters are just different representations of the same 
+name, then the overloaded versions of the same methods behave the same. In the 
+method descriptions below, only one version is documented. The second version 
+instead has a link to the first: the same documentation applies to both. 
+
+See Context for a discussion on the interpretation of the name argument to the 
+Context methods. These same rules apply to the name argument to the DirContext 
+methods. 
+
+Attribute Models There are two basic models of what attributes should be 
+associated with. First, attributes may be directly associated with a DirContext 
+object. In this model, an attribute operation on the named object is roughly 
+equivalent to a lookup on the name (which returns the DirContext object), 
+followed by the attribute operation invoked on the DirContext object in which 
+the caller supplies an empty name. The attributes can be viewed as being stored 
+along with the object (note that this does not imply that the implementation 
+must do so). 
+
+The second model is that attributes are associated with a name (typically an 
+atomic name) in a DirContext. In this model, an attribute operation on the 
+named object is roughly equivalent to a lookup on the name of the parent 
+DirContext of the named object, followed by the attribute operation invoked on 
+the parent in which the caller supplies the terminal atomic name. The 
+attributes can be viewed as being stored in the parent DirContext (again, this 
+does not imply that the implementation must do so). Objects that are not 
+DirContexts can have attributes, as long as their parents are DirContexts. 
+
+JNDI support both of these models. It is up to the individual service providers 
+to decide where to "store" attributes. JNDI clients are safest when they do not 
+make assumptions about whether an object's attributes are stored as part of the 
+object, or stored within the parent object and associated with the object's 
+name. 
+
+Attribute Type Names In the getAttributes() and search() methods, you can 
+supply the attributes to return by supplying a list of attribute names 
+(strings). The attributes that you get back might not have the same names as 
+the attribute names you have specified. This is because some directories 
+support features that cause them to return other attributes. Such features 
+include attribute subclassing, attribute name synonyms, and attribute language 
+codes. 
+
+In attribute subclassing, attributes are defined in a class hierarchy. In some 
+directories, for example, the "name" attribute might be the superclass of all 
+name-related attributes, including "commonName" and "surName". Asking for the 
+"name" attribute might return both the "commonName" and "surName" attributes. 
+
+With attribute type synonyms, a directory can assign multiple names to the same 
+attribute. For example, "cn" and "commonName" might both refer to the same 
+attribute. Asking for "cn" might return the "commonName" attribute. 
+
+Some directories support the language codes for attributes. Asking such a 
+directory for the "description" attribute, for example, might return all of the 
+following attributes: 
+
+description description;lang-en description;lang-de description;lang-fr 
+
+Operational Attributes 
+
+Some directories have the notion of "operational attributes" which are 
+attributes associated with a directory object for administrative purposes. An 
+example of operational attributes is the access control list for an object. 
+
+In the getAttributes() and search() methods, you can specify that all 
+attributes associated with the requested objects be returned by supply null as 
+the list of attributes to return. The attributes returned do not include 
+operational attributes. In order to retrieve operational attributes, you must 
+name them explicitly. 
+
+Named Context 
+
+There are certain methods in which the name must resolve to a context (for 
+example, when searching a single level context). The documentation of such 
+methods use the term named context to describe their name parameter. For these 
+methods, if the named object is not a DirContext, NotContextException is 
+thrown. Aside from these methods, there is no requirement that the named object 
+be a DirContext. 
+
+Parameters 
+
+An Attributes, SearchControls, or array object passed as a parameter to any 
+method will not be modified by the service provider. The service provider may 
+keep a reference to it for the duration of the operation, including any 
+enumeration of the method's results and the processing of any referrals 
+generated. The caller should not modify the object during this time. An 
+Attributes object returned by any method is owned by the caller. The caller may 
+subsequently modify it; the service provider will not. 
+
+Exceptions 
+
+All the methods in this interface can throw a NamingException or any of its 
+subclasses. See NamingException and their subclasses for details on each 
+exception. 
+
+
+*int_javax.naming.directory.DirContext.REMOVE_ATTRIBUTE*
+
+The directory service interface, containing methods for examining and updating 
+attributes associated with objects, and for searching the directory. 
+
+Names Each name passed as an argument to a DirContext method is relative to 
+that context. The empty name is used to name the context itself. The name 
+parameter may never be null. 
+
+Most of the methods have overloaded versions with one taking a Name parameter 
+and one taking a String. These overloaded versions are equivalent in that if 
+the Name and String parameters are just different representations of the same 
+name, then the overloaded versions of the same methods behave the same. In the 
+method descriptions below, only one version is documented. The second version 
+instead has a link to the first: the same documentation applies to both. 
+
+See Context for a discussion on the interpretation of the name argument to the 
+Context methods. These same rules apply to the name argument to the DirContext 
+methods. 
+
+Attribute Models There are two basic models of what attributes should be 
+associated with. First, attributes may be directly associated with a DirContext 
+object. In this model, an attribute operation on the named object is roughly 
+equivalent to a lookup on the name (which returns the DirContext object), 
+followed by the attribute operation invoked on the DirContext object in which 
+the caller supplies an empty name. The attributes can be viewed as being stored 
+along with the object (note that this does not imply that the implementation 
+must do so). 
+
+The second model is that attributes are associated with a name (typically an 
+atomic name) in a DirContext. In this model, an attribute operation on the 
+named object is roughly equivalent to a lookup on the name of the parent 
+DirContext of the named object, followed by the attribute operation invoked on 
+the parent in which the caller supplies the terminal atomic name. The 
+attributes can be viewed as being stored in the parent DirContext (again, this 
+does not imply that the implementation must do so). Objects that are not 
+DirContexts can have attributes, as long as their parents are DirContexts. 
+
+JNDI support both of these models. It is up to the individual service providers 
+to decide where to "store" attributes. JNDI clients are safest when they do not 
+make assumptions about whether an object's attributes are stored as part of the 
+object, or stored within the parent object and associated with the object's 
+name. 
+
+Attribute Type Names In the getAttributes() and search() methods, you can 
+supply the attributes to return by supplying a list of attribute names 
+(strings). The attributes that you get back might not have the same names as 
+the attribute names you have specified. This is because some directories 
+support features that cause them to return other attributes. Such features 
+include attribute subclassing, attribute name synonyms, and attribute language 
+codes. 
+
+In attribute subclassing, attributes are defined in a class hierarchy. In some 
+directories, for example, the "name" attribute might be the superclass of all 
+name-related attributes, including "commonName" and "surName". Asking for the 
+"name" attribute might return both the "commonName" and "surName" attributes. 
+
+With attribute type synonyms, a directory can assign multiple names to the same 
+attribute. For example, "cn" and "commonName" might both refer to the same 
+attribute. Asking for "cn" might return the "commonName" attribute. 
+
+Some directories support the language codes for attributes. Asking such a 
+directory for the "description" attribute, for example, might return all of the 
+following attributes: 
+
+description description;lang-en description;lang-de description;lang-fr 
+
+Operational Attributes 
+
+Some directories have the notion of "operational attributes" which are 
+attributes associated with a directory object for administrative purposes. An 
+example of operational attributes is the access control list for an object. 
+
+In the getAttributes() and search() methods, you can specify that all 
+attributes associated with the requested objects be returned by supply null as 
+the list of attributes to return. The attributes returned do not include 
+operational attributes. In order to retrieve operational attributes, you must 
+name them explicitly. 
+
+Named Context 
+
+There are certain methods in which the name must resolve to a context (for 
+example, when searching a single level context). The documentation of such 
+methods use the term named context to describe their name parameter. For these 
+methods, if the named object is not a DirContext, NotContextException is 
+thrown. Aside from these methods, there is no requirement that the named object 
+be a DirContext. 
+
+Parameters 
+
+An Attributes, SearchControls, or array object passed as a parameter to any 
+method will not be modified by the service provider. The service provider may 
+keep a reference to it for the duration of the operation, including any 
+enumeration of the method's results and the processing of any referrals 
+generated. The caller should not modify the object during this time. An 
+Attributes object returned by any method is owned by the caller. The caller may 
+subsequently modify it; the service provider will not. 
+
+Exceptions 
+
+All the methods in this interface can throw a NamingException or any of its 
+subclasses. See NamingException and their subclasses for details on each 
+exception. 
+
+
+*int_javax.naming.directory.DirContext.REPLACE_ATTRIBUTE*
+
+The directory service interface, containing methods for examining and updating 
+attributes associated with objects, and for searching the directory. 
+
+Names Each name passed as an argument to a DirContext method is relative to 
+that context. The empty name is used to name the context itself. The name 
+parameter may never be null. 
+
+Most of the methods have overloaded versions with one taking a Name parameter 
+and one taking a String. These overloaded versions are equivalent in that if 
+the Name and String parameters are just different representations of the same 
+name, then the overloaded versions of the same methods behave the same. In the 
+method descriptions below, only one version is documented. The second version 
+instead has a link to the first: the same documentation applies to both. 
+
+See Context for a discussion on the interpretation of the name argument to the 
+Context methods. These same rules apply to the name argument to the DirContext 
+methods. 
+
+Attribute Models There are two basic models of what attributes should be 
+associated with. First, attributes may be directly associated with a DirContext 
+object. In this model, an attribute operation on the named object is roughly 
+equivalent to a lookup on the name (which returns the DirContext object), 
+followed by the attribute operation invoked on the DirContext object in which 
+the caller supplies an empty name. The attributes can be viewed as being stored 
+along with the object (note that this does not imply that the implementation 
+must do so). 
+
+The second model is that attributes are associated with a name (typically an 
+atomic name) in a DirContext. In this model, an attribute operation on the 
+named object is roughly equivalent to a lookup on the name of the parent 
+DirContext of the named object, followed by the attribute operation invoked on 
+the parent in which the caller supplies the terminal atomic name. The 
+attributes can be viewed as being stored in the parent DirContext (again, this 
+does not imply that the implementation must do so). Objects that are not 
+DirContexts can have attributes, as long as their parents are DirContexts. 
+
+JNDI support both of these models. It is up to the individual service providers 
+to decide where to "store" attributes. JNDI clients are safest when they do not 
+make assumptions about whether an object's attributes are stored as part of the 
+object, or stored within the parent object and associated with the object's 
+name. 
+
+Attribute Type Names In the getAttributes() and search() methods, you can 
+supply the attributes to return by supplying a list of attribute names 
+(strings). The attributes that you get back might not have the same names as 
+the attribute names you have specified. This is because some directories 
+support features that cause them to return other attributes. Such features 
+include attribute subclassing, attribute name synonyms, and attribute language 
+codes. 
+
+In attribute subclassing, attributes are defined in a class hierarchy. In some 
+directories, for example, the "name" attribute might be the superclass of all 
+name-related attributes, including "commonName" and "surName". Asking for the 
+"name" attribute might return both the "commonName" and "surName" attributes. 
+
+With attribute type synonyms, a directory can assign multiple names to the same 
+attribute. For example, "cn" and "commonName" might both refer to the same 
+attribute. Asking for "cn" might return the "commonName" attribute. 
+
+Some directories support the language codes for attributes. Asking such a 
+directory for the "description" attribute, for example, might return all of the 
+following attributes: 
+
+description description;lang-en description;lang-de description;lang-fr 
+
+Operational Attributes 
+
+Some directories have the notion of "operational attributes" which are 
+attributes associated with a directory object for administrative purposes. An 
+example of operational attributes is the access control list for an object. 
+
+In the getAttributes() and search() methods, you can specify that all 
+attributes associated with the requested objects be returned by supply null as 
+the list of attributes to return. The attributes returned do not include 
+operational attributes. In order to retrieve operational attributes, you must 
+name them explicitly. 
+
+Named Context 
+
+There are certain methods in which the name must resolve to a context (for 
+example, when searching a single level context). The documentation of such 
+methods use the term named context to describe their name parameter. For these 
+methods, if the named object is not a DirContext, NotContextException is 
+thrown. Aside from these methods, there is no requirement that the named object 
+be a DirContext. 
+
+Parameters 
+
+An Attributes, SearchControls, or array object passed as a parameter to any 
+method will not be modified by the service provider. The service provider may 
+keep a reference to it for the duration of the operation, including any 
+enumeration of the method's results and the processing of any referrals 
+generated. The caller should not modify the object during this time. An 
+Attributes object returned by any method is owned by the caller. The caller may 
+subsequently modify it; the service provider will not. 
+
+Exceptions 
+
+All the methods in this interface can throw a NamingException or any of its 
+subclasses. See NamingException and their subclasses for details on each 
+exception. 
+
+
+
+*javax.naming.directory.DirContext.bind(Name,Object,Attributes)*
+
+public void bind(
+  javax.naming.Name name,
+  java.lang.Object obj,
+  javax.naming.directory.Attributes attrs)
+  throws |javax.naming.NamingException|
+         
+Binds a name to an object, along with associated attributes. If attrs is null, 
+the resulting binding will have the attributes associated with obj if obj is a 
+DirContext, and no attributes otherwise. If attrs is non-null, the resulting 
+binding will have attrs as its attributes; any attributes associated with obj 
+are ignored. 
+
+    name - the name to bind; may not be empty 
+    obj - the object to bind; possibly null 
+    attrs - the attributes to associate with the binding 
+
+*javax.naming.directory.DirContext.bind(String,Object,Attributes)*
+
+public void bind(
+  java.lang.String name,
+  java.lang.Object obj,
+  javax.naming.directory.Attributes attrs)
+  throws |javax.naming.NamingException|
+         
+Binds a name to an object, along with associated attributes. See 
+(|javax.naming.directory.DirContext|) for details. 
+
+    name - the name to bind; may not be empty 
+    obj - the object to bind; possibly null 
+    attrs - the attributes to associate with the binding 
+
+*javax.naming.directory.DirContext.createSubcontext(Name,Attributes)*
+
+public |javax.naming.directory.DirContext| createSubcontext(
+  javax.naming.Name name,
+  javax.naming.directory.Attributes attrs)
+  throws |javax.naming.NamingException|
+         
+Creates and binds a new context, along with associated attributes. This method 
+creates a new subcontext with the given name, binds it in the target context 
+(that named by all but terminal atomic component of the name), and associates 
+the supplied attributes with the newly created object. All intermediate and 
+target contexts must already exist. If attrs is null, this method is equivalent 
+to Context.createSubcontext(). 
+
+    name - the name of the context to create; may not be empty 
+    attrs - the attributes to associate with the newly created context 
+
+    Returns: the newly created context 
+*javax.naming.directory.DirContext.createSubcontext(String,Attributes)*
+
+public |javax.naming.directory.DirContext| createSubcontext(
+  java.lang.String name,
+  javax.naming.directory.Attributes attrs)
+  throws |javax.naming.NamingException|
+         
+Creates and binds a new context, along with associated attributes. See 
+(|javax.naming.directory.DirContext|) for details. 
+
+    name - the name of the context to create; may not be empty 
+    attrs - the attributes to associate with the newly created context 
+
+    Returns: the newly created context 
+*javax.naming.directory.DirContext.getAttributes(Name)*
+
+public |javax.naming.directory.Attributes| getAttributes(javax.naming.Name name)
+  throws |javax.naming.NamingException|
+         
+Retrieves all of the attributes associated with a named object. See the class 
+description regarding attribute models, attribute type names, and operational 
+attributes. 
+
+    name - the name of the object from which to retrieve attributes 
+
+    Returns: the set of attributes associated with name. Returns an empty attribute set if 
+             name has no attributes; never null. 
+*javax.naming.directory.DirContext.getAttributes(Name,String[])*
+
+public |javax.naming.directory.Attributes| getAttributes(
+  javax.naming.Name name,
+  java.lang.String[] attrIds)
+  throws |javax.naming.NamingException|
+         
+Retrieves selected attributes associated with a named object. See the class 
+description regarding attribute models, attribute type names, and operational 
+attributes. 
+
+If the object does not have an attribute specified, the directory will ignore 
+the nonexistent attribute and return those requested attributes that the object 
+does have. 
+
+A directory might return more attributes than was requested (see Attribute Type 
+Names in the class description), but is not allowed to return arbitrary, 
+unrelated attributes. 
+
+See also Operational Attributes in the class description. 
+
+    name - the name of the object from which to retrieve attributes 
+    attrIds - the identifiers of the attributes to retrieve. null indicates that all 
+       attributes should be retrieved; an empty array indicates that none 
+       should be retrieved. 
+
+    Returns: the requested attributes; never null 
+*javax.naming.directory.DirContext.getAttributes(String)*
+
+public |javax.naming.directory.Attributes| getAttributes(java.lang.String name)
+  throws |javax.naming.NamingException|
+         
+Retrieves all of the attributes associated with a named object. See 
+(|javax.naming.directory.DirContext|) for details. 
+
+    name - the name of the object from which to retrieve attributes 
+
+    Returns: the set of attributes associated with name 
+*javax.naming.directory.DirContext.getAttributes(String,String[])*
+
+public |javax.naming.directory.Attributes| getAttributes(
+  java.lang.String name,
+  java.lang.String[] attrIds)
+  throws |javax.naming.NamingException|
+         
+Retrieves selected attributes associated with a named object. See 
+(|javax.naming.directory.DirContext|) for details. 
+
+    name - The name of the object from which to retrieve attributes 
+    attrIds - the identifiers of the attributes to retrieve. null indicates that all 
+       attributes should be retrieved; an empty array indicates that none 
+       should be retrieved. 
+
+    Returns: the requested attributes; never null 
+*javax.naming.directory.DirContext.getSchema(Name)*
+
+public |javax.naming.directory.DirContext| getSchema(javax.naming.Name name)
+  throws |javax.naming.NamingException|
+         
+Retrieves the schema associated with the named object. The schema describes 
+rules regarding the structure of the namespace and the attributes stored within 
+it. The schema specifies what types of objects can be added to the directory 
+and where they can be added; what mandatory and optional attributes an object 
+can have. The range of support for schemas is directory-specific. 
+
+This method returns the root of the schema information tree that is applicable 
+to the named object. Several named objects (or even an entire directory) might 
+share the same schema. 
+
+Issues such as structure and contents of the schema tree, permission to modify 
+to the contents of the schema tree, and the effect of such modifications on the 
+directory are dependent on the underlying directory. 
+
+    name - the name of the object whose schema is to be retrieved 
+
+    Returns: the schema associated with the context; never null 
+*javax.naming.directory.DirContext.getSchema(String)*
+
+public |javax.naming.directory.DirContext| getSchema(java.lang.String name)
+  throws |javax.naming.NamingException|
+         
+Retrieves the schema associated with the named object. See 
+(|javax.naming.directory.DirContext|) for details. 
+
+    name - the name of the object whose schema is to be retrieved 
+
+    Returns: the schema associated with the context; never null 
+*javax.naming.directory.DirContext.getSchemaClassDefinition(Name)*
+
+public |javax.naming.directory.DirContext| getSchemaClassDefinition(javax.naming.Name name)
+  throws |javax.naming.NamingException|
+         
+Retrieves a context containing the schema objects of the named object's class 
+definitions. 
+
+One category of information found in directory schemas is class definitions. An 
+"object class" definition specifies the object's type and what attributes 
+(mandatory and optional) the object must/can have. Note that the term "object 
+class" being referred to here is in the directory sense rather than in the Java 
+sense. For example, if the named object is a directory object of "Person" 
+class, getSchemaClassDefinition() would return a DirContext representing the 
+(directory's) object class definition of "Person". 
+
+The information that can be retrieved from an object class definition is 
+directory-dependent. 
+
+Prior to JNDI 1.2, this method returned a single schema object representing the 
+class definition of the named object. Since JNDI 1.2, this method returns a 
+DirContext containing all of the named object's class definitions. 
+
+    name - the name of the object whose object class definition is to be retrieved 
+
+    Returns: the DirContext containing the named object's class definitions; never null 
+*javax.naming.directory.DirContext.getSchemaClassDefinition(String)*
+
+public |javax.naming.directory.DirContext| getSchemaClassDefinition(java.lang.String name)
+  throws |javax.naming.NamingException|
+         
+Retrieves a context containing the schema objects of the named object's class 
+definitions. See (|javax.naming.directory.DirContext|) for details. 
+
+    name - the name of the object whose object class definition is to be retrieved 
+
+    Returns: the DirContext containing the named object's class definitions; never null 
+*javax.naming.directory.DirContext.modifyAttributes(Name,int,Attributes)*
+
+public void modifyAttributes(
+  javax.naming.Name name,
+  int mod_op,
+  javax.naming.directory.Attributes attrs)
+  throws |javax.naming.NamingException|
+         
+Modifies the attributes associated with a named object. The order of the 
+modifications is not specified. Where possible, the modifications are performed 
+atomically. 
+
+    name - the name of the object whose attributes will be updated 
+    mod_op - the modification operation, one of: ADD_ATTRIBUTE, REPLACE_ATTRIBUTE, 
+       REMOVE_ATTRIBUTE. 
+    attrs - the attributes to be used for the modification; may not be null 
+
+*javax.naming.directory.DirContext.modifyAttributes(Name,ModificationItem[])*
+
+public void modifyAttributes(
+  javax.naming.Name name,
+  javax.naming.directory.ModificationItem[] mods)
+  throws |javax.naming.NamingException|
+         
+Modifies the attributes associated with a named object using an ordered list of 
+modifications. The modifications are performed in the order specified. Each 
+modification specifies a modification operation code and an attribute on which 
+to operate. Where possible, the modifications are performed atomically. 
+
+    name - the name of the object whose attributes will be updated 
+    mods - an ordered sequence of modifications to be performed; may not be null 
+
+*javax.naming.directory.DirContext.modifyAttributes(String,int,Attributes)*
+
+public void modifyAttributes(
+  java.lang.String name,
+  int mod_op,
+  javax.naming.directory.Attributes attrs)
+  throws |javax.naming.NamingException|
+         
+Modifies the attributes associated with a named object. See 
+(|javax.naming.directory.DirContext|) for details. 
+
+    name - the name of the object whose attributes will be updated 
+    mod_op - the modification operation, one of: ADD_ATTRIBUTE, REPLACE_ATTRIBUTE, 
+       REMOVE_ATTRIBUTE. 
+    attrs - the attributes to be used for the modification; map not be null 
+
+*javax.naming.directory.DirContext.modifyAttributes(String,ModificationItem[])*
+
+public void modifyAttributes(
+  java.lang.String name,
+  javax.naming.directory.ModificationItem[] mods)
+  throws |javax.naming.NamingException|
+         
+Modifies the attributes associated with a named object using an ordered list of 
+modifications. See (|javax.naming.directory.DirContext|) for details. 
+
+    name - the name of the object whose attributes will be updated 
+    mods - an ordered sequence of modifications to be performed; may not be null 
+
+*javax.naming.directory.DirContext.rebind(Name,Object,Attributes)*
+
+public void rebind(
+  javax.naming.Name name,
+  java.lang.Object obj,
+  javax.naming.directory.Attributes attrs)
+  throws |javax.naming.NamingException|
+         
+Binds a name to an object, along with associated attributes, overwriting any 
+existing binding. If attrs is null and obj is a DirContext, the attributes from 
+obj are used. If attrs is null and obj is not a DirContext, any existing 
+attributes associated with the object already bound in the directory remain 
+unchanged. If attrs is non-null, any existing attributes associated with the 
+object already bound in the directory are removed and attrs is associated with 
+the named object. If obj is a DirContext and attrs is non-null, the attributes 
+of obj are ignored. 
+
+    name - the name to bind; may not be empty 
+    obj - the object to bind; possibly null 
+    attrs - the attributes to associate with the binding 
+
+*javax.naming.directory.DirContext.rebind(String,Object,Attributes)*
+
+public void rebind(
+  java.lang.String name,
+  java.lang.Object obj,
+  javax.naming.directory.Attributes attrs)
+  throws |javax.naming.NamingException|
+         
+Binds a name to an object, along with associated attributes, overwriting any 
+existing binding. See (|javax.naming.directory.DirContext|) for details. 
+
+    name - the name to bind; may not be empty 
+    obj - the object to bind; possibly null 
+    attrs - the attributes to associate with the binding 
+
+*javax.naming.directory.DirContext.search(Name,Attributes)*
+
+public |javax.naming.NamingEnumeration| search(
+  javax.naming.Name name,
+  javax.naming.directory.Attributes matchingAttributes)
+  throws |javax.naming.NamingException|
+         
+Searches in a single context for objects that contain a specified set of 
+attributes. This method returns all the attributes of such objects. It is 
+equivalent to supplying null as the atributesToReturn parameter to the method 
+search(Name, Attributes, String[]). 
+
+See (|javax.naming.directory.DirContext|) for a full description. 
+
+    name - the name of the context to search 
+    matchingAttributes - the attributes to search for 
+
+    Returns: an enumeration of SearchResult objects 
+*javax.naming.directory.DirContext.search(Name,Attributes,String[])*
+
+public |javax.naming.NamingEnumeration| search(
+  javax.naming.Name name,
+  javax.naming.directory.Attributes matchingAttributes,
+  java.lang.String[] attributesToReturn)
+  throws |javax.naming.NamingException|
+         
+Searches in a single context for objects that contain a specified set of 
+attributes, and retrieves selected attributes. The search is performed using 
+the default SearchControls settings. 
+
+For an object to be selected, each attribute in matchingAttributes must match 
+some attribute of the object. If matchingAttributes is empty or null, all 
+objects in the target context are returned. 
+
+An attribute A1 in matchingAttributes is considered to match an attribute A2 of 
+an object if A1 and A2 have the same identifier, and each value of A1 is equal 
+to some value of A2. This implies that the order of values is not significant, 
+and that A2 may contain "extra" values not found in A1 without affecting the 
+comparison. It also implies that if A1 has no values, then testing for a match 
+is equivalent to testing for the presence of an attribute A2 with the same 
+identifier. 
+
+The precise definition of "equality" used in comparing attribute values is 
+defined by the underlying directory service. It might use the Object.equals 
+method, for example, or might use a schema to specify a different equality 
+operation. For matching based on operations other than equality (such as 
+substring comparison) use the version of the search method that takes a filter 
+argument. 
+
+When changes are made to this DirContext, the effect on enumerations returned 
+by prior calls to this method is undefined. 
+
+If the object does not have the attribute specified, the directory will ignore 
+the nonexistent attribute and return the requested attributes that the object 
+does have. 
+
+A directory might return more attributes than was requested (see Attribute Type 
+Names in the class description), but is not allowed to return arbitrary, 
+unrelated attributes. 
+
+See also Operational Attributes in the class description. 
+
+    name - the name of the context to search 
+    matchingAttributes - the attributes to search for. If empty or null, all objects in the target 
+       context are returned. 
+    attributesToReturn - the attributes to return. null indicates that all attributes are to be 
+       returned; an empty array indicates that none are to be returned. 
+
+    Returns: a non-null enumeration of SearchResult objects. Each SearchResult contains the 
+             attributes identified by attributesToReturn and the name of the 
+             corresponding object, named relative to the context named by name. 
+*javax.naming.directory.DirContext.search(Name,String,Object[],SearchControls)*
+
+public |javax.naming.NamingEnumeration| search(
+  javax.naming.Name name,
+  java.lang.String filterExpr,
+  java.lang.Object[] filterArgs,
+  javax.naming.directory.SearchControls cons)
+  throws |javax.naming.NamingException|
+         
+Searches in the named context or object for entries that satisfy the given 
+search filter. Performs the search as specified by the search controls. 
+
+The interpretation of filterExpr is based on RFC 2254. It may additionally 
+contain variables of the form {i} -- where i is an integer -- that refer to 
+objects in the filterArgs array. The interpretation of filterExpr is otherwise 
+identical to that of the filter parameter of the method search(Name, String, 
+SearchControls). 
+
+When a variable {i} appears in a search filter, it indicates that the filter 
+argument filterArgs[i] is to be used in that place. Such variables may be used 
+wherever an attr, value, or matchingrule production appears in the filter 
+grammar of RFC 2254, section 4. When a string-valued filter argument is 
+substituted for a variable, the filter is interpreted as if the string were 
+given in place of the variable, with any characters having special significance 
+within filters (such as '*') having been escaped according to the rules of RFC 
+2254. 
+
+For directories that do not use a string representation for some or all of 
+their attributes, the filter argument corresponding to an attribute value may 
+be of a type other than String. Directories that support unstructured 
+binary-valued attributes, for example, should accept byte arrays as filter 
+arguments. The interpretation (if any) of filter arguments of any other type is 
+determined by the service provider for that directory, which maps the filter 
+operations onto operations with corresponding semantics in the underlying 
+directory. 
+
+This method returns an enumeration of the results. Each element in the 
+enumeration contains the name of the object and other information about the 
+object (see SearchResult). The name is either relative to the target context of 
+the search (which is named by the name parameter), or it is a URL string. If 
+the target context is included in the enumeration (as is possible when cons 
+specifies a search scope of SearchControls.OBJECT_SCOPE or 
+SearchControls.SUBSTREE_SCOPE), its name is the empty string. 
+
+The SearchResult may also contain attributes of the matching object if the cons 
+argument specifies that attributes be returned. 
+
+If the object does not have a requested attribute, that nonexistent attribute 
+will be ignored. Those requested attributes that the object does have will be 
+returned. 
+
+A directory might return more attributes than were requested (see Attribute 
+Type Names in the class description) but is not allowed to return arbitrary, 
+unrelated attributes. 
+
+If a search filter with invalid variable substitutions is provided to this 
+method, the result is undefined. When changes are made to this DirContext, the 
+effect on enumerations returned by prior calls to this method is undefined. 
+
+See also Operational Attributes in the class description. 
+
+    name - the name of the context or object to search 
+    filterExpr - the filter expression to use for the search. The expression may contain 
+       variables of the form "{i}" where i is a nonnegative integer. May not be 
+       null. 
+    filterArgs - the array of arguments to substitute for the variables in filterExpr. The value 
+       of filterArgs[i] will replace each occurrence of "{i}". If null, 
+       equivalent to an empty array. 
+    cons - the search controls that control the search. If null, the default search 
+       controls are used (equivalent to (new SearchControls())). 
+
+    Returns: an enumeration of SearchResults of the objects that satisfy the filter; never 
+             null 
+*javax.naming.directory.DirContext.search(Name,String,SearchControls)*
+
+public |javax.naming.NamingEnumeration| search(
+  javax.naming.Name name,
+  java.lang.String filter,
+  javax.naming.directory.SearchControls cons)
+  throws |javax.naming.NamingException|
+         
+Searches in the named context or object for entries that satisfy the given 
+search filter. Performs the search as specified by the search controls. 
+
+The format and interpretation of filter follows RFC 2254 with the following 
+interpretations for attr and value mentioned in the RFC. 
+
+attr is the attribute's identifier. 
+
+value is the string representation the attribute's value. The translation of 
+this string representation into the attribute's value is directory-specific. 
+
+For the assertion "someCount=127", for example, attr is "someCount" and value 
+is "127". The provider determines, based on the attribute ID ("someCount") (and 
+possibly its schema), that the attribute's value is an integer. It then parses 
+the string "127" appropriately. 
+
+Any non-ASCII characters in the filter string should be represented by the 
+appropriate Java (Unicode) characters, and not encoded as UTF-8 octets. 
+Alternately, the "backslash-hexcode" notation described in RFC 2254 may be 
+used. 
+
+If the directory does not support a string representation of some or all of its 
+attributes, the form of search that accepts filter arguments in the form of 
+Objects can be used instead. The service provider for such a directory would 
+then translate the filter arguments to its service-specific representation for 
+filter evaluation. See search(Name, String, Object[], SearchControls). 
+
+RFC 2254 defines certain operators for the filter, including substring matches, 
+equality, approximate match, greater than, less than. These operators are 
+mapped to operators with corresponding semantics in the underlying directory. 
+For example, for the equals operator, suppose the directory has a matching rule 
+defining "equality" of the attributes in the filter. This rule would be used 
+for checking equality of the attributes specified in the filter with the 
+attributes of objects in the directory. Similarly, if the directory has a 
+matching rule for ordering, this rule would be used for making "greater than" 
+and "less than" comparisons. 
+
+Not all of the operators defined in RFC 2254 are applicable to all attributes. 
+When an operator is not applicable, the exception InvalidSearchFilterException 
+is thrown. 
+
+The result is returned in an enumeration of SearchResults. Each SearchResult 
+contains the name of the object and other information about the object (see 
+SearchResult). The name is either relative to the target context of the search 
+(which is named by the name parameter), or it is a URL string. If the target 
+context is included in the enumeration (as is possible when cons specifies a 
+search scope of SearchControls.OBJECT_SCOPE or SearchControls.SUBSTREE_SCOPE), 
+its name is the empty string. The SearchResult may also contain attributes of 
+the matching object if the cons argument specified that attributes be returned. 
+
+If the object does not have a requested attribute, that nonexistent attribute 
+will be ignored. Those requested attributes that the object does have will be 
+returned. 
+
+A directory might return more attributes than were requested (see Attribute 
+Type Names in the class description) but is not allowed to return arbitrary, 
+unrelated attributes. 
+
+See also Operational Attributes in the class description. 
+
+    name - the name of the context or object to search 
+    filter - the filter expression to use for the search; may not be null 
+    cons - the search controls that control the search. If null, the default search 
+       controls are used (equivalent to (new SearchControls())). 
+
+    Returns: an enumeration of SearchResults of the objects that satisfy the filter; never 
+             null 
+*javax.naming.directory.DirContext.search(String,Attributes)*
+
+public |javax.naming.NamingEnumeration| search(
+  java.lang.String name,
+  javax.naming.directory.Attributes matchingAttributes)
+  throws |javax.naming.NamingException|
+         
+Searches in a single context for objects that contain a specified set of 
+attributes. See (|javax.naming.directory.DirContext|) for details. 
+
+    name - the name of the context to search 
+    matchingAttributes - the attributes to search for 
+
+    Returns: an enumeration of SearchResult objects 
+*javax.naming.directory.DirContext.search(String,Attributes,String[])*
+
+public |javax.naming.NamingEnumeration| search(
+  java.lang.String name,
+  javax.naming.directory.Attributes matchingAttributes,
+  java.lang.String[] attributesToReturn)
+  throws |javax.naming.NamingException|
+         
+Searches in a single context for objects that contain a specified set of 
+attributes, and retrieves selected attributes. See 
+(|javax.naming.directory.DirContext|) for details. 
+
+    name - the name of the context to search 
+    matchingAttributes - the attributes to search for 
+    attributesToReturn - the attributes to return 
+
+    Returns: a non-null enumeration of SearchResult objects 
+*javax.naming.directory.DirContext.search(String,String,Object[],SearchControls)*
+
+public |javax.naming.NamingEnumeration| search(
+  java.lang.String name,
+  java.lang.String filterExpr,
+  java.lang.Object[] filterArgs,
+  javax.naming.directory.SearchControls cons)
+  throws |javax.naming.NamingException|
+         
+Searches in the named context or object for entries that satisfy the given 
+search filter. Performs the search as specified by the search controls. See 
+(|javax.naming.directory.DirContext|) for details. 
+
+    name - the name of the context or object to search 
+    filterExpr - the filter expression to use for the search. The expression may contain 
+       variables of the form "{i}" where i is a nonnegative integer. May not be 
+       null. 
+    filterArgs - the array of arguments to substitute for the variables in filterExpr. The value 
+       of filterArgs[i] will replace each occurrence of "{i}". If null, 
+       equivalent to an empty array. 
+    cons - the search controls that control the search. If null, the default search 
+       controls are used (equivalent to (new SearchControls())). 
+
+    Returns: an enumeration of SearchResults of the objects that satisfy the filter; never 
+             null 
+*javax.naming.directory.DirContext.search(String,String,SearchControls)*
+
+public |javax.naming.NamingEnumeration| search(
+  java.lang.String name,
+  java.lang.String filter,
+  javax.naming.directory.SearchControls cons)
+  throws |javax.naming.NamingException|
+         
+Searches in the named context or object for entries that satisfy the given 
+search filter. Performs the search as specified by the search controls. See 
+(|javax.naming.directory.DirContext|) for details. 
+
+    name - the name of the context or object to search 
+    filter - the filter expression to use for the search; may not be null 
+    cons - the search controls that control the search. If null, the default search 
+       controls are used (equivalent to (new SearchControls())). 
+
+    Returns: an enumeration of SearchResults for the objects that satisfy the filter. 
+

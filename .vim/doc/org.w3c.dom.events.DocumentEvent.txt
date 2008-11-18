@@ -1,0 +1,48 @@
+*org.w3c.dom.events.DocumentEvent* *DocumentEvent* The DocumentEvent interface p
+
+public interface interface DocumentEvent
+
+
+|org.w3c.dom.events.DocumentEvent_Description|
+|org.w3c.dom.events.DocumentEvent_Fields|
+|org.w3c.dom.events.DocumentEvent_Constructors|
+|org.w3c.dom.events.DocumentEvent_Methods|
+
+================================================================================
+
+*org.w3c.dom.events.DocumentEvent_Methods*
+|org.w3c.dom.events.DocumentEvent.createEvent(String)|
+
+*org.w3c.dom.events.DocumentEvent_Description*
+
+The DocumentEvent interface provides a mechanism by which the user can create 
+an Event of a type supported by the implementation. It is expected that the 
+DocumentEvent interface will be implemented on the same object which implements 
+the Document interface in an implementation which supports the Event model. See 
+also the Document Object Model (DOM) Level 2 Events Specification. 
+
+
+*org.w3c.dom.events.DocumentEvent.createEvent(String)*
+
+public |org.w3c.dom.events.Event| createEvent(java.lang.String eventType)
+  throws |org.w3c.dom.DOMException|
+         
+
+
+    eventTypeThe - eventType parameter specifies the type of Event interface to be created. If the 
+       Event interface specified is supported by the implementation this method 
+       will return a new Event of the interface type requested. If the Event is 
+       to be dispatched via the dispatchEvent method the appropriate event init 
+       method must be called after creation in order to initialize the Event's 
+       values. As an example, a user wishing to synthesize some kind of UIEvent 
+       would call createEvent with the parameter "UIEvents". The initUIEvent 
+       method could then be called on the newly created UIEvent to set the 
+       specific type of UIEvent to be dispatched and set its context 
+       information.The createEvent method is used in creating Events when it is 
+       either inconvenient or unnecessary for the user to create an Event 
+       themselves. In cases where the implementation provided Event is 
+       insufficient, users may supply their own Event implementations for use 
+       with the dispatchEvent method. 
+
+    Returns: The newly created Event 
+

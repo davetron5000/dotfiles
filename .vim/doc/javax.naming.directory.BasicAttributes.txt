@@ -1,0 +1,214 @@
+*javax.naming.directory.BasicAttributes* *BasicAttributes* This class provides a
+
+public class BasicAttributes
+  extends    |java.lang.Object|
+  implements |javax.naming.directory.Attributes|
+
+|javax.naming.directory.BasicAttributes_Description|
+|javax.naming.directory.BasicAttributes_Fields|
+|javax.naming.directory.BasicAttributes_Constructors|
+|javax.naming.directory.BasicAttributes_Methods|
+
+================================================================================
+
+*javax.naming.directory.BasicAttributes_Constructors*
+|javax.naming.directory.BasicAttributes()|Constructs a new instance of Attribut
+|javax.naming.directory.BasicAttributes(boolean)|Constructs a new instance of A
+|javax.naming.directory.BasicAttributes(String,Object)|Constructs a new instanc
+|javax.naming.directory.BasicAttributes(String,Object,boolean)|Constructs a new
+
+*javax.naming.directory.BasicAttributes_Methods*
+|javax.naming.directory.BasicAttributes.clone()|
+|javax.naming.directory.BasicAttributes.equals(Object)|Determines whether this 
+|javax.naming.directory.BasicAttributes.get(String)|
+|javax.naming.directory.BasicAttributes.getAll()|
+|javax.naming.directory.BasicAttributes.getIDs()|
+|javax.naming.directory.BasicAttributes.hashCode()|Calculates the hash code of 
+|javax.naming.directory.BasicAttributes.isCaseIgnored()|
+|javax.naming.directory.BasicAttributes.put(Attribute)|
+|javax.naming.directory.BasicAttributes.put(String,Object)|
+|javax.naming.directory.BasicAttributes.remove(String)|
+|javax.naming.directory.BasicAttributes.size()|
+|javax.naming.directory.BasicAttributes.toString()|Generates the string represe
+
+*javax.naming.directory.BasicAttributes_Description*
+
+This class provides a basic implementation of the Attributes interface. 
+
+BasicAttributes is either case-sensitive or case-insensitive (case-ignore). 
+This property is determined at the time the BasicAttributes constructor is 
+called. In a case-insensitive BasicAttributes, the case of its attribute 
+identifiers is ignored when searching for an attribute, or adding attributes. 
+In a case-sensitive BasicAttributes, the case is significant. 
+
+When the BasicAttributes class needs to create an Attribute, it uses 
+BasicAttribute. There is no other dependency on BasicAttribute. 
+
+Note that updates to BasicAttributes (such as adding or removing an attribute) 
+does not affect the corresponding representation in the directory. Updates to 
+the directory can only be effected using operations in the DirContext 
+interface. 
+
+A BasicAttributes instance is not synchronized against concurrent multithreaded 
+access. Multiple threads trying to access and modify a single BasicAttributes 
+instance should lock the object. 
+
+
+*javax.naming.directory.BasicAttributes()*
+
+public BasicAttributes()
+
+Constructs a new instance of Attributes. The character case of attribute 
+identifiers is significant when subsequently retrieving or adding attributes. 
+
+
+*javax.naming.directory.BasicAttributes(boolean)*
+
+public BasicAttributes(boolean ignoreCase)
+
+Constructs a new instance of Attributes. If ignoreCase is true, the character 
+case of attribute identifiers is ignored; otherwise the case is significant. 
+
+    ignoreCase - true means this attribute set will ignore the case of its attribute identifiers 
+       when retrieving or adding attributes; false means case is respected. 
+
+*javax.naming.directory.BasicAttributes(String,Object)*
+
+public BasicAttributes(
+  java.lang.String attrID,
+  java.lang.Object val)
+
+Constructs a new instance of Attributes with one attribute. The attribute 
+specified by attrID and val are added to the newly created attribute. The 
+character case of attribute identifiers is significant when subsequently 
+retrieving or adding attributes. 
+
+    attrID - non-null The id of the attribute to add. 
+    val - The value of the attribute to add. If null, a null value is added to the 
+       attribute. 
+
+*javax.naming.directory.BasicAttributes(String,Object,boolean)*
+
+public BasicAttributes(
+  java.lang.String attrID,
+  java.lang.Object val,
+  boolean ignoreCase)
+
+Constructs a new instance of Attributes with one attribute. The attribute 
+specified by attrID and val are added to the newly created attribute. If 
+ignoreCase is true, the character case of attribute identifiers is ignored; 
+otherwise the case is significant. 
+
+    attrID - non-null The id of the attribute to add. If this attribute set ignores the 
+       character case of its attribute ids, the case of attrID is ignored. 
+    val - The value of the attribute to add. If null, a null value is added to the 
+       attribute. 
+    ignoreCase - true means this attribute set will ignore the case of its attribute identifiers 
+       when retrieving or adding attributes; false means case is respected. 
+
+*javax.naming.directory.BasicAttributes.clone()*
+
+public |java.lang.Object| clone()
+
+
+
+
+*javax.naming.directory.BasicAttributes.equals(Object)*
+
+public boolean equals(java.lang.Object obj)
+
+Determines whether this BasicAttributes is equal to another Attributes Two 
+Attributes are equal if they are both instances of Attributes, treat the case 
+of attribute IDs the same way, and contain the same attributes. Each Attribute 
+in this BasicAttributes is checked for equality using Object.equals(), which 
+may have be overridden by implementations of Attribute). If a subclass 
+overrides equals(), it should override hashCode() as well so that two 
+Attributes instances that are equal have the same hash code. 
+
+    obj - the possibly null object to compare against. 
+
+    Returns: true If obj is equal to this BasicAttributes. 
+*javax.naming.directory.BasicAttributes.get(String)*
+
+public |javax.naming.directory.Attribute| get(java.lang.String attrID)
+
+
+
+
+*javax.naming.directory.BasicAttributes.getAll()*
+
+public |javax.naming.NamingEnumeration| getAll()
+
+
+
+
+*javax.naming.directory.BasicAttributes.getIDs()*
+
+public |javax.naming.NamingEnumeration| getIDs()
+
+
+
+
+*javax.naming.directory.BasicAttributes.hashCode()*
+
+public int hashCode()
+
+Calculates the hash code of this BasicAttributes. 
+
+The hash code is computed by adding the hash code of the attributes of this 
+object. If this BasicAttributes ignores case of its attribute IDs, one is added 
+to the hash code. If a subclass overrides hashCode(), it should override 
+equals() as well so that two Attributes instances that are equal have the same 
+hash code. 
+
+
+    Returns: an int representing the hash code of this BasicAttributes instance. 
+*javax.naming.directory.BasicAttributes.isCaseIgnored()*
+
+public boolean isCaseIgnored()
+
+
+
+
+*javax.naming.directory.BasicAttributes.put(Attribute)*
+
+public |javax.naming.directory.Attribute| put(javax.naming.directory.Attribute attr)
+
+
+
+
+*javax.naming.directory.BasicAttributes.put(String,Object)*
+
+public |javax.naming.directory.Attribute| put(
+  java.lang.String attrID,
+  java.lang.Object val)
+
+
+
+
+*javax.naming.directory.BasicAttributes.remove(String)*
+
+public |javax.naming.directory.Attribute| remove(java.lang.String attrID)
+
+
+
+
+*javax.naming.directory.BasicAttributes.size()*
+
+public int size()
+
+
+
+
+*javax.naming.directory.BasicAttributes.toString()*
+
+public |java.lang.String| toString()
+
+Generates the string representation of this attribute set. The string consists 
+of each attribute identifier and the contents of each attribute. The contents 
+of this string is useful for debugging and is not meant to be interpreted 
+programmatically. 
+
+
+    Returns: A non-null string listing the contents of this attribute set. 
+

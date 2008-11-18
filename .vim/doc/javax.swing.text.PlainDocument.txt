@@ -1,0 +1,181 @@
+*javax.swing.text.PlainDocument* *PlainDocument* A plain document that maintains
+
+public class PlainDocument
+  extends    |javax.swing.text.AbstractDocument|
+
+|javax.swing.text.PlainDocument_Description|
+|javax.swing.text.PlainDocument_Fields|
+|javax.swing.text.PlainDocument_Constructors|
+|javax.swing.text.PlainDocument_Methods|
+
+================================================================================
+
+*javax.swing.text.PlainDocument_Fields*
+|java.lang.String_javax.swing.text.PlainDocument.lineLimitAttribute|
+|java.lang.String_javax.swing.text.PlainDocument.tabSizeAttribute|
+
+*javax.swing.text.PlainDocument_Constructors*
+|javax.swing.text.PlainDocument()|Constructs a plain text document.
+|javax.swing.text.PlainDocument(AbstractDocument.Content)|Constructs a plain te
+
+*javax.swing.text.PlainDocument_Methods*
+|javax.swing.text.PlainDocument.createDefaultRoot()|Creates the root element to
+|javax.swing.text.PlainDocument.getDefaultRootElement()|Gets the default root e
+|javax.swing.text.PlainDocument.getParagraphElement(int)|Get the paragraph elem
+|javax.swing.text.PlainDocument.insertString(int,String,AttributeSet)|Inserts s
+|javax.swing.text.PlainDocument.insertUpdate(AbstractDocument.DefaultDocumentEvent,AttributeSet)|
+|javax.swing.text.PlainDocument.removeUpdate(AbstractDocument.DefaultDocumentEvent)|
+
+*javax.swing.text.PlainDocument_Description*
+
+A plain document that maintains no character attributes. The default element 
+structure for this document is a map of the lines in the text. The Element 
+returned by getDefaultRootElement is a map of the lines, and each child element 
+represents a line. This model does not maintain any character level attributes, 
+but each line can be tagged with an arbitrary set of attributes. Line to 
+offset, and offset to line translations can be quickly performed using the 
+default root element. The structure information of the DocumentEvent's fired by 
+edits will indicate the line structure changes. 
+
+The default content storage management is performed by a gapped buffer 
+implementation (GapContent). It supports editing reasonably large documents 
+with good efficiency when the edits are contiguous or clustered, as is typical. 
+
+Warning: Serialized objects of this class will not be compatible with future 
+Swing releases. The current serialization support is appropriate for short term 
+storage or RMI between applications running the same version of Swing. As of 
+1.4, support for long term storage of all JavaBeansTM has been added to the 
+java.beans package. Please see (|java.beans.XMLEncoder|) . 
+
+
+*java.lang.String_javax.swing.text.PlainDocument.lineLimitAttribute*
+
+A plain document that maintains no character attributes. The default element 
+structure for this document is a map of the lines in the text. The Element 
+returned by getDefaultRootElement is a map of the lines, and each child element 
+represents a line. This model does not maintain any character level attributes, 
+but each line can be tagged with an arbitrary set of attributes. Line to 
+offset, and offset to line translations can be quickly performed using the 
+default root element. The structure information of the DocumentEvent's fired by 
+edits will indicate the line structure changes. 
+
+The default content storage management is performed by a gapped buffer 
+implementation (GapContent). It supports editing reasonably large documents 
+with good efficiency when the edits are contiguous or clustered, as is typical. 
+
+Warning: Serialized objects of this class will not be compatible with future 
+Swing releases. The current serialization support is appropriate for short term 
+storage or RMI between applications running the same version of Swing. As of 
+1.4, support for long term storage of all JavaBeansTM has been added to the 
+java.beans package. Please see (|java.beans.XMLEncoder|) . 
+
+
+*java.lang.String_javax.swing.text.PlainDocument.tabSizeAttribute*
+
+A plain document that maintains no character attributes. The default element 
+structure for this document is a map of the lines in the text. The Element 
+returned by getDefaultRootElement is a map of the lines, and each child element 
+represents a line. This model does not maintain any character level attributes, 
+but each line can be tagged with an arbitrary set of attributes. Line to 
+offset, and offset to line translations can be quickly performed using the 
+default root element. The structure information of the DocumentEvent's fired by 
+edits will indicate the line structure changes. 
+
+The default content storage management is performed by a gapped buffer 
+implementation (GapContent). It supports editing reasonably large documents 
+with good efficiency when the edits are contiguous or clustered, as is typical. 
+
+Warning: Serialized objects of this class will not be compatible with future 
+Swing releases. The current serialization support is appropriate for short term 
+storage or RMI between applications running the same version of Swing. As of 
+1.4, support for long term storage of all JavaBeansTM has been added to the 
+java.beans package. Please see (|java.beans.XMLEncoder|) . 
+
+
+
+*javax.swing.text.PlainDocument()*
+
+public PlainDocument()
+
+Constructs a plain text document. A default model using GapContent is 
+constructed and set. 
+
+
+*javax.swing.text.PlainDocument(AbstractDocument.Content)*
+
+public PlainDocument(javax.swing.text.AbstractDocument.Content c)
+
+Constructs a plain text document. A default root element is created, and the 
+tab size set to 8. 
+
+    c - the container for the content 
+
+*javax.swing.text.PlainDocument.createDefaultRoot()*
+
+protected |javax.swing.text.AbstractDocument.AbstractElement| createDefaultRoot()
+
+Creates the root element to be used to represent the default document 
+structure. 
+
+
+    Returns: the element base 
+*javax.swing.text.PlainDocument.getDefaultRootElement()*
+
+public |javax.swing.text.Element| getDefaultRootElement()
+
+Gets the default root element for the document model. 
+
+
+    Returns: 
+*javax.swing.text.PlainDocument.getParagraphElement(int)*
+
+public |javax.swing.text.Element| getParagraphElement(int pos)
+
+Get the paragraph element containing the given position. Since this document 
+only models lines, it returns the line instead. 
+
+
+*javax.swing.text.PlainDocument.insertString(int,String,AttributeSet)*
+
+public void insertString(
+  int offs,
+  java.lang.String str,
+  javax.swing.text.AttributeSet a)
+  throws |javax.swing.text.BadLocationException|
+         
+Inserts some content into the document. Inserting content causes a write lock 
+to be held while the actual changes are taking place, followed by notification 
+to the observers on the thread that grabbed the write lock. 
+
+This method is thread safe, although most Swing methods are not. Please see 
+Threads and Swing for more information. 
+
+    offs - the starting offset >= 0 
+    str - the string to insert; does nothing with null/empty strings 
+    a - the attributes for the inserted content 
+
+*javax.swing.text.PlainDocument.insertUpdate(AbstractDocument.DefaultDocumentEvent,AttributeSet)*
+
+protected void insertUpdate(
+  javax.swing.text.AbstractDocument.DefaultDocumentEvent chng,
+  javax.swing.text.AttributeSet attr)
+
+Updates document structure as a result of text insertion. This will happen 
+within a write lock. Since this document simply maps out lines, we refresh the 
+line map. 
+
+    chng - the change event describing the dit 
+    attr - the set of attributes for the inserted text 
+
+*javax.swing.text.PlainDocument.removeUpdate(AbstractDocument.DefaultDocumentEvent)*
+
+protected void removeUpdate(javax.swing.text.AbstractDocument.DefaultDocumentEvent chng)
+
+Updates any document structure as a result of text removal. This will happen 
+within a write lock. Since the structure represents a line map, this just 
+checks to see if the removal spans lines. If it does, the two lines outside of 
+the removal area are joined together. 
+
+    chng - the change event describing the edit 
+
+

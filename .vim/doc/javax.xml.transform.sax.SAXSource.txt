@@ -1,0 +1,157 @@
+*javax.xml.transform.sax.SAXSource* *SAXSource* Acts as an holder for SAX-style 
+
+public class SAXSource
+  extends    |java.lang.Object|
+  implements |javax.xml.transform.Source|
+
+|javax.xml.transform.sax.SAXSource_Description|
+|javax.xml.transform.sax.SAXSource_Fields|
+|javax.xml.transform.sax.SAXSource_Constructors|
+|javax.xml.transform.sax.SAXSource_Methods|
+
+================================================================================
+
+*javax.xml.transform.sax.SAXSource_Fields*
+|java.lang.String_javax.xml.transform.sax.SAXSource.FEATURE|
+
+*javax.xml.transform.sax.SAXSource_Constructors*
+|javax.xml.transform.sax.SAXSource()|Zero-argument default constructor.
+|javax.xml.transform.sax.SAXSource(InputSource)|Create a SAXSource, using a SAX
+|javax.xml.transform.sax.SAXSource(XMLReader,InputSource)|Create a SAXSource, u
+
+*javax.xml.transform.sax.SAXSource_Methods*
+|javax.xml.transform.sax.SAXSource.getInputSource()|Get the SAX InputSource to 
+|javax.xml.transform.sax.SAXSource.getSystemId()|Get the base ID (URI or system
+|javax.xml.transform.sax.SAXSource.getXMLReader()|Get the XMLReader to be used 
+|javax.xml.transform.sax.SAXSource.setInputSource(InputSource)|Set the SAX Inpu
+|javax.xml.transform.sax.SAXSource.setSystemId(String)|Set the system identifie
+|javax.xml.transform.sax.SAXSource.setXMLReader(XMLReader)|Set the XMLReader to
+|javax.xml.transform.sax.SAXSource.sourceToInputSource(Source)|Attempt to obtai
+
+*javax.xml.transform.sax.SAXSource_Description*
+
+Acts as an holder for SAX-style Source. 
+
+Note that XSLT requires namespace support. Attempting to transform an input 
+source that is not generated with a namespace-aware parser may result in 
+errors. Parsers can be made namespace aware by calling the 
+(|javax.xml.parsers.SAXParserFactory|) method. 
+
+
+*java.lang.String_javax.xml.transform.sax.SAXSource.FEATURE*
+
+Acts as an holder for SAX-style Source. 
+
+Note that XSLT requires namespace support. Attempting to transform an input 
+source that is not generated with a namespace-aware parser may result in 
+errors. Parsers can be made namespace aware by calling the 
+(|javax.xml.parsers.SAXParserFactory|) method. 
+
+
+
+*javax.xml.transform.sax.SAXSource()*
+
+public SAXSource()
+
+Zero-argument default constructor. If this constructor is used, and no SAX 
+source is set using (|javax.xml.transform.sax.SAXSource|) , then the 
+Transformer will create an empty source (|org.xml.sax.InputSource|) using new 
+InputSource()(|org.xml.sax.InputSource|) . 
+
+
+*javax.xml.transform.sax.SAXSource(InputSource)*
+
+public SAXSource(org.xml.sax.InputSource inputSource)
+
+Create a SAXSource, using a SAX InputSource. The 
+(|javax.xml.transform.Transformer|) or 
+(|javax.xml.transform.sax.SAXTransformerFactory|) creates a reader via 
+(|org.xml.sax.helpers.XMLReaderFactory|) (if setXMLReader is not used), sets 
+itself as the reader's (|org.xml.sax.ContentHandler|) , and calls 
+reader.parse(inputSource). 
+
+    inputSource - An input source reference that must be non-null and that will be passed to the 
+       parse method of the reader. 
+
+*javax.xml.transform.sax.SAXSource(XMLReader,InputSource)*
+
+public SAXSource(
+  org.xml.sax.XMLReader reader,
+  org.xml.sax.InputSource inputSource)
+
+Create a SAXSource, using an (|org.xml.sax.XMLReader|) and a SAX InputSource. 
+The (|javax.xml.transform.Transformer|) or 
+(|javax.xml.transform.sax.SAXTransformerFactory|) will set itself to be the 
+reader's (|org.xml.sax.ContentHandler|) , and then will call 
+reader.parse(inputSource). 
+
+    reader - An XMLReader to be used for the parse. 
+    inputSource - A SAX input source reference that must be non-null and that will be passed to 
+       the reader parse method. 
+
+*javax.xml.transform.sax.SAXSource.getInputSource()*
+
+public |org.xml.sax.InputSource| getInputSource()
+
+Get the SAX InputSource to be used for the Source. 
+
+
+    Returns: A valid InputSource reference, or null. 
+*javax.xml.transform.sax.SAXSource.getSystemId()*
+
+public |java.lang.String| getSystemId()
+
+Get the base ID (URI or system ID) from where URIs will be resolved. 
+
+
+    Returns: Base URL for the Source, or null. 
+*javax.xml.transform.sax.SAXSource.getXMLReader()*
+
+public |org.xml.sax.XMLReader| getXMLReader()
+
+Get the XMLReader to be used for the Source. 
+
+
+    Returns: A valid XMLReader or XMLFilter reference, or null. 
+*javax.xml.transform.sax.SAXSource.setInputSource(InputSource)*
+
+public void setInputSource(org.xml.sax.InputSource inputSource)
+
+Set the SAX InputSource to be used for the Source. 
+
+    inputSource - A valid InputSource reference. 
+
+*javax.xml.transform.sax.SAXSource.setSystemId(String)*
+
+public void setSystemId(java.lang.String systemId)
+
+Set the system identifier for this Source. If an input source has already been 
+set, it will set the system ID or that input source, otherwise it will create a 
+new input source. 
+
+The system identifier is optional if there is a byte stream or a character 
+stream, but it is still useful to provide one, since the application can use it 
+to resolve relative URIs and can include it in error messages and warnings (the 
+parser will attempt to open a connection to the URI only if no byte stream or 
+character stream is specified). 
+
+    systemId - The system identifier as a URI string. 
+
+*javax.xml.transform.sax.SAXSource.setXMLReader(XMLReader)*
+
+public void setXMLReader(org.xml.sax.XMLReader reader)
+
+Set the XMLReader to be used for the Source. 
+
+    reader - A valid XMLReader or XMLFilter reference. 
+
+*javax.xml.transform.sax.SAXSource.sourceToInputSource(Source)*
+
+public static |org.xml.sax.InputSource| sourceToInputSource(javax.xml.transform.Source source)
+
+Attempt to obtain a SAX InputSource object from a Source object. 
+
+    source - Must be a non-null Source reference. 
+
+    Returns: An InputSource, or null if Source can not be converted. 
+

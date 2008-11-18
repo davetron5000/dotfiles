@@ -1,0 +1,111 @@
+*org.w3c.dom.Text* *Text* The Text interface inherits from CharacterData 
+ and r
+
+public interface interface Text
+
+  implements |org.w3c.dom.CharacterData|
+
+|org.w3c.dom.Text_Description|
+|org.w3c.dom.Text_Fields|
+|org.w3c.dom.Text_Constructors|
+|org.w3c.dom.Text_Methods|
+
+================================================================================
+
+*org.w3c.dom.Text_Methods*
+|org.w3c.dom.Text.getWholeText()|Returns all text of Text nodes logically-adjac
+|org.w3c.dom.Text.isElementContentWhitespace()|Returns whether this text node c
+|org.w3c.dom.Text.replaceWholeText(String)|Replaces the text of the current nod
+|org.w3c.dom.Text.splitText(int)|Breaks this node into two nodes at the specifi
+
+*org.w3c.dom.Text_Description*
+
+The Text interface inherits from CharacterData and represents the textual 
+content (termed character data in XML) of an Element or Attr. If there is no 
+markup inside an element's content, the text is contained in a single object 
+implementing the Text interface that is the only child of the element. If there 
+is markup, it is parsed into the information items (elements, comments, etc.) 
+and Text nodes that form the list of children of the element. When a document 
+is first made available via the DOM, there is only one Text node for each block 
+of text. Users may create adjacent Text nodes that represent the contents of a 
+given element without any intervening markup, but should be aware that there is 
+no way to represent the separations between these nodes in XML or HTML, so they 
+will not (in general) persist between DOM editing sessions. The 
+Node.normalize() method merges any such adjacent Text objects into a single 
+node for each block of text. No lexical check is done on the content of a Text 
+node and, depending on its position in the document, some characters must be 
+escaped during serialization using character references; e.g. the characters "< 
+and " if the textual content is part of an element or of an attribute, the 
+character sequence "]]>" when part of an element, the quotation mark character 
+" or the apostrophe character ' when part of an attribute. See also the 
+Document Object Model (DOM) Level 3 Core Specification. 
+
+
+*org.w3c.dom.Text.getWholeText()*
+
+public |java.lang.String| getWholeText()
+
+Returns all text of Text nodes logically-adjacent text nodes to this node, 
+concatenated in document order. For instance, in the example below wholeText on 
+the Text node that contains "bar" returns "barfoo", while on the Text node that 
+contains "foo" it returns "barfoo". 
+
+
+*org.w3c.dom.Text.isElementContentWhitespace()*
+
+public boolean isElementContentWhitespace()
+
+Returns whether this text node contains element content whitespace, often 
+abusively called "ignorable whitespace". The text node is determined to contain 
+whitespace in element content during the load of the document or if validation 
+occurs while using Document.normalizeDocument(). 
+
+
+*org.w3c.dom.Text.replaceWholeText(String)*
+
+public |org.w3c.dom.Text| replaceWholeText(java.lang.String content)
+  throws |org.w3c.dom.DOMException|
+         
+Replaces the text of the current node and all logically-adjacent text nodes 
+with the specified text. All logically-adjacent text nodes are removed 
+including the current node unless it was the recipient of the replacement text. 
+This method returns the node which received the replacement text. The returned 
+node is: 
+
+null, when the replacement text is the empty string; 
+
+the current node, except when the current node is read-only; 
+
+a new Text node of the same type ( Text or CDATASection) as the current node 
+inserted at the location of the replacement. 
+
+For instance, in the above example calling replaceWholeText on the Text node 
+that contains "bar" with "yo" in argument results in the following: Where the 
+nodes to be removed are read-only descendants of an EntityReference, the 
+EntityReference must be removed instead of the read-only nodes. If any 
+EntityReference to be removed has descendants that are not EntityReference, 
+Text, or CDATASection nodes, the replaceWholeText method must fail before 
+performing any modification of the document, raising a DOMException with the 
+code NO_MODIFICATION_ALLOWED_ERR. For instance, in the example below calling 
+replaceWholeText on the Text node that contains "bar" fails, because the 
+EntityReference node "ent" contains an Element node which cannot be removed. 
+
+    content - The content of the replacing Text node. 
+
+    Returns: The Text node created with the specified content. 
+*org.w3c.dom.Text.splitText(int)*
+
+public |org.w3c.dom.Text| splitText(int offset)
+  throws |org.w3c.dom.DOMException|
+         
+Breaks this node into two nodes at the specified offset, keeping both in the 
+tree as siblings. After being split, this node will contain all the content up 
+to the offset point. A new node of the same type, which contains all the 
+content at and after the offset point, is returned. If the original node had a 
+parent node, the new node is inserted as the next sibling of the original node. 
+When the offset is equal to the length of this node, the new node has no data. 
+
+    offset - The 16-bit unit offset at which to split, starting from 0. 
+
+    Returns: The new node, of the same type as this node. 
+

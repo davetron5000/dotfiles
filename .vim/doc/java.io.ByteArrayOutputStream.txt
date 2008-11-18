@@ -1,0 +1,184 @@
+*java.io.ByteArrayOutputStream* *ByteArrayOutputStream* This class implements an
+
+public class ByteArrayOutputStream
+  extends    |java.io.OutputStream|
+
+|java.io.ByteArrayOutputStream_Description|
+|java.io.ByteArrayOutputStream_Fields|
+|java.io.ByteArrayOutputStream_Constructors|
+|java.io.ByteArrayOutputStream_Methods|
+
+================================================================================
+
+*java.io.ByteArrayOutputStream_Fields*
+|byte[]_java.io.ByteArrayOutputStream.buf|
+|int_java.io.ByteArrayOutputStream.count|
+
+*java.io.ByteArrayOutputStream_Constructors*
+|java.io.ByteArrayOutputStream()|Creates a new byte array output stream.
+|java.io.ByteArrayOutputStream(int)|Creates a new byte array output stream, wit
+
+*java.io.ByteArrayOutputStream_Methods*
+|java.io.ByteArrayOutputStream.close()|Closing a ByteArrayOutputStream has no e
+|java.io.ByteArrayOutputStream.reset()|Resets the count field of this byte arra
+|java.io.ByteArrayOutputStream.size()|Returns the current size of the buffer.
+|java.io.ByteArrayOutputStream.toByteArray()|Creates a newly allocated byte arr
+|java.io.ByteArrayOutputStream.toString()|Converts the buffer's contents into a
+|java.io.ByteArrayOutputStream.toString(int)|Creates a newly allocated string.
+|java.io.ByteArrayOutputStream.toString(String)|Converts the buffer's contents 
+|java.io.ByteArrayOutputStream.write(byte[],int,int)|Writes len bytes from the 
+|java.io.ByteArrayOutputStream.write(int)|Writes the specified byte to this byt
+|java.io.ByteArrayOutputStream.writeTo(OutputStream)|Writes the complete conten
+
+*java.io.ByteArrayOutputStream_Description*
+
+This class implements an output stream in which the data is written into a byte 
+array. The buffer automatically grows as data is written to it. The data can be 
+retrieved using toByteArray() and toString(). 
+
+Closing a ByteArrayOutputStream has no effect. The methods in this class can be 
+called after the stream has been closed without generating an IOException. 
+
+
+*byte[]_java.io.ByteArrayOutputStream.buf*
+
+This class implements an output stream in which the data is written into a byte 
+array. The buffer automatically grows as data is written to it. The data can be 
+retrieved using toByteArray() and toString(). 
+
+Closing a ByteArrayOutputStream has no effect. The methods in this class can be 
+called after the stream has been closed without generating an IOException. 
+
+
+*int_java.io.ByteArrayOutputStream.count*
+
+This class implements an output stream in which the data is written into a byte 
+array. The buffer automatically grows as data is written to it. The data can be 
+retrieved using toByteArray() and toString(). 
+
+Closing a ByteArrayOutputStream has no effect. The methods in this class can be 
+called after the stream has been closed without generating an IOException. 
+
+
+
+*java.io.ByteArrayOutputStream()*
+
+public ByteArrayOutputStream()
+
+Creates a new byte array output stream. The buffer capacity is initially 32 
+bytes, though its size increases if necessary. 
+
+
+*java.io.ByteArrayOutputStream(int)*
+
+public ByteArrayOutputStream(int size)
+
+Creates a new byte array output stream, with a buffer capacity of the specified 
+size, in bytes. 
+
+    size - the initial size. 
+
+*java.io.ByteArrayOutputStream.close()*
+
+public void close()
+  throws |java.io.IOException|
+         
+Closing a ByteArrayOutputStream has no effect. The methods in this class can be 
+called after the stream has been closed without generating an IOException. 
+
+
+*java.io.ByteArrayOutputStream.reset()*
+
+public synchronized void reset()
+
+Resets the count field of this byte array output stream to zero, so that all 
+currently accumulated output in the output stream is discarded. The output 
+stream can be used again, reusing the already allocated buffer space. 
+
+
+*java.io.ByteArrayOutputStream.size()*
+
+public int size()
+
+Returns the current size of the buffer. 
+
+
+    Returns: the value of the count field, which is the number of valid bytes in this output 
+             stream. 
+*java.io.ByteArrayOutputStream.toByteArray()*
+
+public synchronized byte toByteArray()
+
+Creates a newly allocated byte array. Its size is the current size of this 
+output stream and the valid contents of the buffer have been copied into it. 
+
+
+    Returns: the current contents of this output stream, as a byte array. 
+*java.io.ByteArrayOutputStream.toString()*
+
+public |java.lang.String| toString()
+
+Converts the buffer's contents into a string, translating bytes into characters 
+according to the platform's default character encoding. 
+
+
+    Returns: String translated from the buffer's contents. 
+*java.io.ByteArrayOutputStream.toString(int)*
+
+public |java.lang.String| toString(int hibyte)
+
+Creates a newly allocated string. Its size is the current size of the output 
+stream and the valid contents of the buffer have been copied into it. Each 
+character c in the resulting string is constructed from the corresponding 
+element b in the byte array such that: 
+
+c == (char)(((hibyte and 0xff) << 8) | (b and 0xff)) 
+
+    hibyte - the high byte of each resulting Unicode character. 
+
+    Returns: the current contents of the output stream, as a string. 
+*java.io.ByteArrayOutputStream.toString(String)*
+
+public |java.lang.String| toString(java.lang.String enc)
+  throws |java.io.UnsupportedEncodingException|
+         
+Converts the buffer's contents into a string, translating bytes into characters 
+according to the specified character encoding. 
+
+    enc - a character-encoding name. 
+
+    Returns: String translated from the buffer's contents. 
+*java.io.ByteArrayOutputStream.write(byte[],int,int)*
+
+public synchronized void write(
+  byte[] b,
+  int off,
+  int len)
+
+Writes len bytes from the specified byte array starting at offset off to this 
+byte array output stream. 
+
+    b - the data. 
+    off - the start offset in the data. 
+    len - the number of bytes to write. 
+
+*java.io.ByteArrayOutputStream.write(int)*
+
+public synchronized void write(int b)
+
+Writes the specified byte to this byte array output stream. 
+
+    b - the byte to be written. 
+
+*java.io.ByteArrayOutputStream.writeTo(OutputStream)*
+
+public synchronized void writeTo(java.io.OutputStream out)
+  throws |java.io.IOException|
+         
+Writes the complete contents of this byte array output stream to the specified 
+output stream argument, as if by calling the output stream's write method using 
+out.write(buf, 0, count). 
+
+    out - the output stream to which to write the data. 
+
+

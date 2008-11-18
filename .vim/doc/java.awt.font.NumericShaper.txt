@@ -1,0 +1,865 @@
+*java.awt.font.NumericShaper* *NumericShaper* The NumericShaper class is used to
+
+public final class NumericShaper
+  extends    |java.lang.Object|
+  implements |java.io.Serializable|
+
+|java.awt.font.NumericShaper_Description|
+|java.awt.font.NumericShaper_Fields|
+|java.awt.font.NumericShaper_Constructors|
+|java.awt.font.NumericShaper_Methods|
+
+================================================================================
+
+*java.awt.font.NumericShaper_Fields*
+|int_java.awt.font.NumericShaper.ALL_RANGES|
+|int_java.awt.font.NumericShaper.ARABIC|
+|int_java.awt.font.NumericShaper.BENGALI|
+|int_java.awt.font.NumericShaper.DEVANAGARI|
+|int_java.awt.font.NumericShaper.EASTERN_ARABIC|
+|int_java.awt.font.NumericShaper.ETHIOPIC|
+|int_java.awt.font.NumericShaper.EUROPEAN|
+|int_java.awt.font.NumericShaper.GUJARATI|
+|int_java.awt.font.NumericShaper.GURMUKHI|
+|int_java.awt.font.NumericShaper.KANNADA|
+|int_java.awt.font.NumericShaper.KHMER|
+|int_java.awt.font.NumericShaper.LAO|
+|int_java.awt.font.NumericShaper.MALAYALAM|
+|int_java.awt.font.NumericShaper.MONGOLIAN|
+|int_java.awt.font.NumericShaper.MYANMAR|
+|int_java.awt.font.NumericShaper.ORIYA|
+|int_java.awt.font.NumericShaper.TAMIL|
+|int_java.awt.font.NumericShaper.TELUGU|
+|int_java.awt.font.NumericShaper.THAI|
+|int_java.awt.font.NumericShaper.TIBETAN|
+
+*java.awt.font.NumericShaper_Methods*
+|java.awt.font.NumericShaper.equals(Object)|Returns true if the specified objec
+|java.awt.font.NumericShaper.getContextualShaper(int)|Returns a contextual shap
+|java.awt.font.NumericShaper.getContextualShaper(int,int)|Returns a contextual 
+|java.awt.font.NumericShaper.getRanges()|Returns an int that ORs together the v
+|java.awt.font.NumericShaper.getShaper(int)|Returns a shaper for the provided u
+|java.awt.font.NumericShaper.hashCode()|Returns a hash code for this shaper.
+|java.awt.font.NumericShaper.isContextual()|Returns a boolean indicating whethe
+|java.awt.font.NumericShaper.shape(char[],int,int)|Converts the digits in the t
+|java.awt.font.NumericShaper.shape(char[],int,int,int)|Converts the digits in t
+|java.awt.font.NumericShaper.toString()|Returns a String that describes this sh
+
+*java.awt.font.NumericShaper_Description*
+
+The NumericShaper class is used to convert Latin-1 (European) digits to other 
+Unicode decimal digits. Users of this class will primarily be people who wish 
+to present data using national digit shapes, but find it more convenient to 
+represent the data internally using Latin-1 (European) digits. This does not 
+interpret the deprecated numeric shape selector character (U+206E). 
+
+Instances of NumericShaper are typically applied as attributes to text with the 
+NUMERIC_SHAPING(|java.awt.font.TextAttribute|) attribute of the TextAttribute 
+class. For example, this code snippet causes a TextLayout to shape European 
+digits to Arabic in an Arabic context: 
+
+Map map = new HashMap(); map.put(TextAttribute.NUMERIC_SHAPING, 
+NumericShaper.getContextualShaper(NumericShaper.ARABIC)); FontRenderContext frc 
+= ...; TextLayout layout = new TextLayout(text, map, frc); layout.draw(g2d, x, 
+y); 
+
+It is also possible to perform numeric shaping explicitly using instances of 
+NumericShaper, as this code snippet demonstrates: 
+
+char[] text = ...; // shape all EUROPEAN digits (except zero) to ARABIC digits 
+NumericShaper shaper = NumericShaper.getShaper(NumericShaper.ARABIC); 
+shaper.shape(text, start, count); 
+
+// shape European digits to ARABIC digits if preceeding text is Arabic, or // 
+shape European digits to TAMIL digits if preceeding text is Tamil, or // leave 
+European digits alone if there is no preceeding text, or // preceeding text is 
+neither Arabic nor Tamil NumericShaper shaper = 
+NumericShaper.getContextualShaper(NumericShaper.ARABIC | NumericShaper.TAMIL, 
+NumericShaper.EUROPEAN); shaper.shape(text. start, count); 
+
+
+*int_java.awt.font.NumericShaper.ALL_RANGES*
+
+The NumericShaper class is used to convert Latin-1 (European) digits to other 
+Unicode decimal digits. Users of this class will primarily be people who wish 
+to present data using national digit shapes, but find it more convenient to 
+represent the data internally using Latin-1 (European) digits. This does not 
+interpret the deprecated numeric shape selector character (U+206E). 
+
+Instances of NumericShaper are typically applied as attributes to text with the 
+NUMERIC_SHAPING(|java.awt.font.TextAttribute|) attribute of the TextAttribute 
+class. For example, this code snippet causes a TextLayout to shape European 
+digits to Arabic in an Arabic context: 
+
+Map map = new HashMap(); map.put(TextAttribute.NUMERIC_SHAPING, 
+NumericShaper.getContextualShaper(NumericShaper.ARABIC)); FontRenderContext frc 
+= ...; TextLayout layout = new TextLayout(text, map, frc); layout.draw(g2d, x, 
+y); 
+
+It is also possible to perform numeric shaping explicitly using instances of 
+NumericShaper, as this code snippet demonstrates: 
+
+char[] text = ...; // shape all EUROPEAN digits (except zero) to ARABIC digits 
+NumericShaper shaper = NumericShaper.getShaper(NumericShaper.ARABIC); 
+shaper.shape(text, start, count); 
+
+// shape European digits to ARABIC digits if preceeding text is Arabic, or // 
+shape European digits to TAMIL digits if preceeding text is Tamil, or // leave 
+European digits alone if there is no preceeding text, or // preceeding text is 
+neither Arabic nor Tamil NumericShaper shaper = 
+NumericShaper.getContextualShaper(NumericShaper.ARABIC | NumericShaper.TAMIL, 
+NumericShaper.EUROPEAN); shaper.shape(text. start, count); 
+
+
+*int_java.awt.font.NumericShaper.ARABIC*
+
+The NumericShaper class is used to convert Latin-1 (European) digits to other 
+Unicode decimal digits. Users of this class will primarily be people who wish 
+to present data using national digit shapes, but find it more convenient to 
+represent the data internally using Latin-1 (European) digits. This does not 
+interpret the deprecated numeric shape selector character (U+206E). 
+
+Instances of NumericShaper are typically applied as attributes to text with the 
+NUMERIC_SHAPING(|java.awt.font.TextAttribute|) attribute of the TextAttribute 
+class. For example, this code snippet causes a TextLayout to shape European 
+digits to Arabic in an Arabic context: 
+
+Map map = new HashMap(); map.put(TextAttribute.NUMERIC_SHAPING, 
+NumericShaper.getContextualShaper(NumericShaper.ARABIC)); FontRenderContext frc 
+= ...; TextLayout layout = new TextLayout(text, map, frc); layout.draw(g2d, x, 
+y); 
+
+It is also possible to perform numeric shaping explicitly using instances of 
+NumericShaper, as this code snippet demonstrates: 
+
+char[] text = ...; // shape all EUROPEAN digits (except zero) to ARABIC digits 
+NumericShaper shaper = NumericShaper.getShaper(NumericShaper.ARABIC); 
+shaper.shape(text, start, count); 
+
+// shape European digits to ARABIC digits if preceeding text is Arabic, or // 
+shape European digits to TAMIL digits if preceeding text is Tamil, or // leave 
+European digits alone if there is no preceeding text, or // preceeding text is 
+neither Arabic nor Tamil NumericShaper shaper = 
+NumericShaper.getContextualShaper(NumericShaper.ARABIC | NumericShaper.TAMIL, 
+NumericShaper.EUROPEAN); shaper.shape(text. start, count); 
+
+
+*int_java.awt.font.NumericShaper.BENGALI*
+
+The NumericShaper class is used to convert Latin-1 (European) digits to other 
+Unicode decimal digits. Users of this class will primarily be people who wish 
+to present data using national digit shapes, but find it more convenient to 
+represent the data internally using Latin-1 (European) digits. This does not 
+interpret the deprecated numeric shape selector character (U+206E). 
+
+Instances of NumericShaper are typically applied as attributes to text with the 
+NUMERIC_SHAPING(|java.awt.font.TextAttribute|) attribute of the TextAttribute 
+class. For example, this code snippet causes a TextLayout to shape European 
+digits to Arabic in an Arabic context: 
+
+Map map = new HashMap(); map.put(TextAttribute.NUMERIC_SHAPING, 
+NumericShaper.getContextualShaper(NumericShaper.ARABIC)); FontRenderContext frc 
+= ...; TextLayout layout = new TextLayout(text, map, frc); layout.draw(g2d, x, 
+y); 
+
+It is also possible to perform numeric shaping explicitly using instances of 
+NumericShaper, as this code snippet demonstrates: 
+
+char[] text = ...; // shape all EUROPEAN digits (except zero) to ARABIC digits 
+NumericShaper shaper = NumericShaper.getShaper(NumericShaper.ARABIC); 
+shaper.shape(text, start, count); 
+
+// shape European digits to ARABIC digits if preceeding text is Arabic, or // 
+shape European digits to TAMIL digits if preceeding text is Tamil, or // leave 
+European digits alone if there is no preceeding text, or // preceeding text is 
+neither Arabic nor Tamil NumericShaper shaper = 
+NumericShaper.getContextualShaper(NumericShaper.ARABIC | NumericShaper.TAMIL, 
+NumericShaper.EUROPEAN); shaper.shape(text. start, count); 
+
+
+*int_java.awt.font.NumericShaper.DEVANAGARI*
+
+The NumericShaper class is used to convert Latin-1 (European) digits to other 
+Unicode decimal digits. Users of this class will primarily be people who wish 
+to present data using national digit shapes, but find it more convenient to 
+represent the data internally using Latin-1 (European) digits. This does not 
+interpret the deprecated numeric shape selector character (U+206E). 
+
+Instances of NumericShaper are typically applied as attributes to text with the 
+NUMERIC_SHAPING(|java.awt.font.TextAttribute|) attribute of the TextAttribute 
+class. For example, this code snippet causes a TextLayout to shape European 
+digits to Arabic in an Arabic context: 
+
+Map map = new HashMap(); map.put(TextAttribute.NUMERIC_SHAPING, 
+NumericShaper.getContextualShaper(NumericShaper.ARABIC)); FontRenderContext frc 
+= ...; TextLayout layout = new TextLayout(text, map, frc); layout.draw(g2d, x, 
+y); 
+
+It is also possible to perform numeric shaping explicitly using instances of 
+NumericShaper, as this code snippet demonstrates: 
+
+char[] text = ...; // shape all EUROPEAN digits (except zero) to ARABIC digits 
+NumericShaper shaper = NumericShaper.getShaper(NumericShaper.ARABIC); 
+shaper.shape(text, start, count); 
+
+// shape European digits to ARABIC digits if preceeding text is Arabic, or // 
+shape European digits to TAMIL digits if preceeding text is Tamil, or // leave 
+European digits alone if there is no preceeding text, or // preceeding text is 
+neither Arabic nor Tamil NumericShaper shaper = 
+NumericShaper.getContextualShaper(NumericShaper.ARABIC | NumericShaper.TAMIL, 
+NumericShaper.EUROPEAN); shaper.shape(text. start, count); 
+
+
+*int_java.awt.font.NumericShaper.EASTERN_ARABIC*
+
+The NumericShaper class is used to convert Latin-1 (European) digits to other 
+Unicode decimal digits. Users of this class will primarily be people who wish 
+to present data using national digit shapes, but find it more convenient to 
+represent the data internally using Latin-1 (European) digits. This does not 
+interpret the deprecated numeric shape selector character (U+206E). 
+
+Instances of NumericShaper are typically applied as attributes to text with the 
+NUMERIC_SHAPING(|java.awt.font.TextAttribute|) attribute of the TextAttribute 
+class. For example, this code snippet causes a TextLayout to shape European 
+digits to Arabic in an Arabic context: 
+
+Map map = new HashMap(); map.put(TextAttribute.NUMERIC_SHAPING, 
+NumericShaper.getContextualShaper(NumericShaper.ARABIC)); FontRenderContext frc 
+= ...; TextLayout layout = new TextLayout(text, map, frc); layout.draw(g2d, x, 
+y); 
+
+It is also possible to perform numeric shaping explicitly using instances of 
+NumericShaper, as this code snippet demonstrates: 
+
+char[] text = ...; // shape all EUROPEAN digits (except zero) to ARABIC digits 
+NumericShaper shaper = NumericShaper.getShaper(NumericShaper.ARABIC); 
+shaper.shape(text, start, count); 
+
+// shape European digits to ARABIC digits if preceeding text is Arabic, or // 
+shape European digits to TAMIL digits if preceeding text is Tamil, or // leave 
+European digits alone if there is no preceeding text, or // preceeding text is 
+neither Arabic nor Tamil NumericShaper shaper = 
+NumericShaper.getContextualShaper(NumericShaper.ARABIC | NumericShaper.TAMIL, 
+NumericShaper.EUROPEAN); shaper.shape(text. start, count); 
+
+
+*int_java.awt.font.NumericShaper.ETHIOPIC*
+
+The NumericShaper class is used to convert Latin-1 (European) digits to other 
+Unicode decimal digits. Users of this class will primarily be people who wish 
+to present data using national digit shapes, but find it more convenient to 
+represent the data internally using Latin-1 (European) digits. This does not 
+interpret the deprecated numeric shape selector character (U+206E). 
+
+Instances of NumericShaper are typically applied as attributes to text with the 
+NUMERIC_SHAPING(|java.awt.font.TextAttribute|) attribute of the TextAttribute 
+class. For example, this code snippet causes a TextLayout to shape European 
+digits to Arabic in an Arabic context: 
+
+Map map = new HashMap(); map.put(TextAttribute.NUMERIC_SHAPING, 
+NumericShaper.getContextualShaper(NumericShaper.ARABIC)); FontRenderContext frc 
+= ...; TextLayout layout = new TextLayout(text, map, frc); layout.draw(g2d, x, 
+y); 
+
+It is also possible to perform numeric shaping explicitly using instances of 
+NumericShaper, as this code snippet demonstrates: 
+
+char[] text = ...; // shape all EUROPEAN digits (except zero) to ARABIC digits 
+NumericShaper shaper = NumericShaper.getShaper(NumericShaper.ARABIC); 
+shaper.shape(text, start, count); 
+
+// shape European digits to ARABIC digits if preceeding text is Arabic, or // 
+shape European digits to TAMIL digits if preceeding text is Tamil, or // leave 
+European digits alone if there is no preceeding text, or // preceeding text is 
+neither Arabic nor Tamil NumericShaper shaper = 
+NumericShaper.getContextualShaper(NumericShaper.ARABIC | NumericShaper.TAMIL, 
+NumericShaper.EUROPEAN); shaper.shape(text. start, count); 
+
+
+*int_java.awt.font.NumericShaper.EUROPEAN*
+
+The NumericShaper class is used to convert Latin-1 (European) digits to other 
+Unicode decimal digits. Users of this class will primarily be people who wish 
+to present data using national digit shapes, but find it more convenient to 
+represent the data internally using Latin-1 (European) digits. This does not 
+interpret the deprecated numeric shape selector character (U+206E). 
+
+Instances of NumericShaper are typically applied as attributes to text with the 
+NUMERIC_SHAPING(|java.awt.font.TextAttribute|) attribute of the TextAttribute 
+class. For example, this code snippet causes a TextLayout to shape European 
+digits to Arabic in an Arabic context: 
+
+Map map = new HashMap(); map.put(TextAttribute.NUMERIC_SHAPING, 
+NumericShaper.getContextualShaper(NumericShaper.ARABIC)); FontRenderContext frc 
+= ...; TextLayout layout = new TextLayout(text, map, frc); layout.draw(g2d, x, 
+y); 
+
+It is also possible to perform numeric shaping explicitly using instances of 
+NumericShaper, as this code snippet demonstrates: 
+
+char[] text = ...; // shape all EUROPEAN digits (except zero) to ARABIC digits 
+NumericShaper shaper = NumericShaper.getShaper(NumericShaper.ARABIC); 
+shaper.shape(text, start, count); 
+
+// shape European digits to ARABIC digits if preceeding text is Arabic, or // 
+shape European digits to TAMIL digits if preceeding text is Tamil, or // leave 
+European digits alone if there is no preceeding text, or // preceeding text is 
+neither Arabic nor Tamil NumericShaper shaper = 
+NumericShaper.getContextualShaper(NumericShaper.ARABIC | NumericShaper.TAMIL, 
+NumericShaper.EUROPEAN); shaper.shape(text. start, count); 
+
+
+*int_java.awt.font.NumericShaper.GUJARATI*
+
+The NumericShaper class is used to convert Latin-1 (European) digits to other 
+Unicode decimal digits. Users of this class will primarily be people who wish 
+to present data using national digit shapes, but find it more convenient to 
+represent the data internally using Latin-1 (European) digits. This does not 
+interpret the deprecated numeric shape selector character (U+206E). 
+
+Instances of NumericShaper are typically applied as attributes to text with the 
+NUMERIC_SHAPING(|java.awt.font.TextAttribute|) attribute of the TextAttribute 
+class. For example, this code snippet causes a TextLayout to shape European 
+digits to Arabic in an Arabic context: 
+
+Map map = new HashMap(); map.put(TextAttribute.NUMERIC_SHAPING, 
+NumericShaper.getContextualShaper(NumericShaper.ARABIC)); FontRenderContext frc 
+= ...; TextLayout layout = new TextLayout(text, map, frc); layout.draw(g2d, x, 
+y); 
+
+It is also possible to perform numeric shaping explicitly using instances of 
+NumericShaper, as this code snippet demonstrates: 
+
+char[] text = ...; // shape all EUROPEAN digits (except zero) to ARABIC digits 
+NumericShaper shaper = NumericShaper.getShaper(NumericShaper.ARABIC); 
+shaper.shape(text, start, count); 
+
+// shape European digits to ARABIC digits if preceeding text is Arabic, or // 
+shape European digits to TAMIL digits if preceeding text is Tamil, or // leave 
+European digits alone if there is no preceeding text, or // preceeding text is 
+neither Arabic nor Tamil NumericShaper shaper = 
+NumericShaper.getContextualShaper(NumericShaper.ARABIC | NumericShaper.TAMIL, 
+NumericShaper.EUROPEAN); shaper.shape(text. start, count); 
+
+
+*int_java.awt.font.NumericShaper.GURMUKHI*
+
+The NumericShaper class is used to convert Latin-1 (European) digits to other 
+Unicode decimal digits. Users of this class will primarily be people who wish 
+to present data using national digit shapes, but find it more convenient to 
+represent the data internally using Latin-1 (European) digits. This does not 
+interpret the deprecated numeric shape selector character (U+206E). 
+
+Instances of NumericShaper are typically applied as attributes to text with the 
+NUMERIC_SHAPING(|java.awt.font.TextAttribute|) attribute of the TextAttribute 
+class. For example, this code snippet causes a TextLayout to shape European 
+digits to Arabic in an Arabic context: 
+
+Map map = new HashMap(); map.put(TextAttribute.NUMERIC_SHAPING, 
+NumericShaper.getContextualShaper(NumericShaper.ARABIC)); FontRenderContext frc 
+= ...; TextLayout layout = new TextLayout(text, map, frc); layout.draw(g2d, x, 
+y); 
+
+It is also possible to perform numeric shaping explicitly using instances of 
+NumericShaper, as this code snippet demonstrates: 
+
+char[] text = ...; // shape all EUROPEAN digits (except zero) to ARABIC digits 
+NumericShaper shaper = NumericShaper.getShaper(NumericShaper.ARABIC); 
+shaper.shape(text, start, count); 
+
+// shape European digits to ARABIC digits if preceeding text is Arabic, or // 
+shape European digits to TAMIL digits if preceeding text is Tamil, or // leave 
+European digits alone if there is no preceeding text, or // preceeding text is 
+neither Arabic nor Tamil NumericShaper shaper = 
+NumericShaper.getContextualShaper(NumericShaper.ARABIC | NumericShaper.TAMIL, 
+NumericShaper.EUROPEAN); shaper.shape(text. start, count); 
+
+
+*int_java.awt.font.NumericShaper.KANNADA*
+
+The NumericShaper class is used to convert Latin-1 (European) digits to other 
+Unicode decimal digits. Users of this class will primarily be people who wish 
+to present data using national digit shapes, but find it more convenient to 
+represent the data internally using Latin-1 (European) digits. This does not 
+interpret the deprecated numeric shape selector character (U+206E). 
+
+Instances of NumericShaper are typically applied as attributes to text with the 
+NUMERIC_SHAPING(|java.awt.font.TextAttribute|) attribute of the TextAttribute 
+class. For example, this code snippet causes a TextLayout to shape European 
+digits to Arabic in an Arabic context: 
+
+Map map = new HashMap(); map.put(TextAttribute.NUMERIC_SHAPING, 
+NumericShaper.getContextualShaper(NumericShaper.ARABIC)); FontRenderContext frc 
+= ...; TextLayout layout = new TextLayout(text, map, frc); layout.draw(g2d, x, 
+y); 
+
+It is also possible to perform numeric shaping explicitly using instances of 
+NumericShaper, as this code snippet demonstrates: 
+
+char[] text = ...; // shape all EUROPEAN digits (except zero) to ARABIC digits 
+NumericShaper shaper = NumericShaper.getShaper(NumericShaper.ARABIC); 
+shaper.shape(text, start, count); 
+
+// shape European digits to ARABIC digits if preceeding text is Arabic, or // 
+shape European digits to TAMIL digits if preceeding text is Tamil, or // leave 
+European digits alone if there is no preceeding text, or // preceeding text is 
+neither Arabic nor Tamil NumericShaper shaper = 
+NumericShaper.getContextualShaper(NumericShaper.ARABIC | NumericShaper.TAMIL, 
+NumericShaper.EUROPEAN); shaper.shape(text. start, count); 
+
+
+*int_java.awt.font.NumericShaper.KHMER*
+
+The NumericShaper class is used to convert Latin-1 (European) digits to other 
+Unicode decimal digits. Users of this class will primarily be people who wish 
+to present data using national digit shapes, but find it more convenient to 
+represent the data internally using Latin-1 (European) digits. This does not 
+interpret the deprecated numeric shape selector character (U+206E). 
+
+Instances of NumericShaper are typically applied as attributes to text with the 
+NUMERIC_SHAPING(|java.awt.font.TextAttribute|) attribute of the TextAttribute 
+class. For example, this code snippet causes a TextLayout to shape European 
+digits to Arabic in an Arabic context: 
+
+Map map = new HashMap(); map.put(TextAttribute.NUMERIC_SHAPING, 
+NumericShaper.getContextualShaper(NumericShaper.ARABIC)); FontRenderContext frc 
+= ...; TextLayout layout = new TextLayout(text, map, frc); layout.draw(g2d, x, 
+y); 
+
+It is also possible to perform numeric shaping explicitly using instances of 
+NumericShaper, as this code snippet demonstrates: 
+
+char[] text = ...; // shape all EUROPEAN digits (except zero) to ARABIC digits 
+NumericShaper shaper = NumericShaper.getShaper(NumericShaper.ARABIC); 
+shaper.shape(text, start, count); 
+
+// shape European digits to ARABIC digits if preceeding text is Arabic, or // 
+shape European digits to TAMIL digits if preceeding text is Tamil, or // leave 
+European digits alone if there is no preceeding text, or // preceeding text is 
+neither Arabic nor Tamil NumericShaper shaper = 
+NumericShaper.getContextualShaper(NumericShaper.ARABIC | NumericShaper.TAMIL, 
+NumericShaper.EUROPEAN); shaper.shape(text. start, count); 
+
+
+*int_java.awt.font.NumericShaper.LAO*
+
+The NumericShaper class is used to convert Latin-1 (European) digits to other 
+Unicode decimal digits. Users of this class will primarily be people who wish 
+to present data using national digit shapes, but find it more convenient to 
+represent the data internally using Latin-1 (European) digits. This does not 
+interpret the deprecated numeric shape selector character (U+206E). 
+
+Instances of NumericShaper are typically applied as attributes to text with the 
+NUMERIC_SHAPING(|java.awt.font.TextAttribute|) attribute of the TextAttribute 
+class. For example, this code snippet causes a TextLayout to shape European 
+digits to Arabic in an Arabic context: 
+
+Map map = new HashMap(); map.put(TextAttribute.NUMERIC_SHAPING, 
+NumericShaper.getContextualShaper(NumericShaper.ARABIC)); FontRenderContext frc 
+= ...; TextLayout layout = new TextLayout(text, map, frc); layout.draw(g2d, x, 
+y); 
+
+It is also possible to perform numeric shaping explicitly using instances of 
+NumericShaper, as this code snippet demonstrates: 
+
+char[] text = ...; // shape all EUROPEAN digits (except zero) to ARABIC digits 
+NumericShaper shaper = NumericShaper.getShaper(NumericShaper.ARABIC); 
+shaper.shape(text, start, count); 
+
+// shape European digits to ARABIC digits if preceeding text is Arabic, or // 
+shape European digits to TAMIL digits if preceeding text is Tamil, or // leave 
+European digits alone if there is no preceeding text, or // preceeding text is 
+neither Arabic nor Tamil NumericShaper shaper = 
+NumericShaper.getContextualShaper(NumericShaper.ARABIC | NumericShaper.TAMIL, 
+NumericShaper.EUROPEAN); shaper.shape(text. start, count); 
+
+
+*int_java.awt.font.NumericShaper.MALAYALAM*
+
+The NumericShaper class is used to convert Latin-1 (European) digits to other 
+Unicode decimal digits. Users of this class will primarily be people who wish 
+to present data using national digit shapes, but find it more convenient to 
+represent the data internally using Latin-1 (European) digits. This does not 
+interpret the deprecated numeric shape selector character (U+206E). 
+
+Instances of NumericShaper are typically applied as attributes to text with the 
+NUMERIC_SHAPING(|java.awt.font.TextAttribute|) attribute of the TextAttribute 
+class. For example, this code snippet causes a TextLayout to shape European 
+digits to Arabic in an Arabic context: 
+
+Map map = new HashMap(); map.put(TextAttribute.NUMERIC_SHAPING, 
+NumericShaper.getContextualShaper(NumericShaper.ARABIC)); FontRenderContext frc 
+= ...; TextLayout layout = new TextLayout(text, map, frc); layout.draw(g2d, x, 
+y); 
+
+It is also possible to perform numeric shaping explicitly using instances of 
+NumericShaper, as this code snippet demonstrates: 
+
+char[] text = ...; // shape all EUROPEAN digits (except zero) to ARABIC digits 
+NumericShaper shaper = NumericShaper.getShaper(NumericShaper.ARABIC); 
+shaper.shape(text, start, count); 
+
+// shape European digits to ARABIC digits if preceeding text is Arabic, or // 
+shape European digits to TAMIL digits if preceeding text is Tamil, or // leave 
+European digits alone if there is no preceeding text, or // preceeding text is 
+neither Arabic nor Tamil NumericShaper shaper = 
+NumericShaper.getContextualShaper(NumericShaper.ARABIC | NumericShaper.TAMIL, 
+NumericShaper.EUROPEAN); shaper.shape(text. start, count); 
+
+
+*int_java.awt.font.NumericShaper.MONGOLIAN*
+
+The NumericShaper class is used to convert Latin-1 (European) digits to other 
+Unicode decimal digits. Users of this class will primarily be people who wish 
+to present data using national digit shapes, but find it more convenient to 
+represent the data internally using Latin-1 (European) digits. This does not 
+interpret the deprecated numeric shape selector character (U+206E). 
+
+Instances of NumericShaper are typically applied as attributes to text with the 
+NUMERIC_SHAPING(|java.awt.font.TextAttribute|) attribute of the TextAttribute 
+class. For example, this code snippet causes a TextLayout to shape European 
+digits to Arabic in an Arabic context: 
+
+Map map = new HashMap(); map.put(TextAttribute.NUMERIC_SHAPING, 
+NumericShaper.getContextualShaper(NumericShaper.ARABIC)); FontRenderContext frc 
+= ...; TextLayout layout = new TextLayout(text, map, frc); layout.draw(g2d, x, 
+y); 
+
+It is also possible to perform numeric shaping explicitly using instances of 
+NumericShaper, as this code snippet demonstrates: 
+
+char[] text = ...; // shape all EUROPEAN digits (except zero) to ARABIC digits 
+NumericShaper shaper = NumericShaper.getShaper(NumericShaper.ARABIC); 
+shaper.shape(text, start, count); 
+
+// shape European digits to ARABIC digits if preceeding text is Arabic, or // 
+shape European digits to TAMIL digits if preceeding text is Tamil, or // leave 
+European digits alone if there is no preceeding text, or // preceeding text is 
+neither Arabic nor Tamil NumericShaper shaper = 
+NumericShaper.getContextualShaper(NumericShaper.ARABIC | NumericShaper.TAMIL, 
+NumericShaper.EUROPEAN); shaper.shape(text. start, count); 
+
+
+*int_java.awt.font.NumericShaper.MYANMAR*
+
+The NumericShaper class is used to convert Latin-1 (European) digits to other 
+Unicode decimal digits. Users of this class will primarily be people who wish 
+to present data using national digit shapes, but find it more convenient to 
+represent the data internally using Latin-1 (European) digits. This does not 
+interpret the deprecated numeric shape selector character (U+206E). 
+
+Instances of NumericShaper are typically applied as attributes to text with the 
+NUMERIC_SHAPING(|java.awt.font.TextAttribute|) attribute of the TextAttribute 
+class. For example, this code snippet causes a TextLayout to shape European 
+digits to Arabic in an Arabic context: 
+
+Map map = new HashMap(); map.put(TextAttribute.NUMERIC_SHAPING, 
+NumericShaper.getContextualShaper(NumericShaper.ARABIC)); FontRenderContext frc 
+= ...; TextLayout layout = new TextLayout(text, map, frc); layout.draw(g2d, x, 
+y); 
+
+It is also possible to perform numeric shaping explicitly using instances of 
+NumericShaper, as this code snippet demonstrates: 
+
+char[] text = ...; // shape all EUROPEAN digits (except zero) to ARABIC digits 
+NumericShaper shaper = NumericShaper.getShaper(NumericShaper.ARABIC); 
+shaper.shape(text, start, count); 
+
+// shape European digits to ARABIC digits if preceeding text is Arabic, or // 
+shape European digits to TAMIL digits if preceeding text is Tamil, or // leave 
+European digits alone if there is no preceeding text, or // preceeding text is 
+neither Arabic nor Tamil NumericShaper shaper = 
+NumericShaper.getContextualShaper(NumericShaper.ARABIC | NumericShaper.TAMIL, 
+NumericShaper.EUROPEAN); shaper.shape(text. start, count); 
+
+
+*int_java.awt.font.NumericShaper.ORIYA*
+
+The NumericShaper class is used to convert Latin-1 (European) digits to other 
+Unicode decimal digits. Users of this class will primarily be people who wish 
+to present data using national digit shapes, but find it more convenient to 
+represent the data internally using Latin-1 (European) digits. This does not 
+interpret the deprecated numeric shape selector character (U+206E). 
+
+Instances of NumericShaper are typically applied as attributes to text with the 
+NUMERIC_SHAPING(|java.awt.font.TextAttribute|) attribute of the TextAttribute 
+class. For example, this code snippet causes a TextLayout to shape European 
+digits to Arabic in an Arabic context: 
+
+Map map = new HashMap(); map.put(TextAttribute.NUMERIC_SHAPING, 
+NumericShaper.getContextualShaper(NumericShaper.ARABIC)); FontRenderContext frc 
+= ...; TextLayout layout = new TextLayout(text, map, frc); layout.draw(g2d, x, 
+y); 
+
+It is also possible to perform numeric shaping explicitly using instances of 
+NumericShaper, as this code snippet demonstrates: 
+
+char[] text = ...; // shape all EUROPEAN digits (except zero) to ARABIC digits 
+NumericShaper shaper = NumericShaper.getShaper(NumericShaper.ARABIC); 
+shaper.shape(text, start, count); 
+
+// shape European digits to ARABIC digits if preceeding text is Arabic, or // 
+shape European digits to TAMIL digits if preceeding text is Tamil, or // leave 
+European digits alone if there is no preceeding text, or // preceeding text is 
+neither Arabic nor Tamil NumericShaper shaper = 
+NumericShaper.getContextualShaper(NumericShaper.ARABIC | NumericShaper.TAMIL, 
+NumericShaper.EUROPEAN); shaper.shape(text. start, count); 
+
+
+*int_java.awt.font.NumericShaper.TAMIL*
+
+The NumericShaper class is used to convert Latin-1 (European) digits to other 
+Unicode decimal digits. Users of this class will primarily be people who wish 
+to present data using national digit shapes, but find it more convenient to 
+represent the data internally using Latin-1 (European) digits. This does not 
+interpret the deprecated numeric shape selector character (U+206E). 
+
+Instances of NumericShaper are typically applied as attributes to text with the 
+NUMERIC_SHAPING(|java.awt.font.TextAttribute|) attribute of the TextAttribute 
+class. For example, this code snippet causes a TextLayout to shape European 
+digits to Arabic in an Arabic context: 
+
+Map map = new HashMap(); map.put(TextAttribute.NUMERIC_SHAPING, 
+NumericShaper.getContextualShaper(NumericShaper.ARABIC)); FontRenderContext frc 
+= ...; TextLayout layout = new TextLayout(text, map, frc); layout.draw(g2d, x, 
+y); 
+
+It is also possible to perform numeric shaping explicitly using instances of 
+NumericShaper, as this code snippet demonstrates: 
+
+char[] text = ...; // shape all EUROPEAN digits (except zero) to ARABIC digits 
+NumericShaper shaper = NumericShaper.getShaper(NumericShaper.ARABIC); 
+shaper.shape(text, start, count); 
+
+// shape European digits to ARABIC digits if preceeding text is Arabic, or // 
+shape European digits to TAMIL digits if preceeding text is Tamil, or // leave 
+European digits alone if there is no preceeding text, or // preceeding text is 
+neither Arabic nor Tamil NumericShaper shaper = 
+NumericShaper.getContextualShaper(NumericShaper.ARABIC | NumericShaper.TAMIL, 
+NumericShaper.EUROPEAN); shaper.shape(text. start, count); 
+
+
+*int_java.awt.font.NumericShaper.TELUGU*
+
+The NumericShaper class is used to convert Latin-1 (European) digits to other 
+Unicode decimal digits. Users of this class will primarily be people who wish 
+to present data using national digit shapes, but find it more convenient to 
+represent the data internally using Latin-1 (European) digits. This does not 
+interpret the deprecated numeric shape selector character (U+206E). 
+
+Instances of NumericShaper are typically applied as attributes to text with the 
+NUMERIC_SHAPING(|java.awt.font.TextAttribute|) attribute of the TextAttribute 
+class. For example, this code snippet causes a TextLayout to shape European 
+digits to Arabic in an Arabic context: 
+
+Map map = new HashMap(); map.put(TextAttribute.NUMERIC_SHAPING, 
+NumericShaper.getContextualShaper(NumericShaper.ARABIC)); FontRenderContext frc 
+= ...; TextLayout layout = new TextLayout(text, map, frc); layout.draw(g2d, x, 
+y); 
+
+It is also possible to perform numeric shaping explicitly using instances of 
+NumericShaper, as this code snippet demonstrates: 
+
+char[] text = ...; // shape all EUROPEAN digits (except zero) to ARABIC digits 
+NumericShaper shaper = NumericShaper.getShaper(NumericShaper.ARABIC); 
+shaper.shape(text, start, count); 
+
+// shape European digits to ARABIC digits if preceeding text is Arabic, or // 
+shape European digits to TAMIL digits if preceeding text is Tamil, or // leave 
+European digits alone if there is no preceeding text, or // preceeding text is 
+neither Arabic nor Tamil NumericShaper shaper = 
+NumericShaper.getContextualShaper(NumericShaper.ARABIC | NumericShaper.TAMIL, 
+NumericShaper.EUROPEAN); shaper.shape(text. start, count); 
+
+
+*int_java.awt.font.NumericShaper.THAI*
+
+The NumericShaper class is used to convert Latin-1 (European) digits to other 
+Unicode decimal digits. Users of this class will primarily be people who wish 
+to present data using national digit shapes, but find it more convenient to 
+represent the data internally using Latin-1 (European) digits. This does not 
+interpret the deprecated numeric shape selector character (U+206E). 
+
+Instances of NumericShaper are typically applied as attributes to text with the 
+NUMERIC_SHAPING(|java.awt.font.TextAttribute|) attribute of the TextAttribute 
+class. For example, this code snippet causes a TextLayout to shape European 
+digits to Arabic in an Arabic context: 
+
+Map map = new HashMap(); map.put(TextAttribute.NUMERIC_SHAPING, 
+NumericShaper.getContextualShaper(NumericShaper.ARABIC)); FontRenderContext frc 
+= ...; TextLayout layout = new TextLayout(text, map, frc); layout.draw(g2d, x, 
+y); 
+
+It is also possible to perform numeric shaping explicitly using instances of 
+NumericShaper, as this code snippet demonstrates: 
+
+char[] text = ...; // shape all EUROPEAN digits (except zero) to ARABIC digits 
+NumericShaper shaper = NumericShaper.getShaper(NumericShaper.ARABIC); 
+shaper.shape(text, start, count); 
+
+// shape European digits to ARABIC digits if preceeding text is Arabic, or // 
+shape European digits to TAMIL digits if preceeding text is Tamil, or // leave 
+European digits alone if there is no preceeding text, or // preceeding text is 
+neither Arabic nor Tamil NumericShaper shaper = 
+NumericShaper.getContextualShaper(NumericShaper.ARABIC | NumericShaper.TAMIL, 
+NumericShaper.EUROPEAN); shaper.shape(text. start, count); 
+
+
+*int_java.awt.font.NumericShaper.TIBETAN*
+
+The NumericShaper class is used to convert Latin-1 (European) digits to other 
+Unicode decimal digits. Users of this class will primarily be people who wish 
+to present data using national digit shapes, but find it more convenient to 
+represent the data internally using Latin-1 (European) digits. This does not 
+interpret the deprecated numeric shape selector character (U+206E). 
+
+Instances of NumericShaper are typically applied as attributes to text with the 
+NUMERIC_SHAPING(|java.awt.font.TextAttribute|) attribute of the TextAttribute 
+class. For example, this code snippet causes a TextLayout to shape European 
+digits to Arabic in an Arabic context: 
+
+Map map = new HashMap(); map.put(TextAttribute.NUMERIC_SHAPING, 
+NumericShaper.getContextualShaper(NumericShaper.ARABIC)); FontRenderContext frc 
+= ...; TextLayout layout = new TextLayout(text, map, frc); layout.draw(g2d, x, 
+y); 
+
+It is also possible to perform numeric shaping explicitly using instances of 
+NumericShaper, as this code snippet demonstrates: 
+
+char[] text = ...; // shape all EUROPEAN digits (except zero) to ARABIC digits 
+NumericShaper shaper = NumericShaper.getShaper(NumericShaper.ARABIC); 
+shaper.shape(text, start, count); 
+
+// shape European digits to ARABIC digits if preceeding text is Arabic, or // 
+shape European digits to TAMIL digits if preceeding text is Tamil, or // leave 
+European digits alone if there is no preceeding text, or // preceeding text is 
+neither Arabic nor Tamil NumericShaper shaper = 
+NumericShaper.getContextualShaper(NumericShaper.ARABIC | NumericShaper.TAMIL, 
+NumericShaper.EUROPEAN); shaper.shape(text. start, count); 
+
+
+
+*java.awt.font.NumericShaper.equals(Object)*
+
+public boolean equals(java.lang.Object o)
+
+Returns true if the specified object is an instance of NumericShaper and shapes 
+identically to this one. 
+
+    o - the specified object to compare to this NumericShaper 
+
+    Returns: true if o is an instance of NumericShaper and shapes in the same way; false 
+             otherwise. 
+*java.awt.font.NumericShaper.getContextualShaper(int)*
+
+public static |java.awt.font.NumericShaper| getContextualShaper(int ranges)
+
+Returns a contextual shaper for the provided unicode range(s). Latin-1 
+(EUROPEAN) digits are converted to the decimal digits corresponding to the 
+range of the preceeding text, if the range is one of the provided ranges. 
+Multiple ranges are represented by or-ing the values together, such as, 
+NumericShaper.ARABIC | NumericShaper.THAI. The shaper assumes EUROPEAN as the 
+starting context, that is, if EUROPEAN digits are encountered before any strong 
+directional text in the string, the context is presumed to be EUROPEAN, and so 
+the digits will not shape. 
+
+    ranges - the specified Unicode ranges 
+
+    Returns: a shaper for the specified ranges 
+*java.awt.font.NumericShaper.getContextualShaper(int,int)*
+
+public static |java.awt.font.NumericShaper| getContextualShaper(
+  int ranges,
+  int defaultContext)
+
+Returns a contextual shaper for the provided unicode range(s). Latin-1 
+(EUROPEAN) digits will be converted to the decimal digits corresponding to the 
+range of the preceeding text, if the range is one of the provided ranges. 
+Multiple ranges are represented by or-ing the values together, for example, 
+NumericShaper.ARABIC | NumericShaper.THAI. The shaper uses defaultContext as 
+the starting context. 
+
+    ranges - the specified Unicode ranges 
+    defaultContext - the starting context, such as NumericShaper.EUROPEAN 
+
+    Returns: a shaper for the specified Unicode ranges. 
+*java.awt.font.NumericShaper.getRanges()*
+
+public int getRanges()
+
+Returns an int that ORs together the values for all the ranges that will be 
+shaped. 
+
+For example, to check if a shaper shapes to Arabic, you would use the 
+following: 
+
+if ((shaper.getRanges() & shaper.ARABIC) != 0) { ... 
+
+
+    Returns: the values for all the ranges to be shaped. 
+*java.awt.font.NumericShaper.getShaper(int)*
+
+public static |java.awt.font.NumericShaper| getShaper(int singleRange)
+
+Returns a shaper for the provided unicode range. All Latin-1 (EUROPEAN) digits 
+are converted to the corresponding decimal unicode digits. 
+
+    singleRange - the specified Unicode range 
+
+    Returns: a non-contextual numeric shaper 
+*java.awt.font.NumericShaper.hashCode()*
+
+public int hashCode()
+
+Returns a hash code for this shaper. 
+
+
+    Returns: this shaper's hash code. 
+*java.awt.font.NumericShaper.isContextual()*
+
+public boolean isContextual()
+
+Returns a boolean indicating whether or not this shaper shapes contextually. 
+
+
+    Returns: true if this shaper is contextual; false otherwise. 
+*java.awt.font.NumericShaper.shape(char[],int,int)*
+
+public void shape(
+  char[] text,
+  int start,
+  int count)
+
+Converts the digits in the text that occur between start and start + count. 
+
+    text - an array of characters to convert 
+    start - the index into text to start converting 
+    count - the number of characters in text to convert 
+
+*java.awt.font.NumericShaper.shape(char[],int,int,int)*
+
+public void shape(
+  char[] text,
+  int start,
+  int count,
+  int context)
+
+Converts the digits in the text that occur between start and start + count, 
+using the provided context. Context is ignored if the shaper is not a 
+contextual shaper. 
+
+    text - an array of characters 
+    start - the index into text to start converting 
+    count - the number of characters in text to convert 
+    context - the context to which to convert the characters, such as NumericShaper.EUROPEAN 
+
+*java.awt.font.NumericShaper.toString()*
+
+public |java.lang.String| toString()
+
+Returns a String that describes this shaper. This method is used for debugging 
+purposes only. 
+
+
+    Returns: a String describing this shaper. 
+

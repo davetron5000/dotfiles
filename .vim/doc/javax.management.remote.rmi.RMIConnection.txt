@@ -1,0 +1,632 @@
+*javax.management.remote.rmi.RMIConnection* *RMIConnection* RMI object used to f
+
+public interface interface RMIConnection
+
+  implements |java.rmi.Remote|
+
+|javax.management.remote.rmi.RMIConnection_Description|
+|javax.management.remote.rmi.RMIConnection_Fields|
+|javax.management.remote.rmi.RMIConnection_Constructors|
+|javax.management.remote.rmi.RMIConnection_Methods|
+
+================================================================================
+
+*javax.management.remote.rmi.RMIConnection_Methods*
+|javax.management.remote.rmi.RMIConnection.addNotificationListener(ObjectName,ObjectName,MarshalledObject,MarshalledObject,Subject)|
+|javax.management.remote.rmi.RMIConnection.addNotificationListeners(ObjectName[],MarshalledObject[],Subject[])|
+|javax.management.remote.rmi.RMIConnection.close()|Closes this connection.
+|javax.management.remote.rmi.RMIConnection.createMBean(String,ObjectName,MarshalledObject,String[],Subject)|
+|javax.management.remote.rmi.RMIConnection.createMBean(String,ObjectName,ObjectName,MarshalledObject,String[],Subject)|
+|javax.management.remote.rmi.RMIConnection.createMBean(String,ObjectName,ObjectName,Subject)|
+|javax.management.remote.rmi.RMIConnection.createMBean(String,ObjectName,Subject)|
+|javax.management.remote.rmi.RMIConnection.fetchNotifications(long,int,long)|Re
+|javax.management.remote.rmi.RMIConnection.getAttribute(ObjectName,String,Subject)|
+|javax.management.remote.rmi.RMIConnection.getAttributes(ObjectName,String[],Subject)|
+|javax.management.remote.rmi.RMIConnection.getConnectionId()|Returns the connec
+|javax.management.remote.rmi.RMIConnection.getDefaultDomain(Subject)|Handles th
+|javax.management.remote.rmi.RMIConnection.getDomains(Subject)|Handles the meth
+|javax.management.remote.rmi.RMIConnection.getMBeanCount(Subject)|Handles the m
+|javax.management.remote.rmi.RMIConnection.getMBeanInfo(ObjectName,Subject)|Han
+|javax.management.remote.rmi.RMIConnection.getObjectInstance(ObjectName,Subject)|
+|javax.management.remote.rmi.RMIConnection.invoke(ObjectName,String,MarshalledObject,String[],Subject)|
+|javax.management.remote.rmi.RMIConnection.isInstanceOf(ObjectName,String,Subject)|
+|javax.management.remote.rmi.RMIConnection.isRegistered(ObjectName,Subject)|Han
+|javax.management.remote.rmi.RMIConnection.queryMBeans(ObjectName,MarshalledObject,Subject)|
+|javax.management.remote.rmi.RMIConnection.queryNames(ObjectName,MarshalledObject,Subject)|
+|javax.management.remote.rmi.RMIConnection.removeNotificationListener(ObjectName,ObjectName,MarshalledObject,MarshalledObject,Subject)|
+|javax.management.remote.rmi.RMIConnection.removeNotificationListener(ObjectName,ObjectName,Subject)|
+|javax.management.remote.rmi.RMIConnection.removeNotificationListeners(ObjectName,Integer[],Subject)|
+|javax.management.remote.rmi.RMIConnection.setAttribute(ObjectName,MarshalledObject,Subject)|
+|javax.management.remote.rmi.RMIConnection.setAttributes(ObjectName,MarshalledObject,Subject)|
+|javax.management.remote.rmi.RMIConnection.unregisterMBean(ObjectName,Subject)|
+
+*javax.management.remote.rmi.RMIConnection_Description*
+
+RMI object used to forward an MBeanServer request from a client to its 
+MBeanServer implementation on the server side. There is one Remote object 
+implementing this interface for each remote client connected to an RMI 
+connector. 
+
+User code does not usually refer to this interface. It is specified as part of 
+the public API so that different implementations of that API will interoperate. 
+
+To ensure that client parameters will be deserialized at the server side with 
+the correct classloader, client parameters such as parameters used to invoke a 
+method are wrapped in a (|java.rmi.MarshalledObject|) . An implementation of 
+this interface must first get the appropriate class loader for the operation 
+and its target, then deserialize the marshalled parameters with this 
+classloader. Except as noted, a parameter that is a MarshalledObject or 
+MarshalledObject[] must not be null; the behavior is unspecified if it is. 
+
+Class loading aspects are detailed in the companion document JMX Remote API, 
+which completes this documentation. It should be available as a PDF document in 
+the same place as this Javadoc specification. 
+
+
+*javax.management.remote.rmi.RMIConnection.addNotificationListener(ObjectName,ObjectName,MarshalledObject,MarshalledObject,Subject)*
+
+public void addNotificationListener(
+  javax.management.ObjectName name,
+  javax.management.ObjectName listener,
+  java.rmi.MarshalledObject filter,
+  java.rmi.MarshalledObject handback,
+  javax.security.auth.Subject delegationSubject)
+  throws |javax.management.InstanceNotFoundException|
+         |java.io.IOException|
+         
+Handles the method (|javax.management.MBeanServerConnection|) . The 
+NotificationFilter parameter is wrapped in a MarshalledObject. The Object 
+(handback) parameter is also wrapped in a MarshalledObject. 
+
+    name - The name of the MBean on which the listener should be added. 
+    listener - The object name of the listener which will handle the notifications emitted by 
+       the registered MBean. 
+    filter - The filter object, encapsulated into a MarshalledObject. If filter encapsulated 
+       in the MarshalledObject has a null value, no filtering will be performed 
+       before handling notifications. 
+    handback - The context to be sent to the listener when a notification is emitted, 
+       encapsulated into a MarshalledObject. 
+    delegationSubject - The Subject containing the delegation principals or null if the authentication 
+       principal is used instead. 
+
+*javax.management.remote.rmi.RMIConnection.addNotificationListeners(ObjectName[],MarshalledObject[],Subject[])*
+
+public |java.lang.Integer| addNotificationListeners(
+  javax.management.ObjectName[] names,
+  java.rmi.MarshalledObject[] filters,
+  javax.security.auth.Subject[] delegationSubjects)
+  throws |javax.management.InstanceNotFoundException|
+         |java.io.IOException|
+         
+Handles the method (|javax.management.MBeanServerConnection|) . 
+
+Register for notifications from the given MBeans that match the given filters. 
+The remote client can subsequently retrieve the notifications using the 
+fetchNotifications(|javax.management.remote.rmi.RMIConnection|) method. 
+
+For each listener, the original NotificationListener and handback are kept on 
+the client side; in order for the client to be able to identify them, the 
+server generates and returns a unique listenerID. This listenerID is forwarded 
+with the Notifications to the remote client. 
+
+If any one of the given (name, filter) pairs cannot be registered, then the 
+operation fails with an exception, and no names or filters are registered. 
+
+    names - the ObjectNames identifying the MBeans emitting the Notifications. 
+    filters - an array of marshalled representations of the NotificationFilters. Elements of 
+       this array can be null. 
+    delegationSubjects - the Subjects on behalf of which the listeners are being added. Elements of this 
+       array can be null. Also, the delegationSubjects parameter itself can be 
+       null, which is equivalent to an array of null values with the same size 
+       as the names and filters arrays. 
+
+    Returns: an array of listenerIDs identifying the local listeners. This array has the 
+             same number of elements as the parameters. 
+*javax.management.remote.rmi.RMIConnection.close()*
+
+public void close()
+  throws |java.io.IOException|
+         
+Closes this connection. On return from this method, the RMI object implementing 
+this interface is unexported, so further remote calls to it will fail. 
+
+
+*javax.management.remote.rmi.RMIConnection.createMBean(String,ObjectName,MarshalledObject,String[],Subject)*
+
+public |javax.management.ObjectInstance| createMBean(
+  java.lang.String className,
+  javax.management.ObjectName name,
+  java.rmi.MarshalledObject params,
+  java.lang.String[] signature,
+  javax.security.auth.Subject delegationSubject)
+  throws |javax.management.InstanceAlreadyExistsException|
+         |java.io.IOException|
+         |javax.management.MBeanException|
+         |javax.management.MBeanRegistrationException|
+         |javax.management.NotCompliantMBeanException|
+         |javax.management.ReflectionException|
+         
+Handles the method (|javax.management.MBeanServerConnection|) . The Object[] 
+parameter is wrapped in a MarshalledObject. 
+
+    className - The class name of the MBean to be instantiated. 
+    name - The object name of the MBean. May be null. 
+    params - An array containing the parameters of the constructor to be invoked, 
+       encapsulated into a MarshalledObject. The encapsulated array can be 
+       null, equivalent to an empty array. 
+    signature - An array containing the signature of the constructor to be invoked. Can be 
+       null, equivalent to an empty array. 
+    delegationSubject - The Subject containing the delegation principals or null if the authentication 
+       principal is used instead. 
+
+    Returns: An ObjectInstance, containing the ObjectName and the Java class name of the 
+             newly instantiated MBean. If the contained ObjectName is n, the 
+             contained Java class name is {@link #getMBeanInfo 
+             getMBeanInfo(n)}.getClassName(). 
+*javax.management.remote.rmi.RMIConnection.createMBean(String,ObjectName,ObjectName,MarshalledObject,String[],Subject)*
+
+public |javax.management.ObjectInstance| createMBean(
+  java.lang.String className,
+  javax.management.ObjectName name,
+  javax.management.ObjectName loaderName,
+  java.rmi.MarshalledObject params,
+  java.lang.String[] signature,
+  javax.security.auth.Subject delegationSubject)
+  throws |javax.management.InstanceAlreadyExistsException|
+         |javax.management.InstanceNotFoundException|
+         |java.io.IOException|
+         |javax.management.MBeanException|
+         |javax.management.MBeanRegistrationException|
+         |javax.management.NotCompliantMBeanException|
+         |javax.management.ReflectionException|
+         
+Handles the method (|javax.management.MBeanServerConnection|) . The Object[] 
+parameter is wrapped in a MarshalledObject. 
+
+    className - The class name of the MBean to be instantiated. 
+    name - The object name of the MBean. May be null. 
+    loaderName - The object name of the class loader to be used. 
+    params - An array containing the parameters of the constructor to be invoked, 
+       encapsulated into a MarshalledObject. The encapsulated array can be 
+       null, equivalent to an empty array. 
+    signature - An array containing the signature of the constructor to be invoked. Can be 
+       null, equivalent to an empty array. 
+    delegationSubject - The Subject containing the delegation principals or null if the authentication 
+       principal is used instead. 
+
+    Returns: An ObjectInstance, containing the ObjectName and the Java class name of the 
+             newly instantiated MBean. If the contained ObjectName is n, the 
+             contained Java class name is {@link #getMBeanInfo 
+             getMBeanInfo(n)}.getClassName(). 
+*javax.management.remote.rmi.RMIConnection.createMBean(String,ObjectName,ObjectName,Subject)*
+
+public |javax.management.ObjectInstance| createMBean(
+  java.lang.String className,
+  javax.management.ObjectName name,
+  javax.management.ObjectName loaderName,
+  javax.security.auth.Subject delegationSubject)
+  throws |javax.management.InstanceAlreadyExistsException|
+         |javax.management.InstanceNotFoundException|
+         |java.io.IOException|
+         |javax.management.MBeanException|
+         |javax.management.MBeanRegistrationException|
+         |javax.management.NotCompliantMBeanException|
+         |javax.management.ReflectionException|
+         
+Handles the method (|javax.management.MBeanServerConnection|) . 
+
+    className - The class name of the MBean to be instantiated. 
+    name - The object name of the MBean. May be null. 
+    loaderName - The object name of the class loader to be used. 
+    delegationSubject - The Subject containing the delegation principals or null if the authentication 
+       principal is used instead. 
+
+    Returns: An ObjectInstance, containing the ObjectName and the Java class name of the 
+             newly instantiated MBean. If the contained ObjectName is n, the 
+             contained Java class name is {@link #getMBeanInfo 
+             getMBeanInfo(n)}.getClassName(). 
+*javax.management.remote.rmi.RMIConnection.createMBean(String,ObjectName,Subject)*
+
+public |javax.management.ObjectInstance| createMBean(
+  java.lang.String className,
+  javax.management.ObjectName name,
+  javax.security.auth.Subject delegationSubject)
+  throws |javax.management.InstanceAlreadyExistsException|
+         |java.io.IOException|
+         |javax.management.MBeanException|
+         |javax.management.MBeanRegistrationException|
+         |javax.management.NotCompliantMBeanException|
+         |javax.management.ReflectionException|
+         
+Handles the method (|javax.management.MBeanServerConnection|) . 
+
+    className - The class name of the MBean to be instantiated. 
+    name - The object name of the MBean. May be null. 
+    delegationSubject - The Subject containing the delegation principals or null if the authentication 
+       principal is used instead. 
+
+    Returns: An ObjectInstance, containing the ObjectName and the Java class name of the 
+             newly instantiated MBean. If the contained ObjectName is n, the 
+             contained Java class name is {@link #getMBeanInfo 
+             getMBeanInfo(n)}.getClassName(). 
+*javax.management.remote.rmi.RMIConnection.fetchNotifications(long,int,long)*
+
+public |javax.management.remote.NotificationResult| fetchNotifications(
+  long clientSequenceNumber,
+  int maxNotifications,
+  long timeout)
+  throws |java.io.IOException|
+         
+Retrieves notifications from the connector server. This method can block until 
+there is at least one notification or until the specified timeout is reached. 
+The method can also return at any time with zero notifications. 
+
+A notification can be included in the result if its sequence number is no less 
+than clientSequenceNumber and this client has registered at least one listener 
+for the MBean generating the notification, with a filter that accepts the 
+notification. Each listener that is interested in the notification is 
+identified by an Integer ID that was returned by 
+(|javax.management.remote.rmi.RMIConnection|) . 
+
+    clientSequenceNumber - the first sequence number that the client is interested in. If negative, it is 
+       interpreted as meaning the sequence number that the next notification 
+       will have. 
+    maxNotifications - the maximum number of different notifications to return. The 
+       TargetedNotification array in the returned NotificationResult can have 
+       more elements than this if the same notification appears more than once. 
+       The behavior is unspecified if this parameter is negative. 
+    timeout - the maximum time in milliseconds to wait for a notification to arrive. This can 
+       be 0 to indicate that the method should not wait if there are no 
+       notifications, but should return at once. It can be Long.MAX_VALUE to 
+       indicate that there is no timeout. The behavior is unspecified if this 
+       parameter is negative. 
+
+    Returns: A NotificationResult. 
+*javax.management.remote.rmi.RMIConnection.getAttribute(ObjectName,String,Subject)*
+
+public |java.lang.Object| getAttribute(
+  javax.management.ObjectName name,
+  java.lang.String attribute,
+  javax.security.auth.Subject delegationSubject)
+  throws |javax.management.AttributeNotFoundException|
+         |javax.management.InstanceNotFoundException|
+         |java.io.IOException|
+         |javax.management.MBeanException|
+         |javax.management.ReflectionException|
+         
+Handles the method (|javax.management.MBeanServerConnection|) . 
+
+    name - The object name of the MBean from which the attribute is to be retrieved. 
+    attribute - A String specifying the name of the attribute to be retrieved. 
+    delegationSubject - The Subject containing the delegation principals or null if the authentication 
+       principal is used instead. 
+
+    Returns: The value of the retrieved attribute. 
+*javax.management.remote.rmi.RMIConnection.getAttributes(ObjectName,String[],Subject)*
+
+public |javax.management.AttributeList| getAttributes(
+  javax.management.ObjectName name,
+  java.lang.String[] attributes,
+  javax.security.auth.Subject delegationSubject)
+  throws |javax.management.InstanceNotFoundException|
+         |java.io.IOException|
+         |javax.management.ReflectionException|
+         
+Handles the method (|javax.management.MBeanServerConnection|) . 
+
+    name - The object name of the MBean from which the attributes are retrieved. 
+    attributes - A list of the attributes to be retrieved. 
+    delegationSubject - The Subject containing the delegation principals or null if the authentication 
+       principal is used instead. 
+
+    Returns: The list of the retrieved attributes. 
+*javax.management.remote.rmi.RMIConnection.getConnectionId()*
+
+public |java.lang.String| getConnectionId()
+  throws |java.io.IOException|
+         
+Returns the connection ID. This string is different for every open connection 
+to a given RMI connector server. 
+
+
+    Returns: the connection ID 
+*javax.management.remote.rmi.RMIConnection.getDefaultDomain(Subject)*
+
+public |java.lang.String| getDefaultDomain(javax.security.auth.Subject delegationSubject)
+  throws |java.io.IOException|
+         
+Handles the method (|javax.management.MBeanServerConnection|) . 
+
+    delegationSubject - The Subject containing the delegation principals or null if the authentication 
+       principal is used instead. 
+
+    Returns: the default domain. 
+*javax.management.remote.rmi.RMIConnection.getDomains(Subject)*
+
+public |java.lang.String| getDomains(javax.security.auth.Subject delegationSubject)
+  throws |java.io.IOException|
+         
+Handles the method (|javax.management.MBeanServerConnection|) . 
+
+    delegationSubject - The Subject containing the delegation principals or null if the authentication 
+       principal is used instead. 
+
+    Returns: the list of domains. 
+*javax.management.remote.rmi.RMIConnection.getMBeanCount(Subject)*
+
+public |java.lang.Integer| getMBeanCount(javax.security.auth.Subject delegationSubject)
+  throws |java.io.IOException|
+         
+Handles the method (|javax.management.MBeanServerConnection|) . 
+
+    delegationSubject - The Subject containing the delegation principals or null if the authentication 
+       principal is used instead. 
+
+    Returns: the number of MBeans registered. 
+*javax.management.remote.rmi.RMIConnection.getMBeanInfo(ObjectName,Subject)*
+
+public |javax.management.MBeanInfo| getMBeanInfo(
+  javax.management.ObjectName name,
+  javax.security.auth.Subject delegationSubject)
+  throws |javax.management.InstanceNotFoundException|
+         |javax.management.IntrospectionException|
+         |java.io.IOException|
+         |javax.management.ReflectionException|
+         
+Handles the method (|javax.management.MBeanServerConnection|) . 
+
+    name - The name of the MBean to analyze 
+    delegationSubject - The Subject containing the delegation principals or null if the authentication 
+       principal is used instead. 
+
+    Returns: An instance of MBeanInfo allowing the retrieval of all attributes and 
+             operations of this MBean. 
+*javax.management.remote.rmi.RMIConnection.getObjectInstance(ObjectName,Subject)*
+
+public |javax.management.ObjectInstance| getObjectInstance(
+  javax.management.ObjectName name,
+  javax.security.auth.Subject delegationSubject)
+  throws |javax.management.InstanceNotFoundException|
+         |java.io.IOException|
+         
+Handles the method (|javax.management.MBeanServerConnection|) . 
+
+    name - The object name of the MBean. 
+    delegationSubject - The Subject containing the delegation principals or null if the authentication 
+       principal is used instead. 
+
+    Returns: The ObjectInstance associated with the MBean specified by name. The contained 
+             ObjectName is name and the contained class name is {@link 
+             #getMBeanInfo getMBeanInfo(name)}.getClassName(). 
+*javax.management.remote.rmi.RMIConnection.invoke(ObjectName,String,MarshalledObject,String[],Subject)*
+
+public |java.lang.Object| invoke(
+  javax.management.ObjectName name,
+  java.lang.String operationName,
+  java.rmi.MarshalledObject params,
+  java.lang.String[] signature,
+  javax.security.auth.Subject delegationSubject)
+  throws |javax.management.InstanceNotFoundException|
+         |java.io.IOException|
+         |javax.management.MBeanException|
+         |javax.management.ReflectionException|
+         
+Handles the method (|javax.management.MBeanServerConnection|) . The Object[] 
+parameter is wrapped in a MarshalledObject. 
+
+    name - The object name of the MBean on which the method is to be invoked. 
+    operationName - The name of the operation to be invoked. 
+    params - An array containing the parameters to be set when the operation is invoked, 
+       encapsulated into a MarshalledObject. The encapsulated array can be 
+       null, equivalent to an empty array. 
+    signature - An array containing the signature of the operation. The class objects will be 
+       loaded using the same class loader as the one used for loading the MBean 
+       on which the operation was invoked. Can be null, equivalent to an empty 
+       array. 
+    delegationSubject - The Subject containing the delegation principals or null if the authentication 
+       principal is used instead. 
+
+    Returns: The object returned by the operation, which represents the result of invoking 
+             the operation on the MBean specified. 
+*javax.management.remote.rmi.RMIConnection.isInstanceOf(ObjectName,String,Subject)*
+
+public boolean isInstanceOf(
+  javax.management.ObjectName name,
+  java.lang.String className,
+  javax.security.auth.Subject delegationSubject)
+  throws |javax.management.InstanceNotFoundException|
+         |java.io.IOException|
+         
+Handles the method (|javax.management.MBeanServerConnection|) . 
+
+    name - The ObjectName of the MBean. 
+    className - The name of the class. 
+    delegationSubject - The Subject containing the delegation principals or null if the authentication 
+       principal is used instead. 
+
+    Returns: true if the MBean specified is an instance of the specified class according to 
+             the rules above, false otherwise. 
+*javax.management.remote.rmi.RMIConnection.isRegistered(ObjectName,Subject)*
+
+public boolean isRegistered(
+  javax.management.ObjectName name,
+  javax.security.auth.Subject delegationSubject)
+  throws |java.io.IOException|
+         
+Handles the method (|javax.management.MBeanServerConnection|) . 
+
+    name - The object name of the MBean to be checked. 
+    delegationSubject - The Subject containing the delegation principals or null if the authentication 
+       principal is used instead. 
+
+    Returns: True if the MBean is already registered in the MBean server, false otherwise. 
+*javax.management.remote.rmi.RMIConnection.queryMBeans(ObjectName,MarshalledObject,Subject)*
+
+public |java.util.Set| queryMBeans(
+  javax.management.ObjectName name,
+  java.rmi.MarshalledObject query,
+  javax.security.auth.Subject delegationSubject)
+  throws |java.io.IOException|
+         
+Handles the method (|javax.management.MBeanServerConnection|) . The QueryExp is 
+wrapped in a MarshalledObject. 
+
+    name - The object name pattern identifying the MBeans to be retrieved. If null or no 
+       domain and key properties are specified, all the MBeans registered will 
+       be retrieved. 
+    query - The query expression to be applied for selecting MBeans, encapsulated into a 
+       MarshalledObject. If the MarshalledObject encapsulates a null value no 
+       query expression will be applied for selecting MBeans. 
+    delegationSubject - The Subject containing the delegation principals or null if the authentication 
+       principal is used instead. 
+
+    Returns: A set containing the ObjectInstance objects for the selected MBeans. If no 
+             MBean satisfies the query an empty list is returned. 
+*javax.management.remote.rmi.RMIConnection.queryNames(ObjectName,MarshalledObject,Subject)*
+
+public |java.util.Set| queryNames(
+  javax.management.ObjectName name,
+  java.rmi.MarshalledObject query,
+  javax.security.auth.Subject delegationSubject)
+  throws |java.io.IOException|
+         
+Handles the method (|javax.management.MBeanServerConnection|) . The QueryExp is 
+wrapped in a MarshalledObject. 
+
+    name - The object name pattern identifying the MBean names to be retrieved. If null or 
+       no domain and key properties are specified, the name of all registered 
+       MBeans will be retrieved. 
+    query - The query expression to be applied for selecting MBeans, encapsulated into a 
+       MarshalledObject. If the MarshalledObject encapsulates a null value no 
+       query expression will be applied for selecting MBeans. 
+    delegationSubject - The Subject containing the delegation principals or null if the authentication 
+       principal is used instead. 
+
+    Returns: A set containing the ObjectNames for the MBeans selected. If no MBean satisfies 
+             the query, an empty list is returned. 
+*javax.management.remote.rmi.RMIConnection.removeNotificationListener(ObjectName,ObjectName,MarshalledObject,MarshalledObject,Subject)*
+
+public void removeNotificationListener(
+  javax.management.ObjectName name,
+  javax.management.ObjectName listener,
+  java.rmi.MarshalledObject filter,
+  java.rmi.MarshalledObject handback,
+  javax.security.auth.Subject delegationSubject)
+  throws |javax.management.InstanceNotFoundException|
+         |java.io.IOException|
+         |javax.management.ListenerNotFoundException|
+         
+Handles the method (|javax.management.MBeanServerConnection|) . The 
+NotificationFilter parameter is wrapped in a MarshalledObject. The Object 
+parameter is also wrapped in a MarshalledObject. 
+
+    name - The name of the MBean on which the listener should be removed. 
+    listener - A listener that was previously added to this MBean. 
+    filter - The filter that was specified when the listener was added, encapsulated into a 
+       MarshalledObject. 
+    handback - The handback that was specified when the listener was added, encapsulated into 
+       a MarshalledObject. 
+    delegationSubject - The Subject containing the delegation principals or null if the authentication 
+       principal is used instead. 
+
+*javax.management.remote.rmi.RMIConnection.removeNotificationListener(ObjectName,ObjectName,Subject)*
+
+public void removeNotificationListener(
+  javax.management.ObjectName name,
+  javax.management.ObjectName listener,
+  javax.security.auth.Subject delegationSubject)
+  throws |javax.management.InstanceNotFoundException|
+         |java.io.IOException|
+         |javax.management.ListenerNotFoundException|
+         
+Handles the method (|javax.management.MBeanServerConnection|) . 
+
+    name - The name of the MBean on which the listener should be removed. 
+    listener - The object name of the listener to be removed. 
+    delegationSubject - The Subject containing the delegation principals or null if the authentication 
+       principal is used instead. 
+
+*javax.management.remote.rmi.RMIConnection.removeNotificationListeners(ObjectName,Integer[],Subject)*
+
+public void removeNotificationListeners(
+  javax.management.ObjectName name,
+  java.lang.Integer[] listenerIDs,
+  javax.security.auth.Subject delegationSubject)
+  throws |javax.management.InstanceNotFoundException|
+         |java.io.IOException|
+         |javax.management.ListenerNotFoundException|
+         
+Handles the removeNotificationListener(ObjectName, 
+NotificationListener)(|javax.management.MBeanServerConnection|) and 
+removeNotificationListener(ObjectName, NotificationListener, 
+NotificationFilter, Object)(|javax.management.MBeanServerConnection|) methods. 
+
+This method removes one or more NotificationListeners from a given MBean in the 
+MBean server. 
+
+The NotificationListeners are identified by the IDs which were returned by the 
+(|javax.management.remote.rmi.RMIConnection|) method. 
+
+    name - the ObjectName identifying the MBean emitting the Notifications. 
+    listenerIDs - the list of the IDs corresponding to the listeners to remove. 
+    delegationSubject - The Subject containing the delegation principals or null if the authentication 
+       principal is used instead. 
+
+*javax.management.remote.rmi.RMIConnection.setAttribute(ObjectName,MarshalledObject,Subject)*
+
+public void setAttribute(
+  javax.management.ObjectName name,
+  java.rmi.MarshalledObject attribute,
+  javax.security.auth.Subject delegationSubject)
+  throws |javax.management.AttributeNotFoundException|
+         |javax.management.InstanceNotFoundException|
+         |javax.management.InvalidAttributeValueException|
+         |java.io.IOException|
+         |javax.management.MBeanException|
+         |javax.management.ReflectionException|
+         
+Handles the method (|javax.management.MBeanServerConnection|) . The Attribute 
+parameter is wrapped in a MarshalledObject. 
+
+    name - The name of the MBean within which the attribute is to be set. 
+    attribute - The identification of the attribute to be set and the value it is to be set to, 
+       encapsulated into a MarshalledObject. 
+    delegationSubject - The Subject containing the delegation principals or null if the authentication 
+       principal is used instead. 
+
+*javax.management.remote.rmi.RMIConnection.setAttributes(ObjectName,MarshalledObject,Subject)*
+
+public |javax.management.AttributeList| setAttributes(
+  javax.management.ObjectName name,
+  java.rmi.MarshalledObject attributes,
+  javax.security.auth.Subject delegationSubject)
+  throws |javax.management.InstanceNotFoundException|
+         |java.io.IOException|
+         |javax.management.ReflectionException|
+         
+Handles the method (|javax.management.MBeanServerConnection|) . The 
+AttributeList parameter is wrapped in a MarshalledObject. 
+
+    name - The object name of the MBean within which the attributes are to be set. 
+    attributes - A list of attributes: The identification of the attributes to be set and the 
+       values they are to be set to, encapsulated into a MarshalledObject. 
+    delegationSubject - The Subject containing the delegation principals or null if the authentication 
+       principal is used instead. 
+
+    Returns: The list of attributes that were set, with their new values. 
+*javax.management.remote.rmi.RMIConnection.unregisterMBean(ObjectName,Subject)*
+
+public void unregisterMBean(
+  javax.management.ObjectName name,
+  javax.security.auth.Subject delegationSubject)
+  throws |javax.management.InstanceNotFoundException|
+         |java.io.IOException|
+         |javax.management.MBeanRegistrationException|
+         
+Handles the method (|javax.management.MBeanServerConnection|) . 
+
+    name - The object name of the MBean to be unregistered. 
+    delegationSubject - The Subject containing the delegation principals or null if the authentication 
+       principal is used instead. 
+
+

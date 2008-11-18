@@ -1,0 +1,383 @@
+*org.omg.CORBA.portable.ObjectImpl* *ObjectImpl* The common base class for all s
+
+public abstract class ObjectImpl
+  extends    |java.lang.Object|
+  implements |org.omg.CORBA.Object|
+
+|org.omg.CORBA.portable.ObjectImpl_Description|
+|org.omg.CORBA.portable.ObjectImpl_Fields|
+|org.omg.CORBA.portable.ObjectImpl_Constructors|
+|org.omg.CORBA.portable.ObjectImpl_Methods|
+
+================================================================================
+
+*org.omg.CORBA.portable.ObjectImpl_Constructors*
+|org.omg.CORBA.portable.ObjectImpl()|
+
+*org.omg.CORBA.portable.ObjectImpl_Methods*
+|org.omg.CORBA.portable.ObjectImpl._create_request(Context,String,NVList,NamedValue)|
+|org.omg.CORBA.portable.ObjectImpl._create_request(Context,String,NVList,NamedValue,ExceptionList,ContextList)|
+|org.omg.CORBA.portable.ObjectImpl._duplicate()|Returns a duplicate of this Obj
+|org.omg.CORBA.portable.ObjectImpl._get_delegate()|Retrieves the reference to t
+|org.omg.CORBA.portable.ObjectImpl._get_domain_managers()|Retrieves a list of t
+|org.omg.CORBA.portable.ObjectImpl._get_interface_def()|Retrieves the interface
+|org.omg.CORBA.portable.ObjectImpl._get_policy(int)|Retrieves the Policy object
+|org.omg.CORBA.portable.ObjectImpl._hash(int)|Retrieves the hash code that serv
+|org.omg.CORBA.portable.ObjectImpl._ids()|Retrieves a string array containing t
+|org.omg.CORBA.portable.ObjectImpl._invoke(OutputStream)|Invokes an operation a
+|org.omg.CORBA.portable.ObjectImpl._is_a(String)|Checks whether the object iden
+|org.omg.CORBA.portable.ObjectImpl._is_equivalent(Object)|Checks whether the th
+|org.omg.CORBA.portable.ObjectImpl._is_local()|Checks whether this ObjectImpl o
+|org.omg.CORBA.portable.ObjectImpl._non_existent()|Checks whether the server ob
+|org.omg.CORBA.portable.ObjectImpl._orb()|Returns a reference to the ORB associ
+|org.omg.CORBA.portable.ObjectImpl._release()|Releases the resources associated
+|org.omg.CORBA.portable.ObjectImpl._releaseReply(InputStream)|Releases the give
+|org.omg.CORBA.portable.ObjectImpl._request(String)|Creates a Request object co
+|org.omg.CORBA.portable.ObjectImpl._request(String,boolean)|Returns an OutputSt
+|org.omg.CORBA.portable.ObjectImpl._servant_postinvoke(ServantObject)|Is called
+|org.omg.CORBA.portable.ObjectImpl._servant_preinvoke(String,Class)|Returns a J
+|org.omg.CORBA.portable.ObjectImpl._set_delegate(Delegate)|Sets the Delegate fo
+|org.omg.CORBA.portable.ObjectImpl._set_policy_override(Policy[],SetOverrideType)|
+|org.omg.CORBA.portable.ObjectImpl.equals(Object)|Compares this ObjectImpl obje
+|org.omg.CORBA.portable.ObjectImpl.hashCode()|Returns the hash code for this Ob
+|org.omg.CORBA.portable.ObjectImpl.toString()|Returns a String object that repr
+
+*org.omg.CORBA.portable.ObjectImpl_Description*
+
+The common base class for all stub classes; provides default implementations of 
+the org.omg.CORBA.Object methods. All method implementations are forwarded to a 
+Delegate object stored in the ObjectImpl instance. ObjectImpl allows for 
+portable stubs because the Delegate can be implemented by a different 
+vendor-specific ORB. 
+
+
+*org.omg.CORBA.portable.ObjectImpl()*
+
+public ObjectImpl()
+
+
+
+
+*org.omg.CORBA.portable.ObjectImpl._create_request(Context,String,NVList,NamedValue)*
+
+public |org.omg.CORBA.Request| _create_request(
+  org.omg.CORBA.Context ctx,
+  java.lang.String operation,
+  org.omg.CORBA.NVList arg_list,
+  org.omg.CORBA.NamedValue result)
+
+Creates a Request object that contains the given context, method, argument 
+list, and container for the result. 
+
+    ctx - the Context for the request 
+    operation - the method that the new Request object will invoke 
+    arg_list - the arguments for the method; an NVList in which each argument is a NamedValue 
+       object 
+    result - a NamedValue object to be used for returning the result of executing the 
+       request's method 
+
+    Returns: a new Request object initialized with the given context, method, argument list, 
+             and container for the return value 
+*org.omg.CORBA.portable.ObjectImpl._create_request(Context,String,NVList,NamedValue,ExceptionList,ContextList)*
+
+public |org.omg.CORBA.Request| _create_request(
+  org.omg.CORBA.Context ctx,
+  java.lang.String operation,
+  org.omg.CORBA.NVList arg_list,
+  org.omg.CORBA.NamedValue result,
+  org.omg.CORBA.ExceptionList exceptions,
+  org.omg.CORBA.ContextList contexts)
+
+Creates a Request object that contains the given context, method, argument 
+list, container for the result, exceptions, and list of property names to be 
+used in resolving the context strings. This Request object is for use in the 
+Dynamic Invocation Interface. 
+
+    ctx - the Context object that contains the context strings that must be resolved 
+       before they are sent along with the request 
+    operation - the method that the new Request object will invoke 
+    arg_list - the arguments for the method; an NVList in which each argument is a NamedValue 
+       object 
+    result - a NamedValue object to be used for returning the result of executing the 
+       request's method 
+    exceptions - a list of the exceptions that the given method throws 
+    contexts - a list of the properties that are needed to resolve the contexts in ctx; the 
+       strings in contexts are used as arguments to the method 
+       Context.get_values, which returns the value associated with the given 
+       property 
+
+    Returns: a new Request object initialized with the given context strings to resolve, 
+             method, argument list, container for the result, exceptions, and 
+             list of property names to be used in resolving the context strings 
+*org.omg.CORBA.portable.ObjectImpl._duplicate()*
+
+public |org.omg.CORBA.Object| _duplicate()
+
+Returns a duplicate of this ObjectImpl object. 
+
+
+    Returns: an orb.omg.CORBA.Object object that is a duplicate of this object 
+*org.omg.CORBA.portable.ObjectImpl._get_delegate()*
+
+public |org.omg.CORBA.portable.Delegate| _get_delegate()
+
+Retrieves the reference to the vendor-specific Delegate object to which this 
+ObjectImpl object delegates all methods invoked on it. 
+
+
+    Returns: the Delegate contained in this ObjectImpl instance 
+*org.omg.CORBA.portable.ObjectImpl._get_domain_managers()*
+
+public |org.omg.CORBA.DomainManager| _get_domain_managers()
+
+Retrieves a list of the domain managers for this ObjectImpl object. 
+
+
+    Returns: an array containing the DomainManager objects for this instance of ObjectImpl 
+*org.omg.CORBA.portable.ObjectImpl._get_interface_def()*
+
+public |org.omg.CORBA.Object| _get_interface_def()
+
+Retrieves the interface definition for this ObjectImpl object. 
+
+
+    Returns: the org.omg.CORBA.Object instance that is the interface definition for this 
+             ObjectImpl object 
+*org.omg.CORBA.portable.ObjectImpl._get_policy(int)*
+
+public |org.omg.CORBA.Policy| _get_policy(int policy_type)
+
+Retrieves the Policy object for this ObjectImpl object that has the given 
+policy type. 
+
+    policy_type - an int indicating the policy type 
+
+    Returns: the Policy object that is the specified policy type and that applies to this 
+             ObjectImpl object 
+*org.omg.CORBA.portable.ObjectImpl._hash(int)*
+
+public int _hash(int maximum)
+
+Retrieves the hash code that serves as an ORB-internal identifier for this 
+ObjectImpl object. 
+
+    maximum - an int indicating the upper bound on the hash value returned by the ORB 
+
+    Returns: an int representing the hash code for this ObjectImpl object 
+*org.omg.CORBA.portable.ObjectImpl._ids()*
+
+public abstract |java.lang.String| _ids()
+
+Retrieves a string array containing the repository identifiers supported by 
+this ObjectImpl object. For example, for a stub, this method returns 
+information about all the interfaces supported by the stub. 
+
+
+    Returns: the array of all repository identifiers supported by this ObjectImpl instance 
+*org.omg.CORBA.portable.ObjectImpl._invoke(OutputStream)*
+
+public |org.omg.CORBA.portable.InputStream| _invoke(org.omg.CORBA.portable.OutputStream output)
+  throws |org.omg.CORBA.portable.ApplicationException|
+         |org.omg.CORBA.portable.RemarshalException|
+         
+Invokes an operation and returns an InputStream object for reading the 
+response. The stub provides the OutputStream object that was previously 
+returned by a call to the _request method. The method specified as an argument 
+to _request when it was called previously is the method that this method 
+invokes. 
+
+If an exception occurs, the _invoke method may throw an ApplicationException 
+object that contains an InputStream from which the user exception state may be 
+unmarshalled. 
+
+    output - an OutputStream object for dispatching the request 
+
+    Returns: an InputStream object containing the marshalled response to the method invoked 
+*org.omg.CORBA.portable.ObjectImpl._is_a(String)*
+
+public boolean _is_a(java.lang.String repository_id)
+
+Checks whether the object identified by the given repository identifier is an 
+ObjectImpl object. 
+
+    repository_id - a String object with the repository identifier to check 
+
+    Returns: true if the object identified by the given repository id is an instance of 
+             ObjectImpl; false otherwise 
+*org.omg.CORBA.portable.ObjectImpl._is_equivalent(Object)*
+
+public boolean _is_equivalent(org.omg.CORBA.Object that)
+
+Checks whether the the given ObjectImpl object is equivalent to this ObjectImpl 
+object. 
+
+    that - an instance of ObjectImpl to compare with this ObjectImpl object 
+
+    Returns: true if the given object is equivalent to this ObjectImpl object; false 
+             otherwise 
+*org.omg.CORBA.portable.ObjectImpl._is_local()*
+
+public boolean _is_local()
+
+Checks whether this ObjectImpl object is implemented by a local servant. If so, 
+local invocation API's may be used. 
+
+
+    Returns: true if this object is implemented by a local servant; false otherwise 
+*org.omg.CORBA.portable.ObjectImpl._non_existent()*
+
+public boolean _non_existent()
+
+Checks whether the server object for this ObjectImpl object has been destroyed. 
+
+
+    Returns: true if the ORB knows authoritatively that the server object does not exist; 
+             false otherwise 
+*org.omg.CORBA.portable.ObjectImpl._orb()*
+
+public |org.omg.CORBA.ORB| _orb()
+
+Returns a reference to the ORB associated with this object and its delegate. 
+This is the ORB object that created the delegate. 
+
+
+    Returns: the ORB instance that created the Delegate object contained in this ObjectImpl 
+             object 
+*org.omg.CORBA.portable.ObjectImpl._release()*
+
+public void _release()
+
+Releases the resources associated with this ObjectImpl object. 
+
+
+*org.omg.CORBA.portable.ObjectImpl._releaseReply(InputStream)*
+
+public void _releaseReply(org.omg.CORBA.portable.InputStream input)
+
+Releases the given reply stream back to the ORB when unmarshalling has 
+completed after a call to the method _invoke. Calling this method is optional 
+for the stub. 
+
+    input - the InputStream object that was returned by the _invoke method or the 
+       ApplicationException.getInputStream method; may be null, in which case 
+       this method does nothing 
+
+*org.omg.CORBA.portable.ObjectImpl._request(String)*
+
+public |org.omg.CORBA.Request| _request(java.lang.String operation)
+
+Creates a Request object containing the given method that can be used with the 
+Dynamic Invocation Interface. 
+
+    operation - the method to be invoked by the new Request object 
+
+    Returns: a new Request object initialized with the given method 
+*org.omg.CORBA.portable.ObjectImpl._request(String,boolean)*
+
+public |org.omg.CORBA.portable.OutputStream| _request(
+  java.lang.String operation,
+  boolean responseExpected)
+
+Returns an OutputStream object to use for marshalling the arguments of the 
+given method. This method is called by a stub, which must indicate if a 
+response is expected, that is, whether or not the call is oneway. 
+
+    operation - a String giving the name of the method. 
+    responseExpected - a boolean -- true if the request is not one way, that is, a response is 
+       expected 
+
+    Returns: an OutputStream object for dispatching the request 
+*org.omg.CORBA.portable.ObjectImpl._servant_postinvoke(ServantObject)*
+
+public void _servant_postinvoke(org.omg.CORBA.portable.ServantObject servant)
+
+Is called by the local stub after it has invoked an operation on the local 
+servant that was previously retrieved from a call to the method 
+_servant_preinvoke. The _servant_postinvoke method must be called if the 
+_servant_preinvoke method returned a non-null value, even if an exception was 
+thrown by the method invoked by the servant. For this reason, the call to the 
+method _servant_postinvoke should be placed in a Java finally clause. 
+
+    servant - the instance of the ServantObject returned by the _servant_preinvoke method 
+
+*org.omg.CORBA.portable.ObjectImpl._servant_preinvoke(String,Class)*
+
+public |org.omg.CORBA.portable.ServantObject| _servant_preinvoke(
+  java.lang.String operation,
+  java.lang.Class expectedType)
+
+Returns a Java reference to the local servant that should be used for sending a 
+request for the method specified. If this ObjectImpl object is a local stub, it 
+will invoke the _servant_preinvoke method before sending a request in order to 
+obtain the ServantObject instance to use. 
+
+If a ServantObject object is returned, its servant field has been set to an 
+object of the expected type (Note: the object may or may not be the actual 
+servant instance). The local stub may cast the servant field to the expected 
+type, and then invoke the operation directly. The ServantRequest object is 
+valid for only one invocation and cannot be used for more than one invocation. 
+
+    operation - a String containing the name of the method to be invoked. This name should 
+       correspond to the method name as it would be encoded in a GIOP request. 
+    expectedType - a Class object representing the expected type of the servant that is returned. 
+       This expected type is the Class object associated with the operations 
+       class for the stub's interface. For example, a stub for an interface Foo 
+       would pass the Class object for the FooOperations interface. 
+
+    Returns: (1) a ServantObject object, which may or may not be the actual servant 
+             instance, or (2) null if (a) the servant is not local or (b) the 
+             servant has ceased to be local due to a ForwardRequest from a POA 
+             ServantManager 
+*org.omg.CORBA.portable.ObjectImpl._set_delegate(Delegate)*
+
+public void _set_delegate(org.omg.CORBA.portable.Delegate delegate)
+
+Sets the Delegate for this ObjectImpl instance to the given Delegate object. 
+All method invocations on this ObjectImpl object will be forwarded to this 
+delegate. 
+
+    delegate - the Delegate instance to which all method calls on this ObjectImpl object will 
+       be delegated; may be implemented by a third-party ORB 
+
+*org.omg.CORBA.portable.ObjectImpl._set_policy_override(Policy[],SetOverrideType)*
+
+public |org.omg.CORBA.Object| _set_policy_override(
+  org.omg.CORBA.Policy[] policies,
+  org.omg.CORBA.SetOverrideType set_add)
+
+Sets this ObjectImpl object's override type for the given policies to the given 
+instance of SetOverrideType. 
+
+    policies - an array of Policy objects with the policies that will replace the current 
+       policies or be added to the current policies 
+    set_add - either SetOverrideType.SET_OVERRIDE, indicating that the given policies will 
+       replace any existing ones, or SetOverrideType.ADD_OVERRIDE, indicating 
+       that the given policies should be added to any existing ones 
+
+    Returns: an Object with the given policies replacing or added to its previous policies 
+*org.omg.CORBA.portable.ObjectImpl.equals(Object)*
+
+public boolean equals(java.lang.Object obj)
+
+Compares this ObjectImpl object with the given one for equality. 
+
+    obj - the object with which to compare this object 
+
+    Returns: true if the two objects are equal; false otherwise 
+*org.omg.CORBA.portable.ObjectImpl.hashCode()*
+
+public int hashCode()
+
+Returns the hash code for this ObjectImpl object. 
+
+
+    Returns: the hash code for this object 
+*org.omg.CORBA.portable.ObjectImpl.toString()*
+
+public |java.lang.String| toString()
+
+Returns a String object that represents this ObjectImpl object. 
+
+
+    Returns: the String representation of this object 
+

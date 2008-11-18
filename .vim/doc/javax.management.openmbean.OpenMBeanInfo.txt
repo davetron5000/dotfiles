@@ -1,0 +1,162 @@
+*javax.management.openmbean.OpenMBeanInfo* *OpenMBeanInfo* Describes an Open MBe
+
+public interface interface OpenMBeanInfo
+
+
+|javax.management.openmbean.OpenMBeanInfo_Description|
+|javax.management.openmbean.OpenMBeanInfo_Fields|
+|javax.management.openmbean.OpenMBeanInfo_Constructors|
+|javax.management.openmbean.OpenMBeanInfo_Methods|
+
+================================================================================
+
+*javax.management.openmbean.OpenMBeanInfo_Methods*
+|javax.management.openmbean.OpenMBeanInfo.equals(Object)|Compares the specified
+|javax.management.openmbean.OpenMBeanInfo.getAttributes()|Returns an array of O
+|javax.management.openmbean.OpenMBeanInfo.getClassName()|Returns the fully qual
+|javax.management.openmbean.OpenMBeanInfo.getConstructors()|Returns an array of
+|javax.management.openmbean.OpenMBeanInfo.getDescription()|Returns a human read
+|javax.management.openmbean.OpenMBeanInfo.getNotifications()|Returns an array o
+|javax.management.openmbean.OpenMBeanInfo.getOperations()|Returns an array of O
+|javax.management.openmbean.OpenMBeanInfo.hashCode()|Returns the hash code valu
+|javax.management.openmbean.OpenMBeanInfo.toString()|Returns a string represent
+
+*javax.management.openmbean.OpenMBeanInfo_Description*
+
+Describes an Open MBean: an Open MBean is recognized as such if its 
+getMBeanInfo()(|javax.management.DynamicMBean|) method returns an instance of a 
+class which implements the (|javax.management.openmbean.OpenMBeanInfo|) 
+interface, typically (|javax.management.openmbean.OpenMBeanInfoSupport|) . 
+
+This interface declares the same methods as the class 
+(|javax.management.MBeanInfo|) . A class implementing this interface (typically 
+(|javax.management.openmbean.OpenMBeanInfoSupport|) ) should extend 
+(|javax.management.MBeanInfo|) . 
+
+The (|javax.management.openmbean.OpenMBeanInfo|) , 
+(|javax.management.openmbean.OpenMBeanInfo|) and 
+(|javax.management.openmbean.OpenMBeanInfo|) methods of the implementing class 
+should return at runtime an array of instances of a subclass of 
+(|javax.management.MBeanAttributeInfo|) , 
+(|javax.management.MBeanOperationInfo|) or 
+(|javax.management.MBeanConstructorInfo|) respectively which implement the 
+(|javax.management.openmbean.OpenMBeanAttributeInfo|) , 
+(|javax.management.openmbean.OpenMBeanOperationInfo|) or 
+(|javax.management.openmbean.OpenMBeanConstructorInfo|) interface respectively. 
+
+
+*javax.management.openmbean.OpenMBeanInfo.equals(Object)*
+
+public boolean equals(java.lang.Object obj)
+
+Compares the specified obj parameter with this OpenMBeanInfo instance for 
+equality. 
+
+Returns true if and only if all of the following statements are true: 
+
+obj is non null, obj also implements the OpenMBeanInfo interface, their class 
+names are equal their infos on attributes, constructors, operations and 
+notifications are equal 
+
+This ensures that this equals method works properly for obj parameters which 
+are different implementations of the OpenMBeanInfo interface. 
+
+    obj - the object to be compared for equality with this OpenMBeanInfo instance; 
+
+    Returns: true if the specified object is equal to this OpenMBeanInfo instance. 
+*javax.management.openmbean.OpenMBeanInfo.getAttributes()*
+
+public |javax.management.MBeanAttributeInfo| getAttributes()
+
+Returns an array of OpenMBeanAttributeInfo instances describing each attribute 
+in the open MBean described by this OpenMBeanInfo instance. Each instance in 
+the returned array should actually be a subclass of MBeanAttributeInfo which 
+implements the OpenMBeanAttributeInfo interface (typically 
+(|javax.management.openmbean.OpenMBeanAttributeInfoSupport|) ). 
+
+
+    Returns: the attribute array. 
+*javax.management.openmbean.OpenMBeanInfo.getClassName()*
+
+public |java.lang.String| getClassName()
+
+Returns the fully qualified Java class name of the open MBean instances this 
+OpenMBeanInfo describes. 
+
+
+    Returns: the class name. 
+*javax.management.openmbean.OpenMBeanInfo.getConstructors()*
+
+public |javax.management.MBeanConstructorInfo| getConstructors()
+
+Returns an array of OpenMBeanConstructorInfo instances describing each 
+constructor in the open MBean described by this OpenMBeanInfo instance. Each 
+instance in the returned array should actually be a subclass of 
+MBeanConstructorInfo which implements the OpenMBeanConstructorInfo interface 
+(typically (|javax.management.openmbean.OpenMBeanConstructorInfoSupport|) ). 
+
+
+    Returns: the constructor array. 
+*javax.management.openmbean.OpenMBeanInfo.getDescription()*
+
+public |java.lang.String| getDescription()
+
+Returns a human readable description of the type of open MBean instances this 
+OpenMBeanInfo describes. 
+
+
+    Returns: the description. 
+*javax.management.openmbean.OpenMBeanInfo.getNotifications()*
+
+public |javax.management.MBeanNotificationInfo| getNotifications()
+
+Returns an array of MBeanNotificationInfo instances describing each 
+notification emitted by the open MBean described by this OpenMBeanInfo 
+instance. 
+
+
+    Returns: the notification array. 
+*javax.management.openmbean.OpenMBeanInfo.getOperations()*
+
+public |javax.management.MBeanOperationInfo| getOperations()
+
+Returns an array of OpenMBeanOperationInfo instances describing each operation 
+in the open MBean described by this OpenMBeanInfo instance. Each instance in 
+the returned array should actually be a subclass of MBeanOperationInfo which 
+implements the OpenMBeanOperationInfo interface (typically 
+(|javax.management.openmbean.OpenMBeanOperationInfoSupport|) ). 
+
+
+    Returns: the operation array. 
+*javax.management.openmbean.OpenMBeanInfo.hashCode()*
+
+public int hashCode()
+
+Returns the hash code value for this OpenMBeanInfo instance. 
+
+The hash code of an OpenMBeanInfo instance is the sum of the hash codes of all 
+elements of information used in equals comparisons (ie: its class name, and its 
+infos on attributes, constructors, operations and notifications, where the 
+hashCode of each of these arrays is calculated by a call to new 
+java.util.HashSet(java.util.Arrays.asList(this.getSignature)).hashCode()). 
+
+This ensures that t1.equals(t2) implies that t1.hashCode()==t2.hashCode() for 
+any two OpenMBeanInfo instances t1 and t2, as required by the general contract 
+of the method Object.hashCode()(|java.lang.Object|) . 
+
+
+    Returns: the hash code value for this OpenMBeanInfo instance 
+*javax.management.openmbean.OpenMBeanInfo.toString()*
+
+public |java.lang.String| toString()
+
+Returns a string representation of this OpenMBeanInfo instance. 
+
+The string representation consists of the name of this class (ie 
+javax.management.openmbean.OpenMBeanInfo), the MBean class name, and the string 
+representation of infos on attributes, constructors, operations and 
+notifications of the described MBean. 
+
+
+    Returns: a string representation of this OpenMBeanInfo instance 
+

@@ -1,0 +1,175 @@
+*java.util.SortedSet* *SortedSet* A set that further guarantees that its iterato
+
+public interface interface SortedSet
+
+  implements |java.util.Set|
+
+|java.util.SortedSet_Description|
+|java.util.SortedSet_Fields|
+|java.util.SortedSet_Constructors|
+|java.util.SortedSet_Methods|
+
+================================================================================
+
+*java.util.SortedSet_Methods*
+|java.util.SortedSet.comparator()|Returns the comparator associated with this s
+|java.util.SortedSet.first()|Returns the first (lowest) element currently in th
+|java.util.SortedSet.headSet(E)|Returns a view of the portion of this sorted se
+|java.util.SortedSet.last()|Returns the last (highest) element currently in thi
+|java.util.SortedSet.subSet(E,E)|Returns a view of the portion of this sorted s
+|java.util.SortedSet.tailSet(E)|Returns a view of the portion of this sorted se
+
+*java.util.SortedSet_Description*
+
+A set that further guarantees that its iterator will traverse the set in 
+ascending element order, sorted according to the natural ordering of its 
+elements (see Comparable), or by a Comparator provided at sorted set creation 
+time. Several additional operations are provided to take advantage of the 
+ordering. (This interface is the set analogue of SortedMap.) 
+
+All elements inserted into an sorted set must implement the Comparable 
+interface (or be accepted by the specified Comparator). Furthermore, all such 
+elements must be mutually comparable: e1.compareTo(e2) (or 
+comparator.compare(e1, e2)) must not throw a ClassCastException for any 
+elements e1 and e2 in the sorted set. Attempts to violate this restriction will 
+cause the offending method or constructor invocation to throw a 
+ClassCastException. 
+
+Note that the ordering maintained by a sorted set (whether or not an explicit 
+comparator is provided) must be consistent with equals if the sorted set is to 
+correctly implement the Set interface. (See the Comparable interface or 
+Comparator interface for a precise definition of consistent with equals.) This 
+is so because the Set interface is defined in terms of the equals operation, 
+but a sorted set performs all element comparisons using its compareTo (or 
+compare) method, so two elements that are deemed equal by this method are, from 
+the standpoint of the sorted set, equal. The behavior of a sorted set is 
+well-defined even if its ordering is inconsistent with equals; it just fails to 
+obey the general contract of the Set interface. 
+
+All general-purpose sorted set implementation classes should provide four 
+"standard" constructors: 1) A void (no arguments) constructor, which creates an 
+empty sorted set sorted according to the natural order of its elements. 2) A 
+constructor with a single argument of type Comparator, which creates an empty 
+sorted set sorted according to the specified comparator. 3) A constructor with 
+a single argument of type Collection, which creates a new sorted set with the 
+same elements as its argument, sorted according to the elements' natural 
+ordering. 4) A constructor with a single argument of type SortedSet, which 
+creates a new sorted set with the same elements and the same ordering as the 
+input sorted set. There is no way to enforce this recommendation (as interfaces 
+cannot contain constructors) but the JDK implementation (the TreeSet class) 
+complies. 
+
+This interface is a member of the <a href="/../guide/collections/index.html"> 
+Java Collections Framework. 
+
+
+*java.util.SortedSet.comparator()*
+
+public |java.util.Comparator| comparator()
+
+Returns the comparator associated with this sorted set, or null if it uses its 
+elements' natural ordering. 
+
+
+    Returns: the comparator associated with this sorted set, or null if it uses its 
+             elements' natural ordering. 
+*java.util.SortedSet.first()*
+
+public |java.lang.Object| first()
+
+Returns the first (lowest) element currently in this sorted set. 
+
+
+    Returns: the first (lowest) element currently in this sorted set. 
+*java.util.SortedSet.headSet(E)*
+
+public |java.util.SortedSet| headSet(java.lang.Object toElement)
+
+Returns a view of the portion of this sorted set whose elements are strictly 
+less than toElement. The returned sorted set is backed by this sorted set, so 
+changes in the returned sorted set are reflected in this sorted set, and 
+vice-versa. The returned sorted set supports all optional set operations. 
+
+The sorted set returned by this method will throw an IllegalArgumentException 
+if the user attempts to insert a element outside the specified range. 
+
+Note: this method always returns a view that does not contain its (high) 
+endpoint. If you need a view that does contain this endpoint, and the element 
+type allows for calculation of the successor a given value, merely request a 
+headSet bounded by successor(highEndpoint). For example, suppose that s is a 
+sorted set of strings. The following idiom obtains a view containing all of the 
+strings in s that are less than or equal to high: SortedSet head = 
+s.headSet(high+"\0"); 
+
+    toElement - high endpoint (exclusive) of the headSet. 
+
+    Returns: a view of the specified initial range of this sorted set. 
+*java.util.SortedSet.last()*
+
+public |java.lang.Object| last()
+
+Returns the last (highest) element currently in this sorted set. 
+
+
+    Returns: the last (highest) element currently in this sorted set. 
+*java.util.SortedSet.subSet(E,E)*
+
+public |java.util.SortedSet| subSet(
+  java.lang.Object fromElement,
+  java.lang.Object toElement)
+
+Returns a view of the portion of this sorted set whose elements range from 
+fromElement, inclusive, to toElement, exclusive. (If fromElement and toElement 
+are equal, the returned sorted set is empty.) The returned sorted set is backed 
+by this sorted set, so changes in the returned sorted set are reflected in this 
+sorted set, and vice-versa. The returned sorted set supports all optional set 
+operations that this sorted set supports. 
+
+The sorted set returned by this method will throw an IllegalArgumentException 
+if the user attempts to insert a element outside the specified range. 
+
+Note: this method always returns a half-open range (which includes its low 
+endpoint but not its high endpoint). If you need a closed range (which includes 
+both endpoints), and the element type allows for calculation of the successor a 
+given value, merely request the subrange from lowEndpoint to 
+successor(highEndpoint). For example, suppose that s is a sorted set of 
+strings. The following idiom obtains a view containing all of the strings in s 
+from low to high, inclusive: 
+
+SortedSet sub = s.subSet(low, high+"\0"); 
+
+A similar technique can be used to generate an open range (which contains 
+neither endpoint). The following idiom obtains a view containing all of the 
+Strings in s from low to high, exclusive: 
+
+SortedSet sub = s.subSet(low+"\0", high); 
+
+    fromElement - low endpoint (inclusive) of the subSet. 
+    toElement - high endpoint (exclusive) of the subSet. 
+
+    Returns: a view of the specified range within this sorted set. 
+*java.util.SortedSet.tailSet(E)*
+
+public |java.util.SortedSet| tailSet(java.lang.Object fromElement)
+
+Returns a view of the portion of this sorted set whose elements are greater 
+than or equal to fromElement. The returned sorted set is backed by this sorted 
+set, so changes in the returned sorted set are reflected in this sorted set, 
+and vice-versa. The returned sorted set supports all optional set operations. 
+
+The sorted set returned by this method will throw an IllegalArgumentException 
+if the user attempts to insert a element outside the specified range. 
+
+Note: this method always returns a view that contains its (low) endpoint. If 
+you need a view that does not contain this endpoint, and the element type 
+allows for calculation of the successor a given value, merely request a tailSet 
+bounded by successor(lowEndpoint). For example, suppose that s is a sorted set 
+of strings. The following idiom obtains a view containing all of the strings in 
+s that are strictly greater than low: 
+
+SortedSet tail = s.tailSet(low+"\0"); 
+
+    fromElement - low endpoint (inclusive) of the tailSet. 
+
+    Returns: a view of the specified final range of this sorted set. 
+

@@ -1,0 +1,99 @@
+*java.awt.image.PixelInterleavedSampleModel* *PixelInterleavedSampleModel* This 
+
+public class PixelInterleavedSampleModel
+  extends    |java.awt.image.ComponentSampleModel|
+
+|java.awt.image.PixelInterleavedSampleModel_Description|
+|java.awt.image.PixelInterleavedSampleModel_Fields|
+|java.awt.image.PixelInterleavedSampleModel_Constructors|
+|java.awt.image.PixelInterleavedSampleModel_Methods|
+
+================================================================================
+
+*java.awt.image.PixelInterleavedSampleModel_Constructors*
+|java.awt.image.PixelInterleavedSampleModel(int,int,int,int,int,int[])|Construc
+
+*java.awt.image.PixelInterleavedSampleModel_Methods*
+|java.awt.image.PixelInterleavedSampleModel.createCompatibleSampleModel(int,int)|
+|java.awt.image.PixelInterleavedSampleModel.createSubsetSampleModel(int[])|Crea
+|java.awt.image.PixelInterleavedSampleModel.hashCode()|
+
+*java.awt.image.PixelInterleavedSampleModel_Description*
+
+This class represents image data which is stored in a pixel interleaved fashion 
+and for which each sample of a pixel occupies one data element of the 
+DataBuffer. It subclasses ComponentSampleModel but provides a more efficent 
+implementation for accessing pixel interleaved image data than is provided by 
+ComponentSampleModel. This class stores sample data for all bands in a single 
+bank of the DataBuffer. Accessor methods are provided so that image data can be 
+manipulated directly. Pixel stride is the number of data array elements between 
+two samples for the same band on the same scanline. Scanline stride is the 
+number of data array elements between a given sample and the corresponding 
+sample in the same column of the next scanline. Band offsets denote the number 
+of data array elements from the first data array element of the bank of the 
+DataBuffer holding each band to the first sample of the band. The bands are 
+numbered from 0 to N-1. Bank indices denote the correspondence between a bank 
+of the data buffer and a band of image data. This class supports 
+TYPE_BYTE(|java.awt.image.DataBuffer|) , 
+TYPE_USHORT(|java.awt.image.DataBuffer|) , 
+TYPE_SHORT(|java.awt.image.DataBuffer|) , TYPE_INT(|java.awt.image.DataBuffer|) 
+, TYPE_FLOAT(|java.awt.image.DataBuffer|) and 
+TYPE_DOUBLE(|java.awt.image.DataBuffer|) datatypes. 
+
+
+*java.awt.image.PixelInterleavedSampleModel(int,int,int,int,int,int[])*
+
+public PixelInterleavedSampleModel(
+  int dataType,
+  int w,
+  int h,
+  int pixelStride,
+  int scanlineStride,
+  int[] bandOffsets)
+
+Constructs a PixelInterleavedSampleModel with the specified parameters. The 
+number of bands will be given by the length of the bandOffsets array. 
+
+    dataType - The data type for storing samples. 
+    w - The width (in pixels) of the region of image data described. 
+    h - The height (in pixels) of the region of image data described. 
+    pixelStride - The pixel stride of the image data. 
+    scanlineStride - The line stride of the image data. 
+    bandOffsets - The offsets of all bands. 
+
+*java.awt.image.PixelInterleavedSampleModel.createCompatibleSampleModel(int,int)*
+
+public |java.awt.image.SampleModel| createCompatibleSampleModel(
+  int w,
+  int h)
+
+Creates a new PixelInterleavedSampleModel with the specified width and height. 
+The new PixelInterleavedSampleModel will have the same number of bands, storage 
+data type, and pixel stride as this PixelInterleavedSampleModel. The band 
+offsets may be compressed such that the minimum of all of the band offsets is 
+zero. 
+
+    w - the width of the resulting SampleModel 
+    h - the height of the resulting SampleModel 
+
+    Returns: a new SampleModel with the specified width and height. 
+*java.awt.image.PixelInterleavedSampleModel.createSubsetSampleModel(int[])*
+
+public |java.awt.image.SampleModel| createSubsetSampleModel(int[] bands)
+
+Creates a new PixelInterleavedSampleModel with a subset of the bands of this 
+PixelInterleavedSampleModel. The new PixelInterleavedSampleModel can be used 
+with any DataBuffer that the existing PixelInterleavedSampleModel can be used 
+with. The new PixelInterleavedSampleModel/DataBuffer combination will represent 
+an image with a subset of the bands of the original 
+PixelInterleavedSampleModel/DataBuffer combination. 
+
+
+*java.awt.image.PixelInterleavedSampleModel.hashCode()*
+
+public int hashCode()
+
+
+
+
+

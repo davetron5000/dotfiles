@@ -1,0 +1,121 @@
+*java.text.CollationKey* *CollationKey* A CollationKey represents a String under
+
+public final class CollationKey
+  extends    |java.lang.Object|
+  implements |java.lang.Comparable|
+
+|java.text.CollationKey_Description|
+|java.text.CollationKey_Fields|
+|java.text.CollationKey_Constructors|
+|java.text.CollationKey_Methods|
+
+================================================================================
+
+*java.text.CollationKey_Methods*
+|java.text.CollationKey.compareTo(CollationKey)|Compare this CollationKey to th
+|java.text.CollationKey.equals(Object)|Compare this CollationKey and the target
+|java.text.CollationKey.getSourceString()|Returns the String that this Collatio
+|java.text.CollationKey.hashCode()|Creates a hash code for this CollationKey.
+|java.text.CollationKey.toByteArray()|Converts the CollationKey to a sequence o
+
+*java.text.CollationKey_Description*
+
+A CollationKey represents a String under the rules of a specific Collator 
+object. Comparing two CollationKeys returns the relative order of the Strings 
+they represent. Using CollationKeys to compare Strings is generally faster than 
+using Collator.compare. Thus, when the Strings must be compared multiple times, 
+for example when sorting a list of Strings. It's more efficient to use 
+CollationKeys. 
+
+You can not create CollationKeys directly. Rather, generate them by calling 
+Collator.getCollationKey. You can only compare CollationKeys generated from the 
+same Collator object. 
+
+Generating a CollationKey for a String involves examining the entire String and 
+converting it to series of bits that can be compared bitwise. This allows fast 
+comparisons once the keys are generated. The cost of generating keys is 
+recouped in faster comparisons when Strings need to be compared many times. On 
+the other hand, the result of a comparison is often determined by the first 
+couple of characters of each String. Collator.compare examines only as many 
+characters as it needs which allows it to be faster when doing single 
+comparisons. 
+
+The following example shows how CollationKeys might be used to sort a list of 
+Strings. 
+
+
+
+// Create an array of CollationKeys for the Strings to be sorted. Collator 
+myCollator = Collator.getInstance(); CollationKey[] keys = new CollationKey[3]; 
+keys[0] = myCollator.getCollationKey("Tom"); keys[1] = 
+myCollator.getCollationKey("Dick"); keys[2] = 
+myCollator.getCollationKey("Harry"); sort( keys ); 
+
+//... 
+
+// Inside body of sort routine, compare keys this way if( keys[i].compareTo( 
+keys[j] ) > 0 ) // swap keys[i] and keys[j] 
+
+//... 
+
+// Finally, when we've returned from sort. System.out.println( 
+keys[0].getSourceString() ); System.out.println( keys[1].getSourceString() ); 
+System.out.println( keys[2].getSourceString() ); 
+
+
+
+
+*java.text.CollationKey.compareTo(CollationKey)*
+
+public int compareTo(java.text.CollationKey target)
+
+Compare this CollationKey to the target CollationKey. The collation rules of 
+the Collator object which created these keys are applied. Note: CollationKeys 
+created by different Collators can not be compared. 
+
+    target - target CollationKey 
+
+    Returns: Returns an integer value. Value is less than zero if this is less than target, 
+             value is zero if this and target are equal and value is greater 
+             than zero if this is greater than target. 
+*java.text.CollationKey.equals(Object)*
+
+public boolean equals(java.lang.Object target)
+
+Compare this CollationKey and the target CollationKey for equality. The 
+collation rules of the Collator object which created these keys are applied. 
+Note: CollationKeys created by different Collators can not be compared. 
+
+    target - the CollationKey to compare to. 
+
+    Returns: Returns true if two objects are equal, false otherwise. 
+*java.text.CollationKey.getSourceString()*
+
+public |java.lang.String| getSourceString()
+
+Returns the String that this CollationKey represents. 
+
+
+*java.text.CollationKey.hashCode()*
+
+public int hashCode()
+
+Creates a hash code for this CollationKey. The hash value is calculated on the 
+key itself, not the String from which the key was created. Thus if x and y are 
+CollationKeys, then x.hashCode(x) == y.hashCode() if x.equals(y) is true. This 
+allows language-sensitive comparison in a hash table. See the CollatinKey class 
+description for an example. 
+
+
+    Returns: the hash value based on the string's collation order. 
+*java.text.CollationKey.toByteArray()*
+
+public byte toByteArray()
+
+Converts the CollationKey to a sequence of bits. If two CollationKeys could be 
+legitimately compared, then one could compare the byte arrays for each of those 
+keys to obtain the same result. Byte arrays are organized most significant byte 
+first. 
+
+
+

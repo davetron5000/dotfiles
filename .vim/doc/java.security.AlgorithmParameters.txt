@@ -1,0 +1,225 @@
+*java.security.AlgorithmParameters* *AlgorithmParameters* This class is used as 
+
+public class AlgorithmParameters
+  extends    |java.lang.Object|
+
+|java.security.AlgorithmParameters_Description|
+|java.security.AlgorithmParameters_Fields|
+|java.security.AlgorithmParameters_Constructors|
+|java.security.AlgorithmParameters_Methods|
+
+================================================================================
+
+*java.security.AlgorithmParameters_Constructors*
+|java.security.AlgorithmParameters(AlgorithmParametersSpi,Provider,String)|Crea
+
+*java.security.AlgorithmParameters_Methods*
+|java.security.AlgorithmParameters.getAlgorithm()|Returns the name of the algor
+|java.security.AlgorithmParameters.getEncoded()|Returns the parameters in their
+|java.security.AlgorithmParameters.getEncoded(String)|Returns the parameters en
+|java.security.AlgorithmParameters.getInstance(String)|Generates a parameter ob
+|java.security.AlgorithmParameters.getInstance(String,Provider)|Generates a par
+|java.security.AlgorithmParameters.getInstance(String,String)|Generates a param
+|java.security.AlgorithmParameters.getParameterSpec(Class)|Returns a (transpare
+|java.security.AlgorithmParameters.getProvider()|Returns the provider of this p
+|java.security.AlgorithmParameters.init(AlgorithmParameterSpec)|Initializes thi
+|java.security.AlgorithmParameters.init(byte[])|Imports the specified parameter
+|java.security.AlgorithmParameters.init(byte[],String)|Imports the parameters f
+|java.security.AlgorithmParameters.toString()|Returns a formatted string descri
+
+*java.security.AlgorithmParameters_Description*
+
+This class is used as an opaque representation of cryptographic parameters. 
+
+An AlgorithmParameters object for managing the parameters for a particular 
+algorithm can be obtained by calling one of the getInstance factory methods 
+(static methods that return instances of a given class). 
+
+There are two ways to request such an implementation: by specifying either just 
+an algorithm name, or both an algorithm name and a package provider. 
+
+
+
+If just an algorithm name is specified, the system will determine if there is 
+an AlgorithmParameters implementation for the algorithm requested available in 
+the environment, and if there is more than one, if there is a preferred one. 
+
+If both an algorithm name and a package provider are specified, the system will 
+determine if there is an implementation in the package requested, and throw an 
+exception if there is not. 
+
+
+
+Once an AlgorithmParameters object is returned, it must be initialized via a 
+call to init, using an appropriate parameter specification or parameter 
+encoding. 
+
+A transparent parameter specification is obtained from an AlgorithmParameters 
+object via a call to getParameterSpec, and a byte encoding of the parameters is 
+obtained via a call to getEncoded. 
+
+
+*java.security.AlgorithmParameters(AlgorithmParametersSpi,Provider,String)*
+
+protected AlgorithmParameters(
+  java.security.AlgorithmParametersSpi paramSpi,
+  java.security.Provider provider,
+  java.lang.String algorithm)
+
+Creates an AlgorithmParameters object. 
+
+    paramSpi - the delegate 
+    provider - the provider 
+    algorithm - the algorithm 
+
+*java.security.AlgorithmParameters.getAlgorithm()*
+
+public final |java.lang.String| getAlgorithm()
+
+Returns the name of the algorithm associated with this parameter object. 
+
+
+    Returns: the algorithm name. 
+*java.security.AlgorithmParameters.getEncoded()*
+
+public final byte getEncoded()
+  throws |java.io.IOException|
+         
+Returns the parameters in their primary encoding format. The primary encoding 
+format for parameters is ASN.1, if an ASN.1 specification for this type of 
+parameters exists. 
+
+
+    Returns: the parameters encoded using their primary encoding format. 
+*java.security.AlgorithmParameters.getEncoded(String)*
+
+public final byte getEncoded(java.lang.String format)
+  throws |java.io.IOException|
+         
+Returns the parameters encoded in the specified scheme. If format is null, the 
+primary encoding format for parameters is used. The primary encoding format is 
+ASN.1, if an ASN.1 specification for these parameters exists. 
+
+    format - the name of the encoding format. 
+
+    Returns: the parameters encoded using the specified encoding scheme. 
+*java.security.AlgorithmParameters.getInstance(String)*
+
+public static |java.security.AlgorithmParameters| getInstance(java.lang.String algorithm)
+  throws |java.security.NoSuchAlgorithmException|
+         
+Generates a parameter object for the specified algorithm. 
+
+If the default provider package provides an implementation of the requested 
+algorithm, an instance of AlgorithmParameters containing that implementation is 
+returned. If the algorithm is not available in the default package, other 
+packages are searched. 
+
+The returned parameter object must be initialized via a call to init, using an 
+appropriate parameter specification or parameter encoding. 
+
+    algorithm - the name of the algorithm requested. 
+
+    Returns: the new parameter object. 
+*java.security.AlgorithmParameters.getInstance(String,Provider)*
+
+public static |java.security.AlgorithmParameters| getInstance(
+  java.lang.String algorithm,
+  java.security.Provider provider)
+  throws |java.security.NoSuchAlgorithmException|
+         
+Generates a parameter object for the specified algorithm, as supplied by the 
+specified provider, if such an algorithm is available from the provider. Note: 
+the provider doesn't have to be registered. 
+
+The returned parameter object must be initialized via a call to init, using an 
+appropriate parameter specification or parameter encoding. 
+
+    algorithm - the name of the algorithm requested. 
+    provider - the name of the provider. 
+
+    Returns: the new parameter object. 
+*java.security.AlgorithmParameters.getInstance(String,String)*
+
+public static |java.security.AlgorithmParameters| getInstance(
+  java.lang.String algorithm,
+  java.lang.String provider)
+  throws |java.security.NoSuchAlgorithmException|
+         |java.security.NoSuchProviderException|
+         
+Generates a parameter object for the specified algorithm, as supplied by the 
+specified provider, if such an algorithm is available from the provider. 
+
+The returned parameter object must be initialized via a call to init, using an 
+appropriate parameter specification or parameter encoding. 
+
+    algorithm - the name of the algorithm requested. 
+    provider - the name of the provider. 
+
+    Returns: the new parameter object. 
+*java.security.AlgorithmParameters.getParameterSpec(Class)*
+
+public final |java.security.spec.AlgorithmParameterSpec| getParameterSpec(java.lang.Class paramSpec)
+  throws |java.security.spec.InvalidParameterSpecException|
+         
+Returns a (transparent) specification of this parameter object. paramSpec 
+identifies the specification class in which the parameters should be returned. 
+It could, for example, be DSAParameterSpec.class, to indicate that the 
+parameters should be returned in an instance of the DSAParameterSpec class. 
+
+    paramSpec - the specification class in which the parameters should be returned. 
+
+    Returns: the parameter specification. 
+*java.security.AlgorithmParameters.getProvider()*
+
+public final |java.security.Provider| getProvider()
+
+Returns the provider of this parameter object. 
+
+
+    Returns: the provider of this parameter object 
+*java.security.AlgorithmParameters.init(AlgorithmParameterSpec)*
+
+public final void init(java.security.spec.AlgorithmParameterSpec paramSpec)
+  throws |java.security.spec.InvalidParameterSpecException|
+         
+Initializes this parameter object using the parameters specified in paramSpec. 
+
+    paramSpec - the parameter specification. 
+
+*java.security.AlgorithmParameters.init(byte[])*
+
+public final void init(byte[] params)
+  throws |java.io.IOException|
+         
+Imports the specified parameters and decodes them according to the primary 
+decoding format for parameters. The primary decoding format for parameters is 
+ASN.1, if an ASN.1 specification for this type of parameters exists. 
+
+    params - the encoded parameters. 
+
+*java.security.AlgorithmParameters.init(byte[],String)*
+
+public final void init(
+  byte[] params,
+  java.lang.String format)
+  throws |java.io.IOException|
+         
+Imports the parameters from params and decodes them according to the specified 
+decoding scheme. If format is null, the primary decoding format for parameters 
+is used. The primary decoding format is ASN.1, if an ASN.1 specification for 
+these parameters exists. 
+
+    params - the encoded parameters. 
+    format - the name of the decoding scheme. 
+
+*java.security.AlgorithmParameters.toString()*
+
+public final |java.lang.String| toString()
+
+Returns a formatted string describing the parameters. 
+
+
+    Returns: a formatted string describing the parameters, or null if this parameter object 
+             has not been initialized. 
+

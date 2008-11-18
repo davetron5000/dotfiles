@@ -1,0 +1,102 @@
+*java.awt.dnd.DragSourceDropEvent* *DragSourceDropEvent* The DragSourceDropEvent
+
+public class DragSourceDropEvent
+  extends    |java.awt.dnd.DragSourceEvent|
+
+|java.awt.dnd.DragSourceDropEvent_Description|
+|java.awt.dnd.DragSourceDropEvent_Fields|
+|java.awt.dnd.DragSourceDropEvent_Constructors|
+|java.awt.dnd.DragSourceDropEvent_Methods|
+
+================================================================================
+
+*java.awt.dnd.DragSourceDropEvent_Constructors*
+|java.awt.dnd.DragSourceDropEvent(DragSourceContext)|Construct a DragSourceDrop
+|java.awt.dnd.DragSourceDropEvent(DragSourceContext,int,boolean)|Construct a Dr
+|java.awt.dnd.DragSourceDropEvent(DragSourceContext,int,boolean,int,int)|Constr
+
+*java.awt.dnd.DragSourceDropEvent_Methods*
+|java.awt.dnd.DragSourceDropEvent.getDropAction()|This method returns an int re
+|java.awt.dnd.DragSourceDropEvent.getDropSuccess()|This method returns a boolea
+
+*java.awt.dnd.DragSourceDropEvent_Description*
+
+The DragSourceDropEvent is delivered from the DragSourceContextPeer, via the 
+DragSourceContext, to the dragDropEnd method of DragSourceListeners registered 
+with that DragSourceContext and with its associated DragSource. It contains 
+sufficient information for the originator of the operation to provide 
+appropriate feedback to the end user when the operation completes. 
+
+
+*java.awt.dnd.DragSourceDropEvent(DragSourceContext)*
+
+public DragSourceDropEvent(java.awt.dnd.DragSourceContext dsc)
+
+Construct a DragSourceDropEvent for a drag that does not result in a drop. The 
+coordinates for this DragSourceDropEvent are not specified, so getLocation will 
+return null for this event. 
+
+    dsc - the DragSourceContext 
+
+*java.awt.dnd.DragSourceDropEvent(DragSourceContext,int,boolean)*
+
+public DragSourceDropEvent(
+  java.awt.dnd.DragSourceContext dsc,
+  int action,
+  boolean success)
+
+Construct a DragSourceDropEvent for a drop, given the DragSourceContext, the 
+drop action, and a boolean indicating if the drop was successful. The 
+coordinates for this DragSourceDropEvent are not specified, so getLocation will 
+return null for this event. 
+
+The argument action should be one of DnDConstants that represents a single 
+action. This constructor does not throw any exception for invalid action. 
+
+    dsc - the DragSourceContext associated with this DragSourceDropEvent 
+    action - the drop action 
+    success - a boolean indicating if the drop was successful 
+
+*java.awt.dnd.DragSourceDropEvent(DragSourceContext,int,boolean,int,int)*
+
+public DragSourceDropEvent(
+  java.awt.dnd.DragSourceContext dsc,
+  int action,
+  boolean success,
+  int x,
+  int y)
+
+Construct a DragSourceDropEvent for a drop, given the DragSourceContext, the 
+drop action, a boolean indicating if the drop was successful, and coordinates. 
+
+The argument action should be one of DnDConstants that represents a single 
+action. This constructor does not throw any exception for invalid action. 
+
+    dsc - the DragSourceContext associated with this DragSourceDropEvent 
+    action - the drop action 
+    success - a boolean indicating if the drop was successful 
+    x - the horizontal coordinate for the cursor location 
+    y - the vertical coordinate for the cursor location 
+
+*java.awt.dnd.DragSourceDropEvent.getDropAction()*
+
+public int getDropAction()
+
+This method returns an int representing the action performed by the target on 
+the subject of the drop. 
+
+
+    Returns: the action performed by the target on the subject of the drop if the drop 
+             target accepted the drop and the target drop action is supported 
+             by the drag source; otherwise, DnDConstants.ACTION_NONE. 
+*java.awt.dnd.DragSourceDropEvent.getDropSuccess()*
+
+public boolean getDropSuccess()
+
+This method returns a boolean indicating if the drop was successful. 
+
+
+    Returns: true if the drop target accepted the drop and successfully performed a drop 
+             action; false if the drop target rejected the drop or if the drop 
+             target accepted the drop, but failed to perform a drop action. 
+

@@ -1,0 +1,110 @@
+*javax.swing.text.StyledEditorKit.StyledTextAction* *StyledEditorKit.StyledTextAction* 
+
+public abstract static class StyledEditorKit.StyledTextAction
+  extends    |javax.swing.text.TextAction|
+
+|javax.swing.text.StyledEditorKit.StyledTextAction_Description|
+|javax.swing.text.StyledEditorKit.StyledTextAction_Fields|
+|javax.swing.text.StyledEditorKit.StyledTextAction_Constructors|
+|javax.swing.text.StyledEditorKit.StyledTextAction_Methods|
+
+================================================================================
+
+*javax.swing.text.StyledEditorKit.StyledTextAction_Constructors*
+|javax.swing.text.StyledEditorKit.StyledTextAction(String)|Creates a new Styled
+
+*javax.swing.text.StyledEditorKit.StyledTextAction_Methods*
+|javax.swing.text.StyledEditorKit.StyledTextAction.getEditor(ActionEvent)|Gets 
+|javax.swing.text.StyledEditorKit.StyledTextAction.getStyledDocument(JEditorPane)|
+|javax.swing.text.StyledEditorKit.StyledTextAction.getStyledEditorKit(JEditorPane)|
+|javax.swing.text.StyledEditorKit.StyledTextAction.setCharacterAttributes(JEditorPane,AttributeSet,boolean)|
+|javax.swing.text.StyledEditorKit.StyledTextAction.setParagraphAttributes(JEditorPane,AttributeSet,boolean)|
+
+*javax.swing.text.StyledEditorKit.StyledTextAction_Description*
+
+An action that assumes it's being fired on a JEditorPane with a StyledEditorKit 
+(or subclass) installed. This has some convenience methods for causing 
+character or paragraph level attribute changes. The convenience methods will 
+throw an IllegalArgumentException if the assumption of a StyledDocument, a 
+JEditorPane, or a StyledEditorKit fail to be true. 
+
+The component that gets acted upon by the action will be the source of the 
+ActionEvent if the source can be narrowed to a JEditorPane type. If the source 
+can't be narrowed, the most recently focused text component is changed. If 
+neither of these are the case, the action cannot be performed. 
+
+Warning: Serialized objects of this class will not be compatible with future 
+Swing releases. The current serialization support is appropriate for short term 
+storage or RMI between applications running the same version of Swing. As of 
+1.4, support for long term storage of all JavaBeansTM has been added to the 
+java.beans package. Please see (|java.beans.XMLEncoder|) . 
+
+
+*javax.swing.text.StyledEditorKit.StyledTextAction(String)*
+
+public StyledEditorKit.StyledTextAction(java.lang.String nm)
+
+Creates a new StyledTextAction from a string action name. 
+
+    nm - the name of the action 
+
+*javax.swing.text.StyledEditorKit.StyledTextAction.getEditor(ActionEvent)*
+
+protected final |javax.swing.JEditorPane| getEditor(java.awt.event.ActionEvent e)
+
+Gets the target editor for an action. 
+
+    e - the action event 
+
+    Returns: 
+*javax.swing.text.StyledEditorKit.StyledTextAction.getStyledDocument(JEditorPane)*
+
+protected final |javax.swing.text.StyledDocument| getStyledDocument(javax.swing.JEditorPane e)
+
+Gets the document associated with an editor pane. 
+
+    e - the editor 
+
+    Returns: 
+*javax.swing.text.StyledEditorKit.StyledTextAction.getStyledEditorKit(JEditorPane)*
+
+protected final |javax.swing.text.StyledEditorKit| getStyledEditorKit(javax.swing.JEditorPane e)
+
+Gets the editor kit associated with an editor pane. 
+
+    e - the editor pane 
+
+    Returns: 
+*javax.swing.text.StyledEditorKit.StyledTextAction.setCharacterAttributes(JEditorPane,AttributeSet,boolean)*
+
+protected final void setCharacterAttributes(
+  javax.swing.JEditorPane editor,
+  javax.swing.text.AttributeSet attr,
+  boolean replace)
+
+Applies the given attributes to character content. If there is a selection, the 
+attributes are applied to the selection range. If there is no selection, the 
+attributes are applied to the input attribute set which defines the attributes 
+for any new text that gets inserted. 
+
+    editor - the editor 
+    attr - the attributes 
+    replace - if true, then replace the existing attributes first 
+
+*javax.swing.text.StyledEditorKit.StyledTextAction.setParagraphAttributes(JEditorPane,AttributeSet,boolean)*
+
+protected final void setParagraphAttributes(
+  javax.swing.JEditorPane editor,
+  javax.swing.text.AttributeSet attr,
+  boolean replace)
+
+Applies the given attributes to paragraphs. If there is a selection, the 
+attributes are applied to the paragraphs that intersect the selection. if there 
+is no selection, the attributes are applied to the paragraph at the current 
+caret position. 
+
+    editor - the editor 
+    attr - the attributes 
+    replace - if true, replace the existing attributes first 
+
+

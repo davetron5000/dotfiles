@@ -1,0 +1,213 @@
+*java.awt.image.renderable.RenderContext* *RenderContext* A RenderContext encaps
+
+public class RenderContext
+  extends    |java.lang.Object|
+  implements |java.lang.Cloneable|
+
+|java.awt.image.renderable.RenderContext_Description|
+|java.awt.image.renderable.RenderContext_Fields|
+|java.awt.image.renderable.RenderContext_Constructors|
+|java.awt.image.renderable.RenderContext_Methods|
+
+================================================================================
+
+*java.awt.image.renderable.RenderContext_Constructors*
+|java.awt.image.renderable.RenderContext(AffineTransform)|Constructs a RenderCo
+|java.awt.image.renderable.RenderContext(AffineTransform,RenderingHints)|Constr
+|java.awt.image.renderable.RenderContext(AffineTransform,Shape)|Constructs a Re
+|java.awt.image.renderable.RenderContext(AffineTransform,Shape,RenderingHints)|
+
+*java.awt.image.renderable.RenderContext_Methods*
+|java.awt.image.renderable.RenderContext.clone()|Makes a copy of a RenderContex
+|java.awt.image.renderable.RenderContext.concatenateTransform(AffineTransform)|
+|java.awt.image.renderable.RenderContext.concetenateTransform(AffineTransform)|
+|java.awt.image.renderable.RenderContext.getAreaOfInterest()|Gets the ares of i
+|java.awt.image.renderable.RenderContext.getRenderingHints()|Gets the rendering
+|java.awt.image.renderable.RenderContext.getTransform()|Gets the current user-t
+|java.awt.image.renderable.RenderContext.preConcatenateTransform(AffineTransform)|
+|java.awt.image.renderable.RenderContext.preConcetenateTransform(AffineTransform)|
+|java.awt.image.renderable.RenderContext.setAreaOfInterest(Shape)|Sets the curr
+|java.awt.image.renderable.RenderContext.setRenderingHints(RenderingHints)|Sets
+|java.awt.image.renderable.RenderContext.setTransform(AffineTransform)|Sets the
+
+*java.awt.image.renderable.RenderContext_Description*
+
+A RenderContext encapsulates the information needed to produce a specific 
+rendering from a RenderableImage. It contains the area to be rendered specified 
+in rendering-independent terms, the resolution at which the rendering is to be 
+performed, and hints used to control the rendering process. 
+
+Users create RenderContexts and pass them to the RenderableImage via the 
+createRendering method. Most of the methods of RenderContexts are not meant to 
+be used directly by applications, but by the RenderableImage and operator 
+classes to which it is passed. 
+
+The AffineTransform parameter passed into and out of this class are cloned. The 
+RenderingHints and Shape parameters are not necessarily cloneable and are 
+therefore only reference copied. Altering RenderingHints or Shape instances 
+that are in use by instances of RenderContext may have undesired side effects. 
+
+
+*java.awt.image.renderable.RenderContext(AffineTransform)*
+
+public RenderContext(java.awt.geom.AffineTransform usr2dev)
+
+Constructs a RenderContext with a given transform. The area of interest is 
+taken to be the entire renderable area. No rendering hints are used. 
+
+    usr2dev - an AffineTransform. 
+
+*java.awt.image.renderable.RenderContext(AffineTransform,RenderingHints)*
+
+public RenderContext(
+  java.awt.geom.AffineTransform usr2dev,
+  java.awt.RenderingHints hints)
+
+Constructs a RenderContext with a given transform and rendering hints. The area 
+of interest is taken to be the entire renderable area. 
+
+    usr2dev - an AffineTransform. 
+    hints - a RenderingHints object containing rendering hints. 
+
+*java.awt.image.renderable.RenderContext(AffineTransform,Shape)*
+
+public RenderContext(
+  java.awt.geom.AffineTransform usr2dev,
+  java.awt.Shape aoi)
+
+Constructs a RenderContext with a given transform and area of interest. The 
+area of interest is supplied as a Shape. No rendering hints are used. 
+
+    usr2dev - an AffineTransform. 
+    aoi - a Shape representing the area of interest. 
+
+*java.awt.image.renderable.RenderContext(AffineTransform,Shape,RenderingHints)*
+
+public RenderContext(
+  java.awt.geom.AffineTransform usr2dev,
+  java.awt.Shape aoi,
+  java.awt.RenderingHints hints)
+
+Constructs a RenderContext with a given transform. The area of interest is 
+supplied as a Shape, and the rendering hints are supplied as a RenderingHints 
+object. 
+
+    usr2dev - an AffineTransform. 
+    aoi - a Shape representing the area of interest. 
+    hints - a RenderingHints object containing rendering hints. 
+
+*java.awt.image.renderable.RenderContext.clone()*
+
+public |java.lang.Object| clone()
+
+Makes a copy of a RenderContext. The area of interest is copied by reference. 
+The usr2dev AffineTransform and hints are cloned, while the area of interest is 
+copied by reference. 
+
+
+    Returns: the new cloned RenderContext. 
+*java.awt.image.renderable.RenderContext.concatenateTransform(AffineTransform)*
+
+public void concatenateTransform(java.awt.geom.AffineTransform modTransform)
+
+Modifies the current user-to-device transform by appending another transform. 
+In matrix notation the operation is: 
+
+[this] = [this] x [modTransform] 
+
+    modTransform - the AffineTransform to append to the current usr2dev transform. 
+
+*java.awt.image.renderable.RenderContext.concetenateTransform(AffineTransform)*
+
+public void concetenateTransform(java.awt.geom.AffineTransform modTransform)
+
+Modifies the current user-to-device transform by appending another transform. 
+In matrix notation the operation is: 
+
+[this] = [this] x [modTransform] 
+
+This method does the same thing as the concatenateTransform method. It is here 
+for backward compatibility with previous releases which misspelled the method 
+name. 
+
+    modTransform - the AffineTransform to append to the current usr2dev transform. 
+
+*java.awt.image.renderable.RenderContext.getAreaOfInterest()*
+
+public |java.awt.Shape| getAreaOfInterest()
+
+Gets the ares of interest currently contained in the RenderContext. 
+
+
+    Returns: a reference to the area of interest of the RenderContext, or null if none is 
+             specified. 
+*java.awt.image.renderable.RenderContext.getRenderingHints()*
+
+public |java.awt.RenderingHints| getRenderingHints()
+
+Gets the rendering hints of this RenderContext. 
+
+
+    Returns: a RenderingHints object that represents the rendering hints of this 
+             RenderContext. 
+*java.awt.image.renderable.RenderContext.getTransform()*
+
+public |java.awt.geom.AffineTransform| getTransform()
+
+Gets the current user-to-device AffineTransform. 
+
+
+    Returns: a reference to the current AffineTransform. 
+*java.awt.image.renderable.RenderContext.preConcatenateTransform(AffineTransform)*
+
+public void preConcatenateTransform(java.awt.geom.AffineTransform modTransform)
+
+Modifies the current user-to-device transform by prepending another transform. 
+In matrix notation the operation is: 
+
+[this] = [modTransform] x [this] 
+
+    modTransform - the AffineTransform to prepend to the current usr2dev transform. 
+
+*java.awt.image.renderable.RenderContext.preConcetenateTransform(AffineTransform)*
+
+public void preConcetenateTransform(java.awt.geom.AffineTransform modTransform)
+
+Modifies the current user-to-device transform by prepending another transform. 
+In matrix notation the operation is: 
+
+[this] = [modTransform] x [this] 
+
+This method does the same thing as the preConcatenateTransform method. It is 
+here for backward compatibility with previous releases which misspelled the 
+method name. 
+
+    modTransform - the AffineTransform to prepend to the current usr2dev transform. 
+
+*java.awt.image.renderable.RenderContext.setAreaOfInterest(Shape)*
+
+public void setAreaOfInterest(java.awt.Shape newAoi)
+
+Sets the current area of interest. The old area is discarded. 
+
+    newAoi - The new area of interest. 
+
+*java.awt.image.renderable.RenderContext.setRenderingHints(RenderingHints)*
+
+public void setRenderingHints(java.awt.RenderingHints hints)
+
+Sets the rendering hints of this RenderContext. 
+
+    hints - a RenderingHints object that represents the rendering hints to assign to this 
+       RenderContext. 
+
+*java.awt.image.renderable.RenderContext.setTransform(AffineTransform)*
+
+public void setTransform(java.awt.geom.AffineTransform newTransform)
+
+Sets the current user-to-device AffineTransform contained in the RenderContext 
+to a given transform. 
+
+    newTransform - the new AffineTransform. 
+
+

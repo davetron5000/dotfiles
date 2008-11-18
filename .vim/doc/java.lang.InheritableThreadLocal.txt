@@ -1,0 +1,56 @@
+*java.lang.InheritableThreadLocal* *InheritableThreadLocal* This class extends T
+
+public class InheritableThreadLocal
+  extends    |java.lang.ThreadLocal|
+
+|java.lang.InheritableThreadLocal_Description|
+|java.lang.InheritableThreadLocal_Fields|
+|java.lang.InheritableThreadLocal_Constructors|
+|java.lang.InheritableThreadLocal_Methods|
+
+================================================================================
+
+*java.lang.InheritableThreadLocal_Constructors*
+|java.lang.InheritableThreadLocal()|
+
+*java.lang.InheritableThreadLocal_Methods*
+|java.lang.InheritableThreadLocal.childValue(T)|Computes the child's initial va
+
+*java.lang.InheritableThreadLocal_Description*
+
+This class extends ThreadLocal to provide inheritance of values from parent 
+thread to child thread: when a child thread is created, the child receives 
+initial values for all inheritable thread-local variables for which the parent 
+has values. Normally the child's values will be identical to the parent's; 
+however, the child's value can be made an arbitrary function of the parent's by 
+overriding the childValue method in this class. 
+
+Inheritable thread-local variables are used in preference to ordinary 
+thread-local variables when the per-thread-attribute being maintained in the 
+variable (e.g., User ID, Transaction ID) must be automatically transmitted to 
+any child threads that are created. 
+
+
+*java.lang.InheritableThreadLocal()*
+
+public InheritableThreadLocal()
+
+
+
+
+*java.lang.InheritableThreadLocal.childValue(T)*
+
+protected |java.lang.Object| childValue(java.lang.Object parentValue)
+
+Computes the child's initial value for this inheritable thread-local variable 
+as a function of the parent's value at the time the child thread is created. 
+This method is called from within the parent thread before the child is 
+started. 
+
+This method merely returns its input argument, and should be overridden if a 
+different behavior is desired. 
+
+    parentValue - the parent thread's value 
+
+    Returns: the child thread's initial value 
+

@@ -1,0 +1,132 @@
+*java.net.NetworkInterface* *NetworkInterface* This class represents a Network I
+
+public final class NetworkInterface
+  extends    |java.lang.Object|
+
+|java.net.NetworkInterface_Description|
+|java.net.NetworkInterface_Fields|
+|java.net.NetworkInterface_Constructors|
+|java.net.NetworkInterface_Methods|
+
+================================================================================
+
+*java.net.NetworkInterface_Methods*
+|java.net.NetworkInterface.equals(Object)|Compares this object against the spec
+|java.net.NetworkInterface.getByInetAddress(InetAddress)|Convenience method to 
+|java.net.NetworkInterface.getByName(String)|Searches for the network interface
+|java.net.NetworkInterface.getDisplayName()|Get the display name of this networ
+|java.net.NetworkInterface.getInetAddresses()|Convenience method to return an E
+|java.net.NetworkInterface.getName()|Get the name of this network interface.
+|java.net.NetworkInterface.getNetworkInterfaces()|Returns all the interfaces on
+|java.net.NetworkInterface.hashCode()|
+|java.net.NetworkInterface.toString()|
+
+*java.net.NetworkInterface_Description*
+
+This class represents a Network Interface made up of a name, and a list of IP 
+addresses assigned to this interface. It is used to identify the local 
+interface on which a multicast group is joined. 
+
+Interfaces are normally known by names such as "le0". 
+
+
+*java.net.NetworkInterface.equals(Object)*
+
+public boolean equals(java.lang.Object obj)
+
+Compares this object against the specified object. The result is true if and 
+only if the argument is not null and it represents the same NetworkInterface as 
+this object. 
+
+Two instances of NetworkInterface represent the same NetworkInterface if both 
+name and addrs are the same for both. 
+
+    obj - the object to compare against. 
+
+    Returns: true if the objects are the same; false otherwise. 
+*java.net.NetworkInterface.getByInetAddress(InetAddress)*
+
+public static |java.net.NetworkInterface| getByInetAddress(java.net.InetAddress addr)
+  throws |java.net.SocketException|
+         
+Convenience method to search for a network interface that has the specified 
+Internet Protocol (IP) address bound to it. 
+
+If the specified IP address is bound to multiple network interfaces it is not 
+defined which network interface is returned. 
+
+    addr - The InetAddress to search with. 
+
+    Returns: A NetworkInterface or null if there is no network interface with the specified 
+             IP address. 
+*java.net.NetworkInterface.getByName(String)*
+
+public static |java.net.NetworkInterface| getByName(java.lang.String name)
+  throws |java.net.SocketException|
+         
+Searches for the network interface with the specified name. 
+
+    name - The name of the network interface. 
+
+    Returns: A NetworkInterface with the specified name, or null if there is no network 
+             interface with the specified name. 
+*java.net.NetworkInterface.getDisplayName()*
+
+public |java.lang.String| getDisplayName()
+
+Get the display name of this network interface. A display name is a human 
+readable String describing the network device. 
+
+
+    Returns: the display name of this network interface, or null if no display name is 
+             available. 
+*java.net.NetworkInterface.getInetAddresses()*
+
+public |java.util.Enumeration| getInetAddresses()
+
+Convenience method to return an Enumeration with all or a subset of the 
+InetAddresses bound to this network interface. 
+
+If there is a security manager, its checkConnect method is called for each 
+InetAddress. Only InetAddresses where the checkConnect doesn't throw a 
+SecurityException will be returned in the Enumeration. 
+
+
+    Returns: an Enumeration object with all or a subset of the InetAddresses bound to this 
+             network interface 
+*java.net.NetworkInterface.getName()*
+
+public |java.lang.String| getName()
+
+Get the name of this network interface. 
+
+
+    Returns: the name of this network interface 
+*java.net.NetworkInterface.getNetworkInterfaces()*
+
+public static |java.util.Enumeration| getNetworkInterfaces()
+  throws |java.net.SocketException|
+         
+Returns all the interfaces on this machine. Returns null if no network 
+interfaces could be found on this machine. 
+
+NOTE: can use getNetworkInterfaces()+getInetAddresses() to obtain all IP 
+addresses for this node 
+
+
+    Returns: an Enumeration of NetworkInterfaces found on this machine 
+*java.net.NetworkInterface.hashCode()*
+
+public int hashCode()
+
+
+
+
+*java.net.NetworkInterface.toString()*
+
+public |java.lang.String| toString()
+
+
+
+
+

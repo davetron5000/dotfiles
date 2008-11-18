@@ -1,0 +1,127 @@
+*javax.swing.tree.TreeModel* *TreeModel* The interface that defines a suitable d
+
+public interface interface TreeModel
+
+
+|javax.swing.tree.TreeModel_Description|
+|javax.swing.tree.TreeModel_Fields|
+|javax.swing.tree.TreeModel_Constructors|
+|javax.swing.tree.TreeModel_Methods|
+
+================================================================================
+
+*javax.swing.tree.TreeModel_Methods*
+|javax.swing.tree.TreeModel.addTreeModelListener(TreeModelListener)|Adds a list
+|javax.swing.tree.TreeModel.getChild(Object,int)|Returns the child of parent at
+|javax.swing.tree.TreeModel.getChildCount(Object)|Returns the number of childre
+|javax.swing.tree.TreeModel.getIndexOfChild(Object,Object)|Returns the index of
+|javax.swing.tree.TreeModel.getRoot()|Returns the root of the tree.
+|javax.swing.tree.TreeModel.isLeaf(Object)|Returns true if node is a leaf.
+|javax.swing.tree.TreeModel.removeTreeModelListener(TreeModelListener)|Removes 
+|javax.swing.tree.TreeModel.valueForPathChanged(TreePath,Object)|Messaged when 
+
+*javax.swing.tree.TreeModel_Description*
+
+The interface that defines a suitable data model for a JTree. For further 
+information on tree models, including an example of a custom implementation, 
+see How to Use Trees in The Java Tutorial. 
+
+JTree and its related classes make extensive use of TreePaths for indentifying 
+nodes in the TreeModel. If a TreeModel returns the same object, as compared by 
+equals, at two different indices under the same parent than the resulting 
+TreePath objects will be considered equal as well. Some implementations may 
+assume that if two TreePaths are equal, they identify the same node. If this 
+condition is not met, painting problems and other oddities may result. In other 
+words, if getChild for a given parent returns the same Object (as determined by 
+equals) problems may result, and it is recommended you avoid doing this. 
+
+
+*javax.swing.tree.TreeModel.addTreeModelListener(TreeModelListener)*
+
+public void addTreeModelListener(javax.swing.event.TreeModelListener l)
+
+Adds a listener for the TreeModelEvent posted after the tree changes. 
+
+    l - the listener to add 
+
+*javax.swing.tree.TreeModel.getChild(Object,int)*
+
+public |java.lang.Object| getChild(
+  java.lang.Object parent,
+  int index)
+
+Returns the child of parent at index index in the parent's child array. parent 
+must be a node previously obtained from this data source. This should not 
+return null if index is a valid index for parent (that is index >= 0 index )). 
+
+    parent - a node in the tree, obtained from this data source 
+
+    Returns: the child of parent at index index 
+*javax.swing.tree.TreeModel.getChildCount(Object)*
+
+public int getChildCount(java.lang.Object parent)
+
+Returns the number of children of parent. Returns 0 if the node is a leaf or if 
+it has no children. parent must be a node previously obtained from this data 
+source. 
+
+    parent - a node in the tree, obtained from this data source 
+
+    Returns: the number of children of the node parent 
+*javax.swing.tree.TreeModel.getIndexOfChild(Object,Object)*
+
+public int getIndexOfChild(
+  java.lang.Object parent,
+  java.lang.Object child)
+
+Returns the index of child in parent. If either parent or child is null, 
+returns -1. If either parent or child don't belong to this tree model, returns 
+-1. 
+
+    parent - a note in the tree, obtained from this data source 
+    child - the node we are interested in 
+
+    Returns: the index of the child in the parent, or -1 if either child or parent are null 
+             or don't belong to this tree model 
+*javax.swing.tree.TreeModel.getRoot()*
+
+public |java.lang.Object| getRoot()
+
+Returns the root of the tree. Returns null only if the tree has no nodes. 
+
+
+    Returns: the root of the tree 
+*javax.swing.tree.TreeModel.isLeaf(Object)*
+
+public boolean isLeaf(java.lang.Object node)
+
+Returns true if node is a leaf. It is possible for this method to return false 
+even if node has no children. A directory in a filesystem, for example, may 
+contain no files; the node representing the directory is not a leaf, but it 
+also has no children. 
+
+    node - a node in the tree, obtained from this data source 
+
+    Returns: true if node is a leaf 
+*javax.swing.tree.TreeModel.removeTreeModelListener(TreeModelListener)*
+
+public void removeTreeModelListener(javax.swing.event.TreeModelListener l)
+
+Removes a listener previously added with addTreeModelListener. 
+
+    l - the listener to remove 
+
+*javax.swing.tree.TreeModel.valueForPathChanged(TreePath,Object)*
+
+public void valueForPathChanged(
+  javax.swing.tree.TreePath path,
+  java.lang.Object newValue)
+
+Messaged when the user has altered the value for the item identified by path to 
+newValue. If newValue signifies a truly new value the model should post a 
+treeNodesChanged event. 
+
+    path - path to the node that the user has altered 
+    newValue - the new value from the TreeCellEditor 
+
+

@@ -1,0 +1,119 @@
+*java.awt.image.CropImageFilter* *CropImageFilter* An ImageFilter class for crop
+
+public class CropImageFilter
+  extends    |java.awt.image.ImageFilter|
+
+|java.awt.image.CropImageFilter_Description|
+|java.awt.image.CropImageFilter_Fields|
+|java.awt.image.CropImageFilter_Constructors|
+|java.awt.image.CropImageFilter_Methods|
+
+================================================================================
+
+*java.awt.image.CropImageFilter_Constructors*
+|java.awt.image.CropImageFilter(int,int,int,int)|Constructs a CropImageFilter t
+
+*java.awt.image.CropImageFilter_Methods*
+|java.awt.image.CropImageFilter.setDimensions(int,int)|Override the source imag
+|java.awt.image.CropImageFilter.setPixels(int,int,int,int,ColorModel,byte[],int,int)|
+|java.awt.image.CropImageFilter.setPixels(int,int,int,int,ColorModel,int[],int,int)|
+|java.awt.image.CropImageFilter.setProperties(Hashtable)|Passes along  the prop
+
+*java.awt.image.CropImageFilter_Description*
+
+An ImageFilter class for cropping images. This class extends the basic 
+ImageFilter Class to extract a given rectangular region of an existing Image 
+and provide a source for a new image containing just the extracted region. It 
+is meant to be used in conjunction with a FilteredImageSource object to produce 
+cropped versions of existing images. 
+
+
+*java.awt.image.CropImageFilter(int,int,int,int)*
+
+public CropImageFilter(
+  int x,
+  int y,
+  int w,
+  int h)
+
+Constructs a CropImageFilter that extracts the absolute rectangular region of 
+pixels from its source Image as specified by the x, y, w, and h parameters. 
+
+    x - the x location of the top of the rectangle to be extracted 
+    y - the y location of the top of the rectangle to be extracted 
+    w - the width of the rectangle to be extracted 
+    h - the height of the rectangle to be extracted 
+
+*java.awt.image.CropImageFilter.setDimensions(int,int)*
+
+public void setDimensions(
+  int w,
+  int h)
+
+Override the source image's dimensions and pass the dimensions of the 
+rectangular cropped region to the ImageConsumer. 
+
+Note: This method is intended to be called by the ImageProducer of the Image 
+whose pixels are being filtered. Developers using this class to filter pixels 
+from an image should avoid calling this method directly since that operation 
+could interfere with the filtering operation. 
+
+
+*java.awt.image.CropImageFilter.setPixels(int,int,int,int,ColorModel,byte[],int,int)*
+
+public void setPixels(
+  int x,
+  int y,
+  int w,
+  int h,
+  java.awt.image.ColorModel model,
+  byte[] pixels,
+  int off,
+  int scansize)
+
+Determine whether the delivered byte pixels intersect the region to be 
+extracted and passes through only that subset of pixels that appear in the 
+output region. 
+
+Note: This method is intended to be called by the ImageProducer of the Image 
+whose pixels are being filtered. Developers using this class to filter pixels 
+from an image should avoid calling this method directly since that operation 
+could interfere with the filtering operation. 
+
+
+*java.awt.image.CropImageFilter.setPixels(int,int,int,int,ColorModel,int[],int,int)*
+
+public void setPixels(
+  int x,
+  int y,
+  int w,
+  int h,
+  java.awt.image.ColorModel model,
+  int[] pixels,
+  int off,
+  int scansize)
+
+Determine if the delivered int pixels intersect the region to be extracted and 
+pass through only that subset of pixels that appear in the output region. 
+
+Note: This method is intended to be called by the ImageProducer of the Image 
+whose pixels are being filtered. Developers using this class to filter pixels 
+from an image should avoid calling this method directly since that operation 
+could interfere with the filtering operation. 
+
+
+*java.awt.image.CropImageFilter.setProperties(Hashtable)*
+
+public void setProperties(java.util.Hashtable props)
+
+Passes along the properties from the source object after adding a property 
+indicating the cropped region. This method invokes super.setProperties, which 
+might result in additional properties being added. 
+
+Note: This method is intended to be called by the ImageProducer of the Image 
+whose pixels are being filtered. Developers using this class to filter pixels 
+from an image should avoid calling this method directly since that operation 
+could interfere with the filtering operation. 
+
+
+

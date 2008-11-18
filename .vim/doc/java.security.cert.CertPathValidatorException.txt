@@ -1,0 +1,131 @@
+*java.security.cert.CertPathValidatorException* *CertPathValidatorException* An 
+
+public class CertPathValidatorException
+  extends    |java.security.GeneralSecurityException|
+
+|java.security.cert.CertPathValidatorException_Description|
+|java.security.cert.CertPathValidatorException_Fields|
+|java.security.cert.CertPathValidatorException_Constructors|
+|java.security.cert.CertPathValidatorException_Methods|
+
+================================================================================
+
+*java.security.cert.CertPathValidatorException_Constructors*
+|java.security.cert.CertPathValidatorException()|Creates a CertPathValidatorExc
+|java.security.cert.CertPathValidatorException(String)|Creates a CertPathValida
+|java.security.cert.CertPathValidatorException(String,Throwable)|Creates a Cert
+|java.security.cert.CertPathValidatorException(String,Throwable,CertPath,int)|C
+|java.security.cert.CertPathValidatorException(Throwable)|Creates a CertPathVal
+
+*java.security.cert.CertPathValidatorException_Methods*
+|java.security.cert.CertPathValidatorException.getCertPath()|Returns the certif
+|java.security.cert.CertPathValidatorException.getIndex()|Returns the index of 
+
+*java.security.cert.CertPathValidatorException_Description*
+
+An exception indicating one of a variety of problems encountered when 
+validating a certification path. 
+
+A CertPathValidatorException provides support for wrapping exceptions. The 
+getCause(|java.security.cert.CertPathValidatorException|) method returns the 
+throwable, if any, that caused this exception to be thrown. 
+
+A CertPathValidatorException may also include the certification path that was 
+being validated when the exception was thrown and the index of the certificate 
+in the certification path that caused the exception to be thrown. Use the 
+getCertPath(|java.security.cert.CertPathValidatorException|) and 
+getIndex(|java.security.cert.CertPathValidatorException|) methods to retrieve 
+this information. 
+
+Concurrent Access 
+
+Unless otherwise specified, the methods defined in this class are not 
+thread-safe. Multiple threads that need to access a single object concurrently 
+should synchronize amongst themselves and provide the necessary locking. 
+Multiple threads each manipulating separate objects need not synchronize. 
+
+
+*java.security.cert.CertPathValidatorException()*
+
+public CertPathValidatorException()
+
+Creates a CertPathValidatorException with no detail message. 
+
+
+*java.security.cert.CertPathValidatorException(String)*
+
+public CertPathValidatorException(java.lang.String msg)
+
+Creates a CertPathValidatorException with the given detail message. A detail 
+message is a String that describes this particular exception. 
+
+    msg - the detail message 
+
+*java.security.cert.CertPathValidatorException(String,Throwable)*
+
+public CertPathValidatorException(
+  java.lang.String msg,
+  java.lang.Throwable cause)
+
+Creates a CertPathValidatorException with the specified detail message and 
+cause. 
+
+    msg - the detail message 
+    cause - the cause (which is saved for later retrieval by the {@link #getCause 
+       getCause()} method). (A null value is permitted, and indicates that the 
+       cause is nonexistent or unknown.) 
+
+*java.security.cert.CertPathValidatorException(String,Throwable,CertPath,int)*
+
+public CertPathValidatorException(
+  java.lang.String msg,
+  java.lang.Throwable cause,
+  java.security.cert.CertPath certPath,
+  int index)
+
+Creates a CertPathValidatorException with the specified detail message, cause, 
+certification path, and index. 
+
+    msg - the detail message (or null if none) 
+    cause - the cause (or null if none) 
+    certPath - the certification path that was in the process of being validated when the 
+       error was encountered 
+    index - the index of the certificate in the certification path that caused the error 
+       (or -1 if not applicable). Note that the list of certificates in a 
+       CertPath is zero based. 
+
+*java.security.cert.CertPathValidatorException(Throwable)*
+
+public CertPathValidatorException(java.lang.Throwable cause)
+
+Creates a CertPathValidatorException that wraps the specified throwable. This 
+allows any exception to be converted into a CertPathValidatorException, while 
+retaining information about the wrapped exception, which may be useful for 
+debugging. The detail message is set to (cause==null ? null : cause.toString() 
+) (which typically contains the class and detail message of cause). 
+
+    cause - the cause (which is saved for later retrieval by the {@link #getCause 
+       getCause()} method). (A null value is permitted, and indicates that the 
+       cause is nonexistent or unknown.) 
+
+*java.security.cert.CertPathValidatorException.getCertPath()*
+
+public |java.security.cert.CertPath| getCertPath()
+
+Returns the certification path that was being validated when the exception was 
+thrown. 
+
+
+    Returns: the CertPath that was being validated when the exception was thrown (or null if 
+             not specified) 
+*java.security.cert.CertPathValidatorException.getIndex()*
+
+public int getIndex()
+
+Returns the index of the certificate in the certification path that caused the 
+exception to be thrown. Note that the list of certificates in a CertPath is 
+zero based. If no index has been set, -1 is returned. 
+
+
+    Returns: the index that has been set, or -1 if none has been set 
+

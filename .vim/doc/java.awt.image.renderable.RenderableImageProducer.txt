@@ -1,0 +1,116 @@
+*java.awt.image.renderable.RenderableImageProducer* *RenderableImageProducer* An
+
+public class RenderableImageProducer
+  extends    |java.lang.Object|
+  implements |java.awt.image.ImageProducer|
+             |java.lang.Runnable|
+
+|java.awt.image.renderable.RenderableImageProducer_Description|
+|java.awt.image.renderable.RenderableImageProducer_Fields|
+|java.awt.image.renderable.RenderableImageProducer_Constructors|
+|java.awt.image.renderable.RenderableImageProducer_Methods|
+
+================================================================================
+
+*java.awt.image.renderable.RenderableImageProducer_Constructors*
+|java.awt.image.renderable.RenderableImageProducer(RenderableImage,RenderContext)|
+
+*java.awt.image.renderable.RenderableImageProducer_Methods*
+|java.awt.image.renderable.RenderableImageProducer.addConsumer(ImageConsumer)|A
+|java.awt.image.renderable.RenderableImageProducer.isConsumer(ImageConsumer)|De
+|java.awt.image.renderable.RenderableImageProducer.removeConsumer(ImageConsumer)|
+|java.awt.image.renderable.RenderableImageProducer.requestTopDownLeftRightResend(ImageConsumer)|
+|java.awt.image.renderable.RenderableImageProducer.run()|The runnable method fo
+|java.awt.image.renderable.RenderableImageProducer.setRenderContext(RenderContext)|
+|java.awt.image.renderable.RenderableImageProducer.startProduction(ImageConsumer)|
+
+*java.awt.image.renderable.RenderableImageProducer_Description*
+
+An adapter class that implements ImageProducer to allow the asynchronous 
+production of a RenderableImage. The size of the ImageConsumer is determined by 
+the scale factor of the usr2dev transform in the RenderContext. If the 
+RenderContext is null, the default rendering of the RenderableImage is used. 
+This class implements an asynchronous production that produces the image in one 
+thread at one resolution. This class may be subclassed to implement versions 
+that will render the image using several threads. These threads could render 
+either the same image at progressively better quality, or different sections of 
+the image at a single resolution. 
+
+
+*java.awt.image.renderable.RenderableImageProducer(RenderableImage,RenderContext)*
+
+public RenderableImageProducer(
+  java.awt.image.renderable.RenderableImage rdblImage,
+  java.awt.image.renderable.RenderContext rc)
+
+Constructs a new RenderableImageProducer from a RenderableImage and a 
+RenderContext. 
+
+    rdblImage - the RenderableImage to be rendered. 
+    rc - the RenderContext to use for producing the pixels. 
+
+*java.awt.image.renderable.RenderableImageProducer.addConsumer(ImageConsumer)*
+
+public synchronized void addConsumer(java.awt.image.ImageConsumer ic)
+
+Adds an ImageConsumer to the list of consumers interested in data for this 
+image. 
+
+    ic - an ImageConsumer to be added to the interest list. 
+
+*java.awt.image.renderable.RenderableImageProducer.isConsumer(ImageConsumer)*
+
+public synchronized boolean isConsumer(java.awt.image.ImageConsumer ic)
+
+Determine if an ImageConsumer is on the list of consumers currently interested 
+in data for this image. 
+
+    ic - the ImageConsumer to be checked. 
+
+    Returns: true if the ImageConsumer is on the list; false otherwise. 
+*java.awt.image.renderable.RenderableImageProducer.removeConsumer(ImageConsumer)*
+
+public synchronized void removeConsumer(java.awt.image.ImageConsumer ic)
+
+Remove an ImageConsumer from the list of consumers interested in data for this 
+image. 
+
+    ic - the ImageConsumer to be removed. 
+
+*java.awt.image.renderable.RenderableImageProducer.requestTopDownLeftRightResend(ImageConsumer)*
+
+public void requestTopDownLeftRightResend(java.awt.image.ImageConsumer ic)
+
+Requests that a given ImageConsumer have the image data delivered one more time 
+in top-down, left-right order. 
+
+    ic - the ImageConsumer requesting the resend. 
+
+*java.awt.image.renderable.RenderableImageProducer.run()*
+
+public void run()
+
+The runnable method for this class. This will produce an image using the 
+current RenderableImage and RenderContext and send it to all the ImageConsumer 
+currently registered with this class. 
+
+
+*java.awt.image.renderable.RenderableImageProducer.setRenderContext(RenderContext)*
+
+public synchronized void setRenderContext(java.awt.image.renderable.RenderContext rc)
+
+Sets a new RenderContext to use for the next startProduction() call. 
+
+    rc - the new RenderContext. 
+
+*java.awt.image.renderable.RenderableImageProducer.startProduction(ImageConsumer)*
+
+public synchronized void startProduction(java.awt.image.ImageConsumer ic)
+
+Adds an ImageConsumer to the list of consumers interested in data for this 
+image, and immediately starts delivery of the image data through the 
+ImageConsumer interface. 
+
+    ic - the ImageConsumer to be added to the list of consumers. 
+
+

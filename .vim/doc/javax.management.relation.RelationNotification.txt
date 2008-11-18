@@ -1,0 +1,214 @@
+*javax.management.relation.RelationNotification* *RelationNotification* A notifi
+
+public class RelationNotification
+  extends    |javax.management.Notification|
+
+|javax.management.relation.RelationNotification_Description|
+|javax.management.relation.RelationNotification_Fields|
+|javax.management.relation.RelationNotification_Constructors|
+|javax.management.relation.RelationNotification_Methods|
+
+================================================================================
+
+*javax.management.relation.RelationNotification_Fields*
+|java.lang.String_javax.management.relation.RelationNotification.RELATION_BASIC_CREATION|
+|java.lang.String_javax.management.relation.RelationNotification.RELATION_BASIC_REMOVAL|
+|java.lang.String_javax.management.relation.RelationNotification.RELATION_BASIC_UPDATE|
+|java.lang.String_javax.management.relation.RelationNotification.RELATION_MBEAN_CREATION|
+|java.lang.String_javax.management.relation.RelationNotification.RELATION_MBEAN_REMOVAL|
+|java.lang.String_javax.management.relation.RelationNotification.RELATION_MBEAN_UPDATE|
+
+*javax.management.relation.RelationNotification_Constructors*
+|javax.management.relation.RelationNotification(String,Object,long,long,String,String,String,ObjectName,List)|
+|javax.management.relation.RelationNotification(String,Object,long,long,String,String,String,ObjectName,String,List,List)|
+
+*javax.management.relation.RelationNotification_Methods*
+|javax.management.relation.RelationNotification.getMBeansToUnregister()|Returns
+|javax.management.relation.RelationNotification.getNewRoleValue()|Returns new v
+|javax.management.relation.RelationNotification.getObjectName()|Returns the Obj
+|javax.management.relation.RelationNotification.getOldRoleValue()|Returns old v
+|javax.management.relation.RelationNotification.getRelationId()|Returns the rel
+|javax.management.relation.RelationNotification.getRelationTypeName()|Returns t
+|javax.management.relation.RelationNotification.getRoleName()|Returns name of u
+
+*javax.management.relation.RelationNotification_Description*
+
+A notification of a change in the Relation Service. A RelationNotification 
+notification is sent when a relation is created via the Relation Service, or an 
+MBean is added as a relation in the Relation Service, or a role is updated in a 
+relation, or a relation is removed from the Relation Service. 
+
+
+*java.lang.String_javax.management.relation.RelationNotification.RELATION_BASIC_CREATION*
+
+A notification of a change in the Relation Service. A RelationNotification 
+notification is sent when a relation is created via the Relation Service, or an 
+MBean is added as a relation in the Relation Service, or a role is updated in a 
+relation, or a relation is removed from the Relation Service. 
+
+
+*java.lang.String_javax.management.relation.RelationNotification.RELATION_BASIC_REMOVAL*
+
+A notification of a change in the Relation Service. A RelationNotification 
+notification is sent when a relation is created via the Relation Service, or an 
+MBean is added as a relation in the Relation Service, or a role is updated in a 
+relation, or a relation is removed from the Relation Service. 
+
+
+*java.lang.String_javax.management.relation.RelationNotification.RELATION_BASIC_UPDATE*
+
+A notification of a change in the Relation Service. A RelationNotification 
+notification is sent when a relation is created via the Relation Service, or an 
+MBean is added as a relation in the Relation Service, or a role is updated in a 
+relation, or a relation is removed from the Relation Service. 
+
+
+*java.lang.String_javax.management.relation.RelationNotification.RELATION_MBEAN_CREATION*
+
+A notification of a change in the Relation Service. A RelationNotification 
+notification is sent when a relation is created via the Relation Service, or an 
+MBean is added as a relation in the Relation Service, or a role is updated in a 
+relation, or a relation is removed from the Relation Service. 
+
+
+*java.lang.String_javax.management.relation.RelationNotification.RELATION_MBEAN_REMOVAL*
+
+A notification of a change in the Relation Service. A RelationNotification 
+notification is sent when a relation is created via the Relation Service, or an 
+MBean is added as a relation in the Relation Service, or a role is updated in a 
+relation, or a relation is removed from the Relation Service. 
+
+
+*java.lang.String_javax.management.relation.RelationNotification.RELATION_MBEAN_UPDATE*
+
+A notification of a change in the Relation Service. A RelationNotification 
+notification is sent when a relation is created via the Relation Service, or an 
+MBean is added as a relation in the Relation Service, or a role is updated in a 
+relation, or a relation is removed from the Relation Service. 
+
+
+
+*javax.management.relation.RelationNotification(String,Object,long,long,String,String,String,ObjectName,List)*
+
+public RelationNotification(
+  java.lang.String theNtfType,
+  java.lang.Object theSrcObj,
+  long TheSeqNbr,
+  long theTimeStamp,
+  java.lang.String theMsg,
+  java.lang.String theRelId,
+  java.lang.String theRelTypeName,
+  javax.management.ObjectName theRelObjName,
+  java.util.List theUnregMBeanList)
+  throws |java.lang.IllegalArgumentException|
+         
+Creates a notification for either a relation creation (RelationSupport object 
+created internally in the Relation Service, or an MBean added as a relation) or 
+for a relation removal from the Relation Service. 
+
+    theNtfType - type of the notification; either: - RELATION_BASIC_CREATION - 
+       RELATION_MBEAN_CREATION - RELATION_BASIC_REMOVAL - 
+       RELATION_MBEAN_REMOVAL 
+    theSrcObj - source object, sending the notification. Will always be a RelationService 
+       object. 
+    TheSeqNbr - sequence number to identify the notification 
+    theTimeStamp - time stamp 
+    theMsg - human-readable message describing the notification 
+    theRelId - relation id identifying the relation in the Relation Service 
+    theRelTypeName - name of the relation type 
+    theRelObjName - ObjectName of the relation object if it is an MBean (null for relations 
+       internally handled by the Relation Service) 
+    theUnregMBeanList - list of ObjectNames of referenced MBeans expected to be unregistered due to 
+       relation removal (only for removal, due to CIM qualifiers, can be null) 
+
+*javax.management.relation.RelationNotification(String,Object,long,long,String,String,String,ObjectName,String,List,List)*
+
+public RelationNotification(
+  java.lang.String theNtfType,
+  java.lang.Object theSrcObj,
+  long TheSeqNbr,
+  long theTimeStamp,
+  java.lang.String theMsg,
+  java.lang.String theRelId,
+  java.lang.String theRelTypeName,
+  javax.management.ObjectName theRelObjName,
+  java.lang.String theRoleName,
+  java.util.List theNewRoleValue,
+  java.util.List theOldRoleValue)
+  throws |java.lang.IllegalArgumentException|
+         
+Creates a notification for a role update in a relation. 
+
+    theNtfType - type of the notification; either: - RELATION_BASIC_UPDATE - 
+       RELATION_MBEAN_UPDATE 
+    theSrcObj - source object, sending the notification. Will always be a RelationService 
+       object. 
+    TheSeqNbr - sequence number to identify the notification 
+    theTimeStamp - time stamp 
+    theMsg - human-readable message describing the notification 
+    theRelId - relation id identifying the relation in the Relation Service 
+    theRelTypeName - name of the relation type 
+    theRelObjName - ObjectName of the relation object if it is an MBean (null for relations 
+       internally handled by the Relation Service) 
+    theRoleName - name of the updated role 
+    theNewRoleValue - new value (List of ObjectName objects) 
+    theOldRoleValue - old value (List of ObjectName objects) 
+
+*javax.management.relation.RelationNotification.getMBeansToUnregister()*
+
+public |java.util.List| getMBeansToUnregister()
+
+Returns the list of ObjectNames of MBeans expected to be unregistered due to a 
+relation removal (only for relation removal). 
+
+
+    Returns: a {@link List} of {@link ObjectName}. 
+*javax.management.relation.RelationNotification.getNewRoleValue()*
+
+public |java.util.List| getNewRoleValue()
+
+Returns new value of updated role (only for role update). 
+
+
+    Returns: the new value of the updated role. 
+*javax.management.relation.RelationNotification.getObjectName()*
+
+public |javax.management.ObjectName| getObjectName()
+
+Returns the ObjectName of the created/removed/updated relation. 
+
+
+    Returns: the ObjectName if the relation is an MBean, otherwise null. 
+*javax.management.relation.RelationNotification.getOldRoleValue()*
+
+public |java.util.List| getOldRoleValue()
+
+Returns old value of updated role (only for role update). 
+
+
+    Returns: the old value of the updated role. 
+*javax.management.relation.RelationNotification.getRelationId()*
+
+public |java.lang.String| getRelationId()
+
+Returns the relation identifier of created/removed/updated relation. 
+
+
+    Returns: the relation id. 
+*javax.management.relation.RelationNotification.getRelationTypeName()*
+
+public |java.lang.String| getRelationTypeName()
+
+Returns the relation type name of created/removed/updated relation. 
+
+
+    Returns: the relation type name. 
+*javax.management.relation.RelationNotification.getRoleName()*
+
+public |java.lang.String| getRoleName()
+
+Returns name of updated role of updated relation (only for role update). 
+
+
+    Returns: the name of the updated role. 
+

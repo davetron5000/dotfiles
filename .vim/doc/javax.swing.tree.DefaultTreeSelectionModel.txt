@@ -1,0 +1,677 @@
+*javax.swing.tree.DefaultTreeSelectionModel* *DefaultTreeSelectionModel* Default
+
+public class DefaultTreeSelectionModel
+  extends    |java.lang.Object|
+  implements |java.lang.Cloneable|
+             |java.io.Serializable|
+             |javax.swing.tree.TreeSelectionModel|
+
+|javax.swing.tree.DefaultTreeSelectionModel_Description|
+|javax.swing.tree.DefaultTreeSelectionModel_Fields|
+|javax.swing.tree.DefaultTreeSelectionModel_Constructors|
+|javax.swing.tree.DefaultTreeSelectionModel_Methods|
+
+================================================================================
+
+*javax.swing.tree.DefaultTreeSelectionModel_Fields*
+|javax.swing.event.SwingPropertyChangeSupport_javax.swing.tree.DefaultTreeSelectionModel.changeSupport|
+|int_javax.swing.tree.DefaultTreeSelectionModel.leadIndex|
+|javax.swing.tree.TreePath_javax.swing.tree.DefaultTreeSelectionModel.leadPath|
+|int_javax.swing.tree.DefaultTreeSelectionModel.leadRow|
+|javax.swing.event.EventListenerList_javax.swing.tree.DefaultTreeSelectionModel.listenerList|
+|javax.swing.DefaultListSelectionModel_javax.swing.tree.DefaultTreeSelectionModel.listSelectionModel|
+|javax.swing.tree.RowMapper_javax.swing.tree.DefaultTreeSelectionModel.rowMapper|
+|javax.swing.tree.TreePath[]_javax.swing.tree.DefaultTreeSelectionModel.selection|
+|java.lang.String_javax.swing.tree.DefaultTreeSelectionModel.SELECTION_MODE_PROPERTY|
+|int_javax.swing.tree.DefaultTreeSelectionModel.selectionMode|
+
+*javax.swing.tree.DefaultTreeSelectionModel_Constructors*
+|javax.swing.tree.DefaultTreeSelectionModel()|Creates a new instance of Default
+
+*javax.swing.tree.DefaultTreeSelectionModel_Methods*
+|javax.swing.tree.DefaultTreeSelectionModel.addPropertyChangeListener(PropertyChangeListener)|
+|javax.swing.tree.DefaultTreeSelectionModel.addSelectionPath(TreePath)|Adds pat
+|javax.swing.tree.DefaultTreeSelectionModel.addSelectionPaths(TreePath[])|Adds 
+|javax.swing.tree.DefaultTreeSelectionModel.addTreeSelectionListener(TreeSelectionListener)|
+|javax.swing.tree.DefaultTreeSelectionModel.arePathsContiguous(TreePath[])|Retu
+|javax.swing.tree.DefaultTreeSelectionModel.canPathsBeAdded(TreePath[])|Used to
+|javax.swing.tree.DefaultTreeSelectionModel.canPathsBeRemoved(TreePath[])|Retur
+|javax.swing.tree.DefaultTreeSelectionModel.clearSelection()|Empties the curren
+|javax.swing.tree.DefaultTreeSelectionModel.clone()|Returns a clone of this obj
+|javax.swing.tree.DefaultTreeSelectionModel.fireValueChanged(TreeSelectionEvent)|
+|javax.swing.tree.DefaultTreeSelectionModel.getLeadSelectionPath()|Returns the 
+|javax.swing.tree.DefaultTreeSelectionModel.getLeadSelectionRow()|Returns the l
+|javax.swing.tree.DefaultTreeSelectionModel.getListeners(Class)|Returns an arra
+|javax.swing.tree.DefaultTreeSelectionModel.getMaxSelectionRow()|Returns the la
+|javax.swing.tree.DefaultTreeSelectionModel.getMinSelectionRow()|Returns the sm
+|javax.swing.tree.DefaultTreeSelectionModel.getPropertyChangeListeners()|Return
+|javax.swing.tree.DefaultTreeSelectionModel.getRowMapper()|Returns the RowMappe
+|javax.swing.tree.DefaultTreeSelectionModel.getSelectionCount()|Returns the num
+|javax.swing.tree.DefaultTreeSelectionModel.getSelectionMode()|Returns the sele
+|javax.swing.tree.DefaultTreeSelectionModel.getSelectionPath()|Returns the firs
+|javax.swing.tree.DefaultTreeSelectionModel.getSelectionPaths()|Returns the pat
+|javax.swing.tree.DefaultTreeSelectionModel.getSelectionRows()|Returns all of t
+|javax.swing.tree.DefaultTreeSelectionModel.getTreeSelectionListeners()|Returns
+|javax.swing.tree.DefaultTreeSelectionModel.insureRowContinuity()|Makes sure th
+|javax.swing.tree.DefaultTreeSelectionModel.insureUniqueness()|This method is o
+|javax.swing.tree.DefaultTreeSelectionModel.isPathSelected(TreePath)|Returns tr
+|javax.swing.tree.DefaultTreeSelectionModel.isRowSelected(int)|Returns true if 
+|javax.swing.tree.DefaultTreeSelectionModel.isSelectionEmpty()|Returns true if 
+|javax.swing.tree.DefaultTreeSelectionModel.notifyPathChange(Vector,TreePath)|N
+|javax.swing.tree.DefaultTreeSelectionModel.removePropertyChangeListener(PropertyChangeListener)|
+|javax.swing.tree.DefaultTreeSelectionModel.removeSelectionPath(TreePath)|Remov
+|javax.swing.tree.DefaultTreeSelectionModel.removeSelectionPaths(TreePath[])|Re
+|javax.swing.tree.DefaultTreeSelectionModel.removeTreeSelectionListener(TreeSelectionListener)|
+|javax.swing.tree.DefaultTreeSelectionModel.resetRowSelection()|Updates this ob
+|javax.swing.tree.DefaultTreeSelectionModel.setRowMapper(RowMapper)|Sets the Ro
+|javax.swing.tree.DefaultTreeSelectionModel.setSelectionMode(int)|Sets the sele
+|javax.swing.tree.DefaultTreeSelectionModel.setSelectionPath(TreePath)|Sets the
+|javax.swing.tree.DefaultTreeSelectionModel.setSelectionPaths(TreePath[])|Sets 
+|javax.swing.tree.DefaultTreeSelectionModel.toString()|Returns a string that di
+|javax.swing.tree.DefaultTreeSelectionModel.updateLeadIndex()|Updates the leadI
+
+*javax.swing.tree.DefaultTreeSelectionModel_Description*
+
+Default implementation of TreeSelectionModel. Listeners are notified whenever 
+the paths in the selection change, not the rows. In order to be able to track 
+row changes you may wish to become a listener for expansion events on the tree 
+and test for changes from there. resetRowSelection is called from any of the 
+methods that update the selected paths. If you subclass any of these methods to 
+filter what is allowed to be selected, be sure and message resetRowSelection if 
+you do not message super. 
+
+
+
+Warning: Serialized objects of this class will not be compatible with future 
+Swing releases. The current serialization support is appropriate for short term 
+storage or RMI between applications running the same version of Swing. As of 
+1.4, support for long term storage of all JavaBeansTM has been added to the 
+java.beans package. Please see (|java.beans.XMLEncoder|) . 
+
+
+*javax.swing.event.SwingPropertyChangeSupport_javax.swing.tree.DefaultTreeSelectionModel.changeSupport*
+
+Default implementation of TreeSelectionModel. Listeners are notified whenever 
+the paths in the selection change, not the rows. In order to be able to track 
+row changes you may wish to become a listener for expansion events on the tree 
+and test for changes from there. resetRowSelection is called from any of the 
+methods that update the selected paths. If you subclass any of these methods to 
+filter what is allowed to be selected, be sure and message resetRowSelection if 
+you do not message super. 
+
+
+
+Warning: Serialized objects of this class will not be compatible with future 
+Swing releases. The current serialization support is appropriate for short term 
+storage or RMI between applications running the same version of Swing. As of 
+1.4, support for long term storage of all JavaBeansTM has been added to the 
+java.beans package. Please see (|java.beans.XMLEncoder|) . 
+
+
+*int_javax.swing.tree.DefaultTreeSelectionModel.leadIndex*
+
+Default implementation of TreeSelectionModel. Listeners are notified whenever 
+the paths in the selection change, not the rows. In order to be able to track 
+row changes you may wish to become a listener for expansion events on the tree 
+and test for changes from there. resetRowSelection is called from any of the 
+methods that update the selected paths. If you subclass any of these methods to 
+filter what is allowed to be selected, be sure and message resetRowSelection if 
+you do not message super. 
+
+
+
+Warning: Serialized objects of this class will not be compatible with future 
+Swing releases. The current serialization support is appropriate for short term 
+storage or RMI between applications running the same version of Swing. As of 
+1.4, support for long term storage of all JavaBeansTM has been added to the 
+java.beans package. Please see (|java.beans.XMLEncoder|) . 
+
+
+*javax.swing.tree.TreePath_javax.swing.tree.DefaultTreeSelectionModel.leadPath*
+
+Default implementation of TreeSelectionModel. Listeners are notified whenever 
+the paths in the selection change, not the rows. In order to be able to track 
+row changes you may wish to become a listener for expansion events on the tree 
+and test for changes from there. resetRowSelection is called from any of the 
+methods that update the selected paths. If you subclass any of these methods to 
+filter what is allowed to be selected, be sure and message resetRowSelection if 
+you do not message super. 
+
+
+
+Warning: Serialized objects of this class will not be compatible with future 
+Swing releases. The current serialization support is appropriate for short term 
+storage or RMI between applications running the same version of Swing. As of 
+1.4, support for long term storage of all JavaBeansTM has been added to the 
+java.beans package. Please see (|java.beans.XMLEncoder|) . 
+
+
+*int_javax.swing.tree.DefaultTreeSelectionModel.leadRow*
+
+Default implementation of TreeSelectionModel. Listeners are notified whenever 
+the paths in the selection change, not the rows. In order to be able to track 
+row changes you may wish to become a listener for expansion events on the tree 
+and test for changes from there. resetRowSelection is called from any of the 
+methods that update the selected paths. If you subclass any of these methods to 
+filter what is allowed to be selected, be sure and message resetRowSelection if 
+you do not message super. 
+
+
+
+Warning: Serialized objects of this class will not be compatible with future 
+Swing releases. The current serialization support is appropriate for short term 
+storage or RMI between applications running the same version of Swing. As of 
+1.4, support for long term storage of all JavaBeansTM has been added to the 
+java.beans package. Please see (|java.beans.XMLEncoder|) . 
+
+
+*javax.swing.event.EventListenerList_javax.swing.tree.DefaultTreeSelectionModel.listenerList*
+
+Default implementation of TreeSelectionModel. Listeners are notified whenever 
+the paths in the selection change, not the rows. In order to be able to track 
+row changes you may wish to become a listener for expansion events on the tree 
+and test for changes from there. resetRowSelection is called from any of the 
+methods that update the selected paths. If you subclass any of these methods to 
+filter what is allowed to be selected, be sure and message resetRowSelection if 
+you do not message super. 
+
+
+
+Warning: Serialized objects of this class will not be compatible with future 
+Swing releases. The current serialization support is appropriate for short term 
+storage or RMI between applications running the same version of Swing. As of 
+1.4, support for long term storage of all JavaBeansTM has been added to the 
+java.beans package. Please see (|java.beans.XMLEncoder|) . 
+
+
+*javax.swing.DefaultListSelectionModel_javax.swing.tree.DefaultTreeSelectionModel.listSelectionModel*
+
+Default implementation of TreeSelectionModel. Listeners are notified whenever 
+the paths in the selection change, not the rows. In order to be able to track 
+row changes you may wish to become a listener for expansion events on the tree 
+and test for changes from there. resetRowSelection is called from any of the 
+methods that update the selected paths. If you subclass any of these methods to 
+filter what is allowed to be selected, be sure and message resetRowSelection if 
+you do not message super. 
+
+
+
+Warning: Serialized objects of this class will not be compatible with future 
+Swing releases. The current serialization support is appropriate for short term 
+storage or RMI between applications running the same version of Swing. As of 
+1.4, support for long term storage of all JavaBeansTM has been added to the 
+java.beans package. Please see (|java.beans.XMLEncoder|) . 
+
+
+*javax.swing.tree.RowMapper_javax.swing.tree.DefaultTreeSelectionModel.rowMapper*
+
+Default implementation of TreeSelectionModel. Listeners are notified whenever 
+the paths in the selection change, not the rows. In order to be able to track 
+row changes you may wish to become a listener for expansion events on the tree 
+and test for changes from there. resetRowSelection is called from any of the 
+methods that update the selected paths. If you subclass any of these methods to 
+filter what is allowed to be selected, be sure and message resetRowSelection if 
+you do not message super. 
+
+
+
+Warning: Serialized objects of this class will not be compatible with future 
+Swing releases. The current serialization support is appropriate for short term 
+storage or RMI between applications running the same version of Swing. As of 
+1.4, support for long term storage of all JavaBeansTM has been added to the 
+java.beans package. Please see (|java.beans.XMLEncoder|) . 
+
+
+*javax.swing.tree.TreePath[]_javax.swing.tree.DefaultTreeSelectionModel.selection*
+
+Default implementation of TreeSelectionModel. Listeners are notified whenever 
+the paths in the selection change, not the rows. In order to be able to track 
+row changes you may wish to become a listener for expansion events on the tree 
+and test for changes from there. resetRowSelection is called from any of the 
+methods that update the selected paths. If you subclass any of these methods to 
+filter what is allowed to be selected, be sure and message resetRowSelection if 
+you do not message super. 
+
+
+
+Warning: Serialized objects of this class will not be compatible with future 
+Swing releases. The current serialization support is appropriate for short term 
+storage or RMI between applications running the same version of Swing. As of 
+1.4, support for long term storage of all JavaBeansTM has been added to the 
+java.beans package. Please see (|java.beans.XMLEncoder|) . 
+
+
+*java.lang.String_javax.swing.tree.DefaultTreeSelectionModel.SELECTION_MODE_PROPERTY*
+
+Default implementation of TreeSelectionModel. Listeners are notified whenever 
+the paths in the selection change, not the rows. In order to be able to track 
+row changes you may wish to become a listener for expansion events on the tree 
+and test for changes from there. resetRowSelection is called from any of the 
+methods that update the selected paths. If you subclass any of these methods to 
+filter what is allowed to be selected, be sure and message resetRowSelection if 
+you do not message super. 
+
+
+
+Warning: Serialized objects of this class will not be compatible with future 
+Swing releases. The current serialization support is appropriate for short term 
+storage or RMI between applications running the same version of Swing. As of 
+1.4, support for long term storage of all JavaBeansTM has been added to the 
+java.beans package. Please see (|java.beans.XMLEncoder|) . 
+
+
+*int_javax.swing.tree.DefaultTreeSelectionModel.selectionMode*
+
+Default implementation of TreeSelectionModel. Listeners are notified whenever 
+the paths in the selection change, not the rows. In order to be able to track 
+row changes you may wish to become a listener for expansion events on the tree 
+and test for changes from there. resetRowSelection is called from any of the 
+methods that update the selected paths. If you subclass any of these methods to 
+filter what is allowed to be selected, be sure and message resetRowSelection if 
+you do not message super. 
+
+
+
+Warning: Serialized objects of this class will not be compatible with future 
+Swing releases. The current serialization support is appropriate for short term 
+storage or RMI between applications running the same version of Swing. As of 
+1.4, support for long term storage of all JavaBeansTM has been added to the 
+java.beans package. Please see (|java.beans.XMLEncoder|) . 
+
+
+
+*javax.swing.tree.DefaultTreeSelectionModel()*
+
+public DefaultTreeSelectionModel()
+
+Creates a new instance of DefaultTreeSelectionModel that is empty, with a 
+selection mode of DISCONTIGUOUS_TREE_SELECTION. 
+
+
+*javax.swing.tree.DefaultTreeSelectionModel.addPropertyChangeListener(PropertyChangeListener)*
+
+public synchronized void addPropertyChangeListener(java.beans.PropertyChangeListener listener)
+
+Adds a PropertyChangeListener to the listener list. The listener is registered 
+for all properties. 
+
+A PropertyChangeEvent will get fired when the selection mode changes. 
+
+    listener - the PropertyChangeListener to be added 
+
+*javax.swing.tree.DefaultTreeSelectionModel.addSelectionPath(TreePath)*
+
+public void addSelectionPath(javax.swing.tree.TreePath path)
+
+Adds path to the current selection. If path is not currently in the selection 
+the TreeSelectionListeners are notified. This has no effect if path is null. 
+
+    path - the new path to add to the current selection 
+
+*javax.swing.tree.DefaultTreeSelectionModel.addSelectionPaths(TreePath[])*
+
+public void addSelectionPaths(javax.swing.tree.TreePath[] paths)
+
+Adds paths to the current selection. If any of the paths in paths are not 
+currently in the selection the TreeSelectionListeners are notified. This has no 
+effect if paths is null. The lead path is set to the last element in paths. If 
+the selection mode is CONTIGUOUS_TREE_SELECTION, and adding the new paths would 
+make the selection discontiguous. Then two things can result: if the TreePaths 
+in paths are contiguous, then the selection becomes these TreePaths, otherwise 
+the TreePaths aren't contiguous and the selection becomes the first TreePath in 
+paths. 
+
+    paths - the new path to add to the current selection 
+
+*javax.swing.tree.DefaultTreeSelectionModel.addTreeSelectionListener(TreeSelectionListener)*
+
+public void addTreeSelectionListener(javax.swing.event.TreeSelectionListener x)
+
+Adds x to the list of listeners that are notified each time the set of selected 
+TreePaths changes. 
+
+    x - the new listener to be added 
+
+*javax.swing.tree.DefaultTreeSelectionModel.arePathsContiguous(TreePath[])*
+
+protected boolean arePathsContiguous(javax.swing.tree.TreePath[] paths)
+
+Returns true if the paths are contiguous, or this object has no RowMapper. 
+
+
+*javax.swing.tree.DefaultTreeSelectionModel.canPathsBeAdded(TreePath[])*
+
+protected boolean canPathsBeAdded(javax.swing.tree.TreePath[] paths)
+
+Used to test if a particular set of TreePaths can be added. This will return 
+true if paths is null (or empty), or this object has no RowMapper, or nothing 
+is currently selected, or the selection mode is DISCONTIGUOUS_TREE_SELECTION, 
+or adding the paths to the current selection still results in a contiguous set 
+of TreePaths. 
+
+
+*javax.swing.tree.DefaultTreeSelectionModel.canPathsBeRemoved(TreePath[])*
+
+protected boolean canPathsBeRemoved(javax.swing.tree.TreePath[] paths)
+
+Returns true if the paths can be removed without breaking the continuity of the 
+model. This is rather expensive. 
+
+
+*javax.swing.tree.DefaultTreeSelectionModel.clearSelection()*
+
+public void clearSelection()
+
+Empties the current selection. If this represents a change in the current 
+selection, the selection listeners are notified. 
+
+
+*javax.swing.tree.DefaultTreeSelectionModel.clone()*
+
+public |java.lang.Object| clone()
+  throws |java.lang.CloneNotSupportedException|
+         
+Returns a clone of this object with the same selection. This method does not 
+duplicate selection listeners and property listeners. 
+
+
+*javax.swing.tree.DefaultTreeSelectionModel.fireValueChanged(TreeSelectionEvent)*
+
+protected void fireValueChanged(javax.swing.event.TreeSelectionEvent e)
+
+Notifies all listeners that are registered for tree selection events on this 
+object. 
+
+
+*javax.swing.tree.DefaultTreeSelectionModel.getLeadSelectionPath()*
+
+public |javax.swing.tree.TreePath| getLeadSelectionPath()
+
+Returns the last path that was added. This may differ from the 
+leadSelectionPath property maintained by the JTree. 
+
+
+*javax.swing.tree.DefaultTreeSelectionModel.getLeadSelectionRow()*
+
+public int getLeadSelectionRow()
+
+Returns the lead selection index. That is the last index that was added. 
+
+
+*javax.swing.tree.DefaultTreeSelectionModel.getListeners(Class)*
+
+public |java.util.EventListener| getListeners(java.lang.Class listenerType)
+
+Returns an array of all the objects currently registered as FooListeners upon 
+this model. FooListeners are registered using the addFooListener method. 
+
+
+
+You can specify the listenerType argument with a class literal, such as 
+FooListener.class. For example, you can query a DefaultTreeSelectionModel m for 
+its tree selection listeners with the following code: 
+
+TreeSelectionListener[] tsls = 
+(TreeSelectionListener[])(m.getListeners(TreeSelectionListener.class)); 
+
+If no such listeners exist, this method returns an empty array. 
+
+    listenerType - the type of listeners requested; this parameter should specify an interface 
+       that descends from java.util.EventListener 
+
+    Returns: an array of all objects registered as FooListeners on this component, or an 
+             empty array if no such listeners have been added 
+*javax.swing.tree.DefaultTreeSelectionModel.getMaxSelectionRow()*
+
+public int getMaxSelectionRow()
+
+Returns the largest value obtained from the RowMapper for the current set of 
+selected TreePaths. If nothing is selected, or there is no RowMapper, this will 
+return -1. 
+
+
+*javax.swing.tree.DefaultTreeSelectionModel.getMinSelectionRow()*
+
+public int getMinSelectionRow()
+
+Returns the smallest value obtained from the RowMapper for the current set of 
+selected TreePaths. If nothing is selected, or there is no RowMapper, this will 
+return -1. 
+
+
+*javax.swing.tree.DefaultTreeSelectionModel.getPropertyChangeListeners()*
+
+public |java.beans.PropertyChangeListener| getPropertyChangeListeners()
+
+Returns an array of all the property change listeners registered on this 
+DefaultTreeSelectionModel. 
+
+
+    Returns: all of this model's PropertyChangeListeners or an empty array if no property 
+             change listeners are currently registered 
+*javax.swing.tree.DefaultTreeSelectionModel.getRowMapper()*
+
+public |javax.swing.tree.RowMapper| getRowMapper()
+
+Returns the RowMapper instance that is able to map a TreePath to a row. 
+
+
+*javax.swing.tree.DefaultTreeSelectionModel.getSelectionCount()*
+
+public int getSelectionCount()
+
+Returns the number of paths that are selected. 
+
+
+*javax.swing.tree.DefaultTreeSelectionModel.getSelectionMode()*
+
+public int getSelectionMode()
+
+Returns the selection mode, one of SINGLE_TREE_SELECTION, 
+DISCONTIGUOUS_TREE_SELECTION or CONTIGUOUS_TREE_SELECTION. 
+
+
+*javax.swing.tree.DefaultTreeSelectionModel.getSelectionPath()*
+
+public |javax.swing.tree.TreePath| getSelectionPath()
+
+Returns the first path in the selection. This is useful if there if only one 
+item currently selected. 
+
+
+*javax.swing.tree.DefaultTreeSelectionModel.getSelectionPaths()*
+
+public |javax.swing.tree.TreePath| getSelectionPaths()
+
+Returns the paths in the selection. This will return null (or an empty array) 
+if nothing is currently selected. 
+
+
+*javax.swing.tree.DefaultTreeSelectionModel.getSelectionRows()*
+
+public int getSelectionRows()
+
+Returns all of the currently selected rows. This will return null (or an empty 
+array) if there are no selected TreePaths or a RowMapper has not been set. This 
+may return an array of length less that than of the selected TreePaths if some 
+of the rows are not visible (that is the RowMapper returned -1 for the row 
+corresponding to the TreePath). 
+
+
+*javax.swing.tree.DefaultTreeSelectionModel.getTreeSelectionListeners()*
+
+public |javax.swing.event.TreeSelectionListener| getTreeSelectionListeners()
+
+Returns an array of all the tree selection listeners registered on this model. 
+
+
+    Returns: all of this model's TreeSelectionListeners or an empty array if no tree 
+             selection listeners are currently registered 
+*javax.swing.tree.DefaultTreeSelectionModel.insureRowContinuity()*
+
+protected void insureRowContinuity()
+
+Makes sure the currently selected TreePaths are valid for the current selection 
+mode. If the selection mode is CONTIGUOUS_TREE_SELECTION and a RowMapper 
+exists, this will make sure all the rows are contiguous, that is, when sorted 
+all the rows are in order with no gaps. If the selection isn't contiguous, the 
+selection is reset to contain the first set, when sorted, of contiguous rows. 
+
+If the selection mode is SINGLE_TREE_SELECTION and more than one TreePath is 
+selected, the selection is reset to contain the first path currently selected. 
+
+
+*javax.swing.tree.DefaultTreeSelectionModel.insureUniqueness()*
+
+protected void insureUniqueness()
+
+This method is obsolete and its implementation is now a noop. It's still called 
+by setSelectionPaths and addSelectionPaths, but only for backwards 
+compatability. 
+
+
+*javax.swing.tree.DefaultTreeSelectionModel.isPathSelected(TreePath)*
+
+public boolean isPathSelected(javax.swing.tree.TreePath path)
+
+Returns true if the path, path, is in the current selection. 
+
+
+*javax.swing.tree.DefaultTreeSelectionModel.isRowSelected(int)*
+
+public boolean isRowSelected(int row)
+
+Returns true if the row identified by row is selected. 
+
+
+*javax.swing.tree.DefaultTreeSelectionModel.isSelectionEmpty()*
+
+public boolean isSelectionEmpty()
+
+Returns true if the selection is currently empty. 
+
+
+*javax.swing.tree.DefaultTreeSelectionModel.notifyPathChange(Vector,TreePath)*
+
+protected void notifyPathChange(
+  java.util.Vector changedPaths,
+  javax.swing.tree.TreePath oldLeadSelection)
+
+Notifies listeners of a change in path. changePaths should contain instances of 
+PathPlaceHolder. 
+
+
+*javax.swing.tree.DefaultTreeSelectionModel.removePropertyChangeListener(PropertyChangeListener)*
+
+public synchronized void removePropertyChangeListener(java.beans.PropertyChangeListener listener)
+
+Removes a PropertyChangeListener from the listener list. This removes a 
+PropertyChangeListener that was registered for all properties. 
+
+    listener - the PropertyChangeListener to be removed 
+
+*javax.swing.tree.DefaultTreeSelectionModel.removeSelectionPath(TreePath)*
+
+public void removeSelectionPath(javax.swing.tree.TreePath path)
+
+Removes path from the selection. If path is in the selection The 
+TreeSelectionListeners are notified. This has no effect if path is null. 
+
+    path - the path to remove from the selection 
+
+*javax.swing.tree.DefaultTreeSelectionModel.removeSelectionPaths(TreePath[])*
+
+public void removeSelectionPaths(javax.swing.tree.TreePath[] paths)
+
+Removes paths from the selection. If any of the paths in paths are in the 
+selection the TreeSelectionListeners are notified. This has no effect if paths 
+is null. 
+
+    paths - the paths to remove from the selection 
+
+*javax.swing.tree.DefaultTreeSelectionModel.removeTreeSelectionListener(TreeSelectionListener)*
+
+public void removeTreeSelectionListener(javax.swing.event.TreeSelectionListener x)
+
+Removes x from the list of listeners that are notified each time the set of 
+selected TreePaths changes. 
+
+    x - the listener to remove 
+
+*javax.swing.tree.DefaultTreeSelectionModel.resetRowSelection()*
+
+public void resetRowSelection()
+
+Updates this object's mapping from TreePath to rows. This should be invoked 
+when the mapping from TreePaths to integers has changed (for example, a node 
+has been expanded). You do not normally have to call this, JTree and its 
+associated Listeners will invoke this for you. If you are implementing your own 
+View class, then you will have to invoke this. This will invoke 
+insureRowContinuity to make sure the currently selected TreePaths are still 
+valid based on the selection mode. 
+
+
+*javax.swing.tree.DefaultTreeSelectionModel.setRowMapper(RowMapper)*
+
+public void setRowMapper(javax.swing.tree.RowMapper newMapper)
+
+Sets the RowMapper instance. This instance is used to determine the row for a 
+particular TreePath. 
+
+
+*javax.swing.tree.DefaultTreeSelectionModel.setSelectionMode(int)*
+
+public void setSelectionMode(int mode)
+
+Sets the selection model, which must be one of SINGLE_TREE_SELECTION, 
+CONTIGUOUS_TREE_SELECTION or DISCONTIGUOUS_TREE_SELECTION. If mode is not one 
+of the defined value, DISCONTIGUOUS_TREE_SELECTION is assumed. This may change 
+the selection if the current selection is not valid for the new mode. For 
+example, if three TreePaths are selected when the mode is changed to 
+SINGLE_TREE_SELECTION, only one TreePath will remain selected. It is up to the 
+particular implementation to decide what TreePath remains selected. 
+
+Setting the mode to something other than the defined types will result in the 
+mode becoming DISCONTIGUOUS_TREE_SELECTION. 
+
+
+*javax.swing.tree.DefaultTreeSelectionModel.setSelectionPath(TreePath)*
+
+public void setSelectionPath(javax.swing.tree.TreePath path)
+
+Sets the selection to path. If this represents a change, then the 
+TreeSelectionListeners are notified. If path is null, this has the same effect 
+as invoking clearSelection. 
+
+    path - new path to select 
+
+*javax.swing.tree.DefaultTreeSelectionModel.setSelectionPaths(TreePath[])*
+
+public void setSelectionPaths(javax.swing.tree.TreePath[] pPaths)
+
+Sets the selection to the paths in paths. If this represents a change the 
+TreeSelectionListeners are notified. Potentially paths will be held by this 
+object; in other words don't change any of the objects in the array once passed 
+in. If paths is null, this has the same effect as invoking clearSelection. The 
+lead path is set to the last path in pPaths. If the selection mode is 
+CONTIGUOUS_TREE_SELECTION, and adding the new paths would make the selection 
+discontiguous, the selection is reset to the first TreePath in paths. 
+
+    pPaths - new selection 
+
+*javax.swing.tree.DefaultTreeSelectionModel.toString()*
+
+public |java.lang.String| toString()
+
+Returns a string that displays and identifies this object's properties. 
+
+
+    Returns: a String representation of this object 
+*javax.swing.tree.DefaultTreeSelectionModel.updateLeadIndex()*
+
+protected void updateLeadIndex()
+
+Updates the leadIndex instance variable. 
+
+
+

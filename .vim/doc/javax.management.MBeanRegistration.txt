@@ -1,0 +1,74 @@
+*javax.management.MBeanRegistration* *MBeanRegistration* Can be implemented by a
+
+public interface interface MBeanRegistration
+
+
+|javax.management.MBeanRegistration_Description|
+|javax.management.MBeanRegistration_Fields|
+|javax.management.MBeanRegistration_Constructors|
+|javax.management.MBeanRegistration_Methods|
+
+================================================================================
+
+*javax.management.MBeanRegistration_Methods*
+|javax.management.MBeanRegistration.postDeregister()|Allows the MBean to perfor
+|javax.management.MBeanRegistration.postRegister(Boolean)|Allows the MBean to p
+|javax.management.MBeanRegistration.preDeregister()|Allows the MBean to perform
+|javax.management.MBeanRegistration.preRegister(MBeanServer,ObjectName)|Allows 
+
+*javax.management.MBeanRegistration_Description*
+
+Can be implemented by an MBean in order to carry out operations before and 
+after being registered or unregistered from the MBean server. 
+
+
+*javax.management.MBeanRegistration.postDeregister()*
+
+public void postDeregister()
+
+Allows the MBean to perform any operations needed after having been 
+unregistered in the MBean server. 
+
+
+*javax.management.MBeanRegistration.postRegister(Boolean)*
+
+public void postRegister(java.lang.Boolean registrationDone)
+
+Allows the MBean to perform any operations needed after having been registered 
+in the MBean server or after the registration has failed. 
+
+    registrationDone - Indicates whether or not the MBean has been successfully registered in the 
+       MBean server. The value false means that the registration phase has 
+       failed. 
+
+*javax.management.MBeanRegistration.preDeregister()*
+
+public void preDeregister()
+  throws |java.lang.Exception|
+         
+Allows the MBean to perform any operations it needs before being unregistered 
+by the MBean server. 
+
+
+*javax.management.MBeanRegistration.preRegister(MBeanServer,ObjectName)*
+
+public |javax.management.ObjectName| preRegister(
+  javax.management.MBeanServer server,
+  javax.management.ObjectName name)
+  throws |java.lang.Exception|
+         
+Allows the MBean to perform any operations it needs before being registered in 
+the MBean server. If the name of the MBean is not specified, the MBean can 
+provide a name for its registration. If any exception is raised, the MBean will 
+not be registered in the MBean server. 
+
+    server - The MBean server in which the MBean will be registered. 
+    name - The object name of the MBean. This name is null if the name parameter to one of 
+       the createMBean or registerMBean methods in the {@link MBeanServer} 
+       interface is null. In that case, this method must return a non-null 
+       ObjectName for the new MBean. 
+
+    Returns: The name under which the MBean is to be registered. This value must not be 
+             null. If the name parameter is not null, it will usually but not 
+             necessarily be the returned value. 
+

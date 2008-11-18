@@ -1,0 +1,180 @@
+*java.awt.dnd.DropTargetContext* *DropTargetContext* A DropTargetContext is crea
+
+public class DropTargetContext
+  extends    |java.lang.Object|
+  implements |java.io.Serializable|
+
+|java.awt.dnd.DropTargetContext_Description|
+|java.awt.dnd.DropTargetContext_Fields|
+|java.awt.dnd.DropTargetContext_Constructors|
+|java.awt.dnd.DropTargetContext_Methods|
+
+================================================================================
+
+*java.awt.dnd.DropTargetContext_Methods*
+|java.awt.dnd.DropTargetContext.acceptDrag(int)|accept the Drag.
+|java.awt.dnd.DropTargetContext.acceptDrop(int)|called to signal that the drop 
+|java.awt.dnd.DropTargetContext.addNotify(DropTargetContextPeer)|Called when as
+|java.awt.dnd.DropTargetContext.createTransferableProxy(Transferable,boolean)|C
+|java.awt.dnd.DropTargetContext.dropComplete(boolean)|This method signals that 
+|java.awt.dnd.DropTargetContext.getComponent()|This method returns the Componen
+|java.awt.dnd.DropTargetContext.getCurrentDataFlavors()|get the available DataF
+|java.awt.dnd.DropTargetContext.getCurrentDataFlavorsAsList()|This method retur
+|java.awt.dnd.DropTargetContext.getDropTarget()|This method returns the DropTar
+|java.awt.dnd.DropTargetContext.getTargetActions()|This method returns an int r
+|java.awt.dnd.DropTargetContext.getTransferable()|get the Transferable (proxy) 
+|java.awt.dnd.DropTargetContext.isDataFlavorSupported(DataFlavor)|This method r
+|java.awt.dnd.DropTargetContext.rejectDrag()|reject the Drag.
+|java.awt.dnd.DropTargetContext.rejectDrop()|called to signal that the drop is 
+|java.awt.dnd.DropTargetContext.removeNotify()|Called when disassociated with t
+|java.awt.dnd.DropTargetContext.setTargetActions(int)|This method sets the curr
+
+*java.awt.dnd.DropTargetContext_Description*
+
+A DropTargetContext is created whenever the logical cursor associated with a 
+Drag and Drop operation coincides with the visible geometry of a Component 
+associated with a DropTarget. The DropTargetContext provides the mechanism for 
+a potential receiver of a drop operation to both provide the end user with the 
+appropriate drag under feedback, but also to effect the subsequent data 
+transfer if appropriate. 
+
+
+*java.awt.dnd.DropTargetContext.acceptDrag(int)*
+
+protected void acceptDrag(int dragOperation)
+
+accept the Drag. 
+
+    dragOperation - the supported action(s) 
+
+*java.awt.dnd.DropTargetContext.acceptDrop(int)*
+
+protected void acceptDrop(int dropOperation)
+
+called to signal that the drop is acceptable using the specified operation. 
+must be called during DropTargetListener.drop method invocation. 
+
+    dropOperation - the supported action(s) 
+
+*java.awt.dnd.DropTargetContext.addNotify(DropTargetContextPeer)*
+
+public void addNotify(java.awt.dnd.peer.DropTargetContextPeer dtcp)
+
+Called when associated with the DropTargetContextPeer. 
+
+    dtcp - the DropTargetContextPeer 
+
+*java.awt.dnd.DropTargetContext.createTransferableProxy(Transferable,boolean)*
+
+protected |java.awt.datatransfer.Transferable| createTransferableProxy(
+  java.awt.datatransfer.Transferable t,
+  boolean local)
+
+Creates a TransferableProxy to proxy for the specified Transferable. 
+
+    t - the Transferable to be proxied 
+    local - true if t represents the result of a local drag-n-drop operation. 
+
+    Returns: the new TransferableProxy instance. 
+*java.awt.dnd.DropTargetContext.dropComplete(boolean)*
+
+public void dropComplete(boolean success)
+  throws |java.awt.dnd.InvalidDnDOperationException|
+         
+This method signals that the drop is completed and if it was successful or not. 
+
+    success - true for success, false if not 
+
+*java.awt.dnd.DropTargetContext.getComponent()*
+
+public |java.awt.Component| getComponent()
+
+This method returns the Component associated with this DropTargetContext. 
+
+
+    Returns: the Component associated with this Context 
+*java.awt.dnd.DropTargetContext.getCurrentDataFlavors()*
+
+protected |java.awt.datatransfer.DataFlavor| getCurrentDataFlavors()
+
+get the available DataFlavors of the Transferable operand of this operation. 
+
+
+    Returns: a DataFlavor[] containing the supported DataFlavors of the Transferable 
+             operand. 
+*java.awt.dnd.DropTargetContext.getCurrentDataFlavorsAsList()*
+
+protected |java.util.List| getCurrentDataFlavorsAsList()
+
+This method returns a the currently available DataFlavors of the Transferable 
+operand as a java.util.List. 
+
+
+    Returns: the currently available DataFlavors as a java.util.List 
+*java.awt.dnd.DropTargetContext.getDropTarget()*
+
+public |java.awt.dnd.DropTarget| getDropTarget()
+
+This method returns the DropTarget associated with this DropTargetContext. 
+
+
+    Returns: the DropTarget associated with this DropTargetContext 
+*java.awt.dnd.DropTargetContext.getTargetActions()*
+
+protected int getTargetActions()
+
+This method returns an int representing the current actions this DropTarget 
+will accept. 
+
+
+    Returns: the current actions acceptable to this DropTarget 
+*java.awt.dnd.DropTargetContext.getTransferable()*
+
+protected |java.awt.datatransfer.Transferable| getTransferable()
+  throws |java.awt.dnd.InvalidDnDOperationException|
+         
+get the Transferable (proxy) operand of this operation 
+
+
+    Returns: the Transferable 
+*java.awt.dnd.DropTargetContext.isDataFlavorSupported(DataFlavor)*
+
+protected boolean isDataFlavorSupported(java.awt.datatransfer.DataFlavor df)
+
+This method returns a boolean indicating if the given DataFlavor is supported 
+by this DropTargetContext. 
+
+    df - the DataFlavor 
+
+    Returns: if the DataFlavor specified is supported 
+*java.awt.dnd.DropTargetContext.rejectDrag()*
+
+protected void rejectDrag()
+
+reject the Drag. 
+
+
+*java.awt.dnd.DropTargetContext.rejectDrop()*
+
+protected void rejectDrop()
+
+called to signal that the drop is unacceptable. must be called during 
+DropTargetListener.drop method invocation. 
+
+
+*java.awt.dnd.DropTargetContext.removeNotify()*
+
+public void removeNotify()
+
+Called when disassociated with the DropTargetContextPeer. 
+
+
+*java.awt.dnd.DropTargetContext.setTargetActions(int)*
+
+protected void setTargetActions(int actions)
+
+This method sets the current actions acceptable to this DropTarget. 
+
+    actions - an int representing the supported action(s) 
+
+

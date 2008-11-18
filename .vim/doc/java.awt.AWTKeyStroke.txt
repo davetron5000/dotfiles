@@ -1,0 +1,334 @@
+*java.awt.AWTKeyStroke* *AWTKeyStroke* An AWTKeyStroke represents a key action o
+
+public class AWTKeyStroke
+  extends    |java.lang.Object|
+  implements |java.io.Serializable|
+
+|java.awt.AWTKeyStroke_Description|
+|java.awt.AWTKeyStroke_Fields|
+|java.awt.AWTKeyStroke_Constructors|
+|java.awt.AWTKeyStroke_Methods|
+
+================================================================================
+
+*java.awt.AWTKeyStroke_Constructors*
+|java.awt.AWTKeyStroke()|Constructs an AWTKeyStroke with default values.
+|java.awt.AWTKeyStroke(char,int,int,boolean)|Constructs an AWTKeyStroke with th
+
+*java.awt.AWTKeyStroke_Methods*
+|java.awt.AWTKeyStroke.equals(Object)|Returns true if this object is identical 
+|java.awt.AWTKeyStroke.getAWTKeyStroke(char)|Returns a shared instance of an AW
+|java.awt.AWTKeyStroke.getAWTKeyStroke(Character,int)|Returns a shared instance
+|java.awt.AWTKeyStroke.getAWTKeyStroke(int,int)|Returns a shared instance of an
+|java.awt.AWTKeyStroke.getAWTKeyStroke(int,int,boolean)|Returns a shared instan
+|java.awt.AWTKeyStroke.getAWTKeyStroke(String)|Parses a string and returns an A
+|java.awt.AWTKeyStroke.getAWTKeyStrokeForEvent(KeyEvent)|Returns an AWTKeyStrok
+|java.awt.AWTKeyStroke.getKeyChar()|Returns the character for this AWTKeyStroke
+|java.awt.AWTKeyStroke.getKeyCode()|Returns the numeric key code for this AWTKe
+|java.awt.AWTKeyStroke.getKeyEventType()|Returns the type of KeyEvent which cor
+|java.awt.AWTKeyStroke.getModifiers()|Returns the modifier keys for this AWTKey
+|java.awt.AWTKeyStroke.hashCode()|Returns a numeric value for this object that 
+|java.awt.AWTKeyStroke.isOnKeyRelease()|Returns whether this AWTKeyStroke repre
+|java.awt.AWTKeyStroke.readResolve()|Returns a cached instance of AWTKeyStroke 
+|java.awt.AWTKeyStroke.registerSubclass(Class)|Registers a new class which the 
+|java.awt.AWTKeyStroke.toString()|Returns a string that displays and identifies
+
+*java.awt.AWTKeyStroke_Description*
+
+An AWTKeyStroke represents a key action on the keyboard, or equivalent input 
+device. AWTKeyStrokes can correspond to only a press or release of a particular 
+key, just as KEY_PRESSED and KEY_RELEASED KeyEvents do; alternately, they can 
+correspond to typing a specific Java character, just as KEY_TYPED KeyEvents do. 
+In all cases, AWTKeyStrokes can specify modifiers (alt, shift, control, meta, 
+or a combination thereof) which must be present during the action for an exact 
+match. 
+
+AWTKeyStrokes are immutable, and are intended to be unique. Client code should 
+never create an AWTKeyStroke on its own, but should instead use a variant of 
+getAWTKeyStroke. Client use of these factory methods allows the AWTKeyStroke 
+implementation to cache and share instances efficiently. 
+
+
+*java.awt.AWTKeyStroke()*
+
+protected AWTKeyStroke()
+
+Constructs an AWTKeyStroke with default values. The default values used are: 
+
+PropertyDefault Value 
+
+Key Char KeyEvent.CHAR_UNDEFINED 
+
+Key Code KeyEvent.VK_UNDEFINED 
+
+Modifiers none 
+
+On key release? false 
+
+
+
+AWTKeyStrokes should not be constructed by client code. Use a variant of 
+getAWTKeyStroke instead. 
+
+
+*java.awt.AWTKeyStroke(char,int,int,boolean)*
+
+protected AWTKeyStroke(
+  char keyChar,
+  int keyCode,
+  int modifiers,
+  boolean onKeyRelease)
+
+Constructs an AWTKeyStroke with the specified values. AWTKeyStrokes should not 
+be constructed by client code. Use a variant of getAWTKeyStroke instead. 
+
+    keyChar - the character value for a keyboard key 
+    keyCode - the key code for this AWTKeyStroke 
+    modifiers - a bitwise-ored combination of any modifiers 
+    onKeyRelease - true if this AWTKeyStroke corresponds to a key release; false otherwise 
+
+*java.awt.AWTKeyStroke.equals(Object)*
+
+public final boolean equals(java.lang.Object anObject)
+
+Returns true if this object is identical to the specified object. 
+
+    anObject - the Object to compare this object to 
+
+    Returns: true if the objects are identical 
+*java.awt.AWTKeyStroke.getAWTKeyStroke(char)*
+
+public static |java.awt.AWTKeyStroke| getAWTKeyStroke(char keyChar)
+
+Returns a shared instance of an AWTKeyStroke that represents a KEY_TYPED event 
+for the specified character. 
+
+    keyChar - the character value for a keyboard key 
+
+    Returns: an AWTKeyStroke object for that key 
+*java.awt.AWTKeyStroke.getAWTKeyStroke(Character,int)*
+
+public static |java.awt.AWTKeyStroke| getAWTKeyStroke(
+  java.lang.Character keyChar,
+  int modifiers)
+
+Returns a shared instance of an AWTKeyStroke, given a Character object and a 
+set of modifiers. Note that the first parameter is of type Character rather 
+than char. This is to avoid inadvertent clashes with calls to 
+getAWTKeyStroke(int keyCode, int modifiers). 
+
+The modifiers consist of any combination of: 
+java.awt.event.InputEvent.SHIFT_DOWN_MASK 
+java.awt.event.InputEvent.CTRL_DOWN_MASK 
+java.awt.event.InputEvent.META_DOWN_MASK 
+java.awt.event.InputEvent.ALT_DOWN_MASK 
+java.awt.event.InputEvent.ALT_GRAPH_DOWN_MASK 
+
+The old modifiers java.awt.event.InputEvent.SHIFT_MASK 
+java.awt.event.InputEvent.CTRL_MASK java.awt.event.InputEvent.META_MASK 
+java.awt.event.InputEvent.ALT_MASK java.awt.event.InputEvent.ALT_GRAPH_MASK 
+
+also can be used, but they are mapped to _DOWN_ modifiers. 
+
+Since these numbers are all different powers of two, any combination of them is 
+an integer in which each bit represents a different modifier key. Use 0 to 
+specify no modifiers. 
+
+    keyChar - the Character object for a keyboard character 
+    modifiers - a bitwise-ored combination of any modifiers 
+
+    Returns: an AWTKeyStroke object for that key 
+*java.awt.AWTKeyStroke.getAWTKeyStroke(int,int)*
+
+public static |java.awt.AWTKeyStroke| getAWTKeyStroke(
+  int keyCode,
+  int modifiers)
+
+Returns a shared instance of an AWTKeyStroke, given a numeric key code and a 
+set of modifiers. The returned AWTKeyStroke will correspond to a key press. 
+
+The "virtual key" constants defined in java.awt.event.KeyEvent can be used to 
+specify the key code. For example: java.awt.event.KeyEvent.VK_ENTER 
+java.awt.event.KeyEvent.VK_TAB java.awt.event.KeyEvent.VK_SPACE 
+
+The modifiers consist of any combination of: 
+java.awt.event.InputEvent.SHIFT_DOWN_MASK 
+java.awt.event.InputEvent.CTRL_DOWN_MASK 
+java.awt.event.InputEvent.META_DOWN_MASK 
+java.awt.event.InputEvent.ALT_DOWN_MASK 
+java.awt.event.InputEvent.ALT_GRAPH_DOWN_MASK 
+
+The old modifiers java.awt.event.InputEvent.SHIFT_MASK 
+java.awt.event.InputEvent.CTRL_MASK java.awt.event.InputEvent.META_MASK 
+java.awt.event.InputEvent.ALT_MASK java.awt.event.InputEvent.ALT_GRAPH_MASK 
+
+also can be used, but they are mapped to _DOWN_ modifiers. 
+
+Since these numbers are all different powers of two, any combination of them is 
+an integer in which each bit represents a different modifier key. Use 0 to 
+specify no modifiers. 
+
+    keyCode - an int specifying the numeric code for a keyboard key 
+    modifiers - a bitwise-ored combination of any modifiers 
+
+    Returns: an AWTKeyStroke object for that key 
+*java.awt.AWTKeyStroke.getAWTKeyStroke(int,int,boolean)*
+
+public static |java.awt.AWTKeyStroke| getAWTKeyStroke(
+  int keyCode,
+  int modifiers,
+  boolean onKeyRelease)
+
+Returns a shared instance of an AWTKeyStroke, given a numeric key code and a 
+set of modifiers, specifying whether the key is activated when it is pressed or 
+released. 
+
+The "virtual key" constants defined in java.awt.event.KeyEvent can be used to 
+specify the key code. For example: java.awt.event.KeyEvent.VK_ENTER 
+java.awt.event.KeyEvent.VK_TAB java.awt.event.KeyEvent.VK_SPACE 
+
+The modifiers consist of any combination of: 
+java.awt.event.InputEvent.SHIFT_DOWN_MASK 
+java.awt.event.InputEvent.CTRL_DOWN_MASK 
+java.awt.event.InputEvent.META_DOWN_MASK 
+java.awt.event.InputEvent.ALT_DOWN_MASK 
+java.awt.event.InputEvent.ALT_GRAPH_DOWN_MASK 
+
+The old modifiers java.awt.event.InputEvent.SHIFT_MASK 
+java.awt.event.InputEvent.CTRL_MASK java.awt.event.InputEvent.META_MASK 
+java.awt.event.InputEvent.ALT_MASK java.awt.event.InputEvent.ALT_GRAPH_MASK 
+
+also can be used, but they are mapped to _DOWN_ modifiers. 
+
+Since these numbers are all different powers of two, any combination of them is 
+an integer in which each bit represents a different modifier key. Use 0 to 
+specify no modifiers. 
+
+    keyCode - an int specifying the numeric code for a keyboard key 
+    modifiers - a bitwise-ored combination of any modifiers 
+    onKeyRelease - true if the AWTKeyStroke should represent a key release; false otherwise 
+
+    Returns: an AWTKeyStroke object for that key 
+*java.awt.AWTKeyStroke.getAWTKeyStroke(String)*
+
+public static |java.awt.AWTKeyStroke| getAWTKeyStroke(java.lang.String s)
+
+Parses a string and returns an AWTKeyStroke. The string must have the following 
+syntax: 
+
+<modifiers>* (<typedID> | <pressedReleasedID>) 
+
+modifiers := shift | control | ctrl | meta | alt | altGraph typedID := typed 
+<typedKey> typedKey := string of length 1 giving Unicode character. 
+pressedReleasedID := (pressed | released) key key := KeyEvent key code name, 
+i.e. the name following "VK_". 
+
+If typed, pressed or released is not specified, pressed is assumed. Here are 
+some examples: 
+
+"INSERT" => getAWTKeyStroke(KeyEvent.VK_INSERT, 0); "control DELETE" => 
+getAWTKeyStroke(KeyEvent.VK_DELETE, InputEvent.CTRL_MASK); "alt shift X" => 
+getAWTKeyStroke(KeyEvent.VK_X, InputEvent.ALT_MASK | InputEvent.SHIFT_MASK); 
+"alt shift released X" => getAWTKeyStroke(KeyEvent.VK_X, InputEvent.ALT_MASK | 
+InputEvent.SHIFT_MASK, true); "typed a" => getAWTKeyStroke('a'); 
+
+    s - a String formatted as described above 
+
+    Returns: an AWTKeyStroke object for that String 
+*java.awt.AWTKeyStroke.getAWTKeyStrokeForEvent(KeyEvent)*
+
+public static |java.awt.AWTKeyStroke| getAWTKeyStrokeForEvent(java.awt.event.KeyEvent anEvent)
+
+Returns an AWTKeyStroke which represents the stroke which generated a given 
+KeyEvent. 
+
+This method obtains the keyChar from a KeyTyped event, and the keyCode from a 
+KeyPressed or KeyReleased event. The KeyEvent modifiers are obtained for all 
+three types of KeyEvent. 
+
+    anEvent - the KeyEvent from which to obtain the AWTKeyStroke 
+
+    Returns: the AWTKeyStroke that precipitated the event 
+*java.awt.AWTKeyStroke.getKeyChar()*
+
+public final char getKeyChar()
+
+Returns the character for this AWTKeyStroke. 
+
+
+    Returns: 
+*java.awt.AWTKeyStroke.getKeyCode()*
+
+public final int getKeyCode()
+
+Returns the numeric key code for this AWTKeyStroke. 
+
+
+    Returns: an int containing the key code value 
+*java.awt.AWTKeyStroke.getKeyEventType()*
+
+public final int getKeyEventType()
+
+Returns the type of KeyEvent which corresponds to this AWTKeyStroke. 
+
+
+    Returns: KeyEvent.KEY_PRESSED, KeyEvent.KEY_TYPED, or KeyEvent.KEY_RELEASED 
+*java.awt.AWTKeyStroke.getModifiers()*
+
+public final int getModifiers()
+
+Returns the modifier keys for this AWTKeyStroke. 
+
+
+    Returns: an int containing the modifiers 
+*java.awt.AWTKeyStroke.hashCode()*
+
+public int hashCode()
+
+Returns a numeric value for this object that is likely to be unique, making it 
+a good choice as the index value in a hash table. 
+
+
+    Returns: an int that represents this object 
+*java.awt.AWTKeyStroke.isOnKeyRelease()*
+
+public final boolean isOnKeyRelease()
+
+Returns whether this AWTKeyStroke represents a key release. 
+
+
+    Returns: true if this AWTKeyStroke represents a key release; false otherwise 
+*java.awt.AWTKeyStroke.readResolve()*
+
+protected |java.lang.Object| readResolve()
+  throws |java.io.ObjectStreamException|
+         
+Returns a cached instance of AWTKeyStroke (or a subclass of AWTKeyStroke) which 
+is equal to this instance. 
+
+
+    Returns: a cached instance which is equal to this instance 
+*java.awt.AWTKeyStroke.registerSubclass(Class)*
+
+protected static void registerSubclass(java.lang.Class subclass)
+
+Registers a new class which the factory methods in AWTKeyStroke will use when 
+generating new instances of AWTKeyStrokes. After invoking this method, the 
+factory methods will return instances of the specified Class. The specified 
+Class must be either AWTKeyStroke or derived from AWTKeyStroke, and it must 
+have a no-arg constructor. The constructor can be of any accessibility, 
+including private. This operation flushes the current AWTKeyStroke cache. 
+
+    subclass - the new Class of which the factory methods should create instances 
+
+*java.awt.AWTKeyStroke.toString()*
+
+public |java.lang.String| toString()
+
+Returns a string that displays and identifies this object's properties. The 
+String returned by this method can be passed as a parameter to 
+getAWTKeyStroke(String) to produce a key stroke equal to this key stroke. 
+
+
+    Returns: a String representation of this object 
+

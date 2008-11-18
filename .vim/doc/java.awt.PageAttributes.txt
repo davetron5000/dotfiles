@@ -1,0 +1,363 @@
+*java.awt.PageAttributes* *PageAttributes* A set of attributes which control the
+
+public final class PageAttributes
+  extends    |java.lang.Object|
+  implements |java.lang.Cloneable|
+
+|java.awt.PageAttributes_Description|
+|java.awt.PageAttributes_Fields|
+|java.awt.PageAttributes_Constructors|
+|java.awt.PageAttributes_Methods|
+
+================================================================================
+
+*java.awt.PageAttributes_Constructors*
+|java.awt.PageAttributes()|Constructs a PageAttributes instance with default va
+|java.awt.PageAttributes(PageAttributes.ColorType,PageAttributes.MediaType,PageAttributes.OrientationRequestedType,PageAttributes.OriginType,PageAttributes.PrintQualityType,int[])|
+|java.awt.PageAttributes(PageAttributes)|Constructs a PageAttributes instance w
+
+*java.awt.PageAttributes_Methods*
+|java.awt.PageAttributes.clone()|Creates and returns a copy of this PageAttribu
+|java.awt.PageAttributes.equals(Object)|Determines whether two PageAttributes a
+|java.awt.PageAttributes.getColor()|Returns whether pages using these attribute
+|java.awt.PageAttributes.getMedia()|Returns the paper size for pages using thes
+|java.awt.PageAttributes.getOrientationRequested()|Returns the print orientatio
+|java.awt.PageAttributes.getOrigin()|Returns whether drawing at (0, 0) to pages
+|java.awt.PageAttributes.getPrinterResolution()|Returns the print resolution fo
+|java.awt.PageAttributes.getPrintQuality()|Returns the print quality for pages 
+|java.awt.PageAttributes.hashCode()|Returns a hash code value for this PageAttr
+|java.awt.PageAttributes.set(PageAttributes)|Sets all of the attributes of this
+|java.awt.PageAttributes.setColor(PageAttributes.ColorType)|Specifies whether p
+|java.awt.PageAttributes.setMedia(PageAttributes.MediaType)|Specifies the desir
+|java.awt.PageAttributes.setMediaToDefault()|Sets the paper size for pages usin
+|java.awt.PageAttributes.setOrientationRequested(int)|Specifies the print orien
+|java.awt.PageAttributes.setOrientationRequested(PageAttributes.OrientationRequestedType)|
+|java.awt.PageAttributes.setOrientationRequestedToDefault()|Sets the print orie
+|java.awt.PageAttributes.setOrigin(PageAttributes.OriginType)|Specifies whether
+|java.awt.PageAttributes.setPrinterResolution(int)|Specifies the desired cross 
+|java.awt.PageAttributes.setPrinterResolution(int[])|Specifies the desired prin
+|java.awt.PageAttributes.setPrinterResolutionToDefault()|Sets the printer resol
+|java.awt.PageAttributes.setPrintQuality(int)|Specifies the print quality for p
+|java.awt.PageAttributes.setPrintQuality(PageAttributes.PrintQualityType)|Speci
+|java.awt.PageAttributes.setPrintQualityToDefault()|Sets the print quality for 
+|java.awt.PageAttributes.toString()|Returns a string representation of this Pag
+
+*java.awt.PageAttributes_Description*
+
+A set of attributes which control the output of a printed page. 
+
+Instances of this class control the color state, paper size (media type), 
+orientation, logical origin, print quality, and resolution of every page which 
+uses the instance. Attribute names are compliant with the Internet Printing 
+Protocol (IPP) 1.1 where possible. Attribute values are partially compliant 
+where possible. 
+
+To use a method which takes an inner class type, pass a reference to one of the 
+constant fields of the inner class. Client code cannot create new instances of 
+the inner class types because none of those classes has a public constructor. 
+For example, to set the color state to monochrome, use the following code: 
+
+import java.awt.PageAttributes; 
+
+public class MonochromeExample { public void setMonochrome(PageAttributes 
+pageAttributes) { pageAttributes.setColor(PageAttributes.ColorType.MONOCHROME); 
+} } 
+
+Every IPP attribute which supports an attributeName-default value has a 
+corresponding setattributeNameToDefault method. Default value fields are not 
+provided. 
+
+
+*java.awt.PageAttributes()*
+
+public PageAttributes()
+
+Constructs a PageAttributes instance with default values for every attribute. 
+
+
+*java.awt.PageAttributes(PageAttributes.ColorType,PageAttributes.MediaType,PageAttributes.OrientationRequestedType,PageAttributes.OriginType,PageAttributes.PrintQualityType,int[])*
+
+public PageAttributes(
+  java.awt.PageAttributes.ColorType color,
+  java.awt.PageAttributes.MediaType media,
+  java.awt.PageAttributes.OrientationRequestedType orientationRequested,
+  java.awt.PageAttributes.OriginType origin,
+  java.awt.PageAttributes.PrintQualityType printQuality,
+  int[] printerResolution)
+
+Constructs a PageAttributes instance with the specified values for every 
+attribute. 
+
+    color - ColorType.COLOR or ColorType.MONOCHROME. 
+    media - one of the constant fields of the MediaType class. 
+    orientationRequested - OrientationRequestedType.PORTRAIT or OrientationRequestedType.LANDSCAPE. 
+    origin - OriginType.PHYSICAL or OriginType.PRINTABLE 
+    printQuality - PrintQualityType.DRAFT, PrintQualityType.NORMAL, or PrintQualityType.HIGH 
+    printerResolution - an integer array of 3 elements. The first element must be greater than 0. The 
+       second element must be must be greater than 0. The third element must be 
+       either 3 or 4. 
+
+*java.awt.PageAttributes(PageAttributes)*
+
+public PageAttributes(java.awt.PageAttributes obj)
+
+Constructs a PageAttributes instance which is a copy of the supplied 
+PageAttributes. 
+
+    obj - the PageAttributes to copy. 
+
+*java.awt.PageAttributes.clone()*
+
+public |java.lang.Object| clone()
+
+Creates and returns a copy of this PageAttributes. 
+
+
+    Returns: the newly created copy. It is safe to cast this Object into a PageAttributes. 
+*java.awt.PageAttributes.equals(Object)*
+
+public boolean equals(java.lang.Object obj)
+
+Determines whether two PageAttributes are equal to each other. 
+
+Two PageAttributes are equal if and only if each of their attributes are equal. 
+Attributes of enumeration type are equal if and only if the fields refer to the 
+same unique enumeration object. This means that an aliased media is equal to 
+its underlying unique media. Printer resolutions are equal if and only if the 
+feed resolution, cross feed resolution, and units are equal. 
+
+    obj - the object whose equality will be checked. 
+
+    Returns: whether obj is equal to this PageAttribute according to the above criteria. 
+*java.awt.PageAttributes.getColor()*
+
+public |java.awt.PageAttributes.ColorType| getColor()
+
+Returns whether pages using these attributes will be rendered in color or 
+monochrome. This attribute is updated to the value chosen by the user. 
+
+
+    Returns: ColorType.COLOR or ColorType.MONOCHROME. 
+*java.awt.PageAttributes.getMedia()*
+
+public |java.awt.PageAttributes.MediaType| getMedia()
+
+Returns the paper size for pages using these attributes. This attribute is 
+updated to the value chosen by the user. 
+
+
+    Returns: one of the constant fields of the MediaType class. 
+*java.awt.PageAttributes.getOrientationRequested()*
+
+public |java.awt.PageAttributes.OrientationRequestedType| getOrientationRequested()
+
+Returns the print orientation for pages using these attributes. This attribute 
+is updated to the value chosen by the user. 
+
+
+    Returns: OrientationRequestedType.PORTRAIT or OrientationRequestedType.LANDSCAPE. 
+*java.awt.PageAttributes.getOrigin()*
+
+public |java.awt.PageAttributes.OriginType| getOrigin()
+
+Returns whether drawing at (0, 0) to pages using these attributes draws at the 
+upper-left corner of the physical page, or at the upper-left corner of the 
+printable area. (Note that these locations could be equivalent.) This attribute 
+cannot be modified by, and is not subject to any limitations of, the 
+implementation or the target printer. 
+
+
+    Returns: OriginType.PHYSICAL or OriginType.PRINTABLE 
+*java.awt.PageAttributes.getPrinterResolution()*
+
+public int getPrinterResolution()
+
+Returns the print resolution for pages using these attributes. Index 0 of the 
+array specifies the cross feed direction resolution (typically the horizontal 
+resolution). Index 1 of the array specifies the feed direction resolution 
+(typically the vertical resolution). Index 2 of the array specifies whether the 
+resolutions are in dots per inch or dots per centimeter. 3 denotes dots per 
+inch. 4 denotes dots per centimeter. 
+
+
+    Returns: an integer array of 3 elements. The first element must be greater than 0. The 
+             second element must be must be greater than 0. The third element 
+             must be either 3 or 4. 
+*java.awt.PageAttributes.getPrintQuality()*
+
+public |java.awt.PageAttributes.PrintQualityType| getPrintQuality()
+
+Returns the print quality for pages using these attributes. This attribute is 
+updated to the value chosen by the user. 
+
+
+    Returns: PrintQualityType.DRAFT, PrintQualityType.NORMAL, or PrintQualityType.HIGH 
+*java.awt.PageAttributes.hashCode()*
+
+public int hashCode()
+
+Returns a hash code value for this PageAttributes. 
+
+
+    Returns: the hash code. 
+*java.awt.PageAttributes.set(PageAttributes)*
+
+public void set(java.awt.PageAttributes obj)
+
+Sets all of the attributes of this PageAttributes to the same values as the 
+attributes of obj. 
+
+    obj - the PageAttributes to copy. 
+
+*java.awt.PageAttributes.setColor(PageAttributes.ColorType)*
+
+public void setColor(java.awt.PageAttributes.ColorType color)
+
+Specifies whether pages using these attributes will be rendered in color or 
+monochrome. Not specifying this attribute is equivalent to specifying 
+ColorType.MONOCHROME. 
+
+    color - ColorType.COLOR or ColorType.MONOCHROME. 
+
+*java.awt.PageAttributes.setMedia(PageAttributes.MediaType)*
+
+public void setMedia(java.awt.PageAttributes.MediaType media)
+
+Specifies the desired paper size for pages using these attributes. The actual 
+paper size will be determined by the limitations of the target printer. If an 
+exact match cannot be found, an implementation will choose the closest possible 
+match. Not specifying this attribute is equivalent to specifying the default 
+size for the default locale. The default size for locales in the United States 
+and Canada is MediaType.NA_LETTER. The default size for all other locales is 
+MediaType.ISO_A4. 
+
+    media - one of the constant fields of the MediaType class. 
+
+*java.awt.PageAttributes.setMediaToDefault()*
+
+public void setMediaToDefault()
+
+Sets the paper size for pages using these attributes to the default size for 
+the default locale. The default size for locales in the United States and 
+Canada is MediaType.NA_LETTER. The default size for all other locales is 
+MediaType.ISO_A4. 
+
+
+*java.awt.PageAttributes.setOrientationRequested(int)*
+
+public void setOrientationRequested(int orientationRequested)
+
+Specifies the print orientation for pages using these attributes. Specifying 3 
+denotes portrait. Specifying 4 denotes landscape. Specifying any other value 
+will generate an IllegalArgumentException. Not specifying the property is 
+equivalent to calling 
+setOrientationRequested(OrientationRequestedType.PORTRAIT). 
+
+    orientationRequested - 
+
+*java.awt.PageAttributes.setOrientationRequested(PageAttributes.OrientationRequestedType)*
+
+public void setOrientationRequested(java.awt.PageAttributes.OrientationRequestedType orientationRequested)
+
+Specifies the print orientation for pages using these attributes. Not 
+specifying the property is equivalent to specifying 
+OrientationRequestedType.PORTRAIT. 
+
+    orientationRequested - OrientationRequestedType.PORTRAIT or OrientationRequestedType.LANDSCAPE. 
+
+*java.awt.PageAttributes.setOrientationRequestedToDefault()*
+
+public void setOrientationRequestedToDefault()
+
+Sets the print orientation for pages using these attributes to the default. The 
+default orientation is portrait. 
+
+
+*java.awt.PageAttributes.setOrigin(PageAttributes.OriginType)*
+
+public void setOrigin(java.awt.PageAttributes.OriginType origin)
+
+Specifies whether drawing at (0, 0) to pages using these attributes draws at 
+the upper-left corner of the physical page, or at the upper-left corner of the 
+printable area. (Note that these locations could be equivalent.) Not specifying 
+the property is equivalent to specifying OriginType.PHYSICAL. 
+
+    origin - OriginType.PHYSICAL or OriginType.PRINTABLE 
+
+*java.awt.PageAttributes.setPrinterResolution(int)*
+
+public void setPrinterResolution(int printerResolution)
+
+Specifies the desired cross feed and feed print resolutions in dots per inch 
+for pages using these attributes. The same value is used for both resolutions. 
+The actual resolutions will be determined by the limitations of the 
+implementation and the target printer. Not specifying the property is 
+equivalent to specifying 72. 
+
+    printerResolution - an integer greater than 0. 
+
+*java.awt.PageAttributes.setPrinterResolution(int[])*
+
+public void setPrinterResolution(int[] printerResolution)
+
+Specifies the desired print resolution for pages using these attributes. The 
+actual resolution will be determined by the limitations of the implementation 
+and the target printer. Index 0 of the array specifies the cross feed direction 
+resolution (typically the horizontal resolution). Index 1 of the array 
+specifies the feed direction resolution (typically the vertical resolution). 
+Index 2 of the array specifies whether the resolutions are in dots per inch or 
+dots per centimeter. 3 denotes dots per inch. 4 denotes dots per centimeter. 
+Note that the 1.1 printing implementation (Toolkit.getPrintJob) requires that 
+the feed and cross feed resolutions be the same. Not specifying the property is 
+equivalent to calling setPrinterResolution(72). 
+
+    printerResolution - an integer array of 3 elements. The first element must be greater than 0. The 
+       second element must be must be greater than 0. The third element must be 
+       either 3 or 4. 
+
+*java.awt.PageAttributes.setPrinterResolutionToDefault()*
+
+public void setPrinterResolutionToDefault()
+
+Sets the printer resolution for pages using these attributes to the default. 
+The default is 72 dpi for both the feed and cross feed resolutions. 
+
+
+*java.awt.PageAttributes.setPrintQuality(int)*
+
+public void setPrintQuality(int printQuality)
+
+Specifies the print quality for pages using these attributes. Specifying 3 
+denotes draft. Specifying 4 denotes normal. Specifying 5 denotes high. 
+Specifying any other value will generate an IllegalArgumentException. Not 
+specifying the property is equivalent to calling 
+setPrintQuality(PrintQualityType.NORMAL). 
+
+    printQuality - 3, 4, or 5 
+
+*java.awt.PageAttributes.setPrintQuality(PageAttributes.PrintQualityType)*
+
+public void setPrintQuality(java.awt.PageAttributes.PrintQualityType printQuality)
+
+Specifies the print quality for pages using these attributes. Not specifying 
+the property is equivalent to specifying PrintQualityType.NORMAL. 
+
+    printQuality - PrintQualityType.DRAFT, PrintQualityType.NORMAL, or PrintQualityType.HIGH 
+
+*java.awt.PageAttributes.setPrintQualityToDefault()*
+
+public void setPrintQualityToDefault()
+
+Sets the print quality for pages using these attributes to the default. The 
+default print quality is normal. 
+
+
+*java.awt.PageAttributes.toString()*
+
+public |java.lang.String| toString()
+
+Returns a string representation of this PageAttributes. 
+
+
+    Returns: the string representation. 
+

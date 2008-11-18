@@ -1,0 +1,324 @@
+*javax.swing.JTextPane* *JTextPane* A text component that can be marked up with 
+
+public class JTextPane
+  extends    |javax.swing.JEditorPane|
+
+|javax.swing.JTextPane_Description|
+|javax.swing.JTextPane_Fields|
+|javax.swing.JTextPane_Constructors|
+|javax.swing.JTextPane_Methods|
+
+================================================================================
+
+*javax.swing.JTextPane_Constructors*
+|javax.swing.JTextPane()|Creates a new JTextPane.
+|javax.swing.JTextPane(StyledDocument)|Creates a new JTextPane, with a specifie
+
+*javax.swing.JTextPane_Methods*
+|javax.swing.JTextPane.addStyle(String,Style)|Adds a new style into the logical
+|javax.swing.JTextPane.createDefaultEditorKit()|Creates the EditorKit to use by
+|javax.swing.JTextPane.getCharacterAttributes()|Fetches the character attribute
+|javax.swing.JTextPane.getInputAttributes()|Gets the input attributes for the p
+|javax.swing.JTextPane.getLogicalStyle()|Fetches the logical style assigned to 
+|javax.swing.JTextPane.getParagraphAttributes()|Fetches the current paragraph a
+|javax.swing.JTextPane.getStyle(String)|Fetches a named non-null style previous
+|javax.swing.JTextPane.getStyledDocument()|Fetches the model associated with th
+|javax.swing.JTextPane.getStyledEditorKit()|Gets the editor kit.
+|javax.swing.JTextPane.getUIClassID()|Returns the class ID for the UI.
+|javax.swing.JTextPane.insertComponent(Component)|Inserts a component into the 
+|javax.swing.JTextPane.insertIcon(Icon)|Inserts an icon into the document as a 
+|javax.swing.JTextPane.paramString()|Returns a string representation of this JT
+|javax.swing.JTextPane.removeStyle(String)|Removes a named non-null style previ
+|javax.swing.JTextPane.replaceSelection(String)|Replaces the currently selected
+|javax.swing.JTextPane.setCharacterAttributes(AttributeSet,boolean)|Applies the
+|javax.swing.JTextPane.setDocument(Document)|Associates the editor with a text 
+|javax.swing.JTextPane.setEditorKit(EditorKit)|Sets the currently installed kit
+|javax.swing.JTextPane.setLogicalStyle(Style)|Sets the logical style to use for
+|javax.swing.JTextPane.setParagraphAttributes(AttributeSet,boolean)|Applies the
+|javax.swing.JTextPane.setStyledDocument(StyledDocument)|Associates the editor 
+
+*javax.swing.JTextPane_Description*
+
+A text component that can be marked up with attributes that are represented 
+graphically. You can find how-to information and examples of using text panes 
+in Using Text Components, a section in The Java Tutorial. 
+
+This component models paragraphs that are composed of runs of character level 
+attributes. Each paragraph may have a logical style attached to it which 
+contains the default attributes to use if not overridden by attributes set on 
+the paragraph or character run. Components and images may be embedded in the 
+flow of text. 
+
+Newlines 
+
+For a discussion on how newlines are handled, see DefaultEditorKit. 
+
+Warning: Serialized objects of this class will not be compatible with future 
+Swing releases. The current serialization support is appropriate for short term 
+storage or RMI between applications running the same version of Swing. As of 
+1.4, support for long term storage of all JavaBeansTM has been added to the 
+java.beans package. Please see (|java.beans.XMLEncoder|) . 
+
+
+*javax.swing.JTextPane()*
+
+public JTextPane()
+
+Creates a new JTextPane. A new instance of StyledEditorKit is created and set, 
+and the document model set to null. 
+
+
+*javax.swing.JTextPane(StyledDocument)*
+
+public JTextPane(javax.swing.text.StyledDocument doc)
+
+Creates a new JTextPane, with a specified document model. A new instance of 
+javax.swing.text.StyledEditorKit is created and set. 
+
+    doc - the document model 
+
+*javax.swing.JTextPane.addStyle(String,Style)*
+
+public |javax.swing.text.Style| addStyle(
+  java.lang.String nm,
+  javax.swing.text.Style parent)
+
+Adds a new style into the logical style hierarchy. Style attributes resolve 
+from bottom up so an attribute specified in a child will override an attribute 
+specified in the parent. 
+
+    nm - the name of the style (must be unique within the collection of named styles). 
+       The name may be null if the style is unnamed, but the caller is 
+       responsible for managing the reference returned as an unnamed style 
+       can't be fetched by name. An unnamed style may be useful for things like 
+       character attribute overrides such as found in a style run. 
+    parent - the parent style. This may be null if unspecified attributes need not be 
+       resolved in some other style. 
+
+    Returns: the new Style 
+*javax.swing.JTextPane.createDefaultEditorKit()*
+
+protected |javax.swing.text.EditorKit| createDefaultEditorKit()
+
+Creates the EditorKit to use by default. This is implemented to return 
+javax.swing.text.StyledEditorKit. 
+
+
+    Returns: the editor kit 
+*javax.swing.JTextPane.getCharacterAttributes()*
+
+public |javax.swing.text.AttributeSet| getCharacterAttributes()
+
+Fetches the character attributes in effect at the current location of the 
+caret, or null. 
+
+
+    Returns: the attributes, or null 
+*javax.swing.JTextPane.getInputAttributes()*
+
+public |javax.swing.text.MutableAttributeSet| getInputAttributes()
+
+Gets the input attributes for the pane. 
+
+
+    Returns: the attributes 
+*javax.swing.JTextPane.getLogicalStyle()*
+
+public |javax.swing.text.Style| getLogicalStyle()
+
+Fetches the logical style assigned to the paragraph represented by the current 
+position of the caret, or null. 
+
+
+    Returns: 
+*javax.swing.JTextPane.getParagraphAttributes()*
+
+public |javax.swing.text.AttributeSet| getParagraphAttributes()
+
+Fetches the current paragraph attributes in effect at the location of the 
+caret, or null if none. 
+
+
+    Returns: the attributes 
+*javax.swing.JTextPane.getStyle(String)*
+
+public |javax.swing.text.Style| getStyle(java.lang.String nm)
+
+Fetches a named non-null style previously added. 
+
+    nm - the name of the style 
+
+    Returns: 
+*javax.swing.JTextPane.getStyledDocument()*
+
+public |javax.swing.text.StyledDocument| getStyledDocument()
+
+Fetches the model associated with the editor. 
+
+
+    Returns: 
+*javax.swing.JTextPane.getStyledEditorKit()*
+
+protected final |javax.swing.text.StyledEditorKit| getStyledEditorKit()
+
+Gets the editor kit. 
+
+
+    Returns: the editor kit 
+*javax.swing.JTextPane.getUIClassID()*
+
+public |java.lang.String| getUIClassID()
+
+Returns the class ID for the UI. 
+
+
+    Returns: the string "TextPaneUI" 
+*javax.swing.JTextPane.insertComponent(Component)*
+
+public void insertComponent(java.awt.Component c)
+
+Inserts a component into the document as a replacement for the currently 
+selected content. If there is no selection the component is effectively 
+inserted at the current position of the caret. This is represented in the 
+associated document as an attribute of one character of content. 
+
+The component given is the actual component used by the JTextPane. Since 
+components cannot be a child of more than one container, this method should not 
+be used in situations where the model is shared by text components. 
+
+The component is placed relative to the text baseline according to the value 
+returned by Component.getAlignmentY. For Swing components this value can be 
+conveniently set using the method JComponent.setAlignmentY. For example, 
+setting a value of 0.75 will cause 75 percent of the component to be above the 
+baseline, and 25 percent of the component to be below the baseline. 
+
+This method is thread safe, although most Swing methods are not. Please see 
+Threads and Swing for more information. 
+
+    c - the component to insert 
+
+*javax.swing.JTextPane.insertIcon(Icon)*
+
+public void insertIcon(javax.swing.Icon g)
+
+Inserts an icon into the document as a replacement for the currently selected 
+content. If there is no selection the icon is effectively inserted at the 
+current position of the caret. This is represented in the associated document 
+as an attribute of one character of content. 
+
+This method is thread safe, although most Swing methods are not. Please see 
+Threads and Swing for more information. 
+
+    g - the icon to insert 
+
+*javax.swing.JTextPane.paramString()*
+
+protected |java.lang.String| paramString()
+
+Returns a string representation of this JTextPane. This method is intended to 
+be used only for debugging purposes, and the content and format of the returned 
+string may vary between implementations. The returned string may be empty but 
+may not be null. 
+
+
+    Returns: a string representation of this JTextPane 
+*javax.swing.JTextPane.removeStyle(String)*
+
+public void removeStyle(java.lang.String nm)
+
+Removes a named non-null style previously added to the document. 
+
+    nm - the name of the style to remove 
+
+*javax.swing.JTextPane.replaceSelection(String)*
+
+public void replaceSelection(java.lang.String content)
+
+Replaces the currently selected content with new content represented by the 
+given string. If there is no selection this amounts to an insert of the given 
+text. If there is no replacement text this amounts to a removal of the current 
+selection. The replacement text will have the attributes currently defined for 
+input at the point of insertion. If the document is not editable, beep and 
+return. 
+
+This method is thread safe, although most Swing methods are not. Please see 
+Threads and Swing for more information. 
+
+    content - the content to replace the selection with 
+
+*javax.swing.JTextPane.setCharacterAttributes(AttributeSet,boolean)*
+
+public void setCharacterAttributes(
+  javax.swing.text.AttributeSet attr,
+  boolean replace)
+
+Applies the given attributes to character content. If there is a selection, the 
+attributes are applied to the selection range. If there is no selection, the 
+attributes are applied to the input attribute set which defines the attributes 
+for any new text that gets inserted. 
+
+This method is thread safe, although most Swing methods are not. Please see 
+Threads and Swing for more information. 
+
+    attr - the attributes 
+    replace - if true, then replace the existing attributes first 
+
+*javax.swing.JTextPane.setDocument(Document)*
+
+public void setDocument(javax.swing.text.Document doc)
+
+Associates the editor with a text document. This must be a StyledDocument. 
+
+    doc - the document to display/edit 
+
+*javax.swing.JTextPane.setEditorKit(EditorKit)*
+
+public final void setEditorKit(javax.swing.text.EditorKit kit)
+
+Sets the currently installed kit for handling content. This is the bound 
+property that establishes the content type of the editor. 
+
+    kit - the desired editor behavior 
+
+*javax.swing.JTextPane.setLogicalStyle(Style)*
+
+public void setLogicalStyle(javax.swing.text.Style s)
+
+Sets the logical style to use for the paragraph at the current caret position. 
+If attributes aren't explicitly set for character and paragraph attributes they 
+will resolve through the logical style assigned to the paragraph, which in term 
+may resolve through some hierarchy completely independent of the element 
+hierarchy in the document. 
+
+This method is thread safe, although most Swing methods are not. Please see 
+Threads and Swing for more information. 
+
+    s - the logical style to assign to the paragraph, or null for no style 
+
+*javax.swing.JTextPane.setParagraphAttributes(AttributeSet,boolean)*
+
+public void setParagraphAttributes(
+  javax.swing.text.AttributeSet attr,
+  boolean replace)
+
+Applies the given attributes to paragraphs. If there is a selection, the 
+attributes are applied to the paragraphs that intersect the selection. If there 
+is no selection, the attributes are applied to the paragraph at the current 
+caret position. 
+
+This method is thread safe, although most Swing methods are not. Please see 
+Threads and Swing for more information. 
+
+    attr - the non-null attributes 
+    replace - if true, replace the existing attributes first 
+
+*javax.swing.JTextPane.setStyledDocument(StyledDocument)*
+
+public void setStyledDocument(javax.swing.text.StyledDocument doc)
+
+Associates the editor with a text document. The currently registered factory is 
+used to build a view for the document, which gets displayed by the editor. 
+
+    doc - the document to display/edit 
+
+

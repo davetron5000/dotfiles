@@ -1,0 +1,152 @@
+*javax.management.modelmbean.ModelMBeanNotificationBroadcaster* *ModelMBeanNotificationBroadcaster* 
+
+public interface interface ModelMBeanNotificationBroadcaster
+
+  implements |javax.management.NotificationBroadcaster|
+
+|javax.management.modelmbean.ModelMBeanNotificationBroadcaster_Description|
+|javax.management.modelmbean.ModelMBeanNotificationBroadcaster_Fields|
+|javax.management.modelmbean.ModelMBeanNotificationBroadcaster_Constructors|
+|javax.management.modelmbean.ModelMBeanNotificationBroadcaster_Methods|
+
+================================================================================
+
+*javax.management.modelmbean.ModelMBeanNotificationBroadcaster_Methods*
+|javax.management.modelmbean.ModelMBeanNotificationBroadcaster.addAttributeChangeNotificationListener(NotificationListener,String,Object)|
+|javax.management.modelmbean.ModelMBeanNotificationBroadcaster.removeAttributeChangeNotificationListener(NotificationListener,String)|
+|javax.management.modelmbean.ModelMBeanNotificationBroadcaster.sendAttributeChangeNotification(Attribute,Attribute)|
+|javax.management.modelmbean.ModelMBeanNotificationBroadcaster.sendAttributeChangeNotification(AttributeChangeNotification)|
+|javax.management.modelmbean.ModelMBeanNotificationBroadcaster.sendNotification(Notification)|
+|javax.management.modelmbean.ModelMBeanNotificationBroadcaster.sendNotification(String)|
+
+*javax.management.modelmbean.ModelMBeanNotificationBroadcaster_Description*
+
+This interface must be implemented by the ModelMBeans. An implementation of 
+this interface must be shipped with every JMX Agent. 
+
+Java resources wishing to be manageable instantiate the ModelMBean using the 
+MBeanServer's createMBean method. The resource then sets the ModelMBeanInfo 
+(with Descriptors) for the ModelMBean instance. The attributes and operations 
+exposed via the ModelMBeanInfo for the ModelMBean are accessible from MBeans, 
+connectors/adaptors like other MBeans. Through the ModelMBeanInfo Descriptors, 
+values and methods in the managed application can be defined and mapped to 
+attributes and operations of the ModelMBean. This mapping can be defined during 
+development in an XML formatted file or dynamically and programmatically at 
+runtime. 
+
+Every ModelMBean which is instantiated in the MBeanServer becomes manageable: 
+its attributes and operations become remotely accessible through the 
+connectors/adaptors connected to that MBeanServer. A Java object cannot be 
+registered in the MBeanServer unless it is a JMX compliant MBean. By 
+instantiating a ModelMBean, resources are guaranteed that the MBean is valid. 
+
+MBeanException and RuntimeOperationsException must be thrown on every public 
+method. This allows for wrapping exceptions from distributed communications 
+(RMI, EJB, etc.). These exceptions do not have to be thrown by the 
+implementation except in the scenarios described in the specification and 
+javadoc. 
+
+
+*javax.management.modelmbean.ModelMBeanNotificationBroadcaster.addAttributeChangeNotificationListener(NotificationListener,String,Object)*
+
+public void addAttributeChangeNotificationListener(
+  javax.management.NotificationListener listener,
+  java.lang.String attributeName,
+  java.lang.Object handback)
+  throws |java.lang.IllegalArgumentException|
+         |javax.management.MBeanException|
+         |javax.management.RuntimeOperationsException|
+         
+Registers an object which implements the NotificationListener interface as a 
+listener. This object's 'handleNotification()' method will be invoked when any 
+attributeChangeNotification is issued through or by the ModelMBean. This does 
+not include other Notifications. They must be registered for independently. An 
+AttributeChangeNotification will be generated for this attributeName. 
+
+    listener - The listener object which will handles notifications emitted by the registered 
+       MBean. 
+    attributeName - The name of the ModelMBean attribute for which to receive change notifications. 
+       If null, then all attribute changes will cause an 
+       attributeChangeNotification to be issued. 
+    handback - The context to be sent to the listener with the notification when a 
+       notification is emitted. 
+
+*javax.management.modelmbean.ModelMBeanNotificationBroadcaster.removeAttributeChangeNotificationListener(NotificationListener,String)*
+
+public void removeAttributeChangeNotificationListener(
+  javax.management.NotificationListener listener,
+  java.lang.String attributeName)
+  throws |javax.management.ListenerNotFoundException|
+         |javax.management.MBeanException|
+         |javax.management.RuntimeOperationsException|
+         
+Removes a listener for attributeChangeNotifications from the 
+RequiredModelMBean. 
+
+    listener - The listener name which was handling notifications emitted by the registered 
+       MBean. This method will remove all information related to this listener. 
+    attributeName - The attribute for which the listener no longer wants to receive 
+       attributeChangeNotifications. If null the listener will be removed for 
+       all attributeChangeNotifications. 
+
+*javax.management.modelmbean.ModelMBeanNotificationBroadcaster.sendAttributeChangeNotification(Attribute,Attribute)*
+
+public void sendAttributeChangeNotification(
+  javax.management.Attribute oldValue,
+  javax.management.Attribute newValue)
+  throws |javax.management.MBeanException|
+         |javax.management.RuntimeOperationsException|
+         
+Sends an attributeChangeNotification which contains the old value and new value 
+for the attribute to the registered AttributeChangeNotification listeners on 
+the ModelMBean. 
+
+    oldValue - The original value for the Attribute 
+    newValue - The current value for the Attribute 
+
+
+
+The constructed attributeChangeNotification will be: type 
+       "jmx.attribute.change" source this ModelMBean instance sequence 1 
+       attributeName oldValue.getName() attributeType oldValue's class 
+       attributeOldValue oldValue.getValue() attributeNewValue 
+       newValue.getValue() 
+
+*javax.management.modelmbean.ModelMBeanNotificationBroadcaster.sendAttributeChangeNotification(AttributeChangeNotification)*
+
+public void sendAttributeChangeNotification(javax.management.AttributeChangeNotification notification)
+  throws |javax.management.MBeanException|
+         |javax.management.RuntimeOperationsException|
+         
+Sends an attributeChangeNotification which is passed in to the registered 
+attributeChangeNotification listeners on the ModelMBean. 
+
+    notification - The notification which is to be passed to the 'handleNotification' method of 
+       the listener object. 
+
+*javax.management.modelmbean.ModelMBeanNotificationBroadcaster.sendNotification(Notification)*
+
+public void sendNotification(javax.management.Notification ntfyObj)
+  throws |javax.management.MBeanException|
+         |javax.management.RuntimeOperationsException|
+         
+Sends a Notification which is passed in to the registered Notification 
+listeners on the ModelMBean as a jmx.modelmbean.generic notification. 
+
+    ntfyObj - The notification which is to be passed to the 'handleNotification' method of 
+       the listener object. 
+
+*javax.management.modelmbean.ModelMBeanNotificationBroadcaster.sendNotification(String)*
+
+public void sendNotification(java.lang.String ntfyText)
+  throws |javax.management.MBeanException|
+         |javax.management.RuntimeOperationsException|
+         
+Sends a Notification which contains the text string that is passed in to the 
+registered Notification listeners on the ModelMBean. 
+
+    ntfyText - The text which is to be passed in the Notification to the 'handleNotification' 
+       method of the listener object. the constructed Notification will be: 
+       type "jmx.modelmbean.generic" source this ModelMBean instance sequence 1 
+
+

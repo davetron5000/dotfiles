@@ -1,0 +1,2282 @@
+*java.awt.GridBagLayout* *GridBagLayout* The GridBagLayout class is a flexible l
+
+public class GridBagLayout
+  extends    |java.lang.Object|
+  implements |java.awt.LayoutManager2|
+             |java.io.Serializable|
+
+|java.awt.GridBagLayout_Description|
+|java.awt.GridBagLayout_Fields|
+|java.awt.GridBagLayout_Constructors|
+|java.awt.GridBagLayout_Methods|
+
+================================================================================
+
+*java.awt.GridBagLayout_Fields*
+|double[]_java.awt.GridBagLayout.columnWeights|
+|int[]_java.awt.GridBagLayout.columnWidths|
+|java.util.Hashtable_java.awt.GridBagLayout.comptable|
+|java.awt.GridBagConstraints_java.awt.GridBagLayout.defaultConstraints|
+|java.awt.GridBagLayoutInfo_java.awt.GridBagLayout.layoutInfo|
+|int_java.awt.GridBagLayout.MAXGRIDSIZE|
+|int_java.awt.GridBagLayout.MINSIZE|
+|int_java.awt.GridBagLayout.PREFERREDSIZE|
+|int[]_java.awt.GridBagLayout.rowHeights|
+|double[]_java.awt.GridBagLayout.rowWeights|
+
+*java.awt.GridBagLayout_Constructors*
+|java.awt.GridBagLayout()|Creates a grid bag layout manager.
+
+*java.awt.GridBagLayout_Methods*
+|java.awt.GridBagLayout.addLayoutComponent(Component,Object)|Adds the specified
+|java.awt.GridBagLayout.addLayoutComponent(String,Component)|Has no effect, sin
+|java.awt.GridBagLayout.adjustForGravity(GridBagConstraints,Rectangle)|Adjusts 
+|java.awt.GridBagLayout.AdjustForGravity(GridBagConstraints,Rectangle)|This met
+|java.awt.GridBagLayout.arrangeGrid(Container)|Lays out the grid.
+|java.awt.GridBagLayout.ArrangeGrid(Container)|This method is obsolete and supp
+|java.awt.GridBagLayout.getConstraints(Component)|Gets the constraints for the 
+|java.awt.GridBagLayout.getLayoutAlignmentX(Container)|Returns the alignment al
+|java.awt.GridBagLayout.getLayoutAlignmentY(Container)|Returns the alignment al
+|java.awt.GridBagLayout.getLayoutDimensions()|Determines column widths and row 
+|java.awt.GridBagLayout.getLayoutInfo(Container,int)|Fills in an instance of Gr
+|java.awt.GridBagLayout.GetLayoutInfo(Container,int)|This method is obsolete an
+|java.awt.GridBagLayout.getLayoutOrigin()|Determines the origin of the layout a
+|java.awt.GridBagLayout.getLayoutWeights()|Determines the weights of the layout
+|java.awt.GridBagLayout.getMinSize(Container,GridBagLayoutInfo)|Figures out the
+|java.awt.GridBagLayout.GetMinSize(Container,GridBagLayoutInfo)|This method is 
+|java.awt.GridBagLayout.invalidateLayout(Container)|Invalidates the layout, ind
+|java.awt.GridBagLayout.layoutContainer(Container)|Lays out the specified conta
+|java.awt.GridBagLayout.location(int,int)|Determines which cell in the layout g
+|java.awt.GridBagLayout.lookupConstraints(Component)|Retrieves the constraints 
+|java.awt.GridBagLayout.maximumLayoutSize(Container)|Returns the maximum dimens
+|java.awt.GridBagLayout.minimumLayoutSize(Container)|Determines the minimum siz
+|java.awt.GridBagLayout.preferredLayoutSize(Container)|Determines the preferred
+|java.awt.GridBagLayout.removeLayoutComponent(Component)|Removes the specified 
+|java.awt.GridBagLayout.setConstraints(Component,GridBagConstraints)|Sets the c
+|java.awt.GridBagLayout.toString()|Returns a string representation of this grid
+
+*java.awt.GridBagLayout_Description*
+
+The GridBagLayout class is a flexible layout manager that aligns components 
+vertically and horizontally, without requiring that the components be of the 
+same size. Each GridBagLayout object maintains a dynamic, rectangular grid of 
+cells, with each component occupying one or more cells, called its display 
+area. 
+
+Each component managed by a GridBagLayout is associated with an instance of 
+(|java.awt.GridBagConstraints|) . The constraints object specifies where a 
+component's display area should be located on the grid and how the component 
+should be positioned within its display area. In addition to its constraints 
+object, the GridBagLayout also considers each component's minimum and preferred 
+sizes in order to determine a component's size. 
+
+The overall orientation of the grid depends on the container's 
+(|java.awt.ComponentOrientation|) property. For horizontal left-to-right 
+orientations, grid coordinate (0,0) is in the upper left corner of the 
+container with x increasing to the right and y increasing downward. For 
+horizontal right-to-left orientations, grid coordinate (0,0) is in the upper 
+right corner of the container with x increasing to the left and y increasing 
+downward. 
+
+To use a grid bag layout effectively, you must customize one or more of the 
+GridBagConstraints objects that are associated with its components. You 
+customize a GridBagConstraints object by setting one or more of its instance 
+variables: 
+
+(|java.awt.GridBagConstraints|) , (|java.awt.GridBagConstraints|) Specifies the 
+cell containing the leading corner of the component's display area, where the 
+cell at the origin of the grid has address gridx=0, gridy=0. For horizontal 
+left-to-right layout, a component's leading corner is its upper left. For 
+horizontal right-to-left layout, a component's leading corner is its upper 
+right. Use GridBagConstraints.RELATIVE (the default value) to specify that the 
+component be placed immediately following (along the x axis for gridx or the y 
+axis for gridy) the component that was added to the container just before this 
+component was added. (|java.awt.GridBagConstraints|) , 
+(|java.awt.GridBagConstraints|) Specifies the number of cells in a row (for 
+gridwidth) or column (for gridheight) in the component's display area. The 
+default value is 1. Use GridBagConstraints.REMAINDER to specify that the 
+component's display area will be from gridx to the last cell in the row (for 
+gridwidth) or from gridy to the last cell in the column (for gridheight). 
+
+Use GridBagConstraints.RELATIVE to specify that the component's display area 
+will be from gridx to the next to the last cell in its row (for gridwidth or 
+from gridy to the next to the last cell in its column (for gridheight). 
+
+(|java.awt.GridBagConstraints|) Used when the component's display area is 
+larger than the component's requested size to determine whether (and how) to 
+resize the component. Possible values are GridBagConstraints.NONE (the 
+default), GridBagConstraints.HORIZONTAL (make the component wide enough to fill 
+its display area horizontally, but don't change its height), 
+GridBagConstraints.VERTICAL (make the component tall enough to fill its display 
+area vertically, but don't change its width), and GridBagConstraints.BOTH (make 
+the component fill its display area entirely). (|java.awt.GridBagConstraints|) 
+, (|java.awt.GridBagConstraints|) Specifies the component's internal padding 
+within the layout, how much to add to the minimum size of the component. The 
+width of the component will be at least its minimum width plus ipadx pixels. 
+Similarly, the height of the component will be at least the minimum height plus 
+ipady pixels. (|java.awt.GridBagConstraints|) Specifies the component's 
+external padding, the minimum amount of space between the component and the 
+edges of its display area. (|java.awt.GridBagConstraints|) Used when the 
+component is smaller than its display area to determine where (within the 
+display area) to place the component. There are two kinds of possible values: 
+relative and absolute. Relative values are interpreted relative to the 
+container's ComponentOrientation property while absolute values are not. Valid 
+values are: 
+
+
+
+Absolute Values Relative Values 
+
+
+
+GridBagConstraints.NORTH GridBagConstraints.SOUTH GridBagConstraints.WEST 
+GridBagConstraints.EAST GridBagConstraints.NORTHWEST 
+GridBagConstraints.NORTHEAST GridBagConstraints.SOUTHWEST 
+GridBagConstraints.SOUTHEAST GridBagConstraints.CENTER (the default) 
+
+GridBagConstraints.PAGE_START GridBagConstraints.PAGE_END 
+GridBagConstraints.LINE_START GridBagConstraints.LINE_END 
+GridBagConstraints.FIRST_LINE_START GridBagConstraints.FIRST_LINE_END 
+GridBagConstraints.LAST_LINE_START GridBagConstraints.LAST_LINE_END 
+
+
+
+(|java.awt.GridBagConstraints|) , (|java.awt.GridBagConstraints|) Used to 
+determine how to distribute space, which is important for specifying resizing 
+behavior. Unless you specify a weight for at least one component in a row 
+(weightx) and column (weighty), all the components clump together in the center 
+of their container. This is because when the weight is zero (the default), the 
+GridBagLayout object puts any extra space between its grid of cells and the 
+edges of the container. 
+
+The following figures show ten components (all buttons) managed by a grid bag 
+layout. Figure 1 shows the layout for a horizontal, left-to-right container and 
+Figure 2 shows the layout for a horizontal, right-to-left container. 
+
+
+
+
+
+
+
+
+
+Figure 1: Horizontal, Left-to-Right Figure 2: Horizontal, Right-to-Left 
+
+
+
+Each of the ten components has the fill field of its associated 
+GridBagConstraints object set to GridBagConstraints.BOTH. In addition, the 
+components have the following non-default constraints: 
+
+Button1, Button2, Button3: weightx=1.0 Button4: weightx=1.0, 
+gridwidth=GridBagConstraints.REMAINDER Button5: 
+gridwidth=GridBagConstraints.REMAINDER Button6: 
+gridwidth=GridBagConstraints.RELATIVE Button7: 
+gridwidth=GridBagConstraints.REMAINDER Button8: gridheight=2, weighty=1.0 
+Button9, Button 10: gridwidth=GridBagConstraints.REMAINDER 
+
+Here is the code that implements the example shown above: 
+
+
+
+import java.awt.*; import java.util.*; import java.applet.Applet; 
+
+public class GridBagEx1 extends Applet { 
+
+protected void makebutton(String name, GridBagLayout gridbag, 
+GridBagConstraints c) { Button button = new Button(name); 
+gridbag.setConstraints(button, c); add(button); } 
+
+public void init() { GridBagLayout gridbag = new GridBagLayout(); 
+GridBagConstraints c = new GridBagConstraints(); 
+
+setFont(new Font("SansSerif", Font.PLAIN, 14)); setLayout(gridbag); 
+
+c.fill = GridBagConstraints.BOTH; c.weightx = 1.0; makebutton("Button1", 
+gridbag, c); makebutton("Button2", gridbag, c); makebutton("Button3", gridbag, 
+c); 
+
+c.gridwidth = GridBagConstraints.REMAINDER; //end row makebutton("Button4", 
+gridbag, c); 
+
+c.weightx = 0.0; //reset to the default makebutton("Button5", gridbag, c); 
+//another row 
+
+c.gridwidth = GridBagConstraints.RELATIVE; //next-to-last in row 
+makebutton("Button6", gridbag, c); 
+
+c.gridwidth = GridBagConstraints.REMAINDER; //end row makebutton("Button7", 
+gridbag, c); 
+
+c.gridwidth = 1; //reset to the default c.gridheight = 2; c.weighty = 1.0; 
+makebutton("Button8", gridbag, c); 
+
+c.weighty = 0.0; //reset to the default c.gridwidth = 
+GridBagConstraints.REMAINDER; //end row c.gridheight = 1; //reset to the 
+default makebutton("Button9", gridbag, c); makebutton("Button10", gridbag, c); 
+
+setSize(300, 100); } 
+
+public static void main(String args[]) { Frame f = new Frame("GridBag Layout 
+Example"); GridBagEx1 ex1 = new GridBagEx1(); 
+
+ex1.init(); 
+
+f.add("Center", ex1); f.pack(); f.setSize(f.getPreferredSize()); f.show(); } } 
+
+
+
+
+*double[]_java.awt.GridBagLayout.columnWeights*
+
+The GridBagLayout class is a flexible layout manager that aligns components 
+vertically and horizontally, without requiring that the components be of the 
+same size. Each GridBagLayout object maintains a dynamic, rectangular grid of 
+cells, with each component occupying one or more cells, called its display 
+area. 
+
+Each component managed by a GridBagLayout is associated with an instance of 
+(|java.awt.GridBagConstraints|) . The constraints object specifies where a 
+component's display area should be located on the grid and how the component 
+should be positioned within its display area. In addition to its constraints 
+object, the GridBagLayout also considers each component's minimum and preferred 
+sizes in order to determine a component's size. 
+
+The overall orientation of the grid depends on the container's 
+(|java.awt.ComponentOrientation|) property. For horizontal left-to-right 
+orientations, grid coordinate (0,0) is in the upper left corner of the 
+container with x increasing to the right and y increasing downward. For 
+horizontal right-to-left orientations, grid coordinate (0,0) is in the upper 
+right corner of the container with x increasing to the left and y increasing 
+downward. 
+
+To use a grid bag layout effectively, you must customize one or more of the 
+GridBagConstraints objects that are associated with its components. You 
+customize a GridBagConstraints object by setting one or more of its instance 
+variables: 
+
+(|java.awt.GridBagConstraints|) , (|java.awt.GridBagConstraints|) Specifies the 
+cell containing the leading corner of the component's display area, where the 
+cell at the origin of the grid has address gridx=0, gridy=0. For horizontal 
+left-to-right layout, a component's leading corner is its upper left. For 
+horizontal right-to-left layout, a component's leading corner is its upper 
+right. Use GridBagConstraints.RELATIVE (the default value) to specify that the 
+component be placed immediately following (along the x axis for gridx or the y 
+axis for gridy) the component that was added to the container just before this 
+component was added. (|java.awt.GridBagConstraints|) , 
+(|java.awt.GridBagConstraints|) Specifies the number of cells in a row (for 
+gridwidth) or column (for gridheight) in the component's display area. The 
+default value is 1. Use GridBagConstraints.REMAINDER to specify that the 
+component's display area will be from gridx to the last cell in the row (for 
+gridwidth) or from gridy to the last cell in the column (for gridheight). 
+
+Use GridBagConstraints.RELATIVE to specify that the component's display area 
+will be from gridx to the next to the last cell in its row (for gridwidth or 
+from gridy to the next to the last cell in its column (for gridheight). 
+
+(|java.awt.GridBagConstraints|) Used when the component's display area is 
+larger than the component's requested size to determine whether (and how) to 
+resize the component. Possible values are GridBagConstraints.NONE (the 
+default), GridBagConstraints.HORIZONTAL (make the component wide enough to fill 
+its display area horizontally, but don't change its height), 
+GridBagConstraints.VERTICAL (make the component tall enough to fill its display 
+area vertically, but don't change its width), and GridBagConstraints.BOTH (make 
+the component fill its display area entirely). (|java.awt.GridBagConstraints|) 
+, (|java.awt.GridBagConstraints|) Specifies the component's internal padding 
+within the layout, how much to add to the minimum size of the component. The 
+width of the component will be at least its minimum width plus ipadx pixels. 
+Similarly, the height of the component will be at least the minimum height plus 
+ipady pixels. (|java.awt.GridBagConstraints|) Specifies the component's 
+external padding, the minimum amount of space between the component and the 
+edges of its display area. (|java.awt.GridBagConstraints|) Used when the 
+component is smaller than its display area to determine where (within the 
+display area) to place the component. There are two kinds of possible values: 
+relative and absolute. Relative values are interpreted relative to the 
+container's ComponentOrientation property while absolute values are not. Valid 
+values are: 
+
+
+
+Absolute Values Relative Values 
+
+
+
+GridBagConstraints.NORTH GridBagConstraints.SOUTH GridBagConstraints.WEST 
+GridBagConstraints.EAST GridBagConstraints.NORTHWEST 
+GridBagConstraints.NORTHEAST GridBagConstraints.SOUTHWEST 
+GridBagConstraints.SOUTHEAST GridBagConstraints.CENTER (the default) 
+
+GridBagConstraints.PAGE_START GridBagConstraints.PAGE_END 
+GridBagConstraints.LINE_START GridBagConstraints.LINE_END 
+GridBagConstraints.FIRST_LINE_START GridBagConstraints.FIRST_LINE_END 
+GridBagConstraints.LAST_LINE_START GridBagConstraints.LAST_LINE_END 
+
+
+
+(|java.awt.GridBagConstraints|) , (|java.awt.GridBagConstraints|) Used to 
+determine how to distribute space, which is important for specifying resizing 
+behavior. Unless you specify a weight for at least one component in a row 
+(weightx) and column (weighty), all the components clump together in the center 
+of their container. This is because when the weight is zero (the default), the 
+GridBagLayout object puts any extra space between its grid of cells and the 
+edges of the container. 
+
+The following figures show ten components (all buttons) managed by a grid bag 
+layout. Figure 1 shows the layout for a horizontal, left-to-right container and 
+Figure 2 shows the layout for a horizontal, right-to-left container. 
+
+
+
+
+
+
+
+
+
+Figure 1: Horizontal, Left-to-Right Figure 2: Horizontal, Right-to-Left 
+
+
+
+Each of the ten components has the fill field of its associated 
+GridBagConstraints object set to GridBagConstraints.BOTH. In addition, the 
+components have the following non-default constraints: 
+
+Button1, Button2, Button3: weightx=1.0 Button4: weightx=1.0, 
+gridwidth=GridBagConstraints.REMAINDER Button5: 
+gridwidth=GridBagConstraints.REMAINDER Button6: 
+gridwidth=GridBagConstraints.RELATIVE Button7: 
+gridwidth=GridBagConstraints.REMAINDER Button8: gridheight=2, weighty=1.0 
+Button9, Button 10: gridwidth=GridBagConstraints.REMAINDER 
+
+Here is the code that implements the example shown above: 
+
+
+
+import java.awt.*; import java.util.*; import java.applet.Applet; 
+
+public class GridBagEx1 extends Applet { 
+
+protected void makebutton(String name, GridBagLayout gridbag, 
+GridBagConstraints c) { Button button = new Button(name); 
+gridbag.setConstraints(button, c); add(button); } 
+
+public void init() { GridBagLayout gridbag = new GridBagLayout(); 
+GridBagConstraints c = new GridBagConstraints(); 
+
+setFont(new Font("SansSerif", Font.PLAIN, 14)); setLayout(gridbag); 
+
+c.fill = GridBagConstraints.BOTH; c.weightx = 1.0; makebutton("Button1", 
+gridbag, c); makebutton("Button2", gridbag, c); makebutton("Button3", gridbag, 
+c); 
+
+c.gridwidth = GridBagConstraints.REMAINDER; //end row makebutton("Button4", 
+gridbag, c); 
+
+c.weightx = 0.0; //reset to the default makebutton("Button5", gridbag, c); 
+//another row 
+
+c.gridwidth = GridBagConstraints.RELATIVE; //next-to-last in row 
+makebutton("Button6", gridbag, c); 
+
+c.gridwidth = GridBagConstraints.REMAINDER; //end row makebutton("Button7", 
+gridbag, c); 
+
+c.gridwidth = 1; //reset to the default c.gridheight = 2; c.weighty = 1.0; 
+makebutton("Button8", gridbag, c); 
+
+c.weighty = 0.0; //reset to the default c.gridwidth = 
+GridBagConstraints.REMAINDER; //end row c.gridheight = 1; //reset to the 
+default makebutton("Button9", gridbag, c); makebutton("Button10", gridbag, c); 
+
+setSize(300, 100); } 
+
+public static void main(String args[]) { Frame f = new Frame("GridBag Layout 
+Example"); GridBagEx1 ex1 = new GridBagEx1(); 
+
+ex1.init(); 
+
+f.add("Center", ex1); f.pack(); f.setSize(f.getPreferredSize()); f.show(); } } 
+
+
+
+
+*int[]_java.awt.GridBagLayout.columnWidths*
+
+The GridBagLayout class is a flexible layout manager that aligns components 
+vertically and horizontally, without requiring that the components be of the 
+same size. Each GridBagLayout object maintains a dynamic, rectangular grid of 
+cells, with each component occupying one or more cells, called its display 
+area. 
+
+Each component managed by a GridBagLayout is associated with an instance of 
+(|java.awt.GridBagConstraints|) . The constraints object specifies where a 
+component's display area should be located on the grid and how the component 
+should be positioned within its display area. In addition to its constraints 
+object, the GridBagLayout also considers each component's minimum and preferred 
+sizes in order to determine a component's size. 
+
+The overall orientation of the grid depends on the container's 
+(|java.awt.ComponentOrientation|) property. For horizontal left-to-right 
+orientations, grid coordinate (0,0) is in the upper left corner of the 
+container with x increasing to the right and y increasing downward. For 
+horizontal right-to-left orientations, grid coordinate (0,0) is in the upper 
+right corner of the container with x increasing to the left and y increasing 
+downward. 
+
+To use a grid bag layout effectively, you must customize one or more of the 
+GridBagConstraints objects that are associated with its components. You 
+customize a GridBagConstraints object by setting one or more of its instance 
+variables: 
+
+(|java.awt.GridBagConstraints|) , (|java.awt.GridBagConstraints|) Specifies the 
+cell containing the leading corner of the component's display area, where the 
+cell at the origin of the grid has address gridx=0, gridy=0. For horizontal 
+left-to-right layout, a component's leading corner is its upper left. For 
+horizontal right-to-left layout, a component's leading corner is its upper 
+right. Use GridBagConstraints.RELATIVE (the default value) to specify that the 
+component be placed immediately following (along the x axis for gridx or the y 
+axis for gridy) the component that was added to the container just before this 
+component was added. (|java.awt.GridBagConstraints|) , 
+(|java.awt.GridBagConstraints|) Specifies the number of cells in a row (for 
+gridwidth) or column (for gridheight) in the component's display area. The 
+default value is 1. Use GridBagConstraints.REMAINDER to specify that the 
+component's display area will be from gridx to the last cell in the row (for 
+gridwidth) or from gridy to the last cell in the column (for gridheight). 
+
+Use GridBagConstraints.RELATIVE to specify that the component's display area 
+will be from gridx to the next to the last cell in its row (for gridwidth or 
+from gridy to the next to the last cell in its column (for gridheight). 
+
+(|java.awt.GridBagConstraints|) Used when the component's display area is 
+larger than the component's requested size to determine whether (and how) to 
+resize the component. Possible values are GridBagConstraints.NONE (the 
+default), GridBagConstraints.HORIZONTAL (make the component wide enough to fill 
+its display area horizontally, but don't change its height), 
+GridBagConstraints.VERTICAL (make the component tall enough to fill its display 
+area vertically, but don't change its width), and GridBagConstraints.BOTH (make 
+the component fill its display area entirely). (|java.awt.GridBagConstraints|) 
+, (|java.awt.GridBagConstraints|) Specifies the component's internal padding 
+within the layout, how much to add to the minimum size of the component. The 
+width of the component will be at least its minimum width plus ipadx pixels. 
+Similarly, the height of the component will be at least the minimum height plus 
+ipady pixels. (|java.awt.GridBagConstraints|) Specifies the component's 
+external padding, the minimum amount of space between the component and the 
+edges of its display area. (|java.awt.GridBagConstraints|) Used when the 
+component is smaller than its display area to determine where (within the 
+display area) to place the component. There are two kinds of possible values: 
+relative and absolute. Relative values are interpreted relative to the 
+container's ComponentOrientation property while absolute values are not. Valid 
+values are: 
+
+
+
+Absolute Values Relative Values 
+
+
+
+GridBagConstraints.NORTH GridBagConstraints.SOUTH GridBagConstraints.WEST 
+GridBagConstraints.EAST GridBagConstraints.NORTHWEST 
+GridBagConstraints.NORTHEAST GridBagConstraints.SOUTHWEST 
+GridBagConstraints.SOUTHEAST GridBagConstraints.CENTER (the default) 
+
+GridBagConstraints.PAGE_START GridBagConstraints.PAGE_END 
+GridBagConstraints.LINE_START GridBagConstraints.LINE_END 
+GridBagConstraints.FIRST_LINE_START GridBagConstraints.FIRST_LINE_END 
+GridBagConstraints.LAST_LINE_START GridBagConstraints.LAST_LINE_END 
+
+
+
+(|java.awt.GridBagConstraints|) , (|java.awt.GridBagConstraints|) Used to 
+determine how to distribute space, which is important for specifying resizing 
+behavior. Unless you specify a weight for at least one component in a row 
+(weightx) and column (weighty), all the components clump together in the center 
+of their container. This is because when the weight is zero (the default), the 
+GridBagLayout object puts any extra space between its grid of cells and the 
+edges of the container. 
+
+The following figures show ten components (all buttons) managed by a grid bag 
+layout. Figure 1 shows the layout for a horizontal, left-to-right container and 
+Figure 2 shows the layout for a horizontal, right-to-left container. 
+
+
+
+
+
+
+
+
+
+Figure 1: Horizontal, Left-to-Right Figure 2: Horizontal, Right-to-Left 
+
+
+
+Each of the ten components has the fill field of its associated 
+GridBagConstraints object set to GridBagConstraints.BOTH. In addition, the 
+components have the following non-default constraints: 
+
+Button1, Button2, Button3: weightx=1.0 Button4: weightx=1.0, 
+gridwidth=GridBagConstraints.REMAINDER Button5: 
+gridwidth=GridBagConstraints.REMAINDER Button6: 
+gridwidth=GridBagConstraints.RELATIVE Button7: 
+gridwidth=GridBagConstraints.REMAINDER Button8: gridheight=2, weighty=1.0 
+Button9, Button 10: gridwidth=GridBagConstraints.REMAINDER 
+
+Here is the code that implements the example shown above: 
+
+
+
+import java.awt.*; import java.util.*; import java.applet.Applet; 
+
+public class GridBagEx1 extends Applet { 
+
+protected void makebutton(String name, GridBagLayout gridbag, 
+GridBagConstraints c) { Button button = new Button(name); 
+gridbag.setConstraints(button, c); add(button); } 
+
+public void init() { GridBagLayout gridbag = new GridBagLayout(); 
+GridBagConstraints c = new GridBagConstraints(); 
+
+setFont(new Font("SansSerif", Font.PLAIN, 14)); setLayout(gridbag); 
+
+c.fill = GridBagConstraints.BOTH; c.weightx = 1.0; makebutton("Button1", 
+gridbag, c); makebutton("Button2", gridbag, c); makebutton("Button3", gridbag, 
+c); 
+
+c.gridwidth = GridBagConstraints.REMAINDER; //end row makebutton("Button4", 
+gridbag, c); 
+
+c.weightx = 0.0; //reset to the default makebutton("Button5", gridbag, c); 
+//another row 
+
+c.gridwidth = GridBagConstraints.RELATIVE; //next-to-last in row 
+makebutton("Button6", gridbag, c); 
+
+c.gridwidth = GridBagConstraints.REMAINDER; //end row makebutton("Button7", 
+gridbag, c); 
+
+c.gridwidth = 1; //reset to the default c.gridheight = 2; c.weighty = 1.0; 
+makebutton("Button8", gridbag, c); 
+
+c.weighty = 0.0; //reset to the default c.gridwidth = 
+GridBagConstraints.REMAINDER; //end row c.gridheight = 1; //reset to the 
+default makebutton("Button9", gridbag, c); makebutton("Button10", gridbag, c); 
+
+setSize(300, 100); } 
+
+public static void main(String args[]) { Frame f = new Frame("GridBag Layout 
+Example"); GridBagEx1 ex1 = new GridBagEx1(); 
+
+ex1.init(); 
+
+f.add("Center", ex1); f.pack(); f.setSize(f.getPreferredSize()); f.show(); } } 
+
+
+
+
+*java.util.Hashtable_java.awt.GridBagLayout.comptable*
+
+The GridBagLayout class is a flexible layout manager that aligns components 
+vertically and horizontally, without requiring that the components be of the 
+same size. Each GridBagLayout object maintains a dynamic, rectangular grid of 
+cells, with each component occupying one or more cells, called its display 
+area. 
+
+Each component managed by a GridBagLayout is associated with an instance of 
+(|java.awt.GridBagConstraints|) . The constraints object specifies where a 
+component's display area should be located on the grid and how the component 
+should be positioned within its display area. In addition to its constraints 
+object, the GridBagLayout also considers each component's minimum and preferred 
+sizes in order to determine a component's size. 
+
+The overall orientation of the grid depends on the container's 
+(|java.awt.ComponentOrientation|) property. For horizontal left-to-right 
+orientations, grid coordinate (0,0) is in the upper left corner of the 
+container with x increasing to the right and y increasing downward. For 
+horizontal right-to-left orientations, grid coordinate (0,0) is in the upper 
+right corner of the container with x increasing to the left and y increasing 
+downward. 
+
+To use a grid bag layout effectively, you must customize one or more of the 
+GridBagConstraints objects that are associated with its components. You 
+customize a GridBagConstraints object by setting one or more of its instance 
+variables: 
+
+(|java.awt.GridBagConstraints|) , (|java.awt.GridBagConstraints|) Specifies the 
+cell containing the leading corner of the component's display area, where the 
+cell at the origin of the grid has address gridx=0, gridy=0. For horizontal 
+left-to-right layout, a component's leading corner is its upper left. For 
+horizontal right-to-left layout, a component's leading corner is its upper 
+right. Use GridBagConstraints.RELATIVE (the default value) to specify that the 
+component be placed immediately following (along the x axis for gridx or the y 
+axis for gridy) the component that was added to the container just before this 
+component was added. (|java.awt.GridBagConstraints|) , 
+(|java.awt.GridBagConstraints|) Specifies the number of cells in a row (for 
+gridwidth) or column (for gridheight) in the component's display area. The 
+default value is 1. Use GridBagConstraints.REMAINDER to specify that the 
+component's display area will be from gridx to the last cell in the row (for 
+gridwidth) or from gridy to the last cell in the column (for gridheight). 
+
+Use GridBagConstraints.RELATIVE to specify that the component's display area 
+will be from gridx to the next to the last cell in its row (for gridwidth or 
+from gridy to the next to the last cell in its column (for gridheight). 
+
+(|java.awt.GridBagConstraints|) Used when the component's display area is 
+larger than the component's requested size to determine whether (and how) to 
+resize the component. Possible values are GridBagConstraints.NONE (the 
+default), GridBagConstraints.HORIZONTAL (make the component wide enough to fill 
+its display area horizontally, but don't change its height), 
+GridBagConstraints.VERTICAL (make the component tall enough to fill its display 
+area vertically, but don't change its width), and GridBagConstraints.BOTH (make 
+the component fill its display area entirely). (|java.awt.GridBagConstraints|) 
+, (|java.awt.GridBagConstraints|) Specifies the component's internal padding 
+within the layout, how much to add to the minimum size of the component. The 
+width of the component will be at least its minimum width plus ipadx pixels. 
+Similarly, the height of the component will be at least the minimum height plus 
+ipady pixels. (|java.awt.GridBagConstraints|) Specifies the component's 
+external padding, the minimum amount of space between the component and the 
+edges of its display area. (|java.awt.GridBagConstraints|) Used when the 
+component is smaller than its display area to determine where (within the 
+display area) to place the component. There are two kinds of possible values: 
+relative and absolute. Relative values are interpreted relative to the 
+container's ComponentOrientation property while absolute values are not. Valid 
+values are: 
+
+
+
+Absolute Values Relative Values 
+
+
+
+GridBagConstraints.NORTH GridBagConstraints.SOUTH GridBagConstraints.WEST 
+GridBagConstraints.EAST GridBagConstraints.NORTHWEST 
+GridBagConstraints.NORTHEAST GridBagConstraints.SOUTHWEST 
+GridBagConstraints.SOUTHEAST GridBagConstraints.CENTER (the default) 
+
+GridBagConstraints.PAGE_START GridBagConstraints.PAGE_END 
+GridBagConstraints.LINE_START GridBagConstraints.LINE_END 
+GridBagConstraints.FIRST_LINE_START GridBagConstraints.FIRST_LINE_END 
+GridBagConstraints.LAST_LINE_START GridBagConstraints.LAST_LINE_END 
+
+
+
+(|java.awt.GridBagConstraints|) , (|java.awt.GridBagConstraints|) Used to 
+determine how to distribute space, which is important for specifying resizing 
+behavior. Unless you specify a weight for at least one component in a row 
+(weightx) and column (weighty), all the components clump together in the center 
+of their container. This is because when the weight is zero (the default), the 
+GridBagLayout object puts any extra space between its grid of cells and the 
+edges of the container. 
+
+The following figures show ten components (all buttons) managed by a grid bag 
+layout. Figure 1 shows the layout for a horizontal, left-to-right container and 
+Figure 2 shows the layout for a horizontal, right-to-left container. 
+
+
+
+
+
+
+
+
+
+Figure 1: Horizontal, Left-to-Right Figure 2: Horizontal, Right-to-Left 
+
+
+
+Each of the ten components has the fill field of its associated 
+GridBagConstraints object set to GridBagConstraints.BOTH. In addition, the 
+components have the following non-default constraints: 
+
+Button1, Button2, Button3: weightx=1.0 Button4: weightx=1.0, 
+gridwidth=GridBagConstraints.REMAINDER Button5: 
+gridwidth=GridBagConstraints.REMAINDER Button6: 
+gridwidth=GridBagConstraints.RELATIVE Button7: 
+gridwidth=GridBagConstraints.REMAINDER Button8: gridheight=2, weighty=1.0 
+Button9, Button 10: gridwidth=GridBagConstraints.REMAINDER 
+
+Here is the code that implements the example shown above: 
+
+
+
+import java.awt.*; import java.util.*; import java.applet.Applet; 
+
+public class GridBagEx1 extends Applet { 
+
+protected void makebutton(String name, GridBagLayout gridbag, 
+GridBagConstraints c) { Button button = new Button(name); 
+gridbag.setConstraints(button, c); add(button); } 
+
+public void init() { GridBagLayout gridbag = new GridBagLayout(); 
+GridBagConstraints c = new GridBagConstraints(); 
+
+setFont(new Font("SansSerif", Font.PLAIN, 14)); setLayout(gridbag); 
+
+c.fill = GridBagConstraints.BOTH; c.weightx = 1.0; makebutton("Button1", 
+gridbag, c); makebutton("Button2", gridbag, c); makebutton("Button3", gridbag, 
+c); 
+
+c.gridwidth = GridBagConstraints.REMAINDER; //end row makebutton("Button4", 
+gridbag, c); 
+
+c.weightx = 0.0; //reset to the default makebutton("Button5", gridbag, c); 
+//another row 
+
+c.gridwidth = GridBagConstraints.RELATIVE; //next-to-last in row 
+makebutton("Button6", gridbag, c); 
+
+c.gridwidth = GridBagConstraints.REMAINDER; //end row makebutton("Button7", 
+gridbag, c); 
+
+c.gridwidth = 1; //reset to the default c.gridheight = 2; c.weighty = 1.0; 
+makebutton("Button8", gridbag, c); 
+
+c.weighty = 0.0; //reset to the default c.gridwidth = 
+GridBagConstraints.REMAINDER; //end row c.gridheight = 1; //reset to the 
+default makebutton("Button9", gridbag, c); makebutton("Button10", gridbag, c); 
+
+setSize(300, 100); } 
+
+public static void main(String args[]) { Frame f = new Frame("GridBag Layout 
+Example"); GridBagEx1 ex1 = new GridBagEx1(); 
+
+ex1.init(); 
+
+f.add("Center", ex1); f.pack(); f.setSize(f.getPreferredSize()); f.show(); } } 
+
+
+
+
+*java.awt.GridBagConstraints_java.awt.GridBagLayout.defaultConstraints*
+
+The GridBagLayout class is a flexible layout manager that aligns components 
+vertically and horizontally, without requiring that the components be of the 
+same size. Each GridBagLayout object maintains a dynamic, rectangular grid of 
+cells, with each component occupying one or more cells, called its display 
+area. 
+
+Each component managed by a GridBagLayout is associated with an instance of 
+(|java.awt.GridBagConstraints|) . The constraints object specifies where a 
+component's display area should be located on the grid and how the component 
+should be positioned within its display area. In addition to its constraints 
+object, the GridBagLayout also considers each component's minimum and preferred 
+sizes in order to determine a component's size. 
+
+The overall orientation of the grid depends on the container's 
+(|java.awt.ComponentOrientation|) property. For horizontal left-to-right 
+orientations, grid coordinate (0,0) is in the upper left corner of the 
+container with x increasing to the right and y increasing downward. For 
+horizontal right-to-left orientations, grid coordinate (0,0) is in the upper 
+right corner of the container with x increasing to the left and y increasing 
+downward. 
+
+To use a grid bag layout effectively, you must customize one or more of the 
+GridBagConstraints objects that are associated with its components. You 
+customize a GridBagConstraints object by setting one or more of its instance 
+variables: 
+
+(|java.awt.GridBagConstraints|) , (|java.awt.GridBagConstraints|) Specifies the 
+cell containing the leading corner of the component's display area, where the 
+cell at the origin of the grid has address gridx=0, gridy=0. For horizontal 
+left-to-right layout, a component's leading corner is its upper left. For 
+horizontal right-to-left layout, a component's leading corner is its upper 
+right. Use GridBagConstraints.RELATIVE (the default value) to specify that the 
+component be placed immediately following (along the x axis for gridx or the y 
+axis for gridy) the component that was added to the container just before this 
+component was added. (|java.awt.GridBagConstraints|) , 
+(|java.awt.GridBagConstraints|) Specifies the number of cells in a row (for 
+gridwidth) or column (for gridheight) in the component's display area. The 
+default value is 1. Use GridBagConstraints.REMAINDER to specify that the 
+component's display area will be from gridx to the last cell in the row (for 
+gridwidth) or from gridy to the last cell in the column (for gridheight). 
+
+Use GridBagConstraints.RELATIVE to specify that the component's display area 
+will be from gridx to the next to the last cell in its row (for gridwidth or 
+from gridy to the next to the last cell in its column (for gridheight). 
+
+(|java.awt.GridBagConstraints|) Used when the component's display area is 
+larger than the component's requested size to determine whether (and how) to 
+resize the component. Possible values are GridBagConstraints.NONE (the 
+default), GridBagConstraints.HORIZONTAL (make the component wide enough to fill 
+its display area horizontally, but don't change its height), 
+GridBagConstraints.VERTICAL (make the component tall enough to fill its display 
+area vertically, but don't change its width), and GridBagConstraints.BOTH (make 
+the component fill its display area entirely). (|java.awt.GridBagConstraints|) 
+, (|java.awt.GridBagConstraints|) Specifies the component's internal padding 
+within the layout, how much to add to the minimum size of the component. The 
+width of the component will be at least its minimum width plus ipadx pixels. 
+Similarly, the height of the component will be at least the minimum height plus 
+ipady pixels. (|java.awt.GridBagConstraints|) Specifies the component's 
+external padding, the minimum amount of space between the component and the 
+edges of its display area. (|java.awt.GridBagConstraints|) Used when the 
+component is smaller than its display area to determine where (within the 
+display area) to place the component. There are two kinds of possible values: 
+relative and absolute. Relative values are interpreted relative to the 
+container's ComponentOrientation property while absolute values are not. Valid 
+values are: 
+
+
+
+Absolute Values Relative Values 
+
+
+
+GridBagConstraints.NORTH GridBagConstraints.SOUTH GridBagConstraints.WEST 
+GridBagConstraints.EAST GridBagConstraints.NORTHWEST 
+GridBagConstraints.NORTHEAST GridBagConstraints.SOUTHWEST 
+GridBagConstraints.SOUTHEAST GridBagConstraints.CENTER (the default) 
+
+GridBagConstraints.PAGE_START GridBagConstraints.PAGE_END 
+GridBagConstraints.LINE_START GridBagConstraints.LINE_END 
+GridBagConstraints.FIRST_LINE_START GridBagConstraints.FIRST_LINE_END 
+GridBagConstraints.LAST_LINE_START GridBagConstraints.LAST_LINE_END 
+
+
+
+(|java.awt.GridBagConstraints|) , (|java.awt.GridBagConstraints|) Used to 
+determine how to distribute space, which is important for specifying resizing 
+behavior. Unless you specify a weight for at least one component in a row 
+(weightx) and column (weighty), all the components clump together in the center 
+of their container. This is because when the weight is zero (the default), the 
+GridBagLayout object puts any extra space between its grid of cells and the 
+edges of the container. 
+
+The following figures show ten components (all buttons) managed by a grid bag 
+layout. Figure 1 shows the layout for a horizontal, left-to-right container and 
+Figure 2 shows the layout for a horizontal, right-to-left container. 
+
+
+
+
+
+
+
+
+
+Figure 1: Horizontal, Left-to-Right Figure 2: Horizontal, Right-to-Left 
+
+
+
+Each of the ten components has the fill field of its associated 
+GridBagConstraints object set to GridBagConstraints.BOTH. In addition, the 
+components have the following non-default constraints: 
+
+Button1, Button2, Button3: weightx=1.0 Button4: weightx=1.0, 
+gridwidth=GridBagConstraints.REMAINDER Button5: 
+gridwidth=GridBagConstraints.REMAINDER Button6: 
+gridwidth=GridBagConstraints.RELATIVE Button7: 
+gridwidth=GridBagConstraints.REMAINDER Button8: gridheight=2, weighty=1.0 
+Button9, Button 10: gridwidth=GridBagConstraints.REMAINDER 
+
+Here is the code that implements the example shown above: 
+
+
+
+import java.awt.*; import java.util.*; import java.applet.Applet; 
+
+public class GridBagEx1 extends Applet { 
+
+protected void makebutton(String name, GridBagLayout gridbag, 
+GridBagConstraints c) { Button button = new Button(name); 
+gridbag.setConstraints(button, c); add(button); } 
+
+public void init() { GridBagLayout gridbag = new GridBagLayout(); 
+GridBagConstraints c = new GridBagConstraints(); 
+
+setFont(new Font("SansSerif", Font.PLAIN, 14)); setLayout(gridbag); 
+
+c.fill = GridBagConstraints.BOTH; c.weightx = 1.0; makebutton("Button1", 
+gridbag, c); makebutton("Button2", gridbag, c); makebutton("Button3", gridbag, 
+c); 
+
+c.gridwidth = GridBagConstraints.REMAINDER; //end row makebutton("Button4", 
+gridbag, c); 
+
+c.weightx = 0.0; //reset to the default makebutton("Button5", gridbag, c); 
+//another row 
+
+c.gridwidth = GridBagConstraints.RELATIVE; //next-to-last in row 
+makebutton("Button6", gridbag, c); 
+
+c.gridwidth = GridBagConstraints.REMAINDER; //end row makebutton("Button7", 
+gridbag, c); 
+
+c.gridwidth = 1; //reset to the default c.gridheight = 2; c.weighty = 1.0; 
+makebutton("Button8", gridbag, c); 
+
+c.weighty = 0.0; //reset to the default c.gridwidth = 
+GridBagConstraints.REMAINDER; //end row c.gridheight = 1; //reset to the 
+default makebutton("Button9", gridbag, c); makebutton("Button10", gridbag, c); 
+
+setSize(300, 100); } 
+
+public static void main(String args[]) { Frame f = new Frame("GridBag Layout 
+Example"); GridBagEx1 ex1 = new GridBagEx1(); 
+
+ex1.init(); 
+
+f.add("Center", ex1); f.pack(); f.setSize(f.getPreferredSize()); f.show(); } } 
+
+
+
+
+*java.awt.GridBagLayoutInfo_java.awt.GridBagLayout.layoutInfo*
+
+The GridBagLayout class is a flexible layout manager that aligns components 
+vertically and horizontally, without requiring that the components be of the 
+same size. Each GridBagLayout object maintains a dynamic, rectangular grid of 
+cells, with each component occupying one or more cells, called its display 
+area. 
+
+Each component managed by a GridBagLayout is associated with an instance of 
+(|java.awt.GridBagConstraints|) . The constraints object specifies where a 
+component's display area should be located on the grid and how the component 
+should be positioned within its display area. In addition to its constraints 
+object, the GridBagLayout also considers each component's minimum and preferred 
+sizes in order to determine a component's size. 
+
+The overall orientation of the grid depends on the container's 
+(|java.awt.ComponentOrientation|) property. For horizontal left-to-right 
+orientations, grid coordinate (0,0) is in the upper left corner of the 
+container with x increasing to the right and y increasing downward. For 
+horizontal right-to-left orientations, grid coordinate (0,0) is in the upper 
+right corner of the container with x increasing to the left and y increasing 
+downward. 
+
+To use a grid bag layout effectively, you must customize one or more of the 
+GridBagConstraints objects that are associated with its components. You 
+customize a GridBagConstraints object by setting one or more of its instance 
+variables: 
+
+(|java.awt.GridBagConstraints|) , (|java.awt.GridBagConstraints|) Specifies the 
+cell containing the leading corner of the component's display area, where the 
+cell at the origin of the grid has address gridx=0, gridy=0. For horizontal 
+left-to-right layout, a component's leading corner is its upper left. For 
+horizontal right-to-left layout, a component's leading corner is its upper 
+right. Use GridBagConstraints.RELATIVE (the default value) to specify that the 
+component be placed immediately following (along the x axis for gridx or the y 
+axis for gridy) the component that was added to the container just before this 
+component was added. (|java.awt.GridBagConstraints|) , 
+(|java.awt.GridBagConstraints|) Specifies the number of cells in a row (for 
+gridwidth) or column (for gridheight) in the component's display area. The 
+default value is 1. Use GridBagConstraints.REMAINDER to specify that the 
+component's display area will be from gridx to the last cell in the row (for 
+gridwidth) or from gridy to the last cell in the column (for gridheight). 
+
+Use GridBagConstraints.RELATIVE to specify that the component's display area 
+will be from gridx to the next to the last cell in its row (for gridwidth or 
+from gridy to the next to the last cell in its column (for gridheight). 
+
+(|java.awt.GridBagConstraints|) Used when the component's display area is 
+larger than the component's requested size to determine whether (and how) to 
+resize the component. Possible values are GridBagConstraints.NONE (the 
+default), GridBagConstraints.HORIZONTAL (make the component wide enough to fill 
+its display area horizontally, but don't change its height), 
+GridBagConstraints.VERTICAL (make the component tall enough to fill its display 
+area vertically, but don't change its width), and GridBagConstraints.BOTH (make 
+the component fill its display area entirely). (|java.awt.GridBagConstraints|) 
+, (|java.awt.GridBagConstraints|) Specifies the component's internal padding 
+within the layout, how much to add to the minimum size of the component. The 
+width of the component will be at least its minimum width plus ipadx pixels. 
+Similarly, the height of the component will be at least the minimum height plus 
+ipady pixels. (|java.awt.GridBagConstraints|) Specifies the component's 
+external padding, the minimum amount of space between the component and the 
+edges of its display area. (|java.awt.GridBagConstraints|) Used when the 
+component is smaller than its display area to determine where (within the 
+display area) to place the component. There are two kinds of possible values: 
+relative and absolute. Relative values are interpreted relative to the 
+container's ComponentOrientation property while absolute values are not. Valid 
+values are: 
+
+
+
+Absolute Values Relative Values 
+
+
+
+GridBagConstraints.NORTH GridBagConstraints.SOUTH GridBagConstraints.WEST 
+GridBagConstraints.EAST GridBagConstraints.NORTHWEST 
+GridBagConstraints.NORTHEAST GridBagConstraints.SOUTHWEST 
+GridBagConstraints.SOUTHEAST GridBagConstraints.CENTER (the default) 
+
+GridBagConstraints.PAGE_START GridBagConstraints.PAGE_END 
+GridBagConstraints.LINE_START GridBagConstraints.LINE_END 
+GridBagConstraints.FIRST_LINE_START GridBagConstraints.FIRST_LINE_END 
+GridBagConstraints.LAST_LINE_START GridBagConstraints.LAST_LINE_END 
+
+
+
+(|java.awt.GridBagConstraints|) , (|java.awt.GridBagConstraints|) Used to 
+determine how to distribute space, which is important for specifying resizing 
+behavior. Unless you specify a weight for at least one component in a row 
+(weightx) and column (weighty), all the components clump together in the center 
+of their container. This is because when the weight is zero (the default), the 
+GridBagLayout object puts any extra space between its grid of cells and the 
+edges of the container. 
+
+The following figures show ten components (all buttons) managed by a grid bag 
+layout. Figure 1 shows the layout for a horizontal, left-to-right container and 
+Figure 2 shows the layout for a horizontal, right-to-left container. 
+
+
+
+
+
+
+
+
+
+Figure 1: Horizontal, Left-to-Right Figure 2: Horizontal, Right-to-Left 
+
+
+
+Each of the ten components has the fill field of its associated 
+GridBagConstraints object set to GridBagConstraints.BOTH. In addition, the 
+components have the following non-default constraints: 
+
+Button1, Button2, Button3: weightx=1.0 Button4: weightx=1.0, 
+gridwidth=GridBagConstraints.REMAINDER Button5: 
+gridwidth=GridBagConstraints.REMAINDER Button6: 
+gridwidth=GridBagConstraints.RELATIVE Button7: 
+gridwidth=GridBagConstraints.REMAINDER Button8: gridheight=2, weighty=1.0 
+Button9, Button 10: gridwidth=GridBagConstraints.REMAINDER 
+
+Here is the code that implements the example shown above: 
+
+
+
+import java.awt.*; import java.util.*; import java.applet.Applet; 
+
+public class GridBagEx1 extends Applet { 
+
+protected void makebutton(String name, GridBagLayout gridbag, 
+GridBagConstraints c) { Button button = new Button(name); 
+gridbag.setConstraints(button, c); add(button); } 
+
+public void init() { GridBagLayout gridbag = new GridBagLayout(); 
+GridBagConstraints c = new GridBagConstraints(); 
+
+setFont(new Font("SansSerif", Font.PLAIN, 14)); setLayout(gridbag); 
+
+c.fill = GridBagConstraints.BOTH; c.weightx = 1.0; makebutton("Button1", 
+gridbag, c); makebutton("Button2", gridbag, c); makebutton("Button3", gridbag, 
+c); 
+
+c.gridwidth = GridBagConstraints.REMAINDER; //end row makebutton("Button4", 
+gridbag, c); 
+
+c.weightx = 0.0; //reset to the default makebutton("Button5", gridbag, c); 
+//another row 
+
+c.gridwidth = GridBagConstraints.RELATIVE; //next-to-last in row 
+makebutton("Button6", gridbag, c); 
+
+c.gridwidth = GridBagConstraints.REMAINDER; //end row makebutton("Button7", 
+gridbag, c); 
+
+c.gridwidth = 1; //reset to the default c.gridheight = 2; c.weighty = 1.0; 
+makebutton("Button8", gridbag, c); 
+
+c.weighty = 0.0; //reset to the default c.gridwidth = 
+GridBagConstraints.REMAINDER; //end row c.gridheight = 1; //reset to the 
+default makebutton("Button9", gridbag, c); makebutton("Button10", gridbag, c); 
+
+setSize(300, 100); } 
+
+public static void main(String args[]) { Frame f = new Frame("GridBag Layout 
+Example"); GridBagEx1 ex1 = new GridBagEx1(); 
+
+ex1.init(); 
+
+f.add("Center", ex1); f.pack(); f.setSize(f.getPreferredSize()); f.show(); } } 
+
+
+
+
+*int_java.awt.GridBagLayout.MAXGRIDSIZE*
+
+The GridBagLayout class is a flexible layout manager that aligns components 
+vertically and horizontally, without requiring that the components be of the 
+same size. Each GridBagLayout object maintains a dynamic, rectangular grid of 
+cells, with each component occupying one or more cells, called its display 
+area. 
+
+Each component managed by a GridBagLayout is associated with an instance of 
+(|java.awt.GridBagConstraints|) . The constraints object specifies where a 
+component's display area should be located on the grid and how the component 
+should be positioned within its display area. In addition to its constraints 
+object, the GridBagLayout also considers each component's minimum and preferred 
+sizes in order to determine a component's size. 
+
+The overall orientation of the grid depends on the container's 
+(|java.awt.ComponentOrientation|) property. For horizontal left-to-right 
+orientations, grid coordinate (0,0) is in the upper left corner of the 
+container with x increasing to the right and y increasing downward. For 
+horizontal right-to-left orientations, grid coordinate (0,0) is in the upper 
+right corner of the container with x increasing to the left and y increasing 
+downward. 
+
+To use a grid bag layout effectively, you must customize one or more of the 
+GridBagConstraints objects that are associated with its components. You 
+customize a GridBagConstraints object by setting one or more of its instance 
+variables: 
+
+(|java.awt.GridBagConstraints|) , (|java.awt.GridBagConstraints|) Specifies the 
+cell containing the leading corner of the component's display area, where the 
+cell at the origin of the grid has address gridx=0, gridy=0. For horizontal 
+left-to-right layout, a component's leading corner is its upper left. For 
+horizontal right-to-left layout, a component's leading corner is its upper 
+right. Use GridBagConstraints.RELATIVE (the default value) to specify that the 
+component be placed immediately following (along the x axis for gridx or the y 
+axis for gridy) the component that was added to the container just before this 
+component was added. (|java.awt.GridBagConstraints|) , 
+(|java.awt.GridBagConstraints|) Specifies the number of cells in a row (for 
+gridwidth) or column (for gridheight) in the component's display area. The 
+default value is 1. Use GridBagConstraints.REMAINDER to specify that the 
+component's display area will be from gridx to the last cell in the row (for 
+gridwidth) or from gridy to the last cell in the column (for gridheight). 
+
+Use GridBagConstraints.RELATIVE to specify that the component's display area 
+will be from gridx to the next to the last cell in its row (for gridwidth or 
+from gridy to the next to the last cell in its column (for gridheight). 
+
+(|java.awt.GridBagConstraints|) Used when the component's display area is 
+larger than the component's requested size to determine whether (and how) to 
+resize the component. Possible values are GridBagConstraints.NONE (the 
+default), GridBagConstraints.HORIZONTAL (make the component wide enough to fill 
+its display area horizontally, but don't change its height), 
+GridBagConstraints.VERTICAL (make the component tall enough to fill its display 
+area vertically, but don't change its width), and GridBagConstraints.BOTH (make 
+the component fill its display area entirely). (|java.awt.GridBagConstraints|) 
+, (|java.awt.GridBagConstraints|) Specifies the component's internal padding 
+within the layout, how much to add to the minimum size of the component. The 
+width of the component will be at least its minimum width plus ipadx pixels. 
+Similarly, the height of the component will be at least the minimum height plus 
+ipady pixels. (|java.awt.GridBagConstraints|) Specifies the component's 
+external padding, the minimum amount of space between the component and the 
+edges of its display area. (|java.awt.GridBagConstraints|) Used when the 
+component is smaller than its display area to determine where (within the 
+display area) to place the component. There are two kinds of possible values: 
+relative and absolute. Relative values are interpreted relative to the 
+container's ComponentOrientation property while absolute values are not. Valid 
+values are: 
+
+
+
+Absolute Values Relative Values 
+
+
+
+GridBagConstraints.NORTH GridBagConstraints.SOUTH GridBagConstraints.WEST 
+GridBagConstraints.EAST GridBagConstraints.NORTHWEST 
+GridBagConstraints.NORTHEAST GridBagConstraints.SOUTHWEST 
+GridBagConstraints.SOUTHEAST GridBagConstraints.CENTER (the default) 
+
+GridBagConstraints.PAGE_START GridBagConstraints.PAGE_END 
+GridBagConstraints.LINE_START GridBagConstraints.LINE_END 
+GridBagConstraints.FIRST_LINE_START GridBagConstraints.FIRST_LINE_END 
+GridBagConstraints.LAST_LINE_START GridBagConstraints.LAST_LINE_END 
+
+
+
+(|java.awt.GridBagConstraints|) , (|java.awt.GridBagConstraints|) Used to 
+determine how to distribute space, which is important for specifying resizing 
+behavior. Unless you specify a weight for at least one component in a row 
+(weightx) and column (weighty), all the components clump together in the center 
+of their container. This is because when the weight is zero (the default), the 
+GridBagLayout object puts any extra space between its grid of cells and the 
+edges of the container. 
+
+The following figures show ten components (all buttons) managed by a grid bag 
+layout. Figure 1 shows the layout for a horizontal, left-to-right container and 
+Figure 2 shows the layout for a horizontal, right-to-left container. 
+
+
+
+
+
+
+
+
+
+Figure 1: Horizontal, Left-to-Right Figure 2: Horizontal, Right-to-Left 
+
+
+
+Each of the ten components has the fill field of its associated 
+GridBagConstraints object set to GridBagConstraints.BOTH. In addition, the 
+components have the following non-default constraints: 
+
+Button1, Button2, Button3: weightx=1.0 Button4: weightx=1.0, 
+gridwidth=GridBagConstraints.REMAINDER Button5: 
+gridwidth=GridBagConstraints.REMAINDER Button6: 
+gridwidth=GridBagConstraints.RELATIVE Button7: 
+gridwidth=GridBagConstraints.REMAINDER Button8: gridheight=2, weighty=1.0 
+Button9, Button 10: gridwidth=GridBagConstraints.REMAINDER 
+
+Here is the code that implements the example shown above: 
+
+
+
+import java.awt.*; import java.util.*; import java.applet.Applet; 
+
+public class GridBagEx1 extends Applet { 
+
+protected void makebutton(String name, GridBagLayout gridbag, 
+GridBagConstraints c) { Button button = new Button(name); 
+gridbag.setConstraints(button, c); add(button); } 
+
+public void init() { GridBagLayout gridbag = new GridBagLayout(); 
+GridBagConstraints c = new GridBagConstraints(); 
+
+setFont(new Font("SansSerif", Font.PLAIN, 14)); setLayout(gridbag); 
+
+c.fill = GridBagConstraints.BOTH; c.weightx = 1.0; makebutton("Button1", 
+gridbag, c); makebutton("Button2", gridbag, c); makebutton("Button3", gridbag, 
+c); 
+
+c.gridwidth = GridBagConstraints.REMAINDER; //end row makebutton("Button4", 
+gridbag, c); 
+
+c.weightx = 0.0; //reset to the default makebutton("Button5", gridbag, c); 
+//another row 
+
+c.gridwidth = GridBagConstraints.RELATIVE; //next-to-last in row 
+makebutton("Button6", gridbag, c); 
+
+c.gridwidth = GridBagConstraints.REMAINDER; //end row makebutton("Button7", 
+gridbag, c); 
+
+c.gridwidth = 1; //reset to the default c.gridheight = 2; c.weighty = 1.0; 
+makebutton("Button8", gridbag, c); 
+
+c.weighty = 0.0; //reset to the default c.gridwidth = 
+GridBagConstraints.REMAINDER; //end row c.gridheight = 1; //reset to the 
+default makebutton("Button9", gridbag, c); makebutton("Button10", gridbag, c); 
+
+setSize(300, 100); } 
+
+public static void main(String args[]) { Frame f = new Frame("GridBag Layout 
+Example"); GridBagEx1 ex1 = new GridBagEx1(); 
+
+ex1.init(); 
+
+f.add("Center", ex1); f.pack(); f.setSize(f.getPreferredSize()); f.show(); } } 
+
+
+
+
+*int_java.awt.GridBagLayout.MINSIZE*
+
+The GridBagLayout class is a flexible layout manager that aligns components 
+vertically and horizontally, without requiring that the components be of the 
+same size. Each GridBagLayout object maintains a dynamic, rectangular grid of 
+cells, with each component occupying one or more cells, called its display 
+area. 
+
+Each component managed by a GridBagLayout is associated with an instance of 
+(|java.awt.GridBagConstraints|) . The constraints object specifies where a 
+component's display area should be located on the grid and how the component 
+should be positioned within its display area. In addition to its constraints 
+object, the GridBagLayout also considers each component's minimum and preferred 
+sizes in order to determine a component's size. 
+
+The overall orientation of the grid depends on the container's 
+(|java.awt.ComponentOrientation|) property. For horizontal left-to-right 
+orientations, grid coordinate (0,0) is in the upper left corner of the 
+container with x increasing to the right and y increasing downward. For 
+horizontal right-to-left orientations, grid coordinate (0,0) is in the upper 
+right corner of the container with x increasing to the left and y increasing 
+downward. 
+
+To use a grid bag layout effectively, you must customize one or more of the 
+GridBagConstraints objects that are associated with its components. You 
+customize a GridBagConstraints object by setting one or more of its instance 
+variables: 
+
+(|java.awt.GridBagConstraints|) , (|java.awt.GridBagConstraints|) Specifies the 
+cell containing the leading corner of the component's display area, where the 
+cell at the origin of the grid has address gridx=0, gridy=0. For horizontal 
+left-to-right layout, a component's leading corner is its upper left. For 
+horizontal right-to-left layout, a component's leading corner is its upper 
+right. Use GridBagConstraints.RELATIVE (the default value) to specify that the 
+component be placed immediately following (along the x axis for gridx or the y 
+axis for gridy) the component that was added to the container just before this 
+component was added. (|java.awt.GridBagConstraints|) , 
+(|java.awt.GridBagConstraints|) Specifies the number of cells in a row (for 
+gridwidth) or column (for gridheight) in the component's display area. The 
+default value is 1. Use GridBagConstraints.REMAINDER to specify that the 
+component's display area will be from gridx to the last cell in the row (for 
+gridwidth) or from gridy to the last cell in the column (for gridheight). 
+
+Use GridBagConstraints.RELATIVE to specify that the component's display area 
+will be from gridx to the next to the last cell in its row (for gridwidth or 
+from gridy to the next to the last cell in its column (for gridheight). 
+
+(|java.awt.GridBagConstraints|) Used when the component's display area is 
+larger than the component's requested size to determine whether (and how) to 
+resize the component. Possible values are GridBagConstraints.NONE (the 
+default), GridBagConstraints.HORIZONTAL (make the component wide enough to fill 
+its display area horizontally, but don't change its height), 
+GridBagConstraints.VERTICAL (make the component tall enough to fill its display 
+area vertically, but don't change its width), and GridBagConstraints.BOTH (make 
+the component fill its display area entirely). (|java.awt.GridBagConstraints|) 
+, (|java.awt.GridBagConstraints|) Specifies the component's internal padding 
+within the layout, how much to add to the minimum size of the component. The 
+width of the component will be at least its minimum width plus ipadx pixels. 
+Similarly, the height of the component will be at least the minimum height plus 
+ipady pixels. (|java.awt.GridBagConstraints|) Specifies the component's 
+external padding, the minimum amount of space between the component and the 
+edges of its display area. (|java.awt.GridBagConstraints|) Used when the 
+component is smaller than its display area to determine where (within the 
+display area) to place the component. There are two kinds of possible values: 
+relative and absolute. Relative values are interpreted relative to the 
+container's ComponentOrientation property while absolute values are not. Valid 
+values are: 
+
+
+
+Absolute Values Relative Values 
+
+
+
+GridBagConstraints.NORTH GridBagConstraints.SOUTH GridBagConstraints.WEST 
+GridBagConstraints.EAST GridBagConstraints.NORTHWEST 
+GridBagConstraints.NORTHEAST GridBagConstraints.SOUTHWEST 
+GridBagConstraints.SOUTHEAST GridBagConstraints.CENTER (the default) 
+
+GridBagConstraints.PAGE_START GridBagConstraints.PAGE_END 
+GridBagConstraints.LINE_START GridBagConstraints.LINE_END 
+GridBagConstraints.FIRST_LINE_START GridBagConstraints.FIRST_LINE_END 
+GridBagConstraints.LAST_LINE_START GridBagConstraints.LAST_LINE_END 
+
+
+
+(|java.awt.GridBagConstraints|) , (|java.awt.GridBagConstraints|) Used to 
+determine how to distribute space, which is important for specifying resizing 
+behavior. Unless you specify a weight for at least one component in a row 
+(weightx) and column (weighty), all the components clump together in the center 
+of their container. This is because when the weight is zero (the default), the 
+GridBagLayout object puts any extra space between its grid of cells and the 
+edges of the container. 
+
+The following figures show ten components (all buttons) managed by a grid bag 
+layout. Figure 1 shows the layout for a horizontal, left-to-right container and 
+Figure 2 shows the layout for a horizontal, right-to-left container. 
+
+
+
+
+
+
+
+
+
+Figure 1: Horizontal, Left-to-Right Figure 2: Horizontal, Right-to-Left 
+
+
+
+Each of the ten components has the fill field of its associated 
+GridBagConstraints object set to GridBagConstraints.BOTH. In addition, the 
+components have the following non-default constraints: 
+
+Button1, Button2, Button3: weightx=1.0 Button4: weightx=1.0, 
+gridwidth=GridBagConstraints.REMAINDER Button5: 
+gridwidth=GridBagConstraints.REMAINDER Button6: 
+gridwidth=GridBagConstraints.RELATIVE Button7: 
+gridwidth=GridBagConstraints.REMAINDER Button8: gridheight=2, weighty=1.0 
+Button9, Button 10: gridwidth=GridBagConstraints.REMAINDER 
+
+Here is the code that implements the example shown above: 
+
+
+
+import java.awt.*; import java.util.*; import java.applet.Applet; 
+
+public class GridBagEx1 extends Applet { 
+
+protected void makebutton(String name, GridBagLayout gridbag, 
+GridBagConstraints c) { Button button = new Button(name); 
+gridbag.setConstraints(button, c); add(button); } 
+
+public void init() { GridBagLayout gridbag = new GridBagLayout(); 
+GridBagConstraints c = new GridBagConstraints(); 
+
+setFont(new Font("SansSerif", Font.PLAIN, 14)); setLayout(gridbag); 
+
+c.fill = GridBagConstraints.BOTH; c.weightx = 1.0; makebutton("Button1", 
+gridbag, c); makebutton("Button2", gridbag, c); makebutton("Button3", gridbag, 
+c); 
+
+c.gridwidth = GridBagConstraints.REMAINDER; //end row makebutton("Button4", 
+gridbag, c); 
+
+c.weightx = 0.0; //reset to the default makebutton("Button5", gridbag, c); 
+//another row 
+
+c.gridwidth = GridBagConstraints.RELATIVE; //next-to-last in row 
+makebutton("Button6", gridbag, c); 
+
+c.gridwidth = GridBagConstraints.REMAINDER; //end row makebutton("Button7", 
+gridbag, c); 
+
+c.gridwidth = 1; //reset to the default c.gridheight = 2; c.weighty = 1.0; 
+makebutton("Button8", gridbag, c); 
+
+c.weighty = 0.0; //reset to the default c.gridwidth = 
+GridBagConstraints.REMAINDER; //end row c.gridheight = 1; //reset to the 
+default makebutton("Button9", gridbag, c); makebutton("Button10", gridbag, c); 
+
+setSize(300, 100); } 
+
+public static void main(String args[]) { Frame f = new Frame("GridBag Layout 
+Example"); GridBagEx1 ex1 = new GridBagEx1(); 
+
+ex1.init(); 
+
+f.add("Center", ex1); f.pack(); f.setSize(f.getPreferredSize()); f.show(); } } 
+
+
+
+
+*int_java.awt.GridBagLayout.PREFERREDSIZE*
+
+The GridBagLayout class is a flexible layout manager that aligns components 
+vertically and horizontally, without requiring that the components be of the 
+same size. Each GridBagLayout object maintains a dynamic, rectangular grid of 
+cells, with each component occupying one or more cells, called its display 
+area. 
+
+Each component managed by a GridBagLayout is associated with an instance of 
+(|java.awt.GridBagConstraints|) . The constraints object specifies where a 
+component's display area should be located on the grid and how the component 
+should be positioned within its display area. In addition to its constraints 
+object, the GridBagLayout also considers each component's minimum and preferred 
+sizes in order to determine a component's size. 
+
+The overall orientation of the grid depends on the container's 
+(|java.awt.ComponentOrientation|) property. For horizontal left-to-right 
+orientations, grid coordinate (0,0) is in the upper left corner of the 
+container with x increasing to the right and y increasing downward. For 
+horizontal right-to-left orientations, grid coordinate (0,0) is in the upper 
+right corner of the container with x increasing to the left and y increasing 
+downward. 
+
+To use a grid bag layout effectively, you must customize one or more of the 
+GridBagConstraints objects that are associated with its components. You 
+customize a GridBagConstraints object by setting one or more of its instance 
+variables: 
+
+(|java.awt.GridBagConstraints|) , (|java.awt.GridBagConstraints|) Specifies the 
+cell containing the leading corner of the component's display area, where the 
+cell at the origin of the grid has address gridx=0, gridy=0. For horizontal 
+left-to-right layout, a component's leading corner is its upper left. For 
+horizontal right-to-left layout, a component's leading corner is its upper 
+right. Use GridBagConstraints.RELATIVE (the default value) to specify that the 
+component be placed immediately following (along the x axis for gridx or the y 
+axis for gridy) the component that was added to the container just before this 
+component was added. (|java.awt.GridBagConstraints|) , 
+(|java.awt.GridBagConstraints|) Specifies the number of cells in a row (for 
+gridwidth) or column (for gridheight) in the component's display area. The 
+default value is 1. Use GridBagConstraints.REMAINDER to specify that the 
+component's display area will be from gridx to the last cell in the row (for 
+gridwidth) or from gridy to the last cell in the column (for gridheight). 
+
+Use GridBagConstraints.RELATIVE to specify that the component's display area 
+will be from gridx to the next to the last cell in its row (for gridwidth or 
+from gridy to the next to the last cell in its column (for gridheight). 
+
+(|java.awt.GridBagConstraints|) Used when the component's display area is 
+larger than the component's requested size to determine whether (and how) to 
+resize the component. Possible values are GridBagConstraints.NONE (the 
+default), GridBagConstraints.HORIZONTAL (make the component wide enough to fill 
+its display area horizontally, but don't change its height), 
+GridBagConstraints.VERTICAL (make the component tall enough to fill its display 
+area vertically, but don't change its width), and GridBagConstraints.BOTH (make 
+the component fill its display area entirely). (|java.awt.GridBagConstraints|) 
+, (|java.awt.GridBagConstraints|) Specifies the component's internal padding 
+within the layout, how much to add to the minimum size of the component. The 
+width of the component will be at least its minimum width plus ipadx pixels. 
+Similarly, the height of the component will be at least the minimum height plus 
+ipady pixels. (|java.awt.GridBagConstraints|) Specifies the component's 
+external padding, the minimum amount of space between the component and the 
+edges of its display area. (|java.awt.GridBagConstraints|) Used when the 
+component is smaller than its display area to determine where (within the 
+display area) to place the component. There are two kinds of possible values: 
+relative and absolute. Relative values are interpreted relative to the 
+container's ComponentOrientation property while absolute values are not. Valid 
+values are: 
+
+
+
+Absolute Values Relative Values 
+
+
+
+GridBagConstraints.NORTH GridBagConstraints.SOUTH GridBagConstraints.WEST 
+GridBagConstraints.EAST GridBagConstraints.NORTHWEST 
+GridBagConstraints.NORTHEAST GridBagConstraints.SOUTHWEST 
+GridBagConstraints.SOUTHEAST GridBagConstraints.CENTER (the default) 
+
+GridBagConstraints.PAGE_START GridBagConstraints.PAGE_END 
+GridBagConstraints.LINE_START GridBagConstraints.LINE_END 
+GridBagConstraints.FIRST_LINE_START GridBagConstraints.FIRST_LINE_END 
+GridBagConstraints.LAST_LINE_START GridBagConstraints.LAST_LINE_END 
+
+
+
+(|java.awt.GridBagConstraints|) , (|java.awt.GridBagConstraints|) Used to 
+determine how to distribute space, which is important for specifying resizing 
+behavior. Unless you specify a weight for at least one component in a row 
+(weightx) and column (weighty), all the components clump together in the center 
+of their container. This is because when the weight is zero (the default), the 
+GridBagLayout object puts any extra space between its grid of cells and the 
+edges of the container. 
+
+The following figures show ten components (all buttons) managed by a grid bag 
+layout. Figure 1 shows the layout for a horizontal, left-to-right container and 
+Figure 2 shows the layout for a horizontal, right-to-left container. 
+
+
+
+
+
+
+
+
+
+Figure 1: Horizontal, Left-to-Right Figure 2: Horizontal, Right-to-Left 
+
+
+
+Each of the ten components has the fill field of its associated 
+GridBagConstraints object set to GridBagConstraints.BOTH. In addition, the 
+components have the following non-default constraints: 
+
+Button1, Button2, Button3: weightx=1.0 Button4: weightx=1.0, 
+gridwidth=GridBagConstraints.REMAINDER Button5: 
+gridwidth=GridBagConstraints.REMAINDER Button6: 
+gridwidth=GridBagConstraints.RELATIVE Button7: 
+gridwidth=GridBagConstraints.REMAINDER Button8: gridheight=2, weighty=1.0 
+Button9, Button 10: gridwidth=GridBagConstraints.REMAINDER 
+
+Here is the code that implements the example shown above: 
+
+
+
+import java.awt.*; import java.util.*; import java.applet.Applet; 
+
+public class GridBagEx1 extends Applet { 
+
+protected void makebutton(String name, GridBagLayout gridbag, 
+GridBagConstraints c) { Button button = new Button(name); 
+gridbag.setConstraints(button, c); add(button); } 
+
+public void init() { GridBagLayout gridbag = new GridBagLayout(); 
+GridBagConstraints c = new GridBagConstraints(); 
+
+setFont(new Font("SansSerif", Font.PLAIN, 14)); setLayout(gridbag); 
+
+c.fill = GridBagConstraints.BOTH; c.weightx = 1.0; makebutton("Button1", 
+gridbag, c); makebutton("Button2", gridbag, c); makebutton("Button3", gridbag, 
+c); 
+
+c.gridwidth = GridBagConstraints.REMAINDER; //end row makebutton("Button4", 
+gridbag, c); 
+
+c.weightx = 0.0; //reset to the default makebutton("Button5", gridbag, c); 
+//another row 
+
+c.gridwidth = GridBagConstraints.RELATIVE; //next-to-last in row 
+makebutton("Button6", gridbag, c); 
+
+c.gridwidth = GridBagConstraints.REMAINDER; //end row makebutton("Button7", 
+gridbag, c); 
+
+c.gridwidth = 1; //reset to the default c.gridheight = 2; c.weighty = 1.0; 
+makebutton("Button8", gridbag, c); 
+
+c.weighty = 0.0; //reset to the default c.gridwidth = 
+GridBagConstraints.REMAINDER; //end row c.gridheight = 1; //reset to the 
+default makebutton("Button9", gridbag, c); makebutton("Button10", gridbag, c); 
+
+setSize(300, 100); } 
+
+public static void main(String args[]) { Frame f = new Frame("GridBag Layout 
+Example"); GridBagEx1 ex1 = new GridBagEx1(); 
+
+ex1.init(); 
+
+f.add("Center", ex1); f.pack(); f.setSize(f.getPreferredSize()); f.show(); } } 
+
+
+
+
+*int[]_java.awt.GridBagLayout.rowHeights*
+
+The GridBagLayout class is a flexible layout manager that aligns components 
+vertically and horizontally, without requiring that the components be of the 
+same size. Each GridBagLayout object maintains a dynamic, rectangular grid of 
+cells, with each component occupying one or more cells, called its display 
+area. 
+
+Each component managed by a GridBagLayout is associated with an instance of 
+(|java.awt.GridBagConstraints|) . The constraints object specifies where a 
+component's display area should be located on the grid and how the component 
+should be positioned within its display area. In addition to its constraints 
+object, the GridBagLayout also considers each component's minimum and preferred 
+sizes in order to determine a component's size. 
+
+The overall orientation of the grid depends on the container's 
+(|java.awt.ComponentOrientation|) property. For horizontal left-to-right 
+orientations, grid coordinate (0,0) is in the upper left corner of the 
+container with x increasing to the right and y increasing downward. For 
+horizontal right-to-left orientations, grid coordinate (0,0) is in the upper 
+right corner of the container with x increasing to the left and y increasing 
+downward. 
+
+To use a grid bag layout effectively, you must customize one or more of the 
+GridBagConstraints objects that are associated with its components. You 
+customize a GridBagConstraints object by setting one or more of its instance 
+variables: 
+
+(|java.awt.GridBagConstraints|) , (|java.awt.GridBagConstraints|) Specifies the 
+cell containing the leading corner of the component's display area, where the 
+cell at the origin of the grid has address gridx=0, gridy=0. For horizontal 
+left-to-right layout, a component's leading corner is its upper left. For 
+horizontal right-to-left layout, a component's leading corner is its upper 
+right. Use GridBagConstraints.RELATIVE (the default value) to specify that the 
+component be placed immediately following (along the x axis for gridx or the y 
+axis for gridy) the component that was added to the container just before this 
+component was added. (|java.awt.GridBagConstraints|) , 
+(|java.awt.GridBagConstraints|) Specifies the number of cells in a row (for 
+gridwidth) or column (for gridheight) in the component's display area. The 
+default value is 1. Use GridBagConstraints.REMAINDER to specify that the 
+component's display area will be from gridx to the last cell in the row (for 
+gridwidth) or from gridy to the last cell in the column (for gridheight). 
+
+Use GridBagConstraints.RELATIVE to specify that the component's display area 
+will be from gridx to the next to the last cell in its row (for gridwidth or 
+from gridy to the next to the last cell in its column (for gridheight). 
+
+(|java.awt.GridBagConstraints|) Used when the component's display area is 
+larger than the component's requested size to determine whether (and how) to 
+resize the component. Possible values are GridBagConstraints.NONE (the 
+default), GridBagConstraints.HORIZONTAL (make the component wide enough to fill 
+its display area horizontally, but don't change its height), 
+GridBagConstraints.VERTICAL (make the component tall enough to fill its display 
+area vertically, but don't change its width), and GridBagConstraints.BOTH (make 
+the component fill its display area entirely). (|java.awt.GridBagConstraints|) 
+, (|java.awt.GridBagConstraints|) Specifies the component's internal padding 
+within the layout, how much to add to the minimum size of the component. The 
+width of the component will be at least its minimum width plus ipadx pixels. 
+Similarly, the height of the component will be at least the minimum height plus 
+ipady pixels. (|java.awt.GridBagConstraints|) Specifies the component's 
+external padding, the minimum amount of space between the component and the 
+edges of its display area. (|java.awt.GridBagConstraints|) Used when the 
+component is smaller than its display area to determine where (within the 
+display area) to place the component. There are two kinds of possible values: 
+relative and absolute. Relative values are interpreted relative to the 
+container's ComponentOrientation property while absolute values are not. Valid 
+values are: 
+
+
+
+Absolute Values Relative Values 
+
+
+
+GridBagConstraints.NORTH GridBagConstraints.SOUTH GridBagConstraints.WEST 
+GridBagConstraints.EAST GridBagConstraints.NORTHWEST 
+GridBagConstraints.NORTHEAST GridBagConstraints.SOUTHWEST 
+GridBagConstraints.SOUTHEAST GridBagConstraints.CENTER (the default) 
+
+GridBagConstraints.PAGE_START GridBagConstraints.PAGE_END 
+GridBagConstraints.LINE_START GridBagConstraints.LINE_END 
+GridBagConstraints.FIRST_LINE_START GridBagConstraints.FIRST_LINE_END 
+GridBagConstraints.LAST_LINE_START GridBagConstraints.LAST_LINE_END 
+
+
+
+(|java.awt.GridBagConstraints|) , (|java.awt.GridBagConstraints|) Used to 
+determine how to distribute space, which is important for specifying resizing 
+behavior. Unless you specify a weight for at least one component in a row 
+(weightx) and column (weighty), all the components clump together in the center 
+of their container. This is because when the weight is zero (the default), the 
+GridBagLayout object puts any extra space between its grid of cells and the 
+edges of the container. 
+
+The following figures show ten components (all buttons) managed by a grid bag 
+layout. Figure 1 shows the layout for a horizontal, left-to-right container and 
+Figure 2 shows the layout for a horizontal, right-to-left container. 
+
+
+
+
+
+
+
+
+
+Figure 1: Horizontal, Left-to-Right Figure 2: Horizontal, Right-to-Left 
+
+
+
+Each of the ten components has the fill field of its associated 
+GridBagConstraints object set to GridBagConstraints.BOTH. In addition, the 
+components have the following non-default constraints: 
+
+Button1, Button2, Button3: weightx=1.0 Button4: weightx=1.0, 
+gridwidth=GridBagConstraints.REMAINDER Button5: 
+gridwidth=GridBagConstraints.REMAINDER Button6: 
+gridwidth=GridBagConstraints.RELATIVE Button7: 
+gridwidth=GridBagConstraints.REMAINDER Button8: gridheight=2, weighty=1.0 
+Button9, Button 10: gridwidth=GridBagConstraints.REMAINDER 
+
+Here is the code that implements the example shown above: 
+
+
+
+import java.awt.*; import java.util.*; import java.applet.Applet; 
+
+public class GridBagEx1 extends Applet { 
+
+protected void makebutton(String name, GridBagLayout gridbag, 
+GridBagConstraints c) { Button button = new Button(name); 
+gridbag.setConstraints(button, c); add(button); } 
+
+public void init() { GridBagLayout gridbag = new GridBagLayout(); 
+GridBagConstraints c = new GridBagConstraints(); 
+
+setFont(new Font("SansSerif", Font.PLAIN, 14)); setLayout(gridbag); 
+
+c.fill = GridBagConstraints.BOTH; c.weightx = 1.0; makebutton("Button1", 
+gridbag, c); makebutton("Button2", gridbag, c); makebutton("Button3", gridbag, 
+c); 
+
+c.gridwidth = GridBagConstraints.REMAINDER; //end row makebutton("Button4", 
+gridbag, c); 
+
+c.weightx = 0.0; //reset to the default makebutton("Button5", gridbag, c); 
+//another row 
+
+c.gridwidth = GridBagConstraints.RELATIVE; //next-to-last in row 
+makebutton("Button6", gridbag, c); 
+
+c.gridwidth = GridBagConstraints.REMAINDER; //end row makebutton("Button7", 
+gridbag, c); 
+
+c.gridwidth = 1; //reset to the default c.gridheight = 2; c.weighty = 1.0; 
+makebutton("Button8", gridbag, c); 
+
+c.weighty = 0.0; //reset to the default c.gridwidth = 
+GridBagConstraints.REMAINDER; //end row c.gridheight = 1; //reset to the 
+default makebutton("Button9", gridbag, c); makebutton("Button10", gridbag, c); 
+
+setSize(300, 100); } 
+
+public static void main(String args[]) { Frame f = new Frame("GridBag Layout 
+Example"); GridBagEx1 ex1 = new GridBagEx1(); 
+
+ex1.init(); 
+
+f.add("Center", ex1); f.pack(); f.setSize(f.getPreferredSize()); f.show(); } } 
+
+
+
+
+*double[]_java.awt.GridBagLayout.rowWeights*
+
+The GridBagLayout class is a flexible layout manager that aligns components 
+vertically and horizontally, without requiring that the components be of the 
+same size. Each GridBagLayout object maintains a dynamic, rectangular grid of 
+cells, with each component occupying one or more cells, called its display 
+area. 
+
+Each component managed by a GridBagLayout is associated with an instance of 
+(|java.awt.GridBagConstraints|) . The constraints object specifies where a 
+component's display area should be located on the grid and how the component 
+should be positioned within its display area. In addition to its constraints 
+object, the GridBagLayout also considers each component's minimum and preferred 
+sizes in order to determine a component's size. 
+
+The overall orientation of the grid depends on the container's 
+(|java.awt.ComponentOrientation|) property. For horizontal left-to-right 
+orientations, grid coordinate (0,0) is in the upper left corner of the 
+container with x increasing to the right and y increasing downward. For 
+horizontal right-to-left orientations, grid coordinate (0,0) is in the upper 
+right corner of the container with x increasing to the left and y increasing 
+downward. 
+
+To use a grid bag layout effectively, you must customize one or more of the 
+GridBagConstraints objects that are associated with its components. You 
+customize a GridBagConstraints object by setting one or more of its instance 
+variables: 
+
+(|java.awt.GridBagConstraints|) , (|java.awt.GridBagConstraints|) Specifies the 
+cell containing the leading corner of the component's display area, where the 
+cell at the origin of the grid has address gridx=0, gridy=0. For horizontal 
+left-to-right layout, a component's leading corner is its upper left. For 
+horizontal right-to-left layout, a component's leading corner is its upper 
+right. Use GridBagConstraints.RELATIVE (the default value) to specify that the 
+component be placed immediately following (along the x axis for gridx or the y 
+axis for gridy) the component that was added to the container just before this 
+component was added. (|java.awt.GridBagConstraints|) , 
+(|java.awt.GridBagConstraints|) Specifies the number of cells in a row (for 
+gridwidth) or column (for gridheight) in the component's display area. The 
+default value is 1. Use GridBagConstraints.REMAINDER to specify that the 
+component's display area will be from gridx to the last cell in the row (for 
+gridwidth) or from gridy to the last cell in the column (for gridheight). 
+
+Use GridBagConstraints.RELATIVE to specify that the component's display area 
+will be from gridx to the next to the last cell in its row (for gridwidth or 
+from gridy to the next to the last cell in its column (for gridheight). 
+
+(|java.awt.GridBagConstraints|) Used when the component's display area is 
+larger than the component's requested size to determine whether (and how) to 
+resize the component. Possible values are GridBagConstraints.NONE (the 
+default), GridBagConstraints.HORIZONTAL (make the component wide enough to fill 
+its display area horizontally, but don't change its height), 
+GridBagConstraints.VERTICAL (make the component tall enough to fill its display 
+area vertically, but don't change its width), and GridBagConstraints.BOTH (make 
+the component fill its display area entirely). (|java.awt.GridBagConstraints|) 
+, (|java.awt.GridBagConstraints|) Specifies the component's internal padding 
+within the layout, how much to add to the minimum size of the component. The 
+width of the component will be at least its minimum width plus ipadx pixels. 
+Similarly, the height of the component will be at least the minimum height plus 
+ipady pixels. (|java.awt.GridBagConstraints|) Specifies the component's 
+external padding, the minimum amount of space between the component and the 
+edges of its display area. (|java.awt.GridBagConstraints|) Used when the 
+component is smaller than its display area to determine where (within the 
+display area) to place the component. There are two kinds of possible values: 
+relative and absolute. Relative values are interpreted relative to the 
+container's ComponentOrientation property while absolute values are not. Valid 
+values are: 
+
+
+
+Absolute Values Relative Values 
+
+
+
+GridBagConstraints.NORTH GridBagConstraints.SOUTH GridBagConstraints.WEST 
+GridBagConstraints.EAST GridBagConstraints.NORTHWEST 
+GridBagConstraints.NORTHEAST GridBagConstraints.SOUTHWEST 
+GridBagConstraints.SOUTHEAST GridBagConstraints.CENTER (the default) 
+
+GridBagConstraints.PAGE_START GridBagConstraints.PAGE_END 
+GridBagConstraints.LINE_START GridBagConstraints.LINE_END 
+GridBagConstraints.FIRST_LINE_START GridBagConstraints.FIRST_LINE_END 
+GridBagConstraints.LAST_LINE_START GridBagConstraints.LAST_LINE_END 
+
+
+
+(|java.awt.GridBagConstraints|) , (|java.awt.GridBagConstraints|) Used to 
+determine how to distribute space, which is important for specifying resizing 
+behavior. Unless you specify a weight for at least one component in a row 
+(weightx) and column (weighty), all the components clump together in the center 
+of their container. This is because when the weight is zero (the default), the 
+GridBagLayout object puts any extra space between its grid of cells and the 
+edges of the container. 
+
+The following figures show ten components (all buttons) managed by a grid bag 
+layout. Figure 1 shows the layout for a horizontal, left-to-right container and 
+Figure 2 shows the layout for a horizontal, right-to-left container. 
+
+
+
+
+
+
+
+
+
+Figure 1: Horizontal, Left-to-Right Figure 2: Horizontal, Right-to-Left 
+
+
+
+Each of the ten components has the fill field of its associated 
+GridBagConstraints object set to GridBagConstraints.BOTH. In addition, the 
+components have the following non-default constraints: 
+
+Button1, Button2, Button3: weightx=1.0 Button4: weightx=1.0, 
+gridwidth=GridBagConstraints.REMAINDER Button5: 
+gridwidth=GridBagConstraints.REMAINDER Button6: 
+gridwidth=GridBagConstraints.RELATIVE Button7: 
+gridwidth=GridBagConstraints.REMAINDER Button8: gridheight=2, weighty=1.0 
+Button9, Button 10: gridwidth=GridBagConstraints.REMAINDER 
+
+Here is the code that implements the example shown above: 
+
+
+
+import java.awt.*; import java.util.*; import java.applet.Applet; 
+
+public class GridBagEx1 extends Applet { 
+
+protected void makebutton(String name, GridBagLayout gridbag, 
+GridBagConstraints c) { Button button = new Button(name); 
+gridbag.setConstraints(button, c); add(button); } 
+
+public void init() { GridBagLayout gridbag = new GridBagLayout(); 
+GridBagConstraints c = new GridBagConstraints(); 
+
+setFont(new Font("SansSerif", Font.PLAIN, 14)); setLayout(gridbag); 
+
+c.fill = GridBagConstraints.BOTH; c.weightx = 1.0; makebutton("Button1", 
+gridbag, c); makebutton("Button2", gridbag, c); makebutton("Button3", gridbag, 
+c); 
+
+c.gridwidth = GridBagConstraints.REMAINDER; //end row makebutton("Button4", 
+gridbag, c); 
+
+c.weightx = 0.0; //reset to the default makebutton("Button5", gridbag, c); 
+//another row 
+
+c.gridwidth = GridBagConstraints.RELATIVE; //next-to-last in row 
+makebutton("Button6", gridbag, c); 
+
+c.gridwidth = GridBagConstraints.REMAINDER; //end row makebutton("Button7", 
+gridbag, c); 
+
+c.gridwidth = 1; //reset to the default c.gridheight = 2; c.weighty = 1.0; 
+makebutton("Button8", gridbag, c); 
+
+c.weighty = 0.0; //reset to the default c.gridwidth = 
+GridBagConstraints.REMAINDER; //end row c.gridheight = 1; //reset to the 
+default makebutton("Button9", gridbag, c); makebutton("Button10", gridbag, c); 
+
+setSize(300, 100); } 
+
+public static void main(String args[]) { Frame f = new Frame("GridBag Layout 
+Example"); GridBagEx1 ex1 = new GridBagEx1(); 
+
+ex1.init(); 
+
+f.add("Center", ex1); f.pack(); f.setSize(f.getPreferredSize()); f.show(); } } 
+
+
+
+
+
+*java.awt.GridBagLayout()*
+
+public GridBagLayout()
+
+Creates a grid bag layout manager. 
+
+
+*java.awt.GridBagLayout.addLayoutComponent(Component,Object)*
+
+public void addLayoutComponent(
+  java.awt.Component comp,
+  java.lang.Object constraints)
+
+Adds the specified component to the layout, using the specified constraints 
+object. Note that constraints are mutable and are, therefore, cloned when 
+cached. 
+
+    comp - the component to be added 
+    constraints - an object that determines how the component is added to the layout 
+
+*java.awt.GridBagLayout.addLayoutComponent(String,Component)*
+
+public void addLayoutComponent(
+  java.lang.String name,
+  java.awt.Component comp)
+
+Has no effect, since this layout manager does not use a per-component string. 
+
+
+*java.awt.GridBagLayout.adjustForGravity(GridBagConstraints,Rectangle)*
+
+protected void adjustForGravity(
+  java.awt.GridBagConstraints constraints,
+  java.awt.Rectangle r)
+
+Adjusts the x, y, width, and height fields to the correct values depending on 
+the constraint geometry and pads. This method should only be used internally by 
+GridBagLayout. 
+
+    constraints - the constraints to be applied 
+    r - the Rectangle to be adjusted 
+
+*java.awt.GridBagLayout.AdjustForGravity(GridBagConstraints,Rectangle)*
+
+protected void AdjustForGravity(
+  java.awt.GridBagConstraints constraints,
+  java.awt.Rectangle r)
+
+This method is obsolete and supplied for backwards compatability only; new code 
+should call adjustForGravity(|java.awt.GridBagLayout|) instead. This method is 
+the same as adjustForGravity; refer to adjustForGravity for details on 
+parameters. 
+
+
+*java.awt.GridBagLayout.arrangeGrid(Container)*
+
+protected void arrangeGrid(java.awt.Container parent)
+
+Lays out the grid. This method should only be used internally by GridBagLayout. 
+
+    parent - the layout container 
+
+*java.awt.GridBagLayout.ArrangeGrid(Container)*
+
+protected void ArrangeGrid(java.awt.Container parent)
+
+This method is obsolete and supplied for backwards compatability only; new code 
+should call arrangeGrid(|java.awt.GridBagLayout|) instead. This method is the 
+same as arrangeGrid; refer to arrangeGrid for details on the parameter. 
+
+
+*java.awt.GridBagLayout.getConstraints(Component)*
+
+public |java.awt.GridBagConstraints| getConstraints(java.awt.Component comp)
+
+Gets the constraints for the specified component. A copy of the actual 
+GridBagConstraints object is returned. 
+
+    comp - the component to be queried 
+
+    Returns: the constraint for the specified component in this grid bag layout; a copy of 
+             the actual constraint object is returned 
+*java.awt.GridBagLayout.getLayoutAlignmentX(Container)*
+
+public float getLayoutAlignmentX(java.awt.Container parent)
+
+Returns the alignment along the x axis. This specifies how the component would 
+like to be aligned relative to other components. The value should be a number 
+between 0 and 1 where 0 represents alignment along the origin, 1 is aligned the 
+furthest away from the origin, 0.5 is centered, etc. 
+
+
+    Returns: the value 0.5f to indicate centered 
+*java.awt.GridBagLayout.getLayoutAlignmentY(Container)*
+
+public float getLayoutAlignmentY(java.awt.Container parent)
+
+Returns the alignment along the y axis. This specifies how the component would 
+like to be aligned relative to other components. The value should be a number 
+between 0 and 1 where 0 represents alignment along the origin, 1 is aligned the 
+furthest away from the origin, 0.5 is centered, etc. 
+
+
+    Returns: the value 0.5f to indicate centered 
+*java.awt.GridBagLayout.getLayoutDimensions()*
+
+public int getLayoutDimensions()
+
+Determines column widths and row heights for the layout grid. 
+
+Most applications do not call this method directly. 
+
+
+    Returns: an array of two arrays, containing the widths of the layout columns and the 
+             heights of the layout rows 
+*java.awt.GridBagLayout.getLayoutInfo(Container,int)*
+
+protected |java.awt.GridBagLayoutInfo| getLayoutInfo(
+  java.awt.Container parent,
+  int sizeflag)
+
+Fills in an instance of GridBagLayoutInfo for the current set of managed 
+children. This requires three passes through the set of children: 
+
+Figure out the dimensions of the layout grid. Determine which cells the 
+components occupy. Distribute the weights and min sizes amoung the 
+rows/columns. 
+
+This also caches the minsizes for all the children when they are first 
+encountered (so subsequent loops don't need to ask again). 
+
+This method should only be used internally by GridBagLayout. 
+
+    parent - the layout container 
+    sizeflag - either PREFERREDSIZE or MINSIZE 
+
+    Returns: the GridBagLayoutInfo for the set of children 
+*java.awt.GridBagLayout.GetLayoutInfo(Container,int)*
+
+protected |java.awt.GridBagLayoutInfo| GetLayoutInfo(
+  java.awt.Container parent,
+  int sizeflag)
+
+This method is obsolete and supplied for backwards compatability only; new code 
+should call getLayoutInfo(|java.awt.GridBagLayout|) instead. This method is the 
+same as getLayoutInfo; refer to getLayoutInfo for details on parameters and 
+return value. 
+
+
+*java.awt.GridBagLayout.getLayoutOrigin()*
+
+public |java.awt.Point| getLayoutOrigin()
+
+Determines the origin of the layout area, in the graphics coordinate space of 
+the target container. This value represents the pixel coordinates of the 
+top-left corner of the layout area regardless of the ComponentOrientation value 
+of the container. This is distinct from the grid origin given by the cell 
+coordinates (0,0). Most applications do not call this method directly. 
+
+
+    Returns: the graphics origin of the cell in the top-left corner of the layout grid 
+*java.awt.GridBagLayout.getLayoutWeights()*
+
+public double getLayoutWeights()
+
+Determines the weights of the layout grid's columns and rows. Weights are used 
+to calculate how much a given column or row stretches beyond its preferred 
+size, if the layout has extra room to fill. 
+
+Most applications do not call this method directly. 
+
+
+    Returns: an array of two arrays, representing the horizontal weights of the layout 
+             columns and the vertical weights of the layout rows 
+*java.awt.GridBagLayout.getMinSize(Container,GridBagLayoutInfo)*
+
+protected |java.awt.Dimension| getMinSize(
+  java.awt.Container parent,
+  java.awt.GridBagLayoutInfo info)
+
+Figures out the minimum size of the master based on the information from 
+getLayoutInfo. This method should only be used internally by GridBagLayout. 
+
+    parent - the layout container 
+    info - the layout info for this parent 
+
+    Returns: a Dimension object containing the minimum size 
+*java.awt.GridBagLayout.GetMinSize(Container,GridBagLayoutInfo)*
+
+protected |java.awt.Dimension| GetMinSize(
+  java.awt.Container parent,
+  java.awt.GridBagLayoutInfo info)
+
+This method is obsolete and supplied for backwards compatability only; new code 
+should call getMinSize(|java.awt.GridBagLayout|) instead. This method is the 
+same as getMinSize; refer to getMinSize for details on parameters and return 
+value. 
+
+
+*java.awt.GridBagLayout.invalidateLayout(Container)*
+
+public void invalidateLayout(java.awt.Container target)
+
+Invalidates the layout, indicating that if the layout manager has cached 
+information it should be discarded. 
+
+
+*java.awt.GridBagLayout.layoutContainer(Container)*
+
+public void layoutContainer(java.awt.Container parent)
+
+Lays out the specified container using this grid bag layout. This method 
+reshapes components in the specified container in order to satisfy the 
+contraints of this GridBagLayout object. 
+
+Most applications do not call this method directly. 
+
+    parent - the container in which to do the layout 
+
+*java.awt.GridBagLayout.location(int,int)*
+
+public |java.awt.Point| location(
+  int x,
+  int y)
+
+Determines which cell in the layout grid contains the point specified by (x,y). 
+Each cell is identified by its column index (ranging from 0 to the number of 
+columns minus 1) and its row index (ranging from 0 to the number of rows minus 
+1). 
+
+If the (x,y) point lies outside the grid, the following rules are used. The 
+column index is returned as zero if x lies to the left of the layout for a 
+left-to-right container or to the right of the layout for a right-to-left 
+container. The column index is returned as the number of columns if x lies to 
+the right of the layout in a left-to-right container or to the left in a 
+right-to-left container. The row index is returned as zero if y lies above the 
+layout, and as the number of rows if y lies below the layout. The orientation 
+of a container is determined by its ComponentOrientation property. 
+
+    x - the x coordinate of a point 
+    y - the y coordinate of a point 
+
+    Returns: an ordered pair of indexes that indicate which cell in the layout grid contains 
+             the point (x,y). 
+*java.awt.GridBagLayout.lookupConstraints(Component)*
+
+protected |java.awt.GridBagConstraints| lookupConstraints(java.awt.Component comp)
+
+Retrieves the constraints for the specified component. The return value is not 
+a copy, but is the actual GridBagConstraints object used by the layout 
+mechanism. 
+
+If comp is not in the GridBagLayout, a set of default GridBagConstraints are 
+returned. A comp value of null is invalid and returns null. 
+
+    comp - the component to be queried 
+
+    Returns: the contraints for the specified component 
+*java.awt.GridBagLayout.maximumLayoutSize(Container)*
+
+public |java.awt.Dimension| maximumLayoutSize(java.awt.Container target)
+
+Returns the maximum dimensions for this layout given the components in the 
+specified target container. 
+
+    target - the container which needs to be laid out 
+
+    Returns: the maximum dimensions for this layout 
+*java.awt.GridBagLayout.minimumLayoutSize(Container)*
+
+public |java.awt.Dimension| minimumLayoutSize(java.awt.Container parent)
+
+Determines the minimum size of the parent container using this grid bag layout. 
+
+Most applications do not call this method directly. 
+
+    parent - the container in which to do the layout 
+
+    Returns: the minimum size of the parent container 
+*java.awt.GridBagLayout.preferredLayoutSize(Container)*
+
+public |java.awt.Dimension| preferredLayoutSize(java.awt.Container parent)
+
+Determines the preferred size of the parent container using this grid bag 
+layout. 
+
+Most applications do not call this method directly. 
+
+    parent - the container in which to do the layout 
+
+    Returns: the preferred size of the parent container 
+*java.awt.GridBagLayout.removeLayoutComponent(Component)*
+
+public void removeLayoutComponent(java.awt.Component comp)
+
+Removes the specified component from this layout. 
+
+Most applications do not call this method directly. 
+
+    comp - the component to be removed. 
+
+*java.awt.GridBagLayout.setConstraints(Component,GridBagConstraints)*
+
+public void setConstraints(
+  java.awt.Component comp,
+  java.awt.GridBagConstraints constraints)
+
+Sets the constraints for the specified component in this layout. 
+
+    comp - the component to be modified 
+    constraints - the constraints to be applied 
+
+*java.awt.GridBagLayout.toString()*
+
+public |java.lang.String| toString()
+
+Returns a string representation of this grid bag layout's values. 
+
+
+    Returns: a string representation of this grid bag layout. 
+

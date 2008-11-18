@@ -1,0 +1,183 @@
+*java.security.KeyFactory* *KeyFactory* Key factories are used to convert keys (
+
+public class KeyFactory
+  extends    |java.lang.Object|
+
+|java.security.KeyFactory_Description|
+|java.security.KeyFactory_Fields|
+|java.security.KeyFactory_Constructors|
+|java.security.KeyFactory_Methods|
+
+================================================================================
+
+*java.security.KeyFactory_Constructors*
+|java.security.KeyFactory(KeyFactorySpi,Provider,String)|Creates a KeyFactory o
+
+*java.security.KeyFactory_Methods*
+|java.security.KeyFactory.generatePrivate(KeySpec)|Generates a private key obje
+|java.security.KeyFactory.generatePublic(KeySpec)|Generates a public key object
+|java.security.KeyFactory.getAlgorithm()|Gets the name of the algorithm   assoc
+|java.security.KeyFactory.getInstance(String)|Generates a KeyFactory object tha
+|java.security.KeyFactory.getInstance(String,Provider)|Generates a KeyFactory o
+|java.security.KeyFactory.getInstance(String,String)|Generates a KeyFactory obj
+|java.security.KeyFactory.getKeySpec(Key,Class)|Returns a specification (key ma
+|java.security.KeyFactory.getProvider()|Returns the provider of this key factor
+|java.security.KeyFactory.translateKey(Key)|Translates a key object, whose prov
+
+*java.security.KeyFactory_Description*
+
+Key factories are used to convert keys (opaque cryptographic keys of type Key) 
+into key specifications (transparent representations of the underlying key 
+material), and vice versa. 
+
+Key factories are bi-directional. That is, they allow you to build an opaque 
+key object from a given key specification (key material), or to retrieve the 
+underlying key material of a key object in a suitable format. 
+
+Multiple compatible key specifications may exist for the same key. For example, 
+a DSA public key may be specified using DSAPublicKeySpec or X509EncodedKeySpec. 
+A key factory can be used to translate between compatible key specifications. 
+
+The following is an example of how to use a key factory in order to instantiate 
+a DSA public key from its encoding. Assume Alice has received a digital 
+signature from Bob. Bob also sent her his public key (in encoded format) to 
+verify his signature. Alice then performs the following actions: 
+
+
+
+X509EncodedKeySpec bobPubKeySpec = new X509EncodedKeySpec(bobEncodedPubKey); 
+KeyFactory keyFactory = KeyFactory.getInstance("DSA"); PublicKey bobPubKey = 
+keyFactory.generatePublic(bobPubKeySpec); Signature sig = 
+Signature.getInstance("DSA"); sig.initVerify(bobPubKey); sig.update(data); 
+sig.verify(signature); 
+
+
+*java.security.KeyFactory(KeyFactorySpi,Provider,String)*
+
+protected KeyFactory(
+  java.security.KeyFactorySpi keyFacSpi,
+  java.security.Provider provider,
+  java.lang.String algorithm)
+
+Creates a KeyFactory object. 
+
+    keyFacSpi - the delegate 
+    provider - the provider 
+    algorithm - the name of the algorithm to associate with this KeyFactory 
+
+*java.security.KeyFactory.generatePrivate(KeySpec)*
+
+public final |java.security.PrivateKey| generatePrivate(java.security.spec.KeySpec keySpec)
+  throws |java.security.spec.InvalidKeySpecException|
+         
+Generates a private key object from the provided key specification (key 
+material). 
+
+    keySpec - the specification (key material) of the private key. 
+
+    Returns: the private key. 
+*java.security.KeyFactory.generatePublic(KeySpec)*
+
+public final |java.security.PublicKey| generatePublic(java.security.spec.KeySpec keySpec)
+  throws |java.security.spec.InvalidKeySpecException|
+         
+Generates a public key object from the provided key specification (key 
+material). 
+
+    keySpec - the specification (key material) of the public key. 
+
+    Returns: the public key. 
+*java.security.KeyFactory.getAlgorithm()*
+
+public final |java.lang.String| getAlgorithm()
+
+Gets the name of the algorithm associated with this KeyFactory. 
+
+
+    Returns: the name of the algorithm associated with this KeyFactory 
+*java.security.KeyFactory.getInstance(String)*
+
+public static |java.security.KeyFactory| getInstance(java.lang.String algorithm)
+  throws |java.security.NoSuchAlgorithmException|
+         
+Generates a KeyFactory object that implements the specified algorithm. If the 
+default provider package provides an implementation of the requested algorithm, 
+an instance of KeyFactory containing that implementation is returned. If the 
+algorithm is not available in the default package, other packages are searched. 
+
+    algorithm - the name of the requested key algorithm. See Appendix A in the Java 
+       Cryptography Architecture API Specification and Reference for 
+       information about standard algorithm names. 
+
+    Returns: a KeyFactory object for the specified algorithm. 
+*java.security.KeyFactory.getInstance(String,Provider)*
+
+public static |java.security.KeyFactory| getInstance(
+  java.lang.String algorithm,
+  java.security.Provider provider)
+  throws |java.security.NoSuchAlgorithmException|
+         
+Generates a KeyFactory object for the specified algorithm from the specified 
+provider. Note: the provider doesn't have to be registered. 
+
+    algorithm - the name of the requested key algorithm. See Appendix A in the Java 
+       Cryptography Architecture API Specification and Reference for 
+       information about standard algorithm names. 
+    provider - the provider. 
+
+    Returns: a KeyFactory object for the specified algorithm. 
+*java.security.KeyFactory.getInstance(String,String)*
+
+public static |java.security.KeyFactory| getInstance(
+  java.lang.String algorithm,
+  java.lang.String provider)
+  throws |java.security.NoSuchAlgorithmException|
+         |java.security.NoSuchProviderException|
+         
+Generates a KeyFactory object for the specified algorithm from the specified 
+provider. 
+
+    algorithm - the name of the requested key algorithm. See Appendix A in the Java 
+       Cryptography Architecture API Specification and Reference for 
+       information about standard algorithm names. 
+    provider - the name of the provider. 
+
+    Returns: a KeyFactory object for the specified algorithm. 
+*java.security.KeyFactory.getKeySpec(Key,Class)*
+
+public final |java.security.spec.KeySpec| getKeySpec(
+  java.security.Key key,
+  java.lang.Class keySpec)
+  throws |java.security.spec.InvalidKeySpecException|
+         
+Returns a specification (key material) of the given key object. keySpec 
+identifies the specification class in which the key material should be 
+returned. It could, for example, be DSAPublicKeySpec.class, to indicate that 
+the key material should be returned in an instance of the DSAPublicKeySpec 
+class. 
+
+    key - the key. 
+    keySpec - the specification class in which the key material should be returned. 
+
+    Returns: the underlying key specification (key material) in an instance of the requested 
+             specification class. 
+*java.security.KeyFactory.getProvider()*
+
+public final |java.security.Provider| getProvider()
+
+Returns the provider of this key factory object. 
+
+
+    Returns: the provider of this key factory object 
+*java.security.KeyFactory.translateKey(Key)*
+
+public final |java.security.Key| translateKey(java.security.Key key)
+  throws |java.security.InvalidKeyException|
+         
+Translates a key object, whose provider may be unknown or potentially 
+untrusted, into a corresponding key object of this key factory. 
+
+    key - the key whose provider is unknown or untrusted. 
+
+    Returns: the translated key. 
+

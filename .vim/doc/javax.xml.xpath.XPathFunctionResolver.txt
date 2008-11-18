@@ -1,0 +1,50 @@
+*javax.xml.xpath.XPathFunctionResolver* *XPathFunctionResolver* XPathFunctionRes
+
+public interface interface XPathFunctionResolver
+
+
+|javax.xml.xpath.XPathFunctionResolver_Description|
+|javax.xml.xpath.XPathFunctionResolver_Fields|
+|javax.xml.xpath.XPathFunctionResolver_Constructors|
+|javax.xml.xpath.XPathFunctionResolver_Methods|
+
+================================================================================
+
+*javax.xml.xpath.XPathFunctionResolver_Methods*
+|javax.xml.xpath.XPathFunctionResolver.resolveFunction(QName,int)|Find a functi
+
+*javax.xml.xpath.XPathFunctionResolver_Description*
+
+XPathFunctionResolver provides access to the set of user defined 
+XPathFunctions. 
+
+XPath functions are resolved by name and arity. The resolver is not needed for 
+XPath built-in functions and the resolver cannot be used to override those 
+functions. 
+
+In particular, the resolver is only called for functions in an another 
+namespace (functions with an explicit prefix). This means that you cannot use 
+the XPathFunctionResolver to implement specifications like XML-Signature Syntax 
+and Processing which extend the function library of XPath 1.0 in the same 
+namespace. This is a consequence of the design of the resolver. 
+
+If you wish to implement additional built-in functions, you will have to extend 
+the underlying implementation directly. 
+
+
+*javax.xml.xpath.XPathFunctionResolver.resolveFunction(QName,int)*
+
+public |javax.xml.xpath.XPathFunction| resolveFunction(
+  javax.xml.namespace.QName functionName,
+  int arity)
+
+Find a function in the set of available functions. 
+
+If functionName or arity is null, then a NullPointerException is thrown. 
+
+    functionName - The function name. 
+    arity - The number of arguments that the returned function must accept. 
+
+    Returns: The function or null if no function named functionName with arity arguments 
+             exists. 
+

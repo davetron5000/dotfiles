@@ -1,0 +1,399 @@
+*javax.swing.text.AbstractWriter* *AbstractWriter* AbstractWriter is an abstract
+
+public abstract class AbstractWriter
+  extends    |java.lang.Object|
+
+|javax.swing.text.AbstractWriter_Description|
+|javax.swing.text.AbstractWriter_Fields|
+|javax.swing.text.AbstractWriter_Constructors|
+|javax.swing.text.AbstractWriter_Methods|
+
+================================================================================
+
+*javax.swing.text.AbstractWriter_Fields*
+|char_javax.swing.text.AbstractWriter.NEWLINE|
+
+*javax.swing.text.AbstractWriter_Constructors*
+|javax.swing.text.AbstractWriter(Writer,Document)|Creates a new AbstractWriter.
+|javax.swing.text.AbstractWriter(Writer,Document,int,int)|Creates a new Abstrac
+|javax.swing.text.AbstractWriter(Writer,Element)|Creates a new AbstractWriter.
+|javax.swing.text.AbstractWriter(Writer,Element,int,int)|Creates a new Abstract
+
+*javax.swing.text.AbstractWriter_Methods*
+|javax.swing.text.AbstractWriter.decrIndent()|Decrements the indent level.
+|javax.swing.text.AbstractWriter.getCanWrapLines()|Returns whether or not the l
+|javax.swing.text.AbstractWriter.getCurrentLineLength()|Returns the current lin
+|javax.swing.text.AbstractWriter.getDocument()|Fetches the document.
+|javax.swing.text.AbstractWriter.getElementIterator()|Fetches the ElementIterat
+|javax.swing.text.AbstractWriter.getEndOffset()|Returns the last offset to be o
+|javax.swing.text.AbstractWriter.getIndentLevel()|Returns the current indentati
+|javax.swing.text.AbstractWriter.getIndentSpace()|Returns the amount of space t
+|javax.swing.text.AbstractWriter.getLineLength()|Returns the maximum line lengt
+|javax.swing.text.AbstractWriter.getLineSeparator()|Returns the string used to 
+|javax.swing.text.AbstractWriter.getStartOffset()|Returns the first offset to b
+|javax.swing.text.AbstractWriter.getText(Element)|Returns the text associated w
+|javax.swing.text.AbstractWriter.getWriter()|Returns the Writer that is used to
+|javax.swing.text.AbstractWriter.incrIndent()|Increments the indent level.
+|javax.swing.text.AbstractWriter.indent()|Does indentation.
+|javax.swing.text.AbstractWriter.inRange(Element)|This method determines whethe
+|javax.swing.text.AbstractWriter.isLineEmpty()|Returns true if the current line
+|javax.swing.text.AbstractWriter.output(char[],int,int)|The last stop in writin
+|javax.swing.text.AbstractWriter.setCanWrapLines(boolean)|Sets whether or not l
+|javax.swing.text.AbstractWriter.setCurrentLineLength(int)|Sets the current lin
+|javax.swing.text.AbstractWriter.setIndentSpace(int)|Enables subclasses to spec
+|javax.swing.text.AbstractWriter.setLineLength(int)|Enables subclasses to set t
+|javax.swing.text.AbstractWriter.setLineSeparator(String)|Sets the String used 
+|javax.swing.text.AbstractWriter.text(Element)|Writes out text.
+|javax.swing.text.AbstractWriter.write()|This abstract method needs to be imple
+|javax.swing.text.AbstractWriter.write(char)|Writes out a character.
+|javax.swing.text.AbstractWriter.write(char[],int,int)|All write methods call i
+|javax.swing.text.AbstractWriter.write(String)|Writes out a string.
+|javax.swing.text.AbstractWriter.writeAttributes(AttributeSet)|Writes out the s
+|javax.swing.text.AbstractWriter.writeLineSeparator()|Writes the line separator
+
+*javax.swing.text.AbstractWriter_Description*
+
+AbstractWriter is an abstract class that actually does the work of writing out 
+the element tree including the attributes. In terms of how much is written out 
+per line, the writer defaults to 100. But this value can be set by subclasses. 
+
+
+*char_javax.swing.text.AbstractWriter.NEWLINE*
+
+AbstractWriter is an abstract class that actually does the work of writing out 
+the element tree including the attributes. In terms of how much is written out 
+per line, the writer defaults to 100. But this value can be set by subclasses. 
+
+
+
+*javax.swing.text.AbstractWriter(Writer,Document)*
+
+protected AbstractWriter(
+  java.io.Writer w,
+  javax.swing.text.Document doc)
+
+Creates a new AbstractWriter. Initializes the ElementIterator with the default 
+root of the document. 
+
+    w - a Writer. 
+    doc - a Document 
+
+*javax.swing.text.AbstractWriter(Writer,Document,int,int)*
+
+protected AbstractWriter(
+  java.io.Writer w,
+  javax.swing.text.Document doc,
+  int pos,
+  int len)
+
+Creates a new AbstractWriter. Initializes the ElementIterator with the element 
+passed in. 
+
+    w - a Writer 
+    doc - an Element 
+    pos - The location in the document to fetch the content. 
+    len - The amount to write out. 
+
+*javax.swing.text.AbstractWriter(Writer,Element)*
+
+protected AbstractWriter(
+  java.io.Writer w,
+  javax.swing.text.Element root)
+
+Creates a new AbstractWriter. Initializes the ElementIterator with the element 
+passed in. 
+
+    w - a Writer 
+    root - an Element 
+
+*javax.swing.text.AbstractWriter(Writer,Element,int,int)*
+
+protected AbstractWriter(
+  java.io.Writer w,
+  javax.swing.text.Element root,
+  int pos,
+  int len)
+
+Creates a new AbstractWriter. Initializes the ElementIterator with the element 
+passed in. 
+
+    w - a Writer 
+    root - an Element 
+    pos - The location in the document to fetch the content. 
+    len - The amount to write out. 
+
+*javax.swing.text.AbstractWriter.decrIndent()*
+
+protected void decrIndent()
+
+Decrements the indent level. 
+
+
+*javax.swing.text.AbstractWriter.getCanWrapLines()*
+
+protected boolean getCanWrapLines()
+
+Returns whether or not the lines can be wrapped. If this is false no 
+lineSeparator's will be output. 
+
+
+*javax.swing.text.AbstractWriter.getCurrentLineLength()*
+
+protected int getCurrentLineLength()
+
+Returns the current line length. 
+
+
+*javax.swing.text.AbstractWriter.getDocument()*
+
+protected |javax.swing.text.Document| getDocument()
+
+Fetches the document. 
+
+
+    Returns: the Document. 
+*javax.swing.text.AbstractWriter.getElementIterator()*
+
+protected |javax.swing.text.ElementIterator| getElementIterator()
+
+Fetches the ElementIterator. 
+
+
+    Returns: the ElementIterator. 
+*javax.swing.text.AbstractWriter.getEndOffset()*
+
+public int getEndOffset()
+
+Returns the last offset to be output. 
+
+
+*javax.swing.text.AbstractWriter.getIndentLevel()*
+
+protected int getIndentLevel()
+
+Returns the current indentation level. That is, the number of times incrIndent 
+has been invoked minus the number of times decrIndent has been invoked. 
+
+
+*javax.swing.text.AbstractWriter.getIndentSpace()*
+
+protected int getIndentSpace()
+
+Returns the amount of space to indent. 
+
+
+*javax.swing.text.AbstractWriter.getLineLength()*
+
+protected int getLineLength()
+
+Returns the maximum line length. 
+
+
+*javax.swing.text.AbstractWriter.getLineSeparator()*
+
+public |java.lang.String| getLineSeparator()
+
+Returns the string used to represent newlines. 
+
+
+*javax.swing.text.AbstractWriter.getStartOffset()*
+
+public int getStartOffset()
+
+Returns the first offset to be output. 
+
+
+*javax.swing.text.AbstractWriter.getText(Element)*
+
+protected |java.lang.String| getText(javax.swing.text.Element elem)
+  throws |javax.swing.text.BadLocationException|
+         
+Returns the text associated with the element. The assumption here is that the 
+element is a leaf element. Throws a BadLocationException when encountered. 
+
+    elem - an Element 
+
+    Returns: the text as a String 
+*javax.swing.text.AbstractWriter.getWriter()*
+
+protected |java.io.Writer| getWriter()
+
+Returns the Writer that is used to output the content. 
+
+
+*javax.swing.text.AbstractWriter.incrIndent()*
+
+protected void incrIndent()
+
+Increments the indent level. If indenting would cause getIndentSpace() 
+*getIndentLevel() to be > than getLineLength() this will not cause an indent. 
+
+
+*javax.swing.text.AbstractWriter.indent()*
+
+protected void indent()
+  throws |java.io.IOException|
+         
+Does indentation. The number of spaces written out is indent level times the 
+space to map mapping. If the current line is empty, this will not make it so 
+that the current line is still considered empty. 
+
+
+*javax.swing.text.AbstractWriter.inRange(Element)*
+
+protected boolean inRange(javax.swing.text.Element next)
+
+This method determines whether the current element is in the range specified. 
+When no range is specified, the range is initialized to be the entire document. 
+inRange() returns true if the range specified intersects with the element's 
+range. 
+
+    next - an Element. 
+
+    Returns: boolean that indicates whether the element is in the range. 
+*javax.swing.text.AbstractWriter.isLineEmpty()*
+
+protected boolean isLineEmpty()
+
+Returns true if the current line should be considered empty. This is true when 
+getCurrentLineLength == 0 || indent has been invoked on an empty line. 
+
+
+*javax.swing.text.AbstractWriter.output(char[],int,int)*
+
+protected void output(
+  char[] content,
+  int start,
+  int length)
+  throws |java.io.IOException|
+         
+The last stop in writing out content. All the write methods eventually make it 
+to this method, which invokes write on the Writer. This method also updates the 
+line length based on length. If this is invoked to output a newline, the 
+current line length will need to be reset as will no longer be valid. If it is 
+up to the caller to do this. Use writeLineSeparator to write out a newline, 
+which will property update the current line length. 
+
+
+*javax.swing.text.AbstractWriter.setCanWrapLines(boolean)*
+
+protected void setCanWrapLines(boolean newValue)
+
+Sets whether or not lines can be wrapped. This can be toggled during the 
+writing of lines. For example, outputting HTML might set this to false when 
+outputting a quoted string. 
+
+
+*javax.swing.text.AbstractWriter.setCurrentLineLength(int)*
+
+protected void setCurrentLineLength(int length)
+
+Sets the current line length. 
+
+
+*javax.swing.text.AbstractWriter.setIndentSpace(int)*
+
+protected void setIndentSpace(int space)
+
+Enables subclasses to specify how many spaces an indent maps to. When 
+indentation takes place, the indent level is multiplied by this mapping. The 
+default is 2. 
+
+    space - an int representing the space to indent mapping. 
+
+*javax.swing.text.AbstractWriter.setLineLength(int)*
+
+protected void setLineLength(int l)
+
+Enables subclasses to set the number of characters they want written per line. 
+The default is 100. 
+
+    l - the maximum line length. 
+
+*javax.swing.text.AbstractWriter.setLineSeparator(String)*
+
+public void setLineSeparator(java.lang.String value)
+
+Sets the String used to reprsent newlines. This is initialized in the 
+constructor from either the Document, or the System property line.separator. 
+
+
+*javax.swing.text.AbstractWriter.text(Element)*
+
+protected void text(javax.swing.text.Element elem)
+  throws |javax.swing.text.BadLocationException|
+         |java.io.IOException|
+         
+Writes out text. If a range is specified when the constructor is invoked, then 
+only the appropriate range of text is written out. 
+
+    elem - an Element. 
+
+*javax.swing.text.AbstractWriter.write()*
+
+protected abstract void write()
+  throws |javax.swing.text.BadLocationException|
+         |java.io.IOException|
+         
+This abstract method needs to be implemented by subclasses. Its responsibility 
+is to iterate over the elements and use the write() methods to generate output 
+in the desired format. 
+
+
+*javax.swing.text.AbstractWriter.write(char)*
+
+protected void write(char ch)
+  throws |java.io.IOException|
+         
+Writes out a character. This is implemented to invoke the write method that 
+takes a char[]. 
+
+    ch - a char. 
+
+*javax.swing.text.AbstractWriter.write(char[],int,int)*
+
+protected void write(
+  char[] chars,
+  int startIndex,
+  int length)
+  throws |java.io.IOException|
+         
+All write methods call into this one. If getCanWrapLines() returns false, this 
+will call output with each sequence of chars that doesn't contain a NEWLINE, 
+followed by a call to writeLineSeparator. On the other hand, if 
+getCanWrapLines() returns true, this will split the string, as necessary, so 
+getLineLength is honored. The only exception is if the current string contains 
+no whitespace, and won't fit in which case the line length will exceed 
+getLineLength. 
+
+
+*javax.swing.text.AbstractWriter.write(String)*
+
+protected void write(java.lang.String content)
+  throws |java.io.IOException|
+         
+Writes out a string. This is implemented to invoke the write method that takes 
+a char[]. 
+
+    content - a String. 
+
+*javax.swing.text.AbstractWriter.writeAttributes(AttributeSet)*
+
+protected void writeAttributes(javax.swing.text.AttributeSet attr)
+  throws |java.io.IOException|
+         
+Writes out the set of attributes as " =" pairs. It throws an IOException when 
+encountered. 
+
+    attr - an AttributeSet. 
+
+*javax.swing.text.AbstractWriter.writeLineSeparator()*
+
+protected void writeLineSeparator()
+  throws |java.io.IOException|
+         
+Writes the line separator. This invokes output directly as well as setting the 
+lineLength to 0. 
+
+
+

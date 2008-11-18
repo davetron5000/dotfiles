@@ -1,0 +1,333 @@
+*javax.swing.Timer* *Timer* Fires one or more action events after a specified de
+
+public class Timer
+  extends    |java.lang.Object|
+  implements |java.io.Serializable|
+
+|javax.swing.Timer_Description|
+|javax.swing.Timer_Fields|
+|javax.swing.Timer_Constructors|
+|javax.swing.Timer_Methods|
+
+================================================================================
+
+*javax.swing.Timer_Fields*
+|javax.swing.event.EventListenerList_javax.swing.Timer.listenerList|
+
+*javax.swing.Timer_Constructors*
+|javax.swing.Timer(int,ActionListener)|Creates a Timer that will notify its lis
+
+*javax.swing.Timer_Methods*
+|javax.swing.Timer.addActionListener(ActionListener)|Adds an action listener to
+|javax.swing.Timer.fireActionPerformed(ActionEvent)|Notifies all listeners that
+|javax.swing.Timer.getActionListeners()|Returns an array of all the action list
+|javax.swing.Timer.getDelay()|Returns the delay, in milliseconds,   between fir
+|javax.swing.Timer.getInitialDelay()|Returns the Timer's initial delay.
+|javax.swing.Timer.getListeners(Class)|Returns an array of all the objects curr
+|javax.swing.Timer.getLogTimers()|Returns true if logging is enabled.
+|javax.swing.Timer.isCoalesce()|Returns true if the Timer coalesces  multiple p
+|javax.swing.Timer.isRepeats()|Returns true (the default)  if the Timer will se
+|javax.swing.Timer.isRunning()|Returns true if the Timer is running.
+|javax.swing.Timer.removeActionListener(ActionListener)|Removes the specified a
+|javax.swing.Timer.restart()|Restarts the Timer,  canceling any pending firings
+|javax.swing.Timer.setCoalesce(boolean)|Sets whether the Timer coalesces multip
+|javax.swing.Timer.setDelay(int)|Sets the Timer's delay, the number of millisec
+|javax.swing.Timer.setInitialDelay(int)|Sets the Timer's initial delay,  which 
+|javax.swing.Timer.setLogTimers(boolean)|Enables or disables the timer log.
+|javax.swing.Timer.setRepeats(boolean)|If flag is false,  instructs the Timer t
+|javax.swing.Timer.start()|Starts the Timer,  causing it to start sending actio
+|javax.swing.Timer.stop()|Stops the Timer,  causing it to stop sending action e
+
+*javax.swing.Timer_Description*
+
+Fires one or more action events after a specified delay. For example, an 
+animation object can use a Timer as the trigger for drawing its frames. 
+
+Setting up a timer involves creating a Timer object, registering one or more 
+action listeners on it, and starting the timer using the start method. For 
+example, the following code creates and starts a timer that fires an action 
+event once per second (as specified by the first argument to the Timer 
+constructor). The second argument to the Timer constructor specifies a listener 
+to receive the timer's action events. 
+
+int delay = 1000; //milliseconds ActionListener taskPerformer = new 
+ActionListener() { public void actionPerformed(ActionEvent evt) { //...Perform 
+a task... } }; new Timer(delay, taskPerformer).start(); 
+
+Each Timer has one or more action listeners and a delay (the time between 
+action events). When delay milliseconds have passed, the Timer fires an action 
+event to its listeners. By default, this cycle repeats until the stop method is 
+called. If you want the timer to fire only once, invoke setRepeats(false) on 
+the timer. To make the delay before the first action event different from the 
+delay between events, use the setInitialDelay method. 
+
+Although all Timers perform their waiting using a single, shared thread 
+(created by the first Timer object that executes), the action event handlers 
+for Timers execute on another thread -- the event-dispatching thread. This 
+means that the action handlers for Timers can safely perform operations on 
+Swing components. However, it also means that the handlers must execute quickly 
+to keep the GUI responsive. 
+
+In v 1.3, another Timer class was added to the Java platform: java.util.Timer. 
+Both it and javax.swing.Timer provide the same basic functionality, but 
+java.util.Timer is more general and has more features. The javax.swing.Timer 
+has two features that can make it a little easier to use with GUIs. First, its 
+event handling metaphor is familiar to GUI programmers and can make dealing 
+with the event-dispatching thread a bit simpler. Second, its automatic thread 
+sharing means that you don't have to take special steps to avoid spawning too 
+many threads. Instead, your timer uses the same thread used to make cursors 
+blink, tool tips appear, and so on. 
+
+You can find further documentation and several examples of using timers by 
+visiting How to Use Timers, a section in The Java Tutorial. For more examples 
+and help in choosing between this Timer class and java.util.Timer, see Using 
+Timers in Swing Applications, an article in The Swing Connection. 
+
+Warning: Serialized objects of this class will not be compatible with future 
+Swing releases. The current serialization support is appropriate for short term 
+storage or RMI between applications running the same version of Swing. As of 
+1.4, support for long term storage of all JavaBeansTM has been added to the 
+java.beans package. Please see (|java.beans.XMLEncoder|) . 
+
+
+*javax.swing.event.EventListenerList_javax.swing.Timer.listenerList*
+
+Fires one or more action events after a specified delay. For example, an 
+animation object can use a Timer as the trigger for drawing its frames. 
+
+Setting up a timer involves creating a Timer object, registering one or more 
+action listeners on it, and starting the timer using the start method. For 
+example, the following code creates and starts a timer that fires an action 
+event once per second (as specified by the first argument to the Timer 
+constructor). The second argument to the Timer constructor specifies a listener 
+to receive the timer's action events. 
+
+int delay = 1000; //milliseconds ActionListener taskPerformer = new 
+ActionListener() { public void actionPerformed(ActionEvent evt) { //...Perform 
+a task... } }; new Timer(delay, taskPerformer).start(); 
+
+Each Timer has one or more action listeners and a delay (the time between 
+action events). When delay milliseconds have passed, the Timer fires an action 
+event to its listeners. By default, this cycle repeats until the stop method is 
+called. If you want the timer to fire only once, invoke setRepeats(false) on 
+the timer. To make the delay before the first action event different from the 
+delay between events, use the setInitialDelay method. 
+
+Although all Timers perform their waiting using a single, shared thread 
+(created by the first Timer object that executes), the action event handlers 
+for Timers execute on another thread -- the event-dispatching thread. This 
+means that the action handlers for Timers can safely perform operations on 
+Swing components. However, it also means that the handlers must execute quickly 
+to keep the GUI responsive. 
+
+In v 1.3, another Timer class was added to the Java platform: java.util.Timer. 
+Both it and javax.swing.Timer provide the same basic functionality, but 
+java.util.Timer is more general and has more features. The javax.swing.Timer 
+has two features that can make it a little easier to use with GUIs. First, its 
+event handling metaphor is familiar to GUI programmers and can make dealing 
+with the event-dispatching thread a bit simpler. Second, its automatic thread 
+sharing means that you don't have to take special steps to avoid spawning too 
+many threads. Instead, your timer uses the same thread used to make cursors 
+blink, tool tips appear, and so on. 
+
+You can find further documentation and several examples of using timers by 
+visiting How to Use Timers, a section in The Java Tutorial. For more examples 
+and help in choosing between this Timer class and java.util.Timer, see Using 
+Timers in Swing Applications, an article in The Swing Connection. 
+
+Warning: Serialized objects of this class will not be compatible with future 
+Swing releases. The current serialization support is appropriate for short term 
+storage or RMI between applications running the same version of Swing. As of 
+1.4, support for long term storage of all JavaBeansTM has been added to the 
+java.beans package. Please see (|java.beans.XMLEncoder|) . 
+
+
+
+*javax.swing.Timer(int,ActionListener)*
+
+public Timer(
+  int delay,
+  java.awt.event.ActionListener listener)
+
+Creates a Timer that will notify its listeners every delay milliseconds. If 
+delay is less than or equal to zero the timer will fire as soon as it is 
+started. If listener is not null, it's registered as an action listener on the 
+timer. 
+
+    delay - the number of milliseconds between action events 
+    listener - an initial listener; can be null 
+
+*javax.swing.Timer.addActionListener(ActionListener)*
+
+public void addActionListener(java.awt.event.ActionListener listener)
+
+Adds an action listener to the Timer. 
+
+    listener - the listener to add 
+
+*javax.swing.Timer.fireActionPerformed(ActionEvent)*
+
+protected void fireActionPerformed(java.awt.event.ActionEvent e)
+
+Notifies all listeners that have registered interest for notification on this 
+event type. 
+
+    e - the action event to fire 
+
+*javax.swing.Timer.getActionListeners()*
+
+public |java.awt.event.ActionListener| getActionListeners()
+
+Returns an array of all the action listeners registered on this timer. 
+
+
+    Returns: all of the timer's ActionListeners or an empty array if no action listeners are 
+             currently registered 
+*javax.swing.Timer.getDelay()*
+
+public int getDelay()
+
+Returns the delay, in milliseconds, between firings of action events. 
+
+
+*javax.swing.Timer.getInitialDelay()*
+
+public int getInitialDelay()
+
+Returns the Timer's initial delay. 
+
+
+*javax.swing.Timer.getListeners(Class)*
+
+public |java.util.EventListener| getListeners(java.lang.Class listenerType)
+
+Returns an array of all the objects currently registered as FooListeners upon 
+this Timer. FooListeners are registered using the addFooListener method. 
+
+You can specify the listenerType argument with a class literal, such as 
+FooListener.class. For example, you can query a Timer instance t for its action 
+listeners with the following code: 
+
+ActionListener[] als = 
+(ActionListener[])(t.getListeners(ActionListener.class)); 
+
+If no such listeners exist, this method returns an empty array. 
+
+    listenerType - the type of listeners requested; this parameter should specify an interface 
+       that descends from java.util.EventListener 
+
+    Returns: an array of all objects registered as FooListeners on this timer, or an empty 
+             array if no such listeners have been added 
+*javax.swing.Timer.getLogTimers()*
+
+public static boolean getLogTimers()
+
+Returns true if logging is enabled. 
+
+
+    Returns: true if logging is enabled; otherwise, false 
+*javax.swing.Timer.isCoalesce()*
+
+public boolean isCoalesce()
+
+Returns true if the Timer coalesces multiple pending action events. 
+
+
+*javax.swing.Timer.isRepeats()*
+
+public boolean isRepeats()
+
+Returns true (the default) if the Timer will send an action event to its 
+listeners multiple times. 
+
+
+*javax.swing.Timer.isRunning()*
+
+public boolean isRunning()
+
+Returns true if the Timer is running. 
+
+
+*javax.swing.Timer.removeActionListener(ActionListener)*
+
+public void removeActionListener(java.awt.event.ActionListener listener)
+
+Removes the specified action listener from the Timer. 
+
+    listener - the listener to remove 
+
+*javax.swing.Timer.restart()*
+
+public void restart()
+
+Restarts the Timer, canceling any pending firings and causing it to fire with 
+its initial delay. 
+
+
+*javax.swing.Timer.setCoalesce(boolean)*
+
+public void setCoalesce(boolean flag)
+
+Sets whether the Timer coalesces multiple pending ActionEvent firings. A busy 
+application may not be able to keep up with a Timer's event generation, causing 
+multiple action events to be queued. When processed, the application sends 
+these events one after the other, causing the Timer's listeners to receive a 
+sequence of events with no delay between them. Coalescing avoids this situation 
+by reducing multiple pending events to a single event. Timers coalesce events 
+by default. 
+
+    flag - specify false to turn off coalescing 
+
+*javax.swing.Timer.setDelay(int)*
+
+public void setDelay(int delay)
+
+Sets the Timer's delay, the number of milliseconds between successive action 
+events. 
+
+    delay - the delay in milliseconds 
+
+*javax.swing.Timer.setInitialDelay(int)*
+
+public void setInitialDelay(int initialDelay)
+
+Sets the Timer's initial delay, which by default is the same as the 
+between-event delay. This is used only for the first action event. Subsequent 
+action events are spaced using the delay property. 
+
+    initialDelay - the delay, in milliseconds, between the invocation of the start method and the 
+       first action event fired by this timer 
+
+*javax.swing.Timer.setLogTimers(boolean)*
+
+public static void setLogTimers(boolean flag)
+
+Enables or disables the timer log. When enabled, a message is posted to 
+System.out whenever the timer goes off. 
+
+    flag - true to enable logging 
+
+*javax.swing.Timer.setRepeats(boolean)*
+
+public void setRepeats(boolean flag)
+
+If flag is false, instructs the Timer to send only one action event to its 
+listeners. 
+
+    flag - specify false to make the timer stop after sending its first action event 
+
+*javax.swing.Timer.start()*
+
+public void start()
+
+Starts the Timer, causing it to start sending action events to its listeners. 
+
+
+*javax.swing.Timer.stop()*
+
+public void stop()
+
+Stops the Timer, causing it to stop sending action events to its listeners. 
+
+
+

@@ -1,0 +1,154 @@
+*java.awt.dnd.DropTargetDragEvent* *DropTargetDragEvent* The DropTargetDragEvent
+
+public class DropTargetDragEvent
+  extends    |java.awt.dnd.DropTargetEvent|
+
+|java.awt.dnd.DropTargetDragEvent_Description|
+|java.awt.dnd.DropTargetDragEvent_Fields|
+|java.awt.dnd.DropTargetDragEvent_Constructors|
+|java.awt.dnd.DropTargetDragEvent_Methods|
+
+================================================================================
+
+*java.awt.dnd.DropTargetDragEvent_Constructors*
+|java.awt.dnd.DropTargetDragEvent(DropTargetContext,Point,int,int)|Construct a 
+
+*java.awt.dnd.DropTargetDragEvent_Methods*
+|java.awt.dnd.DropTargetDragEvent.acceptDrag(int)|Accepts the drag.
+|java.awt.dnd.DropTargetDragEvent.getCurrentDataFlavors()|This method returns t
+|java.awt.dnd.DropTargetDragEvent.getCurrentDataFlavorsAsList()|This method ret
+|java.awt.dnd.DropTargetDragEvent.getDropAction()|This method returns the user 
+|java.awt.dnd.DropTargetDragEvent.getLocation()|This method returns a Point  in
+|java.awt.dnd.DropTargetDragEvent.getSourceActions()|This method returns the so
+|java.awt.dnd.DropTargetDragEvent.getTransferable()|This method returns the Tra
+|java.awt.dnd.DropTargetDragEvent.isDataFlavorSupported(DataFlavor)|This method
+|java.awt.dnd.DropTargetDragEvent.rejectDrag()|Rejects the drag as a result of 
+
+*java.awt.dnd.DropTargetDragEvent_Description*
+
+The DropTargetDragEvent is delivered to a DropTargetListener via its 
+dragEnter() and dragOver() methods. 
+
+The DropTargetDragEvent reports the source drop actions and the user drop 
+action that reflect the current state of the drag operation. 
+
+Source drop actions is a bitwise mask of DnDConstants that represents the set 
+of drop actions supported by the drag source for this drag operation. 
+
+User drop action depends on the drop actions supported by the drag source and 
+the drop action selected by the user. The user can select a drop action by 
+pressing modifier keys during the drag operation: 
+
+Ctrl + Shift -> ACTION_LINK Ctrl -> ACTION_COPY Shift -> ACTION_MOVE 
+
+If the user selects a drop action, the user drop action is one of DnDConstants 
+that represents the selected drop action if this drop action is supported by 
+the drag source or DnDConstants.ACTION_NONE if this drop action is not 
+supported by the drag source. 
+
+If the user doesn't select a drop action, the set of DnDConstants that 
+represents the set of drop actions supported by the drag source is searched for 
+DnDConstants.ACTION_MOVE, then for DnDConstants.ACTION_COPY, then for 
+DnDConstants.ACTION_LINK and the user drop action is the first constant found. 
+If no constant is found the user drop action is DnDConstants.ACTION_NONE. 
+
+
+*java.awt.dnd.DropTargetDragEvent(DropTargetContext,Point,int,int)*
+
+public DropTargetDragEvent(
+  java.awt.dnd.DropTargetContext dtc,
+  java.awt.Point cursorLocn,
+  int dropAction,
+  int srcActions)
+
+Construct a DropTargetDragEvent given the DropTargetContext for this operation, 
+the location of the "Drag" Cursor's hotspot in the Component's coordinates, the 
+user drop action, and the source drop actions. 
+
+    dtc - The DropTargetContext for this operation 
+    cursorLocn - The location of the "Drag" Cursor's hotspot in Component coordinates 
+    dropAction - The user drop action 
+    srcActions - The source drop actions 
+
+*java.awt.dnd.DropTargetDragEvent.acceptDrag(int)*
+
+public void acceptDrag(int dragOperation)
+
+Accepts the drag. 
+
+This method should be called from a DropTargetListeners dragEnter, dragOver, 
+and dropActionChanged methods if the implementation wishes to accept an 
+operation from the srcActions other than the one selected by the user as 
+represented by the dropAction. 
+
+    dragOperation - the operation accepted by the target 
+
+*java.awt.dnd.DropTargetDragEvent.getCurrentDataFlavors()*
+
+public |java.awt.datatransfer.DataFlavor| getCurrentDataFlavors()
+
+This method returns the current DataFlavors from the DropTargetContext. 
+
+
+    Returns: current DataFlavors from the DropTargetContext 
+*java.awt.dnd.DropTargetDragEvent.getCurrentDataFlavorsAsList()*
+
+public |java.util.List| getCurrentDataFlavorsAsList()
+
+This method returns the current DataFlavors as a java.util.List 
+
+
+    Returns: a java.util.List of the Current DataFlavors 
+*java.awt.dnd.DropTargetDragEvent.getDropAction()*
+
+public int getDropAction()
+
+This method returns the user drop action. 
+
+
+    Returns: the user drop action 
+*java.awt.dnd.DropTargetDragEvent.getLocation()*
+
+public |java.awt.Point| getLocation()
+
+This method returns a Point indicating the Cursor's current location within the 
+Component's coordinates. 
+
+
+    Returns: the current cursor location in Component's coords. 
+*java.awt.dnd.DropTargetDragEvent.getSourceActions()*
+
+public int getSourceActions()
+
+This method returns the source drop actions. 
+
+
+    Returns: the source drop actions 
+*java.awt.dnd.DropTargetDragEvent.getTransferable()*
+
+public |java.awt.datatransfer.Transferable| getTransferable()
+
+This method returns the Transferable object that represents the data associated 
+with the current drag operation. 
+
+
+    Returns: the Transferable associated with the drag operation 
+*java.awt.dnd.DropTargetDragEvent.isDataFlavorSupported(DataFlavor)*
+
+public boolean isDataFlavorSupported(java.awt.datatransfer.DataFlavor df)
+
+This method returns a boolean indicating if the specified DataFlavor is 
+supported. 
+
+    df - the DataFlavor to test 
+
+    Returns: if a particular DataFlavor is supported 
+*java.awt.dnd.DropTargetDragEvent.rejectDrag()*
+
+public void rejectDrag()
+
+Rejects the drag as a result of examining either the dropAction or the 
+available DataFlavor types. 
+
+
+

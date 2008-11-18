@@ -1,0 +1,154 @@
+*javax.management.openmbean.OpenType* *OpenType* The OpenType class is the paren
+
+public abstract class OpenType
+  extends    |java.lang.Object|
+  implements |java.io.Serializable|
+
+|javax.management.openmbean.OpenType_Description|
+|javax.management.openmbean.OpenType_Fields|
+|javax.management.openmbean.OpenType_Constructors|
+|javax.management.openmbean.OpenType_Methods|
+
+================================================================================
+
+*javax.management.openmbean.OpenType_Fields*
+|java.lang.String[]_javax.management.openmbean.OpenType.ALLOWED_CLASSNAMES|
+
+*javax.management.openmbean.OpenType_Constructors*
+|javax.management.openmbean.OpenType(String,String,String)|Constructs an OpenTy
+
+*javax.management.openmbean.OpenType_Methods*
+|javax.management.openmbean.OpenType.equals(Object)|Compares the specified obj 
+|javax.management.openmbean.OpenType.getClassName()|Returns the fully qualified
+|javax.management.openmbean.OpenType.getDescription()|Returns the text descript
+|javax.management.openmbean.OpenType.getTypeName()|Returns the name of this Ope
+|javax.management.openmbean.OpenType.hashCode()|
+|javax.management.openmbean.OpenType.isArray()|Returns true if the open data va
+|javax.management.openmbean.OpenType.isValue(Object)|Tests whether obj is a val
+|javax.management.openmbean.OpenType.toString()|Returns a string representation
+
+*javax.management.openmbean.OpenType_Description*
+
+The OpenType class is the parent abstract class of all classes which describe 
+the actual open type of open data values. 
+
+An open type is defined by: 
+
+the fully qualified Java class name of the open data values this type 
+describes; note that only a limited set of Java classes is allowed for open 
+data values (see ALLOWED_CLASSNAMES(|javax.management.openmbean.OpenType|) ), 
+its name, its description. 
+
+
+*java.lang.String[]_javax.management.openmbean.OpenType.ALLOWED_CLASSNAMES*
+
+The OpenType class is the parent abstract class of all classes which describe 
+the actual open type of open data values. 
+
+An open type is defined by: 
+
+the fully qualified Java class name of the open data values this type 
+describes; note that only a limited set of Java classes is allowed for open 
+data values (see ALLOWED_CLASSNAMES(|javax.management.openmbean.OpenType|) ), 
+its name, its description. 
+
+
+
+*javax.management.openmbean.OpenType(String,String,String)*
+
+protected OpenType(
+  java.lang.String className,
+  java.lang.String typeName,
+  java.lang.String description)
+  throws |javax.management.openmbean.OpenDataException|
+         
+Constructs an OpenType instance (actually a subclass instance as OpenType is 
+abstract), checking for the validity of the given parameters. The validity 
+constraints are described below for each parameter. 
+
+    className - The fully qualified Java class name of the open data values this open type 
+       describes. The valid Java class names allowed for open data values are 
+       listed in {@link #ALLOWED_CLASSNAMES ALLOWED_CLASSNAMES}. A 
+       multidimensional array of any one of these classes is also an allowed 
+       class, in which case the class name follows the rules defined by the 
+       method {@link Class#getName() getName()} of java.lang.Class. For 
+       example, a 3-dimensional array of Strings has for class name 
+       [[[Ljava.lang.String; (without the quotes). 
+    typeName - The name given to the open type this instance represents; cannot be a null or 
+       empty string. 
+    description - The human readable description of the open type this instance represents; 
+       cannot be a null or empty string. 
+
+*javax.management.openmbean.OpenType.equals(Object)*
+
+public abstract boolean equals(java.lang.Object obj)
+
+Compares the specified obj parameter with this open type instance for equality. 
+
+    obj - the object to compare to. 
+
+    Returns: true if this object and obj are equal. 
+*javax.management.openmbean.OpenType.getClassName()*
+
+public |java.lang.String| getClassName()
+
+Returns the fully qualified Java class name of the open data values this open 
+type describes. The only possible Java class names for open data values are 
+listed in ALLOWED_CLASSNAMES(|javax.management.openmbean.OpenType|) . A 
+multidimensional array of any one of these classes is also an allowed class, in 
+which case the class name follows the rules defined by the method 
+getName()(|java.lang.Class|) of java.lang.Class. For example, a 3-dimensional 
+array of Strings has for class name [[[Ljava.lang.String; (without the quotes). 
+
+
+    Returns: the class name. 
+*javax.management.openmbean.OpenType.getDescription()*
+
+public |java.lang.String| getDescription()
+
+Returns the text description of this OpenType instance. 
+
+
+    Returns: the description. 
+*javax.management.openmbean.OpenType.getTypeName()*
+
+public |java.lang.String| getTypeName()
+
+Returns the name of this OpenType instance. 
+
+
+    Returns: the type name. 
+*javax.management.openmbean.OpenType.hashCode()*
+
+public abstract int hashCode()
+
+
+
+
+*javax.management.openmbean.OpenType.isArray()*
+
+public boolean isArray()
+
+Returns true if the open data values this open type describes are arrays, false 
+otherwise. 
+
+
+    Returns: true if this is an array type. 
+*javax.management.openmbean.OpenType.isValue(Object)*
+
+public abstract boolean isValue(java.lang.Object obj)
+
+Tests whether obj is a value for this open type. 
+
+    obj - the object to be tested for validity. 
+
+    Returns: true if obj is a value for this open type, false otherwise. 
+*javax.management.openmbean.OpenType.toString()*
+
+public abstract |java.lang.String| toString()
+
+Returns a string representation of this open type instance. 
+
+
+    Returns: the string representation. 
+

@@ -1,0 +1,438 @@
+*org.w3c.dom.TypeInfo* *TypeInfo* The TypeInfo interface represents a type refer
+
+public interface interface TypeInfo
+
+
+|org.w3c.dom.TypeInfo_Description|
+|org.w3c.dom.TypeInfo_Fields|
+|org.w3c.dom.TypeInfo_Constructors|
+|org.w3c.dom.TypeInfo_Methods|
+
+================================================================================
+
+*org.w3c.dom.TypeInfo_Fields*
+|int_org.w3c.dom.TypeInfo.DERIVATION_EXTENSION|
+|int_org.w3c.dom.TypeInfo.DERIVATION_LIST|
+|int_org.w3c.dom.TypeInfo.DERIVATION_RESTRICTION|
+|int_org.w3c.dom.TypeInfo.DERIVATION_UNION|
+
+*org.w3c.dom.TypeInfo_Methods*
+|org.w3c.dom.TypeInfo.getTypeName()|The name of a type declared for the associa
+|org.w3c.dom.TypeInfo.getTypeNamespace()|The namespace of the type declared for
+|org.w3c.dom.TypeInfo.isDerivedFrom(String,String,int)|This method returns if t
+
+*org.w3c.dom.TypeInfo_Description*
+
+The TypeInfo interface represents a type referenced from Element or Attr nodes, 
+specified in the schemas associated with the document. The type is a pair of a 
+namespace URI and name properties, and depends on the document's schema. If the 
+document's schema is an XML DTD [XML 1.0], the values are computed as follows: 
+
+If this type is referenced from an Attr node, typeNamespace is 
+"http://www.w3.org/TR/REC-xml" and typeName represents the [attribute type] 
+property in the [XML Information Set] . If there is no declaration for the 
+attribute, typeNamespace and typeName are null. 
+
+If this type is referenced from an Element node, typeNamespace and typeName are 
+null. 
+
+If the document's schema is an XML Schema [XML Schema Part 1] , the values are 
+computed as follows using the post-schema-validation infoset contributions 
+(also called PSVI contributions): 
+
+If the [validity] property exists AND is "invalid" or "notKnown": the {target 
+namespace} and {name} properties of the declared type if available, otherwise 
+null. Note: At the time of writing, the XML Schema specification does not 
+require exposing the declared type. Thus, DOM implementations might choose not 
+to provide type information if validity is not valid. 
+
+If the [validity] property exists and is "valid": 
+
+If [member type definition] exists: 
+
+If {name} is not absent, then expose {name} and {target namespace} properties 
+of the [member type definition] property; 
+
+Otherwise, expose the namespace and local name of the corresponding anonymous 
+type name. 
+
+
+
+If the [type definition] property exists: 
+
+If {name} is not absent, then expose {name} and {target namespace} properties 
+of the [type definition] property; 
+
+Otherwise, expose the namespace and local name of the corresponding anonymous 
+type name. 
+
+
+
+If the [member type definition anonymous] exists: 
+
+If it is false, then expose [member type definition name] and [member type 
+definition namespace] properties; 
+
+Otherwise, expose the namespace and local name of the corresponding anonymous 
+type name. 
+
+
+
+If the [type definition anonymous] exists: 
+
+If it is false, then expose [type definition name] and [type definition 
+namespace] properties; 
+
+Otherwise, expose the namespace and local name of the corresponding anonymous 
+type name. 
+
+
+
+
+
+Note: Other schema languages are outside the scope of the W3C and therefore 
+should define how to represent their type systems using TypeInfo. See also the 
+Document Object Model (DOM) Level 3 Core Specification. 
+
+
+*int_org.w3c.dom.TypeInfo.DERIVATION_EXTENSION*
+
+The TypeInfo interface represents a type referenced from Element or Attr nodes, 
+specified in the schemas associated with the document. The type is a pair of a 
+namespace URI and name properties, and depends on the document's schema. If the 
+document's schema is an XML DTD [XML 1.0], the values are computed as follows: 
+
+If this type is referenced from an Attr node, typeNamespace is 
+"http://www.w3.org/TR/REC-xml" and typeName represents the [attribute type] 
+property in the [XML Information Set] . If there is no declaration for the 
+attribute, typeNamespace and typeName are null. 
+
+If this type is referenced from an Element node, typeNamespace and typeName are 
+null. 
+
+If the document's schema is an XML Schema [XML Schema Part 1] , the values are 
+computed as follows using the post-schema-validation infoset contributions 
+(also called PSVI contributions): 
+
+If the [validity] property exists AND is "invalid" or "notKnown": the {target 
+namespace} and {name} properties of the declared type if available, otherwise 
+null. Note: At the time of writing, the XML Schema specification does not 
+require exposing the declared type. Thus, DOM implementations might choose not 
+to provide type information if validity is not valid. 
+
+If the [validity] property exists and is "valid": 
+
+If [member type definition] exists: 
+
+If {name} is not absent, then expose {name} and {target namespace} properties 
+of the [member type definition] property; 
+
+Otherwise, expose the namespace and local name of the corresponding anonymous 
+type name. 
+
+
+
+If the [type definition] property exists: 
+
+If {name} is not absent, then expose {name} and {target namespace} properties 
+of the [type definition] property; 
+
+Otherwise, expose the namespace and local name of the corresponding anonymous 
+type name. 
+
+
+
+If the [member type definition anonymous] exists: 
+
+If it is false, then expose [member type definition name] and [member type 
+definition namespace] properties; 
+
+Otherwise, expose the namespace and local name of the corresponding anonymous 
+type name. 
+
+
+
+If the [type definition anonymous] exists: 
+
+If it is false, then expose [type definition name] and [type definition 
+namespace] properties; 
+
+Otherwise, expose the namespace and local name of the corresponding anonymous 
+type name. 
+
+
+
+
+
+Note: Other schema languages are outside the scope of the W3C and therefore 
+should define how to represent their type systems using TypeInfo. See also the 
+Document Object Model (DOM) Level 3 Core Specification. 
+
+
+*int_org.w3c.dom.TypeInfo.DERIVATION_LIST*
+
+The TypeInfo interface represents a type referenced from Element or Attr nodes, 
+specified in the schemas associated with the document. The type is a pair of a 
+namespace URI and name properties, and depends on the document's schema. If the 
+document's schema is an XML DTD [XML 1.0], the values are computed as follows: 
+
+If this type is referenced from an Attr node, typeNamespace is 
+"http://www.w3.org/TR/REC-xml" and typeName represents the [attribute type] 
+property in the [XML Information Set] . If there is no declaration for the 
+attribute, typeNamespace and typeName are null. 
+
+If this type is referenced from an Element node, typeNamespace and typeName are 
+null. 
+
+If the document's schema is an XML Schema [XML Schema Part 1] , the values are 
+computed as follows using the post-schema-validation infoset contributions 
+(also called PSVI contributions): 
+
+If the [validity] property exists AND is "invalid" or "notKnown": the {target 
+namespace} and {name} properties of the declared type if available, otherwise 
+null. Note: At the time of writing, the XML Schema specification does not 
+require exposing the declared type. Thus, DOM implementations might choose not 
+to provide type information if validity is not valid. 
+
+If the [validity] property exists and is "valid": 
+
+If [member type definition] exists: 
+
+If {name} is not absent, then expose {name} and {target namespace} properties 
+of the [member type definition] property; 
+
+Otherwise, expose the namespace and local name of the corresponding anonymous 
+type name. 
+
+
+
+If the [type definition] property exists: 
+
+If {name} is not absent, then expose {name} and {target namespace} properties 
+of the [type definition] property; 
+
+Otherwise, expose the namespace and local name of the corresponding anonymous 
+type name. 
+
+
+
+If the [member type definition anonymous] exists: 
+
+If it is false, then expose [member type definition name] and [member type 
+definition namespace] properties; 
+
+Otherwise, expose the namespace and local name of the corresponding anonymous 
+type name. 
+
+
+
+If the [type definition anonymous] exists: 
+
+If it is false, then expose [type definition name] and [type definition 
+namespace] properties; 
+
+Otherwise, expose the namespace and local name of the corresponding anonymous 
+type name. 
+
+
+
+
+
+Note: Other schema languages are outside the scope of the W3C and therefore 
+should define how to represent their type systems using TypeInfo. See also the 
+Document Object Model (DOM) Level 3 Core Specification. 
+
+
+*int_org.w3c.dom.TypeInfo.DERIVATION_RESTRICTION*
+
+The TypeInfo interface represents a type referenced from Element or Attr nodes, 
+specified in the schemas associated with the document. The type is a pair of a 
+namespace URI and name properties, and depends on the document's schema. If the 
+document's schema is an XML DTD [XML 1.0], the values are computed as follows: 
+
+If this type is referenced from an Attr node, typeNamespace is 
+"http://www.w3.org/TR/REC-xml" and typeName represents the [attribute type] 
+property in the [XML Information Set] . If there is no declaration for the 
+attribute, typeNamespace and typeName are null. 
+
+If this type is referenced from an Element node, typeNamespace and typeName are 
+null. 
+
+If the document's schema is an XML Schema [XML Schema Part 1] , the values are 
+computed as follows using the post-schema-validation infoset contributions 
+(also called PSVI contributions): 
+
+If the [validity] property exists AND is "invalid" or "notKnown": the {target 
+namespace} and {name} properties of the declared type if available, otherwise 
+null. Note: At the time of writing, the XML Schema specification does not 
+require exposing the declared type. Thus, DOM implementations might choose not 
+to provide type information if validity is not valid. 
+
+If the [validity] property exists and is "valid": 
+
+If [member type definition] exists: 
+
+If {name} is not absent, then expose {name} and {target namespace} properties 
+of the [member type definition] property; 
+
+Otherwise, expose the namespace and local name of the corresponding anonymous 
+type name. 
+
+
+
+If the [type definition] property exists: 
+
+If {name} is not absent, then expose {name} and {target namespace} properties 
+of the [type definition] property; 
+
+Otherwise, expose the namespace and local name of the corresponding anonymous 
+type name. 
+
+
+
+If the [member type definition anonymous] exists: 
+
+If it is false, then expose [member type definition name] and [member type 
+definition namespace] properties; 
+
+Otherwise, expose the namespace and local name of the corresponding anonymous 
+type name. 
+
+
+
+If the [type definition anonymous] exists: 
+
+If it is false, then expose [type definition name] and [type definition 
+namespace] properties; 
+
+Otherwise, expose the namespace and local name of the corresponding anonymous 
+type name. 
+
+
+
+
+
+Note: Other schema languages are outside the scope of the W3C and therefore 
+should define how to represent their type systems using TypeInfo. See also the 
+Document Object Model (DOM) Level 3 Core Specification. 
+
+
+*int_org.w3c.dom.TypeInfo.DERIVATION_UNION*
+
+The TypeInfo interface represents a type referenced from Element or Attr nodes, 
+specified in the schemas associated with the document. The type is a pair of a 
+namespace URI and name properties, and depends on the document's schema. If the 
+document's schema is an XML DTD [XML 1.0], the values are computed as follows: 
+
+If this type is referenced from an Attr node, typeNamespace is 
+"http://www.w3.org/TR/REC-xml" and typeName represents the [attribute type] 
+property in the [XML Information Set] . If there is no declaration for the 
+attribute, typeNamespace and typeName are null. 
+
+If this type is referenced from an Element node, typeNamespace and typeName are 
+null. 
+
+If the document's schema is an XML Schema [XML Schema Part 1] , the values are 
+computed as follows using the post-schema-validation infoset contributions 
+(also called PSVI contributions): 
+
+If the [validity] property exists AND is "invalid" or "notKnown": the {target 
+namespace} and {name} properties of the declared type if available, otherwise 
+null. Note: At the time of writing, the XML Schema specification does not 
+require exposing the declared type. Thus, DOM implementations might choose not 
+to provide type information if validity is not valid. 
+
+If the [validity] property exists and is "valid": 
+
+If [member type definition] exists: 
+
+If {name} is not absent, then expose {name} and {target namespace} properties 
+of the [member type definition] property; 
+
+Otherwise, expose the namespace and local name of the corresponding anonymous 
+type name. 
+
+
+
+If the [type definition] property exists: 
+
+If {name} is not absent, then expose {name} and {target namespace} properties 
+of the [type definition] property; 
+
+Otherwise, expose the namespace and local name of the corresponding anonymous 
+type name. 
+
+
+
+If the [member type definition anonymous] exists: 
+
+If it is false, then expose [member type definition name] and [member type 
+definition namespace] properties; 
+
+Otherwise, expose the namespace and local name of the corresponding anonymous 
+type name. 
+
+
+
+If the [type definition anonymous] exists: 
+
+If it is false, then expose [type definition name] and [type definition 
+namespace] properties; 
+
+Otherwise, expose the namespace and local name of the corresponding anonymous 
+type name. 
+
+
+
+
+
+Note: Other schema languages are outside the scope of the W3C and therefore 
+should define how to represent their type systems using TypeInfo. See also the 
+Document Object Model (DOM) Level 3 Core Specification. 
+
+
+
+*org.w3c.dom.TypeInfo.getTypeName()*
+
+public |java.lang.String| getTypeName()
+
+The name of a type declared for the associated element or attribute, or null if 
+unknown. 
+
+
+*org.w3c.dom.TypeInfo.getTypeNamespace()*
+
+public |java.lang.String| getTypeNamespace()
+
+The namespace of the type declared for the associated element or attribute or 
+null if the element does not have declaration or if no namespace information is 
+available. 
+
+
+*org.w3c.dom.TypeInfo.isDerivedFrom(String,String,int)*
+
+public boolean isDerivedFrom(
+  java.lang.String typeNamespaceArg,
+  java.lang.String typeNameArg,
+  int derivationMethod)
+
+This method returns if there is a derivation between the reference type 
+definition, i.e. the TypeInfo on which the method is being called, and the 
+other type definition, i.e. the one passed as parameters. 
+
+    typeNamespaceArg - the namespace of the other type definition. 
+    typeNameArg - the name of the other type definition. 
+    derivationMethod - the type of derivation and conditions applied between two types, as described 
+       in the list of constants provided in this interface. 
+
+    Returns: If the document's schema is a DTD or no schema is associated with the document, 
+             this method will always return false . If the document's schema is 
+             an XML Schema, the method will true if the reference type 
+             definition is derived from the other type definition according to 
+             the derivation parameter. If the value of the parameter is 0 (no 
+             bit is set to 1 for the derivationMethod parameter), the method 
+             will return true if the other type definition can be reached by 
+             recursing any combination of {base type definition}, {item type 
+             definition}, or {member type definitions} from the reference type 
+             definition. 
+

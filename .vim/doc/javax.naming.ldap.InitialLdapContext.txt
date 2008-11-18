@@ -1,0 +1,154 @@
+*javax.naming.ldap.InitialLdapContext* *InitialLdapContext* This class is the st
+
+public class InitialLdapContext
+  extends    |javax.naming.directory.InitialDirContext|
+  implements |javax.naming.ldap.LdapContext|
+
+|javax.naming.ldap.InitialLdapContext_Description|
+|javax.naming.ldap.InitialLdapContext_Fields|
+|javax.naming.ldap.InitialLdapContext_Constructors|
+|javax.naming.ldap.InitialLdapContext_Methods|
+
+================================================================================
+
+*javax.naming.ldap.InitialLdapContext_Constructors*
+|javax.naming.ldap.InitialLdapContext()|Constructs an initial context using no 
+|javax.naming.ldap.InitialLdapContext(Hashtable,Control[])|Constructs an initia
+
+*javax.naming.ldap.InitialLdapContext_Methods*
+|javax.naming.ldap.InitialLdapContext.extendedOperation(ExtendedRequest)|
+|javax.naming.ldap.InitialLdapContext.getConnectControls()|
+|javax.naming.ldap.InitialLdapContext.getRequestControls()|
+|javax.naming.ldap.InitialLdapContext.getResponseControls()|
+|javax.naming.ldap.InitialLdapContext.newInstance(Control[])|
+|javax.naming.ldap.InitialLdapContext.reconnect(Control[])|
+|javax.naming.ldap.InitialLdapContext.setRequestControls(Control[])|
+
+*javax.naming.ldap.InitialLdapContext_Description*
+
+This class is the starting context for performing LDAPv3-style extended 
+operations and controls. 
+
+See javax.naming.InitialContext and javax.naming.InitialDirContext for details 
+on synchronization, and the policy for how an initial context is created. 
+
+Request Controls When you create an initial context (InitialLdapContext), you 
+can specify a list of request controls. These controls will be used as the 
+request controls for any implicit LDAP "bind" operation performed by the 
+context or contexts derived from the context. These are called connection 
+request controls. Use getConnectControls() to get a context's connection 
+request controls. 
+
+The request controls supplied to the initial context constructor are not used 
+as the context request controls for subsequent context operations such as 
+searches and lookups. Context request controls are set and updated by using 
+setRequestControls(). 
+
+As shown, there can be two different sets of request controls associated with a 
+context: connection request controls and context request controls. This is 
+required for those applications needing to send critical controls that might 
+not be applicable to both the context operation and any implicit LDAP "bind" 
+operation. A typical user program would do the following: 
+
+InitialLdapContext lctx = new InitialLdapContext(env, critConnCtls); 
+lctx.setRequestControls(critModCtls); lctx.modifyAttributes(name, mods); 
+Controls[] respCtls = lctx.getResponseControls(); 
+
+It specifies first the critical controls for creating the initial context 
+(critConnCtls), and then sets the context's request controls (critModCtls) for 
+the context operation. If for some reason lctx needs to reconnect to the 
+server, it will use critConnCtls. See the LdapContext interface for more 
+discussion about request controls. 
+
+Service provider implementors should read the "Service Provider" section in the 
+LdapContext class description for implementation details. 
+
+
+*javax.naming.ldap.InitialLdapContext()*
+
+public InitialLdapContext()
+  throws |javax.naming.NamingException|
+         
+Constructs an initial context using no environment properties or connection 
+request controls. Equivalent to new InitialLdapContext(null, null). 
+
+
+*javax.naming.ldap.InitialLdapContext(Hashtable,Control[])*
+
+public InitialLdapContext(
+  java.util.Hashtable environment,
+  javax.naming.ldap.Control[] connCtls)
+  throws |javax.naming.NamingException|
+         
+Constructs an initial context using environment properties and connection 
+request controls. See javax.naming.InitialContext for a discussion of 
+environment properties. 
+
+This constructor will not modify its parameters or save references to them, but 
+may save a clone or copy. 
+
+connCtls is used as the underlying context instance's connection request 
+controls. See the class description for details. 
+
+    environment - environment used to create the initial DirContext. Null indicates an empty 
+       environment. 
+    connCtls - connection request controls for the initial context. If null, no connection 
+       request controls are used. 
+
+*javax.naming.ldap.InitialLdapContext.extendedOperation(ExtendedRequest)*
+
+public |javax.naming.ldap.ExtendedResponse| extendedOperation(javax.naming.ldap.ExtendedRequest request)
+  throws |javax.naming.NamingException|
+         
+
+
+
+*javax.naming.ldap.InitialLdapContext.getConnectControls()*
+
+public |javax.naming.ldap.Control| getConnectControls()
+  throws |javax.naming.NamingException|
+         
+
+
+
+*javax.naming.ldap.InitialLdapContext.getRequestControls()*
+
+public |javax.naming.ldap.Control| getRequestControls()
+  throws |javax.naming.NamingException|
+         
+
+
+
+*javax.naming.ldap.InitialLdapContext.getResponseControls()*
+
+public |javax.naming.ldap.Control| getResponseControls()
+  throws |javax.naming.NamingException|
+         
+
+
+
+*javax.naming.ldap.InitialLdapContext.newInstance(Control[])*
+
+public |javax.naming.ldap.LdapContext| newInstance(javax.naming.ldap.Control[] reqCtls)
+  throws |javax.naming.NamingException|
+         
+
+
+
+*javax.naming.ldap.InitialLdapContext.reconnect(Control[])*
+
+public void reconnect(javax.naming.ldap.Control[] connCtls)
+  throws |javax.naming.NamingException|
+         
+
+
+
+*javax.naming.ldap.InitialLdapContext.setRequestControls(Control[])*
+
+public void setRequestControls(javax.naming.ldap.Control[] requestControls)
+  throws |javax.naming.NamingException|
+         
+
+
+
+

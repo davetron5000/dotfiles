@@ -1,0 +1,45 @@
+*javax.management.NotificationEmitter* *NotificationEmitter* Interface implement
+
+public interface interface NotificationEmitter
+
+  implements |javax.management.NotificationBroadcaster|
+
+|javax.management.NotificationEmitter_Description|
+|javax.management.NotificationEmitter_Fields|
+|javax.management.NotificationEmitter_Constructors|
+|javax.management.NotificationEmitter_Methods|
+
+================================================================================
+
+*javax.management.NotificationEmitter_Methods*
+|javax.management.NotificationEmitter.removeNotificationListener(NotificationListener,NotificationFilter,Object)|
+
+*javax.management.NotificationEmitter_Description*
+
+Interface implemented by an MBean that emits Notifications. It allows a 
+listener to be registered with the MBean as a notification listener. 
+
+This interface should be used by new code in preference to the 
+(|javax.management.NotificationBroadcaster|) interface. 
+
+
+*javax.management.NotificationEmitter.removeNotificationListener(NotificationListener,NotificationFilter,Object)*
+
+public void removeNotificationListener(
+  javax.management.NotificationListener listener,
+  javax.management.NotificationFilter filter,
+  java.lang.Object handback)
+  throws |javax.management.ListenerNotFoundException|
+         
+Removes a listener from this MBean. The MBean must have a listener that exactly 
+matches the given listener, filter, and handback parameters. If there is more 
+than one such listener, only one is removed. 
+
+The filter and handback parameters may be null if and only if they are null in 
+a listener to be removed. 
+
+    listener - A listener that was previously added to this MBean. 
+    filter - The filter that was specified when the listener was added. 
+    handback - The handback that was specified when the listener was added. 
+
+

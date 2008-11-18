@@ -1,0 +1,277 @@
+*javax.management.remote.rmi.RMIConnectorServer* *RMIConnectorServer* A JMX API 
+
+public class RMIConnectorServer
+  extends    |javax.management.remote.JMXConnectorServer|
+
+|javax.management.remote.rmi.RMIConnectorServer_Description|
+|javax.management.remote.rmi.RMIConnectorServer_Fields|
+|javax.management.remote.rmi.RMIConnectorServer_Constructors|
+|javax.management.remote.rmi.RMIConnectorServer_Methods|
+
+================================================================================
+
+*javax.management.remote.rmi.RMIConnectorServer_Fields*
+|java.lang.String_javax.management.remote.rmi.RMIConnectorServer.JNDI_REBIND_ATTRIBUTE|
+|java.lang.String_javax.management.remote.rmi.RMIConnectorServer.RMI_CLIENT_SOCKET_FACTORY_ATTRIBUTE|
+|java.lang.String_javax.management.remote.rmi.RMIConnectorServer.RMI_SERVER_SOCKET_FACTORY_ATTRIBUTE|
+
+*javax.management.remote.rmi.RMIConnectorServer_Constructors*
+|javax.management.remote.rmi.RMIConnectorServer(JMXServiceURL,Map)|Makes an RMI
+|javax.management.remote.rmi.RMIConnectorServer(JMXServiceURL,Map,MBeanServer)|
+|javax.management.remote.rmi.RMIConnectorServer(JMXServiceURL,Map,RMIServerImpl,MBeanServer)|
+
+*javax.management.remote.rmi.RMIConnectorServer_Methods*
+|javax.management.remote.rmi.RMIConnectorServer.connectionClosed(String,String,Object)|
+|javax.management.remote.rmi.RMIConnectorServer.connectionFailed(String,String,Object)|
+|javax.management.remote.rmi.RMIConnectorServer.connectionOpened(String,String,Object)|
+|javax.management.remote.rmi.RMIConnectorServer.getAddress()|
+|javax.management.remote.rmi.RMIConnectorServer.getAttributes()|
+|javax.management.remote.rmi.RMIConnectorServer.isActive()|
+|javax.management.remote.rmi.RMIConnectorServer.start()|Activates the connector
+|javax.management.remote.rmi.RMIConnectorServer.stop()|Deactivates the connecto
+|javax.management.remote.rmi.RMIConnectorServer.toJMXConnector(Map)|Returns a c
+
+*javax.management.remote.rmi.RMIConnectorServer_Description*
+
+A JMX API connector server that creates RMI-based connections from remote 
+clients. Usually, such connector servers are made using 
+JMXConnectorServerFactory(|javax.management.remote.JMXConnectorServerFactory|) 
+. However, specialized applications can use this class directly, for example 
+with an (|javax.management.remote.rmi.RMIServerImpl|) object. 
+
+
+*java.lang.String_javax.management.remote.rmi.RMIConnectorServer.JNDI_REBIND_ATTRIBUTE*
+
+A JMX API connector server that creates RMI-based connections from remote 
+clients. Usually, such connector servers are made using 
+JMXConnectorServerFactory(|javax.management.remote.JMXConnectorServerFactory|) 
+. However, specialized applications can use this class directly, for example 
+with an (|javax.management.remote.rmi.RMIServerImpl|) object. 
+
+
+*java.lang.String_javax.management.remote.rmi.RMIConnectorServer.RMI_CLIENT_SOCKET_FACTORY_ATTRIBUTE*
+
+A JMX API connector server that creates RMI-based connections from remote 
+clients. Usually, such connector servers are made using 
+JMXConnectorServerFactory(|javax.management.remote.JMXConnectorServerFactory|) 
+. However, specialized applications can use this class directly, for example 
+with an (|javax.management.remote.rmi.RMIServerImpl|) object. 
+
+
+*java.lang.String_javax.management.remote.rmi.RMIConnectorServer.RMI_SERVER_SOCKET_FACTORY_ATTRIBUTE*
+
+A JMX API connector server that creates RMI-based connections from remote 
+clients. Usually, such connector servers are made using 
+JMXConnectorServerFactory(|javax.management.remote.JMXConnectorServerFactory|) 
+. However, specialized applications can use this class directly, for example 
+with an (|javax.management.remote.rmi.RMIServerImpl|) object. 
+
+
+
+*javax.management.remote.rmi.RMIConnectorServer(JMXServiceURL,Map)*
+
+public RMIConnectorServer(
+  javax.management.remote.JMXServiceURL url,
+  java.util.Map environment)
+  throws |java.io.IOException|
+         
+Makes an RMIConnectorServer. This is equivalent to calling 
+RMIConnectorServer(directoryURL,environment,null,null)(|javax.management.remote.rmi.RMIConnectorServer|)
+
+
+    url - the URL defining how to create the connector server. Cannot be null. 
+    environment - attributes governing the creation and storing of the RMI object. Can be null, 
+       which is equivalent to an empty Map. 
+
+*javax.management.remote.rmi.RMIConnectorServer(JMXServiceURL,Map,MBeanServer)*
+
+public RMIConnectorServer(
+  javax.management.remote.JMXServiceURL url,
+  java.util.Map environment,
+  javax.management.MBeanServer mbeanServer)
+  throws |java.io.IOException|
+         
+Makes an RMIConnectorServer for the given MBean server. This is equivalent to 
+calling 
+RMIConnectorServer(directoryURL,environment,null,mbeanServer)(|javax.management.remote.rmi.RMIConnectorServer|)
+
+
+    url - the URL defining how to create the connector server. Cannot be null. 
+    environment - attributes governing the creation and storing of the RMI object. Can be null, 
+       which is equivalent to an empty Map. 
+    mbeanServer - the MBean server to which the new connector server is attached, or null if it 
+       will be attached by being registered as an MBean in the MBean server. 
+
+*javax.management.remote.rmi.RMIConnectorServer(JMXServiceURL,Map,RMIServerImpl,MBeanServer)*
+
+public RMIConnectorServer(
+  javax.management.remote.JMXServiceURL url,
+  java.util.Map environment,
+  javax.management.remote.rmi.RMIServerImpl rmiServerImpl,
+  javax.management.MBeanServer mbeanServer)
+  throws |java.io.IOException|
+         
+Makes an RMIConnectorServer for the given MBean server. 
+
+    url - the URL defining how to create the connector server. Cannot be null. 
+    environment - attributes governing the creation and storing of the RMI object. Can be null, 
+       which is equivalent to an empty Map. 
+    rmiServerImpl - An implementation of the RMIServer interface, consistent with the protocol type 
+       specified in url. If this parameter is non null, the protocol type 
+       specified by url is not constrained, and is assumed to be valid. 
+       Otherwise, only "rmi" and "iiop" will be recognized. 
+    mbeanServer - the MBean server to which the new connector server is attached, or null if it 
+       will be attached by being registered as an MBean in the MBean server. 
+
+*javax.management.remote.rmi.RMIConnectorServer.connectionClosed(String,String,Object)*
+
+protected void connectionClosed(
+  java.lang.String connectionId,
+  java.lang.String message,
+  java.lang.Object userData)
+
+
+
+
+*javax.management.remote.rmi.RMIConnectorServer.connectionFailed(String,String,Object)*
+
+protected void connectionFailed(
+  java.lang.String connectionId,
+  java.lang.String message,
+  java.lang.Object userData)
+
+
+
+
+*javax.management.remote.rmi.RMIConnectorServer.connectionOpened(String,String,Object)*
+
+protected void connectionOpened(
+  java.lang.String connectionId,
+  java.lang.String message,
+  java.lang.Object userData)
+
+
+
+
+*javax.management.remote.rmi.RMIConnectorServer.getAddress()*
+
+public |javax.management.remote.JMXServiceURL| getAddress()
+
+
+
+
+*javax.management.remote.rmi.RMIConnectorServer.getAttributes()*
+
+public |java.util.Map| getAttributes()
+
+
+
+
+*javax.management.remote.rmi.RMIConnectorServer.isActive()*
+
+public synchronized boolean isActive()
+
+
+
+
+*javax.management.remote.rmi.RMIConnectorServer.start()*
+
+public synchronized void start()
+  throws |java.io.IOException|
+         
+Activates the connector server, that is starts listening for client 
+connections. Calling this method when the connector server is already active 
+has no effect. Calling this method when the connector server has been stopped 
+will generate an IOException. 
+
+The behaviour of this method when called for the first time depends on the 
+parameters that were supplied at construction, as described below. 
+
+First, an object of a subclass of (|javax.management.remote.rmi.RMIServerImpl|) 
+is required, to export the connector server through RMI: 
+
+
+
+If an RMIServerImpl was supplied to the constructor, it is used. 
+
+Otherwise, if the protocol part of the JMXServiceURL supplied to the 
+constructor was iiop, an object of type 
+(|javax.management.remote.rmi.RMIIIOPServerImpl|) is created. 
+
+Otherwise, if the JMXServiceURL was null, or its protocol part was rmi, an 
+object of type (|javax.management.remote.rmi.RMIJRMPServerImpl|) is created. 
+
+Otherwise, the implementation can create an implementation-specific 
+(|javax.management.remote.rmi.RMIServerImpl|) or it can throw 
+(|java.net.MalformedURLException|) . 
+
+
+
+If the given address includes a JNDI directory URL as specified in the package 
+documentation for (|javax.management.remote.rmi|) , then this 
+RMIConnectorServer will bootstrap by binding the RMIServerImpl to the given 
+address. 
+
+If the URL path part of the JMXServiceURL was empty or a single slash (/), then 
+the RMI object will not be bound to a directory. Instead, a reference to it 
+will be encoded in the URL path of the RMIConnectorServer address (returned by 
+(|javax.management.remote.rmi.RMIConnectorServer|) ). The encodings for rmi and 
+iiop are described in the package documentation for 
+(|javax.management.remote.rmi|) . 
+
+The behavior when the URL path is neither empty nor a JNDI directory URL, or 
+when the protocol is neither rmi nor iiop, is implementation defined, and may 
+include throwing (|java.net.MalformedURLException|) when the connector server 
+is created or when it is started. 
+
+
+*javax.management.remote.rmi.RMIConnectorServer.stop()*
+
+public void stop()
+  throws |java.io.IOException|
+         
+Deactivates the connector server, that is, stops listening for client 
+connections. Calling this method will also close all client connections that 
+were made by this server. After this method returns, whether normally or with 
+an exception, the connector server will not create any new client connections. 
+
+Once a connector server has been stopped, it cannot be started again. 
+
+Calling this method when the connector server has already been stopped has no 
+effect. Calling this method when the connector server has not yet been started 
+will disable the connector server object permanently. 
+
+If closing a client connection produces an exception, that exception is not 
+thrown from this method. A 
+(|javax.management.remote.JMXConnectionNotification|) is emitted from this 
+MBean with the connection ID of the connection that could not be closed. 
+
+Closing a connector server is a potentially slow operation. For example, if a 
+client machine with an open connection has crashed, the close operation might 
+have to wait for a network protocol timeout. Callers that do not want to block 
+in a close operation should do it in a separate thread. 
+
+This method calls the method close(|javax.management.remote.rmi.RMIServerImpl|) 
+on the connector server's RMIServerImpl object. 
+
+If the RMIServerImpl was bound to a JNDI directory by the 
+start(|javax.management.remote.rmi.RMIConnectorServer|) method, it is unbound 
+from the directory by this method. 
+
+
+*javax.management.remote.rmi.RMIConnectorServer.toJMXConnector(Map)*
+
+public |javax.management.remote.JMXConnector| toJMXConnector(java.util.Map env)
+  throws |java.io.IOException|
+         
+Returns a client stub for this connector server. A client stub is a 
+serializable object whose connect(|javax.management.remote.JMXConnector|) 
+method can be used to make one new connection to this connector server. 
+
+    env - client connection parameters of the same sort that could be provided to {@link 
+       JMXConnector#connect(Map) JMXConnector.connect(Map)}. Can be null, which 
+       is equivalent to an empty map. 
+
+    Returns: a client stub that can be used to make a new connection to this connector 
+             server. 
+

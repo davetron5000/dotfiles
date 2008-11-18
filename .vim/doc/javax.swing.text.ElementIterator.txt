@@ -1,0 +1,118 @@
+*javax.swing.text.ElementIterator* *ElementIterator* 
+ ElementIterator, as the n
+
+public class ElementIterator
+  extends    |java.lang.Object|
+  implements |java.lang.Cloneable|
+
+|javax.swing.text.ElementIterator_Description|
+|javax.swing.text.ElementIterator_Fields|
+|javax.swing.text.ElementIterator_Constructors|
+|javax.swing.text.ElementIterator_Methods|
+
+================================================================================
+
+*javax.swing.text.ElementIterator_Constructors*
+|javax.swing.text.ElementIterator(Document)|Creates a new ElementIterator.
+|javax.swing.text.ElementIterator(Element)|Creates a new ElementIterator.
+
+*javax.swing.text.ElementIterator_Methods*
+|javax.swing.text.ElementIterator.clone()|Clones the ElementIterator.
+|javax.swing.text.ElementIterator.current()|Fetches the current Element.
+|javax.swing.text.ElementIterator.depth()|Fetches the current depth of element 
+|javax.swing.text.ElementIterator.first()|Fetches the first element.
+|javax.swing.text.ElementIterator.next()|Fetches the next Element.
+|javax.swing.text.ElementIterator.previous()|Fetches the previous Element.
+
+*javax.swing.text.ElementIterator_Description*
+
+ElementIterator, as the name suggests, iteratates over the Element tree. The 
+constructor can be invoked with either Document or an Element as an argument. 
+If the constructor is invoked with a Document as an argument then the root of 
+the iteration is the return value of document.getDefaultRootElement(). 
+
+The iteration happens in a depth-first manner. In terms of how boundary 
+conditions are handled: a) if next() is called before first() or current(), the 
+root will be returned. b) next() returns null to indicate the end of the list. 
+c) previous() returns null when the current element is the root or next() has 
+returned null. 
+
+The ElementIterator does no locking of the Element tree. This means that it 
+does not track any changes. It is the responsibility of the user of this class, 
+to ensure that no changes happen during element iteration. 
+
+Simple usage example: 
+
+public void iterate() { ElementIterator it = new ElementIterator(root); Element 
+elem; while (true) { if ((elem = next()) != null) { // process element 
+System.out.println("elem: " + elem.getName()); } else { break; } } } 
+
+
+*javax.swing.text.ElementIterator(Document)*
+
+public ElementIterator(javax.swing.text.Document document)
+
+Creates a new ElementIterator. The root element is taken to get the default 
+root element of the document. 
+
+    document - a Document. 
+
+*javax.swing.text.ElementIterator(Element)*
+
+public ElementIterator(javax.swing.text.Element root)
+
+Creates a new ElementIterator. 
+
+    root - the root Element. 
+
+*javax.swing.text.ElementIterator.clone()*
+
+public synchronized |java.lang.Object| clone()
+
+Clones the ElementIterator. 
+
+
+    Returns: a cloned ElementIterator Object. 
+*javax.swing.text.ElementIterator.current()*
+
+public |javax.swing.text.Element| current()
+
+Fetches the current Element. 
+
+
+    Returns: element on top of the stack or null if the root element is null 
+*javax.swing.text.ElementIterator.depth()*
+
+public int depth()
+
+Fetches the current depth of element tree. 
+
+
+    Returns: 
+*javax.swing.text.ElementIterator.first()*
+
+public |javax.swing.text.Element| first()
+
+Fetches the first element. 
+
+
+    Returns: 
+*javax.swing.text.ElementIterator.next()*
+
+public |javax.swing.text.Element| next()
+
+Fetches the next Element. The strategy used to locate the next element is a 
+depth-first search. 
+
+
+    Returns: the next element or null at the end of the list. 
+*javax.swing.text.ElementIterator.previous()*
+
+public |javax.swing.text.Element| previous()
+
+Fetches the previous Element. If howver the current element is the last 
+element, or the current element is null, then null is returned. 
+
+
+    Returns: previous Element if available 
+

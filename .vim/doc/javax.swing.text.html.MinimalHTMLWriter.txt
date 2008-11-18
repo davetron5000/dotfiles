@@ -1,0 +1,272 @@
+*javax.swing.text.html.MinimalHTMLWriter* *MinimalHTMLWriter* MinimalHTMLWriter 
+
+public class MinimalHTMLWriter
+  extends    |javax.swing.text.AbstractWriter|
+
+|javax.swing.text.html.MinimalHTMLWriter_Description|
+|javax.swing.text.html.MinimalHTMLWriter_Fields|
+|javax.swing.text.html.MinimalHTMLWriter_Constructors|
+|javax.swing.text.html.MinimalHTMLWriter_Methods|
+
+================================================================================
+
+*javax.swing.text.html.MinimalHTMLWriter_Constructors*
+|javax.swing.text.html.MinimalHTMLWriter(Writer,StyledDocument)|Creates a new M
+|javax.swing.text.html.MinimalHTMLWriter(Writer,StyledDocument,int,int)|Creates
+
+*javax.swing.text.html.MinimalHTMLWriter_Methods*
+|javax.swing.text.html.MinimalHTMLWriter.endFontTag()|This is no longer used, i
+|javax.swing.text.html.MinimalHTMLWriter.inFontTag()|Returns true if we are cur
+|javax.swing.text.html.MinimalHTMLWriter.isText(Element)|Returns true if the el
+|javax.swing.text.html.MinimalHTMLWriter.startFontTag(String)|This is no longer
+|javax.swing.text.html.MinimalHTMLWriter.text(Element)|Writes out text.
+|javax.swing.text.html.MinimalHTMLWriter.write()|Generates HTML output  from a 
+|javax.swing.text.html.MinimalHTMLWriter.writeAttributes(AttributeSet)|Writes o
+|javax.swing.text.html.MinimalHTMLWriter.writeBody()|Iterates over the elements
+|javax.swing.text.html.MinimalHTMLWriter.writeComponent(Element)|Responsible fo
+|javax.swing.text.html.MinimalHTMLWriter.writeContent(Element,boolean)|Writes o
+|javax.swing.text.html.MinimalHTMLWriter.writeEndParagraph()|Emits an end tag f
+|javax.swing.text.html.MinimalHTMLWriter.writeEndTag(String)|Writes out an end 
+|javax.swing.text.html.MinimalHTMLWriter.writeHeader()|Writes out the <head> an
+|javax.swing.text.html.MinimalHTMLWriter.writeHTMLTags(AttributeSet)|Generates 
+|javax.swing.text.html.MinimalHTMLWriter.writeImage(Element)|Responsible for ha
+|javax.swing.text.html.MinimalHTMLWriter.writeLeaf(Element)|Responsible for wri
+|javax.swing.text.html.MinimalHTMLWriter.writeNonHTMLAttributes(AttributeSet)|W
+|javax.swing.text.html.MinimalHTMLWriter.writeStartParagraph(Element)|Emits the
+|javax.swing.text.html.MinimalHTMLWriter.writeStartTag(String)|Writes out a sta
+|javax.swing.text.html.MinimalHTMLWriter.writeStyles()|Writes out all the named
+
+*javax.swing.text.html.MinimalHTMLWriter_Description*
+
+MinimalHTMLWriter is a fallback writer used by the HTMLEditorKit to write out 
+HTML for a document that is a not produced by the EditorKit. 
+
+The format for the document is: 
+
+<html> <head> <style> <!-- list of named styles p.normal { font-family: 
+SansSerif; margin-height: 0; font-size: 14 } --> </style> </head> <body> <p 
+style=normal> Bold, italic, and underline attributes of the run are emitted as 
+HTML tags. The remaining attributes are emitted as part of the style attribute 
+of a <span> tag. The syntax is similar to inline styles. </p> </body> </html> 
+
+
+*javax.swing.text.html.MinimalHTMLWriter(Writer,StyledDocument)*
+
+public MinimalHTMLWriter(
+  java.io.Writer w,
+  javax.swing.text.StyledDocument doc)
+
+Creates a new MinimalHTMLWriter. 
+
+    w - 
+    doc - StyledDocument 
+
+*javax.swing.text.html.MinimalHTMLWriter(Writer,StyledDocument,int,int)*
+
+public MinimalHTMLWriter(
+  java.io.Writer w,
+  javax.swing.text.StyledDocument doc,
+  int pos,
+  int len)
+
+Creates a new MinimalHTMLWriter. 
+
+    w - 
+    doc - StyledDocument 
+    pos - The location in the document to fetch the content. 
+    len - The amount to write out. 
+
+*javax.swing.text.html.MinimalHTMLWriter.endFontTag()*
+
+protected void endFontTag()
+  throws |java.io.IOException|
+         
+This is no longer used, instead <span> will be written out. 
+
+Writes out an end tag for the <font> tag. 
+
+
+*javax.swing.text.html.MinimalHTMLWriter.inFontTag()*
+
+protected boolean inFontTag()
+
+Returns true if we are currently in a <font> tag. 
+
+
+*javax.swing.text.html.MinimalHTMLWriter.isText(Element)*
+
+protected boolean isText(javax.swing.text.Element elem)
+
+Returns true if the element is a text element. 
+
+
+*javax.swing.text.html.MinimalHTMLWriter.startFontTag(String)*
+
+protected void startFontTag(java.lang.String style)
+  throws |java.io.IOException|
+         
+This is no longer used, instead <span> will be written out. 
+
+Writes out a start tag for the <font> tag. Because font tags cannot be nested, 
+this method closes out any enclosing font tag before writing out a new start 
+tag. 
+
+
+*javax.swing.text.html.MinimalHTMLWriter.text(Element)*
+
+protected void text(javax.swing.text.Element elem)
+  throws |javax.swing.text.BadLocationException|
+         |java.io.IOException|
+         
+Writes out text. 
+
+
+*javax.swing.text.html.MinimalHTMLWriter.write()*
+
+public void write()
+  throws |javax.swing.text.BadLocationException|
+         |java.io.IOException|
+         
+Generates HTML output from a StyledDocument. 
+
+
+*javax.swing.text.html.MinimalHTMLWriter.writeAttributes(AttributeSet)*
+
+protected void writeAttributes(javax.swing.text.AttributeSet attr)
+  throws |java.io.IOException|
+         
+Writes out all the attributes for the following types: 
+StyleConstants.ParagraphConstants, StyleConstants.CharacterConstants, 
+StyleConstants.FontConstants, StyleConstants.ColorConstants. The attribute name 
+and value are separated by a colon. Each pair is separated by a semicolon. 
+
+
+*javax.swing.text.html.MinimalHTMLWriter.writeBody()*
+
+protected void writeBody()
+  throws |javax.swing.text.BadLocationException|
+         |java.io.IOException|
+         
+Iterates over the elements in the document and processes elements based on 
+whether they are branch elements or leaf elements. This method specially 
+handles leaf elements that are text. 
+
+
+*javax.swing.text.html.MinimalHTMLWriter.writeComponent(Element)*
+
+protected void writeComponent(javax.swing.text.Element elem)
+  throws |java.io.IOException|
+         
+Responsible for handling Component Elements; deliberately unimplemented. How 
+this method is implemented is a matter of policy. 
+
+
+*javax.swing.text.html.MinimalHTMLWriter.writeContent(Element,boolean)*
+
+protected void writeContent(
+  javax.swing.text.Element elem,
+  boolean needsIndenting)
+  throws |javax.swing.text.BadLocationException|
+         |java.io.IOException|
+         
+Writes out the attribute set in an HTML-compliant manner. 
+
+
+*javax.swing.text.html.MinimalHTMLWriter.writeEndParagraph()*
+
+protected void writeEndParagraph()
+  throws |java.io.IOException|
+         
+Emits an end tag for a <p> tag. Before writing out the tag, this method ensures 
+that all other tags that have been opened are appropriately closed off. 
+
+
+*javax.swing.text.html.MinimalHTMLWriter.writeEndTag(String)*
+
+protected void writeEndTag(java.lang.String endTag)
+  throws |java.io.IOException|
+         
+Writes out an end tag appropriately indented. Also decrements the indent level. 
+
+
+*javax.swing.text.html.MinimalHTMLWriter.writeHeader()*
+
+protected void writeHeader()
+  throws |java.io.IOException|
+         
+Writes out the <head> and <style> tags, and then invokes writeStyles() to write 
+out all the named styles as the content of the <style> tag. The content is 
+surrounded by valid HTML comment markers to ensure that the document is 
+viewable in applications/browsers that do not support the tag. 
+
+
+*javax.swing.text.html.MinimalHTMLWriter.writeHTMLTags(AttributeSet)*
+
+protected void writeHTMLTags(javax.swing.text.AttributeSet attr)
+  throws |java.io.IOException|
+         
+Generates bold <b>, italic <i>, and <u> tags for the text based on its 
+attribute settings. 
+
+
+*javax.swing.text.html.MinimalHTMLWriter.writeImage(Element)*
+
+protected void writeImage(javax.swing.text.Element elem)
+  throws |java.io.IOException|
+         
+Responsible for handling Icon Elements; deliberately unimplemented. How to 
+implement this method is an issue of policy. For example, if you're generating 
+an <img> tag, how should you represent the src attribute (the location of the 
+image)? In certain cases it could be a URL, in others it could be read from a 
+stream. 
+
+    elem - element of type StyleConstants.IconElementName 
+
+*javax.swing.text.html.MinimalHTMLWriter.writeLeaf(Element)*
+
+protected void writeLeaf(javax.swing.text.Element elem)
+  throws |java.io.IOException|
+         
+Responsible for writing out other non-text leaf elements. 
+
+
+*javax.swing.text.html.MinimalHTMLWriter.writeNonHTMLAttributes(AttributeSet)*
+
+protected void writeNonHTMLAttributes(javax.swing.text.AttributeSet attr)
+  throws |java.io.IOException|
+         
+Writes out the remaining character-level attributes (attributes other than 
+bold, italic, and underline) in an HTML-compliant way. Given that attributes 
+such as font family and font size have no direct mapping to HTML tags, a <span> 
+tag is generated and its style attribute is set to contain the list of 
+remaining attributes just like inline styles. 
+
+
+*javax.swing.text.html.MinimalHTMLWriter.writeStartParagraph(Element)*
+
+protected void writeStartParagraph(javax.swing.text.Element elem)
+  throws |java.io.IOException|
+         
+Emits the start tag for a paragraph. If the paragraph has a named style 
+associated with it, then this method also generates a class attribute for the 
+<p> tag and sets its value to be the name of the style. 
+
+
+*javax.swing.text.html.MinimalHTMLWriter.writeStartTag(String)*
+
+protected void writeStartTag(java.lang.String tag)
+  throws |java.io.IOException|
+         
+Writes out a start tag appropriately indented. Also increments the indent 
+level. 
+
+
+*javax.swing.text.html.MinimalHTMLWriter.writeStyles()*
+
+protected void writeStyles()
+  throws |java.io.IOException|
+         
+Writes out all the named styles as the content of the <style> tag. 
+
+
+

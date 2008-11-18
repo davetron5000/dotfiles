@@ -1,0 +1,309 @@
+*javax.security.auth.kerberos.KerberosTicket* *KerberosTicket* This class encaps
+
+public class KerberosTicket
+  extends    |java.lang.Object|
+  implements |javax.security.auth.Destroyable|
+             |javax.security.auth.Refreshable|
+             |java.io.Serializable|
+
+|javax.security.auth.kerberos.KerberosTicket_Description|
+|javax.security.auth.kerberos.KerberosTicket_Fields|
+|javax.security.auth.kerberos.KerberosTicket_Constructors|
+|javax.security.auth.kerberos.KerberosTicket_Methods|
+
+================================================================================
+
+*javax.security.auth.kerberos.KerberosTicket_Constructors*
+|javax.security.auth.kerberos.KerberosTicket(byte[],KerberosPrincipal,KerberosPrincipal,byte[],int,boolean[],Date,Date,Date,Date,InetAddress[])|
+
+*javax.security.auth.kerberos.KerberosTicket_Methods*
+|javax.security.auth.kerberos.KerberosTicket.destroy()|Destroys the ticket and 
+|javax.security.auth.kerberos.KerberosTicket.getAuthTime()|Returns the time tha
+|javax.security.auth.kerberos.KerberosTicket.getClient()|Returns the client pri
+|javax.security.auth.kerberos.KerberosTicket.getClientAddresses()|Returns a lis
+|javax.security.auth.kerberos.KerberosTicket.getEncoded()|Returns an ASN.1 enco
+|javax.security.auth.kerberos.KerberosTicket.getEndTime()|Returns the expiratio
+|javax.security.auth.kerberos.KerberosTicket.getFlags()|Returns the flags assoc
+|javax.security.auth.kerberos.KerberosTicket.getRenewTill()|Returns the latest 
+|javax.security.auth.kerberos.KerberosTicket.getServer()|Returns the service pr
+|javax.security.auth.kerberos.KerberosTicket.getSessionKey()|Returns the sessio
+|javax.security.auth.kerberos.KerberosTicket.getSessionKeyType()|Returns the ke
+|javax.security.auth.kerberos.KerberosTicket.getStartTime()|Returns the start t
+|javax.security.auth.kerberos.KerberosTicket.isCurrent()|Determines if this tic
+|javax.security.auth.kerberos.KerberosTicket.isDestroyed()|Determines if this t
+|javax.security.auth.kerberos.KerberosTicket.isForwardable()|Determines if this
+|javax.security.auth.kerberos.KerberosTicket.isForwarded()|Determines if this t
+|javax.security.auth.kerberos.KerberosTicket.isInitial()|Determines if this tic
+|javax.security.auth.kerberos.KerberosTicket.isPostdated()|Determines is this t
+|javax.security.auth.kerberos.KerberosTicket.isProxiable()|Determines if this t
+|javax.security.auth.kerberos.KerberosTicket.isProxy()|Determines is this ticke
+|javax.security.auth.kerberos.KerberosTicket.isRenewable()|Determines is this t
+|javax.security.auth.kerberos.KerberosTicket.refresh()|Extends the validity per
+|javax.security.auth.kerberos.KerberosTicket.toString()|
+
+*javax.security.auth.kerberos.KerberosTicket_Description*
+
+This class encapsulates a Kerberos ticket and associated information as viewed 
+from the client's point of view. It captures all information that the Key 
+Distribution Center (KDC) sends to the client in the reply message KDC-REP 
+defined in the Kerberos Protocol Specification (RFC 1510). 
+
+All Kerberos JAAS login modules that authenticate a user to a KDC should use 
+this class. Where available, the login module might even read this information 
+from a ticket cache in the operating system instead of directly communicating 
+with the KDC. During the commit phase of the JAAS authentication process, the 
+JAAS login module should instantiate this class and store the instance in the 
+private credential set of a Subject(|javax.security.auth.Subject|) . 
+
+It might be necessary for the application to be granted a 
+PrivateCredentialPermission(|javax.security.auth.PrivateCredentialPermission|) 
+if it needs to access a KerberosTicket instance from a Subject. This permission 
+is not needed when the application depends on the default JGSS Kerberos 
+mechanism to access the KerberosTicket. In that case, however, the application 
+will need an appropriate 
+ServicePermission(|javax.security.auth.kerberos.ServicePermission|) . 
+
+Note that this class is applicable to both ticket granting tickets and other 
+regular service tickets. A ticket granting ticket is just a special case of a 
+more generalized service ticket. 
+
+
+*javax.security.auth.kerberos.KerberosTicket(byte[],KerberosPrincipal,KerberosPrincipal,byte[],int,boolean[],Date,Date,Date,Date,InetAddress[])*
+
+public KerberosTicket(
+  byte[] asn1Encoding,
+  javax.security.auth.kerberos.KerberosPrincipal client,
+  javax.security.auth.kerberos.KerberosPrincipal server,
+  byte[] sessionKey,
+  int keyType,
+  boolean[] flags,
+  java.util.Date authTime,
+  java.util.Date startTime,
+  java.util.Date endTime,
+  java.util.Date renewTill,
+  java.net.InetAddress[] clientAddresses)
+
+Constructs a KerberosTicket using credentials information that a client either 
+receives from a KDC or reads from a cache. 
+
+    asn1Encoding - the ASN.1 encoding of the ticket as defined by the Kerberos protocol 
+       specification. 
+    client - the client that owns this service ticket 
+    server - the service that this ticket is for 
+    sessionKey - the raw bytes for the session key that must be used to encrypt the 
+       authenticator that will be sent to the server 
+    keyType - the key type for the session key as defined by the Kerberos protocol 
+       specification. 
+    flags - the ticket flags. Each element in this array indicates the value for the 
+       corresponding bit in the ASN.1 BitString that represents the ticket 
+       flags. If the number of elements in this array is less than the number 
+       of flags used by the Kerberos protocol, then the missing flags will be 
+       filled in with false. 
+    authTime - the time of initial authentication for the client 
+    startTime - the time after which the ticket will be valid. This may be null in which case 
+       the value of authTime is treated as the startTime. 
+    endTime - the time after which the ticket will no longer be valid 
+    renewTill - an absolute expiration time for the ticket, including all renewal that might be 
+       possible. This field may be null for tickets that are not renewable. 
+    clientAddresses - the addresses from where the ticket may be used by the client. This field may 
+       be null when the ticket is usable from any address. 
+
+*javax.security.auth.kerberos.KerberosTicket.destroy()*
+
+public void destroy()
+  throws |javax.security.auth.DestroyFailedException|
+         
+Destroys the ticket and destroys any sensitive information stored in it. 
+
+
+*javax.security.auth.kerberos.KerberosTicket.getAuthTime()*
+
+public final |java.util.Date| getAuthTime()
+
+Returns the time that the client was authenticated. 
+
+
+    Returns: the time that the client was authenticated. 
+*javax.security.auth.kerberos.KerberosTicket.getClient()*
+
+public final |javax.security.auth.kerberos.KerberosPrincipal| getClient()
+
+Returns the client principal associated with this ticket. 
+
+
+    Returns: the client principal. 
+*javax.security.auth.kerberos.KerberosTicket.getClientAddresses()*
+
+public final |java.net.InetAddress| getClientAddresses()
+
+Returns a list of addresses from where the ticket can be used. 
+
+
+    Returns: ths list of addresses or null, if the field was not provided. 
+*javax.security.auth.kerberos.KerberosTicket.getEncoded()*
+
+public final byte getEncoded()
+
+Returns an ASN.1 encoding of the entire ticket. 
+
+
+    Returns: an ASN.1 encoding of the entire ticket. 
+*javax.security.auth.kerberos.KerberosTicket.getEndTime()*
+
+public final |java.util.Date| getEndTime()
+
+Returns the expiration time for this ticket's validity period. 
+
+
+    Returns: the expiration time for this ticket's validity period. 
+*javax.security.auth.kerberos.KerberosTicket.getFlags()*
+
+public final boolean getFlags()
+
+Returns the flags associated with this ticket. Each element in the returned 
+array indicates the value for the corresponding bit in the ASN.1 BitString that 
+represents the ticket flags. 
+
+
+    Returns: the flags associated with this ticket. 
+*javax.security.auth.kerberos.KerberosTicket.getRenewTill()*
+
+public final |java.util.Date| getRenewTill()
+
+Returns the latest expiration time for this ticket, including all renewals. 
+This will return a null value for non-renewable tickets. 
+
+
+    Returns: the latest expiration time for this ticket. 
+*javax.security.auth.kerberos.KerberosTicket.getServer()*
+
+public final |javax.security.auth.kerberos.KerberosPrincipal| getServer()
+
+Returns the service principal associated with this ticket. 
+
+
+    Returns: the service principal. 
+*javax.security.auth.kerberos.KerberosTicket.getSessionKey()*
+
+public final |javax.crypto.SecretKey| getSessionKey()
+
+Returns the session key associated with this ticket. 
+
+
+    Returns: the session key. 
+*javax.security.auth.kerberos.KerberosTicket.getSessionKeyType()*
+
+public final int getSessionKeyType()
+
+Returns the key type of the session key associated with this ticket as defined 
+by the Kerberos Protocol Specification. 
+
+
+    Returns: the key type of the session key associated with this ticket. 
+*javax.security.auth.kerberos.KerberosTicket.getStartTime()*
+
+public final |java.util.Date| getStartTime()
+
+Returns the start time for this ticket's validity period. 
+
+
+    Returns: the start time for this ticket's validity period. 
+*javax.security.auth.kerberos.KerberosTicket.isCurrent()*
+
+public boolean isCurrent()
+
+Determines if this ticket is still current. 
+
+
+*javax.security.auth.kerberos.KerberosTicket.isDestroyed()*
+
+public boolean isDestroyed()
+
+Determines if this ticket has been destroyed. 
+
+
+*javax.security.auth.kerberos.KerberosTicket.isForwardable()*
+
+public final boolean isForwardable()
+
+Determines if this ticket is forwardable. 
+
+
+    Returns: true if this ticket is forwardable, false if not. 
+*javax.security.auth.kerberos.KerberosTicket.isForwarded()*
+
+public final boolean isForwarded()
+
+Determines if this ticket had been forwarded or was issued based on 
+authentication involving a forwarded ticket-granting ticket. 
+
+
+    Returns: true if this ticket had been forwarded or was issued based on authentication 
+             involving a forwarded ticket-granting ticket, false otherwise. 
+*javax.security.auth.kerberos.KerberosTicket.isInitial()*
+
+public final boolean isInitial()
+
+Determines if this ticket was issued using the Kerberos AS-Exchange protocol, 
+and not issued based on some ticket-granting ticket. 
+
+
+    Returns: true if this ticket was issued using the Kerberos AS-Exchange protocol, false 
+             if not. 
+*javax.security.auth.kerberos.KerberosTicket.isPostdated()*
+
+public final boolean isPostdated()
+
+Determines is this ticket is post-dated. 
+
+
+    Returns: true if this ticket is post-dated, false if not. 
+*javax.security.auth.kerberos.KerberosTicket.isProxiable()*
+
+public final boolean isProxiable()
+
+Determines if this ticket is proxiable. 
+
+
+    Returns: true if this ticket is proxiable, false if not. 
+*javax.security.auth.kerberos.KerberosTicket.isProxy()*
+
+public final boolean isProxy()
+
+Determines is this ticket is a proxy-ticket. 
+
+
+    Returns: true if this ticket is a proxy-ticket, false if not. 
+*javax.security.auth.kerberos.KerberosTicket.isRenewable()*
+
+public final boolean isRenewable()
+
+Determines is this ticket is renewable. If so, the 
+refresh(|javax.security.auth.kerberos.KerberosTicket|) method can be called, 
+assuming the validity period for renewing is not already over. 
+
+
+    Returns: true if this ticket is renewable, false if not. 
+*javax.security.auth.kerberos.KerberosTicket.refresh()*
+
+public void refresh()
+  throws |javax.security.auth.RefreshFailedException|
+         
+Extends the validity period of this ticket. The ticket will contain a new 
+session key if the refresh operation succeeds. The refresh operation will fail 
+if the ticket is not renewable or the latest allowable renew time has passed. 
+Any other error returned by the KDC will also cause this method to fail. 
+
+Note: This method is not synchronized with the the accessor methods of this 
+object. Hence callers need to be aware of multiple threads that might access 
+this and try to renew it at the same time. 
+
+
+*javax.security.auth.kerberos.KerberosTicket.toString()*
+
+public |java.lang.String| toString()
+
+
+
+
+

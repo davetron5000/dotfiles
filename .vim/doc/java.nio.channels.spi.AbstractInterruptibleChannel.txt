@@ -1,0 +1,137 @@
+*java.nio.channels.spi.AbstractInterruptibleChannel* *AbstractInterruptibleChannel* 
+
+public abstract class AbstractInterruptibleChannel
+  extends    |java.lang.Object|
+  implements |java.nio.channels.Channel|
+             |java.nio.channels.InterruptibleChannel|
+
+|java.nio.channels.spi.AbstractInterruptibleChannel_Description|
+|java.nio.channels.spi.AbstractInterruptibleChannel_Fields|
+|java.nio.channels.spi.AbstractInterruptibleChannel_Constructors|
+|java.nio.channels.spi.AbstractInterruptibleChannel_Methods|
+
+================================================================================
+
+*java.nio.channels.spi.AbstractInterruptibleChannel_Constructors*
+|java.nio.channels.spi.AbstractInterruptibleChannel()|Initializes a new instanc
+
+*java.nio.channels.spi.AbstractInterruptibleChannel_Methods*
+|java.nio.channels.spi.AbstractInterruptibleChannel.begin()|Marks the beginning
+|java.nio.channels.spi.AbstractInterruptibleChannel.close()|Closes this channel
+|java.nio.channels.spi.AbstractInterruptibleChannel.end(boolean)|Marks the end 
+|java.nio.channels.spi.AbstractInterruptibleChannel.implCloseChannel()|Closes t
+|java.nio.channels.spi.AbstractInterruptibleChannel.isOpen()|
+
+*java.nio.channels.spi.AbstractInterruptibleChannel_Description*
+
+Base implementation class for interruptible channels. 
+
+This class encapsulates the low-level machinery required to implement the 
+asynchronous closing and interruption of channels. A concrete channel class 
+must invoke the begin(|java.nio.channels.spi.AbstractInterruptibleChannel|) and 
+end(|java.nio.channels.spi.AbstractInterruptibleChannel|) methods before and 
+after, respectively, invoking an I/O operation that might block indefinitely. 
+In order to ensure that the 
+end(|java.nio.channels.spi.AbstractInterruptibleChannel|) method is always 
+invoked, these methods should be used within a try...finally block: 
+
+
+
+boolean completed = false; try { begin(); completed = ...; // Perform blocking 
+I/O operation return ...; // Return result } finally { end(completed); } 
+
+The completed argument to the 
+end(|java.nio.channels.spi.AbstractInterruptibleChannel|) method tells whether 
+or not the I/O operation actually completed, that is, whether it had any effect 
+that would be visible to the invoker. In the case of an operation that reads 
+bytes, for example, this argument should be true if, and only if, some bytes 
+were actually transferred into the invoker's target buffer. 
+
+A concrete channel class must also implement the 
+implCloseChannel(|java.nio.channels.spi.AbstractInterruptibleChannel|) method 
+in such a way that if it is invoked while another thread is blocked in a native 
+I/O operation upon the channel then that operation will immediately return, 
+either by throwing an exception or by returning normally. If a thread is 
+interrupted or the channel upon which it is blocked is asynchronously closed 
+then the channel's end(|java.nio.channels.spi.AbstractInterruptibleChannel|) 
+method will throw the appropriate exception. 
+
+This class performs the synchronization required to implement the 
+(|java.nio.channels.Channel|) specification. Implementations of the 
+implCloseChannel(|java.nio.channels.spi.AbstractInterruptibleChannel|) method 
+need not synchronize against other threads that might be attempting to close 
+the channel. 
+
+
+*java.nio.channels.spi.AbstractInterruptibleChannel()*
+
+protected AbstractInterruptibleChannel()
+
+Initializes a new instance of this class. 
+
+
+*java.nio.channels.spi.AbstractInterruptibleChannel.begin()*
+
+protected final void begin()
+
+Marks the beginning of an I/O operation that might block indefinitely. 
+
+This method should be invoked in tandem with the 
+end(|java.nio.channels.spi.AbstractInterruptibleChannel|) method, using a 
+try...finally block as shown above, in order to implement asynchronous closing 
+and interruption for this channel. 
+
+
+*java.nio.channels.spi.AbstractInterruptibleChannel.close()*
+
+public final void close()
+  throws |java.io.IOException|
+         
+Closes this channel. 
+
+If the channel has already been closed then this method returns immediately. 
+Otherwise it marks the channel as closed and then invokes the 
+implCloseChannel(|java.nio.channels.spi.AbstractInterruptibleChannel|) method 
+in order to complete the close operation. 
+
+
+*java.nio.channels.spi.AbstractInterruptibleChannel.end(boolean)*
+
+protected final void end(boolean completed)
+  throws |java.nio.channels.AsynchronousCloseException|
+         
+Marks the end of an I/O operation that might block indefinitely. 
+
+This method should be invoked in tandem with the 
+begin(|java.nio.channels.spi.AbstractInterruptibleChannel|) method, using a 
+try...finally block as shown above, in order to implement asynchronous closing 
+and interruption for this channel. 
+
+    completed - true if, and only if, the I/O operation completed successfully, that is, had 
+       some effect that would be visible to the operation's invoker 
+
+*java.nio.channels.spi.AbstractInterruptibleChannel.implCloseChannel()*
+
+protected abstract void implCloseChannel()
+  throws |java.io.IOException|
+         
+Closes this channel. 
+
+This method is invoked by the 
+close(|java.nio.channels.spi.AbstractInterruptibleChannel|) method in order to 
+perform the actual work of closing the channel. This method is only invoked if 
+the channel has not yet been closed, and it is never invoked more than once. 
+
+An implementation of this method must arrange for any other thread that is 
+blocked in an I/O operation upon this channel to return immediately, either by 
+throwing an exception or by returning normally. 
+
+
+*java.nio.channels.spi.AbstractInterruptibleChannel.isOpen()*
+
+public final boolean isOpen()
+
+
+
+
+

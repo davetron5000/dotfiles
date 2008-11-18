@@ -1,0 +1,223 @@
+*java.util.logging.Handler* *Handler* A Handler object takes log messages from a
+
+public abstract class Handler
+  extends    |java.lang.Object|
+
+|java.util.logging.Handler_Description|
+|java.util.logging.Handler_Fields|
+|java.util.logging.Handler_Constructors|
+|java.util.logging.Handler_Methods|
+
+================================================================================
+
+*java.util.logging.Handler_Constructors*
+|java.util.logging.Handler()|Default constructor.
+
+*java.util.logging.Handler_Methods*
+|java.util.logging.Handler.close()|Close the Handler and free all associated re
+|java.util.logging.Handler.flush()|Flush any buffered output.
+|java.util.logging.Handler.getEncoding()|Return the character encoding for this
+|java.util.logging.Handler.getErrorManager()|Retrieves the ErrorManager for thi
+|java.util.logging.Handler.getFilter()|Get the current Filter for this Handler.
+|java.util.logging.Handler.getFormatter()|Return the Formatter for this Handler
+|java.util.logging.Handler.getLevel()|Get the log level specifying which messag
+|java.util.logging.Handler.isLoggable(LogRecord)|Check if this Handler would ac
+|java.util.logging.Handler.publish(LogRecord)|Publish a LogRecord.
+|java.util.logging.Handler.reportError(String,Exception,int)|Protected convenie
+|java.util.logging.Handler.setEncoding(String)|Set the character encoding used 
+|java.util.logging.Handler.setErrorManager(ErrorManager)|Define an ErrorManager
+|java.util.logging.Handler.setFilter(Filter)|Set a Filter to control output on 
+|java.util.logging.Handler.setFormatter(Formatter)|Set a Formatter.
+|java.util.logging.Handler.setLevel(Level)|Set the log level specifying which m
+
+*java.util.logging.Handler_Description*
+
+A Handler object takes log messages from a Logger and exports them. It might 
+for example, write them to a console or write them to a file, or send them to a 
+network logging service, or forward them to an OS log, or whatever. 
+
+A Handler can be disabled by doing a setLevel(Level.OFF) and can be re-enabled 
+by doing a setLevel with an appropriate level. 
+
+Handler classes typically use LogManager properties to set default values for 
+the Handler's Filter, Formatter, and Level. See the specific documentation for 
+each concrete Handler class. 
+
+
+*java.util.logging.Handler()*
+
+protected Handler()
+
+Default constructor. The resulting Handler has a log level of Level.ALL, no 
+Formatter, and no Filter. A default ErrorManager instance is installed as the 
+ErrorManager. 
+
+
+*java.util.logging.Handler.close()*
+
+public abstract void close()
+  throws |java.lang.SecurityException|
+         
+Close the Handler and free all associated resources. 
+
+The close method will perform a flush and then close the Handler. After close 
+has been called this Handler should no longer be used. Method calls may either 
+be silently ignored or may throw runtime exceptions. 
+
+
+*java.util.logging.Handler.flush()*
+
+public abstract void flush()
+
+Flush any buffered output. 
+
+
+*java.util.logging.Handler.getEncoding()*
+
+public |java.lang.String| getEncoding()
+
+Return the character encoding for this Handler. 
+
+
+    Returns: The encoding name. May be null, which indicates the default encoding should be 
+             used. 
+*java.util.logging.Handler.getErrorManager()*
+
+public |java.util.logging.ErrorManager| getErrorManager()
+
+Retrieves the ErrorManager for this Handler. 
+
+
+*java.util.logging.Handler.getFilter()*
+
+public |java.util.logging.Filter| getFilter()
+
+Get the current Filter for this Handler. 
+
+
+    Returns: a Filter object (may be null) 
+*java.util.logging.Handler.getFormatter()*
+
+public |java.util.logging.Formatter| getFormatter()
+
+Return the Formatter for this Handler. 
+
+
+    Returns: the Formatter (may be null). 
+*java.util.logging.Handler.getLevel()*
+
+public synchronized |java.util.logging.Level| getLevel()
+
+Get the log level specifying which messages will be logged by this Handler. 
+Message levels lower than this level will be discarded. 
+
+
+    Returns: the level of messages being logged. 
+*java.util.logging.Handler.isLoggable(LogRecord)*
+
+public boolean isLoggable(java.util.logging.LogRecord record)
+
+Check if this Handler would actually log a given LogRecord. 
+
+This method checks if the LogRecord has an appropriate Level and whether it 
+satisfies any Filter. It also may make other Handler specific checks that might 
+prevent a handler from logging the LogRecord. It will return false if the 
+LogRecord is Null. 
+
+    record - a LogRecord 
+
+    Returns: true if the LogRecord would be logged. 
+*java.util.logging.Handler.publish(LogRecord)*
+
+public abstract void publish(java.util.logging.LogRecord record)
+
+Publish a LogRecord. 
+
+The logging request was made initially to a Logger object, which initialized 
+the LogRecord and forwarded it here. 
+
+The Handler is responsible for formatting the message, when and if necessary. 
+The formatting should include localization. 
+
+    record - description of the log event. A null record is silently ignored and is not 
+       published 
+
+*java.util.logging.Handler.reportError(String,Exception,int)*
+
+protected void reportError(
+  java.lang.String msg,
+  java.lang.Exception ex,
+  int code)
+
+Protected convenience method to report an error to this Handler's ErrorManager. 
+Note that this method retrieves and uses the ErrorManager without doing a 
+security check. It can therefore be used in environments where the caller may 
+be non-privileged. 
+
+    msg - a descriptive string (may be null) 
+    ex - an exception (may be null) 
+    code - an error code defined in ErrorManager 
+
+*java.util.logging.Handler.setEncoding(String)*
+
+public void setEncoding(java.lang.String encoding)
+  throws |java.lang.SecurityException|
+         |java.io.UnsupportedEncodingException|
+         
+Set the character encoding used by this Handler. 
+
+The encoding should be set before any LogRecords are written to the Handler. 
+
+    encoding - The name of a supported character encoding. May be null, to indicate the 
+       default platform encoding. 
+
+*java.util.logging.Handler.setErrorManager(ErrorManager)*
+
+public void setErrorManager(java.util.logging.ErrorManager em)
+
+Define an ErrorManager for this Handler. 
+
+The ErrorManager's "error" method will be invoked if any errors occur while 
+using this Handler. 
+
+    em - the new ErrorManager 
+
+*java.util.logging.Handler.setFilter(Filter)*
+
+public void setFilter(java.util.logging.Filter newFilter)
+  throws |java.lang.SecurityException|
+         
+Set a Filter to control output on this Handler. 
+
+For each call of publish the Handler will call this Filter (if it is non-null) 
+to check if the LogRecord should be published or discarded. 
+
+    newFilter - a Filter object (may be null) 
+
+*java.util.logging.Handler.setFormatter(Formatter)*
+
+public void setFormatter(java.util.logging.Formatter newFormatter)
+  throws |java.lang.SecurityException|
+         
+Set a Formatter. This Formatter will be used to format LogRecords for this 
+Handler. 
+
+Some Handlers may not use Formatters, in which case the Formatter will be 
+remembered, but not used. 
+
+    newFormatter - the Formatter to use (may not be null) 
+
+*java.util.logging.Handler.setLevel(Level)*
+
+public synchronized void setLevel(java.util.logging.Level newLevel)
+  throws |java.lang.SecurityException|
+         
+Set the log level specifying which message levels will be logged by this 
+Handler. Message levels lower than this value will be discarded. 
+
+The intention is to allow developers to turn on voluminous logging, but to 
+limit the messages that are sent to certain Handlers. 
+
+    newLevel - the new value for the log level 
+
+

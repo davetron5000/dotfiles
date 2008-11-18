@@ -1,0 +1,182 @@
+*javax.swing.DesktopManager* *DesktopManager* DesktopManager objects are owned b
+
+public interface interface DesktopManager
+
+
+|javax.swing.DesktopManager_Description|
+|javax.swing.DesktopManager_Fields|
+|javax.swing.DesktopManager_Constructors|
+|javax.swing.DesktopManager_Methods|
+
+================================================================================
+
+*javax.swing.DesktopManager_Methods*
+|javax.swing.DesktopManager.activateFrame(JInternalFrame)|Generally, indicate t
+|javax.swing.DesktopManager.beginDraggingFrame(JComponent)|This method is norma
+|javax.swing.DesktopManager.beginResizingFrame(JComponent,int)|This methods is 
+|javax.swing.DesktopManager.closeFrame(JInternalFrame)|Generally, this call sho
+|javax.swing.DesktopManager.deactivateFrame(JInternalFrame)|Generally, indicate
+|javax.swing.DesktopManager.deiconifyFrame(JInternalFrame)|Generally, remove an
+|javax.swing.DesktopManager.dragFrame(JComponent,int,int)|The user has moved th
+|javax.swing.DesktopManager.endDraggingFrame(JComponent)|This method signals th
+|javax.swing.DesktopManager.endResizingFrame(JComponent)|This method signals th
+|javax.swing.DesktopManager.iconifyFrame(JInternalFrame)|Generally, remove this
+|javax.swing.DesktopManager.maximizeFrame(JInternalFrame)|Generally, the frame 
+|javax.swing.DesktopManager.minimizeFrame(JInternalFrame)|Generally, this indic
+|javax.swing.DesktopManager.openFrame(JInternalFrame)|If possible, display this
+|javax.swing.DesktopManager.resizeFrame(JComponent,int,int,int,int)|The user ha
+|javax.swing.DesktopManager.setBoundsForFrame(JComponent,int,int,int,int)|This 
+
+*javax.swing.DesktopManager_Description*
+
+DesktopManager objects are owned by a JDesktopPane object. They are responsible 
+for implementing Lspecific behaviors for the JDesktopPane. JInternalFrame 
+implementations should delegate specific behaviors to the DesktopManager. For 
+instance, if a JInternalFrame was asked to iconify, it should try: 
+
+getDesktopPane().getDesktopManager().iconifyFrame(frame); 
+
+This delegation allows each Lto provide custom behaviors for desktop-specific 
+actions. (For example, how and where the internal frame's icon would appear.) 
+This class provides a policy for the various JInternalFrame methods, it is not 
+meant to be called directly rather the various JInternalFrame methods will call 
+into the DesktopManager. 
+
+
+*javax.swing.DesktopManager.activateFrame(JInternalFrame)*
+
+public void activateFrame(javax.swing.JInternalFrame f)
+
+Generally, indicate that this frame has focus. This is usually called after the 
+JInternalFrame's IS_SELECTED_PROPERTY has been set to true. 
+
+
+*javax.swing.DesktopManager.beginDraggingFrame(JComponent)*
+
+public void beginDraggingFrame(javax.swing.JComponent f)
+
+This method is normally called when the user has indicated that they will begin 
+dragging a component around. This method should be called prior to any 
+dragFrame() calls to allow the DesktopManager to prepare any necessary state. 
+Normally f will be a JInternalFrame. 
+
+
+*javax.swing.DesktopManager.beginResizingFrame(JComponent,int)*
+
+public void beginResizingFrame(
+  javax.swing.JComponent f,
+  int direction)
+
+This methods is normally called when the user has indicated that they will 
+begin resizing the frame. This method should be called prior to any 
+resizeFrame() calls to allow the DesktopManager to prepare any necessary state. 
+Normally f will be a JInternalFrame. 
+
+
+*javax.swing.DesktopManager.closeFrame(JInternalFrame)*
+
+public void closeFrame(javax.swing.JInternalFrame f)
+
+Generally, this call should remove the frame from it's parent. 
+
+
+*javax.swing.DesktopManager.deactivateFrame(JInternalFrame)*
+
+public void deactivateFrame(javax.swing.JInternalFrame f)
+
+Generally, indicate that this frame has lost focus. This is usually called 
+after the JInternalFrame's IS_SELECTED_PROPERTY has been set to false. 
+
+
+*javax.swing.DesktopManager.deiconifyFrame(JInternalFrame)*
+
+public void deiconifyFrame(javax.swing.JInternalFrame f)
+
+Generally, remove any iconic representation that is present and restore the 
+frame to it's original size and location. 
+
+
+*javax.swing.DesktopManager.dragFrame(JComponent,int,int)*
+
+public void dragFrame(
+  javax.swing.JComponent f,
+  int newX,
+  int newY)
+
+The user has moved the frame. Calls to this method will be preceded by calls to 
+beginDraggingFrame(). Normally f will be a JInternalFrame. 
+
+
+*javax.swing.DesktopManager.endDraggingFrame(JComponent)*
+
+public void endDraggingFrame(javax.swing.JComponent f)
+
+This method signals the end of the dragging session. Any state maintained by 
+the DesktopManager can be removed here. Normally f will be a JInternalFrame. 
+
+
+*javax.swing.DesktopManager.endResizingFrame(JComponent)*
+
+public void endResizingFrame(javax.swing.JComponent f)
+
+This method signals the end of the resize session. Any state maintained by the 
+DesktopManager can be removed here. Normally f will be a JInternalFrame. 
+
+
+*javax.swing.DesktopManager.iconifyFrame(JInternalFrame)*
+
+public void iconifyFrame(javax.swing.JInternalFrame f)
+
+Generally, remove this frame from it's parent and add an iconic representation. 
+
+
+*javax.swing.DesktopManager.maximizeFrame(JInternalFrame)*
+
+public void maximizeFrame(javax.swing.JInternalFrame f)
+
+Generally, the frame should be resized to match it's parents bounds. 
+
+
+*javax.swing.DesktopManager.minimizeFrame(JInternalFrame)*
+
+public void minimizeFrame(javax.swing.JInternalFrame f)
+
+Generally, this indicates that the frame should be restored to it's size and 
+position prior to a maximizeFrame() call. 
+
+
+*javax.swing.DesktopManager.openFrame(JInternalFrame)*
+
+public void openFrame(javax.swing.JInternalFrame f)
+
+If possible, display this frame in an appropriate location. Normally, this is 
+not called, as the creator of the JInternalFrame will add the frame to the 
+appropriate parent. 
+
+
+*javax.swing.DesktopManager.resizeFrame(JComponent,int,int,int,int)*
+
+public void resizeFrame(
+  javax.swing.JComponent f,
+  int newX,
+  int newY,
+  int newWidth,
+  int newHeight)
+
+The user has resized the component. Calls to this method will be preceded by 
+calls to beginResizingFrame(). Normally f will be a JInternalFrame. 
+
+
+*javax.swing.DesktopManager.setBoundsForFrame(JComponent,int,int,int,int)*
+
+public void setBoundsForFrame(
+  javax.swing.JComponent f,
+  int newX,
+  int newY,
+  int newWidth,
+  int newHeight)
+
+This is a primitive reshape method. 
+
+
+

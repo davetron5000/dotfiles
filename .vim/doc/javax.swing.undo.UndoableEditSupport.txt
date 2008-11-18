@@ -1,0 +1,158 @@
+*javax.swing.undo.UndoableEditSupport* *UndoableEditSupport* A support class use
+
+public class UndoableEditSupport
+  extends    |java.lang.Object|
+
+|javax.swing.undo.UndoableEditSupport_Description|
+|javax.swing.undo.UndoableEditSupport_Fields|
+|javax.swing.undo.UndoableEditSupport_Constructors|
+|javax.swing.undo.UndoableEditSupport_Methods|
+
+================================================================================
+
+*javax.swing.undo.UndoableEditSupport_Fields*
+|javax.swing.undo.CompoundEdit_javax.swing.undo.UndoableEditSupport.compoundEdit|
+|java.util.Vector_javax.swing.undo.UndoableEditSupport.listeners|
+|java.lang.Object_javax.swing.undo.UndoableEditSupport.realSource|
+|int_javax.swing.undo.UndoableEditSupport.updateLevel|
+
+*javax.swing.undo.UndoableEditSupport_Constructors*
+|javax.swing.undo.UndoableEditSupport()|Constructs an UndoableEditSupport objec
+|javax.swing.undo.UndoableEditSupport(Object)|Constructs an UndoableEditSupport
+
+*javax.swing.undo.UndoableEditSupport_Methods*
+|javax.swing.undo.UndoableEditSupport._postEdit(UndoableEdit)|Called only from 
+|javax.swing.undo.UndoableEditSupport.addUndoableEditListener(UndoableEditListener)|
+|javax.swing.undo.UndoableEditSupport.beginUpdate()|
+|javax.swing.undo.UndoableEditSupport.createCompoundEdit()|Called only from beg
+|javax.swing.undo.UndoableEditSupport.endUpdate()|DEADLOCK WARNING: Calling thi
+|javax.swing.undo.UndoableEditSupport.getUndoableEditListeners()|Returns an arr
+|javax.swing.undo.UndoableEditSupport.getUpdateLevel()|Returns the update level
+|javax.swing.undo.UndoableEditSupport.postEdit(UndoableEdit)|DEADLOCK WARNING: 
+|javax.swing.undo.UndoableEditSupport.removeUndoableEditListener(UndoableEditListener)|
+|javax.swing.undo.UndoableEditSupport.toString()|Returns a string that displays
+
+*javax.swing.undo.UndoableEditSupport_Description*
+
+A support class used for managing UndoableEdit listeners. 
+
+
+*javax.swing.undo.CompoundEdit_javax.swing.undo.UndoableEditSupport.compoundEdit*
+
+A support class used for managing UndoableEdit listeners. 
+
+
+*java.util.Vector_javax.swing.undo.UndoableEditSupport.listeners*
+
+A support class used for managing UndoableEdit listeners. 
+
+
+*java.lang.Object_javax.swing.undo.UndoableEditSupport.realSource*
+
+A support class used for managing UndoableEdit listeners. 
+
+
+*int_javax.swing.undo.UndoableEditSupport.updateLevel*
+
+A support class used for managing UndoableEdit listeners. 
+
+
+
+*javax.swing.undo.UndoableEditSupport()*
+
+public UndoableEditSupport()
+
+Constructs an UndoableEditSupport object. 
+
+
+*javax.swing.undo.UndoableEditSupport(Object)*
+
+public UndoableEditSupport(java.lang.Object r)
+
+Constructs an UndoableEditSupport object. 
+
+    r - an Object 
+
+*javax.swing.undo.UndoableEditSupport._postEdit(UndoableEdit)*
+
+protected void _postEdit(javax.swing.undo.UndoableEdit e)
+
+Called only from postEdit and endUpdate. Calls undoableEditHappened in all 
+listeners. No synchronization is performed here, since the two calling methods 
+are synchronized. 
+
+
+*javax.swing.undo.UndoableEditSupport.addUndoableEditListener(UndoableEditListener)*
+
+public synchronized void addUndoableEditListener(javax.swing.event.UndoableEditListener l)
+
+Registers an UndoableEditListener. The listener is notified whenever an edit 
+occurs which can be undone. 
+
+    l - an UndoableEditListener object 
+
+*javax.swing.undo.UndoableEditSupport.beginUpdate()*
+
+public synchronized void beginUpdate()
+
+
+
+
+*javax.swing.undo.UndoableEditSupport.createCompoundEdit()*
+
+protected |javax.swing.undo.CompoundEdit| createCompoundEdit()
+
+Called only from beginUpdate. Exposed here for subclasses' use. 
+
+
+*javax.swing.undo.UndoableEditSupport.endUpdate()*
+
+public synchronized void endUpdate()
+
+DEADLOCK WARNING: Calling this method may call undoableEditHappened in all 
+listeners. It is unwise to call this method from one of its listeners. 
+
+
+*javax.swing.undo.UndoableEditSupport.getUndoableEditListeners()*
+
+public synchronized |javax.swing.event.UndoableEditListener| getUndoableEditListeners()
+
+Returns an array of all the UndoableEditListeners added to this 
+UndoableEditSupport with addUndoableEditListener(). 
+
+
+    Returns: all of the UndoableEditListeners added or an empty array if no listeners have 
+             been added 
+*javax.swing.undo.UndoableEditSupport.getUpdateLevel()*
+
+public int getUpdateLevel()
+
+Returns the update level value. 
+
+
+    Returns: an integer representing the update level 
+*javax.swing.undo.UndoableEditSupport.postEdit(UndoableEdit)*
+
+public synchronized void postEdit(javax.swing.undo.UndoableEdit e)
+
+DEADLOCK WARNING: Calling this method may call undoableEditHappened in all 
+listeners. It is unwise to call this method from one of its listeners. 
+
+
+*javax.swing.undo.UndoableEditSupport.removeUndoableEditListener(UndoableEditListener)*
+
+public synchronized void removeUndoableEditListener(javax.swing.event.UndoableEditListener l)
+
+Removes an UndoableEditListener. 
+
+    l - the UndoableEditListener object to be removed 
+
+*javax.swing.undo.UndoableEditSupport.toString()*
+
+public |java.lang.String| toString()
+
+Returns a string that displays and identifies this object's properties. 
+
+
+    Returns: a String representation of this object 
+

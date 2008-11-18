@@ -1,0 +1,171 @@
+*javax.security.auth.kerberos.KerberosPrincipal* *KerberosPrincipal* This class 
+
+public final class KerberosPrincipal
+  extends    |java.lang.Object|
+  implements |java.security.Principal|
+             |java.io.Serializable|
+
+|javax.security.auth.kerberos.KerberosPrincipal_Description|
+|javax.security.auth.kerberos.KerberosPrincipal_Fields|
+|javax.security.auth.kerberos.KerberosPrincipal_Constructors|
+|javax.security.auth.kerberos.KerberosPrincipal_Methods|
+
+================================================================================
+
+*javax.security.auth.kerberos.KerberosPrincipal_Fields*
+|int_javax.security.auth.kerberos.KerberosPrincipal.KRB_NT_PRINCIPAL|
+|int_javax.security.auth.kerberos.KerberosPrincipal.KRB_NT_SRV_HST|
+|int_javax.security.auth.kerberos.KerberosPrincipal.KRB_NT_SRV_INST|
+|int_javax.security.auth.kerberos.KerberosPrincipal.KRB_NT_SRV_XHST|
+|int_javax.security.auth.kerberos.KerberosPrincipal.KRB_NT_UID|
+|int_javax.security.auth.kerberos.KerberosPrincipal.KRB_NT_UNKNOWN|
+
+*javax.security.auth.kerberos.KerberosPrincipal_Constructors*
+|javax.security.auth.kerberos.KerberosPrincipal(String)|Constructs a KerberosPr
+|javax.security.auth.kerberos.KerberosPrincipal(String,int)|Constructs a Kerber
+
+*javax.security.auth.kerberos.KerberosPrincipal_Methods*
+|javax.security.auth.kerberos.KerberosPrincipal.equals(Object)|Compares the spe
+|javax.security.auth.kerberos.KerberosPrincipal.getName()|The returned string c
+|javax.security.auth.kerberos.KerberosPrincipal.getNameType()|Returns the name 
+|javax.security.auth.kerberos.KerberosPrincipal.getRealm()|Returns the realm co
+|javax.security.auth.kerberos.KerberosPrincipal.hashCode()|Returns a hashcode f
+|javax.security.auth.kerberos.KerberosPrincipal.toString()|
+
+*javax.security.auth.kerberos.KerberosPrincipal_Description*
+
+This class encapsulates a Kerberos principal. 
+
+
+*int_javax.security.auth.kerberos.KerberosPrincipal.KRB_NT_PRINCIPAL*
+
+This class encapsulates a Kerberos principal. 
+
+
+*int_javax.security.auth.kerberos.KerberosPrincipal.KRB_NT_SRV_HST*
+
+This class encapsulates a Kerberos principal. 
+
+
+*int_javax.security.auth.kerberos.KerberosPrincipal.KRB_NT_SRV_INST*
+
+This class encapsulates a Kerberos principal. 
+
+
+*int_javax.security.auth.kerberos.KerberosPrincipal.KRB_NT_SRV_XHST*
+
+This class encapsulates a Kerberos principal. 
+
+
+*int_javax.security.auth.kerberos.KerberosPrincipal.KRB_NT_UID*
+
+This class encapsulates a Kerberos principal. 
+
+
+*int_javax.security.auth.kerberos.KerberosPrincipal.KRB_NT_UNKNOWN*
+
+This class encapsulates a Kerberos principal. 
+
+
+
+*javax.security.auth.kerberos.KerberosPrincipal(String)*
+
+public KerberosPrincipal(java.lang.String name)
+
+Constructs a KerberosPrincipal from the provided string input. The name type 
+for this principal defaults to 
+KRB_NT_PRINCIPAL(|javax.security.auth.kerberos.KerberosPrincipal|) This string 
+is assumed to contain a name in the format that is specified in Section 2.1.1. 
+(Kerberos Principal Name Form) of RFC 1964 (for example, duke@FOO.COM, where 
+duke represents a principal, and FOO.COM represents a realm). 
+
+If the input name does not contain a realm, the default realm is used. The 
+default realm can be specified either in a Kerberos configuration file or via 
+the java.security.krb5.realm system property. For more information, 
+
+Kerberos Requirements 
+
+    name - the principal name 
+
+*javax.security.auth.kerberos.KerberosPrincipal(String,int)*
+
+public KerberosPrincipal(
+  java.lang.String name,
+  int nameType)
+
+Constructs a KerberosPrincipal from the provided string and name type input. 
+The string is assumed to contain a name in the format that is specified in 
+Section 2.1 (Mandatory Name Forms) of RFC 1964. Valid name types are specified 
+in Section 7.2 (Principal Names) of RFC 1510. The input name must be consistent 
+with the provided name type. (for example, duke@FOO.COM, is a valid input 
+string for the name type, KRB_NT_PRINCIPAL where duke represents a principal, 
+and FOO.COM represents a realm). 
+
+If the input name does not contain a realm, the default realm is used. The 
+default realm can be specified either in a Kerberos configuration file or via 
+the java.security.krb5.realm system property. For more information, see 
+
+Kerberos Requirements. 
+
+    name - the principal name 
+    nameType - the name type of the principal 
+
+*javax.security.auth.kerberos.KerberosPrincipal.equals(Object)*
+
+public boolean equals(java.lang.Object other)
+
+Compares the specified Object with this Principal for equality. Returns true if 
+the given object is also a KerberosPrincipal and the two KerberosPrincipal 
+instances are equivalent. More formally two KerberosPrincipal instances are 
+equal if the values returned by getName() are equal and the values returned by 
+getNameType() are equal. 
+
+    other - the Object to compare to 
+
+    Returns: true if the Object passed in represents the same principal as this one, false 
+             otherwise. 
+*javax.security.auth.kerberos.KerberosPrincipal.getName()*
+
+public |java.lang.String| getName()
+
+The returned string corresponds to the single-string representation of a 
+Kerberos Principal name as specified in Section 2.1 of RFC 1964. 
+
+
+    Returns: the principal name. 
+*javax.security.auth.kerberos.KerberosPrincipal.getNameType()*
+
+public int getNameType()
+
+Returns the name type of the KerberosPrincipal. Valid name types are specified 
+in Section 7.2 of RFC1510. 
+
+
+    Returns: the name type. 
+*javax.security.auth.kerberos.KerberosPrincipal.getRealm()*
+
+public |java.lang.String| getRealm()
+
+Returns the realm component of this Kerberos principal. 
+
+
+    Returns: the realm component of this Kerberos principal. 
+*javax.security.auth.kerberos.KerberosPrincipal.hashCode()*
+
+public int hashCode()
+
+Returns a hashcode for this principal. The hash code is defined to be the 
+result of the following calculation: 
+
+hashCode = getName().hashCode(); 
+
+
+    Returns: a hashCode() for the KerberosPrincipal 
+*javax.security.auth.kerberos.KerberosPrincipal.toString()*
+
+public |java.lang.String| toString()
+
+
+
+
+

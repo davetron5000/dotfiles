@@ -1,0 +1,172 @@
+*java.security.IdentityScope* *IdentityScope* This class represents a scope for 
+
+public abstract class IdentityScope
+  extends    |java.security.Identity|
+
+|java.security.IdentityScope_Description|
+|java.security.IdentityScope_Fields|
+|java.security.IdentityScope_Constructors|
+|java.security.IdentityScope_Methods|
+
+================================================================================
+
+*java.security.IdentityScope_Constructors*
+|java.security.IdentityScope()|This constructor is used for serialization only 
+|java.security.IdentityScope(String)|Constructs a new identity scope with the s
+|java.security.IdentityScope(String,IdentityScope)|Constructs a new identity sc
+
+*java.security.IdentityScope_Methods*
+|java.security.IdentityScope.addIdentity(Identity)|Adds an identity to this ide
+|java.security.IdentityScope.getIdentity(Principal)|Retrieves the identity whos
+|java.security.IdentityScope.getIdentity(PublicKey)|Retrieves the identity with
+|java.security.IdentityScope.getIdentity(String)|Returns the identity in this s
+|java.security.IdentityScope.getSystemScope()|Returns the system's identity sco
+|java.security.IdentityScope.identities()|Returns an enumeration of all identit
+|java.security.IdentityScope.removeIdentity(Identity)|Removes an identity from 
+|java.security.IdentityScope.setSystemScope(IdentityScope)|Sets the system's id
+|java.security.IdentityScope.size()|Returns the number of identities within thi
+|java.security.IdentityScope.toString()|Returns a string representation of this
+
+*java.security.IdentityScope_Description*
+
+This class represents a scope for identities. It is an Identity itself, and 
+therefore has a name and can have a scope. It can also optionally have a public 
+key and associated certificates. 
+
+An IdentityScope can contain Identity objects of all kinds, including Signers. 
+All types of Identity objects can be retrieved, added, and removed using the 
+same methods. Note that it is possible, and in fact expected, that different 
+types of identity scopes will apply different policies for their various 
+operations on the various types of Identities. 
+
+There is a one-to-one mapping between keys and identities, and there can only 
+be one copy of one key per scope. For example, suppose Acme Software, Inc is a 
+software publisher known to a user. Suppose it is an Identity, that is, it has 
+a public key, and a set of associated certificates. It is named in the scope 
+using the name "Acme Software". No other named Identity in the scope has the 
+same public key. Of course, none has the same name as well. 
+
+
+*java.security.IdentityScope()*
+
+protected IdentityScope()
+
+This constructor is used for serialization only and should not be used by 
+subclasses. 
+
+
+*java.security.IdentityScope(String)*
+
+public IdentityScope(java.lang.String name)
+
+Constructs a new identity scope with the specified name. 
+
+    name - the scope name. 
+
+*java.security.IdentityScope(String,IdentityScope)*
+
+public IdentityScope(
+  java.lang.String name,
+  java.security.IdentityScope scope)
+  throws |java.security.KeyManagementException|
+         
+Constructs a new identity scope with the specified name and scope. 
+
+    name - the scope name. 
+    scope - the scope for the new identity scope. 
+
+*java.security.IdentityScope.addIdentity(Identity)*
+
+public abstract void addIdentity(java.security.Identity identity)
+  throws |java.security.KeyManagementException|
+         
+Adds an identity to this identity scope. 
+
+    identity - the identity to be added. 
+
+*java.security.IdentityScope.getIdentity(Principal)*
+
+public |java.security.Identity| getIdentity(java.security.Principal principal)
+
+Retrieves the identity whose name is the same as that of the specified 
+principal. (Note: Identity implements Principal.) 
+
+    principal - the principal corresponding to the identity to be retrieved. 
+
+    Returns: the identity whose name is the same as that of the principal, or null if there 
+             are no identities of the same name in this scope. 
+*java.security.IdentityScope.getIdentity(PublicKey)*
+
+public abstract |java.security.Identity| getIdentity(java.security.PublicKey key)
+
+Retrieves the identity with the specified public key. 
+
+    key - the public key for the identity to be returned. 
+
+    Returns: the identity with the given key, or null if there are no identities in this 
+             scope with that key. 
+*java.security.IdentityScope.getIdentity(String)*
+
+public abstract |java.security.Identity| getIdentity(java.lang.String name)
+
+Returns the identity in this scope with the specified name (if any). 
+
+    name - the name of the identity to be retrieved. 
+
+    Returns: the identity named name, or null if there are no identities named name in this 
+             scope. 
+*java.security.IdentityScope.getSystemScope()*
+
+public static |java.security.IdentityScope| getSystemScope()
+
+Returns the system's identity scope. 
+
+
+    Returns: the system's identity scope. 
+*java.security.IdentityScope.identities()*
+
+public abstract |java.util.Enumeration| identities()
+
+Returns an enumeration of all identities in this identity scope. 
+
+
+    Returns: an enumeration of all identities in this identity scope. 
+*java.security.IdentityScope.removeIdentity(Identity)*
+
+public abstract void removeIdentity(java.security.Identity identity)
+  throws |java.security.KeyManagementException|
+         
+Removes an identity from this identity scope. 
+
+    identity - the identity to be removed. 
+
+*java.security.IdentityScope.setSystemScope(IdentityScope)*
+
+protected static void setSystemScope(java.security.IdentityScope scope)
+
+Sets the system's identity scope. 
+
+First, if there is a security manager, its checkSecurityAccess method is called 
+with "setSystemScope" as its argument to see if it's ok to set the identity 
+scope. 
+
+    scope - the scope to set. 
+
+*java.security.IdentityScope.size()*
+
+public abstract int size()
+
+Returns the number of identities within this identity scope. 
+
+
+    Returns: the number of identities within this identity scope. 
+*java.security.IdentityScope.toString()*
+
+public |java.lang.String| toString()
+
+Returns a string representation of this identity scope, including its name, its 
+scope name, and the number of identities in this identity scope. 
+
+
+    Returns: a string representation of this identity scope. 
+

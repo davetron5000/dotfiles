@@ -1,0 +1,184 @@
+*javax.management.monitor.StringMonitor* *StringMonitor* Defines a monitor MBean
+
+public class StringMonitor
+  extends    |javax.management.monitor.Monitor|
+  implements |javax.management.monitor.StringMonitorMBean|
+
+|javax.management.monitor.StringMonitor_Description|
+|javax.management.monitor.StringMonitor_Fields|
+|javax.management.monitor.StringMonitor_Constructors|
+|javax.management.monitor.StringMonitor_Methods|
+
+================================================================================
+
+*javax.management.monitor.StringMonitor_Constructors*
+|javax.management.monitor.StringMonitor()|Default constructor.
+
+*javax.management.monitor.StringMonitor_Methods*
+|javax.management.monitor.StringMonitor.getDerivedGauge()|Returns the derived g
+|javax.management.monitor.StringMonitor.getDerivedGauge(ObjectName)|Gets the de
+|javax.management.monitor.StringMonitor.getDerivedGaugeTimeStamp()|Gets the der
+|javax.management.monitor.StringMonitor.getDerivedGaugeTimeStamp(ObjectName)|Ge
+|javax.management.monitor.StringMonitor.getNotificationInfo()|Returns a Notific
+|javax.management.monitor.StringMonitor.getNotifyDiffer()|Gets the differing no
+|javax.management.monitor.StringMonitor.getNotifyMatch()|Gets the matching noti
+|javax.management.monitor.StringMonitor.getStringToCompare()|Gets the string to
+|javax.management.monitor.StringMonitor.setGranularityPeriod(long)|Sets the gra
+|javax.management.monitor.StringMonitor.setNotifyDiffer(boolean)|Sets the diffe
+|javax.management.monitor.StringMonitor.setNotifyMatch(boolean)|Sets the matchi
+|javax.management.monitor.StringMonitor.setStringToCompare(String)|Sets the str
+|javax.management.monitor.StringMonitor.start()|Starts the string monitor.
+|javax.management.monitor.StringMonitor.stop()|Stops the string monitor.
+
+*javax.management.monitor.StringMonitor_Description*
+
+Defines a monitor MBean designed to observe the values of a string attribute. 
+
+A string monitor sends notifications as follows: 
+
+if the attribute value matches the string to compare value, a match 
+notification(|javax.management.monitor.MonitorNotification|) is sent. The 
+notify match flag must be set to true. Subsequent matchings of the string to 
+compare values do not cause further notifications unless the attribute value 
+differs from the string to compare value. if the attribute value differs from 
+the string to compare value, a differ 
+notification(|javax.management.monitor.MonitorNotification|) is sent. The 
+notify differ flag must be set to true. Subsequent differences from the string 
+to compare value do not cause further notifications unless the attribute value 
+matches the string to compare value. 
+
+
+*javax.management.monitor.StringMonitor()*
+
+public StringMonitor()
+
+Default constructor. 
+
+
+*javax.management.monitor.StringMonitor.getDerivedGauge()*
+
+public synchronized |java.lang.String| getDerivedGauge()
+
+Returns the derived gauge of the first object in the set of observed MBeans. 
+
+
+    Returns: The derived gauge. 
+*javax.management.monitor.StringMonitor.getDerivedGauge(ObjectName)*
+
+public synchronized |java.lang.String| getDerivedGauge(javax.management.ObjectName object)
+
+Gets the derived gauge of the specified object, if this object is contained in 
+the set of observed MBeans, or null otherwise. 
+
+    object - the name of the MBean whose derived gauge is required. 
+
+    Returns: The derived gauge of the specified object. 
+*javax.management.monitor.StringMonitor.getDerivedGaugeTimeStamp()*
+
+public synchronized long getDerivedGaugeTimeStamp()
+
+Gets the derived gauge timestamp of the first object in the set of observed 
+MBeans. 
+
+
+    Returns: The derived gauge timestamp. 
+*javax.management.monitor.StringMonitor.getDerivedGaugeTimeStamp(ObjectName)*
+
+public synchronized long getDerivedGaugeTimeStamp(javax.management.ObjectName object)
+
+Gets the derived gauge timestamp of the specified object, if this object is 
+contained in the set of observed MBeans, or null otherwise. 
+
+    object - the name of the MBean whose derived gauge timestamp is required. 
+
+    Returns: The derived gauge timestamp of the specified object. 
+*javax.management.monitor.StringMonitor.getNotificationInfo()*
+
+public |javax.management.MBeanNotificationInfo| getNotificationInfo()
+
+Returns a NotificationInfo object containing the name of the Java class of the 
+notification and the notification types sent by the string monitor. 
+
+
+*javax.management.monitor.StringMonitor.getNotifyDiffer()*
+
+public synchronized boolean getNotifyDiffer()
+
+Gets the differing notification's on/off switch value common to all observed 
+MBeans. 
+
+
+    Returns: true if the string monitor notifies when differing from the string to compare, 
+             false otherwise. 
+*javax.management.monitor.StringMonitor.getNotifyMatch()*
+
+public synchronized boolean getNotifyMatch()
+
+Gets the matching notification's on/off switch value common to all observed 
+MBeans. 
+
+
+    Returns: true if the string monitor notifies when matching the string to compare, false 
+             otherwise. 
+*javax.management.monitor.StringMonitor.getStringToCompare()*
+
+public synchronized |java.lang.String| getStringToCompare()
+
+Gets the string to compare with the observed attribute common to all observed 
+MBeans. 
+
+
+    Returns: The string value. 
+*javax.management.monitor.StringMonitor.setGranularityPeriod(long)*
+
+public synchronized void setGranularityPeriod(long period)
+  throws |java.lang.IllegalArgumentException|
+         
+Sets the granularity period (in milliseconds). The default value of the 
+granularity period is 10 seconds. 
+
+    period - The granularity period value. 
+
+*javax.management.monitor.StringMonitor.setNotifyDiffer(boolean)*
+
+public synchronized void setNotifyDiffer(boolean value)
+
+Sets the differing notification's on/off switch value common to all observed 
+MBeans. 
+
+    value - The differing notification's on/off switch value. 
+
+*javax.management.monitor.StringMonitor.setNotifyMatch(boolean)*
+
+public synchronized void setNotifyMatch(boolean value)
+
+Sets the matching notification's on/off switch value common to all observed 
+MBeans. 
+
+    value - The matching notification's on/off switch value. 
+
+*javax.management.monitor.StringMonitor.setStringToCompare(String)*
+
+public synchronized void setStringToCompare(java.lang.String value)
+  throws |java.lang.IllegalArgumentException|
+         
+Sets the string to compare with the observed attribute common to all observed 
+MBeans. 
+
+    value - The string value. 
+
+*javax.management.monitor.StringMonitor.start()*
+
+public synchronized void start()
+
+Starts the string monitor. 
+
+
+*javax.management.monitor.StringMonitor.stop()*
+
+public void stop()
+
+Stops the string monitor. 
+
+
+

@@ -1,0 +1,761 @@
+*javax.imageio.stream.ImageInputStream* *ImageInputStream* A seekable input stre
+
+public interface interface ImageInputStream
+
+  implements |java.io.DataInput|
+
+|javax.imageio.stream.ImageInputStream_Description|
+|javax.imageio.stream.ImageInputStream_Fields|
+|javax.imageio.stream.ImageInputStream_Constructors|
+|javax.imageio.stream.ImageInputStream_Methods|
+
+================================================================================
+
+*javax.imageio.stream.ImageInputStream_Methods*
+|javax.imageio.stream.ImageInputStream.close()|Closes the stream.
+|javax.imageio.stream.ImageInputStream.flush()|Discards the initial position of
+|javax.imageio.stream.ImageInputStream.flushBefore(long)|Discards the initial p
+|javax.imageio.stream.ImageInputStream.getBitOffset()|Returns the current bit o
+|javax.imageio.stream.ImageInputStream.getByteOrder()|Returns the byte order wi
+|javax.imageio.stream.ImageInputStream.getFlushedPosition()|Returns the earlies
+|javax.imageio.stream.ImageInputStream.getStreamPosition()|Returns the current 
+|javax.imageio.stream.ImageInputStream.isCached()|Returns true if this ImageInp
+|javax.imageio.stream.ImageInputStream.isCachedFile()|Returns true if this Imag
+|javax.imageio.stream.ImageInputStream.isCachedMemory()|Returns true if this Im
+|javax.imageio.stream.ImageInputStream.length()|Returns the total length of the
+|javax.imageio.stream.ImageInputStream.mark()|Marks a position in the stream to
+|javax.imageio.stream.ImageInputStream.read()|Reads a single byte from the stre
+|javax.imageio.stream.ImageInputStream.read(byte[])|Reads up to b.length bytes 
+|javax.imageio.stream.ImageInputStream.read(byte[],int,int)|Reads up to len byt
+|javax.imageio.stream.ImageInputStream.readBit()|Reads a single bit from the st
+|javax.imageio.stream.ImageInputStream.readBits(int)|Reads a bitstring from the
+|javax.imageio.stream.ImageInputStream.readBoolean()|Reads a byte from the stre
+|javax.imageio.stream.ImageInputStream.readByte()|Reads a byte from the stream 
+|javax.imageio.stream.ImageInputStream.readBytes(IIOByteBuffer,int)|Reads up to
+|javax.imageio.stream.ImageInputStream.readChar()|Equivalent to readUnsignedSho
+|javax.imageio.stream.ImageInputStream.readDouble()|Reads 8 bytes from the stre
+|javax.imageio.stream.ImageInputStream.readFloat()|Reads 4 bytes from the strea
+|javax.imageio.stream.ImageInputStream.readFully(byte[])|Reads b.length bytes f
+|javax.imageio.stream.ImageInputStream.readFully(byte[],int,int)|Reads len byte
+|javax.imageio.stream.ImageInputStream.readFully(char[],int,int)|Reads len char
+|javax.imageio.stream.ImageInputStream.readFully(double[],int,int)|Reads len do
+|javax.imageio.stream.ImageInputStream.readFully(float[],int,int)|Reads len flo
+|javax.imageio.stream.ImageInputStream.readFully(int[],int,int)|Reads len ints 
+|javax.imageio.stream.ImageInputStream.readFully(long[],int,int)|Reads len long
+|javax.imageio.stream.ImageInputStream.readFully(short[],int,int)|Reads len sho
+|javax.imageio.stream.ImageInputStream.readInt()|Reads 4 bytes from the stream,
+|javax.imageio.stream.ImageInputStream.readLine()|Reads the next line of text f
+|javax.imageio.stream.ImageInputStream.readLong()|Reads 8 bytes from the stream
+|javax.imageio.stream.ImageInputStream.readShort()|Reads two bytes from the str
+|javax.imageio.stream.ImageInputStream.readUnsignedByte()|Reads a byte from the
+|javax.imageio.stream.ImageInputStream.readUnsignedInt()|Reads 4 bytes from the
+|javax.imageio.stream.ImageInputStream.readUnsignedShort()|Reads two bytes from
+|javax.imageio.stream.ImageInputStream.readUTF()|Reads in a string that has bee
+|javax.imageio.stream.ImageInputStream.reset()|Returns the file pointer to its 
+|javax.imageio.stream.ImageInputStream.seek(long)|Sets the current stream posit
+|javax.imageio.stream.ImageInputStream.setBitOffset(int)|Sets the bit offset to
+|javax.imageio.stream.ImageInputStream.setByteOrder(ByteOrder)|Sets the desired
+|javax.imageio.stream.ImageInputStream.skipBytes(int)|Moves the stream position
+|javax.imageio.stream.ImageInputStream.skipBytes(long)|Moves the stream positio
+
+*javax.imageio.stream.ImageInputStream_Description*
+
+A seekable input stream interface for use by ImageReaders. Various input 
+sources, such as InputStreams and Files, as well as future fast I/O sources may 
+be "wrapped" by a suitable implementation of this interface for use by the 
+Image I/O API. 
+
+
+*javax.imageio.stream.ImageInputStream.close()*
+
+public void close()
+  throws |java.io.IOException|
+         
+Closes the stream. Attempts to access a stream that has been closed may result 
+in IOExceptions or incorrect behavior. Calling this method may allow classes 
+implementing this interface to release resources associated with the stream 
+such as memory, disk space, or file descriptors. 
+
+
+*javax.imageio.stream.ImageInputStream.flush()*
+
+public void flush()
+  throws |java.io.IOException|
+         
+Discards the initial position of the stream prior to the current stream 
+position. Equivalent to flushBefore(getStreamPosition()). 
+
+
+*javax.imageio.stream.ImageInputStream.flushBefore(long)*
+
+public void flushBefore(long pos)
+  throws |java.io.IOException|
+         
+Discards the initial portion of the stream prior to the indicated postion. 
+Attempting to seek to an offset within the flushed portion of the stream will 
+result in an IndexOutOfBoundsException. 
+
+Calling flushBefore may allow classes implementing this interface to free up 
+resources such as memory or disk space that are being used to store data from 
+the stream. 
+
+    pos - a long containing the length of the file prefix that may be flushed. 
+
+*javax.imageio.stream.ImageInputStream.getBitOffset()*
+
+public int getBitOffset()
+  throws |java.io.IOException|
+         
+Returns the current bit offset, as an integer between 0 and 7, inclusive. The 
+bit offset is updated implicitly by calls to the readBits method. A value of 0 
+indicates the most-significant bit, and a value of 7 indicates the least 
+significant bit, of the byte being read. 
+
+The bit offset is set to 0 when a stream is first opened, and is reset to 0 by 
+calls to seek, skipBytes, or any read or readFully method. 
+
+
+    Returns: an int containing the bit offset between 0 and 7, inclusive. 
+*javax.imageio.stream.ImageInputStream.getByteOrder()*
+
+public |java.nio.ByteOrder| getByteOrder()
+
+Returns the byte order with which data values will be read from this stream as 
+an instance of the java.nio.ByteOrder enumeration. 
+
+
+    Returns: one of ByteOrder.BIG_ENDIAN or ByteOrder.LITTLE_ENDIAN, indicating which byte 
+             order is being used. 
+*javax.imageio.stream.ImageInputStream.getFlushedPosition()*
+
+public long getFlushedPosition()
+
+Returns the earliest position in the stream to which seeking may be performed. 
+The returned value will be the maximum of all values passed into previous calls 
+to flushBefore. 
+
+
+    Returns: the earliest legal position for seeking, as a long. 
+*javax.imageio.stream.ImageInputStream.getStreamPosition()*
+
+public long getStreamPosition()
+  throws |java.io.IOException|
+         
+Returns the current byte position of the stream. The next read will take place 
+starting at this offset. 
+
+
+    Returns: a long containing the position of the stream. 
+*javax.imageio.stream.ImageInputStream.isCached()*
+
+public boolean isCached()
+
+Returns true if this ImageInputStream caches data itself in order to allow 
+seeking backwards. Applications may consult this in order to decide how 
+frequently, or whether, to flush in order to conserve cache resources. 
+
+
+    Returns: true if this ImageInputStream caches data. 
+*javax.imageio.stream.ImageInputStream.isCachedFile()*
+
+public boolean isCachedFile()
+
+Returns true if this ImageInputStream caches data itself in order to allow 
+seeking backwards, and the cache is kept in a temporary file. Applications may 
+consult this in order to decide how frequently, or whether, to flush in order 
+to conserve cache resources. 
+
+
+    Returns: true if this ImageInputStream caches data in a temporary file. 
+*javax.imageio.stream.ImageInputStream.isCachedMemory()*
+
+public boolean isCachedMemory()
+
+Returns true if this ImageInputStream caches data itself in order to allow 
+seeking backwards, and the cache is kept in main memory. Applications may 
+consult this in order to decide how frequently, or whether, to flush in order 
+to conserve cache resources. 
+
+
+    Returns: true if this ImageInputStream caches data in main memory. 
+*javax.imageio.stream.ImageInputStream.length()*
+
+public long length()
+  throws |java.io.IOException|
+         
+Returns the total length of the stream, if known. Otherwise, -1 is returned. 
+
+
+    Returns: a long containing the length of the stream, if known, or else -1. 
+*javax.imageio.stream.ImageInputStream.mark()*
+
+public void mark()
+
+Marks a position in the stream to be returned to by a subsequent call to reset. 
+Unlike a standard InputStream, all ImageInputStreams support marking. 
+Additionally, calls to mark and reset may be nested arbitrarily. 
+
+Unlike the mark methods declared by the Reader InputStream interfaces, no 
+readLimit parameter is used. An arbitrary amount of data may be read following 
+the call to mark. 
+
+The bit position used by the readBits method is saved and restored by each pair 
+of calls to mark and reset. 
+
+
+*javax.imageio.stream.ImageInputStream.read()*
+
+public int read()
+  throws |java.io.IOException|
+         
+Reads a single byte from the stream and returns it as an integer between 0 and 
+255. If the end of the stream is reached, -1 is returned. 
+
+The bit offset within the stream is reset to zero before the read occurs. 
+
+
+    Returns: a byte value from the stream, as an int, or -1 to indicate EOF. 
+*javax.imageio.stream.ImageInputStream.read(byte[])*
+
+public int read(byte[] b)
+  throws |java.io.IOException|
+         
+Reads up to b.length bytes from the stream, and stores them into b starting at 
+index 0. The number of bytes read is returned. If no bytes can be read because 
+the end of the stream has been reached, -1 is returned. 
+
+The bit offset within the stream is reset to zero before the read occurs. 
+
+    b - an array of bytes to be written to. 
+
+    Returns: the number of bytes actually read, or -1 to indicate EOF. 
+*javax.imageio.stream.ImageInputStream.read(byte[],int,int)*
+
+public int read(
+  byte[] b,
+  int off,
+  int len)
+  throws |java.io.IOException|
+         
+Reads up to len bytes from the stream, and stores them into b starting at index 
+off. The number of bytes read is returned. If no bytes can be read because the 
+end of the stream has been reached, -1 is returned. 
+
+The bit offset within the stream is reset to zero before the read occurs. 
+
+    b - an array of bytes to be written to. 
+    off - the starting position within b to write to. 
+    len - the maximum number of bytes to read. 
+
+    Returns: the number of bytes actually read, or -1 to indicate EOF. 
+*javax.imageio.stream.ImageInputStream.readBit()*
+
+public int readBit()
+  throws |java.io.IOException|
+         
+Reads a single bit from the stream and returns it as an int with the value 0 or 
+1. The bit offset is advanced by one and reduced modulo 8. 
+
+
+    Returns: an int containing the value 0 or 1. 
+*javax.imageio.stream.ImageInputStream.readBits(int)*
+
+public long readBits(int numBits)
+  throws |java.io.IOException|
+         
+Reads a bitstring from the stream and returns it as a long, with the first bit 
+read becoming the most significant bit of the output. The read starts within 
+the byte indicated by getStreamPosition, at the bit given by getBitOffset. The 
+bit offset is advanced by numBits and reduced modulo 8. 
+
+The byte order of the stream has no effect on this method. The return value of 
+this method is constructed as though the bits were read one at a time, and 
+shifted into the right side of the return value, as shown by the following 
+pseudo-code: 
+
+
+
+long accum = 0L; for (int i = 0; i readBits(32) may thus not be equal to that 
+of readInt() if a reverse network byte order is being used (i.e., 
+getByteOrder() == false). 
+
+If the end of the stream is encountered before all the bits have been read, an 
+EOFException is thrown. 
+
+    numBits - the number of bits to read, as an int between 0 and 64, inclusive. 
+
+    Returns: the bitstring, as a long with the last bit read stored in the least significant 
+             bit. 
+*javax.imageio.stream.ImageInputStream.readBoolean()*
+
+public boolean readBoolean()
+  throws |java.io.IOException|
+         
+Reads a byte from the stream and returns a boolean value of true if it is 
+nonzero, false if it is zero. 
+
+The bit offset within the stream is reset to zero before the read occurs. 
+
+
+    Returns: a boolean value from the stream. 
+*javax.imageio.stream.ImageInputStream.readByte()*
+
+public byte readByte()
+  throws |java.io.IOException|
+         
+Reads a byte from the stream and returns it as a byte value. Byte values 
+between 0x00 and 0x7f represent integer values between 0 and 127. Values 
+between 0x80 and 0xff represent negative values from -128 to /1. 
+
+The bit offset within the stream is reset to zero before the read occurs. 
+
+
+    Returns: a signed byte value from the stream. 
+*javax.imageio.stream.ImageInputStream.readBytes(IIOByteBuffer,int)*
+
+public void readBytes(
+  javax.imageio.stream.IIOByteBuffer buf,
+  int len)
+  throws |java.io.IOException|
+         
+Reads up to len bytes from the stream, and modifies the supplied IIOByteBuffer 
+to indicate the byte array, offset, and length where the data may be found. The 
+caller should not attempt to modify the data found in the IIOByteBuffer. 
+
+The bit offset within the stream is reset to zero before the read occurs. 
+
+    buf - an IIOByteBuffer object to be modified. 
+    len - the maximum number of bytes to read. 
+
+*javax.imageio.stream.ImageInputStream.readChar()*
+
+public char readChar()
+  throws |java.io.IOException|
+         
+Equivalent to readUnsignedShort, except that the result is returned using the 
+char datatype. 
+
+The bit offset within the stream is reset to zero before the read occurs. 
+
+
+    Returns: an unsigned char value from the stream. 
+*javax.imageio.stream.ImageInputStream.readDouble()*
+
+public double readDouble()
+  throws |java.io.IOException|
+         
+Reads 8 bytes from the stream, and (conceptually) concatenates them according 
+to the current byte order and returns the result as a double. 
+
+The bit offset within the stream is reset to zero before the read occurs. 
+
+
+    Returns: a double value from the stream. 
+*javax.imageio.stream.ImageInputStream.readFloat()*
+
+public float readFloat()
+  throws |java.io.IOException|
+         
+Reads 4 bytes from the stream, and (conceptually) concatenates them according 
+to the current byte order and returns the result as a float. 
+
+The bit offset within the stream is reset to zero before the read occurs. 
+
+
+    Returns: a float value from the stream. 
+*javax.imageio.stream.ImageInputStream.readFully(byte[])*
+
+public void readFully(byte[] b)
+  throws |java.io.IOException|
+         
+Reads b.length bytes from the stream, and stores them into b starting at index 
+0. If the end of the stream is reached, an EOFException will be thrown. 
+
+The bit offset within the stream is reset to zero before the read occurs. 
+
+    b - an array of bytes. 
+
+*javax.imageio.stream.ImageInputStream.readFully(byte[],int,int)*
+
+public void readFully(
+  byte[] b,
+  int off,
+  int len)
+  throws |java.io.IOException|
+         
+Reads len bytes from the stream, and stores them into b starting at index off. 
+If the end of the stream is reached, an EOFException will be thrown. 
+
+The bit offset within the stream is reset to zero before the read occurs. 
+
+    b - an array of bytes to be written to. 
+    off - the starting position within b to write to. 
+    len - the maximum number of bytes to read. 
+
+*javax.imageio.stream.ImageInputStream.readFully(char[],int,int)*
+
+public void readFully(
+  char[] c,
+  int off,
+  int len)
+  throws |java.io.IOException|
+         
+Reads len chars (unsigned 16-bit integers) from the stream according to the 
+current byte order, and stores them into c starting at index off. If the end of 
+the stream is reached, an EOFException will be thrown. 
+
+The bit offset within the stream is reset to zero before the read occurs. 
+
+    c - an array of chars to be written to. 
+    off - the starting position withinb to write to. 
+    len - the maximum number of chars to read. 
+
+*javax.imageio.stream.ImageInputStream.readFully(double[],int,int)*
+
+public void readFully(
+  double[] d,
+  int off,
+  int len)
+  throws |java.io.IOException|
+         
+Reads len doubles (64-bit IEEE double-precision floats) from the stream 
+according to the current byte order, and stores them into d starting at index 
+off. If the end of the stream is reached, an EOFException will be thrown. 
+
+The bit offset within the stream is reset to zero before the read occurs. 
+
+    d - an array of doubles to be written to. 
+    off - the starting position withinb to write to. 
+    len - the maximum number of doubles to read. 
+
+*javax.imageio.stream.ImageInputStream.readFully(float[],int,int)*
+
+public void readFully(
+  float[] f,
+  int off,
+  int len)
+  throws |java.io.IOException|
+         
+Reads len floats (32-bit IEEE single-precision floats) from the stream 
+according to the current byte order, and stores them into f starting at index 
+off. If the end of the stream is reached, an EOFException will be thrown. 
+
+The bit offset within the stream is reset to zero before the read occurs. 
+
+    f - an array of floats to be written to. 
+    off - the starting position withinb to write to. 
+    len - the maximum number of floats to read. 
+
+*javax.imageio.stream.ImageInputStream.readFully(int[],int,int)*
+
+public void readFully(
+  int[] i,
+  int off,
+  int len)
+  throws |java.io.IOException|
+         
+Reads len ints (signed 32-bit integers) from the stream according to the 
+current byte order, and stores them into i starting at index off. If the end of 
+the stream is reached, an EOFException will be thrown. 
+
+The bit offset within the stream is reset to zero before the read occurs. 
+
+    i - an array of ints to be written to. 
+    off - the starting position withinb to write to. 
+    len - the maximum number of ints to read. 
+
+*javax.imageio.stream.ImageInputStream.readFully(long[],int,int)*
+
+public void readFully(
+  long[] l,
+  int off,
+  int len)
+  throws |java.io.IOException|
+         
+Reads len longs (signed 64-bit integers) from the stream according to the 
+current byte order, and stores them into l starting at index off. If the end of 
+the stream is reached, an EOFException will be thrown. 
+
+The bit offset within the stream is reset to zero before the read occurs. 
+
+    l - an array of longs to be written to. 
+    off - the starting position withinb to write to. 
+    len - the maximum number of longs to read. 
+
+*javax.imageio.stream.ImageInputStream.readFully(short[],int,int)*
+
+public void readFully(
+  short[] s,
+  int off,
+  int len)
+  throws |java.io.IOException|
+         
+Reads len shorts (signed 16-bit integers) from the stream according to the 
+current byte order, and stores them into s starting at index off. If the end of 
+the stream is reached, an EOFException will be thrown. 
+
+The bit offset within the stream is reset to zero before the read occurs. 
+
+    s - an array of shorts to be written to. 
+    off - the starting position withinb to write to. 
+    len - the maximum number of shorts to read. 
+
+*javax.imageio.stream.ImageInputStream.readInt()*
+
+public int readInt()
+  throws |java.io.IOException|
+         
+Reads 4 bytes from the stream, and (conceptually) concatenates them according 
+to the current byte order and returns the result as an int. 
+
+The bit offset within the stream is ignored and treated as though it were zero. 
+
+
+    Returns: a signed int value from the stream. 
+*javax.imageio.stream.ImageInputStream.readLine()*
+
+public |java.lang.String| readLine()
+  throws |java.io.IOException|
+         
+Reads the next line of text from the input stream. It reads successive bytes, 
+converting each byte separately into a character, until it encounters a line 
+terminator or end of file; the characters read are then returned as a String. 
+Note that because this method processes bytes, it does not support input of the 
+full Unicode character set. 
+
+If end of file is encountered before even one byte can be read, then null is 
+returned. Otherwise, each byte that is read is converted to type char by 
+zero-extension. If the character '\n' is encountered, it is discarded and 
+reading ceases. If the character '\r' is encountered, it is discarded and, if 
+the following byte converts to the character '\n', then that is discarded also; 
+reading then ceases. If end of file is encountered before either of the 
+characters '\n' and '\r' is encountered, reading ceases. Once reading has 
+ceased, a String is returned that contains all the characters read and not 
+discarded, taken in order. Note that every character in this string will have a 
+value less than u0100, that is, (char)256. 
+
+The bit offset within the stream is reset to zero before the read occurs. 
+
+
+    Returns: a String containing a line of text from the stream. 
+*javax.imageio.stream.ImageInputStream.readLong()*
+
+public long readLong()
+  throws |java.io.IOException|
+         
+Reads 8 bytes from the stream, and (conceptually) concatenates them according 
+to the current byte order and returns the result as a long. 
+
+The bit offset within the stream is reset to zero before the read occurs. 
+
+
+    Returns: a signed long value from the stream. 
+*javax.imageio.stream.ImageInputStream.readShort()*
+
+public short readShort()
+  throws |java.io.IOException|
+         
+Reads two bytes from the stream, and (conceptually) concatenates them according 
+to the current byte order, and returns the result as a short value. 
+
+The bit offset within the stream is reset to zero before the read occurs. 
+
+
+    Returns: a signed short value from the stream. 
+*javax.imageio.stream.ImageInputStream.readUnsignedByte()*
+
+public int readUnsignedByte()
+  throws |java.io.IOException|
+         
+Reads a byte from the stream, and (conceptually) converts it to an int, masks 
+it with 0xff in order to strip off any sign-extension bits, and returns it as a 
+byte value. 
+
+Thus, byte values between 0x00 and 0x7f are simply returned as integer values 
+between 0 and 127. Values between 0x80 and 0xff, which normally represent 
+negative bytevalues, will be mapped into positive integers between 128 and 255. 
+
+The bit offset within the stream is reset to zero before the read occurs. 
+
+
+    Returns: an unsigned byte value from the stream. 
+*javax.imageio.stream.ImageInputStream.readUnsignedInt()*
+
+public long readUnsignedInt()
+  throws |java.io.IOException|
+         
+Reads 4 bytes from the stream, and (conceptually) concatenates them according 
+to the current byte order, converts the result to a long, masks it with 
+0xffffffffL in order to strip off any sign-extension bits, and returns the 
+result as an unsigned long value. 
+
+The bit offset within the stream is reset to zero before the read occurs. 
+
+
+    Returns: an unsigned int value from the stream, as a long. 
+*javax.imageio.stream.ImageInputStream.readUnsignedShort()*
+
+public int readUnsignedShort()
+  throws |java.io.IOException|
+         
+Reads two bytes from the stream, and (conceptually) concatenates them according 
+to the current byte order, converts the resulting value to an int, masks it 
+with 0xffff in order to strip off any sign-extension buts, and returns the 
+result as an unsigned int value. 
+
+The bit offset within the stream is reset to zero before the read occurs. 
+
+
+    Returns: an unsigned short value from the stream, as an int. 
+*javax.imageio.stream.ImageInputStream.readUTF()*
+
+public |java.lang.String| readUTF()
+  throws |java.io.IOException|
+         
+Reads in a string that has been encoded using a modified UTF-8 format. The 
+general contract of readUTF is that it reads a representation of a Unicode 
+character string encoded in modified UTF-8 format; this string of characters is 
+then returned as a String. 
+
+First, two bytes are read and used to construct an unsigned 16-bit integer in 
+the manner of the readUnsignedShort method, using network byte order 
+(regardless of the current byte order setting). This integer value is called 
+the UTF length and specifies the number of additional bytes to be read. These 
+bytes are then converted to characters by considering them in groups. The 
+length of each group is computed from the value of the first byte of the group. 
+The byte following a group, if any, is the first byte of the next group. 
+
+If the first byte of a group matches the bit pattern 0xxxxxxx (where x means 
+"may be 0 or 1"), then the group consists of just that byte. The byte is 
+zero-extended to form a character. 
+
+If the first byte of a group matches the bit pattern 110xxxxx, then the group 
+consists of that byte a and a second byte b. If there is no byte b (because 
+byte a was the last of the bytes to be read), or if byte b does not match the 
+bit pattern 10xxxxxx, then a UTFDataFormatException is thrown. Otherwise, the 
+group is converted to the character: 
+
+
+
+(char)(((a and 0x1F) << 6) | (b and 0x3F)) 
+
+If the first byte of a group matches the bit pattern 1110xxxx, then the group 
+consists of that byte a and two more bytes b and c. If there is no byte c 
+(because byte a was one of the last two of the bytes to be read), or either 
+byte b or byte c does not match the bit pattern 10xxxxxx, then a 
+UTFDataFormatException is thrown. Otherwise, the group is converted to the 
+character: 
+
+
+
+(char)(((a and 0x0F) << 12) | ((b and 0x3F) << 6) | (c and 0x3F)) 
+
+If the first byte of a group matches the pattern 1111xxxx or the pattern 
+10xxxxxx, then a UTFDataFormatException is thrown. 
+
+If end of file is encountered at any time during this entire process, then an 
+EOFException is thrown. 
+
+After every group has been converted to a character by this process, the 
+characters are gathered, in the same order in which their corresponding groups 
+were read from the input stream, to form a String, which is returned. 
+
+The current byte order setting is ignored. 
+
+The bit offset within the stream is reset to zero before the read occurs. 
+
+Note: This method should not be used in the implementation of image formats 
+that use standard UTF-8, because the modified UTF-8 used here is incompatible 
+with standard UTF-8. 
+
+
+    Returns: a String read from the stream. 
+*javax.imageio.stream.ImageInputStream.reset()*
+
+public void reset()
+  throws |java.io.IOException|
+         
+Returns the file pointer to its previous position, including the bit offset, at 
+the time of the most recent unmatched call to mark. 
+
+Calls to reset without a corresponding call to mark have no effect. 
+
+An IOException will be thrown if the previous marked position lies in the 
+discarded portion of the stream. 
+
+
+*javax.imageio.stream.ImageInputStream.seek(long)*
+
+public void seek(long pos)
+  throws |java.io.IOException|
+         
+Sets the current stream position to the desired location. The next read will 
+occur at this location. The bit offset is set to 0. 
+
+An IndexOutOfBoundsException will be thrown if pos is smaller than the flushed 
+position (as returned by getflushedPosition). 
+
+It is legal to seek past the end of the file; an EOFException will be thrown 
+only if a read is performed. 
+
+    pos - a long containing the desired file pointer position. 
+
+*javax.imageio.stream.ImageInputStream.setBitOffset(int)*
+
+public void setBitOffset(int bitOffset)
+  throws |java.io.IOException|
+         
+Sets the bit offset to an integer between 0 and 7, inclusive. The byte offset 
+within the stream, as returned by getStreamPosition, is left unchanged. A value 
+of 0 indicates the most-significant bit, and a value of 7 indicates the least 
+significant bit, of the byte being read. 
+
+    bitOffset - the desired offset, as an int between 0 and 7, inclusive. 
+
+*javax.imageio.stream.ImageInputStream.setByteOrder(ByteOrder)*
+
+public void setByteOrder(java.nio.ByteOrder byteOrder)
+
+Sets the desired byte order for future reads of data values from this stream. 
+For example, the sequence of bytes '0x01 0x02 0x03 0x04' if read as a 4-byte 
+integer would have the value '0x01020304' using network byte order and the 
+value '0x04030201' under the reverse byte order. 
+
+The enumeration class java.nio.ByteOrder is used to specify the byte order. A 
+value of ByteOrder.BIG_ENDIAN specifies so-called big-endian or network byte 
+order, in which the high-order byte comes first. Motorola and Sparc processors 
+store data in this format, while Intel processors store data in the reverse 
+ByteOrder.LITTLE_ENDIAN order. 
+
+The byte order has no effect on the results returned from the readBits method 
+(or the value written by ImageOutputStream.writeBits). 
+
+    byteOrder - one of ByteOrder.BIG_ENDIAN or java.nio.ByteOrder.LITTLE_ENDIAN, indicating 
+       whether network byte order or its reverse will be used for future reads. 
+
+*javax.imageio.stream.ImageInputStream.skipBytes(int)*
+
+public int skipBytes(int n)
+  throws |java.io.IOException|
+         
+Moves the stream position forward by a given number of bytes. It is possible 
+that this method will only be able to skip forward by a smaller number of bytes 
+than requested, for example if the end of the stream is reached. In all cases, 
+the actual number of bytes skipped is returned. The bit offset is set to zero 
+prior to advancing the position. 
+
+    n - an int containing the number of bytes to be skipped. 
+
+    Returns: an int representing the number of bytes skipped. 
+*javax.imageio.stream.ImageInputStream.skipBytes(long)*
+
+public long skipBytes(long n)
+  throws |java.io.IOException|
+         
+Moves the stream position forward by a given number of bytes. This method is 
+identical to skipBytes(int) except that it allows for a larger skip distance. 
+
+    n - a long containing the number of bytes to be skipped. 
+
+    Returns: a long representing the number of bytes skipped. 
+

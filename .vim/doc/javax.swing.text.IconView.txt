@@ -1,0 +1,111 @@
+*javax.swing.text.IconView* *IconView* Icon decorator that implements the view i
+
+public class IconView
+  extends    |javax.swing.text.View|
+
+|javax.swing.text.IconView_Description|
+|javax.swing.text.IconView_Fields|
+|javax.swing.text.IconView_Constructors|
+|javax.swing.text.IconView_Methods|
+
+================================================================================
+
+*javax.swing.text.IconView_Constructors*
+|javax.swing.text.IconView(Element)|Creates a new icon view that represents an 
+
+*javax.swing.text.IconView_Methods*
+|javax.swing.text.IconView.getAlignment(int)|Determines the desired alignment f
+|javax.swing.text.IconView.getPreferredSpan(int)|Determines the preferred span 
+|javax.swing.text.IconView.modelToView(int,Shape,Position.Bias)|Provides a mapp
+|javax.swing.text.IconView.paint(Graphics,Shape)|Paints the icon.
+|javax.swing.text.IconView.viewToModel(float,float,Shape,Position.Bias[])|Provi
+
+*javax.swing.text.IconView_Description*
+
+Icon decorator that implements the view interface. The entire element is used 
+to represent the icon. This acts as a gateway from the display-only View 
+implementations to interactive lightweight icons (that is, it allows icons to 
+be embedded into the View hierarchy. The parent of the icon is the container 
+that is handed out by the associated view factory. 
+
+
+*javax.swing.text.IconView(Element)*
+
+public IconView(javax.swing.text.Element elem)
+
+Creates a new icon view that represents an element. 
+
+    elem - the element to create a view for 
+
+*javax.swing.text.IconView.getAlignment(int)*
+
+public float getAlignment(int axis)
+
+Determines the desired alignment for this view along an axis. This is 
+implemented to give the alignment to the bottom of the icon along the y axis, 
+and the default along the x axis. 
+
+    axis - may be either View.X_AXIS or View.Y_AXIS 
+
+    Returns: the desired alignment >= 0.0f <= 1.0f. This should be a value between 0.0 and 
+             1.0 where 0 indicates alignment at the origin and 1.0 indicates 
+             alignment to the full span away from the origin. An alignment of 
+             0.5 would be the center of the view. 
+*javax.swing.text.IconView.getPreferredSpan(int)*
+
+public float getPreferredSpan(int axis)
+
+Determines the preferred span for this view along an axis. 
+
+    axis - may be either View.X_AXIS or View.Y_AXIS 
+
+    Returns: the span the view would like to be rendered into Typically the view is told to 
+             render into the span that is returned, although there is no 
+             guarantee. The parent may choose to resize or break the view. 
+*javax.swing.text.IconView.modelToView(int,Shape,Position.Bias)*
+
+public |java.awt.Shape| modelToView(
+  int pos,
+  java.awt.Shape a,
+  javax.swing.text.Position.Bias b)
+  throws |javax.swing.text.BadLocationException|
+         
+Provides a mapping from the document model coordinate space to the coordinate 
+space of the view mapped to it. 
+
+    pos - the position to convert >= 0 
+    a - the allocated region to render into 
+
+    Returns: the bounding box of the given position 
+*javax.swing.text.IconView.paint(Graphics,Shape)*
+
+public void paint(
+  java.awt.Graphics g,
+  java.awt.Shape a)
+
+Paints the icon. The real paint behavior occurs naturally from the association 
+that the icon has with its parent container (the same container hosting this 
+view), so this simply allows us to position the icon properly relative to the 
+view. Since the coordinate system for the view is simply the parent containers, 
+positioning the child icon is easy. 
+
+    g - the rendering surface to use 
+    a - the allocated region to render into 
+
+*javax.swing.text.IconView.viewToModel(float,float,Shape,Position.Bias[])*
+
+public int viewToModel(
+  float x,
+  float y,
+  java.awt.Shape a,
+  javax.swing.text.Position.Bias[] bias)
+
+Provides a mapping from the view coordinate space to the logical coordinate 
+space of the model. 
+
+    x - the X coordinate >= 0 
+    y - the Y coordinate >= 0 
+    a - the allocated region to render into 
+
+    Returns: the location within the model that best represents the given point of view >= 0 
+

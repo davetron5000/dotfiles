@@ -1,0 +1,159 @@
+*javax.imageio.spi.ImageInputStreamSpi* *ImageInputStreamSpi* The service provid
+
+public abstract class ImageInputStreamSpi
+  extends    |javax.imageio.spi.IIOServiceProvider|
+
+|javax.imageio.spi.ImageInputStreamSpi_Description|
+|javax.imageio.spi.ImageInputStreamSpi_Fields|
+|javax.imageio.spi.ImageInputStreamSpi_Constructors|
+|javax.imageio.spi.ImageInputStreamSpi_Methods|
+
+================================================================================
+
+*javax.imageio.spi.ImageInputStreamSpi_Fields*
+|java.lang.Class_javax.imageio.spi.ImageInputStreamSpi.inputClass|
+
+*javax.imageio.spi.ImageInputStreamSpi_Constructors*
+|javax.imageio.spi.ImageInputStreamSpi()|Constructs a blank ImageInputStreamSpi
+|javax.imageio.spi.ImageInputStreamSpi(String,String,Class)|Constructs an Image
+
+*javax.imageio.spi.ImageInputStreamSpi_Methods*
+|javax.imageio.spi.ImageInputStreamSpi.canUseCacheFile()|Returns true if the Im
+|javax.imageio.spi.ImageInputStreamSpi.createInputStreamInstance(Object)|Return
+|javax.imageio.spi.ImageInputStreamSpi.createInputStreamInstance(Object,boolean,File)|
+|javax.imageio.spi.ImageInputStreamSpi.getInputClass()|Returns a Class object r
+|javax.imageio.spi.ImageInputStreamSpi.needsCacheFile()|Returns true if the Ima
+
+*javax.imageio.spi.ImageInputStreamSpi_Description*
+
+The service provider interface (SPI) for ImageInputStreams. For more 
+information on service provider interfaces, see the class comment for the 
+IIORegistry class. 
+
+This interface allows arbitrary objects to be "wrapped" by instances of 
+ImageInputStream. For example, a particular ImageInputStreamSpi might allow a 
+generic InputStream to be used as an input source; another might take input 
+from a URL. 
+
+By treating the creation of ImageInputStreams as a pluggable service, it 
+becomes possible to handle future input sources without changing the API. Also, 
+high-performance implementations of ImageInputStream (for example, native 
+implementations for a particular platform) can be installed and used 
+transparently by applications. 
+
+
+*java.lang.Class_javax.imageio.spi.ImageInputStreamSpi.inputClass*
+
+The service provider interface (SPI) for ImageInputStreams. For more 
+information on service provider interfaces, see the class comment for the 
+IIORegistry class. 
+
+This interface allows arbitrary objects to be "wrapped" by instances of 
+ImageInputStream. For example, a particular ImageInputStreamSpi might allow a 
+generic InputStream to be used as an input source; another might take input 
+from a URL. 
+
+By treating the creation of ImageInputStreams as a pluggable service, it 
+becomes possible to handle future input sources without changing the API. Also, 
+high-performance implementations of ImageInputStream (for example, native 
+implementations for a particular platform) can be installed and used 
+transparently by applications. 
+
+
+
+*javax.imageio.spi.ImageInputStreamSpi()*
+
+protected ImageInputStreamSpi()
+
+Constructs a blank ImageInputStreamSpi. It is up to the subclass to initialize 
+instance variables and/or override method implementations in order to provide 
+working versions of all methods. 
+
+
+*javax.imageio.spi.ImageInputStreamSpi(String,String,Class)*
+
+public ImageInputStreamSpi(
+  java.lang.String vendorName,
+  java.lang.String version,
+  java.lang.Class inputClass)
+
+Constructs an ImageInputStreamSpi with a given set of values. 
+
+    vendorName - the vendor name. 
+    version - a version identifier. 
+    inputClass - a Class object indicating the legal object type for use by the 
+       createInputStreamInstance method. 
+
+*javax.imageio.spi.ImageInputStreamSpi.canUseCacheFile()*
+
+public boolean canUseCacheFile()
+
+Returns true if the ImageInputStream implementation associated with this 
+service provider can optionally make use of a cache file for improved 
+performance and/or memory footrprint. If false, the value of the useCache 
+argument to createInputStreamInstance will be ignored. 
+
+The default implementation returns false. 
+
+
+    Returns: true if a cache file can be used by the input streams created by this service 
+             provider. 
+*javax.imageio.spi.ImageInputStreamSpi.createInputStreamInstance(Object)*
+
+public |javax.imageio.stream.ImageInputStream| createInputStreamInstance(java.lang.Object input)
+  throws |java.io.IOException|
+         
+Returns an instance of the ImageInputStream implementation associated with this 
+service provider. A cache file will be created in the system-dependent default 
+temporary-file directory, if needed. 
+
+    input - an object of the class type returned by getInputClass. 
+
+    Returns: an ImageInputStream instance. 
+*javax.imageio.spi.ImageInputStreamSpi.createInputStreamInstance(Object,boolean,File)*
+
+public abstract |javax.imageio.stream.ImageInputStream| createInputStreamInstance(
+  java.lang.Object input,
+  boolean useCache,
+  java.io.File cacheDir)
+  throws |java.io.IOException|
+         
+Returns an instance of the ImageInputStream implementation associated with this 
+service provider. If the use of a cache file is optional, the useCache 
+parameter will be consulted. Where a cache is required, or not applicable, the 
+value of useCache will be ignored. 
+
+    input - an object of the class type returned by getInputClass. 
+    useCache - a boolean indicating whether a cache file should be used, in cases where it is 
+       optional. 
+    cacheDir - a File indicating where the cache file should be created, or null to use the 
+       system directory. 
+
+    Returns: an ImageInputStream instance. 
+*javax.imageio.spi.ImageInputStreamSpi.getInputClass()*
+
+public |java.lang.Class| getInputClass()
+
+Returns a Class object representing the class or interface type that must be 
+implemented by an input source in order to be "wrapped" in an ImageInputStream 
+via the createInputStreamInstance method. 
+
+Typical return values might include InputStream.class or URL.class, but any 
+class may be used. 
+
+
+    Returns: a Class variable. 
+*javax.imageio.spi.ImageInputStreamSpi.needsCacheFile()*
+
+public boolean needsCacheFile()
+
+Returns true if the ImageInputStream implementation associated with this 
+service provider requires the use of a cache File. If true, the value of the 
+useCache argument to createInputStreamInstance will be ignored. 
+
+The default implementation returns false. 
+
+
+    Returns: true if a cache file is needed by the input streams created by this service 
+             provider. 
+

@@ -1,0 +1,456 @@
+*java.awt.ScrollPane* *ScrollPane* A container class which implements automatic 
+
+public class ScrollPane
+  extends    |java.awt.Container|
+  implements |javax.accessibility.Accessible|
+
+|java.awt.ScrollPane_Description|
+|java.awt.ScrollPane_Fields|
+|java.awt.ScrollPane_Constructors|
+|java.awt.ScrollPane_Methods|
+
+================================================================================
+
+*java.awt.ScrollPane_Fields*
+|int_java.awt.ScrollPane.SCROLLBARS_ALWAYS|
+|int_java.awt.ScrollPane.SCROLLBARS_AS_NEEDED|
+|int_java.awt.ScrollPane.SCROLLBARS_NEVER|
+
+*java.awt.ScrollPane_Constructors*
+|java.awt.ScrollPane()|Create a new scrollpane container with a scrollbar displ
+|java.awt.ScrollPane(int)|Create a new scrollpane container.
+
+*java.awt.ScrollPane_Methods*
+|java.awt.ScrollPane.addImpl(Component,Object,int)|Adds the specified component
+|java.awt.ScrollPane.addNotify()|Creates the scroll pane's peer.
+|java.awt.ScrollPane.doLayout()|Lays out this container by resizing its child t
+|java.awt.ScrollPane.eventTypeEnabled(int)|If wheel scrolling is enabled, we re
+|java.awt.ScrollPane.getAccessibleContext()|Gets the AccessibleContext associat
+|java.awt.ScrollPane.getHAdjustable()|Returns the ScrollPaneAdjustable object w
+|java.awt.ScrollPane.getHScrollbarHeight()|Returns the height that would be occ
+|java.awt.ScrollPane.getScrollbarDisplayPolicy()|Returns the display policy for
+|java.awt.ScrollPane.getScrollPosition()|Returns the current x,y position withi
+|java.awt.ScrollPane.getVAdjustable()|Returns the ScrollPaneAdjustable object w
+|java.awt.ScrollPane.getViewportSize()|Returns the current size of the scroll p
+|java.awt.ScrollPane.getVScrollbarWidth()|Returns the width that would be occup
+|java.awt.ScrollPane.isWheelScrollingEnabled()|Indicates whether or not scrolli
+|java.awt.ScrollPane.layout()|
+|java.awt.ScrollPane.paramString()|Returns a string representing the state of t
+|java.awt.ScrollPane.printComponents(Graphics)|Prints the component in this scr
+|java.awt.ScrollPane.processMouseWheelEvent(MouseWheelEvent)|Process mouse whee
+|java.awt.ScrollPane.setLayout(LayoutManager)|Sets the layout manager for this 
+|java.awt.ScrollPane.setScrollPosition(int,int)|Scrolls to the specified positi
+|java.awt.ScrollPane.setScrollPosition(Point)|Scrolls to the specified position
+|java.awt.ScrollPane.setWheelScrollingEnabled(boolean)|Enables/disables scrolli
+
+*java.awt.ScrollPane_Description*
+
+A container class which implements automatic horizontal and/or vertical 
+scrolling for a single child component. The display policy for the scrollbars 
+can be set to: 
+
+as needed: scrollbars created and shown only when needed by scrollpane always: 
+scrollbars created and always shown by the scrollpane never: scrollbars never 
+created or shown by the scrollpane 
+
+The state of the horizontal and vertical scrollbars is represented by two 
+ScrollPaneAdjustable objects (one for each dimension) which implement the 
+Adjustable interface. The API provides methods to access those objects such 
+that the attributes on the Adjustable object (such as unitIncrement, value, 
+etc.) can be manipulated. 
+
+Certain adjustable properties (minimum, maximum, blockIncrement, and 
+visibleAmount) are set internally by the scrollpane in accordance with the 
+geometry of the scrollpane and its child and these should not be set by 
+programs using the scrollpane. 
+
+If the scrollbar display policy is defined as "never", then the scrollpane can 
+still be programmatically scrolled using the setScrollPosition() method and the 
+scrollpane will move and clip the child's contents appropriately. This policy 
+is useful if the program needs to create and manage its own adjustable 
+controls. 
+
+The placement of the scrollbars is controlled by platform-specific properties 
+set by the user outside of the program. 
+
+The initial size of this container is set to 100x100, but can be reset using 
+setSize(). 
+
+Scrolling with the wheel on a wheel-equipped mouse is enabled by default. This 
+can be disabled using setWheelScrollingEnabled. Wheel scrolling can be 
+customized by setting the block and unit increment of the horizontal and 
+vertical Adjustables. For information on how mouse wheel events are dispatched, 
+see the class description for (|java.awt.event.MouseWheelEvent|) . 
+
+Insets are used to define any space used by scrollbars and any borders created 
+by the scroll pane. getInsets() can be used to get the current value for the 
+insets. If the value of scrollbarsAlwaysVisible is false, then the value of the 
+insets will change dynamically depending on whether the scrollbars are 
+currently visible or not. 
+
+
+*int_java.awt.ScrollPane.SCROLLBARS_ALWAYS*
+
+A container class which implements automatic horizontal and/or vertical 
+scrolling for a single child component. The display policy for the scrollbars 
+can be set to: 
+
+as needed: scrollbars created and shown only when needed by scrollpane always: 
+scrollbars created and always shown by the scrollpane never: scrollbars never 
+created or shown by the scrollpane 
+
+The state of the horizontal and vertical scrollbars is represented by two 
+ScrollPaneAdjustable objects (one for each dimension) which implement the 
+Adjustable interface. The API provides methods to access those objects such 
+that the attributes on the Adjustable object (such as unitIncrement, value, 
+etc.) can be manipulated. 
+
+Certain adjustable properties (minimum, maximum, blockIncrement, and 
+visibleAmount) are set internally by the scrollpane in accordance with the 
+geometry of the scrollpane and its child and these should not be set by 
+programs using the scrollpane. 
+
+If the scrollbar display policy is defined as "never", then the scrollpane can 
+still be programmatically scrolled using the setScrollPosition() method and the 
+scrollpane will move and clip the child's contents appropriately. This policy 
+is useful if the program needs to create and manage its own adjustable 
+controls. 
+
+The placement of the scrollbars is controlled by platform-specific properties 
+set by the user outside of the program. 
+
+The initial size of this container is set to 100x100, but can be reset using 
+setSize(). 
+
+Scrolling with the wheel on a wheel-equipped mouse is enabled by default. This 
+can be disabled using setWheelScrollingEnabled. Wheel scrolling can be 
+customized by setting the block and unit increment of the horizontal and 
+vertical Adjustables. For information on how mouse wheel events are dispatched, 
+see the class description for (|java.awt.event.MouseWheelEvent|) . 
+
+Insets are used to define any space used by scrollbars and any borders created 
+by the scroll pane. getInsets() can be used to get the current value for the 
+insets. If the value of scrollbarsAlwaysVisible is false, then the value of the 
+insets will change dynamically depending on whether the scrollbars are 
+currently visible or not. 
+
+
+*int_java.awt.ScrollPane.SCROLLBARS_AS_NEEDED*
+
+A container class which implements automatic horizontal and/or vertical 
+scrolling for a single child component. The display policy for the scrollbars 
+can be set to: 
+
+as needed: scrollbars created and shown only when needed by scrollpane always: 
+scrollbars created and always shown by the scrollpane never: scrollbars never 
+created or shown by the scrollpane 
+
+The state of the horizontal and vertical scrollbars is represented by two 
+ScrollPaneAdjustable objects (one for each dimension) which implement the 
+Adjustable interface. The API provides methods to access those objects such 
+that the attributes on the Adjustable object (such as unitIncrement, value, 
+etc.) can be manipulated. 
+
+Certain adjustable properties (minimum, maximum, blockIncrement, and 
+visibleAmount) are set internally by the scrollpane in accordance with the 
+geometry of the scrollpane and its child and these should not be set by 
+programs using the scrollpane. 
+
+If the scrollbar display policy is defined as "never", then the scrollpane can 
+still be programmatically scrolled using the setScrollPosition() method and the 
+scrollpane will move and clip the child's contents appropriately. This policy 
+is useful if the program needs to create and manage its own adjustable 
+controls. 
+
+The placement of the scrollbars is controlled by platform-specific properties 
+set by the user outside of the program. 
+
+The initial size of this container is set to 100x100, but can be reset using 
+setSize(). 
+
+Scrolling with the wheel on a wheel-equipped mouse is enabled by default. This 
+can be disabled using setWheelScrollingEnabled. Wheel scrolling can be 
+customized by setting the block and unit increment of the horizontal and 
+vertical Adjustables. For information on how mouse wheel events are dispatched, 
+see the class description for (|java.awt.event.MouseWheelEvent|) . 
+
+Insets are used to define any space used by scrollbars and any borders created 
+by the scroll pane. getInsets() can be used to get the current value for the 
+insets. If the value of scrollbarsAlwaysVisible is false, then the value of the 
+insets will change dynamically depending on whether the scrollbars are 
+currently visible or not. 
+
+
+*int_java.awt.ScrollPane.SCROLLBARS_NEVER*
+
+A container class which implements automatic horizontal and/or vertical 
+scrolling for a single child component. The display policy for the scrollbars 
+can be set to: 
+
+as needed: scrollbars created and shown only when needed by scrollpane always: 
+scrollbars created and always shown by the scrollpane never: scrollbars never 
+created or shown by the scrollpane 
+
+The state of the horizontal and vertical scrollbars is represented by two 
+ScrollPaneAdjustable objects (one for each dimension) which implement the 
+Adjustable interface. The API provides methods to access those objects such 
+that the attributes on the Adjustable object (such as unitIncrement, value, 
+etc.) can be manipulated. 
+
+Certain adjustable properties (minimum, maximum, blockIncrement, and 
+visibleAmount) are set internally by the scrollpane in accordance with the 
+geometry of the scrollpane and its child and these should not be set by 
+programs using the scrollpane. 
+
+If the scrollbar display policy is defined as "never", then the scrollpane can 
+still be programmatically scrolled using the setScrollPosition() method and the 
+scrollpane will move and clip the child's contents appropriately. This policy 
+is useful if the program needs to create and manage its own adjustable 
+controls. 
+
+The placement of the scrollbars is controlled by platform-specific properties 
+set by the user outside of the program. 
+
+The initial size of this container is set to 100x100, but can be reset using 
+setSize(). 
+
+Scrolling with the wheel on a wheel-equipped mouse is enabled by default. This 
+can be disabled using setWheelScrollingEnabled. Wheel scrolling can be 
+customized by setting the block and unit increment of the horizontal and 
+vertical Adjustables. For information on how mouse wheel events are dispatched, 
+see the class description for (|java.awt.event.MouseWheelEvent|) . 
+
+Insets are used to define any space used by scrollbars and any borders created 
+by the scroll pane. getInsets() can be used to get the current value for the 
+insets. If the value of scrollbarsAlwaysVisible is false, then the value of the 
+insets will change dynamically depending on whether the scrollbars are 
+currently visible or not. 
+
+
+
+*java.awt.ScrollPane()*
+
+public ScrollPane()
+  throws |java.awt.HeadlessException|
+         
+Create a new scrollpane container with a scrollbar display policy of "as 
+needed". 
+
+
+*java.awt.ScrollPane(int)*
+
+public ScrollPane(int scrollbarDisplayPolicy)
+  throws |java.awt.HeadlessException|
+         
+Create a new scrollpane container. 
+
+    scrollbarDisplayPolicy - policy for when scrollbars should be shown 
+
+*java.awt.ScrollPane.addImpl(Component,Object,int)*
+
+protected final void addImpl(
+  java.awt.Component comp,
+  java.lang.Object constraints,
+  int index)
+
+Adds the specified component to this scroll pane container. If the scroll pane 
+has an existing child component, that component is removed and the new one is 
+added. 
+
+    comp - the component to be added 
+    constraints - not applicable 
+    index - position of child component (must be <= 0) 
+
+*java.awt.ScrollPane.addNotify()*
+
+public void addNotify()
+
+Creates the scroll pane's peer. 
+
+
+*java.awt.ScrollPane.doLayout()*
+
+public void doLayout()
+
+Lays out this container by resizing its child to its preferred size. If the new 
+preferred size of the child causes the current scroll position to be invalid, 
+the scroll position is set to the closest valid position. 
+
+
+*java.awt.ScrollPane.eventTypeEnabled(int)*
+
+protected boolean eventTypeEnabled(int type)
+
+If wheel scrolling is enabled, we return true for MouseWheelEvents 
+
+
+*java.awt.ScrollPane.getAccessibleContext()*
+
+public |javax.accessibility.AccessibleContext| getAccessibleContext()
+
+Gets the AccessibleContext associated with this ScrollPane. For scroll panes, 
+the AccessibleContext takes the form of an AccessibleAWTScrollPane. A new 
+AccessibleAWTScrollPane instance is created if necessary. 
+
+
+    Returns: an AccessibleAWTScrollPane that serves as the AccessibleContext of this 
+             ScrollPane 
+*java.awt.ScrollPane.getHAdjustable()*
+
+public |java.awt.Adjustable| getHAdjustable()
+
+Returns the ScrollPaneAdjustable object which represents the state of the 
+horizontal scrollbar. The declared return type of this method is Adjustable to 
+maintain backward compatibility. 
+
+
+*java.awt.ScrollPane.getHScrollbarHeight()*
+
+public int getHScrollbarHeight()
+
+Returns the height that would be occupied by a horizontal scrollbar, which is 
+independent of whether it is currently displayed by the scroll pane or not. 
+
+
+    Returns: the height of a horizontal scrollbar in pixels 
+*java.awt.ScrollPane.getScrollbarDisplayPolicy()*
+
+public int getScrollbarDisplayPolicy()
+
+Returns the display policy for the scrollbars. 
+
+
+    Returns: the display policy for the scrollbars 
+*java.awt.ScrollPane.getScrollPosition()*
+
+public |java.awt.Point| getScrollPosition()
+
+Returns the current x,y position within the child which is displayed at the 0,0 
+location of the scrolled panel's view port. This is a convenience method which 
+interfaces with the adjustable objects which represent the state of the 
+scrollbars. 
+
+
+    Returns: the coordinate position for the current scroll position 
+*java.awt.ScrollPane.getVAdjustable()*
+
+public |java.awt.Adjustable| getVAdjustable()
+
+Returns the ScrollPaneAdjustable object which represents the state of the 
+vertical scrollbar. The declared return type of this method is Adjustable to 
+maintain backward compatibility. 
+
+
+*java.awt.ScrollPane.getViewportSize()*
+
+public |java.awt.Dimension| getViewportSize()
+
+Returns the current size of the scroll pane's view port. 
+
+
+    Returns: the size of the view port in pixels 
+*java.awt.ScrollPane.getVScrollbarWidth()*
+
+public int getVScrollbarWidth()
+
+Returns the width that would be occupied by a vertical scrollbar, which is 
+independent of whether it is currently displayed by the scroll pane or not. 
+
+
+    Returns: the width of a vertical scrollbar in pixels 
+*java.awt.ScrollPane.isWheelScrollingEnabled()*
+
+public boolean isWheelScrollingEnabled()
+
+Indicates whether or not scrolling will take place in response to the mouse 
+wheel. Wheel scrolling is enabled by default. 
+
+
+*java.awt.ScrollPane.layout()*
+
+public void layout()
+
+
+
+
+*java.awt.ScrollPane.paramString()*
+
+public |java.lang.String| paramString()
+
+Returns a string representing the state of this ScrollPane. This method is 
+intended to be used only for debugging purposes, and the content and format of 
+the returned string may vary between implementations. The returned string may 
+be empty but may not be null. 
+
+
+    Returns: the parameter string of this scroll pane 
+*java.awt.ScrollPane.printComponents(Graphics)*
+
+public void printComponents(java.awt.Graphics g)
+
+Prints the component in this scroll pane. 
+
+    g - the specified Graphics window 
+
+*java.awt.ScrollPane.processMouseWheelEvent(MouseWheelEvent)*
+
+protected void processMouseWheelEvent(java.awt.event.MouseWheelEvent e)
+
+Process mouse wheel events that are delivered to this ScrollPane by scrolling 
+an appropriate amount. Note that if the event parameter is null the behavior is 
+unspecified and may result in an exception. 
+
+    e - the mouse wheel event 
+
+*java.awt.ScrollPane.setLayout(LayoutManager)*
+
+public final void setLayout(java.awt.LayoutManager mgr)
+
+Sets the layout manager for this container. This method is overridden to 
+prevent the layout mgr from being set. 
+
+    mgr - the specified layout manager 
+
+*java.awt.ScrollPane.setScrollPosition(int,int)*
+
+public void setScrollPosition(
+  int x,
+  int y)
+
+Scrolls to the specified position within the child component. A call to this 
+method is only valid if the scroll pane contains a child. Specifying a position 
+outside of the legal scrolling bounds of the child will scroll to the closest 
+legal position. Legal bounds are defined to be the rectangle: x = 0, y = 0, 
+width = (child width - view port width), height = (child height - view port 
+height). This is a convenience method which interfaces with the Adjustable 
+objects which represent the state of the scrollbars. 
+
+    x - the x position to scroll to 
+    y - the y position to scroll to 
+
+*java.awt.ScrollPane.setScrollPosition(Point)*
+
+public void setScrollPosition(java.awt.Point p)
+
+Scrolls to the specified position within the child component. A call to this 
+method is only valid if the scroll pane contains a child and the specified 
+position is within legal scrolling bounds of the child. Specifying a position 
+outside of the legal scrolling bounds of the child will scroll to the closest 
+legal position. Legal bounds are defined to be the rectangle: x = 0, y = 0, 
+width = (child width - view port width), height = (child height - view port 
+height). This is a convenience method which interfaces with the Adjustable 
+objects which represent the state of the scrollbars. 
+
+    p - the Point representing the position to scroll to 
+
+*java.awt.ScrollPane.setWheelScrollingEnabled(boolean)*
+
+public void setWheelScrollingEnabled(boolean handleWheel)
+
+Enables/disables scrolling in response to movement of the mouse wheel. Wheel 
+scrolling is enabled by default. 
+
+    handleWheel - true if scrolling should be done automatically for a MouseWheelEvent, false 
+       otherwise. 
+
+

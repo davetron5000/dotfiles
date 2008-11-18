@@ -1,0 +1,269 @@
+*java.util.jar.Attributes* *Attributes* The Attributes class maps Manifest attri
+
+public class Attributes
+  extends    |java.lang.Object|
+  implements |java.util.Map|
+             |java.lang.Cloneable|
+
+|java.util.jar.Attributes_Description|
+|java.util.jar.Attributes_Fields|
+|java.util.jar.Attributes_Constructors|
+|java.util.jar.Attributes_Methods|
+
+================================================================================
+
+*java.util.jar.Attributes_Fields*
+|java.util.Map_java.util.jar.Attributes.map|
+
+*java.util.jar.Attributes_Constructors*
+|java.util.jar.Attributes()|Constructs a new, empty Attributes object with defa
+|java.util.jar.Attributes(Attributes)|Constructs a new Attributes object with t
+|java.util.jar.Attributes(int)|Constructs a new, empty Attributes object with t
+
+*java.util.jar.Attributes_Methods*
+|java.util.jar.Attributes.clear()|Removes all attributes from this Map.
+|java.util.jar.Attributes.clone()|Returns a copy of the Attributes, implemented
+|java.util.jar.Attributes.containsKey(Object)|Returns true if this Map contains
+|java.util.jar.Attributes.containsValue(Object)|Returns true if this Map maps o
+|java.util.jar.Attributes.entrySet()|Returns a Collection view of the attribute
+|java.util.jar.Attributes.equals(Object)|Compares the specified Attributes obje
+|java.util.jar.Attributes.get(Object)|Returns the value of the specified attrib
+|java.util.jar.Attributes.getValue(Attributes.Name)|Returns the value of the sp
+|java.util.jar.Attributes.getValue(String)|Returns the value of the specified a
+|java.util.jar.Attributes.hashCode()|Returns the hash code value for this Map.
+|java.util.jar.Attributes.isEmpty()|Returns true if this Map contains no attrib
+|java.util.jar.Attributes.keySet()|Returns a Set view of the attribute names (k
+|java.util.jar.Attributes.put(Object,Object)|Associates the specified value wit
+|java.util.jar.Attributes.putAll(Map)|Copies all of the attribute name-value ma
+|java.util.jar.Attributes.putValue(String,String)|Associates the specified valu
+|java.util.jar.Attributes.remove(Object)|Removes the attribute with the specifi
+|java.util.jar.Attributes.size()|Returns the number of attributes in this Map.
+|java.util.jar.Attributes.values()|Returns a Collection view of the attribute v
+
+*java.util.jar.Attributes_Description*
+
+The Attributes class maps Manifest attribute names to associated string values. 
+Valid attribute names are case-insensitive, are restricted to the ASCII 
+characters in the set [0-9a-zA-Z_-], and cannot exceed 70 characters in length. 
+Attribute values can contain any characters and will be UTF8-encoded when 
+written to the output stream. See the JAR File Specification for more 
+information about valid attribute names and values. 
+
+
+*java.util.Map_java.util.jar.Attributes.map*
+
+The Attributes class maps Manifest attribute names to associated string values. 
+Valid attribute names are case-insensitive, are restricted to the ASCII 
+characters in the set [0-9a-zA-Z_-], and cannot exceed 70 characters in length. 
+Attribute values can contain any characters and will be UTF8-encoded when 
+written to the output stream. See the JAR File Specification for more 
+information about valid attribute names and values. 
+
+
+
+*java.util.jar.Attributes()*
+
+public Attributes()
+
+Constructs a new, empty Attributes object with default size. 
+
+
+*java.util.jar.Attributes(Attributes)*
+
+public Attributes(java.util.jar.Attributes attr)
+
+Constructs a new Attributes object with the same attribute name-value mappings 
+as in the specified Attributes. 
+
+    attr - the specified Attributes 
+
+*java.util.jar.Attributes(int)*
+
+public Attributes(int size)
+
+Constructs a new, empty Attributes object with the specified initial size. 
+
+    size - the initial number of attributes 
+
+*java.util.jar.Attributes.clear()*
+
+public void clear()
+
+Removes all attributes from this Map. 
+
+
+*java.util.jar.Attributes.clone()*
+
+public |java.lang.Object| clone()
+
+Returns a copy of the Attributes, implemented as follows: 
+
+public Object clone() { return new Attributes(this); } 
+
+Since the attribute names and values are themselves immutable, the Attributes 
+returned can be safely modified without affecting the original. 
+
+
+*java.util.jar.Attributes.containsKey(Object)*
+
+public boolean containsKey(java.lang.Object name)
+
+Returns true if this Map contains the specified attribute name (key). 
+
+    name - the attribute name 
+
+    Returns: true if this Map contains the specified attribute name 
+*java.util.jar.Attributes.containsValue(Object)*
+
+public boolean containsValue(java.lang.Object value)
+
+Returns true if this Map maps one or more attribute names (keys) to the 
+specified value. 
+
+    value - the attribute value 
+
+    Returns: true if this Map maps one or more attribute names to the specified value 
+*java.util.jar.Attributes.entrySet()*
+
+public |java.util.Set| entrySet()
+
+Returns a Collection view of the attribute name-value mappings contained in 
+this Map. 
+
+
+*java.util.jar.Attributes.equals(Object)*
+
+public boolean equals(java.lang.Object o)
+
+Compares the specified Attributes object with this Map for equality. Returns 
+true if the given object is also an instance of Attributes and the two 
+Attributes objects represent the same mappings. 
+
+    o - the Object to be compared 
+
+    Returns: true if the specified Object is equal to this Map 
+*java.util.jar.Attributes.get(Object)*
+
+public |java.lang.Object| get(java.lang.Object name)
+
+Returns the value of the specified attribute name, or null if the attribute 
+name was not found. 
+
+    name - the attribute name 
+
+    Returns: the value of the specified attribute name, or null if not found. 
+*java.util.jar.Attributes.getValue(Attributes.Name)*
+
+public |java.lang.String| getValue(java.util.jar.Attributes.Name name)
+
+Returns the value of the specified Attributes.Name, or null if the attribute 
+was not found. 
+
+This method is defined as: 
+
+return (String)get(name); 
+
+    name - the Attributes.Name object 
+
+    Returns: the String value of the specified Attribute.Name, or null if not found. 
+*java.util.jar.Attributes.getValue(String)*
+
+public |java.lang.String| getValue(java.lang.String name)
+
+Returns the value of the specified attribute name, specified as a string, or 
+null if the attribute was not found. The attribute name is case-insensitive. 
+
+This method is defined as: 
+
+return (String)get(new Attributes.Name((String)name)); 
+
+    name - the attribute name as a string 
+
+    Returns: the String value of the specified attribute name, or null if not found. 
+*java.util.jar.Attributes.hashCode()*
+
+public int hashCode()
+
+Returns the hash code value for this Map. 
+
+
+*java.util.jar.Attributes.isEmpty()*
+
+public boolean isEmpty()
+
+Returns true if this Map contains no attributes. 
+
+
+*java.util.jar.Attributes.keySet()*
+
+public |java.util.Set| keySet()
+
+Returns a Set view of the attribute names (keys) contained in this Map. 
+
+
+*java.util.jar.Attributes.put(Object,Object)*
+
+public |java.lang.Object| put(
+  java.lang.Object name,
+  java.lang.Object value)
+
+Associates the specified value with the specified attribute name (key) in this 
+Map. If the Map previously contained a mapping for the attribute name, the old 
+value is replaced. 
+
+    name - the attribute name 
+    value - the attribute value 
+
+    Returns: the previous value of the attribute, or null if none 
+*java.util.jar.Attributes.putAll(Map)*
+
+public void putAll(java.util.Map attr)
+
+Copies all of the attribute name-value mappings from the specified Attributes 
+to this Map. Duplicate mappings will be replaced. 
+
+    attr - the Attributes to be stored in this map 
+
+*java.util.jar.Attributes.putValue(String,String)*
+
+public |java.lang.String| putValue(
+  java.lang.String name,
+  java.lang.String value)
+
+Associates the specified value with the specified attribute name, specified as 
+a String. The attributes name is case-insensitive. If the Map previously 
+contained a mapping for the attribute name, the old value is replaced. 
+
+This method is defined as: 
+
+return (String)put(new Attributes.Name(name), value); 
+
+    name - the attribute name as a string 
+    value - the attribute value 
+
+    Returns: the previous value of the attribute, or null if none 
+*java.util.jar.Attributes.remove(Object)*
+
+public |java.lang.Object| remove(java.lang.Object name)
+
+Removes the attribute with the specified name (key) from this Map. Returns the 
+previous attribute value, or null if none. 
+
+    name - attribute name 
+
+    Returns: the previous value of the attribute, or null if none 
+*java.util.jar.Attributes.size()*
+
+public int size()
+
+Returns the number of attributes in this Map. 
+
+
+*java.util.jar.Attributes.values()*
+
+public |java.util.Collection| values()
+
+Returns a Collection view of the attribute values contained in this Map. 
+
+
+

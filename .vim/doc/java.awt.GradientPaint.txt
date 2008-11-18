@@ -1,0 +1,192 @@
+*java.awt.GradientPaint* *GradientPaint* The GradientPaint class provides a way 
+
+public class GradientPaint
+  extends    |java.lang.Object|
+  implements |java.awt.Paint|
+
+|java.awt.GradientPaint_Description|
+|java.awt.GradientPaint_Fields|
+|java.awt.GradientPaint_Constructors|
+|java.awt.GradientPaint_Methods|
+
+================================================================================
+
+*java.awt.GradientPaint_Constructors*
+|java.awt.GradientPaint(float,float,Color,float,float,Color)|Constructs a simpl
+|java.awt.GradientPaint(float,float,Color,float,float,Color,boolean)|Constructs
+|java.awt.GradientPaint(Point2D,Color,Point2D,Color)|Constructs a simple acycli
+|java.awt.GradientPaint(Point2D,Color,Point2D,Color,boolean)|Constructs either 
+
+*java.awt.GradientPaint_Methods*
+|java.awt.GradientPaint.createContext(ColorModel,Rectangle,Rectangle2D,AffineTransform,RenderingHints)|
+|java.awt.GradientPaint.getColor1()|Returns the color C1 anchored by the point 
+|java.awt.GradientPaint.getColor2()|Returns the color C2 anchored by the point 
+|java.awt.GradientPaint.getPoint1()|Returns a copy of the point P1 that anchors
+|java.awt.GradientPaint.getPoint2()|Returns a copy of the point P2 which anchor
+|java.awt.GradientPaint.getTransparency()|Returns the transparency mode for thi
+|java.awt.GradientPaint.isCyclic()|Returns true if the gradient cycles repeated
+
+*java.awt.GradientPaint_Description*
+
+The GradientPaint class provides a way to fill a (|java.awt.Shape|) with a 
+linear color gradient pattern. If (|java.awt.Point|) P1 with (|java.awt.Color|) 
+C1 and Point P2 with Color C2 are specified in user space, the Color on the P1, 
+P2 connecting line is proportionally changed from C1 to C2. Any point P not on 
+the extended P1, P2 connecting line has the color of the point P' that is the 
+perpendicular projection of P on the extended P1, P2 connecting line. Points on 
+the extended line outside of the P1, P2 segment can be colored in one of two 
+ways. 
+
+If the gradient is cyclic then the points on the extended P1, P2 connecting 
+line cycle back and forth between the colors C1 and C2. 
+
+If the gradient is acyclic then points on the P1 side of the segment have the 
+constant Color C1 while points on the P2 side have the constant Color C2. 
+
+
+*java.awt.GradientPaint(float,float,Color,float,float,Color)*
+
+public GradientPaint(
+  float x1,
+  float y1,
+  java.awt.Color color1,
+  float x2,
+  float y2,
+  java.awt.Color color2)
+
+Constructs a simple acyclic GradientPaint object. 
+
+    x1 - x coordinate of the first specified Point in user space 
+    y1 - y coordinate of the first specified Point in user space 
+    color1 - Color at the first specified Point 
+    x2 - x coordinate of the second specified Point in user space 
+    y2 - y coordinate of the second specified Point in user space 
+    color2 - Color at the second specified Point 
+
+*java.awt.GradientPaint(float,float,Color,float,float,Color,boolean)*
+
+public GradientPaint(
+  float x1,
+  float y1,
+  java.awt.Color color1,
+  float x2,
+  float y2,
+  java.awt.Color color2,
+  boolean cyclic)
+
+Constructs either a cyclic or acyclic GradientPaint object depending on the 
+boolean parameter. 
+
+    x1 - x coordinate of the first specified Point in user space 
+    y1 - y coordinate of the first specified Point in user space 
+    color1 - Color at the first specified Point 
+    x2 - x coordinate of the second specified Point in user space 
+    y2 - y coordinate of the second specified Point in user space 
+    color2 - Color at the second specified Point 
+    cyclic - true if the gradient pattern should cycle repeatedly between the two colors; 
+       false otherwise 
+
+*java.awt.GradientPaint(Point2D,Color,Point2D,Color)*
+
+public GradientPaint(
+  java.awt.geom.Point2D pt1,
+  java.awt.Color color1,
+  java.awt.geom.Point2D pt2,
+  java.awt.Color color2)
+
+Constructs a simple acyclic GradientPaint object. 
+
+    pt1 - the first specified Point in user space 
+    color1 - Color at the first specified Point 
+    pt2 - the second specified Point in user space 
+    color2 - Color at the second specified Point 
+
+*java.awt.GradientPaint(Point2D,Color,Point2D,Color,boolean)*
+
+public GradientPaint(
+  java.awt.geom.Point2D pt1,
+  java.awt.Color color1,
+  java.awt.geom.Point2D pt2,
+  java.awt.Color color2,
+  boolean cyclic)
+
+Constructs either a cyclic or acyclic GradientPaint object depending on the 
+boolean parameter. 
+
+    pt1 - the first specified Point in user space 
+    color1 - Color at the first specified Point 
+    pt2 - the second specified Point in user space 
+    color2 - Color at the second specified Point 
+    cyclic - true if the gradient pattern should cycle repeatedly between the two colors; 
+       false otherwise 
+
+*java.awt.GradientPaint.createContext(ColorModel,Rectangle,Rectangle2D,AffineTransform,RenderingHints)*
+
+public |java.awt.PaintContext| createContext(
+  java.awt.image.ColorModel cm,
+  java.awt.Rectangle deviceBounds,
+  java.awt.geom.Rectangle2D userBounds,
+  java.awt.geom.AffineTransform xform,
+  java.awt.RenderingHints hints)
+
+Creates and returns a context used to generate the color pattern. 
+
+    cm - {@link ColorModel} that receives the Paint data. This is used only as a hint. 
+    deviceBounds - the device space bounding box of the graphics primitive being rendered 
+    userBounds - the user space bounding box of the graphics primitive being rendered 
+    xform - the {@link AffineTransform} from user space into device space 
+    hints - the hints that the context object uses to choose between rendering alternatives 
+
+    Returns: the {@link PaintContext} that generates color patterns. 
+*java.awt.GradientPaint.getColor1()*
+
+public |java.awt.Color| getColor1()
+
+Returns the color C1 anchored by the point P1. 
+
+
+    Returns: a Color object that is the color anchored by P1. 
+*java.awt.GradientPaint.getColor2()*
+
+public |java.awt.Color| getColor2()
+
+Returns the color C2 anchored by the point P2. 
+
+
+    Returns: a Color object that is the color anchored by P2. 
+*java.awt.GradientPaint.getPoint1()*
+
+public |java.awt.geom.Point2D| getPoint1()
+
+Returns a copy of the point P1 that anchors the first color. 
+
+
+    Returns: a {@link Point2D} object that is a copy of the point that anchors the first 
+             color of this GradientPaint. 
+*java.awt.GradientPaint.getPoint2()*
+
+public |java.awt.geom.Point2D| getPoint2()
+
+Returns a copy of the point P2 which anchors the second color. 
+
+
+    Returns: a {@link Point2D} object that is a copy of the point that anchors the second 
+             color of this GradientPaint. 
+*java.awt.GradientPaint.getTransparency()*
+
+public int getTransparency()
+
+Returns the transparency mode for this GradientPaint. 
+
+
+    Returns: an integer value representing this GradientPaint object's transparency mode. 
+*java.awt.GradientPaint.isCyclic()*
+
+public boolean isCyclic()
+
+Returns true if the gradient cycles repeatedly between the two colors C1 and 
+C2. 
+
+
+    Returns: true if the gradient cycles repeatedly between the two colors; false otherwise. 
+

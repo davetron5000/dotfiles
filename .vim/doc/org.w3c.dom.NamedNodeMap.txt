@@ -1,0 +1,146 @@
+*org.w3c.dom.NamedNodeMap* *NamedNodeMap* Objects implementing the NamedNodeMap 
+
+public interface interface NamedNodeMap
+
+
+|org.w3c.dom.NamedNodeMap_Description|
+|org.w3c.dom.NamedNodeMap_Fields|
+|org.w3c.dom.NamedNodeMap_Constructors|
+|org.w3c.dom.NamedNodeMap_Methods|
+
+================================================================================
+
+*org.w3c.dom.NamedNodeMap_Methods*
+|org.w3c.dom.NamedNodeMap.getLength()|The number of nodes in this map.
+|org.w3c.dom.NamedNodeMap.getNamedItem(String)|Retrieves a node specified by na
+|org.w3c.dom.NamedNodeMap.getNamedItemNS(String,String)|Retrieves a node specif
+|org.w3c.dom.NamedNodeMap.item(int)|Returns the indexth item in the map.
+|org.w3c.dom.NamedNodeMap.removeNamedItem(String)|Removes a node specified by n
+|org.w3c.dom.NamedNodeMap.removeNamedItemNS(String,String)|Removes a node speci
+|org.w3c.dom.NamedNodeMap.setNamedItem(Node)|Adds a node using its nodeName att
+|org.w3c.dom.NamedNodeMap.setNamedItemNS(Node)|Adds a node using its namespaceU
+
+*org.w3c.dom.NamedNodeMap_Description*
+
+Objects implementing the NamedNodeMap interface are used to represent 
+collections of nodes that can be accessed by name. Note that NamedNodeMap does 
+not inherit from NodeList; NamedNodeMaps are not maintained in any particular 
+order. Objects contained in an object implementing NamedNodeMap may also be 
+accessed by an ordinal index, but this is simply to allow convenient 
+enumeration of the contents of a NamedNodeMap, and does not imply that the DOM 
+specifies an order to these Nodes. NamedNodeMap objects in the DOM are live. 
+See also the Document Object Model (DOM) Level 3 Core Specification. 
+
+
+*org.w3c.dom.NamedNodeMap.getLength()*
+
+public int getLength()
+
+The number of nodes in this map. The range of valid child node indices is 0 to 
+length-1 inclusive. 
+
+
+*org.w3c.dom.NamedNodeMap.getNamedItem(String)*
+
+public |org.w3c.dom.Node| getNamedItem(java.lang.String name)
+
+Retrieves a node specified by name. 
+
+    name - The nodeName of a node to retrieve. 
+
+    Returns: A Node (of any type) with the specified nodeName, or null if it does not 
+             identify any node in this map. 
+*org.w3c.dom.NamedNodeMap.getNamedItemNS(String,String)*
+
+public |org.w3c.dom.Node| getNamedItemNS(
+  java.lang.String namespaceURI,
+  java.lang.String localName)
+  throws |org.w3c.dom.DOMException|
+         
+Retrieves a node specified by local name and namespace URI. Per [XML 
+Namespaces] , applications must use the value null as the namespaceURI 
+parameter for methods if they wish to have no namespace. 
+
+    namespaceURI - The namespace URI of the node to retrieve. 
+    localName - The local name of the node to retrieve. 
+
+    Returns: A Node (of any type) with the specified local name and namespace URI, or null 
+             if they do not identify any node in this map. 
+*org.w3c.dom.NamedNodeMap.item(int)*
+
+public |org.w3c.dom.Node| item(int index)
+
+Returns the indexth item in the map. If index is greater than or equal to the 
+number of nodes in this map, this returns null. 
+
+    index - Index into this map. 
+
+    Returns: The node at the indexth position in the map, or null if that is not a valid 
+             index. 
+*org.w3c.dom.NamedNodeMap.removeNamedItem(String)*
+
+public |org.w3c.dom.Node| removeNamedItem(java.lang.String name)
+  throws |org.w3c.dom.DOMException|
+         
+Removes a node specified by name. When this map contains the attributes 
+attached to an element, if the removed attribute is known to have a default 
+value, an attribute immediately appears containing the default value as well as 
+the corresponding namespace URI, local name, and prefix when applicable. 
+
+    name - The nodeName of the node to remove. 
+
+    Returns: The node removed from this map if a node with such a name exists. 
+*org.w3c.dom.NamedNodeMap.removeNamedItemNS(String,String)*
+
+public |org.w3c.dom.Node| removeNamedItemNS(
+  java.lang.String namespaceURI,
+  java.lang.String localName)
+  throws |org.w3c.dom.DOMException|
+         
+Removes a node specified by local name and namespace URI. A removed attribute 
+may be known to have a default value when this map contains the attributes 
+attached to an element, as returned by the attributes attribute of the Node 
+interface. If so, an attribute immediately appears containing the default value 
+as well as the corresponding namespace URI, local name, and prefix when 
+applicable. Per [XML Namespaces] , applications must use the value null as the 
+namespaceURI parameter for methods if they wish to have no namespace. 
+
+    namespaceURI - The namespace URI of the node to remove. 
+    localName - The local name of the node to remove. 
+
+    Returns: The node removed from this map if a node with such a local name and namespace 
+             URI exists. 
+*org.w3c.dom.NamedNodeMap.setNamedItem(Node)*
+
+public |org.w3c.dom.Node| setNamedItem(org.w3c.dom.Node arg)
+  throws |org.w3c.dom.DOMException|
+         
+Adds a node using its nodeName attribute. If a node with that name is already 
+present in this map, it is replaced by the new one. Replacing a node by itself 
+has no effect. As the nodeName attribute is used to derive the name which the 
+node must be stored under, multiple nodes of certain types (those that have a 
+"special" string value) cannot be stored as the names would clash. This is seen 
+as preferable to allowing nodes to be aliased. 
+
+    arg - A node to store in this map. The node will later be accessible using the value 
+       of its nodeName attribute. 
+
+    Returns: If the new Node replaces an existing node the replaced Node is returned, 
+             otherwise null is returned. 
+*org.w3c.dom.NamedNodeMap.setNamedItemNS(Node)*
+
+public |org.w3c.dom.Node| setNamedItemNS(org.w3c.dom.Node arg)
+  throws |org.w3c.dom.DOMException|
+         
+Adds a node using its namespaceURI and localName. If a node with that namespace 
+URI and that local name is already present in this map, it is replaced by the 
+new one. Replacing a node by itself has no effect. Per [XML Namespaces] , 
+applications must use the value null as the namespaceURI parameter for methods 
+if they wish to have no namespace. 
+
+    arg - A node to store in this map. The node will later be accessible using the value 
+       of its namespaceURI and localName attributes. 
+
+    Returns: If the new Node replaces an existing node the replaced Node is returned, 
+             otherwise null is returned. 
+

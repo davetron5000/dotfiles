@@ -1,0 +1,103 @@
+*org.omg.CORBA.DynUnion* *DynUnion* The DynUnion interface represents a DynAny o
+
+public interface interface DynUnion
+
+  implements |org.omg.CORBA.Object|
+             |org.omg.CORBA.DynAny|
+
+|org.omg.CORBA.DynUnion_Description|
+|org.omg.CORBA.DynUnion_Fields|
+|org.omg.CORBA.DynUnion_Constructors|
+|org.omg.CORBA.DynUnion_Methods|
+
+================================================================================
+
+*org.omg.CORBA.DynUnion_Methods*
+|org.omg.CORBA.DynUnion.discriminator_kind()|Returns the TCKind object associat
+|org.omg.CORBA.DynUnion.discriminator()|Returns a DynAny object reference that 
+|org.omg.CORBA.DynUnion.member_kind()|Returns the TCKind associated with the me
+|org.omg.CORBA.DynUnion.member_name()|Allows for the inspection of the name of 
+|org.omg.CORBA.DynUnion.member_name(String)|Allows for the assignment of the na
+|org.omg.CORBA.DynUnion.member()|Returns a DynAny object reference that is used
+|org.omg.CORBA.DynUnion.set_as_default()|Determines whether the discriminator a
+|org.omg.CORBA.DynUnion.set_as_default(boolean)|Determines whether the discrimi
+
+*org.omg.CORBA.DynUnion_Description*
+
+The DynUnion interface represents a DynAny object that is associated with an 
+IDL union. Union values can be traversed using the operations defined in 
+DynAny. The first component in the union corresponds to the discriminator; the 
+second corresponds to the actual value of the union. Calling the method next() 
+twice allows you to access both components. 
+
+
+*org.omg.CORBA.DynUnion.discriminator_kind()*
+
+public |org.omg.CORBA.TCKind| discriminator_kind()
+
+Returns the TCKind object associated with the discriminator of this union. 
+
+
+    Returns: the TCKind object associated with the discriminator of this union 
+*org.omg.CORBA.DynUnion.discriminator()*
+
+public |org.omg.CORBA.DynAny| discriminator()
+
+Returns a DynAny object reference that must be narrowed to the type of the 
+discriminator in order to insert/get the discriminator value. 
+
+
+    Returns: a DynAny object reference representing the discriminator value 
+*org.omg.CORBA.DynUnion.member_kind()*
+
+public |org.omg.CORBA.TCKind| member_kind()
+
+Returns the TCKind associated with the member of this union. 
+
+
+    Returns: the TCKind object associated with the member of this union 
+*org.omg.CORBA.DynUnion.member_name()*
+
+public |java.lang.String| member_name()
+
+Allows for the inspection of the name of this union member without checking the 
+value of the discriminator. 
+
+
+    Returns: the name of this union member 
+*org.omg.CORBA.DynUnion.member_name(String)*
+
+public void member_name(java.lang.String arg)
+
+Allows for the assignment of the name of this union member. 
+
+    arg - the new name of this union member 
+
+*org.omg.CORBA.DynUnion.member()*
+
+public |org.omg.CORBA.DynAny| member()
+
+Returns a DynAny object reference that is used in order to insert/get a member 
+of this union. 
+
+
+    Returns: the DynAny object representing a member of this union 
+*org.omg.CORBA.DynUnion.set_as_default()*
+
+public boolean set_as_default()
+
+Determines whether the discriminator associated with this union has been 
+assigned a valid default value. 
+
+
+    Returns: true if the discriminator has a default value; false otherwise 
+*org.omg.CORBA.DynUnion.set_as_default(boolean)*
+
+public void set_as_default(boolean arg)
+
+Determines whether the discriminator associated with this union gets assigned a 
+valid default value. 
+
+    arg - true if the discriminator gets assigned a default value 
+
+

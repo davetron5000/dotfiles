@@ -1,0 +1,141 @@
+*java.awt.image.BandCombineOp* *BandCombineOp* This class performs an arbitrary 
+
+public class BandCombineOp
+  extends    |java.lang.Object|
+  implements |java.awt.image.RasterOp|
+
+|java.awt.image.BandCombineOp_Description|
+|java.awt.image.BandCombineOp_Fields|
+|java.awt.image.BandCombineOp_Constructors|
+|java.awt.image.BandCombineOp_Methods|
+
+================================================================================
+
+*java.awt.image.BandCombineOp_Constructors*
+|java.awt.image.BandCombineOp(float[][],RenderingHints)|Constructs a BandCombin
+
+*java.awt.image.BandCombineOp_Methods*
+|java.awt.image.BandCombineOp.createCompatibleDestRaster(Raster)|Creates a zero
+|java.awt.image.BandCombineOp.filter(Raster,WritableRaster)|Transforms the Rast
+|java.awt.image.BandCombineOp.getBounds2D(Raster)|Returns the bounding box of t
+|java.awt.image.BandCombineOp.getMatrix()|Returns the matrix.
+|java.awt.image.BandCombineOp.getPoint2D(Point2D,Point2D)|Returns the location 
+|java.awt.image.BandCombineOp.getRenderingHints()|Returns the rendering hints f
+
+*java.awt.image.BandCombineOp_Description*
+
+This class performs an arbitrary linear combination of the bands in a Raster, 
+using a specified matrix. 
+
+The width of the matrix must be equal to the number of bands in the source 
+Raster, optionally plus one. If there is one more column in the matrix than the 
+number of bands, there is an implied 1 at the end of the vector of band samples 
+representing a pixel. The height of the matrix must be equal to the number of 
+bands in the destination. 
+
+For example, a 3-banded Raster might have the following transformation applied 
+to each pixel in order to invert the second band of the Raster. 
+
+[ 1.0 0.0 0.0 0.0 ] [ b1 ] [ 0.0 -1.0 0.0 255.0 ] x [ b2 ] [ 0.0 0.0 1.0 0.0 ] 
+[ b3 ] [ 1 ] 
+
+Note that the source and destination can be the same object. 
+
+
+*java.awt.image.BandCombineOp(float[][],RenderingHints)*
+
+public BandCombineOp(
+  float[][] matrix,
+  java.awt.RenderingHints hints)
+
+Constructs a BandCombineOp with the specified matrix. The width of the matrix 
+must be equal to the number of bands in the source Raster, optionally plus one. 
+If there is one more column in the matrix than the number of bands, there is an 
+implied 1 at the end of the vector of band samples representing a pixel. The 
+height of the matrix must be equal to the number of bands in the destination. 
+
+The first subscript is the row index and the second is the column index. This 
+operation uses none of the currently defined rendering hints; the 
+RenderingHints argument can be null. 
+
+    matrix - The matrix to use for the band combine operation. 
+    hints - The RenderingHints object for this operation. Not currently used so it can be 
+       null. 
+
+*java.awt.image.BandCombineOp.createCompatibleDestRaster(Raster)*
+
+public |java.awt.image.WritableRaster| createCompatibleDestRaster(java.awt.image.Raster src)
+
+Creates a zeroed destination Raster with the correct size and number of bands. 
+An IllegalArgumentException may be thrown if the number of bands in the source 
+is incompatible with the matrix. See the class comments for more details. 
+
+    src - The Raster to be filtered. 
+
+    Returns: The zeroed destination Raster. 
+*java.awt.image.BandCombineOp.filter(Raster,WritableRaster)*
+
+public |java.awt.image.WritableRaster| filter(
+  java.awt.image.Raster src,
+  java.awt.image.WritableRaster dst)
+
+Transforms the Raster using the matrix specified in the constructor. An 
+IllegalArgumentException may be thrown if the number of bands in the source or 
+destination is incompatible with the matrix. See the class comments for more 
+details. 
+
+If the destination is null, it will be created with a number of bands equalling 
+the number of rows in the matrix. No exception is thrown if the operation 
+causes a data overflow. 
+
+    src - The Raster to be filtered. 
+    dst - The Raster in which to store the results of the filter operation. 
+
+    Returns: The filtered Raster. 
+*java.awt.image.BandCombineOp.getBounds2D(Raster)*
+
+public final |java.awt.geom.Rectangle2D| getBounds2D(java.awt.image.Raster src)
+
+Returns the bounding box of the transformed destination. Since this is not a 
+geometric operation, the bounding box is the same for the source and 
+destination. An IllegalArgumentException may be thrown if the number of bands 
+in the source is incompatible with the matrix. See the class comments for more 
+details. 
+
+    src - The Raster to be filtered. 
+
+    Returns: The Rectangle2D representing the destination image's bounding box. 
+*java.awt.image.BandCombineOp.getMatrix()*
+
+public final float getMatrix()
+
+Returns the matrix. 
+
+
+    Returns: The matrix associated with this band combine operation. 
+*java.awt.image.BandCombineOp.getPoint2D(Point2D,Point2D)*
+
+public final |java.awt.geom.Point2D| getPoint2D(
+  java.awt.geom.Point2D srcPt,
+  java.awt.geom.Point2D dstPt)
+
+Returns the location of the corresponding destination point given a point in 
+the source Raster. If dstPt is specified, it is used to hold the return value. 
+Since this is not a geometric operation, the point returned is the same as the 
+specified srcPt. 
+
+    srcPt - The Point2D that represents the point in the source Raster 
+    dstPt - The Point2D in which to store the result. 
+
+    Returns: The Point2D in the destination image that corresponds to the specified point in 
+             the source image. 
+*java.awt.image.BandCombineOp.getRenderingHints()*
+
+public final |java.awt.RenderingHints| getRenderingHints()
+
+Returns the rendering hints for this operation. 
+
+
+    Returns: The RenderingHints object associated with this operation. Returns null if no 
+             hints have been set. 
+

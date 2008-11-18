@@ -1,0 +1,96 @@
+*java.awt.image.RasterOp* *RasterOp* This interface describes single-input/singl
+
+public interface interface RasterOp
+
+
+|java.awt.image.RasterOp_Description|
+|java.awt.image.RasterOp_Fields|
+|java.awt.image.RasterOp_Constructors|
+|java.awt.image.RasterOp_Methods|
+
+================================================================================
+
+*java.awt.image.RasterOp_Methods*
+|java.awt.image.RasterOp.createCompatibleDestRaster(Raster)|Creates a zeroed de
+|java.awt.image.RasterOp.filter(Raster,WritableRaster)|Performs a single-input/
+|java.awt.image.RasterOp.getBounds2D(Raster)|Returns the bounding box of the fi
+|java.awt.image.RasterOp.getPoint2D(Point2D,Point2D)|Returns the location of th
+|java.awt.image.RasterOp.getRenderingHints()|Returns the rendering hints for th
+
+*java.awt.image.RasterOp_Description*
+
+This interface describes single-input/single-output operations performed on 
+Raster objects. It is implemented by such classes as AffineTransformOp, 
+ConvolveOp, and LookupOp. The Source and Destination objects must contain the 
+appropriate number of bands for the particular classes implementing this 
+interface. Otherwise, an exception is thrown. This interface cannot be used to 
+describe more sophisticated Ops such as ones that take multiple sources. Each 
+class implementing this interface will specify whether or not it will allow an 
+in-place filtering operation (i.e. source object equal to the destination 
+object). Note that the restriction to single-input operations means that the 
+values of destination pixels prior to the operation are not used as input to 
+the filter operation. 
+
+
+*java.awt.image.RasterOp.createCompatibleDestRaster(Raster)*
+
+public |java.awt.image.WritableRaster| createCompatibleDestRaster(java.awt.image.Raster src)
+
+Creates a zeroed destination Raster with the correct size and number of bands. 
+The IllegalArgumentException may be thrown if the source Raster is incompatible 
+with the types of Rasters allowed by the class implementing this filter. 
+
+    src - the source Raster 
+
+    Returns: a WritableRaster that is compatible with src 
+*java.awt.image.RasterOp.filter(Raster,WritableRaster)*
+
+public |java.awt.image.WritableRaster| filter(
+  java.awt.image.Raster src,
+  java.awt.image.WritableRaster dest)
+
+Performs a single-input/single-output operation from a source Raster to a 
+destination Raster. If the destination Raster is null, a new Raster will be 
+created. The IllegalArgumentException may be thrown if the source and/or 
+destination Raster is incompatible with the types of Rasters allowed by the 
+class implementing this filter. 
+
+    src - the source Raster 
+    dest - the destination WritableRaster 
+
+    Returns: a WritableRaster that represents the result of the filtering operation. 
+*java.awt.image.RasterOp.getBounds2D(Raster)*
+
+public |java.awt.geom.Rectangle2D| getBounds2D(java.awt.image.Raster src)
+
+Returns the bounding box of the filtered destination Raster. The 
+IllegalArgumentException may be thrown if the source Raster is incompatible 
+with the types of Rasters allowed by the class implementing this filter. 
+
+    src - the source Raster 
+
+    Returns: a Rectangle2D that is the bounding box of the Raster resulting from the 
+             filtering operation. 
+*java.awt.image.RasterOp.getPoint2D(Point2D,Point2D)*
+
+public |java.awt.geom.Point2D| getPoint2D(
+  java.awt.geom.Point2D srcPt,
+  java.awt.geom.Point2D dstPt)
+
+Returns the location of the destination point given a point in the source 
+Raster. If dstPt is non-null, it will be used to hold the return value. 
+
+    srcPt - the source Point2D 
+    dstPt - the destination Point2D 
+
+    Returns: the location of the destination point. 
+*java.awt.image.RasterOp.getRenderingHints()*
+
+public |java.awt.RenderingHints| getRenderingHints()
+
+Returns the rendering hints for this RasterOp. Returns null if no hints have 
+been set. 
+
+
+    Returns: the RenderingHints object of this RasterOp. 
+

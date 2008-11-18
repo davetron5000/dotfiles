@@ -1,0 +1,91 @@
+*java.security.Signer* *Signer* This class is used to represent an Identity that
+
+public abstract class Signer
+  extends    |java.security.Identity|
+
+|java.security.Signer_Description|
+|java.security.Signer_Fields|
+|java.security.Signer_Constructors|
+|java.security.Signer_Methods|
+
+================================================================================
+
+*java.security.Signer_Constructors*
+|java.security.Signer()|Creates a signer.
+|java.security.Signer(String)|Creates a signer with the specified identity name
+|java.security.Signer(String,IdentityScope)|Creates a signer with the specified
+
+*java.security.Signer_Methods*
+|java.security.Signer.getPrivateKey()|Returns this signer's private key.
+|java.security.Signer.setKeyPair(KeyPair)|Sets the key pair (public key and pri
+|java.security.Signer.toString()|Returns a string of information about the sign
+
+*java.security.Signer_Description*
+
+This class is used to represent an Identity that can also digitally sign data. 
+
+The management of a signer's private keys is an important and sensitive issue 
+that should be handled by subclasses as appropriate to their intended use. 
+
+
+*java.security.Signer()*
+
+protected Signer()
+
+Creates a signer. This constructor should only be used for serialization. 
+
+
+*java.security.Signer(String)*
+
+public Signer(java.lang.String name)
+
+Creates a signer with the specified identity name. 
+
+    name - the identity name. 
+
+*java.security.Signer(String,IdentityScope)*
+
+public Signer(
+  java.lang.String name,
+  java.security.IdentityScope scope)
+  throws |java.security.KeyManagementException|
+         
+Creates a signer with the specified identity name and scope. 
+
+    name - the identity name. 
+    scope - the scope of the identity. 
+
+*java.security.Signer.getPrivateKey()*
+
+public |java.security.PrivateKey| getPrivateKey()
+
+Returns this signer's private key. 
+
+First, if there is a security manager, its checkSecurityAccess method is called 
+with "getSignerPrivateKey" as its argument to see if it's ok to return the 
+private key. 
+
+
+    Returns: this signer's private key, or null if the private key has not yet been set. 
+*java.security.Signer.setKeyPair(KeyPair)*
+
+public final void setKeyPair(java.security.KeyPair pair)
+  throws |java.security.InvalidParameterException|
+         |java.security.KeyException|
+         
+Sets the key pair (public key and private key) for this signer. 
+
+First, if there is a security manager, its checkSecurityAccess method is called 
+with "setSignerKeyPair" as its argument to see if it's ok to set the key pair. 
+
+    pair - an initialized key pair. 
+
+*java.security.Signer.toString()*
+
+public |java.lang.String| toString()
+
+Returns a string of information about the signer. 
+
+
+    Returns: a string of information about the signer. 
+

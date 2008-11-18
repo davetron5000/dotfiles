@@ -1,0 +1,330 @@
+*java.awt.Choice* *Choice* The Choice class presents a pop-up menu of choices.
+
+public class Choice
+  extends    |java.awt.Component|
+  implements |java.awt.ItemSelectable|
+             |javax.accessibility.Accessible|
+
+|java.awt.Choice_Description|
+|java.awt.Choice_Fields|
+|java.awt.Choice_Constructors|
+|java.awt.Choice_Methods|
+
+================================================================================
+
+*java.awt.Choice_Constructors*
+|java.awt.Choice()|Creates a new choice menu.
+
+*java.awt.Choice_Methods*
+|java.awt.Choice.add(String)|Adds an item to this Choice menu.
+|java.awt.Choice.addItem(String)|Obsolete as of Java 2 platform v1.1.
+|java.awt.Choice.addItemListener(ItemListener)|Adds the specified item listener
+|java.awt.Choice.addNotify()|Creates the Choice's peer.
+|java.awt.Choice.countItems()|
+|java.awt.Choice.getAccessibleContext()|Gets the AccessibleContext associated w
+|java.awt.Choice.getItem(int)|Gets the string at the specified index in this  C
+|java.awt.Choice.getItemCount()|Returns the number of items in this Choice menu
+|java.awt.Choice.getItemListeners()|Returns an array of all the item listeners 
+|java.awt.Choice.getListeners(Class)|Returns an array of all the objects curren
+|java.awt.Choice.getSelectedIndex()|Returns the index of the currently selected
+|java.awt.Choice.getSelectedItem()|Gets a representation of the current choice 
+|java.awt.Choice.getSelectedObjects()|Returns an array (length 1) containing th
+|java.awt.Choice.insert(String,int)|Inserts the item into this choice at the sp
+|java.awt.Choice.paramString()|Returns a string representing the state of this 
+|java.awt.Choice.processEvent(AWTEvent)|Processes events on this choice.
+|java.awt.Choice.processItemEvent(ItemEvent)|Processes item events occurring on
+|java.awt.Choice.remove(int)|Removes an item from the choice menu  at the speci
+|java.awt.Choice.remove(String)|Removes the first occurrence of item  from the 
+|java.awt.Choice.removeAll()|Removes all items from the choice menu.
+|java.awt.Choice.removeItemListener(ItemListener)|Removes the specified item li
+|java.awt.Choice.select(int)|Sets the selected item in this Choice menu to be t
+|java.awt.Choice.select(String)|Sets the selected item in this Choice menu  to 
+
+*java.awt.Choice_Description*
+
+The Choice class presents a pop-up menu of choices. The current choice is 
+displayed as the title of the menu. 
+
+The following code example produces a pop-up menu: 
+
+
+
+Choice ColorChooser = new Choice(); ColorChooser.add("Green"); 
+ColorChooser.add("Red"); ColorChooser.add("Blue"); 
+
+After this choice menu has been added to a panel, it appears as follows in its 
+normal state: 
+
+
+
+In the picture, "Green" is the current choice. Pushing the mouse button down on 
+the object causes a menu to appear with the current choice highlighted. 
+
+Some native platforms do not support arbitrary resizing of Choice components 
+and the behavior of setSize()/getSize() is bound by such limitations. Native 
+GUI Choice components' size are often bound by such attributes as font size and 
+length of items contained within the Choice. 
+
+
+*java.awt.Choice()*
+
+public Choice()
+  throws |java.awt.HeadlessException|
+         
+Creates a new choice menu. The menu initially has no items in it. 
+
+By default, the first item added to the choice menu becomes the selected item, 
+until a different selection is made by the user by calling one of the select 
+methods. 
+
+
+*java.awt.Choice.add(String)*
+
+public void add(java.lang.String item)
+
+Adds an item to this Choice menu. 
+
+    item - the item to be added 
+
+*java.awt.Choice.addItem(String)*
+
+public void addItem(java.lang.String item)
+
+Obsolete as of Java 2 platform v1.1. Please use the add method instead. 
+
+Adds an item to this Choice menu. 
+
+    item - the item to be added 
+
+*java.awt.Choice.addItemListener(ItemListener)*
+
+public synchronized void addItemListener(java.awt.event.ItemListener l)
+
+Adds the specified item listener to receive item events from this Choice menu. 
+Item events are sent in response to user input, but not in response to calls to 
+select. If l is null, no exception is thrown and no action is performed. 
+
+    l - the item listener 
+
+*java.awt.Choice.addNotify()*
+
+public void addNotify()
+
+Creates the Choice's peer. This peer allows us to change the look of the Choice 
+without changing its functionality. 
+
+
+*java.awt.Choice.countItems()*
+
+public int countItems()
+
+
+
+
+*java.awt.Choice.getAccessibleContext()*
+
+public |javax.accessibility.AccessibleContext| getAccessibleContext()
+
+Gets the AccessibleContext associated with this Choice. For Choice components, 
+the AccessibleContext takes the form of an AccessibleAWTChoice. A new 
+AccessibleAWTChoice instance is created if necessary. 
+
+
+    Returns: an AccessibleAWTChoice that serves as the AccessibleContext of this Choice 
+*java.awt.Choice.getItem(int)*
+
+public |java.lang.String| getItem(int index)
+
+Gets the string at the specified index in this Choice menu. 
+
+    index - the index at which to begin 
+
+*java.awt.Choice.getItemCount()*
+
+public int getItemCount()
+
+Returns the number of items in this Choice menu. 
+
+
+    Returns: the number of items in this Choice menu 
+*java.awt.Choice.getItemListeners()*
+
+public synchronized |java.awt.event.ItemListener| getItemListeners()
+
+Returns an array of all the item listeners registered on this choice. 
+
+
+    Returns: all of this choice's ItemListeners or an empty array if no item listeners are 
+             currently registered 
+*java.awt.Choice.getListeners(Class)*
+
+public |java.util.EventListener| getListeners(java.lang.Class listenerType)
+
+Returns an array of all the objects currently registered as FooListeners upon 
+this Choice. FooListeners are registered using the addFooListener method. 
+
+You can specify the listenerType argument with a class literal, such as 
+FooListener.class. For example, you can query a Choice c for its item listeners 
+with the following code: 
+
+ItemListener[] ils = (ItemListener[])(c.getListeners(ItemListener.class)); 
+
+If no such listeners exist, this method returns an empty array. 
+
+    listenerType - the type of listeners requested; this parameter should specify an interface 
+       that descends from java.util.EventListener 
+
+    Returns: an array of all objects registered as FooListeners on this choice, or an empty 
+             array if no such listeners have been added 
+*java.awt.Choice.getSelectedIndex()*
+
+public int getSelectedIndex()
+
+Returns the index of the currently selected item. If nothing is selected, 
+returns -1. 
+
+
+    Returns: the index of the currently selected item, or -1 if nothing is currently 
+             selected 
+*java.awt.Choice.getSelectedItem()*
+
+public synchronized |java.lang.String| getSelectedItem()
+
+Gets a representation of the current choice as a string. 
+
+
+    Returns: a string representation of the currently selected item in this choice menu 
+*java.awt.Choice.getSelectedObjects()*
+
+public synchronized |java.lang.Object| getSelectedObjects()
+
+Returns an array (length 1) containing the currently selected item. If this 
+choice has no items, returns null. 
+
+
+*java.awt.Choice.insert(String,int)*
+
+public void insert(
+  java.lang.String item,
+  int index)
+
+Inserts the item into this choice at the specified position. Existing items at 
+an index greater than or equal to index are shifted up by one to accommodate 
+the new item. If index is greater than or equal to the number of items in this 
+choice, item is added to the end of this choice. 
+
+If the item is the first one being added to the choice, then the item becomes 
+selected. Otherwise, if the selected item was one of the items shifted, the 
+first item in the choice becomes the selected item. If the selected item was no 
+among those shifted, it remains the selected item. 
+
+    item - the non-null item to be inserted 
+    index - the position at which the item should be inserted 
+
+*java.awt.Choice.paramString()*
+
+protected |java.lang.String| paramString()
+
+Returns a string representing the state of this Choice menu. This method is 
+intended to be used only for debugging purposes, and the content and format of 
+the returned string may vary between implementations. The returned string may 
+be empty but may not be null. 
+
+
+    Returns: the parameter string of this Choice menu 
+*java.awt.Choice.processEvent(AWTEvent)*
+
+protected void processEvent(java.awt.AWTEvent e)
+
+Processes events on this choice. If the event is an instance of ItemEvent, it 
+invokes the processItemEvent method. Otherwise, it calls its superclass's 
+processEvent method. Note that if the event parameter is null the behavior is 
+unspecified and may result in an exception. 
+
+    e - the event 
+
+*java.awt.Choice.processItemEvent(ItemEvent)*
+
+protected void processItemEvent(java.awt.event.ItemEvent e)
+
+Processes item events occurring on this Choice menu by dispatching them to any 
+registered ItemListener objects. 
+
+This method is not called unless item events are enabled for this component. 
+Item events are enabled when one of the following occurs: 
+
+An ItemListener object is registered via addItemListener. Item events are 
+enabled via enableEvents. 
+
+Note that if the event parameter is null the behavior is unspecified and may 
+result in an exception. 
+
+    e - the item event 
+
+*java.awt.Choice.remove(int)*
+
+public void remove(int position)
+
+Removes an item from the choice menu at the specified position. If the item 
+being removed is the currently selected item, then the first item in the choice 
+becomes the selected item. Otherwise, the currently selected item remains 
+selected (and the selected index is 
+
+    position - the position of the item 
+
+*java.awt.Choice.remove(String)*
+
+public void remove(java.lang.String item)
+
+Removes the first occurrence of item from the Choice menu. If the item being 
+removed is the currently selected item, then the first item in the choice 
+becomes the selected item. Otherwise, the currently selected item remains 
+selected (and the selected index is updated accordingly). 
+
+    item - the item to remove from this Choice menu 
+
+*java.awt.Choice.removeAll()*
+
+public void removeAll()
+
+Removes all items from the choice menu. 
+
+
+*java.awt.Choice.removeItemListener(ItemListener)*
+
+public synchronized void removeItemListener(java.awt.event.ItemListener l)
+
+Removes the specified item listener so that it no longer receives item events 
+from this Choice menu. If l is null, no exception is thrown and no action is 
+performed. 
+
+    l - the item listener 
+
+*java.awt.Choice.select(int)*
+
+public synchronized void select(int pos)
+
+Sets the selected item in this Choice menu to be the item at the specified 
+position. 
+
+Note that this method should be primarily used to initially select an item in 
+this component. Programmatically calling this method will not trigger an 
+ItemEvent. The only way to trigger an ItemEvent is by user interaction. 
+
+    pos - the positon of the selected item 
+
+*java.awt.Choice.select(String)*
+
+public synchronized void select(java.lang.String str)
+
+Sets the selected item in this Choice menu to be the item whose name is equal 
+to the specified string. If more than one item matches (is equal to) the 
+specified string, the one with the smallest index is selected. 
+
+Note that this method should be primarily used to initially select an item in 
+this component. Programmatically calling this method will not trigger an 
+ItemEvent. The only way to trigger an ItemEvent is by user interaction. 
+
+    str - the specified string 
+
+

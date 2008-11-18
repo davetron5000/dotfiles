@@ -1,0 +1,309 @@
+*java.util.AbstractCollection* *AbstractCollection* This class provides a skelet
+
+public abstract class AbstractCollection
+  extends    |java.lang.Object|
+  implements |java.util.Collection|
+
+|java.util.AbstractCollection_Description|
+|java.util.AbstractCollection_Fields|
+|java.util.AbstractCollection_Constructors|
+|java.util.AbstractCollection_Methods|
+
+================================================================================
+
+*java.util.AbstractCollection_Constructors*
+|java.util.AbstractCollection()|Sole constructor.
+
+*java.util.AbstractCollection_Methods*
+|java.util.AbstractCollection.add(E)|Ensures that this collection contains the 
+|java.util.AbstractCollection.addAll(Collection)|Adds all of the elements in th
+|java.util.AbstractCollection.clear()|Removes all of the elements from this col
+|java.util.AbstractCollection.contains(Object)|Returns true if this collection 
+|java.util.AbstractCollection.containsAll(Collection)|Returns true if this coll
+|java.util.AbstractCollection.isEmpty()|Returns true if this collection contain
+|java.util.AbstractCollection.iterator()|Returns an iterator over the elements 
+|java.util.AbstractCollection.remove(Object)|Removes a single instance of the s
+|java.util.AbstractCollection.removeAll(Collection)|Removes from this collectio
+|java.util.AbstractCollection.retainAll(Collection)|Retains only the elements i
+|java.util.AbstractCollection.size()|Returns the number of elements in this col
+|java.util.AbstractCollection.toArray()|Returns an array containing all of the 
+|java.util.AbstractCollection.toArray(T[])|Returns an array containing all of t
+|java.util.AbstractCollection.toString()|Returns a string representation of thi
+
+*java.util.AbstractCollection_Description*
+
+This class provides a skeletal implementation of the Collection interface, to 
+minimize the effort required to implement this interface. 
+
+To implement an unmodifiable collection, the programmer needs only to extend 
+this class and provide implementations for the iterator and size methods. (The 
+iterator returned by the iterator method must implement hasNext and next.) 
+
+To implement a modifiable collection, the programmer must additionally override 
+this class's add method (which otherwise throws an 
+UnsupportedOperationException), and the iterator returned by the iterator 
+method must additionally implement its remove method. 
+
+The programmer should generally provide a void (no argument) and Collection 
+constructor, as per the recommendation in the Collection interface 
+specification. 
+
+The documentation for each non-abstract methods in this class describes its 
+implementation in detail. Each of these methods may be overridden if the 
+collection being implemented admits a more efficient implementation. 
+
+This class is a member of the <a href="/../guide/collections/index.html"> Java 
+Collections Framework. 
+
+
+*java.util.AbstractCollection()*
+
+protected AbstractCollection()
+
+Sole constructor. (For invocation by subclass constructors, typically 
+implicit.) 
+
+
+*java.util.AbstractCollection.add(E)*
+
+public boolean add(java.lang.Object o)
+
+Ensures that this collection contains the specified element (optional 
+operation). Returns true if the collection changed as a result of the call. 
+(Returns false if this collection does not permit duplicates and already 
+contains the specified element.) Collections that support this operation may 
+place limitations on what elements may be added to the collection. In 
+particular, some collections will refuse to add null elements, and others will 
+impose restrictions on the type of elements that may be added. Collection 
+classes should clearly specify in their documentation any restrictions on what 
+elements may be added. 
+
+This implementation always throws an UnsupportedOperationException. 
+
+    o - element whose presence in this collection is to be ensured. 
+
+    Returns: true if the collection changed as a result of the call. 
+*java.util.AbstractCollection.addAll(Collection)*
+
+public boolean addAll(java.util.Collection c)
+
+Adds all of the elements in the specified collection to this collection 
+(optional operation). The behavior of this operation is undefined if the 
+specified collection is modified while the operation is in progress. (This 
+implies that the behavior of this call is undefined if the specified collection 
+is this collection, and this collection is nonempty.) 
+
+This implementation iterates over the specified collection, and adds each 
+object returned by the iterator to this collection, in turn. 
+
+Note that this implementation will throw an UnsupportedOperationException 
+unless add is overridden (assuming the specified collection is non-empty). 
+
+    c - collection whose elements are to be added to this collection. 
+
+    Returns: true if this collection changed as a result of the call. 
+*java.util.AbstractCollection.clear()*
+
+public void clear()
+
+Removes all of the elements from this collection (optional operation). The 
+collection will be empty after this call returns (unless it throws an 
+exception). 
+
+This implementation iterates over this collection, removing each element using 
+the Iterator.remove operation. Most implementations will probably choose to 
+override this method for efficiency. 
+
+Note that this implementation will throw an UnsupportedOperationException if 
+the iterator returned by this collection's iterator method does not implement 
+the remove method and this collection is non-empty. 
+
+
+*java.util.AbstractCollection.contains(Object)*
+
+public boolean contains(java.lang.Object o)
+
+Returns true if this collection contains the specified element. More formally, 
+returns true if and only if this collection contains at least one element e 
+such that (o==null ? e==null : o.equals(e)). 
+
+This implementation iterates over the elements in the collection, checking each 
+element in turn for equality with the specified element. 
+
+    o - object to be checked for containment in this collection. 
+
+    Returns: true if this collection contains the specified element. 
+*java.util.AbstractCollection.containsAll(Collection)*
+
+public boolean containsAll(java.util.Collection c)
+
+Returns true if this collection contains all of the elements in the specified 
+collection. 
+
+This implementation iterates over the specified collection, checking each 
+element returned by the iterator in turn to see if it's contained in this 
+collection. If all elements are so contained true is returned, otherwise false. 
+
+    c - collection to be checked for containment in this collection. 
+
+    Returns: true if this collection contains all of the elements in the specified 
+             collection. 
+*java.util.AbstractCollection.isEmpty()*
+
+public boolean isEmpty()
+
+Returns true if this collection contains no elements. 
+
+This implementation returns size() == 0. 
+
+
+    Returns: true if this collection contains no elements. 
+*java.util.AbstractCollection.iterator()*
+
+public abstract |java.util.Iterator| iterator()
+
+Returns an iterator over the elements contained in this collection. 
+
+
+    Returns: an iterator over the elements contained in this collection. 
+*java.util.AbstractCollection.remove(Object)*
+
+public boolean remove(java.lang.Object o)
+
+Removes a single instance of the specified element from this collection, if it 
+is present (optional operation). More formally, removes an element e such that 
+(o==null ? e==null : o.equals(e)), if the collection contains one or more such 
+elements. Returns true if the collection contained the specified element (or 
+equivalently, if the collection changed as a result of the call). 
+
+This implementation iterates over the collection looking for the specified 
+element. If it finds the element, it removes the element from the collection 
+using the iterator's remove method. 
+
+Note that this implementation throws an UnsupportedOperationException if the 
+iterator returned by this collection's iterator method does not implement the 
+remove method and this collection contains the specified object. 
+
+    o - element to be removed from this collection, if present. 
+
+    Returns: true if the collection contained the specified element. 
+*java.util.AbstractCollection.removeAll(Collection)*
+
+public boolean removeAll(java.util.Collection c)
+
+Removes from this collection all of its elements that are contained in the 
+specified collection (optional operation). 
+
+This implementation iterates over this collection, checking each element 
+returned by the iterator in turn to see if it's contained in the specified 
+collection. If it's so contained, it's removed from this collection with the 
+iterator's remove method. 
+
+Note that this implementation will throw an UnsupportedOperationException if 
+the iterator returned by the iterator method does not implement the remove 
+method and this collection contains one or more elements in common with the 
+specified collection. 
+
+    c - elements to be removed from this collection. 
+
+    Returns: true if this collection changed as a result of the call. 
+*java.util.AbstractCollection.retainAll(Collection)*
+
+public boolean retainAll(java.util.Collection c)
+
+Retains only the elements in this collection that are contained in the 
+specified collection (optional operation). In other words, removes from this 
+collection all of its elements that are not contained in the specified 
+collection. 
+
+This implementation iterates over this collection, checking each element 
+returned by the iterator in turn to see if it's contained in the specified 
+collection. If it's not so contained, it's removed from this collection with 
+the iterator's remove method. 
+
+Note that this implementation will throw an UnsupportedOperationException if 
+the iterator returned by the iterator method does not implement the remove 
+method and this collection contains one or more elements not present in the 
+specified collection. 
+
+    c - elements to be retained in this collection. 
+
+    Returns: true if this collection changed as a result of the call. 
+*java.util.AbstractCollection.size()*
+
+public abstract int size()
+
+Returns the number of elements in this collection. If the collection contains 
+more than Integer.MAX_VALUE elements, returns Integer.MAX_VALUE. 
+
+
+    Returns: the number of elements in this collection. 
+*java.util.AbstractCollection.toArray()*
+
+public |java.lang.Object| toArray()
+
+Returns an array containing all of the elements in this collection. If the 
+collection makes any guarantees as to what order its elements are returned by 
+its iterator, this method must return the elements in the same order. The 
+returned array will be "safe" in that no references to it are maintained by the 
+collection. (In other words, this method must allocate a new array even if the 
+collection is backed by an Array). The caller is thus free to modify the 
+returned array. 
+
+This implementation allocates the array to be returned, and iterates over the 
+elements in the collection, storing each object reference in the next 
+consecutive element of the array, starting with element 0. 
+
+
+    Returns: an array containing all of the elements in this collection. 
+*java.util.AbstractCollection.toArray(T[])*
+
+public |java.lang.Object| toArray(java.lang.Object[] a)
+
+Returns an array containing all of the elements in this collection; the runtime 
+type of the returned array is that of the specified array. If the collection 
+fits in the specified array, it is returned therein. Otherwise, a new array is 
+allocated with the runtime type of the specified array and the size of this 
+collection. 
+
+If the collection fits in the specified array with room to spare (i.e., the 
+array has more elements than the collection), the element in the array 
+immediately following the end of the collection is set to null. This is useful 
+in determining the length of the collection only if the caller knows that the 
+collection does not contain any null elements.) 
+
+If this collection makes any guarantees as to what order its elements are 
+returned by its iterator, this method must return the elements in the same 
+order. 
+
+This implementation checks if the array is large enough to contain the 
+collection; if not, it allocates a new array of the correct size and type 
+(using reflection). Then, it iterates over the collection, storing each object 
+reference in the next consecutive element of the array, starting with element 
+0. If the array is larger than the collection, a null is stored in the first 
+location after the end of the collection. 
+
+    a - the array into which the elements of the collection are to be stored, if it is 
+       big enough; otherwise, a new array of the same runtime type is allocated 
+       for this purpose. 
+
+    Returns: an array containing the elements of the collection. 
+*java.util.AbstractCollection.toString()*
+
+public |java.lang.String| toString()
+
+Returns a string representation of this collection. The string representation 
+consists of a list of the collection's elements in the order they are returned 
+by its iterator, enclosed in square brackets ("[]"). Adjacent elements are 
+separated by the characters ", " (comma and space). Elements are converted to 
+strings as by String.valueOf(Object). 
+
+This implementation creates an empty string buffer, appends a left square 
+bracket, and iterates over the collection appending the string representation 
+of each element in turn. After appending each element except the last, the 
+string ", " is appended. Finally a right bracket is appended. A string is 
+obtained from the string buffer, and returned. 
+
+
+    Returns: a string representation of this collection. 
+

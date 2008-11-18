@@ -1,0 +1,196 @@
+*java.io.BufferedReader* *BufferedReader* Read text from a character-input strea
+
+public class BufferedReader
+  extends    |java.io.Reader|
+
+|java.io.BufferedReader_Description|
+|java.io.BufferedReader_Fields|
+|java.io.BufferedReader_Constructors|
+|java.io.BufferedReader_Methods|
+
+================================================================================
+
+*java.io.BufferedReader_Constructors*
+|java.io.BufferedReader(Reader)|Create a buffering character-input stream that 
+|java.io.BufferedReader(Reader,int)|Create a buffering character-input stream t
+
+*java.io.BufferedReader_Methods*
+|java.io.BufferedReader.close()|Close the stream.
+|java.io.BufferedReader.mark(int)|Mark the present position in the stream.
+|java.io.BufferedReader.markSupported()|Tell whether this stream supports the m
+|java.io.BufferedReader.read()|Read a single character.
+|java.io.BufferedReader.read(char[],int,int)|Read characters into a portion of 
+|java.io.BufferedReader.readLine()|Read a line of text.
+|java.io.BufferedReader.ready()|Tell whether this stream is ready to be read.
+|java.io.BufferedReader.reset()|Reset the stream to the most recent mark.
+|java.io.BufferedReader.skip(long)|Skip characters.
+
+*java.io.BufferedReader_Description*
+
+Read text from a character-input stream, buffering characters so as to provide 
+for the efficient reading of characters, arrays, and lines. 
+
+The buffer size may be specified, or the default size may be used. The default 
+is large enough for most purposes. 
+
+In general, each read request made of a Reader causes a corresponding read 
+request to be made of the underlying character or byte stream. It is therefore 
+advisable to wrap a BufferedReader around any Reader whose read() operations 
+may be costly, such as FileReaders and InputStreamReaders. For example, 
+
+
+
+BufferedReader in = new BufferedReader(new FileReader("foo.in")); 
+
+will buffer the input from the specified file. Without buffering, each 
+invocation of read() or readLine() could cause bytes to be read from the file, 
+converted into characters, and then returned, which can be very inefficient. 
+
+Programs that use DataInputStreams for textual input can be localized by 
+replacing each DataInputStream with an appropriate BufferedReader. 
+
+
+*java.io.BufferedReader(Reader)*
+
+public BufferedReader(java.io.Reader in)
+
+Create a buffering character-input stream that uses a default-sized input 
+buffer. 
+
+    in - A Reader 
+
+*java.io.BufferedReader(Reader,int)*
+
+public BufferedReader(
+  java.io.Reader in,
+  int sz)
+
+Create a buffering character-input stream that uses an input buffer of the 
+specified size. 
+
+    in - A Reader 
+    sz - Input-buffer size 
+
+*java.io.BufferedReader.close()*
+
+public void close()
+  throws |java.io.IOException|
+         
+Close the stream. 
+
+
+*java.io.BufferedReader.mark(int)*
+
+public void mark(int readAheadLimit)
+  throws |java.io.IOException|
+         
+Mark the present position in the stream. Subsequent calls to reset() will 
+attempt to reposition the stream to this point. 
+
+    readAheadLimit - Limit on the number of characters that may be read while still preserving the 
+       mark. After reading this many characters, attempting to reset the stream 
+       may fail. A limit value larger than the size of the input buffer will 
+       cause a new buffer to be allocated whose size is no smaller than limit. 
+       Therefore large values should be used with care. 
+
+*java.io.BufferedReader.markSupported()*
+
+public boolean markSupported()
+
+Tell whether this stream supports the mark() operation, which it does. 
+
+
+*java.io.BufferedReader.read()*
+
+public int read()
+  throws |java.io.IOException|
+         
+Read a single character. 
+
+
+    Returns: The character read, as an integer in the range 0 to 65535 (0x00-0xffff), or -1 
+             if the end of the stream has been reached 
+*java.io.BufferedReader.read(char[],int,int)*
+
+public int read(
+  char[] cbuf,
+  int off,
+  int len)
+  throws |java.io.IOException|
+         
+Read characters into a portion of an array. 
+
+This method implements the general contract of the corresponding 
+read(|java.io.Reader|) method of the (|java.io.Reader|) class. As an additional 
+convenience, it attempts to read as many characters as possible by repeatedly 
+invoking the read method of the underlying stream. This iterated read continues 
+until one of the following conditions becomes true: 
+
+The specified number of characters have been read, 
+
+The read method of the underlying stream returns -1, indicating end-of-file, or 
+
+The ready method of the underlying stream returns false, indicating that 
+further input requests would block. 
+
+If the first read on the underlying stream returns -1 to indicate end-of-file 
+then this method returns -1. Otherwise this method returns the number of 
+characters actually read. 
+
+Subclasses of this class are encouraged, but not required, to attempt to read 
+as many characters as possible in the same fashion. 
+
+Ordinarily this method takes characters from this stream's character buffer, 
+filling it from the underlying stream as necessary. If, however, the buffer is 
+empty, the mark is not valid, and the requested length is at least as large as 
+the buffer, then this method will read characters directly from the underlying 
+stream into the given array. Thus redundant BufferedReaders will not copy data 
+unnecessarily. 
+
+    cbuf - Destination buffer 
+    off - Offset at which to start storing characters 
+    len - Maximum number of characters to read 
+
+    Returns: The number of characters read, or -1 if the end of the stream has been reached 
+*java.io.BufferedReader.readLine()*
+
+public |java.lang.String| readLine()
+  throws |java.io.IOException|
+         
+Read a line of text. A line is considered to be terminated by any one of a line 
+feed ('\n'), a carriage return ('\r'), or a carriage return followed 
+immediately by a linefeed. 
+
+
+    Returns: A String containing the contents of the line, not including any 
+             line-termination characters, or null if the end of the stream has 
+             been reached 
+*java.io.BufferedReader.ready()*
+
+public boolean ready()
+  throws |java.io.IOException|
+         
+Tell whether this stream is ready to be read. A buffered character stream is 
+ready if the buffer is not empty, or if the underlying character stream is 
+ready. 
+
+
+*java.io.BufferedReader.reset()*
+
+public void reset()
+  throws |java.io.IOException|
+         
+Reset the stream to the most recent mark. 
+
+
+*java.io.BufferedReader.skip(long)*
+
+public long skip(long n)
+  throws |java.io.IOException|
+         
+Skip characters. 
+
+    n - The number of characters to skip 
+
+    Returns: The number of characters actually skipped 
+

@@ -1,0 +1,68 @@
+*java.security.spec.PKCS8EncodedKeySpec* *PKCS8EncodedKeySpec* This class repres
+
+public class PKCS8EncodedKeySpec
+  extends    |java.security.spec.EncodedKeySpec|
+
+|java.security.spec.PKCS8EncodedKeySpec_Description|
+|java.security.spec.PKCS8EncodedKeySpec_Fields|
+|java.security.spec.PKCS8EncodedKeySpec_Constructors|
+|java.security.spec.PKCS8EncodedKeySpec_Methods|
+
+================================================================================
+
+*java.security.spec.PKCS8EncodedKeySpec_Constructors*
+|java.security.spec.PKCS8EncodedKeySpec(byte[])|Creates a new PKCS8EncodedKeySp
+
+*java.security.spec.PKCS8EncodedKeySpec_Methods*
+|java.security.spec.PKCS8EncodedKeySpec.getEncoded()|Returns the key bytes, enc
+|java.security.spec.PKCS8EncodedKeySpec.getFormat()|Returns the name of the enc
+
+*java.security.spec.PKCS8EncodedKeySpec_Description*
+
+This class represents the ASN.1 encoding of a private key, encoded according to 
+the ASN.1 type PrivateKeyInfo. The PrivateKeyInfo syntax is defined in the 
+PKCS#8 standard as follows: 
+
+
+
+PrivateKeyInfo ::= SEQUENCE { version Version, privateKeyAlgorithm 
+PrivateKeyAlgorithmIdentifier, privateKey PrivateKey, attributes [0] IMPLICIT 
+Attributes OPTIONAL } 
+
+Version ::= INTEGER 
+
+PrivateKeyAlgorithmIdentifier ::= AlgorithmIdentifier 
+
+PrivateKey ::= OCTET STRING 
+
+Attributes ::= SET OF Attribute 
+
+
+*java.security.spec.PKCS8EncodedKeySpec(byte[])*
+
+public PKCS8EncodedKeySpec(byte[] encodedKey)
+
+Creates a new PKCS8EncodedKeySpec with the given encoded key. 
+
+    encodedKey - the key, which is assumed to be encoded according to the PKCS #8 standard. The 
+       contents of the array are copied to protect against subsequent 
+       modification. 
+
+*java.security.spec.PKCS8EncodedKeySpec.getEncoded()*
+
+public byte getEncoded()
+
+Returns the key bytes, encoded according to the PKCS #8 standard. 
+
+
+    Returns: the PKCS #8 encoding of the key. Returns a new array each time this method is 
+             called. 
+*java.security.spec.PKCS8EncodedKeySpec.getFormat()*
+
+public final |java.lang.String| getFormat()
+
+Returns the name of the encoding format associated with this key specification. 
+
+
+    Returns: the string "PKCS#8". 
+

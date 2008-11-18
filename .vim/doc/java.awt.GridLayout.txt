@@ -1,0 +1,283 @@
+*java.awt.GridLayout* *GridLayout* The GridLayout class is a layout manager that
+
+public class GridLayout
+  extends    |java.lang.Object|
+  implements |java.awt.LayoutManager|
+             |java.io.Serializable|
+
+|java.awt.GridLayout_Description|
+|java.awt.GridLayout_Fields|
+|java.awt.GridLayout_Constructors|
+|java.awt.GridLayout_Methods|
+
+================================================================================
+
+*java.awt.GridLayout_Constructors*
+|java.awt.GridLayout()|Creates a grid layout with a default of one column per c
+|java.awt.GridLayout(int,int)|Creates a grid layout with the specified number o
+|java.awt.GridLayout(int,int,int,int)|Creates a grid layout with the specified 
+
+*java.awt.GridLayout_Methods*
+|java.awt.GridLayout.addLayoutComponent(String,Component)|Adds the specified co
+|java.awt.GridLayout.getColumns()|Gets the number of columns in this layout.
+|java.awt.GridLayout.getHgap()|Gets the horizontal gap between components.
+|java.awt.GridLayout.getRows()|Gets the number of rows in this layout.
+|java.awt.GridLayout.getVgap()|Gets the vertical gap between components.
+|java.awt.GridLayout.layoutContainer(Container)|Lays out the specified containe
+|java.awt.GridLayout.minimumLayoutSize(Container)|Determines the minimum size o
+|java.awt.GridLayout.preferredLayoutSize(Container)|Determines the preferred si
+|java.awt.GridLayout.removeLayoutComponent(Component)|Removes the specified com
+|java.awt.GridLayout.setColumns(int)|Sets the number of columns in this layout 
+|java.awt.GridLayout.setHgap(int)|Sets the horizontal gap between components to
+|java.awt.GridLayout.setRows(int)|Sets the number of rows in this layout to the
+|java.awt.GridLayout.setVgap(int)|Sets the vertical gap between components to t
+|java.awt.GridLayout.toString()|Returns the string representation of this grid 
+
+*java.awt.GridLayout_Description*
+
+The GridLayout class is a layout manager that lays out a container's components 
+in a rectangular grid. The container is divided into equal-sized rectangles, 
+and one component is placed in each rectangle. For example, the following is an 
+applet that lays out six buttons into three rows and two columns: 
+
+
+
+import java.awt.*; import java.applet.Applet; public class ButtonGrid extends 
+Applet { public void init() { setLayout(new GridLayout(3,2)); add(new 
+Button("1")); add(new Button("2")); add(new Button("3")); add(new Button("4")); 
+add(new Button("5")); add(new Button("6")); } } 
+
+
+
+If the container's ComponentOrientation property is horizontal and 
+left-to-right, the above example produces the output shown in Figure 1. If the 
+container's ComponentOrientation property is horizontal and right-to-left, the 
+example produces the output shown in Figure 2. 
+
+
+
+
+
+
+
+
+
+
+
+Figure 1: Horizontal, Left-to-Right 
+
+Figure 2: Horizontal, Right-to-Left 
+
+
+
+When both the number of rows and the number of columns have been set to 
+non-zero values, either by a constructor or by the setRows and setColumns 
+methods, the number of columns specified is ignored. Instead, the number of 
+columns is determined from the specified number or rows and the total number of 
+components in the layout. So, for example, if three rows and two columns have 
+been specified and nine components are added to the layout, they will be 
+displayed as three rows of three columns. Specifying the number of columns 
+affects the layout only when the number of rows is set to zero. 
+
+
+*java.awt.GridLayout()*
+
+public GridLayout()
+
+Creates a grid layout with a default of one column per component, in a single 
+row. 
+
+
+*java.awt.GridLayout(int,int)*
+
+public GridLayout(
+  int rows,
+  int cols)
+
+Creates a grid layout with the specified number of rows and columns. All 
+components in the layout are given equal size. 
+
+One, but not both, of rows and cols can be zero, which means that any number of 
+objects can be placed in a row or in a column. 
+
+    rows - the rows, with the value zero meaning any number of rows. 
+    cols - the columns, with the value zero meaning any number of columns. 
+
+*java.awt.GridLayout(int,int,int,int)*
+
+public GridLayout(
+  int rows,
+  int cols,
+  int hgap,
+  int vgap)
+
+Creates a grid layout with the specified number of rows and columns. All 
+components in the layout are given equal size. 
+
+In addition, the horizontal and vertical gaps are set to the specified values. 
+Horizontal gaps are placed between each of the columns. Vertical gaps are 
+placed between each of the rows. 
+
+One, but not both, of rows and cols can be zero, which means that any number of 
+objects can be placed in a row or in a column. 
+
+All GridLayout constructors defer to this one. 
+
+    rows - the rows, with the value zero meaning any number of rows 
+    cols - the columns, with the value zero meaning any number of columns 
+    hgap - the horizontal gap 
+    vgap - the vertical gap 
+
+*java.awt.GridLayout.addLayoutComponent(String,Component)*
+
+public void addLayoutComponent(
+  java.lang.String name,
+  java.awt.Component comp)
+
+Adds the specified component with the specified name to the layout. 
+
+    name - the name of the component 
+    comp - the component to be added 
+
+*java.awt.GridLayout.getColumns()*
+
+public int getColumns()
+
+Gets the number of columns in this layout. 
+
+
+    Returns: the number of columns in this layout 
+*java.awt.GridLayout.getHgap()*
+
+public int getHgap()
+
+Gets the horizontal gap between components. 
+
+
+    Returns: the horizontal gap between components 
+*java.awt.GridLayout.getRows()*
+
+public int getRows()
+
+Gets the number of rows in this layout. 
+
+
+    Returns: the number of rows in this layout 
+*java.awt.GridLayout.getVgap()*
+
+public int getVgap()
+
+Gets the vertical gap between components. 
+
+
+    Returns: the vertical gap between components 
+*java.awt.GridLayout.layoutContainer(Container)*
+
+public void layoutContainer(java.awt.Container parent)
+
+Lays out the specified container using this layout. 
+
+This method reshapes the components in the specified target container in order 
+to satisfy the constraints of the GridLayout object. 
+
+The grid layout manager determines the size of individual components by 
+dividing the free space in the container into equal-sized portions according to 
+the number of rows and columns in the layout. The container's free space equals 
+the container's size minus any insets and any specified horizontal or vertical 
+gap. All components in a grid layout are given the same size. 
+
+    parent - the container in which to do the layout 
+
+*java.awt.GridLayout.minimumLayoutSize(Container)*
+
+public |java.awt.Dimension| minimumLayoutSize(java.awt.Container parent)
+
+Determines the minimum size of the container argument using this grid layout. 
+
+The minimum width of a grid layout is the largest minimum width of all of the 
+components in the container times the number of columns, plus the horizontal 
+padding times the number of columns minus one, plus the left and right insets 
+of the target container. 
+
+The minimum height of a grid layout is the largest minimum height of all of the 
+components in the container times the number of rows, plus the vertical padding 
+times the number of rows minus one, plus the top and bottom insets of the 
+target container. 
+
+    parent - the container in which to do the layout 
+
+    Returns: the minimum dimensions needed to lay out the subcomponents of the specified 
+             container 
+*java.awt.GridLayout.preferredLayoutSize(Container)*
+
+public |java.awt.Dimension| preferredLayoutSize(java.awt.Container parent)
+
+Determines the preferred size of the container argument using this grid layout. 
+
+The preferred width of a grid layout is the largest preferred width of all of 
+the components in the container times the number of columns, plus the 
+horizontal padding times the number of columns minus one, plus the left and 
+right insets of the target container. 
+
+The preferred height of a grid layout is the largest preferred height of all of 
+the components in the container times the number of rows, plus the vertical 
+padding times the number of rows minus one, plus the top and bottom insets of 
+the target container. 
+
+    parent - the container in which to do the layout 
+
+    Returns: the preferred dimensions to lay out the subcomponents of the specified 
+             container 
+*java.awt.GridLayout.removeLayoutComponent(Component)*
+
+public void removeLayoutComponent(java.awt.Component comp)
+
+Removes the specified component from the layout. 
+
+    comp - the component to be removed 
+
+*java.awt.GridLayout.setColumns(int)*
+
+public void setColumns(int cols)
+
+Sets the number of columns in this layout to the specified value. Setting the 
+number of columns has no affect on the layout if the number of rows specified 
+by a constructor or by the setRows method is non-zero. In that case, the number 
+of columns displayed in the layout is determined by the total number of 
+components and the number of rows specified. 
+
+    cols - the number of columns in this layout 
+
+*java.awt.GridLayout.setHgap(int)*
+
+public void setHgap(int hgap)
+
+Sets the horizontal gap between components to the specified value. 
+
+    hgap - the horizontal gap between components 
+
+*java.awt.GridLayout.setRows(int)*
+
+public void setRows(int rows)
+
+Sets the number of rows in this layout to the specified value. 
+
+    rows - the number of rows in this layout 
+
+*java.awt.GridLayout.setVgap(int)*
+
+public void setVgap(int vgap)
+
+Sets the vertical gap between components to the specified value. 
+
+    vgap - the vertical gap between components 
+
+*java.awt.GridLayout.toString()*
+
+public |java.lang.String| toString()
+
+Returns the string representation of this grid layout's values. 
+
+
+    Returns: a string representation of this grid layout 
+
