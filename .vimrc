@@ -18,11 +18,7 @@
 "
 " 
 
-" Determine the project_root, assuming ~/Projects/jdis if not specified
-" Note that if you specify "g:current_tag", it will look in
-" ~/Projects/jdis.<<tagname>> if no project_root is specified.
-" This can be accomplished on the vim command line via
-" vim --cmd 'let g:current_tag="tagname"'
+" Determine the project_root
 if !exists("g:project_root")
     let g:project_root="~/Projects"
     exec "cd " . g:project_root
@@ -65,7 +61,8 @@ syn on
 
 set gfn=Monaco:h13:a
 
-" Configuration
+"""" Configuration
+" Check for local .vimrc
 set exrc
 set noequalalways
 set whichwrap+=hl
@@ -81,18 +78,21 @@ set bg=dark
 set go=arb
 set vb t_vb=
 set nohls
-"set nofoldenable
 set grepprg=grep\ -rn\ $*
 set suffixesadd=.ec
+" Does vim help for any "K", as opposed to going to man page
 set keywordprg=
 
-" Mappings
+"""" Mappings
+" Sets you up to grep your entire project, 
 exec "map g :grep  " . g:project_root . "<Home><Right><Right><Right><Right><Right>"
+" Greps the entre project for the word under the cursor, allowing you to edit the line
 exec "map G :grep <cword> " . g:project_root
+" Greps the entre project for the word under the cursor
 exec "map  :grep <cword> " . g:project_root . ""
 " cd to directory of current file
 map c :cd %:p:h
-" kill F1
+" kill F1 (doesn't seem to actually work)
 map <F1> 
 " open buffer list
 map b n\be
@@ -107,6 +107,8 @@ map  
 " open the IDE
 map   :call JavaIDE()
 "map j :InsertBothGetterSetter
+" move to a line like 'private String itsBlah;' and this will create
+" getters/setters for you
 map j yypcwpublic/itsxxxiget$i()lxkyyjpdwdwireturn ^i{ $a }kJkyyjpcwpublicwivoid setwwikddpkxxxkJx$xa(Jx$ai) { kkyyjjpdwdw$i = i$a }kJoj
 " Open file implementing class under cursor in new pane
 map  s:find <cword>.java
@@ -119,13 +121,8 @@ map b O{jo}k
 " Convert an exception to a catch block
 map x ^icatch (lywea pb~$a){}ko
 
-" This could be a function to be more flexible.  Creates a scratch buffer to
-" write SQL in.
-map  n:set nobuflisted:set buftype=nofile:set noswapfile
-
 " Stuff I'm not sure about
 "map   :%s/<lf>1G
-
 
 " Helpful abbreviations
 :ab TRY try{}catch (SomeException e){}kklllllll
