@@ -26,11 +26,11 @@ else
     exec "cd " . g:project_root
 endif
 " Specify the location of the ant buildfile
-if !exists("g:build_file")
-    let g:ant_buildfile=g:project_root . "/build.xml"
-else
-    let g:ant_buildfile=g:project_root . "/" . g:build_file
-endif
+"if !exists("g:build_file")
+"    let g:ant_buildfile=g:project_root . "/build.xml"
+"else
+"    let g:ant_buildfile=g:project_root . "/" . g:build_file
+"endif
 
 " This function creates an IDE that contains a left-hand vertical window with
 " the file explorer in it, initially opened to your project's source
@@ -42,7 +42,7 @@ function! JavaIDE()
     " Go to the main window and vertically split
     wincmd k
     " Open our project root
-    exec "e " . g:project_root . "/src"
+    exec "e " . g:project_root
 endfunction
 
 " Config for XML editing plugin

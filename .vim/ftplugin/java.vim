@@ -52,45 +52,10 @@ set cpo-=C
 "set keywordprg=/usr/bin/javadoclookup.pl
 " configure for ant instead of make
 "set makeprg=ant\ buildclient
-let g:make_efm=&efm
-let g:ant_efm="%A\ %#[javac]\ %f:%l:\ %m,%-Z\ %#[javac]\ %p^,%-C%.%#"
-if exists("g:ant_target")
-else
-    let g:ant_target=" "
-endif
+compiler maven2
 
-if exists("g:ant_buildfile")
-    let g:ant_makeprg="ant -buildfile " . g:ant_buildfile . " " . g:ant_target
-else
-    let g:ant_makeprg="ant -find build.xml " . g:ant_target
-endif
-
-if exists("g:makefile_name")
-    if exists("g:project_root")
-        let g:make_makeprg="make -f " . g:makefile_name
-    else
-        let g:make_makeprg="make -f " . g:makefile_name
-    endif
-else
-    let g:make_makeprg="make"
-endif
-
-let &makeprg=g:ant_makeprg
-let &efm=g:ant_efm
-
-" This function switches between ant and make
-function! SwitchMakePrg()
-    if (&makeprg == g:make_makeprg)
-        let &makeprg=g:ant_makeprg
-        let &efm=g:ant_efm
-        echo "Now Using ANT"
-    else
-        let &makeprg=g:make_makeprg
-        let &efm=g:make_efm
-        echo "Now Using Make"
-    endif
-endfunction
-
+let g:maven_pom=g:project_root . "/main/trunk/pom.xml"
+let &makeprg="mvn -f " . g:maven_pom . " install"
 " Change the :browse e filter to primarily show Java-related files.
 if has("gui_win32") && !exists("b:browsefilter")
     let  b:browsefilter="Java Files (*.java)\t*.java\n" .
