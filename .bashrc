@@ -71,7 +71,44 @@ alias gem_server="ruby -r rubygems/server -e 'Gem::Server.run(:gemdir=>\"/Librar
 alias psi='/opt/psi/bin/psi'
 alias ps='ps auxwwwwwwww'
 alias ls='ls -F'
-alias mysql='/usr/local/mysql/bin/mysql'
+export MYSQL_EXE='/usr/local/mysql/bin/mysql --show-warnings'
+
+function mysql()
+{
+    if [ -z $1 ]; then
+        USER=poseur
+        PASS=poseur
+    else
+        USER=$1
+        PASS=$2
+    fi
+
+    $MYSQL_EXE -u$USER -p$PASS
+}
+function rmysql()
+{
+    LOCAL_PORT=5455
+    REMOTE_PORT=5468
+    LOGIN_USER=dave.copeland
+    MYSQL_PASSWORD=e3XCA42Pd5hD
+
+    if [ -z $1 ]; then
+        HOST=dev02
+    else
+        HOST=$1; shift
+    fi
+    echo "Establishing tunnel to ${HOST} with:"
+    echo "ssh -nfL ${LOCAL_PORT}:localhost:${REMOTE_PORT} -l ${LOGIN_USER} gateway.positiveenergyusa.com \\"
+    echo "    \"ssh -L ${REMOTE_PORT}:localhost:3306 ${HOST} sleep 30\""
+    ssh -nfL ${LOCAL_PORT}:localhost:${REMOTE_PORT} -l ${LOGIN_USER} gateway.positiveenergyusa.com "ssh -L ${REMOTE_PORT}:localhost:3306 ${HOST} sleep 30"
+    echo "Waiting for tunnel to complete startup on remote machines"
+    for ((i=40;i>0;i-=1)); do
+        echo -n . ; sleep .1 
+    done
+    echo
+    echo "Staring mysql on ${HOST} for user ${LOGIN_USER}"
+    $MYSQL_EXE -A -u${LOGIN_USER} -p${MYSQL_PASSWORD} --host=localhost --port=${LOCAL_PORT} --protocol=tcp  --prompt="mysql@${HOST}:\\d> " $*
+}
 
 complete -F get_go_targets go
 
