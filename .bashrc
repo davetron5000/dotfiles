@@ -85,11 +85,15 @@ function mysql()
 
     $MYSQL_EXE -u$USER -p$PASS
 }
+
+export SSH_TUNNEL_LOCAL_PORT=5455
+export SSH_TUNNEL_REMOTE_PORT=5468
+export POSE_USER=dave.copeland
+SSH_TUNNEL_TIMEOUT=30
+
+# Start mysql to connect to a remote database via gateway
 function rmysql()
 {
-    LOCAL_PORT=5455
-    REMOTE_PORT=5468
-    LOGIN_USER=dave.copeland
     MYSQL_PASSWORD=e3XCA42Pd5hD
 
     if [ -z $1 ]; then
@@ -97,17 +101,32 @@ function rmysql()
     else
         HOST=$1; shift
     fi
-    echo "Establishing tunnel to ${HOST} with:"
-    echo "ssh -nfL ${LOCAL_PORT}:localhost:${REMOTE_PORT} -l ${LOGIN_USER} gateway.positiveenergyusa.com \\"
-    echo "    \"ssh -L ${REMOTE_PORT}:localhost:3306 ${HOST} sleep 30\""
-    ssh -nfL ${LOCAL_PORT}:localhost:${REMOTE_PORT} -l ${LOGIN_USER} gateway.positiveenergyusa.com "ssh -L ${REMOTE_PORT}:localhost:3306 ${HOST} sleep 30"
+    ssh_tunnel $HOST blah
     echo "Waiting for tunnel to complete startup on remote machines"
     for ((i=40;i>0;i-=1)); do
         echo -n . ; sleep .1 
     done
     echo
-    echo "Staring mysql on ${HOST} for user ${LOGIN_USER}"
-    $MYSQL_EXE -A -u${LOGIN_USER} -p${MYSQL_PASSWORD} --host=localhost --port=${LOCAL_PORT} --protocol=tcp  --prompt="mysql@${HOST}:\\d> " $*
+    echo
+    echo "Staring mysql on ${HOST} for user ${POSE_USER}"
+    $MYSQL_EXE -A -u${POSE_USER} -p${MYSQL_PASSWORD} --host=localhost --port=${SSH_TUNNEL_LOCAL_PORT} --protocol=tcp  --prompt="mysql@${HOST}:\\d> " $*
+}
+
+# Establish an SSH tunnel to a machine accessible via gateway.positiveenergyusa.com
+function ssh_tunnel()
+{
+    if [ -z $1 ]; then
+        echo "usage: ssh_tunnel host"
+        return 1
+    fi
+    HOST=$1
+    echo "Establishing tunnel to ${HOST} with:"
+    echo "ssh -nfL ${SSH_TUNNEL_LOCAL_PORT}:localhost:${SSH_TUNNEL_REMOTE_PORT} -l ${POSE_USER} gateway.positiveenergyusa.com \\"
+    echo "    \"ssh -L ${SSH_TUNNEL_REMOTE_PORT}:localhost:3306 ${HOST} sleep ${SSH_TUNNEL_TIMEOUT}\""
+    ssh -nfL ${SSH_TUNNEL_LOCAL_PORT}:localhost:${SSH_TUNNEL_REMOTE_PORT} -l ${POSE_USER} gateway.positiveenergyusa.com "ssh -L ${SSH_TUNNEL_REMOTE_PORT}:localhost:3306 ${HOST} sleep ${SSH_TUNNEL_TIMEOUT}"
+    if [ -z $2 ]; then
+        echo "Tunnel will remain open for ${SSH_TUNNEL_TIMEOUT} seconds"
+    fi
 }
 
 complete -F get_go_targets go
