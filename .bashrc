@@ -22,6 +22,7 @@ export TOMCAT_HOME=/Applications/tomcat
 export CONFIG_DOMAIN=dev.local
 export FLEX_SDK=/Applications/flex
 export MAVEN_OPTS="-Xmx128M -Dflex.home=$FLEX_SDK"
+export R=svn+ssh://dave.copeland@dev.positiveenergyusa.com/opt/svnroot/
 
 function gliffy()
 {
@@ -94,13 +95,22 @@ SSH_TUNNEL_TIMEOUT=30
 # Start mysql to connect to a remote database via gateway
 function rmysql()
 {
-    MYSQL_PASSWORD=e3XCA42Pd5hD
 
     if [ -z $1 ]; then
         HOST=dev02
     else
         HOST=$1; shift
     fi
+
+    if [ $HOST == dev02 ]; then
+        MYSQL_PASSWORD=e3XCA42Pd5hD
+    elif [ $HOST == int01 ];then
+        MYSQL_PASSWORD=Qt7V35vXGZKh
+    else
+        echo "No known password for ${HOST}"
+        return
+    fi
+
     ssh_tunnel $HOST blah
     echo "Waiting for tunnel to complete startup on remote machines"
     for ((i=40;i>0;i-=1)); do
@@ -187,9 +197,9 @@ function go()
     fi
 
     if [ ! -z $2 ]; then
-        export PS1="${TITLEBAR}[\@] ${PROMPT_MAGENTA}\u${PROMPT_BOLD_WHITE}${PROMPT_GREY}\w\n${PROMPT_WHITE} [$GO_TARGET: ($2)]->${PROMPT_GREEN}"
+        export PS1="${TITLEBAR}[\@] ${PROMPT_MAGENTA}\u${PROMPT_BOLD_WHITE}@\h${PROMPT_GREY}\w\n${PROMPT_WHITE} [$GO_TARGET: ($2)]->${PROMPT_GREEN}"
     else
-        export PS1="${TITLEBAR}[\@] ${PROMPT_MAGENTA}\u${PROMPT_BOLD_WHITE}${PROMPT_GREY}\w\n${PROMPT_WHITE} [$GO_TARGET:]->${PROMPT_GREEN}"
+        export PS1="${TITLEBAR}[\@] ${PROMPT_MAGENTA}\u${PROMPT_BOLD_WHITE}@\h${PROMPT_GREY}\w\n${PROMPT_WHITE} [$GO_TARGET:]->${PROMPT_GREEN}"
     fi
     cd $GO_DIR
 }
