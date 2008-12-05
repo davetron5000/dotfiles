@@ -59,7 +59,6 @@ filetype plugin on
 filetype indent on
 syn on
 
-set gfn=Monaco:h13:a
 
 """" Configuration
 " Check for local .vimrc
@@ -82,6 +81,9 @@ set grepprg=grep\ -rn\ $*
 set suffixesadd=.ec
 " Does vim help for any "K", as opposed to going to man page
 set keywordprg=
+" Based on http://macvim.muskokamug.org/OSX/index.php#FAQ
+set nomacatsui anti enc=utf-8 termencoding=macroman gfn=Monaco:h13
+
 
 """" Mappings
 " Sets you up to grep your entire project, 
