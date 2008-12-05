@@ -19,10 +19,35 @@ export JAVA_ROOT=/System/Library/Frameworks/JavaVM.framework/Versions
 export TOMCAT_HOME=/Applications/tomcat
 
 # Positive Energy config
-export CONFIG_DOMAIN=dev.local
+export DEV02_CONFIG_DOMAIN=dev.dave_copeland.dev02
+export LOCAL_CONFIG_DOMAIN=dev.dave_copeland
+export CONFIG_DOMAIN=${LOCAL_CONFIG_DOMAIN}
 export FLEX_SDK=/Applications/flex
 export MAVEN_OPTS="-Xmx128M -Dflex.home=$FLEX_SDK"
 export R=svn+ssh://dave.copeland@dev.positiveenergyusa.com/opt/svnroot/
+
+function pose()
+{
+    USAGE="usage: pose config [dev|local]"
+    if [ -z $1 ]; then
+        echo $USAGE
+        return -1
+    fi
+
+    if [ $1 == "config" ]; then
+        if [ $2 == "dev" ]; then
+            export CONFIG_DOMAIN=${DEV02_CONFIG_DOMAIN}
+        elif [$2 == "local"]; then
+            export CONFIG_DOMAIN=${LOCAL_CONFIG_DOMAIN}
+        else
+            echo $USAGE
+            return -3;
+        fi
+    else
+        echo $USAGE
+        return -2
+    fi
+}
 
 function gliffy()
 {
@@ -92,6 +117,9 @@ export SSH_TUNNEL_REMOTE_PORT=5468
 export POSE_USER=dave.copeland
 SSH_TUNNEL_TIMEOUT=30
 
+if [ -e ~/.passwordsrc ]; then
+    . ~/.passwordsrc
+fi
 # Start mysql to connect to a remote database via gateway
 function rmysql()
 {
@@ -103,9 +131,9 @@ function rmysql()
     fi
 
     if [ $HOST == dev02 ]; then
-        MYSQL_PASSWORD=e3XCA42Pd5hD
+        MYSQL_PASSWORD=${dev02_MYSQL_PASSWORD}
     elif [ $HOST == int01 ];then
-        MYSQL_PASSWORD=Qt7V35vXGZKh
+        MYSQL_PASSWORD=${int01_MYSQL_PASSWORD}
     else
         echo "No known password for ${HOST}"
         return
