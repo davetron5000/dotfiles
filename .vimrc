@@ -82,7 +82,8 @@ set suffixesadd=.ec
 " Does vim help for any "K", as opposed to going to man page
 set keywordprg=
 " Based on http://macvim.muskokamug.org/OSX/index.php#FAQ
-set nomacatsui anti enc=utf-8 termencoding=macroman gfn=Monaco:h13
+"set nomacatsui anti enc=utf-8 termencoding=macroman gfn=Monaco:h13
+set anti enc=utf-8 termencoding=macroman gfn=Monaco:h13
 
 
 """" Mappings

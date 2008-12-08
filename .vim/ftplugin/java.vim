@@ -54,7 +54,7 @@ set cpo-=C
 "set makeprg=ant\ buildclient
 compiler maven2
 
-let g:maven_pom=g:project_root . "/main/trunk/pom.xml"
+let g:maven_pom=g:project_root . "/pom.xml"
 let &makeprg="mvn -f " . g:maven_pom . " install"
 " Change the :browse e filter to primarily show Java-related files.
 if has("gui_win32") && !exists("b:browsefilter")
