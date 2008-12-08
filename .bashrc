@@ -28,21 +28,37 @@ export R=svn+ssh://dave.copeland@dev.positiveenergyusa.com/opt/svnroot/
 
 function pose()
 {
-    USAGE="usage: pose config [dev|local]"
+    USAGE="usage: pose command"
     if [ -z $1 ]; then
         echo $USAGE
         return -1
     fi
+    if [ $1 == "help" ]; then
+        echo "config - change/print configuration"
+        echo "go     - go to a particular development area"
+        return -1;
+    fi
 
     if [ $1 == "config" ]; then
+        if [ -z $2 ]; then
+            echo "Current configuration is ${CONFIG_DOMAIN}";
+            return -1;
+        fi
         if [ $2 == "dev" ]; then
             export CONFIG_DOMAIN=${DEV02_CONFIG_DOMAIN}
-        elif [$2 == "local"]; then
+        elif [ $2 == "local" ]; then
             export CONFIG_DOMAIN=${LOCAL_CONFIG_DOMAIN}
         else
-            echo $USAGE
+            echo "Unknown configuration"
             return -3;
         fi
+        update_prompt $CURRENT_PROJECT $CONFIG_DOMAIN
+    elif [ $1 == "go" ]; then
+        if [ -z $2 ]; then
+            echo "Current options are `ls ~/Projects/pose/main/trunk | grep -v pom.xml`"
+            return -1;
+        fi
+        go pose/main/trunk/$2 $CONFIG_DOMAIN
     else
         echo $USAGE
         return -2
@@ -212,6 +228,7 @@ function go()
             echo "$GO_TARGET not found!"
             return;
         fi
+        export CURRENT_PROJECT=$GO_TARGET
         if [ ! -z $3 ];  then
             if [ ! -z $4 ]; then
                 alias vi="gvim --cmd 'let g:project_root=\"$3\"' --cmd 'let g:build_file=\"$4\"' \$*"
@@ -223,13 +240,23 @@ function go()
         fi
         alias tailjboss='tail -f $JBOSS_LOG'
     fi
+    update_prompt $GO_TARGET $2
 
-    if [ ! -z $2 ]; then
-        export PS1="${TITLEBAR}[\@] ${PROMPT_MAGENTA}\u${PROMPT_BOLD_WHITE}@\h${PROMPT_GREY}\w\n${PROMPT_WHITE} [$GO_TARGET: ($2)]->${PROMPT_GREEN}"
-    else
-        export PS1="${TITLEBAR}[\@] ${PROMPT_MAGENTA}\u${PROMPT_BOLD_WHITE}@\h${PROMPT_GREY}\w\n${PROMPT_WHITE} [$GO_TARGET:]->${PROMPT_GREEN}"
-    fi
+    #if [ ! -z $2 ]; then
+    #    export PS1="${TITLEBAR}[\@] ${PROMPT_MAGENTA}\u${PROMPT_BOLD_WHITE}@\h${PROMPT_GREY}\w\n${PROMPT_WHITE} [$GO_TARGET: ($2)]->${PROMPT_GREEN}"
+    #else
+    #    export PS1="${TITLEBAR}[\@] ${PROMPT_MAGENTA}\u${PROMPT_BOLD_WHITE}@\h${PROMPT_GREY}\w\n${PROMPT_WHITE} [$GO_TARGET:]->${PROMPT_GREEN}"
+    #fi
     cd $GO_DIR
+}
+
+function update_prompt()
+{
+    if [ ! -z $2 ]; then
+        export PS1="${TITLEBAR}[\@] ${PROMPT_MAGENTA}\u${PROMPT_BOLD_WHITE}@\h${PROMPT_GREY}\w\n${PROMPT_WHITE} [$1: ($2)]->${PROMPT_GREEN}"
+    else
+        export PS1="${TITLEBAR}[\@] ${PROMPT_MAGENTA}\u${PROMPT_BOLD_WHITE}@\h${PROMPT_GREY}\w\n${PROMPT_WHITE} [$1:]->${PROMPT_GREEN}"
+    fi
 }
 
 go 
