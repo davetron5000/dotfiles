@@ -55,7 +55,7 @@ set cpo-=C
 compiler maven2
 
 let g:maven_pom=g:project_root . "/pom.xml"
-let &makeprg="mvn -f " . g:maven_pom . " install"
+let &makeprg="mvn -f " . g:maven_pom . " "
 " Change the :browse e filter to primarily show Java-related files.
 if has("gui_win32") && !exists("b:browsefilter")
     let  b:browsefilter="Java Files (*.java)\t*.java\n" .
