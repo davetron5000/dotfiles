@@ -23,8 +23,10 @@ export DEV02_CONFIG_DOMAIN=dev.dave_copeland.dev02
 export LOCAL_CONFIG_DOMAIN=dev.dave_copeland
 export CONFIG_DOMAIN=${LOCAL_CONFIG_DOMAIN}
 export FLEX_SDK=/Applications/flex
-export MAVEN_OPTS="-Xmx128M -Dflex.home=$FLEX_SDK"
+export MAVEN_OPTS="-Xmx256M -Dflex.home=$FLEX_SDK"
 export R=svn+ssh://dave.copeland@dev.positiveenergyusa.com/opt/svnroot/
+
+source ~/.git-completion.bash
 
 function pose()
 {
@@ -45,7 +47,11 @@ function pose()
             return -1;
         fi
         if [ $2 == "dev" ]; then
-            export CONFIG_DOMAIN=${DEV02_CONFIG_DOMAIN}
+            if [ -z $3 ]; then
+                echo "Must specify a utility"
+            else
+                export CONFIG_DOMAIN=${DEV02_CONFIG_DOMAIN}.$3
+            fi
         elif [ $2 == "local" ]; then
             export CONFIG_DOMAIN=${LOCAL_CONFIG_DOMAIN}
         else
@@ -55,10 +61,19 @@ function pose()
         update_prompt $CURRENT_PROJECT $CONFIG_DOMAIN
     elif [ $1 == "go" ]; then
         if [ -z $2 ]; then
-            echo "Current options are `ls ~/Projects/pose/main/trunk | grep -v pom.xml`"
+            echo "Current options are:"
+            ls -1 ~/Projects/pose/main/trunk | grep -v pom.xml
+            echo "content/"
+            echo "qa/"
             return -1;
         fi
-        go pose/main/trunk/$2 $CONFIG_DOMAIN
+        if [ $2 == "content" ]; then
+            go pose/content/trunk $CONFIG_DOMAIN
+        elif [ $2 == "qa" ]; then
+            go pose/qa/trunk $CONFIG_DOMAIN
+        else
+            go pose/main/trunk/$2 $CONFIG_DOMAIN
+        fi
     else
         echo $USAGE
         return -2
