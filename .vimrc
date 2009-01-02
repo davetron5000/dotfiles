@@ -44,7 +44,6 @@ function! JavaIDE()
     " Open our project root
     exec "e " . g:project_root
 endfunction
-
 " Config for XML editing plugin
 let xml_use_xhtml = 1
 let xml_no_auto_nesting = 0
@@ -100,7 +99,7 @@ map <F1> 
 " open buffer list
 map b n\be
 " build
-map m :make
+map m :make compile
 " next error
 map   :cnext
 " fold this line
