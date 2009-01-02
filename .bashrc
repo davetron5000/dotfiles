@@ -108,6 +108,17 @@ function tomcat()
     fi
 }
 
+function mvn()
+{
+    /usr/bin/mvn $*
+    if [ $? == 0 ]; then
+        growlnotify -s -n Maven -m "Build Successful" --image /Users/davec/Pictures/Icons/pass.jpg
+    else
+        growlnotify -s -n Maven -m "Build FAILED" --image /Users/davec/Pictures/Icons/fail.png
+    fi
+
+}
+
 alias vi='gvim'
 alias gem_server="ruby -r rubygems/server -e 'Gem::Server.run(:gemdir=>\"/Library/Ruby/Gems/1.8\",:port=>8088)'"
 alias psi='/opt/psi/bin/psi'
