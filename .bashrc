@@ -44,6 +44,8 @@ function pose()
     if [ $1 == "config" ]; then
         if [ -z $2 ]; then
             echo "Current configuration is ${CONFIG_DOMAIN}";
+            echo "Options are: local";
+            echo "Options are: dev [utility_name]";
             return -1;
         fi
         if [ $2 == "dev" ]; then
