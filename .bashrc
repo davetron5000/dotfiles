@@ -262,21 +262,21 @@ function go()
     fi
     update_prompt $GO_TARGET $2
 
-    #if [ ! -z $2 ]; then
-    #    export PS1="${TITLEBAR}[\@] ${PROMPT_MAGENTA}\u${PROMPT_BOLD_WHITE}@\h${PROMPT_GREY}\w\n${PROMPT_WHITE} [$GO_TARGET: ($2)]->${PROMPT_GREEN}"
-    #else
-    #    export PS1="${TITLEBAR}[\@] ${PROMPT_MAGENTA}\u${PROMPT_BOLD_WHITE}@\h${PROMPT_GREY}\w\n${PROMPT_WHITE} [$GO_TARGET:]->${PROMPT_GREEN}"
-    #fi
     cd $GO_DIR
 }
 
 function update_prompt()
 {
-    if [ ! -z $2 ]; then
-        export PS1="${TITLEBAR}[\@] ${PROMPT_MAGENTA}\u${PROMPT_BOLD_WHITE}@\h${PROMPT_GREY}\w\n${PROMPT_WHITE} [$1: ($2)]->${PROMPT_GREEN}"
+    PS1_START='\[\033[0;35m\]\u@\[\033[1;37m\]\h \[\033[0;32m\]\w\n'
+    if [ -z $2 ];then
+        PS1_TARGET="\[\033[1;36m\][$1]"
     else
-        export PS1="${TITLEBAR}[\@] ${PROMPT_MAGENTA}\u${PROMPT_BOLD_WHITE}@\h${PROMPT_GREY}\w\n${PROMPT_WHITE} [$1:]->${PROMPT_GREEN}"
+        PS1_TARGET="\[\033[1;36m\][$1 -> $2]"
     fi
+    PS1_GIT='\[\033[1;33m\]$(__git_ps1 " (%s)")\[\033[0;32m\]> '
+    export PS1=$PS1_START$PS1_TARGET$PS1_GIT
+
+
 }
 
 go 
