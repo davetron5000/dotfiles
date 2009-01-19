@@ -24,7 +24,7 @@ export LOCAL_CONFIG_DOMAIN=dev.dave_copeland
 export CONFIG_DOMAIN=${LOCAL_CONFIG_DOMAIN}
 export FLEX_SDK=/Applications/flex
 export MAVEN_OPTS="-Xmx256M -Dflex.home=$FLEX_SDK"
-export R=svn+ssh://dave.copeland@dev.positiveenergyusa.com/opt/svnroot/
+export R=svn+ssh://dev.positiveenergyusa.com/opt/svnroot/
 
 source ~/.git-completion.bash
 
@@ -62,29 +62,12 @@ function pose()
         fi
         update_prompt $CURRENT_PROJECT $CONFIG_DOMAIN
     elif [ $1 == "go" ]; then
-        if [ -z $2 ]; then
-            echo "Current options are:"
-            ls -1 ~/Projects/pose | grep -v pom.xml | grep -v bustedz | grep -v data | sed 's/.$//'
-            return -1;
-        fi
-        go pose/$2 $CONFIG_DOMAIN
+        go pose $CONFIG_DOMAIN
+        alias vi="gvim --cmd 'let g:pose=\"true\"' \$*"
     else
         echo $USAGE
         return -2
     fi
-}
-
-function gliffy()
-{
-    JAVA=Java5
-    if [ -z $1 ] ; then
-        export JAVA_HOME=$JAVA_ROOT/CurrentJDK/Home
-    else
-        export JAVA_HOME=$JAVA_ROOT/1.4.2/Home
-        JAVA=Java1.4.2
-    fi
-    export PATH=$JAVA_HOME/bin:$PATH_BASE
-    go gliffy.git $JAVA ~/Projects/gliffy.git/svnroot/gliffy online/build.xml
 }
 
 function mysqld()

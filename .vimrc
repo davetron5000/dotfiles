@@ -19,11 +19,19 @@
 " 
 
 " Determine the project_root
-if !exists("g:project_root")
-    let g:project_root="~/Projects"
-    exec "cd " . g:project_root
+if exists("g:pose")
+    let g:project_root="~/Projects/pose"
+    exec "set path=" . g:project_root . "/core/**," . g:project_root . "/report/**," . g:project_root . "/content/**"
+    set grepprg=~/bin/pose_grep.sh\ $*
 else
-    exec "cd " . g:project_root
+    if !exists("g:project_root")
+        let g:project_root="~/Projects"
+        exec "cd " . g:project_root
+    else
+        exec "cd " . g:project_root
+    endif
+    exec "set path=" . g:project_root. "/**"
+    set grepprg=grep\ -rn\ $*
 endif
 " Specify the location of the ant buildfile
 "if !exists("g:build_file")
@@ -37,13 +45,12 @@ endif
 " directory.  It also contains a bottom pane that is the "quickfix" window
 " which will contain error messages and grep results.
 function! JavaIDE()
-    " Create the quickfix window
     copen
-    " Go to the main window and vertically split
     wincmd k
-    " Open our project root
     exec "e " . g:project_root
 endfunction
+
+
 " Config for XML editing plugin
 let xml_use_xhtml = 1
 let xml_no_auto_nesting = 0
@@ -65,7 +72,6 @@ set exrc
 set noequalalways
 set whichwrap+=hl
 set formatoptions-=t formatoptions+=croqln2
-exec "set path=" . g:project_root. "/**"
 set ai
 set expandtab
 set ts=4
@@ -76,21 +82,14 @@ set bg=dark
 set go=arb
 set vb t_vb=
 set nohls
-set grepprg=grep\ -rn\ $*
 set suffixesadd=.ec
 " Does vim help for any "K", as opposed to going to man page
 set keywordprg=
-" Based on http://macvim.muskokamug.org/OSX/index.php#FAQ
-"set nomacatsui anti enc=utf-8 termencoding=macroman gfn=Monaco:h13
-set anti enc=utf-8 termencoding=macroman gfn=Monaco:h13
 
 
 """" Mappings
-" Sets you up to grep your entire project, 
 exec "map g :grep  " . g:project_root . "<Home><Right><Right><Right><Right><Right>"
-" Greps the entre project for the word under the cursor, allowing you to edit the line
 exec "map G :grep <cword> " . g:project_root
-" Greps the entre project for the word under the cursor
 exec "map  :grep <cword> " . g:project_root . ""
 " cd to directory of current file
 map c :cd %:p:h
