@@ -21,7 +21,7 @@
 " Determine the project_root
 if exists("g:pose")
     let g:project_root="~/Projects/pose"
-    exec "set path=" . g:project_root . "/core/**," . g:project_root . "/report/**," . g:project_root . "/content/**"
+    exec "set path=" . g:project_root . "/core/src/**," . g:project_root . "/report/src/**," . g:project_root . "/report/bin/**," . g:project_root . "/report/db/**," . g:project_root . "/content/**"
     set grepprg=~/bin/pose_grep.sh\ $*
 else
     if !exists("g:project_root")

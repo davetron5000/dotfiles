@@ -25,6 +25,7 @@ export CONFIG_DOMAIN=${LOCAL_CONFIG_DOMAIN}
 export FLEX_SDK=/Applications/flex
 export MAVEN_OPTS="-Xmx256M -Dflex.home=$FLEX_SDK"
 export R=svn+ssh://dev.positiveenergyusa.com/opt/svnroot/
+export R_HOME=/Library/Frameworks/R.framework/Versions/2.8/Resources/
 
 source ~/.git-completion.bash
 
