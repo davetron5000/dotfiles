@@ -19,57 +19,14 @@ export JAVA_ROOT=/System/Library/Frameworks/JavaVM.framework/Versions
 export TOMCAT_HOME=/Applications/tomcat
 
 # Positive Energy config
-export DEV02_CONFIG_DOMAIN=dev.dave_copeland.dev02
-export LOCAL_CONFIG_DOMAIN=dev.dave_copeland
-export CONFIG_DOMAIN=${LOCAL_CONFIG_DOMAIN}
 export FLEX_SDK=/Applications/flex
-export MAVEN_OPTS="-Xmx256M -Dflex.home=$FLEX_SDK"
+export MAVEN_OPTS="-Xmx256M -Dflex.home=$FLEX_SDK -Djava.awt.headless=true"
 export R=svn+ssh://dev.positiveenergyusa.com/opt/svnroot/
 export R_HOME=/Library/Frameworks/R.framework/Versions/2.8/Resources/
 
+export workspace=/Users/davec/Projects/pose
+
 source ~/.git-completion.bash
-
-function pose()
-{
-    USAGE="usage: pose command"
-    if [ -z $1 ]; then
-        echo $USAGE
-        return -1
-    fi
-    if [ $1 == "help" ]; then
-        echo "config - change/print configuration"
-        echo "go     - go to a particular development area"
-        return -1;
-    fi
-
-    if [ $1 == "config" ]; then
-        if [ -z $2 ]; then
-            echo "Current configuration is ${CONFIG_DOMAIN}";
-            echo "Options are: local";
-            echo "Options are: dev [utility_name]";
-            return -1;
-        fi
-        if [ $2 == "dev" ]; then
-            if [ -z $3 ]; then
-                echo "Must specify a utility"
-            else
-                export CONFIG_DOMAIN=${DEV02_CONFIG_DOMAIN}.$3
-            fi
-        elif [ $2 == "local" ]; then
-            export CONFIG_DOMAIN=${LOCAL_CONFIG_DOMAIN}
-        else
-            echo "Unknown configuration"
-            return -3;
-        fi
-        update_prompt $CURRENT_PROJECT $CONFIG_DOMAIN
-    elif [ $1 == "go" ]; then
-        go pose $CONFIG_DOMAIN
-        alias vi="gvim --cmd 'let g:pose=\"true\"' \$*"
-    else
-        echo $USAGE
-        return -2
-    fi
-}
 
 function mysqld()
 {
@@ -85,19 +42,21 @@ function mysqld()
     fi
 }
 
-function tomcat()
+export SSH_TUNNEL_LOCAL_PORT=5455
+
+function mjr()
 {
-    if [ -z $1 ] ; then
-        echo "usage: tomcat [start|stop]";
-        return -1;
+    if [ -z $1 ]; then
+        echo "Running Jetty for local database"
+        mvn -Dcxs -DCONFIG_DOMAIN=local jetty:run
     else
-        if [ $1 == "start" ] ; then
-            $TOMCAT_HOME/bin/startup.sh
-        elif [ $1 == "stop" ] ; then
-            $TOMCAT_HOME/bin/shutdown.sh
-        elif [ $1 == "log" ] ; then
-            open -a /Applications/Utilities/Console.app $TOMCAT_HOME/logs/catalina.out
+        PORT_OPEN=`netstat -an |grep LISTEN |grep 5455 | wc -l | sed 's/^ *//g'`
+        if [ -z $PORT_OPEN ] || [ $PORT_OPEN == "0" ];then
+            echo "You do not have your ssh tunnel to dev02 running"
+            return -1;
         fi
+        echo "Running Jetty against dev02 for utility $1"
+        mvn -D$1 -DCONFIG_DOMAIN=local.dev02.$1 jetty:run
     fi
 }
 
@@ -132,7 +91,6 @@ function mysql()
     $MYSQL_EXE -u$USER -p$PASS
 }
 
-export SSH_TUNNEL_LOCAL_PORT=5455
 export SSH_TUNNEL_REMOTE_PORT=5468
 export POSE_USER=dave.copeland
 SSH_TUNNEL_TIMEOUT=30
@@ -140,6 +98,9 @@ SSH_TUNNEL_TIMEOUT=30
 if [ -e ~/.passwordsrc ]; then
     . ~/.passwordsrc
 fi
+
+export jdbc_username=${POSE_USER}
+export jdbc_password=${dev02_MYSQL_PASSWORD}
 # Start mysql to connect to a remote database via gateway
 function rmysql()
 {
@@ -166,7 +127,7 @@ function rmysql()
     done
     echo
     echo
-    echo "Staring mysql on ${HOST} for user ${POSE_USER}"
+    echo "Starting mysql on ${HOST} for user ${POSE_USER}"
     $MYSQL_EXE -A -u${POSE_USER} -p${MYSQL_PASSWORD} --host=localhost --port=${SSH_TUNNEL_LOCAL_PORT} --protocol=tcp  --prompt="mysql@${HOST}:\\d> " $*
 }
 
@@ -181,7 +142,7 @@ function ssh_tunnel()
     echo "Establishing tunnel to ${HOST} with:"
     echo "ssh -nfL ${SSH_TUNNEL_LOCAL_PORT}:localhost:${SSH_TUNNEL_REMOTE_PORT} -l ${POSE_USER} gateway.positiveenergyusa.com \\"
     echo "    \"ssh -L ${SSH_TUNNEL_REMOTE_PORT}:localhost:3306 ${HOST} sleep ${SSH_TUNNEL_TIMEOUT}\""
-    ssh -nfL ${SSH_TUNNEL_LOCAL_PORT}:localhost:${SSH_TUNNEL_REMOTE_PORT} -l ${POSE_USER} gateway.positiveenergyusa.com "ssh -L ${SSH_TUNNEL_REMOTE_PORT}:localhost:3306 ${HOST} sleep ${SSH_TUNNEL_TIMEOUT}"
+    ssh -AnfL ${SSH_TUNNEL_LOCAL_PORT}:localhost:${SSH_TUNNEL_REMOTE_PORT} -l ${POSE_USER} gateway.positiveenergyusa.com "ssh -AL ${SSH_TUNNEL_REMOTE_PORT}:localhost:3306 ${HOST} sleep ${SSH_TUNNEL_TIMEOUT}"
     if [ -z $2 ]; then
         echo "Tunnel will remain open for ${SSH_TUNNEL_TIMEOUT} seconds"
     fi
@@ -242,23 +203,22 @@ function go()
         else
             alias vi="gvim --cmd 'let g:project_root=\"$GO_DIR\"' \$*"
         fi
-        alias tailjboss='tail -f $JBOSS_LOG'
+        if [ $1 == 'pose' ]; then
+            alias vi="gvim --cmd 'let g:pose=\"true\"' \$*"
+        fi
     fi
-    update_prompt $GO_TARGET $2
+    update_prompt $GO_TARGET
 
     cd $GO_DIR
 }
 
 function update_prompt()
 {
-    PS1_START='\[\033[0;35m\]\u@\[\033[1;37m\]\h \[\033[0;32m\]\w\n'
-    if [ -z $2 ];then
-        PS1_TARGET="\[\033[1;36m\][$1]"
-    else
-        PS1_TARGET="\[\033[1;36m\][$1 -> $2]"
-    fi
-    PS1_GIT='\[\033[1;33m\]$(__git_ps1 " (%s)")\[\033[0;32m\]> '
-    export PS1=$PS1_START$PS1_TARGET$PS1_GIT
+    PS1_START='\[\033[0;35m\]\u@\[\033[1;37m\]\h '
+    PS1_TARGET="\[\033[1;36m\][$1]\n"
+    PS1_GIT='\[\033[1;33m\]$(__git_ps1 "git://%s")\[\033[0;32m\] '
+    PS1_DIR='\[\033[0;32m\]\w> '
+    export PS1=$PS1_START$PS1_TARGET$PS1_GIT$PS1_DIR
 
 
 }
