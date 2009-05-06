@@ -1,4 +1,6 @@
-*javax.swing.text.html.FormView* *FormView* Component decorator that implements 
+*javax.swing.text.html.FormView* *FormView* Component decorator that implements the view interface 
+ for form elements, <input>, <textarea>,
+ and <select>.
 
 public class FormView
   extends    |javax.swing.text.ComponentView|
@@ -9,7 +11,7 @@ public class FormView
 |javax.swing.text.html.FormView_Constructors|
 |javax.swing.text.html.FormView_Methods|
 
-================================================================================
+====================================================================================================================================================================================
 
 *javax.swing.text.html.FormView_Fields*
 |java.lang.String_javax.swing.text.html.FormView.RESET|
@@ -19,21 +21,17 @@ public class FormView
 |javax.swing.text.html.FormView(Element)|Creates a new FormView object.
 
 *javax.swing.text.html.FormView_Methods*
-|javax.swing.text.html.FormView.actionPerformed(ActionEvent)|Responsible for pr
+|javax.swing.text.html.FormView.actionPerformed(ActionEvent)|Responsible for processeing the ActionEvent.
 |javax.swing.text.html.FormView.createComponent()|Create the component.
-|javax.swing.text.html.FormView.getMaximumSpan(int)|Determines the maximum span
-|javax.swing.text.html.FormView.imageSubmit(String)|This method is called to su
-|javax.swing.text.html.FormView.submitData(String)|This method is responsible f
+|javax.swing.text.html.FormView.getMaximumSpan(int)|Determines the maximum span for this view along an  axis.
+|javax.swing.text.html.FormView.imageSubmit(String)|This method is called to submit a form in response  to a click on an image -- an <INPUT> form  element of type "image".
+|javax.swing.text.html.FormView.submitData(String)|This method is responsible for submitting the form data.
 
 *javax.swing.text.html.FormView_Description*
 
-Component decorator that implements the view interface for form elements, 
-<input>, <textarea>, and <select>. The model for the component is stored as an 
-attribute of the the element (using StyleConstants.ModelAttribute), and is used 
-to build the component of the view. The type of the model is assumed to of the 
-type that would be set by HTMLDocument.HTMLReader.FormAction. If there are 
-multiple views mapped over the document, they will share the embedded component 
-models. 
+Component decorator that implements the view interface for form elements, <input>, <textarea>, and <select>. The model for the component is stored as an attribute of the the 
+element (using StyleConstants.ModelAttribute), and is used to build the component of the view. The type of the model is assumed to of the type that would be set by 
+HTMLDocument.HTMLReader.FormAction. If there are multiple views mapped over the document, they will share the embedded component models. 
 
 The following table shows what components get built by this view. 
 
@@ -62,90 +60,19 @@ select, size unspecified or 1 JComboBox
 textarea JTextArea in a JScrollPane 
 
 input, type file JTextField 
+
 
 
 
 
 *java.lang.String_javax.swing.text.html.FormView.RESET*
 
-Component decorator that implements the view interface for form elements, 
-<input>, <textarea>, and <select>. The model for the component is stored as an 
-attribute of the the element (using StyleConstants.ModelAttribute), and is used 
-to build the component of the view. The type of the model is assumed to of the 
-type that would be set by HTMLDocument.HTMLReader.FormAction. If there are 
-multiple views mapped over the document, they will share the embedded component 
-models. 
-
-The following table shows what components get built by this view. 
-
-Element Type Component built 
-
-input, type button JButton 
-
-input, type checkbox JCheckBox 
-
-input, type image JButton 
-
-input, type password JPasswordField 
-
-input, type radio JRadioButton 
-
-input, type reset JButton 
-
-input, type submit JButton 
-
-input, type text JTextField 
-
-select, size > 1 or multiple attribute defined JList in a JScrollPane 
-
-select, size unspecified or 1 JComboBox 
-
-textarea JTextArea in a JScrollPane 
-
-input, type file JTextField 
-
-
+If a value attribute is not specified for a FORM input element of type "reset", then this default string is used. 
 
 
 *java.lang.String_javax.swing.text.html.FormView.SUBMIT*
 
-Component decorator that implements the view interface for form elements, 
-<input>, <textarea>, and <select>. The model for the component is stored as an 
-attribute of the the element (using StyleConstants.ModelAttribute), and is used 
-to build the component of the view. The type of the model is assumed to of the 
-type that would be set by HTMLDocument.HTMLReader.FormAction. If there are 
-multiple views mapped over the document, they will share the embedded component 
-models. 
-
-The following table shows what components get built by this view. 
-
-Element Type Component built 
-
-input, type button JButton 
-
-input, type checkbox JCheckBox 
-
-input, type image JButton 
-
-input, type password JPasswordField 
-
-input, type radio JRadioButton 
-
-input, type reset JButton 
-
-input, type submit JButton 
-
-input, type text JTextField 
-
-select, size > 1 or multiple attribute defined JList in a JScrollPane 
-
-select, size unspecified or 1 JComboBox 
-
-textarea JTextArea in a JScrollPane 
-
-input, type file JTextField 
-
-
+If a value attribute is not specified for a FORM input element of type "submit", then this default string is used. 
 
 
 
@@ -161,13 +88,10 @@ Creates a new FormView object.
 
 public void actionPerformed(java.awt.event.ActionEvent evt)
 
-Responsible for processeing the ActionEvent. If the element associated with the 
-FormView, has a type of "submit", "reset", "text" or "password" then the action 
-is processed. In the case of a "submit" the form is submitted. In the case of a 
-"reset" the form is reset to its original state. In the case of "text" or 
-"password", if the element is the last one of type "text" or "password", the 
-form is submitted. Otherwise, focus is transferred to the next component in the 
-form. 
+Responsible for processeing the ActionEvent. If the element associated with the FormView, has a type of "submit", "reset", "text" or "password" then the action is processed. In 
+the case of a "submit" the form is submitted. In the case of a "reset" the form is reset to its original state. In the case of "text" or "password", if the element is the last one 
+of type "text" or "password", the form is submitted. Otherwise, focus is transferred to the next component in the form. 
+
 
     evt - the ActionEvent. 
 
@@ -175,30 +99,29 @@ form.
 
 protected |java.awt.Component| createComponent()
 
-Create the component. This is basically a big switch statement based upon the 
-tag type and html attributes of the associated element. 
+Create the component. This is basically a big switch statement based upon the tag type and html attributes of the associated element. 
+
 
 
 *javax.swing.text.html.FormView.getMaximumSpan(int)*
 
 public float getMaximumSpan(int axis)
 
-Determines the maximum span for this view along an axis. For certain 
-components, the maximum and preferred span are the same. For others this will 
-return the value returned by Component.getMaximumSize along the axis of 
-interest. 
+Determines the maximum span for this view along an axis. For certain components, the maximum and preferred span are the same. For others this will return the value returned by 
+Component.getMaximumSize along the axis of interest. 
+
 
     axis - may be either View.X_AXIS or View.Y_AXIS 
 
-    Returns: the span the view would like to be rendered into >= 0. Typically the view is 
-             told to render into the span that is returned, although there is 
-             no guarantee. The parent may choose to resize or break the view. 
+    Returns: the span the view would like to be rendered into >= 0. Typically the view is told to render into the span that is returned, although there is no guarantee. The parent may choose 
+             to resize or break the view. 
+
 *javax.swing.text.html.FormView.imageSubmit(String)*
 
 protected void imageSubmit(java.lang.String imageData)
 
-This method is called to submit a form in response to a click on an image -- an 
-<INPUT> form element of type "image". 
+This method is called to submit a form in response to a click on an image -- an <INPUT> form element of type "image". 
+
 
     imageData - the mouse click coordinates. 
 
@@ -206,8 +129,8 @@ This method is called to submit a form in response to a click on an image -- an
 
 protected void submitData(java.lang.String data)
 
-This method is responsible for submitting the form data. A thread is forked to 
-undertake the submission. 
+This method is responsible for submitting the form data. A thread is forked to undertake the submission. 
+
 
 
 

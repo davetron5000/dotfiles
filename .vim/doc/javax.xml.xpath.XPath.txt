@@ -1,4 +1,4 @@
-*javax.xml.xpath.XPath* *XPath* XPath provides access to the XPath evaluation en
+*javax.xml.xpath.XPath* *XPath* XPath provides access to the XPath evaluation environment and expressions.
 
 public interface interface XPath
 
@@ -8,21 +8,21 @@ public interface interface XPath
 |javax.xml.xpath.XPath_Constructors|
 |javax.xml.xpath.XPath_Methods|
 
-================================================================================
+====================================================================================================================================================================================
 
 *javax.xml.xpath.XPath_Methods*
-|javax.xml.xpath.XPath.compile(String)|Compile an XPath expression for later ev
-|javax.xml.xpath.XPath.evaluate(String,InputSource)|Evaluate an XPath expressio
-|javax.xml.xpath.XPath.evaluate(String,InputSource,QName)|Evaluate an XPath exp
-|javax.xml.xpath.XPath.evaluate(String,Object)|Evaluate an XPath expression in 
-|javax.xml.xpath.XPath.evaluate(String,Object,QName)|Evaluate an XPath expressi
-|javax.xml.xpath.XPath.getNamespaceContext()|Return the current namespace conte
-|javax.xml.xpath.XPath.getXPathFunctionResolver()|Return the current function r
-|javax.xml.xpath.XPath.getXPathVariableResolver()|Return the current variable r
+|javax.xml.xpath.XPath.compile(String)|Compile an XPath expression for later evaluation.
+|javax.xml.xpath.XPath.evaluate(String,InputSource)|Evaluate an XPath expression in the context of the specified InputSource  and return the result as a String.
+|javax.xml.xpath.XPath.evaluate(String,InputSource,QName)|Evaluate an XPath expression in the context of the specified InputSource  and return the result as the specified type.
+|javax.xml.xpath.XPath.evaluate(String,Object)|Evaluate an XPath expression in the specified context and return the result as a String.
+|javax.xml.xpath.XPath.evaluate(String,Object,QName)|Evaluate an XPath expression in the specified context and return the result as the specified type.
+|javax.xml.xpath.XPath.getNamespaceContext()|Return the current namespace context.
+|javax.xml.xpath.XPath.getXPathFunctionResolver()|Return the current function resolver.
+|javax.xml.xpath.XPath.getXPathVariableResolver()|Return the current variable resolver.
 |javax.xml.xpath.XPath.reset()|Reset this XPath to its original configuration.
-|javax.xml.xpath.XPath.setNamespaceContext(NamespaceContext)|Establish a namesp
-|javax.xml.xpath.XPath.setXPathFunctionResolver(XPathFunctionResolver)|Establis
-|javax.xml.xpath.XPath.setXPathVariableResolver(XPathVariableResolver)|Establis
+|javax.xml.xpath.XPath.setNamespaceContext(NamespaceContext)|Establish a namespace context.
+|javax.xml.xpath.XPath.setXPathFunctionResolver(XPathFunctionResolver)|Establish a function resolver.
+|javax.xml.xpath.XPath.setXPathVariableResolver(XPathVariableResolver)|Establish a variable resolver.
 
 *javax.xml.xpath.XPath_Description*
 
@@ -36,47 +36,37 @@ Evaluation of XPath Expressions.
 
 context 
 
-If a request is made to evaluate the expression in the absence of a context 
-item, an empty document node will be used for the context. For the purposes of 
-evaluating XPath expressions, a DocumentFragment is treated like a Document 
-node. 
+If a request is made to evaluate the expression in the absence of a context item, an empty document node will be used for the context. For the purposes of evaluating XPath 
+expressions, a DocumentFragment is treated like a Document node. 
 
 
 
 variables 
 
-If the expression contains a variable reference, its value will be found 
-through the (|javax.xml.xpath.XPathVariableResolver|) set with 
-(|javax.xml.xpath.XPath|) . An (|javax.xml.xpath.XPathExpressionException|) is 
-raised if the variable resolver is undefined or the resolver returns null for 
-the variable. The value of a variable must be immutable through the course of 
-any single evaluation. 
+If the expression contains a variable reference, its value will be found through the (|javax.xml.xpath.XPathVariableResolver|) set with (|javax.xml.xpath.XPath|) . An 
+(|javax.xml.xpath.XPathExpressionException|) is raised if the variable resolver is undefined or the resolver returns null for the variable. The value of a variable must be 
+immutable through the course of any single evaluation. 
 
 
 
 functions 
 
-If the expression contains a function reference, the function will be found 
-through the (|javax.xml.xpath.XPathFunctionResolver|) set with 
-(|javax.xml.xpath.XPath|) . An (|javax.xml.xpath.XPathExpressionException|) is 
-raised if the function resolver is undefined or the function resolver returns 
-null for the function. 
+If the expression contains a function reference, the function will be found through the (|javax.xml.xpath.XPathFunctionResolver|) set with (|javax.xml.xpath.XPath|) . An 
+(|javax.xml.xpath.XPathExpressionException|) is raised if the function resolver is undefined or the function resolver returns null for the function. 
 
 
 
 QNames 
 
-QNames in the expression are resolved against the XPath namespace context set 
-with (|javax.xml.xpath.XPath|) . 
+QNames in the expression are resolved against the XPath namespace context set with (|javax.xml.xpath.XPath|) . 
 
 
 
 result 
 
-This result of evaluating an expression is converted to an instance of the 
-desired return type. Valid return types are defined in 
-(|javax.xml.xpath.XPathConstants|) . Conversion to the return type follows 
-XPath conversion rules. 
+This result of evaluating an expression is converted to an instance of the desired return type. Valid return types are defined in (|javax.xml.xpath.XPathConstants|) . Conversion 
+to the return type follows XPath conversion rules. 
+
 
 
 
@@ -88,16 +78,16 @@ public |javax.xml.xpath.XPathExpression| compile(java.lang.String expression)
          
 Compile an XPath expression for later evaluation. 
 
-If expression contains any (|javax.xml.xpath.XPathFunction|) s, they must be 
-available via the (|javax.xml.xpath.XPathFunctionResolver|) . An 
-(|javax.xml.xpath.XPathExpressionException|) will be thrown if the 
-XPathFunction cannot be resovled with the XPathFunctionResolver. 
+If expression contains any (|javax.xml.xpath.XPathFunction|) s, they must be available via the (|javax.xml.xpath.XPathFunctionResolver|) . An 
+(|javax.xml.xpath.XPathExpressionException|) will be thrown if the XPathFunction cannot be resovled with the XPathFunctionResolver. 
 
 If expression is null, a NullPointerException is thrown. 
+
 
     expression - The XPath expression. 
 
     Returns: Compiled XPath expression. 
+
 *javax.xml.xpath.XPath.evaluate(String,InputSource)*
 
 public |java.lang.String| evaluate(
@@ -105,22 +95,20 @@ public |java.lang.String| evaluate(
   org.xml.sax.InputSource source)
   throws |javax.xml.xpath.XPathExpressionException|
          
-Evaluate an XPath expression in the context of the specified InputSource and 
-return the result as a String. 
+Evaluate an XPath expression in the context of the specified InputSource and return the result as a String. 
 
-This method calls (|javax.xml.xpath.XPath|) with a returnType of 
-(|javax.xml.xpath.XPathConstants|) . 
+This method calls (|javax.xml.xpath.XPath|) with a returnType of (|javax.xml.xpath.XPathConstants|) . 
 
-See Evaluation of XPath Expressions for context item evaluation, variable, 
-function and QName resolution and return type conversion. 
+See Evaluation of XPath Expressions for context item evaluation, variable, function and QName resolution and return type conversion. 
 
 If expression or source is null, then a NullPointerException is thrown. 
+
 
     expression - The XPath expression. 
     source - The InputSource of the document to evaluate over. 
 
-    Returns: The String that is the result of evaluating the expression and converting the 
-             result to a String. 
+    Returns: The String that is the result of evaluating the expression and converting the result to a String. 
+
 *javax.xml.xpath.XPath.evaluate(String,InputSource,QName)*
 
 public |java.lang.Object| evaluate(
@@ -129,27 +117,23 @@ public |java.lang.Object| evaluate(
   javax.xml.namespace.QName returnType)
   throws |javax.xml.xpath.XPathExpressionException|
          
-Evaluate an XPath expression in the context of the specified InputSource and 
-return the result as the specified type. 
+Evaluate an XPath expression in the context of the specified InputSource and return the result as the specified type. 
 
-This method builds a data model for the (|org.xml.sax.InputSource|) and calls 
-(|javax.xml.xpath.XPath|) on the resulting document object. 
+This method builds a data model for the (|org.xml.sax.InputSource|) and calls (|javax.xml.xpath.XPath|) on the resulting document object. 
 
-See Evaluation of XPath Expressions for context item evaluation, variable, 
-function and QName resolution and return type conversion. 
+See Evaluation of XPath Expressions for context item evaluation, variable, function and QName resolution and return type conversion. 
 
-If returnType is not one of the types defined in 
-(|javax.xml.xpath.XPathConstants|) , then an IllegalArgumentException is 
-thrown. 
+If returnType is not one of the types defined in (|javax.xml.xpath.XPathConstants|) , then an IllegalArgumentException is thrown. 
 
-If expression, source or returnType is null, then a NullPointerException is 
-thrown. 
+If expression, source or returnType is null, then a NullPointerException is thrown. 
+
 
     expression - The XPath expression. 
     source - The input source of the document to evaluate over. 
     returnType - The desired return type. 
 
     Returns: The Object that encapsulates the result of evaluating the expression. 
+
 *javax.xml.xpath.XPath.evaluate(String,Object)*
 
 public |java.lang.String| evaluate(
@@ -157,23 +141,20 @@ public |java.lang.String| evaluate(
   java.lang.Object item)
   throws |javax.xml.xpath.XPathExpressionException|
          
-Evaluate an XPath expression in the specified context and return the result as 
-a String. 
+Evaluate an XPath expression in the specified context and return the result as a String. 
 
-This method calls (|javax.xml.xpath.XPath|) with a returnType of 
-(|javax.xml.xpath.XPathConstants|) . 
+This method calls (|javax.xml.xpath.XPath|) with a returnType of (|javax.xml.xpath.XPathConstants|) . 
 
-See Evaluation of XPath Expressions for context item evaluation, variable, 
-function and QName resolution and return type conversion. 
+See Evaluation of XPath Expressions for context item evaluation, variable, function and QName resolution and return type conversion. 
 
-If a null value is provided for item, an empty document will be used for the 
-context. If expression is null, then a NullPointerException is thrown. 
+If a null value is provided for item, an empty document will be used for the context. If expression is null, then a NullPointerException is thrown. 
+
 
     expression - The XPath expression. 
     item - The starting context (node or node list, for example). 
 
-    Returns: The String that is the result of evaluating the expression and converting the 
-             result to a String. 
+    Returns: The String that is the result of evaluating the expression and converting the result to a String. 
+
 *javax.xml.xpath.XPath.evaluate(String,Object,QName)*
 
 public |java.lang.Object| evaluate(
@@ -182,29 +163,22 @@ public |java.lang.Object| evaluate(
   javax.xml.namespace.QName returnType)
   throws |javax.xml.xpath.XPathExpressionException|
          
-Evaluate an XPath expression in the specified context and return the result as 
-the specified type. 
+Evaluate an XPath expression in the specified context and return the result as the specified type. 
 
-See Evaluation of XPath Expressions for context item evaluation, variable, 
-function and QName resolution and return type conversion. 
+See Evaluation of XPath Expressions for context item evaluation, variable, function and QName resolution and return type conversion. 
 
-If returnType is not one of the types defined in 
-(|javax.xml.xpath.XPathConstants|) ( NUMBER(|javax.xml.xpath.XPathConstants|) , 
-STRING(|javax.xml.xpath.XPathConstants|) , 
-BOOLEAN(|javax.xml.xpath.XPathConstants|) , 
-NODE(|javax.xml.xpath.XPathConstants|) or 
-NODESET(|javax.xml.xpath.XPathConstants|) ) then an IllegalArgumentException is 
-thrown. 
+If returnType is not one of the types defined in (|javax.xml.xpath.XPathConstants|) ( NUMBER(|javax.xml.xpath.XPathConstants|) , STRING(|javax.xml.xpath.XPathConstants|) , 
+BOOLEAN(|javax.xml.xpath.XPathConstants|) , NODE(|javax.xml.xpath.XPathConstants|) or NODESET(|javax.xml.xpath.XPathConstants|) ) then an IllegalArgumentException is thrown. 
 
-If a null value is provided for item, an empty document will be used for the 
-context. If expression or returnType is null, then a NullPointerException is 
-thrown. 
+If a null value is provided for item, an empty document will be used for the context. If expression or returnType is null, then a NullPointerException is thrown. 
+
 
     expression - The XPath expression. 
     item - The starting context (node or node list, for example). 
     returnType - The desired return type. 
 
     Returns: Result of evaluating an XPath expression as an Object of returnType. 
+
 *javax.xml.xpath.XPath.getNamespaceContext()*
 
 public |javax.xml.namespace.NamespaceContext| getNamespaceContext()
@@ -214,7 +188,9 @@ Return the current namespace context.
 null is returned in no namespace context is in effect. 
 
 
+
     Returns: Current Namespace context. 
+
 *javax.xml.xpath.XPath.getXPathFunctionResolver()*
 
 public |javax.xml.xpath.XPathFunctionResolver| getXPathFunctionResolver()
@@ -224,7 +200,9 @@ Return the current function resolver.
 null is returned in no function resolver is in effect. 
 
 
+
     Returns: Current function resolver. 
+
 *javax.xml.xpath.XPath.getXPathVariableResolver()*
 
 public |javax.xml.xpath.XPathVariableResolver| getXPathVariableResolver()
@@ -234,24 +212,22 @@ Return the current variable resolver.
 null is returned in no variable resolver is in effect. 
 
 
+
     Returns: Current variable resolver. 
+
 *javax.xml.xpath.XPath.reset()*
 
 public void reset()
 
 Reset this XPath to its original configuration. 
 
-XPath is reset to the same state as when it was created with 
-(|javax.xml.xpath.XPathFactory|) . reset() is designed to allow the reuse of 
-existing XPaths thus saving resources associated with the creation of new 
-XPaths. 
+XPath is reset to the same state as when it was created with (|javax.xml.xpath.XPathFactory|) . reset() is designed to allow the reuse of existing XPaths thus saving resources 
+associated with the creation of new XPaths. 
 
-The reset XPath is not guaranteed to have the same 
-(|javax.xml.xpath.XPathFunctionResolver|) , 
-(|javax.xml.xpath.XPathVariableResolver|) or 
-(|javax.xml.namespace.NamespaceContext|) Objects, e.g. (|java.lang.Object|) . 
-It is guaranteed to have a functionally equal XPathFunctionResolver, 
-XPathVariableResolver and NamespaceContext. 
+The reset XPath is not guaranteed to have the same (|javax.xml.xpath.XPathFunctionResolver|) , (|javax.xml.xpath.XPathVariableResolver|) or 
+(|javax.xml.namespace.NamespaceContext|) Objects, e.g. (|java.lang.Object|) . It is guaranteed to have a functionally equal XPathFunctionResolver, XPathVariableResolver and 
+NamespaceContext. 
+
 
 
 *javax.xml.xpath.XPath.setNamespaceContext(NamespaceContext)*
@@ -261,6 +237,7 @@ public void setNamespaceContext(javax.xml.namespace.NamespaceContext nsContext)
 Establish a namespace context. 
 
 A NullPointerException is thrown if nsContext is null. 
+
 
     nsContext - Namespace context to use. 
 
@@ -272,6 +249,7 @@ Establish a function resolver.
 
 A NullPointerException is thrown if resolver is null. 
 
+
     resolver - XPath function resolver. 
 
 *javax.xml.xpath.XPath.setXPathVariableResolver(XPathVariableResolver)*
@@ -281,6 +259,7 @@ public void setXPathVariableResolver(javax.xml.xpath.XPathVariableResolver resol
 Establish a variable resolver. 
 
 A NullPointerException is thrown if resolver is null. 
+
 
     resolver - Variable resolver. 
 

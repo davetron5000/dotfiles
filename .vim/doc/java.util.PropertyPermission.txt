@@ -1,4 +1,4 @@
-*java.util.PropertyPermission* *PropertyPermission* This class is for property p
+*java.util.PropertyPermission* *PropertyPermission* This class is for property permissions.
 
 public final class PropertyPermission
   extends    |java.security.BasicPermission|
@@ -8,44 +8,36 @@ public final class PropertyPermission
 |java.util.PropertyPermission_Constructors|
 |java.util.PropertyPermission_Methods|
 
-================================================================================
+====================================================================================================================================================================================
 
 *java.util.PropertyPermission_Constructors*
-|java.util.PropertyPermission(String,String)|Creates a new PropertyPermission o
+|java.util.PropertyPermission(String,String)|Creates a new PropertyPermission object with the specified name.
 
 *java.util.PropertyPermission_Methods*
-|java.util.PropertyPermission.equals(Object)|Checks two PropertyPermission obje
-|java.util.PropertyPermission.getActions()|Returns the "canonical string repres
-|java.util.PropertyPermission.hashCode()|Returns the hash code value for this o
-|java.util.PropertyPermission.implies(Permission)|Checks if this PropertyPermis
-|java.util.PropertyPermission.newPermissionCollection()|Returns a new Permissio
+|java.util.PropertyPermission.equals(Object)|Checks two PropertyPermission objects for equality.
+|java.util.PropertyPermission.getActions()|Returns the "canonical string representation" of the actions.
+|java.util.PropertyPermission.hashCode()|Returns the hash code value for this object.
+|java.util.PropertyPermission.implies(Permission)|Checks if this PropertyPermission object "implies" the specified  permission.
+|java.util.PropertyPermission.newPermissionCollection()|Returns a new PermissionCollection object for storing  PropertyPermission objects.
 
 *java.util.PropertyPermission_Description*
 
 This class is for property permissions. 
 
-The name is the name of the property ("java.home", "os.name", etc). The naming 
-convention follows the hierarchical property naming convention. Also, an 
-asterisk may appear at the end of the name, following a ".", or by itself, to 
-signify a wildcard match. For example: "java.*" or "*" is valid, "*java" or 
-"a*b" is not valid. 
+The name is the name of the property ("java.home", "os.name", etc). The naming convention follows the hierarchical property naming convention. Also, an asterisk may appear at the 
+end of the name, following a ".", or by itself, to signify a wildcard match. For example: "java.*" or "*" is valid, "*java" or "a*b" is not valid. 
 
-The actions to be granted are passed to the constructor in a string containing 
-a list of zero or more comma-separated keywords. The possible keywords are 
-"read" and "write". Their meaning is defined as follows: 
+The actions to be granted are passed to the constructor in a string containing a list of zero or more comma-separated keywords. The possible keywords are "read" and "write". Their 
+meaning is defined as follows: 
 
-read read permission. Allows System.getProperty to be called. write write 
-permission. Allows System.setProperty to be called. 
+read read permission. Allows System.getProperty to be called. write write permission. Allows System.setProperty to be called. 
 
 The actions string is converted to lowercase before processing. 
 
-Care should be taken before granting code permission to access certain system 
-properties. For example, granting permission to access the "java.home" system 
-property gives potentially malevolent code sensitive information about the 
-system environment (the Java installation directory). Also, granting permission 
-to access the "user.name" and "user.home" system properties gives potentially 
-malevolent code sensitive information about the user environment (the user's 
-account name and home directory). 
+Care should be taken before granting code permission to access certain system properties. For example, granting permission to access the "java.home" system property gives 
+potentially malevolent code sensitive information about the system environment (the Java installation directory). Also, granting permission to access the "user.name" and 
+"user.home" system properties gives potentially malevolent code sensitive information about the user environment (the user's account name and home directory). 
+
 
 
 *java.util.PropertyPermission(String,String)*
@@ -54,10 +46,8 @@ public PropertyPermission(
   java.lang.String name,
   java.lang.String actions)
 
-Creates a new PropertyPermission object with the specified name. The name is 
-the name of the system property, and actions contains a comma-separated list of 
-the desired actions granted on the property. Possible actions are "read" and 
-"write". 
+Creates a new PropertyPermission object with the specified name. The name is the name of the system property, and actions contains a comma-separated list of the desired actions 
+granted on the property. Possible actions are "read" and "write". 
 
     name - the name of the PropertyPermission. 
     actions - the actions string. 
@@ -66,34 +56,35 @@ the desired actions granted on the property. Possible actions are "read" and
 
 public boolean equals(java.lang.Object obj)
 
-Checks two PropertyPermission objects for equality. Checks that obj is a 
-PropertyPermission, and has the same name and actions as this object. 
+Checks two PropertyPermission objects for equality. Checks that obj is a PropertyPermission, and has the same name and actions as this object. 
+
 
     obj - the object we are testing for equality with this object. 
 
-    Returns: true if obj is a PropertyPermission, and has the same name and actions as this 
-             PropertyPermission object. 
+    Returns: true if obj is a PropertyPermission, and has the same name and actions as this PropertyPermission object. 
+
 *java.util.PropertyPermission.getActions()*
 
 public |java.lang.String| getActions()
 
-Returns the "canonical string representation" of the actions. That is, this 
-method always returns present actions in the following order: read, write. For 
-example, if this PropertyPermission object allows both write and read actions, 
-a call to getActions will return the string "read,write". 
+Returns the "canonical string representation" of the actions. That is, this method always returns present actions in the following order: read, write. For example, if this 
+PropertyPermission object allows both write and read actions, a call to getActions will return the string "read,write". 
+
 
 
     Returns: the canonical string representation of the actions. 
+
 *java.util.PropertyPermission.hashCode()*
 
 public int hashCode()
 
-Returns the hash code value for this object. The hash code used is the hash 
-code of this permissions name, that is, getName().hashCode(), where getName is 
-from the Permission superclass. 
+Returns the hash code value for this object. The hash code used is the hash code of this permissions name, that is, getName().hashCode(), where getName is from the Permission 
+superclass. 
+
 
 
     Returns: a hash code value for this object. 
+
 *java.util.PropertyPermission.implies(Permission)*
 
 public boolean implies(java.security.Permission p)
@@ -102,20 +93,21 @@ Checks if this PropertyPermission object "implies" the specified permission.
 
 More specifically, this method returns true if: 
 
-p is an instanceof PropertyPermission, p's actions are a subset of this 
-object's actions, and p's name is implied by this object's name. For example, 
-"java.*" implies "java.home". 
+p is an instanceof PropertyPermission, p's actions are a subset of this object's actions, and p's name is implied by this object's name. For example, "java.*" implies "java.home". 
+
 
     p - the permission to check against. 
 
     Returns: true if the specified permission is implied by this object, false if not. 
+
 *java.util.PropertyPermission.newPermissionCollection()*
 
 public |java.security.PermissionCollection| newPermissionCollection()
 
-Returns a new PermissionCollection object for storing PropertyPermission 
-objects. 
+Returns a new PermissionCollection object for storing PropertyPermission objects. 
+
 
 
     Returns: a new PermissionCollection object suitable for storing PropertyPermissions. 
+
 

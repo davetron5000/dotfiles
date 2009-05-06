@@ -1,4 +1,4 @@
-*java.util.concurrent.locks.AbstractQueuedSynchronizer.ConditionObject* *AbstractQueuedSynchronizer.ConditionObject* 
+*java.util.concurrent.locks.AbstractQueuedSynchronizer.ConditionObject* *AbstractQueuedSynchronizer.ConditionObject* Condition implementation for aAbstractQueuedSynchronizerserving
 
 public class AbstractQueuedSynchronizer.ConditionObject
   extends    |java.lang.Object|
@@ -10,37 +10,32 @@ public class AbstractQueuedSynchronizer.ConditionObject
 |java.util.concurrent.locks.AbstractQueuedSynchronizer.ConditionObject_Constructors|
 |java.util.concurrent.locks.AbstractQueuedSynchronizer.ConditionObject_Methods|
 
-================================================================================
+====================================================================================================================================================================================
 
 *java.util.concurrent.locks.AbstractQueuedSynchronizer.ConditionObject_Constructors*
-|java.util.concurrent.locks.AbstractQueuedSynchronizer.ConditionObject()|Create
+|java.util.concurrent.locks.AbstractQueuedSynchronizer.ConditionObject()|Creates a new ConditionObject instance.
 
 *java.util.concurrent.locks.AbstractQueuedSynchronizer.ConditionObject_Methods*
-|java.util.concurrent.locks.AbstractQueuedSynchronizer.ConditionObject.await()|
-|java.util.concurrent.locks.AbstractQueuedSynchronizer.ConditionObject.await(long,TimeUnit)|
-|java.util.concurrent.locks.AbstractQueuedSynchronizer.ConditionObject.awaitNanos(long)|
-|java.util.concurrent.locks.AbstractQueuedSynchronizer.ConditionObject.awaitUninterruptibly()|
-|java.util.concurrent.locks.AbstractQueuedSynchronizer.ConditionObject.awaitUntil(Date)|
-|java.util.concurrent.locks.AbstractQueuedSynchronizer.ConditionObject.getWaitingThreads()|
-|java.util.concurrent.locks.AbstractQueuedSynchronizer.ConditionObject.getWaitQueueLength()|
-|java.util.concurrent.locks.AbstractQueuedSynchronizer.ConditionObject.hasWaiters()|
-|java.util.concurrent.locks.AbstractQueuedSynchronizer.ConditionObject.signal()|
-|java.util.concurrent.locks.AbstractQueuedSynchronizer.ConditionObject.signalAll()|
+|java.util.concurrent.locks.AbstractQueuedSynchronizer.ConditionObject.await()|Implements interruptible condition wait.
+|java.util.concurrent.locks.AbstractQueuedSynchronizer.ConditionObject.await(long,TimeUnit)|Implements timed condition wait.
+|java.util.concurrent.locks.AbstractQueuedSynchronizer.ConditionObject.awaitNanos(long)|Implements timed condition wait.
+|java.util.concurrent.locks.AbstractQueuedSynchronizer.ConditionObject.awaitUninterruptibly()|Implements uninterruptible condition wait.
+|java.util.concurrent.locks.AbstractQueuedSynchronizer.ConditionObject.awaitUntil(Date)|Implements absolute timed condition wait.
+|java.util.concurrent.locks.AbstractQueuedSynchronizer.ConditionObject.getWaitingThreads()|Returns a collection containing those threads that may be  waiting on this Condition.
+|java.util.concurrent.locks.AbstractQueuedSynchronizer.ConditionObject.getWaitQueueLength()|Returns an estimate of the number of threads waiting on  this condition.
+|java.util.concurrent.locks.AbstractQueuedSynchronizer.ConditionObject.hasWaiters()|Queries whether any threads are waiting on this condition.
+|java.util.concurrent.locks.AbstractQueuedSynchronizer.ConditionObject.signal()|Moves the longest-waiting thread, if one exists, from the  wait queue for this condition to the wai
+|java.util.concurrent.locks.AbstractQueuedSynchronizer.ConditionObject.signalAll()|Moves all threads from the wait queue for this condition to  the wait queue for the owning lock.
 
 *java.util.concurrent.locks.AbstractQueuedSynchronizer.ConditionObject_Description*
 
-Condition implementation for a 
-(|java.util.concurrent.locks.AbstractQueuedSynchronizer|) serving as the basis 
-of a (|java.util.concurrent.locks.Lock|) implementation. 
+Condition implementation for a (|java.util.concurrent.locks.AbstractQueuedSynchronizer|) serving as the basis of a (|java.util.concurrent.locks.Lock|) implementation. 
 
-Method documentation for this class describes mechanics, not behavioral 
-specifications from the point of view of Lock and Condition users. Exported 
-versions of this class will in general need to be accompanied by documentation 
-describing condition semantics that rely on those of the associated 
-AbstractQueuedSynchronizer. 
+Method documentation for this class describes mechanics, not behavioral specifications from the point of view of Lock and Condition users. Exported versions of this class will in 
+general need to be accompanied by documentation describing condition semantics that rely on those of the associated AbstractQueuedSynchronizer. 
 
-This class is Serializable, but all fields are transient, so deserialized 
-conditions have no waiters. 
+This class is Serializable, but all fields are transient, so deserialized conditions have no waiters. 
+
 
 
 *java.util.concurrent.locks.AbstractQueuedSynchronizer.ConditionObject()*
@@ -57,16 +52,11 @@ public final void await()
          
 Implements interruptible condition wait. 
 
-If current thread is interrupted, throw InterruptedException Save lock state 
-returned by 
-(|java.util.concurrent.locks.AbstractQueuedSynchronizer.ConditionObject|) 
-Invoke 
-(|java.util.concurrent.locks.AbstractQueuedSynchronizer.ConditionObject|) with 
-saved state as argument, throwing IllegalMonitorStateException if it fails. 
-Block until signalled or interrupted Reacquire by invoking specialized version 
-of (|java.util.concurrent.locks.AbstractQueuedSynchronizer.ConditionObject|) 
-with saved state as argument. If interrupted while blocked in step 4, throw 
-exception 
+If current thread is interrupted, throw InterruptedException Save lock state returned by (|java.util.concurrent.locks.AbstractQueuedSynchronizer.ConditionObject|) Invoke 
+(|java.util.concurrent.locks.AbstractQueuedSynchronizer.ConditionObject|) with saved state as argument, throwing IllegalMonitorStateException if it fails. Block until signalled or 
+interrupted Reacquire by invoking specialized version of (|java.util.concurrent.locks.AbstractQueuedSynchronizer.ConditionObject|) with saved state as argument. If interrupted 
+while blocked in step 4, throw exception 
+
 
 
 *java.util.concurrent.locks.AbstractQueuedSynchronizer.ConditionObject.await(long,TimeUnit)*
@@ -78,18 +68,11 @@ public final boolean await(
          
 Implements timed condition wait. 
 
-If current thread is interrupted, throw InterruptedException Save lock state 
-returned by 
-(|java.util.concurrent.locks.AbstractQueuedSynchronizer.ConditionObject|) 
-Invoke 
-(|java.util.concurrent.locks.AbstractQueuedSynchronizer.ConditionObject|) with 
-saved state as argument, throwing IllegalMonitorStateException if it fails. 
-Block until signalled, interrupted, or timed out Reacquire by invoking 
-specialized version of 
-(|java.util.concurrent.locks.AbstractQueuedSynchronizer.ConditionObject|) with 
-saved state as argument. If interrupted while blocked in step 4, throw 
-InterruptedException If timed out while blocked in step 4, return false, else 
-true 
+If current thread is interrupted, throw InterruptedException Save lock state returned by (|java.util.concurrent.locks.AbstractQueuedSynchronizer.ConditionObject|) Invoke 
+(|java.util.concurrent.locks.AbstractQueuedSynchronizer.ConditionObject|) with saved state as argument, throwing IllegalMonitorStateException if it fails. Block until signalled, 
+interrupted, or timed out Reacquire by invoking specialized version of (|java.util.concurrent.locks.AbstractQueuedSynchronizer.ConditionObject|) with saved state as argument. If 
+interrupted while blocked in step 4, throw InterruptedException If timed out while blocked in step 4, return false, else true 
+
 
 
 *java.util.concurrent.locks.AbstractQueuedSynchronizer.ConditionObject.awaitNanos(long)*
@@ -99,17 +82,11 @@ public final long awaitNanos(long nanosTimeout)
          
 Implements timed condition wait. 
 
-If current thread is interrupted, throw InterruptedException Save lock state 
-returned by 
-(|java.util.concurrent.locks.AbstractQueuedSynchronizer.ConditionObject|) 
-Invoke 
-(|java.util.concurrent.locks.AbstractQueuedSynchronizer.ConditionObject|) with 
-saved state as argument, throwing IllegalMonitorStateException if it fails. 
-Block until signalled, interrupted, or timed out Reacquire by invoking 
-specialized version of 
-(|java.util.concurrent.locks.AbstractQueuedSynchronizer.ConditionObject|) with 
-saved state as argument. If interrupted while blocked in step 4, throw 
-InterruptedException 
+If current thread is interrupted, throw InterruptedException Save lock state returned by (|java.util.concurrent.locks.AbstractQueuedSynchronizer.ConditionObject|) Invoke 
+(|java.util.concurrent.locks.AbstractQueuedSynchronizer.ConditionObject|) with saved state as argument, throwing IllegalMonitorStateException if it fails. Block until signalled, 
+interrupted, or timed out Reacquire by invoking specialized version of (|java.util.concurrent.locks.AbstractQueuedSynchronizer.ConditionObject|) with saved state as argument. If 
+interrupted while blocked in step 4, throw InterruptedException 
+
 
 
 *java.util.concurrent.locks.AbstractQueuedSynchronizer.ConditionObject.awaitUninterruptibly()*
@@ -118,14 +95,10 @@ public final void awaitUninterruptibly()
 
 Implements uninterruptible condition wait. 
 
-Save lock state returned by 
-(|java.util.concurrent.locks.AbstractQueuedSynchronizer.ConditionObject|) 
-Invoke 
-(|java.util.concurrent.locks.AbstractQueuedSynchronizer.ConditionObject|) with 
-saved state as argument, throwing IllegalMonitorStateException if it fails. 
-Block until signalled Reacquire by invoking specialized version of 
-(|java.util.concurrent.locks.AbstractQueuedSynchronizer.ConditionObject|) with 
-saved state as argument. 
+Save lock state returned by (|java.util.concurrent.locks.AbstractQueuedSynchronizer.ConditionObject|) Invoke 
+(|java.util.concurrent.locks.AbstractQueuedSynchronizer.ConditionObject|) with saved state as argument, throwing IllegalMonitorStateException if it fails. Block until signalled 
+Reacquire by invoking specialized version of (|java.util.concurrent.locks.AbstractQueuedSynchronizer.ConditionObject|) with saved state as argument. 
+
 
 
 *java.util.concurrent.locks.AbstractQueuedSynchronizer.ConditionObject.awaitUntil(Date)*
@@ -135,61 +108,57 @@ public final boolean awaitUntil(java.util.Date deadline)
          
 Implements absolute timed condition wait. 
 
-If current thread is interrupted, throw InterruptedException Save lock state 
-returned by 
-(|java.util.concurrent.locks.AbstractQueuedSynchronizer.ConditionObject|) 
-Invoke 
-(|java.util.concurrent.locks.AbstractQueuedSynchronizer.ConditionObject|) with 
-saved state as argument, throwing IllegalMonitorStateException if it fails. 
-Block until signalled, interrupted, or timed out Reacquire by invoking 
-specialized version of 
-(|java.util.concurrent.locks.AbstractQueuedSynchronizer.ConditionObject|) with 
-saved state as argument. If interrupted while blocked in step 4, throw 
-InterruptedException If timed out while blocked in step 4, return false, else 
-true 
+If current thread is interrupted, throw InterruptedException Save lock state returned by (|java.util.concurrent.locks.AbstractQueuedSynchronizer.ConditionObject|) Invoke 
+(|java.util.concurrent.locks.AbstractQueuedSynchronizer.ConditionObject|) with saved state as argument, throwing IllegalMonitorStateException if it fails. Block until signalled, 
+interrupted, or timed out Reacquire by invoking specialized version of (|java.util.concurrent.locks.AbstractQueuedSynchronizer.ConditionObject|) with saved state as argument. If 
+interrupted while blocked in step 4, throw InterruptedException If timed out while blocked in step 4, return false, else true 
+
 
 
 *java.util.concurrent.locks.AbstractQueuedSynchronizer.ConditionObject.getWaitingThreads()*
 
-protected final |java.util.Collection| getWaitingThreads()
+protected final |java.util.Collection|<Thread> getWaitingThreads()
 
-Returns a collection containing those threads that may be waiting on this 
-Condition. Implements (|java.util.concurrent.locks.AbstractQueuedSynchronizer|) 
+Returns a collection containing those threads that may be waiting on this Condition. Implements (|java.util.concurrent.locks.AbstractQueuedSynchronizer|) 
+
 
 
     Returns: the collection of threads 
+
 *java.util.concurrent.locks.AbstractQueuedSynchronizer.ConditionObject.getWaitQueueLength()*
 
 protected final int getWaitQueueLength()
 
-Returns an estimate of the number of threads waiting on this condition. 
-Implements (|java.util.concurrent.locks.AbstractQueuedSynchronizer|) 
+Returns an estimate of the number of threads waiting on this condition. Implements (|java.util.concurrent.locks.AbstractQueuedSynchronizer|) 
+
 
 
     Returns: the estimated number of waiting threads. 
+
 *java.util.concurrent.locks.AbstractQueuedSynchronizer.ConditionObject.hasWaiters()*
 
 protected final boolean hasWaiters()
 
-Queries whether any threads are waiting on this condition. Implements 
-(|java.util.concurrent.locks.AbstractQueuedSynchronizer|) 
+Queries whether any threads are waiting on this condition. Implements (|java.util.concurrent.locks.AbstractQueuedSynchronizer|) 
+
 
 
     Returns: true if there are any waiting threads. 
+
 *java.util.concurrent.locks.AbstractQueuedSynchronizer.ConditionObject.signal()*
 
 public final void signal()
 
-Moves the longest-waiting thread, if one exists, from the wait queue for this 
-condition to the wait queue for the owning lock. 
+Moves the longest-waiting thread, if one exists, from the wait queue for this condition to the wait queue for the owning lock. 
+
 
 
 *java.util.concurrent.locks.AbstractQueuedSynchronizer.ConditionObject.signalAll()*
 
 public final void signalAll()
 
-Moves all threads from the wait queue for this condition to the wait queue for 
-the owning lock. 
+Moves all threads from the wait queue for this condition to the wait queue for the owning lock. 
+
 
 
 

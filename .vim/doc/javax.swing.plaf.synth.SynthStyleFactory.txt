@@ -1,4 +1,4 @@
-*javax.swing.plaf.synth.SynthStyleFactory* *SynthStyleFactory* Factory used for 
+*javax.swing.plaf.synth.SynthStyleFactory* *SynthStyleFactory* Factory used for obtaining SynthStyles.
 
 public abstract class SynthStyleFactory
   extends    |java.lang.Object|
@@ -8,29 +8,25 @@ public abstract class SynthStyleFactory
 |javax.swing.plaf.synth.SynthStyleFactory_Constructors|
 |javax.swing.plaf.synth.SynthStyleFactory_Methods|
 
-================================================================================
+====================================================================================================================================================================================
 
 *javax.swing.plaf.synth.SynthStyleFactory_Constructors*
 |javax.swing.plaf.synth.SynthStyleFactory()|Creates a SynthStyleFactory.
 
 *javax.swing.plaf.synth.SynthStyleFactory_Methods*
-|javax.swing.plaf.synth.SynthStyleFactory.getStyle(JComponent,Region)|Returns t
+|javax.swing.plaf.synth.SynthStyleFactory.getStyle(JComponent,Region)|Returns the style for the specified Component.
 
 *javax.swing.plaf.synth.SynthStyleFactory_Description*
 
-Factory used for obtaining SynthStyles. Each of the Synth ComponentUIs will 
-call into the current SynthStyleFactory to obtain a SynthStyle for each of the 
-distinct regions they have. 
+Factory used for obtaining SynthStyles. Each of the Synth ComponentUIs will call into the current SynthStyleFactory to obtain a SynthStyle for each of the distinct regions they 
+have. 
 
-The following example creates a custom SynthStyleFactory that returns a 
-different style based on the Region: 
+The following example creates a custom SynthStyleFactory that returns a different style based on the Region: 
 
-class MyStyleFactory extends SynthStyleFactory { public SynthStyle 
-getStyle(JComponent c, Region id) { if (id == Region.BUTTON) { return 
-buttonStyle; } else if (id == Region.TREE) { return treeStyle; } return 
-defaultStyle; } } SynthLookAndFeel laf = new SynthLookAndFeel(); 
-UIManager.setLookAndFeel(laf); SynthLookAndFeel.setStyleFactory(new 
+class MyStyleFactory extends SynthStyleFactory { public SynthStyle getStyle(JComponent c, Region id) { if (id == Region.BUTTON) { return buttonStyle; } else if (id == Region.TREE) 
+{ return treeStyle; } return defaultStyle; } } SynthLookAndFeel laf = new SynthLookAndFeel(); UIManager.setLookAndFeel(laf); SynthLookAndFeel.setStyleFactory(new 
 MyStyleFactory()); 
+
 
 
 *javax.swing.plaf.synth.SynthStyleFactory()*
@@ -48,8 +44,10 @@ public abstract |javax.swing.plaf.synth.SynthStyle| getStyle(
 
 Returns the style for the specified Component. 
 
+
     c - Component asking for 
     id - Region identifier 
 
     Returns: SynthStyle for region. 
+
 

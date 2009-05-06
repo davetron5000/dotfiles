@@ -1,4 +1,5 @@
-*java.awt.print.Book* *Book* The Book class provides a representation of a docum
+*java.awt.print.Book* *Book* The Book class provides a representation of a document in
+ which pages may have different page formats and page painters.
 
 public class Book
   extends    |java.lang.Object|
@@ -9,25 +10,24 @@ public class Book
 |java.awt.print.Book_Constructors|
 |java.awt.print.Book_Methods|
 
-================================================================================
+====================================================================================================================================================================================
 
 *java.awt.print.Book_Constructors*
 |java.awt.print.Book()|Creates a new, empty Book.
 
 *java.awt.print.Book_Methods*
-|java.awt.print.Book.append(Printable,PageFormat)|Appends a single page to the 
-|java.awt.print.Book.append(Printable,PageFormat,int)|Appends numPages pages to
-|java.awt.print.Book.getNumberOfPages()|Returns the number of pages in this Boo
-|java.awt.print.Book.getPageFormat(int)|Returns thePageFormatof the page specif
-|java.awt.print.Book.getPrintable(int)|Returns thePrintableinstance responsible
-|java.awt.print.Book.setPage(int,Printable,PageFormat)|Sets the PageFormat and 
+|java.awt.print.Book.append(Printable,PageFormat)|Appends a single page to the end of this Book.
+|java.awt.print.Book.append(Printable,PageFormat,int)|Appends numPages pages to the end of this  Book.
+|java.awt.print.Book.getNumberOfPages()|Returns the number of pages in this Book.
+|java.awt.print.Book.getPageFormat(int)|Returns thePageFormatof the page specified by  pageIndex.
+|java.awt.print.Book.getPrintable(int)|Returns thePrintableinstance responsible for rendering     the page specified by pageIndex.
+|java.awt.print.Book.setPage(int,Printable,PageFormat)|Sets the PageFormat and the Painter for a  specified page number.
 
 *java.awt.print.Book_Description*
 
-The Book class provides a representation of a document in which pages may have 
-different page formats and page painters. This class uses the 
-(|java.awt.print.Pageable|) interface to interact with a 
-(|java.awt.print.PrinterJob|) . 
+The Book class provides a representation of a document in which pages may have different page formats and page painters. This class uses the (|java.awt.print.Pageable|) interface 
+to interact with a (|java.awt.print.PrinterJob|) . 
+
 
 
 *java.awt.print.Book()*
@@ -45,6 +45,7 @@ public void append(
 
 Appends a single page to the end of this Book. 
 
+
     painter - the Printable instance that renders the page 
     page - the size and orientation of the page 
 
@@ -55,8 +56,8 @@ public void append(
   java.awt.print.PageFormat page,
   int numPages)
 
-Appends numPages pages to the end of this Book. Each of the pages is associated 
-with page. 
+Appends numPages pages to the end of this Book. Each of the pages is associated with page. 
+
 
     painter - the Printable instance that renders the page 
     page - the size and orientation of the page 
@@ -69,7 +70,9 @@ public int getNumberOfPages()
 Returns the number of pages in this Book. 
 
 
+
     Returns: the number of pages this Book contains. 
+
 *java.awt.print.Book.getPageFormat(int)*
 
 public |java.awt.print.PageFormat| getPageFormat(int pageIndex)
@@ -77,20 +80,23 @@ public |java.awt.print.PageFormat| getPageFormat(int pageIndex)
          
 Returns the (|java.awt.print.PageFormat|) of the page specified by pageIndex. 
 
+
     pageIndex - the zero based index of the page whose PageFormat is being requested 
 
     Returns: the PageFormat describing the size and orientation of the page. 
+
 *java.awt.print.Book.getPrintable(int)*
 
 public |java.awt.print.Printable| getPrintable(int pageIndex)
   throws |java.lang.IndexOutOfBoundsException|
          
-Returns the (|java.awt.print.Printable|) instance responsible for rendering the 
-page specified by pageIndex. 
+Returns the (|java.awt.print.Printable|) instance responsible for rendering the page specified by pageIndex. 
+
 
     pageIndex - the zero based index of the page whose Printable is being requested 
 
     Returns: the Printable that renders the page. 
+
 *java.awt.print.Book.setPage(int,Printable,PageFormat)*
 
 public void setPage(
@@ -100,6 +106,7 @@ public void setPage(
   throws |java.lang.IndexOutOfBoundsException|
          
 Sets the PageFormat and the Painter for a specified page number. 
+
 
     pageIndex - the zero based index of the page whose painter and format is altered 
     painter - the Printable instance that renders the page 

@@ -1,4 +1,5 @@
-*java.io.StringBufferInputStream* *StringBufferInputStream* This class allows an
+*java.io.StringBufferInputStream* *StringBufferInputStream* This class allows an application to create an input stream in
+ which the bytes read are supplied by the contents of a st
 
 public class StringBufferInputStream
   extends    |java.io.InputStream|
@@ -8,7 +9,7 @@ public class StringBufferInputStream
 |java.io.StringBufferInputStream_Constructors|
 |java.io.StringBufferInputStream_Methods|
 
-================================================================================
+====================================================================================================================================================================================
 
 *java.io.StringBufferInputStream_Fields*
 |java.lang.String_java.io.StringBufferInputStream.buffer|
@@ -16,49 +17,40 @@ public class StringBufferInputStream
 |int_java.io.StringBufferInputStream.pos|
 
 *java.io.StringBufferInputStream_Constructors*
-|java.io.StringBufferInputStream(String)|Creates a string input stream to read 
+|java.io.StringBufferInputStream(String)|Creates a string input stream to read data from the specified string.
 
 *java.io.StringBufferInputStream_Methods*
-|java.io.StringBufferInputStream.available()|Returns the number of bytes that c
-|java.io.StringBufferInputStream.read()|Reads the next byte of data from this i
-|java.io.StringBufferInputStream.read(byte[],int,int)|Reads up to len bytes of 
-|java.io.StringBufferInputStream.reset()|Resets the input stream to begin readi
-|java.io.StringBufferInputStream.skip(long)|Skips n bytes of input from this in
+|java.io.StringBufferInputStream.available()|Returns the number of bytes that can be read from the input  stream without blocking.
+|java.io.StringBufferInputStream.read()|Reads the next byte of data from this input stream.
+|java.io.StringBufferInputStream.read(byte[],int,int)|Reads up to len bytes of data from this input stream  into an array of bytes.
+|java.io.StringBufferInputStream.reset()|Resets the input stream to begin reading from the first character  of this input stream's underlying buffer.
+|java.io.StringBufferInputStream.skip(long)|Skips n bytes of input from this input stream.
 
 *java.io.StringBufferInputStream_Description*
 
-This class allows an application to create an input stream in which the bytes 
-read are supplied by the contents of a string. Applications can also read bytes 
-from a byte array by using a ByteArrayInputStream. 
+This class allows an application to create an input stream in which the bytes read are supplied by the contents of a string. Applications can also read bytes from a byte array by 
+using a ByteArrayInputStream. 
 
 Only the low eight bits of each character in the string are used by this class. 
 
+
+  Deprecated: This class does not properly convert characters into bytes.  As
+             of JDK&nbsp;1.1, the preferred way to create a stream from a
+             string is via the <code>StringReader</code> class.
 
 *java.lang.String_java.io.StringBufferInputStream.buffer*
 
-This class allows an application to create an input stream in which the bytes 
-read are supplied by the contents of a string. Applications can also read bytes 
-from a byte array by using a ByteArrayInputStream. 
-
-Only the low eight bits of each character in the string are used by this class. 
+The string from which bytes are read. 
 
 
 *int_java.io.StringBufferInputStream.count*
 
-This class allows an application to create an input stream in which the bytes 
-read are supplied by the contents of a string. Applications can also read bytes 
-from a byte array by using a ByteArrayInputStream. 
-
-Only the low eight bits of each character in the string are used by this class. 
+The number of valid characters in the input stream buffer. 
 
 
 *int_java.io.StringBufferInputStream.pos*
 
-This class allows an application to create an input stream in which the bytes 
-read are supplied by the contents of a string. Applications can also read bytes 
-from a byte array by using a ByteArrayInputStream. 
-
-Only the low eight bits of each character in the string are used by this class. 
+The index of the next character to read from the input stream buffer. 
 
 
 
@@ -74,25 +66,25 @@ Creates a string input stream to read data from the specified string.
 
 public synchronized int available()
 
-Returns the number of bytes that can be read from the input stream without 
-blocking. 
+Returns the number of bytes that can be read from the input stream without blocking. 
 
 
-    Returns: the value of count-pos, which is the number of bytes remaining to be read from 
-             the input buffer. 
+
+    Returns: the value of count-pos, which is the number of bytes remaining to be read from the input buffer. 
+
 *java.io.StringBufferInputStream.read()*
 
 public synchronized int read()
 
-Reads the next byte of data from this input stream. The value byte is returned 
-as an int in the range 0 to 255. If no byte is available because the end of the 
-stream has been reached, the value -1 is returned. 
+Reads the next byte of data from this input stream. The value byte is returned as an int in the range 0 to 255. If no byte is available because the end of the stream has been 
+reached, the value -1 is returned. 
 
-The read method of StringBufferInputStream cannot block. It returns the low 
-eight bits of the next character in this input stream's buffer. 
+The read method of StringBufferInputStream cannot block. It returns the low eight bits of the next character in this input stream's buffer. 
+
 
 
     Returns: the next byte of data, or -1 if the end of the stream is reached. 
+
 *java.io.StringBufferInputStream.read(byte[],int,int)*
 
 public synchronized int read(
@@ -102,32 +94,32 @@ public synchronized int read(
 
 Reads up to len bytes of data from this input stream into an array of bytes. 
 
-The read method of StringBufferInputStream cannot block. It copies the low 
-eight bits from the characters in this input stream's buffer into the byte 
-array argument. 
+The read method of StringBufferInputStream cannot block. It copies the low eight bits from the characters in this input stream's buffer into the byte array argument. 
+
 
     b - the buffer into which the data is read. 
     off - the start offset of the data. 
     len - the maximum number of bytes read. 
 
-    Returns: the total number of bytes read into the buffer, or -1 if there is no more data 
-             because the end of the stream has been reached. 
+    Returns: the total number of bytes read into the buffer, or -1 if there is no more data because the end of the stream has been reached. 
+
 *java.io.StringBufferInputStream.reset()*
 
 public synchronized void reset()
 
-Resets the input stream to begin reading from the first character of this input 
-stream's underlying buffer. 
+Resets the input stream to begin reading from the first character of this input stream's underlying buffer. 
+
 
 
 *java.io.StringBufferInputStream.skip(long)*
 
 public synchronized long skip(long n)
 
-Skips n bytes of input from this input stream. Fewer bytes might be skipped if 
-the end of the input stream is reached. 
+Skips n bytes of input from this input stream. Fewer bytes might be skipped if the end of the input stream is reached. 
+
 
     n - the number of bytes to be skipped. 
 
     Returns: the actual number of bytes skipped. 
+
 

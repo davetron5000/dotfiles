@@ -1,4 +1,5 @@
-*javax.swing.text.html.BlockView* *BlockView* A view implementation to display a
+*javax.swing.text.html.BlockView* *BlockView* A view implementation to display a block (as a box)
+ with CSS specifications.
 
 public class BlockView
   extends    |javax.swing.text.BoxView|
@@ -8,30 +9,31 @@ public class BlockView
 |javax.swing.text.html.BlockView_Constructors|
 |javax.swing.text.html.BlockView_Methods|
 
-================================================================================
+====================================================================================================================================================================================
 
 *javax.swing.text.html.BlockView_Constructors*
-|javax.swing.text.html.BlockView(Element,int)|Creates a new view that represent
+|javax.swing.text.html.BlockView(Element,int)|Creates a new view that represents an  html box.
 
 *javax.swing.text.html.BlockView_Methods*
-|javax.swing.text.html.BlockView.calculateMajorAxisRequirements(int,SizeRequirements)|
-|javax.swing.text.html.BlockView.calculateMinorAxisRequirements(int,SizeRequirements)|
+|javax.swing.text.html.BlockView.calculateMajorAxisRequirements(int,SizeRequirements)|Calculate the requirements of the block along the major  axis (i.e.
+|javax.swing.text.html.BlockView.calculateMinorAxisRequirements(int,SizeRequirements)|Calculate the requirements of the block along the minor  axis (i.e.
 |javax.swing.text.html.BlockView.changedUpdate(DocumentEvent,Shape,ViewFactory)|
 |javax.swing.text.html.BlockView.getAlignment(int)|Gets the alignment.
-|javax.swing.text.html.BlockView.getAttributes()|Fetches the attributes to use 
-|javax.swing.text.html.BlockView.getMaximumSpan(int)|Determines the maximum spa
-|javax.swing.text.html.BlockView.getMinimumSpan(int)|Determines the minimum spa
-|javax.swing.text.html.BlockView.getPreferredSpan(int)|Determines the preferred
+|javax.swing.text.html.BlockView.getAttributes()|Fetches the attributes to use when rendering.
+|javax.swing.text.html.BlockView.getMaximumSpan(int)|Determines the maximum span for this view along an  axis.
+|javax.swing.text.html.BlockView.getMinimumSpan(int)|Determines the minimum span for this view along an  axis.
+|javax.swing.text.html.BlockView.getPreferredSpan(int)|Determines the preferred span for this view along an  axis.
 |javax.swing.text.html.BlockView.getResizeWeight(int)|Gets the resize weight.
 |javax.swing.text.html.BlockView.getStyleSheet()|
-|javax.swing.text.html.BlockView.layoutMinorAxis(int,int,int[],int[])|Perform l
-|javax.swing.text.html.BlockView.paint(Graphics,Shape)|Renders using the given 
-|javax.swing.text.html.BlockView.setParent(View)|Establishes the parent view fo
-|javax.swing.text.html.BlockView.setPropertiesFromAttributes()|Update any cache
+|javax.swing.text.html.BlockView.layoutMinorAxis(int,int,int[],int[])|Perform layout for the minor axis of the box (i.e.
+|javax.swing.text.html.BlockView.paint(Graphics,Shape)|Renders using the given rendering surface and area on that  surface.
+|javax.swing.text.html.BlockView.setParent(View)|Establishes the parent view for this view.
+|javax.swing.text.html.BlockView.setPropertiesFromAttributes()|Update any cached values that come from attributes.
 
 *javax.swing.text.html.BlockView_Description*
 
 A view implementation to display a block (as a box) with CSS specifications. 
+
 
 
 *javax.swing.text.html.BlockView(Element,int)*
@@ -40,8 +42,7 @@ public BlockView(
   javax.swing.text.Element elem,
   int axis)
 
-Creates a new view that represents an html box. This can be used for a number 
-of elements. 
+Creates a new view that represents an html box. This can be used for a number of elements. 
 
     elem - the element to create a view for 
     axis - either View.X_AXIS or View.Y_AXIS 
@@ -52,10 +53,9 @@ protected |javax.swing.SizeRequirements| calculateMajorAxisRequirements(
   int axis,
   javax.swing.SizeRequirements r)
 
-Calculate the requirements of the block along the major axis (i.e. the axis 
-along with it tiles). This is implemented to provide the superclass behavior 
-and then adjust it if the CSS width or height attribute is specified and 
-applicable to the axis. 
+Calculate the requirements of the block along the major axis (i.e. the axis along with it tiles). This is implemented to provide the superclass behavior and then adjust it if the 
+CSS width or height attribute is specified and applicable to the axis. 
+
 
 
 *javax.swing.text.html.BlockView.calculateMinorAxisRequirements(int,SizeRequirements)*
@@ -64,10 +64,9 @@ protected |javax.swing.SizeRequirements| calculateMinorAxisRequirements(
   int axis,
   javax.swing.SizeRequirements r)
 
-Calculate the requirements of the block along the minor axis (i.e. the axis 
-orthoginal to the axis along with it tiles). This is implemented to provide the 
-superclass behavior and then adjust it if the CSS width or height attribute is 
-specified and applicable to the axis. 
+Calculate the requirements of the block along the minor axis (i.e. the axis orthoginal to the axis along with it tiles). This is implemented to provide the superclass behavior and 
+then adjust it if the CSS width or height attribute is specified and applicable to the axis. 
+
 
 
 *javax.swing.text.html.BlockView.changedUpdate(DocumentEvent,Shape,ViewFactory)*
@@ -80,21 +79,24 @@ public void changedUpdate(
 
 
 
+
 *javax.swing.text.html.BlockView.getAlignment(int)*
 
 public float getAlignment(int axis)
 
 Gets the alignment. 
 
+
     axis - may be either X_AXIS or Y_AXIS 
 
     Returns: the alignment 
+
 *javax.swing.text.html.BlockView.getAttributes()*
 
 public |javax.swing.text.AttributeSet| getAttributes()
 
-Fetches the attributes to use when rendering. This is implemented to multiplex 
-the attributes specified in the model with a StyleSheet. 
+Fetches the attributes to use when rendering. This is implemented to multiplex the attributes specified in the model with a StyleSheet. 
+
 
 
 *javax.swing.text.html.BlockView.getMaximumSpan(int)*
@@ -103,45 +105,51 @@ public float getMaximumSpan(int axis)
 
 Determines the maximum span for this view along an axis. 
 
+
     axis - may be either View.X_AXIS or View.Y_AXIS 
 
-    Returns: the span the view would like to be rendered into >= 0; typically the view is 
-             told to render into the span that is returned, although there is 
-             no guarantee; the parent may choose to resize or break the view 
+    Returns: the span the view would like to be rendered into >= 0; typically the view is told to render into the span that is returned, although there is no guarantee; the parent may choose 
+             to resize or break the view 
+
 *javax.swing.text.html.BlockView.getMinimumSpan(int)*
 
 public float getMinimumSpan(int axis)
 
 Determines the minimum span for this view along an axis. 
 
+
     axis - may be either View.X_AXIS or View.Y_AXIS 
 
-    Returns: the span the view would like to be rendered into >= 0; typically the view is 
-             told to render into the span that is returned, although there is 
-             no guarantee; the parent may choose to resize or break the view 
+    Returns: the span the view would like to be rendered into >= 0; typically the view is told to render into the span that is returned, although there is no guarantee; the parent may choose 
+             to resize or break the view 
+
 *javax.swing.text.html.BlockView.getPreferredSpan(int)*
 
 public float getPreferredSpan(int axis)
 
 Determines the preferred span for this view along an axis. 
 
+
     axis - may be either View.X_AXIS or View.Y_AXIS 
 
-    Returns: the span the view would like to be rendered into >= 0; typically the view is 
-             told to render into the span that is returned, although there is 
-             no guarantee; the parent may choose to resize or break the view 
+    Returns: the span the view would like to be rendered into >= 0; typically the view is told to render into the span that is returned, although there is no guarantee; the parent may choose 
+             to resize or break the view 
+
 *javax.swing.text.html.BlockView.getResizeWeight(int)*
 
 public int getResizeWeight(int axis)
 
 Gets the resize weight. 
 
+
     axis - may be either X_AXIS or Y_AXIS 
 
     Returns: 
+
 *javax.swing.text.html.BlockView.getStyleSheet()*
 
 protected |javax.swing.text.html.StyleSheet| getStyleSheet()
+
 
 
 
@@ -154,28 +162,26 @@ protected void layoutMinorAxis(
   int[] offsets,
   int[] spans)
 
-Perform layout for the minor axis of the box (i.e. the axis orthoginal to the 
-axis that it represents). The results of the layout should be placed in the 
-given arrays which represent the allocations to the children along the minor 
-axis. 
+Perform layout for the minor axis of the box (i.e. the axis orthoginal to the axis that it represents). The results of the layout should be placed in the given arrays which 
+represent the allocations to the children along the minor axis. 
+
 
     targetSpan - the total span given to the view, which whould be used to layout the childre. 
     axis - the axis being layed out 
-    offsets - the offsets from the origin of the view for each of the child views; this is a 
-       return value and is filled in by the implementation of this method 
-    spans - the span of each child view; this is a return value and is filled in by the 
-       implementation of this method 
+    offsets - the offsets from the origin of the view for each of the child views; this is a return value and is filled in by the implementation of this method 
+    spans - the span of each child view; this is a return value and is filled in by the implementation of this method 
 
     Returns: the offset and span for each child view in the offsets and spans parameters 
+
 *javax.swing.text.html.BlockView.paint(Graphics,Shape)*
 
 public void paint(
   java.awt.Graphics g,
   java.awt.Shape allocation)
 
-Renders using the given rendering surface and area on that surface. This is 
-implemented to delegate to the css box painter to paint the border and 
-background prior to the interior. 
+Renders using the given rendering surface and area on that surface. This is implemented to delegate to the css box painter to paint the border and background prior to the 
+interior. 
+
 
     g - the rendering surface to use 
     allocation - the allocated region to render into 
@@ -184,22 +190,20 @@ background prior to the interior.
 
 public void setParent(javax.swing.text.View parent)
 
-Establishes the parent view for this view. This is guaranteed to be called 
-before any other methods if the parent view is functioning properly. 
+Establishes the parent view for this view. This is guaranteed to be called before any other methods if the parent view is functioning properly. 
 
-This is implemented to forward to the superclass as well as call the 
-(|javax.swing.text.html.BlockView|) method to set the paragraph properties from 
-the css attributes. The call is made at this time to ensure the ability to 
-resolve upward through the parents view attributes. 
+This is implemented to forward to the superclass as well as call the (|javax.swing.text.html.BlockView|) method to set the paragraph properties from the css attributes. The call 
+is made at this time to ensure the ability to resolve upward through the parents view attributes. 
 
-    parent - the new parent, or null if the view is being removed from a parent it was 
-       previously added to 
+
+    parent - the new parent, or null if the view is being removed from a parent it was previously added to 
 
 *javax.swing.text.html.BlockView.setPropertiesFromAttributes()*
 
 protected void setPropertiesFromAttributes()
 
 Update any cached values that come from attributes. 
+
 
 
 

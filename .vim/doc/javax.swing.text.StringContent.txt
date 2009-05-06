@@ -1,4 +1,5 @@
-*javax.swing.text.StringContent* *StringContent* An implementation of the Abstra
+*javax.swing.text.StringContent* *StringContent* An implementation of the AbstractDocument.Content interface that is 
+ a brute force implementation that is useful for relatively sm
 
 public final class StringContent
   extends    |java.lang.Object|
@@ -10,37 +11,33 @@ public final class StringContent
 |javax.swing.text.StringContent_Constructors|
 |javax.swing.text.StringContent_Methods|
 
-================================================================================
+====================================================================================================================================================================================
 
 *javax.swing.text.StringContent_Constructors*
 |javax.swing.text.StringContent()|Creates a new StringContent object.
-|javax.swing.text.StringContent(int)|Creates a new StringContent object, with t
+|javax.swing.text.StringContent(int)|Creates a new StringContent object, with the initial  size specified.
 
 *javax.swing.text.StringContent_Methods*
-|javax.swing.text.StringContent.createPosition(int)|Creates a position within t
-|javax.swing.text.StringContent.getChars(int,int,Segment)|Retrieves a portion o
-|javax.swing.text.StringContent.getPositionsInRange(Vector,int,int)|Returns a V
-|javax.swing.text.StringContent.getString(int,int)|Retrieves a portion of the c
-|javax.swing.text.StringContent.insertString(int,String)|Inserts a string into 
+|javax.swing.text.StringContent.createPosition(int)|Creates a position within the content that will  track change as the content is mutated.
+|javax.swing.text.StringContent.getChars(int,int,Segment)|Retrieves a portion of the content.
+|javax.swing.text.StringContent.getPositionsInRange(Vector,int,int)|Returns a Vector containing instances of UndoPosRef for the  Positions in the range  offset to offset + length.
+|javax.swing.text.StringContent.getString(int,int)|Retrieves a portion of the content.
+|javax.swing.text.StringContent.insertString(int,String)|Inserts a string into the content.
 |javax.swing.text.StringContent.length()|Returns the length of the content.
 |javax.swing.text.StringContent.remove(int,int)|Removes part of the content.
-|javax.swing.text.StringContent.updateUndoPositions(Vector)|Resets the location
+|javax.swing.text.StringContent.updateUndoPositions(Vector)|Resets the location for all the UndoPosRef instances  in positions.
 
 *javax.swing.text.StringContent_Description*
 
-An implementation of the AbstractDocument.Content interface that is a brute 
-force implementation that is useful for relatively small documents and/or 
-debugging. It manages the character content as a simple character array. It is 
-also quite inefficient. 
+An implementation of the AbstractDocument.Content interface that is a brute force implementation that is useful for relatively small documents and/or debugging. It manages the 
+character content as a simple character array. It is also quite inefficient. 
 
-It is generally recommended that the gap buffer or piece table implementations 
-be used instead. This buffer does not scale up to large sizes. 
+It is generally recommended that the gap buffer or piece table implementations be used instead. This buffer does not scale up to large sizes. 
 
-Warning: Serialized objects of this class will not be compatible with future 
-Swing releases. The current serialization support is appropriate for short term 
-storage or RMI between applications running the same version of Swing. As of 
-1.4, support for long term storage of all JavaBeansTM has been added to the 
-java.beans package. Please see (|java.beans.XMLEncoder|) . 
+Warning: Serialized objects of this class will not be compatible with future Swing releases. The current serialization support is appropriate for short term storage or RMI between 
+applications running the same version of Swing. As of 1.4, support for long term storage of all JavaBeansTM has been added to the java.beans package. Please see 
+(|java.beans.XMLEncoder|) . 
+
 
 
 *javax.swing.text.StringContent()*
@@ -54,8 +51,7 @@ Creates a new StringContent object. Initial size defaults to 10.
 
 public StringContent(int initialLength)
 
-Creates a new StringContent object, with the initial size specified. If the 
-length is < 1, a size of 1 is used. 
+Creates a new StringContent object, with the initial size specified. If the length is < 1, a size of 1 is used. 
 
     initialLength - the initial size 
 
@@ -64,12 +60,13 @@ length is < 1, a size of 1 is used.
 public |javax.swing.text.Position| createPosition(int offset)
   throws |javax.swing.text.BadLocationException|
          
-Creates a position within the content that will track change as the content is 
-mutated. 
+Creates a position within the content that will track change as the content is mutated. 
+
 
     offset - the offset to create a position for >= 0 
 
     Returns: 
+
 *javax.swing.text.StringContent.getChars(int,int,Segment)*
 
 public void getChars(
@@ -79,6 +76,7 @@ public void getChars(
   throws |javax.swing.text.BadLocationException|
          
 Retrieves a portion of the content. where + len must be <= length() 
+
 
     where - the starting position >= 0 
     len - the number of characters to retrieve >= 0 
@@ -91,18 +89,18 @@ protected |java.util.Vector| getPositionsInRange(
   int offset,
   int length)
 
-Returns a Vector containing instances of UndoPosRef for the Positions in the 
-range offset to offset + length. If v is not null the matching Positions are 
-placed in there. The vector with the resulting Positions are returned. 
+Returns a Vector containing instances of UndoPosRef for the Positions in the range offset to offset + length. If v is not null the matching Positions are placed in there. The 
+vector with the resulting Positions are returned. 
 
-This is meant for internal usage, and is generally not of interest to 
-subclasses. 
+This is meant for internal usage, and is generally not of interest to subclasses. 
+
 
     v - the Vector to use, with a new one created on null 
     offset - the starting offset >= 0 
     length - the length >= 0 
 
     Returns: the set of instances 
+
 *javax.swing.text.StringContent.getString(int,int)*
 
 public |java.lang.String| getString(
@@ -112,10 +110,12 @@ public |java.lang.String| getString(
          
 Retrieves a portion of the content. where + len must be <= length(). 
 
+
     where - the starting position >= 0 
     len - the length to retrieve >= 0 
 
     Returns: a string representing the content; may be empty 
+
 *javax.swing.text.StringContent.insertString(int,String)*
 
 public |javax.swing.undo.UndoableEdit| insertString(
@@ -125,10 +125,12 @@ public |javax.swing.undo.UndoableEdit| insertString(
          
 Inserts a string into the content. 
 
+
     where - the starting position >= 0 < length() 
     str - the non-null string to insert 
 
     Returns: an UndoableEdit object for undoing 
+
 *javax.swing.text.StringContent.length()*
 
 public int length()
@@ -136,7 +138,9 @@ public int length()
 Returns the length of the content. 
 
 
+
     Returns: the length >= 1 
+
 *javax.swing.text.StringContent.remove(int,int)*
 
 public |javax.swing.undo.UndoableEdit| remove(
@@ -146,18 +150,20 @@ public |javax.swing.undo.UndoableEdit| remove(
          
 Removes part of the content. where + nitems must be < length(). 
 
+
     where - the starting position >= 0 
     nitems - the number of characters to remove >= 0 
 
     Returns: an UndoableEdit object for undoing 
+
 *javax.swing.text.StringContent.updateUndoPositions(Vector)*
 
 protected void updateUndoPositions(java.util.Vector positions)
 
 Resets the location for all the UndoPosRef instances in positions. 
 
-This is meant for internal usage, and is generally not of interest to 
-subclasses. 
+This is meant for internal usage, and is generally not of interest to subclasses. 
+
 
     positions - the positions of the instances 
 

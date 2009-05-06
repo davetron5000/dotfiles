@@ -1,4 +1,4 @@
-*java.awt.image.LookupTable* *LookupTable* This abstract class defines a lookup 
+*java.awt.image.LookupTable* *LookupTable* This abstract class defines a lookup table object.
 
 public abstract class LookupTable
   extends    |java.lang.Object|
@@ -8,27 +8,23 @@ public abstract class LookupTable
 |java.awt.image.LookupTable_Constructors|
 |java.awt.image.LookupTable_Methods|
 
-================================================================================
+====================================================================================================================================================================================
 
 *java.awt.image.LookupTable_Constructors*
-|java.awt.image.LookupTable(int,int)|Constructs a new LookupTable from the numb
+|java.awt.image.LookupTable(int,int)|Constructs a new LookupTable from the number of components and an offset  into the lookup table.
 
 *java.awt.image.LookupTable_Methods*
-|java.awt.image.LookupTable.getNumComponents()|Returns the number of components
+|java.awt.image.LookupTable.getNumComponents()|Returns the number of components in the lookup table.
 |java.awt.image.LookupTable.getOffset()|Returns the offset.
-|java.awt.image.LookupTable.lookupPixel(int[],int[])|Returns an int array of co
+|java.awt.image.LookupTable.lookupPixel(int[],int[])|Returns an int array of components for   one pixel.
 
 *java.awt.image.LookupTable_Description*
 
-This abstract class defines a lookup table object. ByteLookupTable and 
-ShortLookupTable are subclasses, which contain byte and short data, 
-respectively. A lookup table contains data arrays for one or more bands (or 
-components) of an image (for example, separate arrays for R, G, and B), and it 
-contains an offset which will be subtracted from the input values before 
-indexing into the arrays. This allows an array smaller than the native data 
-size to be provided for a constrained input. If there is only one array in the 
-lookup table, it will be applied to all bands. All arrays must be the same 
-size. 
+This abstract class defines a lookup table object. ByteLookupTable and ShortLookupTable are subclasses, which contain byte and short data, respectively. A lookup table contains 
+data arrays for one or more bands (or components) of an image (for example, separate arrays for R, G, and B), and it contains an offset which will be subtracted from the input 
+values before indexing into the arrays. This allows an array smaller than the native data size to be provided for a constrained input. If there is only one array in the lookup 
+table, it will be applied to all bands. All arrays must be the same size. 
+
 
 
 *java.awt.image.LookupTable(int,int)*
@@ -37,11 +33,9 @@ protected LookupTable(
   int offset,
   int numComponents)
 
-Constructs a new LookupTable from the number of components and an offset into 
-the lookup table. 
+Constructs a new LookupTable from the number of components and an offset into the lookup table. 
 
-    offset - the offset to subtract from input values before indexing into the data arrays 
-       for this LookupTable 
+    offset - the offset to subtract from input values before indexing into the data arrays for this LookupTable 
     numComponents - the number of data arrays in this LookupTable 
 
 *java.awt.image.LookupTable.getNumComponents()*
@@ -51,7 +45,9 @@ public int getNumComponents()
 Returns the number of components in the lookup table. 
 
 
+
     Returns: the number of components in this LookupTable. 
+
 *java.awt.image.LookupTable.getOffset()*
 
 public int getOffset()
@@ -59,20 +55,22 @@ public int getOffset()
 Returns the offset. 
 
 
+
     Returns: the offset of this LookupTable. 
+
 *java.awt.image.LookupTable.lookupPixel(int[],int[])*
 
-public abstract int lookupPixel(
+public abstract int[] lookupPixel(
   int[] src,
   int[] dest)
 
-Returns an int array of components for one pixel. The dest array contains the 
-result of the lookup and is returned. If dest is null, a new array is 
-allocated. The source and destination can be equal. 
+Returns an int array of components for one pixel. The dest array contains the result of the lookup and is returned. If dest is null, a new array is allocated. The source and 
+destination can be equal. 
+
 
     src - the source array of components of one pixel 
-    dest - the destination array of components for one pixel, translated with this 
-       LookupTable 
+    dest - the destination array of components for one pixel, translated with this LookupTable 
 
     Returns: an int array of components for one pixel. 
+
 

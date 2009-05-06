@@ -1,0 +1,1034 @@
+*java.nio.ByteBuffer* *ByteBuffer* A byte buffer.
+
+public abstract class ByteBuffer
+  extends    |java.nio.Buffer|
+  implements |java.lang.Comparable|
+
+|java.nio.ByteBuffer_Description|
+|java.nio.ByteBuffer_Fields|
+|java.nio.ByteBuffer_Constructors|
+|java.nio.ByteBuffer_Methods|
+
+====================================================================================================================================================================================
+
+*java.nio.ByteBuffer_Methods*
+|java.nio.ByteBuffer.allocate(int)|Allocates a new byte buffer.
+|java.nio.ByteBuffer.allocateDirect(int)|Allocates a new direct byte buffer.
+|java.nio.ByteBuffer.array()|Returns the byte array that backs this  buffer(optional operation).
+|java.nio.ByteBuffer.arrayOffset()|Returns the offset within this buffer's backing array of the first  element of the buffer(optional operation).
+|java.nio.ByteBuffer.asCharBuffer()|Creates a view of this byte buffer as a char buffer.
+|java.nio.ByteBuffer.asDoubleBuffer()|Creates a view of this byte buffer as a double buffer.
+|java.nio.ByteBuffer.asFloatBuffer()|Creates a view of this byte buffer as a float buffer.
+|java.nio.ByteBuffer.asIntBuffer()|Creates a view of this byte buffer as an int buffer.
+|java.nio.ByteBuffer.asLongBuffer()|Creates a view of this byte buffer as a long buffer.
+|java.nio.ByteBuffer.asReadOnlyBuffer()|Creates a new, read-only byte buffer that shares this buffer's  content.
+|java.nio.ByteBuffer.asShortBuffer()|Creates a view of this byte buffer as a short buffer.
+|java.nio.ByteBuffer.compact()|Compacts this buffer(optional operation).
+|java.nio.ByteBuffer.compareTo(ByteBuffer)|Compares this buffer to another.
+|java.nio.ByteBuffer.duplicate()|Creates a new byte buffer that shares this buffer's content.
+|java.nio.ByteBuffer.equals(Object)|Tells whether or not this buffer is equal to another object.
+|java.nio.ByteBuffer.get()|Relative get method.
+|java.nio.ByteBuffer.get(byte[])|Relative bulk get method.
+|java.nio.ByteBuffer.get(byte[],int,int)|Relative bulk get method.
+|java.nio.ByteBuffer.get(int)|Absolute get method.
+|java.nio.ByteBuffer.getChar()|Relative get method for reading a char value.
+|java.nio.ByteBuffer.getChar(int)|Absolute get method for reading a char value.
+|java.nio.ByteBuffer.getDouble()|Relative get method for reading a double value.
+|java.nio.ByteBuffer.getDouble(int)|Absolute get method for reading a double value.
+|java.nio.ByteBuffer.getFloat()|Relative get method for reading a float value.
+|java.nio.ByteBuffer.getFloat(int)|Absolute get method for reading a float value.
+|java.nio.ByteBuffer.getInt()|Relative get method for reading an int value.
+|java.nio.ByteBuffer.getInt(int)|Absolute get method for reading an int value.
+|java.nio.ByteBuffer.getLong()|Relative get method for reading a long value.
+|java.nio.ByteBuffer.getLong(int)|Absolute get method for reading a long value.
+|java.nio.ByteBuffer.getShort()|Relative get method for reading a short value.
+|java.nio.ByteBuffer.getShort(int)|Absolute get method for reading a short value.
+|java.nio.ByteBuffer.hasArray()|Tells whether or not this buffer is backed by an accessible byte  array.
+|java.nio.ByteBuffer.hashCode()|Returns the current hash code of this buffer.
+|java.nio.ByteBuffer.isDirect()|Tells whether or not this byte buffer is direct.
+|java.nio.ByteBuffer.order()|Retrieves this buffer's byte order.
+|java.nio.ByteBuffer.order(ByteOrder)|Modifies this buffer's byte order.
+|java.nio.ByteBuffer.put(byte)|Relative put method(optional operation).
+|java.nio.ByteBuffer.put(byte[])|Relative bulk put method(optional operation).
+|java.nio.ByteBuffer.put(byte[],int,int)|Relative bulk put method(optional operation).
+|java.nio.ByteBuffer.put(ByteBuffer)|Relative bulk put method(optional operation).
+|java.nio.ByteBuffer.put(int,byte)|Absolute put method(optional operation).
+|java.nio.ByteBuffer.putChar(char)|Relative put method for writing a char  value(optional operation).
+|java.nio.ByteBuffer.putChar(int,char)|Absolute put method for writing a char  value(optional operation).
+|java.nio.ByteBuffer.putDouble(double)|Relative put method for writing a double  value(optional operation).
+|java.nio.ByteBuffer.putDouble(int,double)|Absolute put method for writing a double  value(optional operation).
+|java.nio.ByteBuffer.putFloat(float)|Relative put method for writing a float  value(optional operation).
+|java.nio.ByteBuffer.putFloat(int,float)|Absolute put method for writing a float  value(optional operation).
+|java.nio.ByteBuffer.putInt(int)|Relative put method for writing an int  value(optional operation).
+|java.nio.ByteBuffer.putInt(int,int)|Absolute put method for writing an int  value(optional operation).
+|java.nio.ByteBuffer.putLong(int,long)|Absolute put method for writing a long  value(optional operation).
+|java.nio.ByteBuffer.putLong(long)|Relative put method for writing a long  value(optional operation).
+|java.nio.ByteBuffer.putShort(int,short)|Absolute put method for writing a short  value(optional operation).
+|java.nio.ByteBuffer.putShort(short)|Relative put method for writing a short  value(optional operation).
+|java.nio.ByteBuffer.slice()|Creates a new byte buffer whose content is a shared subsequence of  this buffer's content.
+|java.nio.ByteBuffer.toString()|Returns a string summarizing the state of this buffer.
+|java.nio.ByteBuffer.wrap(byte[])|Wraps a byte array into a buffer.
+|java.nio.ByteBuffer.wrap(byte[],int,int)|Wraps a byte array into a buffer.
+
+*java.nio.ByteBuffer_Description*
+
+A byte buffer. 
+
+This class defines six categories of operations upon byte buffers: 
+
+
+
+Absolute and relative </code><i>get</i><code>(|java.nio.ByteBuffer|) and </code><i>put</i><code>(|java.nio.ByteBuffer|) methods that read and write single bytes; 
+
+Relative </code><i>bulk get</i><code>(|java.nio.ByteBuffer|) methods that transfer contiguous sequences of bytes from this buffer into an array; 
+
+Relative </code><i>bulk put</i><code>(|java.nio.ByteBuffer|) methods that transfer contiguous sequences of bytes from a byte array or some other byte buffer into this buffer; 
+
+Absolute and relative </code><i>get</i><code>(|java.nio.ByteBuffer|) and </code><i>put</i><code>(|java.nio.ByteBuffer|) methods that read and write values of other primitive 
+types, translating them to and from sequences of bytes in a particular byte order; 
+
+Methods for creating view buffers, which allow a byte buffer to be viewed as a buffer containing values of some other primitive type; and 
+
+Methods for </code>compacting<code>(|java.nio.ByteBuffer|) , </code>duplicating<code>(|java.nio.ByteBuffer|) , and </code>slicing<code>(|java.nio.ByteBuffer|) a byte buffer. 
+
+
+
+Byte buffers can be created either by </code><i>allocation</i><code>(|java.nio.ByteBuffer|) , which allocates space for the buffer's 
+
+content, or by </code><i>wrapping</i><code>(|java.nio.ByteBuffer|) an existing byte array into a buffer. 
+
+Direct vs. non-direct buffers 
+
+A byte buffer is either direct or non-direct. Given a direct byte buffer, the Java virtual machine will make a best effort to perform native I/O operations directly upon it. That 
+is, it will attempt to avoid copying the buffer's content to (or from) an intermediate buffer before (or after) each invocation of one of the underlying operating system's native 
+I/O operations. 
+
+A direct byte buffer may be created by invoking the allocateDirect(|java.nio.ByteBuffer|) factory method of this class. The buffers returned by this method typically have somewhat 
+higher allocation and deallocation costs than non-direct buffers. The contents of direct buffers may reside outside of the normal garbage-collected heap, and so their impact upon 
+the memory footprint of an application might not be obvious. It is therefore recommended that direct buffers be allocated primarily for large, long-lived buffers that are subject 
+to the underlying system's native I/O operations. In general it is best to allocate direct buffers only when they yield a measureable gain in program performance. 
+
+A direct byte buffer may also be created by </code>mapping<code>(|java.nio.channels.FileChannel|) a region of a file directly into memory. An implementation of the Java platform 
+may optionally support the creation of direct byte buffers from native code via JNI. If an instance of one of these kinds of buffers refers to an inaccessible region of memory 
+then an attempt to access that region will not change the buffer's content and will cause an unspecified exception to be thrown either at the time of the access or at some later 
+time. 
+
+Whether a byte buffer is direct or non-direct may be determined by invoking its isDirect(|java.nio.ByteBuffer|) method. This method is provided so that explicit buffer management 
+can be done in performance-critical code. 
+
+Access to binary data 
+
+This class defines methods for reading and writing values of all other primitive types, except boolean. Primitive values are translated to (or from) sequences of bytes according 
+to the buffer's current byte order, which may be retrieved and modified via the order(|java.nio.ByteBuffer|) methods. Specific byte orders are represented by instances of the 
+(|java.nio.ByteOrder|) class. The initial order of a byte buffer is always BIG_ENDIAN(|java.nio.ByteOrder|) . 
+
+For access to heterogeneous binary data, that is, sequences of values of different types, this class defines a family of absolute and relative get and put methods for each type. 
+For 32-bit floating-point values, for example, this class defines: 
+
+
+
+float (|java.nio.ByteBuffer|) float getFloat(int index)(|java.nio.ByteBuffer|) void putFloat(float f)(|java.nio.ByteBuffer|) void putFloat(int index, float 
+f)(|java.nio.ByteBuffer|) 
+
+Corresponding methods are defined for the types char, short, int, long, and double. The index parameters of the absolute get and put methods are in terms of bytes rather than of 
+the type being read or written. 
+
+
+
+For access to homogeneous binary data, that is, sequences of values of the same type, this class defines methods that can create views of a given byte buffer. A view buffer is 
+simply another buffer whose content is backed by the byte buffer. Changes to the byte buffer's content will be visible in the view buffer, and vice versa; the two buffers' 
+position, limit, and mark values are independent. The asFloatBuffer(|java.nio.ByteBuffer|) method, for example, creates an instance of the (|java.nio.FloatBuffer|) class that is 
+backed by the byte buffer upon which the method is invoked. Corresponding view-creation methods are defined for the types char, short, int, long, and double. 
+
+View buffers have three important advantages over the families of type-specific get and put methods described above: 
+
+
+
+A view buffer is indexed not in terms of bytes but rather in terms of the type-specific size of its values; 
+
+A view buffer provides relative bulk get and put methods that can transfer contiguous sequences of values between a buffer and an array or some other buffer of the same type; and 
+
+A view buffer is potentially much more efficient because it will be direct if, and only if, its backing byte buffer is direct. 
+
+
+
+The byte order of a view buffer is fixed to be that of its byte buffer at the time that the view is created. 
+
+Invocation chaining 
+
+Methods in this class that do not otherwise have a value to return are specified to return the buffer upon which they are invoked. This allows method invocations to be chained. 
+
+The sequence of statements 
+
+
+
+bb.putInt(0xCAFEBABE); bb.putShort(3); bb.putShort(45); 
+
+can, for example, be replaced by the single statement 
+
+
+
+bb.putInt(0xCAFEBABE).putShort(3).putShort(45); 
+
+
+
+*java.nio.ByteBuffer.allocate(int)*
+
+public static |java.nio.ByteBuffer| allocate(int capacity)
+
+Allocates a new byte buffer. 
+
+The new buffer's position will be zero, its limit will be its capacity, and its mark will be undefined. It will have a </code>backing array<code>(|java.nio.ByteBuffer|) , and its 
+</code>array offset<code>(|java.nio.ByteBuffer|) will be zero. 
+
+
+    capacity - The new buffer's capacity, in bytes 
+
+    Returns: The new byte buffer 
+
+*java.nio.ByteBuffer.allocateDirect(int)*
+
+public static |java.nio.ByteBuffer| allocateDirect(int capacity)
+
+Allocates a new direct byte buffer. 
+
+The new buffer's position will be zero, its limit will be its capacity, and its mark will be undefined. Whether or not it has a </code>backing array<code>(|java.nio.ByteBuffer|) 
+is unspecified. 
+
+
+    capacity - The new buffer's capacity, in bytes 
+
+    Returns: The new byte buffer 
+
+*java.nio.ByteBuffer.array()*
+
+public final byte[] array()
+
+Returns the byte array that backs this buffer(optional operation). 
+
+Modifications to this buffer's content will cause the returned array's content to be modified, and vice versa. 
+
+Invoke the hasArray(|java.nio.ByteBuffer|) method before invoking this method in order to ensure that this buffer has an accessible backing array. 
+
+
+
+    Returns: The array that backs this buffer 
+
+*java.nio.ByteBuffer.arrayOffset()*
+
+public final int arrayOffset()
+
+Returns the offset within this buffer's backing array of the first element of the buffer(optional operation). 
+
+If this buffer is backed by an array then buffer position p corresponds to array index p+arrayOffset(). 
+
+Invoke the hasArray(|java.nio.ByteBuffer|) method before invoking this method in order to ensure that this buffer has an accessible backing array. 
+
+
+
+    Returns: The offset within this buffer's array of the first element of the buffer 
+
+*java.nio.ByteBuffer.asCharBuffer()*
+
+public abstract |java.nio.CharBuffer| asCharBuffer()
+
+Creates a view of this byte buffer as a char buffer. 
+
+The content of the new buffer will start at this buffer's current position. Changes to this buffer's content will be visible in the new buffer, and vice versa; the two buffers' 
+position, limit, and mark values will be independent. 
+
+The new buffer's position will be zero, its capacity and its limit will be the number of bytes remaining in this buffer divided by two, and its mark will be undefined. The new 
+buffer will be direct if, and only if, this buffer is direct, and it will be read-only if, and only if, this buffer is read-only. 
+
+
+
+    Returns: A new char buffer 
+
+*java.nio.ByteBuffer.asDoubleBuffer()*
+
+public abstract |java.nio.DoubleBuffer| asDoubleBuffer()
+
+Creates a view of this byte buffer as a double buffer. 
+
+The content of the new buffer will start at this buffer's current position. Changes to this buffer's content will be visible in the new buffer, and vice versa; the two buffers' 
+position, limit, and mark values will be independent. 
+
+The new buffer's position will be zero, its capacity and its limit will be the number of bytes remaining in this buffer divided by eight, and its mark will be undefined. The new 
+buffer will be direct if, and only if, this buffer is direct, and it will be read-only if, and only if, this buffer is read-only. 
+
+
+
+    Returns: A new double buffer 
+
+*java.nio.ByteBuffer.asFloatBuffer()*
+
+public abstract |java.nio.FloatBuffer| asFloatBuffer()
+
+Creates a view of this byte buffer as a float buffer. 
+
+The content of the new buffer will start at this buffer's current position. Changes to this buffer's content will be visible in the new buffer, and vice versa; the two buffers' 
+position, limit, and mark values will be independent. 
+
+The new buffer's position will be zero, its capacity and its limit will be the number of bytes remaining in this buffer divided by four, and its mark will be undefined. The new 
+buffer will be direct if, and only if, this buffer is direct, and it will be read-only if, and only if, this buffer is read-only. 
+
+
+
+    Returns: A new float buffer 
+
+*java.nio.ByteBuffer.asIntBuffer()*
+
+public abstract |java.nio.IntBuffer| asIntBuffer()
+
+Creates a view of this byte buffer as an int buffer. 
+
+The content of the new buffer will start at this buffer's current position. Changes to this buffer's content will be visible in the new buffer, and vice versa; the two buffers' 
+position, limit, and mark values will be independent. 
+
+The new buffer's position will be zero, its capacity and its limit will be the number of bytes remaining in this buffer divided by four, and its mark will be undefined. The new 
+buffer will be direct if, and only if, this buffer is direct, and it will be read-only if, and only if, this buffer is read-only. 
+
+
+
+    Returns: A new int buffer 
+
+*java.nio.ByteBuffer.asLongBuffer()*
+
+public abstract |java.nio.LongBuffer| asLongBuffer()
+
+Creates a view of this byte buffer as a long buffer. 
+
+The content of the new buffer will start at this buffer's current position. Changes to this buffer's content will be visible in the new buffer, and vice versa; the two buffers' 
+position, limit, and mark values will be independent. 
+
+The new buffer's position will be zero, its capacity and its limit will be the number of bytes remaining in this buffer divided by eight, and its mark will be undefined. The new 
+buffer will be direct if, and only if, this buffer is direct, and it will be read-only if, and only if, this buffer is read-only. 
+
+
+
+    Returns: A new long buffer 
+
+*java.nio.ByteBuffer.asReadOnlyBuffer()*
+
+public abstract |java.nio.ByteBuffer| asReadOnlyBuffer()
+
+Creates a new, read-only byte buffer that shares this buffer's content. 
+
+The content of the new buffer will be that of this buffer. Changes to this buffer's content will be visible in the new buffer; the new buffer itself, however, will be read-only 
+and will not allow the shared content to be modified. The two buffers' position, limit, and mark values will be independent. 
+
+The new buffer's capacity, limit, position, and mark values will be identical to those of this buffer. 
+
+If this buffer is itself read-only then this method behaves in exactly the same way as the duplicate(|java.nio.ByteBuffer|) method. 
+
+
+
+    Returns: The new, read-only byte buffer 
+
+*java.nio.ByteBuffer.asShortBuffer()*
+
+public abstract |java.nio.ShortBuffer| asShortBuffer()
+
+Creates a view of this byte buffer as a short buffer. 
+
+The content of the new buffer will start at this buffer's current position. Changes to this buffer's content will be visible in the new buffer, and vice versa; the two buffers' 
+position, limit, and mark values will be independent. 
+
+The new buffer's position will be zero, its capacity and its limit will be the number of bytes remaining in this buffer divided by two, and its mark will be undefined. The new 
+buffer will be direct if, and only if, this buffer is direct, and it will be read-only if, and only if, this buffer is read-only. 
+
+
+
+    Returns: A new short buffer 
+
+*java.nio.ByteBuffer.compact()*
+
+public abstract |java.nio.ByteBuffer| compact()
+
+Compacts this buffer(optional operation). 
+
+The bytes between the buffer's current position and its limit, if any, are copied to the beginning of the buffer. That is, the byte at index p=position() is copied to index zero, 
+the byte at index p+1 is copied to index one, and so forth until the byte at index limit()-1 is copied to index n=limit()-1-p. The buffer's position is then set to n+1 and its 
+limit is set to its capacity. The mark, if defined, is discarded. 
+
+The buffer's position is set to the number of bytes copied, rather than to zero, so that an invocation of this method can be followed immediately by an invocation of another 
+relative put method. 
+
+Invoke this method after writing data from a buffer in case the write was incomplete. The following loop, for example, copies bytes from one channel to another via the buffer buf: 
+
+
+
+buf.clear(); // Prepare buffer for use for (;;) { if (in.read(buf) 
+
+
+
+    Returns: 
+
+*java.nio.ByteBuffer.compareTo(ByteBuffer)*
+
+public int compareTo(java.nio.ByteBuffer that)
+
+Compares this buffer to another. 
+
+Two byte buffers are compared by comparing their sequences of remaining elements lexicographically, without regard to the starting position of each sequence within its 
+corresponding buffer. 
+
+A byte buffer is not comparable to any other type of object. 
+
+
+
+    Returns: A negative integer, zero, or a positive integer as this buffer is less than, equal to, or greater than the given buffer 
+
+*java.nio.ByteBuffer.duplicate()*
+
+public abstract |java.nio.ByteBuffer| duplicate()
+
+Creates a new byte buffer that shares this buffer's content. 
+
+The content of the new buffer will be that of this buffer. Changes to this buffer's content will be visible in the new buffer, and vice versa; the two buffers' position, limit, 
+and mark values will be independent. 
+
+The new buffer's capacity, limit, position, and mark values will be identical to those of this buffer. The new buffer will be direct if, and only if, this buffer is direct, and it 
+will be read-only if, and only if, this buffer is read-only. 
+
+
+
+    Returns: The new byte buffer 
+
+*java.nio.ByteBuffer.equals(Object)*
+
+public boolean equals(java.lang.Object ob)
+
+Tells whether or not this buffer is equal to another object. 
+
+Two byte buffers are equal if, and only if, 
+
+
+
+They have the same element type, 
+
+They have the same number of remaining elements, and 
+
+The two sequences of remaining elements, considered independently of their starting positions, are pointwise equal. 
+
+
+
+A byte buffer is not equal to any other type of object. 
+
+
+    ob - The object to which this buffer is to be compared 
+
+    Returns: true if, and only if, this buffer is equal to the given object 
+
+*java.nio.ByteBuffer.get()*
+
+public abstract byte get()
+
+Relative get method. Reads the byte at this buffer's current position, and then increments the position. 
+
+
+
+    Returns: The byte at the buffer's current position 
+
+*java.nio.ByteBuffer.get(byte[])*
+
+public |java.nio.ByteBuffer| get(byte[] dst)
+
+Relative bulk get method. 
+
+This method transfers bytes from this buffer into the given destination array. An invocation of this method of the form src.get(a) behaves in exactly the same way as the 
+invocation 
+
+
+
+src.get(a, 0, a.length) 
+
+
+
+    Returns: 
+
+*java.nio.ByteBuffer.get(byte[],int,int)*
+
+public |java.nio.ByteBuffer| get(
+  byte[] dst,
+  int offset,
+  int length)
+
+Relative bulk get method. 
+
+This method transfers bytes from this buffer into the given destination array. If there are fewer bytes remaining in the buffer than are required to satisfy the request, that is, 
+if length>remaining(), then no bytes are transferred and a (|java.nio.BufferUnderflowException|) is thrown. 
+
+Otherwise, this method copies length bytes from this buffer into the given array, starting at the current position of this buffer and at the given offset in the array. The 
+position of this buffer is then incremented by length. 
+
+In other words, an invocation of this method of the form src.get(dst,off,len) has exactly the same effect as the loop 
+
+
+
+for (int i = off; i 
+
+
+    dst - The array into which bytes are to be written 
+    offset - The offset within the array of the first byte to be written; must be non-negative and no larger than dst.length 
+    length - The maximum number of bytes to be written to the given array; must be non-negative and no larger than dst.length - offset 
+
+    Returns: 
+
+*java.nio.ByteBuffer.get(int)*
+
+public abstract byte get(int index)
+
+Absolute get method. Reads the byte at the given index. 
+
+
+    index - The index from which the byte will be read 
+
+    Returns: The byte at the given index 
+
+*java.nio.ByteBuffer.getChar()*
+
+public abstract char getChar()
+
+Relative get method for reading a char value. 
+
+Reads the next two bytes at this buffer's current position, composing them into a char value according to the current byte order, and then increments the position by two. 
+
+
+
+    Returns: The char value at the buffer's current position 
+
+*java.nio.ByteBuffer.getChar(int)*
+
+public abstract char getChar(int index)
+
+Absolute get method for reading a char value. 
+
+Reads two bytes at the given index, composing them into a char value according to the current byte order. 
+
+
+    index - The index from which the bytes will be read 
+
+    Returns: The char value at the given index 
+
+*java.nio.ByteBuffer.getDouble()*
+
+public abstract double getDouble()
+
+Relative get method for reading a double value. 
+
+Reads the next eight bytes at this buffer's current position, composing them into a double value according to the current byte order, and then increments the position by eight. 
+
+
+
+    Returns: The double value at the buffer's current position 
+
+*java.nio.ByteBuffer.getDouble(int)*
+
+public abstract double getDouble(int index)
+
+Absolute get method for reading a double value. 
+
+Reads eight bytes at the given index, composing them into a double value according to the current byte order. 
+
+
+    index - The index from which the bytes will be read 
+
+    Returns: The double value at the given index 
+
+*java.nio.ByteBuffer.getFloat()*
+
+public abstract float getFloat()
+
+Relative get method for reading a float value. 
+
+Reads the next four bytes at this buffer's current position, composing them into a float value according to the current byte order, and then increments the position by four. 
+
+
+
+    Returns: The float value at the buffer's current position 
+
+*java.nio.ByteBuffer.getFloat(int)*
+
+public abstract float getFloat(int index)
+
+Absolute get method for reading a float value. 
+
+Reads four bytes at the given index, composing them into a float value according to the current byte order. 
+
+
+    index - The index from which the bytes will be read 
+
+    Returns: The float value at the given index 
+
+*java.nio.ByteBuffer.getInt()*
+
+public abstract int getInt()
+
+Relative get method for reading an int value. 
+
+Reads the next four bytes at this buffer's current position, composing them into an int value according to the current byte order, and then increments the position by four. 
+
+
+
+    Returns: The int value at the buffer's current position 
+
+*java.nio.ByteBuffer.getInt(int)*
+
+public abstract int getInt(int index)
+
+Absolute get method for reading an int value. 
+
+Reads four bytes at the given index, composing them into a int value according to the current byte order. 
+
+
+    index - The index from which the bytes will be read 
+
+    Returns: The int value at the given index 
+
+*java.nio.ByteBuffer.getLong()*
+
+public abstract long getLong()
+
+Relative get method for reading a long value. 
+
+Reads the next eight bytes at this buffer's current position, composing them into a long value according to the current byte order, and then increments the position by eight. 
+
+
+
+    Returns: The long value at the buffer's current position 
+
+*java.nio.ByteBuffer.getLong(int)*
+
+public abstract long getLong(int index)
+
+Absolute get method for reading a long value. 
+
+Reads eight bytes at the given index, composing them into a long value according to the current byte order. 
+
+
+    index - The index from which the bytes will be read 
+
+    Returns: The long value at the given index 
+
+*java.nio.ByteBuffer.getShort()*
+
+public abstract short getShort()
+
+Relative get method for reading a short value. 
+
+Reads the next two bytes at this buffer's current position, composing them into a short value according to the current byte order, and then increments the position by two. 
+
+
+
+    Returns: The short value at the buffer's current position 
+
+*java.nio.ByteBuffer.getShort(int)*
+
+public abstract short getShort(int index)
+
+Absolute get method for reading a short value. 
+
+Reads two bytes at the given index, composing them into a short value according to the current byte order. 
+
+
+    index - The index from which the bytes will be read 
+
+    Returns: The short value at the given index 
+
+*java.nio.ByteBuffer.hasArray()*
+
+public final boolean hasArray()
+
+Tells whether or not this buffer is backed by an accessible byte array. 
+
+If this method returns true then the array(|java.nio.ByteBuffer|) and arrayOffset(|java.nio.ByteBuffer|) methods may safely be invoked. 
+
+
+
+    Returns: true if, and only if, this buffer is backed by an array and is not read-only 
+
+*java.nio.ByteBuffer.hashCode()*
+
+public int hashCode()
+
+Returns the current hash code of this buffer. 
+
+The hash code of a byte buffer depends only upon its remaining elements; that is, upon the elements from position() up to, and including, the element at limit()-1. 
+
+Because buffer hash codes are content-dependent, it is inadvisable to use buffers as keys in hash maps or similar data structures unless it is known that their contents will not 
+change. 
+
+
+
+    Returns: The current hash code of this buffer 
+
+*java.nio.ByteBuffer.isDirect()*
+
+public abstract boolean isDirect()
+
+Tells whether or not this byte buffer is direct. 
+
+
+
+    Returns: true if, and only if, this buffer is direct 
+
+*java.nio.ByteBuffer.order()*
+
+public final |java.nio.ByteOrder| order()
+
+Retrieves this buffer's byte order. 
+
+The byte order is used when reading or writing multibyte values, and when creating buffers that are views of this byte buffer. The order of a newly-created byte buffer is always 
+BIG_ENDIAN(|java.nio.ByteOrder|) . 
+
+
+
+    Returns: This buffer's byte order 
+
+*java.nio.ByteBuffer.order(ByteOrder)*
+
+public final |java.nio.ByteBuffer| order(java.nio.ByteOrder bo)
+
+Modifies this buffer's byte order. 
+
+
+    bo - The new byte order, either {@link ByteOrder#BIG_ENDIAN BIG_ENDIAN} or {@link ByteOrder#LITTLE_ENDIAN LITTLE_ENDIAN} 
+
+    Returns: 
+
+*java.nio.ByteBuffer.put(byte)*
+
+public abstract |java.nio.ByteBuffer| put(byte b)
+
+Relative put method(optional operation). 
+
+Writes the given byte into this buffer at the current position, and then increments the position. 
+
+
+    b - The byte to be written 
+
+    Returns: 
+
+*java.nio.ByteBuffer.put(byte[])*
+
+public final |java.nio.ByteBuffer| put(byte[] src)
+
+Relative bulk put method(optional operation). 
+
+This method transfers the entire content of the given source byte array into this buffer. An invocation of this method of the form dst.put(a) behaves in exactly the same way as 
+the invocation 
+
+
+
+dst.put(a, 0, a.length) 
+
+
+
+    Returns: 
+
+*java.nio.ByteBuffer.put(byte[],int,int)*
+
+public |java.nio.ByteBuffer| put(
+  byte[] src,
+  int offset,
+  int length)
+
+Relative bulk put method(optional operation). 
+
+This method transfers bytes into this buffer from the given source array. If there are more bytes to be copied from the array than remain in this buffer, that is, if 
+length>remaining(), then no bytes are transferred and a (|java.nio.BufferOverflowException|) is thrown. 
+
+Otherwise, this method copies length bytes from the given array into this buffer, starting at the given offset in the array and at the current position of this buffer. The 
+position of this buffer is then incremented by length. 
+
+In other words, an invocation of this method of the form dst.put(src,off,len) has exactly the same effect as the loop 
+
+
+
+for (int i = off; i 
+
+
+    src - The array from which bytes are to be read 
+    offset - The offset within the array of the first byte to be read; must be non-negative and no larger than array.length 
+    length - The number of bytes to be read from the given array; must be non-negative and no larger than array.length - offset 
+
+    Returns: 
+
+*java.nio.ByteBuffer.put(ByteBuffer)*
+
+public |java.nio.ByteBuffer| put(java.nio.ByteBuffer src)
+
+Relative bulk put method(optional operation). 
+
+This method transfers the bytes remaining in the given source buffer into this buffer. If there are more bytes remaining in the source buffer than in this buffer, that is, if 
+src.remaining()>remaining(), then no bytes are transferred and a (|java.nio.BufferOverflowException|) is thrown. 
+
+Otherwise, this method copies n=src.remaining() bytes from the given buffer into this buffer, starting at each buffer's current position. The positions of both buffers are then 
+incremented by n. 
+
+In other words, an invocation of this method of the form dst.put(src) has exactly the same effect as the loop 
+
+
+
+while (src.hasRemaining()) dst.put(src.get()); 
+
+except that it first checks that there is sufficient space in this buffer and it is potentially much more efficient. 
+
+
+    src - The source buffer from which bytes are to be read; must not be this buffer 
+
+    Returns: 
+
+*java.nio.ByteBuffer.put(int,byte)*
+
+public abstract |java.nio.ByteBuffer| put(
+  int index,
+  byte b)
+
+Absolute put method(optional operation). 
+
+Writes the given byte into this buffer at the given index. 
+
+
+    index - The index at which the byte will be written 
+    b - The byte value to be written 
+
+    Returns: 
+
+*java.nio.ByteBuffer.putChar(char)*
+
+public abstract |java.nio.ByteBuffer| putChar(char value)
+
+Relative put method for writing a char value(optional operation). 
+
+Writes two bytes containing the given char value, in the current byte order, into this buffer at the current position, and then increments the position by two. 
+
+
+    value - The char value to be written 
+
+    Returns: 
+
+*java.nio.ByteBuffer.putChar(int,char)*
+
+public abstract |java.nio.ByteBuffer| putChar(
+  int index,
+  char value)
+
+Absolute put method for writing a char value(optional operation). 
+
+Writes two bytes containing the given char value, in the current byte order, into this buffer at the given index. 
+
+
+    index - The index at which the bytes will be written 
+    value - The char value to be written 
+
+    Returns: 
+
+*java.nio.ByteBuffer.putDouble(double)*
+
+public abstract |java.nio.ByteBuffer| putDouble(double value)
+
+Relative put method for writing a double value(optional operation). 
+
+Writes eight bytes containing the given double value, in the current byte order, into this buffer at the current position, and then increments the position by eight. 
+
+
+    value - The double value to be written 
+
+    Returns: 
+
+*java.nio.ByteBuffer.putDouble(int,double)*
+
+public abstract |java.nio.ByteBuffer| putDouble(
+  int index,
+  double value)
+
+Absolute put method for writing a double value(optional operation). 
+
+Writes eight bytes containing the given double value, in the current byte order, into this buffer at the given index. 
+
+
+    index - The index at which the bytes will be written 
+    value - The double value to be written 
+
+    Returns: 
+
+*java.nio.ByteBuffer.putFloat(float)*
+
+public abstract |java.nio.ByteBuffer| putFloat(float value)
+
+Relative put method for writing a float value(optional operation). 
+
+Writes four bytes containing the given float value, in the current byte order, into this buffer at the current position, and then increments the position by four. 
+
+
+    value - The float value to be written 
+
+    Returns: 
+
+*java.nio.ByteBuffer.putFloat(int,float)*
+
+public abstract |java.nio.ByteBuffer| putFloat(
+  int index,
+  float value)
+
+Absolute put method for writing a float value(optional operation). 
+
+Writes four bytes containing the given float value, in the current byte order, into this buffer at the given index. 
+
+
+    index - The index at which the bytes will be written 
+    value - The float value to be written 
+
+    Returns: 
+
+*java.nio.ByteBuffer.putInt(int)*
+
+public abstract |java.nio.ByteBuffer| putInt(int value)
+
+Relative put method for writing an int value(optional operation). 
+
+Writes four bytes containing the given int value, in the current byte order, into this buffer at the current position, and then increments the position by four. 
+
+
+    value - The int value to be written 
+
+    Returns: 
+
+*java.nio.ByteBuffer.putInt(int,int)*
+
+public abstract |java.nio.ByteBuffer| putInt(
+  int index,
+  int value)
+
+Absolute put method for writing an int value(optional operation). 
+
+Writes four bytes containing the given int value, in the current byte order, into this buffer at the given index. 
+
+
+    index - The index at which the bytes will be written 
+    value - The int value to be written 
+
+    Returns: 
+
+*java.nio.ByteBuffer.putLong(int,long)*
+
+public abstract |java.nio.ByteBuffer| putLong(
+  int index,
+  long value)
+
+Absolute put method for writing a long value(optional operation). 
+
+Writes eight bytes containing the given long value, in the current byte order, into this buffer at the given index. 
+
+
+    index - The index at which the bytes will be written 
+    value - The long value to be written 
+
+    Returns: 
+
+*java.nio.ByteBuffer.putLong(long)*
+
+public abstract |java.nio.ByteBuffer| putLong(long value)
+
+Relative put method for writing a long value(optional operation). 
+
+Writes eight bytes containing the given long value, in the current byte order, into this buffer at the current position, and then increments the position by eight. 
+
+
+    value - The long value to be written 
+
+    Returns: 
+
+*java.nio.ByteBuffer.putShort(int,short)*
+
+public abstract |java.nio.ByteBuffer| putShort(
+  int index,
+  short value)
+
+Absolute put method for writing a short value(optional operation). 
+
+Writes two bytes containing the given short value, in the current byte order, into this buffer at the given index. 
+
+
+    index - The index at which the bytes will be written 
+    value - The short value to be written 
+
+    Returns: 
+
+*java.nio.ByteBuffer.putShort(short)*
+
+public abstract |java.nio.ByteBuffer| putShort(short value)
+
+Relative put method for writing a short value(optional operation). 
+
+Writes two bytes containing the given short value, in the current byte order, into this buffer at the current position, and then increments the position by two. 
+
+
+    value - The short value to be written 
+
+    Returns: 
+
+*java.nio.ByteBuffer.slice()*
+
+public abstract |java.nio.ByteBuffer| slice()
+
+Creates a new byte buffer whose content is a shared subsequence of this buffer's content. 
+
+The content of the new buffer will start at this buffer's current position. Changes to this buffer's content will be visible in the new buffer, and vice versa; the two buffers' 
+position, limit, and mark values will be independent. 
+
+The new buffer's position will be zero, its capacity and its limit will be the number of bytes remaining in this buffer, and its mark will be undefined. The new buffer will be 
+direct if, and only if, this buffer is direct, and it will be read-only if, and only if, this buffer is read-only. 
+
+
+
+    Returns: The new byte buffer 
+
+*java.nio.ByteBuffer.toString()*
+
+public |java.lang.String| toString()
+
+Returns a string summarizing the state of this buffer. 
+
+
+
+    Returns: A summary string 
+
+*java.nio.ByteBuffer.wrap(byte[])*
+
+public static |java.nio.ByteBuffer| wrap(byte[] array)
+
+Wraps a byte array into a buffer. 
+
+The new buffer will be backed by the given byte array; that is, modifications to the buffer will cause the array to be modified and vice versa. The new buffer's capacity and limit 
+will be array.length, its position will be zero, and its mark will be undefined. Its </code>backing array<code>(|java.nio.ByteBuffer|) will be the given array, and its 
+</code>array offset<code>(|java.nio.ByteBuffer|) will be zero. 
+
+
+    array - The array that will back this buffer 
+
+    Returns: The new byte buffer 
+
+*java.nio.ByteBuffer.wrap(byte[],int,int)*
+
+public static |java.nio.ByteBuffer| wrap(
+  byte[] array,
+  int offset,
+  int length)
+
+Wraps a byte array into a buffer. 
+
+The new buffer will be backed by the given byte array; that is, modifications to the buffer will cause the array to be modified and vice versa. The new buffer's capacity will be 
+array.length, its position will be offset, its limit will be offset + length, and its mark will be undefined. Its </code>backing array<code>(|java.nio.ByteBuffer|) will be the 
+given array, and its </code>array offset<code>(|java.nio.ByteBuffer|) will be zero. 
+
+
+    array - The array that will back the new buffer 
+    offset - The offset of the subarray to be used; must be non-negative and no larger than array.length. The new buffer's position will be set to this value. 
+    length - The length of the subarray to be used; must be non-negative and no larger than array.length - offset. The new buffer's limit will be set to offset + length. 
+
+    Returns: The new byte buffer 
+
+

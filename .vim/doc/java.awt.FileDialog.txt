@@ -1,4 +1,5 @@
 *java.awt.FileDialog* *FileDialog* The FileDialog class displays a dialog window
+ from which the user can select a file.
 
 public class FileDialog
   extends    |java.awt.Dialog|
@@ -8,7 +9,7 @@ public class FileDialog
 |java.awt.FileDialog_Constructors|
 |java.awt.FileDialog_Methods|
 
-================================================================================
+====================================================================================================================================================================================
 
 *java.awt.FileDialog_Fields*
 |int_java.awt.FileDialog.LOAD|
@@ -16,52 +17,40 @@ public class FileDialog
 
 *java.awt.FileDialog_Constructors*
 |java.awt.FileDialog(Dialog)|Creates a file dialog for loading a file.
-|java.awt.FileDialog(Dialog,String)|Creates a file dialog window with the speci
-|java.awt.FileDialog(Dialog,String,int)|Creates a file dialog window with the s
+|java.awt.FileDialog(Dialog,String)|Creates a file dialog window with the specified title for loading  a file.
+|java.awt.FileDialog(Dialog,String,int)|Creates a file dialog window with the specified title for loading  or saving a file.
 |java.awt.FileDialog(Frame)|Creates a file dialog for loading a file.
-|java.awt.FileDialog(Frame,String)|Creates a file dialog window with the specif
-|java.awt.FileDialog(Frame,String,int)|Creates a file dialog window with the sp
+|java.awt.FileDialog(Frame,String)|Creates a file dialog window with the specified title for loading  a file.
+|java.awt.FileDialog(Frame,String,int)|Creates a file dialog window with the specified title for loading  or saving a file.
 
 *java.awt.FileDialog_Methods*
 |java.awt.FileDialog.addNotify()|Creates the file dialog's peer.
 |java.awt.FileDialog.getDirectory()|Gets the directory of this file dialog.
 |java.awt.FileDialog.getFile()|Gets the selected file of this file dialog.
-|java.awt.FileDialog.getFilenameFilter()|Determines this file dialog's filename
-|java.awt.FileDialog.getMode()|Indicates whether this file dialog box is for lo
-|java.awt.FileDialog.paramString()|Returns a string representing the state of t
-|java.awt.FileDialog.setDirectory(String)|Sets the directory of this file dialo
-|java.awt.FileDialog.setFile(String)|Sets the selected file for this file dialo
-|java.awt.FileDialog.setFilenameFilter(FilenameFilter)|Sets the filename filter
+|java.awt.FileDialog.getFilenameFilter()|Determines this file dialog's filename filter.
+|java.awt.FileDialog.getMode()|Indicates whether this file dialog box is for loading from a file  or for saving to a file.
+|java.awt.FileDialog.paramString()|Returns a string representing the state of this FileDialog  window.
+|java.awt.FileDialog.setDirectory(String)|Sets the directory of this file dialog window to be the  specified directory.
+|java.awt.FileDialog.setFile(String)|Sets the selected file for this file dialog window to be the  specified file.
+|java.awt.FileDialog.setFilenameFilter(FilenameFilter)|Sets the filename filter for this file dialog window to the  specified filter.
 |java.awt.FileDialog.setMode(int)|Sets the mode of the file dialog.
 
 *java.awt.FileDialog_Description*
 
-The FileDialog class displays a dialog window from which the user can select a 
-file. 
+The FileDialog class displays a dialog window from which the user can select a file. 
 
-Since it is a modal dialog, when the application calls its show method to 
-display the dialog, it blocks the rest of the application until the user has 
-chosen a file. 
+Since it is a modal dialog, when the application calls its show method to display the dialog, it blocks the rest of the application until the user has chosen a file. 
+
 
 
 *int_java.awt.FileDialog.LOAD*
 
-The FileDialog class displays a dialog window from which the user can select a 
-file. 
-
-Since it is a modal dialog, when the application calls its show method to 
-display the dialog, it blocks the rest of the application until the user has 
-chosen a file. 
+This constant value indicates that the purpose of the file dialog window is to locate a file from which to read. 
 
 
 *int_java.awt.FileDialog.SAVE*
 
-The FileDialog class displays a dialog window from which the user can select a 
-file. 
-
-Since it is a modal dialog, when the application calls its show method to 
-display the dialog, it blocks the rest of the application until the user has 
-chosen a file. 
+This constant value indicates that the purpose of the file dialog window is to locate a file to which to write. 
 
 
 
@@ -69,8 +58,7 @@ chosen a file.
 
 public FileDialog(java.awt.Dialog parent)
 
-Creates a file dialog for loading a file. The title of the file dialog is 
-initially empty. This is a convenience method for FileDialog(parent, "", LOAD). 
+Creates a file dialog for loading a file. The title of the file dialog is initially empty. This is a convenience method for FileDialog(parent, "", LOAD). 
 
     parent - the owner of the dialog 
 
@@ -80,13 +68,11 @@ public FileDialog(
   java.awt.Dialog parent,
   java.lang.String title)
 
-Creates a file dialog window with the specified title for loading a file. The 
-files shown are those in the current directory. This is a convenience method 
-for FileDialog(parent, title, LOAD). 
+Creates a file dialog window with the specified title for loading a file. The files shown are those in the current directory. This is a convenience method for FileDialog(parent, 
+title, LOAD). 
 
     parent - the owner of the dialog 
-    title - the title of the dialog; a null value will be accepted without causing a 
-       NullPointerException to be thrown 
+    title - the title of the dialog; a null value will be accepted without causing a NullPointerException to be thrown 
 
 *java.awt.FileDialog(Dialog,String,int)*
 
@@ -95,24 +81,20 @@ public FileDialog(
   java.lang.String title,
   int mode)
 
-Creates a file dialog window with the specified title for loading or saving a 
-file. 
+Creates a file dialog window with the specified title for loading or saving a file. 
 
-If the value of mode is LOAD, then the file dialog is finding a file to read, 
-and the files shown are those in the current directory. If the value of mode is 
-SAVE, the file dialog is finding a place to write a file. 
+If the value of mode is LOAD, then the file dialog is finding a file to read, and the files shown are those in the current directory. If the value of mode is SAVE, the file dialog 
+is finding a place to write a file. 
 
     parent - the owner of the dialog 
-    title - the title of the dialog; a null value will be accepted without causing a 
-       NullPointerException to be thrown 
+    title - the title of the dialog; a null value will be accepted without causing a NullPointerException to be thrown 
     mode - the mode of the dialog; either FileDialog.LOAD or FileDialog.SAVE 
 
 *java.awt.FileDialog(Frame)*
 
 public FileDialog(java.awt.Frame parent)
 
-Creates a file dialog for loading a file. The title of the file dialog is 
-initially empty. This is a convenience method for FileDialog(parent, "", LOAD). 
+Creates a file dialog for loading a file. The title of the file dialog is initially empty. This is a convenience method for FileDialog(parent, "", LOAD). 
 
     parent - the owner of the dialog 
 
@@ -122,9 +104,8 @@ public FileDialog(
   java.awt.Frame parent,
   java.lang.String title)
 
-Creates a file dialog window with the specified title for loading a file. The 
-files shown are those in the current directory. This is a convenience method 
-for FileDialog(parent, title, LOAD). 
+Creates a file dialog window with the specified title for loading a file. The files shown are those in the current directory. This is a convenience method for FileDialog(parent, 
+title, LOAD). 
 
     parent - the owner of the dialog 
     title - the title of the dialog 
@@ -136,12 +117,10 @@ public FileDialog(
   java.lang.String title,
   int mode)
 
-Creates a file dialog window with the specified title for loading or saving a 
-file. 
+Creates a file dialog window with the specified title for loading or saving a file. 
 
-If the value of mode is LOAD, then the file dialog is finding a file to read, 
-and the files shown are those in the current directory. If the value of mode is 
-SAVE, the file dialog is finding a place to write a file. 
+If the value of mode is LOAD, then the file dialog is finding a file to read, and the files shown are those in the current directory. If the value of mode is SAVE, the file dialog 
+is finding a place to write a file. 
 
     parent - the owner of the dialog 
     title - the title of the dialog 
@@ -151,8 +130,8 @@ SAVE, the file dialog is finding a place to write a file.
 
 public void addNotify()
 
-Creates the file dialog's peer. The peer allows us to change the look of the 
-file dialog without changing its functionality. 
+Creates the file dialog's peer. The peer allows us to change the look of the file dialog without changing its functionality. 
+
 
 
 *java.awt.FileDialog.getDirectory()*
@@ -162,59 +141,60 @@ public |java.lang.String| getDirectory()
 Gets the directory of this file dialog. 
 
 
+
     Returns: the (potentially null or invalid) directory of this FileDialog 
+
 *java.awt.FileDialog.getFile()*
 
 public |java.lang.String| getFile()
 
-Gets the selected file of this file dialog. If the user selected CANCEL, the 
-returned file is null. 
+Gets the selected file of this file dialog. If the user selected CANCEL, the returned file is null. 
 
 
-    Returns: the currently selected file of this file dialog window, or null if none is 
-             selected 
+
+    Returns: the currently selected file of this file dialog window, or null if none is selected 
+
 *java.awt.FileDialog.getFilenameFilter()*
 
 public |java.io.FilenameFilter| getFilenameFilter()
 
-Determines this file dialog's filename filter. A filename filter allows the 
-user to specify which files appear in the file dialog window. Filename filters 
-do not function in Sun's reference implementation for Microsoft Windows. 
+Determines this file dialog's filename filter. A filename filter allows the user to specify which files appear in the file dialog window. Filename filters do not function in Sun's 
+reference implementation for Microsoft Windows. 
+
 
 
     Returns: this file dialog's filename filter 
+
 *java.awt.FileDialog.getMode()*
 
 public int getMode()
 
-Indicates whether this file dialog box is for loading from a file or for saving 
-to a file. 
+Indicates whether this file dialog box is for loading from a file or for saving to a file. 
+
 
 
     Returns: the mode of this file dialog window, either FileDialog.LOAD or FileDialog.SAVE 
+
 *java.awt.FileDialog.paramString()*
 
 protected |java.lang.String| paramString()
 
-Returns a string representing the state of this FileDialog window. This method 
-is intended to be used only for debugging purposes, and the content and format 
-of the returned string may vary between implementations. The returned string 
-may be empty but may not be null. 
+Returns a string representing the state of this FileDialog window. This method is intended to be used only for debugging purposes, and the content and format of the returned 
+string may vary between implementations. The returned string may be empty but may not be null. 
+
 
 
     Returns: the parameter string of this file dialog window 
+
 *java.awt.FileDialog.setDirectory(String)*
 
 public void setDirectory(java.lang.String dir)
 
-Sets the directory of this file dialog window to be the specified directory. 
-Specifying a null or an invalid directory implies an implementation-defined 
-default. This default will not be realized, however, until the user has 
-selected a file. Until this point, getDirectory() will return the value passed 
-into this method. 
+Sets the directory of this file dialog window to be the specified directory. Specifying a null or an invalid directory implies an implementation-defined default. This default will 
+not be realized, however, until the user has selected a file. Until this point, getDirectory() will return the value passed into this method. 
 
-Specifying "" as the directory is exactly equivalent to specifying null as the 
-directory. 
+Specifying "" as the directory is exactly equivalent to specifying null as the directory. 
+
 
     dir - the specified directory 
 
@@ -222,11 +202,10 @@ directory.
 
 public void setFile(java.lang.String file)
 
-Sets the selected file for this file dialog window to be the specified file. 
-This file becomes the default file if it is set before the file dialog window 
-is first shown. 
+Sets the selected file for this file dialog window to be the specified file. This file becomes the default file if it is set before the file dialog window is first shown. 
 
 Specifying "" as the file is exactly equivalent to specifying null as the file. 
+
 
     file - the file being set 
 
@@ -234,9 +213,8 @@ Specifying "" as the file is exactly equivalent to specifying null as the file.
 
 public synchronized void setFilenameFilter(java.io.FilenameFilter filter)
 
-Sets the filename filter for this file dialog window to the specified filter. 
-Filename filters do not function in Sun's reference implementation for 
-Microsoft Windows. 
+Sets the filename filter for this file dialog window to the specified filter. Filename filters do not function in Sun's reference implementation for Microsoft Windows. 
+
 
     filter - the specified filter 
 
@@ -244,8 +222,8 @@ Microsoft Windows.
 
 public void setMode(int mode)
 
-Sets the mode of the file dialog. If mode is not a legal value, an exception 
-will be thrown and mode will not be set. 
+Sets the mode of the file dialog. If mode is not a legal value, an exception will be thrown and mode will not be set. 
+
 
     mode - the mode for this file dialog, either FileDialog.LOAD or FileDialog.SAVE 
 

@@ -1,4 +1,6 @@
 *java.beans.beancontext.BeanContextServicesSupport* *BeanContextServicesSupport* 
+ This helper class provides a utility implementation of the
+ java.beans.beancontext.BeanContextSer
 
 public class BeanContextServicesSupport
   extends    |java.beans.beancontext.BeanContextSupport|
@@ -9,7 +11,7 @@ public class BeanContextServicesSupport
 |java.beans.beancontext.BeanContextServicesSupport_Constructors|
 |java.beans.beancontext.BeanContextServicesSupport_Methods|
 
-================================================================================
+====================================================================================================================================================================================
 
 *java.beans.beancontext.BeanContextServicesSupport_Fields*
 |java.util.ArrayList_java.beans.beancontext.BeanContextServicesSupport.bcsListeners|
@@ -18,93 +20,67 @@ public class BeanContextServicesSupport
 |java.util.HashMap_java.beans.beancontext.BeanContextServicesSupport.services|
 
 *java.beans.beancontext.BeanContextServicesSupport_Constructors*
-|java.beans.beancontext.BeanContextServicesSupport()|Create an instance that is
-|java.beans.beancontext.BeanContextServicesSupport(BeanContextServices)|Create 
-|java.beans.beancontext.BeanContextServicesSupport(BeanContextServices,Locale)|
-|java.beans.beancontext.BeanContextServicesSupport(BeanContextServices,Locale,boolean)|
-|java.beans.beancontext.BeanContextServicesSupport(BeanContextServices,Locale,boolean,boolean)|
+|java.beans.beancontext.BeanContextServicesSupport()|Create an instance that is not a delegate of another object
+|java.beans.beancontext.BeanContextServicesSupport(BeanContextServices)|Create an instance with a peer
+|java.beans.beancontext.BeanContextServicesSupport(BeanContextServices,Locale)|Create an instance using the specified locale
+|java.beans.beancontext.BeanContextServicesSupport(BeanContextServices,Locale,boolean)|Create an instance using the specified Locale and design mode.
+|java.beans.beancontext.BeanContextServicesSupport(BeanContextServices,Locale,boolean,boolean)|Construct a BeanContextServicesSupport instance
 
 *java.beans.beancontext.BeanContextServicesSupport_Methods*
-|java.beans.beancontext.BeanContextServicesSupport.addBeanContextServicesListener(BeanContextServicesListener)|
-|java.beans.beancontext.BeanContextServicesSupport.addService(Class,BeanContextServiceProvider)|
-|java.beans.beancontext.BeanContextServicesSupport.addService(Class,BeanContextServiceProvider,boolean)|
-|java.beans.beancontext.BeanContextServicesSupport.bcsPreDeserializationHook(ObjectInputStream)|
-|java.beans.beancontext.BeanContextServicesSupport.bcsPreSerializationHook(ObjectOutputStream)|
-|java.beans.beancontext.BeanContextServicesSupport.childJustRemovedHook(Object,BeanContextSupport.BCSChild)|
-|java.beans.beancontext.BeanContextServicesSupport.createBCSChild(Object,Object)|
-|java.beans.beancontext.BeanContextServicesSupport.createBCSSServiceProvider(Class,BeanContextServiceProvider)|
-|java.beans.beancontext.BeanContextServicesSupport.fireServiceAdded(BeanContextServiceAvailableEvent)|
-|java.beans.beancontext.BeanContextServicesSupport.fireServiceAdded(Class)|Fire
-|java.beans.beancontext.BeanContextServicesSupport.fireServiceRevoked(BeanContextServiceRevokedEvent)|
-|java.beans.beancontext.BeanContextServicesSupport.fireServiceRevoked(Class,boolean)|
-|java.beans.beancontext.BeanContextServicesSupport.getBeanContextServicesPeer()|
-|java.beans.beancontext.BeanContextServicesSupport.getChildBeanContextServicesListener(Object)|
+|java.beans.beancontext.BeanContextServicesSupport.addBeanContextServicesListener(BeanContextServicesListener)|add a BeanContextServicesListener
+|java.beans.beancontext.BeanContextServicesSupport.addService(Class,BeanContextServiceProvider)|add a service
+|java.beans.beancontext.BeanContextServicesSupport.addService(Class,BeanContextServiceProvider,boolean)|add a service
+|java.beans.beancontext.BeanContextServicesSupport.bcsPreDeserializationHook(ObjectInputStream)|called from BeanContextSupport readObject before it deserializes the  children ...
+|java.beans.beancontext.BeanContextServicesSupport.bcsPreSerializationHook(ObjectOutputStream)|called from BeanContextSupport writeObject before it serializes the  children ...
+|java.beans.beancontext.BeanContextServicesSupport.childJustRemovedHook(Object,BeanContextSupport.BCSChild)|called from superclass child removal operations after a child  has been
+|java.beans.beancontext.BeanContextServicesSupport.createBCSChild(Object,Object)|Subclasses can override this method to insert their own subclass  of Child without having to overr
+|java.beans.beancontext.BeanContextServicesSupport.createBCSSServiceProvider(Class,BeanContextServiceProvider)|subclasses can override this method to create new subclasses of  BCS
+|java.beans.beancontext.BeanContextServicesSupport.fireServiceAdded(BeanContextServiceAvailableEvent)|Fires a BeanContextServiceAvailableEvent indicating that a new  service has b
+|java.beans.beancontext.BeanContextServicesSupport.fireServiceAdded(Class)|Fires a BeanContextServiceEvent notifying of a new service.
+|java.beans.beancontext.BeanContextServicesSupport.fireServiceRevoked(BeanContextServiceRevokedEvent)|Fires a BeanContextServiceEvent notifying of a service being revoked.
+|java.beans.beancontext.BeanContextServicesSupport.fireServiceRevoked(Class,boolean)|Fires a BeanContextServiceRevokedEvent   indicating that a particular service is   no longer a
+|java.beans.beancontext.BeanContextServicesSupport.getBeanContextServicesPeer()|Gets the BeanContextServices associated with this  BeanContextServicesSupport.
+|java.beans.beancontext.BeanContextServicesSupport.getChildBeanContextServicesListener(Object)|Gets the BeanContextServicesListener (if any) of the specified  child.
 |java.beans.beancontext.BeanContextServicesSupport.getCurrentServiceClasses()|
 |java.beans.beancontext.BeanContextServicesSupport.getCurrentServiceSelectors(Class)|
-|java.beans.beancontext.BeanContextServicesSupport.getService(BeanContextChild,Object,Class,Object,BeanContextServiceRevokedListener)|
-|java.beans.beancontext.BeanContextServicesSupport.hasService(Class)|has a serv
-|java.beans.beancontext.BeanContextServicesSupport.initialize()|called by BeanC
-|java.beans.beancontext.BeanContextServicesSupport.initializeBeanContextResources()|
-|java.beans.beancontext.BeanContextServicesSupport.releaseBeanContextResources()|
-|java.beans.beancontext.BeanContextServicesSupport.releaseService(BeanContextChild,Object,Object)|
-|java.beans.beancontext.BeanContextServicesSupport.removeBeanContextServicesListener(BeanContextServicesListener)|
-|java.beans.beancontext.BeanContextServicesSupport.revokeService(Class,BeanContextServiceProvider,boolean)|
-|java.beans.beancontext.BeanContextServicesSupport.serviceAvailable(BeanContextServiceAvailableEvent)|
-|java.beans.beancontext.BeanContextServicesSupport.serviceRevoked(BeanContextServiceRevokedEvent)|
+|java.beans.beancontext.BeanContextServicesSupport.getService(BeanContextChild,Object,Class,Object,BeanContextServiceRevokedListener)|obtain a service which may be delegated
+|java.beans.beancontext.BeanContextServicesSupport.hasService(Class)|has a service, which may be delegated
+|java.beans.beancontext.BeanContextServicesSupport.initialize()|called by BeanContextSupport superclass during construction and   deserialization to initialize subclass transient 
+|java.beans.beancontext.BeanContextServicesSupport.initializeBeanContextResources()|called from setBeanContext to notify a BeanContextChild  to allocate resources obtained from th
+|java.beans.beancontext.BeanContextServicesSupport.releaseBeanContextResources()|called from setBeanContext to notify a BeanContextChild  to release resources obtained from the ne
+|java.beans.beancontext.BeanContextServicesSupport.releaseService(BeanContextChild,Object,Object)|release a service
+|java.beans.beancontext.BeanContextServicesSupport.removeBeanContextServicesListener(BeanContextServicesListener)|remove a BeanContextServicesListener
+|java.beans.beancontext.BeanContextServicesSupport.revokeService(Class,BeanContextServiceProvider,boolean)|remove a service
+|java.beans.beancontext.BeanContextServicesSupport.serviceAvailable(BeanContextServiceAvailableEvent)|BeanContextServicesListener callback, propagates event to all   currently reg
+|java.beans.beancontext.BeanContextServicesSupport.serviceRevoked(BeanContextServiceRevokedEvent)|BeanContextServicesListener callback, propagates event to all   currently registe
 
 *java.beans.beancontext.BeanContextServicesSupport_Description*
 
-This helper class provides a utility implementation of the 
-java.beans.beancontext.BeanContextServices interface. 
+This helper class provides a utility implementation of the java.beans.beancontext.BeanContextServices interface. 
 
-Since this class directly implements the BeanContextServices interface, the 
-class can, and is intended to be used either by subclassing this 
-implementation, or via delegation of an instance of this class from another 
-through the BeanContextProxy interface. 
+Since this class directly implements the BeanContextServices interface, the class can, and is intended to be used either by subclassing this implementation, or via delegation of 
+an instance of this class from another through the BeanContextProxy interface. 
+
 
 
 *java.util.ArrayList_java.beans.beancontext.BeanContextServicesSupport.bcsListeners*
 
-This helper class provides a utility implementation of the 
-java.beans.beancontext.BeanContextServices interface. 
-
-Since this class directly implements the BeanContextServices interface, the 
-class can, and is intended to be used either by subclassing this 
-implementation, or via delegation of an instance of this class from another 
-through the BeanContextProxy interface. 
+List of BeanContextServicesListener objects. 
 
 
 *java.beans.beancontext.BeanContextServicesSupport.BCSSProxyServiceProvider_java.beans.beancontext.BeanContextServicesSupport.proxy*
 
-This helper class provides a utility implementation of the 
-java.beans.beancontext.BeanContextServices interface. 
-
-Since this class directly implements the BeanContextServices interface, the 
-class can, and is intended to be used either by subclassing this 
-implementation, or via delegation of an instance of this class from another 
-through the BeanContextProxy interface. 
+Delegate for the BeanContextServiceProvider. 
 
 
 *int_java.beans.beancontext.BeanContextServicesSupport.serializable*
 
-This helper class provides a utility implementation of the 
-java.beans.beancontext.BeanContextServices interface. 
-
-Since this class directly implements the BeanContextServices interface, the 
-class can, and is intended to be used either by subclassing this 
-implementation, or via delegation of an instance of this class from another 
-through the BeanContextProxy interface. 
+The number of instances of a serializable BeanContextServceProvider. 
 
 
 *java.util.HashMap_java.beans.beancontext.BeanContextServicesSupport.services*
 
-This helper class provides a utility implementation of the 
-java.beans.beancontext.BeanContextServices interface. 
-
-Since this class directly implements the BeanContextServices interface, the 
-class can, and is intended to be used either by subclassing this 
-implementation, or via delegation of an instance of this class from another 
-through the BeanContextProxy interface. 
+all accesses to the protected transient HashMap services field should be synchronized on that object 
 
 
 
@@ -121,8 +97,7 @@ public BeanContextServicesSupport(java.beans.beancontext.BeanContextServices pee
 
 Create an instance with a peer 
 
-    peer - The peer BeanContext we are supplying an implementation for, if null the this 
-       object is its own peer 
+    peer - The peer BeanContext we are supplying an implementation for, if null the this object is its own peer 
 
 *java.beans.beancontext.BeanContextServicesSupport(BeanContextServices,Locale)*
 
@@ -132,8 +107,7 @@ public BeanContextServicesSupport(
 
 Create an instance using the specified locale 
 
-    peer - The peer BeanContext we are supplying an implementation for, if null the this 
-       object is its own peer 
+    peer - The peer BeanContext we are supplying an implementation for, if null the this object is its own peer 
     lcle - The current Locale for this BeanContext. 
 
 *java.beans.beancontext.BeanContextServicesSupport(BeanContextServices,Locale,boolean)*
@@ -145,8 +119,7 @@ public BeanContextServicesSupport(
 
 Create an instance using the specified Locale and design mode. 
 
-    peer - The peer BeanContext we are supplying an implementation for, if null the this 
-       object is its own peer 
+    peer - The peer BeanContext we are supplying an implementation for, if null the this object is its own peer 
     lcle - The current Locale for this BeanContext. 
     dtime - The initial state, true if in design mode, false if runtime. 
 
@@ -160,8 +133,7 @@ public BeanContextServicesSupport(
 
 Construct a BeanContextServicesSupport instance 
 
-    peer - The peer BeanContext we are supplying an implementation for, if null the this 
-       object is its own peer 
+    peer - The peer BeanContext we are supplying an implementation for, if null the this object is its own peer 
     lcle - The current Locale for this BeanContext. 
     dtime - The initial state, true if in design mode, false if runtime. 
     visible - The initial visibility. 
@@ -173,6 +145,7 @@ public void addBeanContextServicesListener(java.beans.beancontext.BeanContextSer
 add a BeanContextServicesListener 
 
 
+
 *java.beans.beancontext.BeanContextServicesSupport.addService(Class,BeanContextServiceProvider)*
 
 public boolean addService(
@@ -180,6 +153,7 @@ public boolean addService(
   java.beans.beancontext.BeanContextServiceProvider bcsp)
 
 add a service 
+
 
 
 *java.beans.beancontext.BeanContextServicesSupport.addService(Class,BeanContextServiceProvider,boolean)*
@@ -192,21 +166,19 @@ protected boolean addService(
 add a service 
 
 
+
 *java.beans.beancontext.BeanContextServicesSupport.bcsPreDeserializationHook(ObjectInputStream)*
 
 protected synchronized void bcsPreDeserializationHook(java.io.ObjectInputStream ois)
   throws |java.lang.ClassNotFoundException|
          |java.io.IOException|
          
-called from BeanContextSupport readObject before it deserializes the children 
-... 
+called from BeanContextSupport readObject before it deserializes the children ... 
 
-This class will deserialize any Serializable BeanContextServiceProviders 
-serialized earlier thus making them available to the children when they 
-deserialized. 
+This class will deserialize any Serializable BeanContextServiceProviders serialized earlier thus making them available to the children when they deserialized. 
 
-subclasses may envelope this method to insert their own serialization 
-processing that has to occur prior to serialization of the children 
+subclasses may envelope this method to insert their own serialization processing that has to occur prior to serialization of the children 
+
 
 
 *java.beans.beancontext.BeanContextServicesSupport.bcsPreSerializationHook(ObjectOutputStream)*
@@ -214,13 +186,12 @@ processing that has to occur prior to serialization of the children
 protected synchronized void bcsPreSerializationHook(java.io.ObjectOutputStream oos)
   throws |java.io.IOException|
          
-called from BeanContextSupport writeObject before it serializes the children 
-... 
+called from BeanContextSupport writeObject before it serializes the children ... 
 
 This class will serialize any Serializable BeanContextServiceProviders herein. 
 
-subclasses may envelope this method to insert their own serialization 
-processing that has to occur prior to serialization of the children 
+subclasses may envelope this method to insert their own serialization processing that has to occur prior to serialization of the children 
+
 
 
 *java.beans.beancontext.BeanContextServicesSupport.childJustRemovedHook(Object,BeanContextSupport.BCSChild)*
@@ -229,14 +200,12 @@ protected void childJustRemovedHook(
   java.lang.Object child,
   java.beans.beancontext.BeanContextSupport.BCSChild bcsc)
 
-called from superclass child removal operations after a child has been 
-successfully removed. called with child synchronized. 
+called from superclass child removal operations after a child has been successfully removed. called with child synchronized. 
 
-This subclass uses this hook to immediately revoke any services being used by 
-this child if it is a BeanContextChild. 
+This subclass uses this hook to immediately revoke any services being used by this child if it is a BeanContextChild. 
 
-subclasses may envelope this method in order to implement their own child 
-removal side-effects. 
+subclasses may envelope this method in order to implement their own child removal side-effects. 
+
 
 
 *java.beans.beancontext.BeanContextServicesSupport.createBCSChild(Object,Object)*
@@ -245,9 +214,8 @@ protected |java.beans.beancontext.BeanContextSupport.BCSChild| createBCSChild(
   java.lang.Object targetChild,
   java.lang.Object peer)
 
-Subclasses can override this method to insert their own subclass of Child 
-without having to override add() or the other Collection methods that add 
-children to the set. 
+Subclasses can override this method to insert their own subclass of Child without having to override add() or the other Collection methods that add children to the set. 
+
 
     targetChild - the child to create the Child on behalf of 
     peer - the peer if the targetChild and peer are related by BeanContextProxy 
@@ -258,17 +226,16 @@ protected |java.beans.beancontext.BeanContextServicesSupport.BCSSServiceProvider
   java.lang.Class sc,
   java.beans.beancontext.BeanContextServiceProvider bcsp)
 
-subclasses can override this method to create new subclasses of 
-BCSSServiceProvider without having to overrride addService() in order to 
-instantiate. 
+subclasses can override this method to create new subclasses of BCSSServiceProvider without having to overrride addService() in order to instantiate. 
+
 
 
 *java.beans.beancontext.BeanContextServicesSupport.fireServiceAdded(BeanContextServiceAvailableEvent)*
 
 protected final void fireServiceAdded(java.beans.beancontext.BeanContextServiceAvailableEvent bcssae)
 
-Fires a BeanContextServiceAvailableEvent indicating that a new service has 
-become available. 
+Fires a BeanContextServiceAvailableEvent indicating that a new service has become available. 
+
 
     bcssae - the BeanContextServiceAvailableEvent 
 
@@ -279,11 +246,13 @@ protected final void fireServiceAdded(java.lang.Class serviceClass)
 Fires a BeanContextServiceEvent notifying of a new service. 
 
 
+
 *java.beans.beancontext.BeanContextServicesSupport.fireServiceRevoked(BeanContextServiceRevokedEvent)*
 
 protected final void fireServiceRevoked(java.beans.beancontext.BeanContextServiceRevokedEvent bcsre)
 
 Fires a BeanContextServiceEvent notifying of a service being revoked. 
+
 
     bcsre - the BeanContextServiceRevokedEvent 
 
@@ -293,8 +262,8 @@ protected final void fireServiceRevoked(
   java.lang.Class serviceClass,
   boolean revokeNow)
 
-Fires a BeanContextServiceRevokedEvent indicating that a particular service is 
-no longer available. 
+Fires a BeanContextServiceRevokedEvent indicating that a particular service is no longer available. 
+
 
 
 *java.beans.beancontext.BeanContextServicesSupport.getBeanContextServicesPeer()*
@@ -304,16 +273,20 @@ public |java.beans.beancontext.BeanContextServices| getBeanContextServicesPeer()
 Gets the BeanContextServices associated with this BeanContextServicesSupport. 
 
 
+
     Returns: the instance of BeanContext this object is providing the implementation for. 
+
 *java.beans.beancontext.BeanContextServicesSupport.getChildBeanContextServicesListener(Object)*
 
 protected static final |java.beans.beancontext.BeanContextServicesListener| getChildBeanContextServicesListener(java.lang.Object child)
 
 Gets the BeanContextServicesListener (if any) of the specified child. 
 
+
     child - the specified child 
 
     Returns: the BeanContextServicesListener (if any) of the specified child 
+
 *java.beans.beancontext.BeanContextServicesSupport.getCurrentServiceClasses()*
 
 public |java.util.Iterator| getCurrentServiceClasses()
@@ -321,7 +294,9 @@ public |java.util.Iterator| getCurrentServiceClasses()
 
 
 
+
     Returns: an iterator for all the currently registered service classes. 
+
 *java.beans.beancontext.BeanContextServicesSupport.getCurrentServiceSelectors(Class)*
 
 public |java.util.Iterator| getCurrentServiceSelectors(java.lang.Class serviceClass)
@@ -329,8 +304,9 @@ public |java.util.Iterator| getCurrentServiceSelectors(java.lang.Class serviceCl
 
 
 
-    Returns: an iterator for all the currently available service selectors (if any) 
-             available for the specified service. 
+
+    Returns: an iterator for all the currently available service selectors (if any) available for the specified service. 
+
 *java.beans.beancontext.BeanContextServicesSupport.getService(BeanContextChild,Object,Class,Object,BeanContextServiceRevokedListener)*
 
 public |java.lang.Object| getService(
@@ -344,6 +320,7 @@ public |java.lang.Object| getService(
 obtain a service which may be delegated 
 
 
+
 *java.beans.beancontext.BeanContextServicesSupport.hasService(Class)*
 
 public synchronized boolean hasService(java.lang.Class serviceClass)
@@ -351,37 +328,37 @@ public synchronized boolean hasService(java.lang.Class serviceClass)
 has a service, which may be delegated 
 
 
+
 *java.beans.beancontext.BeanContextServicesSupport.initialize()*
 
 public void initialize()
 
-called by BeanContextSupport superclass during construction and deserialization 
-to initialize subclass transient state. 
+called by BeanContextSupport superclass during construction and deserialization to initialize subclass transient state. 
 
-subclasses may envelope this method, but should not override it or call it 
-directly. 
+subclasses may envelope this method, but should not override it or call it directly. 
+
 
 
 *java.beans.beancontext.BeanContextServicesSupport.initializeBeanContextResources()*
 
 protected synchronized void initializeBeanContextResources()
 
-called from setBeanContext to notify a BeanContextChild to allocate resources 
-obtained from the nesting BeanContext. 
+called from setBeanContext to notify a BeanContextChild to allocate resources obtained from the nesting BeanContext. 
 
 subclasses may envelope this method to implement their own semantics. 
+
 
 
 *java.beans.beancontext.BeanContextServicesSupport.releaseBeanContextResources()*
 
 protected synchronized void releaseBeanContextResources()
 
-called from setBeanContext to notify a BeanContextChild to release resources 
-obtained from the nesting BeanContext. 
+called from setBeanContext to notify a BeanContextChild to release resources obtained from the nesting BeanContext. 
 
 This method revokes any services obtained from its parent. 
 
 subclasses may envelope this method to implement their own semantics. 
+
 
 
 *java.beans.beancontext.BeanContextServicesSupport.releaseService(BeanContextChild,Object,Object)*
@@ -394,11 +371,13 @@ public void releaseService(
 release a service 
 
 
+
 *java.beans.beancontext.BeanContextServicesSupport.removeBeanContextServicesListener(BeanContextServicesListener)*
 
 public void removeBeanContextServicesListener(java.beans.beancontext.BeanContextServicesListener bcsl)
 
 remove a BeanContextServicesListener 
+
 
 
 *java.beans.beancontext.BeanContextServicesSupport.revokeService(Class,BeanContextServiceProvider,boolean)*
@@ -411,28 +390,27 @@ public void revokeService(
 remove a service 
 
 
+
 *java.beans.beancontext.BeanContextServicesSupport.serviceAvailable(BeanContextServiceAvailableEvent)*
 
 public void serviceAvailable(java.beans.beancontext.BeanContextServiceAvailableEvent bcssae)
 
-BeanContextServicesListener callback, propagates event to all currently 
-registered listeners and BeanContextServices children, if this 
-BeanContextService does not already implement this service itself. 
+BeanContextServicesListener callback, propagates event to all currently registered listeners and BeanContextServices children, if this BeanContextService does not already 
+implement this service itself. 
 
-subclasses may override or envelope this method to implement their own 
-propagation semantics. 
+subclasses may override or envelope this method to implement their own propagation semantics. 
+
 
 
 *java.beans.beancontext.BeanContextServicesSupport.serviceRevoked(BeanContextServiceRevokedEvent)*
 
 public void serviceRevoked(java.beans.beancontext.BeanContextServiceRevokedEvent bcssre)
 
-BeanContextServicesListener callback, propagates event to all currently 
-registered listeners and BeanContextServices children, if this 
-BeanContextService does not already implement this service itself. 
+BeanContextServicesListener callback, propagates event to all currently registered listeners and BeanContextServices children, if this BeanContextService does not already 
+implement this service itself. 
 
-subclasses may override or envelope this method to implement their own 
-propagation semantics. 
+subclasses may override or envelope this method to implement their own propagation semantics. 
+
 
 
 

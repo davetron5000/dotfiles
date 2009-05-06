@@ -1,4 +1,6 @@
-*javax.imageio.ImageTypeSpecifier* *ImageTypeSpecifier* A class that allows the 
+*javax.imageio.ImageTypeSpecifier* *ImageTypeSpecifier* A class that allows the format of an image (in particular, its
+ SampleModel and ColorModel) to be
+ specified in a convenient
 
 public class ImageTypeSpecifier
   extends    |java.lang.Object|
@@ -8,52 +10,50 @@ public class ImageTypeSpecifier
 |javax.imageio.ImageTypeSpecifier_Constructors|
 |javax.imageio.ImageTypeSpecifier_Methods|
 
-================================================================================
+====================================================================================================================================================================================
 
 *javax.imageio.ImageTypeSpecifier_Fields*
 |java.awt.image.ColorModel_javax.imageio.ImageTypeSpecifier.colorModel|
 |java.awt.image.SampleModel_javax.imageio.ImageTypeSpecifier.sampleModel|
 
 *javax.imageio.ImageTypeSpecifier_Constructors*
-|javax.imageio.ImageTypeSpecifier(ColorModel,SampleModel)|Constructs an ImageTy
-|javax.imageio.ImageTypeSpecifier(RenderedImage)|Constructs an ImageTypeSpecifi
+|javax.imageio.ImageTypeSpecifier(ColorModel,SampleModel)|Constructs an ImageTypeSpecifier directly  from a ColorModel and a SampleModel.
+|javax.imageio.ImageTypeSpecifier(RenderedImage)|Constructs an ImageTypeSpecifier from a  RenderedImage.
 
 *javax.imageio.ImageTypeSpecifier_Methods*
-|javax.imageio.ImageTypeSpecifier.createBanded(ColorSpace,int[],int[],int,boolean,boolean)|
-|javax.imageio.ImageTypeSpecifier.createBufferedImage(int,int)|Creates a Buffer
-|javax.imageio.ImageTypeSpecifier.createFromBufferedImageType(int)|Returns an I
-|javax.imageio.ImageTypeSpecifier.createFromRenderedImage(RenderedImage)|Return
-|javax.imageio.ImageTypeSpecifier.createGrayscale(int,int,boolean)|Returns a sp
-|javax.imageio.ImageTypeSpecifier.createGrayscale(int,int,boolean,boolean)|Retu
-|javax.imageio.ImageTypeSpecifier.createIndexed(byte[],byte[],byte[],byte[],int,int)|
-|javax.imageio.ImageTypeSpecifier.createInterleaved(ColorSpace,int[],int,boolean,boolean)|
-|javax.imageio.ImageTypeSpecifier.createPacked(ColorSpace,int,int,int,int,int,boolean)|
-|javax.imageio.ImageTypeSpecifier.equals(Object)|Returns true if the given Obje
-|javax.imageio.ImageTypeSpecifier.getBitsPerBand(int)|Return the number of bits
-|javax.imageio.ImageTypeSpecifier.getBufferedImageType()|Returns an int contain
-|javax.imageio.ImageTypeSpecifier.getColorModel()|Returns the ColorModel specif
-|javax.imageio.ImageTypeSpecifier.getNumBands()|Return the number of bands   sp
-|javax.imageio.ImageTypeSpecifier.getNumComponents()|Return the number of color
-|javax.imageio.ImageTypeSpecifier.getSampleModel()|Returns a SampleModel based 
-|javax.imageio.ImageTypeSpecifier.getSampleModel(int,int)|Returns a SampleModel
-|javax.imageio.ImageTypeSpecifier.hashCode()|Returns the hash code for this Ima
+|javax.imageio.ImageTypeSpecifier.createBanded(ColorSpace,int[],int[],int,boolean,boolean)|Returns a specifier for a banded image format that will use a  ComponentColorModel and a
+|javax.imageio.ImageTypeSpecifier.createBufferedImage(int,int)|Creates a BufferedImage with a given width and  height according to the specification embodied in this object.
+|javax.imageio.ImageTypeSpecifier.createFromBufferedImageType(int)|Returns an ImageTypeSpecifier that encodes  one of the standard BufferedImage types  (other than TYPE_CUSTOM).
+|javax.imageio.ImageTypeSpecifier.createFromRenderedImage(RenderedImage)|Returns an ImageTypeSpecifier that encodes the  layout of a RenderedImage (which may be a  BufferedImage).
+|javax.imageio.ImageTypeSpecifier.createGrayscale(int,int,boolean)|Returns a specifier for a grayscale image format that will pack  pixels of the given bit depth into array elemen
+|javax.imageio.ImageTypeSpecifier.createGrayscale(int,int,boolean,boolean)|Returns a specifier for a grayscale plus alpha image format  that will pack pixels of the given bit dept
+|javax.imageio.ImageTypeSpecifier.createIndexed(byte[],byte[],byte[],byte[],int,int)|Returns a specifier for an indexed-color image format that will pack  index values of the give
+|javax.imageio.ImageTypeSpecifier.createInterleaved(ColorSpace,int[],int,boolean,boolean)|Returns a specifier for an interleaved image format that will  use a ComponentColorModel 
+|javax.imageio.ImageTypeSpecifier.createPacked(ColorSpace,int,int,int,int,int,boolean)|Returns a specifier for a packed image format that will use a  DirectColorModel and a packed
+|javax.imageio.ImageTypeSpecifier.equals(Object)|Returns true if the given Object is  an ImageTypeSpecifier and has a  SampleModel and ColorModel that are  equal to those of this 
+|javax.imageio.ImageTypeSpecifier.getBitsPerBand(int)|Return the number of bits used to represent samples of the given band.
+|javax.imageio.ImageTypeSpecifier.getBufferedImageType()|Returns an int containing one of the enumerated constant values  describing image formats from BufferedImage.
+|javax.imageio.ImageTypeSpecifier.getColorModel()|Returns the ColorModel specified by this object.
+|javax.imageio.ImageTypeSpecifier.getNumBands()|Return the number of bands   specified by this object.
+|javax.imageio.ImageTypeSpecifier.getNumComponents()|Return the number of color components   specified by this object.
+|javax.imageio.ImageTypeSpecifier.getSampleModel()|Returns a SampleModel based on the settings  encapsulated within this object.
+|javax.imageio.ImageTypeSpecifier.getSampleModel(int,int)|Returns a SampleModel based on the settings  encapsulated within this object.
+|javax.imageio.ImageTypeSpecifier.hashCode()|Returns the hash code for this ImageTypeSpecifier.
 
 *javax.imageio.ImageTypeSpecifier_Description*
 
-A class that allows the format of an image (in particular, its SampleModel and 
-ColorModel) to be specified in a convenient manner. 
+A class that allows the format of an image (in particular, its SampleModel and ColorModel) to be specified in a convenient manner. 
+
 
 
 *java.awt.image.ColorModel_javax.imageio.ImageTypeSpecifier.colorModel*
 
-A class that allows the format of an image (in particular, its SampleModel and 
-ColorModel) to be specified in a convenient manner. 
+The ColorModel to be used as a prototype. 
 
 
 *java.awt.image.SampleModel_javax.imageio.ImageTypeSpecifier.sampleModel*
 
-A class that allows the format of an image (in particular, its SampleModel and 
-ColorModel) to be specified in a convenient manner. 
+A SampleModel to be used as a prototype. 
 
 
 
@@ -63,8 +63,7 @@ public ImageTypeSpecifier(
   java.awt.image.ColorModel colorModel,
   java.awt.image.SampleModel sampleModel)
 
-Constructs an ImageTypeSpecifier directly from a ColorModel and a SampleModel. 
-It is the caller's responsibility to supply compatible parameters. 
+Constructs an ImageTypeSpecifier directly from a ColorModel and a SampleModel. It is the caller's responsibility to supply compatible parameters. 
 
     colorModel - a ColorModel. 
     sampleModel - a SampleModel. 
@@ -73,10 +72,8 @@ It is the caller's responsibility to supply compatible parameters.
 
 public ImageTypeSpecifier(java.awt.image.RenderedImage image)
 
-Constructs an ImageTypeSpecifier from a RenderedImage. If a BufferedImage is 
-being used, one of the factory methods createFromRenderedImage or 
-createFromBufferedImageType should be used instead in order to get a more 
-accurate result. 
+Constructs an ImageTypeSpecifier from a RenderedImage. If a BufferedImage is being used, one of the factory methods createFromRenderedImage or createFromBufferedImageType should 
+be used instead in order to get a more accurate result. 
 
     image - a RenderedImage. 
 
@@ -90,9 +87,8 @@ public static |javax.imageio.ImageTypeSpecifier| createBanded(
   boolean hasAlpha,
   boolean isAlphaPremultiplied)
 
-Returns a specifier for a banded image format that will use a 
-ComponentColorModel and a BandedSampleModel to store each channel in a separate 
-array. 
+Returns a specifier for a banded image format that will use a ComponentColorModel and a BandedSampleModel to store each channel in a separate array. 
+
 
     colorSpace - the desired ColorSpace. 
     bankIndices - an array of ints indicating the bank in which each band will be stored. 
@@ -102,39 +98,43 @@ array.
     isAlphaPremultiplied - true if the color channels will be premultipled by the alpha channel. 
 
     Returns: an ImageTypeSpecifier with the desired characteristics. 
+
 *javax.imageio.ImageTypeSpecifier.createBufferedImage(int,int)*
 
 public |java.awt.image.BufferedImage| createBufferedImage(
   int width,
   int height)
 
-Creates a BufferedImage with a given width and height according to the 
-specification embodied in this object. 
+Creates a BufferedImage with a given width and height according to the specification embodied in this object. 
+
 
     width - the desired width of the returned BufferedImage. 
     height - the desired height of the returned BufferedImage. 
 
     Returns: a new BufferedImage 
+
 *javax.imageio.ImageTypeSpecifier.createFromBufferedImageType(int)*
 
 public static |javax.imageio.ImageTypeSpecifier| createFromBufferedImageType(int bufferedImageType)
 
-Returns an ImageTypeSpecifier that encodes one of the standard BufferedImage 
-types (other than TYPE_CUSTOM). 
+Returns an ImageTypeSpecifier that encodes one of the standard BufferedImage types (other than TYPE_CUSTOM). 
+
 
     bufferedImageType - an int representing one of the standard BufferedImage types. 
 
     Returns: an ImageTypeSpecifier with the desired characteristics. 
+
 *javax.imageio.ImageTypeSpecifier.createFromRenderedImage(RenderedImage)*
 
 public static |javax.imageio.ImageTypeSpecifier| createFromRenderedImage(java.awt.image.RenderedImage image)
 
-Returns an ImageTypeSpecifier that encodes the layout of a RenderedImage (which 
-may be a BufferedImage). 
+Returns an ImageTypeSpecifier that encodes the layout of a RenderedImage (which may be a BufferedImage). 
+
 
     image - a RenderedImage. 
 
     Returns: an ImageTypeSpecifier with the desired characteristics. 
+
 *javax.imageio.ImageTypeSpecifier.createGrayscale(int,int,boolean)*
 
 public static |javax.imageio.ImageTypeSpecifier| createGrayscale(
@@ -142,14 +142,15 @@ public static |javax.imageio.ImageTypeSpecifier| createGrayscale(
   int dataType,
   boolean isSigned)
 
-Returns a specifier for a grayscale image format that will pack pixels of the 
-given bit depth into array elements of the specified data type. 
+Returns a specifier for a grayscale image format that will pack pixels of the given bit depth into array elements of the specified data type. 
+
 
     bits - the number of bits per gray value (1, 2, 4, 8, or 16). 
     dataType - the desired data type, as one of the enumerations from the DataBuffer class. 
     isSigned - true if negative values are to be represented. 
 
     Returns: an ImageTypeSpecifier with the desired characteristics. 
+
 *javax.imageio.ImageTypeSpecifier.createGrayscale(int,int,boolean,boolean)*
 
 public static |javax.imageio.ImageTypeSpecifier| createGrayscale(
@@ -158,8 +159,8 @@ public static |javax.imageio.ImageTypeSpecifier| createGrayscale(
   boolean isSigned,
   boolean isAlphaPremultiplied)
 
-Returns a specifier for a grayscale plus alpha image format that will pack 
-pixels of the given bit depth into array elements of the specified data type. 
+Returns a specifier for a grayscale plus alpha image format that will pack pixels of the given bit depth into array elements of the specified data type. 
+
 
     bits - the number of bits per gray value (1, 2, 4, 8, or 16). 
     dataType - the desired data type, as one of the enumerations from the DataBuffer class. 
@@ -167,6 +168,7 @@ pixels of the given bit depth into array elements of the specified data type.
     isAlphaPremultiplied - true if the luminance channel will be premultipled by the alpha channel. 
 
     Returns: an ImageTypeSpecifier with the desired characteristics. 
+
 *javax.imageio.ImageTypeSpecifier.createIndexed(byte[],byte[],byte[],byte[],int,int)*
 
 public static |javax.imageio.ImageTypeSpecifier| createIndexed(
@@ -177,18 +179,18 @@ public static |javax.imageio.ImageTypeSpecifier| createIndexed(
   int bits,
   int dataType)
 
-Returns a specifier for an indexed-color image format that will pack index 
-values of the given bit depth into array elements of the specified data type. 
+Returns a specifier for an indexed-color image format that will pack index values of the given bit depth into array elements of the specified data type. 
+
 
     redLUT - an array of bytes containing the red values for each index. 
     greenLUT - an array of bytes containing * the green values for each index. 
     blueLUT - an array of bytes containing the blue values for each index. 
-    alphaLUT - an array of bytes containing the alpha values for each index, or null to create 
-       a fully opaque LUT. 
+    alphaLUT - an array of bytes containing the alpha values for each index, or null to create a fully opaque LUT. 
     bits - the number of bits in each index. 
     dataType - the desired output type, as one of the enumerations from the DataBuffer class. 
 
     Returns: an ImageTypeSpecifier with the desired characteristics. 
+
 *javax.imageio.ImageTypeSpecifier.createInterleaved(ColorSpace,int[],int,boolean,boolean)*
 
 public static |javax.imageio.ImageTypeSpecifier| createInterleaved(
@@ -198,9 +200,9 @@ public static |javax.imageio.ImageTypeSpecifier| createInterleaved(
   boolean hasAlpha,
   boolean isAlphaPremultiplied)
 
-Returns a specifier for an interleaved image format that will use a 
-ComponentColorModel and a PixelInterleavedSampleModel to store each pixel 
-component in a separate byte, short, or int. 
+Returns a specifier for an interleaved image format that will use a ComponentColorModel and a PixelInterleavedSampleModel to store each pixel component in a separate byte, short, 
+or int. 
+
 
     colorSpace - the desired ColorSpace. 
     bandOffsets - an array of ints indicating the offsets for each band. 
@@ -209,6 +211,7 @@ component in a separate byte, short, or int.
     isAlphaPremultiplied - true if the color channels will be premultipled by the alpha channel. 
 
     Returns: an ImageTypeSpecifier with the desired characteristics. 
+
 *javax.imageio.ImageTypeSpecifier.createPacked(ColorSpace,int,int,int,int,int,boolean)*
 
 public static |javax.imageio.ImageTypeSpecifier| createPacked(
@@ -220,9 +223,8 @@ public static |javax.imageio.ImageTypeSpecifier| createPacked(
   int transferType,
   boolean isAlphaPremultiplied)
 
-Returns a specifier for a packed image format that will use a DirectColorModel 
-and a packed SampleModel to store each pixel packed into in a single byte, 
-short, or int. 
+Returns a specifier for a packed image format that will use a DirectColorModel and a packed SampleModel to store each pixel packed into in a single byte, short, or int. 
+
 
     colorSpace - the desired ColorSpace. 
     redMask - a contiguous mask indicated the position of the red channel. 
@@ -233,34 +235,39 @@ short, or int.
     isAlphaPremultiplied - true if the color channels will be premultipled by the alpha channel. 
 
     Returns: an ImageTypeSpecifier with the desired characteristics. 
+
 *javax.imageio.ImageTypeSpecifier.equals(Object)*
 
 public boolean equals(java.lang.Object o)
 
-Returns true if the given Object is an ImageTypeSpecifier and has a SampleModel 
-and ColorModel that are equal to those of this object. 
+Returns true if the given Object is an ImageTypeSpecifier and has a SampleModel and ColorModel that are equal to those of this object. 
+
 
     o - the Object to be compared for equality. 
 
     Returns: true if the given object is an equivalent ImageTypeSpecifier. 
+
 *javax.imageio.ImageTypeSpecifier.getBitsPerBand(int)*
 
 public int getBitsPerBand(int band)
 
 Return the number of bits used to represent samples of the given band. 
 
+
     band - the index of the band to be queried, as an int. 
 
     Returns: an int specifying a number of bits. 
+
 *javax.imageio.ImageTypeSpecifier.getBufferedImageType()*
 
 public int getBufferedImageType()
 
-Returns an int containing one of the enumerated constant values describing 
-image formats from BufferedImage. 
+Returns an int containing one of the enumerated constant values describing image formats from BufferedImage. 
+
 
 
     Returns: an int representing a BufferedImage type. 
+
 *javax.imageio.ImageTypeSpecifier.getColorModel()*
 
 public |java.awt.image.ColorModel| getColorModel()
@@ -268,47 +275,53 @@ public |java.awt.image.ColorModel| getColorModel()
 Returns the ColorModel specified by this object. 
 
 
+
     Returns: a ColorModel. 
+
 *javax.imageio.ImageTypeSpecifier.getNumBands()*
 
 public int getNumBands()
 
-Return the number of bands specified by this object. This is the same value as 
-returned by SampleModel.getNumBands 
+Return the number of bands specified by this object. This is the same value as returned by SampleModel.getNumBands 
+
 
 
     Returns: the number of bands in the image. 
+
 *javax.imageio.ImageTypeSpecifier.getNumComponents()*
 
 public int getNumComponents()
 
-Return the number of color components specified by this object. This is the 
-same value as returned by ColorModel.getNumComponents 
+Return the number of color components specified by this object. This is the same value as returned by ColorModel.getNumComponents 
+
 
 
     Returns: the number of components in the image. 
+
 *javax.imageio.ImageTypeSpecifier.getSampleModel()*
 
 public |java.awt.image.SampleModel| getSampleModel()
 
-Returns a SampleModel based on the settings encapsulated within this object. 
-The width and height of the SampleModel will be set to arbitrary values. 
+Returns a SampleModel based on the settings encapsulated within this object. The width and height of the SampleModel will be set to arbitrary values. 
+
 
 
     Returns: a SampleModel with arbitrary dimensions. 
+
 *javax.imageio.ImageTypeSpecifier.getSampleModel(int,int)*
 
 public |java.awt.image.SampleModel| getSampleModel(
   int width,
   int height)
 
-Returns a SampleModel based on the settings encapsulated within this object. 
-The width and height of the SampleModel will be set to the supplied values. 
+Returns a SampleModel based on the settings encapsulated within this object. The width and height of the SampleModel will be set to the supplied values. 
+
 
     width - the desired width of the returned SampleModel. 
     height - the desired height of the returned SampleModel. 
 
     Returns: a SampleModel with the given dimensions. 
+
 *javax.imageio.ImageTypeSpecifier.hashCode()*
 
 public int hashCode()
@@ -316,5 +329,7 @@ public int hashCode()
 Returns the hash code for this ImageTypeSpecifier. 
 
 
+
     Returns: a hash code for this ImageTypeSpecifier 
+
 

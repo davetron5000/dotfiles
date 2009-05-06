@@ -1,4 +1,4 @@
-*javax.swing.plaf.basic.BasicSpinnerUI* *BasicSpinnerUI* The default Spinner UI 
+*javax.swing.plaf.basic.BasicSpinnerUI* *BasicSpinnerUI* The default Spinner UI delegate.
 
 public class BasicSpinnerUI
   extends    |javax.swing.plaf.SpinnerUI|
@@ -8,7 +8,7 @@ public class BasicSpinnerUI
 |javax.swing.plaf.basic.BasicSpinnerUI_Constructors|
 |javax.swing.plaf.basic.BasicSpinnerUI_Methods|
 
-================================================================================
+====================================================================================================================================================================================
 
 *javax.swing.plaf.basic.BasicSpinnerUI_Fields*
 |javax.swing.JSpinner_javax.swing.plaf.basic.BasicSpinnerUI.spinner|
@@ -17,31 +17,32 @@ public class BasicSpinnerUI
 |javax.swing.plaf.basic.BasicSpinnerUI()|
 
 *javax.swing.plaf.basic.BasicSpinnerUI_Methods*
-|javax.swing.plaf.basic.BasicSpinnerUI.createEditor()|This method is called by 
-|javax.swing.plaf.basic.BasicSpinnerUI.createLayout()|Create a LayoutManager th
-|javax.swing.plaf.basic.BasicSpinnerUI.createNextButton()|Create a component th
-|javax.swing.plaf.basic.BasicSpinnerUI.createPreviousButton()|Create a componen
-|javax.swing.plaf.basic.BasicSpinnerUI.createPropertyChangeListener()|Create a 
-|javax.swing.plaf.basic.BasicSpinnerUI.createUI(JComponent)|Returns a new insta
-|javax.swing.plaf.basic.BasicSpinnerUI.installDefaults()|Initialize the JSpinne
-|javax.swing.plaf.basic.BasicSpinnerUI.installKeyboardActions()|Installs the ke
-|javax.swing.plaf.basic.BasicSpinnerUI.installListeners()|Initializes PropertyC
-|javax.swing.plaf.basic.BasicSpinnerUI.installNextButtonListeners(Component)|In
-|javax.swing.plaf.basic.BasicSpinnerUI.installPreviousButtonListeners(Component)|
-|javax.swing.plaf.basic.BasicSpinnerUI.installUI(JComponent)|Calls installDefau
-|javax.swing.plaf.basic.BasicSpinnerUI.replaceEditor(JComponent,JComponent)|Cal
-|javax.swing.plaf.basic.BasicSpinnerUI.uninstallDefaults()|Sets the JSpinner's 
-|javax.swing.plaf.basic.BasicSpinnerUI.uninstallListeners()|Removes the Propert
-|javax.swing.plaf.basic.BasicSpinnerUI.uninstallUI(JComponent)|Calls uninstallD
+|javax.swing.plaf.basic.BasicSpinnerUI.createEditor()|This method is called by installUI to get the editor component  of the JSpinner.
+|javax.swing.plaf.basic.BasicSpinnerUI.createLayout()|Create a LayoutManager that manages the editor,   nextButton, and previousButton   children of the JSpinner.
+|javax.swing.plaf.basic.BasicSpinnerUI.createNextButton()|Create a component that will replace the spinner models value  with the object returned by spinner.getNextValue.
+|javax.swing.plaf.basic.BasicSpinnerUI.createPreviousButton()|Create a component that will replace the spinner models value  with the object returned by spinner.getPreviousValue.
+|javax.swing.plaf.basic.BasicSpinnerUI.createPropertyChangeListener()|Create a PropertyChangeListener that can be  added to the JSpinner itself.
+|javax.swing.plaf.basic.BasicSpinnerUI.createUI(JComponent)|Returns a new instance of BasicSpinnerUI.
+|javax.swing.plaf.basic.BasicSpinnerUI.installDefaults()|Initialize the JSpinner border,   foreground, and background, properties   based on the corresponding "Spinner.*" properti
+|javax.swing.plaf.basic.BasicSpinnerUI.installKeyboardActions()|Installs the keyboard Actions onto the JSpinner.
+|javax.swing.plaf.basic.BasicSpinnerUI.installListeners()|Initializes PropertyChangeListener with   a shared object that delegates interesting PropertyChangeEvents  to protected m
+|javax.swing.plaf.basic.BasicSpinnerUI.installNextButtonListeners(Component)|Installs the necessary listeners on the next button, c,  to update the JSpinner in response to a user 
+|javax.swing.plaf.basic.BasicSpinnerUI.installPreviousButtonListeners(Component)|Installs the necessary listeners on the previous button, c,  to update the JSpinner in response to
+|javax.swing.plaf.basic.BasicSpinnerUI.installUI(JComponent)|Calls installDefaults, installListeners,  and then adds the components returned by createNextButton,  createPreviousBu
+|javax.swing.plaf.basic.BasicSpinnerUI.replaceEditor(JComponent,JComponent)|Called by the PropertyChangeListener when the   JSpinner editor property changes.
+|javax.swing.plaf.basic.BasicSpinnerUI.uninstallDefaults()|Sets the JSpinner's layout manager to null.
+|javax.swing.plaf.basic.BasicSpinnerUI.uninstallListeners()|Removes the PropertyChangeListener added  by installListeners.
+|javax.swing.plaf.basic.BasicSpinnerUI.uninstallUI(JComponent)|Calls uninstallDefaults, uninstallListeners,  and then removes all of the spinners children.
 
 *javax.swing.plaf.basic.BasicSpinnerUI_Description*
 
 The default Spinner UI delegate. 
 
 
+
 *javax.swing.JSpinner_javax.swing.plaf.basic.BasicSpinnerUI.spinner*
 
-The default Spinner UI delegate. 
+The spinner that we're a UI delegate for. Initialized by the installUI method, and reset to null by uninstallUI. 
 
 
 
@@ -56,88 +57,81 @@ public BasicSpinnerUI()
 
 protected |javax.swing.JComponent| createEditor()
 
-This method is called by installUI to get the editor component of the JSpinner. 
-By default it just returns JSpinner.getEditor(). Subclasses can override 
-createEditor to return a component that contains the spinner's editor or null, 
-if they're going to handle adding the editor to the JSpinner in an installUI 
-override. 
+This method is called by installUI to get the editor component of the JSpinner. By default it just returns JSpinner.getEditor(). Subclasses can override createEditor to return a 
+component that contains the spinner's editor or null, if they're going to handle adding the editor to the JSpinner in an installUI override. 
 
-Typically this method would be overridden to wrap the editor with a container 
-with a custom border, since one can't assume that the editors border can be set 
-directly. 
+Typically this method would be overridden to wrap the editor with a container with a custom border, since one can't assume that the editors border can be set directly. 
 
-The replaceEditor method is called when the spinners editor is changed with 
-JSpinner.setEditor. If you've overriden this method, then you'll probably want 
-to override replaceEditor as well. 
+The replaceEditor method is called when the spinners editor is changed with JSpinner.setEditor. If you've overriden this method, then you'll probably want to override 
+replaceEditor as well. 
+
 
 
     Returns: the JSpinners editor JComponent, spinner.getEditor() by default 
+
 *javax.swing.plaf.basic.BasicSpinnerUI.createLayout()*
 
 protected |java.awt.LayoutManager| createLayout()
 
-Create a LayoutManager that manages the editor, nextButton, and previousButton 
-children of the JSpinner. These three children must be added with a constraint 
-that identifies their role: "Editor", "Next", and "Previous". The default 
-layout manager can handle the absence of any of these children. 
+Create a LayoutManager that manages the editor, nextButton, and previousButton children of the JSpinner. These three children must be added with a constraint that identifies their 
+role: "Editor", "Next", and "Previous". The default layout manager can handle the absence of any of these children. 
+
 
 
     Returns: a LayoutManager for the editor, next button, and previous button. 
+
 *javax.swing.plaf.basic.BasicSpinnerUI.createNextButton()*
 
 protected |java.awt.Component| createNextButton()
 
-Create a component that will replace the spinner models value with the object 
-returned by spinner.getNextValue. By default the nextButton is a JButton who's 
-ActionListener updates it's JSpinner ancestors model. If a nextButton isn't 
-needed (in a subclass) then override this method to return null. 
+Create a component that will replace the spinner models value with the object returned by spinner.getNextValue. By default the nextButton is a JButton who's ActionListener updates 
+it's JSpinner ancestors model. If a nextButton isn't needed (in a subclass) then override this method to return null. 
 
 
-    Returns: a component that will replace the spinners model with the next value in the 
-             sequence, or null 
+
+    Returns: a component that will replace the spinners model with the next value in the sequence, or null 
+
 *javax.swing.plaf.basic.BasicSpinnerUI.createPreviousButton()*
 
 protected |java.awt.Component| createPreviousButton()
 
-Create a component that will replace the spinner models value with the object 
-returned by spinner.getPreviousValue. By default the previousButton is a 
-JButton. This method invokes installPreviousButtonListeners to install the 
-necessary listeners to update the JSpinner's model in response to a user 
-gesture. If a previousButton isn't needed (in a subclass) then override this 
-method to return null. 
+Create a component that will replace the spinner models value with the object returned by spinner.getPreviousValue. By default the previousButton is a JButton. This method invokes 
+installPreviousButtonListeners to install the necessary listeners to update the JSpinner's model in response to a user gesture. If a previousButton isn't needed (in a subclass) 
+then override this method to return null. 
 
 
-    Returns: a component that will replace the spinners model with the next value in the 
-             sequence, or null 
+
+    Returns: a component that will replace the spinners model with the next value in the sequence, or null 
+
 *javax.swing.plaf.basic.BasicSpinnerUI.createPropertyChangeListener()*
 
 protected |java.beans.PropertyChangeListener| createPropertyChangeListener()
 
-Create a PropertyChangeListener that can be added to the JSpinner itself. 
-Typically, this listener will call replaceEditor when the "editor" property 
-changes, since it's the SpinnerUI's responsibility to add the editor to the 
-JSpinner (and remove the old one). This method is called by installListeners. 
+Create a PropertyChangeListener that can be added to the JSpinner itself. Typically, this listener will call replaceEditor when the "editor" property changes, since it's the 
+SpinnerUI's responsibility to add the editor to the JSpinner (and remove the old one). This method is called by installListeners. 
+
 
 
     Returns: A PropertyChangeListener for the JSpinner itself 
+
 *javax.swing.plaf.basic.BasicSpinnerUI.createUI(JComponent)*
 
 public static |javax.swing.plaf.ComponentUI| createUI(javax.swing.JComponent c)
 
-Returns a new instance of BasicSpinnerUI. SpinnerListUI delegates are allocated 
-one per JSpinner. 
+Returns a new instance of BasicSpinnerUI. SpinnerListUI delegates are allocated one per JSpinner. 
+
 
     c - the JSpinner (not used) 
 
     Returns: a new BasicSpinnerUI object 
+
 *javax.swing.plaf.basic.BasicSpinnerUI.installDefaults()*
 
 protected void installDefaults()
 
-Initialize the JSpinner border, foreground, and background, properties based on 
-the corresponding "Spinner.*" properties from defaults table. The JSpinners 
-layout is set to the value returned by createLayout. This method is called by 
-installUI. 
+Initialize the JSpinner border, foreground, and background, properties based on the corresponding "Spinner.*" properties from defaults table. The JSpinners layout is set to the 
+value returned by createLayout. This method is called by installUI. 
+
 
 
 *javax.swing.plaf.basic.BasicSpinnerUI.installKeyboardActions()*
@@ -147,22 +141,23 @@ protected void installKeyboardActions()
 Installs the keyboard Actions onto the JSpinner. 
 
 
+
 *javax.swing.plaf.basic.BasicSpinnerUI.installListeners()*
 
 protected void installListeners()
 
-Initializes PropertyChangeListener with a shared object that delegates 
-interesting PropertyChangeEvents to protected methods. 
+Initializes PropertyChangeListener with a shared object that delegates interesting PropertyChangeEvents to protected methods. 
 
 This method is called by installUI. 
+
 
 
 *javax.swing.plaf.basic.BasicSpinnerUI.installNextButtonListeners(Component)*
 
 protected void installNextButtonListeners(java.awt.Component c)
 
-Installs the necessary listeners on the next button, c, to update the JSpinner 
-in response to a user gesture. 
+Installs the necessary listeners on the next button, c, to update the JSpinner in response to a user gesture. 
+
 
     c - Component to install the listeners on 
 
@@ -170,8 +165,8 @@ in response to a user gesture.
 
 protected void installPreviousButtonListeners(java.awt.Component c)
 
-Installs the necessary listeners on the previous button, c, to update the 
-JSpinner in response to a user gesture. 
+Installs the necessary listeners on the previous button, c, to update the JSpinner in response to a user gesture. 
+
 
     c - Component to install the listeners on. 
 
@@ -179,8 +174,8 @@ JSpinner in response to a user gesture.
 
 public void installUI(javax.swing.JComponent c)
 
-Calls installDefaults, installListeners, and then adds the components returned 
-by createNextButton, createPreviousButton, and createEditor. 
+Calls installDefaults, installListeners, and then adds the components returned by createNextButton, createPreviousButton, and createEditor. 
+
 
     c - the JSpinner 
 
@@ -190,22 +185,21 @@ protected void replaceEditor(
   javax.swing.JComponent oldEditor,
   javax.swing.JComponent newEditor)
 
-Called by the PropertyChangeListener when the JSpinner editor property changes. 
-It's the responsibility of this method to remove the old editor and add the new 
-one. By default this operation is just: 
+Called by the PropertyChangeListener when the JSpinner editor property changes. It's the responsibility of this method to remove the old editor and add the new one. By default 
+this operation is just: 
 
 spinner.remove(oldEditor); spinner.add(newEditor, "Editor"); 
 
-The implementation of replaceEditor should be coordinated with the createEditor 
-method. 
+The implementation of replaceEditor should be coordinated with the createEditor method. 
+
 
 
 *javax.swing.plaf.basic.BasicSpinnerUI.uninstallDefaults()*
 
 protected void uninstallDefaults()
 
-Sets the JSpinner's layout manager to null. This method is called by 
-uninstallUI. 
+Sets the JSpinner's layout manager to null. This method is called by uninstallUI. 
+
 
 
 *javax.swing.plaf.basic.BasicSpinnerUI.uninstallListeners()*
@@ -217,12 +211,13 @@ Removes the PropertyChangeListener added by installListeners.
 This method is called by uninstallUI. 
 
 
+
 *javax.swing.plaf.basic.BasicSpinnerUI.uninstallUI(JComponent)*
 
 public void uninstallUI(javax.swing.JComponent c)
 
-Calls uninstallDefaults, uninstallListeners, and then removes all of the 
-spinners children. 
+Calls uninstallDefaults, uninstallListeners, and then removes all of the spinners children. 
+
 
     c - the JSpinner (not used) 
 

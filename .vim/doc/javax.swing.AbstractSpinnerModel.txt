@@ -1,4 +1,5 @@
-*javax.swing.AbstractSpinnerModel* *AbstractSpinnerModel* This class provides th
+*javax.swing.AbstractSpinnerModel* *AbstractSpinnerModel* This class provides the ChangeListener part of the 
+ SpinnerModel interface that should be suitable for most concrete Spin
 
 public abstract class AbstractSpinnerModel
   extends    |java.lang.Object|
@@ -9,7 +10,7 @@ public abstract class AbstractSpinnerModel
 |javax.swing.AbstractSpinnerModel_Constructors|
 |javax.swing.AbstractSpinnerModel_Methods|
 
-================================================================================
+====================================================================================================================================================================================
 
 *javax.swing.AbstractSpinnerModel_Fields*
 |javax.swing.event.EventListenerList_javax.swing.AbstractSpinnerModel.listenerList|
@@ -18,26 +19,22 @@ public abstract class AbstractSpinnerModel
 |javax.swing.AbstractSpinnerModel()|
 
 *javax.swing.AbstractSpinnerModel_Methods*
-|javax.swing.AbstractSpinnerModel.addChangeListener(ChangeListener)|Adds a Chan
-|javax.swing.AbstractSpinnerModel.fireStateChanged()|Run each ChangeListeners s
-|javax.swing.AbstractSpinnerModel.getChangeListeners()|Returns an array of all 
-|javax.swing.AbstractSpinnerModel.getListeners(Class)|Return an array of all th
-|javax.swing.AbstractSpinnerModel.removeChangeListener(ChangeListener)|Removes 
+|javax.swing.AbstractSpinnerModel.addChangeListener(ChangeListener)|Adds a ChangeListener to the model's listener list.
+|javax.swing.AbstractSpinnerModel.fireStateChanged()|Run each ChangeListeners stateChanged() method.
+|javax.swing.AbstractSpinnerModel.getChangeListeners()|Returns an array of all the ChangeListeners added  to this AbstractSpinnerModel with addChangeListener().
+|javax.swing.AbstractSpinnerModel.getListeners(Class<T>)|Return an array of all the listeners of the given type that   were added to this model.
+|javax.swing.AbstractSpinnerModel.removeChangeListener(ChangeListener)|Removes a ChangeListener from the model's listener list.
 
 *javax.swing.AbstractSpinnerModel_Description*
 
-This class provides the ChangeListener part of the SpinnerModel interface that 
-should be suitable for most concrete SpinnerModel implementations. Subclasses 
-must provide an implementation of the minimum, maximum, and value properties 
-and the getNextValue and getPreviousValue methods. 
+This class provides the ChangeListener part of the SpinnerModel interface that should be suitable for most concrete SpinnerModel implementations. Subclasses must provide an 
+implementation of the minimum, maximum, and value properties and the getNextValue and getPreviousValue methods. 
+
 
 
 *javax.swing.event.EventListenerList_javax.swing.AbstractSpinnerModel.listenerList*
 
-This class provides the ChangeListener part of the SpinnerModel interface that 
-should be suitable for most concrete SpinnerModel implementations. Subclasses 
-must provide an implementation of the minimum, maximum, and value properties 
-and the getNextValue and getPreviousValue methods. 
+The list of ChangeListeners for this model. Subclasses may store their own listeners here. 
 
 
 
@@ -52,8 +49,8 @@ public AbstractSpinnerModel()
 
 public void addChangeListener(javax.swing.event.ChangeListener l)
 
-Adds a ChangeListener to the model's listener list. The ChangeListeners must be 
-notified when the models value changes. 
+Adds a ChangeListener to the model's listener list. The ChangeListeners must be notified when the models value changes. 
+
 
     l - the ChangeListener to add 
 
@@ -64,33 +61,36 @@ protected void fireStateChanged()
 Run each ChangeListeners stateChanged() method. 
 
 
+
 *javax.swing.AbstractSpinnerModel.getChangeListeners()*
 
-public |javax.swing.event.ChangeListener| getChangeListeners()
+public |javax.swing.event.ChangeListener|[] getChangeListeners()
 
-Returns an array of all the ChangeListeners added to this AbstractSpinnerModel 
-with addChangeListener(). 
+Returns an array of all the ChangeListeners added to this AbstractSpinnerModel with addChangeListener(). 
 
 
-    Returns: all of the ChangeListeners added or an empty array if no listeners have been 
-             added 
-*javax.swing.AbstractSpinnerModel.getListeners(Class)*
 
-public |java.util.EventListener| getListeners(java.lang.Class listenerType)
+    Returns: all of the ChangeListeners added or an empty array if no listeners have been added 
 
-Return an array of all the listeners of the given type that were added to this 
-model. For example to find all of the ChangeListeners added to this model: 
+*javax.swing.AbstractSpinnerModel.getListeners(Class<T>)*
+
+public |T|[] getListeners(java.lang.Class<T> listenerType)
+
+Return an array of all the listeners of the given type that were added to this model. For example to find all of the ChangeListeners added to this model: 
 
 myAbstractSpinnerModel.getListeners(ChangeListener.class); 
+
 
     listenerType - the type of listeners to return, e.g. ChangeListener.class 
 
     Returns: all of the objects receiving listenerType notifications from this model 
+
 *javax.swing.AbstractSpinnerModel.removeChangeListener(ChangeListener)*
 
 public void removeChangeListener(javax.swing.event.ChangeListener l)
 
 Removes a ChangeListener from the model's listener list. 
+
 
     l - the ChangeListener to remove 
 

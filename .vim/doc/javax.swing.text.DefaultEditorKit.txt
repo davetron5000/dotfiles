@@ -1,4 +1,6 @@
-*javax.swing.text.DefaultEditorKit* *DefaultEditorKit* This is the set of things
+*javax.swing.text.DefaultEditorKit* *DefaultEditorKit* This is the set of things needed by a text component
+ to be a reasonably functioning editor for some type
+ of text document.
 
 public class DefaultEditorKit
   extends    |javax.swing.text.EditorKit|
@@ -8,7 +10,7 @@ public class DefaultEditorKit
 |javax.swing.text.DefaultEditorKit_Constructors|
 |javax.swing.text.DefaultEditorKit_Methods|
 
-================================================================================
+====================================================================================================================================================================================
 
 *javax.swing.text.DefaultEditorKit_Fields*
 |java.lang.String_javax.swing.text.DefaultEditorKit.backwardAction|
@@ -63,1310 +65,267 @@ public class DefaultEditorKit
 |javax.swing.text.DefaultEditorKit()|default constructor for DefaultEditorKit
 
 *javax.swing.text.DefaultEditorKit_Methods*
-|javax.swing.text.DefaultEditorKit.createCaret()|Fetches a caret that can navig
-|javax.swing.text.DefaultEditorKit.createDefaultDocument()|Creates an uninitial
-|javax.swing.text.DefaultEditorKit.getActions()|Fetches the set of commands tha
-|javax.swing.text.DefaultEditorKit.getContentType()|Gets the MIME type of the d
-|javax.swing.text.DefaultEditorKit.getViewFactory()|Fetches a factory that is s
-|javax.swing.text.DefaultEditorKit.read(InputStream,Document,int)|Inserts conte
-|javax.swing.text.DefaultEditorKit.read(Reader,Document,int)|Inserts content fr
-|javax.swing.text.DefaultEditorKit.write(OutputStream,Document,int,int)|Writes 
-|javax.swing.text.DefaultEditorKit.write(Writer,Document,int,int)|Writes conten
+|javax.swing.text.DefaultEditorKit.createCaret()|Fetches a caret that can navigate through views  produced by the associated ViewFactory.
+|javax.swing.text.DefaultEditorKit.createDefaultDocument()|Creates an uninitialized text storage model (PlainDocument)  that is appropriate for this type of editor.
+|javax.swing.text.DefaultEditorKit.getActions()|Fetches the set of commands that can be used  on a text component that is using a model and  view produced by this kit.
+|javax.swing.text.DefaultEditorKit.getContentType()|Gets the MIME type of the data that this  kit represents support for.
+|javax.swing.text.DefaultEditorKit.getViewFactory()|Fetches a factory that is suitable for producing   views of any models that are produced by this  kit.
+|javax.swing.text.DefaultEditorKit.read(InputStream,Document,int)|Inserts content from the given stream which is expected   to be in a format appropriate for this kind of content 
+|javax.swing.text.DefaultEditorKit.read(Reader,Document,int)|Inserts content from the given stream, which will be   treated as plain text.
+|javax.swing.text.DefaultEditorKit.write(OutputStream,Document,int,int)|Writes content from a document to the given stream  in a format appropriate for this kind of content handle
+|javax.swing.text.DefaultEditorKit.write(Writer,Document,int,int)|Writes content from a document to the given stream  as plain text.
 
 *javax.swing.text.DefaultEditorKit_Description*
 
-This is the set of things needed by a text component to be a reasonably 
-functioning editor for some type of text document. This implementation provides 
-a default implementation which treats text as plain text and provides a minimal 
-set of actions for a simple editor. 
+This is the set of things needed by a text component to be a reasonably functioning editor for some type of text document. This implementation provides a default implementation 
+which treats text as plain text and provides a minimal set of actions for a simple editor. 
 
 Newlines 
 
-There are two properties which deal with newlines. The system property, 
-line.separator, is defined to be platform-dependent, either "\n", "\r", or 
-"\r\n". There is also a property defined in DefaultEditorKit, called 
-EndOfLineStringProperty, which is defined automatically when a document is 
-loaded, to be the first occurrence of any of the newline characters. When a 
-document is loaded, EndOfLineStringProperty is set appropriately, and when the 
-document is written back out, the EndOfLineStringProperty is used. But while 
-the document is in memory, the "\n" character is used to define a newline, 
-regardless of how the newline is defined when the document is on disk. 
-Therefore, for searching purposes, "\n" should always be used. When a new 
-document is created, and the EndOfLineStringProperty has not been defined, it 
-will use the System property when writing out the document. Note that 
-EndOfLineStringProperty is set on the Document using the get/setProperty 
-methods. Subclasses may override this behavior. 
+There are two properties which deal with newlines. The system property, line.separator, is defined to be platform-dependent, either "\n", "\r", or "\r\n". There is also a property 
+defined in DefaultEditorKit, called EndOfLineStringProperty, which is defined automatically when a document is loaded, to be the first occurrence of any of the newline characters. 
+When a document is loaded, EndOfLineStringProperty is set appropriately, and when the document is written back out, the EndOfLineStringProperty is used. But while the document is 
+in memory, the "\n" character is used to define a newline, regardless of how the newline is defined when the document is on disk. Therefore, for searching purposes, "\n" should 
+always be used. When a new document is created, and the EndOfLineStringProperty has not been defined, it will use the System property when writing out the document. Note that 
+EndOfLineStringProperty is set on the Document using the get/setProperty methods. Subclasses may override this behavior. 
+
 
 
 
 
 *java.lang.String_javax.swing.text.DefaultEditorKit.backwardAction*
 
-This is the set of things needed by a text component to be a reasonably 
-functioning editor for some type of text document. This implementation provides 
-a default implementation which treats text as plain text and provides a minimal 
-set of actions for a simple editor. 
-
-Newlines 
-
-There are two properties which deal with newlines. The system property, 
-line.separator, is defined to be platform-dependent, either "\n", "\r", or 
-"\r\n". There is also a property defined in DefaultEditorKit, called 
-EndOfLineStringProperty, which is defined automatically when a document is 
-loaded, to be the first occurrence of any of the newline characters. When a 
-document is loaded, EndOfLineStringProperty is set appropriately, and when the 
-document is written back out, the EndOfLineStringProperty is used. But while 
-the document is in memory, the "\n" character is used to define a newline, 
-regardless of how the newline is defined when the document is on disk. 
-Therefore, for searching purposes, "\n" should always be used. When a new 
-document is created, and the EndOfLineStringProperty has not been defined, it 
-will use the System property when writing out the document. Note that 
-EndOfLineStringProperty is set on the Document using the get/setProperty 
-methods. Subclasses may override this behavior. 
-
-
+Name of the Action for moving the caret logically backward one position. 
 
 
 *java.lang.String_javax.swing.text.DefaultEditorKit.beepAction*
 
-This is the set of things needed by a text component to be a reasonably 
-functioning editor for some type of text document. This implementation provides 
-a default implementation which treats text as plain text and provides a minimal 
-set of actions for a simple editor. 
-
-Newlines 
-
-There are two properties which deal with newlines. The system property, 
-line.separator, is defined to be platform-dependent, either "\n", "\r", or 
-"\r\n". There is also a property defined in DefaultEditorKit, called 
-EndOfLineStringProperty, which is defined automatically when a document is 
-loaded, to be the first occurrence of any of the newline characters. When a 
-document is loaded, EndOfLineStringProperty is set appropriately, and when the 
-document is written back out, the EndOfLineStringProperty is used. But while 
-the document is in memory, the "\n" character is used to define a newline, 
-regardless of how the newline is defined when the document is on disk. 
-Therefore, for searching purposes, "\n" should always be used. When a new 
-document is created, and the EndOfLineStringProperty has not been defined, it 
-will use the System property when writing out the document. Note that 
-EndOfLineStringProperty is set on the Document using the get/setProperty 
-methods. Subclasses may override this behavior. 
-
-
+Name of the action to create a beep. 
 
 
 *java.lang.String_javax.swing.text.DefaultEditorKit.beginAction*
 
-This is the set of things needed by a text component to be a reasonably 
-functioning editor for some type of text document. This implementation provides 
-a default implementation which treats text as plain text and provides a minimal 
-set of actions for a simple editor. 
-
-Newlines 
-
-There are two properties which deal with newlines. The system property, 
-line.separator, is defined to be platform-dependent, either "\n", "\r", or 
-"\r\n". There is also a property defined in DefaultEditorKit, called 
-EndOfLineStringProperty, which is defined automatically when a document is 
-loaded, to be the first occurrence of any of the newline characters. When a 
-document is loaded, EndOfLineStringProperty is set appropriately, and when the 
-document is written back out, the EndOfLineStringProperty is used. But while 
-the document is in memory, the "\n" character is used to define a newline, 
-regardless of how the newline is defined when the document is on disk. 
-Therefore, for searching purposes, "\n" should always be used. When a new 
-document is created, and the EndOfLineStringProperty has not been defined, it 
-will use the System property when writing out the document. Note that 
-EndOfLineStringProperty is set on the Document using the get/setProperty 
-methods. Subclasses may override this behavior. 
-
-
+Name of the Action for moving the caret to the beginning of the document. 
 
 
 *java.lang.String_javax.swing.text.DefaultEditorKit.beginLineAction*
 
-This is the set of things needed by a text component to be a reasonably 
-functioning editor for some type of text document. This implementation provides 
-a default implementation which treats text as plain text and provides a minimal 
-set of actions for a simple editor. 
-
-Newlines 
-
-There are two properties which deal with newlines. The system property, 
-line.separator, is defined to be platform-dependent, either "\n", "\r", or 
-"\r\n". There is also a property defined in DefaultEditorKit, called 
-EndOfLineStringProperty, which is defined automatically when a document is 
-loaded, to be the first occurrence of any of the newline characters. When a 
-document is loaded, EndOfLineStringProperty is set appropriately, and when the 
-document is written back out, the EndOfLineStringProperty is used. But while 
-the document is in memory, the "\n" character is used to define a newline, 
-regardless of how the newline is defined when the document is on disk. 
-Therefore, for searching purposes, "\n" should always be used. When a new 
-document is created, and the EndOfLineStringProperty has not been defined, it 
-will use the System property when writing out the document. Note that 
-EndOfLineStringProperty is set on the Document using the get/setProperty 
-methods. Subclasses may override this behavior. 
-
-
+Name of the Action for moving the caret to the beginning of a line. 
 
 
 *java.lang.String_javax.swing.text.DefaultEditorKit.beginParagraphAction*
 
-This is the set of things needed by a text component to be a reasonably 
-functioning editor for some type of text document. This implementation provides 
-a default implementation which treats text as plain text and provides a minimal 
-set of actions for a simple editor. 
-
-Newlines 
-
-There are two properties which deal with newlines. The system property, 
-line.separator, is defined to be platform-dependent, either "\n", "\r", or 
-"\r\n". There is also a property defined in DefaultEditorKit, called 
-EndOfLineStringProperty, which is defined automatically when a document is 
-loaded, to be the first occurrence of any of the newline characters. When a 
-document is loaded, EndOfLineStringProperty is set appropriately, and when the 
-document is written back out, the EndOfLineStringProperty is used. But while 
-the document is in memory, the "\n" character is used to define a newline, 
-regardless of how the newline is defined when the document is on disk. 
-Therefore, for searching purposes, "\n" should always be used. When a new 
-document is created, and the EndOfLineStringProperty has not been defined, it 
-will use the System property when writing out the document. Note that 
-EndOfLineStringProperty is set on the Document using the get/setProperty 
-methods. Subclasses may override this behavior. 
-
-
+Name of the Action for moving the caret to the beginning of a paragraph. 
 
 
 *java.lang.String_javax.swing.text.DefaultEditorKit.beginWordAction*
 
-This is the set of things needed by a text component to be a reasonably 
-functioning editor for some type of text document. This implementation provides 
-a default implementation which treats text as plain text and provides a minimal 
-set of actions for a simple editor. 
-
-Newlines 
-
-There are two properties which deal with newlines. The system property, 
-line.separator, is defined to be platform-dependent, either "\n", "\r", or 
-"\r\n". There is also a property defined in DefaultEditorKit, called 
-EndOfLineStringProperty, which is defined automatically when a document is 
-loaded, to be the first occurrence of any of the newline characters. When a 
-document is loaded, EndOfLineStringProperty is set appropriately, and when the 
-document is written back out, the EndOfLineStringProperty is used. But while 
-the document is in memory, the "\n" character is used to define a newline, 
-regardless of how the newline is defined when the document is on disk. 
-Therefore, for searching purposes, "\n" should always be used. When a new 
-document is created, and the EndOfLineStringProperty has not been defined, it 
-will use the System property when writing out the document. Note that 
-EndOfLineStringProperty is set on the Document using the get/setProperty 
-methods. Subclasses may override this behavior. 
-
-
+Name of the Action for moving the caret to the beginning of a word. 
 
 
 *java.lang.String_javax.swing.text.DefaultEditorKit.copyAction*
 
-This is the set of things needed by a text component to be a reasonably 
-functioning editor for some type of text document. This implementation provides 
-a default implementation which treats text as plain text and provides a minimal 
-set of actions for a simple editor. 
-
-Newlines 
-
-There are two properties which deal with newlines. The system property, 
-line.separator, is defined to be platform-dependent, either "\n", "\r", or 
-"\r\n". There is also a property defined in DefaultEditorKit, called 
-EndOfLineStringProperty, which is defined automatically when a document is 
-loaded, to be the first occurrence of any of the newline characters. When a 
-document is loaded, EndOfLineStringProperty is set appropriately, and when the 
-document is written back out, the EndOfLineStringProperty is used. But while 
-the document is in memory, the "\n" character is used to define a newline, 
-regardless of how the newline is defined when the document is on disk. 
-Therefore, for searching purposes, "\n" should always be used. When a new 
-document is created, and the EndOfLineStringProperty has not been defined, it 
-will use the System property when writing out the document. Note that 
-EndOfLineStringProperty is set on the Document using the get/setProperty 
-methods. Subclasses may override this behavior. 
-
-
+Name of the action to copy the selected region and place the contents into the system clipboard. 
 
 
 *java.lang.String_javax.swing.text.DefaultEditorKit.cutAction*
 
-This is the set of things needed by a text component to be a reasonably 
-functioning editor for some type of text document. This implementation provides 
-a default implementation which treats text as plain text and provides a minimal 
-set of actions for a simple editor. 
-
-Newlines 
-
-There are two properties which deal with newlines. The system property, 
-line.separator, is defined to be platform-dependent, either "\n", "\r", or 
-"\r\n". There is also a property defined in DefaultEditorKit, called 
-EndOfLineStringProperty, which is defined automatically when a document is 
-loaded, to be the first occurrence of any of the newline characters. When a 
-document is loaded, EndOfLineStringProperty is set appropriately, and when the 
-document is written back out, the EndOfLineStringProperty is used. But while 
-the document is in memory, the "\n" character is used to define a newline, 
-regardless of how the newline is defined when the document is on disk. 
-Therefore, for searching purposes, "\n" should always be used. When a new 
-document is created, and the EndOfLineStringProperty has not been defined, it 
-will use the System property when writing out the document. Note that 
-EndOfLineStringProperty is set on the Document using the get/setProperty 
-methods. Subclasses may override this behavior. 
-
-
+Name of the action to cut the selected region and place the contents into the system clipboard. 
 
 
 *java.lang.String_javax.swing.text.DefaultEditorKit.defaultKeyTypedAction*
 
-This is the set of things needed by a text component to be a reasonably 
-functioning editor for some type of text document. This implementation provides 
-a default implementation which treats text as plain text and provides a minimal 
-set of actions for a simple editor. 
-
-Newlines 
-
-There are two properties which deal with newlines. The system property, 
-line.separator, is defined to be platform-dependent, either "\n", "\r", or 
-"\r\n". There is also a property defined in DefaultEditorKit, called 
-EndOfLineStringProperty, which is defined automatically when a document is 
-loaded, to be the first occurrence of any of the newline characters. When a 
-document is loaded, EndOfLineStringProperty is set appropriately, and when the 
-document is written back out, the EndOfLineStringProperty is used. But while 
-the document is in memory, the "\n" character is used to define a newline, 
-regardless of how the newline is defined when the document is on disk. 
-Therefore, for searching purposes, "\n" should always be used. When a new 
-document is created, and the EndOfLineStringProperty has not been defined, it 
-will use the System property when writing out the document. Note that 
-EndOfLineStringProperty is set on the Document using the get/setProperty 
-methods. Subclasses may override this behavior. 
-
-
+Name of the action that is executed by default if a key typed event is received and there is no keymap entry. 
 
 
 *java.lang.String_javax.swing.text.DefaultEditorKit.deleteNextCharAction*
 
-This is the set of things needed by a text component to be a reasonably 
-functioning editor for some type of text document. This implementation provides 
-a default implementation which treats text as plain text and provides a minimal 
-set of actions for a simple editor. 
-
-Newlines 
-
-There are two properties which deal with newlines. The system property, 
-line.separator, is defined to be platform-dependent, either "\n", "\r", or 
-"\r\n". There is also a property defined in DefaultEditorKit, called 
-EndOfLineStringProperty, which is defined automatically when a document is 
-loaded, to be the first occurrence of any of the newline characters. When a 
-document is loaded, EndOfLineStringProperty is set appropriately, and when the 
-document is written back out, the EndOfLineStringProperty is used. But while 
-the document is in memory, the "\n" character is used to define a newline, 
-regardless of how the newline is defined when the document is on disk. 
-Therefore, for searching purposes, "\n" should always be used. When a new 
-document is created, and the EndOfLineStringProperty has not been defined, it 
-will use the System property when writing out the document. Note that 
-EndOfLineStringProperty is set on the Document using the get/setProperty 
-methods. Subclasses may override this behavior. 
-
-
+Name of the action to delete the character of content that follows the current caret position. 
 
 
 *java.lang.String_javax.swing.text.DefaultEditorKit.deletePrevCharAction*
 
-This is the set of things needed by a text component to be a reasonably 
-functioning editor for some type of text document. This implementation provides 
-a default implementation which treats text as plain text and provides a minimal 
-set of actions for a simple editor. 
-
-Newlines 
-
-There are two properties which deal with newlines. The system property, 
-line.separator, is defined to be platform-dependent, either "\n", "\r", or 
-"\r\n". There is also a property defined in DefaultEditorKit, called 
-EndOfLineStringProperty, which is defined automatically when a document is 
-loaded, to be the first occurrence of any of the newline characters. When a 
-document is loaded, EndOfLineStringProperty is set appropriately, and when the 
-document is written back out, the EndOfLineStringProperty is used. But while 
-the document is in memory, the "\n" character is used to define a newline, 
-regardless of how the newline is defined when the document is on disk. 
-Therefore, for searching purposes, "\n" should always be used. When a new 
-document is created, and the EndOfLineStringProperty has not been defined, it 
-will use the System property when writing out the document. Note that 
-EndOfLineStringProperty is set on the Document using the get/setProperty 
-methods. Subclasses may override this behavior. 
-
-
+Name of the action to delete the character of content that precedes the current caret position. 
 
 
 *java.lang.String_javax.swing.text.DefaultEditorKit.downAction*
 
-This is the set of things needed by a text component to be a reasonably 
-functioning editor for some type of text document. This implementation provides 
-a default implementation which treats text as plain text and provides a minimal 
-set of actions for a simple editor. 
-
-Newlines 
-
-There are two properties which deal with newlines. The system property, 
-line.separator, is defined to be platform-dependent, either "\n", "\r", or 
-"\r\n". There is also a property defined in DefaultEditorKit, called 
-EndOfLineStringProperty, which is defined automatically when a document is 
-loaded, to be the first occurrence of any of the newline characters. When a 
-document is loaded, EndOfLineStringProperty is set appropriately, and when the 
-document is written back out, the EndOfLineStringProperty is used. But while 
-the document is in memory, the "\n" character is used to define a newline, 
-regardless of how the newline is defined when the document is on disk. 
-Therefore, for searching purposes, "\n" should always be used. When a new 
-document is created, and the EndOfLineStringProperty has not been defined, it 
-will use the System property when writing out the document. Note that 
-EndOfLineStringProperty is set on the Document using the get/setProperty 
-methods. Subclasses may override this behavior. 
-
-
+Name of the Action for moving the caret logically downward one position. 
 
 
 *java.lang.String_javax.swing.text.DefaultEditorKit.endAction*
 
-This is the set of things needed by a text component to be a reasonably 
-functioning editor for some type of text document. This implementation provides 
-a default implementation which treats text as plain text and provides a minimal 
-set of actions for a simple editor. 
-
-Newlines 
-
-There are two properties which deal with newlines. The system property, 
-line.separator, is defined to be platform-dependent, either "\n", "\r", or 
-"\r\n". There is also a property defined in DefaultEditorKit, called 
-EndOfLineStringProperty, which is defined automatically when a document is 
-loaded, to be the first occurrence of any of the newline characters. When a 
-document is loaded, EndOfLineStringProperty is set appropriately, and when the 
-document is written back out, the EndOfLineStringProperty is used. But while 
-the document is in memory, the "\n" character is used to define a newline, 
-regardless of how the newline is defined when the document is on disk. 
-Therefore, for searching purposes, "\n" should always be used. When a new 
-document is created, and the EndOfLineStringProperty has not been defined, it 
-will use the System property when writing out the document. Note that 
-EndOfLineStringProperty is set on the Document using the get/setProperty 
-methods. Subclasses may override this behavior. 
-
-
+Name of the Action for moving the caret to the end of the document. 
 
 
 *java.lang.String_javax.swing.text.DefaultEditorKit.endLineAction*
 
-This is the set of things needed by a text component to be a reasonably 
-functioning editor for some type of text document. This implementation provides 
-a default implementation which treats text as plain text and provides a minimal 
-set of actions for a simple editor. 
-
-Newlines 
-
-There are two properties which deal with newlines. The system property, 
-line.separator, is defined to be platform-dependent, either "\n", "\r", or 
-"\r\n". There is also a property defined in DefaultEditorKit, called 
-EndOfLineStringProperty, which is defined automatically when a document is 
-loaded, to be the first occurrence of any of the newline characters. When a 
-document is loaded, EndOfLineStringProperty is set appropriately, and when the 
-document is written back out, the EndOfLineStringProperty is used. But while 
-the document is in memory, the "\n" character is used to define a newline, 
-regardless of how the newline is defined when the document is on disk. 
-Therefore, for searching purposes, "\n" should always be used. When a new 
-document is created, and the EndOfLineStringProperty has not been defined, it 
-will use the System property when writing out the document. Note that 
-EndOfLineStringProperty is set on the Document using the get/setProperty 
-methods. Subclasses may override this behavior. 
-
-
+Name of the Action for moving the caret to the end of a line. 
 
 
 *java.lang.String_javax.swing.text.DefaultEditorKit.EndOfLineStringProperty*
 
-This is the set of things needed by a text component to be a reasonably 
-functioning editor for some type of text document. This implementation provides 
-a default implementation which treats text as plain text and provides a minimal 
-set of actions for a simple editor. 
-
-Newlines 
-
-There are two properties which deal with newlines. The system property, 
-line.separator, is defined to be platform-dependent, either "\n", "\r", or 
-"\r\n". There is also a property defined in DefaultEditorKit, called 
-EndOfLineStringProperty, which is defined automatically when a document is 
-loaded, to be the first occurrence of any of the newline characters. When a 
-document is loaded, EndOfLineStringProperty is set appropriately, and when the 
-document is written back out, the EndOfLineStringProperty is used. But while 
-the document is in memory, the "\n" character is used to define a newline, 
-regardless of how the newline is defined when the document is on disk. 
-Therefore, for searching purposes, "\n" should always be used. When a new 
-document is created, and the EndOfLineStringProperty has not been defined, it 
-will use the System property when writing out the document. Note that 
-EndOfLineStringProperty is set on the Document using the get/setProperty 
-methods. Subclasses may override this behavior. 
-
-
+When reading a document if a CRLF is encountered a property with this name is added and the value will be "\r\n". 
 
 
 *java.lang.String_javax.swing.text.DefaultEditorKit.endParagraphAction*
 
-This is the set of things needed by a text component to be a reasonably 
-functioning editor for some type of text document. This implementation provides 
-a default implementation which treats text as plain text and provides a minimal 
-set of actions for a simple editor. 
-
-Newlines 
-
-There are two properties which deal with newlines. The system property, 
-line.separator, is defined to be platform-dependent, either "\n", "\r", or 
-"\r\n". There is also a property defined in DefaultEditorKit, called 
-EndOfLineStringProperty, which is defined automatically when a document is 
-loaded, to be the first occurrence of any of the newline characters. When a 
-document is loaded, EndOfLineStringProperty is set appropriately, and when the 
-document is written back out, the EndOfLineStringProperty is used. But while 
-the document is in memory, the "\n" character is used to define a newline, 
-regardless of how the newline is defined when the document is on disk. 
-Therefore, for searching purposes, "\n" should always be used. When a new 
-document is created, and the EndOfLineStringProperty has not been defined, it 
-will use the System property when writing out the document. Note that 
-EndOfLineStringProperty is set on the Document using the get/setProperty 
-methods. Subclasses may override this behavior. 
-
-
+Name of the Action for moving the caret to the end of a paragraph. 
 
 
 *java.lang.String_javax.swing.text.DefaultEditorKit.endWordAction*
 
-This is the set of things needed by a text component to be a reasonably 
-functioning editor for some type of text document. This implementation provides 
-a default implementation which treats text as plain text and provides a minimal 
-set of actions for a simple editor. 
-
-Newlines 
-
-There are two properties which deal with newlines. The system property, 
-line.separator, is defined to be platform-dependent, either "\n", "\r", or 
-"\r\n". There is also a property defined in DefaultEditorKit, called 
-EndOfLineStringProperty, which is defined automatically when a document is 
-loaded, to be the first occurrence of any of the newline characters. When a 
-document is loaded, EndOfLineStringProperty is set appropriately, and when the 
-document is written back out, the EndOfLineStringProperty is used. But while 
-the document is in memory, the "\n" character is used to define a newline, 
-regardless of how the newline is defined when the document is on disk. 
-Therefore, for searching purposes, "\n" should always be used. When a new 
-document is created, and the EndOfLineStringProperty has not been defined, it 
-will use the System property when writing out the document. Note that 
-EndOfLineStringProperty is set on the Document using the get/setProperty 
-methods. Subclasses may override this behavior. 
-
-
+Name of the Action for moving the caret to the end of a word. 
 
 
 *java.lang.String_javax.swing.text.DefaultEditorKit.forwardAction*
 
-This is the set of things needed by a text component to be a reasonably 
-functioning editor for some type of text document. This implementation provides 
-a default implementation which treats text as plain text and provides a minimal 
-set of actions for a simple editor. 
-
-Newlines 
-
-There are two properties which deal with newlines. The system property, 
-line.separator, is defined to be platform-dependent, either "\n", "\r", or 
-"\r\n". There is also a property defined in DefaultEditorKit, called 
-EndOfLineStringProperty, which is defined automatically when a document is 
-loaded, to be the first occurrence of any of the newline characters. When a 
-document is loaded, EndOfLineStringProperty is set appropriately, and when the 
-document is written back out, the EndOfLineStringProperty is used. But while 
-the document is in memory, the "\n" character is used to define a newline, 
-regardless of how the newline is defined when the document is on disk. 
-Therefore, for searching purposes, "\n" should always be used. When a new 
-document is created, and the EndOfLineStringProperty has not been defined, it 
-will use the System property when writing out the document. Note that 
-EndOfLineStringProperty is set on the Document using the get/setProperty 
-methods. Subclasses may override this behavior. 
-
-
+Name of the Action for moving the caret logically forward one position. 
 
 
 *java.lang.String_javax.swing.text.DefaultEditorKit.insertBreakAction*
 
-This is the set of things needed by a text component to be a reasonably 
-functioning editor for some type of text document. This implementation provides 
-a default implementation which treats text as plain text and provides a minimal 
-set of actions for a simple editor. 
-
-Newlines 
-
-There are two properties which deal with newlines. The system property, 
-line.separator, is defined to be platform-dependent, either "\n", "\r", or 
-"\r\n". There is also a property defined in DefaultEditorKit, called 
-EndOfLineStringProperty, which is defined automatically when a document is 
-loaded, to be the first occurrence of any of the newline characters. When a 
-document is loaded, EndOfLineStringProperty is set appropriately, and when the 
-document is written back out, the EndOfLineStringProperty is used. But while 
-the document is in memory, the "\n" character is used to define a newline, 
-regardless of how the newline is defined when the document is on disk. 
-Therefore, for searching purposes, "\n" should always be used. When a new 
-document is created, and the EndOfLineStringProperty has not been defined, it 
-will use the System property when writing out the document. Note that 
-EndOfLineStringProperty is set on the Document using the get/setProperty 
-methods. Subclasses may override this behavior. 
-
-
+Name of the action to place a line/paragraph break into the document. If there is a selection, it is removed before the break is added. 
 
 
 *java.lang.String_javax.swing.text.DefaultEditorKit.insertContentAction*
 
-This is the set of things needed by a text component to be a reasonably 
-functioning editor for some type of text document. This implementation provides 
-a default implementation which treats text as plain text and provides a minimal 
-set of actions for a simple editor. 
-
-Newlines 
-
-There are two properties which deal with newlines. The system property, 
-line.separator, is defined to be platform-dependent, either "\n", "\r", or 
-"\r\n". There is also a property defined in DefaultEditorKit, called 
-EndOfLineStringProperty, which is defined automatically when a document is 
-loaded, to be the first occurrence of any of the newline characters. When a 
-document is loaded, EndOfLineStringProperty is set appropriately, and when the 
-document is written back out, the EndOfLineStringProperty is used. But while 
-the document is in memory, the "\n" character is used to define a newline, 
-regardless of how the newline is defined when the document is on disk. 
-Therefore, for searching purposes, "\n" should always be used. When a new 
-document is created, and the EndOfLineStringProperty has not been defined, it 
-will use the System property when writing out the document. Note that 
-EndOfLineStringProperty is set on the Document using the get/setProperty 
-methods. Subclasses may override this behavior. 
-
-
+Name of the action to place content into the associated document. If there is a selection, it is removed before the new content is added. 
 
 
 *java.lang.String_javax.swing.text.DefaultEditorKit.insertTabAction*
 
-This is the set of things needed by a text component to be a reasonably 
-functioning editor for some type of text document. This implementation provides 
-a default implementation which treats text as plain text and provides a minimal 
-set of actions for a simple editor. 
-
-Newlines 
-
-There are two properties which deal with newlines. The system property, 
-line.separator, is defined to be platform-dependent, either "\n", "\r", or 
-"\r\n". There is also a property defined in DefaultEditorKit, called 
-EndOfLineStringProperty, which is defined automatically when a document is 
-loaded, to be the first occurrence of any of the newline characters. When a 
-document is loaded, EndOfLineStringProperty is set appropriately, and when the 
-document is written back out, the EndOfLineStringProperty is used. But while 
-the document is in memory, the "\n" character is used to define a newline, 
-regardless of how the newline is defined when the document is on disk. 
-Therefore, for searching purposes, "\n" should always be used. When a new 
-document is created, and the EndOfLineStringProperty has not been defined, it 
-will use the System property when writing out the document. Note that 
-EndOfLineStringProperty is set on the Document using the get/setProperty 
-methods. Subclasses may override this behavior. 
-
-
+Name of the action to place a tab character into the document. If there is a selection, it is removed before the tab is added. 
 
 
 *java.lang.String_javax.swing.text.DefaultEditorKit.nextWordAction*
 
-This is the set of things needed by a text component to be a reasonably 
-functioning editor for some type of text document. This implementation provides 
-a default implementation which treats text as plain text and provides a minimal 
-set of actions for a simple editor. 
-
-Newlines 
-
-There are two properties which deal with newlines. The system property, 
-line.separator, is defined to be platform-dependent, either "\n", "\r", or 
-"\r\n". There is also a property defined in DefaultEditorKit, called 
-EndOfLineStringProperty, which is defined automatically when a document is 
-loaded, to be the first occurrence of any of the newline characters. When a 
-document is loaded, EndOfLineStringProperty is set appropriately, and when the 
-document is written back out, the EndOfLineStringProperty is used. But while 
-the document is in memory, the "\n" character is used to define a newline, 
-regardless of how the newline is defined when the document is on disk. 
-Therefore, for searching purposes, "\n" should always be used. When a new 
-document is created, and the EndOfLineStringProperty has not been defined, it 
-will use the System property when writing out the document. Note that 
-EndOfLineStringProperty is set on the Document using the get/setProperty 
-methods. Subclasses may override this behavior. 
-
-
+Name of the Action for moving the caret to the beginning of the next word. 
 
 
 *java.lang.String_javax.swing.text.DefaultEditorKit.pageDownAction*
 
-This is the set of things needed by a text component to be a reasonably 
-functioning editor for some type of text document. This implementation provides 
-a default implementation which treats text as plain text and provides a minimal 
-set of actions for a simple editor. 
-
-Newlines 
-
-There are two properties which deal with newlines. The system property, 
-line.separator, is defined to be platform-dependent, either "\n", "\r", or 
-"\r\n". There is also a property defined in DefaultEditorKit, called 
-EndOfLineStringProperty, which is defined automatically when a document is 
-loaded, to be the first occurrence of any of the newline characters. When a 
-document is loaded, EndOfLineStringProperty is set appropriately, and when the 
-document is written back out, the EndOfLineStringProperty is used. But while 
-the document is in memory, the "\n" character is used to define a newline, 
-regardless of how the newline is defined when the document is on disk. 
-Therefore, for searching purposes, "\n" should always be used. When a new 
-document is created, and the EndOfLineStringProperty has not been defined, it 
-will use the System property when writing out the document. Note that 
-EndOfLineStringProperty is set on the Document using the get/setProperty 
-methods. Subclasses may override this behavior. 
-
-
+Name of the action to page down vertically. 
 
 
 *java.lang.String_javax.swing.text.DefaultEditorKit.pageUpAction*
 
-This is the set of things needed by a text component to be a reasonably 
-functioning editor for some type of text document. This implementation provides 
-a default implementation which treats text as plain text and provides a minimal 
-set of actions for a simple editor. 
-
-Newlines 
-
-There are two properties which deal with newlines. The system property, 
-line.separator, is defined to be platform-dependent, either "\n", "\r", or 
-"\r\n". There is also a property defined in DefaultEditorKit, called 
-EndOfLineStringProperty, which is defined automatically when a document is 
-loaded, to be the first occurrence of any of the newline characters. When a 
-document is loaded, EndOfLineStringProperty is set appropriately, and when the 
-document is written back out, the EndOfLineStringProperty is used. But while 
-the document is in memory, the "\n" character is used to define a newline, 
-regardless of how the newline is defined when the document is on disk. 
-Therefore, for searching purposes, "\n" should always be used. When a new 
-document is created, and the EndOfLineStringProperty has not been defined, it 
-will use the System property when writing out the document. Note that 
-EndOfLineStringProperty is set on the Document using the get/setProperty 
-methods. Subclasses may override this behavior. 
-
-
+Name of the action to page up vertically. 
 
 
 *java.lang.String_javax.swing.text.DefaultEditorKit.pasteAction*
 
-This is the set of things needed by a text component to be a reasonably 
-functioning editor for some type of text document. This implementation provides 
-a default implementation which treats text as plain text and provides a minimal 
-set of actions for a simple editor. 
-
-Newlines 
-
-There are two properties which deal with newlines. The system property, 
-line.separator, is defined to be platform-dependent, either "\n", "\r", or 
-"\r\n". There is also a property defined in DefaultEditorKit, called 
-EndOfLineStringProperty, which is defined automatically when a document is 
-loaded, to be the first occurrence of any of the newline characters. When a 
-document is loaded, EndOfLineStringProperty is set appropriately, and when the 
-document is written back out, the EndOfLineStringProperty is used. But while 
-the document is in memory, the "\n" character is used to define a newline, 
-regardless of how the newline is defined when the document is on disk. 
-Therefore, for searching purposes, "\n" should always be used. When a new 
-document is created, and the EndOfLineStringProperty has not been defined, it 
-will use the System property when writing out the document. Note that 
-EndOfLineStringProperty is set on the Document using the get/setProperty 
-methods. Subclasses may override this behavior. 
-
-
+Name of the action to paste the contents of the system clipboard into the selected region, or before the caret if nothing is selected. 
 
 
 *java.lang.String_javax.swing.text.DefaultEditorKit.previousWordAction*
 
-This is the set of things needed by a text component to be a reasonably 
-functioning editor for some type of text document. This implementation provides 
-a default implementation which treats text as plain text and provides a minimal 
-set of actions for a simple editor. 
-
-Newlines 
-
-There are two properties which deal with newlines. The system property, 
-line.separator, is defined to be platform-dependent, either "\n", "\r", or 
-"\r\n". There is also a property defined in DefaultEditorKit, called 
-EndOfLineStringProperty, which is defined automatically when a document is 
-loaded, to be the first occurrence of any of the newline characters. When a 
-document is loaded, EndOfLineStringProperty is set appropriately, and when the 
-document is written back out, the EndOfLineStringProperty is used. But while 
-the document is in memory, the "\n" character is used to define a newline, 
-regardless of how the newline is defined when the document is on disk. 
-Therefore, for searching purposes, "\n" should always be used. When a new 
-document is created, and the EndOfLineStringProperty has not been defined, it 
-will use the System property when writing out the document. Note that 
-EndOfLineStringProperty is set on the Document using the get/setProperty 
-methods. Subclasses may override this behavior. 
-
-
+Name of the Action for moving the caret to the beginning of the previous word. 
 
 
 *java.lang.String_javax.swing.text.DefaultEditorKit.readOnlyAction*
 
-This is the set of things needed by a text component to be a reasonably 
-functioning editor for some type of text document. This implementation provides 
-a default implementation which treats text as plain text and provides a minimal 
-set of actions for a simple editor. 
-
-Newlines 
-
-There are two properties which deal with newlines. The system property, 
-line.separator, is defined to be platform-dependent, either "\n", "\r", or 
-"\r\n". There is also a property defined in DefaultEditorKit, called 
-EndOfLineStringProperty, which is defined automatically when a document is 
-loaded, to be the first occurrence of any of the newline characters. When a 
-document is loaded, EndOfLineStringProperty is set appropriately, and when the 
-document is written back out, the EndOfLineStringProperty is used. But while 
-the document is in memory, the "\n" character is used to define a newline, 
-regardless of how the newline is defined when the document is on disk. 
-Therefore, for searching purposes, "\n" should always be used. When a new 
-document is created, and the EndOfLineStringProperty has not been defined, it 
-will use the System property when writing out the document. Note that 
-EndOfLineStringProperty is set on the Document using the get/setProperty 
-methods. Subclasses may override this behavior. 
-
-
+Name of the action to set the editor into read-only mode. 
 
 
 *java.lang.String_javax.swing.text.DefaultEditorKit.selectAllAction*
 
-This is the set of things needed by a text component to be a reasonably 
-functioning editor for some type of text document. This implementation provides 
-a default implementation which treats text as plain text and provides a minimal 
-set of actions for a simple editor. 
-
-Newlines 
-
-There are two properties which deal with newlines. The system property, 
-line.separator, is defined to be platform-dependent, either "\n", "\r", or 
-"\r\n". There is also a property defined in DefaultEditorKit, called 
-EndOfLineStringProperty, which is defined automatically when a document is 
-loaded, to be the first occurrence of any of the newline characters. When a 
-document is loaded, EndOfLineStringProperty is set appropriately, and when the 
-document is written back out, the EndOfLineStringProperty is used. But while 
-the document is in memory, the "\n" character is used to define a newline, 
-regardless of how the newline is defined when the document is on disk. 
-Therefore, for searching purposes, "\n" should always be used. When a new 
-document is created, and the EndOfLineStringProperty has not been defined, it 
-will use the System property when writing out the document. Note that 
-EndOfLineStringProperty is set on the Document using the get/setProperty 
-methods. Subclasses may override this behavior. 
-
-
+Name of the Action for selecting the entire document 
 
 
 *java.lang.String_javax.swing.text.DefaultEditorKit.selectionBackwardAction*
 
-This is the set of things needed by a text component to be a reasonably 
-functioning editor for some type of text document. This implementation provides 
-a default implementation which treats text as plain text and provides a minimal 
-set of actions for a simple editor. 
-
-Newlines 
-
-There are two properties which deal with newlines. The system property, 
-line.separator, is defined to be platform-dependent, either "\n", "\r", or 
-"\r\n". There is also a property defined in DefaultEditorKit, called 
-EndOfLineStringProperty, which is defined automatically when a document is 
-loaded, to be the first occurrence of any of the newline characters. When a 
-document is loaded, EndOfLineStringProperty is set appropriately, and when the 
-document is written back out, the EndOfLineStringProperty is used. But while 
-the document is in memory, the "\n" character is used to define a newline, 
-regardless of how the newline is defined when the document is on disk. 
-Therefore, for searching purposes, "\n" should always be used. When a new 
-document is created, and the EndOfLineStringProperty has not been defined, it 
-will use the System property when writing out the document. Note that 
-EndOfLineStringProperty is set on the Document using the get/setProperty 
-methods. Subclasses may override this behavior. 
-
-
+Name of the Action for extending the selection by moving the caret logically backward one position. 
 
 
 *java.lang.String_javax.swing.text.DefaultEditorKit.selectionBeginAction*
 
-This is the set of things needed by a text component to be a reasonably 
-functioning editor for some type of text document. This implementation provides 
-a default implementation which treats text as plain text and provides a minimal 
-set of actions for a simple editor. 
-
-Newlines 
-
-There are two properties which deal with newlines. The system property, 
-line.separator, is defined to be platform-dependent, either "\n", "\r", or 
-"\r\n". There is also a property defined in DefaultEditorKit, called 
-EndOfLineStringProperty, which is defined automatically when a document is 
-loaded, to be the first occurrence of any of the newline characters. When a 
-document is loaded, EndOfLineStringProperty is set appropriately, and when the 
-document is written back out, the EndOfLineStringProperty is used. But while 
-the document is in memory, the "\n" character is used to define a newline, 
-regardless of how the newline is defined when the document is on disk. 
-Therefore, for searching purposes, "\n" should always be used. When a new 
-document is created, and the EndOfLineStringProperty has not been defined, it 
-will use the System property when writing out the document. Note that 
-EndOfLineStringProperty is set on the Document using the get/setProperty 
-methods. Subclasses may override this behavior. 
-
-
+Name of the Action for moving the caret to the beginning of the document. 
 
 
 *java.lang.String_javax.swing.text.DefaultEditorKit.selectionBeginLineAction*
 
-This is the set of things needed by a text component to be a reasonably 
-functioning editor for some type of text document. This implementation provides 
-a default implementation which treats text as plain text and provides a minimal 
-set of actions for a simple editor. 
-
-Newlines 
-
-There are two properties which deal with newlines. The system property, 
-line.separator, is defined to be platform-dependent, either "\n", "\r", or 
-"\r\n". There is also a property defined in DefaultEditorKit, called 
-EndOfLineStringProperty, which is defined automatically when a document is 
-loaded, to be the first occurrence of any of the newline characters. When a 
-document is loaded, EndOfLineStringProperty is set appropriately, and when the 
-document is written back out, the EndOfLineStringProperty is used. But while 
-the document is in memory, the "\n" character is used to define a newline, 
-regardless of how the newline is defined when the document is on disk. 
-Therefore, for searching purposes, "\n" should always be used. When a new 
-document is created, and the EndOfLineStringProperty has not been defined, it 
-will use the System property when writing out the document. Note that 
-EndOfLineStringProperty is set on the Document using the get/setProperty 
-methods. Subclasses may override this behavior. 
-
-
+Name of the Action for moving the caret to the beginning of a line, extending the selection. 
 
 
 *java.lang.String_javax.swing.text.DefaultEditorKit.selectionBeginParagraphAction*
 
-This is the set of things needed by a text component to be a reasonably 
-functioning editor for some type of text document. This implementation provides 
-a default implementation which treats text as plain text and provides a minimal 
-set of actions for a simple editor. 
-
-Newlines 
-
-There are two properties which deal with newlines. The system property, 
-line.separator, is defined to be platform-dependent, either "\n", "\r", or 
-"\r\n". There is also a property defined in DefaultEditorKit, called 
-EndOfLineStringProperty, which is defined automatically when a document is 
-loaded, to be the first occurrence of any of the newline characters. When a 
-document is loaded, EndOfLineStringProperty is set appropriately, and when the 
-document is written back out, the EndOfLineStringProperty is used. But while 
-the document is in memory, the "\n" character is used to define a newline, 
-regardless of how the newline is defined when the document is on disk. 
-Therefore, for searching purposes, "\n" should always be used. When a new 
-document is created, and the EndOfLineStringProperty has not been defined, it 
-will use the System property when writing out the document. Note that 
-EndOfLineStringProperty is set on the Document using the get/setProperty 
-methods. Subclasses may override this behavior. 
-
-
+Name of the Action for moving the caret to the beginning of a paragraph, extending the selection. 
 
 
 *java.lang.String_javax.swing.text.DefaultEditorKit.selectionBeginWordAction*
 
-This is the set of things needed by a text component to be a reasonably 
-functioning editor for some type of text document. This implementation provides 
-a default implementation which treats text as plain text and provides a minimal 
-set of actions for a simple editor. 
-
-Newlines 
-
-There are two properties which deal with newlines. The system property, 
-line.separator, is defined to be platform-dependent, either "\n", "\r", or 
-"\r\n". There is also a property defined in DefaultEditorKit, called 
-EndOfLineStringProperty, which is defined automatically when a document is 
-loaded, to be the first occurrence of any of the newline characters. When a 
-document is loaded, EndOfLineStringProperty is set appropriately, and when the 
-document is written back out, the EndOfLineStringProperty is used. But while 
-the document is in memory, the "\n" character is used to define a newline, 
-regardless of how the newline is defined when the document is on disk. 
-Therefore, for searching purposes, "\n" should always be used. When a new 
-document is created, and the EndOfLineStringProperty has not been defined, it 
-will use the System property when writing out the document. Note that 
-EndOfLineStringProperty is set on the Document using the get/setProperty 
-methods. Subclasses may override this behavior. 
-
-
+Name of the Action for moving the caret to the beginning of a word, extending the selection. 
 
 
 *java.lang.String_javax.swing.text.DefaultEditorKit.selectionDownAction*
 
-This is the set of things needed by a text component to be a reasonably 
-functioning editor for some type of text document. This implementation provides 
-a default implementation which treats text as plain text and provides a minimal 
-set of actions for a simple editor. 
-
-Newlines 
-
-There are two properties which deal with newlines. The system property, 
-line.separator, is defined to be platform-dependent, either "\n", "\r", or 
-"\r\n". There is also a property defined in DefaultEditorKit, called 
-EndOfLineStringProperty, which is defined automatically when a document is 
-loaded, to be the first occurrence of any of the newline characters. When a 
-document is loaded, EndOfLineStringProperty is set appropriately, and when the 
-document is written back out, the EndOfLineStringProperty is used. But while 
-the document is in memory, the "\n" character is used to define a newline, 
-regardless of how the newline is defined when the document is on disk. 
-Therefore, for searching purposes, "\n" should always be used. When a new 
-document is created, and the EndOfLineStringProperty has not been defined, it 
-will use the System property when writing out the document. Note that 
-EndOfLineStringProperty is set on the Document using the get/setProperty 
-methods. Subclasses may override this behavior. 
-
-
+Name of the Action for moving the caret logically downward one position, extending the selection. 
 
 
 *java.lang.String_javax.swing.text.DefaultEditorKit.selectionEndAction*
 
-This is the set of things needed by a text component to be a reasonably 
-functioning editor for some type of text document. This implementation provides 
-a default implementation which treats text as plain text and provides a minimal 
-set of actions for a simple editor. 
-
-Newlines 
-
-There are two properties which deal with newlines. The system property, 
-line.separator, is defined to be platform-dependent, either "\n", "\r", or 
-"\r\n". There is also a property defined in DefaultEditorKit, called 
-EndOfLineStringProperty, which is defined automatically when a document is 
-loaded, to be the first occurrence of any of the newline characters. When a 
-document is loaded, EndOfLineStringProperty is set appropriately, and when the 
-document is written back out, the EndOfLineStringProperty is used. But while 
-the document is in memory, the "\n" character is used to define a newline, 
-regardless of how the newline is defined when the document is on disk. 
-Therefore, for searching purposes, "\n" should always be used. When a new 
-document is created, and the EndOfLineStringProperty has not been defined, it 
-will use the System property when writing out the document. Note that 
-EndOfLineStringProperty is set on the Document using the get/setProperty 
-methods. Subclasses may override this behavior. 
-
-
+Name of the Action for moving the caret to the end of the document. 
 
 
 *java.lang.String_javax.swing.text.DefaultEditorKit.selectionEndLineAction*
 
-This is the set of things needed by a text component to be a reasonably 
-functioning editor for some type of text document. This implementation provides 
-a default implementation which treats text as plain text and provides a minimal 
-set of actions for a simple editor. 
-
-Newlines 
-
-There are two properties which deal with newlines. The system property, 
-line.separator, is defined to be platform-dependent, either "\n", "\r", or 
-"\r\n". There is also a property defined in DefaultEditorKit, called 
-EndOfLineStringProperty, which is defined automatically when a document is 
-loaded, to be the first occurrence of any of the newline characters. When a 
-document is loaded, EndOfLineStringProperty is set appropriately, and when the 
-document is written back out, the EndOfLineStringProperty is used. But while 
-the document is in memory, the "\n" character is used to define a newline, 
-regardless of how the newline is defined when the document is on disk. 
-Therefore, for searching purposes, "\n" should always be used. When a new 
-document is created, and the EndOfLineStringProperty has not been defined, it 
-will use the System property when writing out the document. Note that 
-EndOfLineStringProperty is set on the Document using the get/setProperty 
-methods. Subclasses may override this behavior. 
-
-
+Name of the Action for moving the caret to the end of a line, extending the selection. 
 
 
 *java.lang.String_javax.swing.text.DefaultEditorKit.selectionEndParagraphAction*
 
-This is the set of things needed by a text component to be a reasonably 
-functioning editor for some type of text document. This implementation provides 
-a default implementation which treats text as plain text and provides a minimal 
-set of actions for a simple editor. 
-
-Newlines 
-
-There are two properties which deal with newlines. The system property, 
-line.separator, is defined to be platform-dependent, either "\n", "\r", or 
-"\r\n". There is also a property defined in DefaultEditorKit, called 
-EndOfLineStringProperty, which is defined automatically when a document is 
-loaded, to be the first occurrence of any of the newline characters. When a 
-document is loaded, EndOfLineStringProperty is set appropriately, and when the 
-document is written back out, the EndOfLineStringProperty is used. But while 
-the document is in memory, the "\n" character is used to define a newline, 
-regardless of how the newline is defined when the document is on disk. 
-Therefore, for searching purposes, "\n" should always be used. When a new 
-document is created, and the EndOfLineStringProperty has not been defined, it 
-will use the System property when writing out the document. Note that 
-EndOfLineStringProperty is set on the Document using the get/setProperty 
-methods. Subclasses may override this behavior. 
-
-
+Name of the Action for moving the caret to the end of a paragraph, extending the selection. 
 
 
 *java.lang.String_javax.swing.text.DefaultEditorKit.selectionEndWordAction*
 
-This is the set of things needed by a text component to be a reasonably 
-functioning editor for some type of text document. This implementation provides 
-a default implementation which treats text as plain text and provides a minimal 
-set of actions for a simple editor. 
-
-Newlines 
-
-There are two properties which deal with newlines. The system property, 
-line.separator, is defined to be platform-dependent, either "\n", "\r", or 
-"\r\n". There is also a property defined in DefaultEditorKit, called 
-EndOfLineStringProperty, which is defined automatically when a document is 
-loaded, to be the first occurrence of any of the newline characters. When a 
-document is loaded, EndOfLineStringProperty is set appropriately, and when the 
-document is written back out, the EndOfLineStringProperty is used. But while 
-the document is in memory, the "\n" character is used to define a newline, 
-regardless of how the newline is defined when the document is on disk. 
-Therefore, for searching purposes, "\n" should always be used. When a new 
-document is created, and the EndOfLineStringProperty has not been defined, it 
-will use the System property when writing out the document. Note that 
-EndOfLineStringProperty is set on the Document using the get/setProperty 
-methods. Subclasses may override this behavior. 
-
-
+Name of the Action for moving the caret to the end of a word, extending the selection. 
 
 
 *java.lang.String_javax.swing.text.DefaultEditorKit.selectionForwardAction*
 
-This is the set of things needed by a text component to be a reasonably 
-functioning editor for some type of text document. This implementation provides 
-a default implementation which treats text as plain text and provides a minimal 
-set of actions for a simple editor. 
-
-Newlines 
-
-There are two properties which deal with newlines. The system property, 
-line.separator, is defined to be platform-dependent, either "\n", "\r", or 
-"\r\n". There is also a property defined in DefaultEditorKit, called 
-EndOfLineStringProperty, which is defined automatically when a document is 
-loaded, to be the first occurrence of any of the newline characters. When a 
-document is loaded, EndOfLineStringProperty is set appropriately, and when the 
-document is written back out, the EndOfLineStringProperty is used. But while 
-the document is in memory, the "\n" character is used to define a newline, 
-regardless of how the newline is defined when the document is on disk. 
-Therefore, for searching purposes, "\n" should always be used. When a new 
-document is created, and the EndOfLineStringProperty has not been defined, it 
-will use the System property when writing out the document. Note that 
-EndOfLineStringProperty is set on the Document using the get/setProperty 
-methods. Subclasses may override this behavior. 
-
-
+Name of the Action for extending the selection by moving the caret logically forward one position. 
 
 
 *java.lang.String_javax.swing.text.DefaultEditorKit.selectionNextWordAction*
 
-This is the set of things needed by a text component to be a reasonably 
-functioning editor for some type of text document. This implementation provides 
-a default implementation which treats text as plain text and provides a minimal 
-set of actions for a simple editor. 
-
-Newlines 
-
-There are two properties which deal with newlines. The system property, 
-line.separator, is defined to be platform-dependent, either "\n", "\r", or 
-"\r\n". There is also a property defined in DefaultEditorKit, called 
-EndOfLineStringProperty, which is defined automatically when a document is 
-loaded, to be the first occurrence of any of the newline characters. When a 
-document is loaded, EndOfLineStringProperty is set appropriately, and when the 
-document is written back out, the EndOfLineStringProperty is used. But while 
-the document is in memory, the "\n" character is used to define a newline, 
-regardless of how the newline is defined when the document is on disk. 
-Therefore, for searching purposes, "\n" should always be used. When a new 
-document is created, and the EndOfLineStringProperty has not been defined, it 
-will use the System property when writing out the document. Note that 
-EndOfLineStringProperty is set on the Document using the get/setProperty 
-methods. Subclasses may override this behavior. 
-
-
+Name of the Action for moving the selection to the beginning of the next word, extending the selection. 
 
 
 *java.lang.String_javax.swing.text.DefaultEditorKit.selectionPreviousWordAction*
 
-This is the set of things needed by a text component to be a reasonably 
-functioning editor for some type of text document. This implementation provides 
-a default implementation which treats text as plain text and provides a minimal 
-set of actions for a simple editor. 
-
-Newlines 
-
-There are two properties which deal with newlines. The system property, 
-line.separator, is defined to be platform-dependent, either "\n", "\r", or 
-"\r\n". There is also a property defined in DefaultEditorKit, called 
-EndOfLineStringProperty, which is defined automatically when a document is 
-loaded, to be the first occurrence of any of the newline characters. When a 
-document is loaded, EndOfLineStringProperty is set appropriately, and when the 
-document is written back out, the EndOfLineStringProperty is used. But while 
-the document is in memory, the "\n" character is used to define a newline, 
-regardless of how the newline is defined when the document is on disk. 
-Therefore, for searching purposes, "\n" should always be used. When a new 
-document is created, and the EndOfLineStringProperty has not been defined, it 
-will use the System property when writing out the document. Note that 
-EndOfLineStringProperty is set on the Document using the get/setProperty 
-methods. Subclasses may override this behavior. 
-
-
+Name of the Action for moving the selection to the beginning of the previous word, extending the selection. 
 
 
 *java.lang.String_javax.swing.text.DefaultEditorKit.selectionUpAction*
 
-This is the set of things needed by a text component to be a reasonably 
-functioning editor for some type of text document. This implementation provides 
-a default implementation which treats text as plain text and provides a minimal 
-set of actions for a simple editor. 
-
-Newlines 
-
-There are two properties which deal with newlines. The system property, 
-line.separator, is defined to be platform-dependent, either "\n", "\r", or 
-"\r\n". There is also a property defined in DefaultEditorKit, called 
-EndOfLineStringProperty, which is defined automatically when a document is 
-loaded, to be the first occurrence of any of the newline characters. When a 
-document is loaded, EndOfLineStringProperty is set appropriately, and when the 
-document is written back out, the EndOfLineStringProperty is used. But while 
-the document is in memory, the "\n" character is used to define a newline, 
-regardless of how the newline is defined when the document is on disk. 
-Therefore, for searching purposes, "\n" should always be used. When a new 
-document is created, and the EndOfLineStringProperty has not been defined, it 
-will use the System property when writing out the document. Note that 
-EndOfLineStringProperty is set on the Document using the get/setProperty 
-methods. Subclasses may override this behavior. 
-
-
+Name of the Action for moving the caret logically upward one position, extending the selection. 
 
 
 *java.lang.String_javax.swing.text.DefaultEditorKit.selectLineAction*
 
-This is the set of things needed by a text component to be a reasonably 
-functioning editor for some type of text document. This implementation provides 
-a default implementation which treats text as plain text and provides a minimal 
-set of actions for a simple editor. 
-
-Newlines 
-
-There are two properties which deal with newlines. The system property, 
-line.separator, is defined to be platform-dependent, either "\n", "\r", or 
-"\r\n". There is also a property defined in DefaultEditorKit, called 
-EndOfLineStringProperty, which is defined automatically when a document is 
-loaded, to be the first occurrence of any of the newline characters. When a 
-document is loaded, EndOfLineStringProperty is set appropriately, and when the 
-document is written back out, the EndOfLineStringProperty is used. But while 
-the document is in memory, the "\n" character is used to define a newline, 
-regardless of how the newline is defined when the document is on disk. 
-Therefore, for searching purposes, "\n" should always be used. When a new 
-document is created, and the EndOfLineStringProperty has not been defined, it 
-will use the System property when writing out the document. Note that 
-EndOfLineStringProperty is set on the Document using the get/setProperty 
-methods. Subclasses may override this behavior. 
-
-
+Name of the Action for selecting a line around the caret. 
 
 
 *java.lang.String_javax.swing.text.DefaultEditorKit.selectParagraphAction*
 
-This is the set of things needed by a text component to be a reasonably 
-functioning editor for some type of text document. This implementation provides 
-a default implementation which treats text as plain text and provides a minimal 
-set of actions for a simple editor. 
-
-Newlines 
-
-There are two properties which deal with newlines. The system property, 
-line.separator, is defined to be platform-dependent, either "\n", "\r", or 
-"\r\n". There is also a property defined in DefaultEditorKit, called 
-EndOfLineStringProperty, which is defined automatically when a document is 
-loaded, to be the first occurrence of any of the newline characters. When a 
-document is loaded, EndOfLineStringProperty is set appropriately, and when the 
-document is written back out, the EndOfLineStringProperty is used. But while 
-the document is in memory, the "\n" character is used to define a newline, 
-regardless of how the newline is defined when the document is on disk. 
-Therefore, for searching purposes, "\n" should always be used. When a new 
-document is created, and the EndOfLineStringProperty has not been defined, it 
-will use the System property when writing out the document. Note that 
-EndOfLineStringProperty is set on the Document using the get/setProperty 
-methods. Subclasses may override this behavior. 
-
-
+Name of the Action for selecting a paragraph around the caret. 
 
 
 *java.lang.String_javax.swing.text.DefaultEditorKit.selectWordAction*
 
-This is the set of things needed by a text component to be a reasonably 
-functioning editor for some type of text document. This implementation provides 
-a default implementation which treats text as plain text and provides a minimal 
-set of actions for a simple editor. 
-
-Newlines 
-
-There are two properties which deal with newlines. The system property, 
-line.separator, is defined to be platform-dependent, either "\n", "\r", or 
-"\r\n". There is also a property defined in DefaultEditorKit, called 
-EndOfLineStringProperty, which is defined automatically when a document is 
-loaded, to be the first occurrence of any of the newline characters. When a 
-document is loaded, EndOfLineStringProperty is set appropriately, and when the 
-document is written back out, the EndOfLineStringProperty is used. But while 
-the document is in memory, the "\n" character is used to define a newline, 
-regardless of how the newline is defined when the document is on disk. 
-Therefore, for searching purposes, "\n" should always be used. When a new 
-document is created, and the EndOfLineStringProperty has not been defined, it 
-will use the System property when writing out the document. Note that 
-EndOfLineStringProperty is set on the Document using the get/setProperty 
-methods. Subclasses may override this behavior. 
-
-
+Name of the Action for selecting a word around the caret. 
 
 
 *java.lang.String_javax.swing.text.DefaultEditorKit.upAction*
 
-This is the set of things needed by a text component to be a reasonably 
-functioning editor for some type of text document. This implementation provides 
-a default implementation which treats text as plain text and provides a minimal 
-set of actions for a simple editor. 
-
-Newlines 
-
-There are two properties which deal with newlines. The system property, 
-line.separator, is defined to be platform-dependent, either "\n", "\r", or 
-"\r\n". There is also a property defined in DefaultEditorKit, called 
-EndOfLineStringProperty, which is defined automatically when a document is 
-loaded, to be the first occurrence of any of the newline characters. When a 
-document is loaded, EndOfLineStringProperty is set appropriately, and when the 
-document is written back out, the EndOfLineStringProperty is used. But while 
-the document is in memory, the "\n" character is used to define a newline, 
-regardless of how the newline is defined when the document is on disk. 
-Therefore, for searching purposes, "\n" should always be used. When a new 
-document is created, and the EndOfLineStringProperty has not been defined, it 
-will use the System property when writing out the document. Note that 
-EndOfLineStringProperty is set on the Document using the get/setProperty 
-methods. Subclasses may override this behavior. 
-
-
+Name of the Action for moving the caret logically upward one position. 
 
 
 *java.lang.String_javax.swing.text.DefaultEditorKit.writableAction*
 
-This is the set of things needed by a text component to be a reasonably 
-functioning editor for some type of text document. This implementation provides 
-a default implementation which treats text as plain text and provides a minimal 
-set of actions for a simple editor. 
-
-Newlines 
-
-There are two properties which deal with newlines. The system property, 
-line.separator, is defined to be platform-dependent, either "\n", "\r", or 
-"\r\n". There is also a property defined in DefaultEditorKit, called 
-EndOfLineStringProperty, which is defined automatically when a document is 
-loaded, to be the first occurrence of any of the newline characters. When a 
-document is loaded, EndOfLineStringProperty is set appropriately, and when the 
-document is written back out, the EndOfLineStringProperty is used. But while 
-the document is in memory, the "\n" character is used to define a newline, 
-regardless of how the newline is defined when the document is on disk. 
-Therefore, for searching purposes, "\n" should always be used. When a new 
-document is created, and the EndOfLineStringProperty has not been defined, it 
-will use the System property when writing out the document. Note that 
-EndOfLineStringProperty is set on the Document using the get/setProperty 
-methods. Subclasses may override this behavior. 
-
-
+Name of the action to set the editor into writeable mode. 
 
 
 
@@ -1381,48 +340,53 @@ default constructor for DefaultEditorKit
 
 public |javax.swing.text.Caret| createCaret()
 
-Fetches a caret that can navigate through views produced by the associated 
-ViewFactory. 
+Fetches a caret that can navigate through views produced by the associated ViewFactory. 
+
 
 
     Returns: 
+
 *javax.swing.text.DefaultEditorKit.createDefaultDocument()*
 
 public |javax.swing.text.Document| createDefaultDocument()
 
-Creates an uninitialized text storage model (PlainDocument) that is appropriate 
-for this type of editor. 
+Creates an uninitialized text storage model (PlainDocument) that is appropriate for this type of editor. 
+
 
 
     Returns: 
+
 *javax.swing.text.DefaultEditorKit.getActions()*
 
-public |javax.swing.Action| getActions()
+public |javax.swing.Action|[] getActions()
 
-Fetches the set of commands that can be used on a text component that is using 
-a model and view produced by this kit. 
+Fetches the set of commands that can be used on a text component that is using a model and view produced by this kit. 
+
 
 
     Returns: the command list 
+
 *javax.swing.text.DefaultEditorKit.getContentType()*
 
 public |java.lang.String| getContentType()
 
-Gets the MIME type of the data that this kit represents support for. The 
-default is text/plain. 
+Gets the MIME type of the data that this kit represents support for. The default is text/plain. 
+
 
 
     Returns: 
+
 *javax.swing.text.DefaultEditorKit.getViewFactory()*
 
 public |javax.swing.text.ViewFactory| getViewFactory()
 
-Fetches a factory that is suitable for producing views of any models that are 
-produced by this kit. The default is to have the UI produce the factory, so 
-this method has no implementation. 
+Fetches a factory that is suitable for producing views of any models that are produced by this kit. The default is to have the UI produce the factory, so this method has no 
+implementation. 
+
 
 
     Returns: the view factory 
+
 *javax.swing.text.DefaultEditorKit.read(InputStream,Document,int)*
 
 public void read(
@@ -1432,8 +396,8 @@ public void read(
   throws |javax.swing.text.BadLocationException|
          |java.io.IOException|
          
-Inserts content from the given stream which is expected to be in a format 
-appropriate for this kind of content handler. 
+Inserts content from the given stream which is expected to be in a format appropriate for this kind of content handler. 
+
 
     in - The stream to read from 
     doc - The destination for the insertion. 
@@ -1450,6 +414,7 @@ public void read(
          
 Inserts content from the given stream, which will be treated as plain text. 
 
+
     in - The stream to read from 
     doc - The destination for the insertion. 
     pos - The location in the document to place the content >= 0. 
@@ -1464,8 +429,8 @@ public void write(
   throws |javax.swing.text.BadLocationException|
          |java.io.IOException|
          
-Writes content from a document to the given stream in a format appropriate for 
-this kind of content handler. 
+Writes content from a document to the given stream in a format appropriate for this kind of content handler. 
+
 
     out - The stream to write to 
     doc - The source for the write. 
@@ -1483,6 +448,7 @@ public void write(
          |java.io.IOException|
          
 Writes content from a document to the given stream as plain text. 
+
 
     out - The stream to write to 
     doc - The source for the write. 

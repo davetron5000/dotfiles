@@ -1,4 +1,5 @@
-*java.util.zip.Deflater* *Deflater* This class provides support for general purp
+*java.util.zip.Deflater* *Deflater* This class provides support for general purpose compression using the
+ popular ZLIB compression library.
 
 public class Deflater
   extends    |java.lang.Object|
@@ -8,7 +9,7 @@ public class Deflater
 |java.util.zip.Deflater_Constructors|
 |java.util.zip.Deflater_Methods|
 
-================================================================================
+====================================================================================================================================================================================
 
 *java.util.zip.Deflater_Fields*
 |int_java.util.zip.Deflater.BEST_COMPRESSION|
@@ -21,272 +22,90 @@ public class Deflater
 |int_java.util.zip.Deflater.NO_COMPRESSION|
 
 *java.util.zip.Deflater_Constructors*
-|java.util.zip.Deflater()|Creates a new compressor with the default compression
-|java.util.zip.Deflater(int)|Creates a new compressor using the specified compr
-|java.util.zip.Deflater(int,boolean)|Creates a new compressor using the specifi
+|java.util.zip.Deflater()|Creates a new compressor with the default compression level.
+|java.util.zip.Deflater(int)|Creates a new compressor using the specified compression level.
+|java.util.zip.Deflater(int,boolean)|Creates a new compressor using the specified compression level.
 
 *java.util.zip.Deflater_Methods*
-|java.util.zip.Deflater.deflate(byte[])|Fills specified buffer with compressed 
-|java.util.zip.Deflater.deflate(byte[],int,int)|Fills specified buffer with com
-|java.util.zip.Deflater.end()|Closes the compressor and discards any unprocesse
-|java.util.zip.Deflater.finalize()|Closes the compressor when garbage is collec
-|java.util.zip.Deflater.finish()|When called, indicates that compression should
-|java.util.zip.Deflater.finished()|Returns true if the end of the compressed da
-|java.util.zip.Deflater.getAdler()|Returns the ADLER-32 value of the uncompress
-|java.util.zip.Deflater.getBytesRead()|Returns the total number of uncompressed
-|java.util.zip.Deflater.getBytesWritten()|Returns the total number of compresse
-|java.util.zip.Deflater.getTotalIn()|Returns the total number of uncompressed b
-|java.util.zip.Deflater.getTotalOut()|Returns the total number of compressed by
-|java.util.zip.Deflater.needsInput()|Returns true if the input data buffer is e
-|java.util.zip.Deflater.reset()|Resets deflater so that a new set of input data
-|java.util.zip.Deflater.setDictionary(byte[])|Sets preset dictionary for compre
-|java.util.zip.Deflater.setDictionary(byte[],int,int)|Sets preset dictionary fo
+|java.util.zip.Deflater.deflate(byte[])|Fills specified buffer with compressed data.
+|java.util.zip.Deflater.deflate(byte[],int,int)|Fills specified buffer with compressed data.
+|java.util.zip.Deflater.end()|Closes the compressor and discards any unprocessed input.
+|java.util.zip.Deflater.finalize()|Closes the compressor when garbage is collected.
+|java.util.zip.Deflater.finish()|When called, indicates that compression should end with the current  contents of the input buffer.
+|java.util.zip.Deflater.finished()|Returns true if the end of the compressed data output stream has  been reached.
+|java.util.zip.Deflater.getAdler()|Returns the ADLER-32 value of the uncompressed data.
+|java.util.zip.Deflater.getBytesRead()|Returns the total number of uncompressed bytes input so far.
+|java.util.zip.Deflater.getBytesWritten()|Returns the total number of compressed bytes output so far.
+|java.util.zip.Deflater.getTotalIn()|Returns the total number of uncompressed bytes input so far.
+|java.util.zip.Deflater.getTotalOut()|Returns the total number of compressed bytes output so far.
+|java.util.zip.Deflater.needsInput()|Returns true if the input data buffer is empty and setInput()  should be called in order to provide more input.
+|java.util.zip.Deflater.reset()|Resets deflater so that a new set of input data can be processed.
+|java.util.zip.Deflater.setDictionary(byte[])|Sets preset dictionary for compression.
+|java.util.zip.Deflater.setDictionary(byte[],int,int)|Sets preset dictionary for compression.
 |java.util.zip.Deflater.setInput(byte[])|Sets input data for compression.
-|java.util.zip.Deflater.setInput(byte[],int,int)|Sets input data for compressio
-|java.util.zip.Deflater.setLevel(int)|Sets the current compression level to the
-|java.util.zip.Deflater.setStrategy(int)|Sets the compression strategy to the s
+|java.util.zip.Deflater.setInput(byte[],int,int)|Sets input data for compression.
+|java.util.zip.Deflater.setLevel(int)|Sets the current compression level to the specified value.
+|java.util.zip.Deflater.setStrategy(int)|Sets the compression strategy to the specified value.
 
 *java.util.zip.Deflater_Description*
 
-This class provides support for general purpose compression using the popular 
-ZLIB compression library. The ZLIB compression library was initially developed 
-as part of the PNG graphics standard and is not protected by patents. It is 
-fully described in the specifications at the java.util.zip package description. 
+This class provides support for general purpose compression using the popular ZLIB compression library. The ZLIB compression library was initially developed as part of the PNG 
+graphics standard and is not protected by patents. It is fully described in the specifications at the java.util.zip package description. 
 
-The following code fragment demonstrates a trivial compression and 
-decompression of a string using Deflater and Inflater. 
+The following code fragment demonstrates a trivial compression and decompression of a string using Deflater and Inflater. 
 
 
 
-// Encode a String into bytes String inputString = "blahblahblah€€"; byte[] 
-input = inputString.getBytes("UTF-8"); 
+// Encode a String into bytes String inputString = "blahblahblah€€"; byte[] input = inputString.getBytes("UTF-8"); 
 
-// Compress the bytes byte[] output = new byte[100]; Deflater compresser = new 
-Deflater(); compresser.setInput(input); compresser.finish(); int 
-compressedDataLength = compresser.deflate(output); 
+// Compress the bytes byte[] output = new byte[100]; Deflater compresser = new Deflater(); compresser.setInput(input); compresser.finish(); int compressedDataLength = 
+compresser.deflate(output); 
 
-// Decompress the bytes Inflater decompresser = new Inflater(); 
-decompresser.setInput(output, 0, compressedDataLength); byte[] result = new 
-byte[100]; int resultLength = decompresser.inflate(result); decompresser.end(); 
+// Decompress the bytes Inflater decompresser = new Inflater(); decompresser.setInput(output, 0, compressedDataLength); byte[] result = new byte[100]; int resultLength = 
+decompresser.inflate(result); decompresser.end(); 
 
-// Decode the bytes into a String String outputString = new String(result, 0, 
-resultLength, "UTF-8"); 
+// Decode the bytes into a String String outputString = new String(result, 0, resultLength, "UTF-8"); 
+
 
 
 *int_java.util.zip.Deflater.BEST_COMPRESSION*
 
-This class provides support for general purpose compression using the popular 
-ZLIB compression library. The ZLIB compression library was initially developed 
-as part of the PNG graphics standard and is not protected by patents. It is 
-fully described in the specifications at the java.util.zip package description. 
-
-The following code fragment demonstrates a trivial compression and 
-decompression of a string using Deflater and Inflater. 
-
-
-
-// Encode a String into bytes String inputString = "blahblahblah€€"; byte[] 
-input = inputString.getBytes("UTF-8"); 
-
-// Compress the bytes byte[] output = new byte[100]; Deflater compresser = new 
-Deflater(); compresser.setInput(input); compresser.finish(); int 
-compressedDataLength = compresser.deflate(output); 
-
-// Decompress the bytes Inflater decompresser = new Inflater(); 
-decompresser.setInput(output, 0, compressedDataLength); byte[] result = new 
-byte[100]; int resultLength = decompresser.inflate(result); decompresser.end(); 
-
-// Decode the bytes into a String String outputString = new String(result, 0, 
-resultLength, "UTF-8"); 
+Compression level for best compression. 
 
 
 *int_java.util.zip.Deflater.BEST_SPEED*
 
-This class provides support for general purpose compression using the popular 
-ZLIB compression library. The ZLIB compression library was initially developed 
-as part of the PNG graphics standard and is not protected by patents. It is 
-fully described in the specifications at the java.util.zip package description. 
-
-The following code fragment demonstrates a trivial compression and 
-decompression of a string using Deflater and Inflater. 
-
-
-
-// Encode a String into bytes String inputString = "blahblahblah€€"; byte[] 
-input = inputString.getBytes("UTF-8"); 
-
-// Compress the bytes byte[] output = new byte[100]; Deflater compresser = new 
-Deflater(); compresser.setInput(input); compresser.finish(); int 
-compressedDataLength = compresser.deflate(output); 
-
-// Decompress the bytes Inflater decompresser = new Inflater(); 
-decompresser.setInput(output, 0, compressedDataLength); byte[] result = new 
-byte[100]; int resultLength = decompresser.inflate(result); decompresser.end(); 
-
-// Decode the bytes into a String String outputString = new String(result, 0, 
-resultLength, "UTF-8"); 
+Compression level for fastest compression. 
 
 
 *int_java.util.zip.Deflater.DEFAULT_COMPRESSION*
 
-This class provides support for general purpose compression using the popular 
-ZLIB compression library. The ZLIB compression library was initially developed 
-as part of the PNG graphics standard and is not protected by patents. It is 
-fully described in the specifications at the java.util.zip package description. 
-
-The following code fragment demonstrates a trivial compression and 
-decompression of a string using Deflater and Inflater. 
-
-
-
-// Encode a String into bytes String inputString = "blahblahblah€€"; byte[] 
-input = inputString.getBytes("UTF-8"); 
-
-// Compress the bytes byte[] output = new byte[100]; Deflater compresser = new 
-Deflater(); compresser.setInput(input); compresser.finish(); int 
-compressedDataLength = compresser.deflate(output); 
-
-// Decompress the bytes Inflater decompresser = new Inflater(); 
-decompresser.setInput(output, 0, compressedDataLength); byte[] result = new 
-byte[100]; int resultLength = decompresser.inflate(result); decompresser.end(); 
-
-// Decode the bytes into a String String outputString = new String(result, 0, 
-resultLength, "UTF-8"); 
+Default compression level. 
 
 
 *int_java.util.zip.Deflater.DEFAULT_STRATEGY*
 
-This class provides support for general purpose compression using the popular 
-ZLIB compression library. The ZLIB compression library was initially developed 
-as part of the PNG graphics standard and is not protected by patents. It is 
-fully described in the specifications at the java.util.zip package description. 
-
-The following code fragment demonstrates a trivial compression and 
-decompression of a string using Deflater and Inflater. 
-
-
-
-// Encode a String into bytes String inputString = "blahblahblah€€"; byte[] 
-input = inputString.getBytes("UTF-8"); 
-
-// Compress the bytes byte[] output = new byte[100]; Deflater compresser = new 
-Deflater(); compresser.setInput(input); compresser.finish(); int 
-compressedDataLength = compresser.deflate(output); 
-
-// Decompress the bytes Inflater decompresser = new Inflater(); 
-decompresser.setInput(output, 0, compressedDataLength); byte[] result = new 
-byte[100]; int resultLength = decompresser.inflate(result); decompresser.end(); 
-
-// Decode the bytes into a String String outputString = new String(result, 0, 
-resultLength, "UTF-8"); 
+Default compression strategy. 
 
 
 *int_java.util.zip.Deflater.DEFLATED*
 
-This class provides support for general purpose compression using the popular 
-ZLIB compression library. The ZLIB compression library was initially developed 
-as part of the PNG graphics standard and is not protected by patents. It is 
-fully described in the specifications at the java.util.zip package description. 
-
-The following code fragment demonstrates a trivial compression and 
-decompression of a string using Deflater and Inflater. 
-
-
-
-// Encode a String into bytes String inputString = "blahblahblah€€"; byte[] 
-input = inputString.getBytes("UTF-8"); 
-
-// Compress the bytes byte[] output = new byte[100]; Deflater compresser = new 
-Deflater(); compresser.setInput(input); compresser.finish(); int 
-compressedDataLength = compresser.deflate(output); 
-
-// Decompress the bytes Inflater decompresser = new Inflater(); 
-decompresser.setInput(output, 0, compressedDataLength); byte[] result = new 
-byte[100]; int resultLength = decompresser.inflate(result); decompresser.end(); 
-
-// Decode the bytes into a String String outputString = new String(result, 0, 
-resultLength, "UTF-8"); 
+Compression method for the deflate algorithm (the only one currently supported). 
 
 
 *int_java.util.zip.Deflater.FILTERED*
 
-This class provides support for general purpose compression using the popular 
-ZLIB compression library. The ZLIB compression library was initially developed 
-as part of the PNG graphics standard and is not protected by patents. It is 
-fully described in the specifications at the java.util.zip package description. 
-
-The following code fragment demonstrates a trivial compression and 
-decompression of a string using Deflater and Inflater. 
-
-
-
-// Encode a String into bytes String inputString = "blahblahblah€€"; byte[] 
-input = inputString.getBytes("UTF-8"); 
-
-// Compress the bytes byte[] output = new byte[100]; Deflater compresser = new 
-Deflater(); compresser.setInput(input); compresser.finish(); int 
-compressedDataLength = compresser.deflate(output); 
-
-// Decompress the bytes Inflater decompresser = new Inflater(); 
-decompresser.setInput(output, 0, compressedDataLength); byte[] result = new 
-byte[100]; int resultLength = decompresser.inflate(result); decompresser.end(); 
-
-// Decode the bytes into a String String outputString = new String(result, 0, 
-resultLength, "UTF-8"); 
+Compression strategy best used for data consisting mostly of small values with a somewhat random distribution. Forces more Huffman coding and less string matching. 
 
 
 *int_java.util.zip.Deflater.HUFFMAN_ONLY*
 
-This class provides support for general purpose compression using the popular 
-ZLIB compression library. The ZLIB compression library was initially developed 
-as part of the PNG graphics standard and is not protected by patents. It is 
-fully described in the specifications at the java.util.zip package description. 
-
-The following code fragment demonstrates a trivial compression and 
-decompression of a string using Deflater and Inflater. 
-
-
-
-// Encode a String into bytes String inputString = "blahblahblah€€"; byte[] 
-input = inputString.getBytes("UTF-8"); 
-
-// Compress the bytes byte[] output = new byte[100]; Deflater compresser = new 
-Deflater(); compresser.setInput(input); compresser.finish(); int 
-compressedDataLength = compresser.deflate(output); 
-
-// Decompress the bytes Inflater decompresser = new Inflater(); 
-decompresser.setInput(output, 0, compressedDataLength); byte[] result = new 
-byte[100]; int resultLength = decompresser.inflate(result); decompresser.end(); 
-
-// Decode the bytes into a String String outputString = new String(result, 0, 
-resultLength, "UTF-8"); 
+Compression strategy for Huffman coding only. 
 
 
 *int_java.util.zip.Deflater.NO_COMPRESSION*
 
-This class provides support for general purpose compression using the popular 
-ZLIB compression library. The ZLIB compression library was initially developed 
-as part of the PNG graphics standard and is not protected by patents. It is 
-fully described in the specifications at the java.util.zip package description. 
-
-The following code fragment demonstrates a trivial compression and 
-decompression of a string using Deflater and Inflater. 
-
-
-
-// Encode a String into bytes String inputString = "blahblahblah€€"; byte[] 
-input = inputString.getBytes("UTF-8"); 
-
-// Compress the bytes byte[] output = new byte[100]; Deflater compresser = new 
-Deflater(); compresser.setInput(input); compresser.finish(); int 
-compressedDataLength = compresser.deflate(output); 
-
-// Decompress the bytes Inflater decompresser = new Inflater(); 
-decompresser.setInput(output, 0, compressedDataLength); byte[] result = new 
-byte[100]; int resultLength = decompresser.inflate(result); decompresser.end(); 
-
-// Decode the bytes into a String String outputString = new String(result, 0, 
-resultLength, "UTF-8"); 
+Compression level for no compression. 
 
 
 
@@ -294,16 +113,14 @@ resultLength, "UTF-8");
 
 public Deflater()
 
-Creates a new compressor with the default compression level. Compressed data 
-will be generated in ZLIB format. 
+Creates a new compressor with the default compression level. Compressed data will be generated in ZLIB format. 
 
 
 *java.util.zip.Deflater(int)*
 
 public Deflater(int level)
 
-Creates a new compressor using the specified compression level. Compressed data 
-will be generated in ZLIB format. 
+Creates a new compressor using the specified compression level. Compressed data will be generated in ZLIB format. 
 
     level - the compression level (0-9) 
 
@@ -313,9 +130,8 @@ public Deflater(
   int level,
   boolean nowrap)
 
-Creates a new compressor using the specified compression level. If 'nowrap' is 
-true then the ZLIB header and checksum fields will not be used in order to 
-support the compression format used in both GZIP and PKZIP. 
+Creates a new compressor using the specified compression level. If 'nowrap' is true then the ZLIB header and checksum fields will not be used in order to support the compression 
+format used in both GZIP and PKZIP. 
 
     level - the compression level (0-9) 
     nowrap - if true then use GZIP compatible compression 
@@ -324,13 +140,14 @@ support the compression format used in both GZIP and PKZIP.
 
 public int deflate(byte[] b)
 
-Fills specified buffer with compressed data. Returns actual number of bytes of 
-compressed data. A return value of 0 indicates that needsInput() should be 
-called in order to determine if more input data is required. 
+Fills specified buffer with compressed data. Returns actual number of bytes of compressed data. A return value of 0 indicates that needsInput() should be called in order to 
+determine if more input data is required. 
+
 
     b - the buffer for the compressed data 
 
     Returns: the actual number of bytes of compressed data 
+
 *java.util.zip.Deflater.deflate(byte[],int,int)*
 
 public synchronized int deflate(
@@ -338,23 +155,23 @@ public synchronized int deflate(
   int off,
   int len)
 
-Fills specified buffer with compressed data. Returns actual number of bytes of 
-compressed data. A return value of 0 indicates that needsInput() should be 
-called in order to determine if more input data is required. 
+Fills specified buffer with compressed data. Returns actual number of bytes of compressed data. A return value of 0 indicates that needsInput() should be called in order to 
+determine if more input data is required. 
+
 
     b - the buffer for the compressed data 
     off - the start offset of the data 
     len - the maximum number of bytes of compressed data 
 
     Returns: the actual number of bytes of compressed data 
+
 *java.util.zip.Deflater.end()*
 
 public synchronized void end()
 
-Closes the compressor and discards any unprocessed input. This method should be 
-called when the compressor is no longer being used, but will also be called 
-automatically by the finalize() method. Once this method is called, the 
-behavior of the Deflater object is undefined. 
+Closes the compressor and discards any unprocessed input. This method should be called when the compressor is no longer being used, but will also be called automatically by the 
+finalize() method. Once this method is called, the behavior of the Deflater object is undefined. 
+
 
 
 *java.util.zip.Deflater.finalize()*
@@ -364,12 +181,13 @@ protected void finalize()
 Closes the compressor when garbage is collected. 
 
 
+
 *java.util.zip.Deflater.finish()*
 
 public synchronized void finish()
 
-When called, indicates that compression should end with the current contents of 
-the input buffer. 
+When called, indicates that compression should end with the current contents of the input buffer. 
+
 
 
 *java.util.zip.Deflater.finished()*
@@ -379,7 +197,9 @@ public synchronized boolean finished()
 Returns true if the end of the compressed data output stream has been reached. 
 
 
+
     Returns: true if the end of the compressed data output stream has been reached 
+
 *java.util.zip.Deflater.getAdler()*
 
 public synchronized int getAdler()
@@ -387,7 +207,9 @@ public synchronized int getAdler()
 Returns the ADLER-32 value of the uncompressed data. 
 
 
+
     Returns: the ADLER-32 value of the uncompressed data 
+
 *java.util.zip.Deflater.getBytesRead()*
 
 public synchronized long getBytesRead()
@@ -395,7 +217,9 @@ public synchronized long getBytesRead()
 Returns the total number of uncompressed bytes input so far. 
 
 
+
     Returns: the total (non-negative) number of uncompressed bytes input so far 
+
 *java.util.zip.Deflater.getBytesWritten()*
 
 public synchronized long getBytesWritten()
@@ -403,57 +227,58 @@ public synchronized long getBytesWritten()
 Returns the total number of compressed bytes output so far. 
 
 
+
     Returns: the total (non-negative) number of compressed bytes output so far 
+
 *java.util.zip.Deflater.getTotalIn()*
 
 public int getTotalIn()
 
 Returns the total number of uncompressed bytes input so far. 
 
-Since the number of bytes may be greater than Integer.MAX_VALUE, the 
-(|java.util.zip.Deflater|) method is now the preferred means of obtaining this 
-information. 
+Since the number of bytes may be greater than Integer.MAX_VALUE, the (|java.util.zip.Deflater|) method is now the preferred means of obtaining this information. 
+
 
 
     Returns: the total number of uncompressed bytes input so far 
+
 *java.util.zip.Deflater.getTotalOut()*
 
 public int getTotalOut()
 
 Returns the total number of compressed bytes output so far. 
 
-Since the number of bytes may be greater than Integer.MAX_VALUE, the 
-(|java.util.zip.Deflater|) method is now the preferred means of obtaining this 
-information. 
+Since the number of bytes may be greater than Integer.MAX_VALUE, the (|java.util.zip.Deflater|) method is now the preferred means of obtaining this information. 
+
 
 
     Returns: the total number of compressed bytes output so far 
+
 *java.util.zip.Deflater.needsInput()*
 
 public boolean needsInput()
 
-Returns true if the input data buffer is empty and setInput() should be called 
-in order to provide more input. 
+Returns true if the input data buffer is empty and setInput() should be called in order to provide more input. 
 
 
-    Returns: true if the input data buffer is empty and setInput() should be called in order 
-             to provide more input 
+
+    Returns: true if the input data buffer is empty and setInput() should be called in order to provide more input 
+
 *java.util.zip.Deflater.reset()*
 
 public synchronized void reset()
 
-Resets deflater so that a new set of input data can be processed. Keeps current 
-compression level and strategy settings. 
+Resets deflater so that a new set of input data can be processed. Keeps current compression level and strategy settings. 
+
 
 
 *java.util.zip.Deflater.setDictionary(byte[])*
 
 public void setDictionary(byte[] b)
 
-Sets preset dictionary for compression. A preset dictionary is used when the 
-history buffer can be predetermined. When the data is later uncompressed with 
-Inflater.inflate(), Inflater.getAdler() can be called in order to get the 
-Adler-32 value of the dictionary required for decompression. 
+Sets preset dictionary for compression. A preset dictionary is used when the history buffer can be predetermined. When the data is later uncompressed with Inflater.inflate(), 
+Inflater.getAdler() can be called in order to get the Adler-32 value of the dictionary required for decompression. 
+
 
     b - the dictionary data bytes 
 
@@ -464,10 +289,9 @@ public synchronized void setDictionary(
   int off,
   int len)
 
-Sets preset dictionary for compression. A preset dictionary is used when the 
-history buffer can be predetermined. When the data is later uncompressed with 
-Inflater.inflate(), Inflater.getAdler() can be called in order to get the 
-Adler-32 value of the dictionary required for decompression. 
+Sets preset dictionary for compression. A preset dictionary is used when the history buffer can be predetermined. When the data is later uncompressed with Inflater.inflate(), 
+Inflater.getAdler() can be called in order to get the Adler-32 value of the dictionary required for decompression. 
+
 
     b - the dictionary data bytes 
     off - the start offset of the data 
@@ -477,8 +301,8 @@ Adler-32 value of the dictionary required for decompression.
 
 public void setInput(byte[] b)
 
-Sets input data for compression. This should be called whenever needsInput() 
-returns true indicating that more input data is required. 
+Sets input data for compression. This should be called whenever needsInput() returns true indicating that more input data is required. 
+
 
     b - the input data bytes 
 
@@ -489,8 +313,8 @@ public synchronized void setInput(
   int off,
   int len)
 
-Sets input data for compression. This should be called whenever needsInput() 
-returns true indicating that more input data is required. 
+Sets input data for compression. This should be called whenever needsInput() returns true indicating that more input data is required. 
+
 
     b - the input data bytes 
     off - the start offset of the data 
@@ -502,6 +326,7 @@ public synchronized void setLevel(int level)
 
 Sets the current compression level to the specified value. 
 
+
     level - the new compression level (0-9) 
 
 *java.util.zip.Deflater.setStrategy(int)*
@@ -509,6 +334,7 @@ Sets the current compression level to the specified value.
 public synchronized void setStrategy(int strategy)
 
 Sets the compression strategy to the specified value. 
+
 
     strategy - the new compression strategy 
 

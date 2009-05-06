@@ -1,4 +1,4 @@
-*java.nio.channels.spi.AbstractSelectableChannel* *AbstractSelectableChannel* Ba
+*java.nio.channels.spi.AbstractSelectableChannel* *AbstractSelectableChannel* Base implementation class for selectable channels.
 
 public abstract class AbstractSelectableChannel
   extends    |java.nio.channels.SelectableChannel|
@@ -8,34 +8,31 @@ public abstract class AbstractSelectableChannel
 |java.nio.channels.spi.AbstractSelectableChannel_Constructors|
 |java.nio.channels.spi.AbstractSelectableChannel_Methods|
 
-================================================================================
+====================================================================================================================================================================================
 
 *java.nio.channels.spi.AbstractSelectableChannel_Constructors*
-|java.nio.channels.spi.AbstractSelectableChannel(SelectorProvider)|Initializes 
+|java.nio.channels.spi.AbstractSelectableChannel(SelectorProvider)|Initializes a new instance of this class.
 
 *java.nio.channels.spi.AbstractSelectableChannel_Methods*
 |java.nio.channels.spi.AbstractSelectableChannel.blockingLock()|
-|java.nio.channels.spi.AbstractSelectableChannel.configureBlocking(boolean)|Adj
-|java.nio.channels.spi.AbstractSelectableChannel.implCloseChannel()|Closes this
-|java.nio.channels.spi.AbstractSelectableChannel.implCloseSelectableChannel()|C
-|java.nio.channels.spi.AbstractSelectableChannel.implConfigureBlocking(boolean)|
+|java.nio.channels.spi.AbstractSelectableChannel.configureBlocking(boolean)|Adjusts this channel's blocking mode.
+|java.nio.channels.spi.AbstractSelectableChannel.implCloseChannel()|Closes this channel.
+|java.nio.channels.spi.AbstractSelectableChannel.implCloseSelectableChannel()|Closes this selectable channel.
+|java.nio.channels.spi.AbstractSelectableChannel.implConfigureBlocking(boolean)|Adjusts this channel's blocking mode.
 |java.nio.channels.spi.AbstractSelectableChannel.isBlocking()|
 |java.nio.channels.spi.AbstractSelectableChannel.isRegistered()|
 |java.nio.channels.spi.AbstractSelectableChannel.keyFor(Selector)|
-|java.nio.channels.spi.AbstractSelectableChannel.provider()|Returns the provide
-|java.nio.channels.spi.AbstractSelectableChannel.register(Selector,int,Object)|
+|java.nio.channels.spi.AbstractSelectableChannel.provider()|Returns the provider that created this channel.
+|java.nio.channels.spi.AbstractSelectableChannel.register(Selector,int,Object)|Registers this channel with the given selector, returning a selection key.
 
 *java.nio.channels.spi.AbstractSelectableChannel_Description*
 
 Base implementation class for selectable channels. 
 
-This class defines methods that handle the mechanics of channel registration, 
-deregistration, and closing. It maintains the current blocking mode of this 
-channel as well as its current set of selection keys. It performs all of the 
-synchronization required to implement the 
-(|java.nio.channels.SelectableChannel|) specification. Implementations of the 
-abstract protected methods defined in this class need not synchronize against 
-other threads that might be engaged in the same operations. 
+This class defines methods that handle the mechanics of channel registration, deregistration, and closing. It maintains the current blocking mode of this channel as well as its 
+current set of selection keys. It performs all of the synchronization required to implement the (|java.nio.channels.SelectableChannel|) specification. Implementations of the 
+abstract protected methods defined in this class need not synchronize against other threads that might be engaged in the same operations. 
+
 
 
 *java.nio.channels.spi.AbstractSelectableChannel(SelectorProvider)*
@@ -52,6 +49,7 @@ public final |java.lang.Object| blockingLock()
 
 
 
+
 *java.nio.channels.spi.AbstractSelectableChannel.configureBlocking(boolean)*
 
 public final |java.nio.channels.SelectableChannel| configureBlocking(boolean block)
@@ -59,10 +57,9 @@ public final |java.nio.channels.SelectableChannel| configureBlocking(boolean blo
          
 Adjusts this channel's blocking mode. 
 
-If the given blocking mode is different from the current blocking mode then 
-this method invokes the 
-implConfigureBlocking(|java.nio.channels.spi.AbstractSelectableChannel|) 
+If the given blocking mode is different from the current blocking mode then this method invokes the implConfigureBlocking(|java.nio.channels.spi.AbstractSelectableChannel|) 
 method, while holding the appropriate locks, in order to change the mode. 
+
 
 
 *java.nio.channels.spi.AbstractSelectableChannel.implCloseChannel()*
@@ -72,12 +69,10 @@ protected final void implCloseChannel()
          
 Closes this channel. 
 
-This method, which is specified in the 
-(|java.nio.channels.spi.AbstractInterruptibleChannel|) class and is invoked by 
-the close(|java.nio.channels.Channel|) method, in turn invokes the 
-implCloseSelectableChannel(|java.nio.channels.spi.AbstractSelectableChannel|) 
-method in order to perform the actual work of closing this channel. It then 
-cancels all of this channel's keys. 
+This method, which is specified in the (|java.nio.channels.spi.AbstractInterruptibleChannel|) class and is invoked by the close(|java.nio.channels.Channel|) method, in turn 
+invokes the implCloseSelectableChannel(|java.nio.channels.spi.AbstractSelectableChannel|) method in order to perform the actual work of closing this channel. It then cancels all 
+of this channel's keys. 
+
 
 
 *java.nio.channels.spi.AbstractSelectableChannel.implCloseSelectableChannel()*
@@ -87,14 +82,12 @@ protected abstract void implCloseSelectableChannel()
          
 Closes this selectable channel. 
 
-This method is invoked by the close(|java.nio.channels.Channel|) method in 
-order to perform the actual work of closing the channel. This method is only 
-invoked if the channel has not yet been closed, and it is never invoked more 
-than once. 
+This method is invoked by the close(|java.nio.channels.Channel|) method in order to perform the actual work of closing the channel. This method is only invoked if the channel has 
+not yet been closed, and it is never invoked more than once. 
 
-An implementation of this method must arrange for any other thread that is 
-blocked in an I/O operation upon this channel to return immediately, either by 
-throwing an exception or by returning normally. 
+An implementation of this method must arrange for any other thread that is blocked in an I/O operation upon this channel to return immediately, either by throwing an exception or 
+by returning normally. 
+
 
 
 *java.nio.channels.spi.AbstractSelectableChannel.implConfigureBlocking(boolean)*
@@ -104,15 +97,15 @@ protected abstract void implConfigureBlocking(boolean block)
          
 Adjusts this channel's blocking mode. 
 
-This method is invoked by the 
-configureBlocking(|java.nio.channels.spi.AbstractSelectableChannel|) method in 
-order to perform the actual work of changing the blocking mode. This method is 
-only invoked if the new mode is different from the current mode. 
+This method is invoked by the configureBlocking(|java.nio.channels.spi.AbstractSelectableChannel|) method in order to perform the actual work of changing the blocking mode. This 
+method is only invoked if the new mode is different from the current mode. 
+
 
 
 *java.nio.channels.spi.AbstractSelectableChannel.isBlocking()*
 
 public final boolean isBlocking()
+
 
 
 
@@ -124,9 +117,11 @@ public final boolean isRegistered()
 
 
 
+
 *java.nio.channels.spi.AbstractSelectableChannel.keyFor(Selector)*
 
 public final |java.nio.channels.SelectionKey| keyFor(java.nio.channels.Selector sel)
+
 
 
 
@@ -138,7 +133,9 @@ public final |java.nio.channels.spi.SelectorProvider| provider()
 Returns the provider that created this channel. 
 
 
+
     Returns: The provider that created this channel 
+
 *java.nio.channels.spi.AbstractSelectableChannel.register(Selector,int,Object)*
 
 public final |java.nio.channels.SelectionKey| register(
@@ -149,17 +146,13 @@ public final |java.nio.channels.SelectionKey| register(
          
 Registers this channel with the given selector, returning a selection key. 
 
-This method first verifies that this channel is open and that the given initial 
-interest set is valid. 
+This method first verifies that this channel is open and that the given initial interest set is valid. 
 
-If this channel is already registered with the given selector then the 
-selection key representing that registration is returned after setting its 
-interest set to the given value. 
+If this channel is already registered with the given selector then the selection key representing that registration is returned after setting its interest set to the given value. 
 
-Otherwise this channel has not yet been registered with the given selector, so 
-the register(|java.nio.channels.spi.AbstractSelector|) method of the selector 
-is invoked while holding the appropriate locks. The resulting key is added to 
-this channel's key set before being returned. 
+Otherwise this channel has not yet been registered with the given selector, so the register(|java.nio.channels.spi.AbstractSelector|) method of the selector is invoked while 
+holding the appropriate locks. The resulting key is added to this channel's key set before being returned. 
+
 
 
 

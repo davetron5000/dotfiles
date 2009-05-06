@@ -1,4 +1,4 @@
-*java.awt.image.DataBufferShort* *DataBufferShort* This class extends DataBuffer
+*java.awt.image.DataBufferShort* *DataBufferShort* This class extends DataBuffer and stores data internally as shorts.
 
 public final class DataBufferShort
   extends    |java.awt.image.DataBuffer|
@@ -8,28 +8,29 @@ public final class DataBufferShort
 |java.awt.image.DataBufferShort_Constructors|
 |java.awt.image.DataBufferShort_Methods|
 
-================================================================================
+====================================================================================================================================================================================
 
 *java.awt.image.DataBufferShort_Constructors*
-|java.awt.image.DataBufferShort(int)|Constructs a short-based DataBuffer with a
-|java.awt.image.DataBufferShort(int,int)|Constructs a short-based DataBuffer wi
-|java.awt.image.DataBufferShort(short[][],int)|Constructs a short-based DataBuf
-|java.awt.image.DataBufferShort(short[][],int,int[])|Constructs a short-based D
-|java.awt.image.DataBufferShort(short[],int)|Constructs a short-based DataBuffe
-|java.awt.image.DataBufferShort(short[],int,int)|Constructs a short-based DataB
+|java.awt.image.DataBufferShort(int)|Constructs a short-based DataBuffer with a single bank and the  specified size.
+|java.awt.image.DataBufferShort(int,int)|Constructs a short-based DataBuffer with the specified number of  banks all of which are the specified size.
+|java.awt.image.DataBufferShort(short[][],int)|Constructs a short-based DataBuffer with the specified arrays.
+|java.awt.image.DataBufferShort(short[][],int,int[])|Constructs a short-based DataBuffer with the specified arrays, size,  and offsets.
+|java.awt.image.DataBufferShort(short[],int)|Constructs a short-based DataBuffer with a single bank using the  specified array.
+|java.awt.image.DataBufferShort(short[],int,int)|Constructs a short-based DataBuffer with a single bank using the  specified array, size, and offset.
 
 *java.awt.image.DataBufferShort_Methods*
-|java.awt.image.DataBufferShort.getBankData()|Returns the data arrays for all b
-|java.awt.image.DataBufferShort.getData()|Returns the default (first) byte data
-|java.awt.image.DataBufferShort.getData(int)|Returns the data array for the spe
-|java.awt.image.DataBufferShort.getElem(int)|Returns the requested data array e
-|java.awt.image.DataBufferShort.getElem(int,int)|Returns the requested data arr
-|java.awt.image.DataBufferShort.setElem(int,int)|Sets the requested data array 
-|java.awt.image.DataBufferShort.setElem(int,int,int)|Sets the requested data ar
+|java.awt.image.DataBufferShort.getBankData()|Returns the data arrays for all banks.
+|java.awt.image.DataBufferShort.getData()|Returns the default (first) byte data array.
+|java.awt.image.DataBufferShort.getData(int)|Returns the data array for the specified bank.
+|java.awt.image.DataBufferShort.getElem(int)|Returns the requested data array element from the first (default) bank.
+|java.awt.image.DataBufferShort.getElem(int,int)|Returns the requested data array element from the specified bank.
+|java.awt.image.DataBufferShort.setElem(int,int)|Sets the requested data array element in the first (default) bank  to the specified value.
+|java.awt.image.DataBufferShort.setElem(int,int,int)|Sets the requested data array element in the specified bank  from the given integer.
 
 *java.awt.image.DataBufferShort_Description*
 
 This class extends DataBuffer and stores data internally as shorts. 
+
 
 
 *java.awt.image.DataBufferShort(int)*
@@ -46,8 +47,7 @@ public DataBufferShort(
   int size,
   int numBanks)
 
-Constructs a short-based DataBuffer with the specified number of banks all of 
-which are the specified size. 
+Constructs a short-based DataBuffer with the specified number of banks all of which are the specified size. 
 
     size - The size of the banks in the DataBuffer. 
     numBanks - The number of banks in the aDataBuffer. 
@@ -58,9 +58,8 @@ public DataBufferShort(
   short[][] dataArray,
   int size)
 
-Constructs a short-based DataBuffer with the specified arrays. The number of 
-banks will be equal to dataArray.length. Only the first size elements of each 
-array should be used by accessors of this DataBuffer. 
+Constructs a short-based DataBuffer with the specified arrays. The number of banks will be equal to dataArray.length. Only the first size elements of each array should be used by 
+accessors of this DataBuffer. 
 
     dataArray - The short arrays for the DataBuffer. 
     size - The size of the banks in the DataBuffer. 
@@ -72,11 +71,9 @@ public DataBufferShort(
   int size,
   int[] offsets)
 
-Constructs a short-based DataBuffer with the specified arrays, size, and 
-offsets. The number of banks is equal to dataArray.length. Each array must be 
-at least as large as size + the corresponding offset. There must be an entry in 
-the offset array for each dataArray entry. For each bank, only elements offset 
-through offset + size - 1 should be used by accessors of this DataBuffer. 
+Constructs a short-based DataBuffer with the specified arrays, size, and offsets. The number of banks is equal to dataArray.length. Each array must be at least as large as size + 
+the corresponding offset. There must be an entry in the offset array for each dataArray entry. For each bank, only elements offset through offset + size - 1 should be used by 
+accessors of this DataBuffer. 
 
     dataArray - The short arrays for the DataBuffer. 
     size - The size of the banks in the DataBuffer. 
@@ -88,9 +85,8 @@ public DataBufferShort(
   short[] dataArray,
   int size)
 
-Constructs a short-based DataBuffer with a single bank using the specified 
-array. Only the first size elements should be used by accessors of this 
-DataBuffer. dataArray must be large enough to hold size elements. 
+Constructs a short-based DataBuffer with a single bank using the specified array. Only the first size elements should be used by accessors of this DataBuffer. dataArray must be 
+large enough to hold size elements. 
 
     dataArray - The short array for the DataBuffer. 
     size - The size of the DataBuffer bank. 
@@ -102,10 +98,8 @@ public DataBufferShort(
   int size,
   int offset)
 
-Constructs a short-based DataBuffer with a single bank using the specified 
-array, size, and offset. dataArray must have at least offset + size elements. 
-Only elements offset through offset + size - 1 should be used by accessors of 
-this DataBuffer. 
+Constructs a short-based DataBuffer with a single bank using the specified array, size, and offset. dataArray must have at least offset + size elements. Only elements offset 
+through offset + size - 1 should be used by accessors of this DataBuffer. 
 
     dataArray - The short array for the DataBuffer. 
     size - The size of the DataBuffer bank. 
@@ -113,38 +107,46 @@ this DataBuffer.
 
 *java.awt.image.DataBufferShort.getBankData()*
 
-public short getBankData()
+public short[][] getBankData()
 
 Returns the data arrays for all banks. 
 
 
+
     Returns: All of the data arrays. 
+
 *java.awt.image.DataBufferShort.getData()*
 
-public short getData()
+public short[] getData()
 
 Returns the default (first) byte data array. 
 
 
+
     Returns: The first short data array. 
+
 *java.awt.image.DataBufferShort.getData(int)*
 
-public short getData(int bank)
+public short[] getData(int bank)
 
 Returns the data array for the specified bank. 
+
 
     bank - The bank whose data array you want to get. 
 
     Returns: The data array for the specified bank. 
+
 *java.awt.image.DataBufferShort.getElem(int)*
 
 public int getElem(int i)
 
 Returns the requested data array element from the first (default) bank. 
 
+
     i - The data array element you want to get. 
 
     Returns: The requested data array element as an integer. 
+
 *java.awt.image.DataBufferShort.getElem(int,int)*
 
 public int getElem(
@@ -153,18 +155,20 @@ public int getElem(
 
 Returns the requested data array element from the specified bank. 
 
+
     bank - The bank from which you want to get a data array element. 
     i - The data array element you want to get. 
 
     Returns: The requested data array element as an integer. 
+
 *java.awt.image.DataBufferShort.setElem(int,int)*
 
 public void setElem(
   int i,
   int val)
 
-Sets the requested data array element in the first (default) bank to the 
-specified value. 
+Sets the requested data array element in the first (default) bank to the specified value. 
+
 
     i - The data array element you want to set. 
     val - The integer value to which you want to set the data array element. 
@@ -176,8 +180,8 @@ public void setElem(
   int i,
   int val)
 
-Sets the requested data array element in the specified bank from the given 
-integer. 
+Sets the requested data array element in the specified bank from the given integer. 
+
 
     bank - The bank in which you want to set the data array element. 
     i - The data array element you want to set. 

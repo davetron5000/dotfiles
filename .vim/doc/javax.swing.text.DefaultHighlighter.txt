@@ -1,4 +1,4 @@
-*javax.swing.text.DefaultHighlighter* *DefaultHighlighter* Implements the Highli
+*javax.swing.text.DefaultHighlighter* *DefaultHighlighter* Implements the Highlighter interfaces.
 
 public class DefaultHighlighter
   extends    |javax.swing.text.LayeredHighlighter|
@@ -8,37 +8,38 @@ public class DefaultHighlighter
 |javax.swing.text.DefaultHighlighter_Constructors|
 |javax.swing.text.DefaultHighlighter_Methods|
 
-================================================================================
+====================================================================================================================================================================================
 
 *javax.swing.text.DefaultHighlighter_Fields*
 |javax.swing.text.LayeredHighlighter.LayerPainter_javax.swing.text.DefaultHighlighter.DefaultPainter|
 
 *javax.swing.text.DefaultHighlighter_Constructors*
-|javax.swing.text.DefaultHighlighter()|Creates a new DefaultHighlighther object
+|javax.swing.text.DefaultHighlighter()|Creates a new DefaultHighlighther object.
 
 *javax.swing.text.DefaultHighlighter_Methods*
-|javax.swing.text.DefaultHighlighter.addHighlight(int,int,Highlighter.HighlightPainter)|
-|javax.swing.text.DefaultHighlighter.changeHighlight(Object,int,int)|Changes a 
-|javax.swing.text.DefaultHighlighter.deinstall(JTextComponent)|Called when the 
+|javax.swing.text.DefaultHighlighter.addHighlight(int,int,Highlighter.HighlightPainter)|Adds a highlight to the view.
+|javax.swing.text.DefaultHighlighter.changeHighlight(Object,int,int)|Changes a highlight.
+|javax.swing.text.DefaultHighlighter.deinstall(JTextComponent)|Called when the UI is being removed from the interface of  a JTextComponent.
 |javax.swing.text.DefaultHighlighter.getDrawsLayeredHighlights()|
-|javax.swing.text.DefaultHighlighter.getHighlights()|Makes a copy of the highli
-|javax.swing.text.DefaultHighlighter.install(JTextComponent)|Called when the UI
+|javax.swing.text.DefaultHighlighter.getHighlights()|Makes a copy of the highlights.
+|javax.swing.text.DefaultHighlighter.install(JTextComponent)|Called when the UI is being installed into the  interface of a JTextComponent.
 |javax.swing.text.DefaultHighlighter.paint(Graphics)|Renders the highlights.
-|javax.swing.text.DefaultHighlighter.paintLayeredHighlights(Graphics,int,int,Shape,JTextComponent,View)|
-|javax.swing.text.DefaultHighlighter.removeAllHighlights()|Removes all highligh
-|javax.swing.text.DefaultHighlighter.removeHighlight(Object)|Removes a highligh
-|javax.swing.text.DefaultHighlighter.setDrawsLayeredHighlights(boolean)|If true
+|javax.swing.text.DefaultHighlighter.paintLayeredHighlights(Graphics,int,int,Shape,JTextComponent,View)|When leaf Views (such as LabelView) are rendering they should  call into th
+|javax.swing.text.DefaultHighlighter.removeAllHighlights()|Removes all highlights.
+|javax.swing.text.DefaultHighlighter.removeHighlight(Object)|Removes a highlight from the view.
+|javax.swing.text.DefaultHighlighter.setDrawsLayeredHighlights(boolean)|If true, highlights are drawn as the Views draw the text.
 
 *javax.swing.text.DefaultHighlighter_Description*
 
-Implements the Highlighter interfaces. Implements a simple highlight painter 
-that renders in a solid color. 
+Implements the Highlighter interfaces. Implements a simple highlight painter that renders in a solid color. 
+
 
 
 *javax.swing.text.LayeredHighlighter.LayerPainter_javax.swing.text.DefaultHighlighter.DefaultPainter*
 
-Implements the Highlighter interfaces. Implements a simple highlight painter 
-that renders in a solid color. 
+Default implementation of LayeredHighlighter.LayerPainter that can be used for painting highlights. 
+
+As of 1.4 this field is final. 
 
 
 
@@ -57,14 +58,15 @@ public |java.lang.Object| addHighlight(
   javax.swing.text.Highlighter.HighlightPainter p)
   throws |javax.swing.text.BadLocationException|
          
-Adds a highlight to the view. Returns a tag that can be used to refer to the 
-highlight. 
+Adds a highlight to the view. Returns a tag that can be used to refer to the highlight. 
+
 
     p0 - the start offset of the range to highlight >= 0 
     p1 - the end offset of the range to highlight >= p0 
     p - the painter to use to actually render the highlight 
 
     Returns: an object that can be used as a tag to refer to the highlight 
+
 *javax.swing.text.DefaultHighlighter.changeHighlight(Object,int,int)*
 
 public void changeHighlight(
@@ -74,6 +76,7 @@ public void changeHighlight(
   throws |javax.swing.text.BadLocationException|
          
 Changes a highlight. 
+
 
     tag - the highlight tag 
     p0 - the beginning of the range >= 0 
@@ -85,6 +88,7 @@ public void deinstall(javax.swing.text.JTextComponent c)
 
 Called when the UI is being removed from the interface of a JTextComponent. 
 
+
     c - the component 
 
 *javax.swing.text.DefaultHighlighter.getDrawsLayeredHighlights()*
@@ -94,21 +98,23 @@ public boolean getDrawsLayeredHighlights()
 
 
 
+
 *javax.swing.text.DefaultHighlighter.getHighlights()*
 
-public |javax.swing.text.Highlighter.Highlight| getHighlights()
+public |javax.swing.text.Highlighter.Highlight|[] getHighlights()
 
-Makes a copy of the highlights. Does not actually clone each highlight, but 
-only makes references to them. 
+Makes a copy of the highlights. Does not actually clone each highlight, but only makes references to them. 
+
 
 
     Returns: 
+
 *javax.swing.text.DefaultHighlighter.install(JTextComponent)*
 
 public void install(javax.swing.text.JTextComponent c)
 
-Called when the UI is being installed into the interface of a JTextComponent. 
-Installs the editor, and removes any existing highlights. 
+Called when the UI is being installed into the interface of a JTextComponent. Installs the editor, and removes any existing highlights. 
+
 
     c - the editor component 
 
@@ -117,6 +123,7 @@ Installs the editor, and removes any existing highlights.
 public void paint(java.awt.Graphics g)
 
 Renders the highlights. 
+
 
     g - the graphics context 
 
@@ -130,8 +137,8 @@ public void paintLayeredHighlights(
   javax.swing.text.JTextComponent editor,
   javax.swing.text.View view)
 
-When leaf Views (such as LabelView) are rendering they should call into this 
-method. If a highlight is in the given region it will be drawn immediately. 
+When leaf Views (such as LabelView) are rendering they should call into this method. If a highlight is in the given region it will be drawn immediately. 
+
 
     g - Graphics used to draw 
     p0 - starting offset of view 
@@ -147,11 +154,13 @@ public void removeAllHighlights()
 Removes all highlights. 
 
 
+
 *javax.swing.text.DefaultHighlighter.removeHighlight(Object)*
 
 public void removeHighlight(java.lang.Object tag)
 
 Removes a highlight from the view. 
+
 
     tag - the reference to the highlight 
 
@@ -159,11 +168,9 @@ Removes a highlight from the view.
 
 public void setDrawsLayeredHighlights(boolean newValue)
 
-If true, highlights are drawn as the Views draw the text. That is the Views 
-will call into paintLayeredHighlight which will result in a rectangle being 
-drawn before the text is drawn (if the offsets are in a highlighted region that 
-is). For this to work the painter supplied must be an instance of 
-LayeredHighlightPainter. 
+If true, highlights are drawn as the Views draw the text. That is the Views will call into paintLayeredHighlight which will result in a rectangle being drawn before the text is 
+drawn (if the offsets are in a highlighted region that is). For this to work the painter supplied must be an instance of LayeredHighlightPainter. 
+
 
 
 

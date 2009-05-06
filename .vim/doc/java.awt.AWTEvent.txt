@@ -8,7 +8,7 @@ public abstract class AWTEvent
 |java.awt.AWTEvent_Constructors|
 |java.awt.AWTEvent_Methods|
 
-================================================================================
+====================================================================================================================================================================================
 
 *java.awt.AWTEvent_Fields*
 |long_java.awt.AWTEvent.ACTION_EVENT_MASK|
@@ -35,406 +35,138 @@ public abstract class AWTEvent
 |long_java.awt.AWTEvent.WINDOW_STATE_EVENT_MASK|
 
 *java.awt.AWTEvent_Constructors*
-|java.awt.AWTEvent(Event)|Constructs an AWTEvent object from the parameters of 
-|java.awt.AWTEvent(Object,int)|Constructs an AWTEvent object with the specified
+|java.awt.AWTEvent(Event)|Constructs an AWTEvent object from the parameters of a 1.0-style event.
+|java.awt.AWTEvent(Object,int)|Constructs an AWTEvent object with the specified source object and type.
 
 *java.awt.AWTEvent_Methods*
-|java.awt.AWTEvent.consume()|Consumes this event, if this event can be consumed
+|java.awt.AWTEvent.consume()|Consumes this event, if this event can be consumed.
 |java.awt.AWTEvent.getID()|Returns the event type.
 |java.awt.AWTEvent.isConsumed()|Returns whether this event has been consumed.
-|java.awt.AWTEvent.paramString()|Returns a string representing the state of thi
+|java.awt.AWTEvent.paramString()|Returns a string representing the state of this Event.
 |java.awt.AWTEvent.setSource(Object)|Retargets an event to a new source.
 |java.awt.AWTEvent.toString()|Returns a String representation of this object.
 
 *java.awt.AWTEvent_Description*
 
-The root event class for all AWT events. This class and its subclasses 
-supercede the original java.awt.Event class. Subclasses of this root AWTEvent 
-class defined outside of the java.awt.event package should define event ID 
-values greater than the value defined by RESERVED_ID_MAX. 
+The root event class for all AWT events. This class and its subclasses supercede the original java.awt.Event class. Subclasses of this root AWTEvent class defined outside of the 
+java.awt.event package should define event ID values greater than the value defined by RESERVED_ID_MAX. 
 
-The event masks defined in this class are needed by Component subclasses which 
-are using Component.enableEvents() to select for event types not selected by 
-registered listeners. If a listener is registered on a component, the 
-appropriate event mask is already set internally by the component. 
+The event masks defined in this class are needed by Component subclasses which are using Component.enableEvents() to select for event types not selected by registered listeners. 
+If a listener is registered on a component, the appropriate event mask is already set internally by the component. 
 
-The masks are also used to specify to which types of events an AWTEventListener 
-should listen. The masks are bitwise-ORed together and passed to 
-Toolkit.addAWTEventListener. 
+The masks are also used to specify to which types of events an AWTEventListener should listen. The masks are bitwise-ORed together and passed to Toolkit.addAWTEventListener. 
+
 
 
 *long_java.awt.AWTEvent.ACTION_EVENT_MASK*
 
-The root event class for all AWT events. This class and its subclasses 
-supercede the original java.awt.Event class. Subclasses of this root AWTEvent 
-class defined outside of the java.awt.event package should define event ID 
-values greater than the value defined by RESERVED_ID_MAX. 
-
-The event masks defined in this class are needed by Component subclasses which 
-are using Component.enableEvents() to select for event types not selected by 
-registered listeners. If a listener is registered on a component, the 
-appropriate event mask is already set internally by the component. 
-
-The masks are also used to specify to which types of events an AWTEventListener 
-should listen. The masks are bitwise-ORed together and passed to 
-Toolkit.addAWTEventListener. 
+The event mask for selecting action events. 
 
 
 *long_java.awt.AWTEvent.ADJUSTMENT_EVENT_MASK*
 
-The root event class for all AWT events. This class and its subclasses 
-supercede the original java.awt.Event class. Subclasses of this root AWTEvent 
-class defined outside of the java.awt.event package should define event ID 
-values greater than the value defined by RESERVED_ID_MAX. 
-
-The event masks defined in this class are needed by Component subclasses which 
-are using Component.enableEvents() to select for event types not selected by 
-registered listeners. If a listener is registered on a component, the 
-appropriate event mask is already set internally by the component. 
-
-The masks are also used to specify to which types of events an AWTEventListener 
-should listen. The masks are bitwise-ORed together and passed to 
-Toolkit.addAWTEventListener. 
+The event mask for selecting adjustment events. 
 
 
 *long_java.awt.AWTEvent.COMPONENT_EVENT_MASK*
 
-The root event class for all AWT events. This class and its subclasses 
-supercede the original java.awt.Event class. Subclasses of this root AWTEvent 
-class defined outside of the java.awt.event package should define event ID 
-values greater than the value defined by RESERVED_ID_MAX. 
-
-The event masks defined in this class are needed by Component subclasses which 
-are using Component.enableEvents() to select for event types not selected by 
-registered listeners. If a listener is registered on a component, the 
-appropriate event mask is already set internally by the component. 
-
-The masks are also used to specify to which types of events an AWTEventListener 
-should listen. The masks are bitwise-ORed together and passed to 
-Toolkit.addAWTEventListener. 
+The event mask for selecting component events. 
 
 
 *boolean_java.awt.AWTEvent.consumed*
 
-The root event class for all AWT events. This class and its subclasses 
-supercede the original java.awt.Event class. Subclasses of this root AWTEvent 
-class defined outside of the java.awt.event package should define event ID 
-values greater than the value defined by RESERVED_ID_MAX. 
-
-The event masks defined in this class are needed by Component subclasses which 
-are using Component.enableEvents() to select for event types not selected by 
-registered listeners. If a listener is registered on a component, the 
-appropriate event mask is already set internally by the component. 
-
-The masks are also used to specify to which types of events an AWTEventListener 
-should listen. The masks are bitwise-ORed together and passed to 
-Toolkit.addAWTEventListener. 
+Controls whether or not the event is sent back down to the peer once the source has processed it - false means it's sent to the peer; true means it's not. Semantic events always 
+have a 'true' value since they were generated by the peer in response to a low-level event. 
 
 
 *long_java.awt.AWTEvent.CONTAINER_EVENT_MASK*
 
-The root event class for all AWT events. This class and its subclasses 
-supercede the original java.awt.Event class. Subclasses of this root AWTEvent 
-class defined outside of the java.awt.event package should define event ID 
-values greater than the value defined by RESERVED_ID_MAX. 
-
-The event masks defined in this class are needed by Component subclasses which 
-are using Component.enableEvents() to select for event types not selected by 
-registered listeners. If a listener is registered on a component, the 
-appropriate event mask is already set internally by the component. 
-
-The masks are also used to specify to which types of events an AWTEventListener 
-should listen. The masks are bitwise-ORed together and passed to 
-Toolkit.addAWTEventListener. 
+The event mask for selecting container events. 
 
 
 *long_java.awt.AWTEvent.FOCUS_EVENT_MASK*
 
-The root event class for all AWT events. This class and its subclasses 
-supercede the original java.awt.Event class. Subclasses of this root AWTEvent 
-class defined outside of the java.awt.event package should define event ID 
-values greater than the value defined by RESERVED_ID_MAX. 
-
-The event masks defined in this class are needed by Component subclasses which 
-are using Component.enableEvents() to select for event types not selected by 
-registered listeners. If a listener is registered on a component, the 
-appropriate event mask is already set internally by the component. 
-
-The masks are also used to specify to which types of events an AWTEventListener 
-should listen. The masks are bitwise-ORed together and passed to 
-Toolkit.addAWTEventListener. 
+The event mask for selecting focus events. 
 
 
 *long_java.awt.AWTEvent.HIERARCHY_BOUNDS_EVENT_MASK*
 
-The root event class for all AWT events. This class and its subclasses 
-supercede the original java.awt.Event class. Subclasses of this root AWTEvent 
-class defined outside of the java.awt.event package should define event ID 
-values greater than the value defined by RESERVED_ID_MAX. 
-
-The event masks defined in this class are needed by Component subclasses which 
-are using Component.enableEvents() to select for event types not selected by 
-registered listeners. If a listener is registered on a component, the 
-appropriate event mask is already set internally by the component. 
-
-The masks are also used to specify to which types of events an AWTEventListener 
-should listen. The masks are bitwise-ORed together and passed to 
-Toolkit.addAWTEventListener. 
+The event mask for selecting hierarchy bounds events. 
 
 
 *long_java.awt.AWTEvent.HIERARCHY_EVENT_MASK*
 
-The root event class for all AWT events. This class and its subclasses 
-supercede the original java.awt.Event class. Subclasses of this root AWTEvent 
-class defined outside of the java.awt.event package should define event ID 
-values greater than the value defined by RESERVED_ID_MAX. 
-
-The event masks defined in this class are needed by Component subclasses which 
-are using Component.enableEvents() to select for event types not selected by 
-registered listeners. If a listener is registered on a component, the 
-appropriate event mask is already set internally by the component. 
-
-The masks are also used to specify to which types of events an AWTEventListener 
-should listen. The masks are bitwise-ORed together and passed to 
-Toolkit.addAWTEventListener. 
+The event mask for selecting hierarchy events. 
 
 
 *int_java.awt.AWTEvent.id*
 
-The root event class for all AWT events. This class and its subclasses 
-supercede the original java.awt.Event class. Subclasses of this root AWTEvent 
-class defined outside of the java.awt.event package should define event ID 
-values greater than the value defined by RESERVED_ID_MAX. 
-
-The event masks defined in this class are needed by Component subclasses which 
-are using Component.enableEvents() to select for event types not selected by 
-registered listeners. If a listener is registered on a component, the 
-appropriate event mask is already set internally by the component. 
-
-The masks are also used to specify to which types of events an AWTEventListener 
-should listen. The masks are bitwise-ORed together and passed to 
-Toolkit.addAWTEventListener. 
+The event's id. 
 
 
 *long_java.awt.AWTEvent.INPUT_METHOD_EVENT_MASK*
 
-The root event class for all AWT events. This class and its subclasses 
-supercede the original java.awt.Event class. Subclasses of this root AWTEvent 
-class defined outside of the java.awt.event package should define event ID 
-values greater than the value defined by RESERVED_ID_MAX. 
-
-The event masks defined in this class are needed by Component subclasses which 
-are using Component.enableEvents() to select for event types not selected by 
-registered listeners. If a listener is registered on a component, the 
-appropriate event mask is already set internally by the component. 
-
-The masks are also used to specify to which types of events an AWTEventListener 
-should listen. The masks are bitwise-ORed together and passed to 
-Toolkit.addAWTEventListener. 
+The event mask for selecting input method events. 
 
 
 *long_java.awt.AWTEvent.INVOCATION_EVENT_MASK*
 
-The root event class for all AWT events. This class and its subclasses 
-supercede the original java.awt.Event class. Subclasses of this root AWTEvent 
-class defined outside of the java.awt.event package should define event ID 
-values greater than the value defined by RESERVED_ID_MAX. 
-
-The event masks defined in this class are needed by Component subclasses which 
-are using Component.enableEvents() to select for event types not selected by 
-registered listeners. If a listener is registered on a component, the 
-appropriate event mask is already set internally by the component. 
-
-The masks are also used to specify to which types of events an AWTEventListener 
-should listen. The masks are bitwise-ORed together and passed to 
-Toolkit.addAWTEventListener. 
+The event mask for selecting invocation events. 
 
 
 *long_java.awt.AWTEvent.ITEM_EVENT_MASK*
 
-The root event class for all AWT events. This class and its subclasses 
-supercede the original java.awt.Event class. Subclasses of this root AWTEvent 
-class defined outside of the java.awt.event package should define event ID 
-values greater than the value defined by RESERVED_ID_MAX. 
-
-The event masks defined in this class are needed by Component subclasses which 
-are using Component.enableEvents() to select for event types not selected by 
-registered listeners. If a listener is registered on a component, the 
-appropriate event mask is already set internally by the component. 
-
-The masks are also used to specify to which types of events an AWTEventListener 
-should listen. The masks are bitwise-ORed together and passed to 
-Toolkit.addAWTEventListener. 
+The event mask for selecting item events. 
 
 
 *long_java.awt.AWTEvent.KEY_EVENT_MASK*
 
-The root event class for all AWT events. This class and its subclasses 
-supercede the original java.awt.Event class. Subclasses of this root AWTEvent 
-class defined outside of the java.awt.event package should define event ID 
-values greater than the value defined by RESERVED_ID_MAX. 
-
-The event masks defined in this class are needed by Component subclasses which 
-are using Component.enableEvents() to select for event types not selected by 
-registered listeners. If a listener is registered on a component, the 
-appropriate event mask is already set internally by the component. 
-
-The masks are also used to specify to which types of events an AWTEventListener 
-should listen. The masks are bitwise-ORed together and passed to 
-Toolkit.addAWTEventListener. 
+The event mask for selecting key events. 
 
 
 *long_java.awt.AWTEvent.MOUSE_EVENT_MASK*
 
-The root event class for all AWT events. This class and its subclasses 
-supercede the original java.awt.Event class. Subclasses of this root AWTEvent 
-class defined outside of the java.awt.event package should define event ID 
-values greater than the value defined by RESERVED_ID_MAX. 
-
-The event masks defined in this class are needed by Component subclasses which 
-are using Component.enableEvents() to select for event types not selected by 
-registered listeners. If a listener is registered on a component, the 
-appropriate event mask is already set internally by the component. 
-
-The masks are also used to specify to which types of events an AWTEventListener 
-should listen. The masks are bitwise-ORed together and passed to 
-Toolkit.addAWTEventListener. 
+The event mask for selecting mouse events. 
 
 
 *long_java.awt.AWTEvent.MOUSE_MOTION_EVENT_MASK*
 
-The root event class for all AWT events. This class and its subclasses 
-supercede the original java.awt.Event class. Subclasses of this root AWTEvent 
-class defined outside of the java.awt.event package should define event ID 
-values greater than the value defined by RESERVED_ID_MAX. 
-
-The event masks defined in this class are needed by Component subclasses which 
-are using Component.enableEvents() to select for event types not selected by 
-registered listeners. If a listener is registered on a component, the 
-appropriate event mask is already set internally by the component. 
-
-The masks are also used to specify to which types of events an AWTEventListener 
-should listen. The masks are bitwise-ORed together and passed to 
-Toolkit.addAWTEventListener. 
+The event mask for selecting mouse motion events. 
 
 
 *long_java.awt.AWTEvent.MOUSE_WHEEL_EVENT_MASK*
 
-The root event class for all AWT events. This class and its subclasses 
-supercede the original java.awt.Event class. Subclasses of this root AWTEvent 
-class defined outside of the java.awt.event package should define event ID 
-values greater than the value defined by RESERVED_ID_MAX. 
-
-The event masks defined in this class are needed by Component subclasses which 
-are using Component.enableEvents() to select for event types not selected by 
-registered listeners. If a listener is registered on a component, the 
-appropriate event mask is already set internally by the component. 
-
-The masks are also used to specify to which types of events an AWTEventListener 
-should listen. The masks are bitwise-ORed together and passed to 
-Toolkit.addAWTEventListener. 
+The event mask for selecting mouse wheel events. 
 
 
 *long_java.awt.AWTEvent.PAINT_EVENT_MASK*
 
-The root event class for all AWT events. This class and its subclasses 
-supercede the original java.awt.Event class. Subclasses of this root AWTEvent 
-class defined outside of the java.awt.event package should define event ID 
-values greater than the value defined by RESERVED_ID_MAX. 
-
-The event masks defined in this class are needed by Component subclasses which 
-are using Component.enableEvents() to select for event types not selected by 
-registered listeners. If a listener is registered on a component, the 
-appropriate event mask is already set internally by the component. 
-
-The masks are also used to specify to which types of events an AWTEventListener 
-should listen. The masks are bitwise-ORed together and passed to 
-Toolkit.addAWTEventListener. 
+The event mask for selecting paint events. 
 
 
 *int_java.awt.AWTEvent.RESERVED_ID_MAX*
 
-The root event class for all AWT events. This class and its subclasses 
-supercede the original java.awt.Event class. Subclasses of this root AWTEvent 
-class defined outside of the java.awt.event package should define event ID 
-values greater than the value defined by RESERVED_ID_MAX. 
-
-The event masks defined in this class are needed by Component subclasses which 
-are using Component.enableEvents() to select for event types not selected by 
-registered listeners. If a listener is registered on a component, the 
-appropriate event mask is already set internally by the component. 
-
-The masks are also used to specify to which types of events an AWTEventListener 
-should listen. The masks are bitwise-ORed together and passed to 
-Toolkit.addAWTEventListener. 
+The maximum value for reserved AWT event IDs. Programs defining their own event IDs should use IDs greater than this value. 
 
 
 *long_java.awt.AWTEvent.TEXT_EVENT_MASK*
 
-The root event class for all AWT events. This class and its subclasses 
-supercede the original java.awt.Event class. Subclasses of this root AWTEvent 
-class defined outside of the java.awt.event package should define event ID 
-values greater than the value defined by RESERVED_ID_MAX. 
-
-The event masks defined in this class are needed by Component subclasses which 
-are using Component.enableEvents() to select for event types not selected by 
-registered listeners. If a listener is registered on a component, the 
-appropriate event mask is already set internally by the component. 
-
-The masks are also used to specify to which types of events an AWTEventListener 
-should listen. The masks are bitwise-ORed together and passed to 
-Toolkit.addAWTEventListener. 
+The event mask for selecting text events. 
 
 
 *long_java.awt.AWTEvent.WINDOW_EVENT_MASK*
 
-The root event class for all AWT events. This class and its subclasses 
-supercede the original java.awt.Event class. Subclasses of this root AWTEvent 
-class defined outside of the java.awt.event package should define event ID 
-values greater than the value defined by RESERVED_ID_MAX. 
-
-The event masks defined in this class are needed by Component subclasses which 
-are using Component.enableEvents() to select for event types not selected by 
-registered listeners. If a listener is registered on a component, the 
-appropriate event mask is already set internally by the component. 
-
-The masks are also used to specify to which types of events an AWTEventListener 
-should listen. The masks are bitwise-ORed together and passed to 
-Toolkit.addAWTEventListener. 
+The event mask for selecting window events. 
 
 
 *long_java.awt.AWTEvent.WINDOW_FOCUS_EVENT_MASK*
 
-The root event class for all AWT events. This class and its subclasses 
-supercede the original java.awt.Event class. Subclasses of this root AWTEvent 
-class defined outside of the java.awt.event package should define event ID 
-values greater than the value defined by RESERVED_ID_MAX. 
-
-The event masks defined in this class are needed by Component subclasses which 
-are using Component.enableEvents() to select for event types not selected by 
-registered listeners. If a listener is registered on a component, the 
-appropriate event mask is already set internally by the component. 
-
-The masks are also used to specify to which types of events an AWTEventListener 
-should listen. The masks are bitwise-ORed together and passed to 
-Toolkit.addAWTEventListener. 
+The event mask for selecting window focus events. 
 
 
 *long_java.awt.AWTEvent.WINDOW_STATE_EVENT_MASK*
 
-The root event class for all AWT events. This class and its subclasses 
-supercede the original java.awt.Event class. Subclasses of this root AWTEvent 
-class defined outside of the java.awt.event package should define event ID 
-values greater than the value defined by RESERVED_ID_MAX. 
-
-The event masks defined in this class are needed by Component subclasses which 
-are using Component.enableEvents() to select for event types not selected by 
-registered listeners. If a listener is registered on a component, the 
-appropriate event mask is already set internally by the component. 
-
-The masks are also used to specify to which types of events an AWTEventListener 
-should listen. The masks are bitwise-ORed together and passed to 
-Toolkit.addAWTEventListener. 
+The event mask for selecting window state events. 
 
 
 
@@ -460,8 +192,8 @@ Constructs an AWTEvent object with the specified source object and type.
 
 protected void consume()
 
-Consumes this event, if this event can be consumed. Only low-level, system 
-events can be consumed 
+Consumes this event, if this event can be consumed. Only low-level, system events can be consumed 
+
 
 
 *java.awt.AWTEvent.getID()*
@@ -471,6 +203,7 @@ public int getID()
 Returns the event type. 
 
 
+
 *java.awt.AWTEvent.isConsumed()*
 
 protected boolean isConsumed()
@@ -478,26 +211,26 @@ protected boolean isConsumed()
 Returns whether this event has been consumed. 
 
 
+
 *java.awt.AWTEvent.paramString()*
 
 public |java.lang.String| paramString()
 
-Returns a string representing the state of this Event. This method is intended 
-to be used only for debugging purposes, and the content and format of the 
-returned string may vary between implementations. The returned string may be 
-empty but may not be null. 
+Returns a string representing the state of this Event. This method is intended to be used only for debugging purposes, and the content and format of the returned string may vary 
+between implementations. The returned string may be empty but may not be null. 
+
 
 
     Returns: a string representation of this event 
+
 *java.awt.AWTEvent.setSource(Object)*
 
 public void setSource(java.lang.Object newSource)
 
-Retargets an event to a new source. This method is typically used to retarget 
-an event to a lightweight child Component of the original heavyweight source. 
+Retargets an event to a new source. This method is typically used to retarget an event to a lightweight child Component of the original heavyweight source. 
 
-This method is intended to be used only by event targeting subsystems, such as 
-client-defined KeyboardFocusManagers. It is not for general client use. 
+This method is intended to be used only by event targeting subsystems, such as client-defined KeyboardFocusManagers. It is not for general client use. 
+
 
     newSource - the new Object to which the event should be dispatched 
 
@@ -506,6 +239,7 @@ client-defined KeyboardFocusManagers. It is not for general client use.
 public |java.lang.String| toString()
 
 Returns a String representation of this object. 
+
 
 
 

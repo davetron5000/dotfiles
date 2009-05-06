@@ -1,4 +1,5 @@
-*javax.swing.text.Highlighter* *Highlighter* An interface for an object that all
+*javax.swing.text.Highlighter* *Highlighter* An interface for an object that allows one to mark up the background
+ with colored areas.
 
 public interface interface Highlighter
 
@@ -8,22 +9,22 @@ public interface interface Highlighter
 |javax.swing.text.Highlighter_Constructors|
 |javax.swing.text.Highlighter_Methods|
 
-================================================================================
+====================================================================================================================================================================================
 
 *javax.swing.text.Highlighter_Methods*
-|javax.swing.text.Highlighter.addHighlight(int,int,Highlighter.HighlightPainter)|
-|javax.swing.text.Highlighter.changeHighlight(Object,int,int)|Changes the given
-|javax.swing.text.Highlighter.deinstall(JTextComponent)|Called when the UI is b
-|javax.swing.text.Highlighter.getHighlights()|Fetches the current list of highl
-|javax.swing.text.Highlighter.install(JTextComponent)|Called when the UI is bei
+|javax.swing.text.Highlighter.addHighlight(int,int,Highlighter.HighlightPainter)|Adds a highlight to the view.
+|javax.swing.text.Highlighter.changeHighlight(Object,int,int)|Changes the given highlight to span a different portion of  the document.
+|javax.swing.text.Highlighter.deinstall(JTextComponent)|Called when the UI is being removed from the  interface of a JTextComponent.
+|javax.swing.text.Highlighter.getHighlights()|Fetches the current list of highlights.
+|javax.swing.text.Highlighter.install(JTextComponent)|Called when the UI is being installed into the  interface of a JTextComponent.
 |javax.swing.text.Highlighter.paint(Graphics)|Renders the highlights.
-|javax.swing.text.Highlighter.removeAllHighlights()|Removes all highlights this
-|javax.swing.text.Highlighter.removeHighlight(Object)|Removes a highlight from 
+|javax.swing.text.Highlighter.removeAllHighlights()|Removes all highlights this highlighter is responsible for.
+|javax.swing.text.Highlighter.removeHighlight(Object)|Removes a highlight from the view.
 
 *javax.swing.text.Highlighter_Description*
 
-An interface for an object that allows one to mark up the background with 
-colored areas. 
+An interface for an object that allows one to mark up the background with colored areas. 
+
 
 
 *javax.swing.text.Highlighter.addHighlight(int,int,Highlighter.HighlightPainter)*
@@ -34,14 +35,15 @@ public |java.lang.Object| addHighlight(
   javax.swing.text.Highlighter.HighlightPainter p)
   throws |javax.swing.text.BadLocationException|
          
-Adds a highlight to the view. Returns a tag that can be used to refer to the 
-highlight. 
+Adds a highlight to the view. Returns a tag that can be used to refer to the highlight. 
+
 
     p0 - the beginning of the range >= 0 
     p1 - the end of the range >= p0 
     p - the painter to use for the actual highlighting 
 
     Returns: an object that refers to the highlight 
+
 *javax.swing.text.Highlighter.changeHighlight(Object,int,int)*
 
 public void changeHighlight(
@@ -50,9 +52,9 @@ public void changeHighlight(
   int p1)
   throws |javax.swing.text.BadLocationException|
          
-Changes the given highlight to span a different portion of the document. This 
-may be more efficient than a remove/add when a selection is expanding/shrinking 
-(such as a sweep with a mouse) by damaging only what changed. 
+Changes the given highlight to span a different portion of the document. This may be more efficient than a remove/add when a selection is expanding/shrinking (such as a sweep with 
+a mouse) by damaging only what changed. 
+
 
     tag - which highlight to change 
     p0 - the beginning of the range >= 0 
@@ -62,26 +64,28 @@ may be more efficient than a remove/add when a selection is expanding/shrinking
 
 public void deinstall(javax.swing.text.JTextComponent c)
 
-Called when the UI is being removed from the interface of a JTextComponent. 
-This is used to unregister any listeners that were attached. 
+Called when the UI is being removed from the interface of a JTextComponent. This is used to unregister any listeners that were attached. 
+
 
     c - the JTextComponent editor 
 
 *javax.swing.text.Highlighter.getHighlights()*
 
-public |javax.swing.text.Highlighter.Highlight| getHighlights()
+public |javax.swing.text.Highlighter.Highlight|[] getHighlights()
 
 Fetches the current list of highlights. 
 
 
+
     Returns: the highlight list 
+
 *javax.swing.text.Highlighter.install(JTextComponent)*
 
 public void install(javax.swing.text.JTextComponent c)
 
-Called when the UI is being installed into the interface of a JTextComponent. 
-This can be used to gain access to the model that is being navigated by the 
-implementation of this interface. 
+Called when the UI is being installed into the interface of a JTextComponent. This can be used to gain access to the model that is being navigated by the implementation of this 
+interface. 
+
 
     c - the JTextComponent editor 
 
@@ -90,6 +94,7 @@ implementation of this interface.
 public void paint(java.awt.Graphics g)
 
 Renders the highlights. 
+
 
     g - the graphics context. 
 
@@ -100,11 +105,13 @@ public void removeAllHighlights()
 Removes all highlights this highlighter is responsible for. 
 
 
+
 *javax.swing.text.Highlighter.removeHighlight(Object)*
 
 public void removeHighlight(java.lang.Object tag)
 
 Removes a highlight from the view. 
+
 
     tag - which highlight to remove 
 

@@ -1,4 +1,5 @@
-*java.text.SimpleDateFormat* *SimpleDateFormat* SimpleDateFormat is a concrete c
+*java.text.SimpleDateFormat* *SimpleDateFormat* SimpleDateFormat is a concrete class for formatting and
+ parsing dates in a locale-sensitive manner.
 
 public class SimpleDateFormat
   extends    |java.text.DateFormat|
@@ -8,56 +9,46 @@ public class SimpleDateFormat
 |java.text.SimpleDateFormat_Constructors|
 |java.text.SimpleDateFormat_Methods|
 
-================================================================================
+====================================================================================================================================================================================
 
 *java.text.SimpleDateFormat_Constructors*
-|java.text.SimpleDateFormat()|Constructs a SimpleDateFormat using the default p
-|java.text.SimpleDateFormat(String)|Constructs a SimpleDateFormat using the giv
-|java.text.SimpleDateFormat(String,DateFormatSymbols)|Constructs a SimpleDateFo
-|java.text.SimpleDateFormat(String,Locale)|Constructs a SimpleDateFormat using 
+|java.text.SimpleDateFormat()|Constructs a SimpleDateFormat using the default pattern and  date format symbols for the default locale.
+|java.text.SimpleDateFormat(String)|Constructs a SimpleDateFormat using the given pattern and  the default date format symbols for the default locale.
+|java.text.SimpleDateFormat(String,DateFormatSymbols)|Constructs a SimpleDateFormat using the given pattern and  date format symbols.
+|java.text.SimpleDateFormat(String,Locale)|Constructs a SimpleDateFormat using the given pattern and  the default date format symbols for the given locale.
 
 *java.text.SimpleDateFormat_Methods*
-|java.text.SimpleDateFormat.applyLocalizedPattern(String)|Applies the given loc
-|java.text.SimpleDateFormat.applyPattern(String)|Applies the given pattern stri
+|java.text.SimpleDateFormat.applyLocalizedPattern(String)|Applies the given localized pattern string to this date format.
+|java.text.SimpleDateFormat.applyPattern(String)|Applies the given pattern string to this date format.
 |java.text.SimpleDateFormat.clone()|Creates a copy of this SimpleDateFormat.
-|java.text.SimpleDateFormat.equals(Object)|Compares the given object with this 
-|java.text.SimpleDateFormat.format(Date,StringBuffer,FieldPosition)|Formats the
-|java.text.SimpleDateFormat.formatToCharacterIterator(Object)|Formats an Object
-|java.text.SimpleDateFormat.get2DigitYearStart()|Returns the beginning date of 
-|java.text.SimpleDateFormat.getDateFormatSymbols()|Gets a copy of the date and 
-|java.text.SimpleDateFormat.hashCode()|Returns the hash code value for this Sim
-|java.text.SimpleDateFormat.parse(String,ParsePosition)|Parses text from a stri
-|java.text.SimpleDateFormat.set2DigitYearStart(Date)|Sets the 100-year period 2
-|java.text.SimpleDateFormat.setDateFormatSymbols(DateFormatSymbols)|Sets the da
-|java.text.SimpleDateFormat.toLocalizedPattern()|Returns a localized pattern st
-|java.text.SimpleDateFormat.toPattern()|Returns a pattern string describing thi
+|java.text.SimpleDateFormat.equals(Object)|Compares the given object with this SimpleDateFormat for  equality.
+|java.text.SimpleDateFormat.format(Date,StringBuffer,FieldPosition)|Formats the given Date into a date/time string and appends  the result to the given StringBuffer.
+|java.text.SimpleDateFormat.formatToCharacterIterator(Object)|Formats an Object producing an AttributedCharacterIterator.
+|java.text.SimpleDateFormat.get2DigitYearStart()|Returns the beginning date of the 100-year period 2-digit years are interpreted  as being within.
+|java.text.SimpleDateFormat.getDateFormatSymbols()|Gets a copy of the date and time format symbols of this date format.
+|java.text.SimpleDateFormat.hashCode()|Returns the hash code value for this SimpleDateFormat object.
+|java.text.SimpleDateFormat.parse(String,ParsePosition)|Parses text from a string to produce a Date.
+|java.text.SimpleDateFormat.set2DigitYearStart(Date)|Sets the 100-year period 2-digit years will be interpreted as being in  to begin on the date the user specifies.
+|java.text.SimpleDateFormat.setDateFormatSymbols(DateFormatSymbols)|Sets the date and time format symbols of this date format.
+|java.text.SimpleDateFormat.toLocalizedPattern()|Returns a localized pattern string describing this date format.
+|java.text.SimpleDateFormat.toPattern()|Returns a pattern string describing this date format.
 
 *java.text.SimpleDateFormat_Description*
 
-SimpleDateFormat is a concrete class for formatting and parsing dates in a 
-locale-sensitive manner. It allows for formatting (date -> text), parsing (text 
--> date), and normalization. 
+SimpleDateFormat is a concrete class for formatting and parsing dates in a locale-sensitive manner. It allows for formatting (date -> text), parsing (text -> date), and 
+normalization. 
 
-SimpleDateFormat allows you to start by choosing any user-defined patterns for 
-date-time formatting. However, you are encouraged to create a date-time 
-formatter with either getTimeInstance, getDateInstance, or getDateTimeInstance 
-in DateFormat. Each of these class methods can return a date/time formatter 
-initialized with a default format pattern. You may modify the format pattern 
-using the applyPattern methods as desired. For more information on using these 
-methods, see (|java.text.DateFormat|) . 
+SimpleDateFormat allows you to start by choosing any user-defined patterns for date-time formatting. However, you are encouraged to create a date-time formatter with either 
+getTimeInstance, getDateInstance, or getDateTimeInstance in DateFormat. Each of these class methods can return a date/time formatter initialized with a default format pattern. You 
+may modify the format pattern using the applyPattern methods as desired. For more information on using these methods, see (|java.text.DateFormat|) . 
 
 Date and Time Patterns 
 
-Date and time formats are specified by date and time pattern strings. Within 
-date and time pattern strings, unquoted letters from 'A' to 'Z' and from 'a' to 
-'z' are interpreted as pattern letters representing the components of a date or 
-time string. Text can be quoted using single quotes (') to avoid 
-interpretation. "''" represents a single quote. All other characters are not 
-interpreted; they're simply copied into the output string during formatting or 
-matched against the input string during parsing. 
+Date and time formats are specified by date and time pattern strings. Within date and time pattern strings, unquoted letters from 'A' to 'Z' and from 'a' to 'z' are interpreted as 
+pattern letters representing the components of a date or time string. Text can be quoted using single quotes (') to avoid interpretation. "''" represents a single quote. All other 
+characters are not interpreted; they're simply copied into the output string during formatting or matched against the input string during parsing. 
 
-The following pattern letters are defined (all other characters from 'A' to 'Z' 
-and from 'a' to 'z' are reserved): 
+The following pattern letters are defined (all other characters from 'A' to 'Z' and from 'a' to 'z' are reserved): 
 
 
 
@@ -101,62 +92,37 @@ z Time zone General time zone Pacific Standard Time; PST; GMT-08:00
 
 Z Time zone RFC 822 time zone -0800 
 
-Pattern letters are usually repeated, as their number determines the exact 
-presentation: 
+Pattern letters are usually repeated, as their number determines the exact presentation: 
 
-Text: For formatting, if the number of pattern letters is 4 or more, the full 
-form is used; otherwise a short or abbreviated form is used if available. For 
-parsing, both forms are accepted, independent of the number of pattern letters. 
-Number: For formatting, the number of pattern letters is the minimum number of 
-digits, and shorter numbers are zero-padded to this amount. For parsing, the 
-number of pattern letters is ignored unless it's needed to separate two 
-adjacent fields. Year: For formatting, if the number of pattern letters is 2, 
-the year is truncated to 2 digits; otherwise it is interpreted as a number. For 
-parsing, if the number of pattern letters is more than 2, the year is 
-interpreted literally, regardless of the number of digits. So using the pattern 
-"MM/dd/yyyy", "01/11/12" parses to Jan 11, 12 A.D. For parsing with the 
-abbreviated year pattern ("y" or "yy"), SimpleDateFormat must interpret the 
-abbreviated year relative to some century. It does this by adjusting dates to 
-be within 80 years before and 20 years after the time the SimpleDateFormat 
-instance is created. For example, using a pattern of "MM/dd/yy" and a 
-SimpleDateFormat instance created on Jan 1, 1997, the string "01/11/12" would 
-be interpreted as Jan 11, 2012 while the string "05/04/64" would be interpreted 
-as May 4, 1964. During parsing, only strings consisting of exactly two digits, 
-as defined by (|java.lang.Character|) , will be parsed into the default 
-century. Any other numeric string, such as a one digit string, a three or more 
-digit string, or a two digit string that isn't all digits (for example, "-1"), 
-is interpreted literally. So "01/02/3" or "01/02/003" are parsed, using the 
-same pattern, as Jan 2, 3 AD. Likewise, "01/02/-3" is parsed as Jan 2, 4 BC. 
-Month: If the number of pattern letters is 3 or more, the month is interpreted 
-as text; otherwise, it is interpreted as a number. General time zone: Time 
-zones are interpreted as text if they have names. For time zones representing a 
-GMT offset value, the following syntax is used: 
+Text: For formatting, if the number of pattern letters is 4 or more, the full form is used; otherwise a short or abbreviated form is used if available. For parsing, both forms are 
+accepted, independent of the number of pattern letters. Number: For formatting, the number of pattern letters is the minimum number of digits, and shorter numbers are zero-padded 
+to this amount. For parsing, the number of pattern letters is ignored unless it's needed to separate two adjacent fields. Year: For formatting, if the number of pattern letters is 
+2, the year is truncated to 2 digits; otherwise it is interpreted as a number. For parsing, if the number of pattern letters is more than 2, the year is interpreted literally, 
+regardless of the number of digits. So using the pattern "MM/dd/yyyy", "01/11/12" parses to Jan 11, 12 A.D. For parsing with the abbreviated year pattern ("y" or "yy"), 
+SimpleDateFormat must interpret the abbreviated year relative to some century. It does this by adjusting dates to be within 80 years before and 20 years after the time the 
+SimpleDateFormat instance is created. For example, using a pattern of "MM/dd/yy" and a SimpleDateFormat instance created on Jan 1, 1997, the string "01/11/12" would be interpreted 
+as Jan 11, 2012 while the string "05/04/64" would be interpreted as May 4, 1964. During parsing, only strings consisting of exactly two digits, as defined by 
+(|java.lang.Character|) , will be parsed into the default century. Any other numeric string, such as a one digit string, a three or more digit string, or a two digit string that 
+isn't all digits (for example, "-1"), is interpreted literally. So "01/02/3" or "01/02/003" are parsed, using the same pattern, as Jan 2, 3 AD. Likewise, "01/02/-3" is parsed as 
+Jan 2, 4 BC. Month: If the number of pattern letters is 3 or more, the month is interpreted as text; otherwise, it is interpreted as a number. General time zone: Time zones are 
+interpreted as text if they have names. For time zones representing a GMT offset value, the following syntax is used: 
 
-GMTOffsetTimeZone: GMT Sign Hours : Minutes Sign: one of + - Hours: Digit Digit 
-Digit Minutes: Digit Digit Digit: one of 0 1 2 3 4 5 6 7 8 9 
+GMTOffsetTimeZone: GMT Sign Hours : Minutes Sign: one of + - Hours: Digit Digit Digit Minutes: Digit Digit Digit: one of 0 1 2 3 4 5 6 7 8 9 
 
-Hours must be between 0 and 23, and Minutes must be between 00 and 59. The 
-format is locale independent and digits must be taken from the Basic Latin 
-block of the Unicode standard. For parsing, RFC 822 time zones are also 
-accepted. RFC 822 time zone: For formatting, the RFC 822 4-digit time zone 
-format is used: 
+Hours must be between 0 and 23, and Minutes must be between 00 and 59. The format is locale independent and digits must be taken from the Basic Latin block of the Unicode 
+standard. For parsing, RFC 822 time zones are also accepted. RFC 822 time zone: For formatting, the RFC 822 4-digit time zone format is used: 
 
 RFC822TimeZone: Sign TwoDigitHours Minutes TwoDigitHours: Digit Digit 
 
-TwoDigitHours must be between 00 and 23. Other definitions are as for general 
-time zones. For parsing, general time zones are also accepted. 
+TwoDigitHours must be between 00 and 23. Other definitions are as for general time zones. For parsing, general time zones are also accepted. 
 
-SimpleDateFormat also supports localized date and time pattern strings. In 
-these strings, the pattern letters described above may be replaced with other, 
-locale dependent, pattern letters. SimpleDateFormat does not deal with the 
-localization of text other than the pattern letters; that's up to the client of 
-the class. 
+SimpleDateFormat also supports localized date and time pattern strings. In these strings, the pattern letters described above may be replaced with other, locale dependent, pattern 
+letters. SimpleDateFormat does not deal with the localization of text other than the pattern letters; that's up to the client of the class. 
 
 Examples 
 
-The following examples show how date and time patterns are interpreted in the 
-U.S. locale. The given date and time are 2001-07-04 12:08:56 local time in the 
-U.S. Pacific Time time zone. 
+The following examples show how date and time patterns are interpreted in the U.S. locale. The given date and time are 2001-07-04 12:08:56 local time in the U.S. Pacific Time time 
+zone. 
 
 
 
@@ -184,28 +150,25 @@ Date and Time Pattern Result
 
 Synchronization 
 
-Date formats are not synchronized. It is recommended to create separate format 
-instances for each thread. If multiple threads access a format concurrently, it 
-must be synchronized externally. 
+Date formats are not synchronized. It is recommended to create separate format instances for each thread. If multiple threads access a format concurrently, it must be synchronized 
+externally. 
+
 
 
 *java.text.SimpleDateFormat()*
 
 public SimpleDateFormat()
 
-Constructs a SimpleDateFormat using the default pattern and date format symbols 
-for the default locale. Note: This constructor may not support all locales. For 
-full coverage, use the factory methods in the (|java.text.DateFormat|) class. 
+Constructs a SimpleDateFormat using the default pattern and date format symbols for the default locale. Note: This constructor may not support all locales. For full coverage, use 
+the factory methods in the (|java.text.DateFormat|) class. 
 
 
 *java.text.SimpleDateFormat(String)*
 
 public SimpleDateFormat(java.lang.String pattern)
 
-Constructs a SimpleDateFormat using the given pattern and the default date 
-format symbols for the default locale. Note: This constructor may not support 
-all locales. For full coverage, use the factory methods in the 
-(|java.text.DateFormat|) class. 
+Constructs a SimpleDateFormat using the given pattern and the default date format symbols for the default locale. Note: This constructor may not support all locales. For full 
+coverage, use the factory methods in the (|java.text.DateFormat|) class. 
 
     pattern - the pattern describing the date and time format 
 
@@ -226,10 +189,8 @@ public SimpleDateFormat(
   java.lang.String pattern,
   java.util.Locale locale)
 
-Constructs a SimpleDateFormat using the given pattern and the default date 
-format symbols for the given locale. Note: This constructor may not support all 
-locales. For full coverage, use the factory methods in the 
-(|java.text.DateFormat|) class. 
+Constructs a SimpleDateFormat using the given pattern and the default date format symbols for the given locale. Note: This constructor may not support all locales. For full 
+coverage, use the factory methods in the (|java.text.DateFormat|) class. 
 
     pattern - the pattern describing the date and time format 
     locale - the locale whose date format symbols should be used 
@@ -240,6 +201,7 @@ public void applyLocalizedPattern(java.lang.String pattern)
 
 Applies the given localized pattern string to this date format. 
 
+
     pattern - a String to be mapped to the new date and time format pattern for this format 
 
 *java.text.SimpleDateFormat.applyPattern(String)*
@@ -248,17 +210,19 @@ public void applyPattern(java.lang.String pattern)
 
 Applies the given pattern string to this date format. 
 
+
     pattern - the new date and time pattern for this date format 
 
 *java.text.SimpleDateFormat.clone()*
 
 public |java.lang.Object| clone()
 
-Creates a copy of this SimpleDateFormat. This also clones the format's date 
-format symbols. 
+Creates a copy of this SimpleDateFormat. This also clones the format's date format symbols. 
+
 
 
     Returns: a clone of this SimpleDateFormat 
+
 *java.text.SimpleDateFormat.equals(Object)*
 
 public boolean equals(java.lang.Object obj)
@@ -266,7 +230,9 @@ public boolean equals(java.lang.Object obj)
 Compares the given object with this SimpleDateFormat for equality. 
 
 
+
     Returns: true if the given object is equal to this SimpleDateFormat 
+
 *java.text.SimpleDateFormat.format(Date,StringBuffer,FieldPosition)*
 
 public |java.lang.StringBuffer| format(
@@ -274,39 +240,39 @@ public |java.lang.StringBuffer| format(
   java.lang.StringBuffer toAppendTo,
   java.text.FieldPosition pos)
 
-Formats the given Date into a date/time string and appends the result to the 
-given StringBuffer. 
+Formats the given Date into a date/time string and appends the result to the given StringBuffer. 
+
 
     date - the date-time value to be formatted into a date-time string. 
     toAppendTo - where the new date-time text is to be appended. 
-    pos - the formatting position. On input: an alignment field, if desired. On output: 
-       the offsets of the alignment field. 
+    pos - the formatting position. On input: an alignment field, if desired. On output: the offsets of the alignment field. 
 
     Returns: the formatted date-time string. 
+
 *java.text.SimpleDateFormat.formatToCharacterIterator(Object)*
 
 public |java.text.AttributedCharacterIterator| formatToCharacterIterator(java.lang.Object obj)
 
-Formats an Object producing an AttributedCharacterIterator. You can use the 
-returned AttributedCharacterIterator to build the resulting String, as well as 
-to determine information about the resulting String. 
+Formats an Object producing an AttributedCharacterIterator. You can use the returned AttributedCharacterIterator to build the resulting String, as well as to determine information 
+about the resulting String. 
 
-Each attribute key of the AttributedCharacterIterator will be of type 
-DateFormat.Field, with the corresponding attribute value being the same as the 
-attribute key. 
+Each attribute key of the AttributedCharacterIterator will be of type DateFormat.Field, with the corresponding attribute value being the same as the attribute key. 
+
 
     obj - The object to format 
 
     Returns: AttributedCharacterIterator describing the formatted value. 
+
 *java.text.SimpleDateFormat.get2DigitYearStart()*
 
 public |java.util.Date| get2DigitYearStart()
 
-Returns the beginning date of the 100-year period 2-digit years are interpreted 
-as being within. 
+Returns the beginning date of the 100-year period 2-digit years are interpreted as being within. 
+
 
 
     Returns: the start of the 100-year period into which two digit years are parsed 
+
 *java.text.SimpleDateFormat.getDateFormatSymbols()*
 
 public |java.text.DateFormatSymbols| getDateFormatSymbols()
@@ -314,7 +280,9 @@ public |java.text.DateFormatSymbols| getDateFormatSymbols()
 Gets a copy of the date and time format symbols of this date format. 
 
 
+
     Returns: the date and time format symbols of this date format 
+
 *java.text.SimpleDateFormat.hashCode()*
 
 public int hashCode()
@@ -322,7 +290,9 @@ public int hashCode()
 Returns the hash code value for this SimpleDateFormat object. 
 
 
+
     Returns: the hash code value for this SimpleDateFormat object. 
+
 *java.text.SimpleDateFormat.parse(String,ParsePosition)*
 
 public |java.util.Date| parse(
@@ -331,34 +301,32 @@ public |java.util.Date| parse(
 
 Parses text from a string to produce a Date. 
 
-The method attempts to parse text starting at the index given by pos. If 
-parsing succeeds, then the index of pos is updated to the index after the last 
-character used (parsing does not necessarily use all characters up to the end 
-of the string), and the parsed date is returned. The updated pos can be used to 
-indicate the starting point for the next call to this method. If an error 
-occurs, then the index of pos is not changed, the error index of pos is set to 
-the index of the character where the error occurred, and null is returned. 
+The method attempts to parse text starting at the index given by pos. If parsing succeeds, then the index of pos is updated to the index after the last character used (parsing 
+does not necessarily use all characters up to the end of the string), and the parsed date is returned. The updated pos can be used to indicate the starting point for the next call 
+to this method. If an error occurs, then the index of pos is not changed, the error index of pos is set to the index of the character where the error occurred, and null is 
+returned. 
+
 
     text - A String, part of which should be parsed. 
-    pos - A ParsePosition object with index and error index information as described 
-       above. 
+    pos - A ParsePosition object with index and error index information as described above. 
 
     Returns: A Date parsed from the string. In case of error, returns null. 
+
 *java.text.SimpleDateFormat.set2DigitYearStart(Date)*
 
 public void set2DigitYearStart(java.util.Date startDate)
 
-Sets the 100-year period 2-digit years will be interpreted as being in to begin 
-on the date the user specifies. 
+Sets the 100-year period 2-digit years will be interpreted as being in to begin on the date the user specifies. 
 
-    startDate - During parsing, two digit years will be placed in the range startDate to 
-       startDate + 100 years. 
+
+    startDate - During parsing, two digit years will be placed in the range startDate to startDate + 100 years. 
 
 *java.text.SimpleDateFormat.setDateFormatSymbols(DateFormatSymbols)*
 
 public void setDateFormatSymbols(java.text.DateFormatSymbols newFormatSymbols)
 
 Sets the date and time format symbols of this date format. 
+
 
     newFormatSymbols - the new date and time format symbols 
 
@@ -369,7 +337,9 @@ public |java.lang.String| toLocalizedPattern()
 Returns a localized pattern string describing this date format. 
 
 
+
     Returns: a localized pattern string describing this date format. 
+
 *java.text.SimpleDateFormat.toPattern()*
 
 public |java.lang.String| toPattern()
@@ -377,5 +347,7 @@ public |java.lang.String| toPattern()
 Returns a pattern string describing this date format. 
 
 
+
     Returns: a pattern string describing this date format. 
+
 

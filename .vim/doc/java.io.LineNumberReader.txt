@@ -1,4 +1,4 @@
-*java.io.LineNumberReader* *LineNumberReader* A buffered character-input stream 
+*java.io.LineNumberReader* *LineNumberReader* A buffered character-input stream that keeps track of line numbers.
 
 public class LineNumberReader
   extends    |java.io.BufferedReader|
@@ -8,17 +8,17 @@ public class LineNumberReader
 |java.io.LineNumberReader_Constructors|
 |java.io.LineNumberReader_Methods|
 
-================================================================================
+====================================================================================================================================================================================
 
 *java.io.LineNumberReader_Constructors*
-|java.io.LineNumberReader(Reader)|Create a new line-numbering reader, using the
-|java.io.LineNumberReader(Reader,int)|Create a new line-numbering reader, readi
+|java.io.LineNumberReader(Reader)|Create a new line-numbering reader, using the default input-buffer  size.
+|java.io.LineNumberReader(Reader,int)|Create a new line-numbering reader, reading characters into a buffer of  the given size.
 
 *java.io.LineNumberReader_Methods*
 |java.io.LineNumberReader.getLineNumber()|Get the current line number.
 |java.io.LineNumberReader.mark(int)|Mark the present position in the stream.
 |java.io.LineNumberReader.read()|Read a single character.
-|java.io.LineNumberReader.read(char[],int,int)|Read characters into a portion o
+|java.io.LineNumberReader.read(char[],int,int)|Read characters into a portion of an array.
 |java.io.LineNumberReader.readLine()|Read a line of text.
 |java.io.LineNumberReader.reset()|Reset the stream to the most recent mark.
 |java.io.LineNumberReader.setLineNumber(int)|Set the current line number.
@@ -26,18 +26,14 @@ public class LineNumberReader
 
 *java.io.LineNumberReader_Description*
 
-A buffered character-input stream that keeps track of line numbers. This class 
-defines methods void setLineNumber(int) and int getLineNumber() for setting and 
-getting the current line number respectively. 
+A buffered character-input stream that keeps track of line numbers. This class defines methods void setLineNumber(int) and int getLineNumber() for setting and getting the current 
+line number respectively. 
 
-By default, line numbering begins at 0. This number increments as data is read, 
-and can be changed with a call to setLineNumber(int). Note however, that 
-setLineNumber(int) does not actually change the current position in the stream; 
-it only changes the value that will be returned by getLineNumber(). 
+By default, line numbering begins at 0. This number increments as data is read, and can be changed with a call to setLineNumber(int). Note however, that setLineNumber(int) does 
+not actually change the current position in the stream; it only changes the value that will be returned by getLineNumber(). 
 
-A line is considered to be terminated by any one of a line feed ('\n'), a 
-carriage return ('\r'), or a carriage return followed immediately by a 
-linefeed. 
+A line is considered to be terminated by any one of a line feed ('\n'), a carriage return ('\r'), or a carriage return followed immediately by a linefeed. 
+
 
 
 *java.io.LineNumberReader(Reader)*
@@ -54,8 +50,7 @@ public LineNumberReader(
   java.io.Reader in,
   int sz)
 
-Create a new line-numbering reader, reading characters into a buffer of the 
-given size. 
+Create a new line-numbering reader, reading characters into a buffer of the given size. 
 
     in - a Reader object to provide the underlying stream. 
     sz - an int specifying the size of the buffer. 
@@ -67,30 +62,30 @@ public int getLineNumber()
 Get the current line number. 
 
 
+
     Returns: The current line number. 
+
 *java.io.LineNumberReader.mark(int)*
 
 public void mark(int readAheadLimit)
   throws |java.io.IOException|
          
-Mark the present position in the stream. Subsequent calls to reset() will 
-attempt to reposition the stream to this point, and will also reset the line 
-number appropriately. 
+Mark the present position in the stream. Subsequent calls to reset() will attempt to reposition the stream to this point, and will also reset the line number appropriately. 
 
-    readAheadLimit - Limit on the number of characters that may be read while still preserving the 
-       mark. After reading this many characters, attempting to reset the stream 
-       may fail. 
+
+    readAheadLimit - Limit on the number of characters that may be read while still preserving the mark. After reading this many characters, attempting to reset the stream may fail. 
 
 *java.io.LineNumberReader.read()*
 
 public int read()
   throws |java.io.IOException|
          
-Read a single character. Line terminators are compressed into single newline 
-('\n') characters. 
+Read a single character. Line terminators are compressed into single newline ('\n') characters. 
+
 
 
     Returns: The character read, or -1 if the end of the stream has been reached 
+
 *java.io.LineNumberReader.read(char[],int,int)*
 
 public int read(
@@ -101,25 +96,24 @@ public int read(
          
 Read characters into a portion of an array. 
 
+
     cbuf - Destination buffer 
     off - Offset at which to start storing characters 
     len - Maximum number of characters to read 
 
-    Returns: The number of bytes read, or -1 if the end of the stream has already been 
-             reached 
+    Returns: The number of bytes read, or -1 if the end of the stream has already been reached 
+
 *java.io.LineNumberReader.readLine()*
 
 public |java.lang.String| readLine()
   throws |java.io.IOException|
          
-Read a line of text. A line is considered to be terminated by any one of a line 
-feed ('\n'), a carriage return ('\r'), or a carriage return followed 
-immediately by a linefeed. 
+Read a line of text. A line is considered to be terminated by any one of a line feed ('\n'), a carriage return ('\r'), or a carriage return followed immediately by a linefeed. 
 
 
-    Returns: A String containing the contents of the line, not including any 
-             line-termination characters, or null if the end of the stream has 
-             been reached 
+
+    Returns: A String containing the contents of the line, not including any line-termination characters, or null if the end of the stream has been reached 
+
 *java.io.LineNumberReader.reset()*
 
 public void reset()
@@ -128,11 +122,13 @@ public void reset()
 Reset the stream to the most recent mark. 
 
 
+
 *java.io.LineNumberReader.setLineNumber(int)*
 
 public void setLineNumber(int lineNumber)
 
 Set the current line number. 
+
 
     lineNumber - an int specifying the line number. 
 
@@ -143,7 +139,9 @@ public long skip(long n)
          
 Skip characters. 
 
+
     n - The number of characters to skip 
 
     Returns: The number of characters actually skipped 
+
 

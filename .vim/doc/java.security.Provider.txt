@@ -1,5 +1,6 @@
 *java.security.Provider* *Provider* This class represents a "provider" for the
- 
+ Java Security API, where a provider implements some or all parts of
+ Java Security.
 
 public abstract class Provider
   extends    |java.util.Properties|
@@ -9,64 +10,54 @@ public abstract class Provider
 |java.security.Provider_Constructors|
 |java.security.Provider_Methods|
 
-================================================================================
+====================================================================================================================================================================================
 
 *java.security.Provider_Constructors*
-|java.security.Provider(String,double,String)|Constructs a provider with the sp
+|java.security.Provider(String,double,String)|Constructs a provider with the specified name, version number,  and information.
 
 *java.security.Provider_Methods*
-|java.security.Provider.clear()|Clears this provider so that it no longer conta
-|java.security.Provider.entrySet()|Returns an unmodifiable Set view of the prop
-|java.security.Provider.getInfo()|Returns a human-readable description of the p
+|java.security.Provider.clear()|Clears this provider so that it no longer contains the properties  used to look up facilities implemented by the provider.
+|java.security.Provider.entrySet()|Returns an unmodifiable Set view of the property entries contained   in this Provider.
+|java.security.Provider.getInfo()|Returns a human-readable description of the provider and its  services.
 |java.security.Provider.getName()|Returns the name of this provider.
-|java.security.Provider.getService(String,String)|Get the service describing th
-|java.security.Provider.getServices()|Get an unmodifiable Set of all services s
-|java.security.Provider.getVersion()|Returns the version number for this provid
-|java.security.Provider.keySet()|Returns an unmodifiable Set view of the proper
-|java.security.Provider.load(InputStream)|Reads a property list (key and elemen
-|java.security.Provider.put(Object,Object)|Sets the key property to have the sp
-|java.security.Provider.putAll(Map)|Copies all of the mappings from the specifi
+|java.security.Provider.getService(String,String)|Get the service describing this Provider's implementation of the  specified type of this algorithm or alias.
+|java.security.Provider.getServices()|Get an unmodifiable Set of all services supported by  this Provider.
+|java.security.Provider.getVersion()|Returns the version number for this provider.
+|java.security.Provider.keySet()|Returns an unmodifiable Set view of the property keys contained in   this provider.
+|java.security.Provider.load(InputStream)|Reads a property list (key and element pairs) from the input stream.
+|java.security.Provider.put(Object,Object)|Sets the key property to have the specified  value.
+|java.security.Provider.putAll(Map<?,?>)|Copies all of the mappings from the specified Map to this provider.
 |java.security.Provider.putService(Provider.Service)|Add a service.
-|java.security.Provider.remove(Object)|Removes the key property (and its corres
-|java.security.Provider.removeService(Provider.Service)|Remove a service previo
-|java.security.Provider.toString()|Returns a string with the name and the versi
-|java.security.Provider.values()|Returns an unmodifiable Collection view of the
+|java.security.Provider.remove(Object)|Removes the key property (and its corresponding  value).
+|java.security.Provider.removeService(Provider.Service)|Remove a service previously added using#putService putService().
+|java.security.Provider.toString()|Returns a string with the name and the version number  of this provider.
+|java.security.Provider.values()|Returns an unmodifiable Collection view of the property values   contained in this provider.
 
 *java.security.Provider_Description*
 
-This class represents a "provider" for the Java Security API, where a provider 
-implements some or all parts of Java Security. Services that a provider may 
-implement include: 
+This class represents a "provider" for the Java Security API, where a provider implements some or all parts of Java Security. Services that a provider may implement include: 
 
 
 
 Algorithms (such as DSA, RSA, MD5 or SHA-1). 
 
-Key generation, conversion, and management facilities (such as for 
-algorithm-specific keys). 
+Key generation, conversion, and management facilities (such as for algorithm-specific keys). 
 
-Each provider has a name and a version number, and is configured in each 
-runtime it is installed in. 
+Each provider has a name and a version number, and is configured in each runtime it is installed in. 
 
-See The Provider Class in the "Java Cryptography Architecture API Specification 
-and Reference" for information about how a particular type of provider, the 
-cryptographic service provider, works and is installed. However, please note 
-that a provider can be used to implement any security service in Java that uses 
-a pluggable architecture with a choice of implementations that fit underneath. 
+See The Provider Class in the "Java Cryptography Architecture API Specification and Reference" for information about how a particular type of provider, the cryptographic service 
+provider, works and is installed. However, please note that a provider can be used to implement any security service in Java that uses a pluggable architecture with a choice of 
+implementations that fit underneath. 
 
-Some provider implementations may encounter unrecoverable internal errors 
-during their operation, for example a failure to communicate with a security 
-token. A (|java.security.ProviderException|) should be used to indicate such 
-errors. 
+Some provider implementations may encounter unrecoverable internal errors during their operation, for example a failure to communicate with a security token. A 
+(|java.security.ProviderException|) should be used to indicate such errors. 
 
-The service type Provider is reserved for use by the security framework. 
-Services of this type cannot be added, removed, or modified by applications. 
-The following attributes are automatically placed in each Provider object: 
+The service type Provider is reserved for use by the security framework. Services of this type cannot be added, removed, or modified by applications. The following attributes are 
+automatically placed in each Provider object: 
 
-NameValue Provider.id name String.valueOf(provider.getName()) Provider.id 
-version String.valueOf(provider.getVersion()) Provider.id info 
-String.valueOf(provider.getInfo()) Provider.id className 
-provider.getClass().getName() 
+NameValue Provider.id name String.valueOf(provider.getName()) Provider.id version String.valueOf(provider.getVersion()) Provider.id info String.valueOf(provider.getInfo()) 
+Provider.id className provider.getClass().getName() 
+
 
 
 *java.security.Provider(String,double,String)*
@@ -86,34 +77,32 @@ Constructs a provider with the specified name, version number, and information.
 
 public synchronized void clear()
 
-Clears this provider so that it no longer contains the properties used to look 
-up facilities implemented by the provider. 
+Clears this provider so that it no longer contains the properties used to look up facilities implemented by the provider. 
 
-First, if there is a security manager, its checkSecurityAccess method is called 
-with the string "clearProviderProperties."+name (where name is the provider 
-name) to see if it's ok to clear this provider. If the default implementation 
-of checkSecurityAccess is used (that is, that method is not overriden), then 
-this results in a call to the security manager's checkPermission method with a 
-SecurityPermission("clearProviderProperties."+name) permission. 
+First, if there is a security manager, its checkSecurityAccess method is called with the string "clearProviderProperties."+name (where name is the provider name) to see if it's ok 
+to clear this provider. If the default implementation of checkSecurityAccess is used (that is, that method is not overriden), then this results in a call to the security manager's 
+checkPermission method with a SecurityPermission("clearProviderProperties."+name) permission. 
+
 
 
 *java.security.Provider.entrySet()*
 
-public synchronized |java.util.Set| entrySet()
+public synchronized |java.util.Set|<Entry<Object,Object>> entrySet()
 
-Returns an unmodifiable Set view of the property entries contained in this 
-Provider. 
+Returns an unmodifiable Set view of the property entries contained in this Provider. 
+
 
 
 *java.security.Provider.getInfo()*
 
 public |java.lang.String| getInfo()
 
-Returns a human-readable description of the provider and its services. This may 
-return an HTML page, with relevant links. 
+Returns a human-readable description of the provider and its services. This may return an HTML page, with relevant links. 
+
 
 
     Returns: a description of the provider and its services. 
+
 *java.security.Provider.getName()*
 
 public |java.lang.String| getName()
@@ -121,34 +110,35 @@ public |java.lang.String| getName()
 Returns the name of this provider. 
 
 
+
     Returns: the name of this provider. 
+
 *java.security.Provider.getService(String,String)*
 
 public synchronized |java.security.Provider.Service| getService(
   java.lang.String type,
   java.lang.String algorithm)
 
-Get the service describing this Provider's implementation of the specified type 
-of this algorithm or alias. If no such implementation exists, this method 
-returns null. If there are two matching services, one added to this provider 
-using putService()(|java.security.Provider|) and one added via 
-put()(|java.security.Provider|) , the service added via 
+Get the service describing this Provider's implementation of the specified type of this algorithm or alias. If no such implementation exists, this method returns null. If there 
+are two matching services, one added to this provider using putService()(|java.security.Provider|) and one added via put()(|java.security.Provider|) , the service added via 
 putService()(|java.security.Provider|) is returned. 
 
-    type - the type of {@link Service service} requested (for example, MessageDigest) 
-    algorithm - the case insensitive algorithm name (or alternate alias) of the service 
-       requested (for example, SHA-1) 
 
-    Returns: the service describing this Provider's matching service or null if no such 
-             service exists 
+    type - the type of {@link Service service} requested (for example, MessageDigest) 
+    algorithm - the case insensitive algorithm name (or alternate alias) of the service requested (for example, SHA-1) 
+
+    Returns: the service describing this Provider's matching service or null if no such service exists 
+
 *java.security.Provider.getServices()*
 
-public synchronized |java.util.Set| getServices()
+public synchronized |java.util.Set|<Service> getServices()
 
 Get an unmodifiable Set of all services supported by this Provider. 
 
 
+
     Returns: an unmodifiable Set of all services supported by this Provider 
+
 *java.security.Provider.getVersion()*
 
 public double getVersion()
@@ -156,13 +146,15 @@ public double getVersion()
 Returns the version number for this provider. 
 
 
+
     Returns: the version number for this provider. 
+
 *java.security.Provider.keySet()*
 
-public |java.util.Set| keySet()
+public |java.util.Set|<Object> keySet()
 
-Returns an unmodifiable Set view of the property keys contained in this 
-provider. 
+Returns an unmodifiable Set view of the property keys contained in this provider. 
+
 
 
 *java.security.Provider.load(InputStream)*
@@ -171,6 +163,7 @@ public synchronized void load(java.io.InputStream inStream)
   throws |java.io.IOException|
          
 Reads a property list (key and element pairs) from the input stream. 
+
 
     inStream - the input stream. 
 
@@ -182,46 +175,38 @@ public synchronized |java.lang.Object| put(
 
 Sets the key property to have the specified value. 
 
-First, if there is a security manager, its checkSecurityAccess method is called 
-with the string "putProviderProperty."+name, where name is the provider name, 
-to see if it's ok to set this provider's property values. If the default 
-implementation of checkSecurityAccess is used (that is, that method is not 
-overriden), then this results in a call to the security manager's 
-checkPermission method with a SecurityPermission("putProviderProperty."+name) 
-permission. 
+First, if there is a security manager, its checkSecurityAccess method is called with the string "putProviderProperty."+name, where name is the provider name, to see if it's ok to 
+set this provider's property values. If the default implementation of checkSecurityAccess is used (that is, that method is not overriden), then this results in a call to the 
+security manager's checkPermission method with a SecurityPermission("putProviderProperty."+name) permission. 
+
 
     key - the property key. 
     value - the property value. 
 
-    Returns: the previous value of the specified property (key), or null if it did not have 
-             one. 
-*java.security.Provider.putAll(Map)*
+    Returns: the previous value of the specified property (key), or null if it did not have one. 
 
-public synchronized void putAll(java.util.Map t)
+*java.security.Provider.putAll(Map<?,?>)*
 
-Copies all of the mappings from the specified Map to this provider. These 
-mappings will replace any properties that this provider had for any of the keys 
-currently in the specified Map. 
+public synchronized void putAll(java.util.Map<?, ?> t)
+
+Copies all of the mappings from the specified Map to this provider. These mappings will replace any properties that this provider had for any of the keys currently in the 
+specified Map. 
+
 
 
 *java.security.Provider.putService(Provider.Service)*
 
 protected synchronized void putService(java.security.Provider.Service s)
 
-Add a service. If a service of the same type with the same algorithm name 
-exists and it was added using putService()(|java.security.Provider|) , it is 
-replaced by the new service. This method also places information about this 
-service in the provider's Hashtable values in the format described in the 
+Add a service. If a service of the same type with the same algorithm name exists and it was added using putService()(|java.security.Provider|) , it is replaced by the new service. 
+This method also places information about this service in the provider's Hashtable values in the format described in the 
 
 Java Cryptography Architecture API Specification and Reference . 
 
-Also, if there is a security manager, its checkSecurityAccess method is called 
-with the string "putProviderProperty."+name, where name is the provider name, 
-to see if it's ok to set this provider's property values. If the default 
-implementation of checkSecurityAccess is used (that is, that method is not 
-overriden), then this results in a call to the security manager's 
-checkPermission method with a SecurityPermission("putProviderProperty."+name) 
-permission. 
+Also, if there is a security manager, its checkSecurityAccess method is called with the string "putProviderProperty."+name, where name is the provider name, to see if it's ok to 
+set this provider's property values. If the default implementation of checkSecurityAccess is used (that is, that method is not overriden), then this results in a call to the 
+security manager's checkPermission method with a SecurityPermission("putProviderProperty."+name) permission. 
+
 
     s - the Service to add 
 
@@ -231,34 +216,26 @@ public synchronized |java.lang.Object| remove(java.lang.Object key)
 
 Removes the key property (and its corresponding value). 
 
-First, if there is a security manager, its checkSecurityAccess method is called 
-with the string "removeProviderProperty."+name, where name is the provider 
-name, to see if it's ok to remove this provider's properties. If the default 
-implementation of checkSecurityAccess is used (that is, that method is not 
-overriden), then this results in a call to the security manager's 
-checkPermission method with a 
-SecurityPermission("removeProviderProperty."+name) permission. 
+First, if there is a security manager, its checkSecurityAccess method is called with the string "removeProviderProperty."+name, where name is the provider name, to see if it's ok 
+to remove this provider's properties. If the default implementation of checkSecurityAccess is used (that is, that method is not overriden), then this results in a call to the 
+security manager's checkPermission method with a SecurityPermission("removeProviderProperty."+name) permission. 
+
 
     key - the key for the property to be removed. 
 
-    Returns: the value to which the key had been mapped, or null if the key did not have a 
-             mapping. 
+    Returns: the value to which the key had been mapped, or null if the key did not have a mapping. 
+
 *java.security.Provider.removeService(Provider.Service)*
 
 protected synchronized void removeService(java.security.Provider.Service s)
 
-Remove a service previously added using putService()(|java.security.Provider|) 
-. The specified service is removed from this provider. It will no longer be 
-returned by getService()(|java.security.Provider|) and its information will be 
-removed from this provider's Hashtable. 
+Remove a service previously added using putService()(|java.security.Provider|) . The specified service is removed from this provider. It will no longer be returned by 
+getService()(|java.security.Provider|) and its information will be removed from this provider's Hashtable. 
 
-Also, if there is a security manager, its checkSecurityAccess method is called 
-with the string "removeProviderProperty."+name, where name is the provider 
-name, to see if it's ok to remove this provider's properties. If the default 
-implementation of checkSecurityAccess is used (that is, that method is not 
-overriden), then this results in a call to the security manager's 
-checkPermission method with a 
-SecurityPermission("removeProviderProperty."+name) permission. 
+Also, if there is a security manager, its checkSecurityAccess method is called with the string "removeProviderProperty."+name, where name is the provider name, to see if it's ok 
+to remove this provider's properties. If the default implementation of checkSecurityAccess is used (that is, that method is not overriden), then this results in a call to the 
+security manager's checkPermission method with a SecurityPermission("removeProviderProperty."+name) permission. 
+
 
     s - the Service to be removed 
 
@@ -269,13 +246,15 @@ public |java.lang.String| toString()
 Returns a string with the name and the version number of this provider. 
 
 
+
     Returns: the string with the name and the version number for this provider. 
+
 *java.security.Provider.values()*
 
-public |java.util.Collection| values()
+public |java.util.Collection|<Object> values()
 
-Returns an unmodifiable Collection view of the property values contained in 
-this provider. 
+Returns an unmodifiable Collection view of the property values contained in this provider. 
+
 
 
 

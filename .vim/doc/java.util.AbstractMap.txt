@@ -1,6 +1,7 @@
-*java.util.AbstractMap* *AbstractMap* This class provides a skeletal implementat
+*java.util.AbstractMap* *AbstractMap* This class provides a skeletal implementation of the Map
+ interface, to minimize the effort required to implement this interface.
 
-public abstract class AbstractMap
+public abstract class AbstractMap<K,V>
   extends    |java.lang.Object|
   implements |java.util.Map|
 
@@ -9,62 +10,54 @@ public abstract class AbstractMap
 |java.util.AbstractMap_Constructors|
 |java.util.AbstractMap_Methods|
 
-================================================================================
+====================================================================================================================================================================================
 
 *java.util.AbstractMap_Constructors*
 |java.util.AbstractMap()|Sole constructor.
 
 *java.util.AbstractMap_Methods*
-|java.util.AbstractMap.clear()|Removes all mappings from this map (optional ope
-|java.util.AbstractMap.clone()|Returns a shallow copy of this AbstractMap insta
-|java.util.AbstractMap.containsKey(Object)|Returns true if this map contains a 
-|java.util.AbstractMap.containsValue(Object)|Returns true if this map maps one 
-|java.util.AbstractMap.entrySet()|Returns a set view of the mappings contained 
-|java.util.AbstractMap.equals(Object)|Compares the specified object with this m
-|java.util.AbstractMap.get(Object)|Returns the value to which this map maps the
+|java.util.AbstractMap.clear()|Removes all mappings from this map (optional operation).
+|java.util.AbstractMap.clone()|Returns a shallow copy of this AbstractMap instance: the keys  and values themselves are not cloned.
+|java.util.AbstractMap.containsKey(Object)|Returns true if this map contains a mapping for the specified  key.
+|java.util.AbstractMap.containsValue(Object)|Returns true if this map maps one or more keys to this value.
+|java.util.AbstractMap.entrySet()|Returns a set view of the mappings contained in this map.
+|java.util.AbstractMap.equals(Object)|Compares the specified object with this map for equality.
+|java.util.AbstractMap.get(Object)|Returns the value to which this map maps the specified key.
 |java.util.AbstractMap.hashCode()|Returns the hash code value for this map.
-|java.util.AbstractMap.isEmpty()|Returns true if this map contains no key-value
-|java.util.AbstractMap.keySet()|Returns a Set view of the keys contained in thi
-|java.util.AbstractMap.put(K,V)|Associates the specified value with the specifi
-|java.util.AbstractMap.putAll(Map)|Copies all of the mappings from the specifie
-|java.util.AbstractMap.remove(Object)|Removes the mapping for this key from thi
-|java.util.AbstractMap.size()|Returns the number of key-value mappings in this 
+|java.util.AbstractMap.isEmpty()|Returns true if this map contains no key-value mappings.
+|java.util.AbstractMap.keySet()|Returns a Set view of the keys contained in this map.
+|java.util.AbstractMap.put(K,V)|Associates the specified value with the specified key in this map  (optional operation).
+|java.util.AbstractMap.putAll(Map<?extendsK,?extendsV>)|Copies all of the mappings from the specified map to this map  (optional operation).
+|java.util.AbstractMap.remove(Object)|Removes the mapping for this key from this map if present (optional  operation).
+|java.util.AbstractMap.size()|Returns the number of key-value mappings in this map.
 |java.util.AbstractMap.toString()|Returns a string representation of this map.
-|java.util.AbstractMap.values()|Returns a collection view of the values contain
+|java.util.AbstractMap.values()|Returns a collection view of the values contained in this map.
 
 *java.util.AbstractMap_Description*
 
-This class provides a skeletal implementation of the Map interface, to minimize 
-the effort required to implement this interface. 
+This class provides a skeletal implementation of the Map interface, to minimize the effort required to implement this interface. 
 
-To implement an unmodifiable map, the programmer needs only to extend this 
-class and provide an implementation for the entrySet method, which returns a 
-set-view of the map's mappings. Typically, the returned set will, in turn, be 
-implemented atop AbstractSet. This set should not support the add or remove 
-methods, and its iterator should not support the remove method. 
+To implement an unmodifiable map, the programmer needs only to extend this class and provide an implementation for the entrySet method, which returns a set-view of the map's 
+mappings. Typically, the returned set will, in turn, be implemented atop AbstractSet. This set should not support the add or remove methods, and its iterator should not support 
+the remove method. 
 
-To implement a modifiable map, the programmer must additionally override this 
-class's put method (which otherwise throws an UnsupportedOperationException), 
-and the iterator returned by entrySet().iterator() must additionally implement 
-its remove method. 
+To implement a modifiable map, the programmer must additionally override this class's put method (which otherwise throws an UnsupportedOperationException), and the iterator 
+returned by entrySet().iterator() must additionally implement its remove method. 
 
-The programmer should generally provide a void (no argument) and map 
-constructor, as per the recommendation in the Map interface specification. 
+The programmer should generally provide a void (no argument) and map constructor, as per the recommendation in the Map interface specification. 
 
-The documentation for each non-abstract methods in this class describes its 
-implementation in detail. Each of these methods may be overridden if the map 
-being implemented admits a more efficient implementation. 
+The documentation for each non-abstract methods in this class describes its implementation in detail. Each of these methods may be overridden if the map being implemented admits a 
+more efficient implementation. 
 
-This class is a member of the <a href="/../guide/collections/index.html"> Java 
-Collections Framework. 
+This class is a member of the <a href="/../guide/collections/index.html"> Java Collections Framework. 
+
 
 
 *java.util.AbstractMap()*
 
 protected AbstractMap()
 
-Sole constructor. (For invocation by subclass constructors, typically 
-implicit.) 
+Sole constructor. (For invocation by subclass constructors, typically implicit.) 
 
 
 *java.util.AbstractMap.clear()*
@@ -75,8 +68,8 @@ Removes all mappings from this map (optional operation).
 
 This implementation calls entrySet().clear(). 
 
-Note that this implementation throws an UnsupportedOperationException if the 
-entrySet does not support the clear operation. 
+Note that this implementation throws an UnsupportedOperationException if the entrySet does not support the clear operation. 
+
 
 
 *java.util.AbstractMap.clone()*
@@ -84,112 +77,98 @@ entrySet does not support the clear operation.
 protected |java.lang.Object| clone()
   throws |java.lang.CloneNotSupportedException|
          
-Returns a shallow copy of this AbstractMap instance: the keys and values 
-themselves are not cloned. 
+Returns a shallow copy of this AbstractMap instance: the keys and values themselves are not cloned. 
+
 
 
     Returns: a shallow copy of this map. 
+
 *java.util.AbstractMap.containsKey(Object)*
 
 public boolean containsKey(java.lang.Object key)
 
 Returns true if this map contains a mapping for the specified key. 
 
-This implementation iterates over entrySet() searching for an entry with the 
-specified key. If such an entry is found, true is returned. If the iteration 
-terminates without finding such an entry, false is returned. Note that this 
-implementation requires linear time in the size of the map; many 
-implementations will override this method. 
+This implementation iterates over entrySet() searching for an entry with the specified key. If such an entry is found, true is returned. If the iteration terminates without 
+finding such an entry, false is returned. Note that this implementation requires linear time in the size of the map; many implementations will override this method. 
+
 
     key - key whose presence in this map is to be tested. 
 
     Returns: true if this map contains a mapping for the specified key. 
+
 *java.util.AbstractMap.containsValue(Object)*
 
 public boolean containsValue(java.lang.Object value)
 
-Returns true if this map maps one or more keys to this value. More formally, 
-returns true if and only if this map contains at least one mapping to a value v 
-such that (value==null ? v==null : value.equals(v)). This operation will 
-probably require time linear in the map size for most implementations of map. 
+Returns true if this map maps one or more keys to this value. More formally, returns true if and only if this map contains at least one mapping to a value v such that (value==null 
+? v==null : value.equals(v)). This operation will probably require time linear in the map size for most implementations of map. 
 
-This implementation iterates over entrySet() searching for an entry with the 
-specified value. If such an entry is found, true is returned. If the iteration 
-terminates without finding such an entry, false is returned. Note that this 
-implementation requires linear time in the size of the map. 
+This implementation iterates over entrySet() searching for an entry with the specified value. If such an entry is found, true is returned. If the iteration terminates without 
+finding such an entry, false is returned. Note that this implementation requires linear time in the size of the map. 
+
 
     value - value whose presence in this map is to be tested. 
 
     Returns: true if this map maps one or more keys to this value. 
+
 *java.util.AbstractMap.entrySet()*
 
-public abstract |java.util.Set| entrySet()
+public abstract |java.util.Set|<Entry<K,V>> entrySet()
 
-Returns a set view of the mappings contained in this map. Each element in this 
-set is a Map.Entry. The set is backed by the map, so changes to the map are 
-reflected in the set, and vice-versa. (If the map is modified while an 
-iteration over the set is in progress, the results of the iteration are 
-undefined.) The set supports element removal, which removes the corresponding 
-entry from the map, via the Iterator.remove, Set.remove, removeAll, retainAll 
-and clear operations. It does not support the add or addAll operations. 
+Returns a set view of the mappings contained in this map. Each element in this set is a Map.Entry. The set is backed by the map, so changes to the map are reflected in the set, 
+and vice-versa. (If the map is modified while an iteration over the set is in progress, the results of the iteration are undefined.) The set supports element removal, which 
+removes the corresponding entry from the map, via the Iterator.remove, Set.remove, removeAll, retainAll and clear operations. It does not support the add or addAll operations. 
+
 
 
     Returns: a set view of the mappings contained in this map. 
+
 *java.util.AbstractMap.equals(Object)*
 
 public boolean equals(java.lang.Object o)
 
-Compares the specified object with this map for equality. Returns true if the 
-given object is also a map and the two maps represent the same mappings. More 
-formally, two maps t1 and t2 represent the same mappings if 
-t1.keySet().equals(t2.keySet()) and for every key k in t1.keySet(), 
-(t1.get(k)==null ? t2.get(k)==null : t1.get(k).equals(t2.get(k))) . This 
-ensures that the equals method works properly across different implementations 
-of the map interface. 
+Compares the specified object with this map for equality. Returns true if the given object is also a map and the two maps represent the same mappings. More formally, two maps t1 
+and t2 represent the same mappings if t1.keySet().equals(t2.keySet()) and for every key k in t1.keySet(), (t1.get(k)==null ? t2.get(k)==null : t1.get(k).equals(t2.get(k))) . This 
+ensures that the equals method works properly across different implementations of the map interface. 
 
-This implementation first checks if the specified object is this map; if so it 
-returns true. Then, it checks if the specified object is a map whose size is 
-identical to the size of this set; if not, it returns false. If so, it iterates 
-over this map's entrySet collection, and checks that the specified map contains 
-each mapping that this map contains. If the specified map fails to contain such 
-a mapping, false is returned. If the iteration completes, true is returned. 
+This implementation first checks if the specified object is this map; if so it returns true. Then, it checks if the specified object is a map whose size is identical to the size 
+of this set; if not, it returns false. If so, it iterates over this map's entrySet collection, and checks that the specified map contains each mapping that this map contains. If 
+the specified map fails to contain such a mapping, false is returned. If the iteration completes, true is returned. 
+
 
     o - object to be compared for equality with this map. 
 
     Returns: true if the specified object is equal to this map. 
+
 *java.util.AbstractMap.get(Object)*
 
-public |java.lang.Object| get(java.lang.Object key)
+public |V| get(java.lang.Object key)
 
-Returns the value to which this map maps the specified key. Returns null if the 
-map contains no mapping for this key. A return value of null does not 
-necessarily indicate that the map contains no mapping for the key; it's also 
-possible that the map explicitly maps the key to null. The containsKey 
-operation may be used to distinguish these two cases. 
+Returns the value to which this map maps the specified key. Returns null if the map contains no mapping for this key. A return value of null does not necessarily indicate that the 
+map contains no mapping for the key; it's also possible that the map explicitly maps the key to null. The containsKey operation may be used to distinguish these two cases. 
 
-This implementation iterates over entrySet() searching for an entry with the 
-specified key. If such an entry is found, the entry's value is returned. If the 
-iteration terminates without finding such an entry, null is returned. Note that 
-this implementation requires linear time in the size of the map; many 
-implementations will override this method. 
+This implementation iterates over entrySet() searching for an entry with the specified key. If such an entry is found, the entry's value is returned. If the iteration terminates 
+without finding such an entry, null is returned. Note that this implementation requires linear time in the size of the map; many implementations will override this method. 
+
 
     key - key whose associated value is to be returned. 
 
     Returns: the value to which this map maps the specified key. 
+
 *java.util.AbstractMap.hashCode()*
 
 public int hashCode()
 
-Returns the hash code value for this map. The hash code of a map is defined to 
-be the sum of the hash codes of each entry in the map's entrySet() view. This 
-ensures that t1.equals(t2) implies that t1.hashCode()==t2.hashCode() for any 
-two maps t1 and t2, as required by the general contract of Object.hashCode. 
+Returns the hash code value for this map. The hash code of a map is defined to be the sum of the hash codes of each entry in the map's entrySet() view. This ensures that 
+t1.equals(t2) implies that t1.hashCode()==t2.hashCode() for any two maps t1 and t2, as required by the general contract of Object.hashCode. 
 
-This implementation iterates over entrySet(), calling hashCode on each element 
-(entry) in the Collection, and adding up the results. 
+This implementation iterates over entrySet(), calling hashCode on each element (entry) in the Collection, and adding up the results. 
+
 
 
     Returns: the hash code value for this map. 
+
 *java.util.AbstractMap.isEmpty()*
 
 public boolean isEmpty()
@@ -199,143 +178,120 @@ Returns true if this map contains no key-value mappings.
 This implementation returns size() == 0. 
 
 
+
     Returns: true if this map contains no key-value mappings. 
+
 *java.util.AbstractMap.keySet()*
 
-public |java.util.Set| keySet()
+public |java.util.Set|<K> keySet()
 
-Returns a Set view of the keys contained in this map. The Set is backed by the 
-map, so changes to the map are reflected in the Set, and vice-versa. (If the 
-map is modified while an iteration over the Set is in progress, the results of 
-the iteration are undefined.) The Set supports element removal, which removes 
-the corresponding entry from the map, via the Iterator.remove, Set.remove, 
-removeAll retainAll, and clear operations. It does not support the add or 
-addAll operations. 
+Returns a Set view of the keys contained in this map. The Set is backed by the map, so changes to the map are reflected in the Set, and vice-versa. (If the map is modified while 
+an iteration over the Set is in progress, the results of the iteration are undefined.) The Set supports element removal, which removes the corresponding entry from the map, via 
+the Iterator.remove, Set.remove, removeAll retainAll, and clear operations. It does not support the add or addAll operations. 
 
-This implementation returns a Set that subclasses AbstractSet. The subclass's 
-iterator method returns a "wrapper object" over this map's entrySet() iterator. 
-The size method delegates to this map's size method and the contains method 
-delegates to this map's containsKey method. 
+This implementation returns a Set that subclasses AbstractSet. The subclass's iterator method returns a "wrapper object" over this map's entrySet() iterator. The size method 
+delegates to this map's size method and the contains method delegates to this map's containsKey method. 
 
-The Set is created the first time this method is called, and returned in 
-response to all subsequent calls. No synchronization is performed, so there is 
-a slight chance that multiple calls to this method will not all return the same 
-Set. 
+The Set is created the first time this method is called, and returned in response to all subsequent calls. No synchronization is performed, so there is a slight chance that 
+multiple calls to this method will not all return the same Set. 
+
 
 
     Returns: a Set view of the keys contained in this map. 
+
 *java.util.AbstractMap.put(K,V)*
 
-public |java.lang.Object| put(
-  java.lang.Object key,
-  java.lang.Object value)
+public |V| put(
+  K key,
+  V value)
 
-Associates the specified value with the specified key in this map (optional 
-operation). If the map previously contained a mapping for this key, the old 
-value is replaced. 
+Associates the specified value with the specified key in this map (optional operation). If the map previously contained a mapping for this key, the old value is replaced. 
 
 This implementation always throws an UnsupportedOperationException. 
+
 
     key - key with which the specified value is to be associated. 
     value - value to be associated with the specified key. 
 
-    Returns: previous value associated with specified key, or null if there was no mapping 
-             for key. (A null return can also indicate that the map previously 
-             associated null with the specified key, if the implementation 
-             supports null values.) 
-*java.util.AbstractMap.putAll(Map)*
+    Returns: previous value associated with specified key, or null if there was no mapping for key. (A null return can also indicate that the map previously associated null with the specified 
+             key, if the implementation supports null values.) 
 
-public void putAll(java.util.Map t)
+*java.util.AbstractMap.putAll(Map<?extendsK,?extendsV>)*
 
-Copies all of the mappings from the specified map to this map (optional 
-operation). These mappings will replace any mappings that this map had for any 
-of the keys currently in the specified map. 
+public void putAll(java.util.Map<? extends K, ? extends V> t)
 
-This implementation iterates over the specified map's entrySet() collection, 
-and calls this map's put operation once for each entry returned by the 
-iteration. 
+Copies all of the mappings from the specified map to this map (optional operation). These mappings will replace any mappings that this map had for any of the keys currently in the 
+specified map. 
 
-Note that this implementation throws an UnsupportedOperationException if this 
-map does not support the put operation and the specified map is nonempty. 
+This implementation iterates over the specified map's entrySet() collection, and calls this map's put operation once for each entry returned by the iteration. 
+
+Note that this implementation throws an UnsupportedOperationException if this map does not support the put operation and the specified map is nonempty. 
+
 
     t - mappings to be stored in this map. 
 
 *java.util.AbstractMap.remove(Object)*
 
-public |java.lang.Object| remove(java.lang.Object key)
+public |V| remove(java.lang.Object key)
 
 Removes the mapping for this key from this map if present (optional operation). 
 
-This implementation iterates over entrySet() searching for an entry with the 
-specified key. If such an entry is found, its value is obtained with its 
-getValue operation, the entry is removed from the Collection (and the backing 
-map) with the iterator's remove operation, and the saved value is returned. If 
-the iteration terminates without finding such an entry, null is returned. Note 
-that this implementation requires linear time in the size of the map; many 
-implementations will override this method. 
+This implementation iterates over entrySet() searching for an entry with the specified key. If such an entry is found, its value is obtained with its getValue operation, the entry 
+is removed from the Collection (and the backing map) with the iterator's remove operation, and the saved value is returned. If the iteration terminates without finding such an 
+entry, null is returned. Note that this implementation requires linear time in the size of the map; many implementations will override this method. 
 
-Note that this implementation throws an UnsupportedOperationException if the 
-entrySet iterator does not support the remove method and this map contains a 
-mapping for the specified key. 
+Note that this implementation throws an UnsupportedOperationException if the entrySet iterator does not support the remove method and this map contains a mapping for the specified 
+key. 
+
 
     key - key whose mapping is to be removed from the map. 
 
-    Returns: previous value associated with specified key, or null if there was no entry for 
-             key. (A null return can also indicate that the map previously 
-             associated null with the specified key, if the implementation 
-             supports null values.) 
+    Returns: previous value associated with specified key, or null if there was no entry for key. (A null return can also indicate that the map previously associated null with the specified 
+             key, if the implementation supports null values.) 
+
 *java.util.AbstractMap.size()*
 
 public int size()
 
-Returns the number of key-value mappings in this map. If the map contains more 
-than Integer.MAX_VALUE elements, returns Integer.MAX_VALUE. 
+Returns the number of key-value mappings in this map. If the map contains more than Integer.MAX_VALUE elements, returns Integer.MAX_VALUE. 
 
 This implementation returns entrySet().size(). 
 
 
+
     Returns: the number of key-value mappings in this map. 
+
 *java.util.AbstractMap.toString()*
 
 public |java.lang.String| toString()
 
-Returns a string representation of this map. The string representation consists 
-of a list of key-value mappings in the order returned by the map's entrySet 
-view's iterator, enclosed in braces ("{}"). Adjacent mappings are separated by 
-the characters ", " (comma and space). Each key-value mapping is rendered as 
-the key followed by an equals sign ("=") followed by the associated value. Keys 
-and values are converted to strings as by String.valueOf(Object). 
+Returns a string representation of this map. The string representation consists of a list of key-value mappings in the order returned by the map's entrySet view's iterator, 
+enclosed in braces ("{}"). Adjacent mappings are separated by the characters ", " (comma and space). Each key-value mapping is rendered as the key followed by an equals sign ("=") 
+followed by the associated value. Keys and values are converted to strings as by String.valueOf(Object). 
 
-This implementation creates an empty string buffer, appends a left brace, and 
-iterates over the map's entrySet view, appending the string representation of 
-each map.entry in turn. After appending each entry except the last, the string 
-", " is appended. Finally a right brace is appended. A string is obtained from 
-the stringbuffer, and returned. 
+This implementation creates an empty string buffer, appends a left brace, and iterates over the map's entrySet view, appending the string representation of each map.entry in turn. 
+After appending each entry except the last, the string ", " is appended. Finally a right brace is appended. A string is obtained from the stringbuffer, and returned. 
+
 
 
     Returns: a String representation of this map. 
+
 *java.util.AbstractMap.values()*
 
-public |java.util.Collection| values()
+public |java.util.Collection|<V> values()
 
-Returns a collection view of the values contained in this map. The collection 
-is backed by the map, so changes to the map are reflected in the collection, 
-and vice-versa. (If the map is modified while an iteration over the collection 
-is in progress, the results of the iteration are undefined.) The collection 
-supports element removal, which removes the corresponding entry from the map, 
-via the Iterator.remove, Collection.remove, removeAll, retainAll and clear 
-operations. It does not support the add or addAll operations. 
+Returns a collection view of the values contained in this map. The collection is backed by the map, so changes to the map are reflected in the collection, and vice-versa. (If the 
+map is modified while an iteration over the collection is in progress, the results of the iteration are undefined.) The collection supports element removal, which removes the 
+corresponding entry from the map, via the Iterator.remove, Collection.remove, removeAll, retainAll and clear operations. It does not support the add or addAll operations. 
 
-This implementation returns a collection that subclasses abstract collection. 
-The subclass's iterator method returns a "wrapper object" over this map's 
-entrySet() iterator. The size method delegates to this map's size method and 
-the contains method delegates to this map's containsValue method. 
+This implementation returns a collection that subclasses abstract collection. The subclass's iterator method returns a "wrapper object" over this map's entrySet() iterator. The 
+size method delegates to this map's size method and the contains method delegates to this map's containsValue method. 
 
-The collection is created the first time this method is called, and returned in 
-response to all subsequent calls. No synchronization is performed, so there is 
-a slight chance that multiple calls to this method will not all return the same 
-Collection. 
+The collection is created the first time this method is called, and returned in response to all subsequent calls. No synchronization is performed, so there is a slight chance that 
+multiple calls to this method will not all return the same Collection. 
+
 
 
     Returns: a collection view of the values contained in this map. 
+
 

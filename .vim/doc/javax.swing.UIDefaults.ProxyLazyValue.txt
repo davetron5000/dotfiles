@@ -1,4 +1,6 @@
-*javax.swing.UIDefaults.ProxyLazyValue* *UIDefaults.ProxyLazyValue* This class p
+*javax.swing.UIDefaults.ProxyLazyValue* *UIDefaults.ProxyLazyValue* This class provides an implementation of LazyValue
+ which can be
+ used to delay loading of the Class for the ins
 
 public static class UIDefaults.ProxyLazyValue
   extends    |java.lang.Object|
@@ -9,25 +11,23 @@ public static class UIDefaults.ProxyLazyValue
 |javax.swing.UIDefaults.ProxyLazyValue_Constructors|
 |javax.swing.UIDefaults.ProxyLazyValue_Methods|
 
-================================================================================
+====================================================================================================================================================================================
 
 *javax.swing.UIDefaults.ProxyLazyValue_Constructors*
-|javax.swing.UIDefaults.ProxyLazyValue(String)|Creates a LazyValue which will c
-|javax.swing.UIDefaults.ProxyLazyValue(String,Object[])|Creates a LazyValue whi
-|javax.swing.UIDefaults.ProxyLazyValue(String,String)|Creates a LazyValue which
-|javax.swing.UIDefaults.ProxyLazyValue(String,String,Object[])|Creates a LazyVa
+|javax.swing.UIDefaults.ProxyLazyValue(String)|Creates a LazyValue which will construct an instance  when asked.
+|javax.swing.UIDefaults.ProxyLazyValue(String,Object[])|Creates a LazyValue which will construct an instance  when asked.
+|javax.swing.UIDefaults.ProxyLazyValue(String,String)|Creates a LazyValue which will construct an instance  when asked.
+|javax.swing.UIDefaults.ProxyLazyValue(String,String,Object[])|Creates a LazyValue which will construct an instance  when asked.
 
 *javax.swing.UIDefaults.ProxyLazyValue_Methods*
-|javax.swing.UIDefaults.ProxyLazyValue.createValue(UIDefaults)|Creates the valu
+|javax.swing.UIDefaults.ProxyLazyValue.createValue(UIDefaults)|Creates the value retrieved from the UIDefaults table.
 
 *javax.swing.UIDefaults.ProxyLazyValue_Description*
 
-This class provides an implementation of LazyValue which can be used to delay 
-loading of the Class for the instance to be created. It also avoids creation of 
-an anonymous inner class for the LazyValue subclass. Both of these improve 
-performance at the time that a a Look and Feel is loaded, at the cost of a 
-slight performance reduction the first time createValue is called (since 
-Reflection APIs are used). 
+This class provides an implementation of LazyValue which can be used to delay loading of the Class for the instance to be created. It also avoids creation of an anonymous inner 
+class for the LazyValue subclass. Both of these improve performance at the time that a a Look and Feel is loaded, at the cost of a slight performance reduction the first time 
+createValue is called (since Reflection APIs are used). 
+
 
 
 *javax.swing.UIDefaults.ProxyLazyValue(String)*
@@ -57,8 +57,7 @@ public UIDefaults.ProxyLazyValue(
 
 Creates a LazyValue which will construct an instance when asked. 
 
-    c - a String specifying the classname of the class containing a static method to be 
-       called for instance creation 
+    c - a String specifying the classname of the class containing a static method to be called for instance creation 
     m - a String specifying the static method to be called on class c 
 
 *javax.swing.UIDefaults.ProxyLazyValue(String,String,Object[])*
@@ -70,8 +69,7 @@ public UIDefaults.ProxyLazyValue(
 
 Creates a LazyValue which will construct an instance when asked. 
 
-    c - a String specifying the classname of the class containing a static method to be 
-       called for instance creation. 
+    c - a String specifying the classname of the class containing a static method to be called for instance creation. 
     m - a String specifying the static method to be called on class c 
     o - an array of Objects to be passed as paramaters to the static method in class c 
 
@@ -79,10 +77,11 @@ Creates a LazyValue which will construct an instance when asked.
 
 public |java.lang.Object| createValue(javax.swing.UIDefaults table)
 
-Creates the value retrieved from the UIDefaults table. The object is created 
-each time it is accessed. 
+Creates the value retrieved from the UIDefaults table. The object is created each time it is accessed. 
+
 
     table - a UIDefaults table 
 
     Returns: the created Object 
+
 

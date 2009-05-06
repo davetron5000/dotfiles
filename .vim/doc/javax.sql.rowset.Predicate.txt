@@ -1,4 +1,5 @@
-*javax.sql.rowset.Predicate* *Predicate* The standard interface that provides th
+*javax.sql.rowset.Predicate* *Predicate* The standard interface that provides the framework for all 
+ FilteredRowSet objects to describe their filters.
 
 public interface interface Predicate
 
@@ -8,34 +9,25 @@ public interface interface Predicate
 |javax.sql.rowset.Predicate_Constructors|
 |javax.sql.rowset.Predicate_Methods|
 
-================================================================================
+====================================================================================================================================================================================
 
 *javax.sql.rowset.Predicate_Methods*
-|javax.sql.rowset.Predicate.evaluate(Object,int)|This method is called by a Fil
-|javax.sql.rowset.Predicate.evaluate(Object,String)|This method is called by th
-|javax.sql.rowset.Predicate.evaluate(RowSet)|This method is typically called a 
+|javax.sql.rowset.Predicate.evaluate(Object,int)|This method is called by a FilteredRowSet object  to check whether the value lies between the filtering criterion (or criteria  if
+|javax.sql.rowset.Predicate.evaluate(Object,String)|This method is called by the FilteredRowSet object  to check whether the value lies between the filtering criteria set   using 
+|javax.sql.rowset.Predicate.evaluate(RowSet)|This method is typically called a FilteredRowSet object  internal methods (not public) that control the RowSet object's  cursor moving
 
 *javax.sql.rowset.Predicate_Description*
 
-The standard interface that provides the framework for all FilteredRowSet 
-objects to describe their filters. 
+The standard interface that provides the framework for all FilteredRowSet objects to describe their filters. 
 
-1.0 Background The Predicate interface is a standard interface that 
-applications can implement to define the filter they wish to apply to a a 
-FilteredRowSet object. A FilteredRowSet object consumes implementations of this 
-interface and enforces the constraints defined in the implementation of the 
-method evaluate. A FilteredRowSet object enforces the filter constraints in a 
-bi-directional manner: It outputs only rows that are within the constraints of 
-the filter; and conversely, it inserts, modifies, or updates only rows that are 
-within the constraints of the filter. 
+1.0 Background The Predicate interface is a standard interface that applications can implement to define the filter they wish to apply to a a FilteredRowSet object. A 
+FilteredRowSet object consumes implementations of this interface and enforces the constraints defined in the implementation of the method evaluate. A FilteredRowSet object 
+enforces the filter constraints in a bi-directional manner: It outputs only rows that are within the constraints of the filter; and conversely, it inserts, modifies, or updates 
+only rows that are within the constraints of the filter. 
 
-2.0 Implementation Guidelines In order to supply a predicate for the 
-FilteredRowSet. this interface must be implemented. At this time, the JDBC 
-RowSet Implementations (JSR-114) does not specify any standard filters 
-definitions. By specifying a standard means and mechanism for a range of 
-filters to be defined and deployed with both the reference and vendor 
-implementations of the FilteredRowSet interface, this allows for a flexible and 
-application motivated implementations of Predicate to emerge. 
+2.0 Implementation Guidelines In order to supply a predicate for the FilteredRowSet. this interface must be implemented. At this time, the JDBC RowSet Implementations (JSR-114) 
+does not specify any standard filters definitions. By specifying a standard means and mechanism for a range of filters to be defined and deployed with both the reference and 
+vendor implementations of the FilteredRowSet interface, this allows for a flexible and application motivated implementations of Predicate to emerge. 
 
 A sample implementation would look something like this: 
 
@@ -43,26 +35,21 @@ public class Range implements Predicate {
 
 private Object lo[]; private Object hi[]; private int idx[]; 
 
-public Range(Object[] lo, Object[] hi, int[] idx) { this.lo = lo; this.hi = hi; 
-this.idx = idx; } 
+public Range(Object[] lo, Object[] hi, int[] idx) { this.lo = lo; this.hi = hi; this.idx = idx; } 
 
-public boolean evaluate(RowSet rs) { CachedRowSet crs = (CachedRowSet)rs; 
-boolean bool1,bool2; 
+public boolean evaluate(RowSet rs) { CachedRowSet crs = (CachedRowSet)rs; boolean bool1,bool2; 
 
 // Check the present row determine if it lies // within the filtering criteria. 
 
-for (int i = 0; i = lo[i]) (rs.getObject(idx[i]) >= hi[i]) { bool1 = true; // 
-within filter constraints } else { bool2 = true; // outside of filter 
-constraints } } 
+for (int i = 0; i = lo[i]) (rs.getObject(idx[i]) >= hi[i]) { bool1 = true; // within filter constraints } else { bool2 = true; // outside of filter constraints } } 
 
 if (bool2) { return false; } else { return true; } } 
 
 
 
-The example above implements a simple range predicate. Note, that 
-implementations should but are not required to provider String and integer 
-index based constructors to provide for JDBC RowSet Implementation applications 
-that use both column identification conventions. 
+The example above implements a simple range predicate. Note, that implementations should but are not required to provider String and integer index based constructors to provide 
+for JDBC RowSet Implementation applications that use both column identification conventions. 
+
 
 
 *javax.sql.rowset.Predicate.evaluate(Object,int)*
@@ -72,20 +59,18 @@ public boolean evaluate(
   int column)
   throws |java.sql.SQLException|
          
-This method is called by a FilteredRowSet object to check whether the value 
-lies between the filtering criterion (or criteria if multiple constraints 
-exist) set using the setFilter() method. 
+This method is called by a FilteredRowSet object to check whether the value lies between the filtering criterion (or criteria if multiple constraints exist) set using the 
+setFilter() method. 
 
-The FilteredRowSet object will use this method internally while inserting new 
-rows to a FilteredRowSet instance. 
+The FilteredRowSet object will use this method internally while inserting new rows to a FilteredRowSet instance. 
 
-    value - An Object value which needs to be checked, whether it can be part of this 
-       FilterRowSet object. 
-    column - a int object that must match the SQL index of a column in this RowSet object. 
-       This must have been passed to Predicate as one of the columns for 
-       filtering while initializing a Predicate 
+
+    value - An Object value which needs to be checked, whether it can be part of this FilterRowSet object. 
+    column - a int object that must match the SQL index of a column in this RowSet object. This must have been passed to Predicate as one of the columns for filtering while initializing a 
+       Predicate 
 
     Returns: true ifrow value lies within the filter; false otherwise 
+
 *javax.sql.rowset.Predicate.evaluate(Object,String)*
 
 public boolean evaluate(
@@ -93,29 +78,26 @@ public boolean evaluate(
   java.lang.String columnName)
   throws |java.sql.SQLException|
          
-This method is called by the FilteredRowSet object to check whether the value 
-lies between the filtering criteria set using the setFilter method. 
+This method is called by the FilteredRowSet object to check whether the value lies between the filtering criteria set using the setFilter method. 
 
-The FilteredRowSet object will use this method internally while inserting new 
-rows to a FilteredRowSet instance. 
+The FilteredRowSet object will use this method internally while inserting new rows to a FilteredRowSet instance. 
 
-    value - An Object value which needs to be checked, whether it can be part of this 
-       FilterRowSet. 
-    columnName - a String object that must match the SQL name of a column in this RowSet, 
-       ignoring case. This must have been passed to Predicate as one of the 
-       columns for filtering while initializing a Predicate 
+
+    value - An Object value which needs to be checked, whether it can be part of this FilterRowSet. 
+    columnName - a String object that must match the SQL name of a column in this RowSet, ignoring case. This must have been passed to Predicate as one of the columns for filtering while 
+       initializing a Predicate 
 
     Returns: true if value lies within the filter; false otherwise 
+
 *javax.sql.rowset.Predicate.evaluate(RowSet)*
 
 public boolean evaluate(javax.sql.RowSet rs)
 
-This method is typically called a FilteredRowSet object internal methods (not 
-public) that control the RowSet object's cursor moving from row to the next. In 
-addition, if this internal method moves the cursor onto a row that has been 
-deleted, the internal method will continue to ove the cursor until a valid row 
-is found. 
+This method is typically called a FilteredRowSet object internal methods (not public) that control the RowSet object's cursor moving from row to the next. In addition, if this 
+internal method moves the cursor onto a row that has been deleted, the internal method will continue to ove the cursor until a valid row is found. 
+
 
 
     Returns: true if there are more rows in the filter; false otherwise 
+
 

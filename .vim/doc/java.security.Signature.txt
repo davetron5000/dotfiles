@@ -1,4 +1,5 @@
-*java.security.Signature* *Signature* This Signature class is used to provide ap
+*java.security.Signature* *Signature* This Signature class is used to provide applications the functionality
+ of a digital signature algorithm.
 
 public abstract class Signature
   extends    |java.security.SignatureSpi|
@@ -8,7 +9,7 @@ public abstract class Signature
 |java.security.Signature_Constructors|
 |java.security.Signature_Methods|
 
-================================================================================
+====================================================================================================================================================================================
 
 *java.security.Signature_Fields*
 |int_java.security.Signature.SIGN|
@@ -17,376 +18,101 @@ public abstract class Signature
 |int_java.security.Signature.VERIFY|
 
 *java.security.Signature_Constructors*
-|java.security.Signature(String)|Creates a Signature object for the specified a
+|java.security.Signature(String)|Creates a Signature object for the specified algorithm.
 
 *java.security.Signature_Methods*
-|java.security.Signature.clone()|Returns a clone if the implementation is clone
-|java.security.Signature.getAlgorithm()|Returns the name of the algorithm for t
-|java.security.Signature.getInstance(String)|Generates a Signature object that 
-|java.security.Signature.getInstance(String,Provider)|Generates a Signature obj
-|java.security.Signature.getInstance(String,String)|Generates a Signature objec
-|java.security.Signature.getParameter(String)|Gets the value of the specified a
-|java.security.Signature.getParameters()|Returns the parameters used with this 
-|java.security.Signature.getProvider()|Returns the provider of this signature o
-|java.security.Signature.initSign(PrivateKey)|Initialize this object for signin
-|java.security.Signature.initSign(PrivateKey,SecureRandom)|Initialize this obje
-|java.security.Signature.initVerify(Certificate)|Initializes this object for ve
-|java.security.Signature.initVerify(PublicKey)|Initializes this object for veri
-|java.security.Signature.setParameter(AlgorithmParameterSpec)|Initializes this 
-|java.security.Signature.setParameter(String,Object)|Sets the specified algorit
-|java.security.Signature.sign()|Returns the signature bytes of all the data upd
-|java.security.Signature.sign(byte[],int,int)|Finishes the signature operation 
-|java.security.Signature.toString()|Returns a string representation of this sig
-|java.security.Signature.update(byte)|Updates the data to be signed or verified
-|java.security.Signature.update(byte[])|Updates the data to be signed or verifi
-|java.security.Signature.update(byte[],int,int)|Updates the data to be signed o
-|java.security.Signature.update(ByteBuffer)|Updates the data to be signed or ve
+|java.security.Signature.clone()|Returns a clone if the implementation is cloneable.
+|java.security.Signature.getAlgorithm()|Returns the name of the algorithm for this signature object.
+|java.security.Signature.getInstance(String)|Generates a Signature object that implements the specified digest  algorithm.
+|java.security.Signature.getInstance(String,Provider)|Generates a Signature object implementing the specified  algorithm, as supplied from the specified provider, if such an   alg
+|java.security.Signature.getInstance(String,String)|Generates a Signature object implementing the specified  algorithm, as supplied from the specified provider, if such an   algor
+|java.security.Signature.getParameter(String)|Gets the value of the specified algorithm parameter.
+|java.security.Signature.getParameters()|Returns the parameters used with this signature object.
+|java.security.Signature.getProvider()|Returns the provider of this signature object.
+|java.security.Signature.initSign(PrivateKey)|Initialize this object for signing.
+|java.security.Signature.initSign(PrivateKey,SecureRandom)|Initialize this object for signing.
+|java.security.Signature.initVerify(Certificate)|Initializes this object for verification, using the public key from  the given certificate.
+|java.security.Signature.initVerify(PublicKey)|Initializes this object for verification.
+|java.security.Signature.setParameter(AlgorithmParameterSpec)|Initializes this signature engine with the specified parameter set.
+|java.security.Signature.setParameter(String,Object)|Sets the specified algorithm parameter to the specified value.
+|java.security.Signature.sign()|Returns the signature bytes of all the data updated.
+|java.security.Signature.sign(byte[],int,int)|Finishes the signature operation and stores the resulting signature  bytes in the provided buffer outbuf, starting at  offset.
+|java.security.Signature.toString()|Returns a string representation of this signature object,         providing information that includes the state of the object         and the n
+|java.security.Signature.update(byte)|Updates the data to be signed or verified by a byte.
+|java.security.Signature.update(byte[])|Updates the data to be signed or verified, using the specified  array of bytes.
+|java.security.Signature.update(byte[],int,int)|Updates the data to be signed or verified, using the specified  array of bytes, starting at the specified offset.
+|java.security.Signature.update(ByteBuffer)|Updates the data to be signed or verified using the specified  ByteBuffer.
 |java.security.Signature.verify(byte[])|Verifies the passed-in signature.
-|java.security.Signature.verify(byte[],int,int)|Verifies the passed-in signatur
+|java.security.Signature.verify(byte[],int,int)|Verifies the passed-in signature in the specified array  of bytes, starting at the specified offset.
 
 *java.security.Signature_Description*
 
-This Signature class is used to provide applications the functionality of a 
-digital signature algorithm. Digital signatures are used for authentication and 
-integrity assurance of digital data. 
+This Signature class is used to provide applications the functionality of a digital signature algorithm. Digital signatures are used for authentication and integrity assurance of 
+digital data. 
 
-The signature algorithm can be, among others, the NIST standard DSA, using DSA 
-and SHA-1. The DSA algorithm using the SHA-1 message digest algorithm can be 
-specified as SHA1withDSA. In the case of RSA, there are multiple choices for 
-the message digest algorithm, so the signing algorithm could be specified as, 
-for example, MD2withRSA, MD5withRSA, or SHA1withRSA. The algorithm name must be 
-specified, as there is no default. 
+The signature algorithm can be, among others, the NIST standard DSA, using DSA and SHA-1. The DSA algorithm using the SHA-1 message digest algorithm can be specified as 
+SHA1withDSA. In the case of RSA, there are multiple choices for the message digest algorithm, so the signing algorithm could be specified as, for example, MD2withRSA, MD5withRSA, 
+or SHA1withRSA. The algorithm name must be specified, as there is no default. 
 
-Like other algorithm-based classes in Java Security, Signature provides 
-implementation-independent algorithms, whereby a caller (application code) 
-requests a particular signature algorithm and is handed back a properly 
-initialized Signature object. It is also possible, if desired, to request a 
-particular algorithm from a particular provider. See the getInstance methods. 
+Like other algorithm-based classes in Java Security, Signature provides implementation-independent algorithms, whereby a caller (application code) requests a particular signature 
+algorithm and is handed back a properly initialized Signature object. It is also possible, if desired, to request a particular algorithm from a particular provider. See the 
+getInstance methods. 
 
-Thus, there are two ways to request a Signature algorithm object: by specifying 
-either just an algorithm name, or both an algorithm name and a package 
-provider. 
+Thus, there are two ways to request a Signature algorithm object: by specifying either just an algorithm name, or both an algorithm name and a package provider. 
 
-If just an algorithm name is specified, the system will determine if there is 
-an implementation of the algorithm requested available in the environment, and 
-if there is more than one, if there is a preferred one. 
+If just an algorithm name is specified, the system will determine if there is an implementation of the algorithm requested available in the environment, and if there is more than 
+one, if there is a preferred one. 
 
-If both an algorithm name and a package provider are specified, the system will 
-determine if there is an implementation of the algorithm in the package 
-requested, and throw an exception if there is not. 
+If both an algorithm name and a package provider are specified, the system will determine if there is an implementation of the algorithm in the package requested, and throw an 
+exception if there is not. 
 
 
 
 A Signature object can be used to generate and verify digital signatures. 
 
-There are three phases to the use of a Signature object for either signing data 
-or verifying a signature: 
+There are three phases to the use of a Signature object for either signing data or verifying a signature: 
 
 Initialization, with either 
 
 
 
-a public key, which initializes the signature for verification (see 
-initVerify(|java.security.Signature|) ), or 
+a public key, which initializes the signature for verification (see initVerify(|java.security.Signature|) ), or 
 
-a private key (and optionally a Secure Random Number Generator), which 
-initializes the signature for signing (see (|java.security.Signature|) and 
-(|java.security.Signature|) ). 
+a private key (and optionally a Secure Random Number Generator), which initializes the signature for signing (see (|java.security.Signature|) and (|java.security.Signature|) ). 
 
 
 
 Updating 
 
-Depending on the type of initialization, this will update the bytes to be 
-signed or verified. See the update(|java.security.Signature|) methods. 
+Depending on the type of initialization, this will update the bytes to be signed or verified. See the update(|java.security.Signature|) methods. 
 
-Signing or Verifying a signature on all updated bytes. See the 
-sign(|java.security.Signature|) methods and the 
-verify(|java.security.Signature|) method. 
+Signing or Verifying a signature on all updated bytes. See the sign(|java.security.Signature|) methods and the verify(|java.security.Signature|) method. 
 
 
 
-Note that this class is abstract and extends from SignatureSpi for historical 
-reasons. Application developers should only take notice of the methods defined 
-in this Signature class; all the methods in the superclass are intended for 
-cryptographic service providers who wish to supply their own implementations of 
-digital signature algorithms. 
+Note that this class is abstract and extends from SignatureSpi for historical reasons. Application developers should only take notice of the methods defined in this Signature 
+class; all the methods in the superclass are intended for cryptographic service providers who wish to supply their own implementations of digital signature algorithms. 
+
 
 
 *int_java.security.Signature.SIGN*
 
-This Signature class is used to provide applications the functionality of a 
-digital signature algorithm. Digital signatures are used for authentication and 
-integrity assurance of digital data. 
-
-The signature algorithm can be, among others, the NIST standard DSA, using DSA 
-and SHA-1. The DSA algorithm using the SHA-1 message digest algorithm can be 
-specified as SHA1withDSA. In the case of RSA, there are multiple choices for 
-the message digest algorithm, so the signing algorithm could be specified as, 
-for example, MD2withRSA, MD5withRSA, or SHA1withRSA. The algorithm name must be 
-specified, as there is no default. 
-
-Like other algorithm-based classes in Java Security, Signature provides 
-implementation-independent algorithms, whereby a caller (application code) 
-requests a particular signature algorithm and is handed back a properly 
-initialized Signature object. It is also possible, if desired, to request a 
-particular algorithm from a particular provider. See the getInstance methods. 
-
-Thus, there are two ways to request a Signature algorithm object: by specifying 
-either just an algorithm name, or both an algorithm name and a package 
-provider. 
-
-If just an algorithm name is specified, the system will determine if there is 
-an implementation of the algorithm requested available in the environment, and 
-if there is more than one, if there is a preferred one. 
-
-If both an algorithm name and a package provider are specified, the system will 
-determine if there is an implementation of the algorithm in the package 
-requested, and throw an exception if there is not. 
-
-
-
-A Signature object can be used to generate and verify digital signatures. 
-
-There are three phases to the use of a Signature object for either signing data 
-or verifying a signature: 
-
-Initialization, with either 
-
-
-
-a public key, which initializes the signature for verification (see 
-initVerify(|java.security.Signature|) ), or 
-
-a private key (and optionally a Secure Random Number Generator), which 
-initializes the signature for signing (see (|java.security.Signature|) and 
-(|java.security.Signature|) ). 
-
-
-
-Updating 
-
-Depending on the type of initialization, this will update the bytes to be 
-signed or verified. See the update(|java.security.Signature|) methods. 
-
-Signing or Verifying a signature on all updated bytes. See the 
-sign(|java.security.Signature|) methods and the 
-verify(|java.security.Signature|) method. 
-
-
-
-Note that this class is abstract and extends from SignatureSpi for historical 
-reasons. Application developers should only take notice of the methods defined 
-in this Signature class; all the methods in the superclass are intended for 
-cryptographic service providers who wish to supply their own implementations of 
-digital signature algorithms. 
+Possible (|java.security.Signature|) value, signifying that this signature object has been initialized for signing. 
 
 
 *int_java.security.Signature.state*
 
-This Signature class is used to provide applications the functionality of a 
-digital signature algorithm. Digital signatures are used for authentication and 
-integrity assurance of digital data. 
-
-The signature algorithm can be, among others, the NIST standard DSA, using DSA 
-and SHA-1. The DSA algorithm using the SHA-1 message digest algorithm can be 
-specified as SHA1withDSA. In the case of RSA, there are multiple choices for 
-the message digest algorithm, so the signing algorithm could be specified as, 
-for example, MD2withRSA, MD5withRSA, or SHA1withRSA. The algorithm name must be 
-specified, as there is no default. 
-
-Like other algorithm-based classes in Java Security, Signature provides 
-implementation-independent algorithms, whereby a caller (application code) 
-requests a particular signature algorithm and is handed back a properly 
-initialized Signature object. It is also possible, if desired, to request a 
-particular algorithm from a particular provider. See the getInstance methods. 
-
-Thus, there are two ways to request a Signature algorithm object: by specifying 
-either just an algorithm name, or both an algorithm name and a package 
-provider. 
-
-If just an algorithm name is specified, the system will determine if there is 
-an implementation of the algorithm requested available in the environment, and 
-if there is more than one, if there is a preferred one. 
-
-If both an algorithm name and a package provider are specified, the system will 
-determine if there is an implementation of the algorithm in the package 
-requested, and throw an exception if there is not. 
-
-
-
-A Signature object can be used to generate and verify digital signatures. 
-
-There are three phases to the use of a Signature object for either signing data 
-or verifying a signature: 
-
-Initialization, with either 
-
-
-
-a public key, which initializes the signature for verification (see 
-initVerify(|java.security.Signature|) ), or 
-
-a private key (and optionally a Secure Random Number Generator), which 
-initializes the signature for signing (see (|java.security.Signature|) and 
-(|java.security.Signature|) ). 
-
-
-
-Updating 
-
-Depending on the type of initialization, this will update the bytes to be 
-signed or verified. See the update(|java.security.Signature|) methods. 
-
-Signing or Verifying a signature on all updated bytes. See the 
-sign(|java.security.Signature|) methods and the 
-verify(|java.security.Signature|) method. 
-
-
-
-Note that this class is abstract and extends from SignatureSpi for historical 
-reasons. Application developers should only take notice of the methods defined 
-in this Signature class; all the methods in the superclass are intended for 
-cryptographic service providers who wish to supply their own implementations of 
-digital signature algorithms. 
+Current state of this signature object. 
 
 
 *int_java.security.Signature.UNINITIALIZED*
 
-This Signature class is used to provide applications the functionality of a 
-digital signature algorithm. Digital signatures are used for authentication and 
-integrity assurance of digital data. 
-
-The signature algorithm can be, among others, the NIST standard DSA, using DSA 
-and SHA-1. The DSA algorithm using the SHA-1 message digest algorithm can be 
-specified as SHA1withDSA. In the case of RSA, there are multiple choices for 
-the message digest algorithm, so the signing algorithm could be specified as, 
-for example, MD2withRSA, MD5withRSA, or SHA1withRSA. The algorithm name must be 
-specified, as there is no default. 
-
-Like other algorithm-based classes in Java Security, Signature provides 
-implementation-independent algorithms, whereby a caller (application code) 
-requests a particular signature algorithm and is handed back a properly 
-initialized Signature object. It is also possible, if desired, to request a 
-particular algorithm from a particular provider. See the getInstance methods. 
-
-Thus, there are two ways to request a Signature algorithm object: by specifying 
-either just an algorithm name, or both an algorithm name and a package 
-provider. 
-
-If just an algorithm name is specified, the system will determine if there is 
-an implementation of the algorithm requested available in the environment, and 
-if there is more than one, if there is a preferred one. 
-
-If both an algorithm name and a package provider are specified, the system will 
-determine if there is an implementation of the algorithm in the package 
-requested, and throw an exception if there is not. 
-
-
-
-A Signature object can be used to generate and verify digital signatures. 
-
-There are three phases to the use of a Signature object for either signing data 
-or verifying a signature: 
-
-Initialization, with either 
-
-
-
-a public key, which initializes the signature for verification (see 
-initVerify(|java.security.Signature|) ), or 
-
-a private key (and optionally a Secure Random Number Generator), which 
-initializes the signature for signing (see (|java.security.Signature|) and 
-(|java.security.Signature|) ). 
-
-
-
-Updating 
-
-Depending on the type of initialization, this will update the bytes to be 
-signed or verified. See the update(|java.security.Signature|) methods. 
-
-Signing or Verifying a signature on all updated bytes. See the 
-sign(|java.security.Signature|) methods and the 
-verify(|java.security.Signature|) method. 
-
-
-
-Note that this class is abstract and extends from SignatureSpi for historical 
-reasons. Application developers should only take notice of the methods defined 
-in this Signature class; all the methods in the superclass are intended for 
-cryptographic service providers who wish to supply their own implementations of 
-digital signature algorithms. 
+Possible (|java.security.Signature|) value, signifying that this signature object has not yet been initialized. 
 
 
 *int_java.security.Signature.VERIFY*
 
-This Signature class is used to provide applications the functionality of a 
-digital signature algorithm. Digital signatures are used for authentication and 
-integrity assurance of digital data. 
-
-The signature algorithm can be, among others, the NIST standard DSA, using DSA 
-and SHA-1. The DSA algorithm using the SHA-1 message digest algorithm can be 
-specified as SHA1withDSA. In the case of RSA, there are multiple choices for 
-the message digest algorithm, so the signing algorithm could be specified as, 
-for example, MD2withRSA, MD5withRSA, or SHA1withRSA. The algorithm name must be 
-specified, as there is no default. 
-
-Like other algorithm-based classes in Java Security, Signature provides 
-implementation-independent algorithms, whereby a caller (application code) 
-requests a particular signature algorithm and is handed back a properly 
-initialized Signature object. It is also possible, if desired, to request a 
-particular algorithm from a particular provider. See the getInstance methods. 
-
-Thus, there are two ways to request a Signature algorithm object: by specifying 
-either just an algorithm name, or both an algorithm name and a package 
-provider. 
-
-If just an algorithm name is specified, the system will determine if there is 
-an implementation of the algorithm requested available in the environment, and 
-if there is more than one, if there is a preferred one. 
-
-If both an algorithm name and a package provider are specified, the system will 
-determine if there is an implementation of the algorithm in the package 
-requested, and throw an exception if there is not. 
-
-
-
-A Signature object can be used to generate and verify digital signatures. 
-
-There are three phases to the use of a Signature object for either signing data 
-or verifying a signature: 
-
-Initialization, with either 
-
-
-
-a public key, which initializes the signature for verification (see 
-initVerify(|java.security.Signature|) ), or 
-
-a private key (and optionally a Secure Random Number Generator), which 
-initializes the signature for signing (see (|java.security.Signature|) and 
-(|java.security.Signature|) ). 
-
-
-
-Updating 
-
-Depending on the type of initialization, this will update the bytes to be 
-signed or verified. See the update(|java.security.Signature|) methods. 
-
-Signing or Verifying a signature on all updated bytes. See the 
-sign(|java.security.Signature|) methods and the 
-verify(|java.security.Signature|) method. 
-
-
-
-Note that this class is abstract and extends from SignatureSpi for historical 
-reasons. Application developers should only take notice of the methods defined 
-in this Signature class; all the methods in the superclass are intended for 
-cryptographic service providers who wish to supply their own implementations of 
-digital signature algorithms. 
+Possible (|java.security.Signature|) value, signifying that this signature object has been initialized for verification. 
 
 
 
@@ -396,9 +122,7 @@ protected Signature(java.lang.String algorithm)
 
 Creates a Signature object for the specified algorithm. 
 
-    algorithm - the standard string name of the algorithm. See Appendix A in the Java 
-       Cryptography Architecture API Specification and Reference for 
-       information about standard algorithm names. 
+    algorithm - the standard string name of the algorithm. See Appendix A in the Java Cryptography Architecture API Specification and Reference for information about standard algorithm names. 
 
 *java.security.Signature.clone()*
 
@@ -408,7 +132,9 @@ public |java.lang.Object| clone()
 Returns a clone if the implementation is cloneable. 
 
 
+
     Returns: a clone if the implementation is cloneable. 
+
 *java.security.Signature.getAlgorithm()*
 
 public final |java.lang.String| getAlgorithm()
@@ -416,23 +142,22 @@ public final |java.lang.String| getAlgorithm()
 Returns the name of the algorithm for this signature object. 
 
 
+
     Returns: the name of the algorithm for this signature object. 
+
 *java.security.Signature.getInstance(String)*
 
 public static |java.security.Signature| getInstance(java.lang.String algorithm)
   throws |java.security.NoSuchAlgorithmException|
          
-Generates a Signature object that implements the specified digest algorithm. If 
-the default provider package provides an implementation of the requested digest 
-algorithm, an instance of Signature containing that implementation is returned. 
-If the algorithm is not available in the default package, other packages are 
-searched. 
+Generates a Signature object that implements the specified digest algorithm. If the default provider package provides an implementation of the requested digest algorithm, an 
+instance of Signature containing that implementation is returned. If the algorithm is not available in the default package, other packages are searched. 
 
-    algorithm - the standard name of the algorithm requested. See Appendix A in the Java 
-       Cryptography Architecture API Specification and Reference for 
-       information about standard algorithm names. 
+
+    algorithm - the standard name of the algorithm requested. See Appendix A in the Java Cryptography Architecture API Specification and Reference for information about standard algorithm names. 
 
     Returns: the new Signature object. 
+
 *java.security.Signature.getInstance(String,Provider)*
 
 public static |java.security.Signature| getInstance(
@@ -440,16 +165,15 @@ public static |java.security.Signature| getInstance(
   java.security.Provider provider)
   throws |java.security.NoSuchAlgorithmException|
          
-Generates a Signature object implementing the specified algorithm, as supplied 
-from the specified provider, if such an algorithm is available from the 
-provider. Note: the provider doesn't have to be registered. 
+Generates a Signature object implementing the specified algorithm, as supplied from the specified provider, if such an algorithm is available from the provider. Note: the provider 
+doesn't have to be registered. 
 
-    algorithm - the name of the algorithm requested. See Appendix A in the Java Cryptography 
-       Architecture API Specification and Reference for information about 
-       standard algorithm names. 
+
+    algorithm - the name of the algorithm requested. See Appendix A in the Java Cryptography Architecture API Specification and Reference for information about standard algorithm names. 
     provider - the provider. 
 
     Returns: the new Signature object. 
+
 *java.security.Signature.getInstance(String,String)*
 
 public static |java.security.Signature| getInstance(
@@ -458,46 +182,42 @@ public static |java.security.Signature| getInstance(
   throws |java.security.NoSuchAlgorithmException|
          |java.security.NoSuchProviderException|
          
-Generates a Signature object implementing the specified algorithm, as supplied 
-from the specified provider, if such an algorithm is available from the 
-provider. 
+Generates a Signature object implementing the specified algorithm, as supplied from the specified provider, if such an algorithm is available from the provider. 
 
-    algorithm - the name of the algorithm requested. See Appendix A in the Java Cryptography 
-       Architecture API Specification and Reference for information about 
-       standard algorithm names. 
+
+    algorithm - the name of the algorithm requested. See Appendix A in the Java Cryptography Architecture API Specification and Reference for information about standard algorithm names. 
     provider - the name of the provider. 
 
     Returns: the new Signature object. 
+
 *java.security.Signature.getParameter(String)*
 
 public final |java.lang.Object| getParameter(java.lang.String param)
   throws |java.security.InvalidParameterException|
          
-Gets the value of the specified algorithm parameter. This method supplies a 
-general-purpose mechanism through which it is possible to get the various 
-parameters of this object. A parameter may be any settable parameter for the 
-algorithm, such as a parameter size, or a source of random bits for signature 
-generation (if appropriate), or an indication of whether or not to perform a 
-specific but optional computation. A uniform algorithm-specific naming scheme 
-for each parameter is desirable but left unspecified at this time. 
+Gets the value of the specified algorithm parameter. This method supplies a general-purpose mechanism through which it is possible to get the various parameters of this object. A 
+parameter may be any settable parameter for the algorithm, such as a parameter size, or a source of random bits for signature generation (if appropriate), or an indication of 
+whether or not to perform a specific but optional computation. A uniform algorithm-specific naming scheme for each parameter is desirable but left unspecified at this time. 
+
+    Deprecated
 
     param - the string name of the parameter. 
 
     Returns: the object that represents the parameter value, or null if there is none. 
+
 *java.security.Signature.getParameters()*
 
 public final |java.security.AlgorithmParameters| getParameters()
 
 Returns the parameters used with this signature object. 
 
-The returned parameters may be the same that were used to initialize this 
-signature, or may contain a combination of default and randomly generated 
-parameter values used by the underlying signature implementation if this 
-signature requires algorithm parameters but was not initialized with any. 
+The returned parameters may be the same that were used to initialize this signature, or may contain a combination of default and randomly generated parameter values used by the 
+underlying signature implementation if this signature requires algorithm parameters but was not initialized with any. 
 
 
-    Returns: the parameters used with this signature, or null if this signature does not use 
-             any parameters. 
+
+    Returns: the parameters used with this signature, or null if this signature does not use any parameters. 
+
 *java.security.Signature.getProvider()*
 
 public final |java.security.Provider| getProvider()
@@ -505,14 +225,16 @@ public final |java.security.Provider| getProvider()
 Returns the provider of this signature object. 
 
 
+
     Returns: the provider of this signature object 
+
 *java.security.Signature.initSign(PrivateKey)*
 
 public final void initSign(java.security.PrivateKey privateKey)
   throws |java.security.InvalidKeyException|
          
-Initialize this object for signing. If this method is called again with a 
-different argument, it negates the effect of this call. 
+Initialize this object for signing. If this method is called again with a different argument, it negates the effect of this call. 
+
 
     privateKey - the private key of the identity whose signature is going to be generated. 
 
@@ -523,8 +245,8 @@ public final void initSign(
   java.security.SecureRandom random)
   throws |java.security.InvalidKeyException|
          
-Initialize this object for signing. If this method is called again with a 
-different argument, it negates the effect of this call. 
+Initialize this object for signing. If this method is called again with a different argument, it negates the effect of this call. 
+
 
     privateKey - the private key of the identity whose signature is going to be generated. 
     random - the source of randomness for this signature. 
@@ -534,12 +256,10 @@ different argument, it negates the effect of this call.
 public final void initVerify(java.security.cert.Certificate certificate)
   throws |java.security.InvalidKeyException|
          
-Initializes this object for verification, using the public key from the given 
-certificate. If the certificate is of type X.509 and has a key usage extension 
-field marked as critical, and the value of the key usage extension field 
-implies that the public key in the certificate and its corresponding private 
-key are not supposed to be used for digital signatures, an InvalidKeyException 
-is thrown. 
+Initializes this object for verification, using the public key from the given certificate. If the certificate is of type X.509 and has a key usage extension field marked as 
+critical, and the value of the key usage extension field implies that the public key in the certificate and its corresponding private key are not supposed to be used for digital 
+signatures, an InvalidKeyException is thrown. 
+
 
     certificate - the certificate of the identity whose signature is going to be verified. 
 
@@ -548,8 +268,8 @@ is thrown.
 public final void initVerify(java.security.PublicKey publicKey)
   throws |java.security.InvalidKeyException|
          
-Initializes this object for verification. If this method is called again with a 
-different argument, it negates the effect of this call. 
+Initializes this object for verification. If this method is called again with a different argument, it negates the effect of this call. 
+
 
     publicKey - the public key of the identity whose signature is going to be verified. 
 
@@ -560,6 +280,7 @@ public final void setParameter(java.security.spec.AlgorithmParameterSpec params)
          
 Initializes this signature engine with the specified parameter set. 
 
+
     params - the parameters 
 
 *java.security.Signature.setParameter(String,Object)*
@@ -569,33 +290,32 @@ public final void setParameter(
   java.lang.Object value)
   throws |java.security.InvalidParameterException|
          
-Sets the specified algorithm parameter to the specified value. This method 
-supplies a general-purpose mechanism through which it is possible to set the 
-various parameters of this object. A parameter may be any settable parameter 
-for the algorithm, such as a parameter size, or a source of random bits for 
-signature generation (if appropriate), or an indication of whether or not to 
-perform a specific but optional computation. A uniform algorithm-specific 
-naming scheme for each parameter is desirable but left unspecified at this 
-time. 
+Sets the specified algorithm parameter to the specified value. This method supplies a general-purpose mechanism through which it is possible to set the various parameters of this 
+object. A parameter may be any settable parameter for the algorithm, such as a parameter size, or a source of random bits for signature generation (if appropriate), or an 
+indication of whether or not to perform a specific but optional computation. A uniform algorithm-specific naming scheme for each parameter is desirable but left unspecified at 
+this time. 
+
+    Deprecated: Use 
+ {@link #setParameter(java.security.spec.AlgorithmParameterSpec)
+ setParameter}.
 
     param - the string identifier of the parameter. 
     value - the parameter value. 
 
 *java.security.Signature.sign()*
 
-public final byte sign()
+public final byte[] sign()
   throws |java.security.SignatureException|
          
-Returns the signature bytes of all the data updated. The format of the 
-signature depends on the underlying signature scheme. 
+Returns the signature bytes of all the data updated. The format of the signature depends on the underlying signature scheme. 
 
-A call to this method resets this signature object to the state it was in when 
-previously initialized for signing via a call to initSign(PrivateKey). That is, 
-the object is reset and available to generate another signature from the same 
-signer, if desired, via new calls to update and sign. 
+A call to this method resets this signature object to the state it was in when previously initialized for signing via a call to initSign(PrivateKey). That is, the object is reset 
+and available to generate another signature from the same signer, if desired, via new calls to update and sign. 
+
 
 
     Returns: the signature bytes of the signing operation's result. 
+
 *java.security.Signature.sign(byte[],int,int)*
 
 public final int sign(
@@ -604,34 +324,36 @@ public final int sign(
   int len)
   throws |java.security.SignatureException|
          
-Finishes the signature operation and stores the resulting signature bytes in 
-the provided buffer outbuf, starting at offset. The format of the signature 
-depends on the underlying signature scheme. 
+Finishes the signature operation and stores the resulting signature bytes in the provided buffer outbuf, starting at offset. The format of the signature depends on the underlying 
+signature scheme. 
 
-This signature object is reset to its initial state (the state it was in after 
-a call to one of the initSign methods) and can be reused to generate further 
-signatures with the same private key. 
+This signature object is reset to its initial state (the state it was in after a call to one of the initSign methods) and can be reused to generate further signatures with the 
+same private key. 
+
 
     outbuf - buffer for the signature result. 
     offset - offset into outbuf where the signature is stored. 
     len - number of bytes within outbuf allotted for the signature. 
 
     Returns: the number of bytes placed into outbuf. 
+
 *java.security.Signature.toString()*
 
 public |java.lang.String| toString()
 
-Returns a string representation of this signature object, providing information 
-that includes the state of the object and the name of the algorithm used. 
+Returns a string representation of this signature object, providing information that includes the state of the object and the name of the algorithm used. 
+
 
 
     Returns: a string representation of this signature object. 
+
 *java.security.Signature.update(byte)*
 
 public final void update(byte b)
   throws |java.security.SignatureException|
          
 Updates the data to be signed or verified by a byte. 
+
 
     b - the byte to use for the update. 
 
@@ -641,6 +363,7 @@ public final void update(byte[] data)
   throws |java.security.SignatureException|
          
 Updates the data to be signed or verified, using the specified array of bytes. 
+
 
     data - the byte array to use for the update. 
 
@@ -652,8 +375,8 @@ public final void update(
   int len)
   throws |java.security.SignatureException|
          
-Updates the data to be signed or verified, using the specified array of bytes, 
-starting at the specified offset. 
+Updates the data to be signed or verified, using the specified array of bytes, starting at the specified offset. 
+
 
     data - the array of bytes. 
     off - the offset to start from in the array of bytes. 
@@ -664,10 +387,9 @@ starting at the specified offset.
 public final void update(java.nio.ByteBuffer data)
   throws |java.security.SignatureException|
          
-Updates the data to be signed or verified using the specified ByteBuffer. 
-Processes the data.remaining() bytes starting at at data.position(). Upon 
-return, the buffer's position will be equal to its limit; its limit will not 
-have changed. 
+Updates the data to be signed or verified using the specified ByteBuffer. Processes the data.remaining() bytes starting at at data.position(). Upon return, the buffer's position 
+will be equal to its limit; its limit will not have changed. 
+
 
     data - the ByteBuffer 
 
@@ -678,14 +400,14 @@ public final boolean verify(byte[] signature)
          
 Verifies the passed-in signature. 
 
-A call to this method resets this signature object to the state it was in when 
-previously initialized for verification via a call to initVerify(PublicKey). 
-That is, the object is reset and available to verify another signature from the 
-identity whose public key was specified in the call to initVerify. 
+A call to this method resets this signature object to the state it was in when previously initialized for verification via a call to initVerify(PublicKey). That is, the object is 
+reset and available to verify another signature from the identity whose public key was specified in the call to initVerify. 
+
 
     signature - the signature bytes to be verified. 
 
     Returns: true if the signature was verified, false if not. 
+
 *java.security.Signature.verify(byte[],int,int)*
 
 public final boolean verify(
@@ -694,17 +416,16 @@ public final boolean verify(
   int length)
   throws |java.security.SignatureException|
          
-Verifies the passed-in signature in the specified array of bytes, starting at 
-the specified offset. 
+Verifies the passed-in signature in the specified array of bytes, starting at the specified offset. 
 
-A call to this method resets this signature object to the state it was in when 
-previously initialized for verification via a call to initVerify(PublicKey). 
-That is, the object is reset and available to verify another signature from the 
-identity whose public key was specified in the call to initVerify. 
+A call to this method resets this signature object to the state it was in when previously initialized for verification via a call to initVerify(PublicKey). That is, the object is 
+reset and available to verify another signature from the identity whose public key was specified in the call to initVerify. 
+
 
     signature - the signature bytes to be verified. 
     offset - the offset to start from in the array of bytes. 
     length - the number of bytes to use, starting at offset. 
 
     Returns: true if the signature was verified, false if not. 
+
 

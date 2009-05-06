@@ -1,4 +1,5 @@
-*javax.swing.AbstractListModel* *AbstractListModel* The abstract definition for 
+*javax.swing.AbstractListModel* *AbstractListModel* The abstract definition for the data model that provides
+ a List with its contents.
 
 public abstract class AbstractListModel
   extends    |java.lang.Object|
@@ -10,7 +11,7 @@ public abstract class AbstractListModel
 |javax.swing.AbstractListModel_Constructors|
 |javax.swing.AbstractListModel_Methods|
 
-================================================================================
+====================================================================================================================================================================================
 
 *javax.swing.AbstractListModel_Fields*
 |javax.swing.event.EventListenerList_javax.swing.AbstractListModel.listenerList|
@@ -19,36 +20,27 @@ public abstract class AbstractListModel
 |javax.swing.AbstractListModel()|
 
 *javax.swing.AbstractListModel_Methods*
-|javax.swing.AbstractListModel.addListDataListener(ListDataListener)|Adds a lis
-|javax.swing.AbstractListModel.fireContentsChanged(Object,int,int)|AbstractList
-|javax.swing.AbstractListModel.fireIntervalAdded(Object,int,int)|AbstractListMo
-|javax.swing.AbstractListModel.fireIntervalRemoved(Object,int,int)|AbstractList
-|javax.swing.AbstractListModel.getListDataListeners()|Returns an array of all t
-|javax.swing.AbstractListModel.getListeners(Class)|Returns an array of all the 
-|javax.swing.AbstractListModel.removeListDataListener(ListDataListener)|Removes
+|javax.swing.AbstractListModel.addListDataListener(ListDataListener)|Adds a listener to the list that's notified each time a change  to the data model occurs.
+|javax.swing.AbstractListModel.fireContentsChanged(Object,int,int)|AbstractListModel subclasses must call this method  after  one or more elements of the list change.
+|javax.swing.AbstractListModel.fireIntervalAdded(Object,int,int)|AbstractListModel subclasses must call this method  after  one or more elements are added to the model.
+|javax.swing.AbstractListModel.fireIntervalRemoved(Object,int,int)|AbstractListModel subclasses must call this method  after one or more elements are removed from the model.
+|javax.swing.AbstractListModel.getListDataListeners()|Returns an array of all the list data listeners  registered on this AbstractListModel.
+|javax.swing.AbstractListModel.getListeners(Class<T>)|Returns an array of all the objects currently registered as  FooListeners  upon this model.
+|javax.swing.AbstractListModel.removeListDataListener(ListDataListener)|Removes a listener from the list that's notified each time a   change to the data model occurs.
 
 *javax.swing.AbstractListModel_Description*
 
-The abstract definition for the data model that provides a List with its 
-contents. 
+The abstract definition for the data model that provides a List with its contents. 
 
-Warning: Serialized objects of this class will not be compatible with future 
-Swing releases. The current serialization support is appropriate for short term 
-storage or RMI between applications running the same version of Swing. As of 
-1.4, support for long term storage of all JavaBeansTM has been added to the 
-java.beans package. Please see (|java.beans.XMLEncoder|) . 
+Warning: Serialized objects of this class will not be compatible with future Swing releases. The current serialization support is appropriate for short term storage or RMI between 
+applications running the same version of Swing. As of 1.4, support for long term storage of all JavaBeansTM has been added to the java.beans package. Please see 
+(|java.beans.XMLEncoder|) . 
+
 
 
 *javax.swing.event.EventListenerList_javax.swing.AbstractListModel.listenerList*
 
-The abstract definition for the data model that provides a List with its 
-contents. 
 
-Warning: Serialized objects of this class will not be compatible with future 
-Swing releases. The current serialization support is appropriate for short term 
-storage or RMI between applications running the same version of Swing. As of 
-1.4, support for long term storage of all JavaBeansTM has been added to the 
-java.beans package. Please see (|java.beans.XMLEncoder|) . 
 
 
 
@@ -63,8 +55,8 @@ public AbstractListModel()
 
 public void addListDataListener(javax.swing.event.ListDataListener l)
 
-Adds a listener to the list that's notified each time a change to the data 
-model occurs. 
+Adds a listener to the list that's notified each time a change to the data model occurs. 
+
 
     l - the ListDataListener to be added 
 
@@ -75,10 +67,9 @@ protected void fireContentsChanged(
   int index0,
   int index1)
 
-AbstractListModel subclasses must call this method after one or more elements 
-of the list change. The changed elements are specified by the closed interval 
-index0, index1 -- the endpoints are included. Note that index0 need not be less 
-than or equal to index1. 
+AbstractListModel subclasses must call this method after one or more elements of the list change. The changed elements are specified by the closed interval index0, index1 -- the 
+endpoints are included. Note that index0 need not be less than or equal to index1. 
+
 
     source - the ListModel that changed, typically "this" 
     index0 - one end of the new interval 
@@ -91,10 +82,9 @@ protected void fireIntervalAdded(
   int index0,
   int index1)
 
-AbstractListModel subclasses must call this method after one or more elements 
-are added to the model. The new elements are specified by a closed interval 
-index0, index1 -- the enpoints are included. Note that index0 need not be less 
-than or equal to index1. 
+AbstractListModel subclasses must call this method after one or more elements are added to the model. The new elements are specified by a closed interval index0, index1 -- the 
+enpoints are included. Note that index0 need not be less than or equal to index1. 
+
 
     source - the ListModel that changed, typically "this" 
     index0 - one end of the new interval 
@@ -107,10 +97,9 @@ protected void fireIntervalRemoved(
   int index0,
   int index1)
 
-AbstractListModel subclasses must call this method after one or more elements 
-are removed from the model. index0 and index1 are the end points of the 
-interval that's been removed. Note that index0 need not be less than or equal 
-to index1. 
+AbstractListModel subclasses must call this method after one or more elements are removed from the model. index0 and index1 are the end points of the interval that's been removed. 
+Note that index0 need not be less than or equal to index1. 
+
 
     source - the ListModel that changed, typically "this" 
     index0 - one end of the removed interval, including index0 
@@ -118,41 +107,38 @@ to index1.
 
 *javax.swing.AbstractListModel.getListDataListeners()*
 
-public |javax.swing.event.ListDataListener| getListDataListeners()
+public |javax.swing.event.ListDataListener|[] getListDataListeners()
 
-Returns an array of all the list data listeners registered on this 
-AbstractListModel. 
+Returns an array of all the list data listeners registered on this AbstractListModel. 
 
 
-    Returns: all of this model's ListDataListeners, or an empty array if no list data 
-             listeners are currently registered 
-*javax.swing.AbstractListModel.getListeners(Class)*
 
-public |java.util.EventListener| getListeners(java.lang.Class listenerType)
+    Returns: all of this model's ListDataListeners, or an empty array if no list data listeners are currently registered 
 
-Returns an array of all the objects currently registered as FooListeners upon 
-this model. FooListeners are registered using the addFooListener method. 
+*javax.swing.AbstractListModel.getListeners(Class<T>)*
 
-You can specify the listenerType argument with a class literal, such as 
-FooListener.class. For example, you can query a list model m for its list data 
-listeners with the following code: 
+public |T|[] getListeners(java.lang.Class<T> listenerType)
 
-ListDataListener[] ldls = 
-(ListDataListener[])(m.getListeners(ListDataListener.class)); 
+Returns an array of all the objects currently registered as FooListeners upon this model. FooListeners are registered using the addFooListener method. 
+
+You can specify the listenerType argument with a class literal, such as FooListener.class. For example, you can query a list model m for its list data listeners with the following 
+code: 
+
+ListDataListener[] ldls = (ListDataListener[])(m.getListeners(ListDataListener.class)); 
 
 If no such listeners exist, this method returns an empty array. 
 
-    listenerType - the type of listeners requested; this parameter should specify an interface 
-       that descends from java.util.EventListener 
 
-    Returns: an array of all objects registered as FooListeners on this model, or an empty 
-             array if no such listeners have been added 
+    listenerType - the type of listeners requested; this parameter should specify an interface that descends from java.util.EventListener 
+
+    Returns: an array of all objects registered as FooListeners on this model, or an empty array if no such listeners have been added 
+
 *javax.swing.AbstractListModel.removeListDataListener(ListDataListener)*
 
 public void removeListDataListener(javax.swing.event.ListDataListener l)
 
-Removes a listener from the list that's notified each time a change to the data 
-model occurs. 
+Removes a listener from the list that's notified each time a change to the data model occurs. 
+
 
     l - the ListDataListener to be removed 
 

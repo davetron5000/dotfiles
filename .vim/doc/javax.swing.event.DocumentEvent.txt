@@ -1,4 +1,4 @@
-*javax.swing.event.DocumentEvent* *DocumentEvent* Interface for document change 
+*javax.swing.event.DocumentEvent* *DocumentEvent* Interface for document change notifications.
 
 public interface interface DocumentEvent
 
@@ -8,48 +8,43 @@ public interface interface DocumentEvent
 |javax.swing.event.DocumentEvent_Constructors|
 |javax.swing.event.DocumentEvent_Methods|
 
-================================================================================
+====================================================================================================================================================================================
 
 *javax.swing.event.DocumentEvent_Methods*
-|javax.swing.event.DocumentEvent.getChange(Element)|Gets the change information
-|javax.swing.event.DocumentEvent.getDocument()|Gets the document that sourced t
+|javax.swing.event.DocumentEvent.getChange(Element)|Gets the change information for the given element.
+|javax.swing.event.DocumentEvent.getDocument()|Gets the document that sourced the change event.
 |javax.swing.event.DocumentEvent.getLength()|Returns the length of the change.
-|javax.swing.event.DocumentEvent.getOffset()|Returns the offset within the docu
+|javax.swing.event.DocumentEvent.getOffset()|Returns the offset within the document of the start  of the change.
 |javax.swing.event.DocumentEvent.getType()|Gets the type of event.
 
 *javax.swing.event.DocumentEvent_Description*
 
-Interface for document change notifications. This provides detailed information 
-to Document observers about how the Document changed. It provides high level 
-information such as type of change and where it occurred, as well as the more 
-detailed structural changes (What Elements were inserted and removed). 
+Interface for document change notifications. This provides detailed information to Document observers about how the Document changed. It provides high level information such as 
+type of change and where it occurred, as well as the more detailed structural changes (What Elements were inserted and removed). 
+
 
 
 *javax.swing.event.DocumentEvent.getChange(Element)*
 
 public |javax.swing.event.DocumentEvent.ElementChange| getChange(javax.swing.text.Element elem)
 
-Gets the change information for the given element. The change information 
-describes what elements were added and removed and the location. If there were 
-no changes, null is returned. 
+Gets the change information for the given element. The change information describes what elements were added and removed and the location. If there were no changes, null is 
+returned. 
 
-This method is for observers to discover the structural changes that were made. 
-This means that only elements that existed prior to the mutation (and still 
-exist after the mutatino) need to have ElementChange records. The changes made 
-available need not be recursive. 
+This method is for observers to discover the structural changes that were made. This means that only elements that existed prior to the mutation (and still exist after the 
+mutatino) need to have ElementChange records. The changes made available need not be recursive. 
 
-For example, if the an element is removed from it's parent, this method should 
-report that the parent changed and provide an ElementChange implementation that 
-describes the change to the parent. If the child element removed had children, 
-these elements do not need to be reported as removed. 
+For example, if the an element is removed from it's parent, this method should report that the parent changed and provide an ElementChange implementation that describes the change 
+to the parent. If the child element removed had children, these elements do not need to be reported as removed. 
 
-If an child element is insert into a parent element, the parent element should 
-report a change. If the child element also had elements inserted into it 
-(grandchildren to the parent) these elements need not report change. 
+If an child element is insert into a parent element, the parent element should report a change. If the child element also had elements inserted into it (grandchildren to the 
+parent) these elements need not report change. 
+
 
     elem - the element 
 
     Returns: the change information, or null if the element was not modified 
+
 *javax.swing.event.DocumentEvent.getDocument()*
 
 public |javax.swing.text.Document| getDocument()
@@ -57,7 +52,9 @@ public |javax.swing.text.Document| getDocument()
 Gets the document that sourced the change event. 
 
 
+
     Returns: 
+
 *javax.swing.event.DocumentEvent.getLength()*
 
 public int getLength()
@@ -65,7 +62,9 @@ public int getLength()
 Returns the length of the change. 
 
 
+
     Returns: the length >= 0 
+
 *javax.swing.event.DocumentEvent.getOffset()*
 
 public int getOffset()
@@ -73,7 +72,9 @@ public int getOffset()
 Returns the offset within the document of the start of the change. 
 
 
+
     Returns: the offset >= 0 
+
 *javax.swing.event.DocumentEvent.getType()*
 
 public |javax.swing.event.DocumentEvent.EventType| getType()
@@ -81,5 +82,7 @@ public |javax.swing.event.DocumentEvent.EventType| getType()
 Gets the type of event. 
 
 
+
     Returns: 
+
 

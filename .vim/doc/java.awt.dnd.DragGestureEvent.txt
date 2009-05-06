@@ -1,4 +1,7 @@
 *java.awt.dnd.DragGestureEvent* *DragGestureEvent* A DragGestureEvent is passed 
+ to DragGestureListener's  
+ dragGestureRecognized() method
+ when a particular DragGestureRecognize
 
 public class DragGestureEvent
   extends    |java.util.EventObject|
@@ -8,44 +11,42 @@ public class DragGestureEvent
 |java.awt.dnd.DragGestureEvent_Constructors|
 |java.awt.dnd.DragGestureEvent_Methods|
 
-================================================================================
+====================================================================================================================================================================================
 
 *java.awt.dnd.DragGestureEvent_Constructors*
-|java.awt.dnd.DragGestureEvent(DragGestureRecognizer,int,Point,List)|Construct 
+|java.awt.dnd.DragGestureEvent(DragGestureRecognizer,int,Point,List<?extendsInputEvent>)|Construct a DragGestureEvent given the  DragGestureRecognizer firing this event,   an int 
 
 *java.awt.dnd.DragGestureEvent_Methods*
-|java.awt.dnd.DragGestureEvent.getComponent()|Returns the Component associated 
-|java.awt.dnd.DragGestureEvent.getDragAction()|Returns an int representing the 
-|java.awt.dnd.DragGestureEvent.getDragOrigin()|Returns a Point in the coordinat
+|java.awt.dnd.DragGestureEvent.getComponent()|Returns the Component associated   with this DragGestureEvent.
+|java.awt.dnd.DragGestureEvent.getDragAction()|Returns an int representing the   action selected by the user.
+|java.awt.dnd.DragGestureEvent.getDragOrigin()|Returns a Point in the coordinates  of the Component over which the drag originated.
 |java.awt.dnd.DragGestureEvent.getDragSource()|Returns the DragSource.
-|java.awt.dnd.DragGestureEvent.getSourceAsDragGestureRecognizer()|Returns the s
-|java.awt.dnd.DragGestureEvent.getTriggerEvent()|Returns the initial event that
-|java.awt.dnd.DragGestureEvent.iterator()|Returns an Iterator for the events  c
-|java.awt.dnd.DragGestureEvent.startDrag(Cursor,Image,Point,Transferable,DragSourceListener)|
-|java.awt.dnd.DragGestureEvent.startDrag(Cursor,Transferable)|Starts the drag o
-|java.awt.dnd.DragGestureEvent.startDrag(Cursor,Transferable,DragSourceListener)|
-|java.awt.dnd.DragGestureEvent.toArray()|Returns an Object array of the   event
-|java.awt.dnd.DragGestureEvent.toArray(Object[])|Returns an array of the events
+|java.awt.dnd.DragGestureEvent.getSourceAsDragGestureRecognizer()|Returns the source as a DragGestureRecognizer.
+|java.awt.dnd.DragGestureEvent.getTriggerEvent()|Returns the initial event that triggered the gesture.
+|java.awt.dnd.DragGestureEvent.iterator()|Returns an Iterator for the events  comprising the gesture.
+|java.awt.dnd.DragGestureEvent.startDrag(Cursor,Image,Point,Transferable,DragSourceListener)|Start the drag given the initial Cursor to display,  a drag Image, the offset of   the
+|java.awt.dnd.DragGestureEvent.startDrag(Cursor,Transferable)|Starts the drag operation given the Cursor for this drag  operation and the Transferable representing the source data
+|java.awt.dnd.DragGestureEvent.startDrag(Cursor,Transferable,DragSourceListener)|Starts the drag given the initial Cursor to display,   the Transferable object,   and the DragSour
+|java.awt.dnd.DragGestureEvent.toArray()|Returns an Object array of the   events comprising the drag gesture.
+|java.awt.dnd.DragGestureEvent.toArray(Object[])|Returns an array of the events comprising the drag gesture.
 
 *java.awt.dnd.DragGestureEvent_Description*
 
-A DragGestureEvent is passed to DragGestureListener's dragGestureRecognized() 
-method when a particular DragGestureRecognizer detects that a platform 
-dependent drag initiating gesture has occurred on the Component that it is 
-tracking. 
+A DragGestureEvent is passed to DragGestureListener's dragGestureRecognized() method when a particular DragGestureRecognizer detects that a platform dependent drag initiating 
+gesture has occurred on the Component that it is tracking. 
 
 
-*java.awt.dnd.DragGestureEvent(DragGestureRecognizer,int,Point,List)*
+
+*java.awt.dnd.DragGestureEvent(DragGestureRecognizer,int,Point,List<?extendsInputEvent>)*
 
 public DragGestureEvent(
   java.awt.dnd.DragGestureRecognizer dgr,
   int act,
   java.awt.Point ori,
-  java.util.List evs)
+  java.util.List<? extends java.awt.event.InputEvent> evs)
 
-Construct a DragGestureEvent given the DragGestureRecognizer firing this event, 
-an int representing the user's preferred action, a Point indicating the origin 
-of the drag, and a List of events that comprise the gesture. 
+Construct a DragGestureEvent given the DragGestureRecognizer firing this event, an int representing the user's preferred action, a Point indicating the origin of the drag, and a 
+List of events that comprise the gesture. 
 
     dgr - The DragGestureRecognizer firing this event 
     act - The the user's preferred action 
@@ -59,7 +60,9 @@ public |java.awt.Component| getComponent()
 Returns the Component associated with this DragGestureEvent. 
 
 
+
     Returns: the Component 
+
 *java.awt.dnd.DragGestureEvent.getDragAction()*
 
 public int getDragAction()
@@ -67,16 +70,19 @@ public int getDragAction()
 Returns an int representing the action selected by the user. 
 
 
+
     Returns: the action selected by the user 
+
 *java.awt.dnd.DragGestureEvent.getDragOrigin()*
 
 public |java.awt.Point| getDragOrigin()
 
-Returns a Point in the coordinates of the Component over which the drag 
-originated. 
+Returns a Point in the coordinates of the Component over which the drag originated. 
+
 
 
     Returns: the Point where the drag originated in Component coords. 
+
 *java.awt.dnd.DragGestureEvent.getDragSource()*
 
 public |java.awt.dnd.DragSource| getDragSource()
@@ -84,7 +90,9 @@ public |java.awt.dnd.DragSource| getDragSource()
 Returns the DragSource. 
 
 
+
     Returns: the DragSource 
+
 *java.awt.dnd.DragGestureEvent.getSourceAsDragGestureRecognizer()*
 
 public |java.awt.dnd.DragGestureRecognizer| getSourceAsDragGestureRecognizer()
@@ -92,7 +100,9 @@ public |java.awt.dnd.DragGestureRecognizer| getSourceAsDragGestureRecognizer()
 Returns the source as a DragGestureRecognizer. 
 
 
+
     Returns: the source as a DragGestureRecognizer 
+
 *java.awt.dnd.DragGestureEvent.getTriggerEvent()*
 
 public |java.awt.event.InputEvent| getTriggerEvent()
@@ -100,15 +110,19 @@ public |java.awt.event.InputEvent| getTriggerEvent()
 Returns the initial event that triggered the gesture. 
 
 
+
     Returns: the first "triggering" event in the sequence of the gesture 
+
 *java.awt.dnd.DragGestureEvent.iterator()*
 
-public |java.util.Iterator| iterator()
+public |java.util.Iterator|<InputEvent> iterator()
 
 Returns an Iterator for the events comprising the gesture. 
 
 
+
     Returns: an Iterator for the events comprising the gesture 
+
 *java.awt.dnd.DragGestureEvent.startDrag(Cursor,Image,Point,Transferable,DragSourceListener)*
 
 public void startDrag(
@@ -119,8 +133,8 @@ public void startDrag(
   java.awt.dnd.DragSourceListener dsl)
   throws |java.awt.dnd.InvalidDnDOperationException|
          
-Start the drag given the initial Cursor to display, a drag Image, the offset of 
-the Image, the Transferable object, and the DragSourceListener to use. 
+Start the drag given the initial Cursor to display, a drag Image, the offset of the Image, the Transferable object, and the DragSourceListener to use. 
+
 
     dragCursor - The initial drag Cursor 
     dragImage - The source's dragImage 
@@ -135,13 +149,12 @@ public void startDrag(
   java.awt.datatransfer.Transferable transferable)
   throws |java.awt.dnd.InvalidDnDOperationException|
          
-Starts the drag operation given the Cursor for this drag operation and the 
-Transferable representing the source data for this drag operation. 
+Starts the drag operation given the Cursor for this drag operation and the Transferable representing the source data for this drag operation. 
 
-If a null Cursor is specified no exception will be thrown and default drag 
-cursors will be used instead. 
+If a null Cursor is specified no exception will be thrown and default drag cursors will be used instead. 
 
 If a null Transferable is specified NullPointerException will be thrown. 
+
 
     dragCursor - The Cursor for this drag operation 
     transferable - The Transferable representing the source data for this drag operation. 
@@ -154,8 +167,8 @@ public void startDrag(
   java.awt.dnd.DragSourceListener dsl)
   throws |java.awt.dnd.InvalidDnDOperationException|
          
-Starts the drag given the initial Cursor to display, the Transferable object, 
-and the DragSourceListener to use. 
+Starts the drag given the initial Cursor to display, the Transferable object, and the DragSourceListener to use. 
+
 
     dragCursor - The initial drag Cursor 
     transferable - The source's Transferable 
@@ -163,19 +176,23 @@ and the DragSourceListener to use.
 
 *java.awt.dnd.DragGestureEvent.toArray()*
 
-public |java.lang.Object| toArray()
+public |java.lang.Object|[] toArray()
 
 Returns an Object array of the events comprising the drag gesture. 
 
 
+
     Returns: an array of the events comprising the gesture 
+
 *java.awt.dnd.DragGestureEvent.toArray(Object[])*
 
-public |java.lang.Object| toArray(java.lang.Object[] array)
+public |java.lang.Object|[] toArray(java.lang.Object[] array)
 
 Returns an array of the events comprising the drag gesture. 
+
 
     array - the array of EventObject sub(types) 
 
     Returns: an array of the events comprising the gesture 
+
 

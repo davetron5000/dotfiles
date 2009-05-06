@@ -1,4 +1,6 @@
-*java.awt.im.spi.InputMethodContext* *InputMethodContext* Provides methods that 
+*java.awt.im.spi.InputMethodContext* *InputMethodContext* Provides methods that input methods
+ can use to communicate with their client components or to request
+ other services.
 
 public interface interface InputMethodContext
 
@@ -9,21 +11,19 @@ public interface interface InputMethodContext
 |java.awt.im.spi.InputMethodContext_Constructors|
 |java.awt.im.spi.InputMethodContext_Methods|
 
-================================================================================
+====================================================================================================================================================================================
 
 *java.awt.im.spi.InputMethodContext_Methods*
-|java.awt.im.spi.InputMethodContext.createInputMethodJFrame(String,boolean)|Cre
-|java.awt.im.spi.InputMethodContext.createInputMethodWindow(String,boolean)|Cre
-|java.awt.im.spi.InputMethodContext.dispatchInputMethodEvent(int,AttributedCharacterIterator,int,TextHitInfo,TextHitInfo)|
-|java.awt.im.spi.InputMethodContext.enableClientWindowNotification(InputMethod,boolean)|
+|java.awt.im.spi.InputMethodContext.createInputMethodJFrame(String,boolean)|Creates a top-level Swing JFrame for use by the input method.
+|java.awt.im.spi.InputMethodContext.createInputMethodWindow(String,boolean)|Creates a top-level window for use by the input method.
+|java.awt.im.spi.InputMethodContext.dispatchInputMethodEvent(int,AttributedCharacterIterator,int,TextHitInfo,TextHitInfo)|Creates an input method event from the arguments given  a
+|java.awt.im.spi.InputMethodContext.enableClientWindowNotification(InputMethod,boolean)|Enables or disables notification of the current client window's  location and state for the
 
 *java.awt.im.spi.InputMethodContext_Description*
 
-Provides methods that input methods can use to communicate with their client 
-components or to request other services. This interface is implemented by the 
-input method framework, and input methods call its methods on the instance they 
-receive through (|java.awt.im.spi.InputMethod|) . There should be no other 
-implementors or callers. 
+Provides methods that input methods can use to communicate with their client components or to request other services. This interface is implemented by the input method framework, 
+and input methods call its methods on the instance they receive through (|java.awt.im.spi.InputMethod|) . There should be no other implementors or callers. 
+
 
 
 *java.awt.im.spi.InputMethodContext.createInputMethodJFrame(String,boolean)*
@@ -32,70 +32,54 @@ public |javax.swing.JFrame| createInputMethodJFrame(
   java.lang.String title,
   boolean attachToInputContext)
 
-Creates a top-level Swing JFrame for use by the input method. The intended 
-behavior of this window is: 
+Creates a top-level Swing JFrame for use by the input method. The intended behavior of this window is: 
 
-it floats above all document windows and dialogs it and all components that it 
-contains do not receive the focus it has lightweight decorations, such as a 
-reduced drag region without title 
+it floats above all document windows and dialogs it and all components that it contains do not receive the focus it has lightweight decorations, such as a reduced drag region 
+without title 
 
-However, the actual behavior with respect to these three items is platform 
-dependent. 
+However, the actual behavior with respect to these three items is platform dependent. 
 
-The title may or may not be displayed, depending on the actual type of window 
-created. 
+The title may or may not be displayed, depending on the actual type of window created. 
 
-If attachToInputContext is true, the new window will share the input context 
-that corresponds to this input method context, so that events for components in 
-the window are automatically dispatched to the input method. Also, when the 
-window is opened using setVisible(true), the input context will prevent 
-deactivate and activate calls to the input method that might otherwise be 
-caused. 
+If attachToInputContext is true, the new window will share the input context that corresponds to this input method context, so that events for components in the window are 
+automatically dispatched to the input method. Also, when the window is opened using setVisible(true), the input context will prevent deactivate and activate calls to the input 
+method that might otherwise be caused. 
 
-Input methods must call Window.dispose(|java.awt.Window|) on the returned input 
-method window when it is no longer needed. 
+Input methods must call Window.dispose(|java.awt.Window|) on the returned input method window when it is no longer needed. 
 
-    title - the title to be displayed in the window's title bar, if there is such a title 
-       bar. A null value is treated as an empty string, "". 
-    attachToInputContext - whether this window should share the input context that corresponds to this 
-       input method context 
+
+    title - the title to be displayed in the window's title bar, if there is such a title bar. A null value is treated as an empty string, "". 
+    attachToInputContext - whether this window should share the input context that corresponds to this input method context 
 
     Returns: a JFrame with special characteristics for use by input methods 
+
 *java.awt.im.spi.InputMethodContext.createInputMethodWindow(String,boolean)*
 
 public |java.awt.Window| createInputMethodWindow(
   java.lang.String title,
   boolean attachToInputContext)
 
-Creates a top-level window for use by the input method. The intended behavior 
-of this window is: 
+Creates a top-level window for use by the input method. The intended behavior of this window is: 
 
-it floats above all document windows and dialogs it and all components that it 
-contains do not receive the focus it has lightweight decorations, such as a 
-reduced drag region without title 
+it floats above all document windows and dialogs it and all components that it contains do not receive the focus it has lightweight decorations, such as a reduced drag region 
+without title 
 
-However, the actual behavior with respect to these three items is platform 
-dependent. 
+However, the actual behavior with respect to these three items is platform dependent. 
 
-The title may or may not be displayed, depending on the actual type of window 
-created. 
+The title may or may not be displayed, depending on the actual type of window created. 
 
-If attachToInputContext is true, the new window will share the input context 
-that corresponds to this input method context, so that events for components in 
-the window are automatically dispatched to the input method. Also, when the 
-window is opened using setVisible(true), the input context will prevent 
-deactivate and activate calls to the input method that might otherwise be 
-caused. 
+If attachToInputContext is true, the new window will share the input context that corresponds to this input method context, so that events for components in the window are 
+automatically dispatched to the input method. Also, when the window is opened using setVisible(true), the input context will prevent deactivate and activate calls to the input 
+method that might otherwise be caused. 
 
-Input methods must call Window.dispose(|java.awt.Window|) on the returned input 
-method window when it is no longer needed. 
+Input methods must call Window.dispose(|java.awt.Window|) on the returned input method window when it is no longer needed. 
 
-    title - the title to be displayed in the window's title bar, if there is such a title 
-       bar. A null value is treated as an empty string, "". 
-    attachToInputContext - whether this window should share the input context that corresponds to this 
-       input method context 
+
+    title - the title to be displayed in the window's title bar, if there is such a title bar. A null value is treated as an empty string, "". 
+    attachToInputContext - whether this window should share the input context that corresponds to this input method context 
 
     Returns: a window with special characteristics for use by input methods 
+
 *java.awt.im.spi.InputMethodContext.dispatchInputMethodEvent(int,AttributedCharacterIterator,int,TextHitInfo,TextHitInfo)*
 
 public void dispatchInputMethodEvent(
@@ -105,8 +89,8 @@ public void dispatchInputMethodEvent(
   java.awt.font.TextHitInfo caret,
   java.awt.font.TextHitInfo visiblePosition)
 
-Creates an input method event from the arguments given and dispatches it to the 
-client component. For arguments, see (|java.awt.event.InputMethodEvent|) . 
+Creates an input method event from the arguments given and dispatches it to the client component. For arguments, see (|java.awt.event.InputMethodEvent|) . 
+
 
 
 *java.awt.im.spi.InputMethodContext.enableClientWindowNotification(InputMethod,boolean)*
@@ -115,11 +99,10 @@ public void enableClientWindowNotification(
   java.awt.im.spi.InputMethod inputMethod,
   boolean enable)
 
-Enables or disables notification of the current client window's location and 
-state for the specified input method. When notification is enabled, the input 
-method's notifyClientWindowChange(|java.awt.im.spi.InputMethod|) method is 
-called as described in that method's specification. Notification is 
-automatically disabled when the input method is disposed. 
+Enables or disables notification of the current client window's location and state for the specified input method. When notification is enabled, the input method's 
+notifyClientWindowChange(|java.awt.im.spi.InputMethod|) method is called as described in that method's specification. Notification is automatically disabled when the input method 
+is disposed. 
+
 
     inputMethod - the input method for which notifications are enabled or disabled 
     enable - true to enable, false to disable 

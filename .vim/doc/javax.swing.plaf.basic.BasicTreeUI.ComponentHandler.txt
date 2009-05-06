@@ -1,4 +1,4 @@
-*javax.swing.plaf.basic.BasicTreeUI.ComponentHandler* *BasicTreeUI.ComponentHandler* 
+*javax.swing.plaf.basic.BasicTreeUI.ComponentHandler* *BasicTreeUI.ComponentHandler* Updates the preferred size when scrolling (if necessary).
 
 public class BasicTreeUI.ComponentHandler
   extends    |java.awt.event.ComponentAdapter|
@@ -9,7 +9,7 @@ public class BasicTreeUI.ComponentHandler
 |javax.swing.plaf.basic.BasicTreeUI.ComponentHandler_Constructors|
 |javax.swing.plaf.basic.BasicTreeUI.ComponentHandler_Methods|
 
-================================================================================
+====================================================================================================================================================================================
 
 *javax.swing.plaf.basic.BasicTreeUI.ComponentHandler_Fields*
 |javax.swing.JScrollBar_javax.swing.plaf.basic.BasicTreeUI.ComponentHandler.scrollBar|
@@ -19,24 +19,25 @@ public class BasicTreeUI.ComponentHandler
 |javax.swing.plaf.basic.BasicTreeUI.ComponentHandler()|
 
 *javax.swing.plaf.basic.BasicTreeUI.ComponentHandler_Methods*
-|javax.swing.plaf.basic.BasicTreeUI.ComponentHandler.actionPerformed(ActionEvent)|
+|javax.swing.plaf.basic.BasicTreeUI.ComponentHandler.actionPerformed(ActionEvent)|Public as a result of Timer.
 |javax.swing.plaf.basic.BasicTreeUI.ComponentHandler.componentMoved(ComponentEvent)|
-|javax.swing.plaf.basic.BasicTreeUI.ComponentHandler.getScrollPane()|Returns th
-|javax.swing.plaf.basic.BasicTreeUI.ComponentHandler.startTimer()|Creates, if n
+|javax.swing.plaf.basic.BasicTreeUI.ComponentHandler.getScrollPane()|Returns the JScrollPane housing the JTree, or null if one isn't  found.
+|javax.swing.plaf.basic.BasicTreeUI.ComponentHandler.startTimer()|Creates, if necessary, and starts a Timer to check if need to  resize the bounds.
 
 *javax.swing.plaf.basic.BasicTreeUI.ComponentHandler_Description*
 
 Updates the preferred size when scrolling (if necessary). 
 
 
+
 *javax.swing.JScrollBar_javax.swing.plaf.basic.BasicTreeUI.ComponentHandler.scrollBar*
 
-Updates the preferred size when scrolling (if necessary). 
+ScrollBar that is being adjusted. 
 
 
 *javax.swing.Timer_javax.swing.plaf.basic.BasicTreeUI.ComponentHandler.timer*
 
-Updates the preferred size when scrolling (if necessary). 
+Timer used when inside a scrollpane and the scrollbar is adjusting. 
 
 
 
@@ -51,13 +52,14 @@ public BasicTreeUI.ComponentHandler()
 
 public void actionPerformed(java.awt.event.ActionEvent ae)
 
-Public as a result of Timer. If the scrollBar is null, or not adjusting, this 
-stops the timer and updates the sizing. 
+Public as a result of Timer. If the scrollBar is null, or not adjusting, this stops the timer and updates the sizing. 
+
 
 
 *javax.swing.plaf.basic.BasicTreeUI.ComponentHandler.componentMoved(ComponentEvent)*
 
 public void componentMoved(java.awt.event.ComponentEvent e)
+
 
 
 
@@ -69,12 +71,13 @@ protected |javax.swing.JScrollPane| getScrollPane()
 Returns the JScrollPane housing the JTree, or null if one isn't found. 
 
 
+
 *javax.swing.plaf.basic.BasicTreeUI.ComponentHandler.startTimer()*
 
 protected void startTimer()
 
-Creates, if necessary, and starts a Timer to check if need to resize the 
-bounds. 
+Creates, if necessary, and starts a Timer to check if need to resize the bounds. 
+
 
 
 

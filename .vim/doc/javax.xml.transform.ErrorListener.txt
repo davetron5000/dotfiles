@@ -1,4 +1,5 @@
-*javax.xml.transform.ErrorListener* *ErrorListener* To provide customized error 
+*javax.xml.transform.ErrorListener* *ErrorListener* To provide customized error handling, implement this interface and
+ use the setErrorListener method to register an instance of t
 
 public interface interface ErrorListener
 
@@ -8,33 +9,27 @@ public interface interface ErrorListener
 |javax.xml.transform.ErrorListener_Constructors|
 |javax.xml.transform.ErrorListener_Methods|
 
-================================================================================
+====================================================================================================================================================================================
 
 *javax.xml.transform.ErrorListener_Methods*
-|javax.xml.transform.ErrorListener.error(TransformerException)|Receive notifica
-|javax.xml.transform.ErrorListener.fatalError(TransformerException)|Receive not
-|javax.xml.transform.ErrorListener.warning(TransformerException)|Receive notifi
+|javax.xml.transform.ErrorListener.error(TransformerException)|Receive notification of a recoverable error.
+|javax.xml.transform.ErrorListener.fatalError(TransformerException)|Receive notification of a non-recoverable error.
+|javax.xml.transform.ErrorListener.warning(TransformerException)|Receive notification of a warning.
 
 *javax.xml.transform.ErrorListener_Description*
 
-To provide customized error handling, implement this interface and use the 
-setErrorListener method to register an instance of the implmentation with the 
-(|javax.xml.transform.Transformer|) . The Transformer then reports all errors 
-and warnings through this interface. 
+To provide customized error handling, implement this interface and use the setErrorListener method to register an instance of the implmentation with the 
+(|javax.xml.transform.Transformer|) . The Transformer then reports all errors and warnings through this interface. 
 
-If an application does not register its own custom ErrorListener, the default 
-ErrorListener is used which reports all warnings and errors to System.err and 
-does not throw any Exceptions. Applications are strongly encouraged to register 
-and use ErrorListeners that insure proper behavior for warnings and errors. 
+If an application does not register its own custom ErrorListener, the default ErrorListener is used which reports all warnings and errors to System.err and does not throw any 
+Exceptions. Applications are strongly encouraged to register and use ErrorListeners that insure proper behavior for warnings and errors. 
 
-For transformation errors, a Transformer must use this interface instead of 
-throwing an Exception: it is up to the application to decide whether to throw 
-an Exception for different types of errors and warnings. Note however that the 
-Transformer is not required to continue with the transformation after a call to 
-(|javax.xml.transform.ErrorListener|) . 
+For transformation errors, a Transformer must use this interface instead of throwing an Exception: it is up to the application to decide whether to throw an Exception for 
+different types of errors and warnings. Note however that the Transformer is not required to continue with the transformation after a call to (|javax.xml.transform.ErrorListener|) 
+. 
 
-Transformers may use this mechanism to report XML parsing errors as well as 
-transformation errors. 
+Transformers may use this mechanism to report XML parsing errors as well as transformation errors. 
+
 
 
 *javax.xml.transform.ErrorListener.error(TransformerException)*
@@ -44,9 +39,9 @@ public void error(javax.xml.transform.TransformerException exception)
          
 Receive notification of a recoverable error. 
 
-The transformer must continue to try and provide normal transformation after 
-invoking this method. It should still be possible for the application to 
-process the document through to the end if no other errors are encountered. 
+The transformer must continue to try and provide normal transformation after invoking this method. It should still be possible for the application to process the document through 
+to the end if no other errors are encountered. 
+
 
     exception - The error information encapsulated in a transformer exception. 
 
@@ -57,10 +52,9 @@ public void fatalError(javax.xml.transform.TransformerException exception)
          
 Receive notification of a non-recoverable error. 
 
-The Transformer must continue to try and provide normal transformation after 
-invoking this method. It should still be possible for the application to 
-process the document through to the end if no other errors are encountered, but 
-there is no guarantee that the output will be useable. 
+The Transformer must continue to try and provide normal transformation after invoking this method. It should still be possible for the application to process the document through 
+to the end if no other errors are encountered, but there is no guarantee that the output will be useable. 
+
 
     exception - The error information encapsulated in a TransformerException. 
 
@@ -71,13 +65,10 @@ public void warning(javax.xml.transform.TransformerException exception)
          
 Receive notification of a warning. 
 
-(|javax.xml.transform.Transformer|) can use this method to report conditions 
-that are not errors or fatal errors. The default behaviour is to take no 
-action. 
+(|javax.xml.transform.Transformer|) can use this method to report conditions that are not errors or fatal errors. The default behaviour is to take no action. 
 
-After invoking this method, the Transformer must continue with the 
-transformation. It should still be possible for the application to process the 
-document through to the end. 
+After invoking this method, the Transformer must continue with the transformation. It should still be possible for the application to process the document through to the end. 
+
 
     exception - The warning information encapsulated in a transformer exception. 
 

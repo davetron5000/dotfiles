@@ -1,4 +1,5 @@
-*java.lang.Process* *Process* TheProcessBuilder#start()andRuntime#exec(String[],
+*java.lang.Process* *Process* TheProcessBuilder#start()andRuntime#exec(String[],String[],File) Runtime.execmethods create a native process and
+ return an instance of a subclass of 
 
 public abstract class Process
   extends    |java.lang.Object|
@@ -8,7 +9,7 @@ public abstract class Process
 |java.lang.Process_Constructors|
 |java.lang.Process_Methods|
 
-================================================================================
+====================================================================================================================================================================================
 
 *java.lang.Process_Constructors*
 |java.lang.Process()|
@@ -19,35 +20,24 @@ public abstract class Process
 |java.lang.Process.getErrorStream()|Gets the error stream of the subprocess.
 |java.lang.Process.getInputStream()|Gets the input stream of the subprocess.
 |java.lang.Process.getOutputStream()|Gets the output stream of the subprocess.
-|java.lang.Process.waitFor()|causes the current thread to wait, if necessary, u
+|java.lang.Process.waitFor()|causes the current thread to wait, if necessary, until the   process represented by this Process object has   terminated.
 
 *java.lang.Process_Description*
 
-The (|java.lang.ProcessBuilder|) and Runtime.exec(|java.lang.Runtime|) methods 
-create a native process and return an instance of a subclass of Process that 
-can be used to control the process and obtain information about it. The class 
-Process provides methods for performing input from the process, performing 
-output to the process, waiting for the process to complete, checking the exit 
-status of the process, and destroying (killing) the process. 
+The (|java.lang.ProcessBuilder|) and Runtime.exec(|java.lang.Runtime|) methods create a native process and return an instance of a subclass of Process that can be used to control 
+the process and obtain information about it. The class Process provides methods for performing input from the process, performing output to the process, waiting for the process to 
+complete, checking the exit status of the process, and destroying (killing) the process. 
 
-The methods that create processes may not work well for special processes on 
-certain native platforms, such as native windowing processes, daemon processes, 
-Win16/DOS processes on Microsoft Windows, or shell scripts. The created 
-subprocess does not have its own terminal or console. All its standard io (i.e. 
-stdin, stdout, stderr) operations will be redirected to the parent process 
-through three streams ( (|java.lang.Process|) , (|java.lang.Process|) , 
-(|java.lang.Process|) ). The parent process uses these streams to feed input to 
-and get output from the subprocess. Because some native platforms only provide 
-limited buffer size for standard input and output streams, failure to promptly 
-write the input stream or read the output stream of the subprocess may cause 
-the subprocess to block, and even deadlock. 
+The methods that create processes may not work well for special processes on certain native platforms, such as native windowing processes, daemon processes, Win16/DOS processes on 
+Microsoft Windows, or shell scripts. The created subprocess does not have its own terminal or console. All its standard io (i.e. stdin, stdout, stderr) operations will be 
+redirected to the parent process through three streams ( (|java.lang.Process|) , (|java.lang.Process|) , (|java.lang.Process|) ). The parent process uses these streams to feed 
+input to and get output from the subprocess. Because some native platforms only provide limited buffer size for standard input and output streams, failure to promptly write the 
+input stream or read the output stream of the subprocess may cause the subprocess to block, and even deadlock. 
 
-The subprocess is not killed when there are no more references to the Process 
-object, but rather the subprocess continues executing asynchronously. 
+The subprocess is not killed when there are no more references to the Process object, but rather the subprocess continues executing asynchronously. 
 
-There is no requirement that a process represented by a Process object execute 
-asynchronously or concurrently with respect to the Java process that owns the 
-Process object. 
+There is no requirement that a process represented by a Process object execute asynchronously or concurrently with respect to the Java process that owns the Process object. 
+
 
 
 *java.lang.Process()*
@@ -61,8 +51,8 @@ public Process()
 
 public abstract void destroy()
 
-Kills the subprocess. The subprocess represented by this Process object is 
-forcibly terminated. 
+Kills the subprocess. The subprocess represented by this Process object is forcibly terminated. 
+
 
 
 *java.lang.Process.exitValue()*
@@ -72,51 +62,55 @@ public abstract int exitValue()
 Returns the exit value for the subprocess. 
 
 
-    Returns: the exit value of the subprocess represented by this Process object. by 
-             convention, the value 0 indicates normal termination. 
+
+    Returns: the exit value of the subprocess represented by this Process object. by convention, the value 0 indicates normal termination. 
+
 *java.lang.Process.getErrorStream()*
 
 public abstract |java.io.InputStream| getErrorStream()
 
-Gets the error stream of the subprocess. The stream obtains data piped from the 
-error output stream of the process represented by this Process object. 
+Gets the error stream of the subprocess. The stream obtains data piped from the error output stream of the process represented by this Process object. 
 
 Implementation note: It is a good idea for the input stream to be buffered. 
 
 
+
     Returns: the input stream connected to the error stream of the subprocess. 
+
 *java.lang.Process.getInputStream()*
 
 public abstract |java.io.InputStream| getInputStream()
 
-Gets the input stream of the subprocess. The stream obtains data piped from the 
-standard output stream of the process represented by this Process object. 
+Gets the input stream of the subprocess. The stream obtains data piped from the standard output stream of the process represented by this Process object. 
 
 Implementation note: It is a good idea for the input stream to be buffered. 
 
 
+
     Returns: the input stream connected to the normal output of the subprocess. 
+
 *java.lang.Process.getOutputStream()*
 
 public abstract |java.io.OutputStream| getOutputStream()
 
-Gets the output stream of the subprocess. Output to the stream is piped into 
-the standard input stream of the process represented by this Process object. 
+Gets the output stream of the subprocess. Output to the stream is piped into the standard input stream of the process represented by this Process object. 
 
 Implementation note: It is a good idea for the output stream to be buffered. 
 
 
+
     Returns: the output stream connected to the normal input of the subprocess. 
+
 *java.lang.Process.waitFor()*
 
 public abstract int waitFor()
   throws |java.lang.InterruptedException|
          
-causes the current thread to wait, if necessary, until the process represented 
-by this Process object has terminated. This method returns immediately if the 
-subprocess has already terminated. If the subprocess has not yet terminated, 
-the calling thread will be blocked until the subprocess exits. 
+causes the current thread to wait, if necessary, until the process represented by this Process object has terminated. This method returns immediately if the subprocess has already 
+terminated. If the subprocess has not yet terminated, the calling thread will be blocked until the subprocess exits. 
+
 
 
     Returns: the exit value of the process. By convention, 0 indicates normal termination. 
+
 

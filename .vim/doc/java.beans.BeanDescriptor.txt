@@ -1,4 +1,5 @@
-*java.beans.BeanDescriptor* *BeanDescriptor* A BeanDescriptor provides global in
+*java.beans.BeanDescriptor* *BeanDescriptor* A BeanDescriptor provides global information about a "bean",
+ including its Java class, its displayName, etc.
 
 public class BeanDescriptor
   extends    |java.beans.FeatureDescriptor|
@@ -8,62 +9,61 @@ public class BeanDescriptor
 |java.beans.BeanDescriptor_Constructors|
 |java.beans.BeanDescriptor_Methods|
 
-================================================================================
+====================================================================================================================================================================================
 
 *java.beans.BeanDescriptor_Constructors*
-|java.beans.BeanDescriptor(Class)|Create a BeanDescriptor for a bean that doesn
-|java.beans.BeanDescriptor(Class,Class)|Create a BeanDescriptor for a bean that
+|java.beans.BeanDescriptor(Class<?>)|Create a BeanDescriptor for a bean that doesn't have a customizer.
+|java.beans.BeanDescriptor(Class<?>,Class<?>)|Create a BeanDescriptor for a bean that has a customizer.
 
 *java.beans.BeanDescriptor_Methods*
 |java.beans.BeanDescriptor.getBeanClass()|Gets the bean's Class object.
-|java.beans.BeanDescriptor.getCustomizerClass()|Gets the Class object for the b
+|java.beans.BeanDescriptor.getCustomizerClass()|Gets the Class object for the bean's customizer.
 
 *java.beans.BeanDescriptor_Description*
 
-A BeanDescriptor provides global information about a "bean", including its Java 
-class, its displayName, etc. 
+A BeanDescriptor provides global information about a "bean", including its Java class, its displayName, etc. 
 
-This is one of the kinds of descriptor returned by a BeanInfo object, which 
-also returns descriptors for properties, method, and events. 
+This is one of the kinds of descriptor returned by a BeanInfo object, which also returns descriptors for properties, method, and events. 
 
 
-*java.beans.BeanDescriptor(Class)*
 
-public BeanDescriptor(java.lang.Class beanClass)
+*java.beans.BeanDescriptor(Class<?>)*
+
+public BeanDescriptor(java.lang.Class<?> beanClass)
 
 Create a BeanDescriptor for a bean that doesn't have a customizer. 
 
-    beanClass - The Class object of the Java class that implements the bean. For example 
-       sun.beans.OurButton.class. 
+    beanClass - The Class object of the Java class that implements the bean. For example sun.beans.OurButton.class. 
 
-*java.beans.BeanDescriptor(Class,Class)*
+*java.beans.BeanDescriptor(Class<?>,Class<?>)*
 
 public BeanDescriptor(
-  java.lang.Class beanClass,
-  java.lang.Class customizerClass)
+  java.lang.Class<?> beanClass,
+  java.lang.Class<?> customizerClass)
 
 Create a BeanDescriptor for a bean that has a customizer. 
 
-    beanClass - The Class object of the Java class that implements the bean. For example 
-       sun.beans.OurButton.class. 
-    customizerClass - The Class object of the Java class that implements the bean's Customizer. For 
-       example sun.beans.OurButtonCustomizer.class. 
+    beanClass - The Class object of the Java class that implements the bean. For example sun.beans.OurButton.class. 
+    customizerClass - The Class object of the Java class that implements the bean's Customizer. For example sun.beans.OurButtonCustomizer.class. 
 
 *java.beans.BeanDescriptor.getBeanClass()*
 
-public |java.lang.Class| getBeanClass()
+public |java.lang.Class|<?> getBeanClass()
 
 Gets the bean's Class object. 
 
 
+
     Returns: The Class object for the bean. 
+
 *java.beans.BeanDescriptor.getCustomizerClass()*
 
-public |java.lang.Class| getCustomizerClass()
+public |java.lang.Class|<?> getCustomizerClass()
 
 Gets the Class object for the bean's customizer. 
 
 
-    Returns: The Class object for the bean's customizer. This may be null if the bean 
-             doesn't have a customizer. 
+
+    Returns: The Class object for the bean's customizer. This may be null if the bean doesn't have a customizer. 
+
 

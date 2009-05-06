@@ -1,4 +1,5 @@
-*java.security.AlgorithmParameterGeneratorSpi* *AlgorithmParameterGeneratorSpi* 
+*java.security.AlgorithmParameterGeneratorSpi* *AlgorithmParameterGeneratorSpi* This class defines the Service Provider Interface (SPI)
+ for the AlgorithmParameterGenerator class, 
 
 public abstract class AlgorithmParameterGeneratorSpi
   extends    |java.lang.Object|
@@ -8,31 +9,27 @@ public abstract class AlgorithmParameterGeneratorSpi
 |java.security.AlgorithmParameterGeneratorSpi_Constructors|
 |java.security.AlgorithmParameterGeneratorSpi_Methods|
 
-================================================================================
+====================================================================================================================================================================================
 
 *java.security.AlgorithmParameterGeneratorSpi_Constructors*
 |java.security.AlgorithmParameterGeneratorSpi()|
 
 *java.security.AlgorithmParameterGeneratorSpi_Methods*
-|java.security.AlgorithmParameterGeneratorSpi.engineGenerateParameters()|Genera
-|java.security.AlgorithmParameterGeneratorSpi.engineInit(AlgorithmParameterSpec,SecureRandom)|
-|java.security.AlgorithmParameterGeneratorSpi.engineInit(int,SecureRandom)|Init
+|java.security.AlgorithmParameterGeneratorSpi.engineGenerateParameters()|Generates the parameters.
+|java.security.AlgorithmParameterGeneratorSpi.engineInit(AlgorithmParameterSpec,SecureRandom)|Initializes this parameter generator with a set of  algorithm-specific parameter gene
+|java.security.AlgorithmParameterGeneratorSpi.engineInit(int,SecureRandom)|Initializes this parameter generator for a certain size  and source of randomness.
 
 *java.security.AlgorithmParameterGeneratorSpi_Description*
 
-This class defines the Service Provider Interface (SPI) for the 
-AlgorithmParameterGenerator class, which is used to generate a set of 
-parameters to be used with a certain algorithm. 
+This class defines the Service Provider Interface (SPI) for the AlgorithmParameterGenerator class, which is used to generate a set of parameters to be used with a certain 
+algorithm. 
 
-All the abstract methods in this class must be implemented by each 
-cryptographic service provider who wishes to supply the implementation of a 
-parameter generator for a particular algorithm. 
+All the abstract methods in this class must be implemented by each cryptographic service provider who wishes to supply the implementation of a parameter generator for a particular 
+algorithm. 
 
-In case the client does not explicitly initialize the 
-AlgorithmParameterGenerator (via a call to an engineInit method), each provider 
-must supply (and document) a default initialization. For example, the Sun 
-provider uses a default modulus prime size of 1024 bits for the generation of 
-DSA parameters. 
+In case the client does not explicitly initialize the AlgorithmParameterGenerator (via a call to an engineInit method), each provider must supply (and document) a default 
+initialization. For example, the Sun provider uses a default modulus prime size of 1024 bits for the generation of DSA parameters. 
+
 
 
 *java.security.AlgorithmParameterGeneratorSpi()*
@@ -49,7 +46,9 @@ protected abstract |java.security.AlgorithmParameters| engineGenerateParameters(
 Generates the parameters. 
 
 
+
     Returns: the new AlgorithmParameters object. 
+
 *java.security.AlgorithmParameterGeneratorSpi.engineInit(AlgorithmParameterSpec,SecureRandom)*
 
 protected abstract void engineInit(
@@ -57,8 +56,8 @@ protected abstract void engineInit(
   java.security.SecureRandom random)
   throws |java.security.InvalidAlgorithmParameterException|
          
-Initializes this parameter generator with a set of algorithm-specific parameter 
-generation values. 
+Initializes this parameter generator with a set of algorithm-specific parameter generation values. 
+
 
     genParamSpec - the set of algorithm-specific parameter generation values. 
     random - the source of randomness. 
@@ -69,8 +68,8 @@ protected abstract void engineInit(
   int size,
   java.security.SecureRandom random)
 
-Initializes this parameter generator for a certain size and source of 
-randomness. 
+Initializes this parameter generator for a certain size and source of randomness. 
+
 
     size - the size (number of bits). 
     random - the source of randomness. 

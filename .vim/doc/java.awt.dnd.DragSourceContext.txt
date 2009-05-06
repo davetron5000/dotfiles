@@ -1,4 +1,5 @@
-*java.awt.dnd.DragSourceContext* *DragSourceContext* The DragSourceContext class
+*java.awt.dnd.DragSourceContext* *DragSourceContext* The DragSourceContext class is responsible for managing the
+ initiator side of the Drag and Drop protocol.
 
 public class DragSourceContext
   extends    |java.lang.Object|
@@ -11,7 +12,7 @@ public class DragSourceContext
 |java.awt.dnd.DragSourceContext_Constructors|
 |java.awt.dnd.DragSourceContext_Methods|
 
-================================================================================
+====================================================================================================================================================================================
 
 *java.awt.dnd.DragSourceContext_Fields*
 |int_java.awt.dnd.DragSourceContext.CHANGED|
@@ -20,105 +21,56 @@ public class DragSourceContext
 |int_java.awt.dnd.DragSourceContext.OVER|
 
 *java.awt.dnd.DragSourceContext_Constructors*
-|java.awt.dnd.DragSourceContext(DragSourceContextPeer,DragGestureEvent,Cursor,Image,Point,Transferable,DragSourceListener)|
+|java.awt.dnd.DragSourceContext(DragSourceContextPeer,DragGestureEvent,Cursor,Image,Point,Transferable,DragSourceListener)|Called from DragSource, this constructor creates a new  
 
 *java.awt.dnd.DragSourceContext_Methods*
-|java.awt.dnd.DragSourceContext.addDragSourceListener(DragSourceListener)|Add a
-|java.awt.dnd.DragSourceContext.dragDropEnd(DragSourceDropEvent)|Calls dragDrop
-|java.awt.dnd.DragSourceContext.dragEnter(DragSourceDragEvent)|Calls dragEnter 
-|java.awt.dnd.DragSourceContext.dragExit(DragSourceEvent)|Calls dragExit on the
-|java.awt.dnd.DragSourceContext.dragMouseMoved(DragSourceDragEvent)|Calls dragM
-|java.awt.dnd.DragSourceContext.dragOver(DragSourceDragEvent)|Calls dragOver on
-|java.awt.dnd.DragSourceContext.dropActionChanged(DragSourceDragEvent)|Calls dr
-|java.awt.dnd.DragSourceContext.getComponent()|Returns the Component associated
+|java.awt.dnd.DragSourceContext.addDragSourceListener(DragSourceListener)|Add a DragSourceListener to this  DragSourceContext if one has not already been added.
+|java.awt.dnd.DragSourceContext.dragDropEnd(DragSourceDropEvent)|Calls dragDropEnd on the  DragSourceListeners registered with this  DragSourceContext and with the associated  Dra
+|java.awt.dnd.DragSourceContext.dragEnter(DragSourceDragEvent)|Calls dragEnter on the  DragSourceListeners registered with this  DragSourceContext and with the associated  DragSou
+|java.awt.dnd.DragSourceContext.dragExit(DragSourceEvent)|Calls dragExit on the  DragSourceListeners registered with this  DragSourceContext and with the associated  DragSource, a
+|java.awt.dnd.DragSourceContext.dragMouseMoved(DragSourceDragEvent)|Calls dragMouseMoved on the  DragSourceMotionListeners registered with the  DragSource associated with this  Dr
+|java.awt.dnd.DragSourceContext.dragOver(DragSourceDragEvent)|Calls dragOver on the  DragSourceListeners registered with this  DragSourceContext and with the associated  DragSourc
+|java.awt.dnd.DragSourceContext.dropActionChanged(DragSourceDragEvent)|Calls dropActionChanged on the  DragSourceListeners registered with this  DragSourceContext and with the ass
+|java.awt.dnd.DragSourceContext.getComponent()|Returns the Component associated with this   DragSourceContext.
 |java.awt.dnd.DragSourceContext.getCursor()|Returns the current drag Cursor.
-|java.awt.dnd.DragSourceContext.getDragSource()|Returns the DragSource   that i
-|java.awt.dnd.DragSourceContext.getSourceActions()|Returns a bitwise mask of Dn
-|java.awt.dnd.DragSourceContext.getTransferable()|Returns the Transferable asso
-|java.awt.dnd.DragSourceContext.getTrigger()|Returns the DragGestureEvent  that
-|java.awt.dnd.DragSourceContext.removeDragSourceListener(DragSourceListener)|Re
-|java.awt.dnd.DragSourceContext.setCursor(Cursor)|Sets the cursor for this drag
-|java.awt.dnd.DragSourceContext.transferablesFlavorsChanged()|Notifies the peer
-|java.awt.dnd.DragSourceContext.updateCurrentCursor(int,int,int)|If the default
+|java.awt.dnd.DragSourceContext.getDragSource()|Returns the DragSource   that instantiated this DragSourceContext.
+|java.awt.dnd.DragSourceContext.getSourceActions()|Returns a bitwise mask of DnDConstants that  represent the set of drop actions supported by the drag source for the  drag operat
+|java.awt.dnd.DragSourceContext.getTransferable()|Returns the Transferable associated with  this DragSourceContext.
+|java.awt.dnd.DragSourceContext.getTrigger()|Returns the DragGestureEvent  that initially triggered the drag.
+|java.awt.dnd.DragSourceContext.removeDragSourceListener(DragSourceListener)|Removes the specified DragSourceListener  from  this DragSourceContext.
+|java.awt.dnd.DragSourceContext.setCursor(Cursor)|Sets the cursor for this drag operation to the specified  Cursor.
+|java.awt.dnd.DragSourceContext.transferablesFlavorsChanged()|Notifies the peer that the Transferable's  DataFlavors have changed.
+|java.awt.dnd.DragSourceContext.updateCurrentCursor(int,int,int)|If the default drag cursor behavior is active, this method  sets the default drag cursor for the specified selecte
 
 *java.awt.dnd.DragSourceContext_Description*
 
-The DragSourceContext class is responsible for managing the initiator side of 
-the Drag and Drop protocol. In particular, it is responsible for managing drag 
-event notifications to the DragSourceListeners and DragSourceMotionListeners, 
-and providing the Transferable representing the source data for the drag 
-operation. 
+The DragSourceContext class is responsible for managing the initiator side of the Drag and Drop protocol. In particular, it is responsible for managing drag event notifications to 
+the DragSourceListeners and DragSourceMotionListeners, and providing the Transferable representing the source data for the drag operation. 
 
-Note that the DragSourceContext itself implements the DragSourceListener and 
-DragSourceMotionListener interfaces. This is to allow the platform peer (the 
-DragSourceContextPeer instance) created by the DragSource to notify the 
-DragSourceContext of state changes in the ongoing operation. This allows the 
-DragSourceContext to interpose itself between the platform and the listeners 
-provided by the initiator of the drag operation. 
+Note that the DragSourceContext itself implements the DragSourceListener and DragSourceMotionListener interfaces. This is to allow the platform peer (the DragSourceContextPeer 
+instance) created by the DragSource to notify the DragSourceContext of state changes in the ongoing operation. This allows the DragSourceContext to interpose itself between the 
+platform and the listeners provided by the initiator of the drag operation. 
+
 
 
 *int_java.awt.dnd.DragSourceContext.CHANGED*
 
-The DragSourceContext class is responsible for managing the initiator side of 
-the Drag and Drop protocol. In particular, it is responsible for managing drag 
-event notifications to the DragSourceListeners and DragSourceMotionListeners, 
-and providing the Transferable representing the source data for the drag 
-operation. 
-
-Note that the DragSourceContext itself implements the DragSourceListener and 
-DragSourceMotionListener interfaces. This is to allow the platform peer (the 
-DragSourceContextPeer instance) created by the DragSource to notify the 
-DragSourceContext of state changes in the ongoing operation. This allows the 
-DragSourceContext to interpose itself between the platform and the listeners 
-provided by the initiator of the drag operation. 
+An int used by updateCurrentCursor() indicating that the user operation has changed. 
 
 
 *int_java.awt.dnd.DragSourceContext.DEFAULT*
 
-The DragSourceContext class is responsible for managing the initiator side of 
-the Drag and Drop protocol. In particular, it is responsible for managing drag 
-event notifications to the DragSourceListeners and DragSourceMotionListeners, 
-and providing the Transferable representing the source data for the drag 
-operation. 
-
-Note that the DragSourceContext itself implements the DragSourceListener and 
-DragSourceMotionListener interfaces. This is to allow the platform peer (the 
-DragSourceContextPeer instance) created by the DragSource to notify the 
-DragSourceContext of state changes in the ongoing operation. This allows the 
-DragSourceContext to interpose itself between the platform and the listeners 
-provided by the initiator of the drag operation. 
+An int used by updateCurrentCursor() indicating that the Cursor should change to the default (no drop) Cursor. 
 
 
 *int_java.awt.dnd.DragSourceContext.ENTER*
 
-The DragSourceContext class is responsible for managing the initiator side of 
-the Drag and Drop protocol. In particular, it is responsible for managing drag 
-event notifications to the DragSourceListeners and DragSourceMotionListeners, 
-and providing the Transferable representing the source data for the drag 
-operation. 
-
-Note that the DragSourceContext itself implements the DragSourceListener and 
-DragSourceMotionListener interfaces. This is to allow the platform peer (the 
-DragSourceContextPeer instance) created by the DragSource to notify the 
-DragSourceContext of state changes in the ongoing operation. This allows the 
-DragSourceContext to interpose itself between the platform and the listeners 
-provided by the initiator of the drag operation. 
+An int used by updateCurrentCursor() indicating that the Cursor has entered a DropTarget. 
 
 
 *int_java.awt.dnd.DragSourceContext.OVER*
 
-The DragSourceContext class is responsible for managing the initiator side of 
-the Drag and Drop protocol. In particular, it is responsible for managing drag 
-event notifications to the DragSourceListeners and DragSourceMotionListeners, 
-and providing the Transferable representing the source data for the drag 
-operation. 
-
-Note that the DragSourceContext itself implements the DragSourceListener and 
-DragSourceMotionListener interfaces. This is to allow the platform peer (the 
-DragSourceContextPeer instance) created by the DragSource to notify the 
-DragSourceContext of state changes in the ongoing operation. This allows the 
-DragSourceContext to interpose itself between the platform and the listeners 
-provided by the initiator of the drag operation. 
+An int used by updateCurrentCursor() indicating that the Cursor is over a DropTarget. 
 
 
 
@@ -133,19 +85,15 @@ public DragSourceContext(
   java.awt.datatransfer.Transferable t,
   java.awt.dnd.DragSourceListener dsl)
 
-Called from DragSource, this constructor creates a new DragSourceContext given 
-the DragSourceContextPeer for this Drag, the DragGestureEvent that triggered 
-the Drag, the initial Cursor to use for the Drag, an (optional) Image to 
-display while the Drag is taking place, the offset of the Image origin from the 
-hotspot at the instant of the triggering event, the Transferable subject data, 
-and the DragSourceListener to use during the Drag and Drop operation. 
+Called from DragSource, this constructor creates a new DragSourceContext given the DragSourceContextPeer for this Drag, the DragGestureEvent that triggered the Drag, the initial 
+Cursor to use for the Drag, an (optional) Image to display while the Drag is taking place, the offset of the Image origin from the hotspot at the instant of the triggering event, 
+the Transferable subject data, and the DragSourceListener to use during the Drag and Drop operation. 
 
 If DragSourceContextPeer is null NullPointerException is thrown. 
 
 If DragGestureEvent is null NullPointerException is thrown. 
 
-If Cursor is null no exception is thrown and the default drag cursor behavior 
-is activated for this drag operation. 
+If Cursor is null no exception is thrown and the default drag cursor behavior is activated for this drag operation. 
 
 If Image is null no exception is thrown. 
 
@@ -159,8 +107,7 @@ If DragSourceListener is null no exception is thrown.
     trigger - the triggering event 
     dragCursor - the initial Cursor 
     dragImage - the Image to drag (or null) 
-    offset - the offset of the image origin from the hotspot at the instant of the 
-       triggering event 
+    offset - the offset of the image origin from the hotspot at the instant of the triggering event 
     t - the Transferable 
     dsl - the DragSourceListener 
 
@@ -169,20 +116,17 @@ If DragSourceListener is null no exception is thrown.
 public synchronized void addDragSourceListener(java.awt.dnd.DragSourceListener dsl)
   throws |java.util.TooManyListenersException|
          
-Add a DragSourceListener to this DragSourceContext if one has not already been 
-added. If a DragSourceListener already exists, this method throws a 
-TooManyListenersException. 
+Add a DragSourceListener to this DragSourceContext if one has not already been added. If a DragSourceListener already exists, this method throws a TooManyListenersException. 
 
-    dsl - the DragSourceListener to add. Note that while null is not prohibited, it is 
-       not acceptable as a parameter. 
+
+    dsl - the DragSourceListener to add. Note that while null is not prohibited, it is not acceptable as a parameter. 
 
 *java.awt.dnd.DragSourceContext.dragDropEnd(DragSourceDropEvent)*
 
 public void dragDropEnd(java.awt.dnd.DragSourceDropEvent dsde)
 
-Calls dragDropEnd on the DragSourceListeners registered with this 
-DragSourceContext and with the associated DragSource, and passes them the 
-specified DragSourceDropEvent. 
+Calls dragDropEnd on the DragSourceListeners registered with this DragSourceContext and with the associated DragSource, and passes them the specified DragSourceDropEvent. 
+
 
     dsde - the DragSourceDropEvent 
 
@@ -190,9 +134,8 @@ specified DragSourceDropEvent.
 
 public void dragEnter(java.awt.dnd.DragSourceDragEvent dsde)
 
-Calls dragEnter on the DragSourceListeners registered with this 
-DragSourceContext and with the associated DragSource, and passes them the 
-specified DragSourceDragEvent. 
+Calls dragEnter on the DragSourceListeners registered with this DragSourceContext and with the associated DragSource, and passes them the specified DragSourceDragEvent. 
+
 
     dsde - the DragSourceDragEvent 
 
@@ -200,9 +143,8 @@ specified DragSourceDragEvent.
 
 public void dragExit(java.awt.dnd.DragSourceEvent dse)
 
-Calls dragExit on the DragSourceListeners registered with this 
-DragSourceContext and with the associated DragSource, and passes them the 
-specified DragSourceEvent. 
+Calls dragExit on the DragSourceListeners registered with this DragSourceContext and with the associated DragSource, and passes them the specified DragSourceEvent. 
+
 
     dse - the DragSourceEvent 
 
@@ -210,9 +152,8 @@ specified DragSourceEvent.
 
 public void dragMouseMoved(java.awt.dnd.DragSourceDragEvent dsde)
 
-Calls dragMouseMoved on the DragSourceMotionListeners registered with the 
-DragSource associated with this DragSourceContext, and them passes the 
-specified DragSourceDragEvent. 
+Calls dragMouseMoved on the DragSourceMotionListeners registered with the DragSource associated with this DragSourceContext, and them passes the specified DragSourceDragEvent. 
+
 
     dsde - the DragSourceDragEvent 
 
@@ -220,9 +161,8 @@ specified DragSourceDragEvent.
 
 public void dragOver(java.awt.dnd.DragSourceDragEvent dsde)
 
-Calls dragOver on the DragSourceListeners registered with this 
-DragSourceContext and with the associated DragSource, and passes them the 
-specified DragSourceDragEvent. 
+Calls dragOver on the DragSourceListeners registered with this DragSourceContext and with the associated DragSource, and passes them the specified DragSourceDragEvent. 
+
 
     dsde - the DragSourceDragEvent 
 
@@ -230,9 +170,8 @@ specified DragSourceDragEvent.
 
 public void dropActionChanged(java.awt.dnd.DragSourceDragEvent dsde)
 
-Calls dropActionChanged on the DragSourceListeners registered with this 
-DragSourceContext and with the associated DragSource, and passes them the 
-specified DragSourceDragEvent. 
+Calls dropActionChanged on the DragSourceListeners registered with this DragSourceContext and with the associated DragSource, and passes them the specified DragSourceDragEvent. 
+
 
     dsde - the DragSourceDragEvent 
 
@@ -243,7 +182,9 @@ public |java.awt.Component| getComponent()
 Returns the Component associated with this DragSourceContext. 
 
 
+
     Returns: the Component that started the drag 
+
 *java.awt.dnd.DragSourceContext.getCursor()*
 
 public |java.awt.Cursor| getCursor()
@@ -251,7 +192,9 @@ public |java.awt.Cursor| getCursor()
 Returns the current drag Cursor. 
 
 
+
     Returns: the current drag Cursor 
+
 *java.awt.dnd.DragSourceContext.getDragSource()*
 
 public |java.awt.dnd.DragSource| getDragSource()
@@ -259,17 +202,19 @@ public |java.awt.dnd.DragSource| getDragSource()
 Returns the DragSource that instantiated this DragSourceContext. 
 
 
+
     Returns: the DragSource that instantiated this DragSourceContext 
+
 *java.awt.dnd.DragSourceContext.getSourceActions()*
 
 public int getSourceActions()
 
-Returns a bitwise mask of DnDConstants that represent the set of drop actions 
-supported by the drag source for the drag operation associated with this 
-DragSourceContext. 
+Returns a bitwise mask of DnDConstants that represent the set of drop actions supported by the drag source for the drag operation associated with this DragSourceContext. 
+
 
 
     Returns: the drop actions supported by the drag source 
+
 *java.awt.dnd.DragSourceContext.getTransferable()*
 
 public |java.awt.datatransfer.Transferable| getTransferable()
@@ -277,7 +222,9 @@ public |java.awt.datatransfer.Transferable| getTransferable()
 Returns the Transferable associated with this DragSourceContext. 
 
 
+
     Returns: the Transferable 
+
 *java.awt.dnd.DragSourceContext.getTrigger()*
 
 public |java.awt.dnd.DragGestureEvent| getTrigger()
@@ -285,23 +232,25 @@ public |java.awt.dnd.DragGestureEvent| getTrigger()
 Returns the DragGestureEvent that initially triggered the drag. 
 
 
+
     Returns: the Event that triggered the drag 
+
 *java.awt.dnd.DragSourceContext.removeDragSourceListener(DragSourceListener)*
 
 public synchronized void removeDragSourceListener(java.awt.dnd.DragSourceListener dsl)
 
 Removes the specified DragSourceListener from this DragSourceContext. 
 
-    dsl - the DragSourceListener to remove; note that while null is not prohibited, it is 
-       not acceptable as a parameter 
+
+    dsl - the DragSourceListener to remove; note that while null is not prohibited, it is not acceptable as a parameter 
 
 *java.awt.dnd.DragSourceContext.setCursor(Cursor)*
 
 public synchronized void setCursor(java.awt.Cursor c)
 
-Sets the cursor for this drag operation to the specified Cursor. If the 
-specified Cursor is null, the default drag cursor behavior is activated for 
-this drag operation, otherwise it is deactivated. 
+Sets the cursor for this drag operation to the specified Cursor. If the specified Cursor is null, the default drag cursor behavior is activated for this drag operation, otherwise 
+it is deactivated. 
+
 
     c - the Cursor to display, or null to activate the default drag cursor behavior 
 
@@ -312,6 +261,7 @@ public void transferablesFlavorsChanged()
 Notifies the peer that the Transferable's DataFlavors have changed. 
 
 
+
 *java.awt.dnd.DragSourceContext.updateCurrentCursor(int,int,int)*
 
 protected synchronized void updateCurrentCursor(
@@ -319,9 +269,9 @@ protected synchronized void updateCurrentCursor(
   int targetAct,
   int status)
 
-If the default drag cursor behavior is active, this method sets the default 
-drag cursor for the specified selected operation, supported actions and status, 
-otherwise this method does nothing. 
+If the default drag cursor behavior is active, this method sets the default drag cursor for the specified selected operation, supported actions and status, otherwise this method 
+does nothing. 
+
 
     dropOp - the user's currently selected operation 
     targetAct - the current target's supported actions 

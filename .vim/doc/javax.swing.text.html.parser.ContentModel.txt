@@ -1,4 +1,4 @@
-*javax.swing.text.html.parser.ContentModel* *ContentModel* A representation of a
+*javax.swing.text.html.parser.ContentModel* *ContentModel* A representation of a content model.
 
 public final class ContentModel
   extends    |java.lang.Object|
@@ -9,7 +9,7 @@ public final class ContentModel
 |javax.swing.text.html.parser.ContentModel_Constructors|
 |javax.swing.text.html.parser.ContentModel_Methods|
 
-================================================================================
+====================================================================================================================================================================================
 
 *javax.swing.text.html.parser.ContentModel_Fields*
 |java.lang.Object_javax.swing.text.html.parser.ContentModel.content|
@@ -18,47 +18,37 @@ public final class ContentModel
 
 *javax.swing.text.html.parser.ContentModel_Constructors*
 |javax.swing.text.html.parser.ContentModel()|
-|javax.swing.text.html.parser.ContentModel(Element)|Create a content model for 
-|javax.swing.text.html.parser.ContentModel(int,ContentModel)|Create a content m
-|javax.swing.text.html.parser.ContentModel(int,Object,ContentModel)|Create a co
+|javax.swing.text.html.parser.ContentModel(Element)|Create a content model for an element.
+|javax.swing.text.html.parser.ContentModel(int,ContentModel)|Create a content model of a particular type.
+|javax.swing.text.html.parser.ContentModel(int,Object,ContentModel)|Create a content model of a particular type.
 
 *javax.swing.text.html.parser.ContentModel_Methods*
-|javax.swing.text.html.parser.ContentModel.empty()|Return true if the content m
-|javax.swing.text.html.parser.ContentModel.first()|Return the element that must
-|javax.swing.text.html.parser.ContentModel.first(Object)|Return true if the tok
-|javax.swing.text.html.parser.ContentModel.getElements(Vector)|Update elemVec w
+|javax.swing.text.html.parser.ContentModel.empty()|Return true if the content model could  match an empty input stream.
+|javax.swing.text.html.parser.ContentModel.first()|Return the element that must be next.
+|javax.swing.text.html.parser.ContentModel.first(Object)|Return true if the token could potentially be the  first token in the input stream.
+|javax.swing.text.html.parser.ContentModel.getElements(Vector<Element>)|Update elemVec with the list of elements that are  part of the this contentModel.
 |javax.swing.text.html.parser.ContentModel.toString()|Convert to a string.
 
 *javax.swing.text.html.parser.ContentModel_Description*
 
-A representation of a content model. A content model is basically a restricted 
-BNF expression. It is restricted in the sense that it must be deterministic. 
-This means that you don't have to represent it as a finite state automata. See 
-Annex H on page 556 of the SGML handbook for more information. 
+A representation of a content model. A content model is basically a restricted BNF expression. It is restricted in the sense that it must be deterministic. This means that you 
+don't have to represent it as a finite state automata. See Annex H on page 556 of the SGML handbook for more information. 
+
 
 
 *java.lang.Object_javax.swing.text.html.parser.ContentModel.content*
 
-A representation of a content model. A content model is basically a restricted 
-BNF expression. It is restricted in the sense that it must be deterministic. 
-This means that you don't have to represent it as a finite state automata. See 
-Annex H on page 556 of the SGML handbook for more information. 
+The content. Either an Element or a ContentModel. 
 
 
 *javax.swing.text.html.parser.ContentModel_javax.swing.text.html.parser.ContentModel.next*
 
-A representation of a content model. A content model is basically a restricted 
-BNF expression. It is restricted in the sense that it must be deterministic. 
-This means that you don't have to represent it as a finite state automata. See 
-Annex H on page 556 of the SGML handbook for more information. 
+The next content model (in a ',', '|' or 'expression). 
 
 
 *int_javax.swing.text.html.parser.ContentModel.type*
 
-A representation of a content model. A content model is basically a restricted 
-BNF expression. It is restricted in the sense that it must be deterministic. 
-This means that you don't have to represent it as a finite state automata. See 
-Annex H on page 556 of the SGML handbook for more information. 
+Type. Either '*', '?', '+', ',', '|', '&'. 
 
 
 
@@ -102,6 +92,7 @@ public boolean empty()
 Return true if the content model could match an empty input stream. 
 
 
+
 *javax.swing.text.html.parser.ContentModel.first()*
 
 public |javax.swing.text.html.parser.Element| first()
@@ -109,20 +100,21 @@ public |javax.swing.text.html.parser.Element| first()
 Return the element that must be next. 
 
 
+
 *javax.swing.text.html.parser.ContentModel.first(Object)*
 
 public boolean first(java.lang.Object token)
 
-Return true if the token could potentially be the first token in the input 
-stream. 
+Return true if the token could potentially be the first token in the input stream. 
 
 
-*javax.swing.text.html.parser.ContentModel.getElements(Vector)*
 
-public void getElements(java.util.Vector elemVec)
+*javax.swing.text.html.parser.ContentModel.getElements(Vector<Element>)*
 
-Update elemVec with the list of elements that are part of the this 
-contentModel. 
+public void getElements(java.util.Vector<javax.swing.text.html.parser.Element> elemVec)
+
+Update elemVec with the list of elements that are part of the this contentModel. 
+
 
 
 *javax.swing.text.html.parser.ContentModel.toString()*
@@ -130,6 +122,7 @@ contentModel.
 public |java.lang.String| toString()
 
 Convert to a string. 
+
 
 
 

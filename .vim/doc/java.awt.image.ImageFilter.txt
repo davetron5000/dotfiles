@@ -1,4 +1,5 @@
-*java.awt.image.ImageFilter* *ImageFilter* This class implements a filter for th
+*java.awt.image.ImageFilter* *ImageFilter* This class implements a filter for the set of interface methods that
+ are used to deliver data from an ImageProducer to an ImageConsumer.
 
 public class ImageFilter
   extends    |java.lang.Object|
@@ -10,7 +11,7 @@ public class ImageFilter
 |java.awt.image.ImageFilter_Constructors|
 |java.awt.image.ImageFilter_Methods|
 
-================================================================================
+====================================================================================================================================================================================
 
 *java.awt.image.ImageFilter_Fields*
 |java.awt.image.ImageConsumer_java.awt.image.ImageFilter.consumer|
@@ -20,36 +21,28 @@ public class ImageFilter
 
 *java.awt.image.ImageFilter_Methods*
 |java.awt.image.ImageFilter.clone()|Clones this object.
-|java.awt.image.ImageFilter.getFilterInstance(ImageConsumer)|Returns a unique i
-|java.awt.image.ImageFilter.imageComplete(int)|Filters the information provided
-|java.awt.image.ImageFilter.resendTopDownLeftRight(ImageProducer)|Responds to a
-|java.awt.image.ImageFilter.setColorModel(ColorModel)|Filter the information pr
-|java.awt.image.ImageFilter.setDimensions(int,int)|Filters the information prov
-|java.awt.image.ImageFilter.setHints(int)|Filters the information provided in t
-|java.awt.image.ImageFilter.setPixels(int,int,int,int,ColorModel,byte[],int,int)|
-|java.awt.image.ImageFilter.setPixels(int,int,int,int,ColorModel,int[],int,int)|
-|java.awt.image.ImageFilter.setProperties(Hashtable)|Passes the properties from
+|java.awt.image.ImageFilter.getFilterInstance(ImageConsumer)|Returns a unique instance of an ImageFilter object which will  actually perform the filtering for the specified ImageC
+|java.awt.image.ImageFilter.imageComplete(int)|Filters the information provided in the imageComplete method of  the ImageConsumer interface.
+|java.awt.image.ImageFilter.resendTopDownLeftRight(ImageProducer)|Responds to a request for a TopDownLeftRight (TDLR) ordered resend  of the pixel data from an ImageConsumer.
+|java.awt.image.ImageFilter.setColorModel(ColorModel)|Filter the information provided in the setColorModel method  of the ImageConsumer interface.
+|java.awt.image.ImageFilter.setDimensions(int,int)|Filters the information provided in the setDimensions method  of the ImageConsumer interface.
+|java.awt.image.ImageFilter.setHints(int)|Filters the information provided in the setHints method  of the ImageConsumer interface.
+|java.awt.image.ImageFilter.setPixels(int,int,int,int,ColorModel,byte[],int,int)|Filters the information provided in the setPixels method of the  ImageConsumer interface which tak
+|java.awt.image.ImageFilter.setPixels(int,int,int,int,ColorModel,int[],int,int)|Filters the information provided in the setPixels method of the  ImageConsumer interface which take
+|java.awt.image.ImageFilter.setProperties(Hashtable<?,?>)|Passes the properties from the source object along after adding a  property indicating the stream of filters it has been 
 
 *java.awt.image.ImageFilter_Description*
 
-This class implements a filter for the set of interface methods that are used 
-to deliver data from an ImageProducer to an ImageConsumer. It is meant to be 
-used in conjunction with a FilteredImageSource object to produce filtered 
-versions of existing images. It is a base class that provides the calls needed 
-to implement a "Null filter" which has no effect on the data being passed 
-through. Filters should subclass this class and override the methods which deal 
-with the data that needs to be filtered and modify it as necessary. 
+This class implements a filter for the set of interface methods that are used to deliver data from an ImageProducer to an ImageConsumer. It is meant to be used in conjunction with 
+a FilteredImageSource object to produce filtered versions of existing images. It is a base class that provides the calls needed to implement a "Null filter" which has no effect on 
+the data being passed through. Filters should subclass this class and override the methods which deal with the data that needs to be filtered and modify it as necessary. 
+
 
 
 *java.awt.image.ImageConsumer_java.awt.image.ImageFilter.consumer*
 
-This class implements a filter for the set of interface methods that are used 
-to deliver data from an ImageProducer to an ImageConsumer. It is meant to be 
-used in conjunction with a FilteredImageSource object to produce filtered 
-versions of existing images. It is a base class that provides the calls needed 
-to implement a "Null filter" which has no effect on the data being passed 
-through. Filters should subclass this class and override the methods which deal 
-with the data that needs to be filtered and modify it as necessary. 
+The consumer of the particular image data stream for which this instance of the ImageFilter is filtering data. It is not initialized during the constructor, but rather during the 
+getFilterInstance() method call when the FilteredImageSource is creating a unique instance of this object for a particular image data stream. 
 
 
 
@@ -67,78 +60,66 @@ public |java.lang.Object| clone()
 Clones this object. 
 
 
+
 *java.awt.image.ImageFilter.getFilterInstance(ImageConsumer)*
 
 public |java.awt.image.ImageFilter| getFilterInstance(java.awt.image.ImageConsumer ic)
 
-Returns a unique instance of an ImageFilter object which will actually perform 
-the filtering for the specified ImageConsumer. The default implementation just 
-clones this object. 
+Returns a unique instance of an ImageFilter object which will actually perform the filtering for the specified ImageConsumer. The default implementation just clones this object. 
 
-Note: This method is intended to be called by the ImageProducer of the Image 
-whose pixels are being filtered. Developers using this class to filter pixels 
-from an image should avoid calling this method directly since that operation 
-could interfere with the filtering operation. 
+Note: This method is intended to be called by the ImageProducer of the Image whose pixels are being filtered. Developers using this class to filter pixels from an image should 
+avoid calling this method directly since that operation could interfere with the filtering operation. 
+
 
     ic - the specified ImageConsumer 
 
     Returns: an ImageFilter used to perform the filtering for the specified ImageConsumer. 
+
 *java.awt.image.ImageFilter.imageComplete(int)*
 
 public void imageComplete(int status)
 
-Filters the information provided in the imageComplete method of the 
-ImageConsumer interface. 
+Filters the information provided in the imageComplete method of the ImageConsumer interface. 
 
-Note: This method is intended to be called by the ImageProducer of the Image 
-whose pixels are being filtered. Developers using this class to filter pixels 
-from an image should avoid calling this method directly since that operation 
-could interfere with the filtering operation. 
+Note: This method is intended to be called by the ImageProducer of the Image whose pixels are being filtered. Developers using this class to filter pixels from an image should 
+avoid calling this method directly since that operation could interfere with the filtering operation. 
+
 
 
 *java.awt.image.ImageFilter.resendTopDownLeftRight(ImageProducer)*
 
 public void resendTopDownLeftRight(java.awt.image.ImageProducer ip)
 
-Responds to a request for a TopDownLeftRight (TDLR) ordered resend of the pixel 
-data from an ImageConsumer. When an ImageConsumer being fed by an instance of 
-this ImageFilter requests a resend of the data in TDLR order, the 
-FilteredImageSource invokes this method of the ImageFilter. 
+Responds to a request for a TopDownLeftRight (TDLR) ordered resend of the pixel data from an ImageConsumer. When an ImageConsumer being fed by an instance of this ImageFilter 
+requests a resend of the data in TDLR order, the FilteredImageSource invokes this method of the ImageFilter. 
 
 
 
-An ImageFilter subclass might override this method or not, depending on if and 
-how it can send data in TDLR order. Three possibilities exist: 
+An ImageFilter subclass might override this method or not, depending on if and how it can send data in TDLR order. Three possibilities exist: 
 
 
 
-Do not override this method. This makes the subclass use the default 
-implementation, which is to forward the request to the indicated ImageProducer 
-using this filter as the requesting ImageConsumer. This behavior is appropriate 
-if the filter can determine that it will forward the pixels in TDLR order if 
-its upstream producer object sends them in TDLR order. 
+Do not override this method. This makes the subclass use the default implementation, which is to forward the request to the indicated ImageProducer using this filter as the 
+requesting ImageConsumer. This behavior is appropriate if the filter can determine that it will forward the pixels in TDLR order if its upstream producer object sends them in TDLR 
+order. 
 
-Override the method to simply send the data. This is appropriate if the filter 
-can handle the request itself for example, if the generated pixels have been 
-saved in some sort of buffer. 
+Override the method to simply send the data. This is appropriate if the filter can handle the request itself for example, if the generated pixels have been saved in some sort of 
+buffer. 
 
-Override the method to do nothing. This is appropriate if the filter cannot 
-produce filtered data in TDLR order. 
+Override the method to do nothing. This is appropriate if the filter cannot produce filtered data in TDLR order. 
 
-    ip - the ImageProducer that is feeding this instance of the filter - also the 
-       ImageProducer that the request should be forwarded to if necessary 
+
+    ip - the ImageProducer that is feeding this instance of the filter - also the ImageProducer that the request should be forwarded to if necessary 
 
 *java.awt.image.ImageFilter.setColorModel(ColorModel)*
 
 public void setColorModel(java.awt.image.ColorModel model)
 
-Filter the information provided in the setColorModel method of the 
-ImageConsumer interface. 
+Filter the information provided in the setColorModel method of the ImageConsumer interface. 
 
-Note: This method is intended to be called by the ImageProducer of the Image 
-whose pixels are being filtered. Developers using this class to filter pixels 
-from an image should avoid calling this method directly since that operation 
-could interfere with the filtering operation. 
+Note: This method is intended to be called by the ImageProducer of the Image whose pixels are being filtered. Developers using this class to filter pixels from an image should 
+avoid calling this method directly since that operation could interfere with the filtering operation. 
+
 
 
 *java.awt.image.ImageFilter.setDimensions(int,int)*
@@ -147,26 +128,22 @@ public void setDimensions(
   int width,
   int height)
 
-Filters the information provided in the setDimensions method of the 
-ImageConsumer interface. 
+Filters the information provided in the setDimensions method of the ImageConsumer interface. 
 
-Note: This method is intended to be called by the ImageProducer of the Image 
-whose pixels are being filtered. Developers using this class to filter pixels 
-from an image should avoid calling this method directly since that operation 
-could interfere with the filtering operation. 
+Note: This method is intended to be called by the ImageProducer of the Image whose pixels are being filtered. Developers using this class to filter pixels from an image should 
+avoid calling this method directly since that operation could interfere with the filtering operation. 
+
 
 
 *java.awt.image.ImageFilter.setHints(int)*
 
 public void setHints(int hints)
 
-Filters the information provided in the setHints method of the ImageConsumer 
-interface. 
+Filters the information provided in the setHints method of the ImageConsumer interface. 
 
-Note: This method is intended to be called by the ImageProducer of the Image 
-whose pixels are being filtered. Developers using this class to filter pixels 
-from an image should avoid calling this method directly since that operation 
-could interfere with the filtering operation. 
+Note: This method is intended to be called by the ImageProducer of the Image whose pixels are being filtered. Developers using this class to filter pixels from an image should 
+avoid calling this method directly since that operation could interfere with the filtering operation. 
+
 
 
 *java.awt.image.ImageFilter.setPixels(int,int,int,int,ColorModel,byte[],int,int)*
@@ -181,13 +158,11 @@ public void setPixels(
   int off,
   int scansize)
 
-Filters the information provided in the setPixels method of the ImageConsumer 
-interface which takes an array of bytes. 
+Filters the information provided in the setPixels method of the ImageConsumer interface which takes an array of bytes. 
 
-Note: This method is intended to be called by the ImageProducer of the Image 
-whose pixels are being filtered. Developers using this class to filter pixels 
-from an image should avoid calling this method directly since that operation 
-could interfere with the filtering operation. 
+Note: This method is intended to be called by the ImageProducer of the Image whose pixels are being filtered. Developers using this class to filter pixels from an image should 
+avoid calling this method directly since that operation could interfere with the filtering operation. 
+
 
 
 *java.awt.image.ImageFilter.setPixels(int,int,int,int,ColorModel,int[],int,int)*
@@ -202,26 +177,22 @@ public void setPixels(
   int off,
   int scansize)
 
-Filters the information provided in the setPixels method of the ImageConsumer 
-interface which takes an array of integers. 
+Filters the information provided in the setPixels method of the ImageConsumer interface which takes an array of integers. 
 
-Note: This method is intended to be called by the ImageProducer of the Image 
-whose pixels are being filtered. Developers using this class to filter pixels 
-from an image should avoid calling this method directly since that operation 
-could interfere with the filtering operation. 
+Note: This method is intended to be called by the ImageProducer of the Image whose pixels are being filtered. Developers using this class to filter pixels from an image should 
+avoid calling this method directly since that operation could interfere with the filtering operation. 
 
 
-*java.awt.image.ImageFilter.setProperties(Hashtable)*
 
-public void setProperties(java.util.Hashtable props)
+*java.awt.image.ImageFilter.setProperties(Hashtable<?,?>)*
 
-Passes the properties from the source object along after adding a property 
-indicating the stream of filters it has been run through. 
+public void setProperties(java.util.Hashtable<?, ?> props)
 
-Note: This method is intended to be called by the ImageProducer of the Image 
-whose pixels are being filtered. Developers using this class to filter pixels 
-from an image should avoid calling this method directly since that operation 
-could interfere with the filtering operation. 
+Passes the properties from the source object along after adding a property indicating the stream of filters it has been run through. 
+
+Note: This method is intended to be called by the ImageProducer of the Image whose pixels are being filtered. Developers using this class to filter pixels from an image should 
+avoid calling this method directly since that operation could interfere with the filtering operation. 
+
 
     props - the properties from the source object 
 

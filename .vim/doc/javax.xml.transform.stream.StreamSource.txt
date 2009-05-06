@@ -1,4 +1,5 @@
-*javax.xml.transform.stream.StreamSource* *StreamSource* Acts as an holder for a
+*javax.xml.transform.stream.StreamSource* *StreamSource* Acts as an holder for a transformation Source in the form
+ of a stream of XML markup.
 
 public class StreamSource
   extends    |java.lang.Object|
@@ -9,47 +10,42 @@ public class StreamSource
 |javax.xml.transform.stream.StreamSource_Constructors|
 |javax.xml.transform.stream.StreamSource_Methods|
 
-================================================================================
+====================================================================================================================================================================================
 
 *javax.xml.transform.stream.StreamSource_Fields*
 |java.lang.String_javax.xml.transform.stream.StreamSource.FEATURE|
 
 *javax.xml.transform.stream.StreamSource_Constructors*
 |javax.xml.transform.stream.StreamSource()|Zero-argument default constructor.
-|javax.xml.transform.stream.StreamSource(File)|Construct a StreamSource from a 
-|javax.xml.transform.stream.StreamSource(InputStream)|Construct a StreamSource 
-|javax.xml.transform.stream.StreamSource(InputStream,String)|Construct a Stream
-|javax.xml.transform.stream.StreamSource(Reader)|Construct a StreamSource from 
-|javax.xml.transform.stream.StreamSource(Reader,String)|Construct a StreamSourc
-|javax.xml.transform.stream.StreamSource(String)|Construct a StreamSource from 
+|javax.xml.transform.stream.StreamSource(File)|Construct a StreamSource from a File.
+|javax.xml.transform.stream.StreamSource(InputStream)|Construct a StreamSource from a byte stream.
+|javax.xml.transform.stream.StreamSource(InputStream,String)|Construct a StreamSource from a byte stream.
+|javax.xml.transform.stream.StreamSource(Reader)|Construct a StreamSource from a character reader.
+|javax.xml.transform.stream.StreamSource(Reader,String)|Construct a StreamSource from a character reader.
+|javax.xml.transform.stream.StreamSource(String)|Construct a StreamSource from a URL.
 
 *javax.xml.transform.stream.StreamSource_Methods*
-|javax.xml.transform.stream.StreamSource.getInputStream()|Get the byte stream t
-|javax.xml.transform.stream.StreamSource.getPublicId()|Get the public identifie
-|javax.xml.transform.stream.StreamSource.getReader()|Get the character stream t
-|javax.xml.transform.stream.StreamSource.getSystemId()|Get the system identifie
-|javax.xml.transform.stream.StreamSource.setInputStream(InputStream)|Set the by
-|javax.xml.transform.stream.StreamSource.setPublicId(String)|Set the public ide
-|javax.xml.transform.stream.StreamSource.setReader(Reader)|Set the input to be 
-|javax.xml.transform.stream.StreamSource.setSystemId(File)|Set the system ID fr
-|javax.xml.transform.stream.StreamSource.setSystemId(String)|Set the system ide
+|javax.xml.transform.stream.StreamSource.getInputStream()|Get the byte stream that was set with setByteStream.
+|javax.xml.transform.stream.StreamSource.getPublicId()|Get the public identifier that was set with setPublicId.
+|javax.xml.transform.stream.StreamSource.getReader()|Get the character stream that was set with setReader.
+|javax.xml.transform.stream.StreamSource.getSystemId()|Get the system identifier that was set with setSystemId.
+|javax.xml.transform.stream.StreamSource.setInputStream(InputStream)|Set the byte stream to be used as input.
+|javax.xml.transform.stream.StreamSource.setPublicId(String)|Set the public identifier for this Source.
+|javax.xml.transform.stream.StreamSource.setReader(Reader)|Set the input to be a character reader.
+|javax.xml.transform.stream.StreamSource.setSystemId(File)|Set the system ID from a File reference.
+|javax.xml.transform.stream.StreamSource.setSystemId(String)|Set the system identifier for this Source.
 
 *javax.xml.transform.stream.StreamSource_Description*
 
-Acts as an holder for a transformation Source in the form of a stream of XML 
-markup. 
+Acts as an holder for a transformation Source in the form of a stream of XML markup. 
 
-Note: Due to their internal use of either a (|java.io.Reader|) or 
-(|java.io.InputStream|) instance, StreamSource instances may only be used once. 
+Note: Due to their internal use of either a (|java.io.Reader|) or (|java.io.InputStream|) instance, StreamSource instances may only be used once. 
+
 
 
 *java.lang.String_javax.xml.transform.stream.StreamSource.FEATURE*
 
-Acts as an holder for a transformation Source in the form of a stream of XML 
-markup. 
-
-Note: Due to their internal use of either a (|java.io.Reader|) or 
-(|java.io.InputStream|) instance, StreamSource instances may only be used once. 
+If (|javax.xml.transform.TransformerFactory|) returns true when passed this value as an argument, the Transformer supports Source input of this type. 
 
 
 
@@ -57,11 +53,8 @@ Note: Due to their internal use of either a (|java.io.Reader|) or
 
 public StreamSource()
 
-Zero-argument default constructor. If this constructor is used, and no Stream 
-source is set using (|javax.xml.transform.stream.StreamSource|) or 
-(|javax.xml.transform.stream.StreamSource|) , then the Transformer will create 
-an empty source (|java.io.InputStream|) using new 
-InputStream()(|java.io.InputStream|) . 
+Zero-argument default constructor. If this constructor is used, and no Stream source is set using (|javax.xml.transform.stream.StreamSource|) or 
+(|javax.xml.transform.stream.StreamSource|) , then the Transformer will create an empty source (|java.io.InputStream|) using new InputStream()(|java.io.InputStream|) . 
 
 
 *javax.xml.transform.stream.StreamSource(File)*
@@ -76,12 +69,10 @@ Construct a StreamSource from a File.
 
 public StreamSource(java.io.InputStream inputStream)
 
-Construct a StreamSource from a byte stream. Normally, a stream should be used 
-rather than a reader, so the XML parser can resolve character encoding 
-specified by the XML declaration. 
+Construct a StreamSource from a byte stream. Normally, a stream should be used rather than a reader, so the XML parser can resolve character encoding specified by the XML 
+declaration. 
 
-If this constructor is used to process a stylesheet, normally setSystemId 
-should also be called, so that relative URI references can be resolved. 
+If this constructor is used to process a stylesheet, normally setSystemId should also be called, so that relative URI references can be resolved. 
 
     inputStream - A valid InputStream reference to an XML stream. 
 
@@ -91,12 +82,10 @@ public StreamSource(
   java.io.InputStream inputStream,
   java.lang.String systemId)
 
-Construct a StreamSource from a byte stream. Normally, a stream should be used 
-rather than a reader, so that the XML parser can resolve character encoding 
-specified by the XML declaration. 
+Construct a StreamSource from a byte stream. Normally, a stream should be used rather than a reader, so that the XML parser can resolve character encoding specified by the XML 
+declaration. 
 
-This constructor allows the systemID to be set in addition to the input stream, 
-which allows relative URIs to be processed. 
+This constructor allows the systemID to be set in addition to the input stream, which allows relative URIs to be processed. 
 
     inputStream - A valid InputStream reference to an XML stream. 
     systemId - Must be a String that conforms to the URI syntax. 
@@ -105,11 +94,8 @@ which allows relative URIs to be processed.
 
 public StreamSource(java.io.Reader reader)
 
-Construct a StreamSource from a character reader. Normally, a stream should be 
-used rather than a reader, so that the XML parser can resolve character 
-encoding specified by the XML declaration. However, in many cases the encoding 
-of the input stream is already resolved, as in the case of reading XML from a 
-StringReader. 
+Construct a StreamSource from a character reader. Normally, a stream should be used rather than a reader, so that the XML parser can resolve character encoding specified by the 
+XML declaration. However, in many cases the encoding of the input stream is already resolved, as in the case of reading XML from a StringReader. 
 
     reader - A valid Reader reference to an XML character stream. 
 
@@ -119,11 +105,8 @@ public StreamSource(
   java.io.Reader reader,
   java.lang.String systemId)
 
-Construct a StreamSource from a character reader. Normally, a stream should be 
-used rather than a reader, so that the XML parser may resolve character 
-encoding specified by the XML declaration. However, in many cases the encoding 
-of the input stream is already resolved, as in the case of reading XML from a 
-StringReader. 
+Construct a StreamSource from a character reader. Normally, a stream should be used rather than a reader, so that the XML parser may resolve character encoding specified by the 
+XML declaration. However, in many cases the encoding of the input stream is already resolved, as in the case of reading XML from a StringReader. 
 
     reader - A valid Reader reference to an XML character stream. 
     systemId - Must be a String that conforms to the URI syntax. 
@@ -143,8 +126,9 @@ public |java.io.InputStream| getInputStream()
 Get the byte stream that was set with setByteStream. 
 
 
-    Returns: The byte stream that was set with setByteStream, or null if setByteStream or 
-             the ByteStream constructor was not called. 
+
+    Returns: The byte stream that was set with setByteStream, or null if setByteStream or the ByteStream constructor was not called. 
+
 *javax.xml.transform.stream.StreamSource.getPublicId()*
 
 public |java.lang.String| getPublicId()
@@ -152,8 +136,9 @@ public |java.lang.String| getPublicId()
 Get the public identifier that was set with setPublicId. 
 
 
-    Returns: The public identifier that was set with setPublicId, or null if setPublicId was 
-             not called. 
+
+    Returns: The public identifier that was set with setPublicId, or null if setPublicId was not called. 
+
 *javax.xml.transform.stream.StreamSource.getReader()*
 
 public |java.io.Reader| getReader()
@@ -161,8 +146,9 @@ public |java.io.Reader| getReader()
 Get the character stream that was set with setReader. 
 
 
-    Returns: The character stream that was set with setReader, or null if setReader or the 
-             Reader constructor was not called. 
+
+    Returns: The character stream that was set with setReader, or null if setReader or the Reader constructor was not called. 
+
 *javax.xml.transform.stream.StreamSource.getSystemId()*
 
 public |java.lang.String| getSystemId()
@@ -170,18 +156,18 @@ public |java.lang.String| getSystemId()
 Get the system identifier that was set with setSystemId. 
 
 
-    Returns: The system identifier that was set with setSystemId, or null if setSystemId was 
-             not called. 
+
+    Returns: The system identifier that was set with setSystemId, or null if setSystemId was not called. 
+
 *javax.xml.transform.stream.StreamSource.setInputStream(InputStream)*
 
 public void setInputStream(java.io.InputStream inputStream)
 
-Set the byte stream to be used as input. Normally, a stream should be used 
-rather than a reader, so that the XML parser can resolve character encoding 
-specified by the XML declaration. 
+Set the byte stream to be used as input. Normally, a stream should be used rather than a reader, so that the XML parser can resolve character encoding specified by the XML 
+declaration. 
 
-If this Source object is used to process a stylesheet, normally setSystemId 
-should also be called, so that relative URL references can be resolved. 
+If this Source object is used to process a stylesheet, normally setSystemId should also be called, so that relative URL references can be resolved. 
+
 
     inputStream - A valid InputStream reference to an XML stream. 
 
@@ -191,8 +177,8 @@ public void setPublicId(java.lang.String publicId)
 
 Set the public identifier for this Source. 
 
-The public identifier is always optional: if the application writer includes 
-one, it will be provided as part of the location information. 
+The public identifier is always optional: if the application writer includes one, it will be provided as part of the location information. 
+
 
     publicId - The public identifier as a string. 
 
@@ -200,11 +186,9 @@ one, it will be provided as part of the location information.
 
 public void setReader(java.io.Reader reader)
 
-Set the input to be a character reader. Normally, a stream should be used 
-rather than a reader, so that the XML parser can resolve character encoding 
-specified by the XML declaration. However, in many cases the encoding of the 
-input stream is already resolved, as in the case of reading XML from a 
-StringReader. 
+Set the input to be a character reader. Normally, a stream should be used rather than a reader, so that the XML parser can resolve character encoding specified by the XML 
+declaration. However, in many cases the encoding of the input stream is already resolved, as in the case of reading XML from a StringReader. 
+
 
     reader - A valid Reader reference to an XML CharacterStream. 
 
@@ -214,6 +198,7 @@ public void setSystemId(java.io.File f)
 
 Set the system ID from a File reference. 
 
+
     f - Must a non-null File reference. 
 
 *javax.xml.transform.stream.StreamSource.setSystemId(String)*
@@ -222,11 +207,9 @@ public void setSystemId(java.lang.String systemId)
 
 Set the system identifier for this Source. 
 
-The system identifier is optional if there is a byte stream or a character 
-stream, but it is still useful to provide one, since the application can use it 
-to resolve relative URIs and can include it in error messages and warnings (the 
-parser will attempt to open a connection to the URI only if there is no byte 
-stream or character stream specified). 
+The system identifier is optional if there is a byte stream or a character stream, but it is still useful to provide one, since the application can use it to resolve relative URIs 
+and can include it in error messages and warnings (the parser will attempt to open a connection to the URI only if there is no byte stream or character stream specified). 
+
 
     systemId - The system identifier as a URL string. 
 

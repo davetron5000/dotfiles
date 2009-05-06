@@ -1,5 +1,6 @@
 *java.beans.EventHandler* *EventHandler* The EventHandler class provides 
- suppo
+ support for dynamically generating event listeners whose methods
+ execute a simple statement involving an
 
 public class EventHandler
   extends    |java.lang.Object|
@@ -10,100 +11,71 @@ public class EventHandler
 |java.beans.EventHandler_Constructors|
 |java.beans.EventHandler_Methods|
 
-================================================================================
+====================================================================================================================================================================================
 
 *java.beans.EventHandler_Constructors*
-|java.beans.EventHandler(Object,String,String,String)|Creates a new EventHandle
+|java.beans.EventHandler(Object,String,String,String)|Creates a new EventHandler object;  you generally use one of the create methods  instead of invoking this constructor directl
 
 *java.beans.EventHandler_Methods*
-|java.beans.EventHandler.create(Class,Object,String)|Creates an implementation 
-|java.beans.EventHandler.create(Class,Object,String,String)|Creates an implemen
-|java.beans.EventHandler.create(Class,Object,String,String,String)|Creates an i
-|java.beans.EventHandler.getAction()|Returns the name of the target's writable 
-|java.beans.EventHandler.getEventPropertyName()|Returns the property of the eve
-|java.beans.EventHandler.getListenerMethodName()|Returns the name of the method
-|java.beans.EventHandler.getTarget()|Returns the object to which this event han
-|java.beans.EventHandler.invoke(Object,Method,Object[])|Extract the appropriate
+|java.beans.EventHandler.create(Class<T>,Object,String)|Creates an implementation of listenerInterface in which  all of the methods in the listener interface apply   the handler's
+|java.beans.EventHandler.create(Class<T>,Object,String,String)|Creates an implementation of listenerInterface in which  all of the methods pass the value of the event   expression
+|java.beans.EventHandler.create(Class<T>,Object,String,String,String)|Creates an implementation of listenerInterface in which  the method named listenerMethodName   passes the val
+|java.beans.EventHandler.getAction()|Returns the name of the target's writable property  that this event handler will set,  or the name of the method that this event handler  will
+|java.beans.EventHandler.getEventPropertyName()|Returns the property of the event that should be   used in the action applied to the target.
+|java.beans.EventHandler.getListenerMethodName()|Returns the name of the method that will trigger the action.
+|java.beans.EventHandler.getTarget()|Returns the object to which this event handler will send a message.
+|java.beans.EventHandler.invoke(Object,Method,Object[])|Extract the appropriate property value from the event and   pass it to the action associated with   this EventHandler.
 
 *java.beans.EventHandler_Description*
 
-The EventHandler class provides support for dynamically generating event 
-listeners whose methods execute a simple statement involving an incoming event 
-object and a target object. 
+The EventHandler class provides support for dynamically generating event listeners whose methods execute a simple statement involving an incoming event object and a target object. 
 
-The EventHandler class is intended to be used by interactive tools, such as 
-application builders, that allow developers to make connections between beans. 
-Typically connections are made from a user interface bean (the event source) to 
-an application logic bean (the target). The most effective connections of this 
-kind isolate the application logic from the user interface. For example, the 
-EventHandler for a connection from a JCheckBox to a method that accepts a 
-boolean value can deal with extracting the state of the check box and passing 
-it directly to the method so that the method is isolated from the user 
-interface layer. 
+The EventHandler class is intended to be used by interactive tools, such as application builders, that allow developers to make connections between beans. Typically connections 
+are made from a user interface bean (the event source) to an application logic bean (the target). The most effective connections of this kind isolate the application logic from 
+the user interface. For example, the EventHandler for a connection from a JCheckBox to a method that accepts a boolean value can deal with extracting the state of the check box 
+and passing it directly to the method so that the method is isolated from the user interface layer. 
 
-Inner classes are another, more general way to handle events from user 
-interfaces. The EventHandler class handles only a subset of what is possible 
-using inner classes. However, EventHandler works better with the long-term 
-persistence scheme than inner classes. Also, using EventHandler in large 
-applications in which the same interface is implemented many times can reduce 
-the disk and memory footprint of the application. 
+Inner classes are another, more general way to handle events from user interfaces. The EventHandler class handles only a subset of what is possible using inner classes. However, 
+EventHandler works better with the long-term persistence scheme than inner classes. Also, using EventHandler in large applications in which the same interface is implemented many 
+times can reduce the disk and memory footprint of the application. 
 
-The reason that listeners created with EventHandler have such a small footprint 
-is that the Proxy class, on which the EventHandler relies, shares 
-implementations of identical interfaces. For example, if you use the 
-EventHandler create methods to make all the ActionListeners in an application, 
-all the action listeners will be instances of a single class (one created by 
-the Proxy class). In general, listeners based on the Proxy class require one 
-listener class to be created per listener type (interface), whereas the inner 
-class approach requires one class to be created per listener (object that 
-implements the interface). 
+The reason that listeners created with EventHandler have such a small footprint is that the Proxy class, on which the EventHandler relies, shares implementations of identical 
+interfaces. For example, if you use the EventHandler create methods to make all the ActionListeners in an application, all the action listeners will be instances of a single class 
+(one created by the Proxy class). In general, listeners based on the Proxy class require one listener class to be created per listener type (interface), whereas the inner class 
+approach requires one class to be created per listener (object that implements the interface). 
 
-You don't generally deal directly with EventHandler instances. Instead, you use 
-one of the EventHandler create methods to create an object that implements a 
-given listener interface. This listener object uses an EventHandler object 
-behind the scenes to encapsulate information about the event, the object to be 
-sent a message when the event occurs, the message (method) to be sent, and any 
-argument to the method. The following section gives examples of how to create 
-listener objects using the create methods. 
+You don't generally deal directly with EventHandler instances. Instead, you use one of the EventHandler create methods to create an object that implements a given listener 
+interface. This listener object uses an EventHandler object behind the scenes to encapsulate information about the event, the object to be sent a message when the event occurs, 
+the message (method) to be sent, and any argument to the method. The following section gives examples of how to create listener objects using the create methods. 
 
 Examples of Using EventHandler 
 
-The simplest use of EventHandler is to install a listener that calls a method 
-on the target object with no arguments. In the following example we create an 
-ActionListener that invokes the toFront method on an instance of 
-javax.swing.JFrame. 
+The simplest use of EventHandler is to install a listener that calls a method on the target object with no arguments. In the following example we create an ActionListener that 
+invokes the toFront method on an instance of javax.swing.JFrame. 
 
 
 
-myButton.addActionListener( 
-(ActionListener)EventHandler.create(ActionListener.class, frame, "toFront")); 
+myButton.addActionListener( (ActionListener)EventHandler.create(ActionListener.class, frame, "toFront")); 
 
 
 
-When myButton is pressed, the statement frame.toFront() will be executed. One 
-could get the same effect, with some additional compile-time type safety, by 
-defining a new implementation of the ActionListener interface and adding an 
-instance of it to the button: 
+When myButton is pressed, the statement frame.toFront() will be executed. One could get the same effect, with some additional compile-time type safety, by defining a new 
+implementation of the ActionListener interface and adding an instance of it to the button: 
 
 
 
-//Equivalent code using an inner class instead of EventHandler. 
-myButton.addActionListener(new ActionListener() { public void 
-actionPerformed(ActionEvent e) { frame.toFront(); } }); 
+//Equivalent code using an inner class instead of EventHandler. myButton.addActionListener(new ActionListener() { public void actionPerformed(ActionEvent e) { frame.toFront(); } 
+}); 
 
 
 
-The next simplest use of EventHandler is to extract a property value from the 
-first argument of the method in the listener interface (typically an event 
-object) and use it to set the value of a property in the target object. In the 
-following example we create an ActionListener that sets the 
-nextFocusableComponent property of the target object to the value of the 
-"source" property of the event. 
+The next simplest use of EventHandler is to extract a property value from the first argument of the method in the listener interface (typically an event object) and use it to set 
+the value of a property in the target object. In the following example we create an ActionListener that sets the nextFocusableComponent property of the target object to the value 
+of the "source" property of the event. 
 
 
 
-EventHandler.create(ActionListener.class, target, "nextFocusableComponent", 
-"source") 
+EventHandler.create(ActionListener.class, target, "nextFocusableComponent", "source") 
 
 
 
@@ -111,18 +83,14 @@ This would correspond to the following inner class implementation:
 
 
 
-//Equivalent code using an inner class instead of EventHandler. new 
-ActionListener() { public void actionPerformed(ActionEvent e) { 
+//Equivalent code using an inner class instead of EventHandler. new ActionListener() { public void actionPerformed(ActionEvent e) { 
 button.setNextFocusableComponent((Component)e.getSource()); } } 
 
 
 
-Probably the most common use of EventHandler is to extract a property value 
-from the source of the event object and set this value as the value of a 
-property of the target object. In the following example we create an 
-ActionListener that sets the "label" property of the target object to the value 
-of the "text" property of the source (the value of the "source" property) of 
-the event. 
+Probably the most common use of EventHandler is to extract a property value from the source of the event object and set this value as the value of a property of the target object. 
+In the following example we create an ActionListener that sets the "label" property of the target object to the value of the "text" property of the source (the value of the 
+"source" property) of the event. 
 
 
 
@@ -134,16 +102,13 @@ This would correspond to the following inner class implementation:
 
 
 
-//Equivalent code using an inner class instead of EventHandler. new 
-ActionListener { public void actionPerformed(ActionEvent e) { 
+//Equivalent code using an inner class instead of EventHandler. new ActionListener { public void actionPerformed(ActionEvent e) { 
 button.setLabel(((JTextField)e.getSource()).getText()); } } 
 
 
 
-The event property may be be "qualified" with an arbitrary number of property 
-prefixes delimited with the "." character. The "qualifying" names that appear 
-before the "." characters are taken as the names of properties that should be 
-applied, left-most first, to the event object. 
+The event property may be be "qualified" with an arbitrary number of property prefixes delimited with the "." character. The "qualifying" names that appear before the "." 
+characters are taken as the names of properties that should be applied, left-most first, to the event object. 
 
 For example, the following action listener 
 
@@ -153,14 +118,12 @@ EventHandler.create(ActionListener.class, target, "a", "b.c.d")
 
 
 
-might be written as the following inner class (assuming all the properties had 
-canonical getter methods and returned the appropriate types): 
+might be written as the following inner class (assuming all the properties had canonical getter methods and returned the appropriate types): 
 
 
 
-//Equivalent code using an inner class instead of EventHandler. new 
-ActionListener { public void actionPerformed(ActionEvent e) { 
-target.setA(e.getB().getC().isD()); } } 
+//Equivalent code using an inner class instead of EventHandler. new ActionListener { public void actionPerformed(ActionEvent e) { target.setA(e.getB().getC().isD()); } } 
+
 
 
 
@@ -173,31 +136,27 @@ public EventHandler(
   java.lang.String eventPropertyName,
   java.lang.String listenerMethodName)
 
-Creates a new EventHandler object; you generally use one of the create methods 
-instead of invoking this constructor directly. 
+Creates a new EventHandler object; you generally use one of the create methods instead of invoking this constructor directly. 
 
     target - the object that will perform the action 
     action - the (possibly qualified) name of a writable property or method on the target 
     eventPropertyName - the (possibly qualified) name of a readable property of the incoming event 
     listenerMethodName - the name of the method in the listener interface that should trigger the action 
 
-*java.beans.EventHandler.create(Class,Object,String)*
+*java.beans.EventHandler.create(Class<T>,Object,String)*
 
-public static |java.lang.Object| create(
-  java.lang.Class listenerInterface,
+public static |T| create(
+  java.lang.Class<T> listenerInterface,
   java.lang.Object target,
   java.lang.String action)
 
-Creates an implementation of listenerInterface in which all of the methods in 
-the listener interface apply the handler's action to the target. This method is 
-implemented by calling the other, more general, implementation of the create 
-method with both the eventPropertyName and the listenerMethodName taking the 
-value null. 
+Creates an implementation of listenerInterface in which all of the methods in the listener interface apply the handler's action to the target. This method is implemented by 
+calling the other, more general, implementation of the create method with both the eventPropertyName and the listenerMethodName taking the value null. 
 
-To create an ActionListener that shows a JDialog with dialog.show(), one can 
-write: 
+To create an ActionListener that shows a JDialog with dialog.show(), one can write: 
 
 EventHandler.create(ActionListener.class, dialog, "show") 
+
 
 
 
@@ -206,30 +165,26 @@ EventHandler.create(ActionListener.class, dialog, "show")
     action - the name of a writable property or method on the target 
 
     Returns: an object that implements listenerInterface 
-*java.beans.EventHandler.create(Class,Object,String,String)*
 
-public static |java.lang.Object| create(
-  java.lang.Class listenerInterface,
+*java.beans.EventHandler.create(Class<T>,Object,String,String)*
+
+public static |T| create(
+  java.lang.Class<T> listenerInterface,
   java.lang.Object target,
   java.lang.String action,
   java.lang.String eventPropertyName)
 
-Creates an implementation of listenerInterface in which all of the methods pass 
-the value of the event expression, eventPropertyName, to the final method in 
-the statement, action, which is applied to the target. This method is 
-implemented by calling the more general, implementation of the create method 
-with the listenerMethodName taking the value null. 
+Creates an implementation of listenerInterface in which all of the methods pass the value of the event expression, eventPropertyName, to the final method in the statement, action, 
+which is applied to the target. This method is implemented by calling the more general, implementation of the create method with the listenerMethodName taking the value null. 
 
-To create an ActionListener that sets the the text of a JLabel to the text 
-value of the JTextField source of the incoming event, you can use the following 
-code: 
+To create an ActionListener that sets the the text of a JLabel to the text value of the JTextField source of the incoming event, you can use the following code: 
 
 EventHandler.create(ActionListener.class, label, "text", "source.text"); 
 
 This is equivalent to the following code: 
 
-//Equivalent code using an inner class instead of EventHandler. 
-label.setText((JTextField(event.getSource())).getText()) 
+//Equivalent code using an inner class instead of EventHandler. label.setText((JTextField(event.getSource())).getText()) 
+
 
     listenerInterface - the listener interface to create a proxy for 
     target - the object that will perform the action 
@@ -237,40 +192,33 @@ label.setText((JTextField(event.getSource())).getText())
     eventPropertyName - the (possibly qualified) name of a readable property of the incoming event 
 
     Returns: an object that implements listenerInterface 
-*java.beans.EventHandler.create(Class,Object,String,String,String)*
 
-public static |java.lang.Object| create(
-  java.lang.Class listenerInterface,
+*java.beans.EventHandler.create(Class<T>,Object,String,String,String)*
+
+public static |T| create(
+  java.lang.Class<T> listenerInterface,
   java.lang.Object target,
   java.lang.String action,
   java.lang.String eventPropertyName,
   java.lang.String listenerMethodName)
 
-Creates an implementation of listenerInterface in which the method named 
-listenerMethodName passes the value of the event expression, eventPropertyName, 
-to the final method in the statement, action, which is applied to the target. 
-All of the other listener methods do nothing. 
+Creates an implementation of listenerInterface in which the method named listenerMethodName passes the value of the event expression, eventPropertyName, to the final method in the 
+statement, action, which is applied to the target. All of the other listener methods do nothing. 
 
-If the eventPropertyName is null the implementation calls a method with the 
-name specified in action that takes an EventObject or a no-argument method with 
-the same name if a method accepting an EventObject is not defined. 
+If the eventPropertyName is null the implementation calls a method with the name specified in action that takes an EventObject or a no-argument method with the same name if a 
+method accepting an EventObject is not defined. 
 
-If the listenerMethodName is null all methods in the interface trigger the 
-action to be executed on the target. 
+If the listenerMethodName is null all methods in the interface trigger the action to be executed on the target. 
 
-For example, to create a MouseListener that sets the target object's origin 
-property to the incoming MouseEvent's location (that's the value of 
-mouseEvent.getPoint()) each time a mouse button is pressed, one would write: 
+For example, to create a MouseListener that sets the target object's origin property to the incoming MouseEvent's location (that's the value of mouseEvent.getPoint()) each time a 
+mouse button is pressed, one would write: 
 
-EventHandler.create(MouseListener.class, "mousePressed", target, "origin", 
-"point"); 
+EventHandler.create(MouseListener.class, "mousePressed", target, "origin", "point"); 
 
-This is comparable to writing a MouseListener in which all of the methods 
-except mousePressed are no-ops: 
+This is comparable to writing a MouseListener in which all of the methods except mousePressed are no-ops: 
 
-//Equivalent code using an inner class instead of EventHandler. new 
-MouseAdapter() { public void mousePressed(MouseEvent e) { 
-target.setOrigin(e.getPoint()); } } 
+//Equivalent code using an inner class instead of EventHandler. new MouseAdapter() { public void mousePressed(MouseEvent e) { target.setOrigin(e.getPoint()); } } 
+
 
     listenerInterface - the listener interface to create a proxy for 
     target - the object that will perform the action 
@@ -279,34 +227,37 @@ target.setOrigin(e.getPoint()); } }
     listenerMethodName - the name of the method in the listener interface that should trigger the action 
 
     Returns: an object that implements listenerInterface 
+
 *java.beans.EventHandler.getAction()*
 
 public |java.lang.String| getAction()
 
-Returns the name of the target's writable property that this event handler will 
-set, or the name of the method that this event handler will invoke on the 
-target. 
+Returns the name of the target's writable property that this event handler will set, or the name of the method that this event handler will invoke on the target. 
+
 
 
     Returns: the action of this event handler 
+
 *java.beans.EventHandler.getEventPropertyName()*
 
 public |java.lang.String| getEventPropertyName()
 
-Returns the property of the event that should be used in the action applied to 
-the target. 
+Returns the property of the event that should be used in the action applied to the target. 
+
 
 
     Returns: the property of the event 
+
 *java.beans.EventHandler.getListenerMethodName()*
 
 public |java.lang.String| getListenerMethodName()
 
-Returns the name of the method that will trigger the action. A return value of 
-null signifies that all methods in the listener interface trigger the action. 
+Returns the name of the method that will trigger the action. A return value of null signifies that all methods in the listener interface trigger the action. 
+
 
 
     Returns: the name of the method that will trigger the action 
+
 *java.beans.EventHandler.getTarget()*
 
 public |java.lang.Object| getTarget()
@@ -314,7 +265,9 @@ public |java.lang.Object| getTarget()
 Returns the object to which this event handler will send a message. 
 
 
+
     Returns: the target of this event handler 
+
 *java.beans.EventHandler.invoke(Object,Method,Object[])*
 
 public |java.lang.Object| invoke(
@@ -322,11 +275,12 @@ public |java.lang.Object| invoke(
   java.lang.reflect.Method method,
   java.lang.Object[] arguments)
 
-Extract the appropriate property value from the event and pass it to the action 
-associated with this EventHandler. 
+Extract the appropriate property value from the event and pass it to the action associated with this EventHandler. 
+
 
     proxy - the proxy object 
     method - the method in the listener interface 
 
     Returns: the result of applying the action to the target 
+
 

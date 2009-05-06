@@ -1,4 +1,5 @@
-*java.rmi.registry.RegistryHandler* *RegistryHandler* RegistryHandler is an inte
+*java.rmi.registry.RegistryHandler* *RegistryHandler* RegistryHandler is an interface used internally by the RMI
+ runtime in previous implementation versions.
 
 public interface interface RegistryHandler
 
@@ -8,29 +9,34 @@ public interface interface RegistryHandler
 |java.rmi.registry.RegistryHandler_Constructors|
 |java.rmi.registry.RegistryHandler_Methods|
 
-================================================================================
+====================================================================================================================================================================================
 
 *java.rmi.registry.RegistryHandler_Methods*
-|java.rmi.registry.RegistryHandler.registryImpl(int)|Constructs and exports a R
-|java.rmi.registry.RegistryHandler.registryStub(String,int)|Returns a "stub" fo
+|java.rmi.registry.RegistryHandler.registryImpl(int)|Constructs and exports a Registry on the specified port.
+|java.rmi.registry.RegistryHandler.registryStub(String,int)|Returns a "stub" for contacting a remote registry  on the specified host and port.
 
 *java.rmi.registry.RegistryHandler_Description*
 
-RegistryHandler is an interface used internally by the RMI runtime in previous 
-implementation versions. It should never be accessed by application code. 
+RegistryHandler is an interface used internally by the RMI runtime in previous implementation versions. It should never be accessed by application code. 
 
+
+  Deprecated: no replacement
 
 *java.rmi.registry.RegistryHandler.registryImpl(int)*
 
 public |java.rmi.registry.Registry| registryImpl(int port)
   throws |java.rmi.RemoteException|
          
-Constructs and exports a Registry on the specified port. The port must be 
-non-zero. 
+Constructs and exports a Registry on the specified port. The port must be non-zero. 
+
+    Deprecated: no replacement.  As of the Java 2 platform v1.2, RMI no
+ longer uses the <code>RegistryHandler</code> to obtain the registry's
+ implementation.
 
     port - port to export registry on 
 
     Returns: registry stub 
+
 *java.rmi.registry.RegistryHandler.registryStub(String,int)*
 
 public |java.rmi.registry.Registry| registryStub(
@@ -39,11 +45,15 @@ public |java.rmi.registry.Registry| registryStub(
   throws |java.rmi.RemoteException|
          |java.rmi.UnknownHostException|
          
-Returns a "stub" for contacting a remote registry on the specified host and 
-port. 
+Returns a "stub" for contacting a remote registry on the specified host and port. 
+
+    Deprecated: no replacement.  As of the Java 2 platform v1.2, RMI no
+ longer uses the <code>RegistryHandler</code> to obtain the registry's
+ stub.
 
     host - name of remote registry host 
     port - remote registry port 
 
     Returns: remote registry stub 
+
 

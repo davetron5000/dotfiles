@@ -1,5 +1,7 @@
 *java.io.BufferedInputStream* *BufferedInputStream* A BufferedInputStream adds
- 
+ functionality to another input stream-namely,
+ the ability to buffer the input and to
+ support the m
 
 public class BufferedInputStream
   extends    |java.io.FilterInputStream|
@@ -9,7 +11,7 @@ public class BufferedInputStream
 |java.io.BufferedInputStream_Constructors|
 |java.io.BufferedInputStream_Methods|
 
-================================================================================
+====================================================================================================================================================================================
 
 *java.io.BufferedInputStream_Fields*
 |byte[]_java.io.BufferedInputStream.buf|
@@ -19,89 +21,61 @@ public class BufferedInputStream
 |int_java.io.BufferedInputStream.pos|
 
 *java.io.BufferedInputStream_Constructors*
-|java.io.BufferedInputStream(InputStream)|Creates a BufferedInputStream  and sa
-|java.io.BufferedInputStream(InputStream,int)|Creates a BufferedInputStream  wi
+|java.io.BufferedInputStream(InputStream)|Creates a BufferedInputStream  and saves its  argument, the input stream  in, for later use.
+|java.io.BufferedInputStream(InputStream,int)|Creates a BufferedInputStream  with the specified buffer size,  and saves its  argument, the input stream  in, for later use.
 
 *java.io.BufferedInputStream_Methods*
-|java.io.BufferedInputStream.available()|Returns the number of bytes that can b
-|java.io.BufferedInputStream.close()|Closes this input stream and releases any 
-|java.io.BufferedInputStream.mark(int)|See the general contract of the mark  me
-|java.io.BufferedInputStream.markSupported()|Tests if this input stream support
-|java.io.BufferedInputStream.read()|See  the general contract of the read  meth
-|java.io.BufferedInputStream.read(byte[],int,int)|Reads bytes from this byte-in
-|java.io.BufferedInputStream.reset()|See the general contract of the reset  met
-|java.io.BufferedInputStream.skip(long)|See the general contract of the skip  m
+|java.io.BufferedInputStream.available()|Returns the number of bytes that can be read from this input   stream without blocking.
+|java.io.BufferedInputStream.close()|Closes this input stream and releases any system resources   associated with the stream.
+|java.io.BufferedInputStream.mark(int)|See the general contract of the mark  method of InputStream.
+|java.io.BufferedInputStream.markSupported()|Tests if this input stream supports the mark   and reset methods.
+|java.io.BufferedInputStream.read()|See  the general contract of the read  method of InputStream.
+|java.io.BufferedInputStream.read(byte[],int,int)|Reads bytes from this byte-input stream into the specified byte array,  starting at the given offset.
+|java.io.BufferedInputStream.reset()|See the general contract of the reset  method of InputStream.
+|java.io.BufferedInputStream.skip(long)|See the general contract of the skip  method of InputStream.
 
 *java.io.BufferedInputStream_Description*
 
-A BufferedInputStream adds functionality to another input stream-namely, the 
-ability to buffer the input and to support the mark and reset methods. When the 
-BufferedInputStream is created, an internal buffer array is created. As bytes 
-from the stream are read or skipped, the internal buffer is refilled as 
-necessary from the contained input stream, many bytes at a time. The mark 
-operation remembers a point in the input stream and the reset operation causes 
-all the bytes read since the most recent mark operation to be reread before new 
-bytes are taken from the contained input stream. 
+A BufferedInputStream adds functionality to another input stream-namely, the ability to buffer the input and to support the mark and reset methods. When the BufferedInputStream is 
+created, an internal buffer array is created. As bytes from the stream are read or skipped, the internal buffer is refilled as necessary from the contained input stream, many 
+bytes at a time. The mark operation remembers a point in the input stream and the reset operation causes all the bytes read since the most recent mark operation to be reread 
+before new bytes are taken from the contained input stream. 
+
 
 
 *byte[]_java.io.BufferedInputStream.buf*
 
-A BufferedInputStream adds functionality to another input stream-namely, the 
-ability to buffer the input and to support the mark and reset methods. When the 
-BufferedInputStream is created, an internal buffer array is created. As bytes 
-from the stream are read or skipped, the internal buffer is refilled as 
-necessary from the contained input stream, many bytes at a time. The mark 
-operation remembers a point in the input stream and the reset operation causes 
-all the bytes read since the most recent mark operation to be reread before new 
-bytes are taken from the contained input stream. 
+The internal buffer array where the data is stored. When necessary, it may be replaced by another array of a different size. 
 
 
 *int_java.io.BufferedInputStream.count*
 
-A BufferedInputStream adds functionality to another input stream-namely, the 
-ability to buffer the input and to support the mark and reset methods. When the 
-BufferedInputStream is created, an internal buffer array is created. As bytes 
-from the stream are read or skipped, the internal buffer is refilled as 
-necessary from the contained input stream, many bytes at a time. The mark 
-operation remembers a point in the input stream and the reset operation causes 
-all the bytes read since the most recent mark operation to be reread before new 
-bytes are taken from the contained input stream. 
+The index one greater than the index of the last valid byte in the buffer. This value is always in the range 0 through buf.length; elements buf[0] through buf[count-1] contain 
+buffered input data obtained from the underlying input stream. 
 
 
 *int_java.io.BufferedInputStream.marklimit*
 
-A BufferedInputStream adds functionality to another input stream-namely, the 
-ability to buffer the input and to support the mark and reset methods. When the 
-BufferedInputStream is created, an internal buffer array is created. As bytes 
-from the stream are read or skipped, the internal buffer is refilled as 
-necessary from the contained input stream, many bytes at a time. The mark 
-operation remembers a point in the input stream and the reset operation causes 
-all the bytes read since the most recent mark operation to be reread before new 
-bytes are taken from the contained input stream. 
+The maximum read ahead allowed after a call to the mark method before subsequent calls to the reset method fail. Whenever the difference between pos and markpos exceeds marklimit, 
+then the mark may be dropped by setting markpos to -1. 
 
 
 *int_java.io.BufferedInputStream.markpos*
 
-A BufferedInputStream adds functionality to another input stream-namely, the 
-ability to buffer the input and to support the mark and reset methods. When the 
-BufferedInputStream is created, an internal buffer array is created. As bytes 
-from the stream are read or skipped, the internal buffer is refilled as 
-necessary from the contained input stream, many bytes at a time. The mark 
-operation remembers a point in the input stream and the reset operation causes 
-all the bytes read since the most recent mark operation to be reread before new 
-bytes are taken from the contained input stream. 
+The value of the pos field at the time the last mark method was called. 
+
+This value is always in the range -1 through pos. If there is no marked position in the input stream, this field is -1. If there is a marked position in the input stream, then 
+buf[markpos] is the first byte to be supplied as input after a reset operation. If markpos is not -1, then all bytes from positions buf[markpos] through buf[pos-1] must remain in 
+the buffer array (though they may be moved to another place in the buffer array, with suitable adjustments to the values of count, pos, and markpos); they may not be discarded 
+unless and until the difference between pos and markpos exceeds marklimit. 
 
 
 *int_java.io.BufferedInputStream.pos*
 
-A BufferedInputStream adds functionality to another input stream-namely, the 
-ability to buffer the input and to support the mark and reset methods. When the 
-BufferedInputStream is created, an internal buffer array is created. As bytes 
-from the stream are read or skipped, the internal buffer is refilled as 
-necessary from the contained input stream, many bytes at a time. The mark 
-operation remembers a point in the input stream and the reset operation causes 
-all the bytes read since the most recent mark operation to be reread before new 
-bytes are taken from the contained input stream. 
+The current position in the buffer. This is the index of the next character to be read from the buf array. 
+
+This value is always in the range 0 through count. If it is less than count, then buf[pos] is the next byte to be supplied as input; if it is equal to count, then the next read or 
+skip operation will require more bytes to be read from the contained input stream. 
 
 
 
@@ -109,8 +83,7 @@ bytes are taken from the contained input stream.
 
 public BufferedInputStream(java.io.InputStream in)
 
-Creates a BufferedInputStream and saves its argument, the input stream in, for 
-later use. An internal buffer array is created and stored in buf. 
+Creates a BufferedInputStream and saves its argument, the input stream in, for later use. An internal buffer array is created and stored in buf. 
 
     in - the underlying input stream. 
 
@@ -120,9 +93,8 @@ public BufferedInputStream(
   java.io.InputStream in,
   int size)
 
-Creates a BufferedInputStream with the specified buffer size, and saves its 
-argument, the input stream in, for later use. An internal buffer array of 
-length size is created and stored in buf. 
+Creates a BufferedInputStream with the specified buffer size, and saves its argument, the input stream in, for later use. An internal buffer array of length size is created and 
+stored in buf. 
 
     in - the underlying input stream. 
     size - the buffer size. 
@@ -132,22 +104,22 @@ length size is created and stored in buf.
 public synchronized int available()
   throws |java.io.IOException|
          
-Returns the number of bytes that can be read from this input stream without 
-blocking. 
+Returns the number of bytes that can be read from this input stream without blocking. 
 
-The available method of BufferedInputStream returns the sum of the number of 
-bytes remaining to be read in the buffer (count- pos) and the result of calling 
-the available method of the underlying input stream. 
+The available method of BufferedInputStream returns the sum of the number of bytes remaining to be read in the buffer (count- pos) and the result of calling the available method 
+of the underlying input stream. 
+
 
 
     Returns: the number of bytes that can be read from this input stream without blocking. 
+
 *java.io.BufferedInputStream.close()*
 
 public void close()
   throws |java.io.IOException|
          
-Closes this input stream and releases any system resources associated with the 
-stream. 
+Closes this input stream and releases any system resources associated with the stream. 
+
 
 
 *java.io.BufferedInputStream.mark(int)*
@@ -156,18 +128,19 @@ public synchronized void mark(int readlimit)
 
 See the general contract of the mark method of InputStream. 
 
-    readlimit - the maximum limit of bytes that can be read before the mark position becomes 
-       invalid. 
+
+    readlimit - the maximum limit of bytes that can be read before the mark position becomes invalid. 
 
 *java.io.BufferedInputStream.markSupported()*
 
 public boolean markSupported()
 
-Tests if this input stream supports the mark and reset methods. The 
-markSupported method of BufferedInputStream returns true. 
+Tests if this input stream supports the mark and reset methods. The markSupported method of BufferedInputStream returns true. 
+
 
 
     Returns: a boolean indicating if this stream type supports the mark and reset methods. 
+
 *java.io.BufferedInputStream.read()*
 
 public synchronized int read()
@@ -176,7 +149,9 @@ public synchronized int read()
 See the general contract of the read method of InputStream. 
 
 
+
     Returns: the next byte of data, or -1 if the end of the stream is reached. 
+
 *java.io.BufferedInputStream.read(byte[],int,int)*
 
 public synchronized int read(
@@ -185,34 +160,28 @@ public synchronized int read(
   int len)
   throws |java.io.IOException|
          
-Reads bytes from this byte-input stream into the specified byte array, starting 
-at the given offset. 
+Reads bytes from this byte-input stream into the specified byte array, starting at the given offset. 
 
-This method implements the general contract of the corresponding 
-read(|java.io.InputStream|) method of the (|java.io.InputStream|) class. As an 
-additional convenience, it attempts to read as many bytes as possible by 
-repeatedly invoking the read method of the underlying stream. This iterated 
-read continues until one of the following conditions becomes true: 
+This method implements the general contract of the corresponding read(|java.io.InputStream|) method of the (|java.io.InputStream|) class. As an additional convenience, it attempts 
+to read as many bytes as possible by repeatedly invoking the read method of the underlying stream. This iterated read continues until one of the following conditions becomes true: 
 
 The specified number of bytes have been read, 
 
 The read method of the underlying stream returns -1, indicating end-of-file, or 
 
-The available method of the underlying stream returns zero, indicating that 
-further input requests would block. 
+The available method of the underlying stream returns zero, indicating that further input requests would block. 
 
-If the first read on the underlying stream returns -1 to indicate end-of-file 
-then this method returns -1. Otherwise this method returns the number of bytes 
-actually read. 
+If the first read on the underlying stream returns -1 to indicate end-of-file then this method returns -1. Otherwise this method returns the number of bytes actually read. 
 
-Subclasses of this class are encouraged, but not required, to attempt to read 
-as many bytes as possible in the same fashion. 
+Subclasses of this class are encouraged, but not required, to attempt to read as many bytes as possible in the same fashion. 
+
 
     b - destination buffer. 
     off - offset at which to start storing bytes. 
     len - maximum number of bytes to read. 
 
     Returns: the number of bytes read, or -1 if the end of the stream has been reached. 
+
 *java.io.BufferedInputStream.reset()*
 
 public synchronized void reset()
@@ -220,8 +189,8 @@ public synchronized void reset()
          
 See the general contract of the reset method of InputStream. 
 
-If markpos is -1 (no mark has been set or the mark has been invalidated), an 
-IOException is thrown. Otherwise, pos is set equal to markpos. 
+If markpos is -1 (no mark has been set or the mark has been invalidated), an IOException is thrown. Otherwise, pos is set equal to markpos. 
+
 
 
 *java.io.BufferedInputStream.skip(long)*
@@ -231,7 +200,9 @@ public synchronized long skip(long n)
          
 See the general contract of the skip method of InputStream. 
 
+
     n - the number of bytes to be skipped. 
 
     Returns: the actual number of bytes skipped. 
+
 

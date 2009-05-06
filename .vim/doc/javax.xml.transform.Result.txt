@@ -1,4 +1,5 @@
-*javax.xml.transform.Result* *Result* An object that implements this interface c
+*javax.xml.transform.Result* *Result* An object that implements this interface contains the information
+ needed to build a transformation result tree.
 
 public interface interface Result
 
@@ -8,32 +9,35 @@ public interface interface Result
 |javax.xml.transform.Result_Constructors|
 |javax.xml.transform.Result_Methods|
 
-================================================================================
+====================================================================================================================================================================================
 
 *javax.xml.transform.Result_Fields*
 |java.lang.String_javax.xml.transform.Result.PI_DISABLE_OUTPUT_ESCAPING|
 |java.lang.String_javax.xml.transform.Result.PI_ENABLE_OUTPUT_ESCAPING|
 
 *javax.xml.transform.Result_Methods*
-|javax.xml.transform.Result.getSystemId()|Get the system identifier that was se
-|javax.xml.transform.Result.setSystemId(String)|Set the system identifier for t
+|javax.xml.transform.Result.getSystemId()|Get the system identifier that was set with setSystemId.
+|javax.xml.transform.Result.setSystemId(String)|Set the system identifier for this Result.
 
 *javax.xml.transform.Result_Description*
 
-An object that implements this interface contains the information needed to 
-build a transformation result tree. 
+An object that implements this interface contains the information needed to build a transformation result tree. 
+
 
 
 *java.lang.String_javax.xml.transform.Result.PI_DISABLE_OUTPUT_ESCAPING*
 
-An object that implements this interface contains the information needed to 
-build a transformation result tree. 
+The name of the processing instruction that is sent if the result tree disables output escaping. 
+
+Normally, result tree serialization escapes & and 
+
+Result DOM trees may also have PI_DISABLE_OUTPUT_ESCAPING and PI_ENABLE_OUTPUT_ESCAPING inserted into the tree. 
 
 
 *java.lang.String_javax.xml.transform.Result.PI_ENABLE_OUTPUT_ESCAPING*
 
-An object that implements this interface contains the information needed to 
-build a transformation result tree. 
+The name of the processing instruction that is sent if the result tree enables output escaping at some point after having received a PI_DISABLE_OUTPUT_ESCAPING processing 
+instruction. 
 
 
 
@@ -44,17 +48,18 @@ public |java.lang.String| getSystemId()
 Get the system identifier that was set with setSystemId. 
 
 
-    Returns: The system identifier that was set with setSystemId, or null if setSystemId was 
-             not called. 
+
+    Returns: The system identifier that was set with setSystemId, or null if setSystemId was not called. 
+
 *javax.xml.transform.Result.setSystemId(String)*
 
 public void setSystemId(java.lang.String systemId)
 
 Set the system identifier for this Result. 
 
-If the Result is not to be written to a file, the system identifier is 
-optional. The application may still want to provide one, however, for use in 
-error messages and warnings, or to resolve relative output identifiers. 
+If the Result is not to be written to a file, the system identifier is optional. The application may still want to provide one, however, for use in error messages and warnings, or 
+to resolve relative output identifiers. 
+
 
     systemId - The system identifier as a URI string. 
 

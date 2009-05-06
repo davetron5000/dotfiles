@@ -1,4 +1,5 @@
-*javax.swing.text.CompositeView* *CompositeView* CompositeView is an abstract Vi
+*javax.swing.text.CompositeView* *CompositeView* CompositeView is an abstract View
+ implementation which manages one or more child views.
 
 public abstract class CompositeView
   extends    |javax.swing.text.View|
@@ -8,67 +9,57 @@ public abstract class CompositeView
 |javax.swing.text.CompositeView_Constructors|
 |javax.swing.text.CompositeView_Methods|
 
-================================================================================
+====================================================================================================================================================================================
 
 *javax.swing.text.CompositeView_Constructors*
-|javax.swing.text.CompositeView(Element)|Constructs a CompositeView for the giv
+|javax.swing.text.CompositeView(Element)|Constructs a CompositeView for the given element.
 
 *javax.swing.text.CompositeView_Methods*
-|javax.swing.text.CompositeView.childAllocation(int,Rectangle)|Returns the allo
-|javax.swing.text.CompositeView.flipEastAndWestAtEnds(int,Position.Bias)|Determ
+|javax.swing.text.CompositeView.childAllocation(int,Rectangle)|Returns the allocation for a given child.
+|javax.swing.text.CompositeView.flipEastAndWestAtEnds(int,Position.Bias)|Determines in which direction the next view lays.
 |javax.swing.text.CompositeView.getBottomInset()|Gets the bottom inset.
-|javax.swing.text.CompositeView.getChildAllocation(int,Shape)|Fetches the alloc
-|javax.swing.text.CompositeView.getInsideAllocation(Shape)|Translates the immut
+|javax.swing.text.CompositeView.getChildAllocation(int,Shape)|Fetches the allocation for the given child view to  render into.
+|javax.swing.text.CompositeView.getInsideAllocation(Shape)|Translates the immutable allocation given to the view   to a mutable allocation that represents the interior  allocation
 |javax.swing.text.CompositeView.getLeftInset()|Gets the left inset.
-|javax.swing.text.CompositeView.getNextEastWestVisualPositionFrom(int,Position.Bias,Shape,int,Position.Bias[])|
-|javax.swing.text.CompositeView.getNextNorthSouthVisualPositionFrom(int,Position.Bias,Shape,int,Position.Bias[])|
-|javax.swing.text.CompositeView.getNextVisualPositionFrom(int,Position.Bias,Shape,int,Position.Bias[])|
+|javax.swing.text.CompositeView.getNextEastWestVisualPositionFrom(int,Position.Bias,Shape,int,Position.Bias[])|Returns the next visual position for the cursor, in either the  east
+|javax.swing.text.CompositeView.getNextNorthSouthVisualPositionFrom(int,Position.Bias,Shape,int,Position.Bias[])|Returns the next visual position for the cursor, in either the  no
+|javax.swing.text.CompositeView.getNextVisualPositionFrom(int,Position.Bias,Shape,int,Position.Bias[])|Provides a way to determine the next visually represented model   location t
 |javax.swing.text.CompositeView.getRightInset()|Gets the right inset.
 |javax.swing.text.CompositeView.getTopInset()|Gets the top inset.
-|javax.swing.text.CompositeView.getView(int)|Returns the n-th view in this cont
-|javax.swing.text.CompositeView.getViewAtPoint(int,int,Rectangle)|Fetches the c
-|javax.swing.text.CompositeView.getViewAtPosition(int,Rectangle)|Fetches the ch
-|javax.swing.text.CompositeView.getViewCount()|Returns the number of child view
-|javax.swing.text.CompositeView.getViewIndex(int,Position.Bias)|Returns the chi
-|javax.swing.text.CompositeView.getViewIndexAtPosition(int)|Fetches the child v
-|javax.swing.text.CompositeView.isAfter(int,int,Rectangle)|Tests whether a poin
-|javax.swing.text.CompositeView.isBefore(int,int,Rectangle)|Tests whether a poi
-|javax.swing.text.CompositeView.loadChildren(ViewFactory)|Loads all of the chil
-|javax.swing.text.CompositeView.modelToView(int,Position.Bias,int,Position.Bias,Shape)|
-|javax.swing.text.CompositeView.modelToView(int,Shape,Position.Bias)|Provides a
+|javax.swing.text.CompositeView.getView(int)|Returns the n-th view in this container.
+|javax.swing.text.CompositeView.getViewAtPoint(int,int,Rectangle)|Fetches the child view at the given coordinates.
+|javax.swing.text.CompositeView.getViewAtPosition(int,Rectangle)|Fetches the child view that represents the given position in  the model.
+|javax.swing.text.CompositeView.getViewCount()|Returns the number of child views of this view.
+|javax.swing.text.CompositeView.getViewIndex(int,Position.Bias)|Returns the child view index representing the given   position in the model.
+|javax.swing.text.CompositeView.getViewIndexAtPosition(int)|Fetches the child view index representing the given position in  the model.
+|javax.swing.text.CompositeView.isAfter(int,int,Rectangle)|Tests whether a point lies after the rectangle range.
+|javax.swing.text.CompositeView.isBefore(int,int,Rectangle)|Tests whether a point lies before the rectangle range.
+|javax.swing.text.CompositeView.loadChildren(ViewFactory)|Loads all of the children to initialize the view.
+|javax.swing.text.CompositeView.modelToView(int,Position.Bias,int,Position.Bias,Shape)|Provides a mapping from the document model coordinate space  to the coordinate space of the 
+|javax.swing.text.CompositeView.modelToView(int,Shape,Position.Bias)|Provides a mapping from the document model coordinate space  to the coordinate space of the view mapped to it.
 |javax.swing.text.CompositeView.replace(int,int,View[])|Replaces child views.
-|javax.swing.text.CompositeView.setInsets(short,short,short,short)|Sets the ins
-|javax.swing.text.CompositeView.setParagraphInsets(AttributeSet)|Sets the inset
+|javax.swing.text.CompositeView.setInsets(short,short,short,short)|Sets the insets for the view.
+|javax.swing.text.CompositeView.setParagraphInsets(AttributeSet)|Sets the insets from the paragraph attributes specified in  the given attributes.
 |javax.swing.text.CompositeView.setParent(View)|Sets the parent of the view.
-|javax.swing.text.CompositeView.viewToModel(float,float,Shape,Position.Bias[])|
+|javax.swing.text.CompositeView.viewToModel(float,float,Shape,Position.Bias[])|Provides a mapping from the view coordinate space to the logical  coordinate space of the model.
 
 *javax.swing.text.CompositeView_Description*
 
-CompositeView is an abstract View implementation which manages one or more 
-child views. (Note that CompositeView is intended for managing relatively small 
-numbers of child views.) CompositeView is intended to be used as a starting 
-point for View implementations, such as BoxView, that will contain child Views. 
-Subclasses that wish to manage the collection of child Views should use the 
-(|javax.swing.text.CompositeView|) method. As View invokes replace during 
-DocumentListener notification, you normally won't need to directly invoke 
+CompositeView is an abstract View implementation which manages one or more child views. (Note that CompositeView is intended for managing relatively small numbers of child views.) 
+CompositeView is intended to be used as a starting point for View implementations, such as BoxView, that will contain child Views. Subclasses that wish to manage the collection of 
+child Views should use the (|javax.swing.text.CompositeView|) method. As View invokes replace during DocumentListener notification, you normally won't need to directly invoke 
 replace. 
 
-While CompositeView does not impose a layout policy on its child Views, it does 
-allow for inseting the child Views it will contain. The insets can be set by 
-either (|javax.swing.text.CompositeView|) or (|javax.swing.text.CompositeView|) 
-. 
+While CompositeView does not impose a layout policy on its child Views, it does allow for inseting the child Views it will contain. The insets can be set by either 
+(|javax.swing.text.CompositeView|) or (|javax.swing.text.CompositeView|) . 
 
-In addition to the abstract methods of (|javax.swing.text.View|) , subclasses 
-of CompositeView will need to override: 
+In addition to the abstract methods of (|javax.swing.text.View|) , subclasses of CompositeView will need to override: 
 
-(|javax.swing.text.CompositeView|) - Used to test if a given View location is 
-before the visual space of the CompositeView. 
-(|javax.swing.text.CompositeView|) - Used to test if a given View location is 
-after the visual space of the CompositeView. (|javax.swing.text.CompositeView|) 
-- Returns the view at a given visual location. 
-(|javax.swing.text.CompositeView|) - Returns the bounds of a particular child 
-View. getChildAllocation will invoke childAllocation after offseting the bounds 
-by the Insets of the CompositeView. 
+(|javax.swing.text.CompositeView|) - Used to test if a given View location is before the visual space of the CompositeView. (|javax.swing.text.CompositeView|) - Used to test if a 
+given View location is after the visual space of the CompositeView. (|javax.swing.text.CompositeView|) - Returns the view at a given visual location. 
+(|javax.swing.text.CompositeView|) - Returns the bounds of a particular child View. getChildAllocation will invoke childAllocation after offseting the bounds by the Insets of the 
+CompositeView. 
+
 
 
 *javax.swing.text.CompositeView(Element)*
@@ -87,9 +78,9 @@ protected abstract void childAllocation(
 
 Returns the allocation for a given child. 
 
+
     index - the index of the child, >= 0 < getViewCount() 
-    a - the allocation to the interior of the box on entry, and the allocation of the 
-       child view at the index on exit. 
+    a - the allocation to the interior of the box on entry, and the allocation of the child view at the index on exit. 
 
 *javax.swing.text.CompositeView.flipEastAndWestAtEnds(int,Position.Bias)*
 
@@ -97,21 +88,19 @@ protected boolean flipEastAndWestAtEnds(
   int position,
   javax.swing.text.Position.Bias bias)
 
-Determines in which direction the next view lays. Consider the View at index n. 
-Typically the Views are layed out from left to right, so that the View to the 
-EAST will be at index n + 1, and the View to the WEST will be at index n - 1. 
-In certain situations, such as with bidirectional text, it is possible that the 
-View to EAST is not at index n + 1, but rather at index n - 1, or that the View 
-to the WEST is not at index n - 1, but index n + 1. In this case this method 
-would return true, indicating the Views are layed out in descending order. 
+Determines in which direction the next view lays. Consider the View at index n. Typically the Views are layed out from left to right, so that the View to the EAST will be at index 
+n + 1, and the View to the WEST will be at index n - 1. In certain situations, such as with bidirectional text, it is possible that the View to EAST is not at index n + 1, but 
+rather at index n - 1, or that the View to the WEST is not at index n - 1, but index n + 1. In this case this method would return true, indicating the Views are layed out in 
+descending order. 
 
-This unconditionally returns false, subclasses should override this method if 
-there is the possibility for laying Views in descending order. 
+This unconditionally returns false, subclasses should override this method if there is the possibility for laying Views in descending order. 
+
 
     position - position into the model 
     bias - either Position.Bias.Forward or Position.Bias.Backward 
 
     Returns: 
+
 *javax.swing.text.CompositeView.getBottomInset()*
 
 protected short getBottomInset()
@@ -119,37 +108,36 @@ protected short getBottomInset()
 Gets the bottom inset. 
 
 
+
     Returns: the inset >= 0 
+
 *javax.swing.text.CompositeView.getChildAllocation(int,Shape)*
 
 public |java.awt.Shape| getChildAllocation(
   int index,
   java.awt.Shape a)
 
-Fetches the allocation for the given child view to render into. This enables 
-finding out where various views are located. 
+Fetches the allocation for the given child view to render into. This enables finding out where various views are located. 
+
 
     index - the index of the child, >= 0 < getViewCount() 
     a - the allocation to this view 
 
     Returns: the allocation to the child 
+
 *javax.swing.text.CompositeView.getInsideAllocation(Shape)*
 
 protected |java.awt.Rectangle| getInsideAllocation(java.awt.Shape a)
 
-Translates the immutable allocation given to the view to a mutable allocation 
-that represents the interior allocation (i.e. the bounds of the given 
-allocation with the top, left, bottom, and right insets removed. It is expected 
-that the returned value would be further mutated to represent an allocation to 
-a child view. This is implemented to reuse an instance variable so it avoids 
-creating excessive Rectangles. Typically the result of calling this method 
-would be fed to the childAllocation method. 
+Translates the immutable allocation given to the view to a mutable allocation that represents the interior allocation (i.e. the bounds of the given allocation with the top, left, 
+bottom, and right insets removed. It is expected that the returned value would be further mutated to represent an allocation to a child view. This is implemented to reuse an 
+instance variable so it avoids creating excessive Rectangles. Typically the result of calling this method would be fed to the childAllocation method. 
+
 
     a - the allocation given to the view 
 
-    Returns: the allocation that represents the inside of the view after the margins have 
-             all been removed; if the given allocation was null, the return 
-             value is null 
+    Returns: the allocation that represents the inside of the view after the margins have all been removed; if the given allocation was null, the return value is null 
+
 *javax.swing.text.CompositeView.getLeftInset()*
 
 protected short getLeftInset()
@@ -157,7 +145,9 @@ protected short getLeftInset()
 Gets the left inset. 
 
 
+
     Returns: the inset >= 0 
+
 *javax.swing.text.CompositeView.getNextEastWestVisualPositionFrom(int,Position.Bias,Shape,int,Position.Bias[])*
 
 protected int getNextEastWestVisualPositionFrom(
@@ -168,20 +158,19 @@ protected int getNextEastWestVisualPositionFrom(
   javax.swing.text.Position.Bias[] biasRet)
   throws |javax.swing.text.BadLocationException|
          
-Returns the next visual position for the cursor, in either the east or west 
-direction. 
+Returns the next visual position for the cursor, in either the east or west direction. 
+
 
     pos - the position to convert >= 0 
     b - a bias value of either Position.Bias.Forward or Position.Bias.Backward 
     a - the allocated region to render into 
-    direction - the direction from the current position that can be thought of as the arrow 
-       keys typically found on a keyboard; this may be one of the following: 
+    direction - the direction from the current position that can be thought of as the arrow keys typically found on a keyboard; this may be one of the following: 
 
 SwingConstants.WEST SwingConstants.EAST 
     biasRet - an array containing the bias that was checked 
 
-    Returns: the location within the model that best represents the next west or east 
-             location 
+    Returns: the location within the model that best represents the next west or east location 
+
 *javax.swing.text.CompositeView.getNextNorthSouthVisualPositionFrom(int,Position.Bias,Shape,int,Position.Bias[])*
 
 protected int getNextNorthSouthVisualPositionFrom(
@@ -192,21 +181,20 @@ protected int getNextNorthSouthVisualPositionFrom(
   javax.swing.text.Position.Bias[] biasRet)
   throws |javax.swing.text.BadLocationException|
          
-Returns the next visual position for the cursor, in either the north or south 
-direction. 
+Returns the next visual position for the cursor, in either the north or south direction. 
+
 
     pos - the position to convert >= 0 
     b - a bias value of either Position.Bias.Forward or Position.Bias.Backward 
     a - the allocated region to render into 
-    direction - the direction from the current position that can be thought of as the arrow 
-       keys typically found on a keyboard; this may be one of the following: 
+    direction - the direction from the current position that can be thought of as the arrow keys typically found on a keyboard; this may be one of the following: 
 
 SwingConstants.NORTH SwingConstants.SOUTH 
     biasRet - an array containing the bias that was checked 
 
-    Returns: the location within the model that best represents the next north or south 
-             location 
+    Returns: the location within the model that best represents the next north or south location 
     Returns: the next position west of the passed in position 
+
 *javax.swing.text.CompositeView.getNextVisualPositionFrom(int,Position.Bias,Shape,int,Position.Bias[])*
 
 public int getNextVisualPositionFrom(
@@ -217,24 +205,21 @@ public int getNextVisualPositionFrom(
   javax.swing.text.Position.Bias[] biasRet)
   throws |javax.swing.text.BadLocationException|
          
-Provides a way to determine the next visually represented model location that 
-one might place a caret. Some views may not be visible, they might not be in 
-the same order found in the model, or they just might not allow access to some 
-of the locations in the model. This is a convenience method for 
-(|javax.swing.text.CompositeView|) and (|javax.swing.text.CompositeView|) . 
+Provides a way to determine the next visually represented model location that one might place a caret. Some views may not be visible, they might not be in the same order found in 
+the model, or they just might not allow access to some of the locations in the model. This is a convenience method for (|javax.swing.text.CompositeView|) and 
+(|javax.swing.text.CompositeView|) . 
+
 
     pos - the position to convert >= 0 
     b - a bias value of either Position.Bias.Forward or Position.Bias.Backward 
     a - the allocated region to render into 
-    direction - the direction from the current position that can be thought of as the arrow 
-       keys typically found on a keyboard; this may be one of the following: 
+    direction - the direction from the current position that can be thought of as the arrow keys typically found on a keyboard; this may be one of the following: 
 
-SwingConstants.WEST SwingConstants.EAST SwingConstants.NORTH 
-       SwingConstants.SOUTH 
+SwingConstants.WEST SwingConstants.EAST SwingConstants.NORTH SwingConstants.SOUTH 
     biasRet - an array containing the bias that was checked 
 
-    Returns: the location within the model that best represents the next location visual 
-             position 
+    Returns: the location within the model that best represents the next location visual position 
+
 *javax.swing.text.CompositeView.getRightInset()*
 
 protected short getRightInset()
@@ -242,7 +227,9 @@ protected short getRightInset()
 Gets the right inset. 
 
 
+
     Returns: the inset >= 0 
+
 *javax.swing.text.CompositeView.getTopInset()*
 
 protected short getTopInset()
@@ -250,16 +237,20 @@ protected short getTopInset()
 Gets the top inset. 
 
 
+
     Returns: the inset >= 0 
+
 *javax.swing.text.CompositeView.getView(int)*
 
 public |javax.swing.text.View| getView(int n)
 
 Returns the n-th view in this container. 
 
+
     n - the number of the desired view, >= 0 < getViewCount() 
 
     Returns: the view at index n 
+
 *javax.swing.text.CompositeView.getViewAtPoint(int,int,Rectangle)*
 
 protected abstract |javax.swing.text.View| getViewAtPoint(
@@ -269,27 +260,27 @@ protected abstract |javax.swing.text.View| getViewAtPoint(
 
 Fetches the child view at the given coordinates. 
 
+
     x - the X coordinate >= 0 
     y - the Y coordinate >= 0 
-    alloc - the parent's allocation on entry, which should be changed to the child's 
-       allocation on exit 
+    alloc - the parent's allocation on entry, which should be changed to the child's allocation on exit 
 
     Returns: the child view 
+
 *javax.swing.text.CompositeView.getViewAtPosition(int,Rectangle)*
 
 protected |javax.swing.text.View| getViewAtPosition(
   int pos,
   java.awt.Rectangle a)
 
-Fetches the child view that represents the given position in the model. This is 
-implemented to fetch the view in the case where there is a child view for each 
-child element. 
+Fetches the child view that represents the given position in the model. This is implemented to fetch the view in the case where there is a child view for each child element. 
+
 
     pos - the position >= 0 
-    a - the allocation to the interior of the box on entry, and the allocation of the 
-       view containing the position on exit 
+    a - the allocation to the interior of the box on entry, and the allocation of the view containing the position on exit 
 
     Returns: the view representing the given position, or null if there isn't one 
+
 *javax.swing.text.CompositeView.getViewCount()*
 
 public int getViewCount()
@@ -297,33 +288,33 @@ public int getViewCount()
 Returns the number of child views of this view. 
 
 
+
     Returns: the number of views >= 0 
+
 *javax.swing.text.CompositeView.getViewIndex(int,Position.Bias)*
 
 public int getViewIndex(
   int pos,
   javax.swing.text.Position.Bias b)
 
-Returns the child view index representing the given position in the model. This 
-is implemented to call the getViewIndexByPosition method for backward 
-compatibility. 
+Returns the child view index representing the given position in the model. This is implemented to call the getViewIndexByPosition method for backward compatibility. 
+
 
     pos - the position >= 0 
 
-    Returns: index of the view representing the given position, or -1 if no view represents 
-             that position 
+    Returns: index of the view representing the given position, or -1 if no view represents that position 
+
 *javax.swing.text.CompositeView.getViewIndexAtPosition(int)*
 
 protected int getViewIndexAtPosition(int pos)
 
-Fetches the child view index representing the given position in the model. This 
-is implemented to fetch the view in the case where there is a child view for 
-each child element. 
+Fetches the child view index representing the given position in the model. This is implemented to fetch the view in the case where there is a child view for each child element. 
+
 
     pos - the position >= 0 
 
-    Returns: index of the view representing the given position, or -1 if no view represents 
-             that position 
+    Returns: index of the view representing the given position, or -1 if no view represents that position 
+
 *javax.swing.text.CompositeView.isAfter(int,int,Rectangle)*
 
 protected abstract boolean isAfter(
@@ -333,11 +324,13 @@ protected abstract boolean isAfter(
 
 Tests whether a point lies after the rectangle range. 
 
+
     x - the X coordinate >= 0 
     y - the Y coordinate >= 0 
     alloc - the rectangle 
 
     Returns: true if the point is after the specified range 
+
 *javax.swing.text.CompositeView.isBefore(int,int,Rectangle)*
 
 protected abstract boolean isBefore(
@@ -347,19 +340,20 @@ protected abstract boolean isBefore(
 
 Tests whether a point lies before the rectangle range. 
 
+
     x - the X coordinate >= 0 
     y - the Y coordinate >= 0 
     alloc - the rectangle 
 
     Returns: true if the point is before the specified range 
+
 *javax.swing.text.CompositeView.loadChildren(ViewFactory)*
 
 protected void loadChildren(javax.swing.text.ViewFactory f)
 
-Loads all of the children to initialize the view. This is called by the 
-(|javax.swing.text.CompositeView|) method. Subclasses can reimplement this to 
-initialize their child views in a different manner. The default implementation 
-creates a child view for each child element. 
+Loads all of the children to initialize the view. This is called by the (|javax.swing.text.CompositeView|) method. Subclasses can reimplement this to initialize their child views 
+in a different manner. The default implementation creates a child view for each child element. 
+
 
     f - the view factory 
 
@@ -373,19 +367,18 @@ public |java.awt.Shape| modelToView(
   java.awt.Shape a)
   throws |javax.swing.text.BadLocationException|
          
-Provides a mapping from the document model coordinate space to the coordinate 
-space of the view mapped to it. 
+Provides a mapping from the document model coordinate space to the coordinate space of the view mapped to it. 
+
 
     p0 - the position to convert >= 0 
-    b0 - the bias toward the previous character or the next character represented by p0, 
-       in case the position is a boundary of two views; either 
-       Position.Bias.Forward or Position.Bias.Backward 
+    b0 - the bias toward the previous character or the next character represented by p0, in case the position is a boundary of two views; either Position.Bias.Forward or 
+       Position.Bias.Backward 
     p1 - the position to convert >= 0 
-    b1 - the bias toward the previous character or the next character represented by p1, 
-       in case the position is a boundary of two views 
+    b1 - the bias toward the previous character or the next character represented by p1, in case the position is a boundary of two views 
     a - the allocated region to render into 
 
     Returns: the bounding box of the given position is returned 
+
 *javax.swing.text.CompositeView.modelToView(int,Shape,Position.Bias)*
 
 public |java.awt.Shape| modelToView(
@@ -394,14 +387,15 @@ public |java.awt.Shape| modelToView(
   javax.swing.text.Position.Bias b)
   throws |javax.swing.text.BadLocationException|
          
-Provides a mapping from the document model coordinate space to the coordinate 
-space of the view mapped to it. 
+Provides a mapping from the document model coordinate space to the coordinate space of the view mapped to it. 
+
 
     pos - the position to convert >= 0 
     a - the allocated region to render into 
     b - a bias value of either Position.Bias.Forward or Position.Bias.Backward 
 
     Returns: the bounding box of the given position 
+
 *javax.swing.text.CompositeView.replace(int,int,View[])*
 
 public void replace(
@@ -409,17 +403,13 @@ public void replace(
   int length,
   javax.swing.text.View[] views)
 
-Replaces child views. If there are no views to remove this acts as an insert. 
-If there are no views to add this acts as a remove. Views being removed will 
-have the parent set to null, and the internal reference to them removed so that 
-they may be garbage collected. 
+Replaces child views. If there are no views to remove this acts as an insert. If there are no views to add this acts as a remove. Views being removed will have the parent set to 
+null, and the internal reference to them removed so that they may be garbage collected. 
 
-    offset - the starting index into the child views to insert the new views; >= 0 and <= 
-       getViewCount 
-    length - the number of existing child views to remove; this should be a value >= 0 and 
-       <= (getViewCount() - offset) 
-    views - the child views to add; this value can be null to indicate no children are 
-       being added (useful to remove) 
+
+    offset - the starting index into the child views to insert the new views; >= 0 and <= getViewCount 
+    length - the number of existing child views to remove; this should be a value >= 0 and <= (getViewCount() - offset) 
+    views - the child views to add; this value can be null to indicate no children are being added (useful to remove) 
 
 *javax.swing.text.CompositeView.setInsets(short,short,short,short)*
 
@@ -431,6 +421,7 @@ protected void setInsets(
 
 Sets the insets for the view. 
 
+
     top - the top inset >= 0 
     left - the left inset >= 0 
     bottom - the bottom inset >= 0 
@@ -440,8 +431,8 @@ Sets the insets for the view.
 
 protected void setParagraphInsets(javax.swing.text.AttributeSet attr)
 
-Sets the insets from the paragraph attributes specified in the given 
-attributes. 
+Sets the insets from the paragraph attributes specified in the given attributes. 
+
 
     attr - the attributes 
 
@@ -449,13 +440,10 @@ attributes.
 
 public void setParent(javax.swing.text.View parent)
 
-Sets the parent of the view. This is reimplemented to provide the superclass 
-behavior as well as calling the loadChildren method if this view does not 
-already have children. The children should not be loaded in the constructor 
-because the act of setting the parent may cause them to try to search up the 
-hierarchy (to get the hosting Container for example). If this view has children 
-(the view is being moved from one place in the view hierarchy to another), the 
-loadChildren method will not be called. 
+Sets the parent of the view. This is reimplemented to provide the superclass behavior as well as calling the loadChildren method if this view does not already have children. The 
+children should not be loaded in the constructor because the act of setting the parent may cause them to try to search up the hierarchy (to get the hosting Container for example). 
+If this view has children (the view is being moved from one place in the view hierarchy to another), the loadChildren method will not be called. 
+
 
     parent - the parent of the view, null if none 
 
@@ -467,14 +455,14 @@ public int viewToModel(
   java.awt.Shape a,
   javax.swing.text.Position.Bias[] bias)
 
-Provides a mapping from the view coordinate space to the logical coordinate 
-space of the model. 
+Provides a mapping from the view coordinate space to the logical coordinate space of the model. 
+
 
     x - x coordinate of the view location to convert >= 0 
     y - y coordinate of the view location to convert >= 0 
     a - the allocated region to render into 
     bias - either Position.Bias.Forward or Position.Bias.Backward 
 
-    Returns: the location within the model that best represents the given point in the view 
-             >= 0 
+    Returns: the location within the model that best represents the given point in the view >= 0 
+
 

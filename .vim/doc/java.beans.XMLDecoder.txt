@@ -1,4 +1,6 @@
-*java.beans.XMLDecoder* *XMLDecoder* The XMLDecoder class is used to read XML do
+*java.beans.XMLDecoder* *XMLDecoder* The XMLDecoder class is used to read XML documents 
+ created using the XMLEncoder and is used just like 
+ the ObjectInputStream.
 
 public class XMLDecoder
   extends    |java.lang.Object|
@@ -8,44 +10,40 @@ public class XMLDecoder
 |java.beans.XMLDecoder_Constructors|
 |java.beans.XMLDecoder_Methods|
 
-================================================================================
+====================================================================================================================================================================================
 
 *java.beans.XMLDecoder_Constructors*
-|java.beans.XMLDecoder(InputStream)|Creates a new input stream for reading arch
-|java.beans.XMLDecoder(InputStream,Object)|Creates a new input stream for readi
-|java.beans.XMLDecoder(InputStream,Object,ExceptionListener)|Creates a new inpu
-|java.beans.XMLDecoder(InputStream,Object,ExceptionListener,ClassLoader)|Create
+|java.beans.XMLDecoder(InputStream)|Creates a new input stream for reading archives    created by the XMLEncoder class.
+|java.beans.XMLDecoder(InputStream,Object)|Creates a new input stream for reading archives    created by the XMLEncoder class.
+|java.beans.XMLDecoder(InputStream,Object,ExceptionListener)|Creates a new input stream for reading archives    created by the XMLEncoder class.
+|java.beans.XMLDecoder(InputStream,Object,ExceptionListener,ClassLoader)|Creates a new input stream for reading archives    created by the XMLEncoder class.
 
 *java.beans.XMLDecoder_Methods*
-|java.beans.XMLDecoder.close()|This method closes the input stream associated  
-|java.beans.XMLDecoder.getExceptionListener()|Gets the exception handler for th
+|java.beans.XMLDecoder.close()|This method closes the input stream associated   with this stream.
+|java.beans.XMLDecoder.getExceptionListener()|Gets the exception handler for this stream.
 |java.beans.XMLDecoder.getOwner()|Gets the owner of this decoder.
-|java.beans.XMLDecoder.readObject()|Reads the next object from the underlying i
-|java.beans.XMLDecoder.setExceptionListener(ExceptionListener)|Sets the excepti
-|java.beans.XMLDecoder.setOwner(Object)|Sets the owner of this decoder to owner
+|java.beans.XMLDecoder.readObject()|Reads the next object from the underlying input stream.
+|java.beans.XMLDecoder.setExceptionListener(ExceptionListener)|Sets the exception handler for this stream to exceptionListener.
+|java.beans.XMLDecoder.setOwner(Object)|Sets the owner of this decoder to owner.
 
 *java.beans.XMLDecoder_Description*
 
-The XMLDecoder class is used to read XML documents created using the XMLEncoder 
-and is used just like the ObjectInputStream. For example, one can use the 
-following fragment to read the first object defined in an XML document written 
-by the XMLEncoder class: 
+The XMLDecoder class is used to read XML documents created using the XMLEncoder and is used just like the ObjectInputStream. For example, one can use the following fragment to 
+read the first object defined in an XML document written by the XMLEncoder class: 
 
-XMLDecoder d = new XMLDecoder( new BufferedInputStream( new 
-FileInputStream("Test.xml"))); Object result = d.readObject(); d.close(); 
+XMLDecoder d = new XMLDecoder( new BufferedInputStream( new FileInputStream("Test.xml"))); Object result = d.readObject(); d.close(); 
 
 
 
-For more information you might also want to check out Long Term Persistence of 
-JavaBeans Components: XML Schema, an article in The Swing Connection. 
+For more information you might also want to check out Long Term Persistence of JavaBeans Components: XML Schema, an article in The Swing Connection. 
+
 
 
 *java.beans.XMLDecoder(InputStream)*
 
 public XMLDecoder(java.io.InputStream in)
 
-Creates a new input stream for reading archives created by the XMLEncoder 
-class. 
+Creates a new input stream for reading archives created by the XMLEncoder class. 
 
     in - The underlying stream. 
 
@@ -55,8 +53,7 @@ public XMLDecoder(
   java.io.InputStream in,
   java.lang.Object owner)
 
-Creates a new input stream for reading archives created by the XMLEncoder 
-class. 
+Creates a new input stream for reading archives created by the XMLEncoder class. 
 
     in - The underlying stream. 
     owner - The owner of this stream. 
@@ -68,13 +65,11 @@ public XMLDecoder(
   java.lang.Object owner,
   java.beans.ExceptionListener exceptionListener)
 
-Creates a new input stream for reading archives created by the XMLEncoder 
-class. 
+Creates a new input stream for reading archives created by the XMLEncoder class. 
 
     in - the underlying stream. 
     owner - the owner of this stream. 
-    exceptionListener - the exception handler for the stream; if null the default exception listener 
-       will be used. 
+    exceptionListener - the exception handler for the stream; if null the default exception listener will be used. 
 
 *java.beans.XMLDecoder(InputStream,Object,ExceptionListener,ClassLoader)*
 
@@ -84,21 +79,19 @@ public XMLDecoder(
   java.beans.ExceptionListener exceptionListener,
   java.lang.ClassLoader cl)
 
-Creates a new input stream for reading archives created by the XMLEncoder 
-class. 
+Creates a new input stream for reading archives created by the XMLEncoder class. 
 
-    in - the underlying stream. null may be passed without error, though the resulting 
-       XMLDecoder will be useless 
+    in - the underlying stream. null may be passed without error, though the resulting XMLDecoder will be useless 
     owner - the owner of this stream. null is a legal value 
     exceptionListener - the exception handler for the stream, or null to use the default 
-    cl - the class loader used for instantiating objects. null indicates that the 
-       default class loader should be used 
+    cl - the class loader used for instantiating objects. null indicates that the default class loader should be used 
 
 *java.beans.XMLDecoder.close()*
 
 public void close()
 
 This method closes the input stream associated with this stream. 
+
 
 
 *java.beans.XMLDecoder.getExceptionListener()*
@@ -108,8 +101,9 @@ public |java.beans.ExceptionListener| getExceptionListener()
 Gets the exception handler for this stream. 
 
 
-    Returns: The exception handler for this stream. Will return the default exception 
-             listener if this has not explicitly been set. 
+
+    Returns: The exception handler for this stream. Will return the default exception listener if this has not explicitly been set. 
+
 *java.beans.XMLDecoder.getOwner()*
 
 public |java.lang.Object| getOwner()
@@ -117,7 +111,9 @@ public |java.lang.Object| getOwner()
 Gets the owner of this decoder. 
 
 
+
     Returns: The owner of this decoder. 
+
 *java.beans.XMLDecoder.readObject()*
 
 public |java.lang.Object| readObject()
@@ -125,22 +121,24 @@ public |java.lang.Object| readObject()
 Reads the next object from the underlying input stream. 
 
 
+
     Returns: the next object read 
+
 *java.beans.XMLDecoder.setExceptionListener(ExceptionListener)*
 
 public void setExceptionListener(java.beans.ExceptionListener exceptionListener)
 
-Sets the exception handler for this stream to exceptionListener. The exception 
-handler is notified when this stream catches recoverable exceptions. 
+Sets the exception handler for this stream to exceptionListener. The exception handler is notified when this stream catches recoverable exceptions. 
 
-    exceptionListener - The exception handler for this stream; if null the default exception listener 
-       will be used. 
+
+    exceptionListener - The exception handler for this stream; if null the default exception listener will be used. 
 
 *java.beans.XMLDecoder.setOwner(Object)*
 
 public void setOwner(java.lang.Object owner)
 
 Sets the owner of this decoder to owner. 
+
 
     owner - The owner of this decoder. 
 

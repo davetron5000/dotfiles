@@ -1,4 +1,6 @@
-*java.io.PrintStream* *PrintStream* A PrintStream adds functionality to another 
+*java.io.PrintStream* *PrintStream* A PrintStream adds functionality to another output stream,
+ namely the ability to print representations of various data values
+ conveniently.
 
 public class PrintStream
   extends    |java.io.FilterOutputStream|
@@ -10,65 +12,61 @@ public class PrintStream
 |java.io.PrintStream_Constructors|
 |java.io.PrintStream_Methods|
 
-================================================================================
+====================================================================================================================================================================================
 
 *java.io.PrintStream_Constructors*
-|java.io.PrintStream(File)|Creates a new print stream, without automatic line f
-|java.io.PrintStream(File,String)|Creates a new print stream, without automatic
+|java.io.PrintStream(File)|Creates a new print stream, without automatic line flushing, with the  specified file.
+|java.io.PrintStream(File,String)|Creates a new print stream, without automatic line flushing, with the  specified file and charset.
 |java.io.PrintStream(OutputStream)|Create a new print stream.
 |java.io.PrintStream(OutputStream,boolean)|Create a new print stream.
 |java.io.PrintStream(OutputStream,boolean,String)|Create a new print stream.
-|java.io.PrintStream(String)|Creates a new print stream, without automatic line
-|java.io.PrintStream(String,String)|Creates a new print stream, without automat
+|java.io.PrintStream(String)|Creates a new print stream, without automatic line flushing, with the  specified file name.
+|java.io.PrintStream(String,String)|Creates a new print stream, without automatic line flushing, with the  specified file name and charset.
 
 *java.io.PrintStream_Methods*
-|java.io.PrintStream.append(char)|Appends the specified character to this outpu
-|java.io.PrintStream.append(CharSequence)|Appends the specified character seque
-|java.io.PrintStream.append(CharSequence,int,int)|Appends a subsequence of the 
+|java.io.PrintStream.append(char)|Appends the specified character to this output stream.
+|java.io.PrintStream.append(CharSequence)|Appends the specified character sequence to this output stream.
+|java.io.PrintStream.append(CharSequence,int,int)|Appends a subsequence of the specified character sequence to this output  stream.
 |java.io.PrintStream.checkError()|Flush the stream and check its error state.
 |java.io.PrintStream.close()|Close the stream.
 |java.io.PrintStream.flush()|Flush the stream.
-|java.io.PrintStream.format(Locale,String,Object[])|Writes a formatted string t
-|java.io.PrintStream.format(String,Object[])|Writes a formatted string to this 
+|java.io.PrintStream.format(Locale,String,Object...)|Writes a formatted string to this output stream using the specified  format string and arguments.
+|java.io.PrintStream.format(String,Object...)|Writes a formatted string to this output stream using the specified  format string and arguments.
 |java.io.PrintStream.print(boolean)|Print a boolean value.
 |java.io.PrintStream.print(char)|Print a character.
 |java.io.PrintStream.print(char[])|Print an array of characters.
-|java.io.PrintStream.print(double)|Print a double-precision floating-point numb
+|java.io.PrintStream.print(double)|Print a double-precision floating-point number.
 |java.io.PrintStream.print(float)|Print a floating-point number.
 |java.io.PrintStream.print(int)|Print an integer.
 |java.io.PrintStream.print(long)|Print a long integer.
 |java.io.PrintStream.print(Object)|Print an object.
 |java.io.PrintStream.print(String)|Print a string.
-|java.io.PrintStream.printf(Locale,String,Object[])|A convenience method to wri
-|java.io.PrintStream.printf(String,Object[])|A convenience method to write a fo
-|java.io.PrintStream.println()|Terminate the current line by writing the line s
-|java.io.PrintStream.println(boolean)|Print a boolean and then terminate the li
-|java.io.PrintStream.println(char)|Print a character and then terminate the lin
-|java.io.PrintStream.println(char[])|Print an array of characters and then term
-|java.io.PrintStream.println(double)|Print a double and then terminate the line
+|java.io.PrintStream.printf(Locale,String,Object...)|A convenience method to write a formatted string to this output stream  using the specified format string and arguments.
+|java.io.PrintStream.printf(String,Object...)|A convenience method to write a formatted string to this output stream  using the specified format string and arguments.
+|java.io.PrintStream.println()|Terminate the current line by writing the line separator string.
+|java.io.PrintStream.println(boolean)|Print a boolean and then terminate the line.
+|java.io.PrintStream.println(char)|Print a character and then terminate the line.
+|java.io.PrintStream.println(char[])|Print an array of characters and then terminate the line.
+|java.io.PrintStream.println(double)|Print a double and then terminate the line.
 |java.io.PrintStream.println(float)|Print a float and then terminate the line.
 |java.io.PrintStream.println(int)|Print an integer and then terminate the line.
 |java.io.PrintStream.println(long)|Print a long and then terminate the line.
-|java.io.PrintStream.println(Object)|Print an Object and then terminate the lin
-|java.io.PrintStream.println(String)|Print a String and then terminate the line
+|java.io.PrintStream.println(Object)|Print an Object and then terminate the line.
+|java.io.PrintStream.println(String)|Print a String and then terminate the line.
 |java.io.PrintStream.setError()|Set the error state of the stream to true.
-|java.io.PrintStream.write(byte[],int,int)|Write len bytes from the specified b
+|java.io.PrintStream.write(byte[],int,int)|Write len bytes from the specified byte array starting at  offset off to this stream.
 |java.io.PrintStream.write(int)|Write the specified byte to this stream.
 
 *java.io.PrintStream_Description*
 
-A PrintStream adds functionality to another output stream, namely the ability 
-to print representations of various data values conveniently. Two other 
-features are provided as well. Unlike other output streams, a PrintStream never 
-throws an IOException; instead, exceptional situations merely set an internal 
-flag that can be tested via the checkError method. Optionally, a PrintStream 
-can be created so as to flush automatically; this means that the flush method 
-is automatically invoked after a byte array is written, one of the println 
-methods is invoked, or a newline character or byte ('\n') is written. 
+A PrintStream adds functionality to another output stream, namely the ability to print representations of various data values conveniently. Two other features are provided as 
+well. Unlike other output streams, a PrintStream never throws an IOException; instead, exceptional situations merely set an internal flag that can be tested via the checkError 
+method. Optionally, a PrintStream can be created so as to flush automatically; this means that the flush method is automatically invoked after a byte array is written, one of the 
+println methods is invoked, or a newline character or byte ('\n') is written. 
 
-All characters printed by a PrintStream are converted into bytes using the 
-platform's default character encoding. The (|java.io.PrintWriter|) class should 
-be used in situations that require writing characters rather than bytes. 
+All characters printed by a PrintStream are converted into bytes using the platform's default character encoding. The (|java.io.PrintWriter|) class should be used in situations 
+that require writing characters rather than bytes. 
+
 
 
 *java.io.PrintStream(File)*
@@ -76,15 +74,12 @@ be used in situations that require writing characters rather than bytes.
 public PrintStream(java.io.File file)
   throws |java.io.FileNotFoundException|
          
-Creates a new print stream, without automatic line flushing, with the specified 
-file. This convenience constructor creates the necessary intermediate 
-OutputStreamWriter(|java.io.OutputStreamWriter|) , which will encode characters 
-using the default charset(|java.nio.charset.Charset|) for this instance of the 
-Java virtual machine. 
+Creates a new print stream, without automatic line flushing, with the specified file. This convenience constructor creates the necessary intermediate 
+OutputStreamWriter(|java.io.OutputStreamWriter|) , which will encode characters using the default charset(|java.nio.charset.Charset|) for this instance of the Java virtual 
+machine. 
 
-    file - The file to use as the destination of this print stream. If the file exists, 
-       then it will be truncated to zero size; otherwise, a new file will be 
-       created. The output will be written to the file and is buffered. 
+    file - The file to use as the destination of this print stream. If the file exists, then it will be truncated to zero size; otherwise, a new file will be created. The output will be 
+       written to the file and is buffered. 
 
 *java.io.PrintStream(File,String)*
 
@@ -94,14 +89,11 @@ public PrintStream(
   throws |java.io.FileNotFoundException|
          |java.io.UnsupportedEncodingException|
          
-Creates a new print stream, without automatic line flushing, with the specified 
-file and charset. This convenience constructor creates the necessary 
-intermediate OutputStreamWriter(|java.io.OutputStreamWriter|) , which will 
-encode characters using the provided charset. 
+Creates a new print stream, without automatic line flushing, with the specified file and charset. This convenience constructor creates the necessary intermediate 
+OutputStreamWriter(|java.io.OutputStreamWriter|) , which will encode characters using the provided charset. 
 
-    file - The file to use as the destination of this print stream. If the file exists, 
-       then it will be truncated to zero size; otherwise, a new file will be 
-       created. The output will be written to the file and is buffered. 
+    file - The file to use as the destination of this print stream. If the file exists, then it will be truncated to zero size; otherwise, a new file will be created. The output will be 
+       written to the file and is buffered. 
     csn - The name of a supported {@linkplain java.nio.charset.Charset charset} 
 
 *java.io.PrintStream(OutputStream)*
@@ -121,9 +113,7 @@ public PrintStream(
 Create a new print stream. 
 
     out - The output stream to which values and objects will be printed 
-    autoFlush - A boolean; if true, the output buffer will be flushed whenever a byte array is 
-       written, one of the println methods is invoked, or a newline character 
-       or byte ('\n') is written 
+    autoFlush - A boolean; if true, the output buffer will be flushed whenever a byte array is written, one of the println methods is invoked, or a newline character or byte ('\n') is written 
 
 *java.io.PrintStream(OutputStream,boolean,String)*
 
@@ -136,9 +126,7 @@ public PrintStream(
 Create a new print stream. 
 
     out - The output stream to which values and objects will be printed 
-    autoFlush - A boolean; if true, the output buffer will be flushed whenever a byte array is 
-       written, one of the println methods is invoked, or a newline character 
-       or byte ('\n') is written 
+    autoFlush - A boolean; if true, the output buffer will be flushed whenever a byte array is written, one of the println methods is invoked, or a newline character or byte ('\n') is written 
     encoding - The name of a supported 
 
 character encoding 
@@ -148,16 +136,12 @@ character encoding
 public PrintStream(java.lang.String fileName)
   throws |java.io.FileNotFoundException|
          
-Creates a new print stream, without automatic line flushing, with the specified 
-file name. This convenience constructor creates the necessary intermediate 
-OutputStreamWriter(|java.io.OutputStreamWriter|) , which will encode characters 
-using the default charset(|java.nio.charset.Charset|) for this instance of the 
-Java virtual machine. 
+Creates a new print stream, without automatic line flushing, with the specified file name. This convenience constructor creates the necessary intermediate 
+OutputStreamWriter(|java.io.OutputStreamWriter|) , which will encode characters using the default charset(|java.nio.charset.Charset|) for this instance of the Java virtual 
+machine. 
 
-    fileName - The name of the file to use as the destination of this print stream. If the 
-       file exists, then it will be truncated to zero size; otherwise, a new 
-       file will be created. The output will be written to the file and is 
-       buffered. 
+    fileName - The name of the file to use as the destination of this print stream. If the file exists, then it will be truncated to zero size; otherwise, a new file will be created. The output 
+       will be written to the file and is buffered. 
 
 *java.io.PrintStream(String,String)*
 
@@ -167,15 +151,11 @@ public PrintStream(
   throws |java.io.FileNotFoundException|
          |java.io.UnsupportedEncodingException|
          
-Creates a new print stream, without automatic line flushing, with the specified 
-file name and charset. This convenience constructor creates the necessary 
-intermediate OutputStreamWriter(|java.io.OutputStreamWriter|) , which will 
-encode characters using the provided charset. 
+Creates a new print stream, without automatic line flushing, with the specified file name and charset. This convenience constructor creates the necessary intermediate 
+OutputStreamWriter(|java.io.OutputStreamWriter|) , which will encode characters using the provided charset. 
 
-    fileName - The name of the file to use as the destination of this print stream. If the 
-       file exists, then it will be truncated to zero size; otherwise, a new 
-       file will be created. The output will be written to the file and is 
-       buffered. 
+    fileName - The name of the file to use as the destination of this print stream. If the file exists, then it will be truncated to zero size; otherwise, a new file will be created. The output 
+       will be written to the file and is buffered. 
     csn - The name of a supported {@linkplain java.nio.charset.Charset charset} 
 
 *java.io.PrintStream.append(char)*
@@ -184,38 +164,37 @@ public |java.io.PrintStream| append(char c)
 
 Appends the specified character to this output stream. 
 
-An invocation of this method of the form out.append(c) behaves in exactly the 
-same way as the invocation 
+An invocation of this method of the form out.append(c) behaves in exactly the same way as the invocation 
 
 
 
 out.print(c) 
 
+
     c - The 16-bit character to append 
 
     Returns: This output stream 
+
 *java.io.PrintStream.append(CharSequence)*
 
 public |java.io.PrintStream| append(java.lang.CharSequence csq)
 
 Appends the specified character sequence to this output stream. 
 
-An invocation of this method of the form out.append(csq) behaves in exactly the 
-same way as the invocation 
+An invocation of this method of the form out.append(csq) behaves in exactly the same way as the invocation 
 
 
 
 out.print(csq.toString()) 
 
-Depending on the specification of toString for the character sequence csq, the 
-entire sequence may not be appended. appended. For instance, invoking then 
-toString method of a character buffer will return a subsequence whose content 
-depends upon the buffer's position and limit. 
+Depending on the specification of toString for the character sequence csq, the entire sequence may not be appended. appended. For instance, invoking then toString method of a 
+character buffer will return a subsequence whose content depends upon the buffer's position and limit. 
 
-    csq - The character sequence to append. If csq is null, then the four characters 
-       "null" are appended to this output stream. 
+
+    csq - The character sequence to append. If csq is null, then the four characters "null" are appended to this output stream. 
 
     Returns: This character stream 
+
 *java.io.PrintStream.append(CharSequence,int,int)*
 
 public |java.io.PrintStream| append(
@@ -223,107 +202,96 @@ public |java.io.PrintStream| append(
   int start,
   int end)
 
-Appends a subsequence of the specified character sequence to this output 
-stream. 
+Appends a subsequence of the specified character sequence to this output stream. 
 
-An invocation of this method of the form out.append(csq, start, end) when csq 
-is not null, behaves in exactly the same way as the invocation 
+An invocation of this method of the form out.append(csq, start, end) when csq is not null, behaves in exactly the same way as the invocation 
 
 
 
 out.print(csq.subSequence(start, end).toString()) 
 
-    csq - The character sequence from which a subsequence will be appended. If csq is 
-       null, then characters will be appended as if csq contained the four 
-       characters "null". 
+
+    csq - The character sequence from which a subsequence will be appended. If csq is null, then characters will be appended as if csq contained the four characters "null". 
     start - The index of the first character in the subsequence 
     end - The index of the character following the last character in the subsequence 
 
     Returns: This character stream 
+
 *java.io.PrintStream.checkError()*
 
 public boolean checkError()
 
-Flush the stream and check its error state. The internal error state is set to 
-true when the underlying output stream throws an IOException other than 
-InterruptedIOException, and when the setError method is invoked. If an 
-operation on the underlying output stream throws an InterruptedIOException, 
-then the PrintStream converts the exception back into an interrupt by doing: 
+Flush the stream and check its error state. The internal error state is set to true when the underlying output stream throws an IOException other than InterruptedIOException, and 
+when the setError method is invoked. If an operation on the underlying output stream throws an InterruptedIOException, then the PrintStream converts the exception back into an 
+interrupt by doing: 
 
 Thread.currentThread().interrupt(); 
 
 or the equivalent. 
 
 
-    Returns: True if and only if this stream has encountered an IOException other than 
-             InterruptedIOException, or the setError method has been invoked 
+
+    Returns: True if and only if this stream has encountered an IOException other than InterruptedIOException, or the setError method has been invoked 
+
 *java.io.PrintStream.close()*
 
 public void close()
 
-Close the stream. This is done by flushing the stream and then closing the 
-underlying output stream. 
+Close the stream. This is done by flushing the stream and then closing the underlying output stream. 
+
 
 
 *java.io.PrintStream.flush()*
 
 public void flush()
 
-Flush the stream. This is done by writing any buffered output bytes to the 
-underlying output stream and then flushing that stream. 
+Flush the stream. This is done by writing any buffered output bytes to the underlying output stream and then flushing that stream. 
 
 
-*java.io.PrintStream.format(Locale,String,Object[])*
+
+*java.io.PrintStream.format(Locale,String,Object...)*
 
 public |java.io.PrintStream| format(
   java.util.Locale l,
   java.lang.String format,
   java.lang.Object[] args)
 
-Writes a formatted string to this output stream using the specified format 
-string and arguments. 
+Writes a formatted string to this output stream using the specified format string and arguments. 
 
-    l - The {@linkplain java.util.Locale locale} to apply during formatting. If l is 
-       null then no localization is applied. 
+
+    l - The {@linkplain java.util.Locale locale} to apply during formatting. If l is null then no localization is applied. 
     format - A format string as described in Format string syntax 
-    args - Arguments referenced by the format specifiers in the format string. If there 
-       are more arguments than format specifiers, the extra arguments are 
-       ignored. The number of arguments is variable and may be zero. The 
-       maximum number of arguments is limited by the maximum dimension of a 
-       Java array as defined by the Java Virtual Machine Specification. The 
+    args - Arguments referenced by the format specifiers in the format string. If there are more arguments than format specifiers, the extra arguments are ignored. The number of arguments is 
+       variable and may be zero. The maximum number of arguments is limited by the maximum dimension of a Java array as defined by the Java Virtual Machine Specification. The 
        behaviour on a null argument depends on the conversion. 
 
     Returns: This output stream 
-*java.io.PrintStream.format(String,Object[])*
+
+*java.io.PrintStream.format(String,Object...)*
 
 public |java.io.PrintStream| format(
   java.lang.String format,
   java.lang.Object[] args)
 
-Writes a formatted string to this output stream using the specified format 
-string and arguments. 
+Writes a formatted string to this output stream using the specified format string and arguments. 
 
-The locale always used is the one returned by 
-Locale.getDefault()(|java.util.Locale|) , regardless of any previous 
-invocations of other formatting methods on this object. 
+The locale always used is the one returned by Locale.getDefault()(|java.util.Locale|) , regardless of any previous invocations of other formatting methods on this object. 
+
 
     format - A format string as described in Format string syntax 
-    args - Arguments referenced by the format specifiers in the format string. If there 
-       are more arguments than format specifiers, the extra arguments are 
-       ignored. The number of arguments is variable and may be zero. The 
-       maximum number of arguments is limited by the maximum dimension of a 
-       Java array as defined by the Java Virtual Machine Specification. The 
+    args - Arguments referenced by the format specifiers in the format string. If there are more arguments than format specifiers, the extra arguments are ignored. The number of arguments is 
+       variable and may be zero. The maximum number of arguments is limited by the maximum dimension of a Java array as defined by the Java Virtual Machine Specification. The 
        behaviour on a null argument depends on the conversion. 
 
     Returns: This output stream 
+
 *java.io.PrintStream.print(boolean)*
 
 public void print(boolean b)
 
-Print a boolean value. The string produced by (|java.lang.String|) is 
-translated into bytes according to the platform's default character encoding, 
-and these bytes are written in exactly the manner of the 
-(|java.io.PrintStream|) method. 
+Print a boolean value. The string produced by (|java.lang.String|) is translated into bytes according to the platform's default character encoding, and these bytes are written in 
+exactly the manner of the (|java.io.PrintStream|) method. 
+
 
     b - The boolean to be printed 
 
@@ -331,9 +299,9 @@ and these bytes are written in exactly the manner of the
 
 public void print(char c)
 
-Print a character. The character is translated into one or more bytes according 
-to the platform's default character encoding, and these bytes are written in 
-exactly the manner of the (|java.io.PrintStream|) method. 
+Print a character. The character is translated into one or more bytes according to the platform's default character encoding, and these bytes are written in exactly the manner of 
+the (|java.io.PrintStream|) method. 
+
 
     c - The char to be printed 
 
@@ -341,9 +309,9 @@ exactly the manner of the (|java.io.PrintStream|) method.
 
 public void print(char[] s)
 
-Print an array of characters. The characters are converted into bytes according 
-to the platform's default character encoding, and these bytes are written in 
-exactly the manner of the (|java.io.PrintStream|) method. 
+Print an array of characters. The characters are converted into bytes according to the platform's default character encoding, and these bytes are written in exactly the manner of 
+the (|java.io.PrintStream|) method. 
+
 
     s - The array of chars to be printed 
 
@@ -351,10 +319,9 @@ exactly the manner of the (|java.io.PrintStream|) method.
 
 public void print(double d)
 
-Print a double-precision floating-point number. The string produced by 
-(|java.lang.String|) is translated into bytes according to the platform's 
-default character encoding, and these bytes are written in exactly the manner 
-of the (|java.io.PrintStream|) method. 
+Print a double-precision floating-point number. The string produced by (|java.lang.String|) is translated into bytes according to the platform's default character encoding, and 
+these bytes are written in exactly the manner of the (|java.io.PrintStream|) method. 
+
 
     d - The double to be printed 
 
@@ -362,10 +329,9 @@ of the (|java.io.PrintStream|) method.
 
 public void print(float f)
 
-Print a floating-point number. The string produced by (|java.lang.String|) is 
-translated into bytes according to the platform's default character encoding, 
-and these bytes are written in exactly the manner of the 
-(|java.io.PrintStream|) method. 
+Print a floating-point number. The string produced by (|java.lang.String|) is translated into bytes according to the platform's default character encoding, and these bytes are 
+written in exactly the manner of the (|java.io.PrintStream|) method. 
+
 
     f - The float to be printed 
 
@@ -373,9 +339,9 @@ and these bytes are written in exactly the manner of the
 
 public void print(int i)
 
-Print an integer. The string produced by (|java.lang.String|) is translated 
-into bytes according to the platform's default character encoding, and these 
-bytes are written in exactly the manner of the (|java.io.PrintStream|) method. 
+Print an integer. The string produced by (|java.lang.String|) is translated into bytes according to the platform's default character encoding, and these bytes are written in 
+exactly the manner of the (|java.io.PrintStream|) method. 
+
 
     i - The int to be printed 
 
@@ -383,9 +349,9 @@ bytes are written in exactly the manner of the (|java.io.PrintStream|) method.
 
 public void print(long l)
 
-Print a long integer. The string produced by (|java.lang.String|) is translated 
-into bytes according to the platform's default character encoding, and these 
-bytes are written in exactly the manner of the (|java.io.PrintStream|) method. 
+Print a long integer. The string produced by (|java.lang.String|) is translated into bytes according to the platform's default character encoding, and these bytes are written in 
+exactly the manner of the (|java.io.PrintStream|) method. 
+
 
     l - The long to be printed 
 
@@ -393,10 +359,9 @@ bytes are written in exactly the manner of the (|java.io.PrintStream|) method.
 
 public void print(java.lang.Object obj)
 
-Print an object. The string produced by the (|java.lang.String|) method is 
-translated into bytes according to the platform's default character encoding, 
-and these bytes are written in exactly the manner of the 
-(|java.io.PrintStream|) method. 
+Print an object. The string produced by the (|java.lang.String|) method is translated into bytes according to the platform's default character encoding, and these bytes are 
+written in exactly the manner of the (|java.io.PrintStream|) method. 
+
 
     obj - The Object to be printed 
 
@@ -404,81 +369,73 @@ and these bytes are written in exactly the manner of the
 
 public void print(java.lang.String s)
 
-Print a string. If the argument is null then the string "null" is printed. 
-Otherwise, the string's characters are converted into bytes according to the 
-platform's default character encoding, and these bytes are written in exactly 
-the manner of the (|java.io.PrintStream|) method. 
+Print a string. If the argument is null then the string "null" is printed. Otherwise, the string's characters are converted into bytes according to the platform's default 
+character encoding, and these bytes are written in exactly the manner of the (|java.io.PrintStream|) method. 
+
 
     s - The String to be printed 
 
-*java.io.PrintStream.printf(Locale,String,Object[])*
+*java.io.PrintStream.printf(Locale,String,Object...)*
 
 public |java.io.PrintStream| printf(
   java.util.Locale l,
   java.lang.String format,
   java.lang.Object[] args)
 
-A convenience method to write a formatted string to this output stream using 
-the specified format string and arguments. 
+A convenience method to write a formatted string to this output stream using the specified format string and arguments. 
 
-An invocation of this method of the form out.printf(l, format, args) behaves in 
-exactly the same way as the invocation 
+An invocation of this method of the form out.printf(l, format, args) behaves in exactly the same way as the invocation 
 
 
 
 out.format(l, format, args) 
 
-    l - The {@linkplain java.util.Locale locale} to apply during formatting. If l is 
-       null then no localization is applied. 
+
+    l - The {@linkplain java.util.Locale locale} to apply during formatting. If l is null then no localization is applied. 
     format - A format string as described in Format string syntax 
-    args - Arguments referenced by the format specifiers in the format string. If there 
-       are more arguments than format specifiers, the extra arguments are 
-       ignored. The number of arguments is variable and may be zero. The 
-       maximum number of arguments is limited by the maximum dimension of a 
-       Java array as defined by the Java Virtual Machine Specification. The 
+    args - Arguments referenced by the format specifiers in the format string. If there are more arguments than format specifiers, the extra arguments are ignored. The number of arguments is 
+       variable and may be zero. The maximum number of arguments is limited by the maximum dimension of a Java array as defined by the Java Virtual Machine Specification. The 
        behaviour on a null argument depends on the conversion. 
 
     Returns: This output stream 
-*java.io.PrintStream.printf(String,Object[])*
+
+*java.io.PrintStream.printf(String,Object...)*
 
 public |java.io.PrintStream| printf(
   java.lang.String format,
   java.lang.Object[] args)
 
-A convenience method to write a formatted string to this output stream using 
-the specified format string and arguments. 
+A convenience method to write a formatted string to this output stream using the specified format string and arguments. 
 
-An invocation of this method of the form out.printf(format, args) behaves in 
-exactly the same way as the invocation 
+An invocation of this method of the form out.printf(format, args) behaves in exactly the same way as the invocation 
 
 
 
 out.format(format, args) 
 
+
     format - A format string as described in Format string syntax 
-    args - Arguments referenced by the format specifiers in the format string. If there 
-       are more arguments than format specifiers, the extra arguments are 
-       ignored. The number of arguments is variable and may be zero. The 
-       maximum number of arguments is limited by the maximum dimension of a 
-       Java array as defined by the Java Virtual Machine Specification. The 
+    args - Arguments referenced by the format specifiers in the format string. If there are more arguments than format specifiers, the extra arguments are ignored. The number of arguments is 
+       variable and may be zero. The maximum number of arguments is limited by the maximum dimension of a Java array as defined by the Java Virtual Machine Specification. The 
        behaviour on a null argument depends on the conversion. 
 
     Returns: This output stream 
+
 *java.io.PrintStream.println()*
 
 public void println()
 
-Terminate the current line by writing the line separator string. The line 
-separator string is defined by the system property line.separator, and is not 
-necessarily a single newline character ('\n'). 
+Terminate the current line by writing the line separator string. The line separator string is defined by the system property line.separator, and is not necessarily a single 
+newline character ('\n'). 
+
 
 
 *java.io.PrintStream.println(boolean)*
 
 public void println(boolean x)
 
-Print a boolean and then terminate the line. This method behaves as though it 
-invokes (|java.io.PrintStream|) and then (|java.io.PrintStream|) . 
+Print a boolean and then terminate the line. This method behaves as though it invokes (|java.io.PrintStream|) and then (|java.io.PrintStream|) . 
+
 
     x - The boolean to be printed 
 
@@ -486,8 +443,8 @@ invokes (|java.io.PrintStream|) and then (|java.io.PrintStream|) .
 
 public void println(char x)
 
-Print a character and then terminate the line. This method behaves as though it 
-invokes (|java.io.PrintStream|) and then (|java.io.PrintStream|) . 
+Print a character and then terminate the line. This method behaves as though it invokes (|java.io.PrintStream|) and then (|java.io.PrintStream|) . 
+
 
     x - The char to be printed. 
 
@@ -495,8 +452,8 @@ invokes (|java.io.PrintStream|) and then (|java.io.PrintStream|) .
 
 public void println(char[] x)
 
-Print an array of characters and then terminate the line. This method behaves 
-as though it invokes (|java.io.PrintStream|) and then (|java.io.PrintStream|) . 
+Print an array of characters and then terminate the line. This method behaves as though it invokes (|java.io.PrintStream|) and then (|java.io.PrintStream|) . 
+
 
     x - an array of chars to print. 
 
@@ -504,8 +461,8 @@ as though it invokes (|java.io.PrintStream|) and then (|java.io.PrintStream|) .
 
 public void println(double x)
 
-Print a double and then terminate the line. This method behaves as though it 
-invokes (|java.io.PrintStream|) and then (|java.io.PrintStream|) . 
+Print a double and then terminate the line. This method behaves as though it invokes (|java.io.PrintStream|) and then (|java.io.PrintStream|) . 
+
 
     x - The double to be printed. 
 
@@ -513,8 +470,8 @@ invokes (|java.io.PrintStream|) and then (|java.io.PrintStream|) .
 
 public void println(float x)
 
-Print a float and then terminate the line. This method behaves as though it 
-invokes (|java.io.PrintStream|) and then (|java.io.PrintStream|) . 
+Print a float and then terminate the line. This method behaves as though it invokes (|java.io.PrintStream|) and then (|java.io.PrintStream|) . 
+
 
     x - The float to be printed. 
 
@@ -522,8 +479,8 @@ invokes (|java.io.PrintStream|) and then (|java.io.PrintStream|) .
 
 public void println(int x)
 
-Print an integer and then terminate the line. This method behaves as though it 
-invokes (|java.io.PrintStream|) and then (|java.io.PrintStream|) . 
+Print an integer and then terminate the line. This method behaves as though it invokes (|java.io.PrintStream|) and then (|java.io.PrintStream|) . 
+
 
     x - The int to be printed. 
 
@@ -531,8 +488,8 @@ invokes (|java.io.PrintStream|) and then (|java.io.PrintStream|) .
 
 public void println(long x)
 
-Print a long and then terminate the line. This method behaves as though it 
-invokes (|java.io.PrintStream|) and then (|java.io.PrintStream|) . 
+Print a long and then terminate the line. This method behaves as though it invokes (|java.io.PrintStream|) and then (|java.io.PrintStream|) . 
+
 
     x - a The long to be printed. 
 
@@ -540,8 +497,8 @@ invokes (|java.io.PrintStream|) and then (|java.io.PrintStream|) .
 
 public void println(java.lang.Object x)
 
-Print an Object and then terminate the line. This method behaves as though it 
-invokes (|java.io.PrintStream|) and then (|java.io.PrintStream|) . 
+Print an Object and then terminate the line. This method behaves as though it invokes (|java.io.PrintStream|) and then (|java.io.PrintStream|) . 
+
 
     x - The Object to be printed. 
 
@@ -549,8 +506,8 @@ invokes (|java.io.PrintStream|) and then (|java.io.PrintStream|) .
 
 public void println(java.lang.String x)
 
-Print a String and then terminate the line. This method behaves as though it 
-invokes (|java.io.PrintStream|) and then (|java.io.PrintStream|) . 
+Print a String and then terminate the line. This method behaves as though it invokes (|java.io.PrintStream|) and then (|java.io.PrintStream|) . 
+
 
     x - The String to be printed. 
 
@@ -561,6 +518,7 @@ protected void setError()
 Set the error state of the stream to true. 
 
 
+
 *java.io.PrintStream.write(byte[],int,int)*
 
 public void write(
@@ -568,12 +526,11 @@ public void write(
   int off,
   int len)
 
-Write len bytes from the specified byte array starting at offset off to this 
-stream. If automatic flushing is enabled then the flush method will be invoked. 
+Write len bytes from the specified byte array starting at offset off to this stream. If automatic flushing is enabled then the flush method will be invoked. 
 
-Note that the bytes will be written as given; to write characters that will be 
-translated according to the platform's default character encoding, use the 
-print(char) or println(char) methods. 
+Note that the bytes will be written as given; to write characters that will be translated according to the platform's default character encoding, use the print(char) or 
+println(char) methods. 
+
 
     buf - A byte array 
     off - Offset from which to start taking bytes 
@@ -583,12 +540,11 @@ print(char) or println(char) methods.
 
 public void write(int b)
 
-Write the specified byte to this stream. If the byte is a newline and automatic 
-flushing is enabled then the flush method will be invoked. 
+Write the specified byte to this stream. If the byte is a newline and automatic flushing is enabled then the flush method will be invoked. 
 
-Note that the byte is written as given; to write a character that will be 
-translated according to the platform's default character encoding, use the 
-print(char) or println(char) methods. 
+Note that the byte is written as given; to write a character that will be translated according to the platform's default character encoding, use the print(char) or println(char) 
+methods. 
+
 
     b - The byte to be written 
 

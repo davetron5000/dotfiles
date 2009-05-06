@@ -1,4 +1,4 @@
-*java.util.ResourceBundle* *ResourceBundle* Resource bundles contain locale-spec
+*java.util.ResourceBundle* *ResourceBundle* Resource bundles contain locale-specific objects.
 
 public abstract class ResourceBundle
   extends    |java.lang.Object|
@@ -8,7 +8,7 @@ public abstract class ResourceBundle
 |java.util.ResourceBundle_Constructors|
 |java.util.ResourceBundle_Methods|
 
-================================================================================
+====================================================================================================================================================================================
 
 *java.util.ResourceBundle_Fields*
 |java.util.ResourceBundle_java.util.ResourceBundle.parent|
@@ -17,93 +17,68 @@ public abstract class ResourceBundle
 |java.util.ResourceBundle()|Sole constructor.
 
 *java.util.ResourceBundle_Methods*
-|java.util.ResourceBundle.getBundle(String)|Gets a resource bundle using the sp
-|java.util.ResourceBundle.getBundle(String,Locale)|Gets a resource bundle using
-|java.util.ResourceBundle.getBundle(String,Locale,ClassLoader)|Gets a resource 
+|java.util.ResourceBundle.getBundle(String)|Gets a resource bundle using the specified base name, the default locale,  and the caller's class loader.
+|java.util.ResourceBundle.getBundle(String,Locale)|Gets a resource bundle using the specified base name and locale,  and the caller's class loader.
+|java.util.ResourceBundle.getBundle(String,Locale,ClassLoader)|Gets a resource bundle using the specified base name, locale, and class loader.
 |java.util.ResourceBundle.getKeys()|Returns an enumeration of the keys.
-|java.util.ResourceBundle.getLocale()|Returns the locale of this resource bundl
-|java.util.ResourceBundle.getObject(String)|Gets an object for the given key fr
-|java.util.ResourceBundle.getString(String)|Gets a string for the given key fro
-|java.util.ResourceBundle.getStringArray(String)|Gets a string array for the gi
-|java.util.ResourceBundle.handleGetObject(String)|Gets an object for the given 
-|java.util.ResourceBundle.setParent(ResourceBundle)|Sets the parent bundle of t
+|java.util.ResourceBundle.getLocale()|Returns the locale of this resource bundle.
+|java.util.ResourceBundle.getObject(String)|Gets an object for the given key from this resource bundle or one of its parents.
+|java.util.ResourceBundle.getString(String)|Gets a string for the given key from this resource bundle or one of its parents.
+|java.util.ResourceBundle.getStringArray(String)|Gets a string array for the given key from this resource bundle or one of its parents.
+|java.util.ResourceBundle.handleGetObject(String)|Gets an object for the given key from this resource bundle.
+|java.util.ResourceBundle.setParent(ResourceBundle)|Sets the parent bundle of this bundle.
 
 *java.util.ResourceBundle_Description*
 
-Resource bundles contain locale-specific objects. When your program needs a 
-locale-specific resource, a String for example, your program can load it from 
-the resource bundle that is appropriate for the current user's locale. In this 
-way, you can write program code that is largely independent of the user's 
-locale isolating most, if not all, of the locale-specific information in 
-resource bundles. 
+Resource bundles contain locale-specific objects. When your program needs a locale-specific resource, a String for example, your program can load it from the resource bundle that 
+is appropriate for the current user's locale. In this way, you can write program code that is largely independent of the user's locale isolating most, if not all, of the 
+locale-specific information in resource bundles. 
 
 This allows you to write programs that can: 
 
-be easily localized, or translated, into different languages handle multiple 
-locales at once be easily modified later to support even more locales 
+be easily localized, or translated, into different languages handle multiple locales at once be easily modified later to support even more locales 
 
-Resource bundles belong to families whose members share a common base name, but 
-whose names also have additional components that identify their locales. For 
-example, the base name of a family of resource bundles might be "MyResources". 
-The family should have a default resource bundle which simply has the same name 
-as its family - "MyResources" - and will be used as the bundle of last resort 
-if a specific locale is not supported. The family can then provide as many 
-locale-specific members as needed, for example a German one named 
+Resource bundles belong to families whose members share a common base name, but whose names also have additional components that identify their locales. For example, the base name 
+of a family of resource bundles might be "MyResources". The family should have a default resource bundle which simply has the same name as its family - "MyResources" - and will be 
+used as the bundle of last resort if a specific locale is not supported. The family can then provide as many locale-specific members as needed, for example a German one named 
 "MyResources_de". 
 
-Each resource bundle in a family contains the same items, but the items have 
-been translated for the locale represented by that resource bundle. For 
-example, both "MyResources" and "MyResources_de" may have a String that's used 
-on a button for canceling operations. In "MyResources" the String may contain 
-"Cancel" and in "MyResources_de" it may contain "Abbrechen". 
+Each resource bundle in a family contains the same items, but the items have been translated for the locale represented by that resource bundle. For example, both "MyResources" 
+and "MyResources_de" may have a String that's used on a button for canceling operations. In "MyResources" the String may contain "Cancel" and in "MyResources_de" it may contain 
+"Abbrechen". 
 
-If there are different resources for different countries, you can make 
-specializations: for example, "MyResources_de_CH" contains objects for the 
-German language (de) in Switzerland (CH). If you want to only modify some of 
-the resources in the specialization, you can do so. 
+If there are different resources for different countries, you can make specializations: for example, "MyResources_de_CH" contains objects for the German language (de) in 
+Switzerland (CH). If you want to only modify some of the resources in the specialization, you can do so. 
 
-When your program needs a locale-specific object, it loads the ResourceBundle 
-class using the getBundle(|java.util.ResourceBundle|) method: 
+When your program needs a locale-specific object, it loads the ResourceBundle class using the getBundle(|java.util.ResourceBundle|) method: 
 
 
 
-ResourceBundle myResources = ResourceBundle.getBundle("MyResources", 
-currentLocale); 
+ResourceBundle myResources = ResourceBundle.getBundle("MyResources", currentLocale); 
 
 
 
-Resource bundles contain key/value pairs. The keys uniquely identify a 
-locale-specific object in the bundle. Here's an example of a ListResourceBundle 
-that contains two key/value pairs: 
+Resource bundles contain key/value pairs. The keys uniquely identify a locale-specific object in the bundle. Here's an example of a ListResourceBundle that contains two key/value 
+pairs: 
 
 
 
-public class MyResources extends ListResourceBundle { public Object[][] 
-getContents() { return contents; } static final Object[][] contents = { // 
-LOCALIZE THIS {"OkKey", "OK"}, {"CancelKey", "Cancel"}, // END OF MATERIAL TO 
-LOCALIZE }; } 
+public class MyResources extends ListResourceBundle { protected Object[][] getContents() { return new Object[][] = { // LOCALIZE THIS {"OkKey", "OK"}, {"CancelKey", "Cancel"}, // 
+END OF MATERIAL TO LOCALIZE }; } } 
 
-Keys are always Strings. In this example, the keys are "OkKey" and "CancelKey". 
-In the above example, the values are also Strings--"OK" and "Cancel"--but they 
-don't have to be. The values can be any type of object. 
+Keys are always Strings. In this example, the keys are "OkKey" and "CancelKey". In the above example, the values are also Strings--"OK" and "Cancel"--but they don't have to be. 
+The values can be any type of object. 
 
-You retrieve an object from resource bundle using the appropriate getter 
-method. Because "OkKey" and "CancelKey" are both strings, you would use 
-getString to retrieve them: 
+You retrieve an object from resource bundle using the appropriate getter method. Because "OkKey" and "CancelKey" are both strings, you would use getString to retrieve them: 
 
 
 
-button1 = new Button(myResources.getString("OkKey")); button2 = new 
-Button(myResources.getString("CancelKey")); 
+button1 = new Button(myResources.getString("OkKey")); button2 = new Button(myResources.getString("CancelKey")); 
 
-The getter methods all require the key as an argument and return the object if 
-found. If the object is not found, the getter method throws a 
-MissingResourceException. 
+The getter methods all require the key as an argument and return the object if found. If the object is not found, the getter method throws a MissingResourceException. 
 
-Besides getString, ResourceBundle also provides a method for getting string 
-arrays, getStringArray, as well as a generic getObject method for any other 
-type of object. When using getObject, you'll have to cast the result to the 
-appropriate type. For example: 
+Besides getString, ResourceBundle also provides a method for getting string arrays, getStringArray, as well as a generic getObject method for any other type of object. When using 
+getObject, you'll have to cast the result to the appropriate type. For example: 
 
 
 
@@ -111,155 +86,31 @@ int[] myIntegers = (int[]) myResources.getObject("intList");
 
 
 
-The Java 2 platform provides two subclasses of ResourceBundle, 
-ListResourceBundle and PropertyResourceBundle, that provide a fairly simple way 
-to create resources. As you saw briefly in a previous example, 
-ListResourceBundle manages its resource as a List of key/value pairs. 
-PropertyResourceBundle uses a properties file to manage its resources. 
+The Java 2 platform provides two subclasses of ResourceBundle, ListResourceBundle and PropertyResourceBundle, that provide a fairly simple way to create resources. As you saw 
+briefly in a previous example, ListResourceBundle manages its resource as a List of key/value pairs. PropertyResourceBundle uses a properties file to manage its resources. 
 
-If ListResourceBundle or PropertyResourceBundle do not suit your needs, you can 
-write your own ResourceBundle subclass. Your subclasses must override two 
-methods: handleGetObject and getKeys(). 
+If ListResourceBundle or PropertyResourceBundle do not suit your needs, you can write your own ResourceBundle subclass. Your subclasses must override two methods: handleGetObject 
+and getKeys(). 
 
-The following is a very simple example of a ResourceBundle subclass, 
-MyResources, that manages two resources (for a larger number of resources you 
-would probably use a Hashtable). Notice that you don't need to supply a value 
-if a "parent-level" ResourceBundle handles the same key with the same value (as 
-for the okKey below). Example: 
+The following is a very simple example of a ResourceBundle subclass, MyResources, that manages two resources (for a larger number of resources you would probably use a Hashtable). 
+Notice that you don't need to supply a value if a "parent-level" ResourceBundle handles the same key with the same value (as for the okKey below). Example: 
 
 
 
-// default (English language, United States) public class MyResources extends 
-ResourceBundle { public Object handleGetObject(String key) { if 
-(key.equals("okKey")) return "Ok"; if (key.equals("cancelKey")) return 
-"Cancel"; return null; } } 
+// default (English language, United States) public class MyResources extends ResourceBundle { public Object handleGetObject(String key) { if (key.equals("okKey")) return "Ok"; if 
+(key.equals("cancelKey")) return "Cancel"; return null; } } 
 
-// German language public class MyResources_de extends MyResources { public 
-Object handleGetObject(String key) { // don't need okKey, since parent level 
-handles it. if (key.equals("cancelKey")) return "Abbrechen"; return null; } } 
+// German language public class MyResources_de extends MyResources { public Object handleGetObject(String key) { // don't need okKey, since parent level handles it. if 
+(key.equals("cancelKey")) return "Abbrechen"; return null; } } 
 
-You do not have to restrict yourself to using a single family of 
-ResourceBundles. For example, you could have a set of bundles for exception 
-messages, ExceptionResources (ExceptionResources_fr, ExceptionResources_de, 
-...), and one for widgets, WidgetResource (WidgetResources_fr, 
-WidgetResources_de, ...); breaking up the resources however you like. 
+You do not have to restrict yourself to using a single family of ResourceBundles. For example, you could have a set of bundles for exception messages, ExceptionResources 
+(ExceptionResources_fr, ExceptionResources_de, ...), and one for widgets, WidgetResource (WidgetResources_fr, WidgetResources_de, ...); breaking up the resources however you like. 
+
 
 
 *java.util.ResourceBundle_java.util.ResourceBundle.parent*
 
-Resource bundles contain locale-specific objects. When your program needs a 
-locale-specific resource, a String for example, your program can load it from 
-the resource bundle that is appropriate for the current user's locale. In this 
-way, you can write program code that is largely independent of the user's 
-locale isolating most, if not all, of the locale-specific information in 
-resource bundles. 
-
-This allows you to write programs that can: 
-
-be easily localized, or translated, into different languages handle multiple 
-locales at once be easily modified later to support even more locales 
-
-Resource bundles belong to families whose members share a common base name, but 
-whose names also have additional components that identify their locales. For 
-example, the base name of a family of resource bundles might be "MyResources". 
-The family should have a default resource bundle which simply has the same name 
-as its family - "MyResources" - and will be used as the bundle of last resort 
-if a specific locale is not supported. The family can then provide as many 
-locale-specific members as needed, for example a German one named 
-"MyResources_de". 
-
-Each resource bundle in a family contains the same items, but the items have 
-been translated for the locale represented by that resource bundle. For 
-example, both "MyResources" and "MyResources_de" may have a String that's used 
-on a button for canceling operations. In "MyResources" the String may contain 
-"Cancel" and in "MyResources_de" it may contain "Abbrechen". 
-
-If there are different resources for different countries, you can make 
-specializations: for example, "MyResources_de_CH" contains objects for the 
-German language (de) in Switzerland (CH). If you want to only modify some of 
-the resources in the specialization, you can do so. 
-
-When your program needs a locale-specific object, it loads the ResourceBundle 
-class using the getBundle(|java.util.ResourceBundle|) method: 
-
-
-
-ResourceBundle myResources = ResourceBundle.getBundle("MyResources", 
-currentLocale); 
-
-
-
-Resource bundles contain key/value pairs. The keys uniquely identify a 
-locale-specific object in the bundle. Here's an example of a ListResourceBundle 
-that contains two key/value pairs: 
-
-
-
-public class MyResources extends ListResourceBundle { public Object[][] 
-getContents() { return contents; } static final Object[][] contents = { // 
-LOCALIZE THIS {"OkKey", "OK"}, {"CancelKey", "Cancel"}, // END OF MATERIAL TO 
-LOCALIZE }; } 
-
-Keys are always Strings. In this example, the keys are "OkKey" and "CancelKey". 
-In the above example, the values are also Strings--"OK" and "Cancel"--but they 
-don't have to be. The values can be any type of object. 
-
-You retrieve an object from resource bundle using the appropriate getter 
-method. Because "OkKey" and "CancelKey" are both strings, you would use 
-getString to retrieve them: 
-
-
-
-button1 = new Button(myResources.getString("OkKey")); button2 = new 
-Button(myResources.getString("CancelKey")); 
-
-The getter methods all require the key as an argument and return the object if 
-found. If the object is not found, the getter method throws a 
-MissingResourceException. 
-
-Besides getString, ResourceBundle also provides a method for getting string 
-arrays, getStringArray, as well as a generic getObject method for any other 
-type of object. When using getObject, you'll have to cast the result to the 
-appropriate type. For example: 
-
-
-
-int[] myIntegers = (int[]) myResources.getObject("intList"); 
-
-
-
-The Java 2 platform provides two subclasses of ResourceBundle, 
-ListResourceBundle and PropertyResourceBundle, that provide a fairly simple way 
-to create resources. As you saw briefly in a previous example, 
-ListResourceBundle manages its resource as a List of key/value pairs. 
-PropertyResourceBundle uses a properties file to manage its resources. 
-
-If ListResourceBundle or PropertyResourceBundle do not suit your needs, you can 
-write your own ResourceBundle subclass. Your subclasses must override two 
-methods: handleGetObject and getKeys(). 
-
-The following is a very simple example of a ResourceBundle subclass, 
-MyResources, that manages two resources (for a larger number of resources you 
-would probably use a Hashtable). Notice that you don't need to supply a value 
-if a "parent-level" ResourceBundle handles the same key with the same value (as 
-for the okKey below). Example: 
-
-
-
-// default (English language, United States) public class MyResources extends 
-ResourceBundle { public Object handleGetObject(String key) { if 
-(key.equals("okKey")) return "Ok"; if (key.equals("cancelKey")) return 
-"Cancel"; return null; } } 
-
-// German language public class MyResources_de extends MyResources { public 
-Object handleGetObject(String key) { // don't need okKey, since parent level 
-handles it. if (key.equals("cancelKey")) return "Abbrechen"; return null; } } 
-
-You do not have to restrict yourself to using a single family of 
-ResourceBundles. For example, you could have a set of bundles for exception 
-messages, ExceptionResources (ExceptionResources_fr, ExceptionResources_de, 
-...), and one for widgets, WidgetResource (WidgetResources_fr, 
-WidgetResources_de, ...); breaking up the resources however you like. 
+The parent bundle of this bundle. The parent bundle is searched by getObject(|java.util.ResourceBundle|) when this bundle does not contain a particular resource. 
 
 
 
@@ -267,45 +118,44 @@ WidgetResources_de, ...); breaking up the resources however you like.
 
 public ResourceBundle()
 
-Sole constructor. (For invocation by subclass constructors, typically 
-implicit.) 
+Sole constructor. (For invocation by subclass constructors, typically implicit.) 
 
 
 *java.util.ResourceBundle.getBundle(String)*
 
 public static final |java.util.ResourceBundle| getBundle(java.lang.String baseName)
 
-Gets a resource bundle using the specified base name, the default locale, and 
-the caller's class loader. Calling this method is equivalent to calling 
+Gets a resource bundle using the specified base name, the default locale, and the caller's class loader. Calling this method is equivalent to calling 
 
 getBundle(baseName, Locale.getDefault(), this.getClass().getClassLoader()), 
 
-except that getClassLoader() is run with the security privileges of 
-ResourceBundle. See getBundle(|java.util.ResourceBundle|) for a complete 
-description of the search and instantiation strategy. 
+except that getClassLoader() is run with the security privileges of ResourceBundle. See getBundle(|java.util.ResourceBundle|) for a complete description of the search and 
+instantiation strategy. 
+
 
     baseName - the base name of the resource bundle, a fully qualified class name 
 
     Returns: a resource bundle for the given base name and the default locale 
+
 *java.util.ResourceBundle.getBundle(String,Locale)*
 
 public static final |java.util.ResourceBundle| getBundle(
   java.lang.String baseName,
   java.util.Locale locale)
 
-Gets a resource bundle using the specified base name and locale, and the 
-caller's class loader. Calling this method is equivalent to calling 
+Gets a resource bundle using the specified base name and locale, and the caller's class loader. Calling this method is equivalent to calling 
 
 getBundle(baseName, locale, this.getClass().getClassLoader()), 
 
-except that getClassLoader() is run with the security privileges of 
-ResourceBundle. See getBundle(|java.util.ResourceBundle|) for a complete 
-description of the search and instantiation strategy. 
+except that getClassLoader() is run with the security privileges of ResourceBundle. See getBundle(|java.util.ResourceBundle|) for a complete description of the search and 
+instantiation strategy. 
+
 
     baseName - the base name of the resource bundle, a fully qualified class name 
     locale - the locale for which a resource bundle is desired 
 
     Returns: a resource bundle for the given base name and locale 
+
 *java.util.ResourceBundle.getBundle(String,Locale,ClassLoader)*
 
 public static |java.util.ResourceBundle| getBundle(
@@ -315,91 +165,54 @@ public static |java.util.ResourceBundle| getBundle(
 
 Gets a resource bundle using the specified base name, locale, and class loader. 
 
-Conceptually, getBundle uses the following strategy for locating and 
-instantiating resource bundles: 
+Conceptually, getBundle uses the following strategy for locating and instantiating resource bundles: 
 
-getBundle uses the base name, the specified locale, and the default locale 
-(obtained from Locale.getDefault(|java.util.Locale|) ) to generate a sequence 
-of candidate bundle names. If the specified locale's language, country, and 
-variant are all empty strings, then the base name is the only candidate bundle 
-name. Otherwise, the following sequence is generated from the attribute values 
-of the specified locale (language1, country1, and variant1) and of the default 
-locale (language2, country2, and variant2): 
+getBundle uses the base name, the specified locale, and the default locale (obtained from Locale.getDefault(|java.util.Locale|) ) to generate a sequence of candidate bundle names. 
+If the specified locale's language, country, and variant are all empty strings, then the base name is the only candidate bundle name. Otherwise, the following sequence is 
+generated from the attribute values of the specified locale (language1, country1, and variant1) and of the default locale (language2, country2, and variant2): 
 
-baseName + "_" + language1 + "_" + country1 + "_" + variant1 baseName + "_" + 
-language1 + "_" + country1 baseName + "_" + language1 baseName + "_" + 
-language2 + "_" + country2 + "_" + variant2 baseName + "_" + language2 + "_" + 
-country2 baseName + "_" + language2 baseName 
+baseName + "_" + language1 + "_" + country1 + "_" + variant1 baseName + "_" + language1 + "_" + country1 baseName + "_" + language1 baseName + "_" + language2 + "_" + country2 + 
+"_" + variant2 baseName + "_" + language2 + "_" + country2 baseName + "_" + language2 baseName 
 
-Candidate bundle names where the final component is an empty string are 
-omitted. For example, if country1 is an empty string, the second candidate 
-bundle name is omitted. 
+Candidate bundle names where the final component is an empty string are omitted. For example, if country1 is an empty string, the second candidate bundle name is omitted. 
 
-getBundle then iterates over the candidate bundle names to find the first one 
-for which it can instantiate an actual resource bundle. For each candidate 
-bundle name, it attempts to create a resource bundle: 
+getBundle then iterates over the candidate bundle names to find the first one for which it can instantiate an actual resource bundle. For each candidate bundle name, it attempts 
+to create a resource bundle: 
 
-First, it attempts to load a class using the candidate bundle name. If such a 
-class can be found and loaded using the specified class loader, is assignment 
-compatible with ResourceBundle, is accessible from ResourceBundle, and can be 
-instantiated, getBundle creates a new instance of this class and uses it as the 
-result resource bundle. 
+First, it attempts to load a class using the candidate bundle name. If such a class can be found and loaded using the specified class loader, is assignment compatible with 
+ResourceBundle, is accessible from ResourceBundle, and can be instantiated, getBundle creates a new instance of this class and uses it as the result resource bundle. 
 
-Otherwise, getBundle attempts to locate a property resource file. It generates 
-a path name from the candidate bundle name by replacing all "." characters with 
-"/" and appending the string ".properties". It attempts to find a "resource" 
-with this name using ClassLoader.getResource(|java.lang.ClassLoader|) . (Note 
-that a "resource" in the sense of getResource has nothing to do with the 
-contents of a resource bundle, it is just a container of data, such as a file.) 
-If it finds a "resource", it attempts to create a new 
-(|java.util.PropertyResourceBundle|) instance from its contents. If successful, 
-this instance becomes the result resource bundle. 
+Otherwise, getBundle attempts to locate a property resource file. It generates a path name from the candidate bundle name by replacing all "." characters with "/" and appending 
+the string ".properties". It attempts to find a "resource" with this name using ClassLoader.getResource(|java.lang.ClassLoader|) . (Note that a "resource" in the sense of 
+getResource has nothing to do with the contents of a resource bundle, it is just a container of data, such as a file.) If it finds a "resource", it attempts to create a new 
+(|java.util.PropertyResourceBundle|) instance from its contents. If successful, this instance becomes the result resource bundle. 
 
-If no result resource bundle has been found, a MissingResourceException is 
-thrown. 
+If no result resource bundle has been found, a MissingResourceException is thrown. 
 
-Once a result resource bundle has been found, its parent chain is instantiated. 
-getBundle iterates over the candidate bundle names that can be obtained by 
-successively removing variant, country, and language (each time with the 
-preceding "_") from the bundle name of the result resource bundle. As above, 
-candidate bundle names where the final component is an empty string are 
-omitted. With each of the candidate bundle names it attempts to instantiate a 
-resource bundle, as described above. Whenever it succeeds, it calls the 
-previously instantiated resource bundle's setParent(|java.util.ResourceBundle|) 
-method with the new resource bundle, unless the previously instantiated 
-resource bundle already has a non-null parent. 
+Once a result resource bundle has been found, its parent chain is instantiated. getBundle iterates over the candidate bundle names that can be obtained by successively removing 
+variant, country, and language (each time with the preceding "_") from the bundle name of the result resource bundle. As above, candidate bundle names where the final component is 
+an empty string are omitted. With each of the candidate bundle names it attempts to instantiate a resource bundle, as described above. Whenever it succeeds, it calls the 
+previously instantiated resource bundle's setParent(|java.util.ResourceBundle|) method with the new resource bundle, unless the previously instantiated resource bundle already has 
+a non-null parent. 
 
-Implementations of getBundle may cache instantiated resource bundles and return 
-the same resource bundle instance multiple times. They may also vary the 
-sequence in which resource bundles are instantiated as long as the selection of 
-the result resource bundle and its parent chain are compatible with the 
-description above. 
+Implementations of getBundle may cache instantiated resource bundles and return the same resource bundle instance multiple times. They may also vary the sequence in which resource 
+bundles are instantiated as long as the selection of the result resource bundle and its parent chain are compatible with the description above. 
 
-The baseName argument should be a fully qualified class name. However, for 
-compatibility with earlier versions, Sun's Java 2 runtime environments do not 
-verify this, and so it is possible to access PropertyResourceBundles by 
-specifying a path name (using "/") instead of a fully qualified class name 
-(using "."). 
+The baseName argument should be a fully qualified class name. However, for compatibility with earlier versions, Sun's Java 2 runtime environments do not verify this, and so it is 
+possible to access PropertyResourceBundles by specifying a path name (using "/") instead of a fully qualified class name (using "."). 
 
-Example: The following class and property files are provided: 
-MyResources.class, MyResources_fr_CH.properties, MyResources_fr_CH.class, 
-MyResources_fr.properties, MyResources_en.properties, MyResources_es_ES.class. 
-The contents of all files are valid (that is, public non-abstract subclasses of 
-ResourceBundle for the ".class" files, syntactically correct ".properties" 
-files). The default locale is Locale("en", "GB"). 
+Example: The following class and property files are provided: MyResources.class, MyResources_fr_CH.properties, MyResources_fr_CH.class, MyResources_fr.properties, 
+MyResources_en.properties, MyResources_es_ES.class. The contents of all files are valid (that is, public non-abstract subclasses of ResourceBundle for the ".class" files, 
+syntactically correct ".properties" files). The default locale is Locale("en", "GB"). 
 
-Calling getBundle with the shown locale argument values instantiates resource 
-bundles from the following sources: 
+Calling getBundle with the shown locale argument values instantiates resource bundles from the following sources: 
 
-Locale("fr", "CH"): result MyResources_fr_CH.class, parent 
-MyResources_fr.properties, parent MyResources.class Locale("fr", "FR"): result 
-MyResources_fr.properties, parent MyResources.class Locale("de", "DE"): result 
-MyResources_en.properties, parent MyResources.class Locale("en", "US"): result 
-MyResources_en.properties, parent MyResources.class Locale("es", "ES"): result 
-MyResources_es_ES.class, parent MyResources.class 
+Locale("fr", "CH"): result MyResources_fr_CH.class, parent MyResources_fr.properties, parent MyResources.class Locale("fr", "FR"): result MyResources_fr.properties, parent 
+MyResources.class Locale("de", "DE"): result MyResources_en.properties, parent MyResources.class Locale("en", "US"): result MyResources_en.properties, parent MyResources.class 
+Locale("es", "ES"): result MyResources_es_ES.class, parent MyResources.class 
 
-The file MyResources_fr_CH.properties is never used because it is hidden by 
-MyResources_fr_CH.class. 
+The file MyResources_fr_CH.properties is never used because it is hidden by MyResources_fr_CH.class. 
+
 
 
 
@@ -408,77 +221,82 @@ MyResources_fr_CH.class.
     loader - the class loader from which to load the resource bundle 
 
     Returns: a resource bundle for the given base name and locale 
+
 *java.util.ResourceBundle.getKeys()*
 
-public abstract |java.util.Enumeration| getKeys()
+public abstract |java.util.Enumeration|<String> getKeys()
 
 Returns an enumeration of the keys. 
+
 
 
 *java.util.ResourceBundle.getLocale()*
 
 public |java.util.Locale| getLocale()
 
-Returns the locale of this resource bundle. This method can be used after a 
-call to getBundle() to determine whether the resource bundle returned really 
-corresponds to the requested locale or is a fallback. 
+Returns the locale of this resource bundle. This method can be used after a call to getBundle() to determine whether the resource bundle returned really corresponds to the 
+requested locale or is a fallback. 
+
 
 
     Returns: the locale of this resource bundle 
+
 *java.util.ResourceBundle.getObject(String)*
 
 public final |java.lang.Object| getObject(java.lang.String key)
 
-Gets an object for the given key from this resource bundle or one of its 
-parents. This method first tries to obtain the object from this resource bundle 
-using handleGetObject(|java.util.ResourceBundle|) . If not successful, and the 
-parent resource bundle is not null, it calls the parent's getObject method. If 
-still not successful, it throws a MissingResourceException. 
+Gets an object for the given key from this resource bundle or one of its parents. This method first tries to obtain the object from this resource bundle using 
+handleGetObject(|java.util.ResourceBundle|) . If not successful, and the parent resource bundle is not null, it calls the parent's getObject method. If still not successful, it 
+throws a MissingResourceException. 
+
 
     key - the key for the desired object 
 
     Returns: the object for the given key 
+
 *java.util.ResourceBundle.getString(String)*
 
 public final |java.lang.String| getString(java.lang.String key)
 
-Gets a string for the given key from this resource bundle or one of its 
-parents. Calling this method is equivalent to calling 
+Gets a string for the given key from this resource bundle or one of its parents. Calling this method is equivalent to calling 
 
 (String) getObject(|java.util.ResourceBundle|) (key). 
+
 
     key - the key for the desired string 
 
     Returns: the string for the given key 
+
 *java.util.ResourceBundle.getStringArray(String)*
 
-public final |java.lang.String| getStringArray(java.lang.String key)
+public final |java.lang.String|[] getStringArray(java.lang.String key)
 
-Gets a string array for the given key from this resource bundle or one of its 
-parents. Calling this method is equivalent to calling 
+Gets a string array for the given key from this resource bundle or one of its parents. Calling this method is equivalent to calling 
 
 (String[]) getObject(|java.util.ResourceBundle|) (key). 
+
 
     key - the key for the desired string array 
 
     Returns: the string array for the given key 
+
 *java.util.ResourceBundle.handleGetObject(String)*
 
 protected abstract |java.lang.Object| handleGetObject(java.lang.String key)
 
-Gets an object for the given key from this resource bundle. Returns null if 
-this resource bundle does not contain an object for the given key. 
+Gets an object for the given key from this resource bundle. Returns null if this resource bundle does not contain an object for the given key. 
+
 
     key - the key for the desired object 
 
     Returns: the object for the given key, or null 
+
 *java.util.ResourceBundle.setParent(ResourceBundle)*
 
 protected void setParent(java.util.ResourceBundle parent)
 
-Sets the parent bundle of this bundle. The parent bundle is searched by 
-getObject(|java.util.ResourceBundle|) when this bundle does not contain a 
-particular resource. 
+Sets the parent bundle of this bundle. The parent bundle is searched by getObject(|java.util.ResourceBundle|) when this bundle does not contain a particular resource. 
+
 
     parent - this bundle's parent bundle. 
 

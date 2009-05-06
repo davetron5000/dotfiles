@@ -1,4 +1,5 @@
-*javax.swing.text.NavigationFilter.FilterBypass* *NavigationFilter.FilterBypass* 
+*javax.swing.text.NavigationFilter.FilterBypass* *NavigationFilter.FilterBypass* Used as a way to circumvent calling back into the caret to
+ position the cursor.
 
 public abstract static class NavigationFilter.FilterBypass
   extends    |java.lang.Object|
@@ -8,21 +9,21 @@ public abstract static class NavigationFilter.FilterBypass
 |javax.swing.text.NavigationFilter.FilterBypass_Constructors|
 |javax.swing.text.NavigationFilter.FilterBypass_Methods|
 
-================================================================================
+====================================================================================================================================================================================
 
 *javax.swing.text.NavigationFilter.FilterBypass_Constructors*
 |javax.swing.text.NavigationFilter.FilterBypass()|
 
 *javax.swing.text.NavigationFilter.FilterBypass_Methods*
-|javax.swing.text.NavigationFilter.FilterBypass.getCaret()|Returns the Caret th
-|javax.swing.text.NavigationFilter.FilterBypass.moveDot(int,Position.Bias)|Move
-|javax.swing.text.NavigationFilter.FilterBypass.setDot(int,Position.Bias)|Sets 
+|javax.swing.text.NavigationFilter.FilterBypass.getCaret()|Returns the Caret that is changing.
+|javax.swing.text.NavigationFilter.FilterBypass.moveDot(int,Position.Bias)|Moves the caret location, bypassing the NavigationFilter.
+|javax.swing.text.NavigationFilter.FilterBypass.setDot(int,Position.Bias)|Sets the caret location, bypassing the NavigationFilter.
 
 *javax.swing.text.NavigationFilter.FilterBypass_Description*
 
-Used as a way to circumvent calling back into the caret to position the cursor. 
-Caret implementations that wish to support a NavigationFilter must provide an 
-implementation that will not callback into the NavigationFilter. 
+Used as a way to circumvent calling back into the caret to position the cursor. Caret implementations that wish to support a NavigationFilter must provide an implementation that 
+will not callback into the NavigationFilter. 
+
 
 
 *javax.swing.text.NavigationFilter.FilterBypass()*
@@ -39,7 +40,9 @@ public abstract |javax.swing.text.Caret| getCaret()
 Returns the Caret that is changing. 
 
 
+
     Returns: Caret that is changing 
+
 *javax.swing.text.NavigationFilter.FilterBypass.moveDot(int,Position.Bias)*
 
 public abstract void moveDot(
@@ -47,6 +50,7 @@ public abstract void moveDot(
   javax.swing.text.Position.Bias bias)
 
 Moves the caret location, bypassing the NavigationFilter. 
+
 
     dot - the position >= 0 
     bias - Bias for new location 
@@ -58,6 +62,7 @@ public abstract void setDot(
   javax.swing.text.Position.Bias bias)
 
 Sets the caret location, bypassing the NavigationFilter. 
+
 
     dot - the position >= 0 
     bias - Bias to place the dot at 

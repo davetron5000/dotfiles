@@ -1,4 +1,5 @@
-*javax.imageio.stream.MemoryCacheImageInputStream* *MemoryCacheImageInputStream* 
+*javax.imageio.stream.MemoryCacheImageInputStream* *MemoryCacheImageInputStream* An implementation of ImageInputStream that gets its
+ input from a regular InputStream.
 
 public class MemoryCacheImageInputStream
   extends    |javax.imageio.stream.ImageInputStreamImpl|
@@ -8,37 +9,35 @@ public class MemoryCacheImageInputStream
 |javax.imageio.stream.MemoryCacheImageInputStream_Constructors|
 |javax.imageio.stream.MemoryCacheImageInputStream_Methods|
 
-================================================================================
+====================================================================================================================================================================================
 
 *javax.imageio.stream.MemoryCacheImageInputStream_Constructors*
-|javax.imageio.stream.MemoryCacheImageInputStream(InputStream)|Constructs a Mem
+|javax.imageio.stream.MemoryCacheImageInputStream(InputStream)|Constructs a MemoryCacheImageInputStream that will read  from a given InputStream.
 
 *javax.imageio.stream.MemoryCacheImageInputStream_Methods*
-|javax.imageio.stream.MemoryCacheImageInputStream.close()|Closes this MemoryCac
+|javax.imageio.stream.MemoryCacheImageInputStream.close()|Closes this MemoryCacheImageInputStream, freeing  the cache.
 |javax.imageio.stream.MemoryCacheImageInputStream.flushBefore(long)|
-|javax.imageio.stream.MemoryCacheImageInputStream.isCached()|Returns true since
-|javax.imageio.stream.MemoryCacheImageInputStream.isCachedFile()|Returns false 
-|javax.imageio.stream.MemoryCacheImageInputStream.isCachedMemory()|Returns true
+|javax.imageio.stream.MemoryCacheImageInputStream.isCached()|Returns true since this  ImageInputStream caches data in order to allow  seeking backwards.
+|javax.imageio.stream.MemoryCacheImageInputStream.isCachedFile()|Returns false since this  ImageInputStream does not maintain a file cache.
+|javax.imageio.stream.MemoryCacheImageInputStream.isCachedMemory()|Returns true since this  ImageInputStream maintains a main memory cache.
 |javax.imageio.stream.MemoryCacheImageInputStream.read()|
 |javax.imageio.stream.MemoryCacheImageInputStream.read(byte[],int,int)|
 
 *javax.imageio.stream.MemoryCacheImageInputStream_Description*
 
-An implementation of ImageInputStream that gets its input from a regular 
-InputStream. A memory buffer is used to cache at least the data between the 
-discard position and the current read position. 
+An implementation of ImageInputStream that gets its input from a regular InputStream. A memory buffer is used to cache at least the data between the discard position and the 
+current read position. 
 
-In general, it is preferable to use a FileCacheImageInputStream when reading 
-from a regular InputStream. This class is provided for cases where it is not 
-possible to create a writable temporary file. 
+In general, it is preferable to use a FileCacheImageInputStream when reading from a regular InputStream. This class is provided for cases where it is not possible to create a 
+writable temporary file. 
+
 
 
 *javax.imageio.stream.MemoryCacheImageInputStream(InputStream)*
 
 public MemoryCacheImageInputStream(java.io.InputStream stream)
 
-Constructs a MemoryCacheImageInputStream that will read from a given 
-InputStream. 
+Constructs a MemoryCacheImageInputStream that will read from a given InputStream. 
 
     stream - an InputStream to read from. 
 
@@ -47,8 +46,8 @@ InputStream.
 public void close()
   throws |java.io.IOException|
          
-Closes this MemoryCacheImageInputStream, freeing the cache. The source 
-InputStream is not closed. 
+Closes this MemoryCacheImageInputStream, freeing the cache. The source InputStream is not closed. 
+
 
 
 *javax.imageio.stream.MemoryCacheImageInputStream.flushBefore(long)*
@@ -59,15 +58,17 @@ public void flushBefore(long pos)
 
 
 
+
 *javax.imageio.stream.MemoryCacheImageInputStream.isCached()*
 
 public boolean isCached()
 
-Returns true since this ImageInputStream caches data in order to allow seeking 
-backwards. 
+Returns true since this ImageInputStream caches data in order to allow seeking backwards. 
+
 
 
     Returns: 
+
 *javax.imageio.stream.MemoryCacheImageInputStream.isCachedFile()*
 
 public boolean isCachedFile()
@@ -75,7 +76,9 @@ public boolean isCachedFile()
 Returns false since this ImageInputStream does not maintain a file cache. 
 
 
+
     Returns: 
+
 *javax.imageio.stream.MemoryCacheImageInputStream.isCachedMemory()*
 
 public boolean isCachedMemory()
@@ -83,12 +86,15 @@ public boolean isCachedMemory()
 Returns true since this ImageInputStream maintains a main memory cache. 
 
 
+
     Returns: 
+
 *javax.imageio.stream.MemoryCacheImageInputStream.read()*
 
 public int read()
   throws |java.io.IOException|
          
+
 
 
 
@@ -100,6 +106,7 @@ public int read(
   int len)
   throws |java.io.IOException|
          
+
 
 
 

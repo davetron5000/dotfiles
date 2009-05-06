@@ -1,4 +1,5 @@
-*javax.swing.CellRendererPane* *CellRendererPane* This class is inserted in betw
+*javax.swing.CellRendererPane* *CellRendererPane* This class is inserted in between cell renderers and the components that 
+ use them.
 
 public class CellRendererPane
   extends    |java.awt.Container|
@@ -9,7 +10,7 @@ public class CellRendererPane
 |javax.swing.CellRendererPane_Constructors|
 |javax.swing.CellRendererPane_Methods|
 
-================================================================================
+====================================================================================================================================================================================
 
 *javax.swing.CellRendererPane_Fields*
 |javax.accessibility.AccessibleContext_javax.swing.CellRendererPane.accessibleContext|
@@ -18,61 +19,35 @@ public class CellRendererPane
 |javax.swing.CellRendererPane()|Construct a CellRendererPane object.
 
 *javax.swing.CellRendererPane_Methods*
-|javax.swing.CellRendererPane.addImpl(Component,Object,int)|If the specified co
-|javax.swing.CellRendererPane.getAccessibleContext()|Gets the AccessibleContext
-|javax.swing.CellRendererPane.invalidate()|Overridden to avoid propagating a in
+|javax.swing.CellRendererPane.addImpl(Component,Object,int)|If the specified component is already a child of this then we don't  bother doing anything - stacking order doesn't mat
+|javax.swing.CellRendererPane.getAccessibleContext()|Gets the AccessibleContext associated with this CellRendererPane.
+|javax.swing.CellRendererPane.invalidate()|Overridden to avoid propagating a invalidate up the tree when the  cell renderer child is configured.
 |javax.swing.CellRendererPane.paint(Graphics)|Shouldn't be called.
-|javax.swing.CellRendererPane.paintComponent(Graphics,Component,Container,int,int,int,int)|
-|javax.swing.CellRendererPane.paintComponent(Graphics,Component,Container,int,int,int,int,boolean)|
-|javax.swing.CellRendererPane.paintComponent(Graphics,Component,Container,Rectangle)|
+|javax.swing.CellRendererPane.paintComponent(Graphics,Component,Container,int,int,int,int)|Calls this.paintComponent(g, c, p, x, y, w, h, false).
+|javax.swing.CellRendererPane.paintComponent(Graphics,Component,Container,int,int,int,int,boolean)|Paint a cell renderer component c on graphics object g.
+|javax.swing.CellRendererPane.paintComponent(Graphics,Component,Container,Rectangle)|Calls this.paintComponent() with the rectangles x,y,width,height fields.
 |javax.swing.CellRendererPane.update(Graphics)|Shouldn't be called.
 
 *javax.swing.CellRendererPane_Description*
 
-This class is inserted in between cell renderers and the components that use 
-them. It just exists to thwart the repaint() and invalidate() methods which 
-would otherwise propagate up the tree when the renderer was configured. It's 
-used by the implementations of JTable, JTree, and JList. For example, here's 
-how CellRendererPane is used in the code the paints each row in a JList: 
+This class is inserted in between cell renderers and the components that use them. It just exists to thwart the repaint() and invalidate() methods which would otherwise propagate 
+up the tree when the renderer was configured. It's used by the implementations of JTable, JTree, and JList. For example, here's how CellRendererPane is used in the code the paints 
+each row in a JList: 
 
-cellRendererPane = new CellRendererPane(); ... Component rendererComponent = 
-renderer.getListCellRendererComponent(); 
-renderer.configureListCellRenderer(dataModel.getElementAt(row), row); 
-cellRendererPane.paintComponent(g, rendererComponent, this, x, y, w, h); 
+cellRendererPane = new CellRendererPane(); ... Component rendererComponent = renderer.getListCellRendererComponent(); 
+renderer.configureListCellRenderer(dataModel.getElementAt(row), row); cellRendererPane.paintComponent(g, rendererComponent, this, x, y, w, h); 
 
-A renderer component must override isShowing() and unconditionally return true 
-to work correctly because the Swing paint does nothing for components with 
-isShowing false. 
+A renderer component must override isShowing() and unconditionally return true to work correctly because the Swing paint does nothing for components with isShowing false. 
 
-Warning: Serialized objects of this class will not be compatible with future 
-Swing releases. The current serialization support is appropriate for short term 
-storage or RMI between applications running the same version of Swing. As of 
-1.4, support for long term storage of all JavaBeansTM has been added to the 
-java.beans package. Please see (|java.beans.XMLEncoder|) . 
+Warning: Serialized objects of this class will not be compatible with future Swing releases. The current serialization support is appropriate for short term storage or RMI between 
+applications running the same version of Swing. As of 1.4, support for long term storage of all JavaBeansTM has been added to the java.beans package. Please see 
+(|java.beans.XMLEncoder|) . 
+
 
 
 *javax.accessibility.AccessibleContext_javax.swing.CellRendererPane.accessibleContext*
 
-This class is inserted in between cell renderers and the components that use 
-them. It just exists to thwart the repaint() and invalidate() methods which 
-would otherwise propagate up the tree when the renderer was configured. It's 
-used by the implementations of JTable, JTree, and JList. For example, here's 
-how CellRendererPane is used in the code the paints each row in a JList: 
 
-cellRendererPane = new CellRendererPane(); ... Component rendererComponent = 
-renderer.getListCellRendererComponent(); 
-renderer.configureListCellRenderer(dataModel.getElementAt(row), row); 
-cellRendererPane.paintComponent(g, rendererComponent, this, x, y, w, h); 
-
-A renderer component must override isShowing() and unconditionally return true 
-to work correctly because the Swing paint does nothing for components with 
-isShowing false. 
-
-Warning: Serialized objects of this class will not be compatible with future 
-Swing releases. The current serialization support is appropriate for short term 
-storage or RMI between applications running the same version of Swing. As of 
-1.4, support for long term storage of all JavaBeansTM has been added to the 
-java.beans package. Please see (|java.beans.XMLEncoder|) . 
 
 
 
@@ -90,29 +65,28 @@ protected void addImpl(
   java.lang.Object constraints,
   int index)
 
-If the specified component is already a child of this then we don't bother 
-doing anything - stacking order doesn't matter for cell renderer components 
-(CellRendererPane doesn't paint anyway).< 
+If the specified component is already a child of this then we don't bother doing anything - stacking order doesn't matter for cell renderer components (CellRendererPane doesn't 
+paint anyway).< 
+
 
 
 *javax.swing.CellRendererPane.getAccessibleContext()*
 
 public |javax.accessibility.AccessibleContext| getAccessibleContext()
 
-Gets the AccessibleContext associated with this CellRendererPane. For 
-CellRendererPanes, the AccessibleContext takes the form of an 
-AccessibleCellRendererPane. A new AccessibleCellRendererPane instance is 
-created if necessary. 
+Gets the AccessibleContext associated with this CellRendererPane. For CellRendererPanes, the AccessibleContext takes the form of an AccessibleCellRendererPane. A new 
+AccessibleCellRendererPane instance is created if necessary. 
 
 
-    Returns: an AccessibleCellRendererPane that serves as the AccessibleContext of this 
-             CellRendererPane 
+
+    Returns: an AccessibleCellRendererPane that serves as the AccessibleContext of this CellRendererPane 
+
 *javax.swing.CellRendererPane.invalidate()*
 
 public void invalidate()
 
-Overridden to avoid propagating a invalidate up the tree when the cell renderer 
-child is configured. 
+Overridden to avoid propagating a invalidate up the tree when the cell renderer child is configured. 
+
 
 
 *javax.swing.CellRendererPane.paint(Graphics)*
@@ -120,6 +94,7 @@ child is configured.
 public void paint(java.awt.Graphics g)
 
 Shouldn't be called. 
+
 
 
 *javax.swing.CellRendererPane.paintComponent(Graphics,Component,Container,int,int,int,int)*
@@ -136,6 +111,7 @@ public void paintComponent(
 Calls this.paintComponent(g, c, p, x, y, w, h, false). 
 
 
+
 *javax.swing.CellRendererPane.paintComponent(Graphics,Component,Container,int,int,int,int,boolean)*
 
 public void paintComponent(
@@ -148,15 +124,11 @@ public void paintComponent(
   int h,
   boolean shouldValidate)
 
-Paint a cell renderer component c on graphics object g. Before the component is 
-drawn it's reparented to this (if that's necessary), it's bounds are set to w,h 
-and the graphics object is (effectively) translated to x,y. If it's a 
-JComponent, double buffering is temporarily turned off. After the component is 
-painted it's bounds are reset to -w, -h, 0, 0 so that, if it's the last 
-renderer component painted, it will not start consuming input. The Container p 
-is the component we're actually drawing on, typically it's equal to 
-this.getParent(). If shouldValidate is true the component c will be validated 
-before painted. 
+Paint a cell renderer component c on graphics object g. Before the component is drawn it's reparented to this (if that's necessary), it's bounds are set to w,h and the graphics 
+object is (effectively) translated to x,y. If it's a JComponent, double buffering is temporarily turned off. After the component is painted it's bounds are reset to -w, -h, 0, 0 
+so that, if it's the last renderer component painted, it will not start consuming input. The Container p is the component we're actually drawing on, typically it's equal to 
+this.getParent(). If shouldValidate is true the component c will be validated before painted. 
+
 
 
 *javax.swing.CellRendererPane.paintComponent(Graphics,Component,Container,Rectangle)*
@@ -170,11 +142,13 @@ public void paintComponent(
 Calls this.paintComponent() with the rectangles x,y,width,height fields. 
 
 
+
 *javax.swing.CellRendererPane.update(Graphics)*
 
 public void update(java.awt.Graphics g)
 
 Shouldn't be called. 
+
 
 
 

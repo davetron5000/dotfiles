@@ -1,4 +1,5 @@
-*java.beans.EventSetDescriptor* *EventSetDescriptor* An EventSetDescriptor descr
+*java.beans.EventSetDescriptor* *EventSetDescriptor* An EventSetDescriptor describes a group of events that a given Java
+ bean fires.
 
 public class EventSetDescriptor
   extends    |java.beans.FeatureDescriptor|
@@ -8,66 +9,61 @@ public class EventSetDescriptor
 |java.beans.EventSetDescriptor_Constructors|
 |java.beans.EventSetDescriptor_Methods|
 
-================================================================================
+====================================================================================================================================================================================
 
 *java.beans.EventSetDescriptor_Constructors*
-|java.beans.EventSetDescriptor(Class,String,Class,String)|Creates an EventSetDe
-|java.beans.EventSetDescriptor(Class,String,Class,String[],String,String)|Creat
-|java.beans.EventSetDescriptor(Class,String,Class,String[],String,String,String)|
-|java.beans.EventSetDescriptor(String,Class,Method[],Method,Method)|Creates an 
-|java.beans.EventSetDescriptor(String,Class,Method[],Method,Method,Method)|This
-|java.beans.EventSetDescriptor(String,Class,MethodDescriptor[],Method,Method)|C
+|java.beans.EventSetDescriptor(Class<?>,String,Class<?>,String)|Creates an EventSetDescriptor assuming that you are  following the most simple standard design pattern where a name
+|java.beans.EventSetDescriptor(Class<?>,String,Class<?>,String[],String,String)|Creates an EventSetDescriptor from scratch using  string names.
+|java.beans.EventSetDescriptor(Class<?>,String,Class<?>,String[],String,String,String)|This constructor creates an EventSetDescriptor from scratch using  string names.
+|java.beans.EventSetDescriptor(String,Class<?>,Method[],Method,Method)|Creates an EventSetDescriptor from scratch using  java.lang.reflect.Method and java.lang.Class objects.
+|java.beans.EventSetDescriptor(String,Class<?>,Method[],Method,Method,Method)|This constructor creates an EventSetDescriptor from scratch using  java.lang.reflect.Method and java.
+|java.beans.EventSetDescriptor(String,Class<?>,MethodDescriptor[],Method,Method)|Creates an EventSetDescriptor from scratch using  java.lang.reflect.MethodDescriptor and java.lang
 
 *java.beans.EventSetDescriptor_Methods*
-|java.beans.EventSetDescriptor.getAddListenerMethod()|Gets the method used to a
-|java.beans.EventSetDescriptor.getGetListenerMethod()|Gets the method used to a
-|java.beans.EventSetDescriptor.getListenerMethodDescriptors()|Gets the MethodDe
-|java.beans.EventSetDescriptor.getListenerMethods()|Gets the methods of the tar
-|java.beans.EventSetDescriptor.getListenerType()|Gets the Class object for the 
-|java.beans.EventSetDescriptor.getRemoveListenerMethod()|Gets the method used t
-|java.beans.EventSetDescriptor.isInDefaultEventSet()|Reports if an event set is
-|java.beans.EventSetDescriptor.isUnicast()|Normally event sources are multicast
-|java.beans.EventSetDescriptor.setInDefaultEventSet(boolean)|Marks an event set
-|java.beans.EventSetDescriptor.setUnicast(boolean)|Mark an event set as unicast
+|java.beans.EventSetDescriptor.getAddListenerMethod()|Gets the method used to add event listeners.
+|java.beans.EventSetDescriptor.getGetListenerMethod()|Gets the method used to access the registered event listeners.
+|java.beans.EventSetDescriptor.getListenerMethodDescriptors()|Gets the MethodDescriptors of the target listener interface.
+|java.beans.EventSetDescriptor.getListenerMethods()|Gets the methods of the target listener interface.
+|java.beans.EventSetDescriptor.getListenerType()|Gets the Class object for the target interface.
+|java.beans.EventSetDescriptor.getRemoveListenerMethod()|Gets the method used to remove event listeners.
+|java.beans.EventSetDescriptor.isInDefaultEventSet()|Reports if an event set is in the default set.
+|java.beans.EventSetDescriptor.isUnicast()|Normally event sources are multicast.
+|java.beans.EventSetDescriptor.setInDefaultEventSet(boolean)|Marks an event set as being in the default set (or not).
+|java.beans.EventSetDescriptor.setUnicast(boolean)|Mark an event set as unicast (or not).
 
 *java.beans.EventSetDescriptor_Description*
 
 An EventSetDescriptor describes a group of events that a given Java bean fires. 
 
-The given group of events are all delivered as method calls on a single event 
-listener interface, and an event listener object can be registered via a call 
-on a registration method supplied by the event source. 
+The given group of events are all delivered as method calls on a single event listener interface, and an event listener object can be registered via a call on a registration 
+method supplied by the event source. 
 
 
-*java.beans.EventSetDescriptor(Class,String,Class,String)*
+
+*java.beans.EventSetDescriptor(Class<?>,String,Class<?>,String)*
 
 public EventSetDescriptor(
-  java.lang.Class sourceClass,
+  java.lang.Class<?> sourceClass,
   java.lang.String eventSetName,
-  java.lang.Class listenerType,
+  java.lang.Class<?> listenerType,
   java.lang.String listenerMethodName)
   throws |java.beans.IntrospectionException|
          
-Creates an EventSetDescriptor assuming that you are following the most simple 
-standard design pattern where a named event fred is (1) delivered as a call on 
-the single method of interface FredListener, (2) has a single argument of type 
-FredEvent, and (3) where the FredListener may be registered with a call on an 
-addFredListener method of the source component and removed with a call on a 
-removeFredListener method. 
+Creates an EventSetDescriptor assuming that you are following the most simple standard design pattern where a named event fred is (1) delivered as a call on the single method of 
+interface FredListener, (2) has a single argument of type FredEvent, and (3) where the FredListener may be registered with a call on an addFredListener method of the source 
+component and removed with a call on a removeFredListener method. 
 
     sourceClass - The class firing the event. 
-    eventSetName - The programmatic name of the event. E.g. fred. Note that this should normally 
-       start with a lower-case character. 
+    eventSetName - The programmatic name of the event. E.g. fred. Note that this should normally start with a lower-case character. 
     listenerType - The target interface that events will get delivered to. 
-    listenerMethodName - The method that will get called when the event gets delivered to its target 
-       listener interface. 
+    listenerMethodName - The method that will get called when the event gets delivered to its target listener interface. 
 
-*java.beans.EventSetDescriptor(Class,String,Class,String[],String,String)*
+*java.beans.EventSetDescriptor(Class<?>,String,Class<?>,String[],String,String)*
 
 public EventSetDescriptor(
-  java.lang.Class sourceClass,
+  java.lang.Class<?> sourceClass,
   java.lang.String eventSetName,
-  java.lang.Class listenerType,
+  java.lang.Class<?> listenerType,
   java.lang.String[] listenerMethodNames,
   java.lang.String addListenerMethodName,
   java.lang.String removeListenerMethodName)
@@ -76,22 +72,18 @@ public EventSetDescriptor(
 Creates an EventSetDescriptor from scratch using string names. 
 
     sourceClass - The class firing the event. 
-    eventSetName - The programmatic name of the event set. Note that this should normally start 
-       with a lower-case character. 
+    eventSetName - The programmatic name of the event set. Note that this should normally start with a lower-case character. 
     listenerType - The Class of the target interface that events will get delivered to. 
-    listenerMethodNames - The names of the methods that will get called when the event gets delivered to 
-       its target listener interface. 
-    addListenerMethodName - The name of the method on the event source that can be used to register an 
-       event listener object. 
-    removeListenerMethodName - The name of the method on the event source that can be used to de-register an 
-       event listener object. 
+    listenerMethodNames - The names of the methods that will get called when the event gets delivered to its target listener interface. 
+    addListenerMethodName - The name of the method on the event source that can be used to register an event listener object. 
+    removeListenerMethodName - The name of the method on the event source that can be used to de-register an event listener object. 
 
-*java.beans.EventSetDescriptor(Class,String,Class,String[],String,String,String)*
+*java.beans.EventSetDescriptor(Class<?>,String,Class<?>,String[],String,String,String)*
 
 public EventSetDescriptor(
-  java.lang.Class sourceClass,
+  java.lang.Class<?> sourceClass,
   java.lang.String eventSetName,
-  java.lang.Class listenerType,
+  java.lang.Class<?> listenerType,
   java.lang.String[] listenerMethodNames,
   java.lang.String addListenerMethodName,
   java.lang.String removeListenerMethodName,
@@ -101,86 +93,68 @@ public EventSetDescriptor(
 This constructor creates an EventSetDescriptor from scratch using string names. 
 
     sourceClass - The class firing the event. 
-    eventSetName - The programmatic name of the event set. Note that this should normally start 
-       with a lower-case character. 
+    eventSetName - The programmatic name of the event set. Note that this should normally start with a lower-case character. 
     listenerType - The Class of the target interface that events will get delivered to. 
-    listenerMethodNames - The names of the methods that will get called when the event gets delivered to 
-       its target listener interface. 
-    addListenerMethodName - The name of the method on the event source that can be used to register an 
-       event listener object. 
-    removeListenerMethodName - The name of the method on the event source that can be used to de-register an 
-       event listener object. 
-    getListenerMethodName - The method on the event source that can be used to access the array of event 
-       listener objects. 
+    listenerMethodNames - The names of the methods that will get called when the event gets delivered to its target listener interface. 
+    addListenerMethodName - The name of the method on the event source that can be used to register an event listener object. 
+    removeListenerMethodName - The name of the method on the event source that can be used to de-register an event listener object. 
+    getListenerMethodName - The method on the event source that can be used to access the array of event listener objects. 
 
-*java.beans.EventSetDescriptor(String,Class,Method[],Method,Method)*
+*java.beans.EventSetDescriptor(String,Class<?>,Method[],Method,Method)*
 
 public EventSetDescriptor(
   java.lang.String eventSetName,
-  java.lang.Class listenerType,
+  java.lang.Class<?> listenerType,
   java.lang.reflect.Method[] listenerMethods,
   java.lang.reflect.Method addListenerMethod,
   java.lang.reflect.Method removeListenerMethod)
   throws |java.beans.IntrospectionException|
          
-Creates an EventSetDescriptor from scratch using java.lang.reflect.Method and 
-java.lang.Class objects. 
+Creates an EventSetDescriptor from scratch using java.lang.reflect.Method and java.lang.Class objects. 
 
     eventSetName - The programmatic name of the event set. 
     listenerType - The Class for the listener interface. 
-    listenerMethods - An array of Method objects describing each of the event handling methods in the 
-       target listener. 
-    addListenerMethod - The method on the event source that can be used to register an event listener 
-       object. 
-    removeListenerMethod - The method on the event source that can be used to de-register an event 
-       listener object. 
+    listenerMethods - An array of Method objects describing each of the event handling methods in the target listener. 
+    addListenerMethod - The method on the event source that can be used to register an event listener object. 
+    removeListenerMethod - The method on the event source that can be used to de-register an event listener object. 
 
-*java.beans.EventSetDescriptor(String,Class,Method[],Method,Method,Method)*
+*java.beans.EventSetDescriptor(String,Class<?>,Method[],Method,Method,Method)*
 
 public EventSetDescriptor(
   java.lang.String eventSetName,
-  java.lang.Class listenerType,
+  java.lang.Class<?> listenerType,
   java.lang.reflect.Method[] listenerMethods,
   java.lang.reflect.Method addListenerMethod,
   java.lang.reflect.Method removeListenerMethod,
   java.lang.reflect.Method getListenerMethod)
   throws |java.beans.IntrospectionException|
          
-This constructor creates an EventSetDescriptor from scratch using 
-java.lang.reflect.Method and java.lang.Class objects. 
+This constructor creates an EventSetDescriptor from scratch using java.lang.reflect.Method and java.lang.Class objects. 
 
     eventSetName - The programmatic name of the event set. 
     listenerType - The Class for the listener interface. 
-    listenerMethods - An array of Method objects describing each of the event handling methods in the 
-       target listener. 
-    addListenerMethod - The method on the event source that can be used to register an event listener 
-       object. 
-    removeListenerMethod - The method on the event source that can be used to de-register an event 
-       listener object. 
-    getListenerMethod - The method on the event source that can be used to access the array of event 
-       listener objects. 
+    listenerMethods - An array of Method objects describing each of the event handling methods in the target listener. 
+    addListenerMethod - The method on the event source that can be used to register an event listener object. 
+    removeListenerMethod - The method on the event source that can be used to de-register an event listener object. 
+    getListenerMethod - The method on the event source that can be used to access the array of event listener objects. 
 
-*java.beans.EventSetDescriptor(String,Class,MethodDescriptor[],Method,Method)*
+*java.beans.EventSetDescriptor(String,Class<?>,MethodDescriptor[],Method,Method)*
 
 public EventSetDescriptor(
   java.lang.String eventSetName,
-  java.lang.Class listenerType,
+  java.lang.Class<?> listenerType,
   java.beans.MethodDescriptor[] listenerMethodDescriptors,
   java.lang.reflect.Method addListenerMethod,
   java.lang.reflect.Method removeListenerMethod)
   throws |java.beans.IntrospectionException|
          
-Creates an EventSetDescriptor from scratch using 
-java.lang.reflect.MethodDescriptor and java.lang.Class objects. 
+Creates an EventSetDescriptor from scratch using java.lang.reflect.MethodDescriptor and java.lang.Class objects. 
 
     eventSetName - The programmatic name of the event set. 
     listenerType - The Class for the listener interface. 
-    listenerMethodDescriptors - An array of MethodDescriptor objects describing each of the event handling 
-       methods in the target listener. 
-    addListenerMethod - The method on the event source that can be used to register an event listener 
-       object. 
-    removeListenerMethod - The method on the event source that can be used to de-register an event 
-       listener object. 
+    listenerMethodDescriptors - An array of MethodDescriptor objects describing each of the event handling methods in the target listener. 
+    addListenerMethod - The method on the event source that can be used to register an event listener object. 
+    removeListenerMethod - The method on the event source that can be used to de-register an event listener object. 
 
 *java.beans.EventSetDescriptor.getAddListenerMethod()*
 
@@ -189,7 +163,9 @@ public synchronized |java.lang.reflect.Method| getAddListenerMethod()
 Gets the method used to add event listeners. 
 
 
+
     Returns: The method used to register a listener at the event source. 
+
 *java.beans.EventSetDescriptor.getGetListenerMethod()*
 
 public synchronized |java.lang.reflect.Method| getGetListenerMethod()
@@ -197,35 +173,39 @@ public synchronized |java.lang.reflect.Method| getGetListenerMethod()
 Gets the method used to access the registered event listeners. 
 
 
-    Returns: The method used to access the array of listeners at the event source or null if 
-             it doesn't exist. 
+
+    Returns: The method used to access the array of listeners at the event source or null if it doesn't exist. 
+
 *java.beans.EventSetDescriptor.getListenerMethodDescriptors()*
 
-public synchronized |java.beans.MethodDescriptor| getListenerMethodDescriptors()
+public synchronized |java.beans.MethodDescriptor|[] getListenerMethodDescriptors()
 
 Gets the MethodDescriptors of the target listener interface. 
 
 
-    Returns: An array of MethodDescriptor objects for the target methods within the target 
-             listener interface that will get called when events are fired. 
+
+    Returns: An array of MethodDescriptor objects for the target methods within the target listener interface that will get called when events are fired. 
+
 *java.beans.EventSetDescriptor.getListenerMethods()*
 
-public synchronized |java.lang.reflect.Method| getListenerMethods()
+public synchronized |java.lang.reflect.Method|[] getListenerMethods()
 
 Gets the methods of the target listener interface. 
 
 
-    Returns: An array of Method objects for the target methods within the target listener 
-             interface that will get called when events are fired. 
+
+    Returns: An array of Method objects for the target methods within the target listener interface that will get called when events are fired. 
+
 *java.beans.EventSetDescriptor.getListenerType()*
 
-public |java.lang.Class| getListenerType()
+public |java.lang.Class|<?> getListenerType()
 
 Gets the Class object for the target interface. 
 
 
-    Returns: The Class object for the target interface that will get invoked when the event 
-             is fired. 
+
+    Returns: The Class object for the target interface that will get invoked when the event is fired. 
+
 *java.beans.EventSetDescriptor.getRemoveListenerMethod()*
 
 public synchronized |java.lang.reflect.Method| getRemoveListenerMethod()
@@ -233,7 +213,9 @@ public synchronized |java.lang.reflect.Method| getRemoveListenerMethod()
 Gets the method used to remove event listeners. 
 
 
+
     Returns: The method used to remove a listener at the event source. 
+
 *java.beans.EventSetDescriptor.isInDefaultEventSet()*
 
 public boolean isInDefaultEventSet()
@@ -241,22 +223,25 @@ public boolean isInDefaultEventSet()
 Reports if an event set is in the default set. 
 
 
+
     Returns: true if the event set is in the default set. Defaults to true. 
+
 *java.beans.EventSetDescriptor.isUnicast()*
 
 public boolean isUnicast()
 
-Normally event sources are multicast. However there are some exceptions that 
-are strictly unicast. 
+Normally event sources are multicast. However there are some exceptions that are strictly unicast. 
+
 
 
     Returns: true if the event set is unicast. Defaults to false. 
+
 *java.beans.EventSetDescriptor.setInDefaultEventSet(boolean)*
 
 public void setInDefaultEventSet(boolean inDefaultEventSet)
 
-Marks an event set as being in the default set (or not). By default this is 
-true. 
+Marks an event set as being in the default set (or not). By default this is true. 
+
 
     inDefaultEventSet - true if the event set is in the default set, false if not 
 
@@ -265,6 +250,7 @@ true.
 public void setUnicast(boolean unicast)
 
 Mark an event set as unicast (or not). 
+
 
     unicast - True if the event set is unicast. 
 

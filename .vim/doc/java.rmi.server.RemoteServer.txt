@@ -1,4 +1,6 @@
-*java.rmi.server.RemoteServer* *RemoteServer* The RemoteServer class is the comm
+*java.rmi.server.RemoteServer* *RemoteServer* The RemoteServer class is the common superclass to server
+ implementations and provides the framework to support a wide range
+ of remo
 
 public abstract class RemoteServer
   extends    |java.rmi.server.RemoteObject|
@@ -8,24 +10,22 @@ public abstract class RemoteServer
 |java.rmi.server.RemoteServer_Constructors|
 |java.rmi.server.RemoteServer_Methods|
 
-================================================================================
+====================================================================================================================================================================================
 
 *java.rmi.server.RemoteServer_Constructors*
 |java.rmi.server.RemoteServer()|Constructs a RemoteServer.
-|java.rmi.server.RemoteServer(RemoteRef)|Constructs a RemoteServer with the giv
+|java.rmi.server.RemoteServer(RemoteRef)|Constructs a RemoteServer with the given reference type.
 
 *java.rmi.server.RemoteServer_Methods*
-|java.rmi.server.RemoteServer.getClientHost()|Returns a string representation o
+|java.rmi.server.RemoteServer.getClientHost()|Returns a string representation of the client host for the  remote method invocation being processed in the current thread.
 |java.rmi.server.RemoteServer.getLog()|Returns stream for the RMI call log.
-|java.rmi.server.RemoteServer.setLog(OutputStream)|Log RMI calls to the output 
+|java.rmi.server.RemoteServer.setLog(OutputStream)|Log RMI calls to the output stream out.
 
 *java.rmi.server.RemoteServer_Description*
 
-The RemoteServer class is the common superclass to server implementations and 
-provides the framework to support a wide range of remote reference semantics. 
-Specifically, the functions needed to create and export remote objects (i.e. to 
-make them remotely available) are provided abstractly by RemoteServer and 
-concretely by its subclass(es). 
+The RemoteServer class is the common superclass to server implementations and provides the framework to support a wide range of remote reference semantics. Specifically, the 
+functions needed to create and export remote objects (i.e. to make them remotely available) are provided abstractly by RemoteServer and concretely by its subclass(es). 
+
 
 
 *java.rmi.server.RemoteServer()*
@@ -48,11 +48,12 @@ Constructs a RemoteServer with the given reference type.
 public static |java.lang.String| getClientHost()
   throws |java.rmi.server.ServerNotActiveException|
          
-Returns a string representation of the client host for the remote method 
-invocation being processed in the current thread. 
+Returns a string representation of the client host for the remote method invocation being processed in the current thread. 
+
 
 
     Returns: a string representation of the client host 
+
 *java.rmi.server.RemoteServer.getLog()*
 
 public static |java.io.PrintStream| getLog()
@@ -60,17 +61,18 @@ public static |java.io.PrintStream| getLog()
 Returns stream for the RMI call log. 
 
 
+
     Returns: 
+
 *java.rmi.server.RemoteServer.setLog(OutputStream)*
 
 public static void setLog(java.io.OutputStream out)
 
-Log RMI calls to the output stream out. If out is null, call logging is turned 
-off. 
+Log RMI calls to the output stream out. If out is null, call logging is turned off. 
 
-If there is a security manager, its checkPermission method will be invoked with 
-a java.util.logging.LoggingPermission("control") permission; this could result 
-in a SecurityException. 
+If there is a security manager, its checkPermission method will be invoked with a java.util.logging.LoggingPermission("control") permission; this could result in a 
+SecurityException. 
+
 
     out - the output stream to which RMI calls should be logged 
 

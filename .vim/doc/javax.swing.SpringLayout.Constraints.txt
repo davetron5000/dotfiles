@@ -1,4 +1,6 @@
-*javax.swing.SpringLayout.Constraints* *SpringLayout.Constraints* A Constraints 
+*javax.swing.SpringLayout.Constraints* *SpringLayout.Constraints* A Constraints object holds the
+ constraints that govern the way a component's size and position
+ change in a conta
 
 public static class SpringLayout.Constraints
   extends    |java.lang.Object|
@@ -8,35 +10,31 @@ public static class SpringLayout.Constraints
 |javax.swing.SpringLayout.Constraints_Constructors|
 |javax.swing.SpringLayout.Constraints_Methods|
 
-================================================================================
+====================================================================================================================================================================================
 
 *javax.swing.SpringLayout.Constraints_Constructors*
 |javax.swing.SpringLayout.Constraints()|Creates an empty Constraints object.
-|javax.swing.SpringLayout.Constraints(Component)|Creates a Constraints object w
-|javax.swing.SpringLayout.Constraints(Spring,Spring)|Creates a Constraints obje
-|javax.swing.SpringLayout.Constraints(Spring,Spring,Spring,Spring)|Creates a Co
+|javax.swing.SpringLayout.Constraints(Component)|Creates a Constraints object with  suitable x, y, width and  height springs for component, c.
+|javax.swing.SpringLayout.Constraints(Spring,Spring)|Creates a Constraints object with the  specified values for its  x and y properties.
+|javax.swing.SpringLayout.Constraints(Spring,Spring,Spring,Spring)|Creates a Constraints object with the   specified values for its  x, y, width,  and height properties.
 
 *javax.swing.SpringLayout.Constraints_Methods*
-|javax.swing.SpringLayout.Constraints.getConstraint(String)|Returns the value o
-|javax.swing.SpringLayout.Constraints.getHeight()|Returns the value of the heig
-|javax.swing.SpringLayout.Constraints.getWidth()|Returns the value of the width
-|javax.swing.SpringLayout.Constraints.getX()|Returns the value of the x propert
-|javax.swing.SpringLayout.Constraints.getY()|Returns the value of the y propert
-|javax.swing.SpringLayout.Constraints.setConstraint(String,Spring)|Sets the spr
-|javax.swing.SpringLayout.Constraints.setHeight(Spring)|Sets the height propert
-|javax.swing.SpringLayout.Constraints.setWidth(Spring)|Sets the width property,
-|javax.swing.SpringLayout.Constraints.setX(Spring)|Sets the x property,  which 
-|javax.swing.SpringLayout.Constraints.setY(Spring)|Sets the y property,  which 
+|javax.swing.SpringLayout.Constraints.getConstraint(String)|Returns the value of the specified edge.
+|javax.swing.SpringLayout.Constraints.getHeight()|Returns the value of the height property.
+|javax.swing.SpringLayout.Constraints.getWidth()|Returns the value of the width property.
+|javax.swing.SpringLayout.Constraints.getX()|Returns the value of the x property.
+|javax.swing.SpringLayout.Constraints.getY()|Returns the value of the y property.
+|javax.swing.SpringLayout.Constraints.setConstraint(String,Spring)|Sets the spring controlling the specified edge.
+|javax.swing.SpringLayout.Constraints.setHeight(Spring)|Sets the height property,  which controls the height of a component.
+|javax.swing.SpringLayout.Constraints.setWidth(Spring)|Sets the width property,  which controls the width of a component.
+|javax.swing.SpringLayout.Constraints.setX(Spring)|Sets the x property,  which controls the x value  of a component's location.
+|javax.swing.SpringLayout.Constraints.setY(Spring)|Sets the y property,  which controls the y value  of a component's location.
 
 *javax.swing.SpringLayout.Constraints_Description*
 
-A Constraints object holds the constraints that govern the way a component's 
-size and position change in a container controlled by a SpringLayout. A 
-Constraints object is like a Rectangle, in that it has x, y, width, and height 
-properties. In the Constraints object, however, these properties have Spring 
-values instead of integers. In addition, a Constraints object can be 
-manipulated as four edges -- north, south, east, and west -- using the 
-constraint property. 
+A Constraints object holds the constraints that govern the way a component's size and position change in a container controlled by a SpringLayout. A Constraints object is like a 
+Rectangle, in that it has x, y, width, and height properties. In the Constraints object, however, these properties have Spring values instead of integers. In addition, a 
+Constraints object can be manipulated as four edges -- north, south, east, and west -- using the constraint property. 
 
 The following formulas are always true for a Constraints object: 
 
@@ -44,33 +42,24 @@ The following formulas are always true for a Constraints object:
 
 west = x north = y east = x + width south = y + height 
 
-Note: In this document, operators represent methods in the Spring class. For 
-example, "a + b" is equal to Spring.sum(a, b), and "a - b" is equal to 
-Spring.sum(a, Spring.minus(b)). See the Spring</code> API 
-documentation<code>(|javax.swing.Spring|) for further details of spring 
-arithmetic. 
+Note: In this document, operators represent methods in the Spring class. For example, "a + b" is equal to Spring.sum(a, b), and "a - b" is equal to Spring.sum(a, Spring.minus(b)). 
+See the Spring</code> API documentation<code>(|javax.swing.Spring|) for further details of spring arithmetic. 
 
 
 
-Because a Constraints object's properties -- representing its edges, size, and 
-location -- can all be set independently and yet are interrelated, the object 
-can become over-constrained. For example, if both the x and width properties 
-are set and then the east edge is set, the object is over-constrained 
-horizontally. When this happens, one of the values (in this case, the x 
-property) automatically changes so that the formulas still hold. 
+Because a Constraints object's properties -- representing its edges, size, and location -- can all be set independently and yet are interrelated, the object can become 
+over-constrained. For example, if both the x and width properties are set and then the east edge is set, the object is over-constrained horizontally. When this happens, one of the 
+values (in this case, the x property) automatically changes so that the formulas still hold. 
 
-The following table shows which value changes when a Constraints object is 
-over-constrained horizontally. 
+The following table shows which value changes when a Constraints object is over-constrained horizontally. 
 
 
 
 
 
-Value Being Set(method used) Result When Over-Constrained Horizontally (x, 
-width, and the east edge are all non-null) 
+Value Being Set(method used) Result When Over-Constrained Horizontally (x, width, and the east edge are all non-null) 
 
-x or the west edge (setX or setConstraint) width value is automatically set to 
-east - x. 
+x or the west edge (setX or setConstraint) width value is automatically set to east - x. 
 
 width(setWidth) east edge's value is automatically set to x + width. 
 
@@ -82,15 +71,14 @@ The rules for the vertical properties are similar:
 
 
 
-Value Being Set(method used) Result When Over-Constrained Vertically(y, height, 
-and the south edge are all non-null) 
+Value Being Set(method used) Result When Over-Constrained Vertically(y, height, and the south edge are all non-null) 
 
-y or the north edge(setY or setConstraint) height value is automatically set to 
-south - y. 
+y or the north edge(setY or setConstraint) height value is automatically set to south - y. 
 
 height(setHeight) south edge's value is automatically set to y + height. 
 
 south edge(setConstraint) y value is automatically set to south - height. 
+
 
 
 
@@ -106,15 +94,11 @@ Creates an empty Constraints object.
 
 public SpringLayout.Constraints(java.awt.Component c)
 
-Creates a Constraints object with suitable x, y, width and height springs for 
-component, c. The x and y springs are constant springs initialised with the 
-component's location at the time this method is called. The width and height 
-springs are special springs, created by the Spring.width() and Spring.height() 
-methods, which track the size characteristics of the component when they 
-change. 
+Creates a Constraints object with suitable x, y, width and height springs for component, c. The x and y springs are constant springs initialised with the component's location at 
+the time this method is called. The width and height springs are special springs, created by the Spring.width() and Spring.height() methods, which track the size characteristics 
+of the component when they change. 
 
-    c - the component whose characteristics will be reflected by this Constraints 
-       object 
+    c - the component whose characteristics will be reflected by this Constraints object 
 
 *javax.swing.SpringLayout.Constraints(Spring,Spring)*
 
@@ -122,8 +106,7 @@ public SpringLayout.Constraints(
   javax.swing.Spring x,
   javax.swing.Spring y)
 
-Creates a Constraints object with the specified values for its x and y 
-properties. The height and width springs have null values. 
+Creates a Constraints object with the specified values for its x and y properties. The height and width springs have null values. 
 
     x - the spring controlling the component's x value 
     y - the spring controlling the component's y value 
@@ -136,10 +119,8 @@ public SpringLayout.Constraints(
   javax.swing.Spring width,
   javax.swing.Spring height)
 
-Creates a Constraints object with the specified values for its x, y, width, and 
-height properties. Note: If the SpringLayout class encounters null values in 
-the Constraints object of a given component, it replaces them with suitable 
-defaults. 
+Creates a Constraints object with the specified values for its x, y, width, and height properties. Note: If the SpringLayout class encounters null values in the Constraints object 
+of a given component, it replaces them with suitable defaults. 
 
     x - the spring value for the x property 
     y - the spring value for the y property 
@@ -150,13 +131,13 @@ defaults.
 
 public |javax.swing.Spring| getConstraint(java.lang.String edgeName)
 
-Returns the value of the specified edge. The edge must have one of the 
-following values: SpringLayout.NORTH, SpringLayout.SOUTH, SpringLayout.EAST, 
-SpringLayout.WEST. 
+Returns the value of the specified edge. The edge must have one of the following values: SpringLayout.NORTH, SpringLayout.SOUTH, SpringLayout.EAST, SpringLayout.WEST. 
+
 
     edgeName - the edge whose value is to be returned 
 
     Returns: the spring controlling the specified edge 
+
 *javax.swing.SpringLayout.Constraints.getHeight()*
 
 public |javax.swing.Spring| getHeight()
@@ -164,7 +145,9 @@ public |javax.swing.Spring| getHeight()
 Returns the value of the height property. 
 
 
+
     Returns: the spring controlling the height of a component 
+
 *javax.swing.SpringLayout.Constraints.getWidth()*
 
 public |javax.swing.Spring| getWidth()
@@ -172,7 +155,9 @@ public |javax.swing.Spring| getWidth()
 Returns the value of the width property. 
 
 
+
     Returns: the spring controlling the width of a component 
+
 *javax.swing.SpringLayout.Constraints.getX()*
 
 public |javax.swing.Spring| getX()
@@ -180,7 +165,9 @@ public |javax.swing.Spring| getX()
 Returns the value of the x property. 
 
 
+
     Returns: the spring controlling the x value of a component's location 
+
 *javax.swing.SpringLayout.Constraints.getY()*
 
 public |javax.swing.Spring| getY()
@@ -188,16 +175,17 @@ public |javax.swing.Spring| getY()
 Returns the value of the y property. 
 
 
+
     Returns: the spring controlling the y value of a component's location 
+
 *javax.swing.SpringLayout.Constraints.setConstraint(String,Spring)*
 
 public void setConstraint(
   java.lang.String edgeName,
   javax.swing.Spring s)
 
-Sets the spring controlling the specified edge. The edge must have one of the 
-following values: SpringLayout.NORTH, SpringLayout.SOUTH, SpringLayout.EAST, 
-SpringLayout.WEST. 
+Sets the spring controlling the specified edge. The edge must have one of the following values: SpringLayout.NORTH, SpringLayout.SOUTH, SpringLayout.EAST, SpringLayout.WEST. 
+
 
     edgeName - the edge to be set 
     s - the spring controlling the specified edge 
@@ -208,6 +196,7 @@ public void setHeight(javax.swing.Spring height)
 
 Sets the height property, which controls the height of a component. 
 
+
     height - the spring controlling the height of this Constraints object 
 
 *javax.swing.SpringLayout.Constraints.setWidth(Spring)*
@@ -215,6 +204,7 @@ Sets the height property, which controls the height of a component.
 public void setWidth(javax.swing.Spring width)
 
 Sets the width property, which controls the width of a component. 
+
 
     width - the spring controlling the width of this Constraints object 
 
@@ -224,6 +214,7 @@ public void setX(javax.swing.Spring x)
 
 Sets the x property, which controls the x value of a component's location. 
 
+
     x - the spring controlling the x value of a component's location 
 
 *javax.swing.SpringLayout.Constraints.setY(Spring)*
@@ -231,6 +222,7 @@ Sets the x property, which controls the x value of a component's location.
 public void setY(javax.swing.Spring y)
 
 Sets the y property, which controls the y value of a component's location. 
+
 
     y - the spring controlling the y value of a component's location 
 

@@ -1,4 +1,4 @@
-*java.security.cert.X509Extension* *X509Extension* Interface for an X.509 extens
+*java.security.cert.X509Extension* *X509Extension* Interface for an X.509 extension.
 
 public interface interface X509Extension
 
@@ -8,116 +8,95 @@ public interface interface X509Extension
 |java.security.cert.X509Extension_Constructors|
 |java.security.cert.X509Extension_Methods|
 
-================================================================================
+====================================================================================================================================================================================
 
 *java.security.cert.X509Extension_Methods*
-|java.security.cert.X509Extension.getCriticalExtensionOIDs()|Gets a Set of the 
-|java.security.cert.X509Extension.getExtensionValue(String)|Gets the DER-encode
-|java.security.cert.X509Extension.getNonCriticalExtensionOIDs()|Gets a Set of t
-|java.security.cert.X509Extension.hasUnsupportedCriticalExtension()|Check if th
+|java.security.cert.X509Extension.getCriticalExtensionOIDs()|Gets a Set of the OID strings for the extension(s) marked  CRITICAL in the certificate/CRL managed by the object  impl
+|java.security.cert.X509Extension.getExtensionValue(String)|Gets the DER-encoded OCTET string for the extension value  (extnValue) identified by the passed-in oid  String.
+|java.security.cert.X509Extension.getNonCriticalExtensionOIDs()|Gets a Set of the OID strings for the extension(s) marked  NON-CRITICAL in the certificate/CRL managed by the objec
+|java.security.cert.X509Extension.hasUnsupportedCriticalExtension()|Check if there is a critical extension that is not supported.
 
 *java.security.cert.X509Extension_Description*
 
 Interface for an X.509 extension. 
 
-The extensions defined for X.509 v3 
-Certificates(|java.security.cert.X509Certificate|) and v2 
-CRLs(|java.security.cert.X509CRL|) (Certificate Revocation Lists) provide 
-methods for associating additional attributes with users or public keys, for 
-managing the certification hierarchy, and for managing CRL distribution. The 
-X.509 extensions format also allows communities to define private extensions to 
-carry information unique to those communities. 
+The extensions defined for X.509 v3 Certificates(|java.security.cert.X509Certificate|) and v2 CRLs(|java.security.cert.X509CRL|) (Certificate Revocation Lists) provide methods for 
+associating additional attributes with users or public keys, for managing the certification hierarchy, and for managing CRL distribution. The X.509 extensions format also allows 
+communities to define private extensions to carry information unique to those communities. 
 
-Each extension in a certificate/CRL may be designated as critical or 
-non-critical. A certificate/CRL-using system (an application validating a 
-certificate/CRL) must reject the certificate/CRL if it encounters a critical 
-extension it does not recognize. A non-critical extension may be ignored if it 
-is not recognized. 
+Each extension in a certificate/CRL may be designated as critical or non-critical. A certificate/CRL-using system (an application validating a certificate/CRL) must reject the 
+certificate/CRL if it encounters a critical extension it does not recognize. A non-critical extension may be ignored if it is not recognized. 
 
 The ASN.1 definition for this is: 
 
 Extensions ::= SEQUENCE SIZE (1..MAX) OF Extension 
 
-Extension ::= SEQUENCE { extnId OBJECT IDENTIFIER, critical BOOLEAN DEFAULT 
-FALSE, extnValue OCTET STRING -- contains a DER encoding of a value -- of the 
-type registered for use with -- the extnId object identifier value } 
+Extension ::= SEQUENCE { extnId OBJECT IDENTIFIER, critical BOOLEAN DEFAULT FALSE, extnValue OCTET STRING -- contains a DER encoding of a value -- of the type registered for use 
+with -- the extnId object identifier value } 
 
-Since not all extensions are known, the getExtensionValue method returns the 
-DER-encoded OCTET STRING of the extension value (i.e., the extnValue). This can 
-then be handled by a Class that understands the extension. 
+Since not all extensions are known, the getExtensionValue method returns the DER-encoded OCTET STRING of the extension value (i.e., the extnValue). This can then be handled by a 
+Class that understands the extension. 
+
 
 
 *java.security.cert.X509Extension.getCriticalExtensionOIDs()*
 
-public |java.util.Set| getCriticalExtensionOIDs()
+public |java.util.Set|<String> getCriticalExtensionOIDs()
 
-Gets a Set of the OID strings for the extension(s) marked CRITICAL in the 
-certificate/CRL managed by the object implementing this interface. 
+Gets a Set of the OID strings for the extension(s) marked CRITICAL in the certificate/CRL managed by the object implementing this interface. 
 
-Here is sample code to get a Set of critical extensions from an X509Certificate 
-and print the OIDs: 
+Here is sample code to get a Set of critical extensions from an X509Certificate and print the OIDs: 
 
-InputStream inStrm = new FileInputStream("DER-encoded-Cert"); 
-CertificateFactory cf = CertificateFactory.getInstance("X.509"); 
-X509Certificate cert = (X509Certificate)cf.generateCertificate(inStrm); 
-inStrm.close(); 
+InputStream inStrm = new FileInputStream("DER-encoded-Cert"); CertificateFactory cf = CertificateFactory.getInstance("X.509"); X509Certificate cert = 
+(X509Certificate)cf.generateCertificate(inStrm); inStrm.close(); 
 
-Set critSet = cert.getCriticalExtensionOIDs(); if (critSet != null 
-!critSet.isEmpty()) { System.out.println("Set of critical extensions:"); for 
-(Iterator i = critSet.iterator(); i.hasNext();) { String oid = 
-(String)i.next(); System.out.println(oid); } } 
+Set critSet = cert.getCriticalExtensionOIDs(); if (critSet != null !critSet.isEmpty()) { System.out.println("Set of critical extensions:"); for (Iterator i = critSet.iterator(); 
+i.hasNext();) { String oid = (String)i.next(); System.out.println(oid); } } 
 
 
-    Returns: a Set (or an empty Set if none are marked critical) of the extension OID 
-             strings for extensions that are marked critical. If there are no 
-             extensions present at all, then this method returns null. 
+
+    Returns: a Set (or an empty Set if none are marked critical) of the extension OID strings for extensions that are marked critical. If there are no extensions present at all, then this 
+             method returns null. 
+
 *java.security.cert.X509Extension.getExtensionValue(String)*
 
-public byte getExtensionValue(java.lang.String oid)
+public byte[] getExtensionValue(java.lang.String oid)
 
-Gets the DER-encoded OCTET string for the extension value (extnValue) 
-identified by the passed-in oid String. The oid string is represented by a set 
-of nonnegative whole numbers separated by periods. 
+Gets the DER-encoded OCTET string for the extension value (extnValue) identified by the passed-in oid String. The oid string is represented by a set of nonnegative whole numbers 
+separated by periods. 
 
 For example: 
 
-OID (Object Identifier) Extension Name 2.5.29.14 SubjectKeyIdentifier 2.5.29.15 
-KeyUsage 2.5.29.16 PrivateKeyUsage 2.5.29.17 SubjectAlternativeName 2.5.29.18 
-IssuerAlternativeName 2.5.29.19 BasicConstraints 2.5.29.30 NameConstraints 
-2.5.29.33 PolicyMappings 2.5.29.35 AuthorityKeyIdentifier 2.5.29.36 
-PolicyConstraints 
+OID (Object Identifier) Extension Name 2.5.29.14 SubjectKeyIdentifier 2.5.29.15 KeyUsage 2.5.29.16 PrivateKeyUsage 2.5.29.17 SubjectAlternativeName 2.5.29.18 IssuerAlternativeName 
+2.5.29.19 BasicConstraints 2.5.29.30 NameConstraints 2.5.29.33 PolicyMappings 2.5.29.35 AuthorityKeyIdentifier 2.5.29.36 PolicyConstraints 
+
 
     oid - the Object Identifier value for the extension. 
 
-    Returns: the DER-encoded octet string of the extension value or null if it is not 
-             present. 
+    Returns: the DER-encoded octet string of the extension value or null if it is not present. 
+
 *java.security.cert.X509Extension.getNonCriticalExtensionOIDs()*
 
-public |java.util.Set| getNonCriticalExtensionOIDs()
+public |java.util.Set|<String> getNonCriticalExtensionOIDs()
 
-Gets a Set of the OID strings for the extension(s) marked NON-CRITICAL in the 
-certificate/CRL managed by the object implementing this interface. 
+Gets a Set of the OID strings for the extension(s) marked NON-CRITICAL in the certificate/CRL managed by the object implementing this interface. 
 
-Here is sample code to get a Set of non-critical extensions from an X509CRL 
-revoked certificate entry and print the OIDs: 
+Here is sample code to get a Set of non-critical extensions from an X509CRL revoked certificate entry and print the OIDs: 
 
-InputStream inStrm = new FileInputStream("DER-encoded-CRL"); CertificateFactory 
-cf = CertificateFactory.getInstance("X.509"); X509CRL crl = 
-(X509CRL)cf.generateCRL(inStrm); inStrm.close(); 
+InputStream inStrm = new FileInputStream("DER-encoded-CRL"); CertificateFactory cf = CertificateFactory.getInstance("X.509"); X509CRL crl = (X509CRL)cf.generateCRL(inStrm); 
+inStrm.close(); 
 
-byte[] certData = <DER-encoded certificate data> ByteArrayInputStream bais = 
-new ByteArrayInputStream(certData); X509Certificate cert = 
-(X509Certificate)cf.generateCertificate(bais); bais.close(); X509CRLEntry 
-badCert = crl.getRevokedCertificate(cert.getSerialNumber()); 
+byte[] certData = <DER-encoded certificate data> ByteArrayInputStream bais = new ByteArrayInputStream(certData); X509Certificate cert = 
+(X509Certificate)cf.generateCertificate(bais); bais.close(); X509CRLEntry badCert = crl.getRevokedCertificate(cert.getSerialNumber()); 
 
-if (badCert != null) { Set nonCritSet = badCert.getNonCriticalExtensionOIDs(); 
-if (nonCritSet != null) for (Iterator i = nonCritSet.iterator(); i.hasNext();) 
-{ String oid = (String)i.next(); System.out.println(oid); } } 
+if (badCert != null) { Set nonCritSet = badCert.getNonCriticalExtensionOIDs(); if (nonCritSet != null) for (Iterator i = nonCritSet.iterator(); i.hasNext();) { String oid = 
+(String)i.next(); System.out.println(oid); } } 
 
 
-    Returns: a Set (or an empty Set if none are marked non-critical) of the extension OID 
-             strings for extensions that are marked non-critical. If there are 
-             no extensions present at all, then this method returns null. 
+
+    Returns: a Set (or an empty Set if none are marked non-critical) of the extension OID strings for extensions that are marked non-critical. If there are no extensions present at all, then 
+             this method returns null. 
+
 *java.security.cert.X509Extension.hasUnsupportedCriticalExtension()*
 
 public boolean hasUnsupportedCriticalExtension()
@@ -125,5 +104,7 @@ public boolean hasUnsupportedCriticalExtension()
 Check if there is a critical extension that is not supported. 
 
 
+
     Returns: true if a critical extension is found that is not supported, otherwise false. 
+
 

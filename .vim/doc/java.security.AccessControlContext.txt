@@ -1,4 +1,5 @@
-*java.security.AccessControlContext* *AccessControlContext* An AccessControlCont
+*java.security.AccessControlContext* *AccessControlContext* An AccessControlContext is used to make system resource access decisions
+ based on the context it encapsulates.
 
 public final class AccessControlContext
   extends    |java.lang.Object|
@@ -8,38 +9,30 @@ public final class AccessControlContext
 |java.security.AccessControlContext_Constructors|
 |java.security.AccessControlContext_Methods|
 
-================================================================================
+====================================================================================================================================================================================
 
 *java.security.AccessControlContext_Constructors*
-|java.security.AccessControlContext(AccessControlContext,DomainCombiner)|Create
-|java.security.AccessControlContext(ProtectionDomain[])|Create an AccessControl
+|java.security.AccessControlContext(AccessControlContext,DomainCombiner)|Create a new AccessControlContext with the given  AccessControlContext and DomainCombiner.
+|java.security.AccessControlContext(ProtectionDomain[])|Create an AccessControlContext with the given set of ProtectionDomains.
 
 *java.security.AccessControlContext_Methods*
-|java.security.AccessControlContext.checkPermission(Permission)|Determines whet
-|java.security.AccessControlContext.equals(Object)|Checks two AccessControlCont
-|java.security.AccessControlContext.getDomainCombiner()|Get the DomainCombiner 
-|java.security.AccessControlContext.hashCode()|Returns the hash code value for 
+|java.security.AccessControlContext.checkPermission(Permission)|Determines whether the access request indicated by the  specified permission should be allowed or denied, based on 
+|java.security.AccessControlContext.equals(Object)|Checks two AccessControlContext objects for equality.
+|java.security.AccessControlContext.getDomainCombiner()|Get the DomainCombiner associated with this  AccessControlContext.
+|java.security.AccessControlContext.hashCode()|Returns the hash code value for this context.
 
 *java.security.AccessControlContext_Description*
 
-An AccessControlContext is used to make system resource access decisions based 
-on the context it encapsulates. 
+An AccessControlContext is used to make system resource access decisions based on the context it encapsulates. 
 
-More specifically, it encapsulates a context and has a single method, 
-checkPermission, that is equivalent to the checkPermission method in the 
-AccessController class, with one difference: The AccessControlContext 
-checkPermission method makes access decisions based on the context it 
-encapsulates, rather than that of the current execution thread. 
+More specifically, it encapsulates a context and has a single method, checkPermission, that is equivalent to the checkPermission method in the AccessController class, with one 
+difference: The AccessControlContext checkPermission method makes access decisions based on the context it encapsulates, rather than that of the current execution thread. 
 
-Thus, the purpose of AccessControlContext is for those situations where a 
-security check that should be made within a given context actually needs to be 
-done from within a different context (for example, from within a worker 
-thread). 
+Thus, the purpose of AccessControlContext is for those situations where a security check that should be made within a given context actually needs to be done from within a 
+different context (for example, from within a worker thread). 
 
-An AccessControlContext is created by calling the AccessController.getContext 
-method. The getContext method takes a "snapshot" of the current calling 
-context, and places it in an AccessControlContext object, which it returns. A 
-sample call is the following: 
+An AccessControlContext is created by calling the AccessController.getContext method. The getContext method takes a "snapshot" of the current calling context, and places it in an 
+AccessControlContext object, which it returns. A sample call is the following: 
 
 
 
@@ -49,13 +42,12 @@ AccessControlContext acc = AccessController.getContext()
 
 
 
-Code within a different context can subsequently call the checkPermission 
-method on the previously-saved AccessControlContext object. A sample call is 
-the following: 
+Code within a different context can subsequently call the checkPermission method on the previously-saved AccessControlContext object. A sample call is the following: 
 
 
 
 acc.checkPermission(permission) 
+
 
 
 
@@ -66,9 +58,8 @@ public AccessControlContext(
   java.security.AccessControlContext acc,
   java.security.DomainCombiner combiner)
 
-Create a new AccessControlContext with the given AccessControlContext and 
-DomainCombiner. This constructor associates the provided DomainCombiner with 
-the provided AccessControlContext. 
+Create a new AccessControlContext with the given AccessControlContext and DomainCombiner. This constructor associates the provided DomainCombiner with the provided 
+AccessControlContext. 
 
 
 
@@ -79,24 +70,20 @@ the provided AccessControlContext.
 
 public AccessControlContext(java.security.ProtectionDomain[] context)
 
-Create an AccessControlContext with the given set of ProtectionDomains. Context 
-must not be null. Duplicate domains will be removed from the context. 
+Create an AccessControlContext with the given set of ProtectionDomains. Context must not be null. Duplicate domains will be removed from the context. 
 
-    context - the ProtectionDomains associated with this context. The non-duplicate domains 
-       are copied from the array. Subsequent changes to the array will not 
-       affect this AccessControlContext. 
+    context - the ProtectionDomains associated with this context. The non-duplicate domains are copied from the array. Subsequent changes to the array will not affect this AccessControlContext. 
 
 *java.security.AccessControlContext.checkPermission(Permission)*
 
 public void checkPermission(java.security.Permission perm)
   throws |java.security.AccessControlException|
          
-Determines whether the access request indicated by the specified permission 
-should be allowed or denied, based on the security policy currently in effect, 
-and the context in this object. 
+Determines whether the access request indicated by the specified permission should be allowed or denied, based on the security policy currently in effect, and the context in this 
+object. 
 
-This method quietly returns if the access request is permitted, or throws a 
-suitable AccessControlException otherwise. 
+This method quietly returns if the access request is permitted, or throws a suitable AccessControlException otherwise. 
+
 
     perm - the requested permission. 
 
@@ -104,13 +91,13 @@ suitable AccessControlException otherwise.
 
 public boolean equals(java.lang.Object obj)
 
-Checks two AccessControlContext objects for equality. Checks that obj is an 
-AccessControlContext and has the same set of ProtectionDomains as this context. 
+Checks two AccessControlContext objects for equality. Checks that obj is an AccessControlContext and has the same set of ProtectionDomains as this context. 
+
 
     obj - the object we are testing for equality with this object. 
 
-    Returns: true if obj is an AccessControlContext, and has the same set of 
-             ProtectionDomains as this context, false otherwise. 
+    Returns: true if obj is an AccessControlContext, and has the same set of ProtectionDomains as this context, false otherwise. 
+
 *java.security.AccessControlContext.getDomainCombiner()*
 
 public |java.security.DomainCombiner| getDomainCombiner()
@@ -120,16 +107,17 @@ Get the DomainCombiner associated with this AccessControlContext.
 
 
 
-    Returns: the DomainCombiner associated with this AccessControlContext, or null if there 
-             is none. 
+
+    Returns: the DomainCombiner associated with this AccessControlContext, or null if there is none. 
+
 *java.security.AccessControlContext.hashCode()*
 
 public int hashCode()
 
-Returns the hash code value for this context. The hash code is computed by 
-exclusive or-ing the hash code of all the protection domains in the context 
-together. 
+Returns the hash code value for this context. The hash code is computed by exclusive or-ing the hash code of all the protection domains in the context together. 
+
 
 
     Returns: a hash code value for this context. 
+
 

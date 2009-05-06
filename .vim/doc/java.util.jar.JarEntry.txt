@@ -1,4 +1,4 @@
-*java.util.jar.JarEntry* *JarEntry* This class is used to represent a JAR file e
+*java.util.jar.JarEntry* *JarEntry* This class is used to represent a JAR file entry.
 
 public class JarEntry
   extends    |java.util.zip.ZipEntry|
@@ -8,21 +8,22 @@ public class JarEntry
 |java.util.jar.JarEntry_Constructors|
 |java.util.jar.JarEntry_Methods|
 
-================================================================================
+====================================================================================================================================================================================
 
 *java.util.jar.JarEntry_Constructors*
-|java.util.jar.JarEntry(JarEntry)|Creates a new JarEntry with fields taken from
-|java.util.jar.JarEntry(String)|Creates a new JarEntry for the specified JAR fi
-|java.util.jar.JarEntry(ZipEntry)|Creates a new JarEntry with fields taken from
+|java.util.jar.JarEntry(JarEntry)|Creates a new JarEntry with fields taken from the  specified JarEntry object.
+|java.util.jar.JarEntry(String)|Creates a new JarEntry for the specified JAR file  entry name.
+|java.util.jar.JarEntry(ZipEntry)|Creates a new JarEntry with fields taken from the  specified ZipEntry object.
 
 *java.util.jar.JarEntry_Methods*
-|java.util.jar.JarEntry.getAttributes()|Returns the Manifest Attributes for thi
-|java.util.jar.JarEntry.getCertificates()|Returns the Certificate objects for t
-|java.util.jar.JarEntry.getCodeSigners()|Returns the CodeSigner objects for thi
+|java.util.jar.JarEntry.getAttributes()|Returns the Manifest Attributes for this  entry, or null if none.
+|java.util.jar.JarEntry.getCertificates()|Returns the Certificate objects for this entry, or  null if none.
+|java.util.jar.JarEntry.getCodeSigners()|Returns the CodeSigner objects for this entry, or  null if none.
 
 *java.util.jar.JarEntry_Description*
 
 This class is used to represent a JAR file entry. 
+
 
 
 *java.util.jar.JarEntry(JarEntry)*
@@ -57,35 +58,35 @@ public |java.util.jar.Attributes| getAttributes()
 Returns the Manifest Attributes for this entry, or null if none. 
 
 
+
     Returns: the Manifest Attributes for this entry, or null if none 
+
 *java.util.jar.JarEntry.getCertificates()*
 
-public |java.security.cert.Certificate| getCertificates()
+public |java.security.cert.Certificate|[] getCertificates()
 
-Returns the Certificate objects for this entry, or null if none. This method 
-can only be called once the JarEntry has been completely verified by reading 
-from the entry input stream until the end of the stream has been reached. 
-Otherwise, this method will return null. 
+Returns the Certificate objects for this entry, or null if none. This method can only be called once the JarEntry has been completely verified by reading from the entry input 
+stream until the end of the stream has been reached. Otherwise, this method will return null. 
 
-The returned certificate array comprises all the signer certificates that were 
-used to verify this entry. Each signer certificate is followed by its 
-supporting certificate chain (which may be empty). Each signer certificate and 
-its supporting certificate chain are ordered bottom-to-top (i.e., with the 
-signer certificate first and the (root) certificate authority last). 
+The returned certificate array comprises all the signer certificates that were used to verify this entry. Each signer certificate is followed by its supporting certificate chain 
+(which may be empty). Each signer certificate and its supporting certificate chain are ordered bottom-to-top (i.e., with the signer certificate first and the (root) certificate 
+authority last). 
+
 
 
     Returns: the Certificate objects for this entry, or null if none. 
+
 *java.util.jar.JarEntry.getCodeSigners()*
 
-public |java.security.CodeSigner| getCodeSigners()
+public |java.security.CodeSigner|[] getCodeSigners()
 
-Returns the CodeSigner objects for this entry, or null if none. This method can 
-only be called once the JarEntry has been completely verified by reading from 
-the entry input stream until the end of the stream has been reached. Otherwise, 
-this method will return null. 
+Returns the CodeSigner objects for this entry, or null if none. This method can only be called once the JarEntry has been completely verified by reading from the entry input 
+stream until the end of the stream has been reached. Otherwise, this method will return null. 
 
 The returned array comprises all the code signers that have signed this entry. 
 
 
+
     Returns: the CodeSigner objects for this entry, or null if none. 
+
 

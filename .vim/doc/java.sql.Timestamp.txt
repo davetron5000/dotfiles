@@ -1,4 +1,5 @@
-*java.sql.Timestamp* *Timestamp* A thin wrapper around java.util.Date that allow
+*java.sql.Timestamp* *Timestamp* A thin wrapper around java.util.Date that allows
+ the JDBC API to identify this as an SQL TIMESTAMP value.
 
 public class Timestamp
   extends    |java.util.Date|
@@ -8,48 +9,39 @@ public class Timestamp
 |java.sql.Timestamp_Constructors|
 |java.sql.Timestamp_Methods|
 
-================================================================================
+====================================================================================================================================================================================
 
 *java.sql.Timestamp_Constructors*
-|java.sql.Timestamp(int,int,int,int,int,int,int)|Constructs a Timestamp object 
-|java.sql.Timestamp(long)|Constructs a Timestamp object   using a milliseconds 
+|java.sql.Timestamp(int,int,int,int,int,int,int)|Constructs a Timestamp object initialized  with the given values.
+|java.sql.Timestamp(long)|Constructs a Timestamp object   using a milliseconds time value.
 
 *java.sql.Timestamp_Methods*
-|java.sql.Timestamp.after(Timestamp)|Indicates whether this Timestamp object is
-|java.sql.Timestamp.before(Timestamp)|Indicates whether this Timestamp object i
-|java.sql.Timestamp.compareTo(Date)|Compares this Timestamp object to the given
-|java.sql.Timestamp.compareTo(Timestamp)|Compares this Timestamp object to the 
-|java.sql.Timestamp.equals(Object)|Tests to see if this Timestamp object is  eq
-|java.sql.Timestamp.equals(Timestamp)|Tests to see if this Timestamp object is 
+|java.sql.Timestamp.after(Timestamp)|Indicates whether this Timestamp object is  later than the given Timestamp object.
+|java.sql.Timestamp.before(Timestamp)|Indicates whether this Timestamp object is  earlier than the given Timestamp object.
+|java.sql.Timestamp.compareTo(Date)|Compares this Timestamp object to the given  Date, which must be a Timestamp  object.
+|java.sql.Timestamp.compareTo(Timestamp)|Compares this Timestamp object to the given   Timestamp object.
+|java.sql.Timestamp.equals(Object)|Tests to see if this Timestamp object is  equal to the given object.
+|java.sql.Timestamp.equals(Timestamp)|Tests to see if this Timestamp object is  equal to the given Timestamp object.
 |java.sql.Timestamp.getNanos()|Gets this Timestamp object's nanos value.
-|java.sql.Timestamp.getTime()|Returns the number of milliseconds since January 
-|java.sql.Timestamp.setNanos(int)|Sets this Timestamp object's nanos field  to 
-|java.sql.Timestamp.setTime(long)|Sets this Timestamp object to represent a poi
-|java.sql.Timestamp.toString()|Formats a timestamp in JDBC timestamp escape for
-|java.sql.Timestamp.valueOf(String)|Converts a String object in JDBC timestamp 
+|java.sql.Timestamp.getTime()|Returns the number of milliseconds since January 1, 1970, 00:00:00 GMT  represented by this Timestamp object.
+|java.sql.Timestamp.setNanos(int)|Sets this Timestamp object's nanos field  to the given value.
+|java.sql.Timestamp.setTime(long)|Sets this Timestamp object to represent a point in time that is   time milliseconds after January 1, 1970 00:00:00 GMT.
+|java.sql.Timestamp.toString()|Formats a timestamp in JDBC timestamp escape format.
+|java.sql.Timestamp.valueOf(String)|Converts a String object in JDBC timestamp escape format to a  Timestamp value.
 
 *java.sql.Timestamp_Description*
 
-A thin wrapper around java.util.Date that allows the JDBC API to identify this 
-as an SQL TIMESTAMP value. It adds the ability to hold the SQL TIMESTAMP nanos 
-value and provides formatting and parsing operations to support the JDBC escape 
-syntax for timestamp values. 
+A thin wrapper around java.util.Date that allows the JDBC API to identify this as an SQL TIMESTAMP value. It adds the ability to hold the SQL TIMESTAMP nanos value and provides 
+formatting and parsing operations to support the JDBC escape syntax for timestamp values. 
 
-Note: This type is a composite of a java.util.Date and a separate nanoseconds 
-value. Only integral seconds are stored in the java.util.Date component. The 
-fractional seconds - the nanos - are separate. The Timestamp.equals(Object) 
-method never returns true when passed a value of type java.util.Date because 
-the nanos component of a date is unknown. As a result, the 
-Timestamp.equals(Object) method is not symmetric with respect to the 
-java.util.Date.equals(Object) method. Also, the hashcode method uses the 
-underlying java.util.Date implementation and therefore does not include nanos 
-in its computation. 
+Note: This type is a composite of a java.util.Date and a separate nanoseconds value. Only integral seconds are stored in the java.util.Date component. The fractional seconds - the 
+nanos - are separate. The Timestamp.equals(Object) method never returns true when passed a value of type java.util.Date because the nanos component of a date is unknown. As a 
+result, the Timestamp.equals(Object) method is not symmetric with respect to the java.util.Date.equals(Object) method. Also, the hashcode method uses the underlying java.util.Date 
+implementation and therefore does not include nanos in its computation. 
 
-Due to the differences between the Timestamp class and the java.util.Date class 
-mentioned above, it is recommended that code not view Timestamp values 
-generically as an instance of java.util.Date. The inheritance relationship 
-between Timestamp and java.util.Date really denotes implementation inheritance, 
-and not type inheritance. 
+Due to the differences between the Timestamp class and the java.util.Date class mentioned above, it is recommended that code not view Timestamp values generically as an instance 
+of java.util.Date. The inheritance relationship between Timestamp and java.util.Date really denotes implementation inheritance, and not type inheritance. 
+
 
 
 *java.sql.Timestamp(int,int,int,int,int,int,int)*
@@ -77,86 +69,84 @@ Constructs a Timestamp object initialized with the given values.
 
 public Timestamp(long time)
 
-Constructs a Timestamp object using a milliseconds time value. The integral 
-seconds are stored in the underlying date value; the fractional seconds are 
-stored in the nanos field of the Timestamp object. 
+Constructs a Timestamp object using a milliseconds time value. The integral seconds are stored in the underlying date value; the fractional seconds are stored in the nanos field 
+of the Timestamp object. 
 
-    time - milliseconds since January 1, 1970, 00:00:00 GMT. A negative number is the 
-       number of milliseconds before January 1, 1970, 00:00:00 GMT. 
+    time - milliseconds since January 1, 1970, 00:00:00 GMT. A negative number is the number of milliseconds before January 1, 1970, 00:00:00 GMT. 
 
 *java.sql.Timestamp.after(Timestamp)*
 
 public boolean after(java.sql.Timestamp ts)
 
-Indicates whether this Timestamp object is later than the given Timestamp 
-object. 
+Indicates whether this Timestamp object is later than the given Timestamp object. 
+
 
     ts - the Timestamp value to compare with 
 
     Returns: true if this Timestamp object is later; false otherwise 
+
 *java.sql.Timestamp.before(Timestamp)*
 
 public boolean before(java.sql.Timestamp ts)
 
-Indicates whether this Timestamp object is earlier than the given Timestamp 
-object. 
+Indicates whether this Timestamp object is earlier than the given Timestamp object. 
+
 
     ts - the Timestamp value to compare with 
 
     Returns: true if this Timestamp object is earlier; false otherwise 
+
 *java.sql.Timestamp.compareTo(Date)*
 
 public int compareTo(java.util.Date o)
 
-Compares this Timestamp object to the given Date, which must be a Timestamp 
-object. If the argument is not a Timestamp object, this method throws a 
-ClassCastException object. (Timestamp objects are comparable only to other 
-Timestamp objects.) 
+Compares this Timestamp object to the given Date, which must be a Timestamp object. If the argument is not a Timestamp object, this method throws a ClassCastException object. 
+(Timestamp objects are comparable only to other Timestamp objects.) 
+
 
     o - the Date to be compared, which must be a Timestamp object 
 
-    Returns: the value 0 if this Timestamp object and the given object are equal; a value 
-             less than 0 if this Timestamp object is before the given argument; 
-             and a value greater than 0 if this Timestamp object is after the 
-             given argument. 
+    Returns: the value 0 if this Timestamp object and the given object are equal; a value less than 0 if this Timestamp object is before the given argument; and a value greater than 0 if this 
+             Timestamp object is after the given argument. 
+
 *java.sql.Timestamp.compareTo(Timestamp)*
 
 public int compareTo(java.sql.Timestamp ts)
 
 Compares this Timestamp object to the given Timestamp object. 
 
+
     ts - the Timestamp object to be compared to this Timestamp object 
 
-    Returns: the value 0 if the two Timestamp objects are equal; a value less than 0 if this 
-             Timestamp object is before the given argument; and a value greater 
-             than 0 if this Timestamp object is after the given argument. 
+    Returns: the value 0 if the two Timestamp objects are equal; a value less than 0 if this Timestamp object is before the given argument; and a value greater than 0 if this Timestamp object 
+             is after the given argument. 
+
 *java.sql.Timestamp.equals(Object)*
 
 public boolean equals(java.lang.Object ts)
 
 Tests to see if this Timestamp object is equal to the given object. 
 
-This version of the method equals has been added to fix the incorrect signature 
-of Timestamp.equals(Timestamp) and to preserve backward compatibility with 
-existing class files. 
+This version of the method equals has been added to fix the incorrect signature of Timestamp.equals(Timestamp) and to preserve backward compatibility with existing class files. 
 
-Note: This method is not symmetric with respect to the equals(Object) method in 
-the base class. 
+Note: This method is not symmetric with respect to the equals(Object) method in the base class. 
+
 
     ts - the Object value to compare with 
 
-    Returns: true if the given Object instance is equal to this Timestamp object; false 
-             otherwise 
+    Returns: true if the given Object instance is equal to this Timestamp object; false otherwise 
+
 *java.sql.Timestamp.equals(Timestamp)*
 
 public boolean equals(java.sql.Timestamp ts)
 
 Tests to see if this Timestamp object is equal to the given Timestamp object. 
 
+
     ts - the Timestamp value to compare with 
 
-    Returns: true if the given Timestamp object is equal to this Timestamp object; false 
-             otherwise 
+    Returns: true if the given Timestamp object is equal to this Timestamp object; false otherwise 
+
 *java.sql.Timestamp.getNanos()*
 
 public int getNanos()
@@ -164,22 +154,25 @@ public int getNanos()
 Gets this Timestamp object's nanos value. 
 
 
+
     Returns: this Timestamp object's fractional seconds component 
+
 *java.sql.Timestamp.getTime()*
 
 public long getTime()
 
-Returns the number of milliseconds since January 1, 1970, 00:00:00 GMT 
-represented by this Timestamp object. 
+Returns the number of milliseconds since January 1, 1970, 00:00:00 GMT represented by this Timestamp object. 
 
 
-    Returns: the number of milliseconds since January 1, 1970, 00:00:00 GMT represented by 
-             this date. 
+
+    Returns: the number of milliseconds since January 1, 1970, 00:00:00 GMT represented by this date. 
+
 *java.sql.Timestamp.setNanos(int)*
 
 public void setNanos(int n)
 
 Sets this Timestamp object's nanos field to the given value. 
+
 
     n - the new fractional seconds component 
 
@@ -187,8 +180,8 @@ Sets this Timestamp object's nanos field to the given value.
 
 public void setTime(long time)
 
-Sets this Timestamp object to represent a point in time that is time 
-milliseconds after January 1, 1970 00:00:00 GMT. 
+Sets this Timestamp object to represent a point in time that is time milliseconds after January 1, 1970 00:00:00 GMT. 
+
 
     time - the number of milliseconds. 
 
@@ -196,29 +189,28 @@ milliseconds after January 1, 1970 00:00:00 GMT.
 
 public |java.lang.String| toString()
 
-Formats a timestamp in JDBC timestamp escape format. yyyy-mm-dd 
-hh:mm:ss.fffffffff, where ffffffffff indicates nanoseconds. 
+Formats a timestamp in JDBC timestamp escape format. yyyy-mm-dd hh:mm:ss.fffffffff, where ffffffffff indicates nanoseconds. 
 
-NOTE: To specify a timestamp for the class java.text.SimpleDateFormat, use 
-"yyyy.MM.dd" rather than "yyyy-mm-dd". In the context of 
-java.text.SimpleDateFormat, "mm" indicates minutes rather than the month. Note 
-that java.text.SimpleDateFormat does not allow for the nanoseconds component of 
-a Timestamp object. For Example: 
+NOTE: To specify a timestamp for the class java.text.SimpleDateFormat, use "yyyy.MM.dd" rather than "yyyy-mm-dd". In the context of java.text.SimpleDateFormat, "mm" indicates 
+minutes rather than the month. Note that java.text.SimpleDateFormat does not allow for the nanoseconds component of a Timestamp object. For Example: 
 
-Format Pattern				Result --------------				------ "yyyy.MM.dd G 'at' hh:mm:ss 
-z"	-->	2002.07.10 AD at 15:08:56 PDT 
+Format Pattern				Result --------------				------ "yyyy.MM.dd G 'at' hh:mm:ss z"	-->	2002.07.10 AD at 15:08:56 PDT 
+
 
 
 
 
     Returns: a String object in yyyy-mm-dd hh:mm:ss.fffffffff format 
+
 *java.sql.Timestamp.valueOf(String)*
 
 public static |java.sql.Timestamp| valueOf(java.lang.String s)
 
 Converts a String object in JDBC timestamp escape format to a Timestamp value. 
 
+
     s - timestamp in format yyyy-mm-dd hh:mm:ss.fffffffff 
 
     Returns: corresponding Timestamp value 
+
 

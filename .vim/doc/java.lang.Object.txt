@@ -8,28 +8,28 @@ public class Object
 |java.lang.Object_Constructors|
 |java.lang.Object_Methods|
 
-================================================================================
+====================================================================================================================================================================================
 
 *java.lang.Object_Constructors*
 |java.lang.Object()|
 
 *java.lang.Object_Methods*
 |java.lang.Object.clone()|Creates and returns a copy of this object.
-|java.lang.Object.equals(Object)|Indicates whether some other object is "equal 
-|java.lang.Object.finalize()|Called by the garbage collector on an object when 
+|java.lang.Object.equals(Object)|Indicates whether some other object is "equal to" this one.
+|java.lang.Object.finalize()|Called by the garbage collector on an object when garbage collection  determines that there are no more references to the object.
 |java.lang.Object.getClass()|Returns the runtime class of an object.
 |java.lang.Object.hashCode()|Returns a hash code value for the object.
-|java.lang.Object.notify()|Wakes up a single thread that is waiting on this obj
-|java.lang.Object.notifyAll()|Wakes up all threads that are waiting on this obj
+|java.lang.Object.notify()|Wakes up a single thread that is waiting on this object's   monitor.
+|java.lang.Object.notifyAll()|Wakes up all threads that are waiting on this object's monitor.
 |java.lang.Object.toString()|Returns a string representation of the object.
-|java.lang.Object.wait()|Causes current thread to wait until another thread inv
-|java.lang.Object.wait(long)|Causes current thread to wait until either another
-|java.lang.Object.wait(long,int)|Causes current thread to wait until another th
+|java.lang.Object.wait()|Causes current thread to wait until another thread invokes thejava.lang.Object#notify()method or thejava.lang.Object#notifyAll()method for this object.
+|java.lang.Object.wait(long)|Causes current thread to wait until either another thread invokes thejava.lang.Object#notify()method or thejava.lang.Object#notifyAll()method for this
+|java.lang.Object.wait(long,int)|Causes current thread to wait until another thread invokes thejava.lang.Object#notify()method or thejava.lang.Object#notifyAll()method for this ob
 
 *java.lang.Object_Description*
 
-Class Object is the root of the class hierarchy. Every class has Object as a 
-superclass. All objects, including arrays, implement the methods of this class. 
+Class Object is the root of the class hierarchy. Every class has Object as a superclass. All objects, including arrays, implement the methods of this class. 
+
 
 
 *java.lang.Object()*
@@ -44,9 +44,7 @@ public Object()
 protected native |java.lang.Object| clone()
   throws |java.lang.CloneNotSupportedException|
          
-Creates and returns a copy of this object. The precise meaning of "copy" may 
-depend on the class of the object. The general intent is that, for any object 
-x, the expression: 
+Creates and returns a copy of this object. The precise meaning of "copy" may depend on the class of the object. The general intent is that, for any object x, the expression: 
 
 
 
@@ -58,8 +56,7 @@ will be true, and that the expression:
 
 x.clone().getClass() == x.getClass() 
 
-will be true, but these are not absolute requirements. While it is typically 
-the case that: 
+will be true, but these are not absolute requirements. While it is typically the case that: 
 
 
 
@@ -67,239 +64,183 @@ x.clone().equals(x)
 
 will be true, this is not an absolute requirement. 
 
-By convention, the returned object should be obtained by calling super.clone. 
-If a class and all of its superclasses (except Object) obey this convention, it 
-will be the case that x.clone().getClass() == x.getClass(). 
+By convention, the returned object should be obtained by calling super.clone. If a class and all of its superclasses (except Object) obey this convention, it will be the case that 
+x.clone().getClass() == x.getClass(). 
 
-By convention, the object returned by this method should be independent of this 
-object (which is being cloned). To achieve this independence, it may be 
-necessary to modify one or more fields of the object returned by super.clone 
-before returning it. Typically, this means copying any mutable objects that 
-comprise the internal "deep structure" of the object being cloned and replacing 
-the references to these objects with references to the copies. If a class 
-contains only primitive fields or references to immutable objects, then it is 
-usually the case that no fields in the object returned by super.clone need to 
-be modified. 
+By convention, the object returned by this method should be independent of this object (which is being cloned). To achieve this independence, it may be necessary to modify one or 
+more fields of the object returned by super.clone before returning it. Typically, this means copying any mutable objects that comprise the internal "deep structure" of the object 
+being cloned and replacing the references to these objects with references to the copies. If a class contains only primitive fields or references to immutable objects, then it is 
+usually the case that no fields in the object returned by super.clone need to be modified. 
 
-The method clone for class Object performs a specific cloning operation. First, 
-if the class of this object does not implement the interface Cloneable, then a 
-CloneNotSupportedException is thrown. Note that all arrays are considered to 
-implement the interface Cloneable. Otherwise, this method creates a new 
-instance of the class of this object and initializes all its fields with 
-exactly the contents of the corresponding fields of this object, as if by 
-assignment; the contents of the fields are not themselves cloned. Thus, this 
-method performs a "shallow copy" of this object, not a "deep copy" operation. 
+The method clone for class Object performs a specific cloning operation. First, if the class of this object does not implement the interface Cloneable, then a 
+CloneNotSupportedException is thrown. Note that all arrays are considered to implement the interface Cloneable. Otherwise, this method creates a new instance of the class of this 
+object and initializes all its fields with exactly the contents of the corresponding fields of this object, as if by assignment; the contents of the fields are not themselves 
+cloned. Thus, this method performs a "shallow copy" of this object, not a "deep copy" operation. 
 
-The class Object does not itself implement the interface Cloneable, so calling 
-the clone method on an object whose class is Object will result in throwing an 
-exception at run time. 
+The class Object does not itself implement the interface Cloneable, so calling the clone method on an object whose class is Object will result in throwing an exception at run 
+time. 
+
 
 
     Returns: a clone of this instance. 
+
 *java.lang.Object.equals(Object)*
 
 public boolean equals(java.lang.Object obj)
 
 Indicates whether some other object is "equal to" this one. 
 
-The equals method implements an equivalence relation on non-null object 
-references: 
+The equals method implements an equivalence relation on non-null object references: 
 
-It is reflexive: for any non-null reference value x, x.equals(x) should return 
-true. It is symmetric: for any non-null reference values x and y, x.equals(y) 
-should return true if and only if y.equals(x) returns true. It is transitive: 
-for any non-null reference values x, y, and z, if x.equals(y) returns true and 
-y.equals(z) returns true, then x.equals(z) should return true. It is 
-consistent: for any non-null reference values x and y, multiple invocations of 
-x.equals(y) consistently return true or consistently return false, provided no 
-information used in equals comparisons on the objects is modified. For any 
-non-null reference value x, x.equals(null) should return false. 
+It is reflexive: for any non-null reference value x, x.equals(x) should return true. It is symmetric: for any non-null reference values x and y, x.equals(y) should return true if 
+and only if y.equals(x) returns true. It is transitive: for any non-null reference values x, y, and z, if x.equals(y) returns true and y.equals(z) returns true, then x.equals(z) 
+should return true. It is consistent: for any non-null reference values x and y, multiple invocations of x.equals(y) consistently return true or consistently return false, 
+provided no information used in equals comparisons on the objects is modified. For any non-null reference value x, x.equals(null) should return false. 
 
-The equals method for class Object implements the most discriminating possible 
-equivalence relation on objects; that is, for any non-null reference values x 
-and y, this method returns true if and only if x and y refer to the same object 
-(x == y has the value true). 
+The equals method for class Object implements the most discriminating possible equivalence relation on objects; that is, for any non-null reference values x and y, this method 
+returns true if and only if x and y refer to the same object (x == y has the value true). 
 
-Note that it is generally necessary to override the hashCode method whenever 
-this method is overridden, so as to maintain the general contract for the 
-hashCode method, which states that equal objects must have equal hash codes. 
+Note that it is generally necessary to override the hashCode method whenever this method is overridden, so as to maintain the general contract for the hashCode method, which 
+states that equal objects must have equal hash codes. 
+
 
     obj - the reference object with which to compare. 
 
     Returns: true if this object is the same as the obj argument; false otherwise. 
+
 *java.lang.Object.finalize()*
 
 protected void finalize()
   throws |java.lang.Throwable|
          
-Called by the garbage collector on an object when garbage collection determines 
-that there are no more references to the object. A subclass overrides the 
-finalize method to dispose of system resources or to perform other cleanup. 
+Called by the garbage collector on an object when garbage collection determines that there are no more references to the object. A subclass overrides the finalize method to 
+dispose of system resources or to perform other cleanup. 
 
-The general contract of finalize is that it is invoked if and when the JavaTM 
-virtual machine has determined that there is no longer any means by which this 
-object can be accessed by any thread that has not yet died, except as a result 
-of an action taken by the finalization of some other object or class which is 
-ready to be finalized. The finalize method may take any action, including 
-making this object available again to other threads; the usual purpose of 
-finalize, however, is to perform cleanup actions before the object is 
-irrevocably discarded. For example, the finalize method for an object that 
-represents an input/output connection might perform explicit I/O transactions 
-to break the connection before the object is permanently discarded. 
+The general contract of finalize is that it is invoked if and when the JavaTM virtual machine has determined that there is no longer any means by which this object can be accessed 
+by any thread that has not yet died, except as a result of an action taken by the finalization of some other object or class which is ready to be finalized. The finalize method 
+may take any action, including making this object available again to other threads; the usual purpose of finalize, however, is to perform cleanup actions before the object is 
+irrevocably discarded. For example, the finalize method for an object that represents an input/output connection might perform explicit I/O transactions to break the connection 
+before the object is permanently discarded. 
 
-The finalize method of class Object performs no special action; it simply 
-returns normally. Subclasses of Object may override this definition. 
+The finalize method of class Object performs no special action; it simply returns normally. Subclasses of Object may override this definition. 
 
-The Java programming language does not guarantee which thread will invoke the 
-finalize method for any given object. It is guaranteed, however, that the 
-thread that invokes finalize will not be holding any user-visible 
-synchronization locks when finalize is invoked. If an uncaught exception is 
-thrown by the finalize method, the exception is ignored and finalization of 
-that object terminates. 
+The Java programming language does not guarantee which thread will invoke the finalize method for any given object. It is guaranteed, however, that the thread that invokes 
+finalize will not be holding any user-visible synchronization locks when finalize is invoked. If an uncaught exception is thrown by the finalize method, the exception is ignored 
+and finalization of that object terminates. 
 
-After the finalize method has been invoked for an object, no further action is 
-taken until the Java virtual machine has again determined that there is no 
-longer any means by which this object can be accessed by any thread that has 
-not yet died, including possible actions by other objects or classes which are 
-ready to be finalized, at which point the object may be discarded. 
+After the finalize method has been invoked for an object, no further action is taken until the Java virtual machine has again determined that there is no longer any means by which 
+this object can be accessed by any thread that has not yet died, including possible actions by other objects or classes which are ready to be finalized, at which point the object 
+may be discarded. 
 
-The finalize method is never invoked more than once by a Java virtual machine 
-for any given object. 
+The finalize method is never invoked more than once by a Java virtual machine for any given object. 
 
-Any exception thrown by the finalize method causes the finalization of this 
-object to be halted, but is otherwise ignored. 
+Any exception thrown by the finalize method causes the finalization of this object to be halted, but is otherwise ignored. 
+
 
 
 *java.lang.Object.getClass()*
 
-public final native |java.lang.Class| getClass()
+public final native |java.lang.Class|<? extends java.lang.Object> getClass()
 
-Returns the runtime class of an object. That Class object is the object that is 
-locked by static synchronized methods of the represented class. 
+Returns the runtime class of an object. That Class object is the object that is locked by static synchronized methods of the represented class. 
 
 
-    Returns: The java.lang.Class object that represents the runtime class of the object. The 
-             result is of type {@code Class} where X is the erasure of the 
-             static type of the expression on which getClass is called. 
+
+    Returns: The java.lang.Class object that represents the runtime class of the object. The result is of type {@code Class} where X is the erasure of the static type of the expression on 
+             which getClass is called. 
+
 *java.lang.Object.hashCode()*
 
 public native int hashCode()
 
-Returns a hash code value for the object. This method is supported for the 
-benefit of hashtables such as those provided by java.util.Hashtable. 
+Returns a hash code value for the object. This method is supported for the benefit of hashtables such as those provided by java.util.Hashtable. 
 
 The general contract of hashCode is: 
 
-Whenever it is invoked on the same object more than once during an execution of 
-a Java application, the hashCode method must consistently return the same 
-integer, provided no information used in equals comparisons on the object is 
-modified. This integer need not remain consistent from one execution of an 
-application to another execution of the same application. If two objects are 
-equal according to the equals(Object) method, then calling the hashCode method 
-on each of the two objects must produce the same integer result. It is not 
-required that if two objects are unequal according to the (|java.lang.Object|) 
-method, then calling the hashCode method on each of the two objects must 
-produce distinct integer results. However, the programmer should be aware that 
-producing distinct integer results for unequal objects may improve the 
-performance of hashtables. 
+Whenever it is invoked on the same object more than once during an execution of a Java application, the hashCode method must consistently return the same integer, provided no 
+information used in equals comparisons on the object is modified. This integer need not remain consistent from one execution of an application to another execution of the same 
+application. If two objects are equal according to the equals(Object) method, then calling the hashCode method on each of the two objects must produce the same integer result. It 
+is not required that if two objects are unequal according to the (|java.lang.Object|) method, then calling the hashCode method on each of the two objects must produce distinct 
+integer results. However, the programmer should be aware that producing distinct integer results for unequal objects may improve the performance of hashtables. 
 
-As much as is reasonably practical, the hashCode method defined by class Object 
-does return distinct integers for distinct objects. (This is typically 
-implemented by converting the internal address of the object into an integer, 
-but this implementation technique is not required by the JavaTM programming 
-language.) 
+As much as is reasonably practical, the hashCode method defined by class Object does return distinct integers for distinct objects. (This is typically implemented by converting 
+the internal address of the object into an integer, but this implementation technique is not required by the JavaTM programming language.) 
+
 
 
     Returns: a hash code value for this object. 
+
 *java.lang.Object.notify()*
 
 public final native void notify()
 
-Wakes up a single thread that is waiting on this object's monitor. If any 
-threads are waiting on this object, one of them is chosen to be awakened. The 
-choice is arbitrary and occurs at the discretion of the implementation. A 
-thread waits on an object's monitor by calling one of the wait methods. 
+Wakes up a single thread that is waiting on this object's monitor. If any threads are waiting on this object, one of them is chosen to be awakened. The choice is arbitrary and 
+occurs at the discretion of the implementation. A thread waits on an object's monitor by calling one of the wait methods. 
 
-The awakened thread will not be able to proceed until the current thread 
-relinquishes the lock on this object. The awakened thread will compete in the 
-usual manner with any other threads that might be actively competing to 
-synchronize on this object; for example, the awakened thread enjoys no reliable 
-privilege or disadvantage in being the next thread to lock this object. 
+The awakened thread will not be able to proceed until the current thread relinquishes the lock on this object. The awakened thread will compete in the usual manner with any other 
+threads that might be actively competing to synchronize on this object; for example, the awakened thread enjoys no reliable privilege or disadvantage in being the next thread to 
+lock this object. 
 
-This method should only be called by a thread that is the owner of this 
-object's monitor. A thread becomes the owner of the object's monitor in one of 
-three ways: 
+This method should only be called by a thread that is the owner of this object's monitor. A thread becomes the owner of the object's monitor in one of three ways: 
 
-By executing a synchronized instance method of that object. By executing the 
-body of a synchronized statement that synchronizes on the object. For objects 
-of type Class, by executing a synchronized static method of that class. 
+By executing a synchronized instance method of that object. By executing the body of a synchronized statement that synchronizes on the object. For objects of type Class, by 
+executing a synchronized static method of that class. 
 
 Only one thread at a time can own an object's monitor. 
+
 
 
 *java.lang.Object.notifyAll()*
 
 public final native void notifyAll()
 
-Wakes up all threads that are waiting on this object's monitor. A thread waits 
-on an object's monitor by calling one of the wait methods. 
+Wakes up all threads that are waiting on this object's monitor. A thread waits on an object's monitor by calling one of the wait methods. 
 
-The awakened threads will not be able to proceed until the current thread 
-relinquishes the lock on this object. The awakened threads will compete in the 
-usual manner with any other threads that might be actively competing to 
-synchronize on this object; for example, the awakened threads enjoy no reliable 
-privilege or disadvantage in being the next thread to lock this object. 
+The awakened threads will not be able to proceed until the current thread relinquishes the lock on this object. The awakened threads will compete in the usual manner with any 
+other threads that might be actively competing to synchronize on this object; for example, the awakened threads enjoy no reliable privilege or disadvantage in being the next 
+thread to lock this object. 
 
-This method should only be called by a thread that is the owner of this 
-object's monitor. See the notify method for a description of the ways in which 
-a thread can become the owner of a monitor. 
+This method should only be called by a thread that is the owner of this object's monitor. See the notify method for a description of the ways in which a thread can become the 
+owner of a monitor. 
+
 
 
 *java.lang.Object.toString()*
 
 public |java.lang.String| toString()
 
-Returns a string representation of the object. In general, the toString method 
-returns a string that "textually represents" this object. The result should be 
-a concise but informative representation that is easy for a person to read. It 
-is recommended that all subclasses override this method. 
+Returns a string representation of the object. In general, the toString method returns a string that "textually represents" this object. The result should be a concise but 
+informative representation that is easy for a person to read. It is recommended that all subclasses override this method. 
 
-The toString method for class Object returns a string consisting of the name of 
-the class of which the object is an instance, the at-sign character `@', and 
-the unsigned hexadecimal representation of the hash code of the object. In 
-other words, this method returns a string equal to the value of: 
+The toString method for class Object returns a string consisting of the name of the class of which the object is an instance, the at-sign character `@', and the unsigned 
+hexadecimal representation of the hash code of the object. In other words, this method returns a string equal to the value of: 
 
 
 
 getClass().getName() + '@' + Integer.toHexString(hashCode()) 
 
 
+
     Returns: a string representation of the object. 
+
 *java.lang.Object.wait()*
 
 public final void wait()
   throws |java.lang.InterruptedException|
          
-Causes current thread to wait until another thread invokes the 
-(|java.lang.Object|) method or the (|java.lang.Object|) method for this object. 
-In other words, this method behaves exactly as if it simply performs the call 
-wait(0). 
+Causes current thread to wait until another thread invokes the (|java.lang.Object|) method or the (|java.lang.Object|) method for this object. In other words, this method behaves 
+exactly as if it simply performs the call wait(0). 
 
-The current thread must own this object's monitor. The thread releases 
-ownership of this monitor and waits until another thread notifies threads 
-waiting on this object's monitor to wake up either through a call to the notify 
-method or the notifyAll method. The thread then waits until it can re-obtain 
-ownership of the monitor and resumes execution. 
+The current thread must own this object's monitor. The thread releases ownership of this monitor and waits until another thread notifies threads waiting on this object's monitor 
+to wake up either through a call to the notify method or the notifyAll method. The thread then waits until it can re-obtain ownership of the monitor and resumes execution. 
 
-As in the one argument version, interrupts and spurious wakeups are possible, 
-and this method should always be used in a loop: 
+As in the one argument version, interrupts and spurious wakeups are possible, and this method should always be used in a loop: 
 
-synchronized (obj) { while (<condition does not hold>) obj.wait(); ... // 
-Perform action appropriate to condition } 
+synchronized (obj) { while (<condition does not hold>) obj.wait(); ... // Perform action appropriate to condition } 
 
-This method should only be called by a thread that is the owner of this 
-object's monitor. See the notify method for a description of the ways in which 
-a thread can become the owner of a monitor. 
+This method should only be called by a thread that is the owner of this object's monitor. See the notify method for a description of the ways in which a thread can become the 
+owner of a monitor. 
+
 
 
 *java.lang.Object.wait(long)*
@@ -307,60 +248,41 @@ a thread can become the owner of a monitor.
 public final native void wait(long timeout)
   throws |java.lang.InterruptedException|
          
-Causes current thread to wait until either another thread invokes the 
-(|java.lang.Object|) method or the (|java.lang.Object|) method for this object, 
-or a specified amount of time has elapsed. 
+Causes current thread to wait until either another thread invokes the (|java.lang.Object|) method or the (|java.lang.Object|) method for this object, or a specified amount of time 
+has elapsed. 
 
 The current thread must own this object's monitor. 
 
-This method causes the current thread (call it T) to place itself in the wait 
-set for this object and then to relinquish any and all synchronization claims 
-on this object. Thread T becomes disabled for thread scheduling purposes and 
-lies dormant until one of four things happens: 
+This method causes the current thread (call it T) to place itself in the wait set for this object and then to relinquish any and all synchronization claims on this object. Thread 
+T becomes disabled for thread scheduling purposes and lies dormant until one of four things happens: 
 
-Some other thread invokes the notify method for this object and thread T 
-happens to be arbitrarily chosen as the thread to be awakened. Some other 
-thread invokes the notifyAll method for this object. Some other thread 
-interrupts(|java.lang.Thread|) thread T. The specified amount of real time has 
-elapsed, more or less. If timeout is zero, however, then real time is not taken 
-into consideration and the thread simply waits until notified. 
+Some other thread invokes the notify method for this object and thread T happens to be arbitrarily chosen as the thread to be awakened. Some other thread invokes the notifyAll 
+method for this object. Some other thread interrupts(|java.lang.Thread|) thread T. The specified amount of real time has elapsed, more or less. If timeout is zero, however, then 
+real time is not taken into consideration and the thread simply waits until notified. 
 
-The thread T is then removed from the wait set for this object and re-enabled 
-for thread scheduling. It then competes in the usual manner with other threads 
-for the right to synchronize on the object; once it has gained control of the 
-object, all its synchronization claims on the object are restored to the status 
-quo ante - that is, to the situation as of the time that the wait method was 
-invoked. Thread T then returns from the invocation of the wait method. Thus, on 
-return from the wait method, the synchronization state of the object and of 
-thread T is exactly as it was when the wait method was invoked. 
+The thread T is then removed from the wait set for this object and re-enabled for thread scheduling. It then competes in the usual manner with other threads for the right to 
+synchronize on the object; once it has gained control of the object, all its synchronization claims on the object are restored to the status quo ante - that is, to the situation 
+as of the time that the wait method was invoked. Thread T then returns from the invocation of the wait method. Thus, on return from the wait method, the synchronization state of 
+the object and of thread T is exactly as it was when the wait method was invoked. 
 
-A thread can also wake up without being notified, interrupted, or timing out, a 
-so-called spurious wakeup. While this will rarely occur in practice, 
-applications must guard against it by testing for the condition that should 
-have caused the thread to be awakened, and continuing to wait if the condition 
-is not satisfied. In other words, waits should always occur in loops, like this 
-one: 
+A thread can also wake up without being notified, interrupted, or timing out, a so-called spurious wakeup. While this will rarely occur in practice, applications must guard 
+against it by testing for the condition that should have caused the thread to be awakened, and continuing to wait if the condition is not satisfied. In other words, waits should 
+always occur in loops, like this one: 
 
-synchronized (obj) { while (<condition does not hold>) obj.wait(timeout); ... 
-// Perform action appropriate to condition } 
+synchronized (obj) { while (<condition does not hold>) obj.wait(timeout); ... // Perform action appropriate to condition } 
 
-(For more information on this topic, see Section 3.2.3 in Doug Lea's 
-"Concurrent Programming in Java (Second Edition)" (Addison-Wesley, 2000), or 
-Item 50 in Joshua Bloch's "Effective Java Programming Language Guide" 
-(Addison-Wesley, 2001). 
+(For more information on this topic, see Section 3.2.3 in Doug Lea's "Concurrent Programming in Java (Second Edition)" (Addison-Wesley, 2000), or Item 50 in Joshua Bloch's 
+"Effective Java Programming Language Guide" (Addison-Wesley, 2001). 
 
-If the current thread is interrupted(|java.lang.Thread|) by another thread 
-while it is waiting, then an InterruptedException is thrown. This exception is 
-not thrown until the lock status of this object has been restored as described 
-above. 
+If the current thread is interrupted(|java.lang.Thread|) by another thread while it is waiting, then an InterruptedException is thrown. This exception is not thrown until the lock 
+status of this object has been restored as described above. 
 
-Note that the wait method, as it places the current thread into the wait set 
-for this object, unlocks only this object; any other objects on which the 
-current thread may be synchronized remain locked while the thread waits. 
+Note that the wait method, as it places the current thread into the wait set for this object, unlocks only this object; any other objects on which the current thread may be 
+synchronized remain locked while the thread waits. 
 
-This method should only be called by a thread that is the owner of this 
-object's monitor. See the notify method for a description of the ways in which 
-a thread can become the owner of a monitor. 
+This method should only be called by a thread that is the owner of this object's monitor. See the notify method for a description of the ways in which a thread can become the 
+owner of a monitor. 
+
 
     timeout - the maximum time to wait in milliseconds. 
 
@@ -371,44 +293,32 @@ public final void wait(
   int nanos)
   throws |java.lang.InterruptedException|
          
-Causes current thread to wait until another thread invokes the 
-(|java.lang.Object|) method or the (|java.lang.Object|) method for this object, 
-or some other thread interrupts the current thread, or a certain amount of real 
-time has elapsed. 
+Causes current thread to wait until another thread invokes the (|java.lang.Object|) method or the (|java.lang.Object|) method for this object, or some other thread interrupts the 
+current thread, or a certain amount of real time has elapsed. 
 
-This method is similar to the wait method of one argument, but it allows finer 
-control over the amount of time to wait for a notification before giving up. 
-The amount of real time, measured in nanoseconds, is given by: 
+This method is similar to the wait method of one argument, but it allows finer control over the amount of time to wait for a notification before giving up. The amount of real 
+time, measured in nanoseconds, is given by: 
 
 
 
 1000000*timeout+nanos 
 
-In all other respects, this method does the same thing as the method 
-(|java.lang.Object|) of one argument. In particular, wait(0, 0) means the same 
-thing as wait(0). 
+In all other respects, this method does the same thing as the method (|java.lang.Object|) of one argument. In particular, wait(0, 0) means the same thing as wait(0). 
 
-The current thread must own this object's monitor. The thread releases 
-ownership of this monitor and waits until either of the following two 
-conditions has occurred: 
+The current thread must own this object's monitor. The thread releases ownership of this monitor and waits until either of the following two conditions has occurred: 
 
-Another thread notifies threads waiting on this object's monitor to wake up 
-either through a call to the notify method or the notifyAll method. The timeout 
-period, specified by timeout milliseconds plus nanos nanoseconds arguments, has 
-elapsed. 
+Another thread notifies threads waiting on this object's monitor to wake up either through a call to the notify method or the notifyAll method. The timeout period, specified by 
+timeout milliseconds plus nanos nanoseconds arguments, has elapsed. 
 
-The thread then waits until it can re-obtain ownership of the monitor and 
-resumes execution. 
+The thread then waits until it can re-obtain ownership of the monitor and resumes execution. 
 
-As in the one argument version, interrupts and spurious wakeups are possible, 
-and this method should always be used in a loop: 
+As in the one argument version, interrupts and spurious wakeups are possible, and this method should always be used in a loop: 
 
-synchronized (obj) { while (<condition does not hold>) obj.wait(timeout, 
-nanos); ... // Perform action appropriate to condition } 
+synchronized (obj) { while (<condition does not hold>) obj.wait(timeout, nanos); ... // Perform action appropriate to condition } 
 
-This method should only be called by a thread that is the owner of this 
-object's monitor. See the notify method for a description of the ways in which 
-a thread can become the owner of a monitor. 
+This method should only be called by a thread that is the owner of this object's monitor. See the notify method for a description of the ways in which a thread can become the 
+owner of a monitor. 
+
 
     timeout - the maximum time to wait in milliseconds. 
     nanos - additional time, in nanoseconds range 0-999999. 

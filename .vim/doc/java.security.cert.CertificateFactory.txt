@@ -1,4 +1,5 @@
-*java.security.cert.CertificateFactory* *CertificateFactory* This class defines 
+*java.security.cert.CertificateFactory* *CertificateFactory* This class defines the functionality of a certificate factory, which is
+ used to generate certificate, certification pa
 
 public class CertificateFactory
   extends    |java.lang.Object|
@@ -8,68 +9,55 @@ public class CertificateFactory
 |java.security.cert.CertificateFactory_Constructors|
 |java.security.cert.CertificateFactory_Methods|
 
-================================================================================
+====================================================================================================================================================================================
 
 *java.security.cert.CertificateFactory_Constructors*
-|java.security.cert.CertificateFactory(CertificateFactorySpi,Provider,String)|C
+|java.security.cert.CertificateFactory(CertificateFactorySpi,Provider,String)|Creates a CertificateFactory object of the given type, and encapsulates  the given provider implement
 
 *java.security.cert.CertificateFactory_Methods*
-|java.security.cert.CertificateFactory.generateCertificate(InputStream)|Generat
-|java.security.cert.CertificateFactory.generateCertificates(InputStream)|Return
-|java.security.cert.CertificateFactory.generateCertPath(InputStream)|Generates 
-|java.security.cert.CertificateFactory.generateCertPath(InputStream,String)|Gen
-|java.security.cert.CertificateFactory.generateCertPath(List)|Generates a CertP
-|java.security.cert.CertificateFactory.generateCRL(InputStream)|Generates a cer
-|java.security.cert.CertificateFactory.generateCRLs(InputStream)|Returns a (pos
-|java.security.cert.CertificateFactory.getCertPathEncodings()|Returns an iterat
-|java.security.cert.CertificateFactory.getInstance(String)|Generates a certific
-|java.security.cert.CertificateFactory.getInstance(String,Provider)|Generates a
-|java.security.cert.CertificateFactory.getInstance(String,String)|Generates a c
-|java.security.cert.CertificateFactory.getProvider()|Returns the provider of th
-|java.security.cert.CertificateFactory.getType()|Returns the name of the certif
+|java.security.cert.CertificateFactory.generateCertificate(InputStream)|Generates a certificate object and initializes it with  the data read from the input stream inStream.
+|java.security.cert.CertificateFactory.generateCertificates(InputStream)|Returns a (possibly empty) collection view of the certificates read  from the given input stream inStream.
+|java.security.cert.CertificateFactory.generateCertPath(InputStream)|Generates a CertPath object and initializes it with  the data read from the InputStream inStream.
+|java.security.cert.CertificateFactory.generateCertPath(InputStream,String)|Generates a CertPath object and initializes it with  the data read from the InputStream inStream.
+|java.security.cert.CertificateFactory.generateCertPath(List<?extendsCertificate>)|Generates a CertPath object and initializes it with  a List of Certificates.
+|java.security.cert.CertificateFactory.generateCRL(InputStream)|Generates a certificate revocation list (CRL) object and initializes it  with the data read from the input stream i
+|java.security.cert.CertificateFactory.generateCRLs(InputStream)|Returns a (possibly empty) collection view of the CRLs read  from the given input stream inStream.
+|java.security.cert.CertificateFactory.getCertPathEncodings()|Returns an iteration of the CertPath encodings supported   by this certificate factory, with the default encoding fir
+|java.security.cert.CertificateFactory.getInstance(String)|Generates a certificate factory object that implements the  specified certificate type.
+|java.security.cert.CertificateFactory.getInstance(String,Provider)|Generates a certificate factory object for the specified  certificate type from the specified provider.
+|java.security.cert.CertificateFactory.getInstance(String,String)|Generates a certificate factory object for the specified  certificate type from the specified provider.
+|java.security.cert.CertificateFactory.getProvider()|Returns the provider of this certificate factory.
+|java.security.cert.CertificateFactory.getType()|Returns the name of the certificate type associated with this  certificate factory.
 
 *java.security.cert.CertificateFactory_Description*
 
-This class defines the functionality of a certificate factory, which is used to 
-generate certificate, certification path (CertPath) and certificate revocation 
-list (CRL) objects from their encodings. 
+This class defines the functionality of a certificate factory, which is used to generate certificate, certification path (CertPath) and certificate revocation list (CRL) objects 
+from their encodings. 
 
-For encodings consisting of multiple certificates, use generateCertificates 
-when you want to parse a collection of possibly unrelated certificates. 
-Otherwise, use generateCertPath when you want to generate a CertPath (a 
-certificate chain) and subsequently validate it with a CertPathValidator. 
+For encodings consisting of multiple certificates, use generateCertificates when you want to parse a collection of possibly unrelated certificates. Otherwise, use generateCertPath 
+when you want to generate a CertPath (a certificate chain) and subsequently validate it with a CertPathValidator. 
 
-A certificate factory for X.509 must return certificates that are an instance 
-of java.security.cert.X509Certificate, and CRLs that are an instance of 
-java.security.cert.X509CRL. 
+A certificate factory for X.509 must return certificates that are an instance of java.security.cert.X509Certificate, and CRLs that are an instance of java.security.cert.X509CRL. 
 
-The following example reads a file with Base64 encoded certificates, which are 
-each bounded at the beginning by -----BEGIN CERTIFICATE-----, and bounded at 
-the end by -----END CERTIFICATE-----. We convert the FileInputStream (which 
-does not support mark and reset) to a BufferedInputStream (which supports those 
-methods), so that each call to generateCertificate consumes only one 
-certificate, and the read position of the input stream is positioned to the 
-next certificate in the file: 
+The following example reads a file with Base64 encoded certificates, which are each bounded at the beginning by -----BEGIN CERTIFICATE-----, and bounded at the end by -----END 
+CERTIFICATE-----. We convert the FileInputStream (which does not support mark and reset) to a BufferedInputStream (which supports those methods), so that each call to 
+generateCertificate consumes only one certificate, and the read position of the input stream is positioned to the next certificate in the file: 
 
 
 
-FileInputStream fis = new FileInputStream(filename); BufferedInputStream bis = 
-new BufferedInputStream(fis); 
+FileInputStream fis = new FileInputStream(filename); BufferedInputStream bis = new BufferedInputStream(fis); 
 
 CertificateFactory cf = CertificateFactory.getInstance("X.509"); 
 
-while (bis.available() > 0) { Certificate cert = cf.generateCertificate(bis); 
-System.out.println(cert.toString()); } 
+while (bis.available() > 0) { Certificate cert = cf.generateCertificate(bis); System.out.println(cert.toString()); } 
 
-The following example parses a PKCS#7-formatted certificate reply stored in a 
-file and extracts all the certificates from it: 
+The following example parses a PKCS#7-formatted certificate reply stored in a file and extracts all the certificates from it: 
 
 
 
-FileInputStream fis = new FileInputStream(filename); CertificateFactory cf = 
-CertificateFactory.getInstance("X.509"); Collection c = 
-cf.generateCertificates(fis); Iterator i = c.iterator(); while (i.hasNext()) { 
-Certificate cert = (Certificate)i.next(); System.out.println(cert); } 
+FileInputStream fis = new FileInputStream(filename); CertificateFactory cf = CertificateFactory.getInstance("X.509"); Collection c = cf.generateCertificates(fis); Iterator i = 
+c.iterator(); while (i.hasNext()) { Certificate cert = (Certificate)i.next(); System.out.println(cert); } 
+
 
 
 *java.security.cert.CertificateFactory(CertificateFactorySpi,Provider,String)*
@@ -79,8 +67,7 @@ protected CertificateFactory(
   java.security.Provider provider,
   java.lang.String type)
 
-Creates a CertificateFactory object of the given type, and encapsulates the 
-given provider implementation (SPI object) in it. 
+Creates a CertificateFactory object of the given type, and encapsulates the given provider implementation (SPI object) in it. 
 
     certFacSpi - the provider implementation. 
     provider - the provider. 
@@ -91,77 +78,60 @@ given provider implementation (SPI object) in it.
 public final |java.security.cert.Certificate| generateCertificate(java.io.InputStream inStream)
   throws |java.security.cert.CertificateException|
          
-Generates a certificate object and initializes it with the data read from the 
-input stream inStream. 
+Generates a certificate object and initializes it with the data read from the input stream inStream. 
 
-In order to take advantage of the specialized certificate format supported by 
-this certificate factory, the returned certificate object can be typecast to 
-the corresponding certificate class. For example, if this certificate factory 
-implements X.509 certificates, the returned certificate object can be typecast 
-to the X509Certificate class. 
+In order to take advantage of the specialized certificate format supported by this certificate factory, the returned certificate object can be typecast to the corresponding 
+certificate class. For example, if this certificate factory implements X.509 certificates, the returned certificate object can be typecast to the X509Certificate class. 
 
-In the case of a certificate factory for X.509 certificates, the certificate 
-provided in inStream must be DER-encoded and may be supplied in binary or 
-printable (Base64) encoding. If the certificate is provided in Base64 encoding, 
-it must be bounded at the beginning by -----BEGIN CERTIFICATE-----, and must be 
-bounded at the end by -----END CERTIFICATE-----. 
+In the case of a certificate factory for X.509 certificates, the certificate provided in inStream must be DER-encoded and may be supplied in binary or printable (Base64) encoding. 
+If the certificate is provided in Base64 encoding, it must be bounded at the beginning by -----BEGIN CERTIFICATE-----, and must be bounded at the end by -----END CERTIFICATE-----. 
 
-Note that if the given input stream does not support 
-mark(|java.io.InputStream|) and reset(|java.io.InputStream|) , this method will 
-consume the entire input stream. Otherwise, each call to this method consumes 
-one certificate and the read position of the input stream is positioned to the 
-next available byte after the inherent end-of-certificate marker. If the data 
-in the input stream does not contain an inherent end-of-certificate marker 
-(other than EOF) and there is trailing data after the certificate is parsed, a 
+Note that if the given input stream does not support mark(|java.io.InputStream|) and reset(|java.io.InputStream|) , this method will consume the entire input stream. Otherwise, 
+each call to this method consumes one certificate and the read position of the input stream is positioned to the next available byte after the inherent end-of-certificate marker. 
+If the data in the input stream does not contain an inherent end-of-certificate marker (other than EOF) and there is trailing data after the certificate is parsed, a 
 CertificateException is thrown. 
+
 
     inStream - an input stream with the certificate data. 
 
     Returns: a certificate object initialized with the data from the input stream. 
+
 *java.security.cert.CertificateFactory.generateCertificates(InputStream)*
 
-public final |java.util.Collection| generateCertificates(java.io.InputStream inStream)
+public final |java.util.Collection|<? extends java.security.cert.Certificate> generateCertificates(java.io.InputStream inStream)
   throws |java.security.cert.CertificateException|
          
-Returns a (possibly empty) collection view of the certificates read from the 
-given input stream inStream. 
+Returns a (possibly empty) collection view of the certificates read from the given input stream inStream. 
 
-In order to take advantage of the specialized certificate format supported by 
-this certificate factory, each element in the returned collection view can be 
-typecast to the corresponding certificate class. For example, if this 
-certificate factory implements X.509 certificates, the elements in the returned 
-collection can be typecast to the X509Certificate class. 
+In order to take advantage of the specialized certificate format supported by this certificate factory, each element in the returned collection view can be typecast to the 
+corresponding certificate class. For example, if this certificate factory implements X.509 certificates, the elements in the returned collection can be typecast to the 
+X509Certificate class. 
 
-In the case of a certificate factory for X.509 certificates, inStream may 
-contain a sequence of DER-encoded certificates in the formats described for 
-generateCertificate(|java.security.cert.CertificateFactory|) . In addition, 
-inStream may contain a PKCS#7 certificate chain. This is a PKCS#7 SignedData 
-object, with the only significant field being certificates. In particular, the 
-signature and the contents are ignored. This format allows multiple 
-certificates to be downloaded at once. If no certificates are present, an empty 
-collection is returned. 
+In the case of a certificate factory for X.509 certificates, inStream may contain a sequence of DER-encoded certificates in the formats described for 
+generateCertificate(|java.security.cert.CertificateFactory|) . In addition, inStream may contain a PKCS#7 certificate chain. This is a PKCS#7 SignedData object, with the only 
+significant field being certificates. In particular, the signature and the contents are ignored. This format allows multiple certificates to be downloaded at once. If no 
+certificates are present, an empty collection is returned. 
 
-Note that if the given input stream does not support 
-mark(|java.io.InputStream|) and reset(|java.io.InputStream|) , this method will 
-consume the entire input stream. 
+Note that if the given input stream does not support mark(|java.io.InputStream|) and reset(|java.io.InputStream|) , this method will consume the entire input stream. 
+
 
     inStream - the input stream with the certificates. 
 
-    Returns: a (possibly empty) collection view of java.security.cert.Certificate objects 
-             initialized with the data from the input stream. 
+    Returns: a (possibly empty) collection view of java.security.cert.Certificate objects initialized with the data from the input stream. 
+
 *java.security.cert.CertificateFactory.generateCertPath(InputStream)*
 
 public final |java.security.cert.CertPath| generateCertPath(java.io.InputStream inStream)
   throws |java.security.cert.CertificateException|
          
-Generates a CertPath object and initializes it with the data read from the 
-InputStream inStream. The data is assumed to be in the default encoding. The 
-name of the default encoding is the first element of the Iterator returned by 
-the getCertPathEncodings(|java.security.cert.CertificateFactory|) method. 
+Generates a CertPath object and initializes it with the data read from the InputStream inStream. The data is assumed to be in the default encoding. The name of the default 
+encoding is the first element of the Iterator returned by the getCertPathEncodings(|java.security.cert.CertificateFactory|) method. 
+
 
     inStream - an InputStream containing the data 
 
     Returns: a CertPath initialized with the data from the InputStream 
+
 *java.security.cert.CertificateFactory.generateCertPath(InputStream,String)*
 
 public final |java.security.cert.CertPath| generateCertPath(
@@ -169,114 +139,97 @@ public final |java.security.cert.CertPath| generateCertPath(
   java.lang.String encoding)
   throws |java.security.cert.CertificateException|
          
-Generates a CertPath object and initializes it with the data read from the 
-InputStream inStream. The data is assumed to be in the specified encoding. See 
-Appendix A in the 
+Generates a CertPath object and initializes it with the data read from the InputStream inStream. The data is assumed to be in the specified encoding. See Appendix A in the 
 
-Java Certification Path API Programmer's Guide for information about standard 
-encoding names and their formats. 
+Java Certification Path API Programmer's Guide for information about standard encoding names and their formats. 
+
 
     inStream - an InputStream containing the data 
     encoding - the encoding used for the data 
 
     Returns: a CertPath initialized with the data from the InputStream 
-*java.security.cert.CertificateFactory.generateCertPath(List)*
 
-public final |java.security.cert.CertPath| generateCertPath(java.util.List certificates)
+*java.security.cert.CertificateFactory.generateCertPath(List<?extendsCertificate>)*
+
+public final |java.security.cert.CertPath| generateCertPath(java.util.List<? extends java.security.cert.Certificate> certificates)
   throws |java.security.cert.CertificateException|
          
 Generates a CertPath object and initializes it with a List of Certificates. 
 
-The certificates supplied must be of a type supported by the 
-CertificateFactory. They will be copied out of the supplied List object. 
+The certificates supplied must be of a type supported by the CertificateFactory. They will be copied out of the supplied List object. 
+
 
     certificates - a List of Certificates 
 
     Returns: a CertPath initialized with the supplied list of certificates 
+
 *java.security.cert.CertificateFactory.generateCRL(InputStream)*
 
 public final |java.security.cert.CRL| generateCRL(java.io.InputStream inStream)
   throws |java.security.cert.CRLException|
          
-Generates a certificate revocation list (CRL) object and initializes it with 
-the data read from the input stream inStream. 
+Generates a certificate revocation list (CRL) object and initializes it with the data read from the input stream inStream. 
 
-In order to take advantage of the specialized CRL format supported by this 
-certificate factory, the returned CRL object can be typecast to the 
-corresponding CRL class. For example, if this certificate factory implements 
-X.509 CRLs, the returned CRL object can be typecast to the X509CRL class. 
+In order to take advantage of the specialized CRL format supported by this certificate factory, the returned CRL object can be typecast to the corresponding CRL class. For 
+example, if this certificate factory implements X.509 CRLs, the returned CRL object can be typecast to the X509CRL class. 
 
-Note that if the given input stream does not support 
-mark(|java.io.InputStream|) and reset(|java.io.InputStream|) , this method will 
-consume the entire input stream. Otherwise, each call to this method consumes 
-one CRL and the read position of the input stream is positioned to the next 
-available byte after the the inherent end-of-CRL marker. If the data in the 
-input stream does not contain an inherent end-of-CRL marker (other than EOF) 
-and there is trailing data after the CRL is parsed, a CRLException is thrown. 
+Note that if the given input stream does not support mark(|java.io.InputStream|) and reset(|java.io.InputStream|) , this method will consume the entire input stream. Otherwise, 
+each call to this method consumes one CRL and the read position of the input stream is positioned to the next available byte after the the inherent end-of-CRL marker. If the data 
+in the input stream does not contain an inherent end-of-CRL marker (other than EOF) and there is trailing data after the CRL is parsed, a CRLException is thrown. 
+
 
     inStream - an input stream with the CRL data. 
 
     Returns: a CRL object initialized with the data from the input stream. 
+
 *java.security.cert.CertificateFactory.generateCRLs(InputStream)*
 
-public final |java.util.Collection| generateCRLs(java.io.InputStream inStream)
+public final |java.util.Collection|<? extends java.security.cert.CRL> generateCRLs(java.io.InputStream inStream)
   throws |java.security.cert.CRLException|
          
-Returns a (possibly empty) collection view of the CRLs read from the given 
-input stream inStream. 
+Returns a (possibly empty) collection view of the CRLs read from the given input stream inStream. 
 
-In order to take advantage of the specialized CRL format supported by this 
-certificate factory, each element in the returned collection view can be 
-typecast to the corresponding CRL class. For example, if this certificate 
-factory implements X.509 CRLs, the elements in the returned collection can be 
-typecast to the X509CRL class. 
+In order to take advantage of the specialized CRL format supported by this certificate factory, each element in the returned collection view can be typecast to the corresponding 
+CRL class. For example, if this certificate factory implements X.509 CRLs, the elements in the returned collection can be typecast to the X509CRL class. 
 
-In the case of a certificate factory for X.509 CRLs, inStream may contain a 
-sequence of DER-encoded CRLs. In addition, inStream may contain a PKCS#7 CRL 
-set. This is a PKCS#7 SignedData object, with the only significant field being 
-crls. In particular, the signature and the contents are ignored. This format 
-allows multiple CRLs to be downloaded at once. If no CRLs are present, an empty 
-collection is returned. 
+In the case of a certificate factory for X.509 CRLs, inStream may contain a sequence of DER-encoded CRLs. In addition, inStream may contain a PKCS#7 CRL set. This is a PKCS#7 
+SignedData object, with the only significant field being crls. In particular, the signature and the contents are ignored. This format allows multiple CRLs to be downloaded at 
+once. If no CRLs are present, an empty collection is returned. 
 
-Note that if the given input stream does not support 
-mark(|java.io.InputStream|) and reset(|java.io.InputStream|) , this method will 
-consume the entire input stream. 
+Note that if the given input stream does not support mark(|java.io.InputStream|) and reset(|java.io.InputStream|) , this method will consume the entire input stream. 
+
 
     inStream - the input stream with the CRLs. 
 
-    Returns: a (possibly empty) collection view of java.security.cert.CRL objects 
-             initialized with the data from the input stream. 
+    Returns: a (possibly empty) collection view of java.security.cert.CRL objects initialized with the data from the input stream. 
+
 *java.security.cert.CertificateFactory.getCertPathEncodings()*
 
-public final |java.util.Iterator| getCertPathEncodings()
+public final |java.util.Iterator|<String> getCertPathEncodings()
 
-Returns an iteration of the CertPath encodings supported by this certificate 
-factory, with the default encoding first. See Appendix A in the 
+Returns an iteration of the CertPath encodings supported by this certificate factory, with the default encoding first. See Appendix A in the 
 
-Java Certification Path API Programmer's Guide for information about standard 
-encoding names and their formats. 
+Java Certification Path API Programmer's Guide for information about standard encoding names and their formats. 
 
-Attempts to modify the returned Iterator via its remove method result in an 
-UnsupportedOperationException. 
+Attempts to modify the returned Iterator via its remove method result in an UnsupportedOperationException. 
+
 
 
     Returns: an Iterator over the names of the supported CertPath encodings (as Strings) 
+
 *java.security.cert.CertificateFactory.getInstance(String)*
 
 public static final |java.security.cert.CertificateFactory| getInstance(java.lang.String type)
   throws |java.security.cert.CertificateException|
          
-Generates a certificate factory object that implements the specified 
-certificate type. If the default provider package provides an implementation of 
-the requested certificate type, an instance of certificate factory containing 
-that implementation is returned. If the type is not available in the default 
-package, other packages are searched. 
+Generates a certificate factory object that implements the specified certificate type. If the default provider package provides an implementation of the requested certificate 
+type, an instance of certificate factory containing that implementation is returned. If the type is not available in the default package, other packages are searched. 
 
-    type - the name of the requested certificate type. See Appendix A in the Java 
-       Cryptography Architecture API Specification and Reference for 
-       information about standard certificate types. 
+
+    type - the name of the requested certificate type. See Appendix A in the Java Cryptography Architecture API Specification and Reference for information about standard certificate types. 
 
     Returns: a certificate factory object for the specified type. 
+
 *java.security.cert.CertificateFactory.getInstance(String,Provider)*
 
 public static final |java.security.cert.CertificateFactory| getInstance(
@@ -284,13 +237,14 @@ public static final |java.security.cert.CertificateFactory| getInstance(
   java.security.Provider provider)
   throws |java.security.cert.CertificateException|
          
-Generates a certificate factory object for the specified certificate type from 
-the specified provider. Note: the provider doesn't have to be registered. 
+Generates a certificate factory object for the specified certificate type from the specified provider. Note: the provider doesn't have to be registered. 
+
 
     type - the certificate type 
     provider - the provider 
 
     Returns: a certificate factory object for the specified type. 
+
 *java.security.cert.CertificateFactory.getInstance(String,String)*
 
 public static final |java.security.cert.CertificateFactory| getInstance(
@@ -299,13 +253,14 @@ public static final |java.security.cert.CertificateFactory| getInstance(
   throws |java.security.cert.CertificateException|
          |java.security.NoSuchProviderException|
          
-Generates a certificate factory object for the specified certificate type from 
-the specified provider. 
+Generates a certificate factory object for the specified certificate type from the specified provider. 
+
 
     type - the certificate type 
     provider - the name of the provider. 
 
     Returns: a certificate factory object for the specified type. 
+
 *java.security.cert.CertificateFactory.getProvider()*
 
 public final |java.security.Provider| getProvider()
@@ -313,14 +268,17 @@ public final |java.security.Provider| getProvider()
 Returns the provider of this certificate factory. 
 
 
+
     Returns: the provider of this certificate factory. 
+
 *java.security.cert.CertificateFactory.getType()*
 
 public final |java.lang.String| getType()
 
-Returns the name of the certificate type associated with this certificate 
-factory. 
+Returns the name of the certificate type associated with this certificate factory. 
+
 
 
     Returns: the name of the certificate type associated with this certificate factory. 
+
 

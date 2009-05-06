@@ -1,4 +1,4 @@
-*java.net.DatagramSocketImpl* *DatagramSocketImpl* Abstract datagram and multica
+*java.net.DatagramSocketImpl* *DatagramSocketImpl* Abstract datagram and multicast socket implementation base class.
 
 public abstract class DatagramSocketImpl
   extends    |java.lang.Object|
@@ -9,7 +9,7 @@ public abstract class DatagramSocketImpl
 |java.net.DatagramSocketImpl_Constructors|
 |java.net.DatagramSocketImpl_Methods|
 
-================================================================================
+====================================================================================================================================================================================
 
 *java.net.DatagramSocketImpl_Fields*
 |java.io.FileDescriptor_java.net.DatagramSocketImpl.fd|
@@ -19,24 +19,24 @@ public abstract class DatagramSocketImpl
 |java.net.DatagramSocketImpl()|
 
 *java.net.DatagramSocketImpl_Methods*
-|java.net.DatagramSocketImpl.bind(int,InetAddress)|Binds a datagram socket to a
+|java.net.DatagramSocketImpl.bind(int,InetAddress)|Binds a datagram socket to a local port and address.
 |java.net.DatagramSocketImpl.close()|Close the socket.
-|java.net.DatagramSocketImpl.connect(InetAddress,int)|Connects a datagram socke
+|java.net.DatagramSocketImpl.connect(InetAddress,int)|Connects a datagram socket to a remote destination.
 |java.net.DatagramSocketImpl.create()|Creates a datagram socket.
-|java.net.DatagramSocketImpl.disconnect()|Disconnects a datagram socket from it
-|java.net.DatagramSocketImpl.getFileDescriptor()|Gets the datagram socket file 
+|java.net.DatagramSocketImpl.disconnect()|Disconnects a datagram socket from its remote destination.
+|java.net.DatagramSocketImpl.getFileDescriptor()|Gets the datagram socket file descriptor.
 |java.net.DatagramSocketImpl.getLocalPort()|Gets the local port.
-|java.net.DatagramSocketImpl.getTimeToLive()|Retrieve the TTL (time-to-live) op
+|java.net.DatagramSocketImpl.getTimeToLive()|Retrieve the TTL (time-to-live) option.
 |java.net.DatagramSocketImpl.getTTL()|Retrieve the TTL (time-to-live) option.
 |java.net.DatagramSocketImpl.join(InetAddress)|Join the multicast group.
-|java.net.DatagramSocketImpl.joinGroup(SocketAddress,NetworkInterface)|Join the
+|java.net.DatagramSocketImpl.joinGroup(SocketAddress,NetworkInterface)|Join the multicast group.
 |java.net.DatagramSocketImpl.leave(InetAddress)|Leave the multicast group.
-|java.net.DatagramSocketImpl.leaveGroup(SocketAddress,NetworkInterface)|Leave t
-|java.net.DatagramSocketImpl.peek(InetAddress)|Peek at the packet to see who it
-|java.net.DatagramSocketImpl.peekData(DatagramPacket)|Peek at the packet to see
-|java.net.DatagramSocketImpl.receive(DatagramPacket)|Receive the datagram packe
+|java.net.DatagramSocketImpl.leaveGroup(SocketAddress,NetworkInterface)|Leave the multicast group.
+|java.net.DatagramSocketImpl.peek(InetAddress)|Peek at the packet to see who it is from.
+|java.net.DatagramSocketImpl.peekData(DatagramPacket)|Peek at the packet to see who it is from.
+|java.net.DatagramSocketImpl.receive(DatagramPacket)|Receive the datagram packet.
 |java.net.DatagramSocketImpl.send(DatagramPacket)|Sends a datagram packet.
-|java.net.DatagramSocketImpl.setTimeToLive(int)|Set the TTL (time-to-live) opti
+|java.net.DatagramSocketImpl.setTimeToLive(int)|Set the TTL (time-to-live) option.
 |java.net.DatagramSocketImpl.setTTL(byte)|Set the TTL (time-to-live) option.
 
 *java.net.DatagramSocketImpl_Description*
@@ -44,14 +44,15 @@ public abstract class DatagramSocketImpl
 Abstract datagram and multicast socket implementation base class. 
 
 
+
 *java.io.FileDescriptor_java.net.DatagramSocketImpl.fd*
 
-Abstract datagram and multicast socket implementation base class. 
+The file descriptor object. 
 
 
 *int_java.net.DatagramSocketImpl.localPort*
 
-Abstract datagram and multicast socket implementation base class. 
+The local port number. 
 
 
 
@@ -71,6 +72,7 @@ protected abstract void bind(
          
 Binds a datagram socket to a local port and address. 
 
+
     lport - the local port 
     laddr - the local address 
 
@@ -81,6 +83,7 @@ protected abstract void close()
 Close the socket. 
 
 
+
 *java.net.DatagramSocketImpl.connect(InetAddress,int)*
 
 protected void connect(
@@ -88,16 +91,12 @@ protected void connect(
   int port)
   throws |java.net.SocketException|
          
-Connects a datagram socket to a remote destination. This associates the remote 
-address with the local socket so that datagrams may only be sent to this 
-destination and received from this destination. This may be overridden to call 
-a native system connect. 
+Connects a datagram socket to a remote destination. This associates the remote address with the local socket so that datagrams may only be sent to this destination and received 
+from this destination. This may be overridden to call a native system connect. 
 
-If the remote destination to which the socket is connected does not exist, or 
-is otherwise unreachable, and if an ICMP destination unreachable packet has 
-been received for that address, then a subsequent call to send or receive may 
-throw a PortUnreachableException. Note, there is no guarantee that the 
-exception will be thrown. 
+If the remote destination to which the socket is connected does not exist, or is otherwise unreachable, and if an ICMP destination unreachable packet has been received for that 
+address, then a subsequent call to send or receive may throw a PortUnreachableException. Note, there is no guarantee that the exception will be thrown. 
+
 
     address - the remote InetAddress to connect to 
     port - the remote port number 
@@ -110,11 +109,13 @@ protected abstract void create()
 Creates a datagram socket. 
 
 
+
 *java.net.DatagramSocketImpl.disconnect()*
 
 protected void disconnect()
 
 Disconnects a datagram socket from its remote destination. 
+
 
 
 *java.net.DatagramSocketImpl.getFileDescriptor()*
@@ -124,7 +125,9 @@ protected |java.io.FileDescriptor| getFileDescriptor()
 Gets the datagram socket file descriptor. 
 
 
+
     Returns: a FileDescriptor object representing the datagram socket file descriptor 
+
 *java.net.DatagramSocketImpl.getLocalPort()*
 
 protected int getLocalPort()
@@ -132,7 +135,9 @@ protected int getLocalPort()
 Gets the local port. 
 
 
+
     Returns: an int representing the local port value 
+
 *java.net.DatagramSocketImpl.getTimeToLive()*
 
 protected abstract int getTimeToLive()
@@ -141,7 +146,9 @@ protected abstract int getTimeToLive()
 Retrieve the TTL (time-to-live) option. 
 
 
+
     Returns: an int representing the time-to-live value 
+
 *java.net.DatagramSocketImpl.getTTL()*
 
 protected abstract byte getTTL()
@@ -149,14 +156,18 @@ protected abstract byte getTTL()
          
 Retrieve the TTL (time-to-live) option. 
 
+    Deprecated: use getTimeToLive instead.
+
 
     Returns: a byte representing the TTL value 
+
 *java.net.DatagramSocketImpl.join(InetAddress)*
 
 protected abstract void join(java.net.InetAddress inetaddr)
   throws |java.io.IOException|
          
 Join the multicast group. 
+
 
     inetaddr - multicast address to join. 
 
@@ -169,6 +180,7 @@ protected abstract void joinGroup(
          
 Join the multicast group. 
 
+
     mcastaddr - address to join. 
     netIf - specifies the local interface to receive multicast datagram packets 
 
@@ -178,6 +190,7 @@ protected abstract void leave(java.net.InetAddress inetaddr)
   throws |java.io.IOException|
          
 Leave the multicast group. 
+
 
     inetaddr - multicast address to leave. 
 
@@ -190,6 +203,7 @@ protected abstract void leaveGroup(
          
 Leave the multicast group. 
 
+
     mcastaddr - address to leave. 
     netIf - specified the local interface to leave the group at 
 
@@ -200,27 +214,30 @@ protected abstract int peek(java.net.InetAddress i)
          
 Peek at the packet to see who it is from. 
 
+
     i - an InetAddress object 
 
     Returns: the address which the packet came from. 
+
 *java.net.DatagramSocketImpl.peekData(DatagramPacket)*
 
 protected abstract int peekData(java.net.DatagramPacket p)
   throws |java.io.IOException|
          
-Peek at the packet to see who it is from. The data is returned, but not 
-consumed, so that a subsequent peekData/receive operation will see the same 
-data. 
+Peek at the packet to see who it is from. The data is returned, but not consumed, so that a subsequent peekData/receive operation will see the same data. 
+
 
     p - the Packet Received. 
 
     Returns: the address which the packet came from. 
+
 *java.net.DatagramSocketImpl.receive(DatagramPacket)*
 
 protected abstract void receive(java.net.DatagramPacket p)
   throws |java.io.IOException|
          
 Receive the datagram packet. 
+
 
     p - the Packet Received. 
 
@@ -229,8 +246,8 @@ Receive the datagram packet.
 protected abstract void send(java.net.DatagramPacket p)
   throws |java.io.IOException|
          
-Sends a datagram packet. The packet contains the data and the destination 
-address to send the packet to. 
+Sends a datagram packet. The packet contains the data and the destination address to send the packet to. 
+
 
     p - the packet to be sent. 
 
@@ -241,6 +258,7 @@ protected abstract void setTimeToLive(int ttl)
          
 Set the TTL (time-to-live) option. 
 
+
     ttl - an int specifying the time-to-live value 
 
 *java.net.DatagramSocketImpl.setTTL(byte)*
@@ -249,6 +267,8 @@ protected abstract void setTTL(byte ttl)
   throws |java.io.IOException|
          
 Set the TTL (time-to-live) option. 
+
+    Deprecated: use setTimeToLive instead.
 
     ttl - a byte specifying the TTL value 
 

@@ -1,4 +1,5 @@
-*javax.swing.text.NavigationFilter* *NavigationFilter* NavigationFilter can be u
+*javax.swing.text.NavigationFilter* *NavigationFilter* NavigationFilter can be used to restrict where the cursor can
+ be positioned.
 
 public class NavigationFilter
   extends    |java.lang.Object|
@@ -8,28 +9,24 @@ public class NavigationFilter
 |javax.swing.text.NavigationFilter_Constructors|
 |javax.swing.text.NavigationFilter_Methods|
 
-================================================================================
+====================================================================================================================================================================================
 
 *javax.swing.text.NavigationFilter_Constructors*
 |javax.swing.text.NavigationFilter()|
 
 *javax.swing.text.NavigationFilter_Methods*
-|javax.swing.text.NavigationFilter.getNextVisualPositionFrom(JTextComponent,int,Position.Bias,int,Position.Bias[])|
-|javax.swing.text.NavigationFilter.moveDot(NavigationFilter.FilterBypass,int,Position.Bias)|
-|javax.swing.text.NavigationFilter.setDot(NavigationFilter.FilterBypass,int,Position.Bias)|
+|javax.swing.text.NavigationFilter.getNextVisualPositionFrom(JTextComponent,int,Position.Bias,int,Position.Bias[])|Returns the next visual position to place the caret at from an  
+|javax.swing.text.NavigationFilter.moveDot(NavigationFilter.FilterBypass,int,Position.Bias)|Invoked prior to the Caret moving the dot.
+|javax.swing.text.NavigationFilter.setDot(NavigationFilter.FilterBypass,int,Position.Bias)|Invoked prior to the Caret setting the dot.
 
 *javax.swing.text.NavigationFilter_Description*
 
-NavigationFilter can be used to restrict where the cursor can be positioned. 
-When the default cursor positioning actions attempt to reposition the cursor 
-they will call into the NavigationFilter, assuming the JTextComponent has a 
-non-null NavigationFilter set. In this manner the NavigationFilter can 
-effectively restrict where the cursor can be positioned. Similarly DefaultCaret 
-will call into the NavigationFilter when the user is changing the selection to 
-further restrict where the cursor can be positioned. 
+NavigationFilter can be used to restrict where the cursor can be positioned. When the default cursor positioning actions attempt to reposition the cursor they will call into the 
+NavigationFilter, assuming the JTextComponent has a non-null NavigationFilter set. In this manner the NavigationFilter can effectively restrict where the cursor can be positioned. 
+Similarly DefaultCaret will call into the NavigationFilter when the user is changing the selection to further restrict where the cursor can be positioned. 
 
-Subclasses can conditionally call into supers implementation to restrict where 
-the cursor can be placed, or call directly into the FilterBypass. 
+Subclasses can conditionally call into supers implementation to restrict where the cursor can be placed, or call directly into the FilterBypass. 
+
 
 
 *javax.swing.text.NavigationFilter()*
@@ -49,24 +46,20 @@ public int getNextVisualPositionFrom(
   javax.swing.text.Position.Bias[] biasRet)
   throws |javax.swing.text.BadLocationException|
          
-Returns the next visual position to place the caret at from an existing 
-position. The default implementation simply forwards the method to the root 
-View. Subclasses may wish to further restrict the location based on additional 
-criteria. 
+Returns the next visual position to place the caret at from an existing position. The default implementation simply forwards the method to the root View. Subclasses may wish to 
+further restrict the location based on additional criteria. 
+
 
     text - JTextComponent containing text 
     pos - Position used in determining next position 
     bias - Bias used in determining next position 
-    direction - the direction from the current position that can be thought of as the arrow 
-       keys typically found on a keyboard. This will be one of the following 
-       values: 
+    direction - the direction from the current position that can be thought of as the arrow keys typically found on a keyboard. This will be one of the following values: 
 
-SwingConstants.WEST SwingConstants.EAST SwingConstants.NORTH 
-       SwingConstants.SOUTH 
+SwingConstants.WEST SwingConstants.EAST SwingConstants.NORTH SwingConstants.SOUTH 
     biasRet - Used to return resulting Bias of next position 
 
-    Returns: the location within the model that best represents the next location visual 
-             position 
+    Returns: the location within the model that best represents the next location visual position 
+
 *javax.swing.text.NavigationFilter.moveDot(NavigationFilter.FilterBypass,int,Position.Bias)*
 
 public void moveDot(
@@ -74,10 +67,9 @@ public void moveDot(
   int dot,
   javax.swing.text.Position.Bias bias)
 
-Invoked prior to the Caret moving the dot. The default implementation calls 
-directly into the FilterBypass with the passed in arguments. Subclasses may 
-wish to conditionally call super with a different location, or invoke the 
-necessary methods on the FilterBypass. 
+Invoked prior to the Caret moving the dot. The default implementation calls directly into the FilterBypass with the passed in arguments. Subclasses may wish to conditionally call 
+super with a different location, or invoke the necessary methods on the FilterBypass. 
+
 
     fb - FilterBypass that can be used to mutate caret position 
     dot - the position >= 0 
@@ -90,10 +82,9 @@ public void setDot(
   int dot,
   javax.swing.text.Position.Bias bias)
 
-Invoked prior to the Caret setting the dot. The default implementation calls 
-directly into the FilterBypass with the passed in arguments. Subclasses may 
-wish to conditionally call super with a different location, or invoke the 
-necessary method on the FilterBypass 
+Invoked prior to the Caret setting the dot. The default implementation calls directly into the FilterBypass with the passed in arguments. Subclasses may wish to conditionally call 
+super with a different location, or invoke the necessary method on the FilterBypass 
+
 
     fb - FilterBypass that can be used to mutate caret position 
     dot - the position >= 0 

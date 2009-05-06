@@ -1,4 +1,5 @@
-*java.util.zip.ZipOutputStream* *ZipOutputStream* This class implements an outpu
+*java.util.zip.ZipOutputStream* *ZipOutputStream* This class implements an output stream filter for writing files in the
+ ZIP file format.
 
 public class ZipOutputStream
   extends    |java.util.zip.DeflaterOutputStream|
@@ -9,7 +10,7 @@ public class ZipOutputStream
 |java.util.zip.ZipOutputStream_Constructors|
 |java.util.zip.ZipOutputStream_Methods|
 
-================================================================================
+====================================================================================================================================================================================
 
 *java.util.zip.ZipOutputStream_Fields*
 |int_java.util.zip.ZipOutputStream.DEFLATED|
@@ -19,31 +20,29 @@ public class ZipOutputStream
 |java.util.zip.ZipOutputStream(OutputStream)|Creates a new ZIP output stream.
 
 *java.util.zip.ZipOutputStream_Methods*
-|java.util.zip.ZipOutputStream.close()|Closes the ZIP output stream as well as 
-|java.util.zip.ZipOutputStream.closeEntry()|Closes the current ZIP entry and po
-|java.util.zip.ZipOutputStream.finish()|Finishes writing the contents of the ZI
-|java.util.zip.ZipOutputStream.putNextEntry(ZipEntry)|Begins writing a new ZIP 
+|java.util.zip.ZipOutputStream.close()|Closes the ZIP output stream as well as the stream being filtered.
+|java.util.zip.ZipOutputStream.closeEntry()|Closes the current ZIP entry and positions the stream for writing  the next entry.
+|java.util.zip.ZipOutputStream.finish()|Finishes writing the contents of the ZIP output stream without closing  the underlying stream.
+|java.util.zip.ZipOutputStream.putNextEntry(ZipEntry)|Begins writing a new ZIP file entry and positions the stream to the  start of the entry data.
 |java.util.zip.ZipOutputStream.setComment(String)|Sets the ZIP file comment.
-|java.util.zip.ZipOutputStream.setLevel(int)|Sets the compression level for sub
-|java.util.zip.ZipOutputStream.setMethod(int)|Sets the default compression meth
-|java.util.zip.ZipOutputStream.write(byte[],int,int)|Writes an array of bytes t
+|java.util.zip.ZipOutputStream.setLevel(int)|Sets the compression level for subsequent entries which are DEFLATED.
+|java.util.zip.ZipOutputStream.setMethod(int)|Sets the default compression method for subsequent entries.
+|java.util.zip.ZipOutputStream.write(byte[],int,int)|Writes an array of bytes to the current ZIP entry data.
 
 *java.util.zip.ZipOutputStream_Description*
 
-This class implements an output stream filter for writing files in the ZIP file 
-format. Includes support for both compressed and uncompressed entries. 
+This class implements an output stream filter for writing files in the ZIP file format. Includes support for both compressed and uncompressed entries. 
+
 
 
 *int_java.util.zip.ZipOutputStream.DEFLATED*
 
-This class implements an output stream filter for writing files in the ZIP file 
-format. Includes support for both compressed and uncompressed entries. 
+Compression method for compressed (DEFLATED) entries. 
 
 
 *int_java.util.zip.ZipOutputStream.STORED*
 
-This class implements an output stream filter for writing files in the ZIP file 
-format. Includes support for both compressed and uncompressed entries. 
+Compression method for uncompressed (STORED) entries. 
 
 
 
@@ -63,13 +62,14 @@ public void close()
 Closes the ZIP output stream as well as the stream being filtered. 
 
 
+
 *java.util.zip.ZipOutputStream.closeEntry()*
 
 public void closeEntry()
   throws |java.io.IOException|
          
-Closes the current ZIP entry and positions the stream for writing the next 
-entry. 
+Closes the current ZIP entry and positions the stream for writing the next entry. 
+
 
 
 *java.util.zip.ZipOutputStream.finish()*
@@ -77,9 +77,9 @@ entry.
 public void finish()
   throws |java.io.IOException|
          
-Finishes writing the contents of the ZIP output stream without closing the 
-underlying stream. Use this method when applying multiple filters in succession 
-to the same output stream. 
+Finishes writing the contents of the ZIP output stream without closing the underlying stream. Use this method when applying multiple filters in succession to the same output 
+stream. 
+
 
 
 *java.util.zip.ZipOutputStream.putNextEntry(ZipEntry)*
@@ -87,11 +87,9 @@ to the same output stream.
 public void putNextEntry(java.util.zip.ZipEntry e)
   throws |java.io.IOException|
          
-Begins writing a new ZIP file entry and positions the stream to the start of 
-the entry data. Closes the current entry if still active. The default 
-compression method will be used if no compression method was specified for the 
-entry, and the current time will be used if the entry has no set modification 
-time. 
+Begins writing a new ZIP file entry and positions the stream to the start of the entry data. Closes the current entry if still active. The default compression method will be used 
+if no compression method was specified for the entry, and the current time will be used if the entry has no set modification time. 
+
 
     e - the ZIP entry to be written 
 
@@ -101,14 +99,15 @@ public void setComment(java.lang.String comment)
 
 Sets the ZIP file comment. 
 
+
     comment - the comment string 
 
 *java.util.zip.ZipOutputStream.setLevel(int)*
 
 public void setLevel(int level)
 
-Sets the compression level for subsequent entries which are DEFLATED. The 
-default setting is DEFAULT_COMPRESSION. 
+Sets the compression level for subsequent entries which are DEFLATED. The default setting is DEFAULT_COMPRESSION. 
+
 
     level - the compression level (0-9) 
 
@@ -116,9 +115,9 @@ default setting is DEFAULT_COMPRESSION.
 
 public void setMethod(int method)
 
-Sets the default compression method for subsequent entries. This default will 
-be used whenever the compression method is not specified for an individual ZIP 
-file entry, and is initially set to DEFLATED. 
+Sets the default compression method for subsequent entries. This default will be used whenever the compression method is not specified for an individual ZIP file entry, and is 
+initially set to DEFLATED. 
+
 
     method - the default compression method 
 
@@ -130,8 +129,8 @@ public synchronized void write(
   int len)
   throws |java.io.IOException|
          
-Writes an array of bytes to the current ZIP entry data. This method will block 
-until all the bytes are written. 
+Writes an array of bytes to the current ZIP entry data. This method will block until all the bytes are written. 
+
 
     b - the data to be written 
     off - the start offset in the data 

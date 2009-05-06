@@ -1,6 +1,7 @@
-*java.util.AbstractSequentialList* *AbstractSequentialList* This class provides 
+*java.util.AbstractSequentialList* *AbstractSequentialList* This class provides a skeletal implementation of the List
+ interface to minimize the effort required to implement this i
 
-public abstract class AbstractSequentialList
+public abstract class AbstractSequentialList<E>
   extends    |java.util.AbstractList|
 
 |java.util.AbstractSequentialList_Description|
@@ -8,176 +9,155 @@ public abstract class AbstractSequentialList
 |java.util.AbstractSequentialList_Constructors|
 |java.util.AbstractSequentialList_Methods|
 
-================================================================================
+====================================================================================================================================================================================
 
 *java.util.AbstractSequentialList_Constructors*
 |java.util.AbstractSequentialList()|Sole constructor.
 
 *java.util.AbstractSequentialList_Methods*
-|java.util.AbstractSequentialList.add(int,E)|Inserts the specified element at t
-|java.util.AbstractSequentialList.addAll(int,Collection)|Inserts all of the ele
-|java.util.AbstractSequentialList.get(int)|Returns the element at the specified
-|java.util.AbstractSequentialList.iterator()|Returns an iterator over the eleme
-|java.util.AbstractSequentialList.listIterator(int)|Returns a list iterator ove
-|java.util.AbstractSequentialList.remove(int)|Removes the element at the specif
-|java.util.AbstractSequentialList.set(int,E)|Replaces the element at the specif
+|java.util.AbstractSequentialList.add(int,E)|Inserts the specified element at the specified position in this list.
+|java.util.AbstractSequentialList.addAll(int,Collection<?extendsE>)|Inserts all of the elements in the specified collection into this  list at the specified position.
+|java.util.AbstractSequentialList.get(int)|Returns the element at the specified position in this list.
+|java.util.AbstractSequentialList.iterator()|Returns an iterator over the elements in this list (in proper  sequence).
+|java.util.AbstractSequentialList.listIterator(int)|Returns a list iterator over the elements in this list (in proper  sequence).
+|java.util.AbstractSequentialList.remove(int)|Removes the element at the specified position in this list.
+|java.util.AbstractSequentialList.set(int,E)|Replaces the element at the specified position in this list with the  specified element.
 
 *java.util.AbstractSequentialList_Description*
 
-This class provides a skeletal implementation of the List interface to minimize 
-the effort required to implement this interface backed by a "sequential access" 
-data store (such as a linked list). For random access data (such as an array), 
-AbstractList should be used in preference to this class. 
+This class provides a skeletal implementation of the List interface to minimize the effort required to implement this interface backed by a "sequential access" data store (such as 
+a linked list). For random access data (such as an array), AbstractList should be used in preference to this class. 
 
-This class is the opposite of the AbstractList class in the sense that it 
-implements the "random access" methods (get(int index), set(int index, Object 
-element), set(int index, Object element), add(int index, Object element) and 
-remove(int index)) on top of the list's list iterator, instead of the other way 
-around. 
+This class is the opposite of the AbstractList class in the sense that it implements the "random access" methods (get(int index), set(int index, Object element), set(int index, 
+Object element), add(int index, Object element) and remove(int index)) on top of the list's list iterator, instead of the other way around. 
 
-To implement a list the programmer needs only to extend this class and provide 
-implementations for the listIterator and size methods. For an unmodifiable 
-list, the programmer need only implement the list iterator's hasNext, next, 
-hasPrevious, previous and index methods. 
+To implement a list the programmer needs only to extend this class and provide implementations for the listIterator and size methods. For an unmodifiable list, the programmer need 
+only implement the list iterator's hasNext, next, hasPrevious, previous and index methods. 
 
-For a modifiable list the programmer should additionally implement the list 
-iterator's set method. For a variable-size list the programmer should 
-additionally implement the list iterator's remove and add methods. 
+For a modifiable list the programmer should additionally implement the list iterator's set method. For a variable-size list the programmer should additionally implement the list 
+iterator's remove and add methods. 
 
-The programmer should generally provide a void (no argument) and collection 
-constructor, as per the recommendation in the Collection interface 
-specification. 
+The programmer should generally provide a void (no argument) and collection constructor, as per the recommendation in the Collection interface specification. 
 
-This class is a member of the <a href="/../guide/collections/index.html"> Java 
-Collections Framework. 
+This class is a member of the <a href="/../guide/collections/index.html"> Java Collections Framework. 
+
 
 
 *java.util.AbstractSequentialList()*
 
 protected AbstractSequentialList()
 
-Sole constructor. (For invocation by subclass constructors, typically 
-implicit.) 
+Sole constructor. (For invocation by subclass constructors, typically implicit.) 
 
 
 *java.util.AbstractSequentialList.add(int,E)*
 
 public void add(
   int index,
-  java.lang.Object element)
+  E element)
 
-Inserts the specified element at the specified position in this list. Shifts 
-the element currently at that position (if any) and any subsequent elements to 
-the right (adds one to their indices). 
+Inserts the specified element at the specified position in this list. Shifts the element currently at that position (if any) and any subsequent elements to the right (adds one to 
+their indices). 
 
-This implementation first gets a list iterator pointing to the indexed element 
-(with listIterator(index)). Then, it inserts the specified element with 
-ListIterator.add. 
+This implementation first gets a list iterator pointing to the indexed element (with listIterator(index)). Then, it inserts the specified element with ListIterator.add. 
 
-Note that this implementation will throw an UnsupportedOperationException if 
-list iterator does not implement the add operation. 
+Note that this implementation will throw an UnsupportedOperationException if list iterator does not implement the add operation. 
+
 
     index - index at which the specified element is to be inserted. 
     element - element to be inserted. 
 
-*java.util.AbstractSequentialList.addAll(int,Collection)*
+*java.util.AbstractSequentialList.addAll(int,Collection<?extendsE>)*
 
 public boolean addAll(
   int index,
-  java.util.Collection c)
+  java.util.Collection<? extends E> c)
 
-Inserts all of the elements in the specified collection into this list at the 
-specified position. Shifts the element currently at that position (if any) and 
-any subsequent elements to the right (increases their indices). The new 
-elements will appear in the list in the order that they are returned by the 
-specified collection's iterator. The behavior of this operation is unspecified 
-if the specified collection is modified while the operation is in progress. 
-(Note that this will occur if the specified collection is this list, and it's 
-nonempty.) Optional operation. 
+Inserts all of the elements in the specified collection into this list at the specified position. Shifts the element currently at that position (if any) and any subsequent 
+elements to the right (increases their indices). The new elements will appear in the list in the order that they are returned by the specified collection's iterator. The behavior 
+of this operation is unspecified if the specified collection is modified while the operation is in progress. (Note that this will occur if the specified collection is this list, 
+and it's nonempty.) Optional operation. 
 
-This implementation gets an iterator over the specified collection and a list 
-iterator over this list pointing to the indexed element (with 
-listIterator(index)). Then, it iterates over the specified collection, 
-inserting the elements obtained from the iterator into this list, one at a 
-time, using ListIterator.add followed by ListIterator.next (to skip over the 
-added element). 
+This implementation gets an iterator over the specified collection and a list iterator over this list pointing to the indexed element (with listIterator(index)). Then, it iterates 
+over the specified collection, inserting the elements obtained from the iterator into this list, one at a time, using ListIterator.add followed by ListIterator.next (to skip over 
+the added element). 
 
-Note that this implementation will throw an UnsupportedOperationException if 
-the list iterator returned by the listIterator method does not implement the 
-add operation. 
+Note that this implementation will throw an UnsupportedOperationException if the list iterator returned by the listIterator method does not implement the add operation. 
+
 
     index - index at which to insert first element from the specified collection. 
     c - elements to be inserted into this list. 
 
     Returns: true if this list changed as a result of the call. 
+
 *java.util.AbstractSequentialList.get(int)*
 
-public |java.lang.Object| get(int index)
+public |E| get(int index)
 
 Returns the element at the specified position in this list. 
 
-This implementation first gets a list iterator pointing to the indexed element 
-(with listIterator(index)). Then, it gets the element using ListIterator.next 
-and returns it. 
+This implementation first gets a list iterator pointing to the indexed element (with listIterator(index)). Then, it gets the element using ListIterator.next and returns it. 
+
 
     index - index of element to return. 
 
     Returns: the element at the specified position in this list. 
+
 *java.util.AbstractSequentialList.iterator()*
 
-public |java.util.Iterator| iterator()
+public |java.util.Iterator|<E> iterator()
 
 Returns an iterator over the elements in this list (in proper sequence). 
 
 This implementation merely returns a list iterator over the list. 
 
 
+
     Returns: an iterator over the elements in this list (in proper sequence). 
+
 *java.util.AbstractSequentialList.listIterator(int)*
 
-public abstract |java.util.ListIterator| listIterator(int index)
+public abstract |java.util.ListIterator|<E> listIterator(int index)
 
 Returns a list iterator over the elements in this list (in proper sequence). 
 
-    index - index of first element to be returned from the list iterator (by a call to the 
-       next method) 
+
+    index - index of first element to be returned from the list iterator (by a call to the next method) 
 
     Returns: a list iterator over the elements in this list (in proper sequence). 
+
 *java.util.AbstractSequentialList.remove(int)*
 
-public |java.lang.Object| remove(int index)
+public |E| remove(int index)
 
-Removes the element at the specified position in this list. Shifts any 
-subsequent elements to the left (subtracts one from their indices). 
+Removes the element at the specified position in this list. Shifts any subsequent elements to the left (subtracts one from their indices). 
 
-This implementation first gets a list iterator pointing to the indexed element 
-(with listIterator(index)). Then, it removes the element with 
-ListIterator.remove. 
+This implementation first gets a list iterator pointing to the indexed element (with listIterator(index)). Then, it removes the element with ListIterator.remove. 
 
-Note that this implementation will throw an UnsupportedOperationException if 
-list iterator does not implement the remove operation. 
+Note that this implementation will throw an UnsupportedOperationException if list iterator does not implement the remove operation. 
+
 
     index - index of the element to be removed from the List. 
 
     Returns: the element that was removed from the list. 
+
 *java.util.AbstractSequentialList.set(int,E)*
 
-public |java.lang.Object| set(
+public |E| set(
   int index,
-  java.lang.Object element)
+  E element)
 
-Replaces the element at the specified position in this list with the specified 
-element. 
+Replaces the element at the specified position in this list with the specified element. 
 
-This implementation first gets a list iterator pointing to the indexed element 
-(with listIterator(index)). Then, it gets the current element using 
-ListIterator.next and replaces it with ListIterator.set. 
+This implementation first gets a list iterator pointing to the indexed element (with listIterator(index)). Then, it gets the current element using ListIterator.next and replaces 
+it with ListIterator.set. 
 
-Note that this implementation will throw an UnsupportedOperationException if 
-list iterator does not implement the set operation. 
+Note that this implementation will throw an UnsupportedOperationException if list iterator does not implement the set operation. 
+
 
     index - index of element to replace. 
     element - element to be stored at the specified position. 
 
     Returns: the element previously at the specified position. 
+
 

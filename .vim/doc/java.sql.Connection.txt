@@ -1,5 +1,5 @@
 *java.sql.Connection* *Connection* A connection (session) with a specific
- datab
+ database.
 
 public interface interface Connection
 
@@ -9,7 +9,7 @@ public interface interface Connection
 |java.sql.Connection_Constructors|
 |java.sql.Connection_Methods|
 
-================================================================================
+====================================================================================================================================================================================
 
 *java.sql.Connection_Fields*
 |int_java.sql.Connection.TRANSACTION_NONE|
@@ -19,269 +19,96 @@ public interface interface Connection
 |int_java.sql.Connection.TRANSACTION_SERIALIZABLE|
 
 *java.sql.Connection_Methods*
-|java.sql.Connection.clearWarnings()|Clears all warnings reported for this Conn
-|java.sql.Connection.close()|Releases this Connection object's database and JDB
-|java.sql.Connection.commit()|Makes all changes made since the previous  commit
-|java.sql.Connection.createStatement()|Creates a Statement object for sending  
-|java.sql.Connection.createStatement(int,int)|Creates a Statement object that w
-|java.sql.Connection.createStatement(int,int,int)|Creates a Statement object th
-|java.sql.Connection.getAutoCommit()|Retrieves the current auto-commit mode for
-|java.sql.Connection.getCatalog()|Retrieves this Connection object's current ca
-|java.sql.Connection.getHoldability()|Retrieves the current holdability of Resu
-|java.sql.Connection.getMetaData()|Retrieves a DatabaseMetaData object that con
-|java.sql.Connection.getTransactionIsolation()|Retrieves this Connection object
-|java.sql.Connection.getTypeMap()|Retrieves the Map object associated with this
-|java.sql.Connection.getWarnings()|Retrieves the first warning reported by call
-|java.sql.Connection.isClosed()|Retrieves whether this Connection object has be
-|java.sql.Connection.isReadOnly()|Retrieves whether this Connection   object is
-|java.sql.Connection.nativeSQL(String)|Converts the given SQL statement into th
-|java.sql.Connection.prepareCall(String)|Creates a CallableStatement object for
-|java.sql.Connection.prepareCall(String,int,int)|Creates a CallableStatement ob
-|java.sql.Connection.prepareCall(String,int,int,int)|Creates a CallableStatemen
-|java.sql.Connection.prepareStatement(String)|Creates a PreparedStatement objec
-|java.sql.Connection.prepareStatement(String,int)|Creates a default PreparedSta
-|java.sql.Connection.prepareStatement(String,int[])|Creates a default PreparedS
-|java.sql.Connection.prepareStatement(String,int,int)|Creates a PreparedStateme
-|java.sql.Connection.prepareStatement(String,int,int,int)|Creates a PreparedSta
-|java.sql.Connection.prepareStatement(String,String[])|Creates a default Prepar
-|java.sql.Connection.releaseSavepoint(Savepoint)|Removes the given Savepoint ob
-|java.sql.Connection.rollback()|Undoes all changes made in the current transact
-|java.sql.Connection.rollback(Savepoint)|Undoes all changes made after the give
-|java.sql.Connection.setAutoCommit(boolean)|Sets this connection's auto-commit 
-|java.sql.Connection.setCatalog(String)|Sets the given catalog name in order to
-|java.sql.Connection.setHoldability(int)|Changes the holdability of ResultSet o
-|java.sql.Connection.setReadOnly(boolean)|Puts this connection in read-only mod
-|java.sql.Connection.setSavepoint()|Creates an unnamed savepoint in the current
-|java.sql.Connection.setSavepoint(String)|Creates a savepoint with the given na
-|java.sql.Connection.setTransactionIsolation(int)|Attempts to change the transa
-|java.sql.Connection.setTypeMap(Map)|Installs the given TypeMap object as the t
+|java.sql.Connection.clearWarnings()|Clears all warnings reported for this Connection object.
+|java.sql.Connection.close()|Releases this Connection object's database and JDBC resources  immediately instead of waiting for them to be automatically released.
+|java.sql.Connection.commit()|Makes all changes made since the previous  commit/rollback permanent and releases any database locks  currently held by this Connection object.
+|java.sql.Connection.createStatement()|Creates a Statement object for sending  SQL statements to the database.
+|java.sql.Connection.createStatement(int,int)|Creates a Statement object that will generate  ResultSet objects with the given type and concurrency.
+|java.sql.Connection.createStatement(int,int,int)|Creates a Statement object that will generate  ResultSet objects with the given type, concurrency,  and holdability.
+|java.sql.Connection.getAutoCommit()|Retrieves the current auto-commit mode for this Connection  object.
+|java.sql.Connection.getCatalog()|Retrieves this Connection object's current catalog name.
+|java.sql.Connection.getHoldability()|Retrieves the current holdability of ResultSet objects  created using this Connection object.
+|java.sql.Connection.getMetaData()|Retrieves a DatabaseMetaData object that contains  metadata about the database to which this  Connection object represents a connection.
+|java.sql.Connection.getTransactionIsolation()|Retrieves this Connection object's current   transaction isolation level.
+|java.sql.Connection.getTypeMap()|Retrieves the Map object associated with this   Connection object.
+|java.sql.Connection.getWarnings()|Retrieves the first warning reported by calls on this   Connection object.
+|java.sql.Connection.isClosed()|Retrieves whether this Connection object has been  closed.
+|java.sql.Connection.isReadOnly()|Retrieves whether this Connection   object is in read-only mode.
+|java.sql.Connection.nativeSQL(String)|Converts the given SQL statement into the system's native SQL grammar.
+|java.sql.Connection.prepareCall(String)|Creates a CallableStatement object for calling  database stored procedures.
+|java.sql.Connection.prepareCall(String,int,int)|Creates a CallableStatement object that will generate  ResultSet objects with the given type and concurrency.
+|java.sql.Connection.prepareCall(String,int,int,int)|Creates a CallableStatement object that will generate  ResultSet objects with the given type and concurrency.
+|java.sql.Connection.prepareStatement(String)|Creates a PreparedStatement object for sending  parameterized SQL statements to the database.
+|java.sql.Connection.prepareStatement(String,int)|Creates a default PreparedStatement object that has  the capability to retrieve auto-generated keys.
+|java.sql.Connection.prepareStatement(String,int[])|Creates a default PreparedStatement object capable  of returning the auto-generated keys designated by the given array.
+|java.sql.Connection.prepareStatement(String,int,int)|Creates a PreparedStatement object that will generate  ResultSet objects with the given type and concurrency.
+|java.sql.Connection.prepareStatement(String,int,int,int)|Creates a PreparedStatement object that will generate  ResultSet objects with the given type, concurrency,  and holdabili
+|java.sql.Connection.prepareStatement(String,String[])|Creates a default PreparedStatement object capable  of returning the auto-generated keys designated by the given array.
+|java.sql.Connection.releaseSavepoint(Savepoint)|Removes the given Savepoint object from the current   transaction.
+|java.sql.Connection.rollback()|Undoes all changes made in the current transaction  and releases any database locks currently held  by this Connection object.
+|java.sql.Connection.rollback(Savepoint)|Undoes all changes made after the given Savepoint object  was set.
+|java.sql.Connection.setAutoCommit(boolean)|Sets this connection's auto-commit mode to the given state.
+|java.sql.Connection.setCatalog(String)|Sets the given catalog name in order to select 	  a subspace of this Connection object's database   in which to work.
+|java.sql.Connection.setHoldability(int)|Changes the holdability of ResultSet objects  created using this Connection object to the given  holdability.
+|java.sql.Connection.setReadOnly(boolean)|Puts this connection in read-only mode as a hint to the driver to enable   database optimizations.
+|java.sql.Connection.setSavepoint()|Creates an unnamed savepoint in the current transaction and   returns the new Savepoint object that represents it.
+|java.sql.Connection.setSavepoint(String)|Creates a savepoint with the given name in the current transaction  and returns the new Savepoint object that represents it.
+|java.sql.Connection.setTransactionIsolation(int)|Attempts to change the transaction isolation level for this  Connection object to the one given.
+|java.sql.Connection.setTypeMap(Map<String,Class<?>>)|Installs the given TypeMap object as the type map for  this Connection object.
 
 *java.sql.Connection_Description*
 
-A connection (session) with a specific database. SQL statements are executed 
-and results are returned within the context of a connection. 
+A connection (session) with a specific database. SQL statements are executed and results are returned within the context of a connection. 
 
-A Connection object's database is able to provide information describing its 
-tables, its supported SQL grammar, its stored procedures, the capabilities of 
-this connection, and so on. This information is obtained with the getMetaData 
-method. 
+A Connection object's database is able to provide information describing its tables, its supported SQL grammar, its stored procedures, the capabilities of this connection, and so 
+on. This information is obtained with the getMetaData method. 
 
-Note: By default a Connection object is in auto-commit mode, which means that 
-it automatically commits changes after executing each statement. If auto-commit 
-mode has been disabled, the method commit must be called explicitly in order to 
-commit changes; otherwise, database changes will not be saved. 
+Note: By default a Connection object is in auto-commit mode, which means that it automatically commits changes after executing each statement. If auto-commit mode has been 
+disabled, the method commit must be called explicitly in order to commit changes; otherwise, database changes will not be saved. 
 
-A new Connection object created using the JDBC 2.1 core API has an initially 
-empty type map associated with it. A user may enter a custom mapping for a UDT 
-in this type map. When a UDT is retrieved from a data source with the method 
-ResultSet.getObject, the getObject method will check the connection's type map 
-to see if there is an entry for that UDT. If so, the getObject method will map 
-the UDT to the class indicated. If there is no entry, the UDT will be mapped 
-using the standard mapping. 
+A new Connection object created using the JDBC 2.1 core API has an initially empty type map associated with it. A user may enter a custom mapping for a UDT in this type map. When 
+a UDT is retrieved from a data source with the method ResultSet.getObject, the getObject method will check the connection's type map to see if there is an entry for that UDT. If 
+so, the getObject method will map the UDT to the class indicated. If there is no entry, the UDT will be mapped using the standard mapping. 
 
-A user may create a new type map, which is a java.util.Map object, make an 
-entry in it, and pass it to the java.sql methods that can perform custom 
-mapping. In this case, the method will use the given type map instead of the 
-one associated with the connection. 
+A user may create a new type map, which is a java.util.Map object, make an entry in it, and pass it to the java.sql methods that can perform custom mapping. In this case, the 
+method will use the given type map instead of the one associated with the connection. 
 
-For example, the following code fragment specifies that the SQL type ATHLETES 
-will be mapped to the class Athletes in the Java programming language. The code 
-fragment retrieves the type map for the Connection object con, inserts the 
-entry into it, and then sets the type map with the new entry as the 
-connection's type map. 
+For example, the following code fragment specifies that the SQL type ATHLETES will be mapped to the class Athletes in the Java programming language. The code fragment retrieves 
+the type map for the Connection object con, inserts the entry into it, and then sets the type map with the new entry as the connection's type map. 
 
-java.util.Map map = con.getTypeMap(); map.put("mySchemaName.ATHLETES", 
-Class.forName("Athletes")); con.setTypeMap(map); 
+java.util.Map map = con.getTypeMap(); map.put("mySchemaName.ATHLETES", Class.forName("Athletes")); con.setTypeMap(map); 
+
 
 
 *int_java.sql.Connection.TRANSACTION_NONE*
 
-A connection (session) with a specific database. SQL statements are executed 
-and results are returned within the context of a connection. 
-
-A Connection object's database is able to provide information describing its 
-tables, its supported SQL grammar, its stored procedures, the capabilities of 
-this connection, and so on. This information is obtained with the getMetaData 
-method. 
-
-Note: By default a Connection object is in auto-commit mode, which means that 
-it automatically commits changes after executing each statement. If auto-commit 
-mode has been disabled, the method commit must be called explicitly in order to 
-commit changes; otherwise, database changes will not be saved. 
-
-A new Connection object created using the JDBC 2.1 core API has an initially 
-empty type map associated with it. A user may enter a custom mapping for a UDT 
-in this type map. When a UDT is retrieved from a data source with the method 
-ResultSet.getObject, the getObject method will check the connection's type map 
-to see if there is an entry for that UDT. If so, the getObject method will map 
-the UDT to the class indicated. If there is no entry, the UDT will be mapped 
-using the standard mapping. 
-
-A user may create a new type map, which is a java.util.Map object, make an 
-entry in it, and pass it to the java.sql methods that can perform custom 
-mapping. In this case, the method will use the given type map instead of the 
-one associated with the connection. 
-
-For example, the following code fragment specifies that the SQL type ATHLETES 
-will be mapped to the class Athletes in the Java programming language. The code 
-fragment retrieves the type map for the Connection object con, inserts the 
-entry into it, and then sets the type map with the new entry as the 
-connection's type map. 
-
-java.util.Map map = con.getTypeMap(); map.put("mySchemaName.ATHLETES", 
-Class.forName("Athletes")); con.setTypeMap(map); 
+A constant indicating that transactions are not supported. 
 
 
 *int_java.sql.Connection.TRANSACTION_READ_COMMITTED*
 
-A connection (session) with a specific database. SQL statements are executed 
-and results are returned within the context of a connection. 
-
-A Connection object's database is able to provide information describing its 
-tables, its supported SQL grammar, its stored procedures, the capabilities of 
-this connection, and so on. This information is obtained with the getMetaData 
-method. 
-
-Note: By default a Connection object is in auto-commit mode, which means that 
-it automatically commits changes after executing each statement. If auto-commit 
-mode has been disabled, the method commit must be called explicitly in order to 
-commit changes; otherwise, database changes will not be saved. 
-
-A new Connection object created using the JDBC 2.1 core API has an initially 
-empty type map associated with it. A user may enter a custom mapping for a UDT 
-in this type map. When a UDT is retrieved from a data source with the method 
-ResultSet.getObject, the getObject method will check the connection's type map 
-to see if there is an entry for that UDT. If so, the getObject method will map 
-the UDT to the class indicated. If there is no entry, the UDT will be mapped 
-using the standard mapping. 
-
-A user may create a new type map, which is a java.util.Map object, make an 
-entry in it, and pass it to the java.sql methods that can perform custom 
-mapping. In this case, the method will use the given type map instead of the 
-one associated with the connection. 
-
-For example, the following code fragment specifies that the SQL type ATHLETES 
-will be mapped to the class Athletes in the Java programming language. The code 
-fragment retrieves the type map for the Connection object con, inserts the 
-entry into it, and then sets the type map with the new entry as the 
-connection's type map. 
-
-java.util.Map map = con.getTypeMap(); map.put("mySchemaName.ATHLETES", 
-Class.forName("Athletes")); con.setTypeMap(map); 
+A constant indicating that dirty reads are prevented; non-repeatable reads and phantom reads can occur. This level only prohibits a transaction from reading a row with uncommitted 
+changes in it. 
 
 
 *int_java.sql.Connection.TRANSACTION_READ_UNCOMMITTED*
 
-A connection (session) with a specific database. SQL statements are executed 
-and results are returned within the context of a connection. 
-
-A Connection object's database is able to provide information describing its 
-tables, its supported SQL grammar, its stored procedures, the capabilities of 
-this connection, and so on. This information is obtained with the getMetaData 
-method. 
-
-Note: By default a Connection object is in auto-commit mode, which means that 
-it automatically commits changes after executing each statement. If auto-commit 
-mode has been disabled, the method commit must be called explicitly in order to 
-commit changes; otherwise, database changes will not be saved. 
-
-A new Connection object created using the JDBC 2.1 core API has an initially 
-empty type map associated with it. A user may enter a custom mapping for a UDT 
-in this type map. When a UDT is retrieved from a data source with the method 
-ResultSet.getObject, the getObject method will check the connection's type map 
-to see if there is an entry for that UDT. If so, the getObject method will map 
-the UDT to the class indicated. If there is no entry, the UDT will be mapped 
-using the standard mapping. 
-
-A user may create a new type map, which is a java.util.Map object, make an 
-entry in it, and pass it to the java.sql methods that can perform custom 
-mapping. In this case, the method will use the given type map instead of the 
-one associated with the connection. 
-
-For example, the following code fragment specifies that the SQL type ATHLETES 
-will be mapped to the class Athletes in the Java programming language. The code 
-fragment retrieves the type map for the Connection object con, inserts the 
-entry into it, and then sets the type map with the new entry as the 
-connection's type map. 
-
-java.util.Map map = con.getTypeMap(); map.put("mySchemaName.ATHLETES", 
-Class.forName("Athletes")); con.setTypeMap(map); 
+A constant indicating that dirty reads, non-repeatable reads and phantom reads can occur. This level allows a row changed by one transaction to be read by another transaction 
+before any changes in that row have been committed (a "dirty read"). If any of the changes are rolled back, the second transaction will have retrieved an invalid row. 
 
 
 *int_java.sql.Connection.TRANSACTION_REPEATABLE_READ*
 
-A connection (session) with a specific database. SQL statements are executed 
-and results are returned within the context of a connection. 
-
-A Connection object's database is able to provide information describing its 
-tables, its supported SQL grammar, its stored procedures, the capabilities of 
-this connection, and so on. This information is obtained with the getMetaData 
-method. 
-
-Note: By default a Connection object is in auto-commit mode, which means that 
-it automatically commits changes after executing each statement. If auto-commit 
-mode has been disabled, the method commit must be called explicitly in order to 
-commit changes; otherwise, database changes will not be saved. 
-
-A new Connection object created using the JDBC 2.1 core API has an initially 
-empty type map associated with it. A user may enter a custom mapping for a UDT 
-in this type map. When a UDT is retrieved from a data source with the method 
-ResultSet.getObject, the getObject method will check the connection's type map 
-to see if there is an entry for that UDT. If so, the getObject method will map 
-the UDT to the class indicated. If there is no entry, the UDT will be mapped 
-using the standard mapping. 
-
-A user may create a new type map, which is a java.util.Map object, make an 
-entry in it, and pass it to the java.sql methods that can perform custom 
-mapping. In this case, the method will use the given type map instead of the 
-one associated with the connection. 
-
-For example, the following code fragment specifies that the SQL type ATHLETES 
-will be mapped to the class Athletes in the Java programming language. The code 
-fragment retrieves the type map for the Connection object con, inserts the 
-entry into it, and then sets the type map with the new entry as the 
-connection's type map. 
-
-java.util.Map map = con.getTypeMap(); map.put("mySchemaName.ATHLETES", 
-Class.forName("Athletes")); con.setTypeMap(map); 
+A constant indicating that dirty reads and non-repeatable reads are prevented; phantom reads can occur. This level prohibits a transaction from reading a row with uncommitted 
+changes in it, and it also prohibits the situation where one transaction reads a row, a second transaction alters the row, and the first transaction rereads the row, getting 
+different values the second time (a "non-repeatable read"). 
 
 
 *int_java.sql.Connection.TRANSACTION_SERIALIZABLE*
 
-A connection (session) with a specific database. SQL statements are executed 
-and results are returned within the context of a connection. 
-
-A Connection object's database is able to provide information describing its 
-tables, its supported SQL grammar, its stored procedures, the capabilities of 
-this connection, and so on. This information is obtained with the getMetaData 
-method. 
-
-Note: By default a Connection object is in auto-commit mode, which means that 
-it automatically commits changes after executing each statement. If auto-commit 
-mode has been disabled, the method commit must be called explicitly in order to 
-commit changes; otherwise, database changes will not be saved. 
-
-A new Connection object created using the JDBC 2.1 core API has an initially 
-empty type map associated with it. A user may enter a custom mapping for a UDT 
-in this type map. When a UDT is retrieved from a data source with the method 
-ResultSet.getObject, the getObject method will check the connection's type map 
-to see if there is an entry for that UDT. If so, the getObject method will map 
-the UDT to the class indicated. If there is no entry, the UDT will be mapped 
-using the standard mapping. 
-
-A user may create a new type map, which is a java.util.Map object, make an 
-entry in it, and pass it to the java.sql methods that can perform custom 
-mapping. In this case, the method will use the given type map instead of the 
-one associated with the connection. 
-
-For example, the following code fragment specifies that the SQL type ATHLETES 
-will be mapped to the class Athletes in the Java programming language. The code 
-fragment retrieves the type map for the Connection object con, inserts the 
-entry into it, and then sets the type map with the new entry as the 
-connection's type map. 
-
-java.util.Map map = con.getTypeMap(); map.put("mySchemaName.ATHLETES", 
-Class.forName("Athletes")); con.setTypeMap(map); 
+A constant indicating that dirty reads, non-repeatable reads and phantom reads are prevented. This level includes the prohibitions in TRANSACTION_REPEATABLE_READ and further 
+prohibits the situation where one transaction reads all rows that satisfy a WHERE condition, a second transaction inserts a row that satisfies that WHERE condition, and the first 
+transaction rereads for the same condition, retrieving the additional "phantom" row in the second read. 
 
 
 
@@ -290,9 +117,9 @@ Class.forName("Athletes")); con.setTypeMap(map);
 public void clearWarnings()
   throws |java.sql.SQLException|
          
-Clears all warnings reported for this Connection object. After a call to this 
-method, the method getWarnings returns null until a new warning is reported for 
-this Connection object. 
+Clears all warnings reported for this Connection object. After a call to this method, the method getWarnings returns null until a new warning is reported for this Connection 
+object. 
+
 
 
 *java.sql.Connection.close()*
@@ -300,14 +127,12 @@ this Connection object.
 public void close()
   throws |java.sql.SQLException|
          
-Releases this Connection object's database and JDBC resources immediately 
-instead of waiting for them to be automatically released. 
+Releases this Connection object's database and JDBC resources immediately instead of waiting for them to be automatically released. 
 
-Calling the method close on a Connection object that is already closed is a 
-no-op. 
+Calling the method close on a Connection object that is already closed is a no-op. 
 
-Note: A Connection object is automatically closed when it is garbage collected. 
-Certain fatal errors also close a Connection object. 
+Note: A Connection object is automatically closed when it is garbage collected. Certain fatal errors also close a Connection object. 
+
 
 
 *java.sql.Connection.commit()*
@@ -315,9 +140,9 @@ Certain fatal errors also close a Connection object.
 public void commit()
   throws |java.sql.SQLException|
          
-Makes all changes made since the previous commit/rollback permanent and 
-releases any database locks currently held by this Connection object. This 
-method should be used only when auto-commit mode has been disabled. 
+Makes all changes made since the previous commit/rollback permanent and releases any database locks currently held by this Connection object. This method should be used only when 
+auto-commit mode has been disabled. 
+
 
 
 *java.sql.Connection.createStatement()*
@@ -325,16 +150,15 @@ method should be used only when auto-commit mode has been disabled.
 public |java.sql.Statement| createStatement()
   throws |java.sql.SQLException|
          
-Creates a Statement object for sending SQL statements to the database. SQL 
-statements without parameters are normally executed using Statement objects. If 
-the same SQL statement is executed many times, it may be more efficient to use 
-a PreparedStatement object. 
+Creates a Statement object for sending SQL statements to the database. SQL statements without parameters are normally executed using Statement objects. If the same SQL statement 
+is executed many times, it may be more efficient to use a PreparedStatement object. 
 
-Result sets created using the returned Statement object will by default be type 
-TYPE_FORWARD_ONLY and have a concurrency level of CONCUR_READ_ONLY. 
+Result sets created using the returned Statement object will by default be type TYPE_FORWARD_ONLY and have a concurrency level of CONCUR_READ_ONLY. 
+
 
 
     Returns: a new default Statement object 
+
 *java.sql.Connection.createStatement(int,int)*
 
 public |java.sql.Statement| createStatement(
@@ -342,18 +166,15 @@ public |java.sql.Statement| createStatement(
   int resultSetConcurrency)
   throws |java.sql.SQLException|
          
-Creates a Statement object that will generate ResultSet objects with the given 
-type and concurrency. This method is the same as the createStatement method 
-above, but it allows the default result set type and concurrency to be 
-overridden. 
+Creates a Statement object that will generate ResultSet objects with the given type and concurrency. This method is the same as the createStatement method above, but it allows the 
+default result set type and concurrency to be overridden. 
 
-    resultSetType - a result set type; one of ResultSet.TYPE_FORWARD_ONLY, 
-       ResultSet.TYPE_SCROLL_INSENSITIVE, or ResultSet.TYPE_SCROLL_SENSITIVE 
-    resultSetConcurrency - a concurrency type; one of ResultSet.CONCUR_READ_ONLY or 
-       ResultSet.CONCUR_UPDATABLE 
 
-    Returns: a new Statement object that will generate ResultSet objects with the given type 
-             and concurrency 
+    resultSetType - a result set type; one of ResultSet.TYPE_FORWARD_ONLY, ResultSet.TYPE_SCROLL_INSENSITIVE, or ResultSet.TYPE_SCROLL_SENSITIVE 
+    resultSetConcurrency - a concurrency type; one of ResultSet.CONCUR_READ_ONLY or ResultSet.CONCUR_UPDATABLE 
+
+    Returns: a new Statement object that will generate ResultSet objects with the given type and concurrency 
+
 *java.sql.Connection.createStatement(int,int,int)*
 
 public |java.sql.Statement| createStatement(
@@ -362,20 +183,16 @@ public |java.sql.Statement| createStatement(
   int resultSetHoldability)
   throws |java.sql.SQLException|
          
-Creates a Statement object that will generate ResultSet objects with the given 
-type, concurrency, and holdability. This method is the same as the 
-createStatement method above, but it allows the default result set type, 
-concurrency, and holdability to be overridden. 
+Creates a Statement object that will generate ResultSet objects with the given type, concurrency, and holdability. This method is the same as the createStatement method above, but 
+it allows the default result set type, concurrency, and holdability to be overridden. 
 
-    resultSetType - one of the following ResultSet constants: ResultSet.TYPE_FORWARD_ONLY, 
-       ResultSet.TYPE_SCROLL_INSENSITIVE, or ResultSet.TYPE_SCROLL_SENSITIVE 
-    resultSetConcurrency - one of the following ResultSet constants: ResultSet.CONCUR_READ_ONLY or 
-       ResultSet.CONCUR_UPDATABLE 
-    resultSetHoldability - one of the following ResultSet constants: ResultSet.HOLD_CURSORS_OVER_COMMIT or 
-       ResultSet.CLOSE_CURSORS_AT_COMMIT 
 
-    Returns: a new Statement object that will generate ResultSet objects with the given 
-             type, concurrency, and holdability 
+    resultSetType - one of the following ResultSet constants: ResultSet.TYPE_FORWARD_ONLY, ResultSet.TYPE_SCROLL_INSENSITIVE, or ResultSet.TYPE_SCROLL_SENSITIVE 
+    resultSetConcurrency - one of the following ResultSet constants: ResultSet.CONCUR_READ_ONLY or ResultSet.CONCUR_UPDATABLE 
+    resultSetHoldability - one of the following ResultSet constants: ResultSet.HOLD_CURSORS_OVER_COMMIT or ResultSet.CLOSE_CURSORS_AT_COMMIT 
+
+    Returns: a new Statement object that will generate ResultSet objects with the given type, concurrency, and holdability 
+
 *java.sql.Connection.getAutoCommit()*
 
 public boolean getAutoCommit()
@@ -384,7 +201,9 @@ public boolean getAutoCommit()
 Retrieves the current auto-commit mode for this Connection object. 
 
 
+
     Returns: the current state of this Connection object's auto-commit mode 
+
 *java.sql.Connection.getCatalog()*
 
 public |java.lang.String| getCatalog()
@@ -393,30 +212,32 @@ public |java.lang.String| getCatalog()
 Retrieves this Connection object's current catalog name. 
 
 
+
     Returns: the current catalog name or null if there is none 
+
 *java.sql.Connection.getHoldability()*
 
 public int getHoldability()
   throws |java.sql.SQLException|
          
-Retrieves the current holdability of ResultSet objects created using this 
-Connection object. 
+Retrieves the current holdability of ResultSet objects created using this Connection object. 
 
 
-    Returns: the holdability, one of ResultSet.HOLD_CURSORS_OVER_COMMIT or 
-             ResultSet.CLOSE_CURSORS_AT_COMMIT 
+
+    Returns: the holdability, one of ResultSet.HOLD_CURSORS_OVER_COMMIT or ResultSet.CLOSE_CURSORS_AT_COMMIT 
+
 *java.sql.Connection.getMetaData()*
 
 public |java.sql.DatabaseMetaData| getMetaData()
   throws |java.sql.SQLException|
          
-Retrieves a DatabaseMetaData object that contains metadata about the database 
-to which this Connection object represents a connection. The metadata includes 
-information about the database's tables, its supported SQL grammar, its stored 
-procedures, the capabilities of this connection, and so on. 
+Retrieves a DatabaseMetaData object that contains metadata about the database to which this Connection object represents a connection. The metadata includes information about the 
+database's tables, its supported SQL grammar, its stored procedures, the capabilities of this connection, and so on. 
+
 
 
     Returns: a DatabaseMetaData object for this Connection object 
+
 *java.sql.Connection.getTransactionIsolation()*
 
 public int getTransactionIsolation()
@@ -425,56 +246,52 @@ public int getTransactionIsolation()
 Retrieves this Connection object's current transaction isolation level. 
 
 
-    Returns: the current transaction isolation level, which will be one of the following 
-             constants: Connection.TRANSACTION_READ_UNCOMMITTED, 
-             Connection.TRANSACTION_READ_COMMITTED, 
-             Connection.TRANSACTION_REPEATABLE_READ, 
-             Connection.TRANSACTION_SERIALIZABLE, or 
-             Connection.TRANSACTION_NONE. 
+
+    Returns: the current transaction isolation level, which will be one of the following constants: Connection.TRANSACTION_READ_UNCOMMITTED, Connection.TRANSACTION_READ_COMMITTED, 
+             Connection.TRANSACTION_REPEATABLE_READ, Connection.TRANSACTION_SERIALIZABLE, or Connection.TRANSACTION_NONE. 
+
 *java.sql.Connection.getTypeMap()*
 
-public |java.util.Map| getTypeMap()
+public |java.util.Map|<String,Class<?>> getTypeMap()
   throws |java.sql.SQLException|
          
-Retrieves the Map object associated with this Connection object. Unless the 
-application has added an entry, the type map returned will be empty. 
+Retrieves the Map object associated with this Connection object. Unless the application has added an entry, the type map returned will be empty. 
+
 
 
     Returns: the java.util.Map object associated with this Connection object 
+
 *java.sql.Connection.getWarnings()*
 
 public |java.sql.SQLWarning| getWarnings()
   throws |java.sql.SQLException|
          
-Retrieves the first warning reported by calls on this Connection object. If 
-there is more than one warning, subsequent warnings will be chained to the 
-first one and can be retrieved by calling the method SQLWarning.getNextWarning 
-on the warning that was retrieved previously. 
+Retrieves the first warning reported by calls on this Connection object. If there is more than one warning, subsequent warnings will be chained to the first one and can be 
+retrieved by calling the method SQLWarning.getNextWarning on the warning that was retrieved previously. 
 
-This method may not be called on a closed connection; doing so will cause an 
-SQLException to be thrown. 
+This method may not be called on a closed connection; doing so will cause an SQLException to be thrown. 
 
 Note: Subsequent warnings will be chained to this SQLWarning. 
 
 
+
     Returns: the first SQLWarning object or null if there are none 
+
 *java.sql.Connection.isClosed()*
 
 public boolean isClosed()
   throws |java.sql.SQLException|
          
-Retrieves whether this Connection object has been closed. A connection is 
-closed if the method close has been called on it or if certain fatal errors 
-have occurred. This method is guaranteed to return true only when it is called 
-after the method Connection.close has been called. 
+Retrieves whether this Connection object has been closed. A connection is closed if the method close has been called on it or if certain fatal errors have occurred. This method is 
+guaranteed to return true only when it is called after the method Connection.close has been called. 
 
-This method generally cannot be called to determine whether a connection to a 
-database is valid or invalid. A typical client can determine that a connection 
-is invalid by catching any exceptions that might be thrown when an operation is 
-attempted. 
+This method generally cannot be called to determine whether a connection to a database is valid or invalid. A typical client can determine that a connection is invalid by catching 
+any exceptions that might be thrown when an operation is attempted. 
+
 
 
     Returns: true if this Connection object is closed; false if it is still open 
+
 *java.sql.Connection.isReadOnly()*
 
 public boolean isReadOnly()
@@ -483,43 +300,40 @@ public boolean isReadOnly()
 Retrieves whether this Connection object is in read-only mode. 
 
 
+
     Returns: true if this Connection object is read-only; false otherwise 
+
 *java.sql.Connection.nativeSQL(String)*
 
 public |java.lang.String| nativeSQL(java.lang.String sql)
   throws |java.sql.SQLException|
          
-Converts the given SQL statement into the system's native SQL grammar. A driver 
-may convert the JDBC SQL grammar into its system's native SQL grammar prior to 
-sending it. This method returns the native form of the statement that the 
-driver would have sent. 
+Converts the given SQL statement into the system's native SQL grammar. A driver may convert the JDBC SQL grammar into its system's native SQL grammar prior to sending it. This 
+method returns the native form of the statement that the driver would have sent. 
+
 
     sql - an SQL statement that may contain one or more '?' parameter placeholders 
 
     Returns: the native form of this statement 
+
 *java.sql.Connection.prepareCall(String)*
 
 public |java.sql.CallableStatement| prepareCall(java.lang.String sql)
   throws |java.sql.SQLException|
          
-Creates a CallableStatement object for calling database stored procedures. The 
-CallableStatement object provides methods for setting up its IN and OUT 
-parameters, and methods for executing the call to a stored procedure. 
+Creates a CallableStatement object for calling database stored procedures. The CallableStatement object provides methods for setting up its IN and OUT parameters, and methods for 
+executing the call to a stored procedure. 
 
-Note: This method is optimized for handling stored procedure call statements. 
-Some drivers may send the call statement to the database when the method 
-prepareCall is done; others may wait until the CallableStatement object is 
-executed. This has no direct effect on users; however, it does affect which 
-method throws certain SQLExceptions. 
+Note: This method is optimized for handling stored procedure call statements. Some drivers may send the call statement to the database when the method prepareCall is done; others 
+may wait until the CallableStatement object is executed. This has no direct effect on users; however, it does affect which method throws certain SQLExceptions. 
 
-Result sets created using the returned CallableStatement object will by default 
-be type TYPE_FORWARD_ONLY and have a concurrency level of CONCUR_READ_ONLY. 
+Result sets created using the returned CallableStatement object will by default be type TYPE_FORWARD_ONLY and have a concurrency level of CONCUR_READ_ONLY. 
 
-    sql - an SQL statement that may contain one or more '?' parameter placeholders. 
-       Typically this statement is a JDBC function call escape string. 
 
-    Returns: a new default CallableStatement object containing the pre-compiled SQL 
-             statement 
+    sql - an SQL statement that may contain one or more '?' parameter placeholders. Typically this statement is a JDBC function call escape string. 
+
+    Returns: a new default CallableStatement object containing the pre-compiled SQL statement 
+
 *java.sql.Connection.prepareCall(String,int,int)*
 
 public |java.sql.CallableStatement| prepareCall(
@@ -528,20 +342,16 @@ public |java.sql.CallableStatement| prepareCall(
   int resultSetConcurrency)
   throws |java.sql.SQLException|
          
-Creates a CallableStatement object that will generate ResultSet objects with 
-the given type and concurrency. This method is the same as the prepareCall 
-method above, but it allows the default result set type and concurrency to be 
-overridden. 
+Creates a CallableStatement object that will generate ResultSet objects with the given type and concurrency. This method is the same as the prepareCall method above, but it allows 
+the default result set type and concurrency to be overridden. 
 
-    sql - a String object that is the SQL statement to be sent to the database; may 
-       contain on or more ? parameters 
-    resultSetType - a result set type; one of ResultSet.TYPE_FORWARD_ONLY, 
-       ResultSet.TYPE_SCROLL_INSENSITIVE, or ResultSet.TYPE_SCROLL_SENSITIVE 
-    resultSetConcurrency - a concurrency type; one of ResultSet.CONCUR_READ_ONLY or 
-       ResultSet.CONCUR_UPDATABLE 
 
-    Returns: a new CallableStatement object containing the pre-compiled SQL statement that 
-             will produce ResultSet objects with the given type and concurrency 
+    sql - a String object that is the SQL statement to be sent to the database; may contain on or more ? parameters 
+    resultSetType - a result set type; one of ResultSet.TYPE_FORWARD_ONLY, ResultSet.TYPE_SCROLL_INSENSITIVE, or ResultSet.TYPE_SCROLL_SENSITIVE 
+    resultSetConcurrency - a concurrency type; one of ResultSet.CONCUR_READ_ONLY or ResultSet.CONCUR_UPDATABLE 
+
+    Returns: a new CallableStatement object containing the pre-compiled SQL statement that will produce ResultSet objects with the given type and concurrency 
+
 *java.sql.Connection.prepareCall(String,int,int,int)*
 
 public |java.sql.CallableStatement| prepareCall(
@@ -551,50 +361,38 @@ public |java.sql.CallableStatement| prepareCall(
   int resultSetHoldability)
   throws |java.sql.SQLException|
          
-Creates a CallableStatement object that will generate ResultSet objects with 
-the given type and concurrency. This method is the same as the prepareCall 
-method above, but it allows the default result set type, result set concurrency 
-type and holdability to be overridden. 
+Creates a CallableStatement object that will generate ResultSet objects with the given type and concurrency. This method is the same as the prepareCall method above, but it allows 
+the default result set type, result set concurrency type and holdability to be overridden. 
 
-    sql - a String object that is the SQL statement to be sent to the database; may 
-       contain on or more ? parameters 
-    resultSetType - one of the following ResultSet constants: ResultSet.TYPE_FORWARD_ONLY, 
-       ResultSet.TYPE_SCROLL_INSENSITIVE, or ResultSet.TYPE_SCROLL_SENSITIVE 
-    resultSetConcurrency - one of the following ResultSet constants: ResultSet.CONCUR_READ_ONLY or 
-       ResultSet.CONCUR_UPDATABLE 
-    resultSetHoldability - one of the following ResultSet constants: ResultSet.HOLD_CURSORS_OVER_COMMIT or 
-       ResultSet.CLOSE_CURSORS_AT_COMMIT 
 
-    Returns: a new CallableStatement object, containing the pre-compiled SQL statement, that 
-             will generate ResultSet objects with the given type, concurrency, 
-             and holdability 
+    sql - a String object that is the SQL statement to be sent to the database; may contain on or more ? parameters 
+    resultSetType - one of the following ResultSet constants: ResultSet.TYPE_FORWARD_ONLY, ResultSet.TYPE_SCROLL_INSENSITIVE, or ResultSet.TYPE_SCROLL_SENSITIVE 
+    resultSetConcurrency - one of the following ResultSet constants: ResultSet.CONCUR_READ_ONLY or ResultSet.CONCUR_UPDATABLE 
+    resultSetHoldability - one of the following ResultSet constants: ResultSet.HOLD_CURSORS_OVER_COMMIT or ResultSet.CLOSE_CURSORS_AT_COMMIT 
+
+    Returns: a new CallableStatement object, containing the pre-compiled SQL statement, that will generate ResultSet objects with the given type, concurrency, and holdability 
+
 *java.sql.Connection.prepareStatement(String)*
 
 public |java.sql.PreparedStatement| prepareStatement(java.lang.String sql)
   throws |java.sql.SQLException|
          
-Creates a PreparedStatement object for sending parameterized SQL statements to 
-the database. 
+Creates a PreparedStatement object for sending parameterized SQL statements to the database. 
 
-A SQL statement with or without IN parameters can be pre-compiled and stored in 
-a PreparedStatement object. This object can then be used to efficiently execute 
-this statement multiple times. 
+A SQL statement with or without IN parameters can be pre-compiled and stored in a PreparedStatement object. This object can then be used to efficiently execute this statement 
+multiple times. 
 
-Note: This method is optimized for handling parametric SQL statements that 
-benefit from precompilation. If the driver supports precompilation, the method 
-prepareStatement will send the statement to the database for precompilation. 
-Some drivers may not support precompilation. In this case, the statement may 
-not be sent to the database until the PreparedStatement object is executed. 
-This has no direct effect on users; however, it does affect which methods throw 
-certain SQLException objects. 
+Note: This method is optimized for handling parametric SQL statements that benefit from precompilation. If the driver supports precompilation, the method prepareStatement will 
+send the statement to the database for precompilation. Some drivers may not support precompilation. In this case, the statement may not be sent to the database until the 
+PreparedStatement object is executed. This has no direct effect on users; however, it does affect which methods throw certain SQLException objects. 
 
-Result sets created using the returned PreparedStatement object will by default 
-be type TYPE_FORWARD_ONLY and have a concurrency level of CONCUR_READ_ONLY. 
+Result sets created using the returned PreparedStatement object will by default be type TYPE_FORWARD_ONLY and have a concurrency level of CONCUR_READ_ONLY. 
+
 
     sql - an SQL statement that may contain one or more '?' IN parameter placeholders 
 
-    Returns: a new default PreparedStatement object containing the pre-compiled SQL 
-             statement 
+    Returns: a new default PreparedStatement object containing the pre-compiled SQL statement 
+
 *java.sql.Connection.prepareStatement(String,int)*
 
 public |java.sql.PreparedStatement| prepareStatement(
@@ -602,28 +400,21 @@ public |java.sql.PreparedStatement| prepareStatement(
   int autoGeneratedKeys)
   throws |java.sql.SQLException|
          
-Creates a default PreparedStatement object that has the capability to retrieve 
-auto-generated keys. The given constant tells the driver whether it should make 
-auto-generated keys available for retrieval. This parameter is ignored if the 
-SQL statement is not an INSERT statement. 
+Creates a default PreparedStatement object that has the capability to retrieve auto-generated keys. The given constant tells the driver whether it should make auto-generated keys 
+available for retrieval. This parameter is ignored if the SQL statement is not an INSERT statement. 
 
-Note: This method is optimized for handling parametric SQL statements that 
-benefit from precompilation. If the driver supports precompilation, the method 
-prepareStatement will send the statement to the database for precompilation. 
-Some drivers may not support precompilation. In this case, the statement may 
-not be sent to the database until the PreparedStatement object is executed. 
-This has no direct effect on users; however, it does affect which methods throw 
-certain SQLExceptions. 
+Note: This method is optimized for handling parametric SQL statements that benefit from precompilation. If the driver supports precompilation, the method prepareStatement will 
+send the statement to the database for precompilation. Some drivers may not support precompilation. In this case, the statement may not be sent to the database until the 
+PreparedStatement object is executed. This has no direct effect on users; however, it does affect which methods throw certain SQLExceptions. 
 
-Result sets created using the returned PreparedStatement object will by default 
-be type TYPE_FORWARD_ONLY and have a concurrency level of CONCUR_READ_ONLY. 
+Result sets created using the returned PreparedStatement object will by default be type TYPE_FORWARD_ONLY and have a concurrency level of CONCUR_READ_ONLY. 
+
 
     sql - an SQL statement that may contain one or more '?' IN parameter placeholders 
-    autoGeneratedKeys - a flag indicating whether auto-generated keys should be returned; one of 
-       Statement.RETURN_GENERATED_KEYS or Statement.NO_GENERATED_KEYS 
+    autoGeneratedKeys - a flag indicating whether auto-generated keys should be returned; one of Statement.RETURN_GENERATED_KEYS or Statement.NO_GENERATED_KEYS 
 
-    Returns: a new PreparedStatement object, containing the pre-compiled SQL statement, that 
-             will have the capability of returning auto-generated keys 
+    Returns: a new PreparedStatement object, containing the pre-compiled SQL statement, that will have the capability of returning auto-generated keys 
+
 *java.sql.Connection.prepareStatement(String,int[])*
 
 public |java.sql.PreparedStatement| prepareStatement(
@@ -631,34 +422,24 @@ public |java.sql.PreparedStatement| prepareStatement(
   int[] columnIndexes)
   throws |java.sql.SQLException|
          
-Creates a default PreparedStatement object capable of returning the 
-auto-generated keys designated by the given array. This array contains the 
-indexes of the columns in the target table that contain the auto-generated keys 
-that should be made available. This array is ignored if the SQL statement is 
-not an INSERT statement. 
+Creates a default PreparedStatement object capable of returning the auto-generated keys designated by the given array. This array contains the indexes of the columns in the target 
+table that contain the auto-generated keys that should be made available. This array is ignored if the SQL statement is not an INSERT statement. 
 
-An SQL statement with or without IN parameters can be pre-compiled and stored 
-in a PreparedStatement object. This object can then be used to efficiently 
-execute this statement multiple times. 
+An SQL statement with or without IN parameters can be pre-compiled and stored in a PreparedStatement object. This object can then be used to efficiently execute this statement 
+multiple times. 
 
-Note: This method is optimized for handling parametric SQL statements that 
-benefit from precompilation. If the driver supports precompilation, the method 
-prepareStatement will send the statement to the database for precompilation. 
-Some drivers may not support precompilation. In this case, the statement may 
-not be sent to the database until the PreparedStatement object is executed. 
-This has no direct effect on users; however, it does affect which methods throw 
-certain SQLExceptions. 
+Note: This method is optimized for handling parametric SQL statements that benefit from precompilation. If the driver supports precompilation, the method prepareStatement will 
+send the statement to the database for precompilation. Some drivers may not support precompilation. In this case, the statement may not be sent to the database until the 
+PreparedStatement object is executed. This has no direct effect on users; however, it does affect which methods throw certain SQLExceptions. 
 
-Result sets created using the returned PreparedStatement object will by default 
-be type TYPE_FORWARD_ONLY and have a concurrency level of CONCUR_READ_ONLY. 
+Result sets created using the returned PreparedStatement object will by default be type TYPE_FORWARD_ONLY and have a concurrency level of CONCUR_READ_ONLY. 
+
 
     sql - an SQL statement that may contain one or more '?' IN parameter placeholders 
-    columnIndexes - an array of column indexes indicating the columns that should be returned from 
-       the inserted row or rows 
+    columnIndexes - an array of column indexes indicating the columns that should be returned from the inserted row or rows 
 
-    Returns: a new PreparedStatement object, containing the pre-compiled statement, that is 
-             capable of returning the auto-generated keys designated by the 
-             given array of column indexes 
+    Returns: a new PreparedStatement object, containing the pre-compiled statement, that is capable of returning the auto-generated keys designated by the given array of column indexes 
+
 *java.sql.Connection.prepareStatement(String,int,int)*
 
 public |java.sql.PreparedStatement| prepareStatement(
@@ -667,20 +448,16 @@ public |java.sql.PreparedStatement| prepareStatement(
   int resultSetConcurrency)
   throws |java.sql.SQLException|
          
-Creates a PreparedStatement object that will generate ResultSet objects with 
-the given type and concurrency. This method is the same as the prepareStatement 
-method above, but it allows the default result set type and concurrency to be 
-overridden. 
+Creates a PreparedStatement object that will generate ResultSet objects with the given type and concurrency. This method is the same as the prepareStatement method above, but it 
+allows the default result set type and concurrency to be overridden. 
 
-    sql - a String object that is the SQL statement to be sent to the database; may 
-       contain one or more ? IN parameters 
-    resultSetType - a result set type; one of ResultSet.TYPE_FORWARD_ONLY, 
-       ResultSet.TYPE_SCROLL_INSENSITIVE, or ResultSet.TYPE_SCROLL_SENSITIVE 
-    resultSetConcurrency - a concurrency type; one of ResultSet.CONCUR_READ_ONLY or 
-       ResultSet.CONCUR_UPDATABLE 
 
-    Returns: a new PreparedStatement object containing the pre-compiled SQL statement that 
-             will produce ResultSet objects with the given type and concurrency 
+    sql - a String object that is the SQL statement to be sent to the database; may contain one or more ? IN parameters 
+    resultSetType - a result set type; one of ResultSet.TYPE_FORWARD_ONLY, ResultSet.TYPE_SCROLL_INSENSITIVE, or ResultSet.TYPE_SCROLL_SENSITIVE 
+    resultSetConcurrency - a concurrency type; one of ResultSet.CONCUR_READ_ONLY or ResultSet.CONCUR_UPDATABLE 
+
+    Returns: a new PreparedStatement object containing the pre-compiled SQL statement that will produce ResultSet objects with the given type and concurrency 
+
 *java.sql.Connection.prepareStatement(String,int,int,int)*
 
 public |java.sql.PreparedStatement| prepareStatement(
@@ -690,24 +467,18 @@ public |java.sql.PreparedStatement| prepareStatement(
   int resultSetHoldability)
   throws |java.sql.SQLException|
          
-Creates a PreparedStatement object that will generate ResultSet objects with 
-the given type, concurrency, and holdability. 
+Creates a PreparedStatement object that will generate ResultSet objects with the given type, concurrency, and holdability. 
 
-This method is the same as the prepareStatement method above, but it allows the 
-default result set type, concurrency, and holdability to be overridden. 
+This method is the same as the prepareStatement method above, but it allows the default result set type, concurrency, and holdability to be overridden. 
 
-    sql - a String object that is the SQL statement to be sent to the database; may 
-       contain one or more ? IN parameters 
-    resultSetType - one of the following ResultSet constants: ResultSet.TYPE_FORWARD_ONLY, 
-       ResultSet.TYPE_SCROLL_INSENSITIVE, or ResultSet.TYPE_SCROLL_SENSITIVE 
-    resultSetConcurrency - one of the following ResultSet constants: ResultSet.CONCUR_READ_ONLY or 
-       ResultSet.CONCUR_UPDATABLE 
-    resultSetHoldability - one of the following ResultSet constants: ResultSet.HOLD_CURSORS_OVER_COMMIT or 
-       ResultSet.CLOSE_CURSORS_AT_COMMIT 
 
-    Returns: a new PreparedStatement object, containing the pre-compiled SQL statement, that 
-             will generate ResultSet objects with the given type, concurrency, 
-             and holdability 
+    sql - a String object that is the SQL statement to be sent to the database; may contain one or more ? IN parameters 
+    resultSetType - one of the following ResultSet constants: ResultSet.TYPE_FORWARD_ONLY, ResultSet.TYPE_SCROLL_INSENSITIVE, or ResultSet.TYPE_SCROLL_SENSITIVE 
+    resultSetConcurrency - one of the following ResultSet constants: ResultSet.CONCUR_READ_ONLY or ResultSet.CONCUR_UPDATABLE 
+    resultSetHoldability - one of the following ResultSet constants: ResultSet.HOLD_CURSORS_OVER_COMMIT or ResultSet.CLOSE_CURSORS_AT_COMMIT 
+
+    Returns: a new PreparedStatement object, containing the pre-compiled SQL statement, that will generate ResultSet objects with the given type, concurrency, and holdability 
+
 *java.sql.Connection.prepareStatement(String,String[])*
 
 public |java.sql.PreparedStatement| prepareStatement(
@@ -715,42 +486,31 @@ public |java.sql.PreparedStatement| prepareStatement(
   java.lang.String[] columnNames)
   throws |java.sql.SQLException|
          
-Creates a default PreparedStatement object capable of returning the 
-auto-generated keys designated by the given array. This array contains the 
-names of the columns in the target table that contain the auto-generated keys 
-that should be returned. This array is ignored if the SQL statement is not an 
-INSERT statement. 
+Creates a default PreparedStatement object capable of returning the auto-generated keys designated by the given array. This array contains the names of the columns in the target 
+table that contain the auto-generated keys that should be returned. This array is ignored if the SQL statement is not an INSERT statement. 
 
-An SQL statement with or without IN parameters can be pre-compiled and stored 
-in a PreparedStatement object. This object can then be used to efficiently 
-execute this statement multiple times. 
+An SQL statement with or without IN parameters can be pre-compiled and stored in a PreparedStatement object. This object can then be used to efficiently execute this statement 
+multiple times. 
 
-Note: This method is optimized for handling parametric SQL statements that 
-benefit from precompilation. If the driver supports precompilation, the method 
-prepareStatement will send the statement to the database for precompilation. 
-Some drivers may not support precompilation. In this case, the statement may 
-not be sent to the database until the PreparedStatement object is executed. 
-This has no direct effect on users; however, it does affect which methods throw 
-certain SQLExceptions. 
+Note: This method is optimized for handling parametric SQL statements that benefit from precompilation. If the driver supports precompilation, the method prepareStatement will 
+send the statement to the database for precompilation. Some drivers may not support precompilation. In this case, the statement may not be sent to the database until the 
+PreparedStatement object is executed. This has no direct effect on users; however, it does affect which methods throw certain SQLExceptions. 
 
-Result sets created using the returned PreparedStatement object will by default 
-be type TYPE_FORWARD_ONLY and have a concurrency level of CONCUR_READ_ONLY. 
+Result sets created using the returned PreparedStatement object will by default be type TYPE_FORWARD_ONLY and have a concurrency level of CONCUR_READ_ONLY. 
+
 
     sql - an SQL statement that may contain one or more '?' IN parameter placeholders 
-    columnNames - an array of column names indicating the columns that should be returned from 
-       the inserted row or rows 
+    columnNames - an array of column names indicating the columns that should be returned from the inserted row or rows 
 
-    Returns: a new PreparedStatement object, containing the pre-compiled statement, that is 
-             capable of returning the auto-generated keys designated by the 
-             given array of column names 
+    Returns: a new PreparedStatement object, containing the pre-compiled statement, that is capable of returning the auto-generated keys designated by the given array of column names 
+
 *java.sql.Connection.releaseSavepoint(Savepoint)*
 
 public void releaseSavepoint(java.sql.Savepoint savepoint)
   throws |java.sql.SQLException|
          
-Removes the given Savepoint object from the current transaction. Any reference 
-to the savepoint after it have been removed will cause an SQLException to be 
-thrown. 
+Removes the given Savepoint object from the current transaction. Any reference to the savepoint after it have been removed will cause an SQLException to be thrown. 
+
 
     savepoint - the Savepoint object to be removed 
 
@@ -759,9 +519,9 @@ thrown.
 public void rollback()
   throws |java.sql.SQLException|
          
-Undoes all changes made in the current transaction and releases any database 
-locks currently held by this Connection object. This method should be used only 
-when auto-commit mode has been disabled. 
+Undoes all changes made in the current transaction and releases any database locks currently held by this Connection object. This method should be used only when auto-commit mode 
+has been disabled. 
+
 
 
 *java.sql.Connection.rollback(Savepoint)*
@@ -773,6 +533,7 @@ Undoes all changes made after the given Savepoint object was set.
 
 This method should be used only when auto-commit has been disabled. 
 
+
     savepoint - the Savepoint object to roll back to 
 
 *java.sql.Connection.setAutoCommit(boolean)*
@@ -780,22 +541,16 @@ This method should be used only when auto-commit has been disabled.
 public void setAutoCommit(boolean autoCommit)
   throws |java.sql.SQLException|
          
-Sets this connection's auto-commit mode to the given state. If a connection is 
-in auto-commit mode, then all its SQL statements will be executed and committed 
-as individual transactions. Otherwise, its SQL statements are grouped into 
-transactions that are terminated by a call to either the method commit or the 
-method rollback. By default, new connections are in auto-commit mode. 
+Sets this connection's auto-commit mode to the given state. If a connection is in auto-commit mode, then all its SQL statements will be executed and committed as individual 
+transactions. Otherwise, its SQL statements are grouped into transactions that are terminated by a call to either the method commit or the method rollback. By default, new 
+connections are in auto-commit mode. 
 
-The commit occurs when the statement completes or the next execute occurs, 
-whichever comes first. In the case of statements returning a ResultSet object, 
-the statement completes when the last row of the ResultSet object has been 
-retrieved or the ResultSet object has been closed. In advanced cases, a single 
-statement may return multiple results as well as output parameter values. In 
-these cases, the commit occurs when all results and output parameter values 
-have been retrieved. 
+The commit occurs when the statement completes or the next execute occurs, whichever comes first. In the case of statements returning a ResultSet object, the statement completes 
+when the last row of the ResultSet object has been retrieved or the ResultSet object has been closed. In advanced cases, a single statement may return multiple results as well as 
+output parameter values. In these cases, the commit occurs when all results and output parameter values have been retrieved. 
 
-NOTE: If this method is called during a transaction, the transaction is 
-committed. 
+NOTE: If this method is called during a transaction, the transaction is committed. 
+
 
     autoCommit - true to enable auto-commit mode; false to disable it 
 
@@ -804,34 +559,32 @@ committed.
 public void setCatalog(java.lang.String catalog)
   throws |java.sql.SQLException|
          
-Sets the given catalog name in order to select a subspace of this Connection 
-object's database in which to work. 
+Sets the given catalog name in order to select a subspace of this Connection object's database in which to work. 
 
 If the driver does not support catalogs, it will silently ignore this request. 
 
-    catalog - the name of a catalog (subspace in this Connection object's database) in which 
-       to work 
+
+    catalog - the name of a catalog (subspace in this Connection object's database) in which to work 
 
 *java.sql.Connection.setHoldability(int)*
 
 public void setHoldability(int holdability)
   throws |java.sql.SQLException|
          
-Changes the holdability of ResultSet objects created using this Connection 
-object to the given holdability. 
+Changes the holdability of ResultSet objects created using this Connection object to the given holdability. 
 
-    holdability - a ResultSet holdability constant; one of ResultSet.HOLD_CURSORS_OVER_COMMIT or 
-       ResultSet.CLOSE_CURSORS_AT_COMMIT 
+
+    holdability - a ResultSet holdability constant; one of ResultSet.HOLD_CURSORS_OVER_COMMIT or ResultSet.CLOSE_CURSORS_AT_COMMIT 
 
 *java.sql.Connection.setReadOnly(boolean)*
 
 public void setReadOnly(boolean readOnly)
   throws |java.sql.SQLException|
          
-Puts this connection in read-only mode as a hint to the driver to enable 
-database optimizations. 
+Puts this connection in read-only mode as a hint to the driver to enable database optimizations. 
 
 Note: This method cannot be called during a transaction. 
+
 
     readOnly - true enables read-only mode; false disables it 
 
@@ -840,52 +593,46 @@ Note: This method cannot be called during a transaction.
 public |java.sql.Savepoint| setSavepoint()
   throws |java.sql.SQLException|
          
-Creates an unnamed savepoint in the current transaction and returns the new 
-Savepoint object that represents it. 
+Creates an unnamed savepoint in the current transaction and returns the new Savepoint object that represents it. 
+
 
 
     Returns: the new Savepoint object 
+
 *java.sql.Connection.setSavepoint(String)*
 
 public |java.sql.Savepoint| setSavepoint(java.lang.String name)
   throws |java.sql.SQLException|
          
-Creates a savepoint with the given name in the current transaction and returns 
-the new Savepoint object that represents it. 
+Creates a savepoint with the given name in the current transaction and returns the new Savepoint object that represents it. 
+
 
     name - a String containing the name of the savepoint 
 
     Returns: the new Savepoint object 
+
 *java.sql.Connection.setTransactionIsolation(int)*
 
 public void setTransactionIsolation(int level)
   throws |java.sql.SQLException|
          
-Attempts to change the transaction isolation level for this Connection object 
-to the one given. The constants defined in the interface Connection are the 
-possible transaction isolation levels. 
+Attempts to change the transaction isolation level for this Connection object to the one given. The constants defined in the interface Connection are the possible transaction 
+isolation levels. 
 
-Note: If this method is called during a transaction, the result is 
-implementation-defined. 
+Note: If this method is called during a transaction, the result is implementation-defined. 
 
-    level - one of the following Connection constants: 
-       Connection.TRANSACTION_READ_UNCOMMITTED, 
-       Connection.TRANSACTION_READ_COMMITTED, 
-       Connection.TRANSACTION_REPEATABLE_READ, or 
-       Connection.TRANSACTION_SERIALIZABLE. (Note that 
-       Connection.TRANSACTION_NONE cannot be used because it specifies that 
-       transactions are not supported.) 
 
-*java.sql.Connection.setTypeMap(Map)*
+    level - one of the following Connection constants: Connection.TRANSACTION_READ_UNCOMMITTED, Connection.TRANSACTION_READ_COMMITTED, Connection.TRANSACTION_REPEATABLE_READ, or 
+       Connection.TRANSACTION_SERIALIZABLE. (Note that Connection.TRANSACTION_NONE cannot be used because it specifies that transactions are not supported.) 
 
-public void setTypeMap(java.util.Map map)
+*java.sql.Connection.setTypeMap(Map<String,Class<?>>)*
+
+public void setTypeMap(java.util.Map<java.lang.String, java.lang.Class<?>> map)
   throws |java.sql.SQLException|
          
-Installs the given TypeMap object as the type map for this Connection object. 
-The type map will be used for the custom mapping of SQL structured types and 
-distinct types. 
+Installs the given TypeMap object as the type map for this Connection object. The type map will be used for the custom mapping of SQL structured types and distinct types. 
 
-    map - the java.util.Map object to install as the replacement for this Connection 
-       object's default type map 
+
+    map - the java.util.Map object to install as the replacement for this Connection object's default type map 
 
 

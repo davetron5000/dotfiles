@@ -1,4 +1,5 @@
-*java.security.KeyPairGenerator* *KeyPairGenerator* The KeyPairGenerator class i
+*java.security.KeyPairGenerator* *KeyPairGenerator* The KeyPairGenerator class is used to generate pairs of
+ public and private keys.
 
 public abstract class KeyPairGenerator
   extends    |java.security.KeyPairGeneratorSpi|
@@ -8,81 +9,59 @@ public abstract class KeyPairGenerator
 |java.security.KeyPairGenerator_Constructors|
 |java.security.KeyPairGenerator_Methods|
 
-================================================================================
+====================================================================================================================================================================================
 
 *java.security.KeyPairGenerator_Constructors*
-|java.security.KeyPairGenerator(String)|Creates a KeyPairGenerator object for t
+|java.security.KeyPairGenerator(String)|Creates a KeyPairGenerator object for the specified algorithm.
 
 *java.security.KeyPairGenerator_Methods*
 |java.security.KeyPairGenerator.generateKeyPair()|Generates a key pair.
 |java.security.KeyPairGenerator.genKeyPair()|Generates a key pair.
-|java.security.KeyPairGenerator.getAlgorithm()|Returns the standard name of the
-|java.security.KeyPairGenerator.getInstance(String)|Generates a KeyPairGenerato
-|java.security.KeyPairGenerator.getInstance(String,Provider)|Generates a KeyPai
-|java.security.KeyPairGenerator.getInstance(String,String)|Generates a KeyPairG
-|java.security.KeyPairGenerator.getProvider()|Returns the provider of this key 
-|java.security.KeyPairGenerator.initialize(AlgorithmParameterSpec)|Initializes 
-|java.security.KeyPairGenerator.initialize(AlgorithmParameterSpec,SecureRandom)|
-|java.security.KeyPairGenerator.initialize(int)|Initializes the key pair genera
-|java.security.KeyPairGenerator.initialize(int,SecureRandom)|Initializes the ke
+|java.security.KeyPairGenerator.getAlgorithm()|Returns the standard name of the algorithm for this key pair generator.
+|java.security.KeyPairGenerator.getInstance(String)|Generates a KeyPairGenerator object that implements the specified digest  algorithm.
+|java.security.KeyPairGenerator.getInstance(String,Provider)|Generates a KeyPairGenerator object implementing the specified  algorithm, as supplied from the specified provider,   
+|java.security.KeyPairGenerator.getInstance(String,String)|Generates a KeyPairGenerator object implementing the specified  algorithm, as supplied from the specified provider,   if
+|java.security.KeyPairGenerator.getProvider()|Returns the provider of this key pair generator object.
+|java.security.KeyPairGenerator.initialize(AlgorithmParameterSpec)|Initializes the key pair generator using the specified parameter   set and the SecureRandom  implementation of t
+|java.security.KeyPairGenerator.initialize(AlgorithmParameterSpec,SecureRandom)|Initializes the key pair generator with the given parameter   set and source of randomness.
+|java.security.KeyPairGenerator.initialize(int)|Initializes the key pair generator for a certain keysize using  a default parameter set and the SecureRandom  implementation of the
+|java.security.KeyPairGenerator.initialize(int,SecureRandom)|Initializes the key pair generator for a certain keysize with  the given source of randomness (and a default parameter
 
 *java.security.KeyPairGenerator_Description*
 
-The KeyPairGenerator class is used to generate pairs of public and private 
-keys. Key pair generators are constructed using the getInstance factory methods 
-(static methods that return instances of a given class). 
+The KeyPairGenerator class is used to generate pairs of public and private keys. Key pair generators are constructed using the getInstance factory methods (static methods that 
+return instances of a given class). 
 
-A Key pair generator for a particular algorithm creates a public/private key 
-pair that can be used with this algorithm. It also associates 
-algorithm-specific parameters with each of the generated keys. 
+A Key pair generator for a particular algorithm creates a public/private key pair that can be used with this algorithm. It also associates algorithm-specific parameters with each 
+of the generated keys. 
 
-There are two ways to generate a key pair: in an algorithm-independent manner, 
-and in an algorithm-specific manner. The only difference between the two is the 
-initialization of the object: 
+There are two ways to generate a key pair: in an algorithm-independent manner, and in an algorithm-specific manner. The only difference between the two is the initialization of 
+the object: 
 
-Algorithm-Independent Initialization All key pair generators share the concepts 
-of a keysize and a source of randomness. The keysize is interpreted differently 
-for different algorithms (e.g., in the case of the DSA algorithm, the keysize 
-corresponds to the length of the modulus). There is an 
-initialize(|java.security.KeyPairGenerator|) method in this KeyPairGenerator 
-class that takes these two universally shared types of arguments. There is also 
-one that takes just a keysize argument, and uses the SecureRandom 
-implementation of the highest-priority installed provider as the source of 
-randomness. (If none of the installed providers supply an implementation of 
-SecureRandom, a system-provided source of randomness is used.) 
+Algorithm-Independent Initialization All key pair generators share the concepts of a keysize and a source of randomness. The keysize is interpreted differently for different 
+algorithms (e.g., in the case of the DSA algorithm, the keysize corresponds to the length of the modulus). There is an initialize(|java.security.KeyPairGenerator|) method in this 
+KeyPairGenerator class that takes these two universally shared types of arguments. There is also one that takes just a keysize argument, and uses the SecureRandom implementation 
+of the highest-priority installed provider as the source of randomness. (If none of the installed providers supply an implementation of SecureRandom, a system-provided source of 
+randomness is used.) 
 
-Since no other parameters are specified when you call the above 
-algorithm-independent initialize methods, it is up to the provider what to do 
-about the algorithm-specific parameters (if any) to be associated with each of 
-the keys. 
+Since no other parameters are specified when you call the above algorithm-independent initialize methods, it is up to the provider what to do about the algorithm-specific 
+parameters (if any) to be associated with each of the keys. 
 
-If the algorithm is the DSA algorithm, and the keysize (modulus size) is 512, 
-768, or 1024, then the Sun provider uses a set of precomputed values for the p, 
-q, and g parameters. If the modulus size is not one of the above values, the 
-Sun provider creates a new set of parameters. Other providers might have 
-precomputed parameter sets for more than just the three modulus sizes mentioned 
-above. Still others might not have a list of precomputed parameters at all and 
-instead always create new parameter sets. 
+If the algorithm is the DSA algorithm, and the keysize (modulus size) is 512, 768, or 1024, then the Sun provider uses a set of precomputed values for the p, q, and g parameters. 
+If the modulus size is not one of the above values, the Sun provider creates a new set of parameters. Other providers might have precomputed parameter sets for more than just the 
+three modulus sizes mentioned above. Still others might not have a list of precomputed parameters at all and instead always create new parameter sets. 
 
-Algorithm-Specific Initialization For situations where a set of 
-algorithm-specific parameters already exists (e.g., so-called community 
-parameters in DSA), there are two initialize(|java.security.KeyPairGenerator|) 
-methods that have an AlgorithmParameterSpec argument. One also has a 
-SecureRandom argument, while the the other uses the SecureRandom implementation 
-of the highest-priority installed provider as the source of randomness. (If 
-none of the installed providers supply an implementation of SecureRandom, a 
+Algorithm-Specific Initialization For situations where a set of algorithm-specific parameters already exists (e.g., so-called community parameters in DSA), there are two 
+initialize(|java.security.KeyPairGenerator|) methods that have an AlgorithmParameterSpec argument. One also has a SecureRandom argument, while the the other uses the SecureRandom 
+implementation of the highest-priority installed provider as the source of randomness. (If none of the installed providers supply an implementation of SecureRandom, a 
 system-provided source of randomness is used.) 
 
-In case the client does not explicitly initialize the KeyPairGenerator (via a 
-call to an initialize method), each provider must supply (and document) a 
-default initialization. For example, the Sun provider uses a default modulus 
-size (keysize) of 1024 bits. 
+In case the client does not explicitly initialize the KeyPairGenerator (via a call to an initialize method), each provider must supply (and document) a default initialization. For 
+example, the Sun provider uses a default modulus size (keysize) of 1024 bits. 
 
-Note that this class is abstract and extends from KeyPairGeneratorSpi for 
-historical reasons. Application developers should only take notice of the 
-methods defined in this KeyPairGenerator class; all the methods in the 
-superclass are intended for cryptographic service providers who wish to supply 
-their own implementations of key pair generators. 
+Note that this class is abstract and extends from KeyPairGeneratorSpi for historical reasons. Application developers should only take notice of the methods defined in this 
+KeyPairGenerator class; all the methods in the superclass are intended for cryptographic service providers who wish to supply their own implementations of key pair generators. 
+
 
 
 *java.security.KeyPairGenerator(String)*
@@ -91,9 +70,7 @@ protected KeyPairGenerator(java.lang.String algorithm)
 
 Creates a KeyPairGenerator object for the specified algorithm. 
 
-    algorithm - the standard string name of the algorithm. See Appendix A in the Java 
-       Cryptography Architecture API Specification and Reference for 
-       information about standard algorithm names. 
+    algorithm - the standard string name of the algorithm. See Appendix A in the Java Cryptography Architecture API Specification and Reference for information about standard algorithm names. 
 
 *java.security.KeyPairGenerator.generateKeyPair()*
 
@@ -101,60 +78,56 @@ public |java.security.KeyPair| generateKeyPair()
 
 Generates a key pair. 
 
-If this KeyPairGenerator has not been initialized explicitly, provider-specific 
-defaults will be used for the size and other (algorithm-specific) values of the 
-generated keys. 
+If this KeyPairGenerator has not been initialized explicitly, provider-specific defaults will be used for the size and other (algorithm-specific) values of the generated keys. 
 
 This will generate a new key pair every time it is called. 
 
-This method is functionally equivalent to 
-genKeyPair(|java.security.KeyPairGenerator|) . 
+This method is functionally equivalent to genKeyPair(|java.security.KeyPairGenerator|) . 
+
 
 
     Returns: the generated key pair 
+
 *java.security.KeyPairGenerator.genKeyPair()*
 
 public final |java.security.KeyPair| genKeyPair()
 
 Generates a key pair. 
 
-If this KeyPairGenerator has not been initialized explicitly, provider-specific 
-defaults will be used for the size and other (algorithm-specific) values of the 
-generated keys. 
+If this KeyPairGenerator has not been initialized explicitly, provider-specific defaults will be used for the size and other (algorithm-specific) values of the generated keys. 
 
 This will generate a new key pair every time it is called. 
 
-This method is functionally equivalent to 
-generateKeyPair(|java.security.KeyPairGenerator|) . 
+This method is functionally equivalent to generateKeyPair(|java.security.KeyPairGenerator|) . 
+
 
 
     Returns: the generated key pair 
+
 *java.security.KeyPairGenerator.getAlgorithm()*
 
 public |java.lang.String| getAlgorithm()
 
-Returns the standard name of the algorithm for this key pair generator. See 
-Appendix A in the Java Cryptography Architecture API Specification and 
-Reference for information about standard algorithm names. 
+Returns the standard name of the algorithm for this key pair generator. See Appendix A in the Java Cryptography Architecture API Specification and Reference for information about 
+standard algorithm names. 
+
 
 
     Returns: the standard string name of the algorithm. 
+
 *java.security.KeyPairGenerator.getInstance(String)*
 
 public static |java.security.KeyPairGenerator| getInstance(java.lang.String algorithm)
   throws |java.security.NoSuchAlgorithmException|
          
-Generates a KeyPairGenerator object that implements the specified digest 
-algorithm. If the default provider package provides an implementation of the 
-requested digest algorithm, an instance of KeyPairGenerator containing that 
-implementation is returned. If the algorithm is not available in the default 
-package, other packages are searched. 
+Generates a KeyPairGenerator object that implements the specified digest algorithm. If the default provider package provides an implementation of the requested digest algorithm, 
+an instance of KeyPairGenerator containing that implementation is returned. If the algorithm is not available in the default package, other packages are searched. 
 
-    algorithm - the standard string name of the algorithm. See Appendix A in the Java 
-       Cryptography Architecture API Specification and Reference for 
-       information about standard algorithm names. 
+
+    algorithm - the standard string name of the algorithm. See Appendix A in the Java Cryptography Architecture API Specification and Reference for information about standard algorithm names. 
 
     Returns: the new KeyPairGenerator object. 
+
 *java.security.KeyPairGenerator.getInstance(String,Provider)*
 
 public static |java.security.KeyPairGenerator| getInstance(
@@ -162,16 +135,15 @@ public static |java.security.KeyPairGenerator| getInstance(
   java.security.Provider provider)
   throws |java.security.NoSuchAlgorithmException|
          
-Generates a KeyPairGenerator object implementing the specified algorithm, as 
-supplied from the specified provider, if such an algorithm is available from 
-the provider. Note: the provider doesn't have to be registered. 
+Generates a KeyPairGenerator object implementing the specified algorithm, as supplied from the specified provider, if such an algorithm is available from the provider. Note: the 
+provider doesn't have to be registered. 
 
-    algorithm - the standard string name of the algorithm. See Appendix A in the Java 
-       Cryptography Architecture API Specification and Reference for 
-       information about standard algorithm names. 
+
+    algorithm - the standard string name of the algorithm. See Appendix A in the Java Cryptography Architecture API Specification and Reference for information about standard algorithm names. 
     provider - the provider. 
 
     Returns: the new KeyPairGenerator object. 
+
 *java.security.KeyPairGenerator.getInstance(String,String)*
 
 public static |java.security.KeyPairGenerator| getInstance(
@@ -180,16 +152,14 @@ public static |java.security.KeyPairGenerator| getInstance(
   throws |java.security.NoSuchAlgorithmException|
          |java.security.NoSuchProviderException|
          
-Generates a KeyPairGenerator object implementing the specified algorithm, as 
-supplied from the specified provider, if such an algorithm is available from 
-the provider. 
+Generates a KeyPairGenerator object implementing the specified algorithm, as supplied from the specified provider, if such an algorithm is available from the provider. 
 
-    algorithm - the standard string name of the algorithm. See Appendix A in the Java 
-       Cryptography Architecture API Specification and Reference for 
-       information about standard algorithm names. 
+
+    algorithm - the standard string name of the algorithm. See Appendix A in the Java Cryptography Architecture API Specification and Reference for information about standard algorithm names. 
     provider - the string name of the provider. 
 
     Returns: the new KeyPairGenerator object. 
+
 *java.security.KeyPairGenerator.getProvider()*
 
 public final |java.security.Provider| getProvider()
@@ -197,25 +167,21 @@ public final |java.security.Provider| getProvider()
 Returns the provider of this key pair generator object. 
 
 
+
     Returns: the provider of this key pair generator object 
+
 *java.security.KeyPairGenerator.initialize(AlgorithmParameterSpec)*
 
 public void initialize(java.security.spec.AlgorithmParameterSpec params)
   throws |java.security.InvalidAlgorithmParameterException|
          
-Initializes the key pair generator using the specified parameter set and the 
-SecureRandom implementation of the highest-priority installed provider as the 
-source of randomness. (If none of the installed providers supply an 
-implementation of SecureRandom, a system-provided source of randomness is 
-used.). 
+Initializes the key pair generator using the specified parameter set and the SecureRandom implementation of the highest-priority installed provider as the source of randomness. 
+(If none of the installed providers supply an implementation of SecureRandom, a system-provided source of randomness is used.). 
 
-This concrete method has been added to this previously-defined abstract class. 
-This method calls the KeyPairGeneratorSpi 
-initialize(|java.security.KeyPairGeneratorSpi|) method, passing it params and a 
-source of randomness (obtained from the highest-priority installed provider or 
-system-provided if none of the installed providers supply one). That initialize 
-method always throws an UnsupportedOperationException if it is not overridden 
-by the provider. 
+This concrete method has been added to this previously-defined abstract class. This method calls the KeyPairGeneratorSpi initialize(|java.security.KeyPairGeneratorSpi|) method, 
+passing it params and a source of randomness (obtained from the highest-priority installed provider or system-provided if none of the installed providers supply one). That 
+initialize method always throws an UnsupportedOperationException if it is not overridden by the provider. 
+
 
     params - the parameter set used to generate the keys. 
 
@@ -226,14 +192,11 @@ public void initialize(
   java.security.SecureRandom random)
   throws |java.security.InvalidAlgorithmParameterException|
          
-Initializes the key pair generator with the given parameter set and source of 
-randomness. 
+Initializes the key pair generator with the given parameter set and source of randomness. 
 
-This concrete method has been added to this previously-defined abstract class. 
-This method calls the KeyPairGeneratorSpi 
-initialize(|java.security.KeyPairGeneratorSpi|) method, passing it params and 
-random. That initialize method always throws an UnsupportedOperationException 
-if it is not overridden by the provider. 
+This concrete method has been added to this previously-defined abstract class. This method calls the KeyPairGeneratorSpi initialize(|java.security.KeyPairGeneratorSpi|) method, 
+passing it params and random. That initialize method always throws an UnsupportedOperationException if it is not overridden by the provider. 
+
 
     params - the parameter set used to generate the keys. 
     random - the source of randomness. 
@@ -242,14 +205,11 @@ if it is not overridden by the provider.
 
 public void initialize(int keysize)
 
-Initializes the key pair generator for a certain keysize using a default 
-parameter set and the SecureRandom implementation of the highest-priority 
-installed provider as the source of randomness. (If none of the installed 
-providers supply an implementation of SecureRandom, a system-provided source of 
-randomness is used.) 
+Initializes the key pair generator for a certain keysize using a default parameter set and the SecureRandom implementation of the highest-priority installed provider as the source 
+of randomness. (If none of the installed providers supply an implementation of SecureRandom, a system-provided source of randomness is used.) 
 
-    keysize - the keysize. This is an algorithm-specific metric, such as modulus length, 
-       specified in number of bits. 
+
+    keysize - the keysize. This is an algorithm-specific metric, such as modulus length, specified in number of bits. 
 
 *java.security.KeyPairGenerator.initialize(int,SecureRandom)*
 
@@ -257,11 +217,10 @@ public void initialize(
   int keysize,
   java.security.SecureRandom random)
 
-Initializes the key pair generator for a certain keysize with the given source 
-of randomness (and a default parameter set). 
+Initializes the key pair generator for a certain keysize with the given source of randomness (and a default parameter set). 
 
-    keysize - the keysize. This is an algorithm-specific metric, such as modulus length, 
-       specified in number of bits. 
+
+    keysize - the keysize. This is an algorithm-specific metric, such as modulus length, specified in number of bits. 
     random - the source of randomness. 
 
 

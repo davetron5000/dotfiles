@@ -1,4 +1,5 @@
-*javax.security.auth.kerberos.DelegationPermission* *DelegationPermission* This 
+*javax.security.auth.kerberos.DelegationPermission* *DelegationPermission* This class is used to restrict the usage of the Kerberos
+ delegation model, ie: forwardable and proxiable
 
 public final class DelegationPermission
   extends    |java.security.BasicPermission|
@@ -9,53 +10,45 @@ public final class DelegationPermission
 |javax.security.auth.kerberos.DelegationPermission_Constructors|
 |javax.security.auth.kerberos.DelegationPermission_Methods|
 
-================================================================================
+====================================================================================================================================================================================
 
 *javax.security.auth.kerberos.DelegationPermission_Constructors*
-|javax.security.auth.kerberos.DelegationPermission(String)|Create a new Delegat
-|javax.security.auth.kerberos.DelegationPermission(String,String)|Create a new 
+|javax.security.auth.kerberos.DelegationPermission(String)|Create a new DelegationPermission  with the specified subordinate and target principals.
+|javax.security.auth.kerberos.DelegationPermission(String,String)|Create a new DelegationPermission  with the specified subordinate and target principals.
 
 *javax.security.auth.kerberos.DelegationPermission_Methods*
-|javax.security.auth.kerberos.DelegationPermission.equals(Object)|Checks two De
-|javax.security.auth.kerberos.DelegationPermission.hashCode()|Returns the hash 
-|javax.security.auth.kerberos.DelegationPermission.implies(Permission)|Checks i
-|javax.security.auth.kerberos.DelegationPermission.newPermissionCollection()|Re
+|javax.security.auth.kerberos.DelegationPermission.equals(Object)|Checks two DelegationPermission objects for equality.
+|javax.security.auth.kerberos.DelegationPermission.hashCode()|Returns the hash code value for this object.
+|javax.security.auth.kerberos.DelegationPermission.implies(Permission)|Checks if this Kerberos delegation permission object "implies" the   specified permission.
+|javax.security.auth.kerberos.DelegationPermission.newPermissionCollection()|Returns a PermissionCollection object for storing  DelegationPermission objects.
 
 *javax.security.auth.kerberos.DelegationPermission_Description*
 
-This class is used to restrict the usage of the Kerberos delegation model, ie: 
-forwardable and proxiable tickets. 
+This class is used to restrict the usage of the Kerberos delegation model, ie: forwardable and proxiable tickets. 
 
-The target name of this Permission specifies a pair of kerberos service 
-principals. The first is the subordinate service principal being entrusted to 
-use the TGT. The second service principal designates the target service the 
-subordinate service principal is to interact with on behalf of the initiating 
-KerberosPrincipal. This latter service principal is specified to restrict the 
-use of a proxiable ticket. 
+The target name of this Permission specifies a pair of kerberos service principals. The first is the subordinate service principal being entrusted to use the TGT. The second 
+service principal designates the target service the subordinate service principal is to interact with on behalf of the initiating KerberosPrincipal. This latter service principal 
+is specified to restrict the use of a proxiable ticket. 
 
-For example, to specify the "host" service use of a forwardable TGT the target 
-permission is specified as follows: 
+For example, to specify the "host" service use of a forwardable TGT the target permission is specified as follows: 
 
 
 
-DelegationPermission("\"host/foo.example.com@EXAMPLE.COM\" 
-\"krbtgt/EXAMPLE.COM@EXAMPLE.COM\""); 
+DelegationPermission("\"host/foo.example.com@EXAMPLE.COM\" \"krbtgt/EXAMPLE.COM@EXAMPLE.COM\""); 
 
-To give the "backup" service a proxiable nfs service ticket the target 
-permission might be specified: 
+To give the "backup" service a proxiable nfs service ticket the target permission might be specified: 
 
 
 
-DelegationPermission("\"backup/bar.example.com@EXAMPLE.COM\" 
-\"nfs/home.EXAMPLE.COM@EXAMPLE.COM\""); 
+DelegationPermission("\"backup/bar.example.com@EXAMPLE.COM\" \"nfs/home.EXAMPLE.COM@EXAMPLE.COM\""); 
+
 
 
 *javax.security.auth.kerberos.DelegationPermission(String)*
 
 public DelegationPermission(java.lang.String principals)
 
-Create a new DelegationPermission with the specified subordinate and target 
-principals. 
+Create a new DelegationPermission with the specified subordinate and target principals. 
 
 
 
@@ -67,8 +60,7 @@ public DelegationPermission(
   java.lang.String principals,
   java.lang.String actions)
 
-Create a new DelegationPermission with the specified subordinate and target 
-principals. 
+Create a new DelegationPermission with the specified subordinate and target principals. 
 
     principals - the name of the subordinate and target principals 
     actions - should be null. 
@@ -79,10 +71,11 @@ public boolean equals(java.lang.Object obj)
 
 Checks two DelegationPermission objects for equality. 
 
+
     obj - the object to test for equality with this object. 
 
-    Returns: true if obj is a DelegationPermission, and has the same subordinate and service 
-             principal as this. DelegationPermission object. 
+    Returns: true if obj is a DelegationPermission, and has the same subordinate and service principal as this. DelegationPermission object. 
+
 *javax.security.auth.kerberos.DelegationPermission.hashCode()*
 
 public int hashCode()
@@ -90,30 +83,33 @@ public int hashCode()
 Returns the hash code value for this object. 
 
 
+
     Returns: a hash code value for this object. 
+
 *javax.security.auth.kerberos.DelegationPermission.implies(Permission)*
 
 public boolean implies(java.security.Permission p)
 
-Checks if this Kerberos delegation permission object "implies" the specified 
-permission. 
+Checks if this Kerberos delegation permission object "implies" the specified permission. 
 
 If none of the above are true, implies returns false. 
+
 
     p - the permission to check against. 
 
     Returns: true if the specified permission is implied by this object, false if not. 
+
 *javax.security.auth.kerberos.DelegationPermission.newPermissionCollection()*
 
 public |java.security.PermissionCollection| newPermissionCollection()
 
 Returns a PermissionCollection object for storing DelegationPermission objects. 
 
-DelegationPermission objects must be stored in a manner that allows them to be 
-inserted into the collection in any order, but that also enables the 
-PermissionCollection implies method to be implemented in an efficient (and 
-consistent) manner. 
+DelegationPermission objects must be stored in a manner that allows them to be inserted into the collection in any order, but that also enables the PermissionCollection implies 
+method to be implemented in an efficient (and consistent) manner. 
+
 
 
     Returns: a new PermissionCollection object suitable for storing DelegationPermissions. 
+
 

@@ -1,4 +1,4 @@
-*javax.swing.tree.FixedHeightLayoutCache* *FixedHeightLayoutCache* NOTE: This wi
+*javax.swing.tree.FixedHeightLayoutCache* *FixedHeightLayoutCache* NOTE: This will become more open in a future release.
 
 public class FixedHeightLayoutCache
   extends    |javax.swing.tree.AbstractLayoutCache|
@@ -8,41 +8,40 @@ public class FixedHeightLayoutCache
 |javax.swing.tree.FixedHeightLayoutCache_Constructors|
 |javax.swing.tree.FixedHeightLayoutCache_Methods|
 
-================================================================================
+====================================================================================================================================================================================
 
 *javax.swing.tree.FixedHeightLayoutCache_Constructors*
 |javax.swing.tree.FixedHeightLayoutCache()|
 
 *javax.swing.tree.FixedHeightLayoutCache_Methods*
-|javax.swing.tree.FixedHeightLayoutCache.getBounds(TreePath,Rectangle)|Returns 
-|javax.swing.tree.FixedHeightLayoutCache.getExpandedState(TreePath)|Returns tru
-|javax.swing.tree.FixedHeightLayoutCache.getPathClosestTo(int,int)|Returns the 
-|javax.swing.tree.FixedHeightLayoutCache.getPathForRow(int)|Returns the path fo
-|javax.swing.tree.FixedHeightLayoutCache.getRowCount()|Returns the number of vi
-|javax.swing.tree.FixedHeightLayoutCache.getRowForPath(TreePath)|Returns the ro
-|javax.swing.tree.FixedHeightLayoutCache.getVisibleChildCount(TreePath)|Returns
-|javax.swing.tree.FixedHeightLayoutCache.getVisiblePathsFrom(TreePath)|Returns 
-|javax.swing.tree.FixedHeightLayoutCache.invalidatePathBounds(TreePath)|Does no
-|javax.swing.tree.FixedHeightLayoutCache.invalidateSizes()|Informs the TreeStat
-|javax.swing.tree.FixedHeightLayoutCache.isExpanded(TreePath)|Returns true if t
-|javax.swing.tree.FixedHeightLayoutCache.setExpandedState(TreePath,boolean)|Mar
-|javax.swing.tree.FixedHeightLayoutCache.setModel(TreeModel)|Sets the TreeModel
-|javax.swing.tree.FixedHeightLayoutCache.setRootVisible(boolean)|Determines whe
-|javax.swing.tree.FixedHeightLayoutCache.setRowHeight(int)|Sets the height of e
-|javax.swing.tree.FixedHeightLayoutCache.treeNodesChanged(TreeModelEvent)|Invok
-|javax.swing.tree.FixedHeightLayoutCache.treeNodesInserted(TreeModelEvent)|Invo
-|javax.swing.tree.FixedHeightLayoutCache.treeNodesRemoved(TreeModelEvent)|Invok
-|javax.swing.tree.FixedHeightLayoutCache.treeStructureChanged(TreeModelEvent)|I
+|javax.swing.tree.FixedHeightLayoutCache.getBounds(TreePath,Rectangle)|Returns a rectangle giving the bounds needed to draw path.
+|javax.swing.tree.FixedHeightLayoutCache.getExpandedState(TreePath)|Returns true if the path is expanded, and visible.
+|javax.swing.tree.FixedHeightLayoutCache.getPathClosestTo(int,int)|Returns the path to the node that is closest to x,y.
+|javax.swing.tree.FixedHeightLayoutCache.getPathForRow(int)|Returns the path for passed in row.
+|javax.swing.tree.FixedHeightLayoutCache.getRowCount()|Returns the number of visible rows.
+|javax.swing.tree.FixedHeightLayoutCache.getRowForPath(TreePath)|Returns the row that the last item identified in path is visible  at.
+|javax.swing.tree.FixedHeightLayoutCache.getVisibleChildCount(TreePath)|Returns the number of visible children for row.
+|javax.swing.tree.FixedHeightLayoutCache.getVisiblePathsFrom(TreePath)|Returns an Enumerator that increments over the visible paths  starting at the passed in location.
+|javax.swing.tree.FixedHeightLayoutCache.invalidatePathBounds(TreePath)|Does nothing, FixedHeightLayoutCache doesn't cache width, and that  is all that could change.
+|javax.swing.tree.FixedHeightLayoutCache.invalidateSizes()|Informs the TreeState that it needs to recalculate all the sizes  it is referencing.
+|javax.swing.tree.FixedHeightLayoutCache.isExpanded(TreePath)|Returns true if the value identified by row is currently expanded.
+|javax.swing.tree.FixedHeightLayoutCache.setExpandedState(TreePath,boolean)|Marks the path path expanded state to  isExpanded.
+|javax.swing.tree.FixedHeightLayoutCache.setModel(TreeModel)|Sets the TreeModel that will provide the data.
+|javax.swing.tree.FixedHeightLayoutCache.setRootVisible(boolean)|Determines whether or not the root node from  the TreeModel is visible.
+|javax.swing.tree.FixedHeightLayoutCache.setRowHeight(int)|Sets the height of each cell.
+|javax.swing.tree.FixedHeightLayoutCache.treeNodesChanged(TreeModelEvent)|Invoked after a node (or a set of siblings) has changed in some  way.
+|javax.swing.tree.FixedHeightLayoutCache.treeNodesInserted(TreeModelEvent)|Invoked after nodes have been inserted into the tree.
+|javax.swing.tree.FixedHeightLayoutCache.treeNodesRemoved(TreeModelEvent)|Invoked after nodes have been removed from the tree.
+|javax.swing.tree.FixedHeightLayoutCache.treeStructureChanged(TreeModelEvent)|Invoked after the tree has drastically changed structure from a  given node down.
 
 *javax.swing.tree.FixedHeightLayoutCache_Description*
 
 NOTE: This will become more open in a future release. 
 
-Warning: Serialized objects of this class will not be compatible with future 
-Swing releases. The current serialization support is appropriate for short term 
-storage or RMI between applications running the same version of Swing. As of 
-1.4, support for long term storage of all JavaBeansTM has been added to the 
-java.beans package. Please see (|java.beans.XMLEncoder|) . 
+Warning: Serialized objects of this class will not be compatible with future Swing releases. The current serialization support is appropriate for short term storage or RMI between 
+applications running the same version of Swing. As of 1.4, support for long term storage of all JavaBeansTM has been added to the java.beans package. Please see 
+(|java.beans.XMLEncoder|) . 
+
 
 
 *javax.swing.tree.FixedHeightLayoutCache()*
@@ -60,15 +59,18 @@ public |java.awt.Rectangle| getBounds(
 
 Returns a rectangle giving the bounds needed to draw path. 
 
+
     path - a TreePath specifying a node 
     placeIn - a Rectangle object giving the available space 
 
     Returns: a Rectangle object specifying the space to be used 
+
 *javax.swing.tree.FixedHeightLayoutCache.getExpandedState(TreePath)*
 
 public boolean getExpandedState(javax.swing.tree.TreePath path)
 
 Returns true if the path is expanded, and visible. 
+
 
 
 *javax.swing.tree.FixedHeightLayoutCache.getPathClosestTo(int,int)*
@@ -77,10 +79,9 @@ public |javax.swing.tree.TreePath| getPathClosestTo(
   int x,
   int y)
 
-Returns the path to the node that is closest to x,y. If there is nothing 
-currently visible this will return null, otherwise it'll always return a valid 
-path. If you need to test if the returned object is exactly at x, y you should 
-get the bounds for the returned path and test x, y against that. 
+Returns the path to the node that is closest to x,y. If there is nothing currently visible this will return null, otherwise it'll always return a valid path. If you need to test 
+if the returned object is exactly at x, y you should get the bounds for the returned path and test x, y against that. 
+
 
 
 *javax.swing.tree.FixedHeightLayoutCache.getPathForRow(int)*
@@ -90,6 +91,7 @@ public |javax.swing.tree.TreePath| getPathForRow(int row)
 Returns the path for passed in row. If row is not visible null is returned. 
 
 
+
 *javax.swing.tree.FixedHeightLayoutCache.getRowCount()*
 
 public int getRowCount()
@@ -97,12 +99,13 @@ public int getRowCount()
 Returns the number of visible rows. 
 
 
+
 *javax.swing.tree.FixedHeightLayoutCache.getRowForPath(TreePath)*
 
 public int getRowForPath(javax.swing.tree.TreePath path)
 
-Returns the row that the last item identified in path is visible at. Will 
-return -1 if any of the elements in path are not currently visible. 
+Returns the row that the last item identified in path is visible at. Will return -1 if any of the elements in path are not currently visible. 
+
 
 
 *javax.swing.tree.FixedHeightLayoutCache.getVisibleChildCount(TreePath)*
@@ -112,29 +115,29 @@ public int getVisibleChildCount(javax.swing.tree.TreePath path)
 Returns the number of visible children for row. 
 
 
+
 *javax.swing.tree.FixedHeightLayoutCache.getVisiblePathsFrom(TreePath)*
 
-public |java.util.Enumeration| getVisiblePathsFrom(javax.swing.tree.TreePath path)
+public |java.util.Enumeration|<TreePath> getVisiblePathsFrom(javax.swing.tree.TreePath path)
 
-Returns an Enumerator that increments over the visible paths starting at the 
-passed in location. The ordering of the enumeration is based on how the paths 
-are displayed. 
+Returns an Enumerator that increments over the visible paths starting at the passed in location. The ordering of the enumeration is based on how the paths are displayed. 
+
 
 
 *javax.swing.tree.FixedHeightLayoutCache.invalidatePathBounds(TreePath)*
 
 public void invalidatePathBounds(javax.swing.tree.TreePath path)
 
-Does nothing, FixedHeightLayoutCache doesn't cache width, and that is all that 
-could change. 
+Does nothing, FixedHeightLayoutCache doesn't cache width, and that is all that could change. 
+
 
 
 *javax.swing.tree.FixedHeightLayoutCache.invalidateSizes()*
 
 public void invalidateSizes()
 
-Informs the TreeState that it needs to recalculate all the sizes it is 
-referencing. 
+Informs the TreeState that it needs to recalculate all the sizes it is referencing. 
+
 
 
 *javax.swing.tree.FixedHeightLayoutCache.isExpanded(TreePath)*
@@ -142,6 +145,7 @@ referencing.
 public boolean isExpanded(javax.swing.tree.TreePath path)
 
 Returns true if the value identified by row is currently expanded. 
+
 
 
 *javax.swing.tree.FixedHeightLayoutCache.setExpandedState(TreePath,boolean)*
@@ -153,11 +157,13 @@ public void setExpandedState(
 Marks the path path expanded state to isExpanded. 
 
 
+
 *javax.swing.tree.FixedHeightLayoutCache.setModel(TreeModel)*
 
 public void setModel(javax.swing.tree.TreeModel newModel)
 
 Sets the TreeModel that will provide the data. 
+
 
     newModel - the TreeModel that is to provide the data 
 
@@ -167,14 +173,15 @@ public void setRootVisible(boolean rootVisible)
 
 Determines whether or not the root node from the TreeModel is visible. 
 
+
     rootVisible - true if the root node of the tree is to be displayed 
 
 *javax.swing.tree.FixedHeightLayoutCache.setRowHeight(int)*
 
 public void setRowHeight(int rowHeight)
 
-Sets the height of each cell. If rowHeight is less than or equal to 0 this will 
-throw an IllegalArgumentException. 
+Sets the height of each cell. If rowHeight is less than or equal to 0 this will throw an IllegalArgumentException. 
+
 
     rowHeight - the height of each cell, in pixels 
 
@@ -182,15 +189,13 @@ throw an IllegalArgumentException.
 
 public void treeNodesChanged(javax.swing.event.TreeModelEvent e)
 
-Invoked after a node (or a set of siblings) has changed in some way. The 
-node(s) have not changed locations in the tree or altered their children 
-arrays, but other attributes have changed and may affect presentation. Example: 
-the name of a file has changed, but it is in the same location in the file 
-system. 
+Invoked after a node (or a set of siblings) has changed in some way. The node(s) have not changed locations in the tree or altered their children arrays, but other attributes have 
+changed and may affect presentation. Example: the name of a file has changed, but it is in the same location in the file system. 
 
 e.path() returns the path the parent of the changed node(s). 
 
 e.childIndices() returns the index(es) of the changed node(s). 
+
 
 
 *javax.swing.tree.FixedHeightLayoutCache.treeNodesInserted(TreeModelEvent)*
@@ -199,34 +204,32 @@ public void treeNodesInserted(javax.swing.event.TreeModelEvent e)
 
 Invoked after nodes have been inserted into the tree. 
 
-e.path() returns the parent of the new nodes e.childIndices() returns the 
-indices of the new nodes in ascending order. 
+e.path() returns the parent of the new nodes e.childIndices() returns the indices of the new nodes in ascending order. 
+
 
 
 *javax.swing.tree.FixedHeightLayoutCache.treeNodesRemoved(TreeModelEvent)*
 
 public void treeNodesRemoved(javax.swing.event.TreeModelEvent e)
 
-Invoked after nodes have been removed from the tree. Note that if a subtree is 
-removed from the tree, this method may only be invoked once for the root of the 
-removed subtree, not once for each individual set of siblings removed. 
+Invoked after nodes have been removed from the tree. Note that if a subtree is removed from the tree, this method may only be invoked once for the root of the removed subtree, not 
+once for each individual set of siblings removed. 
 
 e.path() returns the former parent of the deleted nodes. 
 
-e.childIndices() returns the indices the nodes had before they were deleted in 
-ascending order. 
+e.childIndices() returns the indices the nodes had before they were deleted in ascending order. 
+
 
 
 *javax.swing.tree.FixedHeightLayoutCache.treeStructureChanged(TreeModelEvent)*
 
 public void treeStructureChanged(javax.swing.event.TreeModelEvent e)
 
-Invoked after the tree has drastically changed structure from a given node 
-down. If the path returned by e.getPath() is of length one and the first 
-element does not identify the current root node the first element should become 
-the new root of the tree. 
+Invoked after the tree has drastically changed structure from a given node down. If the path returned by e.getPath() is of length one and the first element does not identify the 
+current root node the first element should become the new root of the tree. 
 
 e.path() holds the path to the node. e.childIndices() returns null. 
+
 
 
 

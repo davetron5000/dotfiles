@@ -1,6 +1,8 @@
-*java.util.concurrent.PriorityBlockingQueue* *PriorityBlockingQueue* An unbounde
+*java.util.concurrent.PriorityBlockingQueue* *PriorityBlockingQueue* An unboundedBlockingQueue blocking queuethat uses
+ the same ordering rules as classPriorityQueueand supplies
+ b
 
-public class PriorityBlockingQueue
+public class PriorityBlockingQueue<E>
   extends    |java.util.AbstractQueue|
   implements |java.util.concurrent.BlockingQueue|
              |java.io.Serializable|
@@ -10,30 +12,30 @@ public class PriorityBlockingQueue
 |java.util.concurrent.PriorityBlockingQueue_Constructors|
 |java.util.concurrent.PriorityBlockingQueue_Methods|
 
-================================================================================
+====================================================================================================================================================================================
 
 *java.util.concurrent.PriorityBlockingQueue_Constructors*
-|java.util.concurrent.PriorityBlockingQueue()|Creates a PriorityBlockingQueue w
-|java.util.concurrent.PriorityBlockingQueue(Collection)|Creates a PriorityBlock
-|java.util.concurrent.PriorityBlockingQueue(int)|Creates a PriorityBlockingQueu
-|java.util.concurrent.PriorityBlockingQueue(int,Comparator)|Creates a PriorityB
+|java.util.concurrent.PriorityBlockingQueue()|Creates a PriorityBlockingQueue with the default initial   capacity  (11) that orders its elements according to their natural  orderi
+|java.util.concurrent.PriorityBlockingQueue(Collection<?extendsE>)|Creates a PriorityBlockingQueue containing the elements  in the specified collection.
+|java.util.concurrent.PriorityBlockingQueue(int)|Creates a PriorityBlockingQueue with the specified initial  capacity  that orders its elements according to their natural ordering
+|java.util.concurrent.PriorityBlockingQueue(int,Comparator<?superE>)|Creates a PriorityBlockingQueue with the specified initial  capacity  that orders its elements according to th
 
 *java.util.concurrent.PriorityBlockingQueue_Methods*
-|java.util.concurrent.PriorityBlockingQueue.add(E)|Adds the specified element t
-|java.util.concurrent.PriorityBlockingQueue.clear()|Atomically removes all of t
-|java.util.concurrent.PriorityBlockingQueue.comparator()|Returns the comparator
+|java.util.concurrent.PriorityBlockingQueue.add(E)|Adds the specified element to this queue.
+|java.util.concurrent.PriorityBlockingQueue.clear()|Atomically removes all of the elements from this queue.
+|java.util.concurrent.PriorityBlockingQueue.comparator()|Returns the comparator used to order this collection, or null  if this collection is sorted according to its elements natu
 |java.util.concurrent.PriorityBlockingQueue.contains(Object)|
-|java.util.concurrent.PriorityBlockingQueue.drainTo(Collection)|
-|java.util.concurrent.PriorityBlockingQueue.drainTo(Collection,int)|
-|java.util.concurrent.PriorityBlockingQueue.iterator()|Returns an iterator over
-|java.util.concurrent.PriorityBlockingQueue.offer(E)|Inserts the specified elem
-|java.util.concurrent.PriorityBlockingQueue.offer(E,long,TimeUnit)|Inserts the 
+|java.util.concurrent.PriorityBlockingQueue.drainTo(Collection<?superE>)|
+|java.util.concurrent.PriorityBlockingQueue.drainTo(Collection<?superE>,int)|
+|java.util.concurrent.PriorityBlockingQueue.iterator()|Returns an iterator over the elements in this queue.
+|java.util.concurrent.PriorityBlockingQueue.offer(E)|Inserts the specified element into this priority queue.
+|java.util.concurrent.PriorityBlockingQueue.offer(E,long,TimeUnit)|Inserts the specified element into this priority queue.
 |java.util.concurrent.PriorityBlockingQueue.peek()|
 |java.util.concurrent.PriorityBlockingQueue.poll()|
 |java.util.concurrent.PriorityBlockingQueue.poll(long,TimeUnit)|
-|java.util.concurrent.PriorityBlockingQueue.put(E)|Adds the specified element t
-|java.util.concurrent.PriorityBlockingQueue.remainingCapacity()|Always returns 
-|java.util.concurrent.PriorityBlockingQueue.remove(Object)|Removes a single ins
+|java.util.concurrent.PriorityBlockingQueue.put(E)|Adds the specified element to this priority queue.
+|java.util.concurrent.PriorityBlockingQueue.remainingCapacity()|Always returns Integer.MAX_VALUE because  a PriorityBlockingQueue is not capacity constrained.
+|java.util.concurrent.PriorityBlockingQueue.remove(Object)|Removes a single instance of the specified element from this  queue, if it is present.
 |java.util.concurrent.PriorityBlockingQueue.size()|
 |java.util.concurrent.PriorityBlockingQueue.take()|
 |java.util.concurrent.PriorityBlockingQueue.toArray()|
@@ -42,45 +44,32 @@ public class PriorityBlockingQueue
 
 *java.util.concurrent.PriorityBlockingQueue_Description*
 
-An unbounded blocking queue(|java.util.concurrent.BlockingQueue|) that uses the 
-same ordering rules as class (|java.util.PriorityQueue|) and supplies blocking 
-retrieval operations. While this queue is logically unbounded, attempted 
-additions may fail due to resource exhaustion (causing OutOfMemoryError). This 
-class does not permit null elements. A priority queue relying on natural 
-ordering also does not permit insertion of non-comparable objects (doing so 
-results in ClassCastException). 
+An unbounded blocking queue(|java.util.concurrent.BlockingQueue|) that uses the same ordering rules as class (|java.util.PriorityQueue|) and supplies blocking retrieval 
+operations. While this queue is logically unbounded, attempted additions may fail due to resource exhaustion (causing OutOfMemoryError). This class does not permit null elements. 
+A priority queue relying on natural ordering also does not permit insertion of non-comparable objects (doing so results in ClassCastException). 
 
-This class and its iterator implement all of the optional methods of the 
-(|java.util.Collection|) and (|java.util.Iterator|) interfaces. The Iterator 
-provided in method (|java.util.concurrent.PriorityBlockingQueue|) is not 
-guaranteed to traverse the elements of the PriorityBlockingQueue in any 
-particular order. If you need ordered traversal, consider using 
-Arrays.sort(pq.toArray()). 
+This class and its iterator implement all of the optional methods of the (|java.util.Collection|) and (|java.util.Iterator|) interfaces. The Iterator provided in method 
+(|java.util.concurrent.PriorityBlockingQueue|) is not guaranteed to traverse the elements of the PriorityBlockingQueue in any particular order. If you need ordered traversal, 
+consider using Arrays.sort(pq.toArray()). 
 
-This class is a member of the <a href="/../guide/collections/index.html"> Java 
-Collections Framework. 
+This class is a member of the <a href="/../guide/collections/index.html"> Java Collections Framework. 
+
 
 
 *java.util.concurrent.PriorityBlockingQueue()*
 
 public PriorityBlockingQueue()
 
-Creates a PriorityBlockingQueue with the default initial capacity (11) that 
-orders its elements according to their natural ordering (using Comparable). 
+Creates a PriorityBlockingQueue with the default initial capacity (11) that orders its elements according to their natural ordering (using Comparable). 
 
 
-*java.util.concurrent.PriorityBlockingQueue(Collection)*
+*java.util.concurrent.PriorityBlockingQueue(Collection<?extendsE>)*
 
-public PriorityBlockingQueue(java.util.Collection c)
+public PriorityBlockingQueue(java.util.Collection<? extends E> c)
 
-Creates a PriorityBlockingQueue containing the elements in the specified 
-collection. The priority queue has an initial capacity of 110% of the size of 
-the specified collection. If the specified collection is a 
-(|java.util.SortedSet|) or a (|java.util.PriorityQueue|) , this priority queue 
-will be sorted according to the same comparator, or according to its elements' 
-natural order if the collection is sorted according to its elements' natural 
-order. Otherwise, this priority queue is ordered according to its elements' 
-natural order. 
+Creates a PriorityBlockingQueue containing the elements in the specified collection. The priority queue has an initial capacity of 110% of the size of the specified collection. If 
+the specified collection is a (|java.util.SortedSet|) or a (|java.util.PriorityQueue|) , this priority queue will be sorted according to the same comparator, or according to its 
+elements' natural order if the collection is sorted according to its elements' natural order. Otherwise, this priority queue is ordered according to its elements' natural order. 
 
     c - the collection whose elements are to be placed into this priority queue. 
 
@@ -88,52 +77,50 @@ natural order.
 
 public PriorityBlockingQueue(int initialCapacity)
 
-Creates a PriorityBlockingQueue with the specified initial capacity that orders 
-its elements according to their natural ordering (using Comparable). 
+Creates a PriorityBlockingQueue with the specified initial capacity that orders its elements according to their natural ordering (using Comparable). 
 
     initialCapacity - the initial capacity for this priority queue. 
 
-*java.util.concurrent.PriorityBlockingQueue(int,Comparator)*
+*java.util.concurrent.PriorityBlockingQueue(int,Comparator<?superE>)*
 
 public PriorityBlockingQueue(
   int initialCapacity,
-  java.util.Comparator comparator)
+  java.util.Comparator<? super E> comparator)
 
-Creates a PriorityBlockingQueue with the specified initial capacity that orders 
-its elements according to the specified comparator. 
+Creates a PriorityBlockingQueue with the specified initial capacity that orders its elements according to the specified comparator. 
 
     initialCapacity - the initial capacity for this priority queue. 
-    comparator - the comparator used to order this priority queue. If null then the order 
-       depends on the elements' natural ordering. 
+    comparator - the comparator used to order this priority queue. If null then the order depends on the elements' natural ordering. 
 
 *java.util.concurrent.PriorityBlockingQueue.add(E)*
 
-public boolean add(java.lang.Object o)
+public boolean add(E o)
 
 Adds the specified element to this queue. 
+
 
     o - the element to add 
 
     Returns: true (as per the general contract of Collection.add). 
+
 *java.util.concurrent.PriorityBlockingQueue.clear()*
 
 public void clear()
 
-Atomically removes all of the elements from this queue. The queue will be empty 
-after this call returns. 
+Atomically removes all of the elements from this queue. The queue will be empty after this call returns. 
+
 
 
 *java.util.concurrent.PriorityBlockingQueue.comparator()*
 
-public |java.util.Comparator| comparator()
+public |java.util.Comparator|<? super E> comparator()
 
-Returns the comparator used to order this collection, or null if this 
-collection is sorted according to its elements natural ordering (using 
-Comparable). 
+Returns the comparator used to order this collection, or null if this collection is sorted according to its elements natural ordering (using Comparable). 
 
 
-    Returns: the comparator used to order this collection, or null if this collection is 
-             sorted according to its elements natural ordering. 
+
+    Returns: the comparator used to order this collection, or null if this collection is sorted according to its elements natural ordering. 
+
 *java.util.concurrent.PriorityBlockingQueue.contains(Object)*
 
 public boolean contains(java.lang.Object o)
@@ -141,74 +128,82 @@ public boolean contains(java.lang.Object o)
 
 
 
-*java.util.concurrent.PriorityBlockingQueue.drainTo(Collection)*
 
-public int drainTo(java.util.Collection c)
+*java.util.concurrent.PriorityBlockingQueue.drainTo(Collection<?superE>)*
+
+public int drainTo(java.util.Collection<? super E> c)
 
 
 
 
-*java.util.concurrent.PriorityBlockingQueue.drainTo(Collection,int)*
+
+*java.util.concurrent.PriorityBlockingQueue.drainTo(Collection<?superE>,int)*
 
 public int drainTo(
-  java.util.Collection c,
+  java.util.Collection<? super E> c,
   int maxElements)
+
 
 
 
 
 *java.util.concurrent.PriorityBlockingQueue.iterator()*
 
-public |java.util.Iterator| iterator()
+public |java.util.Iterator|<E> iterator()
 
-Returns an iterator over the elements in this queue. The iterator does not 
-return the elements in any particular order. The returned iterator is a 
-thread-safe "fast-fail" iterator that will throw 
-(|java.util.ConcurrentModificationException|) upon detected interference. 
+Returns an iterator over the elements in this queue. The iterator does not return the elements in any particular order. The returned iterator is a thread-safe "fast-fail" iterator 
+that will throw (|java.util.ConcurrentModificationException|) upon detected interference. 
+
 
 
     Returns: an iterator over the elements in this queue. 
+
 *java.util.concurrent.PriorityBlockingQueue.offer(E)*
 
-public boolean offer(java.lang.Object o)
+public boolean offer(E o)
 
 Inserts the specified element into this priority queue. 
+
 
     o - the element to add 
 
     Returns: 
+
 *java.util.concurrent.PriorityBlockingQueue.offer(E,long,TimeUnit)*
 
 public boolean offer(
-  java.lang.Object o,
+  E o,
   long timeout,
   java.util.concurrent.TimeUnit unit)
 
-Inserts the specified element into this priority queue. As the queue is 
-unbounded this method will never block. 
+Inserts the specified element into this priority queue. As the queue is unbounded this method will never block. 
+
 
     o - the element to add 
     timeout - This parameter is ignored as the method never blocks 
     unit - This parameter is ignored as the method never blocks 
 
     Returns: 
+
 *java.util.concurrent.PriorityBlockingQueue.peek()*
 
-public |java.lang.Object| peek()
+public |E| peek()
+
 
 
 
 
 *java.util.concurrent.PriorityBlockingQueue.poll()*
 
-public |java.lang.Object| poll()
+public |E| poll()
+
 
 
 
 
 *java.util.concurrent.PriorityBlockingQueue.poll(long,TimeUnit)*
 
-public |java.lang.Object| poll(
+public |E| poll(
   long timeout,
   java.util.concurrent.TimeUnit unit)
   throws |java.lang.InterruptedException|
@@ -216,12 +211,13 @@ public |java.lang.Object| poll(
 
 
 
+
 *java.util.concurrent.PriorityBlockingQueue.put(E)*
 
-public void put(java.lang.Object o)
+public void put(E o)
 
-Adds the specified element to this priority queue. As the queue is unbounded 
-this method will never block. 
+Adds the specified element to this priority queue. As the queue is unbounded this method will never block. 
+
 
     o - the element to add 
 
@@ -229,17 +225,18 @@ this method will never block.
 
 public int remainingCapacity()
 
-Always returns Integer.MAX_VALUE because a PriorityBlockingQueue is not 
-capacity constrained. 
+Always returns Integer.MAX_VALUE because a PriorityBlockingQueue is not capacity constrained. 
+
 
 
     Returns: Integer.MAX_VALUE 
+
 *java.util.concurrent.PriorityBlockingQueue.remove(Object)*
 
 public boolean remove(java.lang.Object o)
 
-Removes a single instance of the specified element from this queue, if it is 
-present. 
+Removes a single instance of the specified element from this queue, if it is present. 
+
 
 
 *java.util.concurrent.PriorityBlockingQueue.size()*
@@ -249,24 +246,28 @@ public int size()
 
 
 
+
 *java.util.concurrent.PriorityBlockingQueue.take()*
 
-public |java.lang.Object| take()
+public |E| take()
   throws |java.lang.InterruptedException|
          
 
 
 
+
 *java.util.concurrent.PriorityBlockingQueue.toArray()*
 
-public |java.lang.Object| toArray()
+public |java.lang.Object|[] toArray()
+
 
 
 
 
 *java.util.concurrent.PriorityBlockingQueue.toArray(T[])*
 
-public |java.lang.Object| toArray(java.lang.Object[] a)
+public |T|[] toArray(T[] a)
+
 
 
 
@@ -274,6 +275,7 @@ public |java.lang.Object| toArray(java.lang.Object[] a)
 *java.util.concurrent.PriorityBlockingQueue.toString()*
 
 public |java.lang.String| toString()
+
 
 
 

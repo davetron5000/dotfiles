@@ -1,4 +1,5 @@
-*java.io.FileOutputStream* *FileOutputStream* A file output stream is an output 
+*java.io.FileOutputStream* *FileOutputStream* A file output stream is an output stream for writing data to a 
+ File or to a FileDescriptor.
 
 public class FileOutputStream
   extends    |java.io.OutputStream|
@@ -8,35 +9,32 @@ public class FileOutputStream
 |java.io.FileOutputStream_Constructors|
 |java.io.FileOutputStream_Methods|
 
-================================================================================
+====================================================================================================================================================================================
 
 *java.io.FileOutputStream_Constructors*
-|java.io.FileOutputStream(File)|Creates a file output stream to write to the fi
-|java.io.FileOutputStream(File,boolean)|Creates a file output stream to write t
-|java.io.FileOutputStream(FileDescriptor)|Creates an output file stream to writ
-|java.io.FileOutputStream(String)|Creates an output file stream to write to the
-|java.io.FileOutputStream(String,boolean)|Creates an output file stream to writ
+|java.io.FileOutputStream(File)|Creates a file output stream to write to the file represented by   the specified File object.
+|java.io.FileOutputStream(File,boolean)|Creates a file output stream to write to the file represented by   the specified File object.
+|java.io.FileOutputStream(FileDescriptor)|Creates an output file stream to write to the specified file   descriptor, which represents an existing connection to an actual   file in
+|java.io.FileOutputStream(String)|Creates an output file stream to write to the file with the   specified name.
+|java.io.FileOutputStream(String,boolean)|Creates an output file stream to write to the file with the specified  name.
 
 *java.io.FileOutputStream_Methods*
-|java.io.FileOutputStream.close()|Closes this file output stream and releases a
-|java.io.FileOutputStream.finalize()|Cleans up the connection to the file, and 
-|java.io.FileOutputStream.getChannel()|Returns the uniquejava.nio.channels.File
-|java.io.FileOutputStream.getFD()|Returns the file descriptor associated with t
-|java.io.FileOutputStream.write(byte[])|Writes b.length bytes from the specifie
-|java.io.FileOutputStream.write(byte[],int,int)|Writes len bytes from the speci
-|java.io.FileOutputStream.write(int)|Writes the specified byte to this file out
+|java.io.FileOutputStream.close()|Closes this file output stream and releases any system resources   associated with this stream.
+|java.io.FileOutputStream.finalize()|Cleans up the connection to the file, and ensures that the   close method of this file output stream is  called when there are no more referen
+|java.io.FileOutputStream.getChannel()|Returns the uniquejava.nio.channels.FileChannel FileChannelobject associated with this file output stream.
+|java.io.FileOutputStream.getFD()|Returns the file descriptor associated with this stream.
+|java.io.FileOutputStream.write(byte[])|Writes b.length bytes from the specified byte array   to this file output stream.
+|java.io.FileOutputStream.write(byte[],int,int)|Writes len bytes from the specified byte array   starting at offset off to this file output stream.
+|java.io.FileOutputStream.write(int)|Writes the specified byte to this file output stream.
 
 *java.io.FileOutputStream_Description*
 
-A file output stream is an output stream for writing data to a File or to a 
-FileDescriptor. Whether or not a file is available or may be created depends 
-upon the underlying platform. Some platforms, in particular, allow a file to be 
-opened for writing by only one FileOutputStream (or other file-writing object) 
-at a time. In such situations the constructors in this class will fail if the 
-file involved is already open. 
+A file output stream is an output stream for writing data to a File or to a FileDescriptor. Whether or not a file is available or may be created depends upon the underlying 
+platform. Some platforms, in particular, allow a file to be opened for writing by only one FileOutputStream (or other file-writing object) at a time. In such situations the 
+constructors in this class will fail if the file involved is already open. 
 
-FileOutputStream is meant for writing streams of raw bytes such as image data. 
-For writing streams of characters, consider using FileWriter. 
+FileOutputStream is meant for writing streams of raw bytes such as image data. For writing streams of characters, consider using FileWriter. 
+
 
 
 *java.io.FileOutputStream(File)*
@@ -44,16 +42,12 @@ For writing streams of characters, consider using FileWriter.
 public FileOutputStream(java.io.File file)
   throws |java.io.FileNotFoundException|
          
-Creates a file output stream to write to the file represented by the specified 
-File object. A new FileDescriptor object is created to represent this file 
-connection. 
+Creates a file output stream to write to the file represented by the specified File object. A new FileDescriptor object is created to represent this file connection. 
 
-First, if there is a security manager, its checkWrite method is called with the 
-path represented by the file argument as its argument. 
+First, if there is a security manager, its checkWrite method is called with the path represented by the file argument as its argument. 
 
-If the file exists but is a directory rather than a regular file, does not 
-exist but cannot be created, or cannot be opened for any other reason then a 
-FileNotFoundException is thrown. 
+If the file exists but is a directory rather than a regular file, does not exist but cannot be created, or cannot be opened for any other reason then a FileNotFoundException is 
+thrown. 
 
     file - the file to be opened for writing. 
 
@@ -64,31 +58,24 @@ public FileOutputStream(
   boolean append)
   throws |java.io.FileNotFoundException|
          
-Creates a file output stream to write to the file represented by the specified 
-File object. If the second argument is true, then bytes will be written to the 
-end of the file rather than the beginning. A new FileDescriptor object is 
-created to represent this file connection. 
+Creates a file output stream to write to the file represented by the specified File object. If the second argument is true, then bytes will be written to the end of the file 
+rather than the beginning. A new FileDescriptor object is created to represent this file connection. 
 
-First, if there is a security manager, its checkWrite method is called with the 
-path represented by the file argument as its argument. 
+First, if there is a security manager, its checkWrite method is called with the path represented by the file argument as its argument. 
 
-If the file exists but is a directory rather than a regular file, does not 
-exist but cannot be created, or cannot be opened for any other reason then a 
-FileNotFoundException is thrown. 
+If the file exists but is a directory rather than a regular file, does not exist but cannot be created, or cannot be opened for any other reason then a FileNotFoundException is 
+thrown. 
 
     file - the file to be opened for writing. 
-    append - if true, then bytes will be written to the end of the file rather than the 
-       beginning 
+    append - if true, then bytes will be written to the end of the file rather than the beginning 
 
 *java.io.FileOutputStream(FileDescriptor)*
 
 public FileOutputStream(java.io.FileDescriptor fdObj)
 
-Creates an output file stream to write to the specified file descriptor, which 
-represents an existing connection to an actual file in the file system. 
+Creates an output file stream to write to the specified file descriptor, which represents an existing connection to an actual file in the file system. 
 
-First, if there is a security manager, its checkWrite method is called with the 
-file descriptor fdObj argument as its argument. 
+First, if there is a security manager, its checkWrite method is called with the file descriptor fdObj argument as its argument. 
 
     fdObj - the file descriptor to be opened for writing 
 
@@ -97,15 +84,12 @@ file descriptor fdObj argument as its argument.
 public FileOutputStream(java.lang.String name)
   throws |java.io.FileNotFoundException|
          
-Creates an output file stream to write to the file with the specified name. A 
-new FileDescriptor object is created to represent this file connection. 
+Creates an output file stream to write to the file with the specified name. A new FileDescriptor object is created to represent this file connection. 
 
-First, if there is a security manager, its checkWrite method is called with 
-name as its argument. 
+First, if there is a security manager, its checkWrite method is called with name as its argument. 
 
-If the file exists but is a directory rather than a regular file, does not 
-exist but cannot be created, or cannot be opened for any other reason then a 
-FileNotFoundException is thrown. 
+If the file exists but is a directory rather than a regular file, does not exist but cannot be created, or cannot be opened for any other reason then a FileNotFoundException is 
+thrown. 
 
     name - the system-dependent filename 
 
@@ -116,32 +100,26 @@ public FileOutputStream(
   boolean append)
   throws |java.io.FileNotFoundException|
          
-Creates an output file stream to write to the file with the specified name. If 
-the second argument is true, then bytes will be written to the end of the file 
-rather than the beginning. A new FileDescriptor object is created to represent 
-this file connection. 
+Creates an output file stream to write to the file with the specified name. If the second argument is true, then bytes will be written to the end of the file rather than the 
+beginning. A new FileDescriptor object is created to represent this file connection. 
 
-First, if there is a security manager, its checkWrite method is called with 
-name as its argument. 
+First, if there is a security manager, its checkWrite method is called with name as its argument. 
 
-If the file exists but is a directory rather than a regular file, does not 
-exist but cannot be created, or cannot be opened for any other reason then a 
-FileNotFoundException is thrown. 
+If the file exists but is a directory rather than a regular file, does not exist but cannot be created, or cannot be opened for any other reason then a FileNotFoundException is 
+thrown. 
 
     name - the system-dependent file name 
-    append - if true, then bytes will be written to the end of the file rather than the 
-       beginning 
+    append - if true, then bytes will be written to the end of the file rather than the beginning 
 
 *java.io.FileOutputStream.close()*
 
 public void close()
   throws |java.io.IOException|
          
-Closes this file output stream and releases any system resources associated 
-with this stream. This file output stream may no longer be used for writing 
-bytes. 
+Closes this file output stream and releases any system resources associated with this stream. This file output stream may no longer be used for writing bytes. 
 
 If this stream has an associated channel then the channel is closed as well. 
+
 
 
 *java.io.FileOutputStream.finalize()*
@@ -149,26 +127,24 @@ If this stream has an associated channel then the channel is closed as well.
 protected void finalize()
   throws |java.io.IOException|
          
-Cleans up the connection to the file, and ensures that the close method of this 
-file output stream is called when there are no more references to this stream. 
+Cleans up the connection to the file, and ensures that the close method of this file output stream is called when there are no more references to this stream. 
+
 
 
 *java.io.FileOutputStream.getChannel()*
 
 public |java.nio.channels.FileChannel| getChannel()
 
-Returns the unique FileChannel(|java.nio.channels.FileChannel|) object 
-associated with this file output stream. 
+Returns the unique FileChannel(|java.nio.channels.FileChannel|) object associated with this file output stream. 
 
-The initial </code>position<code>(|java.nio.channels.FileChannel|) of the 
-returned channel will be equal to the number of bytes written to the file so 
-far unless this stream is in append mode, in which case it will be equal to the 
-size of the file. Writing bytes to this stream will increment the channel's 
-position accordingly. Changing the channel's position, either explicitly or by 
-writing, will change this stream's file position. 
+The initial </code>position<code>(|java.nio.channels.FileChannel|) of the returned channel will be equal to the number of bytes written to the file so far unless this stream is in 
+append mode, in which case it will be equal to the size of the file. Writing bytes to this stream will increment the channel's position accordingly. Changing the channel's 
+position, either explicitly or by writing, will change this stream's file position. 
+
 
 
     Returns: the file channel associated with this file output stream 
+
 *java.io.FileOutputStream.getFD()*
 
 public final |java.io.FileDescriptor| getFD()
@@ -177,14 +153,16 @@ public final |java.io.FileDescriptor| getFD()
 Returns the file descriptor associated with this stream. 
 
 
-    Returns: the FileDescriptor object that represents the connection to the file in the 
-             file system being used by this FileOutputStream object. 
+
+    Returns: the FileDescriptor object that represents the connection to the file in the file system being used by this FileOutputStream object. 
+
 *java.io.FileOutputStream.write(byte[])*
 
 public void write(byte[] b)
   throws |java.io.IOException|
          
 Writes b.length bytes from the specified byte array to this file output stream. 
+
 
     b - the data. 
 
@@ -196,8 +174,8 @@ public void write(
   int len)
   throws |java.io.IOException|
          
-Writes len bytes from the specified byte array starting at offset off to this 
-file output stream. 
+Writes len bytes from the specified byte array starting at offset off to this file output stream. 
+
 
     b - the data. 
     off - the start offset in the data. 
@@ -208,8 +186,8 @@ file output stream.
 public native void write(int b)
   throws |java.io.IOException|
          
-Writes the specified byte to this file output stream. Implements the write 
-method of OutputStream. 
+Writes the specified byte to this file output stream. Implements the write method of OutputStream. 
+
 
     b - the byte to be written. 
 

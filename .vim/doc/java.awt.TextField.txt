@@ -1,5 +1,5 @@
 *java.awt.TextField* *TextField* A TextField object is a text component
- that al
+ that allows for the editing of a single line of text.
 
 public class TextField
   extends    |java.awt.TextComponent|
@@ -9,47 +9,45 @@ public class TextField
 |java.awt.TextField_Constructors|
 |java.awt.TextField_Methods|
 
-================================================================================
+====================================================================================================================================================================================
 
 *java.awt.TextField_Constructors*
 |java.awt.TextField()|Constructs a new text field.
-|java.awt.TextField(int)|Constructs a new empty text field with the specified n
-|java.awt.TextField(String)|Constructs a new text field initialized with the sp
-|java.awt.TextField(String,int)|Constructs a new text field initialized with th
+|java.awt.TextField(int)|Constructs a new empty text field with the specified number   of columns.
+|java.awt.TextField(String)|Constructs a new text field initialized with the specified text.
+|java.awt.TextField(String,int)|Constructs a new text field initialized with the specified text  to be displayed, and wide enough to hold the specified  number of columns.
 
 *java.awt.TextField_Methods*
-|java.awt.TextField.addActionListener(ActionListener)|Adds the specified action
+|java.awt.TextField.addActionListener(ActionListener)|Adds the specified action listener to receive  action events from this text field.
 |java.awt.TextField.addNotify()|Creates the TextField's peer.
-|java.awt.TextField.echoCharIsSet()|Indicates whether or not this text field ha
-|java.awt.TextField.getAccessibleContext()|Gets the AccessibleContext associate
-|java.awt.TextField.getActionListeners()|Returns an array of all the action lis
+|java.awt.TextField.echoCharIsSet()|Indicates whether or not this text field has a  character set for echoing.
+|java.awt.TextField.getAccessibleContext()|Gets the AccessibleContext associated with this TextField.
+|java.awt.TextField.getActionListeners()|Returns an array of all the action listeners  registered on this textfield.
 |java.awt.TextField.getColumns()|Gets the number of columns in this text field.
-|java.awt.TextField.getEchoChar()|Gets the character that is to be used for ech
-|java.awt.TextField.getListeners(Class)|Returns an array of all the objects cur
-|java.awt.TextField.getMinimumSize()|Gets the minumum dimensions for this text 
-|java.awt.TextField.getMinimumSize(int)|Gets the minumum dimensions for a text 
-|java.awt.TextField.getPreferredSize()|Gets the preferred size of this text fie
-|java.awt.TextField.getPreferredSize(int)|Gets the preferred size of this text 
+|java.awt.TextField.getEchoChar()|Gets the character that is to be used for echoing.
+|java.awt.TextField.getListeners(Class<T>)|Returns an array of all the objects currently registered  as FooListeners  upon this TextField.
+|java.awt.TextField.getMinimumSize()|Gets the minumum dimensions for this text field.
+|java.awt.TextField.getMinimumSize(int)|Gets the minumum dimensions for a text field with  the specified number of columns.
+|java.awt.TextField.getPreferredSize()|Gets the preferred size of this text field.
+|java.awt.TextField.getPreferredSize(int)|Gets the preferred size of this text field  with the specified number of columns.
 |java.awt.TextField.minimumSize()|
 |java.awt.TextField.minimumSize(int)|
-|java.awt.TextField.paramString()|Returns a string representing the state of th
+|java.awt.TextField.paramString()|Returns a string representing the state of this TextField.
 |java.awt.TextField.preferredSize()|
 |java.awt.TextField.preferredSize(int)|
-|java.awt.TextField.processActionEvent(ActionEvent)|Processes action events occ
+|java.awt.TextField.processActionEvent(ActionEvent)|Processes action events occurring on this text field by  dispatching them to any registered  ActionListener objects.
 |java.awt.TextField.processEvent(AWTEvent)|Processes events on this text field.
-|java.awt.TextField.removeActionListener(ActionListener)|Removes the specified 
-|java.awt.TextField.setColumns(int)|Sets the number of columns in this text fie
-|java.awt.TextField.setEchoChar(char)|Sets the echo character for this text fie
+|java.awt.TextField.removeActionListener(ActionListener)|Removes the specified action listener so that it no longer  receives action events from this text field.
+|java.awt.TextField.setColumns(int)|Sets the number of columns in this text field.
+|java.awt.TextField.setEchoChar(char)|Sets the echo character for this text field.
 |java.awt.TextField.setEchoCharacter(char)|
-|java.awt.TextField.setText(String)|Sets the text that is presented by this   t
+|java.awt.TextField.setText(String)|Sets the text that is presented by this   text component to be the specified text.
 
 *java.awt.TextField_Description*
 
-A TextField object is a text component that allows for the editing of a single 
-line of text. 
+A TextField object is a text component that allows for the editing of a single line of text. 
 
-For example, the following image depicts a frame with four text fields of 
-varying widths. Two of these text fields display the predefined text "Hello". 
+For example, the following image depicts a frame with four text fields of varying widths. Two of these text fields display the predefined text "Hello". 
 
 
 
@@ -57,29 +55,21 @@ Here is the code that produces these four text fields:
 
 
 
-TextField tf1, tf2, tf3, tf4; // a blank text field tf1 = new TextField(); // 
-blank field of 20 columns tf2 = new TextField("", 20); // predefined text 
-displayed tf3 = new TextField("Hello!"); // predefined text in 30 columns tf4 = 
-new TextField("Hello", 30); 
+TextField tf1, tf2, tf3, tf4; // a blank text field tf1 = new TextField(); // blank field of 20 columns tf2 = new TextField("", 20); // predefined text displayed tf3 = new 
+TextField("Hello!"); // predefined text in 30 columns tf4 = new TextField("Hello", 30); 
 
-Every time the user types a key in the text field, one or more key events are 
-sent to the text field. A KeyEvent may be one of three types: keyPressed, 
-keyReleased, or keyTyped. The properties of a key event indicate which of these 
-types it is, as well as additional information about the event, such as what 
-modifiers are applied to the key event and the time at which the event 
-occurred. 
+Every time the user types a key in the text field, one or more key events are sent to the text field. A KeyEvent may be one of three types: keyPressed, keyReleased, or keyTyped. 
+The properties of a key event indicate which of these types it is, as well as additional information about the event, such as what modifiers are applied to the key event and the 
+time at which the event occurred. 
 
-The key event is passed to every KeyListener or KeyAdapter object which 
-registered to receive such events using the component's addKeyListener method. 
-(KeyAdapter objects implement the KeyListener interface.) 
+The key event is passed to every KeyListener or KeyAdapter object which registered to receive such events using the component's addKeyListener method. (KeyAdapter objects 
+implement the KeyListener interface.) 
 
-It is also possible to fire an ActionEvent. If action events are enabled for 
-the text field, they may be fired by pressing the Return key. 
+It is also possible to fire an ActionEvent. If action events are enabled for the text field, they may be fired by pressing the Return key. 
 
-The TextField class's processEvent method examines the action event and passes 
-it along to processActionEvent. The latter method redirects the event to any 
-ActionListener objects that have registered to receive action events generated 
-by this text field. 
+The TextField class's processEvent method examines the action event and passes it along to processActionEvent. The latter method redirects the event to any ActionListener objects 
+that have registered to receive action events generated by this text field. 
+
 
 
 *java.awt.TextField()*
@@ -95,8 +85,7 @@ Constructs a new text field.
 public TextField(int columns)
   throws |java.awt.HeadlessException|
          
-Constructs a new empty text field with the specified number of columns. A 
-column is an approximate average character width that is platform-dependent. 
+Constructs a new empty text field with the specified number of columns. A column is an approximate average character width that is platform-dependent. 
 
     columns - the number of columns. If columns is less than 0, columns is set to 0. 
 
@@ -107,8 +96,7 @@ public TextField(java.lang.String text)
          
 Constructs a new text field initialized with the specified text. 
 
-    text - the text to be displayed. If text is null, the empty string "" will be 
-       displayed. 
+    text - the text to be displayed. If text is null, the empty string "" will be displayed. 
 
 *java.awt.TextField(String,int)*
 
@@ -117,20 +105,18 @@ public TextField(
   int columns)
   throws |java.awt.HeadlessException|
          
-Constructs a new text field initialized with the specified text to be 
-displayed, and wide enough to hold the specified number of columns. A column is 
-an approximate average character width that is platform-dependent. 
+Constructs a new text field initialized with the specified text to be displayed, and wide enough to hold the specified number of columns. A column is an approximate average 
+character width that is platform-dependent. 
 
-    text - the text to be displayed. If text is null, the empty string "" will be 
-       displayed. 
+    text - the text to be displayed. If text is null, the empty string "" will be displayed. 
     columns - the number of columns. If columns is less than 0, columns is set to 0. 
 
 *java.awt.TextField.addActionListener(ActionListener)*
 
 public synchronized void addActionListener(java.awt.event.ActionListener l)
 
-Adds the specified action listener to receive action events from this text 
-field. If l is null, no exception is thrown and no action is performed. 
+Adds the specified action listener to receive action events from this text field. If l is null, no exception is thrown and no action is performed. 
+
 
     l - the action listener. 
 
@@ -138,8 +124,8 @@ field. If l is null, no exception is thrown and no action is performed.
 
 public void addNotify()
 
-Creates the TextField's peer. The peer allows us to modify the appearance of 
-the TextField without changing its functionality. 
+Creates the TextField's peer. The peer allows us to modify the appearance of the TextField without changing its functionality. 
+
 
 
 *java.awt.TextField.echoCharIsSet()*
@@ -148,73 +134,74 @@ public boolean echoCharIsSet()
 
 Indicates whether or not this text field has a character set for echoing. 
 
-An echo character is useful for text fields where user input should not be 
-echoed to the screen, as in the case of a text field for entering a password. 
+An echo character is useful for text fields where user input should not be echoed to the screen, as in the case of a text field for entering a password. 
+
 
 
     Returns: true if this text field has a character set for echoing; false otherwise. 
+
 *java.awt.TextField.getAccessibleContext()*
 
 public |javax.accessibility.AccessibleContext| getAccessibleContext()
 
-Gets the AccessibleContext associated with this TextField. For text fields, the 
-AccessibleContext takes the form of an AccessibleAWTTextField. A new 
-AccessibleAWTTextField instance is created if necessary. 
+Gets the AccessibleContext associated with this TextField. For text fields, the AccessibleContext takes the form of an AccessibleAWTTextField. A new AccessibleAWTTextField 
+instance is created if necessary. 
 
 
-    Returns: an AccessibleAWTTextField that serves as the AccessibleContext of this 
-             TextField 
+
+    Returns: an AccessibleAWTTextField that serves as the AccessibleContext of this TextField 
+
 *java.awt.TextField.getActionListeners()*
 
-public synchronized |java.awt.event.ActionListener| getActionListeners()
+public synchronized |java.awt.event.ActionListener|[] getActionListeners()
 
 Returns an array of all the action listeners registered on this textfield. 
 
 
-    Returns: all of this textfield's ActionListeners or an empty array if no action 
-             listeners are currently registered 
+
+    Returns: all of this textfield's ActionListeners or an empty array if no action listeners are currently registered 
+
 *java.awt.TextField.getColumns()*
 
 public int getColumns()
 
-Gets the number of columns in this text field. A column is an approximate 
-average character width that is platform-dependent. 
+Gets the number of columns in this text field. A column is an approximate average character width that is platform-dependent. 
+
 
 
     Returns: the number of columns. 
+
 *java.awt.TextField.getEchoChar()*
 
 public char getEchoChar()
 
 Gets the character that is to be used for echoing. 
 
-An echo character is useful for text fields where user input should not be 
-echoed to the screen, as in the case of a text field for entering a password. 
-If echoChar = 0, user input is echoed to the screen unchanged. 
+An echo character is useful for text fields where user input should not be echoed to the screen, as in the case of a text field for entering a password. If echoChar = 0, user 
+input is echoed to the screen unchanged. 
+
 
 
     Returns: the echo character for this text field. 
-*java.awt.TextField.getListeners(Class)*
 
-public |java.util.EventListener| getListeners(java.lang.Class listenerType)
+*java.awt.TextField.getListeners(Class<T>)*
 
-Returns an array of all the objects currently registered as FooListeners upon 
-this TextField. FooListeners are registered using the addFooListener method. 
+public |T|[] getListeners(java.lang.Class<T> listenerType)
 
-You can specify the listenerType argument with a class literal, such as 
-FooListener.class. For example, you can query a TextField t for its action 
-listeners with the following code: 
+Returns an array of all the objects currently registered as FooListeners upon this TextField. FooListeners are registered using the addFooListener method. 
 
-ActionListener[] als = 
-(ActionListener[])(t.getListeners(ActionListener.class)); 
+You can specify the listenerType argument with a class literal, such as FooListener.class. For example, you can query a TextField t for its action listeners with the following 
+code: 
+
+ActionListener[] als = (ActionListener[])(t.getListeners(ActionListener.class)); 
 
 If no such listeners exist, this method returns an empty array. 
 
-    listenerType - the type of listeners requested; this parameter should specify an interface 
-       that descends from java.util.EventListener 
 
-    Returns: an array of all objects registered as FooListeners on this textfield, or an 
-             empty array if no such listeners have been added 
+    listenerType - the type of listeners requested; this parameter should specify an interface that descends from java.util.EventListener 
+
+    Returns: an array of all objects registered as FooListeners on this textfield, or an empty array if no such listeners have been added 
+
 *java.awt.TextField.getMinimumSize()*
 
 public |java.awt.Dimension| getMinimumSize()
@@ -222,13 +209,15 @@ public |java.awt.Dimension| getMinimumSize()
 Gets the minumum dimensions for this text field. 
 
 
+
     Returns: the minimum dimensions for displaying this text field. 
+
 *java.awt.TextField.getMinimumSize(int)*
 
 public |java.awt.Dimension| getMinimumSize(int columns)
 
-Gets the minumum dimensions for a text field with the specified number of 
-columns. 
+Gets the minumum dimensions for a text field with the specified number of columns. 
+
 
     columns - the number of columns in this text field. 
 
@@ -239,22 +228,28 @@ public |java.awt.Dimension| getPreferredSize()
 Gets the preferred size of this text field. 
 
 
+
     Returns: the preferred dimensions for displaying this text field. 
+
 *java.awt.TextField.getPreferredSize(int)*
 
 public |java.awt.Dimension| getPreferredSize(int columns)
 
-Gets the preferred size of this text field with the specified number of 
-columns. 
+Gets the preferred size of this text field with the specified number of columns. 
+
 
     columns - the number of columns in this text field. 
 
     Returns: the preferred dimensions for displaying this text field. 
+
 *java.awt.TextField.minimumSize()*
 
 public |java.awt.Dimension| minimumSize()
 
 
+
+    Deprecated: As of JDK version 1.1,
+ replaced by <code>getMinimumSize()</code>.
 
 
 *java.awt.TextField.minimumSize(int)*
@@ -263,23 +258,29 @@ public |java.awt.Dimension| minimumSize(int columns)
 
 
 
+    Deprecated: As of JDK version 1.1,
+ replaced by <code>getMinimumSize(int)</code>.
+
 
 *java.awt.TextField.paramString()*
 
 protected |java.lang.String| paramString()
 
-Returns a string representing the state of this TextField. This method is 
-intended to be used only for debugging purposes, and the content and format of 
-the returned string may vary between implementations. The returned string may 
-be empty but may not be null. 
+Returns a string representing the state of this TextField. This method is intended to be used only for debugging purposes, and the content and format of the returned string may 
+vary between implementations. The returned string may be empty but may not be null. 
+
 
 
     Returns: the parameter string of this text field 
+
 *java.awt.TextField.preferredSize()*
 
 public |java.awt.Dimension| preferredSize()
 
 
+
+    Deprecated: As of JDK version 1.1,
+ replaced by <code>getPreferredSize()</code>.
 
 
 *java.awt.TextField.preferredSize(int)*
@@ -288,22 +289,22 @@ public |java.awt.Dimension| preferredSize(int columns)
 
 
 
+    Deprecated: As of JDK version 1.1,
+ replaced by <code>getPreferredSize(int)</code>.
+
 
 *java.awt.TextField.processActionEvent(ActionEvent)*
 
 protected void processActionEvent(java.awt.event.ActionEvent e)
 
-Processes action events occurring on this text field by dispatching them to any 
-registered ActionListener objects. 
+Processes action events occurring on this text field by dispatching them to any registered ActionListener objects. 
 
-This method is not called unless action events are enabled for this component. 
-Action events are enabled when one of the following occurs: 
+This method is not called unless action events are enabled for this component. Action events are enabled when one of the following occurs: 
 
-An ActionListener object is registered via addActionListener. Action events are 
-enabled via enableEvents. 
+An ActionListener object is registered via addActionListener. Action events are enabled via enableEvents. 
 
-Note that if the event parameter is null the behavior is unspecified and may 
-result in an exception. 
+Note that if the event parameter is null the behavior is unspecified and may result in an exception. 
+
 
     e - the action event 
 
@@ -311,10 +312,9 @@ result in an exception.
 
 protected void processEvent(java.awt.AWTEvent e)
 
-Processes events on this text field. If the event is an instance of 
-ActionEvent, it invokes the processActionEvent method. Otherwise, it invokes 
-processEvent on the superclass. Note that if the event parameter is null the 
-behavior is unspecified and may result in an exception. 
+Processes events on this text field. If the event is an instance of ActionEvent, it invokes the processActionEvent method. Otherwise, it invokes processEvent on the superclass. 
+Note that if the event parameter is null the behavior is unspecified and may result in an exception. 
+
 
     e - the event 
 
@@ -322,9 +322,8 @@ behavior is unspecified and may result in an exception.
 
 public synchronized void removeActionListener(java.awt.event.ActionListener l)
 
-Removes the specified action listener so that it no longer receives action 
-events from this text field. If l is null, no exception is thrown and no action 
-is performed. 
+Removes the specified action listener so that it no longer receives action events from this text field. If l is null, no exception is thrown and no action is performed. 
+
 
     l - the action listener. 
 
@@ -332,8 +331,8 @@ is performed.
 
 public synchronized void setColumns(int columns)
 
-Sets the number of columns in this text field. A column is an approximate 
-average character width that is platform-dependent. 
+Sets the number of columns in this text field. A column is an approximate average character width that is platform-dependent. 
+
 
     columns - the number of columns. 
 
@@ -343,9 +342,9 @@ public void setEchoChar(char c)
 
 Sets the echo character for this text field. 
 
-An echo character is useful for text fields where user input should not be 
-echoed to the screen, as in the case of a text field for entering a password. 
-Setting echoChar = 0 allows user input to be echoed to the screen again. 
+An echo character is useful for text fields where user input should not be echoed to the screen, as in the case of a text field for entering a password. Setting echoChar = 0 
+allows user input to be echoed to the screen again. 
+
 
     c - the echo character for this text field. 
 
@@ -355,13 +354,16 @@ public synchronized void setEchoCharacter(char c)
 
 
 
+    Deprecated: As of JDK version 1.1,
+ replaced by <code>setEchoChar(char)</code>.
+
 
 *java.awt.TextField.setText(String)*
 
 public void setText(java.lang.String t)
 
-Sets the text that is presented by this text component to be the specified 
-text. 
+Sets the text that is presented by this text component to be the specified text. 
+
 
     t - the new text. 
 

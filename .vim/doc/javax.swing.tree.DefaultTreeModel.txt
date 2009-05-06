@@ -1,4 +1,4 @@
-*javax.swing.tree.DefaultTreeModel* *DefaultTreeModel* A simple tree data model 
+*javax.swing.tree.DefaultTreeModel* *DefaultTreeModel* A simple tree data model that uses TreeNodes.
 
 public class DefaultTreeModel
   extends    |java.lang.Object|
@@ -10,7 +10,7 @@ public class DefaultTreeModel
 |javax.swing.tree.DefaultTreeModel_Constructors|
 |javax.swing.tree.DefaultTreeModel_Methods|
 
-================================================================================
+====================================================================================================================================================================================
 
 *javax.swing.tree.DefaultTreeModel_Fields*
 |boolean_javax.swing.tree.DefaultTreeModel.asksAllowsChildren|
@@ -18,85 +18,65 @@ public class DefaultTreeModel
 |javax.swing.tree.TreeNode_javax.swing.tree.DefaultTreeModel.root|
 
 *javax.swing.tree.DefaultTreeModel_Constructors*
-|javax.swing.tree.DefaultTreeModel(TreeNode)|Creates a tree in which any node c
-|javax.swing.tree.DefaultTreeModel(TreeNode,boolean)|Creates a tree specifying 
+|javax.swing.tree.DefaultTreeModel(TreeNode)|Creates a tree in which any node can have children.
+|javax.swing.tree.DefaultTreeModel(TreeNode,boolean)|Creates a tree specifying whether any node can have children,  or whether only certain nodes can have children.
 
 *javax.swing.tree.DefaultTreeModel_Methods*
-|javax.swing.tree.DefaultTreeModel.addTreeModelListener(TreeModelListener)|Adds
-|javax.swing.tree.DefaultTreeModel.asksAllowsChildren()|Tells how leaf nodes ar
-|javax.swing.tree.DefaultTreeModel.fireTreeNodesChanged(Object,Object[],int[],Object[])|
-|javax.swing.tree.DefaultTreeModel.fireTreeNodesInserted(Object,Object[],int[],Object[])|
-|javax.swing.tree.DefaultTreeModel.fireTreeNodesRemoved(Object,Object[],int[],Object[])|
-|javax.swing.tree.DefaultTreeModel.fireTreeStructureChanged(Object,Object[],int[],Object[])|
-|javax.swing.tree.DefaultTreeModel.getChild(Object,int)|Returns the child of pa
-|javax.swing.tree.DefaultTreeModel.getChildCount(Object)|Returns the number of 
-|javax.swing.tree.DefaultTreeModel.getIndexOfChild(Object,Object)|Returns the i
-|javax.swing.tree.DefaultTreeModel.getListeners(Class)|Returns an array of all 
-|javax.swing.tree.DefaultTreeModel.getPathToRoot(TreeNode)|Builds the parents o
-|javax.swing.tree.DefaultTreeModel.getPathToRoot(TreeNode,int)|Builds the paren
+|javax.swing.tree.DefaultTreeModel.addTreeModelListener(TreeModelListener)|Adds a listener for the TreeModelEvent posted after the tree changes.
+|javax.swing.tree.DefaultTreeModel.asksAllowsChildren()|Tells how leaf nodes are determined.
+|javax.swing.tree.DefaultTreeModel.fireTreeNodesChanged(Object,Object[],int[],Object[])|Notifies all listeners that have registered interest for  notification on this event type.
+|javax.swing.tree.DefaultTreeModel.fireTreeNodesInserted(Object,Object[],int[],Object[])|Notifies all listeners that have registered interest for  notification on this event type.
+|javax.swing.tree.DefaultTreeModel.fireTreeNodesRemoved(Object,Object[],int[],Object[])|Notifies all listeners that have registered interest for  notification on this event type.
+|javax.swing.tree.DefaultTreeModel.fireTreeStructureChanged(Object,Object[],int[],Object[])|Notifies all listeners that have registered interest for  notification on this event ty
+|javax.swing.tree.DefaultTreeModel.getChild(Object,int)|Returns the child of parent at index index in the parent's  child array.
+|javax.swing.tree.DefaultTreeModel.getChildCount(Object)|Returns the number of children of parent.
+|javax.swing.tree.DefaultTreeModel.getIndexOfChild(Object,Object)|Returns the index of child in parent.
+|javax.swing.tree.DefaultTreeModel.getListeners(Class<T>)|Returns an array of all the objects currently registered  as FooListeners  upon this model.
+|javax.swing.tree.DefaultTreeModel.getPathToRoot(TreeNode)|Builds the parents of node up to and including the root node,  where the original node is the last element in the return
+|javax.swing.tree.DefaultTreeModel.getPathToRoot(TreeNode,int)|Builds the parents of node up to and including the root node,  where the original node is the last element in the re
 |javax.swing.tree.DefaultTreeModel.getRoot()|Returns the root of the tree.
-|javax.swing.tree.DefaultTreeModel.getTreeModelListeners()|Returns an array of 
-|javax.swing.tree.DefaultTreeModel.insertNodeInto(MutableTreeNode,MutableTreeNode,int)|
-|javax.swing.tree.DefaultTreeModel.isLeaf(Object)|Returns whether the specified
-|javax.swing.tree.DefaultTreeModel.nodeChanged(TreeNode)|Invoke this method aft
-|javax.swing.tree.DefaultTreeModel.nodesChanged(TreeNode,int[])|Invoke this met
-|javax.swing.tree.DefaultTreeModel.nodeStructureChanged(TreeNode)|Invoke this m
-|javax.swing.tree.DefaultTreeModel.nodesWereInserted(TreeNode,int[])|Invoke thi
-|javax.swing.tree.DefaultTreeModel.nodesWereRemoved(TreeNode,int[],Object[])|In
-|javax.swing.tree.DefaultTreeModel.reload()|Invoke this method if you've modifi
-|javax.swing.tree.DefaultTreeModel.reload(TreeNode)|Invoke this method if you'v
-|javax.swing.tree.DefaultTreeModel.removeNodeFromParent(MutableTreeNode)|Messag
-|javax.swing.tree.DefaultTreeModel.removeTreeModelListener(TreeModelListener)|R
-|javax.swing.tree.DefaultTreeModel.setAsksAllowsChildren(boolean)|Sets whether 
+|javax.swing.tree.DefaultTreeModel.getTreeModelListeners()|Returns an array of all the tree model listeners  registered on this model.
+|javax.swing.tree.DefaultTreeModel.insertNodeInto(MutableTreeNode,MutableTreeNode,int)|Invoked this to insert newChild at location index in parents children.
+|javax.swing.tree.DefaultTreeModel.isLeaf(Object)|Returns whether the specified node is a leaf node.
+|javax.swing.tree.DefaultTreeModel.nodeChanged(TreeNode)|Invoke this method after you've changed how node is to be  represented in the tree.
+|javax.swing.tree.DefaultTreeModel.nodesChanged(TreeNode,int[])|Invoke this method after you've changed how the children identified by  childIndicies are to be represented in the 
+|javax.swing.tree.DefaultTreeModel.nodeStructureChanged(TreeNode)|Invoke this method if you've totally changed the children of  node and its childrens children...
+|javax.swing.tree.DefaultTreeModel.nodesWereInserted(TreeNode,int[])|Invoke this method after you've inserted some TreeNodes into  node.
+|javax.swing.tree.DefaultTreeModel.nodesWereRemoved(TreeNode,int[],Object[])|Invoke this method after you've removed some TreeNodes from  node.
+|javax.swing.tree.DefaultTreeModel.reload()|Invoke this method if you've modified the TreeNodes upon which this  model depends.
+|javax.swing.tree.DefaultTreeModel.reload(TreeNode)|Invoke this method if you've modified the TreeNodes upon which this  model depends.
+|javax.swing.tree.DefaultTreeModel.removeNodeFromParent(MutableTreeNode)|Message this to remove node from its parent.
+|javax.swing.tree.DefaultTreeModel.removeTreeModelListener(TreeModelListener)|Removes a listener previously added with addTreeModelListener().
+|javax.swing.tree.DefaultTreeModel.setAsksAllowsChildren(boolean)|Sets whether or not to test leafness by asking getAllowsChildren()  or isLeaf() to the TreeNodes.
 |javax.swing.tree.DefaultTreeModel.setRoot(TreeNode)|Sets the root to root.
-|javax.swing.tree.DefaultTreeModel.valueForPathChanged(TreePath,Object)|This se
+|javax.swing.tree.DefaultTreeModel.valueForPathChanged(TreePath,Object)|This sets the user object of the TreeNode identified by path  and posts a node changed.
 
 *javax.swing.tree.DefaultTreeModel_Description*
 
-A simple tree data model that uses TreeNodes. For further information and 
-examples that use DefaultTreeModel, see How to Use Trees in The Java Tutorial. 
+A simple tree data model that uses TreeNodes. For further information and examples that use DefaultTreeModel, see How to Use Trees in The Java Tutorial. 
 
-Warning: Serialized objects of this class will not be compatible with future 
-Swing releases. The current serialization support is appropriate for short term 
-storage or RMI between applications running the same version of Swing. As of 
-1.4, support for long term storage of all JavaBeansTM has been added to the 
-java.beans package. Please see (|java.beans.XMLEncoder|) . 
+Warning: Serialized objects of this class will not be compatible with future Swing releases. The current serialization support is appropriate for short term storage or RMI between 
+applications running the same version of Swing. As of 1.4, support for long term storage of all JavaBeansTM has been added to the java.beans package. Please see 
+(|java.beans.XMLEncoder|) . 
+
 
 
 *boolean_javax.swing.tree.DefaultTreeModel.asksAllowsChildren*
 
-A simple tree data model that uses TreeNodes. For further information and 
-examples that use DefaultTreeModel, see How to Use Trees in The Java Tutorial. 
+Determines how the isLeaf method figures out if a node is a leaf node. If true, a node is a leaf node if it does not allow children. (If it allows children, it is not a leaf node, 
+even if no children are present.) That lets you distinguish between folder nodes and file nodes in a file system, for example. 
 
-Warning: Serialized objects of this class will not be compatible with future 
-Swing releases. The current serialization support is appropriate for short term 
-storage or RMI between applications running the same version of Swing. As of 
-1.4, support for long term storage of all JavaBeansTM has been added to the 
-java.beans package. Please see (|java.beans.XMLEncoder|) . 
+If this value is false, then any node which has no children is a leaf node, and any node may acquire children. 
 
 
 *javax.swing.event.EventListenerList_javax.swing.tree.DefaultTreeModel.listenerList*
 
-A simple tree data model that uses TreeNodes. For further information and 
-examples that use DefaultTreeModel, see How to Use Trees in The Java Tutorial. 
-
-Warning: Serialized objects of this class will not be compatible with future 
-Swing releases. The current serialization support is appropriate for short term 
-storage or RMI between applications running the same version of Swing. As of 
-1.4, support for long term storage of all JavaBeansTM has been added to the 
-java.beans package. Please see (|java.beans.XMLEncoder|) . 
+Listeners. 
 
 
 *javax.swing.tree.TreeNode_javax.swing.tree.DefaultTreeModel.root*
 
-A simple tree data model that uses TreeNodes. For further information and 
-examples that use DefaultTreeModel, see How to Use Trees in The Java Tutorial. 
-
-Warning: Serialized objects of this class will not be compatible with future 
-Swing releases. The current serialization support is appropriate for short term 
-storage or RMI between applications running the same version of Swing. As of 
-1.4, support for long term storage of all JavaBeansTM has been added to the 
-java.beans package. Please see (|java.beans.XMLEncoder|) . 
+Root of the tree. 
 
 
 
@@ -114,18 +94,17 @@ public DefaultTreeModel(
   javax.swing.tree.TreeNode root,
   boolean asksAllowsChildren)
 
-Creates a tree specifying whether any node can have children, or whether only 
-certain nodes can have children. 
+Creates a tree specifying whether any node can have children, or whether only certain nodes can have children. 
 
     root - a TreeNode object that is the root of the tree 
-    asksAllowsChildren - a boolean, false if any node can have children, true if each node is asked to 
-       see if it can have children 
+    asksAllowsChildren - a boolean, false if any node can have children, true if each node is asked to see if it can have children 
 
 *javax.swing.tree.DefaultTreeModel.addTreeModelListener(TreeModelListener)*
 
 public void addTreeModelListener(javax.swing.event.TreeModelListener l)
 
 Adds a listener for the TreeModelEvent posted after the tree changes. 
+
 
     l - the listener to add 
 
@@ -136,8 +115,9 @@ public boolean asksAllowsChildren()
 Tells how leaf nodes are determined. 
 
 
-    Returns: true if only nodes which do not allow children are leaf nodes, false if nodes 
-             which have no children (even if allowed) are leaf nodes 
+
+    Returns: true if only nodes which do not allow children are leaf nodes, false if nodes which have no children (even if allowed) are leaf nodes 
+
 *javax.swing.tree.DefaultTreeModel.fireTreeNodesChanged(Object,Object[],int[],Object[])*
 
 protected void fireTreeNodesChanged(
@@ -146,9 +126,8 @@ protected void fireTreeNodesChanged(
   int[] childIndices,
   java.lang.Object[] children)
 
-Notifies all listeners that have registered interest for notification on this 
-event type. The event instance is lazily created using the parameters passed 
-into the fire method. 
+Notifies all listeners that have registered interest for notification on this event type. The event instance is lazily created using the parameters passed into the fire method. 
+
 
     source - the node being changed 
     path - the path to the root node 
@@ -163,9 +142,8 @@ protected void fireTreeNodesInserted(
   int[] childIndices,
   java.lang.Object[] children)
 
-Notifies all listeners that have registered interest for notification on this 
-event type. The event instance is lazily created using the parameters passed 
-into the fire method. 
+Notifies all listeners that have registered interest for notification on this event type. The event instance is lazily created using the parameters passed into the fire method. 
+
 
     source - the node where new elements are being inserted 
     path - the path to the root node 
@@ -180,9 +158,8 @@ protected void fireTreeNodesRemoved(
   int[] childIndices,
   java.lang.Object[] children)
 
-Notifies all listeners that have registered interest for notification on this 
-event type. The event instance is lazily created using the parameters passed 
-into the fire method. 
+Notifies all listeners that have registered interest for notification on this event type. The event instance is lazily created using the parameters passed into the fire method. 
+
 
     source - the node where elements are being removed 
     path - the path to the root node 
@@ -197,9 +174,8 @@ protected void fireTreeStructureChanged(
   int[] childIndices,
   java.lang.Object[] children)
 
-Notifies all listeners that have registered interest for notification on this 
-event type. The event instance is lazily created using the parameters passed 
-into the fire method. 
+Notifies all listeners that have registered interest for notification on this event type. The event instance is lazily created using the parameters passed into the fire method. 
+
 
     source - the node where the tree model has changed 
     path - the path to the root node 
@@ -212,87 +188,84 @@ public |java.lang.Object| getChild(
   java.lang.Object parent,
   int index)
 
-Returns the child of parent at index index in the parent's child array. parent 
-must be a node previously obtained from this data source. This should not 
-return null if index is a valid index for parent (that is index >= 0 index 
-parent)). 
+Returns the child of parent at index index in the parent's child array. parent must be a node previously obtained from this data source. This should not return null if index is a 
+valid index for parent (that is index >= 0 index parent)). 
+
 
     parent - a node in the tree, obtained from this data source 
 
     Returns: the child of parent at index index 
+
 *javax.swing.tree.DefaultTreeModel.getChildCount(Object)*
 
 public int getChildCount(java.lang.Object parent)
 
-Returns the number of children of parent. Returns 0 if the node is a leaf or if 
-it has no children. parent must be a node previously obtained from this data 
-source. 
+Returns the number of children of parent. Returns 0 if the node is a leaf or if it has no children. parent must be a node previously obtained from this data source. 
+
 
     parent - a node in the tree, obtained from this data source 
 
     Returns: the number of children of the node parent 
+
 *javax.swing.tree.DefaultTreeModel.getIndexOfChild(Object,Object)*
 
 public int getIndexOfChild(
   java.lang.Object parent,
   java.lang.Object child)
 
-Returns the index of child in parent. If either the parent or child is null, 
-returns -1. 
+Returns the index of child in parent. If either the parent or child is null, returns -1. 
+
 
     parent - a note in the tree, obtained from this data source 
     child - the node we are interested in 
 
-    Returns: the index of the child in the parent, or -1 if either the parent or the child 
-             is null 
-*javax.swing.tree.DefaultTreeModel.getListeners(Class)*
+    Returns: the index of the child in the parent, or -1 if either the parent or the child is null 
 
-public |java.util.EventListener| getListeners(java.lang.Class listenerType)
+*javax.swing.tree.DefaultTreeModel.getListeners(Class<T>)*
 
-Returns an array of all the objects currently registered as FooListeners upon 
-this model. FooListeners are registered using the addFooListener method. 
+public |T|[] getListeners(java.lang.Class<T> listenerType)
 
+Returns an array of all the objects currently registered as FooListeners upon this model. FooListeners are registered using the addFooListener method. 
 
 
-You can specify the listenerType argument with a class literal, such as 
-FooListener.class. For example, you can query a DefaultTreeModel m for its tree 
-model listeners with the following code: 
 
-TreeModelListener[] tmls = 
-(TreeModelListener[])(m.getListeners(TreeModelListener.class)); 
+You can specify the listenerType argument with a class literal, such as FooListener.class. For example, you can query a DefaultTreeModel m for its tree model listeners with the 
+following code: 
+
+TreeModelListener[] tmls = (TreeModelListener[])(m.getListeners(TreeModelListener.class)); 
 
 If no such listeners exist, this method returns an empty array. 
 
-    listenerType - the type of listeners requested; this parameter should specify an interface 
-       that descends from java.util.EventListener 
 
-    Returns: an array of all objects registered as FooListeners on this component, or an 
-             empty array if no such listeners have been added 
+    listenerType - the type of listeners requested; this parameter should specify an interface that descends from java.util.EventListener 
+
+    Returns: an array of all objects registered as FooListeners on this component, or an empty array if no such listeners have been added 
+
 *javax.swing.tree.DefaultTreeModel.getPathToRoot(TreeNode)*
 
-public |javax.swing.tree.TreeNode| getPathToRoot(javax.swing.tree.TreeNode aNode)
+public |javax.swing.tree.TreeNode|[] getPathToRoot(javax.swing.tree.TreeNode aNode)
 
-Builds the parents of node up to and including the root node, where the 
-original node is the last element in the returned array. The length of the 
-returned array gives the node's depth in the tree. 
+Builds the parents of node up to and including the root node, where the original node is the last element in the returned array. The length of the returned array gives the node's 
+depth in the tree. 
+
 
     aNode - the TreeNode to get the path for 
 
 *javax.swing.tree.DefaultTreeModel.getPathToRoot(TreeNode,int)*
 
-protected |javax.swing.tree.TreeNode| getPathToRoot(
+protected |javax.swing.tree.TreeNode|[] getPathToRoot(
   javax.swing.tree.TreeNode aNode,
   int depth)
 
-Builds the parents of node up to and including the root node, where the 
-original node is the last element in the returned array. The length of the 
-returned array gives the node's depth in the tree. 
+Builds the parents of node up to and including the root node, where the original node is the last element in the returned array. The length of the returned array gives the node's 
+depth in the tree. 
+
 
     aNode - the TreeNode to get the path for 
-    depth - an int giving the number of steps already taken towards the root (on recursive 
-       calls), used to size the returned array 
+    depth - an int giving the number of steps already taken towards the root (on recursive calls), used to size the returned array 
 
     Returns: an array of TreeNodes giving the path from the root to the specified node 
+
 *javax.swing.tree.DefaultTreeModel.getRoot()*
 
 public |java.lang.Object| getRoot()
@@ -300,16 +273,19 @@ public |java.lang.Object| getRoot()
 Returns the root of the tree. Returns null only if the tree has no nodes. 
 
 
+
     Returns: the root of the tree 
+
 *javax.swing.tree.DefaultTreeModel.getTreeModelListeners()*
 
-public |javax.swing.event.TreeModelListener| getTreeModelListeners()
+public |javax.swing.event.TreeModelListener|[] getTreeModelListeners()
 
 Returns an array of all the tree model listeners registered on this model. 
 
 
-    Returns: all of this model's TreeModelListeners or an empty array if no tree model 
-             listeners are currently registered 
+
+    Returns: all of this model's TreeModelListeners or an empty array if no tree model listeners are currently registered 
+
 *javax.swing.tree.DefaultTreeModel.insertNodeInto(MutableTreeNode,MutableTreeNode,int)*
 
 public void insertNodeInto(
@@ -317,27 +293,28 @@ public void insertNodeInto(
   javax.swing.tree.MutableTreeNode parent,
   int index)
 
-Invoked this to insert newChild at location index in parents children. This 
-will then message nodesWereInserted to create the appropriate event. This is 
-the preferred way to add children as it will create the appropriate event. 
+Invoked this to insert newChild at location index in parents children. This will then message nodesWereInserted to create the appropriate event. This is the preferred way to add 
+children as it will create the appropriate event. 
+
 
 
 *javax.swing.tree.DefaultTreeModel.isLeaf(Object)*
 
 public boolean isLeaf(java.lang.Object node)
 
-Returns whether the specified node is a leaf node. The way the test is 
-performed depends on the askAllowsChildren setting. 
+Returns whether the specified node is a leaf node. The way the test is performed depends on the askAllowsChildren setting. 
+
 
     node - the node to check 
 
     Returns: true if the node is a leaf node 
+
 *javax.swing.tree.DefaultTreeModel.nodeChanged(TreeNode)*
 
 public void nodeChanged(javax.swing.tree.TreeNode node)
 
-Invoke this method after you've changed how node is to be represented in the 
-tree. 
+Invoke this method after you've changed how node is to be represented in the tree. 
+
 
 
 *javax.swing.tree.DefaultTreeModel.nodesChanged(TreeNode,int[])*
@@ -346,16 +323,16 @@ public void nodesChanged(
   javax.swing.tree.TreeNode node,
   int[] childIndices)
 
-Invoke this method after you've changed how the children identified by 
-childIndicies are to be represented in the tree. 
+Invoke this method after you've changed how the children identified by childIndicies are to be represented in the tree. 
+
 
 
 *javax.swing.tree.DefaultTreeModel.nodeStructureChanged(TreeNode)*
 
 public void nodeStructureChanged(javax.swing.tree.TreeNode node)
 
-Invoke this method if you've totally changed the children of node and its 
-childrens children... This will post a treeStructureChanged event. 
+Invoke this method if you've totally changed the children of node and its childrens children... This will post a treeStructureChanged event. 
+
 
 
 *javax.swing.tree.DefaultTreeModel.nodesWereInserted(TreeNode,int[])*
@@ -364,8 +341,8 @@ public void nodesWereInserted(
   javax.swing.tree.TreeNode node,
   int[] childIndices)
 
-Invoke this method after you've inserted some TreeNodes into node. childIndices 
-should be the index of the new elements and must be sorted in ascending order. 
+Invoke this method after you've inserted some TreeNodes into node. childIndices should be the index of the new elements and must be sorted in ascending order. 
+
 
 
 *javax.swing.tree.DefaultTreeModel.nodesWereRemoved(TreeNode,int[],Object[])*
@@ -375,36 +352,35 @@ public void nodesWereRemoved(
   int[] childIndices,
   java.lang.Object[] removedChildren)
 
-Invoke this method after you've removed some TreeNodes from node. childIndices 
-should be the index of the removed elements and must be sorted in ascending 
-order. And removedChildren should be the array of the children objects that 
-were removed. 
+Invoke this method after you've removed some TreeNodes from node. childIndices should be the index of the removed elements and must be sorted in ascending order. And 
+removedChildren should be the array of the children objects that were removed. 
+
 
 
 *javax.swing.tree.DefaultTreeModel.reload()*
 
 public void reload()
 
-Invoke this method if you've modified the TreeNodes upon which this model 
-depends. The model will notify all of its listeners that the model has changed. 
+Invoke this method if you've modified the TreeNodes upon which this model depends. The model will notify all of its listeners that the model has changed. 
+
 
 
 *javax.swing.tree.DefaultTreeModel.reload(TreeNode)*
 
 public void reload(javax.swing.tree.TreeNode node)
 
-Invoke this method if you've modified the TreeNodes upon which this model 
-depends. The model will notify all of its listeners that the model has changed 
-below the node node (PENDING). 
+Invoke this method if you've modified the TreeNodes upon which this model depends. The model will notify all of its listeners that the model has changed below the node node 
+(PENDING). 
+
 
 
 *javax.swing.tree.DefaultTreeModel.removeNodeFromParent(MutableTreeNode)*
 
 public void removeNodeFromParent(javax.swing.tree.MutableTreeNode node)
 
-Message this to remove node from its parent. This will message nodesWereRemoved 
-to create the appropriate event. This is the preferred way to remove a node as 
-it handles the event creation for you. 
+Message this to remove node from its parent. This will message nodesWereRemoved to create the appropriate event. This is the preferred way to remove a node as it handles the event 
+creation for you. 
+
 
 
 *javax.swing.tree.DefaultTreeModel.removeTreeModelListener(TreeModelListener)*
@@ -413,23 +389,24 @@ public void removeTreeModelListener(javax.swing.event.TreeModelListener l)
 
 Removes a listener previously added with addTreeModelListener(). 
 
+
     l - the listener to remove 
 
 *javax.swing.tree.DefaultTreeModel.setAsksAllowsChildren(boolean)*
 
 public void setAsksAllowsChildren(boolean newValue)
 
-Sets whether or not to test leafness by asking getAllowsChildren() or isLeaf() 
-to the TreeNodes. If newvalue is true, getAllowsChildren() is messaged, 
-otherwise isLeaf() is messaged. 
+Sets whether or not to test leafness by asking getAllowsChildren() or isLeaf() to the TreeNodes. If newvalue is true, getAllowsChildren() is messaged, otherwise isLeaf() is 
+messaged. 
+
 
 
 *javax.swing.tree.DefaultTreeModel.setRoot(TreeNode)*
 
 public void setRoot(javax.swing.tree.TreeNode root)
 
-Sets the root to root. A null root implies the tree is to display nothing, and 
-is legal. 
+Sets the root to root. A null root implies the tree is to display nothing, and is legal. 
+
 
 
 *javax.swing.tree.DefaultTreeModel.valueForPathChanged(TreePath,Object)*
@@ -438,10 +415,9 @@ public void valueForPathChanged(
   javax.swing.tree.TreePath path,
   java.lang.Object newValue)
 
-This sets the user object of the TreeNode identified by path and posts a node 
-changed. If you use custom user objects in the TreeModel you're going to need 
-to subclass this and set the user object of the changed node to something 
-meaningful. 
+This sets the user object of the TreeNode identified by path and posts a node changed. If you use custom user objects in the TreeModel you're going to need to subclass this and 
+set the user object of the changed node to something meaningful. 
+
 
 
 

@@ -1,4 +1,5 @@
-*java.security.cert.CertStore* *CertStore* A class for retrieving Certificates a
+*java.security.cert.CertStore* *CertStore* A class for retrieving Certificates and CRLs
+ from a repository.
 
 public class CertStore
   extends    |java.lang.Object|
@@ -8,55 +9,45 @@ public class CertStore
 |java.security.cert.CertStore_Constructors|
 |java.security.cert.CertStore_Methods|
 
-================================================================================
+====================================================================================================================================================================================
 
 *java.security.cert.CertStore_Constructors*
-|java.security.cert.CertStore(CertStoreSpi,Provider,String,CertStoreParameters)|
+|java.security.cert.CertStore(CertStoreSpi,Provider,String,CertStoreParameters)|Creates a CertStore object of the given type, and  encapsulates the given provider implementation (
 
 *java.security.cert.CertStore_Methods*
-|java.security.cert.CertStore.getCertificates(CertSelector)|Returns a Collectio
-|java.security.cert.CertStore.getCertStoreParameters()|Returns the parameters u
-|java.security.cert.CertStore.getCRLs(CRLSelector)|Returns a Collection of CRLs
-|java.security.cert.CertStore.getDefaultType()|Returns the default CertStore ty
-|java.security.cert.CertStore.getInstance(String,CertStoreParameters)|Returns a
-|java.security.cert.CertStore.getInstance(String,CertStoreParameters,Provider)|
-|java.security.cert.CertStore.getInstance(String,CertStoreParameters,String)|Re
-|java.security.cert.CertStore.getProvider()|Returns the provider of this CertSt
+|java.security.cert.CertStore.getCertificates(CertSelector)|Returns a Collection of Certificates that  match the specified selector.
+|java.security.cert.CertStore.getCertStoreParameters()|Returns the parameters used to initialize this CertStore.
+|java.security.cert.CertStore.getCRLs(CRLSelector)|Returns a Collection of CRLs that  match the specified selector.
+|java.security.cert.CertStore.getDefaultType()|Returns the default CertStore type as specified in the   Java security properties file, or the string LDAP if no   such property exi
+|java.security.cert.CertStore.getInstance(String,CertStoreParameters)|Returns a CertStore object that implements the specified  CertStore type and is initialized with the specifie
+|java.security.cert.CertStore.getInstance(String,CertStoreParameters,Provider)|Returns a CertStore object that implements the specified  CertStore type, as supplied by the specifi
+|java.security.cert.CertStore.getInstance(String,CertStoreParameters,String)|Returns a CertStore object that implements the specified  CertStore type, as supplied by the specified
+|java.security.cert.CertStore.getProvider()|Returns the provider of this CertStore.
 |java.security.cert.CertStore.getType()|Returns the type of this CertStore.
 
 *java.security.cert.CertStore_Description*
 
 A class for retrieving Certificates and CRLs from a repository. 
 
-This class uses a provider-based architecture, as described in the Java 
-Cryptography Architecture. To create a CertStore, call one of the static 
-getInstance methods, passing in the type of CertStore desired, any applicable 
-initialization parameters and optionally the name of the provider desired. 
+This class uses a provider-based architecture, as described in the Java Cryptography Architecture. To create a CertStore, call one of the static getInstance methods, passing in 
+the type of CertStore desired, any applicable initialization parameters and optionally the name of the provider desired. 
 
-Once the CertStore has been created, it can be used to retrieve Certificates 
-and CRLs by calling its getCertificates(|java.security.cert.CertStore|) and 
+Once the CertStore has been created, it can be used to retrieve Certificates and CRLs by calling its getCertificates(|java.security.cert.CertStore|) and 
 getCRLs(|java.security.cert.CertStore|) methods. 
 
-Unlike a KeyStore(|java.security.KeyStore|) , which provides access to a cache 
-of private keys and trusted certificates, a CertStore is designed to provide 
-access to a potentially vast repository of untrusted certificates and CRLs. For 
-example, an LDAP implementation of CertStore provides access to certificates 
-and CRLs stored in one or more directories using the LDAP protocol and the 
-schema as defined in the RFC service attribute. See Appendix A in the 
+Unlike a KeyStore(|java.security.KeyStore|) , which provides access to a cache of private keys and trusted certificates, a CertStore is designed to provide access to a potentially 
+vast repository of untrusted certificates and CRLs. For example, an LDAP implementation of CertStore provides access to certificates and CRLs stored in one or more directories 
+using the LDAP protocol and the schema as defined in the RFC service attribute. See Appendix A in the 
 
-Java Certification Path API Programmer's Guide for more information about 
-standard CertStore types. 
+Java Certification Path API Programmer's Guide for more information about standard CertStore types. 
 
 Concurrent Access 
 
-All public methods of CertStore objects must be thread-safe. That is, multiple 
-threads may concurrently invoke these methods on a single CertStore object (or 
-more than one) with no ill effects. This allows a CertPathBuilder to search for 
-a CRL while simultaneously searching for further certificates, for instance. 
+All public methods of CertStore objects must be thread-safe. That is, multiple threads may concurrently invoke these methods on a single CertStore object (or more than one) with 
+no ill effects. This allows a CertPathBuilder to search for a CRL while simultaneously searching for further certificates, for instance. 
 
-The static methods of this class are also guaranteed to be thread-safe. 
-Multiple threads may concurrently invoke the static methods defined in this 
-class with no ill effects. 
+The static methods of this class are also guaranteed to be thread-safe. Multiple threads may concurrently invoke the static methods defined in this class with no ill effects. 
+
 
 
 *java.security.cert.CertStore(CertStoreSpi,Provider,String,CertStoreParameters)*
@@ -67,8 +58,7 @@ protected CertStore(
   java.lang.String type,
   java.security.cert.CertStoreParameters params)
 
-Creates a CertStore object of the given type, and encapsulates the given 
-provider implementation (SPI object) in it. 
+Creates a CertStore object of the given type, and encapsulates the given provider implementation (SPI object) in it. 
 
     storeSpi - the provider implementation 
     provider - the provider 
@@ -77,78 +67,66 @@ provider implementation (SPI object) in it.
 
 *java.security.cert.CertStore.getCertificates(CertSelector)*
 
-public final |java.util.Collection| getCertificates(java.security.cert.CertSelector selector)
+public final |java.util.Collection|<? extends java.security.cert.Certificate> getCertificates(java.security.cert.CertSelector selector)
   throws |java.security.cert.CertStoreException|
          
-Returns a Collection of Certificates that match the specified selector. If no 
-Certificates match the selector, an empty Collection will be returned. 
+Returns a Collection of Certificates that match the specified selector. If no Certificates match the selector, an empty Collection will be returned. 
 
-For some CertStore types, the resulting Collection may not contain all of the 
-Certificates that match the selector. For instance, an LDAP CertStore may not 
-search all entries in the directory. Instead, it may just search entries that 
-are likely to contain the Certificates it is looking for. 
+For some CertStore types, the resulting Collection may not contain all of the Certificates that match the selector. For instance, an LDAP CertStore may not search all entries in 
+the directory. Instead, it may just search entries that are likely to contain the Certificates it is looking for. 
 
-Some CertStore implementations (especially LDAP CertStores) may throw a 
-CertStoreException unless a non-null CertSelector is provided that includes 
-specific criteria that can be used to find the certificates. Issuer and/or 
-subject names are especially useful criteria. 
+Some CertStore implementations (especially LDAP CertStores) may throw a CertStoreException unless a non-null CertSelector is provided that includes specific criteria that can be 
+used to find the certificates. Issuer and/or subject names are especially useful criteria. 
 
-    selector - A CertSelector used to select which Certificates should be returned. Specify 
-       null to return all Certificates (if supported). 
+
+    selector - A CertSelector used to select which Certificates should be returned. Specify null to return all Certificates (if supported). 
 
     Returns: A Collection of Certificates that match the specified selector (never null) 
+
 *java.security.cert.CertStore.getCertStoreParameters()*
 
 public final |java.security.cert.CertStoreParameters| getCertStoreParameters()
 
-Returns the parameters used to initialize this CertStore. Note that the 
-CertStoreParameters object is cloned before it is returned. 
+Returns the parameters used to initialize this CertStore. Note that the CertStoreParameters object is cloned before it is returned. 
+
 
 
     Returns: the parameters used to initialize this CertStore (may be null) 
+
 *java.security.cert.CertStore.getCRLs(CRLSelector)*
 
-public final |java.util.Collection| getCRLs(java.security.cert.CRLSelector selector)
+public final |java.util.Collection|<? extends java.security.cert.CRL> getCRLs(java.security.cert.CRLSelector selector)
   throws |java.security.cert.CertStoreException|
          
-Returns a Collection of CRLs that match the specified selector. If no CRLs 
-match the selector, an empty Collection will be returned. 
+Returns a Collection of CRLs that match the specified selector. If no CRLs match the selector, an empty Collection will be returned. 
 
-For some CertStore types, the resulting Collection may not contain all of the 
-CRLs that match the selector. For instance, an LDAP CertStore may not search 
-all entries in the directory. Instead, it may just search entries that are 
-likely to contain the CRLs it is looking for. 
+For some CertStore types, the resulting Collection may not contain all of the CRLs that match the selector. For instance, an LDAP CertStore may not search all entries in the 
+directory. Instead, it may just search entries that are likely to contain the CRLs it is looking for. 
 
-Some CertStore implementations (especially LDAP CertStores) may throw a 
-CertStoreException unless a non-null CRLSelector is provided that includes 
-specific criteria that can be used to find the CRLs. Issuer names and/or the 
-certificate to be checked are especially useful. 
+Some CertStore implementations (especially LDAP CertStores) may throw a CertStoreException unless a non-null CRLSelector is provided that includes specific criteria that can be 
+used to find the CRLs. Issuer names and/or the certificate to be checked are especially useful. 
 
-    selector - A CRLSelector used to select which CRLs should be returned. Specify null to 
-       return all CRLs (if supported). 
+
+    selector - A CRLSelector used to select which CRLs should be returned. Specify null to return all CRLs (if supported). 
 
     Returns: A Collection of CRLs that match the specified selector (never null) 
+
 *java.security.cert.CertStore.getDefaultType()*
 
 public static final |java.lang.String| getDefaultType()
 
-Returns the default CertStore type as specified in the Java security properties 
-file, or the string LDAP if no such property exists. The Java security 
-properties file is located in the file named 
-<JAVA_HOME>/lib/security/java.security, where <JAVA_HOME> refers to the 
-directory where the JDK was installed. 
+Returns the default CertStore type as specified in the Java security properties file, or the string LDAP if no such property exists. The Java security properties file is located 
+in the file named <JAVA_HOME>/lib/security/java.security, where <JAVA_HOME> refers to the directory where the JDK was installed. 
 
-The default CertStore type can be used by applications that do not want to use 
-a hard-coded type when calling one of the getInstance methods, and want to 
-provide a default CertStore type in case a user does not specify its own. 
+The default CertStore type can be used by applications that do not want to use a hard-coded type when calling one of the getInstance methods, and want to provide a default 
+CertStore type in case a user does not specify its own. 
 
-The default CertStore type can be changed by setting the value of the 
-"certstore.type" security property (in the Java security properties file) to 
-the desired type. 
+The default CertStore type can be changed by setting the value of the "certstore.type" security property (in the Java security properties file) to the desired type. 
 
 
-    Returns: the default CertStore type as specified in the Java security properties file, 
-             or the string LDAP if no such property exists. 
+
+    Returns: the default CertStore type as specified in the Java security properties file, or the string LDAP if no such property exists. 
+
 *java.security.cert.CertStore.getInstance(String,CertStoreParameters)*
 
 public static |java.security.cert.CertStore| getInstance(
@@ -157,23 +135,20 @@ public static |java.security.cert.CertStore| getInstance(
   throws |java.security.InvalidAlgorithmParameterException|
          |java.security.NoSuchAlgorithmException|
          
-Returns a CertStore object that implements the specified CertStore type and is 
-initialized with the specified parameters. 
+Returns a CertStore object that implements the specified CertStore type and is initialized with the specified parameters. 
 
-If the default provider package provides an implementation of the specified 
-CertStore type, an instance of CertStore containing that implementation is 
-returned. If the requested type is not available in the default package, other 
-packages are searched. 
+If the default provider package provides an implementation of the specified CertStore type, an instance of CertStore containing that implementation is returned. If the requested 
+type is not available in the default package, other packages are searched. 
 
-The CertStore that is returned is initialized with the specified 
-CertStoreParameters. The type of parameters needed may vary between different 
-types of CertStores. Note that the specified CertStoreParameters object is 
-cloned. 
+The CertStore that is returned is initialized with the specified CertStoreParameters. The type of parameters needed may vary between different types of CertStores. Note that the 
+specified CertStoreParameters object is cloned. 
+
 
     type - the name of the requested CertStore type 
     params - the initialization parameters (may be null) 
 
     Returns: a CertStore object that implements the specified CertStore type 
+
 *java.security.cert.CertStore.getInstance(String,CertStoreParameters,Provider)*
 
 public static |java.security.cert.CertStore| getInstance(
@@ -183,21 +158,19 @@ public static |java.security.cert.CertStore| getInstance(
   throws |java.security.InvalidAlgorithmParameterException|
          |java.security.NoSuchAlgorithmException|
          
-Returns a CertStore object that implements the specified CertStore type, as 
-supplied by the specified provider and initialized with the specified 
-parameters. Note: the provider doesn't have to be registered. 
+Returns a CertStore object that implements the specified CertStore type, as supplied by the specified provider and initialized with the specified parameters. Note: the provider 
+doesn't have to be registered. 
 
-The CertStore that is returned is initialized with the specified 
-CertStoreParameters. The type of parameters needed may vary between different 
-types of CertStores. Note that the specified CertStoreParameters object is 
-cloned. 
+The CertStore that is returned is initialized with the specified CertStoreParameters. The type of parameters needed may vary between different types of CertStores. Note that the 
+specified CertStoreParameters object is cloned. 
+
 
     type - the requested CertStore type 
     params - the initialization parameters (may be null) 
     provider - the provider 
 
-    Returns: a CertStore object that implements the specified type, as supplied by the 
-             specified provider 
+    Returns: a CertStore object that implements the specified type, as supplied by the specified provider 
+
 *java.security.cert.CertStore.getInstance(String,CertStoreParameters,String)*
 
 public static |java.security.cert.CertStore| getInstance(
@@ -208,21 +181,18 @@ public static |java.security.cert.CertStore| getInstance(
          |java.security.NoSuchAlgorithmException|
          |java.security.NoSuchProviderException|
          
-Returns a CertStore object that implements the specified CertStore type, as 
-supplied by the specified provider and initialized with the specified 
-parameters. 
+Returns a CertStore object that implements the specified CertStore type, as supplied by the specified provider and initialized with the specified parameters. 
 
-The CertStore that is returned is initialized with the specified 
-CertStoreParameters. The type of parameters needed may vary between different 
-types of CertStores. Note that the specified CertStoreParameters object is 
-cloned. 
+The CertStore that is returned is initialized with the specified CertStoreParameters. The type of parameters needed may vary between different types of CertStores. Note that the 
+specified CertStoreParameters object is cloned. 
+
 
     type - the requested CertStore type 
     params - the initialization parameters (may be null) 
     provider - the name of the provider 
 
-    Returns: a CertStore object that implements the specified type, as supplied by the 
-             specified provider 
+    Returns: a CertStore object that implements the specified type, as supplied by the specified provider 
+
 *java.security.cert.CertStore.getProvider()*
 
 public final |java.security.Provider| getProvider()
@@ -230,7 +200,9 @@ public final |java.security.Provider| getProvider()
 Returns the provider of this CertStore. 
 
 
+
     Returns: the provider of this CertStore 
+
 *java.security.cert.CertStore.getType()*
 
 public final |java.lang.String| getType()
@@ -238,5 +210,7 @@ public final |java.lang.String| getType()
 Returns the type of this CertStore. 
 
 
+
     Returns: the type of this CertStore 
+
 

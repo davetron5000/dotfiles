@@ -1,4 +1,5 @@
-*java.io.ObjectOutputStream.PutField* *ObjectOutputStream.PutField* Provide prog
+*java.io.ObjectOutputStream.PutField* *ObjectOutputStream.PutField* Provide programmatic access to the persistent fields to be written
+ to ObjectOutput.
 
 public abstract static class ObjectOutputStream.PutField
   extends    |java.lang.Object|
@@ -8,27 +9,27 @@ public abstract static class ObjectOutputStream.PutField
 |java.io.ObjectOutputStream.PutField_Constructors|
 |java.io.ObjectOutputStream.PutField_Methods|
 
-================================================================================
+====================================================================================================================================================================================
 
 *java.io.ObjectOutputStream.PutField_Constructors*
 |java.io.ObjectOutputStream.PutField()|
 
 *java.io.ObjectOutputStream.PutField_Methods*
-|java.io.ObjectOutputStream.PutField.put(String,boolean)|Put the value of the n
-|java.io.ObjectOutputStream.PutField.put(String,byte)|Put the value of the name
-|java.io.ObjectOutputStream.PutField.put(String,char)|Put the value of the name
-|java.io.ObjectOutputStream.PutField.put(String,double)|Put the value of the na
-|java.io.ObjectOutputStream.PutField.put(String,float)|Put the value of the nam
-|java.io.ObjectOutputStream.PutField.put(String,int)|Put the value of the named
-|java.io.ObjectOutputStream.PutField.put(String,long)|Put the value of the name
-|java.io.ObjectOutputStream.PutField.put(String,Object)|Put the value of the na
-|java.io.ObjectOutputStream.PutField.put(String,short)|Put the value of the nam
-|java.io.ObjectOutputStream.PutField.write(ObjectOutput)|Write the data and fie
+|java.io.ObjectOutputStream.PutField.put(String,boolean)|Put the value of the named boolean field into the persistent field.
+|java.io.ObjectOutputStream.PutField.put(String,byte)|Put the value of the named byte field into the persistent field.
+|java.io.ObjectOutputStream.PutField.put(String,char)|Put the value of the named char field into the persistent field.
+|java.io.ObjectOutputStream.PutField.put(String,double)|Put the value of the named double field into the persistent field.
+|java.io.ObjectOutputStream.PutField.put(String,float)|Put the value of the named float field into the persistent field.
+|java.io.ObjectOutputStream.PutField.put(String,int)|Put the value of the named int field into the persistent field.
+|java.io.ObjectOutputStream.PutField.put(String,long)|Put the value of the named long field into the persistent field.
+|java.io.ObjectOutputStream.PutField.put(String,Object)|Put the value of the named Object field into the persistent field.
+|java.io.ObjectOutputStream.PutField.put(String,short)|Put the value of the named short field into the persistent field.
+|java.io.ObjectOutputStream.PutField.write(ObjectOutput)|Write the data and fields to the specified ObjectOutput stream.
 
 *java.io.ObjectOutputStream.PutField_Description*
 
-Provide programmatic access to the persistent fields to be written to 
-ObjectOutput. 
+Provide programmatic access to the persistent fields to be written to ObjectOutput. 
+
 
 
 *java.io.ObjectOutputStream.PutField()*
@@ -46,6 +47,7 @@ public abstract void put(
 
 Put the value of the named boolean field into the persistent field. 
 
+
     name - the name of the serializable field 
     val - the value to assign to the field 
 
@@ -56,6 +58,7 @@ public abstract void put(
   byte val)
 
 Put the value of the named byte field into the persistent field. 
+
 
     name - the name of the serializable field 
     val - the value to assign to the field 
@@ -68,6 +71,7 @@ public abstract void put(
 
 Put the value of the named char field into the persistent field. 
 
+
     name - the name of the serializable field 
     val - the value to assign to the field 
 
@@ -78,6 +82,7 @@ public abstract void put(
   double val)
 
 Put the value of the named double field into the persistent field. 
+
 
     name - the name of the serializable field 
     val - the value to assign to the field 
@@ -90,6 +95,7 @@ public abstract void put(
 
 Put the value of the named float field into the persistent field. 
 
+
     name - the name of the serializable field 
     val - the value to assign to the field 
 
@@ -100,6 +106,7 @@ public abstract void put(
   int val)
 
 Put the value of the named int field into the persistent field. 
+
 
     name - the name of the serializable field 
     val - the value to assign to the field 
@@ -112,6 +119,7 @@ public abstract void put(
 
 Put the value of the named long field into the persistent field. 
 
+
     name - the name of the serializable field 
     val - the value to assign to the field 
 
@@ -122,6 +130,7 @@ public abstract void put(
   java.lang.Object val)
 
 Put the value of the named Object field into the persistent field. 
+
 
     name - the name of the serializable field 
     val - the value to assign to the field 
@@ -134,6 +143,7 @@ public abstract void put(
 
 Put the value of the named short field into the persistent field. 
 
+
     name - the name of the serializable field 
     val - the value to assign to the field 
 
@@ -143,6 +153,13 @@ public abstract void write(java.io.ObjectOutput out)
   throws |java.io.IOException|
          
 Write the data and fields to the specified ObjectOutput stream. 
+
+    Deprecated: This method does not write the values contained by this
+ 	   <code>PutField</code> object in a proper format, and may
+ 	   result in corruption of the serialization stream.  The
+ 	   correct way to write <code>PutField</code> data is by
+ 	   calling the {@link java.io.ObjectOutputStream#writeFields()}
+ 	   method.
 
     out - the stream to write the data and fields to 
 

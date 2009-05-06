@@ -1,4 +1,5 @@
-*javax.xml.parsers.DocumentBuilderFactory* *DocumentBuilderFactory* Defines a fa
+*javax.xml.parsers.DocumentBuilderFactory* *DocumentBuilderFactory* Defines a factory API that enables applications to obtain a
+ parser that produces DOM object trees from XML docu
 
 public abstract class DocumentBuilderFactory
   extends    |java.lang.Object|
@@ -8,39 +9,39 @@ public abstract class DocumentBuilderFactory
 |javax.xml.parsers.DocumentBuilderFactory_Constructors|
 |javax.xml.parsers.DocumentBuilderFactory_Methods|
 
-================================================================================
+====================================================================================================================================================================================
 
 *javax.xml.parsers.DocumentBuilderFactory_Constructors*
 |javax.xml.parsers.DocumentBuilderFactory()|
 
 *javax.xml.parsers.DocumentBuilderFactory_Methods*
-|javax.xml.parsers.DocumentBuilderFactory.getAttribute(String)|Allows the user 
-|javax.xml.parsers.DocumentBuilderFactory.getFeature(String)|Get the state of t
-|javax.xml.parsers.DocumentBuilderFactory.getSchema()|Gets theSchemaobject spec
-|javax.xml.parsers.DocumentBuilderFactory.isCoalescing()|Indicates whether or n
-|javax.xml.parsers.DocumentBuilderFactory.isExpandEntityReferences()|Indicates 
-|javax.xml.parsers.DocumentBuilderFactory.isIgnoringComments()|Indicates whethe
-|javax.xml.parsers.DocumentBuilderFactory.isIgnoringElementContentWhitespace()|
-|javax.xml.parsers.DocumentBuilderFactory.isNamespaceAware()|Indicates whether 
-|javax.xml.parsers.DocumentBuilderFactory.isValidating()|Indicates whether or n
-|javax.xml.parsers.DocumentBuilderFactory.isXIncludeAware()|Get state of XInclu
-|javax.xml.parsers.DocumentBuilderFactory.newDocumentBuilder()|Creates a new in
-|javax.xml.parsers.DocumentBuilderFactory.newInstance()|Obtain a new instance o
-|javax.xml.parsers.DocumentBuilderFactory.setAttribute(String,Object)|Allows th
-|javax.xml.parsers.DocumentBuilderFactory.setCoalescing(boolean)|Specifies that
-|javax.xml.parsers.DocumentBuilderFactory.setExpandEntityReferences(boolean)|Sp
-|javax.xml.parsers.DocumentBuilderFactory.setFeature(String,boolean)|Set a feat
-|javax.xml.parsers.DocumentBuilderFactory.setIgnoringComments(boolean)|Specifie
-|javax.xml.parsers.DocumentBuilderFactory.setIgnoringElementContentWhitespace(boolean)|
-|javax.xml.parsers.DocumentBuilderFactory.setNamespaceAware(boolean)|Specifies 
-|javax.xml.parsers.DocumentBuilderFactory.setSchema(Schema)|Set theSchemato be 
-|javax.xml.parsers.DocumentBuilderFactory.setValidating(boolean)|Specifies that
-|javax.xml.parsers.DocumentBuilderFactory.setXIncludeAware(boolean)|Set state o
+|javax.xml.parsers.DocumentBuilderFactory.getAttribute(String)|Allows the user to retrieve specific attributes on the underlying  implementation.
+|javax.xml.parsers.DocumentBuilderFactory.getFeature(String)|Get the state of the named feature.
+|javax.xml.parsers.DocumentBuilderFactory.getSchema()|Gets theSchemaobject specified through  the#setSchema(Schema schema)method.
+|javax.xml.parsers.DocumentBuilderFactory.isCoalescing()|Indicates whether or not the factory is configured to produce  parsers which converts CDATA nodes to Text nodes and append
+|javax.xml.parsers.DocumentBuilderFactory.isExpandEntityReferences()|Indicates whether or not the factory is configured to produce  parsers which expand entity reference nodes.
+|javax.xml.parsers.DocumentBuilderFactory.isIgnoringComments()|Indicates whether or not the factory is configured to produce  parsers which ignores comments.
+|javax.xml.parsers.DocumentBuilderFactory.isIgnoringElementContentWhitespace()|Indicates whether or not the factory is configured to produce  parsers which ignore ignorable whites
+|javax.xml.parsers.DocumentBuilderFactory.isNamespaceAware()|Indicates whether or not the factory is configured to produce  parsers which are namespace aware.
+|javax.xml.parsers.DocumentBuilderFactory.isValidating()|Indicates whether or not the factory is configured to produce  parsers which validate the XML content during parse.
+|javax.xml.parsers.DocumentBuilderFactory.isXIncludeAware()|Get state of XInclude processing.
+|javax.xml.parsers.DocumentBuilderFactory.newDocumentBuilder()|Creates a new instance of ajavax.xml.parsers.DocumentBuilderusing the currently configured parameters.
+|javax.xml.parsers.DocumentBuilderFactory.newInstance()|Obtain a new instance of a  DocumentBuilderFactory.
+|javax.xml.parsers.DocumentBuilderFactory.setAttribute(String,Object)|Allows the user to set specific attributes on the underlying  implementation.
+|javax.xml.parsers.DocumentBuilderFactory.setCoalescing(boolean)|Specifies that the parser produced by this code will  convert CDATA nodes to Text nodes and append it to the  adja
+|javax.xml.parsers.DocumentBuilderFactory.setExpandEntityReferences(boolean)|Specifies that the parser produced by this code will  expand entity reference nodes.
+|javax.xml.parsers.DocumentBuilderFactory.setFeature(String,boolean)|Set a feature for this DocumentBuilderFactory and DocumentBuilders created by this factory.
+|javax.xml.parsers.DocumentBuilderFactory.setIgnoringComments(boolean)|Specifies that the parser produced by this code will  ignore comments.
+|javax.xml.parsers.DocumentBuilderFactory.setIgnoringElementContentWhitespace(boolean)|Specifies that the parsers created by this  factory must eliminate  whitespace in element co
+|javax.xml.parsers.DocumentBuilderFactory.setNamespaceAware(boolean)|Specifies that the parser produced by this code will  provide support for XML namespaces.
+|javax.xml.parsers.DocumentBuilderFactory.setSchema(Schema)|Set theSchemato be used by parsers created  from this factory.
+|javax.xml.parsers.DocumentBuilderFactory.setValidating(boolean)|Specifies that the parser produced by this code will  validate documents as they are parsed.
+|javax.xml.parsers.DocumentBuilderFactory.setXIncludeAware(boolean)|Set state of XInclude processing.
 
 *javax.xml.parsers.DocumentBuilderFactory_Description*
 
-Defines a factory API that enables applications to obtain a parser that 
-produces DOM object trees from XML documents. 
+Defines a factory API that enables applications to obtain a parser that produces DOM object trees from XML documents. 
+
 
 
 *javax.xml.parsers.DocumentBuilderFactory()*
@@ -55,12 +56,13 @@ protected DocumentBuilderFactory()
 public abstract |java.lang.Object| getAttribute(java.lang.String name)
   throws |java.lang.IllegalArgumentException|
          
-Allows the user to retrieve specific attributes on the underlying 
-implementation. 
+Allows the user to retrieve specific attributes on the underlying implementation. 
+
 
     name - The name of the attribute. 
 
     Returns: value The value of the attribute. 
+
 *javax.xml.parsers.DocumentBuilderFactory.getFeature(String)*
 
 public abstract boolean getFeature(java.lang.String name)
@@ -68,89 +70,85 @@ public abstract boolean getFeature(java.lang.String name)
          
 Get the state of the named feature. 
 
-Feature names are fully qualified (|java.net.URI|) s. Implementations may 
-define their own features. An 
-(|javax.xml.parsers.ParserConfigurationException|) is thrown if this 
-DocumentBuilderFactory or the DocumentBuilders it creates cannot support the 
-feature. It is possible for an DocumentBuilderFactory to expose a feature value 
-but be unable to change its state. 
+Feature names are fully qualified (|java.net.URI|) s. Implementations may define their own features. An (|javax.xml.parsers.ParserConfigurationException|) is thrown if this 
+DocumentBuilderFactory or the DocumentBuilders it creates cannot support the feature. It is possible for an DocumentBuilderFactory to expose a feature value but be unable to 
+change its state. 
+
 
     name - Feature name. 
 
     Returns: State of the named feature. 
+
 *javax.xml.parsers.DocumentBuilderFactory.getSchema()*
 
 public |javax.xml.validation.Schema| getSchema()
 
-Gets the (|javax.xml.validation.Schema|) object specified through the 
-(|javax.xml.parsers.DocumentBuilderFactory|) method. 
+Gets the (|javax.xml.validation.Schema|) object specified through the (|javax.xml.parsers.DocumentBuilderFactory|) method. 
 
 
-    Returns: the {@link Schema} object that was last set through the {@link 
-             #setSchema(Schema)} method, or null if the method was not invoked 
-             since a {@link SAXParserFactory} is created. 
+
+    Returns: the {@link Schema} object that was last set through the {@link #setSchema(Schema)} method, or null if the method was not invoked since a {@link SAXParserFactory} is created. 
+
 *javax.xml.parsers.DocumentBuilderFactory.isCoalescing()*
 
 public boolean isCoalescing()
 
-Indicates whether or not the factory is configured to produce parsers which 
-converts CDATA nodes to Text nodes and appends it to the adjacent (if any) Text 
-node. 
+Indicates whether or not the factory is configured to produce parsers which converts CDATA nodes to Text nodes and appends it to the adjacent (if any) Text node. 
 
 
-    Returns: true if the factory is configured to produce parsers which converts CDATA nodes 
-             to Text nodes and appends it to the adjacent (if any) Text node; 
-             false otherwise. 
+
+    Returns: true if the factory is configured to produce parsers which converts CDATA nodes to Text nodes and appends it to the adjacent (if any) Text node; false otherwise. 
+
 *javax.xml.parsers.DocumentBuilderFactory.isExpandEntityReferences()*
 
 public boolean isExpandEntityReferences()
 
-Indicates whether or not the factory is configured to produce parsers which 
-expand entity reference nodes. 
+Indicates whether or not the factory is configured to produce parsers which expand entity reference nodes. 
 
 
-    Returns: true if the factory is configured to produce parsers which expand entity 
-             reference nodes; false otherwise. 
+
+    Returns: true if the factory is configured to produce parsers which expand entity reference nodes; false otherwise. 
+
 *javax.xml.parsers.DocumentBuilderFactory.isIgnoringComments()*
 
 public boolean isIgnoringComments()
 
-Indicates whether or not the factory is configured to produce parsers which 
-ignores comments. 
+Indicates whether or not the factory is configured to produce parsers which ignores comments. 
 
 
-    Returns: true if the factory is configured to produce parsers which ignores comments; 
-             false otherwise. 
+
+    Returns: true if the factory is configured to produce parsers which ignores comments; false otherwise. 
+
 *javax.xml.parsers.DocumentBuilderFactory.isIgnoringElementContentWhitespace()*
 
 public boolean isIgnoringElementContentWhitespace()
 
-Indicates whether or not the factory is configured to produce parsers which 
-ignore ignorable whitespace in element content. 
+Indicates whether or not the factory is configured to produce parsers which ignore ignorable whitespace in element content. 
 
 
-    Returns: true if the factory is configured to produce parsers which ignore ignorable 
-             whitespace in element content; false otherwise. 
+
+    Returns: true if the factory is configured to produce parsers which ignore ignorable whitespace in element content; false otherwise. 
+
 *javax.xml.parsers.DocumentBuilderFactory.isNamespaceAware()*
 
 public boolean isNamespaceAware()
 
-Indicates whether or not the factory is configured to produce parsers which are 
-namespace aware. 
+Indicates whether or not the factory is configured to produce parsers which are namespace aware. 
 
 
-    Returns: true if the factory is configured to produce parsers which are namespace aware; 
-             false otherwise. 
+
+    Returns: true if the factory is configured to produce parsers which are namespace aware; false otherwise. 
+
 *javax.xml.parsers.DocumentBuilderFactory.isValidating()*
 
 public boolean isValidating()
 
-Indicates whether or not the factory is configured to produce parsers which 
-validate the XML content during parse. 
+Indicates whether or not the factory is configured to produce parsers which validate the XML content during parse. 
 
 
-    Returns: true if the factory is configured to produce parsers which validate the XML 
-             content during parse; false otherwise. 
+
+    Returns: true if the factory is configured to produce parsers which validate the XML content during parse; false otherwise. 
+
 *javax.xml.parsers.DocumentBuilderFactory.isXIncludeAware()*
 
 public boolean isXIncludeAware()
@@ -158,60 +156,56 @@ public boolean isXIncludeAware()
 Get state of XInclude processing. 
 
 
+
     Returns: current state of XInclude processing 
+
 *javax.xml.parsers.DocumentBuilderFactory.newDocumentBuilder()*
 
 public abstract |javax.xml.parsers.DocumentBuilder| newDocumentBuilder()
   throws |javax.xml.parsers.ParserConfigurationException|
          
-Creates a new instance of a (|javax.xml.parsers.DocumentBuilder|) using the 
-currently configured parameters. 
+Creates a new instance of a (|javax.xml.parsers.DocumentBuilder|) using the currently configured parameters. 
+
 
 
     Returns: A new instance of a DocumentBuilder. 
+
 *javax.xml.parsers.DocumentBuilderFactory.newInstance()*
 
 public static |javax.xml.parsers.DocumentBuilderFactory| newInstance()
 
-Obtain a new instance of a DocumentBuilderFactory. This static method creates a 
-new factory instance. This method uses the following ordered lookup procedure 
-to determine the DocumentBuilderFactory implementation class to load: 
+Obtain a new instance of a DocumentBuilderFactory. This static method creates a new factory instance. This method uses the following ordered lookup procedure to determine the 
+DocumentBuilderFactory implementation class to load: 
 
 Use the javax.xml.parsers.DocumentBuilderFactory system property. 
 
-Use the properties file "lib/jaxp.properties" in the JRE directory. This 
-configuration file is in standard java.util.Properties format and contains the 
-fully qualified name of the implementation class with the key being the system 
-property defined above. 
+Use the properties file "lib/jaxp.properties" in the JRE directory. This configuration file is in standard java.util.Properties format and contains the fully qualified name of the 
+implementation class with the key being the system property defined above. 
 
-The jaxp.properties file is read only once by the JAXP implementation and it's 
-values are then cached for future use. If the file does not exist when the 
-first attempt is made to read from it, no further attempts are made to check 
-for its existence. It is not possible to change the value of any property in 
-jaxp.properties after it has been read for the first time. 
+The jaxp.properties file is read only once by the JAXP implementation and it's values are then cached for future use. If the file does not exist when the first attempt is made to 
+read from it, no further attempts are made to check for its existence. It is not possible to change the value of any property in jaxp.properties after it has been read for the 
+first time. 
 
-Use the Services API (as detailed in the JAR specification), if available, to 
-determine the classname. The Services API will look for a classname in the file 
-META-INF/services/javax.xml.parsers.DocumentBuilderFactory in jars available to 
-the runtime. 
+Use the Services API (as detailed in the JAR specification), if available, to determine the classname. The Services API will look for a classname in the file 
+META-INF/services/javax.xml.parsers.DocumentBuilderFactory in jars available to the runtime. 
 
 Platform default DocumentBuilderFactory instance. 
 
 
 
-Once an application has obtained a reference to a DocumentBuilderFactory it can 
-use the factory to configure and obtain parser instances. 
+Once an application has obtained a reference to a DocumentBuilderFactory it can use the factory to configure and obtain parser instances. 
 
-Tip for Trouble-shooting Setting the jaxp.debug system property will cause this 
-method to print a lot of debug messages to System.err about what it is doing 
-and where it is looking at. 
+Tip for Trouble-shooting Setting the jaxp.debug system property will cause this method to print a lot of debug messages to System.err about what it is doing and where it is 
+looking at. 
 
 If you have problems loading (|javax.xml.parsers.DocumentBuilder|) s, try: 
 
 java -Djaxp.debug=1 YourProgram .... 
 
 
+
     Returns: New instance of a DocumentBuilderFactory 
+
 *javax.xml.parsers.DocumentBuilderFactory.setAttribute(String,Object)*
 
 public abstract void setAttribute(
@@ -221,6 +215,7 @@ public abstract void setAttribute(
          
 Allows the user to set specific attributes on the underlying implementation. 
 
+
     name - The name of the attribute. 
     value - The value of the attribute. 
 
@@ -228,22 +223,20 @@ Allows the user to set specific attributes on the underlying implementation.
 
 public void setCoalescing(boolean coalescing)
 
-Specifies that the parser produced by this code will convert CDATA nodes to 
-Text nodes and append it to the adjacent (if any) text node. By default the 
-value of this is set to false 
+Specifies that the parser produced by this code will convert CDATA nodes to Text nodes and append it to the adjacent (if any) text node. By default the value of this is set to 
+false 
 
-    coalescing - true if the parser produced will convert CDATA nodes to Text nodes and append 
-       it to the adjacent (if any) text node; false otherwise. 
+
+    coalescing - true if the parser produced will convert CDATA nodes to Text nodes and append it to the adjacent (if any) text node; false otherwise. 
 
 *javax.xml.parsers.DocumentBuilderFactory.setExpandEntityReferences(boolean)*
 
 public void setExpandEntityReferences(boolean expandEntityRef)
 
-Specifies that the parser produced by this code will expand entity reference 
-nodes. By default the value of this is set to true 
+Specifies that the parser produced by this code will expand entity reference nodes. By default the value of this is set to true 
 
-    expandEntityRef - true if the parser produced will expand entity reference nodes; false 
-       otherwise. 
+
+    expandEntityRef - true if the parser produced will expand entity reference nodes; false otherwise. 
 
 *javax.xml.parsers.DocumentBuilderFactory.setFeature(String,boolean)*
 
@@ -252,29 +245,22 @@ public abstract void setFeature(
   boolean value)
   throws |javax.xml.parsers.ParserConfigurationException|
          
-Set a feature for this DocumentBuilderFactory and DocumentBuilders created by 
-this factory. 
+Set a feature for this DocumentBuilderFactory and DocumentBuilders created by this factory. 
 
-Feature names are fully qualified (|java.net.URI|) s. Implementations may 
-define their own features. An 
-(|javax.xml.parsers.ParserConfigurationException|) is thrown if this 
-DocumentBuilderFactory or the DocumentBuilders it creates cannot support the 
-feature. It is possible for an DocumentBuilderFactory to expose a feature value 
-but be unable to change its state. 
+Feature names are fully qualified (|java.net.URI|) s. Implementations may define their own features. An (|javax.xml.parsers.ParserConfigurationException|) is thrown if this 
+DocumentBuilderFactory or the DocumentBuilders it creates cannot support the feature. It is possible for an DocumentBuilderFactory to expose a feature value but be unable to 
+change its state. 
 
 
 
-All implementations are required to support the (|javax.xml.XMLConstants|) 
-feature. When the feature is: 
+All implementations are required to support the (|javax.xml.XMLConstants|) feature. When the feature is: 
 
-true: the implementation will limit XML processing to conform to implementation 
-limits. Examples include enity expansion limits and XML Schema constructs that 
-would consume large amounts of resources. If XML processing is limited for 
-security reasons, it will be reported via a call to the registered 
-(|org.xml.sax.ErrorHandler|) . See (|javax.xml.parsers.DocumentBuilder|) . 
+true: the implementation will limit XML processing to conform to implementation limits. Examples include enity expansion limits and XML Schema constructs that would consume large 
+amounts of resources. If XML processing is limited for security reasons, it will be reported via a call to the registered (|org.xml.sax.ErrorHandler|) . See 
+(|javax.xml.parsers.DocumentBuilder|) . 
 
-false: the implementation will processing XML according to the XML 
-specifications without regard to possible implementation limits. 
+false: the implementation will processing XML according to the XML specifications without regard to possible implementation limits. 
+
 
 
 
@@ -285,8 +271,8 @@ specifications without regard to possible implementation limits.
 
 public void setIgnoringComments(boolean ignoreComments)
 
-Specifies that the parser produced by this code will ignore comments. By 
-default the value of this is set to false . 
+Specifies that the parser produced by this code will ignore comments. By default the value of this is set to false . 
+
 
     ignoreComments - boolean value to ignore comments during processing 
 
@@ -294,67 +280,50 @@ default the value of this is set to false .
 
 public void setIgnoringElementContentWhitespace(boolean whitespace)
 
-Specifies that the parsers created by this factory must eliminate whitespace in 
-element content (sometimes known loosely as 'ignorable whitespace') when 
-parsing XML documents (see XML Rec 2.10). Note that only whitespace which is 
-directly contained within element content that has an element only content 
-model (see XML Rec 3.2.1) will be eliminated. Due to reliance on the content 
-model this setting requires the parser to be in validating mode. By default the 
-value of this is set to false. 
+Specifies that the parsers created by this factory must eliminate whitespace in element content (sometimes known loosely as 'ignorable whitespace') when parsing XML documents (see 
+XML Rec 2.10). Note that only whitespace which is directly contained within element content that has an element only content model (see XML Rec 3.2.1) will be eliminated. Due to 
+reliance on the content model this setting requires the parser to be in validating mode. By default the value of this is set to false. 
 
-    whitespace - true if the parser created must eliminate whitespace in the element content 
-       when parsing XML documents; false otherwise. 
+
+    whitespace - true if the parser created must eliminate whitespace in the element content when parsing XML documents; false otherwise. 
 
 *javax.xml.parsers.DocumentBuilderFactory.setNamespaceAware(boolean)*
 
 public void setNamespaceAware(boolean awareness)
 
-Specifies that the parser produced by this code will provide support for XML 
-namespaces. By default the value of this is set to false 
+Specifies that the parser produced by this code will provide support for XML namespaces. By default the value of this is set to false 
 
-    awareness - true if the parser produced will provide support for XML namespaces; false 
-       otherwise. 
+
+    awareness - true if the parser produced will provide support for XML namespaces; false otherwise. 
 
 *javax.xml.parsers.DocumentBuilderFactory.setSchema(Schema)*
 
 public void setSchema(javax.xml.validation.Schema schema)
 
-Set the (|javax.xml.validation.Schema|) to be used by parsers created from this 
-factory. 
+Set the (|javax.xml.validation.Schema|) to be used by parsers created from this factory. 
 
-When a (|javax.xml.validation.Schema|) is non-null, a parser will use a 
-validator created from it to validate documents before it passes information 
-down to the application. 
+When a (|javax.xml.validation.Schema|) is non-null, a parser will use a validator created from it to validate documents before it passes information down to the application. 
 
-When errors are found by the validator, the parser is responsible to report 
-them to the user-specified (|org.w3c.dom.DOMErrorHandler|) (or if the error 
-handler is not set, ignore them or throw them), just like any other errors 
-found by the parser itself. In other words, if the user-specified 
-(|org.w3c.dom.DOMErrorHandler|) is set, it must receive those errors, and if 
-not, they must be treated according to the implementation specific default 
-error handling rules. 
+When errors are found by the validator, the parser is responsible to report them to the user-specified (|org.w3c.dom.DOMErrorHandler|) (or if the error handler is not set, ignore 
+them or throw them), just like any other errors found by the parser itself. In other words, if the user-specified (|org.w3c.dom.DOMErrorHandler|) is set, it must receive those 
+errors, and if not, they must be treated according to the implementation specific default error handling rules. 
 
-A validator may modify the outcome of a parse (for example by adding default 
-values that were missing in documents), and a parser is responsible to make 
-sure that the application will receive modified DOM trees. 
+A validator may modify the outcome of a parse (for example by adding default values that were missing in documents), and a parser is responsible to make sure that the application 
+will receive modified DOM trees. 
 
 Initialy, null is set as the (|javax.xml.validation.Schema|) . 
 
-This processing will take effect even if the 
-(|javax.xml.parsers.DocumentBuilderFactory|) method returns false. 
+This processing will take effect even if the (|javax.xml.parsers.DocumentBuilderFactory|) method returns false. 
 
-It is an error to use the http://java.sun.com/xml/jaxp/properties/schemaSource 
-property and/or the http://java.sun.com/xml/jaxp/properties/schemaLanguage 
-property in conjunction with a (|javax.xml.validation.Schema|) object. Such 
-configuration will cause a (|javax.xml.parsers.ParserConfigurationException|) 
-exception when the (|javax.xml.parsers.DocumentBuilderFactory|) is invoked. 
+It is an error to use the http://java.sun.com/xml/jaxp/properties/schemaSource property and/or the http://java.sun.com/xml/jaxp/properties/schemaLanguage property in conjunction 
+with a (|javax.xml.validation.Schema|) object. Such configuration will cause a (|javax.xml.parsers.ParserConfigurationException|) exception when the 
+(|javax.xml.parsers.DocumentBuilderFactory|) is invoked. 
 
 Note for implmentors 
 
-A parser must be able to work with any (|javax.xml.validation.Schema|) 
-implementation. However, parsers and schemas are allowed to use 
-implementation-specific custom mechanisms as long as they yield the result 
-described in the specification. 
+A parser must be able to work with any (|javax.xml.validation.Schema|) implementation. However, parsers and schemas are allowed to use implementation-specific custom mechanisms as 
+long as they yield the result described in the specification. 
+
 
     schema - Schema to use or null to remove a schema. 
 
@@ -362,24 +331,18 @@ described in the specification.
 
 public void setValidating(boolean validating)
 
-Specifies that the parser produced by this code will validate documents as they 
-are parsed. By default the value of this is set to false. 
+Specifies that the parser produced by this code will validate documents as they are parsed. By default the value of this is set to false. 
 
-Note that "the validation" here means a validating parser as defined in the XML 
-recommendation. In other words, it essentially just controls the DTD 
-validation. (except the legacy two properties defined in JAXP 1.2. See here for 
-more details.) 
+Note that "the validation" here means a validating parser as defined in the XML recommendation. In other words, it essentially just controls the DTD validation. (except the legacy 
+two properties defined in JAXP 1.2. See here for more details.) 
 
 
 
-To use modern schema languages such as W3C XML Schema or RELAX NG instead of 
-DTD, you can configure your parser to be a non-validating parser by leaving the 
-(|javax.xml.parsers.DocumentBuilderFactory|) method false, then use the 
-(|javax.xml.parsers.DocumentBuilderFactory|) method to associate a schema to a 
-parser. 
+To use modern schema languages such as W3C XML Schema or RELAX NG instead of DTD, you can configure your parser to be a non-validating parser by leaving the 
+(|javax.xml.parsers.DocumentBuilderFactory|) method false, then use the (|javax.xml.parsers.DocumentBuilderFactory|) method to associate a schema to a parser. 
 
-    validating - true if the parser produced will validate documents as they are parsed; false 
-       otherwise. 
+
+    validating - true if the parser produced will validate documents as they are parsed; false otherwise. 
 
 *javax.xml.parsers.DocumentBuilderFactory.setXIncludeAware(boolean)*
 
@@ -387,10 +350,10 @@ public void setXIncludeAware(boolean state)
 
 Set state of XInclude processing. 
 
-If XInclude markup is found in the document instance, should it be processed as 
-specified in XML Inclusions (XInclude) Version 1.0. 
+If XInclude markup is found in the document instance, should it be processed as specified in XML Inclusions (XInclude) Version 1.0. 
 
 XInclude processing defaults to false. 
+
 
     state - Set XInclude processing to true or false 
 

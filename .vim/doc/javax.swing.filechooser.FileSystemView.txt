@@ -1,4 +1,5 @@
-*javax.swing.filechooser.FileSystemView* *FileSystemView* FileSystemView is JFil
+*javax.swing.filechooser.FileSystemView* *FileSystemView* FileSystemView is JFileChooser's gateway to the
+ file system.
 
 public abstract class FileSystemView
   extends    |java.lang.Object|
@@ -8,47 +9,45 @@ public abstract class FileSystemView
 |javax.swing.filechooser.FileSystemView_Constructors|
 |javax.swing.filechooser.FileSystemView_Methods|
 
-================================================================================
+====================================================================================================================================================================================
 
 *javax.swing.filechooser.FileSystemView_Constructors*
 |javax.swing.filechooser.FileSystemView()|
 
 *javax.swing.filechooser.FileSystemView_Methods*
-|javax.swing.filechooser.FileSystemView.createFileObject(File,String)|Returns a
-|javax.swing.filechooser.FileSystemView.createFileObject(String)|Returns a File
-|javax.swing.filechooser.FileSystemView.createFileSystemRoot(File)|Creates a ne
-|javax.swing.filechooser.FileSystemView.createNewFolder(File)|Creates a new fol
+|javax.swing.filechooser.FileSystemView.createFileObject(File,String)|Returns a File object constructed in dir from the given filename.
+|javax.swing.filechooser.FileSystemView.createFileObject(String)|Returns a File object constructed from the given path string.
+|javax.swing.filechooser.FileSystemView.createFileSystemRoot(File)|Creates a new File object for f with correct  behavior for a file system root directory.
+|javax.swing.filechooser.FileSystemView.createNewFolder(File)|Creates a new folder with a default folder name.
 |javax.swing.filechooser.FileSystemView.getChild(File,String)|
-|javax.swing.filechooser.FileSystemView.getDefaultDirectory()|Return the user's
-|javax.swing.filechooser.FileSystemView.getFiles(File,boolean)|Gets the list of
+|javax.swing.filechooser.FileSystemView.getDefaultDirectory()|Return the user's default starting directory for the file chooser.
+|javax.swing.filechooser.FileSystemView.getFiles(File,boolean)|Gets the list of shown (i.e.
 |javax.swing.filechooser.FileSystemView.getFileSystemView()|
 |javax.swing.filechooser.FileSystemView.getHomeDirectory()|
-|javax.swing.filechooser.FileSystemView.getParentDirectory(File)|Returns the pa
-|javax.swing.filechooser.FileSystemView.getRoots()|Returns all root partitions 
-|javax.swing.filechooser.FileSystemView.getSystemDisplayName(File)|Name of a fi
-|javax.swing.filechooser.FileSystemView.getSystemIcon(File)|Icon for a file, di
-|javax.swing.filechooser.FileSystemView.getSystemTypeDescription(File)|Type des
-|javax.swing.filechooser.FileSystemView.isComputerNode(File)|Used by UI classes
-|javax.swing.filechooser.FileSystemView.isDrive(File)|Used by UI classes to dec
-|javax.swing.filechooser.FileSystemView.isFileSystem(File)|Checks if f represen
-|javax.swing.filechooser.FileSystemView.isFileSystemRoot(File)|Is dir the root 
-|javax.swing.filechooser.FileSystemView.isFloppyDrive(File)|Used by UI classes 
-|javax.swing.filechooser.FileSystemView.isHiddenFile(File)|Returns whether a fi
-|javax.swing.filechooser.FileSystemView.isParent(File,File)|On Windows, a file 
-|javax.swing.filechooser.FileSystemView.isRoot(File)|Determines if the given fi
-|javax.swing.filechooser.FileSystemView.isTraversable(File)|Returns true if the
+|javax.swing.filechooser.FileSystemView.getParentDirectory(File)|Returns the parent directory of dir.
+|javax.swing.filechooser.FileSystemView.getRoots()|Returns all root partitions on this system.
+|javax.swing.filechooser.FileSystemView.getSystemDisplayName(File)|Name of a file, directory, or folder as it would be displayed in  a system file browser.
+|javax.swing.filechooser.FileSystemView.getSystemIcon(File)|Icon for a file, directory, or folder as it would be displayed in  a system file browser.
+|javax.swing.filechooser.FileSystemView.getSystemTypeDescription(File)|Type description for a file, directory, or folder as it would be displayed in  a system file browser.
+|javax.swing.filechooser.FileSystemView.isComputerNode(File)|Used by UI classes to decide whether to display a special icon  for a computer node, e.g.
+|javax.swing.filechooser.FileSystemView.isDrive(File)|Used by UI classes to decide whether to display a special icon  for drives or partitions, e.g.
+|javax.swing.filechooser.FileSystemView.isFileSystem(File)|Checks if f represents a real directory or file as opposed to a  special folder such as "Desktop".
+|javax.swing.filechooser.FileSystemView.isFileSystemRoot(File)|Is dir the root of a tree in the file system, such as a drive  or partition.
+|javax.swing.filechooser.FileSystemView.isFloppyDrive(File)|Used by UI classes to decide whether to display a special icon  for a floppy disk.
+|javax.swing.filechooser.FileSystemView.isHiddenFile(File)|Returns whether a file is hidden or not.
+|javax.swing.filechooser.FileSystemView.isParent(File,File)|On Windows, a file can appear in multiple folders, other than its  parent directory in the filesystem.
+|javax.swing.filechooser.FileSystemView.isRoot(File)|Determines if the given file is a root in the navigatable tree(s).
+|javax.swing.filechooser.FileSystemView.isTraversable(File)|Returns true if the file (directory) can be visited.
 
 *javax.swing.filechooser.FileSystemView_Description*
 
-FileSystemView is JFileChooser's gateway to the file system. Since the JDK1.1 
-File API doesn't allow access to such information as root partitions, file type 
-information, or hidden file bits, this class is designed to intuit as much 
-OS-specific file system information as possible. 
+FileSystemView is JFileChooser's gateway to the file system. Since the JDK1.1 File API doesn't allow access to such information as root partitions, file type information, or 
+hidden file bits, this class is designed to intuit as much OS-specific file system information as possible. 
 
 
 
-Java Licensees may want to provide a different implementation of FileSystemView 
-to better handle a given operating system. 
+Java Licensees may want to provide a different implementation of FileSystemView to better handle a given operating system. 
+
 
 
 *javax.swing.filechooser.FileSystemView()*
@@ -67,6 +66,7 @@ public |java.io.File| createFileObject(
 Returns a File object constructed in dir from the given filename. 
 
 
+
 *javax.swing.filechooser.FileSystemView.createFileObject(String)*
 
 public |java.io.File| createFileObject(java.lang.String path)
@@ -74,23 +74,25 @@ public |java.io.File| createFileObject(java.lang.String path)
 Returns a File object constructed from the given path string. 
 
 
+
 *javax.swing.filechooser.FileSystemView.createFileSystemRoot(File)*
 
 protected |java.io.File| createFileSystemRoot(java.io.File f)
 
-Creates a new File object for f with correct behavior for a file system root 
-directory. 
+Creates a new File object for f with correct behavior for a file system root directory. 
 
-    f - a File object representing a file system root directory, for example "/" on 
-       Unix or "C:\" on Windows. 
+
+    f - a File object representing a file system root directory, for example "/" on Unix or "C:\" on Windows. 
 
     Returns: a new File object 
+
 *javax.swing.filechooser.FileSystemView.createNewFolder(File)*
 
 public abstract |java.io.File| createNewFolder(java.io.File containingDir)
   throws |java.io.IOException|
          
 Creates a new folder with a default folder name. 
+
 
 
 *javax.swing.filechooser.FileSystemView.getChild(File,String)*
@@ -101,12 +103,13 @@ public |java.io.File| getChild(
 
 
 
+
     parent - a File object repesenting a directory or special folder 
     fileName - a name of a file or folder which exists in parent 
 
-    Returns: a File object. This is normally constructed with new File(parent, fileName) 
-             except when parent and child are both special folders, in which 
-             case the File is a wrapper containing a ShellFolder object. 
+    Returns: a File object. This is normally constructed with new File(parent, fileName) except when parent and child are both special folders, in which case the File is a wrapper containing a 
+             ShellFolder object. 
+
 *javax.swing.filechooser.FileSystemView.getDefaultDirectory()*
 
 public |java.io.File| getDefaultDirectory()
@@ -114,19 +117,23 @@ public |java.io.File| getDefaultDirectory()
 Return the user's default starting directory for the file chooser. 
 
 
+
     Returns: a File object representing the default starting folder 
+
 *javax.swing.filechooser.FileSystemView.getFiles(File,boolean)*
 
-public |java.io.File| getFiles(
+public |java.io.File|[] getFiles(
   java.io.File dir,
   boolean useFileHiding)
 
 Gets the list of shown (i.e. not hidden) files. 
 
 
+
 *javax.swing.filechooser.FileSystemView.getFileSystemView()*
 
 public static |javax.swing.filechooser.FileSystemView| getFileSystemView()
+
 
 
 
@@ -138,123 +145,133 @@ public |java.io.File| getHomeDirectory()
 
 
 
+
 *javax.swing.filechooser.FileSystemView.getParentDirectory(File)*
 
 public |java.io.File| getParentDirectory(java.io.File dir)
 
 Returns the parent directory of dir. 
 
+
     dir - the File being queried 
 
     Returns: the parent directory of dir, or null if dir is null 
+
 *javax.swing.filechooser.FileSystemView.getRoots()*
 
-public |java.io.File| getRoots()
+public |java.io.File|[] getRoots()
 
-Returns all root partitions on this system. For example, on Windows, this would 
-be the "Desktop" folder, while on DOS this would be the A: through Z: drives. 
+Returns all root partitions on this system. For example, on Windows, this would be the "Desktop" folder, while on DOS this would be the A: through Z: drives. 
+
 
 
 *javax.swing.filechooser.FileSystemView.getSystemDisplayName(File)*
 
 public |java.lang.String| getSystemDisplayName(java.io.File f)
 
-Name of a file, directory, or folder as it would be displayed in a system file 
-browser. Example from Windows: the "M:\" directory displays as "CD-ROM (M:)" 
+Name of a file, directory, or folder as it would be displayed in a system file browser. Example from Windows: the "M:\" directory displays as "CD-ROM (M:)" 
 
 The default implementation gets information from the ShellFolder class. 
+
 
     f - a File object 
 
     Returns: the file name as it would be displayed by a native file chooser 
+
 *javax.swing.filechooser.FileSystemView.getSystemIcon(File)*
 
 public |javax.swing.Icon| getSystemIcon(java.io.File f)
 
-Icon for a file, directory, or folder as it would be displayed in a system file 
-browser. Example from Windows: the "M:\" directory displays a CD-ROM icon. 
+Icon for a file, directory, or folder as it would be displayed in a system file browser. Example from Windows: the "M:\" directory displays a CD-ROM icon. 
 
 The default implementation gets information from the ShellFolder class. 
+
 
     f - a File object 
 
     Returns: an icon as it would be displayed by a native file chooser 
+
 *javax.swing.filechooser.FileSystemView.getSystemTypeDescription(File)*
 
 public |java.lang.String| getSystemTypeDescription(java.io.File f)
 
-Type description for a file, directory, or folder as it would be displayed in a 
-system file browser. Example from Windows: the "Desktop" folder is desribed as 
-"Desktop". 
+Type description for a file, directory, or folder as it would be displayed in a system file browser. Example from Windows: the "Desktop" folder is desribed as "Desktop". 
 
 Override for platforms with native ShellFolder implementations. 
 
+
     f - a File object 
 
-    Returns: the file type description as it would be displayed by a native file chooser or 
-             null if no native information is available. 
+    Returns: the file type description as it would be displayed by a native file chooser or null if no native information is available. 
+
 *javax.swing.filechooser.FileSystemView.isComputerNode(File)*
 
 public boolean isComputerNode(java.io.File dir)
 
-Used by UI classes to decide whether to display a special icon for a computer 
-node, e.g. "My Computer" or a network server. 
+Used by UI classes to decide whether to display a special icon for a computer node, e.g. "My Computer" or a network server. 
 
 The default implementation has no way of knowing, so always returns false. 
+
 
     dir - a directory 
 
     Returns: 
+
 *javax.swing.filechooser.FileSystemView.isDrive(File)*
 
 public boolean isDrive(java.io.File dir)
 
-Used by UI classes to decide whether to display a special icon for drives or 
-partitions, e.g. a "hard disk" icon. 
+Used by UI classes to decide whether to display a special icon for drives or partitions, e.g. a "hard disk" icon. 
 
 The default implementation has no way of knowing, so always returns false. 
+
 
     dir - a directory 
 
     Returns: 
+
 *javax.swing.filechooser.FileSystemView.isFileSystem(File)*
 
 public boolean isFileSystem(java.io.File f)
 
-Checks if f represents a real directory or file as opposed to a special folder 
-such as "Desktop". Used by UI classes to decide if a folder is selectable when 
-doing directory choosing. 
+Checks if f represents a real directory or file as opposed to a special folder such as "Desktop". Used by UI classes to decide if a folder is selectable when doing directory 
+choosing. 
+
 
     f - a File object 
 
     Returns: true if f is a real file or directory. 
+
 *javax.swing.filechooser.FileSystemView.isFileSystemRoot(File)*
 
 public boolean isFileSystemRoot(java.io.File dir)
 
-Is dir the root of a tree in the file system, such as a drive or partition. 
-Example: Returns true for "C:\" on Windows 98. 
+Is dir the root of a tree in the file system, such as a drive or partition. Example: Returns true for "C:\" on Windows 98. 
+
 
     f - a File object representing a directory 
 
     Returns: true if f is a root of a filesystem 
+
 *javax.swing.filechooser.FileSystemView.isFloppyDrive(File)*
 
 public boolean isFloppyDrive(java.io.File dir)
 
-Used by UI classes to decide whether to display a special icon for a floppy 
-disk. Implies isDrive(dir). 
+Used by UI classes to decide whether to display a special icon for a floppy disk. Implies isDrive(dir). 
 
 The default implementation has no way of knowing, so always returns false. 
+
 
     dir - a directory 
 
     Returns: 
+
 *javax.swing.filechooser.FileSystemView.isHiddenFile(File)*
 
 public boolean isHiddenFile(java.io.File f)
 
 Returns whether a file is hidden or not. 
+
 
 
 *javax.swing.filechooser.FileSystemView.isParent(File,File)*
@@ -263,35 +280,38 @@ public boolean isParent(
   java.io.File folder,
   java.io.File file)
 
-On Windows, a file can appear in multiple folders, other than its parent 
-directory in the filesystem. Folder could for example be the "Desktop" folder 
-which is not the same as file.getParentFile(). 
+On Windows, a file can appear in multiple folders, other than its parent directory in the filesystem. Folder could for example be the "Desktop" folder which is not the same as 
+file.getParentFile(). 
+
 
     folder - a File object repesenting a directory or special folder 
     file - a File object 
 
     Returns: true if folder is a directory or special folder and contains file. 
+
 *javax.swing.filechooser.FileSystemView.isRoot(File)*
 
 public boolean isRoot(java.io.File f)
 
-Determines if the given file is a root in the navigatable tree(s). Examples: 
-Windows 98 has one root, the Desktop folder. DOS has one root per drive letter, 
-C:\, D:\, etc. Unix has one root, the "/" directory. 
+Determines if the given file is a root in the navigatable tree(s). Examples: Windows 98 has one root, the Desktop folder. DOS has one root per drive letter, C:\, D:\, etc. Unix 
+has one root, the "/" directory. 
 
 The default implementation gets information from the ShellFolder class. 
+
 
     f - a File object representing a directory 
 
     Returns: true if f is a root in the navigatable tree. 
+
 *javax.swing.filechooser.FileSystemView.isTraversable(File)*
 
 public |java.lang.Boolean| isTraversable(java.io.File f)
 
-Returns true if the file (directory) can be visited. Returns false if the 
-directory cannot be traversed. 
+Returns true if the file (directory) can be visited. Returns false if the directory cannot be traversed. 
+
 
     f - the File 
 
     Returns: true if the file/directory can be traversed, otherwise false 
+
 

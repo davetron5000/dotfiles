@@ -1,4 +1,6 @@
-*java.security.SignatureSpi* *SignatureSpi* This class defines the Service Provi
+*java.security.SignatureSpi* *SignatureSpi* This class defines the Service Provider Interface (SPI)
+ for the Signature class, which is used to provide the
+ functionality of a digit
 
 public abstract class SignatureSpi
   extends    |java.lang.Object|
@@ -8,7 +10,7 @@ public abstract class SignatureSpi
 |java.security.SignatureSpi_Constructors|
 |java.security.SignatureSpi_Methods|
 
-================================================================================
+====================================================================================================================================================================================
 
 *java.security.SignatureSpi_Fields*
 |java.security.SecureRandom_java.security.SignatureSpi.appRandom|
@@ -17,40 +19,33 @@ public abstract class SignatureSpi
 |java.security.SignatureSpi()|
 
 *java.security.SignatureSpi_Methods*
-|java.security.SignatureSpi.clone()|Returns a clone if the implementation is cl
-|java.security.SignatureSpi.engineGetParameter(String)|Gets the value of the sp
-|java.security.SignatureSpi.engineGetParameters()|This method is overridden by 
-|java.security.SignatureSpi.engineInitSign(PrivateKey)|Initializes this signatu
-|java.security.SignatureSpi.engineInitSign(PrivateKey,SecureRandom)|Initializes
-|java.security.SignatureSpi.engineInitVerify(PublicKey)|Initializes this signat
-|java.security.SignatureSpi.engineSetParameter(AlgorithmParameterSpec)|This met
-|java.security.SignatureSpi.engineSetParameter(String,Object)|Sets the specifie
-|java.security.SignatureSpi.engineSign()|Returns the signature bytes of all the
-|java.security.SignatureSpi.engineSign(byte[],int,int)|Finishes this signature 
-|java.security.SignatureSpi.engineUpdate(byte)|Updates the data to be signed or
-|java.security.SignatureSpi.engineUpdate(byte[],int,int)|Updates the data to be
-|java.security.SignatureSpi.engineUpdate(ByteBuffer)|Updates the data to be sig
-|java.security.SignatureSpi.engineVerify(byte[])|Verifies the passed-in signatu
-|java.security.SignatureSpi.engineVerify(byte[],int,int)|Verifies the passed-in
+|java.security.SignatureSpi.clone()|Returns a clone if the implementation is cloneable.
+|java.security.SignatureSpi.engineGetParameter(String)|Gets the value of the specified algorithm parameter.
+|java.security.SignatureSpi.engineGetParameters()|This method is overridden by providers to return the  parameters used with this signature engine, or null   if this signature eng
+|java.security.SignatureSpi.engineInitSign(PrivateKey)|Initializes this signature object with the specified  private key for signing operations.
+|java.security.SignatureSpi.engineInitSign(PrivateKey,SecureRandom)|Initializes this signature object with the specified  private key and source of randomness for signing operatio
+|java.security.SignatureSpi.engineInitVerify(PublicKey)|Initializes this signature object with the specified  public key for verification operations.
+|java.security.SignatureSpi.engineSetParameter(AlgorithmParameterSpec)|This method is overridden by providers to initialize  this signature engine with the specified parameter set
+|java.security.SignatureSpi.engineSetParameter(String,Object)|Sets the specified algorithm parameter to the specified  value.
+|java.security.SignatureSpi.engineSign()|Returns the signature bytes of all the data  updated so far.
+|java.security.SignatureSpi.engineSign(byte[],int,int)|Finishes this signature operation and stores the resulting signature  bytes in the provided buffer outbuf, starting at  offs
+|java.security.SignatureSpi.engineUpdate(byte)|Updates the data to be signed or verified  using the specified byte.
+|java.security.SignatureSpi.engineUpdate(byte[],int,int)|Updates the data to be signed or verified, using the   specified array of bytes, starting at the specified offset.
+|java.security.SignatureSpi.engineUpdate(ByteBuffer)|Updates the data to be signed or verified using the specified  ByteBuffer.
+|java.security.SignatureSpi.engineVerify(byte[])|Verifies the passed-in signature.
+|java.security.SignatureSpi.engineVerify(byte[],int,int)|Verifies the passed-in signature in the specified array  of bytes, starting at the specified offset.
 
 *java.security.SignatureSpi_Description*
 
-This class defines the Service Provider Interface (SPI) for the Signature 
-class, which is used to provide the functionality of a digital signature 
-algorithm. Digital signatures are used for authentication and integrity 
-assurance of digital data. . All the abstract methods in this class must be 
-implemented by each cryptographic service provider who wishes to supply the 
-implementation of a particular signature algorithm. 
+This class defines the Service Provider Interface (SPI) for the Signature class, which is used to provide the functionality of a digital signature algorithm. Digital signatures 
+are used for authentication and integrity assurance of digital data. . All the abstract methods in this class must be implemented by each cryptographic service provider who wishes 
+to supply the implementation of a particular signature algorithm. 
+
 
 
 *java.security.SecureRandom_java.security.SignatureSpi.appRandom*
 
-This class defines the Service Provider Interface (SPI) for the Signature 
-class, which is used to provide the functionality of a digital signature 
-algorithm. Digital signatures are used for authentication and integrity 
-assurance of digital data. . All the abstract methods in this class must be 
-implemented by each cryptographic service provider who wishes to supply the 
-implementation of a particular signature algorithm. 
+Application-specified source of randomness. 
 
 
 
@@ -69,46 +64,44 @@ public |java.lang.Object| clone()
 Returns a clone if the implementation is cloneable. 
 
 
+
     Returns: a clone if the implementation is cloneable. 
+
 *java.security.SignatureSpi.engineGetParameter(String)*
 
 protected abstract |java.lang.Object| engineGetParameter(java.lang.String param)
   throws |java.security.InvalidParameterException|
          
-Gets the value of the specified algorithm parameter. This method supplies a 
-general-purpose mechanism through which it is possible to get the various 
-parameters of this object. A parameter may be any settable parameter for the 
-algorithm, such as a parameter size, or a source of random bits for signature 
-generation (if appropriate), or an indication of whether or not to perform a 
-specific but optional computation. A uniform algorithm-specific naming scheme 
-for each parameter is desirable but left unspecified at this time. 
+Gets the value of the specified algorithm parameter. This method supplies a general-purpose mechanism through which it is possible to get the various parameters of this object. A 
+parameter may be any settable parameter for the algorithm, such as a parameter size, or a source of random bits for signature generation (if appropriate), or an indication of 
+whether or not to perform a specific but optional computation. A uniform algorithm-specific naming scheme for each parameter is desirable but left unspecified at this time. 
+
+    Deprecated
 
     param - the string name of the parameter. 
 
     Returns: the object that represents the parameter value, or null if there is none. 
+
 *java.security.SignatureSpi.engineGetParameters()*
 
 protected |java.security.AlgorithmParameters| engineGetParameters()
 
-This method is overridden by providers to return the parameters used with this 
-signature engine, or null if this signature engine does not use any parameters. 
+This method is overridden by providers to return the parameters used with this signature engine, or null if this signature engine does not use any parameters. 
 
-The returned parameters may be the same that were used to initialize this 
-signature engine, or may contain a combination of default and randomly 
-generated parameter values used by the underlying signature implementation if 
-this signature engine requires algorithm parameters but was not initialized 
-with any. 
+The returned parameters may be the same that were used to initialize this signature engine, or may contain a combination of default and randomly generated parameter values used by 
+the underlying signature implementation if this signature engine requires algorithm parameters but was not initialized with any. 
 
 
-    Returns: the parameters used with this signature engine, or null if this signature 
-             engine does not use any parameters 
+
+    Returns: the parameters used with this signature engine, or null if this signature engine does not use any parameters 
+
 *java.security.SignatureSpi.engineInitSign(PrivateKey)*
 
 protected abstract void engineInitSign(java.security.PrivateKey privateKey)
   throws |java.security.InvalidKeyException|
          
-Initializes this signature object with the specified private key for signing 
-operations. 
+Initializes this signature object with the specified private key for signing operations. 
+
 
     privateKey - the private key of the identity whose signature will be generated. 
 
@@ -119,11 +112,10 @@ protected void engineInitSign(
   java.security.SecureRandom random)
   throws |java.security.InvalidKeyException|
          
-Initializes this signature object with the specified private key and source of 
-randomness for signing operations. 
+Initializes this signature object with the specified private key and source of randomness for signing operations. 
 
-This concrete method has been added to this previously-defined abstract class. 
-(For backwards compatibility, it cannot be abstract.) 
+This concrete method has been added to this previously-defined abstract class. (For backwards compatibility, it cannot be abstract.) 
+
 
     privateKey - the private key of the identity whose signature will be generated. 
     random - the source of randomness 
@@ -133,8 +125,8 @@ This concrete method has been added to this previously-defined abstract class.
 protected abstract void engineInitVerify(java.security.PublicKey publicKey)
   throws |java.security.InvalidKeyException|
          
-Initializes this signature object with the specified public key for 
-verification operations. 
+Initializes this signature object with the specified public key for verification operations. 
+
 
     publicKey - the public key of the identity whose signature is going to be verified. 
 
@@ -143,8 +135,8 @@ verification operations.
 protected void engineSetParameter(java.security.spec.AlgorithmParameterSpec params)
   throws |java.security.InvalidAlgorithmParameterException|
          
-This method is overridden by providers to initialize this signature engine with 
-the specified parameter set. 
+This method is overridden by providers to initialize this signature engine with the specified parameter set. 
+
 
     params - the parameters 
 
@@ -155,28 +147,29 @@ protected abstract void engineSetParameter(
   java.lang.Object value)
   throws |java.security.InvalidParameterException|
          
-Sets the specified algorithm parameter to the specified value. This method 
-supplies a general-purpose mechanism through which it is possible to set the 
-various parameters of this object. A parameter may be any settable parameter 
-for the algorithm, such as a parameter size, or a source of random bits for 
-signature generation (if appropriate), or an indication of whether or not to 
-perform a specific but optional computation. A uniform algorithm-specific 
-naming scheme for each parameter is desirable but left unspecified at this 
-time. 
+Sets the specified algorithm parameter to the specified value. This method supplies a general-purpose mechanism through which it is possible to set the various parameters of this 
+object. A parameter may be any settable parameter for the algorithm, such as a parameter size, or a source of random bits for signature generation (if appropriate), or an 
+indication of whether or not to perform a specific but optional computation. A uniform algorithm-specific naming scheme for each parameter is desirable but left unspecified at 
+this time. 
+
+    Deprecated: Replaced by {@link 
+ #engineSetParameter(java.security.spec.AlgorithmParameterSpec)
+ engineSetParameter}.
 
     param - the string identifier of the parameter. 
     value - the parameter value. 
 
 *java.security.SignatureSpi.engineSign()*
 
-protected abstract byte engineSign()
+protected abstract byte[] engineSign()
   throws |java.security.SignatureException|
          
-Returns the signature bytes of all the data updated so far. The format of the 
-signature depends on the underlying signature scheme. 
+Returns the signature bytes of all the data updated so far. The format of the signature depends on the underlying signature scheme. 
+
 
 
     Returns: the signature bytes of the signing operation's result. 
+
 *java.security.SignatureSpi.engineSign(byte[],int,int)*
 
 protected int engineSign(
@@ -185,32 +178,30 @@ protected int engineSign(
   int len)
   throws |java.security.SignatureException|
          
-Finishes this signature operation and stores the resulting signature bytes in 
-the provided buffer outbuf, starting at offset. The format of the signature 
-depends on the underlying signature scheme. 
+Finishes this signature operation and stores the resulting signature bytes in the provided buffer outbuf, starting at offset. The format of the signature depends on the underlying 
+signature scheme. 
 
-The signature implementation is reset to its initial state (the state it was in 
-after a call to one of the engineInitSign methods) and can be reused to 
-generate further signatures with the same private key. 
+The signature implementation is reset to its initial state (the state it was in after a call to one of the engineInitSign methods) and can be reused to generate further signatures 
+with the same private key. 
 
-This method should be abstract, but we leave it concrete for binary 
-compatibility. Knowledgeable providers should override this method. 
+This method should be abstract, but we leave it concrete for binary compatibility. Knowledgeable providers should override this method. 
+
 
     outbuf - buffer for the signature result. 
     offset - offset into outbuf where the signature is stored. 
-    len - number of bytes within outbuf allotted for the signature. Both this default 
-       implementation and the SUN provider do not return partial digests. If 
-       the value of this parameter is less than the actual signature length, 
-       this method will throw a SignatureException. This parameter is ignored 
-       if its value is greater than or equal to the actual signature length. 
+    len - number of bytes within outbuf allotted for the signature. Both this default implementation and the SUN provider do not return partial digests. If the value of this parameter is 
+       less than the actual signature length, this method will throw a SignatureException. This parameter is ignored if its value is greater than or equal to the actual signature 
+       length. 
 
     Returns: the number of bytes placed into outbuf 
+
 *java.security.SignatureSpi.engineUpdate(byte)*
 
 protected abstract void engineUpdate(byte b)
   throws |java.security.SignatureException|
          
 Updates the data to be signed or verified using the specified byte. 
+
 
     b - the byte to use for the update. 
 
@@ -222,8 +213,8 @@ protected abstract void engineUpdate(
   int len)
   throws |java.security.SignatureException|
          
-Updates the data to be signed or verified, using the specified array of bytes, 
-starting at the specified offset. 
+Updates the data to be signed or verified, using the specified array of bytes, starting at the specified offset. 
+
 
     b - the array of bytes 
     off - the offset to start from in the array of bytes 
@@ -233,10 +224,9 @@ starting at the specified offset.
 
 protected void engineUpdate(java.nio.ByteBuffer input)
 
-Updates the data to be signed or verified using the specified ByteBuffer. 
-Processes the data.remaining() bytes starting at at data.position(). Upon 
-return, the buffer's position will be equal to its limit; its limit will not 
-have changed. 
+Updates the data to be signed or verified using the specified ByteBuffer. Processes the data.remaining() bytes starting at at data.position(). Upon return, the buffer's position 
+will be equal to its limit; its limit will not have changed. 
+
 
     input - the ByteBuffer 
 
@@ -247,9 +237,11 @@ protected abstract boolean engineVerify(byte[] sigBytes)
          
 Verifies the passed-in signature. 
 
+
     sigBytes - the signature bytes to be verified. 
 
     Returns: true if the signature was verified, false if not. 
+
 *java.security.SignatureSpi.engineVerify(byte[],int,int)*
 
 protected boolean engineVerify(
@@ -258,14 +250,15 @@ protected boolean engineVerify(
   int length)
   throws |java.security.SignatureException|
          
-Verifies the passed-in signature in the specified array of bytes, starting at 
-the specified offset. 
+Verifies the passed-in signature in the specified array of bytes, starting at the specified offset. 
 
 Note: Subclasses should overwrite the default implementation. 
+
 
     sigBytes - the signature bytes to be verified. 
     offset - the offset to start from in the array of bytes. 
     length - the number of bytes to use, starting at offset. 
 
     Returns: true if the signature was verified, false if not. 
+
 

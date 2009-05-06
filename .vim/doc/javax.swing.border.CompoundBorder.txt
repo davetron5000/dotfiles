@@ -1,4 +1,6 @@
-*javax.swing.border.CompoundBorder* *CompoundBorder* A composite Border class us
+*javax.swing.border.CompoundBorder* *CompoundBorder* A composite Border class used to compose two Border objects
+ into a single border by nesting an inside Border object within 
+ t
 
 public class CompoundBorder
   extends    |javax.swing.border.AbstractBorder|
@@ -8,85 +10,48 @@ public class CompoundBorder
 |javax.swing.border.CompoundBorder_Constructors|
 |javax.swing.border.CompoundBorder_Methods|
 
-================================================================================
+====================================================================================================================================================================================
 
 *javax.swing.border.CompoundBorder_Fields*
 |javax.swing.border.Border_javax.swing.border.CompoundBorder.insideBorder|
 |javax.swing.border.Border_javax.swing.border.CompoundBorder.outsideBorder|
 
 *javax.swing.border.CompoundBorder_Constructors*
-|javax.swing.border.CompoundBorder()|Creates a compound border with null outsid
-|javax.swing.border.CompoundBorder(Border,Border)|Creates a compound border wit
+|javax.swing.border.CompoundBorder()|Creates a compound border with null outside and inside borders.
+|javax.swing.border.CompoundBorder(Border,Border)|Creates a compound border with the specified outside and   inside borders.
 
 *javax.swing.border.CompoundBorder_Methods*
-|javax.swing.border.CompoundBorder.getBorderInsets(Component)|Returns the inset
-|javax.swing.border.CompoundBorder.getBorderInsets(Component,Insets)|Reinitiali
-|javax.swing.border.CompoundBorder.getInsideBorder()|Returns the inside border 
-|javax.swing.border.CompoundBorder.getOutsideBorder()|Returns the outside borde
-|javax.swing.border.CompoundBorder.isBorderOpaque()|Returns whether or not this
-|javax.swing.border.CompoundBorder.paintBorder(Component,Graphics,int,int,int,int)|
+|javax.swing.border.CompoundBorder.getBorderInsets(Component)|Returns the insets of the composite border by adding  the insets of the outside border to the insets of the  inside b
+|javax.swing.border.CompoundBorder.getBorderInsets(Component,Insets)|Reinitialize the insets parameter with this Border's current Insets.
+|javax.swing.border.CompoundBorder.getInsideBorder()|Returns the inside border object.
+|javax.swing.border.CompoundBorder.getOutsideBorder()|Returns the outside border object.
+|javax.swing.border.CompoundBorder.isBorderOpaque()|Returns whether or not this compound border is opaque.
+|javax.swing.border.CompoundBorder.paintBorder(Component,Graphics,int,int,int,int)|Paints the compound border by painting the outside border  with the specified position and size 
 
 *javax.swing.border.CompoundBorder_Description*
 
-A composite Border class used to compose two Border objects into a single 
-border by nesting an inside Border object within the insets of an outside 
-Border object. 
+A composite Border class used to compose two Border objects into a single border by nesting an inside Border object within the insets of an outside Border object. 
 
-For example, this class may be used to add blank margin space to a component 
-with an existing decorative border: 
+For example, this class may be used to add blank margin space to a component with an existing decorative border: 
 
 
 
-Border border = comp.getBorder(); Border margin = new EmptyBorder(10,10,10,10); 
-comp.setBorder(new CompoundBorder(border, margin)); 
+Border border = comp.getBorder(); Border margin = new EmptyBorder(10,10,10,10); comp.setBorder(new CompoundBorder(border, margin)); 
 
-Warning: Serialized objects of this class will not be compatible with future 
-Swing releases. The current serialization support is appropriate for short term 
-storage or RMI between applications running the same version of Swing. As of 
-1.4, support for long term storage of all JavaBeansTM has been added to the 
-java.beans package. Please see (|java.beans.XMLEncoder|) . 
+Warning: Serialized objects of this class will not be compatible with future Swing releases. The current serialization support is appropriate for short term storage or RMI between 
+applications running the same version of Swing. As of 1.4, support for long term storage of all JavaBeansTM has been added to the java.beans package. Please see 
+(|java.beans.XMLEncoder|) . 
+
 
 
 *javax.swing.border.Border_javax.swing.border.CompoundBorder.insideBorder*
 
-A composite Border class used to compose two Border objects into a single 
-border by nesting an inside Border object within the insets of an outside 
-Border object. 
 
-For example, this class may be used to add blank margin space to a component 
-with an existing decorative border: 
-
-
-
-Border border = comp.getBorder(); Border margin = new EmptyBorder(10,10,10,10); 
-comp.setBorder(new CompoundBorder(border, margin)); 
-
-Warning: Serialized objects of this class will not be compatible with future 
-Swing releases. The current serialization support is appropriate for short term 
-storage or RMI between applications running the same version of Swing. As of 
-1.4, support for long term storage of all JavaBeansTM has been added to the 
-java.beans package. Please see (|java.beans.XMLEncoder|) . 
 
 
 *javax.swing.border.Border_javax.swing.border.CompoundBorder.outsideBorder*
 
-A composite Border class used to compose two Border objects into a single 
-border by nesting an inside Border object within the insets of an outside 
-Border object. 
 
-For example, this class may be used to add blank margin space to a component 
-with an existing decorative border: 
-
-
-
-Border border = comp.getBorder(); Border margin = new EmptyBorder(10,10,10,10); 
-comp.setBorder(new CompoundBorder(border, margin)); 
-
-Warning: Serialized objects of this class will not be compatible with future 
-Swing releases. The current serialization support is appropriate for short term 
-storage or RMI between applications running the same version of Swing. As of 
-1.4, support for long term storage of all JavaBeansTM has been added to the 
-java.beans package. Please see (|java.beans.XMLEncoder|) . 
 
 
 
@@ -103,8 +68,7 @@ public CompoundBorder(
   javax.swing.border.Border outsideBorder,
   javax.swing.border.Border insideBorder)
 
-Creates a compound border with the specified outside and inside borders. Either 
-border may be null. 
+Creates a compound border with the specified outside and inside borders. Either border may be null. 
 
     outsideBorder - the outside border 
     insideBorder - the inside border to be nested 
@@ -113,8 +77,8 @@ border may be null.
 
 public |java.awt.Insets| getBorderInsets(java.awt.Component c)
 
-Returns the insets of the composite border by adding the insets of the outside 
-border to the insets of the inside border. 
+Returns the insets of the composite border by adding the insets of the outside border to the insets of the inside border. 
+
 
     c - the component for which this border insets value applies 
 
@@ -126,6 +90,7 @@ public |java.awt.Insets| getBorderInsets(
 
 Reinitialize the insets parameter with this Border's current Insets. 
 
+
     c - the component for which this border insets value applies 
     insets - the object to be reinitialized 
 
@@ -136,6 +101,7 @@ public |javax.swing.border.Border| getInsideBorder()
 Returns the inside border object. 
 
 
+
 *javax.swing.border.CompoundBorder.getOutsideBorder()*
 
 public |javax.swing.border.Border| getOutsideBorder()
@@ -143,12 +109,13 @@ public |javax.swing.border.Border| getOutsideBorder()
 Returns the outside border object. 
 
 
+
 *javax.swing.border.CompoundBorder.isBorderOpaque()*
 
 public boolean isBorderOpaque()
 
-Returns whether or not this compound border is opaque. Returns true if both the 
-inside and outside borders are non-null and opaque; returns false otherwise. 
+Returns whether or not this compound border is opaque. Returns true if both the inside and outside borders are non-null and opaque; returns false otherwise. 
+
 
 
 *javax.swing.border.CompoundBorder.paintBorder(Component,Graphics,int,int,int,int)*
@@ -161,9 +128,9 @@ public void paintBorder(
   int width,
   int height)
 
-Paints the compound border by painting the outside border with the specified 
-position and size and then painting the inside border at the specified position 
-and size offset by the insets of the outside border. 
+Paints the compound border by painting the outside border with the specified position and size and then painting the inside border at the specified position and size offset by the 
+insets of the outside border. 
+
 
     c - the component for which this border is being painted 
     g - the paint graphics 

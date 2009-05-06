@@ -1,4 +1,5 @@
-*javax.swing.text.html.HTMLEditorKit.HTMLTextAction* *HTMLEditorKit.HTMLTextAction* 
+*javax.swing.text.html.HTMLEditorKit.HTMLTextAction* *HTMLEditorKit.HTMLTextAction* An abstract Action providing some convenience methods that may
+ be useful in inserting HTML into
 
 public abstract static class HTMLEditorKit.HTMLTextAction
   extends    |javax.swing.text.StyledEditorKit.StyledTextAction|
@@ -8,24 +9,23 @@ public abstract static class HTMLEditorKit.HTMLTextAction
 |javax.swing.text.html.HTMLEditorKit.HTMLTextAction_Constructors|
 |javax.swing.text.html.HTMLEditorKit.HTMLTextAction_Methods|
 
-================================================================================
+====================================================================================================================================================================================
 
 *javax.swing.text.html.HTMLEditorKit.HTMLTextAction_Constructors*
 |javax.swing.text.html.HTMLEditorKit.HTMLTextAction(String)|
 
 *javax.swing.text.html.HTMLEditorKit.HTMLTextAction_Methods*
-|javax.swing.text.html.HTMLEditorKit.HTMLTextAction.elementCountToTag(HTMLDocument,int,HTML.Tag)|
-|javax.swing.text.html.HTMLEditorKit.HTMLTextAction.findElementMatchingTag(HTMLDocument,int,HTML.Tag)|
-|javax.swing.text.html.HTMLEditorKit.HTMLTextAction.getElementsAt(HTMLDocument,int)|
+|javax.swing.text.html.HTMLEditorKit.HTMLTextAction.elementCountToTag(HTMLDocument,int,HTML.Tag)|Returns number of elements, starting at the deepest leaf, needed  to get to an ele
+|javax.swing.text.html.HTMLEditorKit.HTMLTextAction.findElementMatchingTag(HTMLDocument,int,HTML.Tag)|Returns the deepest element at offset matching  tag.
+|javax.swing.text.html.HTMLEditorKit.HTMLTextAction.getElementsAt(HTMLDocument,int)|Returns an array of the Elements that contain offset.
 |javax.swing.text.html.HTMLEditorKit.HTMLTextAction.getHTMLDocument(JEditorPane)|
 |javax.swing.text.html.HTMLEditorKit.HTMLTextAction.getHTMLEditorKit(JEditorPane)|
 
 *javax.swing.text.html.HTMLEditorKit.HTMLTextAction_Description*
 
-An abstract Action providing some convenience methods that may be useful in 
-inserting HTML into an existing document. NOTE: None of the convenience methods 
-obtain a lock on the document. If you have another thread modifying the text 
-these methods may have inconsistent behavior, or return the wrong thing. 
+An abstract Action providing some convenience methods that may be useful in inserting HTML into an existing document. NOTE: None of the convenience methods obtain a lock on the 
+document. If you have another thread modifying the text these methods may have inconsistent behavior, or return the wrong thing. 
+
 
 
 *javax.swing.text.html.HTMLEditorKit.HTMLTextAction(String)*
@@ -42,9 +42,9 @@ protected int elementCountToTag(
   int offset,
   javax.swing.text.html.HTML.Tag tag)
 
-Returns number of elements, starting at the deepest leaf, needed to get to an 
-element representing tag. This will return -1 if no elements is found 
-representing tag, or 0 if the parent of the leaf at offset represents tag. 
+Returns number of elements, starting at the deepest leaf, needed to get to an element representing tag. This will return -1 if no elements is found representing tag, or 0 if the 
+parent of the leaf at offset represents tag. 
+
 
 
 *javax.swing.text.html.HTMLEditorKit.HTMLTextAction.findElementMatchingTag(HTMLDocument,int,HTML.Tag)*
@@ -57,14 +57,15 @@ protected |javax.swing.text.Element| findElementMatchingTag(
 Returns the deepest element at offset matching tag. 
 
 
+
 *javax.swing.text.html.HTMLEditorKit.HTMLTextAction.getElementsAt(HTMLDocument,int)*
 
-protected |javax.swing.text.Element| getElementsAt(
+protected |javax.swing.text.Element|[] getElementsAt(
   javax.swing.text.html.HTMLDocument doc,
   int offset)
 
-Returns an array of the Elements that contain offset. The first elements 
-corresponds to the root. 
+Returns an array of the Elements that contain offset. The first elements corresponds to the root. 
+
 
 
 *javax.swing.text.html.HTMLEditorKit.HTMLTextAction.getHTMLDocument(JEditorPane)*
@@ -74,7 +75,9 @@ protected |javax.swing.text.html.HTMLDocument| getHTMLDocument(javax.swing.JEdit
 
 
 
+
     Returns: HTMLDocument of e. 
+
 *javax.swing.text.html.HTMLEditorKit.HTMLTextAction.getHTMLEditorKit(JEditorPane)*
 
 protected |javax.swing.text.html.HTMLEditorKit| getHTMLEditorKit(javax.swing.JEditorPane e)
@@ -82,5 +85,7 @@ protected |javax.swing.text.html.HTMLEditorKit| getHTMLEditorKit(javax.swing.JEd
 
 
 
+
     Returns: HTMLEditorKit for e. 
+
 

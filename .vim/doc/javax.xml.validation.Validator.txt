@@ -1,4 +1,4 @@
-*javax.xml.validation.Validator* *Validator* A processor that checks an XML docu
+*javax.xml.validation.Validator* *Validator* A processor that checks an XML document againstSchema.
 
 public abstract class Validator
   extends    |java.lang.Object|
@@ -8,39 +8,34 @@ public abstract class Validator
 |javax.xml.validation.Validator_Constructors|
 |javax.xml.validation.Validator_Methods|
 
-================================================================================
+====================================================================================================================================================================================
 
 *javax.xml.validation.Validator_Constructors*
 |javax.xml.validation.Validator()|Constructor for derived classes.
 
 *javax.xml.validation.Validator_Methods*
-|javax.xml.validation.Validator.getErrorHandler()|Gets the currentErrorHandlers
-|javax.xml.validation.Validator.getFeature(String)|Look up the value of a featu
-|javax.xml.validation.Validator.getProperty(String)|Look up the value of a prop
-|javax.xml.validation.Validator.getResourceResolver()|Gets the currentLSResourc
-|javax.xml.validation.Validator.reset()|Reset this Validator to its original co
-|javax.xml.validation.Validator.setErrorHandler(ErrorHandler)|Sets theErrorHand
-|javax.xml.validation.Validator.setFeature(String,boolean)|Set the value of a f
-|javax.xml.validation.Validator.setProperty(String,Object)|Set the value of a p
-|javax.xml.validation.Validator.setResourceResolver(LSResourceResolver)|Sets th
+|javax.xml.validation.Validator.getErrorHandler()|Gets the currentErrorHandlerset to thisValidator.
+|javax.xml.validation.Validator.getFeature(String)|Look up the value of a feature flag.
+|javax.xml.validation.Validator.getProperty(String)|Look up the value of a property.
+|javax.xml.validation.Validator.getResourceResolver()|Gets the currentLSResourceResolverset to thisValidator.
+|javax.xml.validation.Validator.reset()|Reset this Validator to its original configuration.
+|javax.xml.validation.Validator.setErrorHandler(ErrorHandler)|Sets theErrorHandlerto receive errors encountered  during the validate method invocation.
+|javax.xml.validation.Validator.setFeature(String,boolean)|Set the value of a feature flag.
+|javax.xml.validation.Validator.setProperty(String,Object)|Set the value of a property.
+|javax.xml.validation.Validator.setResourceResolver(LSResourceResolver)|Sets theLSResourceResolverto customize  resource resolution while in a validation episode.
 |javax.xml.validation.Validator.validate(Source)|Validates the specified input.
-|javax.xml.validation.Validator.validate(Source,Result)|Validates the specified
+|javax.xml.validation.Validator.validate(Source,Result)|Validates the specified input and send the augmented validation  result to the specified output.
 
 *javax.xml.validation.Validator_Description*
 
-A processor that checks an XML document against (|javax.xml.validation.Schema|) 
-. 
+A processor that checks an XML document against (|javax.xml.validation.Schema|) . 
 
-A validator is a thread-unsafe and non-reentrant object. In other words, it is 
-the application's responsibility to make sure that one 
-(|javax.xml.validation.Validator|) object is not used from more than one thread 
-at any given time, and while the validate method is invoked, applications may 
-not recursively call the validate method. 
+A validator is a thread-unsafe and non-reentrant object. In other words, it is the application's responsibility to make sure that one (|javax.xml.validation.Validator|) object is 
+not used from more than one thread at any given time, and while the validate method is invoked, applications may not recursively call the validate method. 
 
-Note that while the (|javax.xml.validation.Validator|) and 
-(|javax.xml.validation.Validator|) methods take a 
-(|javax.xml.transform.Source|) instance, the Source instance must be a 
+Note that while the (|javax.xml.validation.Validator|) and (|javax.xml.validation.Validator|) methods take a (|javax.xml.transform.Source|) instance, the Source instance must be a 
 SAXSource or DOMSource. 
+
 
 
 *javax.xml.validation.Validator()*
@@ -51,22 +46,20 @@ Constructor for derived classes.
 
 The constructor does nothing. 
 
-Derived classes must create (|javax.xml.validation.Validator|) objects that 
-have null (|org.xml.sax.ErrorHandler|) and null 
-(|org.w3c.dom.ls.LSResourceResolver|) . 
+Derived classes must create (|javax.xml.validation.Validator|) objects that have null (|org.xml.sax.ErrorHandler|) and null (|org.w3c.dom.ls.LSResourceResolver|) . 
 
 
 *javax.xml.validation.Validator.getErrorHandler()*
 
 public abstract |org.xml.sax.ErrorHandler| getErrorHandler()
 
-Gets the current (|org.xml.sax.ErrorHandler|) set to this 
-(|javax.xml.validation.Validator|) . 
+Gets the current (|org.xml.sax.ErrorHandler|) set to this (|javax.xml.validation.Validator|) . 
 
 
-    Returns: This method returns the object that was last set through the {@link 
-             #setErrorHandler(ErrorHandler)} method, or null if that method has 
-             never been called since this {@link Validator} has created. 
+
+    Returns: This method returns the object that was last set through the {@link #setErrorHandler(ErrorHandler)} method, or null if that method has never been called since this {@link 
+             Validator} has created. 
+
 *javax.xml.validation.Validator.getFeature(String)*
 
 public boolean getFeature(java.lang.String name)
@@ -75,17 +68,16 @@ public boolean getFeature(java.lang.String name)
          
 Look up the value of a feature flag. 
 
-The feature name is any fully-qualified URI. It is possible for a 
-(|javax.xml.validation.Validator|) to recognize a feature name but temporarily 
-be unable to return its value. Some feature values may be available only in 
-specific contexts, such as before, during, or after a validation. 
+The feature name is any fully-qualified URI. It is possible for a (|javax.xml.validation.Validator|) to recognize a feature name but temporarily be unable to return its value. 
+Some feature values may be available only in specific contexts, such as before, during, or after a validation. 
 
-Implementors are free (and encouraged) to invent their own features, using 
-names built on their own URIs. 
+Implementors are free (and encouraged) to invent their own features, using names built on their own URIs. 
+
 
     name - The feature name, which is a non-null fully-qualified URI. 
 
     Returns: The current value of the feature (true or false). 
+
 *javax.xml.validation.Validator.getProperty(String)*
 
 public |java.lang.Object| getProperty(java.lang.String name)
@@ -94,85 +86,68 @@ public |java.lang.Object| getProperty(java.lang.String name)
          
 Look up the value of a property. 
 
-The property name is any fully-qualified URI. It is possible for a 
-(|javax.xml.validation.Validator|) to recognize a property name but temporarily 
-be unable to return its value. Some property values may be available only in 
-specific contexts, such as before, during, or after a validation. 
+The property name is any fully-qualified URI. It is possible for a (|javax.xml.validation.Validator|) to recognize a property name but temporarily be unable to return its value. 
+Some property values may be available only in specific contexts, such as before, during, or after a validation. 
 
-(|javax.xml.validation.Validator|) s are not required to recognize any specific 
-property names. 
+(|javax.xml.validation.Validator|) s are not required to recognize any specific property names. 
 
-Implementors are free (and encouraged) to invent their own properties, using 
-names built on their own URIs. 
+Implementors are free (and encouraged) to invent their own properties, using names built on their own URIs. 
+
 
     name - The property name, which is a non-null fully-qualified URI. 
 
     Returns: The current value of the property. 
+
 *javax.xml.validation.Validator.getResourceResolver()*
 
 public abstract |org.w3c.dom.ls.LSResourceResolver| getResourceResolver()
 
-Gets the current (|org.w3c.dom.ls.LSResourceResolver|) set to this 
-(|javax.xml.validation.Validator|) . 
+Gets the current (|org.w3c.dom.ls.LSResourceResolver|) set to this (|javax.xml.validation.Validator|) . 
 
 
-    Returns: This method returns the object that was last set through the {@link 
-             #setResourceResolver(LSResourceResolver)} method, or null if that 
-             method has never been called since this {@link Validator} has 
-             created. 
+
+    Returns: This method returns the object that was last set through the {@link #setResourceResolver(LSResourceResolver)} method, or null if that method has never been called since this 
+             {@link Validator} has created. 
+
 *javax.xml.validation.Validator.reset()*
 
 public abstract void reset()
 
 Reset this Validator to its original configuration. 
 
-Validator is reset to the same state as when it was created with 
-(|javax.xml.validation.Schema|) . reset() is designed to allow the reuse of 
-existing Validators thus saving resources associated with the creation of new 
-Validators. 
+Validator is reset to the same state as when it was created with (|javax.xml.validation.Schema|) . reset() is designed to allow the reuse of existing Validators thus saving 
+resources associated with the creation of new Validators. 
 
-The reset Validator is not guaranteed to have the same 
-(|org.w3c.dom.ls.LSResourceResolver|) or (|org.xml.sax.ErrorHandler|) Objects, 
-e.g. (|java.lang.Object|) . It is guaranteed to have a functionally equal 
-LSResourceResolver and ErrorHandler. 
+The reset Validator is not guaranteed to have the same (|org.w3c.dom.ls.LSResourceResolver|) or (|org.xml.sax.ErrorHandler|) Objects, e.g. (|java.lang.Object|) . It is guaranteed 
+to have a functionally equal LSResourceResolver and ErrorHandler. 
+
 
 
 *javax.xml.validation.Validator.setErrorHandler(ErrorHandler)*
 
 public abstract void setErrorHandler(org.xml.sax.ErrorHandler errorHandler)
 
-Sets the (|org.xml.sax.ErrorHandler|) to receive errors encountered during the 
-validate method invocation. 
+Sets the (|org.xml.sax.ErrorHandler|) to receive errors encountered during the validate method invocation. 
 
-Error handler can be used to customize the error handling process during a 
-validation. When an (|org.xml.sax.ErrorHandler|) is set, errors found during 
-the validation will be first sent to the (|org.xml.sax.ErrorHandler|) . 
+Error handler can be used to customize the error handling process during a validation. When an (|org.xml.sax.ErrorHandler|) is set, errors found during the validation will be 
+first sent to the (|org.xml.sax.ErrorHandler|) . 
 
-The error handler can abort further validation immediately by throwing 
-(|org.xml.sax.SAXException|) from the handler. Or for example it can print an 
-error to the screen and try to continue the validation by returning normally 
-from the (|org.xml.sax.ErrorHandler|) If any (|java.lang.Throwable|) is thrown 
-from an (|org.xml.sax.ErrorHandler|) , the caller of the validate method will 
-be thrown the same (|java.lang.Throwable|) object. 
+The error handler can abort further validation immediately by throwing (|org.xml.sax.SAXException|) from the handler. Or for example it can print an error to the screen and try to 
+continue the validation by returning normally from the (|org.xml.sax.ErrorHandler|) If any (|java.lang.Throwable|) is thrown from an (|org.xml.sax.ErrorHandler|) , the caller of 
+the validate method will be thrown the same (|java.lang.Throwable|) object. 
 
-(|javax.xml.validation.Validator|) is not allowed to throw 
-(|org.xml.sax.SAXException|) without first reporting it to 
-(|org.xml.sax.ErrorHandler|) . 
+(|javax.xml.validation.Validator|) is not allowed to throw (|org.xml.sax.SAXException|) without first reporting it to (|org.xml.sax.ErrorHandler|) . 
 
-When the (|org.xml.sax.ErrorHandler|) is null, the implementation will behave 
-as if the following (|org.xml.sax.ErrorHandler|) is set: 
+When the (|org.xml.sax.ErrorHandler|) is null, the implementation will behave as if the following (|org.xml.sax.ErrorHandler|) is set: 
 
-class DraconianErrorHandler implements (|org.xml.sax.ErrorHandler|) { public 
-void fatalError( (|org.xml.sax.SAXParseException|) e ) throws 
-(|org.xml.sax.SAXException|) { throw e; } public void error( 
-(|org.xml.sax.SAXParseException|) e ) throws (|org.xml.sax.SAXException|) { 
-throw e; } public void warning( (|org.xml.sax.SAXParseException|) e ) throws 
+class DraconianErrorHandler implements (|org.xml.sax.ErrorHandler|) { public void fatalError( (|org.xml.sax.SAXParseException|) e ) throws (|org.xml.sax.SAXException|) { throw e; 
+} public void error( (|org.xml.sax.SAXParseException|) e ) throws (|org.xml.sax.SAXException|) { throw e; } public void warning( (|org.xml.sax.SAXParseException|) e ) throws 
 (|org.xml.sax.SAXException|) { // noop } } 
 
 
 
-When a new (|javax.xml.validation.Validator|) object is created, initially this 
-field is set to null. 
+When a new (|javax.xml.validation.Validator|) object is created, initially this field is set to null. 
+
 
     errorHandler - A new error handler to be set. This parameter can be null. 
 
@@ -186,14 +161,12 @@ public void setFeature(
          
 Set the value of a feature flag. 
 
-Feature can be used to control the way a (|javax.xml.validation.Validator|) 
-parses schemas, although (|javax.xml.validation.Validator|) s are not required 
-to recognize any specific property names. 
+Feature can be used to control the way a (|javax.xml.validation.Validator|) parses schemas, although (|javax.xml.validation.Validator|) s are not required to recognize any 
+specific property names. 
 
-The feature name is any fully-qualified URI. It is possible for a 
-(|javax.xml.validation.Validator|) to expose a feature value but to be unable 
-to change the current value. Some feature values may be immutable or mutable 
-only in specific contexts, such as before, during, or after a validation. 
+The feature name is any fully-qualified URI. It is possible for a (|javax.xml.validation.Validator|) to expose a feature value but to be unable to change the current value. Some 
+feature values may be immutable or mutable only in specific contexts, such as before, during, or after a validation. 
+
 
     name - The feature name, which is a non-null fully-qualified URI. 
     value - The requested value of the feature (true or false). 
@@ -208,14 +181,11 @@ public void setProperty(
          
 Set the value of a property. 
 
-The property name is any fully-qualified URI. It is possible for a 
-(|javax.xml.validation.Validator|) to recognize a property name but to be 
-unable to change the current value. Some property values may be immutable or 
-mutable only in specific contexts, such as before, during, or after a 
-validation. 
+The property name is any fully-qualified URI. It is possible for a (|javax.xml.validation.Validator|) to recognize a property name but to be unable to change the current value. 
+Some property values may be immutable or mutable only in specific contexts, such as before, during, or after a validation. 
 
-(|javax.xml.validation.Validator|) s are not required to recognize setting any 
-specific property names. 
+(|javax.xml.validation.Validator|) s are not required to recognize setting any specific property names. 
+
 
     name - The property name, which is a non-null fully-qualified URI. 
     object - The requested value for the property. 
@@ -224,31 +194,25 @@ specific property names.
 
 public abstract void setResourceResolver(org.w3c.dom.ls.LSResourceResolver resourceResolver)
 
-Sets the (|org.w3c.dom.ls.LSResourceResolver|) to customize resource resolution 
-while in a validation episode. 
+Sets the (|org.w3c.dom.ls.LSResourceResolver|) to customize resource resolution while in a validation episode. 
 
-(|javax.xml.validation.Validator|) uses a (|org.w3c.dom.ls.LSResourceResolver|) 
-when it needs to locate external resources while a validation, although exactly 
-what constitutes "locating external resources" is up to each schema language. 
+(|javax.xml.validation.Validator|) uses a (|org.w3c.dom.ls.LSResourceResolver|) when it needs to locate external resources while a validation, although exactly what constitutes 
+"locating external resources" is up to each schema language. 
 
-When the (|org.w3c.dom.ls.LSResourceResolver|) is null, the implementation will 
-behave as if the following (|org.w3c.dom.ls.LSResourceResolver|) is set: 
+When the (|org.w3c.dom.ls.LSResourceResolver|) is null, the implementation will behave as if the following (|org.w3c.dom.ls.LSResourceResolver|) is set: 
 
-class DumbLSResourceResolver implements (|org.w3c.dom.ls.LSResourceResolver|) { 
-public (|org.w3c.dom.ls.LSInput|) resolveResource( String publicId, String 
-systemId, String baseURI) { 
+class DumbLSResourceResolver implements (|org.w3c.dom.ls.LSResourceResolver|) { public (|org.w3c.dom.ls.LSInput|) resolveResource( String publicId, String systemId, String 
+baseURI) { 
 
 return null; // always return null } } 
 
 
 
-If a (|org.w3c.dom.ls.LSResourceResolver|) throws a 
-(|java.lang.RuntimeException|) (or instances of its derived classes), then the 
-(|javax.xml.validation.Validator|) will abort the parsing and the caller of the 
-validate method will receive the same (|java.lang.RuntimeException|) . 
+If a (|org.w3c.dom.ls.LSResourceResolver|) throws a (|java.lang.RuntimeException|) (or instances of its derived classes), then the (|javax.xml.validation.Validator|) will abort 
+the parsing and the caller of the validate method will receive the same (|java.lang.RuntimeException|) . 
 
-When a new (|javax.xml.validation.Validator|) object is created, initially this 
-field is set to null. 
+When a new (|javax.xml.validation.Validator|) object is created, initially this field is set to null. 
+
 
     resourceResolver - A new resource resolver to be set. This parameter can be null. 
 
@@ -265,6 +229,7 @@ This is just a convenience method of:
 validate(source,null); 
 
 
+
 *javax.xml.validation.Validator.validate(Source,Result)*
 
 public abstract void validate(
@@ -273,11 +238,9 @@ public abstract void validate(
   throws |java.io.IOException|
          |org.xml.sax.SAXException|
          
-Validates the specified input and send the augmented validation result to the 
-specified output. 
+Validates the specified input and send the augmented validation result to the specified output. 
 
-This method places the following restrictions on the types of the 
-(|javax.xml.transform.Source|) / (|javax.xml.transform.Result|) accepted. 
+This method places the following restrictions on the types of the (|javax.xml.transform.Source|) / (|javax.xml.transform.Result|) accepted. 
 
 (|javax.xml.transform.Source|) / (|javax.xml.transform.Result|) accepted: 
 
@@ -295,28 +258,19 @@ null OK OK
 
 
 
-Note that (|javax.xml.transform.stream.StreamSource|) instances are not 
-allowed. To process a StreamSource, or to validate one 
-(|javax.xml.transform.Source|) into another kind of 
-(|javax.xml.transform.Result|) , use the identity transformer (see 
-(|javax.xml.transform.TransformerFactory|) ). 
+Note that (|javax.xml.transform.stream.StreamSource|) instances are not allowed. To process a StreamSource, or to validate one (|javax.xml.transform.Source|) into another kind of 
+(|javax.xml.transform.Result|) , use the identity transformer (see (|javax.xml.transform.TransformerFactory|) ). 
 
-Errors found during the validation is sent to the specified 
-(|org.xml.sax.ErrorHandler|) . 
+Errors found during the validation is sent to the specified (|org.xml.sax.ErrorHandler|) . 
 
-If a document is valid, or if a document contains some errors but none of them 
-were fatal and the (|org.xml.sax.ErrorHandler|) didn't throw any exception, 
-then the method returns normally. 
+If a document is valid, or if a document contains some errors but none of them were fatal and the (|org.xml.sax.ErrorHandler|) didn't throw any exception, then the method returns 
+normally. 
+
 
     source - XML to be validated. Must not be null. 
-    result - The {@link Result} object that receives (possibly augmented) XML. This 
-       parameter can be null if the caller is not interested in it. 
+    result - The {@link Result} object that receives (possibly augmented) XML. This parameter can be null if the caller is not interested in it. 
 
-Note that when a {@link javax.xml.transform.dom.DOMResult} is used, a validator 
-       might just pass the same DOM node from {@link 
-       javax.xml.transform.dom.DOMSource} to {@link 
-       javax.xml.transform.dom.DOMResult} (in which case 
-       source.getNode()==result.getNode()), it might copy the entire DOM tree, 
-       or it might alter the node given by the source. 
+Note that when a {@link javax.xml.transform.dom.DOMResult} is used, a validator might just pass the same DOM node from {@link javax.xml.transform.dom.DOMSource} to {@link 
+       javax.xml.transform.dom.DOMResult} (in which case source.getNode()==result.getNode()), it might copy the entire DOM tree, or it might alter the node given by the source. 
 
 

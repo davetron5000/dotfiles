@@ -1,4 +1,5 @@
-*javax.swing.text.DocumentFilter* *DocumentFilter* DocumentFilter, as the name i
+*javax.swing.text.DocumentFilter* *DocumentFilter* DocumentFilter, as the name implies, is a filter for the
+ Document mutation methods.
 
 public class DocumentFilter
   extends    |java.lang.Object|
@@ -8,31 +9,26 @@ public class DocumentFilter
 |javax.swing.text.DocumentFilter_Constructors|
 |javax.swing.text.DocumentFilter_Methods|
 
-================================================================================
+====================================================================================================================================================================================
 
 *javax.swing.text.DocumentFilter_Constructors*
 |javax.swing.text.DocumentFilter()|
 
 *javax.swing.text.DocumentFilter_Methods*
-|javax.swing.text.DocumentFilter.insertString(DocumentFilter.FilterBypass,int,String,AttributeSet)|
-|javax.swing.text.DocumentFilter.remove(DocumentFilter.FilterBypass,int,int)|In
-|javax.swing.text.DocumentFilter.replace(DocumentFilter.FilterBypass,int,int,String,AttributeSet)|
+|javax.swing.text.DocumentFilter.insertString(DocumentFilter.FilterBypass,int,String,AttributeSet)|Invoked prior to insertion of text into the  specified Document.
+|javax.swing.text.DocumentFilter.remove(DocumentFilter.FilterBypass,int,int)|Invoked prior to removal of the specified region in the  specified Document.
+|javax.swing.text.DocumentFilter.replace(DocumentFilter.FilterBypass,int,int,String,AttributeSet)|Invoked prior to replacing a region of text in the  specified Document.
 
 *javax.swing.text.DocumentFilter_Description*
 
-DocumentFilter, as the name implies, is a filter for the Document mutation 
-methods. When a Document containing a DocumentFilter is modified (either 
-through insert or remove), it forwards the appropriate method invocation to the 
-DocumentFilter. The default implementation allows the modification to occur. 
-Subclasses can filter the modifications by conditionally invoking methods on 
-the superclass, or invoking the necessary methods on the passed in 
-FilterBypass. Subclasses should NOT call back into the Document for the 
+DocumentFilter, as the name implies, is a filter for the Document mutation methods. When a Document containing a DocumentFilter is modified (either through insert or remove), it 
+forwards the appropriate method invocation to the DocumentFilter. The default implementation allows the modification to occur. Subclasses can filter the modifications by 
+conditionally invoking methods on the superclass, or invoking the necessary methods on the passed in FilterBypass. Subclasses should NOT call back into the Document for the 
 modification instead call into the superclass or the FilterBypass. 
 
-When remove or insertString is invoked on the DocumentFilter, the 
-DocumentFilter may callback into the FilterBypass multiple times, or for 
-different regions, but it should not callback into the FilterBypass after 
-returning from the remove or insertString method. 
+When remove or insertString is invoked on the DocumentFilter, the DocumentFilter may callback into the FilterBypass multiple times, or for different regions, but it should not 
+callback into the FilterBypass after returning from the remove or insertString method. 
+
 
 
 *javax.swing.text.DocumentFilter()*
@@ -51,16 +47,14 @@ public void insertString(
   javax.swing.text.AttributeSet attr)
   throws |javax.swing.text.BadLocationException|
          
-Invoked prior to insertion of text into the specified Document. Subclasses that 
-want to conditionally allow insertion should override this and only call supers 
-implementation as necessary, or call directly into the FilterBypass. 
+Invoked prior to insertion of text into the specified Document. Subclasses that want to conditionally allow insertion should override this and only call supers implementation as 
+necessary, or call directly into the FilterBypass. 
+
 
     fb - FilterBypass that can be used to mutate Document 
-    offset - the offset into the document to insert the content >= 0. All positions that 
-       track change at or after the given location will move. 
+    offset - the offset into the document to insert the content >= 0. All positions that track change at or after the given location will move. 
     string - the string to insert 
-    attr - the attributes to associate with the inserted content. This may be null if 
-       there are no attributes. 
+    attr - the attributes to associate with the inserted content. This may be null if there are no attributes. 
 
 *javax.swing.text.DocumentFilter.remove(DocumentFilter.FilterBypass,int,int)*
 
@@ -70,10 +64,9 @@ public void remove(
   int length)
   throws |javax.swing.text.BadLocationException|
          
-Invoked prior to removal of the specified region in the specified Document. 
-Subclasses that want to conditionally allow removal should override this and 
-only call supers implementation as necessary, or call directly into the 
-FilterBypass as necessary. 
+Invoked prior to removal of the specified region in the specified Document. Subclasses that want to conditionally allow removal should override this and only call supers 
+implementation as necessary, or call directly into the FilterBypass as necessary. 
+
 
     fb - FilterBypass that can be used to mutate Document 
     offset - the offset from the beginning >= 0 
@@ -89,10 +82,9 @@ public void replace(
   javax.swing.text.AttributeSet attrs)
   throws |javax.swing.text.BadLocationException|
          
-Invoked prior to replacing a region of text in the specified Document. 
-Subclasses that want to conditionally allow replace should override this and 
-only call supers implementation as necessary, or call directly into the 
-FilterBypass. 
+Invoked prior to replacing a region of text in the specified Document. Subclasses that want to conditionally allow replace should override this and only call supers implementation 
+as necessary, or call directly into the FilterBypass. 
+
 
     fb - FilterBypass that can be used to mutate Document 
     offset - Location in Document 

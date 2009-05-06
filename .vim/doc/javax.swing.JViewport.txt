@@ -1,4 +1,5 @@
-*javax.swing.JViewport* *JViewport* The "viewport" or "porthole" through which y
+*javax.swing.JViewport* *JViewport* The "viewport" or "porthole" through which you see the underlying
+ information.
 
 public class JViewport
   extends    |javax.swing.JComponent|
@@ -9,7 +10,7 @@ public class JViewport
 |javax.swing.JViewport_Constructors|
 |javax.swing.JViewport_Methods|
 
-================================================================================
+====================================================================================================================================================================================
 
 *javax.swing.JViewport_Fields*
 |boolean_javax.swing.JViewport.backingStore|
@@ -25,422 +26,117 @@ public class JViewport
 |javax.swing.JViewport()|Creates a JViewport.
 
 *javax.swing.JViewport_Methods*
-|javax.swing.JViewport.addChangeListener(ChangeListener)|Adds a ChangeListener 
-|javax.swing.JViewport.addImpl(Component,Object,int)|Sets the JViewport's one l
-|javax.swing.JViewport.computeBlit(int,int,Point,Point,Dimension,Rectangle)|Com
-|javax.swing.JViewport.createLayoutManager()|Subclassers can override this to i
+|javax.swing.JViewport.addChangeListener(ChangeListener)|Adds a ChangeListener to the list that is  notified each time the view's  size, position, or the viewport's extent size ha
+|javax.swing.JViewport.addImpl(Component,Object,int)|Sets the JViewport's one lightweight child,  which can be null.
+|javax.swing.JViewport.computeBlit(int,int,Point,Point,Dimension,Rectangle)|Computes the parameters for a blit where the backing store image  currently contains oldLoc in the uppe
+|javax.swing.JViewport.createLayoutManager()|Subclassers can override this to install a different  layout manager (or null) in the constructor.
 |javax.swing.JViewport.createViewListener()|Creates a listener for the view.
-|javax.swing.JViewport.firePropertyChange(String,Object,Object)|Notifies listen
-|javax.swing.JViewport.fireStateChanged()|Notifies all ChangeListeners when the
-|javax.swing.JViewport.getAccessibleContext()|Gets the AccessibleContext associ
-|javax.swing.JViewport.getChangeListeners()|Returns an array of all the ChangeL
-|javax.swing.JViewport.getExtentSize()|Returns the size of the visible part of 
-|javax.swing.JViewport.getInsets()|Returns the insets (border) dimensions as (0
-|javax.swing.JViewport.getInsets(Insets)|Returns an Insets object containing th
+|javax.swing.JViewport.firePropertyChange(String,Object,Object)|Notifies listeners of a property change.
+|javax.swing.JViewport.fireStateChanged()|Notifies all ChangeListeners when the views  size, position, or the viewports extent size has changed.
+|javax.swing.JViewport.getAccessibleContext()|Gets the AccessibleContext associated with this JViewport.
+|javax.swing.JViewport.getChangeListeners()|Returns an array of all the ChangeListeners added  to this JViewport with addChangeListener().
+|javax.swing.JViewport.getExtentSize()|Returns the size of the visible part of the view in view coordinates.
+|javax.swing.JViewport.getInsets()|Returns the insets (border) dimensions as (0,0,0,0), since borders  are not supported on a JViewport.
+|javax.swing.JViewport.getInsets(Insets)|Returns an Insets object containing this  JViewports inset values.
 |javax.swing.JViewport.getScrollMode()|Returns the current scrolling mode.
 |javax.swing.JViewport.getUI()|Returns the Lobject that renders this component.
-|javax.swing.JViewport.getUIClassID()|Returns a string that specifies the name 
+|javax.swing.JViewport.getUIClassID()|Returns a string that specifies the name of the Lclass  that renders this component.
 |javax.swing.JViewport.getView()|Returns the JViewport's one child or null.
-|javax.swing.JViewport.getViewPosition()|Returns the view coordinates that appe
-|javax.swing.JViewport.getViewRect()|Returns a rectangle whose origin is getVie
-|javax.swing.JViewport.getViewSize()|If the view's size hasn't been explicitly 
-|javax.swing.JViewport.isBackingStoreEnabled()|Returns true if this viewport is
-|javax.swing.JViewport.isOptimizedDrawingEnabled()|The JViewport overrides the 
-|javax.swing.JViewport.paint(Graphics)|Depending on whether the backingStore is
-|javax.swing.JViewport.paramString()|Returns a string representation of this JV
-|javax.swing.JViewport.remove(Component)|Removes the Viewports one lightweight 
-|javax.swing.JViewport.removeChangeListener(ChangeListener)|Removes a ChangeLis
-|javax.swing.JViewport.repaint(long,int,int,int,int)|Always repaint in the pare
-|javax.swing.JViewport.reshape(int,int,int,int)|Sets the bounds of this viewpor
-|javax.swing.JViewport.scrollRectToVisible(Rectangle)|Scrolls the view so that 
-|javax.swing.JViewport.setBackingStoreEnabled(boolean)|If true if this viewport
-|javax.swing.JViewport.setBorder(Border)|The viewport "scrolls" its child (call
-|javax.swing.JViewport.setExtentSize(Dimension)|Sets the size of the visible pa
-|javax.swing.JViewport.setScrollMode(int)|Used to control the method of scrolli
-|javax.swing.JViewport.setUI(ViewportUI)|Sets the Lobject that renders this com
-|javax.swing.JViewport.setView(Component)|Sets the JViewport's one lightweight 
-|javax.swing.JViewport.setViewPosition(Point)|Sets the view coordinates that ap
+|javax.swing.JViewport.getViewPosition()|Returns the view coordinates that appear in the upper left  hand corner of the viewport, or 0,0 if there's no view.
+|javax.swing.JViewport.getViewRect()|Returns a rectangle whose origin is getViewPosition  and size is getExtentSize.
+|javax.swing.JViewport.getViewSize()|If the view's size hasn't been explicitly set, return the  preferred size, otherwise return the view's current size.
+|javax.swing.JViewport.isBackingStoreEnabled()|Returns true if this viewport is maintaining  an offscreen image of its contents.
+|javax.swing.JViewport.isOptimizedDrawingEnabled()|The JViewport overrides the default implementation of  this method (in JComponent) to return false.
+|javax.swing.JViewport.paint(Graphics)|Depending on whether the backingStore is enabled,  either paint the image through the backing store or paint  just the recently exposed part
+|javax.swing.JViewport.paramString()|Returns a string representation of this JViewport.
+|javax.swing.JViewport.remove(Component)|Removes the Viewports one lightweight child.
+|javax.swing.JViewport.removeChangeListener(ChangeListener)|Removes a ChangeListener from the list that's notified each  time the views size, position, or the viewports extent siz
+|javax.swing.JViewport.repaint(long,int,int,int,int)|Always repaint in the parents coordinate system to make sure  only one paint is performed by the RepaintManager.
+|javax.swing.JViewport.reshape(int,int,int,int)|Sets the bounds of this viewport.
+|javax.swing.JViewport.scrollRectToVisible(Rectangle)|Scrolls the view so that Rectangle  within the view becomes visible.
+|javax.swing.JViewport.setBackingStoreEnabled(boolean)|If true if this viewport will maintain an offscreen  image of its contents.
+|javax.swing.JViewport.setBorder(Border)|The viewport "scrolls" its child (called the "view") by the  normal parent/child clipping (typically the view is moved in  the opposite di
+|javax.swing.JViewport.setExtentSize(Dimension)|Sets the size of the visible part of the view using view coordinates.
+|javax.swing.JViewport.setScrollMode(int)|Used to control the method of scrolling the viewport contents.
+|javax.swing.JViewport.setUI(ViewportUI)|Sets the Lobject that renders this component.
+|javax.swing.JViewport.setView(Component)|Sets the JViewport's one lightweight child  (view), which can be null.
+|javax.swing.JViewport.setViewPosition(Point)|Sets the view coordinates that appear in the upper left  hand corner of the viewport, does nothing if there's no view.
 |javax.swing.JViewport.setViewSize(Dimension)|Sets the size of the view.
-|javax.swing.JViewport.toViewCoordinates(Dimension)|Converts a size in pixel co
-|javax.swing.JViewport.toViewCoordinates(Point)|Converts a point in pixel coord
-|javax.swing.JViewport.updateUI()|Resets the UI property to a value from the cu
+|javax.swing.JViewport.toViewCoordinates(Dimension)|Converts a size in pixel coordinates to view coordinates.
+|javax.swing.JViewport.toViewCoordinates(Point)|Converts a point in pixel coordinates to view coordinates.
+|javax.swing.JViewport.updateUI()|Resets the UI property to a value from the current look and feel.
 
 *javax.swing.JViewport_Description*
 
-The "viewport" or "porthole" through which you see the underlying information. 
-When you scroll, what moves is the viewport. It is like peering through a 
-camera's viewfinder. Moving the viewfinder upwards brings new things into view 
-at the top of the picture and loses things that were at the bottom. 
+The "viewport" or "porthole" through which you see the underlying information. When you scroll, what moves is the viewport. It is like peering through a camera's viewfinder. 
+Moving the viewfinder upwards brings new things into view at the top of the picture and loses things that were at the bottom. 
 
 By default, JViewport is opaque. To change this, use the setOpaque method. 
 
-NOTE:We have implemented a faster scrolling algorithm that does not require a 
-buffer to draw in. The algorithm works as follows: The view and parent view and 
-checked to see if they are JComponents, if they aren't, stop and repaint the 
-whole viewport. If the viewport is obscured by an ancestor, stop and repaint 
-the whole viewport. Compute the region that will become visible, if it is as 
-big as the viewport, stop and repaint the whole view region. Obtain the 
-ancestor Window's graphics and do a copyArea on the scrolled region. Message 
-the view to repaint the newly visible region. The next time paint is invoked on 
-the viewport, if the clip region is smaller than the viewport size a timer is 
-kicked off to repaint the whole region. 
+NOTE:We have implemented a faster scrolling algorithm that does not require a buffer to draw in. The algorithm works as follows: The view and parent view and checked to see if 
+they are JComponents, if they aren't, stop and repaint the whole viewport. If the viewport is obscured by an ancestor, stop and repaint the whole viewport. Compute the region that 
+will become visible, if it is as big as the viewport, stop and repaint the whole view region. Obtain the ancestor Window's graphics and do a copyArea on the scrolled region. 
+Message the view to repaint the newly visible region. The next time paint is invoked on the viewport, if the clip region is smaller than the viewport size a timer is kicked off to 
+repaint the whole region. 
 
-In general this approach is much faster. Compared to the backing store approach 
-this avoids the overhead of maintaining an offscreen buffer and having to do 
-two copyAreas. Compared to the non backing store case this approach will 
-greatly reduce the painted region. 
+In general this approach is much faster. Compared to the backing store approach this avoids the overhead of maintaining an offscreen buffer and having to do two copyAreas. 
+Compared to the non backing store case this approach will greatly reduce the painted region. 
 
-This approach can cause slower times than the backing store approach when the 
-viewport is obscured by another window, or partially offscreen. When another 
-window obscures the viewport the copyArea will copy garbage and a paint event 
-will be generated by the system to inform us we need to paint the newly exposed 
-region. The only way to handle this is to repaint the whole viewport, which can 
-cause slower performance than the backing store case. In most applications very 
-rarely will the user be scrolling while the viewport is obscured by another 
-window or offscreen, so this optimization is usually worth the performance hit 
-when obscured. 
+This approach can cause slower times than the backing store approach when the viewport is obscured by another window, or partially offscreen. When another window obscures the 
+viewport the copyArea will copy garbage and a paint event will be generated by the system to inform us we need to paint the newly exposed region. The only way to handle this is to 
+repaint the whole viewport, which can cause slower performance than the backing store case. In most applications very rarely will the user be scrolling while the viewport is 
+obscured by another window or offscreen, so this optimization is usually worth the performance hit when obscured. 
 
-Warning: Serialized objects of this class will not be compatible with future 
-Swing releases. The current serialization support is appropriate for short term 
-storage or RMI between applications running the same version of Swing. As of 
-1.4, support for long term storage of all JavaBeansTM has been added to the 
-java.beans package. Please see (|java.beans.XMLEncoder|) . 
+Warning: Serialized objects of this class will not be compatible with future Swing releases. The current serialization support is appropriate for short term storage or RMI between 
+applications running the same version of Swing. As of 1.4, support for long term storage of all JavaBeansTM has been added to the java.beans package. Please see 
+(|java.beans.XMLEncoder|) . 
+
 
 
 *boolean_javax.swing.JViewport.backingStore*
 
-The "viewport" or "porthole" through which you see the underlying information. 
-When you scroll, what moves is the viewport. It is like peering through a 
-camera's viewfinder. Moving the viewfinder upwards brings new things into view 
-at the top of the picture and loses things that were at the bottom. 
-
-By default, JViewport is opaque. To change this, use the setOpaque method. 
-
-NOTE:We have implemented a faster scrolling algorithm that does not require a 
-buffer to draw in. The algorithm works as follows: The view and parent view and 
-checked to see if they are JComponents, if they aren't, stop and repaint the 
-whole viewport. If the viewport is obscured by an ancestor, stop and repaint 
-the whole viewport. Compute the region that will become visible, if it is as 
-big as the viewport, stop and repaint the whole view region. Obtain the 
-ancestor Window's graphics and do a copyArea on the scrolled region. Message 
-the view to repaint the newly visible region. The next time paint is invoked on 
-the viewport, if the clip region is smaller than the viewport size a timer is 
-kicked off to repaint the whole region. 
-
-In general this approach is much faster. Compared to the backing store approach 
-this avoids the overhead of maintaining an offscreen buffer and having to do 
-two copyAreas. Compared to the non backing store case this approach will 
-greatly reduce the painted region. 
-
-This approach can cause slower times than the backing store approach when the 
-viewport is obscured by another window, or partially offscreen. When another 
-window obscures the viewport the copyArea will copy garbage and a paint event 
-will be generated by the system to inform us we need to paint the newly exposed 
-region. The only way to handle this is to repaint the whole viewport, which can 
-cause slower performance than the backing store case. In most applications very 
-rarely will the user be scrolling while the viewport is obscured by another 
-window or offscreen, so this optimization is usually worth the performance hit 
-when obscured. 
-
-Warning: Serialized objects of this class will not be compatible with future 
-Swing releases. The current serialization support is appropriate for short term 
-storage or RMI between applications running the same version of Swing. As of 
-1.4, support for long term storage of all JavaBeansTM has been added to the 
-java.beans package. Please see (|java.beans.XMLEncoder|) . 
+True when this viewport is maintaining an offscreen image of its contents, so that some scrolling can take place using fast "bit-blit" operations instead of by accessing the view 
+object to construct the display. The default is false. 
 
 
 *int_javax.swing.JViewport.BACKINGSTORE_SCROLL_MODE*
 
-The "viewport" or "porthole" through which you see the underlying information. 
-When you scroll, what moves is the viewport. It is like peering through a 
-camera's viewfinder. Moving the viewfinder upwards brings new things into view 
-at the top of the picture and loses things that were at the bottom. 
-
-By default, JViewport is opaque. To change this, use the setOpaque method. 
-
-NOTE:We have implemented a faster scrolling algorithm that does not require a 
-buffer to draw in. The algorithm works as follows: The view and parent view and 
-checked to see if they are JComponents, if they aren't, stop and repaint the 
-whole viewport. If the viewport is obscured by an ancestor, stop and repaint 
-the whole viewport. Compute the region that will become visible, if it is as 
-big as the viewport, stop and repaint the whole view region. Obtain the 
-ancestor Window's graphics and do a copyArea on the scrolled region. Message 
-the view to repaint the newly visible region. The next time paint is invoked on 
-the viewport, if the clip region is smaller than the viewport size a timer is 
-kicked off to repaint the whole region. 
-
-In general this approach is much faster. Compared to the backing store approach 
-this avoids the overhead of maintaining an offscreen buffer and having to do 
-two copyAreas. Compared to the non backing store case this approach will 
-greatly reduce the painted region. 
-
-This approach can cause slower times than the backing store approach when the 
-viewport is obscured by another window, or partially offscreen. When another 
-window obscures the viewport the copyArea will copy garbage and a paint event 
-will be generated by the system to inform us we need to paint the newly exposed 
-region. The only way to handle this is to repaint the whole viewport, which can 
-cause slower performance than the backing store case. In most applications very 
-rarely will the user be scrolling while the viewport is obscured by another 
-window or offscreen, so this optimization is usually worth the performance hit 
-when obscured. 
-
-Warning: Serialized objects of this class will not be compatible with future 
-Swing releases. The current serialization support is appropriate for short term 
-storage or RMI between applications running the same version of Swing. As of 
-1.4, support for long term storage of all JavaBeansTM has been added to the 
-java.beans package. Please see (|java.beans.XMLEncoder|) . 
+Draws viewport contents into an offscreen image. This was previously the default mode for JTable. This mode may offer advantages over "blit mode" in some cases, but it requires a 
+large chunk of extra RAM. 
 
 
 *java.awt.Image_javax.swing.JViewport.backingStoreImage*
 
-The "viewport" or "porthole" through which you see the underlying information. 
-When you scroll, what moves is the viewport. It is like peering through a 
-camera's viewfinder. Moving the viewfinder upwards brings new things into view 
-at the top of the picture and loses things that were at the bottom. 
-
-By default, JViewport is opaque. To change this, use the setOpaque method. 
-
-NOTE:We have implemented a faster scrolling algorithm that does not require a 
-buffer to draw in. The algorithm works as follows: The view and parent view and 
-checked to see if they are JComponents, if they aren't, stop and repaint the 
-whole viewport. If the viewport is obscured by an ancestor, stop and repaint 
-the whole viewport. Compute the region that will become visible, if it is as 
-big as the viewport, stop and repaint the whole view region. Obtain the 
-ancestor Window's graphics and do a copyArea on the scrolled region. Message 
-the view to repaint the newly visible region. The next time paint is invoked on 
-the viewport, if the clip region is smaller than the viewport size a timer is 
-kicked off to repaint the whole region. 
-
-In general this approach is much faster. Compared to the backing store approach 
-this avoids the overhead of maintaining an offscreen buffer and having to do 
-two copyAreas. Compared to the non backing store case this approach will 
-greatly reduce the painted region. 
-
-This approach can cause slower times than the backing store approach when the 
-viewport is obscured by another window, or partially offscreen. When another 
-window obscures the viewport the copyArea will copy garbage and a paint event 
-will be generated by the system to inform us we need to paint the newly exposed 
-region. The only way to handle this is to repaint the whole viewport, which can 
-cause slower performance than the backing store case. In most applications very 
-rarely will the user be scrolling while the viewport is obscured by another 
-window or offscreen, so this optimization is usually worth the performance hit 
-when obscured. 
-
-Warning: Serialized objects of this class will not be compatible with future 
-Swing releases. The current serialization support is appropriate for short term 
-storage or RMI between applications running the same version of Swing. As of 
-1.4, support for long term storage of all JavaBeansTM has been added to the 
-java.beans package. Please see (|java.beans.XMLEncoder|) . 
+The view image used for a backing store. 
 
 
 *int_javax.swing.JViewport.BLIT_SCROLL_MODE*
 
-The "viewport" or "porthole" through which you see the underlying information. 
-When you scroll, what moves is the viewport. It is like peering through a 
-camera's viewfinder. Moving the viewfinder upwards brings new things into view 
-at the top of the picture and loses things that were at the bottom. 
-
-By default, JViewport is opaque. To change this, use the setOpaque method. 
-
-NOTE:We have implemented a faster scrolling algorithm that does not require a 
-buffer to draw in. The algorithm works as follows: The view and parent view and 
-checked to see if they are JComponents, if they aren't, stop and repaint the 
-whole viewport. If the viewport is obscured by an ancestor, stop and repaint 
-the whole viewport. Compute the region that will become visible, if it is as 
-big as the viewport, stop and repaint the whole view region. Obtain the 
-ancestor Window's graphics and do a copyArea on the scrolled region. Message 
-the view to repaint the newly visible region. The next time paint is invoked on 
-the viewport, if the clip region is smaller than the viewport size a timer is 
-kicked off to repaint the whole region. 
-
-In general this approach is much faster. Compared to the backing store approach 
-this avoids the overhead of maintaining an offscreen buffer and having to do 
-two copyAreas. Compared to the non backing store case this approach will 
-greatly reduce the painted region. 
-
-This approach can cause slower times than the backing store approach when the 
-viewport is obscured by another window, or partially offscreen. When another 
-window obscures the viewport the copyArea will copy garbage and a paint event 
-will be generated by the system to inform us we need to paint the newly exposed 
-region. The only way to handle this is to repaint the whole viewport, which can 
-cause slower performance than the backing store case. In most applications very 
-rarely will the user be scrolling while the viewport is obscured by another 
-window or offscreen, so this optimization is usually worth the performance hit 
-when obscured. 
-
-Warning: Serialized objects of this class will not be compatible with future 
-Swing releases. The current serialization support is appropriate for short term 
-storage or RMI between applications running the same version of Swing. As of 
-1.4, support for long term storage of all JavaBeansTM has been added to the 
-java.beans package. Please see (|java.beans.XMLEncoder|) . 
+Use graphics.copyArea to implement scrolling. This is the fastest for most applications. 
 
 
 *boolean_javax.swing.JViewport.isViewSizeSet*
 
-The "viewport" or "porthole" through which you see the underlying information. 
-When you scroll, what moves is the viewport. It is like peering through a 
-camera's viewfinder. Moving the viewfinder upwards brings new things into view 
-at the top of the picture and loses things that were at the bottom. 
-
-By default, JViewport is opaque. To change this, use the setOpaque method. 
-
-NOTE:We have implemented a faster scrolling algorithm that does not require a 
-buffer to draw in. The algorithm works as follows: The view and parent view and 
-checked to see if they are JComponents, if they aren't, stop and repaint the 
-whole viewport. If the viewport is obscured by an ancestor, stop and repaint 
-the whole viewport. Compute the region that will become visible, if it is as 
-big as the viewport, stop and repaint the whole view region. Obtain the 
-ancestor Window's graphics and do a copyArea on the scrolled region. Message 
-the view to repaint the newly visible region. The next time paint is invoked on 
-the viewport, if the clip region is smaller than the viewport size a timer is 
-kicked off to repaint the whole region. 
-
-In general this approach is much faster. Compared to the backing store approach 
-this avoids the overhead of maintaining an offscreen buffer and having to do 
-two copyAreas. Compared to the non backing store case this approach will 
-greatly reduce the painted region. 
-
-This approach can cause slower times than the backing store approach when the 
-viewport is obscured by another window, or partially offscreen. When another 
-window obscures the viewport the copyArea will copy garbage and a paint event 
-will be generated by the system to inform us we need to paint the newly exposed 
-region. The only way to handle this is to repaint the whole viewport, which can 
-cause slower performance than the backing store case. In most applications very 
-rarely will the user be scrolling while the viewport is obscured by another 
-window or offscreen, so this optimization is usually worth the performance hit 
-when obscured. 
-
-Warning: Serialized objects of this class will not be compatible with future 
-Swing releases. The current serialization support is appropriate for short term 
-storage or RMI between applications running the same version of Swing. As of 
-1.4, support for long term storage of all JavaBeansTM has been added to the 
-java.beans package. Please see (|java.beans.XMLEncoder|) . 
+True when the viewport dimensions have been determined. The default is false. 
 
 
 *java.awt.Point_javax.swing.JViewport.lastPaintPosition*
 
-The "viewport" or "porthole" through which you see the underlying information. 
-When you scroll, what moves is the viewport. It is like peering through a 
-camera's viewfinder. Moving the viewfinder upwards brings new things into view 
-at the top of the picture and loses things that were at the bottom. 
-
-By default, JViewport is opaque. To change this, use the setOpaque method. 
-
-NOTE:We have implemented a faster scrolling algorithm that does not require a 
-buffer to draw in. The algorithm works as follows: The view and parent view and 
-checked to see if they are JComponents, if they aren't, stop and repaint the 
-whole viewport. If the viewport is obscured by an ancestor, stop and repaint 
-the whole viewport. Compute the region that will become visible, if it is as 
-big as the viewport, stop and repaint the whole view region. Obtain the 
-ancestor Window's graphics and do a copyArea on the scrolled region. Message 
-the view to repaint the newly visible region. The next time paint is invoked on 
-the viewport, if the clip region is smaller than the viewport size a timer is 
-kicked off to repaint the whole region. 
-
-In general this approach is much faster. Compared to the backing store approach 
-this avoids the overhead of maintaining an offscreen buffer and having to do 
-two copyAreas. Compared to the non backing store case this approach will 
-greatly reduce the painted region. 
-
-This approach can cause slower times than the backing store approach when the 
-viewport is obscured by another window, or partially offscreen. When another 
-window obscures the viewport the copyArea will copy garbage and a paint event 
-will be generated by the system to inform us we need to paint the newly exposed 
-region. The only way to handle this is to repaint the whole viewport, which can 
-cause slower performance than the backing store case. In most applications very 
-rarely will the user be scrolling while the viewport is obscured by another 
-window or offscreen, so this optimization is usually worth the performance hit 
-when obscured. 
-
-Warning: Serialized objects of this class will not be compatible with future 
-Swing releases. The current serialization support is appropriate for short term 
-storage or RMI between applications running the same version of Swing. As of 
-1.4, support for long term storage of all JavaBeansTM has been added to the 
-java.beans package. Please see (|java.beans.XMLEncoder|) . 
+The last viewPosition that we've painted, so we know how much of the backing store image is valid. 
 
 
 *boolean_javax.swing.JViewport.scrollUnderway*
 
-The "viewport" or "porthole" through which you see the underlying information. 
-When you scroll, what moves is the viewport. It is like peering through a 
-camera's viewfinder. Moving the viewfinder upwards brings new things into view 
-at the top of the picture and loses things that were at the bottom. 
-
-By default, JViewport is opaque. To change this, use the setOpaque method. 
-
-NOTE:We have implemented a faster scrolling algorithm that does not require a 
-buffer to draw in. The algorithm works as follows: The view and parent view and 
-checked to see if they are JComponents, if they aren't, stop and repaint the 
-whole viewport. If the viewport is obscured by an ancestor, stop and repaint 
-the whole viewport. Compute the region that will become visible, if it is as 
-big as the viewport, stop and repaint the whole view region. Obtain the 
-ancestor Window's graphics and do a copyArea on the scrolled region. Message 
-the view to repaint the newly visible region. The next time paint is invoked on 
-the viewport, if the clip region is smaller than the viewport size a timer is 
-kicked off to repaint the whole region. 
-
-In general this approach is much faster. Compared to the backing store approach 
-this avoids the overhead of maintaining an offscreen buffer and having to do 
-two copyAreas. Compared to the non backing store case this approach will 
-greatly reduce the painted region. 
-
-This approach can cause slower times than the backing store approach when the 
-viewport is obscured by another window, or partially offscreen. When another 
-window obscures the viewport the copyArea will copy garbage and a paint event 
-will be generated by the system to inform us we need to paint the newly exposed 
-region. The only way to handle this is to repaint the whole viewport, which can 
-cause slower performance than the backing store case. In most applications very 
-rarely will the user be scrolling while the viewport is obscured by another 
-window or offscreen, so this optimization is usually worth the performance hit 
-when obscured. 
-
-Warning: Serialized objects of this class will not be compatible with future 
-Swing releases. The current serialization support is appropriate for short term 
-storage or RMI between applications running the same version of Swing. As of 
-1.4, support for long term storage of all JavaBeansTM has been added to the 
-java.beans package. Please see (|java.beans.XMLEncoder|) . 
+The scrollUnderway flag is used for components like JList. When the downarrow key is pressed on a JList and the selected cell is the last in the list, the scrollpane autoscrolls. 
+Here, the old selected cell needs repainting and so we need a flag to make the viewport do the optimized painting only when there is an explicit call to setViewPosition(Point). 
+When setBounds is called through other routes, the flag is off and the view repaints normally. Another approach would be to remove this from the JViewport class and have the JList 
+manage this case by using setBackingStoreEnabled. The default is false. 
 
 
 *int_javax.swing.JViewport.SIMPLE_SCROLL_MODE*
 
-The "viewport" or "porthole" through which you see the underlying information. 
-When you scroll, what moves is the viewport. It is like peering through a 
-camera's viewfinder. Moving the viewfinder upwards brings new things into view 
-at the top of the picture and loses things that were at the bottom. 
-
-By default, JViewport is opaque. To change this, use the setOpaque method. 
-
-NOTE:We have implemented a faster scrolling algorithm that does not require a 
-buffer to draw in. The algorithm works as follows: The view and parent view and 
-checked to see if they are JComponents, if they aren't, stop and repaint the 
-whole viewport. If the viewport is obscured by an ancestor, stop and repaint 
-the whole viewport. Compute the region that will become visible, if it is as 
-big as the viewport, stop and repaint the whole view region. Obtain the 
-ancestor Window's graphics and do a copyArea on the scrolled region. Message 
-the view to repaint the newly visible region. The next time paint is invoked on 
-the viewport, if the clip region is smaller than the viewport size a timer is 
-kicked off to repaint the whole region. 
-
-In general this approach is much faster. Compared to the backing store approach 
-this avoids the overhead of maintaining an offscreen buffer and having to do 
-two copyAreas. Compared to the non backing store case this approach will 
-greatly reduce the painted region. 
-
-This approach can cause slower times than the backing store approach when the 
-viewport is obscured by another window, or partially offscreen. When another 
-window obscures the viewport the copyArea will copy garbage and a paint event 
-will be generated by the system to inform us we need to paint the newly exposed 
-region. The only way to handle this is to repaint the whole viewport, which can 
-cause slower performance than the backing store case. In most applications very 
-rarely will the user be scrolling while the viewport is obscured by another 
-window or offscreen, so this optimization is usually worth the performance hit 
-when obscured. 
-
-Warning: Serialized objects of this class will not be compatible with future 
-Swing releases. The current serialization support is appropriate for short term 
-storage or RMI between applications running the same version of Swing. As of 
-1.4, support for long term storage of all JavaBeansTM has been added to the 
-java.beans package. Please see (|java.beans.XMLEncoder|) . 
+This mode uses the very simple method of redrawing the entire contents of the scrollpane each time it is scrolled. This was the default behavior in Swing 1.0 and Swing 1.1. Either 
+of the other two options will provide better performance in most cases. 
 
 
 
@@ -455,8 +151,8 @@ Creates a JViewport.
 
 public void addChangeListener(javax.swing.event.ChangeListener l)
 
-Adds a ChangeListener to the list that is notified each time the view's size, 
-position, or the viewport's extent size has changed. 
+Adds a ChangeListener to the list that is notified each time the view's size, position, or the viewport's extent size has changed. 
+
 
     l - the ChangeListener to add 
 
@@ -467,9 +163,8 @@ protected void addImpl(
   java.lang.Object constraints,
   int index)
 
-Sets the JViewport's one lightweight child, which can be null. (Since there is 
-only one child which occupies the entire viewport, the constraints and index 
-arguments are ignored.) 
+Sets the JViewport's one lightweight child, which can be null. (Since there is only one child which occupies the entire viewport, the constraints and index arguments are ignored.) 
+
 
     child - the lightweight child of the viewport 
     constraints - the constraints to be respected 
@@ -485,9 +180,9 @@ protected boolean computeBlit(
   java.awt.Dimension blitSize,
   java.awt.Rectangle blitPaint)
 
-Computes the parameters for a blit where the backing store image currently 
-contains oldLoc in the upper left hand corner and we're scrolling to newLoc. 
-The parameters are modified to return the values required for the blit. 
+Computes the parameters for a blit where the backing store image currently contains oldLoc in the upper left hand corner and we're scrolling to newLoc. The parameters are modified 
+to return the values required for the blit. 
+
 
     dx - the horizontal delta 
     dy - the vertical delta 
@@ -497,15 +192,17 @@ The parameters are modified to return the values required for the blit.
     blitPaint - the area to blit 
 
     Returns: true if the parameters are modified and we're ready to blit; false otherwise 
+
 *javax.swing.JViewport.createLayoutManager()*
 
 protected |java.awt.LayoutManager| createLayoutManager()
 
-Subclassers can override this to install a different layout manager (or null) 
-in the constructor. Returns the LayoutManager to install on the JViewport. 
+Subclassers can override this to install a different layout manager (or null) in the constructor. Returns the LayoutManager to install on the JViewport. 
+
 
 
     Returns: a LayoutManager 
+
 *javax.swing.JViewport.createViewListener()*
 
 protected |javax.swing.JViewport.ViewListener| createViewListener()
@@ -513,7 +210,9 @@ protected |javax.swing.JViewport.ViewListener| createViewListener()
 Creates a listener for the view. 
 
 
+
     Returns: a ViewListener 
+
 *javax.swing.JViewport.firePropertyChange(String,Object,Object)*
 
 protected void firePropertyChange(
@@ -521,8 +220,8 @@ protected void firePropertyChange(
   java.lang.Object oldValue,
   java.lang.Object newValue)
 
-Notifies listeners of a property change. This is subclassed to update the 
-windowBlit property. (The putClientProperty property is final). 
+Notifies listeners of a property change. This is subclassed to update the windowBlit property. (The putClientProperty property is final). 
+
 
     propertyName - a string containing the property name 
     oldValue - the old value of the property 
@@ -532,30 +231,31 @@ windowBlit property. (The putClientProperty property is final).
 
 protected void fireStateChanged()
 
-Notifies all ChangeListeners when the views size, position, or the viewports 
-extent size has changed. 
+Notifies all ChangeListeners when the views size, position, or the viewports extent size has changed. 
+
 
 
 *javax.swing.JViewport.getAccessibleContext()*
 
 public |javax.accessibility.AccessibleContext| getAccessibleContext()
 
-Gets the AccessibleContext associated with this JViewport. For viewports, the 
-AccessibleContext takes the form of an AccessibleJViewport. A new 
-AccessibleJViewport instance is created if necessary. 
+Gets the AccessibleContext associated with this JViewport. For viewports, the AccessibleContext takes the form of an AccessibleJViewport. A new AccessibleJViewport instance is 
+created if necessary. 
+
 
 
     Returns: an AccessibleJViewport that serves as the AccessibleContext of this JViewport 
+
 *javax.swing.JViewport.getChangeListeners()*
 
-public |javax.swing.event.ChangeListener| getChangeListeners()
+public |javax.swing.event.ChangeListener|[] getChangeListeners()
 
-Returns an array of all the ChangeListeners added to this JViewport with 
-addChangeListener(). 
+Returns an array of all the ChangeListeners added to this JViewport with addChangeListener(). 
 
 
-    Returns: all of the ChangeListeners added or an empty array if no listeners have been 
-             added 
+
+    Returns: all of the ChangeListeners added or an empty array if no listeners have been added 
+
 *javax.swing.JViewport.getExtentSize()*
 
 public |java.awt.Dimension| getExtentSize()
@@ -563,27 +263,30 @@ public |java.awt.Dimension| getExtentSize()
 Returns the size of the visible part of the view in view coordinates. 
 
 
+
     Returns: a Dimension object giving the size of the view 
+
 *javax.swing.JViewport.getInsets()*
 
 public final |java.awt.Insets| getInsets()
 
-Returns the insets (border) dimensions as (0,0,0,0), since borders are not 
-supported on a JViewport. 
+Returns the insets (border) dimensions as (0,0,0,0), since borders are not supported on a JViewport. 
+
 
 
     Returns: a Rectange of zero dimension and zero origin 
+
 *javax.swing.JViewport.getInsets(Insets)*
 
 public final |java.awt.Insets| getInsets(java.awt.Insets insets)
 
-Returns an Insets object containing this JViewports inset values. The passed-in 
-Insets object will be reinitialized, and all existing values within this object 
-are overwritten. 
+Returns an Insets object containing this JViewports inset values. The passed-in Insets object will be reinitialized, and all existing values within this object are overwritten. 
+
 
     insets - the Insets object which can be reused 
 
     Returns: this viewports inset values 
+
 *javax.swing.JViewport.getScrollMode()*
 
 public int getScrollMode()
@@ -591,7 +294,9 @@ public int getScrollMode()
 Returns the current scrolling mode. 
 
 
+
     Returns: the scrollMode property 
+
 *javax.swing.JViewport.getUI()*
 
 public |javax.swing.plaf.ViewportUI| getUI()
@@ -599,16 +304,19 @@ public |javax.swing.plaf.ViewportUI| getUI()
 Returns the Lobject that renders this component. 
 
 
+
     Returns: a ViewportUI object 
+
 *javax.swing.JViewport.getUIClassID()*
 
 public |java.lang.String| getUIClassID()
 
-Returns a string that specifies the name of the Lclass that renders this 
-component. 
+Returns a string that specifies the name of the Lclass that renders this component. 
+
 
 
     Returns: the string "ViewportUI" 
+
 *javax.swing.JViewport.getView()*
 
 public |java.awt.Component| getView()
@@ -616,64 +324,71 @@ public |java.awt.Component| getView()
 Returns the JViewport's one child or null. 
 
 
+
     Returns: the viewports child, or null if none exists 
+
 *javax.swing.JViewport.getViewPosition()*
 
 public |java.awt.Point| getViewPosition()
 
-Returns the view coordinates that appear in the upper left hand corner of the 
-viewport, or 0,0 if there's no view. 
+Returns the view coordinates that appear in the upper left hand corner of the viewport, or 0,0 if there's no view. 
+
 
 
     Returns: a Point object giving the upper left coordinates 
+
 *javax.swing.JViewport.getViewRect()*
 
 public |java.awt.Rectangle| getViewRect()
 
-Returns a rectangle whose origin is getViewPosition and size is getExtentSize. 
-This is the visible part of the view, in view coordinates. 
+Returns a rectangle whose origin is getViewPosition and size is getExtentSize. This is the visible part of the view, in view coordinates. 
+
 
 
     Returns: a Rectangle giving the visible part of the view using view coordinates. 
+
 *javax.swing.JViewport.getViewSize()*
 
 public |java.awt.Dimension| getViewSize()
 
-If the view's size hasn't been explicitly set, return the preferred size, 
-otherwise return the view's current size. If there is no view, return 0,0. 
+If the view's size hasn't been explicitly set, return the preferred size, otherwise return the view's current size. If there is no view, return 0,0. 
+
 
 
     Returns: a Dimension object specifying the size of the view 
+
 *javax.swing.JViewport.isBackingStoreEnabled()*
 
 public boolean isBackingStoreEnabled()
 
-Returns true if this viewport is maintaining an offscreen image of its 
-contents. 
+Returns true if this viewport is maintaining an offscreen image of its contents. 
+
+    Deprecated: As of Java 2 platform v1.3, replaced by
+             <code>getScrollMode()</code>.
 
 
     Returns: true if scrollMode is BACKINGSTORE_SCROLL_MODE 
+
 *javax.swing.JViewport.isOptimizedDrawingEnabled()*
 
 public boolean isOptimizedDrawingEnabled()
 
-The JViewport overrides the default implementation of this method (in 
-JComponent) to return false. This ensures that the drawing machinery will call 
-the Viewport's paint implementation rather than messaging the JViewport's 
-children directly. 
+The JViewport overrides the default implementation of this method (in JComponent) to return false. This ensures that the drawing machinery will call the Viewport's paint 
+implementation rather than messaging the JViewport's children directly. 
+
 
 
     Returns: 
+
 *javax.swing.JViewport.paint(Graphics)*
 
 public void paint(java.awt.Graphics g)
 
-Depending on whether the backingStore is enabled, either paint the image 
-through the backing store or paint just the recently exposed part, using the 
-backing store to "blit" the remainder. 
+Depending on whether the backingStore is enabled, either paint the image through the backing store or paint just the recently exposed part, using the backing store to "blit" the 
+remainder. 
 
-The term "blit" is the pronounced version of the PDP-10 BLT (BLock Transfer) 
-instruction, which copied a block of bits. (In case you were curious.) 
+The term "blit" is the pronounced version of the PDP-10 BLT (BLock Transfer) instruction, which copied a block of bits. (In case you were curious.) 
+
 
     g - the Graphics context within which to paint 
 
@@ -681,13 +396,13 @@ instruction, which copied a block of bits. (In case you were curious.)
 
 protected |java.lang.String| paramString()
 
-Returns a string representation of this JViewport. This method is intended to 
-be used only for debugging purposes, and the content and format of the returned 
-string may vary between implementations. The returned string may be empty but 
-may not be null. 
+Returns a string representation of this JViewport. This method is intended to be used only for debugging purposes, and the content and format of the returned string may vary 
+between implementations. The returned string may be empty but may not be null. 
+
 
 
     Returns: a string representation of this JViewport 
+
 *javax.swing.JViewport.remove(Component)*
 
 public void remove(java.awt.Component child)
@@ -695,12 +410,13 @@ public void remove(java.awt.Component child)
 Removes the Viewports one lightweight child. 
 
 
+
 *javax.swing.JViewport.removeChangeListener(ChangeListener)*
 
 public void removeChangeListener(javax.swing.event.ChangeListener l)
 
-Removes a ChangeListener from the list that's notified each time the views 
-size, position, or the viewports extent size has changed. 
+Removes a ChangeListener from the list that's notified each time the views size, position, or the viewports extent size has changed. 
+
 
     l - the ChangeListener to remove 
 
@@ -713,8 +429,8 @@ public void repaint(
   int w,
   int h)
 
-Always repaint in the parents coordinate system to make sure only one paint is 
-performed by the RepaintManager. 
+Always repaint in the parents coordinate system to make sure only one paint is performed by the RepaintManager. 
+
 
     tm - maximum time in milliseconds before update 
     x - the x coordinate (pixels over from left) 
@@ -730,8 +446,8 @@ public void reshape(
   int w,
   int h)
 
-Sets the bounds of this viewport. If the viewport's width or height has 
-changed, fire a StateChanged event. 
+Sets the bounds of this viewport. If the viewport's width or height has changed, fire a StateChanged event. 
+
 
     x - left edge of the origin 
     y - top edge of the origin 
@@ -744,15 +460,11 @@ public void scrollRectToVisible(java.awt.Rectangle contentRect)
 
 Scrolls the view so that Rectangle within the view becomes visible. 
 
-This attempts to validate the view before scrolling if the view is currently 
-not valid - isValid returns false. To avoid excessive validation when the 
-containment hierarchy is being created this will not validate if one of the 
-ancestors does not have a peer, or there is no validate root ancestor, or one 
-of the ancestors is not a Window or Applet. 
+This attempts to validate the view before scrolling if the view is currently not valid - isValid returns false. To avoid excessive validation when the containment hierarchy is 
+being created this will not validate if one of the ancestors does not have a peer, or there is no validate root ancestor, or one of the ancestors is not a Window or Applet. 
 
-Note that this method will not scroll outside of the valid viewport; for 
-example, if contentRect is larger than the viewport, scrolling will be confined 
-to the viewport's bounds. 
+Note that this method will not scroll outside of the valid viewport; for example, if contentRect is larger than the viewport, scrolling will be confined to the viewport's bounds. 
+
 
     contentRect - the Rectangle to display 
 
@@ -760,10 +472,11 @@ to the viewport's bounds.
 
 public void setBackingStoreEnabled(boolean enabled)
 
-If true if this viewport will maintain an offscreen image of its contents. The 
-image is used to reduce the cost of small one dimensional changes to the 
-viewPosition. Rather than repainting the entire viewport we use 
-Graphics.copyArea to effect some of the scroll. 
+If true if this viewport will maintain an offscreen image of its contents. The image is used to reduce the cost of small one dimensional changes to the viewPosition. Rather than 
+repainting the entire viewport we use Graphics.copyArea to effect some of the scroll. 
+
+    Deprecated: As of Java 2 platform v1.3, replaced by
+             <code>setScrollMode()</code>.
 
     enabled - if true, maintain an offscreen backing store 
 
@@ -771,13 +484,10 @@ Graphics.copyArea to effect some of the scroll.
 
 public final void setBorder(javax.swing.border.Border border)
 
-The viewport "scrolls" its child (called the "view") by the normal parent/child 
-clipping (typically the view is moved in the opposite direction of the scroll). 
-A non-null border, or non-zero insets, isn't supported, to prevent the geometry 
-of this component from becoming complex enough to inhibit subclassing. To 
-create a JViewport with a border, add it to a JPanel that has a border. Note: 
-If border is non-null, this method will throw an exception as borders are not 
-supported on a JViewPort. 
+The viewport "scrolls" its child (called the "view") by the normal parent/child clipping (typically the view is moved in the opposite direction of the scroll). A non-null border, 
+or non-zero insets, isn't supported, to prevent the geometry of this component from becoming complex enough to inhibit subclassing. To create a JViewport with a border, add it to 
+a JPanel that has a border. Note: If border is non-null, this method will throw an exception as borders are not supported on a JViewPort. 
+
 
     border - the Border to set 
 
@@ -787,25 +497,26 @@ public void setExtentSize(java.awt.Dimension newExtent)
 
 Sets the size of the visible part of the view using view coordinates. 
 
+
     newExtent - a Dimension object specifying the size of the view 
 
 *javax.swing.JViewport.setScrollMode(int)*
 
 public void setScrollMode(int mode)
 
-Used to control the method of scrolling the viewport contents. You may want to 
-change this mode to get maximum performance for your use case. 
+Used to control the method of scrolling the viewport contents. You may want to change this mode to get maximum performance for your use case. 
+
 
     mode - one of the following values: 
 
-JViewport.BLIT_SCROLL_MODE JViewport.BACKINGSTORE_SCROLL_MODE 
-       JViewport.SIMPLE_SCROLL_MODE 
+JViewport.BLIT_SCROLL_MODE JViewport.BACKINGSTORE_SCROLL_MODE JViewport.SIMPLE_SCROLL_MODE 
 
 *javax.swing.JViewport.setUI(ViewportUI)*
 
 public void setUI(javax.swing.plaf.ViewportUI ui)
 
 Sets the Lobject that renders this component. 
+
 
     ui - the ViewportUI Lobject 
 
@@ -815,14 +526,15 @@ public void setView(java.awt.Component view)
 
 Sets the JViewport's one lightweight child (view), which can be null. 
 
+
     view - the viewport's new lightweight child 
 
 *javax.swing.JViewport.setViewPosition(Point)*
 
 public void setViewPosition(java.awt.Point p)
 
-Sets the view coordinates that appear in the upper left hand corner of the 
-viewport, does nothing if there's no view. 
+Sets the view coordinates that appear in the upper left hand corner of the viewport, does nothing if there's no view. 
+
 
     p - a Point object giving the upper left coordinates 
 
@@ -832,33 +544,37 @@ public void setViewSize(java.awt.Dimension newSize)
 
 Sets the size of the view. A state changed event will be fired. 
 
+
     newSize - a Dimension object specifying the new size of the view 
 
 *javax.swing.JViewport.toViewCoordinates(Dimension)*
 
 public |java.awt.Dimension| toViewCoordinates(java.awt.Dimension size)
 
-Converts a size in pixel coordinates to view coordinates. Subclasses of 
-viewport that support "logical coordinates" will override this method. 
+Converts a size in pixel coordinates to view coordinates. Subclasses of viewport that support "logical coordinates" will override this method. 
+
 
     size - a Dimension object using pixel coordinates 
 
     Returns: a Dimension object converted to view coordinates 
+
 *javax.swing.JViewport.toViewCoordinates(Point)*
 
 public |java.awt.Point| toViewCoordinates(java.awt.Point p)
 
-Converts a point in pixel coordinates to view coordinates. Subclasses of 
-viewport that support "logical coordinates" will override this method. 
+Converts a point in pixel coordinates to view coordinates. Subclasses of viewport that support "logical coordinates" will override this method. 
+
 
     p - a Point object using pixel coordinates 
 
     Returns: a Point object converted to view coordinates 
+
 *javax.swing.JViewport.updateUI()*
 
 public void updateUI()
 
 Resets the UI property to a value from the current look and feel. 
+
 
 
 

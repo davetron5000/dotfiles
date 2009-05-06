@@ -1,4 +1,4 @@
-*javax.swing.text.MaskFormatter* *MaskFormatter* MaskFormatter is used to format
+*javax.swing.text.MaskFormatter* *MaskFormatter* MaskFormatter is used to format and edit strings.
 
 public class MaskFormatter
   extends    |javax.swing.text.DefaultFormatter|
@@ -8,35 +8,33 @@ public class MaskFormatter
 |javax.swing.text.MaskFormatter_Constructors|
 |javax.swing.text.MaskFormatter_Methods|
 
-================================================================================
+====================================================================================================================================================================================
 
 *javax.swing.text.MaskFormatter_Constructors*
 |javax.swing.text.MaskFormatter()|Creates a MaskFormatter with no mask.
-|javax.swing.text.MaskFormatter(String)|Creates a MaskFormatter with the specif
+|javax.swing.text.MaskFormatter(String)|Creates a MaskFormatter with the specified mask.
 
 *javax.swing.text.MaskFormatter_Methods*
-|javax.swing.text.MaskFormatter.getInvalidCharacters()|Returns the characters t
+|javax.swing.text.MaskFormatter.getInvalidCharacters()|Returns the characters that are not valid for input.
 |javax.swing.text.MaskFormatter.getMask()|Returns the formatting mask.
-|javax.swing.text.MaskFormatter.getPlaceholder()|Returns the String to use if t
-|javax.swing.text.MaskFormatter.getPlaceholderCharacter()|Returns the character
-|javax.swing.text.MaskFormatter.getValidCharacters()|Returns the valid characte
-|javax.swing.text.MaskFormatter.getValueContainsLiteralCharacters()|Returns tru
-|javax.swing.text.MaskFormatter.install(JFormattedTextField)|Installs the Defau
-|javax.swing.text.MaskFormatter.setInvalidCharacters(String)|Allows for further
-|javax.swing.text.MaskFormatter.setMask(String)|Sets the mask dictating the leg
-|javax.swing.text.MaskFormatter.setPlaceholder(String)|Sets the string to use i
-|javax.swing.text.MaskFormatter.setPlaceholderCharacter(char)|Sets the characte
-|javax.swing.text.MaskFormatter.setValidCharacters(String)|Allows for further r
-|javax.swing.text.MaskFormatter.setValueContainsLiteralCharacters(boolean)|If t
-|javax.swing.text.MaskFormatter.stringToValue(String)|Parses the text, returnin
-|javax.swing.text.MaskFormatter.valueToString(Object)|Returns a String represen
+|javax.swing.text.MaskFormatter.getPlaceholder()|Returns the String to use if the value does not completely fill  in the mask.
+|javax.swing.text.MaskFormatter.getPlaceholderCharacter()|Returns the character to use in place of characters that are not present  in the value, ie the user must fill them in.
+|javax.swing.text.MaskFormatter.getValidCharacters()|Returns the valid characters that can be input.
+|javax.swing.text.MaskFormatter.getValueContainsLiteralCharacters()|Returns true if stringToValue should return literal  characters in the mask.
+|javax.swing.text.MaskFormatter.install(JFormattedTextField)|Installs the DefaultFormatter onto a particular  JFormattedTextField.
+|javax.swing.text.MaskFormatter.setInvalidCharacters(String)|Allows for further restricting of the characters that can be input.
+|javax.swing.text.MaskFormatter.setMask(String)|Sets the mask dictating the legal characters.
+|javax.swing.text.MaskFormatter.setPlaceholder(String)|Sets the string to use if the value does not completely fill in  the mask.
+|javax.swing.text.MaskFormatter.setPlaceholderCharacter(char)|Sets the character to use in place of characters that are not present  in the value, ie the user must fill them in.
+|javax.swing.text.MaskFormatter.setValidCharacters(String)|Allows for further restricting of the characters that can be input.
+|javax.swing.text.MaskFormatter.setValueContainsLiteralCharacters(boolean)|If true, the returned value and set value will also contain the literal  characters in mask.
+|javax.swing.text.MaskFormatter.stringToValue(String)|Parses the text, returning the appropriate Object representation of  the String value.
+|javax.swing.text.MaskFormatter.valueToString(Object)|Returns a String representation of the Object value  based on the mask.
 
 *javax.swing.text.MaskFormatter_Description*
 
-MaskFormatter is used to format and edit strings. The behavior of a 
-MaskFormatter is controlled by way of a String mask that specifies the valid 
-characters that can be contained at a particular location in the Document 
-model. The following characters can be specified: 
+MaskFormatter is used to format and edit strings. The behavior of a MaskFormatter is controlled by way of a String mask that specifies the valid characters that can be contained 
+at a particular location in the Document model. The following characters can be specified: 
 
 
 
@@ -46,11 +44,9 @@ Character Description
 
 ' Escape character, used to escape any of the special formatting characters. 
 
-UAny character (Character.isLetter). All lowercase letters are mapped to upper 
-case. 
+UAny character (Character.isLetter). All lowercase letters are mapped to upper case. 
 
-LAny character (Character.isLetter). All upper case letters are mapped to lower 
-case. 
+LAny character (Character.isLetter). All upper case letters are mapped to lower case. 
 
 AAny character or number (Character.isLetter or Character.isDigit) 
 
@@ -58,65 +54,46 @@ AAny character or number (Character.isLetter or Character.isDigit)
 
 *Anything. HAny hex character (0-9, a-f or A-F). 
 
-Typically characters correspond to one char, but in certain languages this is 
-not the case. The mask is on a per character basis, and will thus adjust to fit 
-as many chars as are needed. 
+Typically characters correspond to one char, but in certain languages this is not the case. The mask is on a per character basis, and will thus adjust to fit as many chars as are 
+needed. 
 
-You can further restrict the characters that can be input by the 
-setInvalidCharacters and setValidCharacters methods. setInvalidCharacters 
-allows you to specify which characters are not legal. setValidCharacters allows 
-you to specify which characters are valid. For example, the following code 
-block is equivalent to a mask of '0xHHH' with no invalid/valid characters: 
+You can further restrict the characters that can be input by the setInvalidCharacters and setValidCharacters methods. setInvalidCharacters allows you to specify which characters 
+are not legal. setValidCharacters allows you to specify which characters are valid. For example, the following code block is equivalent to a mask of '0xHHH' with no invalid/valid 
+characters: 
 
-MaskFormatter formatter = new MaskFormatter("0x***"); 
-formatter.setValidCharacters("0123456789abcdefABCDEF"); 
+MaskFormatter formatter = new MaskFormatter("0x***"); formatter.setValidCharacters("0123456789abcdefABCDEF"); 
 
-When initially formatting a value if the length of the string is less than the 
-length of the mask, two things can happen. Either the placeholder string will 
-be used, or the placeholder character will be used. Precedence is given to the 
-placeholder string. For example: 
+When initially formatting a value if the length of the string is less than the length of the mask, two things can happen. Either the placeholder string will be used, or the 
+placeholder character will be used. Precedence is given to the placeholder string. For example: 
 
-MaskFormatter formatter = new MaskFormatter("###-####"); 
-formatter.setPlaceholderCharacter('_'); formatter.getDisplayValue(tf, "123"); 
+MaskFormatter formatter = new MaskFormatter("###-####"); formatter.setPlaceholderCharacter('_'); formatter.getDisplayValue(tf, "123"); 
 
-Would result in the string '123-____'. If setPlaceholder("555-1212") was 
-invoked '123-1212' would result. The placeholder String is only used on the 
-initial format, on subsequent formats only the placeholder character will be 
-used. 
+Would result in the string '123-____'. If setPlaceholder("555-1212") was invoked '123-1212' would result. The placeholder String is only used on the initial format, on subsequent 
+formats only the placeholder character will be used. 
 
-If a MaskFormatter is configured to only allow valid characters 
-(setAllowsInvalid(false)) literal characters will be skipped as necessary when 
-editing. Consider a MaskFormatter with the mask "###-####" and current value 
-"555-1212". Using the right arrow key to navigate through the field will result 
-in (| indicates the position of the caret): 
+If a MaskFormatter is configured to only allow valid characters (setAllowsInvalid(false)) literal characters will be skipped as necessary when editing. Consider a MaskFormatter 
+with the mask "###-####" and current value "555-1212". Using the right arrow key to navigate through the field will result in (| indicates the position of the caret): 
 
 |555-1212 5|55-1212 55|5-1212 555-|1212 555-1|212 
 
 The '-' is a literal (non-editable) character, and is skipped. 
 
-Similar behavior will result when editing. Consider inserting the string 
-'123-45' and '12345' into the MaskFormatter in the previous example. Both 
-inserts will result in the same String, '123-45__'. When MaskFormatter is 
-processing the insert at character position 3 (the '-'), two things can happen: 
+Similar behavior will result when editing. Consider inserting the string '123-45' and '12345' into the MaskFormatter in the previous example. Both inserts will result in the same 
+String, '123-45__'. When MaskFormatter is processing the insert at character position 3 (the '-'), two things can happen: 
 
-If the inserted character is '-', it is accepted. If the inserted character 
-matches the mask for the next non-literal character, it is accepted at the new 
-location. Anything else results in an invalid edit 
+If the inserted character is '-', it is accepted. If the inserted character matches the mask for the next non-literal character, it is accepted at the new location. Anything else 
+results in an invalid edit 
 
-By default MaskFormatter will not allow invalid edits, you can change this with 
-the setAllowsInvalid method, and will commit edits on valid edits (use the 
-setCommitsOnValidEdit to change this). 
+By default MaskFormatter will not allow invalid edits, you can change this with the setAllowsInvalid method, and will commit edits on valid edits (use the setCommitsOnValidEdit to 
+change this). 
 
-By default, MaskFormatter is in overwrite mode. That is as characters are typed 
-a new character is not inserted, rather the character at the current location 
-is replaced with the newly typed character. You can change this behavior by way 
-of the method setOverwriteMode. 
+By default, MaskFormatter is in overwrite mode. That is as characters are typed a new character is not inserted, rather the character at the current location is replaced with the 
+newly typed character. You can change this behavior by way of the method setOverwriteMode. 
 
-Warning: Serialized objects of this class will not be compatible with future 
-Swing releases. The current serialization support is appropriate for short term 
-storage or RMI between applications running the same version of Swing. As of 
-1.4, support for long term storage of all JavaBeansTM has been added to the 
-java.beans package. Please see (|java.beans.XMLEncoder|) . 
+Warning: Serialized objects of this class will not be compatible with future Swing releases. The current serialization support is appropriate for short term storage or RMI between 
+applications running the same version of Swing. As of 1.4, support for long term storage of all JavaBeansTM has been added to the java.beans package. Please see 
+(|java.beans.XMLEncoder|) . 
+
 
 
 *javax.swing.text.MaskFormatter()*
@@ -131,8 +108,7 @@ Creates a MaskFormatter with no mask.
 public MaskFormatter(java.lang.String mask)
   throws |java.text.ParseException|
          
-Creates a MaskFormatter with the specified mask. A ParseException will be 
-thrown if mask is an invalid mask. 
+Creates a MaskFormatter with the specified mask. A ParseException will be thrown if mask is an invalid mask. 
 
 
 *javax.swing.text.MaskFormatter.getInvalidCharacters()*
@@ -142,7 +118,9 @@ public |java.lang.String| getInvalidCharacters()
 Returns the characters that are not valid for input. 
 
 
+
     Returns: illegal characters. 
+
 *javax.swing.text.MaskFormatter.getMask()*
 
 public |java.lang.String| getMask()
@@ -150,7 +128,9 @@ public |java.lang.String| getMask()
 Returns the formatting mask. 
 
 
+
     Returns: Mask dictating legal character values. 
+
 *javax.swing.text.MaskFormatter.getPlaceholder()*
 
 public |java.lang.String| getPlaceholder()
@@ -158,16 +138,19 @@ public |java.lang.String| getPlaceholder()
 Returns the String to use if the value does not completely fill in the mask. 
 
 
+
     Returns: String used when formatting if the value does not completely fill the mask 
+
 *javax.swing.text.MaskFormatter.getPlaceholderCharacter()*
 
 public char getPlaceholderCharacter()
 
-Returns the character to use in place of characters that are not present in the 
-value, ie the user must fill them in. 
+Returns the character to use in place of characters that are not present in the value, ie the user must fill them in. 
+
 
 
     Returns: Character used when formatting if the value does not completely fill the mask 
+
 *javax.swing.text.MaskFormatter.getValidCharacters()*
 
 public |java.lang.String| getValidCharacters()
@@ -175,7 +158,9 @@ public |java.lang.String| getValidCharacters()
 Returns the valid characters that can be input. 
 
 
+
     Returns: Legal characters 
+
 *javax.swing.text.MaskFormatter.getValueContainsLiteralCharacters()*
 
 public boolean getValueContainsLiteralCharacters()
@@ -183,40 +168,34 @@ public boolean getValueContainsLiteralCharacters()
 Returns true if stringToValue should return literal characters in the mask. 
 
 
+
     Returns: True if literal characters in mask should be returned in stringToValue 
+
 *javax.swing.text.MaskFormatter.install(JFormattedTextField)*
 
 public void install(javax.swing.JFormattedTextField ftf)
 
-Installs the DefaultFormatter onto a particular JFormattedTextField. This will 
-invoke valueToString to convert the current value from the JFormattedTextField 
-to a String. This will then install the Actions from getActions, the 
-DocumentFilter returned from getDocumentFilter and the NavigationFilter 
-returned from getNavigationFilter onto the JFormattedTextField. 
+Installs the DefaultFormatter onto a particular JFormattedTextField. This will invoke valueToString to convert the current value from the JFormattedTextField to a String. This 
+will then install the Actions from getActions, the DocumentFilter returned from getDocumentFilter and the NavigationFilter returned from getNavigationFilter onto the 
+JFormattedTextField. 
 
-Subclasses will typically only need to override this if they wish to install 
-additional listeners on the JFormattedTextField. 
+Subclasses will typically only need to override this if they wish to install additional listeners on the JFormattedTextField. 
 
-If there is a ParseException in converting the current value to a String, this 
-will set the text to an empty String, and mark the JFormattedTextField as being 
-in an invalid state. 
+If there is a ParseException in converting the current value to a String, this will set the text to an empty String, and mark the JFormattedTextField as being in an invalid state. 
 
-While this is a public method, this is typically only useful for subclassers of 
-JFormattedTextField. JFormattedTextField will invoke this method at the 
-appropriate times when the value changes, or its internal state changes. 
+While this is a public method, this is typically only useful for subclassers of JFormattedTextField. JFormattedTextField will invoke this method at the appropriate times when the 
+value changes, or its internal state changes. 
 
-    ftf - JFormattedTextField to format for, may be null indicating uninstall from 
-       current JFormattedTextField. 
+
+    ftf - JFormattedTextField to format for, may be null indicating uninstall from current JFormattedTextField. 
 
 *javax.swing.text.MaskFormatter.setInvalidCharacters(String)*
 
 public void setInvalidCharacters(java.lang.String invalidCharacters)
 
-Allows for further restricting of the characters that can be input. Only 
-characters specified in the mask, not in the invalidCharacters, and in 
-validCharacters will be allowed to be input. Passing in null (the default) 
-implies the valid characters are only bound by the mask and the valid 
-characters. 
+Allows for further restricting of the characters that can be input. Only characters specified in the mask, not in the invalidCharacters, and in validCharacters will be allowed to 
+be input. Passing in null (the default) implies the valid characters are only bound by the mask and the valid characters. 
+
 
     invalidCharacters - If non-null, specifies illegal characters. 
 
@@ -225,16 +204,16 @@ characters.
 public void setMask(java.lang.String mask)
   throws |java.text.ParseException|
          
-Sets the mask dictating the legal characters. This will throw a ParseException 
-if mask is not valid. 
+Sets the mask dictating the legal characters. This will throw a ParseException if mask is not valid. 
+
 
 
 *javax.swing.text.MaskFormatter.setPlaceholder(String)*
 
 public void setPlaceholder(java.lang.String placeholder)
 
-Sets the string to use if the value does not completely fill in the mask. A 
-null value implies the placeholder char should be used. 
+Sets the string to use if the value does not completely fill in the mask. A null value implies the placeholder char should be used. 
+
 
     placeholder - String used when formatting if the value does not completely fill the mask 
 
@@ -242,11 +221,10 @@ null value implies the placeholder char should be used.
 
 public void setPlaceholderCharacter(char placeholder)
 
-Sets the character to use in place of characters that are not present in the 
-value, ie the user must fill them in. The default value is a space. 
+Sets the character to use in place of characters that are not present in the value, ie the user must fill them in. The default value is a space. 
 
-This is only applicable if the placeholder string has not been specified, or 
-does not completely fill in the mask. 
+This is only applicable if the placeholder string has not been specified, or does not completely fill in the mask. 
+
 
     placeholder - Character used when formatting if the value does not completely fill the mask 
 
@@ -254,11 +232,9 @@ does not completely fill in the mask.
 
 public void setValidCharacters(java.lang.String validCharacters)
 
-Allows for further restricting of the characters that can be input. Only 
-characters specified in the mask, not in the invalidCharacters, and in 
-validCharacters will be allowed to be input. Passing in null (the default) 
-implies the valid characters are only bound by the mask and the invalid 
-characters. 
+Allows for further restricting of the characters that can be input. Only characters specified in the mask, not in the invalidCharacters, and in validCharacters will be allowed to 
+be input. Passing in null (the default) implies the valid characters are only bound by the mask and the invalid characters. 
+
 
     validCharacters - If non-null, specifies legal characters. 
 
@@ -266,41 +242,38 @@ characters.
 
 public void setValueContainsLiteralCharacters(boolean containsLiteralChars)
 
-If true, the returned value and set value will also contain the literal 
-characters in mask. 
+If true, the returned value and set value will also contain the literal characters in mask. 
 
-For example, if the mask is '(###) ###-####', the current value is '(415) 
-555-1212', and valueContainsLiteralCharacters is true stringToValue will return 
-'(415) 555-1212'. On the other hand, if valueContainsLiteralCharacters is 
-false, stringToValue will return '4155551212'. 
+For example, if the mask is '(###) ###-####', the current value is '(415) 555-1212', and valueContainsLiteralCharacters is true stringToValue will return '(415) 555-1212'. On the 
+other hand, if valueContainsLiteralCharacters is false, stringToValue will return '4155551212'. 
 
-    containsLiteralChars - Used to indicate if literal characters in mask should be returned in 
-       stringToValue 
+
+    containsLiteralChars - Used to indicate if literal characters in mask should be returned in stringToValue 
 
 *javax.swing.text.MaskFormatter.stringToValue(String)*
 
 public |java.lang.Object| stringToValue(java.lang.String value)
   throws |java.text.ParseException|
          
-Parses the text, returning the appropriate Object representation of the String 
-value. This strips the literal characters as necessary and invokes supers 
-stringToValue, so that if you have specified a value class (setValueClass) an 
-instance of it will be created. This will throw a ParseException if the value 
-does not match the current mask. Refer to (|javax.swing.text.MaskFormatter|) 
-for details on how literals are treated. 
+Parses the text, returning the appropriate Object representation of the String value. This strips the literal characters as necessary and invokes supers stringToValue, so that if 
+you have specified a value class (setValueClass) an instance of it will be created. This will throw a ParseException if the value does not match the current mask. Refer to 
+(|javax.swing.text.MaskFormatter|) for details on how literals are treated. 
+
 
     value - String to convert 
 
     Returns: Object representation of text 
+
 *javax.swing.text.MaskFormatter.valueToString(Object)*
 
 public |java.lang.String| valueToString(java.lang.Object value)
   throws |java.text.ParseException|
          
-Returns a String representation of the Object value based on the mask. Refer to 
-(|javax.swing.text.MaskFormatter|) for details on how literals are treated. 
+Returns a String representation of the Object value based on the mask. Refer to (|javax.swing.text.MaskFormatter|) for details on how literals are treated. 
+
 
     value - Value to convert 
 
     Returns: String representation of value 
+
 

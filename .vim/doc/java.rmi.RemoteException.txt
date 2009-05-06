@@ -1,4 +1,6 @@
-*java.rmi.RemoteException* *RemoteException* A RemoteException is the common sup
+*java.rmi.RemoteException* *RemoteException* A RemoteException is the common superclass for a number of
+ communication-related exceptions that may occur during the execution of a
+ 
 
 public class RemoteException
   extends    |java.io.IOException|
@@ -8,54 +10,38 @@ public class RemoteException
 |java.rmi.RemoteException_Constructors|
 |java.rmi.RemoteException_Methods|
 
-================================================================================
+====================================================================================================================================================================================
 
 *java.rmi.RemoteException_Fields*
 |java.lang.Throwable_java.rmi.RemoteException.detail|
 
 *java.rmi.RemoteException_Constructors*
 |java.rmi.RemoteException()|Constructs a RemoteException.
-|java.rmi.RemoteException(String)|Constructs a RemoteException with the specifi
-|java.rmi.RemoteException(String,Throwable)|Constructs a RemoteException with t
+|java.rmi.RemoteException(String)|Constructs a RemoteException with the specified  detail message.
+|java.rmi.RemoteException(String,Throwable)|Constructs a RemoteException with the specified detail  message and cause.
 
 *java.rmi.RemoteException_Methods*
 |java.rmi.RemoteException.getCause()|Returns the cause of this exception.
-|java.rmi.RemoteException.getMessage()|Returns the detail message, including th
+|java.rmi.RemoteException.getMessage()|Returns the detail message, including the message from the cause, if  any, of this exception.
 
 *java.rmi.RemoteException_Description*
 
-A RemoteException is the common superclass for a number of 
-communication-related exceptions that may occur during the execution of a 
-remote method call. Each method of a remote interface, an interface that 
-extends java.rmi.Remote, must list RemoteException in its throws clause. 
+A RemoteException is the common superclass for a number of communication-related exceptions that may occur during the execution of a remote method call. Each method of a remote 
+interface, an interface that extends java.rmi.Remote, must list RemoteException in its throws clause. 
 
-As of release 1.4, this exception has been retrofitted to conform to the 
-general purpose exception-chaining mechanism. The "wrapped remote exception" 
-that may be provided at construction time and accessed via the public 
-(|java.rmi.RemoteException|) field is now known as the cause, and may be 
-accessed via the (|java.lang.Throwable|) method, as well as the aforementioned 
-"legacy field." 
+As of release 1.4, this exception has been retrofitted to conform to the general purpose exception-chaining mechanism. The "wrapped remote exception" that may be provided at 
+construction time and accessed via the public (|java.rmi.RemoteException|) field is now known as the cause, and may be accessed via the (|java.lang.Throwable|) method, as well as 
+the aforementioned "legacy field." 
 
-Invoking the method (|java.lang.Throwable|) on an instance of RemoteException 
-always throws (|java.lang.IllegalStateException|) . 
+Invoking the method (|java.lang.Throwable|) on an instance of RemoteException always throws (|java.lang.IllegalStateException|) . 
+
 
 
 *java.lang.Throwable_java.rmi.RemoteException.detail*
 
-A RemoteException is the common superclass for a number of 
-communication-related exceptions that may occur during the execution of a 
-remote method call. Each method of a remote interface, an interface that 
-extends java.rmi.Remote, must list RemoteException in its throws clause. 
+The cause of the remote exception. 
 
-As of release 1.4, this exception has been retrofitted to conform to the 
-general purpose exception-chaining mechanism. The "wrapped remote exception" 
-that may be provided at construction time and accessed via the public 
-(|java.rmi.RemoteException|) field is now known as the cause, and may be 
-accessed via the (|java.lang.Throwable|) method, as well as the aforementioned 
-"legacy field." 
-
-Invoking the method (|java.lang.Throwable|) on an instance of RemoteException 
-always throws (|java.lang.IllegalStateException|) . 
+This field predates the general-purpose exception chaining facility. The (|java.lang.Throwable|) method is now the preferred means of obtaining this information. 
 
 
 
@@ -80,9 +66,7 @@ public RemoteException(
   java.lang.String s,
   java.lang.Throwable cause)
 
-Constructs a RemoteException with the specified detail message and cause. This 
-constructor sets the (|java.rmi.RemoteException|) field to the specified 
-Throwable. 
+Constructs a RemoteException with the specified detail message and cause. This constructor sets the (|java.rmi.RemoteException|) field to the specified Throwable. 
 
     s - the detail message 
     cause - the cause 
@@ -91,18 +75,20 @@ Throwable.
 
 public |java.lang.Throwable| getCause()
 
-Returns the cause of this exception. This method returns the value of the 
-(|java.rmi.RemoteException|) field. 
+Returns the cause of this exception. This method returns the value of the (|java.rmi.RemoteException|) field. 
+
 
 
     Returns: the cause, which may be null. 
+
 *java.rmi.RemoteException.getMessage()*
 
 public |java.lang.String| getMessage()
 
-Returns the detail message, including the message from the cause, if any, of 
-this exception. 
+Returns the detail message, including the message from the cause, if any, of this exception. 
+
 
 
     Returns: the detail message 
+
 

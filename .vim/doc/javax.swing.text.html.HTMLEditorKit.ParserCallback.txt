@@ -1,4 +1,4 @@
-*javax.swing.text.html.HTMLEditorKit.ParserCallback* *HTMLEditorKit.ParserCallback* 
+*javax.swing.text.html.HTMLEditorKit.ParserCallback* *HTMLEditorKit.ParserCallback* The result of parsing drives these callback methods.
 
 public static class HTMLEditorKit.ParserCallback
   extends    |java.lang.Object|
@@ -8,7 +8,7 @@ public static class HTMLEditorKit.ParserCallback
 |javax.swing.text.html.HTMLEditorKit.ParserCallback_Constructors|
 |javax.swing.text.html.HTMLEditorKit.ParserCallback_Methods|
 
-================================================================================
+====================================================================================================================================================================================
 
 *javax.swing.text.html.HTMLEditorKit.ParserCallback_Fields*
 |java.lang.Object_javax.swing.text.html.HTMLEditorKit.ParserCallback.IMPLIED|
@@ -19,7 +19,7 @@ public static class HTMLEditorKit.ParserCallback
 *javax.swing.text.html.HTMLEditorKit.ParserCallback_Methods*
 |javax.swing.text.html.HTMLEditorKit.ParserCallback.flush()|
 |javax.swing.text.html.HTMLEditorKit.ParserCallback.handleComment(char[],int)|
-|javax.swing.text.html.HTMLEditorKit.ParserCallback.handleEndOfLineString(String)|
+|javax.swing.text.html.HTMLEditorKit.ParserCallback.handleEndOfLineString(String)|This is invoked after the stream has been parsed, but before  flush.
 |javax.swing.text.html.HTMLEditorKit.ParserCallback.handleEndTag(HTML.Tag,int)|
 |javax.swing.text.html.HTMLEditorKit.ParserCallback.handleError(String,int)|
 |javax.swing.text.html.HTMLEditorKit.ParserCallback.handleSimpleTag(HTML.Tag,MutableAttributeSet,int)|
@@ -28,20 +28,15 @@ public static class HTMLEditorKit.ParserCallback
 
 *javax.swing.text.html.HTMLEditorKit.ParserCallback_Description*
 
-The result of parsing drives these callback methods. The open and close actions 
-should be balanced. The flush method will be the last method called, to give 
-the receiver a chance to flush any pending data into the document. Refer to 
-DocumentParser, the default parser used, for further information on the 
-contents of the AttributeSets, the positions, and other info. 
+The result of parsing drives these callback methods. The open and close actions should be balanced. The flush method will be the last method called, to give the receiver a chance 
+to flush any pending data into the document. Refer to DocumentParser, the default parser used, for further information on the contents of the AttributeSets, the positions, and 
+other info. 
+
 
 
 *java.lang.Object_javax.swing.text.html.HTMLEditorKit.ParserCallback.IMPLIED*
 
-The result of parsing drives these callback methods. The open and close actions 
-should be balanced. The flush method will be the last method called, to give 
-the receiver a chance to flush any pending data into the document. Refer to 
-DocumentParser, the default parser used, for further information on the 
-contents of the AttributeSets, the positions, and other info. 
+This is passed as an attribute in the attributeset to indicate the element is implied eg, the string '<>foo<\t>' contains an implied html element and an implied body element. 
 
 
 
@@ -60,6 +55,7 @@ public void flush()
 
 
 
+
 *javax.swing.text.html.HTMLEditorKit.ParserCallback.handleComment(char[],int)*
 
 public void handleComment(
@@ -69,13 +65,13 @@ public void handleComment(
 
 
 
+
 *javax.swing.text.html.HTMLEditorKit.ParserCallback.handleEndOfLineString(String)*
 
 public void handleEndOfLineString(java.lang.String eol)
 
-This is invoked after the stream has been parsed, but before flush. eol will be 
-one of \n, \r or \r\n, which ever is encountered the most in parsing the 
-stream. 
+This is invoked after the stream has been parsed, but before flush. eol will be one of \n, \r or \r\n, which ever is encountered the most in parsing the stream. 
+
 
 
 *javax.swing.text.html.HTMLEditorKit.ParserCallback.handleEndTag(HTML.Tag,int)*
@@ -87,11 +83,13 @@ public void handleEndTag(
 
 
 
+
 *javax.swing.text.html.HTMLEditorKit.ParserCallback.handleError(String,int)*
 
 public void handleError(
   java.lang.String errorMsg,
   int pos)
+
 
 
 
@@ -106,6 +104,7 @@ public void handleSimpleTag(
 
 
 
+
 *javax.swing.text.html.HTMLEditorKit.ParserCallback.handleStartTag(HTML.Tag,MutableAttributeSet,int)*
 
 public void handleStartTag(
@@ -116,11 +115,13 @@ public void handleStartTag(
 
 
 
+
 *javax.swing.text.html.HTMLEditorKit.ParserCallback.handleText(char[],int)*
 
 public void handleText(
   char[] data,
   int pos)
+
 
 
 

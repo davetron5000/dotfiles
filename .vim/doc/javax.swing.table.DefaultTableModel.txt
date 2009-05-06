@@ -1,4 +1,6 @@
-*javax.swing.table.DefaultTableModel* *DefaultTableModel* This is an implementat
+*javax.swing.table.DefaultTableModel* *DefaultTableModel* This is an implementation of TableModel that
+ uses a Vector of Vectors to store the
+ cell value objects.
 
 public class DefaultTableModel
   extends    |javax.swing.table.AbstractTableModel|
@@ -9,84 +11,68 @@ public class DefaultTableModel
 |javax.swing.table.DefaultTableModel_Constructors|
 |javax.swing.table.DefaultTableModel_Methods|
 
-================================================================================
+====================================================================================================================================================================================
 
 *javax.swing.table.DefaultTableModel_Fields*
 |java.util.Vector_javax.swing.table.DefaultTableModel.columnIdentifiers|
 |java.util.Vector_javax.swing.table.DefaultTableModel.dataVector|
 
 *javax.swing.table.DefaultTableModel_Constructors*
-|javax.swing.table.DefaultTableModel()|Constructs a default DefaultTableModel  
-|javax.swing.table.DefaultTableModel(int,int)|Constructs a DefaultTableModel wi
-|javax.swing.table.DefaultTableModel(Object[][],Object[])|Constructs a DefaultT
-|javax.swing.table.DefaultTableModel(Object[],int)|Constructs a DefaultTableMod
-|javax.swing.table.DefaultTableModel(Vector,int)|Constructs a DefaultTableModel
-|javax.swing.table.DefaultTableModel(Vector,Vector)|Constructs a DefaultTableMo
+|javax.swing.table.DefaultTableModel()|Constructs a default DefaultTableModel    which is a table of zero columns and zero rows.
+|javax.swing.table.DefaultTableModel(int,int)|Constructs a DefaultTableModel with   rowCount and columnCount of   null object values.
+|javax.swing.table.DefaultTableModel(Object[][],Object[])|Constructs a DefaultTableModel and initializes the table   by passing data and columnNames   to the setDataVector   metho
+|javax.swing.table.DefaultTableModel(Object[],int)|Constructs a DefaultTableModel with as many   columns as there are elements in columnNames   and rowCount of null   object value
+|javax.swing.table.DefaultTableModel(Vector,int)|Constructs a DefaultTableModel with as many columns   as there are elements in columnNames   and rowCount of null   object values.
+|javax.swing.table.DefaultTableModel(Vector,Vector)|Constructs a DefaultTableModel and initializes the table   by passing data and columnNames   to the setDataVector method.
 
 *javax.swing.table.DefaultTableModel_Methods*
-|javax.swing.table.DefaultTableModel.addColumn(Object)|Adds a column to the mod
-|javax.swing.table.DefaultTableModel.addColumn(Object,Object[])|Adds a column t
-|javax.swing.table.DefaultTableModel.addColumn(Object,Vector)|Adds a column to 
-|javax.swing.table.DefaultTableModel.addRow(Object[])|Adds a row to the end of 
-|javax.swing.table.DefaultTableModel.addRow(Vector)|Adds a row to the end of th
-|javax.swing.table.DefaultTableModel.convertToVector(Object[])|Returns a vector
-|javax.swing.table.DefaultTableModel.convertToVector(Object[][])|Returns a vect
-|javax.swing.table.DefaultTableModel.getColumnCount()|Returns the number of col
-|javax.swing.table.DefaultTableModel.getColumnName(int)|Returns the column name
-|javax.swing.table.DefaultTableModel.getDataVector()|Returns the Vector of Vect
-|javax.swing.table.DefaultTableModel.getRowCount()|Returns the number of rows i
-|javax.swing.table.DefaultTableModel.getValueAt(int,int)|Returns an attribute v
-|javax.swing.table.DefaultTableModel.insertRow(int,Object[])|Inserts a row at r
-|javax.swing.table.DefaultTableModel.insertRow(int,Vector)|Inserts a row at row
-|javax.swing.table.DefaultTableModel.isCellEditable(int,int)|Returns true regar
-|javax.swing.table.DefaultTableModel.moveRow(int,int,int)|Moves one or more row
-|javax.swing.table.DefaultTableModel.newDataAvailable(TableModelEvent)|Equivale
-|javax.swing.table.DefaultTableModel.newRowsAdded(TableModelEvent)|Ensures that
-|javax.swing.table.DefaultTableModel.removeRow(int)|Removes the row at row from
-|javax.swing.table.DefaultTableModel.rowsRemoved(TableModelEvent)|Equivalent to
-|javax.swing.table.DefaultTableModel.setColumnCount(int)|Sets the number of col
-|javax.swing.table.DefaultTableModel.setColumnIdentifiers(Object[])|Replaces th
-|javax.swing.table.DefaultTableModel.setColumnIdentifiers(Vector)|Replaces the 
-|javax.swing.table.DefaultTableModel.setDataVector(Object[][],Object[])|Replace
-|javax.swing.table.DefaultTableModel.setDataVector(Vector,Vector)|Replaces the 
-|javax.swing.table.DefaultTableModel.setNumRows(int)|Obsolete as of Java 2 plat
-|javax.swing.table.DefaultTableModel.setRowCount(int)|Sets the number of rows i
-|javax.swing.table.DefaultTableModel.setValueAt(Object,int,int)|Sets the object
+|javax.swing.table.DefaultTableModel.addColumn(Object)|Adds a column to the model.
+|javax.swing.table.DefaultTableModel.addColumn(Object,Object[])|Adds a column to the model.
+|javax.swing.table.DefaultTableModel.addColumn(Object,Vector)|Adds a column to the model.
+|javax.swing.table.DefaultTableModel.addRow(Object[])|Adds a row to the end of the model.
+|javax.swing.table.DefaultTableModel.addRow(Vector)|Adds a row to the end of the model.
+|javax.swing.table.DefaultTableModel.convertToVector(Object[])|Returns a vector that contains the same objects as the array.
+|javax.swing.table.DefaultTableModel.convertToVector(Object[][])|Returns a vector of vectors that contains the same objects as the array.
+|javax.swing.table.DefaultTableModel.getColumnCount()|Returns the number of columns in this data table.
+|javax.swing.table.DefaultTableModel.getColumnName(int)|Returns the column name.
+|javax.swing.table.DefaultTableModel.getDataVector()|Returns the Vector of Vectors   that contains the table's   data values.
+|javax.swing.table.DefaultTableModel.getRowCount()|Returns the number of rows in this data table.
+|javax.swing.table.DefaultTableModel.getValueAt(int,int)|Returns an attribute value for the cell at row  and column.
+|javax.swing.table.DefaultTableModel.insertRow(int,Object[])|Inserts a row at row in the model.
+|javax.swing.table.DefaultTableModel.insertRow(int,Vector)|Inserts a row at row in the model.
+|javax.swing.table.DefaultTableModel.isCellEditable(int,int)|Returns true regardless of parameter values.
+|javax.swing.table.DefaultTableModel.moveRow(int,int,int)|Moves one or more rows from the inclusive range start to    end to the to position in the model.
+|javax.swing.table.DefaultTableModel.newDataAvailable(TableModelEvent)|Equivalent to fireTableChanged.
+|javax.swing.table.DefaultTableModel.newRowsAdded(TableModelEvent)|Ensures that the new rows have the correct number of columns.
+|javax.swing.table.DefaultTableModel.removeRow(int)|Removes the row at row from the model.
+|javax.swing.table.DefaultTableModel.rowsRemoved(TableModelEvent)|Equivalent to fireTableChanged.
+|javax.swing.table.DefaultTableModel.setColumnCount(int)|Sets the number of columns in the model.
+|javax.swing.table.DefaultTableModel.setColumnIdentifiers(Object[])|Replaces the column identifiers in the model.
+|javax.swing.table.DefaultTableModel.setColumnIdentifiers(Vector)|Replaces the column identifiers in the model.
+|javax.swing.table.DefaultTableModel.setDataVector(Object[][],Object[])|Replaces the value in the dataVector instance    variable with the values in the array dataVector.
+|javax.swing.table.DefaultTableModel.setDataVector(Vector,Vector)|Replaces the current dataVector instance variable    with the new Vector of rows, dataVector.
+|javax.swing.table.DefaultTableModel.setNumRows(int)|Obsolete as of Java 2 platform v1.3.
+|javax.swing.table.DefaultTableModel.setRowCount(int)|Sets the number of rows in the model.
+|javax.swing.table.DefaultTableModel.setValueAt(Object,int,int)|Sets the object value for the cell at column and  row.
 
 *javax.swing.table.DefaultTableModel_Description*
 
-This is an implementation of TableModel that uses a Vector of Vectors to store 
-the cell value objects. 
+This is an implementation of TableModel that uses a Vector of Vectors to store the cell value objects. 
 
-Warning: Serialized objects of this class will not be compatible with future 
-Swing releases. The current serialization support is appropriate for short term 
-storage or RMI between applications running the same version of Swing. As of 
-1.4, support for long term storage of all JavaBeansTM has been added to the 
-java.beans package. Please see (|java.beans.XMLEncoder|) . 
+Warning: Serialized objects of this class will not be compatible with future Swing releases. The current serialization support is appropriate for short term storage or RMI between 
+applications running the same version of Swing. As of 1.4, support for long term storage of all JavaBeansTM has been added to the java.beans package. Please see 
+(|java.beans.XMLEncoder|) . 
+
 
 
 *java.util.Vector_javax.swing.table.DefaultTableModel.columnIdentifiers*
 
-This is an implementation of TableModel that uses a Vector of Vectors to store 
-the cell value objects. 
-
-Warning: Serialized objects of this class will not be compatible with future 
-Swing releases. The current serialization support is appropriate for short term 
-storage or RMI between applications running the same version of Swing. As of 
-1.4, support for long term storage of all JavaBeansTM has been added to the 
-java.beans package. Please see (|java.beans.XMLEncoder|) . 
+The Vector of column identifiers. 
 
 
 *java.util.Vector_javax.swing.table.DefaultTableModel.dataVector*
 
-This is an implementation of TableModel that uses a Vector of Vectors to store 
-the cell value objects. 
-
-Warning: Serialized objects of this class will not be compatible with future 
-Swing releases. The current serialization support is appropriate for short term 
-storage or RMI between applications running the same version of Swing. As of 
-1.4, support for long term storage of all JavaBeansTM has been added to the 
-java.beans package. Please see (|java.beans.XMLEncoder|) . 
+The Vector of Vectors of Object values. 
 
 
 
@@ -94,8 +80,7 @@ java.beans package. Please see (|java.beans.XMLEncoder|) .
 
 public DefaultTableModel()
 
-Constructs a default DefaultTableModel which is a table of zero columns and 
-zero rows. 
+Constructs a default DefaultTableModel which is a table of zero columns and zero rows. 
 
 
 *javax.swing.table.DefaultTableModel(int,int)*
@@ -104,8 +89,7 @@ public DefaultTableModel(
   int rowCount,
   int columnCount)
 
-Constructs a DefaultTableModel with rowCount and columnCount of null object 
-values. 
+Constructs a DefaultTableModel with rowCount and columnCount of null object values. 
 
     rowCount - the number of rows the table holds 
     columnCount - the number of columns the table holds 
@@ -116,9 +100,8 @@ public DefaultTableModel(
   java.lang.Object[][] data,
   java.lang.Object[] columnNames)
 
-Constructs a DefaultTableModel and initializes the table by passing data and 
-columnNames to the setDataVector method. The first index in the Object[][] 
-array is the row index and the second is the column index. 
+Constructs a DefaultTableModel and initializes the table by passing data and columnNames to the setDataVector method. The first index in the Object[][] array is the row index and 
+the second is the column index. 
 
     data - the data of the table 
     columnNames - the names of the columns 
@@ -129,12 +112,10 @@ public DefaultTableModel(
   java.lang.Object[] columnNames,
   int rowCount)
 
-Constructs a DefaultTableModel with as many columns as there are elements in 
-columnNames and rowCount of null object values. Each column's name will be 
-taken from the columnNames array. 
+Constructs a DefaultTableModel with as many columns as there are elements in columnNames and rowCount of null object values. Each column's name will be taken from the columnNames 
+array. 
 
-    columnNames - array containing the names of the new columns; if this is null then the model 
-       has no columns 
+    columnNames - array containing the names of the new columns; if this is null then the model has no columns 
     rowCount - the number of rows the table holds 
 
 *javax.swing.table.DefaultTableModel(Vector,int)*
@@ -143,12 +124,10 @@ public DefaultTableModel(
   java.util.Vector columnNames,
   int rowCount)
 
-Constructs a DefaultTableModel with as many columns as there are elements in 
-columnNames and rowCount of null object values. Each column's name will be 
-taken from the columnNames vector. 
+Constructs a DefaultTableModel with as many columns as there are elements in columnNames and rowCount of null object values. Each column's name will be taken from the columnNames 
+vector. 
 
-    columnNames - vector containing the names of the new columns; if this is null then the model 
-       has no columns 
+    columnNames - vector containing the names of the new columns; if this is null then the model has no columns 
     rowCount - the number of rows the table holds 
 
 *javax.swing.table.DefaultTableModel(Vector,Vector)*
@@ -157,8 +136,7 @@ public DefaultTableModel(
   java.util.Vector data,
   java.util.Vector columnNames)
 
-Constructs a DefaultTableModel and initializes the table by passing data and 
-columnNames to the setDataVector method. 
+Constructs a DefaultTableModel and initializes the table by passing data and columnNames to the setDataVector method. 
 
     data - the data of the table, a Vector of Vectors of Object values 
     columnNames - vector containing the names of the new columns 
@@ -167,10 +145,9 @@ columnNames to the setDataVector method.
 
 public void addColumn(java.lang.Object columnName)
 
-Adds a column to the model. The new column will have the identifier columnName, 
-which may be null. This method will send a tableChanged notification message to 
-all the listeners. This method is a cover for addColumn(Object, Vector) which 
-uses null as the data vector. 
+Adds a column to the model. The new column will have the identifier columnName, which may be null. This method will send a tableChanged notification message to all the listeners. 
+This method is a cover for addColumn(Object, Vector) which uses null as the data vector. 
+
 
     columnName - the identifier of the column being added 
 
@@ -180,11 +157,10 @@ public void addColumn(
   java.lang.Object columnName,
   java.lang.Object[] columnData)
 
-Adds a column to the model. The new column will have the identifier columnName. 
-columnData is the optional array of data for the column. If it is null the 
-column is filled with null values. Otherwise, the new data will be added to 
-model starting with the first element going to row 0, etc. This method will 
-send a tableChanged notification message to all the listeners. 
+Adds a column to the model. The new column will have the identifier columnName. columnData is the optional array of data for the column. If it is null the column is filled with 
+null values. Otherwise, the new data will be added to model starting with the first element going to row 0, etc. This method will send a tableChanged notification message to all 
+the listeners. 
+
 
 
 *javax.swing.table.DefaultTableModel.addColumn(Object,Vector)*
@@ -193,11 +169,10 @@ public void addColumn(
   java.lang.Object columnName,
   java.util.Vector columnData)
 
-Adds a column to the model. The new column will have the identifier columnName, 
-which may be null. columnData is the optional vector of data for the column. If 
-it is null the column is filled with null values. Otherwise, the new data will 
-be added to model starting with the first element going to row 0, etc. This 
-method will send a tableChanged notification message to all the listeners. 
+Adds a column to the model. The new column will have the identifier columnName, which may be null. columnData is the optional vector of data for the column. If it is null the 
+column is filled with null values. Otherwise, the new data will be added to model starting with the first element going to row 0, etc. This method will send a tableChanged 
+notification message to all the listeners. 
+
 
     columnName - the identifier of the column being added 
     columnData - optional data of the column being added 
@@ -206,8 +181,8 @@ method will send a tableChanged notification message to all the listeners.
 
 public void addRow(java.lang.Object[] rowData)
 
-Adds a row to the end of the model. The new row will contain null values unless 
-rowData is specified. Notification of the row being added will be generated. 
+Adds a row to the end of the model. The new row will contain null values unless rowData is specified. Notification of the row being added will be generated. 
+
 
     rowData - optional data of the row being added 
 
@@ -215,8 +190,8 @@ rowData is specified. Notification of the row being added will be generated.
 
 public void addRow(java.util.Vector rowData)
 
-Adds a row to the end of the model. The new row will contain null values unless 
-rowData is specified. Notification of the row being added will be generated. 
+Adds a row to the end of the model. The new row will contain null values unless rowData is specified. Notification of the row being added will be generated. 
+
 
     rowData - optional data of the row being added 
 
@@ -226,18 +201,22 @@ protected static |java.util.Vector| convertToVector(java.lang.Object[] anArray)
 
 Returns a vector that contains the same objects as the array. 
 
+
     anArray - the array to be converted 
 
     Returns: the new vector; if anArray is null, returns null 
+
 *javax.swing.table.DefaultTableModel.convertToVector(Object[][])*
 
 protected static |java.util.Vector| convertToVector(java.lang.Object[][] anArray)
 
 Returns a vector of vectors that contains the same objects as the array. 
 
+
     anArray - the double array to be converted 
 
     Returns: the new vector of vectors; if anArray is null, returns null 
+
 *javax.swing.table.DefaultTableModel.getColumnCount()*
 
 public int getColumnCount()
@@ -245,7 +224,9 @@ public int getColumnCount()
 Returns the number of columns in this data table. 
 
 
+
     Returns: the number of columns in the model 
+
 *javax.swing.table.DefaultTableModel.getColumnName(int)*
 
 public |java.lang.String| getColumnName(int column)
@@ -253,21 +234,23 @@ public |java.lang.String| getColumnName(int column)
 Returns the column name. 
 
 
-    Returns: a name for this column using the string value of the appropriate member in 
-             columnIdentifiers. If columnIdentifiers does not have an entry for 
-             this index, returns the default name provided by the superclass 
+
+    Returns: a name for this column using the string value of the appropriate member in columnIdentifiers. If columnIdentifiers does not have an entry for this index, returns the default name 
+             provided by the superclass 
+
 *javax.swing.table.DefaultTableModel.getDataVector()*
 
 public |java.util.Vector| getDataVector()
 
-Returns the Vector of Vectors that contains the table's data values. The 
-vectors contained in the outer vector are each a single row of values. In other 
-words, to get to the cell at row 1, column 5: 
+Returns the Vector of Vectors that contains the table's data values. The vectors contained in the outer vector are each a single row of values. In other words, to get to the cell 
+at row 1, column 5: 
 
 ((Vector)getDataVector().elementAt(1)).elementAt(5); 
 
 
+
     Returns: the vector of vectors containing the tables data values 
+
 *javax.swing.table.DefaultTableModel.getRowCount()*
 
 public int getRowCount()
@@ -275,7 +258,9 @@ public int getRowCount()
 Returns the number of rows in this data table. 
 
 
+
     Returns: the number of rows in the model 
+
 *javax.swing.table.DefaultTableModel.getValueAt(int,int)*
 
 public |java.lang.Object| getValueAt(
@@ -284,18 +269,20 @@ public |java.lang.Object| getValueAt(
 
 Returns an attribute value for the cell at row and column. 
 
+
     row - the row whose value is to be queried 
     column - the column whose value is to be queried 
 
     Returns: the value Object at the specified cell 
+
 *javax.swing.table.DefaultTableModel.insertRow(int,Object[])*
 
 public void insertRow(
   int row,
   java.lang.Object[] rowData)
 
-Inserts a row at row in the model. The new row will contain null values unless 
-rowData is specified. Notification of the row being added will be generated. 
+Inserts a row at row in the model. The new row will contain null values unless rowData is specified. Notification of the row being added will be generated. 
+
 
     row - the row index of the row to be inserted 
     rowData - optional data of the row being added 
@@ -306,8 +293,8 @@ public void insertRow(
   int row,
   java.util.Vector rowData)
 
-Inserts a row at row in the model. The new row will contain null values unless 
-rowData is specified. Notification of the row being added will be generated. 
+Inserts a row at row in the model. The new row will contain null values unless rowData is specified. Notification of the row being added will be generated. 
+
 
     row - the row index of the row to be inserted 
     rowData - optional data of the row being added 
@@ -320,10 +307,12 @@ public boolean isCellEditable(
 
 Returns true regardless of parameter values. 
 
+
     row - the row whose value is to be queried 
     column - the column whose value is to be queried 
 
     Returns: 
+
 *javax.swing.table.DefaultTableModel.moveRow(int,int,int)*
 
 public void moveRow(
@@ -331,10 +320,8 @@ public void moveRow(
   int end,
   int to)
 
-Moves one or more rows from the inclusive range start to end to the to position 
-in the model. After the move, the row that was at index start will be at index 
-to. This method will send a tableChanged notification message to all the 
-listeners. 
+Moves one or more rows from the inclusive range start to end to the to position in the model. After the move, the row that was at index start will be at index to. This method will 
+send a tableChanged notification message to all the listeners. 
 
 
 
@@ -343,6 +330,7 @@ Examples of moves:
 1. moveRow(1,3,5); a|B|C|D|e|f|g|h|i|j|k - before a|e|f|g|h|B|C|D|i|j|k - after 
 
 2. moveRow(6,7,1); a|b|c|d|e|f|G|H|i|j|k - before a|G|H|b|c|d|e|f|i|j|k - after 
+
 
 
 
@@ -356,26 +344,25 @@ public void newDataAvailable(javax.swing.event.TableModelEvent event)
 
 Equivalent to fireTableChanged. 
 
+
     event - the change event 
 
 *javax.swing.table.DefaultTableModel.newRowsAdded(TableModelEvent)*
 
 public void newRowsAdded(javax.swing.event.TableModelEvent e)
 
-Ensures that the new rows have the correct number of columns. This is 
-accomplished by using the setSize method in Vector which truncates vectors 
-which are too long, and appends nulls if they are too short. This method also 
-sends out a tableChanged notification message to all the listeners. 
+Ensures that the new rows have the correct number of columns. This is accomplished by using the setSize method in Vector which truncates vectors which are too long, and appends 
+nulls if they are too short. This method also sends out a tableChanged notification message to all the listeners. 
 
-    e - this TableModelEvent describes where the rows were added. If null it assumes 
-       all the rows were newly added 
+
+    e - this TableModelEvent describes where the rows were added. If null it assumes all the rows were newly added 
 
 *javax.swing.table.DefaultTableModel.removeRow(int)*
 
 public void removeRow(int row)
 
-Removes the row at row from the model. Notification of the row being removed 
-will be sent to all the listeners. 
+Removes the row at row from the model. Notification of the row being removed will be sent to all the listeners. 
+
 
     row - the row index of the row to be removed 
 
@@ -385,16 +372,16 @@ public void rowsRemoved(javax.swing.event.TableModelEvent event)
 
 Equivalent to fireTableChanged. 
 
+
     event - the change event 
 
 *javax.swing.table.DefaultTableModel.setColumnCount(int)*
 
 public void setColumnCount(int columnCount)
 
-Sets the number of columns in the model. If the new size is greater than the 
-current size, new columns are added to the end of the model with null cell 
-values. If the new size is less than the current size, all columns at index 
-columnCount and greater are discarded. 
+Sets the number of columns in the model. If the new size is greater than the current size, new columns are added to the end of the model with null cell values. If the new size is 
+less than the current size, all columns at index columnCount and greater are discarded. 
+
 
     columnCount - the new number of columns in the model 
 
@@ -402,11 +389,9 @@ columnCount and greater are discarded.
 
 public void setColumnIdentifiers(java.lang.Object[] newIdentifiers)
 
-Replaces the column identifiers in the model. If the number of newIdentifiers 
-is greater than the current number of columns, new columns are added to the end 
-of each row in the model. If the number of newIdentifiers is less than the 
-current number of columns, all the extra columns at the end of a row are 
-discarded. 
+Replaces the column identifiers in the model. If the number of newIdentifiers is greater than the current number of columns, new columns are added to the end of each row in the 
+model. If the number of newIdentifiers is less than the current number of columns, all the extra columns at the end of a row are discarded. 
+
 
     newIdentifiers - array of column identifiers. If null, set the model to zero columns 
 
@@ -414,11 +399,9 @@ discarded.
 
 public void setColumnIdentifiers(java.util.Vector columnIdentifiers)
 
-Replaces the column identifiers in the model. If the number of newIdentifiers 
-is greater than the current number of columns, new columns are added to the end 
-of each row in the model. If the number of newIdentifiers is less than the 
-current number of columns, all the extra columns at the end of a row are 
-discarded. 
+Replaces the column identifiers in the model. If the number of newIdentifiers is greater than the current number of columns, new columns are added to the end of each row in the 
+model. If the number of newIdentifiers is less than the current number of columns, all the extra columns at the end of a row are discarded. 
+
 
     columnIdentifiers - vector of column identifiers. If null, set the model to zero columns 
 
@@ -428,10 +411,9 @@ public void setDataVector(
   java.lang.Object[][] dataVector,
   java.lang.Object[] columnIdentifiers)
 
-Replaces the value in the dataVector instance variable with the values in the 
-array dataVector. The first index in the Object[][] array is the row index and 
-the second is the column index. columnIdentifiers are the names of the new 
-columns. 
+Replaces the value in the dataVector instance variable with the values in the array dataVector. The first index in the Object[][] array is the row index and the second is the 
+column index. columnIdentifiers are the names of the new columns. 
+
 
     dataVector - the new data vector 
     columnIdentifiers - the names of the columns 
@@ -442,14 +424,11 @@ public void setDataVector(
   java.util.Vector dataVector,
   java.util.Vector columnIdentifiers)
 
-Replaces the current dataVector instance variable with the new Vector of rows, 
-dataVector. Each row is represented in dataVector as a Vector of Object values. 
-columnIdentifiers are the names of the new columns. The first name in 
-columnIdentifiers is mapped to column 0 in dataVector. Each row in dataVector 
-is adjusted to match the number of columns in columnIdentifiers either by 
-truncating the Vector if it is too long, or adding null values if it is too 
-short. Note that passing in a null value for dataVector results in unspecified 
-behavior, an possibly an exception. 
+Replaces the current dataVector instance variable with the new Vector of rows, dataVector. Each row is represented in dataVector as a Vector of Object values. columnIdentifiers 
+are the names of the new columns. The first name in columnIdentifiers is mapped to column 0 in dataVector. Each row in dataVector is adjusted to match the number of columns in 
+columnIdentifiers either by truncating the Vector if it is too long, or adding null values if it is too short. Note that passing in a null value for dataVector results in 
+unspecified behavior, an possibly an exception. 
+
 
     dataVector - the new data vector 
     columnIdentifiers - the names of the columns 
@@ -461,14 +440,14 @@ public void setNumRows(int rowCount)
 Obsolete as of Java 2 platform v1.3. Please use setRowCount instead. 
 
 
+
 *javax.swing.table.DefaultTableModel.setRowCount(int)*
 
 public void setRowCount(int rowCount)
 
-Sets the number of rows in the model. If the new size is greater than the 
-current size, new rows are added to the end of the model If the new size is 
-less than the current size, all rows at index rowCount and greater are 
-discarded. 
+Sets the number of rows in the model. If the new size is greater than the current size, new rows are added to the end of the model If the new size is less than the current size, 
+all rows at index rowCount and greater are discarded. 
+
 
 
 *javax.swing.table.DefaultTableModel.setValueAt(Object,int,int)*
@@ -478,8 +457,8 @@ public void setValueAt(
   int row,
   int column)
 
-Sets the object value for the cell at column and row. aValue is the new value. 
-This method will generate a tableChanged notification. 
+Sets the object value for the cell at column and row. aValue is the new value. This method will generate a tableChanged notification. 
+
 
     aValue - the new value; this can be null 
     row - the row whose value is to be changed 

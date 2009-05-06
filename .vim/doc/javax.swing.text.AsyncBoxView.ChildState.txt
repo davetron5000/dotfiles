@@ -1,4 +1,5 @@
-*javax.swing.text.AsyncBoxView.ChildState* *AsyncBoxView.ChildState* A record re
+*javax.swing.text.AsyncBoxView.ChildState* *AsyncBoxView.ChildState* A record representing the layout state of a 
+ child view.
 
 public class AsyncBoxView.ChildState
   extends    |java.lang.Object|
@@ -9,38 +10,35 @@ public class AsyncBoxView.ChildState
 |javax.swing.text.AsyncBoxView.ChildState_Constructors|
 |javax.swing.text.AsyncBoxView.ChildState_Methods|
 
-================================================================================
+====================================================================================================================================================================================
 
 *javax.swing.text.AsyncBoxView.ChildState_Constructors*
 |javax.swing.text.AsyncBoxView.ChildState(View)|Construct a child status.
 
 *javax.swing.text.AsyncBoxView.ChildState_Methods*
-|javax.swing.text.AsyncBoxView.ChildState.getChildView()|Fetch the child view t
-|javax.swing.text.AsyncBoxView.ChildState.getMajorOffset()|Get the offset along
-|javax.swing.text.AsyncBoxView.ChildState.getMajorSpan()|What is the span along
-|javax.swing.text.AsyncBoxView.ChildState.getMinorOffset()|What is the offset a
-|javax.swing.text.AsyncBoxView.ChildState.getMinorSpan()|What is the span along
-|javax.swing.text.AsyncBoxView.ChildState.isLayoutValid()|Has the child view be
-|javax.swing.text.AsyncBoxView.ChildState.preferenceChanged(boolean,boolean)|Ma
+|javax.swing.text.AsyncBoxView.ChildState.getChildView()|Fetch the child view this record represents
+|javax.swing.text.AsyncBoxView.ChildState.getMajorOffset()|Get the offset along the major axis
+|javax.swing.text.AsyncBoxView.ChildState.getMajorSpan()|What is the span along the major axis.
+|javax.swing.text.AsyncBoxView.ChildState.getMinorOffset()|What is the offset along the minor axis
+|javax.swing.text.AsyncBoxView.ChildState.getMinorSpan()|What is the span along the minor axis.
+|javax.swing.text.AsyncBoxView.ChildState.isLayoutValid()|Has the child view been laid out.
+|javax.swing.text.AsyncBoxView.ChildState.preferenceChanged(boolean,boolean)|Mark preferences changed for this child.
 |javax.swing.text.AsyncBoxView.ChildState.run()|Update the child state.
-|javax.swing.text.AsyncBoxView.ChildState.setMajorOffset(float)|This method sho
+|javax.swing.text.AsyncBoxView.ChildState.setMajorOffset(float)|This method should only be called by the ChildLocator,  it is simply a convenient place to hold the cached  locatio
 
 *javax.swing.text.AsyncBoxView.ChildState_Description*
 
-A record representing the layout state of a child view. It is runnable as a 
-task on another thread. All access to the child view that is based upon a 
-read-lock on the model should synchronize on this object (i.e. The layout 
-thread and the GUI thread can both have a read lock on the model at the same 
-time and are not protected from each other). Access to a child view hierarchy 
-is serialized via synchronization on the ChildState instance. 
+A record representing the layout state of a child view. It is runnable as a task on another thread. All access to the child view that is based upon a read-lock on the model should 
+synchronize on this object (i.e. The layout thread and the GUI thread can both have a read lock on the model at the same time and are not protected from each other). Access to a 
+child view hierarchy is serialized via synchronization on the ChildState instance. 
+
 
 
 *javax.swing.text.AsyncBoxView.ChildState(View)*
 
 public AsyncBoxView.ChildState(javax.swing.text.View v)
 
-Construct a child status. This needs to start out as fairly large so we don't 
-falsely begin with the idea that all of the children are visible. 
+Construct a child status. This needs to start out as fairly large so we don't falsely begin with the idea that all of the children are visible. 
 
 
 *javax.swing.text.AsyncBoxView.ChildState.getChildView()*
@@ -50,11 +48,13 @@ public |javax.swing.text.View| getChildView()
 Fetch the child view this record represents 
 
 
+
 *javax.swing.text.AsyncBoxView.ChildState.getMajorOffset()*
 
 public float getMajorOffset()
 
 Get the offset along the major axis 
+
 
 
 *javax.swing.text.AsyncBoxView.ChildState.getMajorSpan()*
@@ -64,11 +64,13 @@ public float getMajorSpan()
 What is the span along the major axis. 
 
 
+
 *javax.swing.text.AsyncBoxView.ChildState.getMinorOffset()*
 
 public float getMinorOffset()
 
 What is the offset along the minor axis 
+
 
 
 *javax.swing.text.AsyncBoxView.ChildState.getMinorSpan()*
@@ -78,11 +80,13 @@ public float getMinorSpan()
 What is the span along the minor axis. 
 
 
+
 *javax.swing.text.AsyncBoxView.ChildState.isLayoutValid()*
 
 public boolean isLayoutValid()
 
 Has the child view been laid out. 
+
 
 
 *javax.swing.text.AsyncBoxView.ChildState.preferenceChanged(boolean,boolean)*
@@ -93,6 +97,7 @@ public void preferenceChanged(
 
 Mark preferences changed for this child. 
 
+
     width - true if the width preference has changed 
     height - true if the height preference has changed 
 
@@ -100,26 +105,21 @@ Mark preferences changed for this child.
 
 public void run()
 
-Update the child state. This should be called by the thread that desires to 
-spend time updating the child state (intended to be the layout thread). 
+Update the child state. This should be called by the thread that desires to spend time updating the child state (intended to be the layout thread). 
 
-This aquires a read lock on the associated document for the duration of the 
-update to ensure the model is not changed while it is operating. The first 
-thing to do would be to see if any work actually needs to be done. The 
-following could have conceivably happened while the state was waiting to be 
-updated: 
+This aquires a read lock on the associated document for the duration of the update to ensure the model is not changed while it is operating. The first thing to do would be to see 
+if any work actually needs to be done. The following could have conceivably happened while the state was waiting to be updated: 
 
-The child may have been removed from the view hierarchy. The child may have 
-been updated by a higher priority operation (i.e. the child may have become 
-visible). 
+The child may have been removed from the view hierarchy. The child may have been updated by a higher priority operation (i.e. the child may have become visible). 
+
 
 
 *javax.swing.text.AsyncBoxView.ChildState.setMajorOffset(float)*
 
 public void setMajorOffset(float offs)
 
-This method should only be called by the ChildLocator, it is simply a 
-convenient place to hold the cached location. 
+This method should only be called by the ChildLocator, it is simply a convenient place to hold the cached location. 
+
 
 
 

@@ -9,61 +9,48 @@ public class Button
 |java.awt.Button_Constructors|
 |java.awt.Button_Methods|
 
-================================================================================
+====================================================================================================================================================================================
 
 *java.awt.Button_Constructors*
 |java.awt.Button()|Constructs a button with an empty string for its label.
 |java.awt.Button(String)|Constructs a button with the specified label.
 
 *java.awt.Button_Methods*
-|java.awt.Button.addActionListener(ActionListener)|Adds the specified action li
+|java.awt.Button.addActionListener(ActionListener)|Adds the specified action listener to receive action events from  this button.
 |java.awt.Button.addNotify()|Creates the peer of the button.
-|java.awt.Button.getAccessibleContext()|Gets the AccessibleContext associated w
-|java.awt.Button.getActionCommand()|Returns the command name of the action even
-|java.awt.Button.getActionListeners()|Returns an array of all the action listen
+|java.awt.Button.getAccessibleContext()|Gets the AccessibleContext associated with  this Button.
+|java.awt.Button.getActionCommand()|Returns the command name of the action event fired by this button.
+|java.awt.Button.getActionListeners()|Returns an array of all the action listeners  registered on this button.
 |java.awt.Button.getLabel()|Gets the label of this button.
-|java.awt.Button.getListeners(Class)|Returns an array of all the objects curren
-|java.awt.Button.paramString()|Returns a string representing the state of this 
-|java.awt.Button.processActionEvent(ActionEvent)|Processes action events occurr
+|java.awt.Button.getListeners(Class<T>)|Returns an array of all the objects currently registered  as FooListeners  upon this Button.
+|java.awt.Button.paramString()|Returns a string representing the state of this Button.
+|java.awt.Button.processActionEvent(ActionEvent)|Processes action events occurring on this button  by dispatching them to any registered  ActionListener objects.
 |java.awt.Button.processEvent(AWTEvent)|Processes events on this button.
-|java.awt.Button.removeActionListener(ActionListener)|Removes the specified act
-|java.awt.Button.setActionCommand(String)|Sets the command name for the action 
-|java.awt.Button.setLabel(String)|Sets the button's label to be the specified s
+|java.awt.Button.removeActionListener(ActionListener)|Removes the specified action listener so that it no longer  receives action events from this button.
+|java.awt.Button.setActionCommand(String)|Sets the command name for the action event fired  by this button.
+|java.awt.Button.setLabel(String)|Sets the button's label to be the specified string.
 
 *java.awt.Button_Description*
 
-This class creates a labeled button. The application can cause some action to 
-happen when the button is pushed. This image depicts three views of a "Quit" 
-button as it appears under the Solaris operating system: 
+This class creates a labeled button. The application can cause some action to happen when the button is pushed. This image depicts three views of a "Quit" button as it appears 
+under the Solaris operating system: 
 
 
 
-The first view shows the button as it appears normally. The second view shows 
-the button when it has input focus. Its outline is darkened to let the user 
-know that it is an active object. The third view shows the button when the user 
-clicks the mouse over the button, and thus requests that an action be 
-performed. 
+The first view shows the button as it appears normally. The second view shows the button when it has input focus. Its outline is darkened to let the user know that it is an active 
+object. The third view shows the button when the user clicks the mouse over the button, and thus requests that an action be performed. 
 
-The gesture of clicking on a button with the mouse is associated with one 
-instance of ActionEvent, which is sent out when the mouse is both pressed and 
-released over the button. If an application is interested in knowing when the 
-button has been pressed but not released, as a separate gesture, it can 
-specialize processMouseEvent, or it can register itself as a listener for mouse 
-events by calling addMouseListener. Both of these methods are defined by 
-Component, the abstract superclass of all components. 
+The gesture of clicking on a button with the mouse is associated with one instance of ActionEvent, which is sent out when the mouse is both pressed and released over the button. 
+If an application is interested in knowing when the button has been pressed but not released, as a separate gesture, it can specialize processMouseEvent, or it can register itself 
+as a listener for mouse events by calling addMouseListener. Both of these methods are defined by Component, the abstract superclass of all components. 
 
-When a button is pressed and released, AWT sends an instance of ActionEvent to 
-the button, by calling processEvent on the button. The button's processEvent 
-method receives all events for the button; it passes an action event along by 
-calling its own processActionEvent method. The latter method passes the action 
-event on to any action listeners that have registered an interest in action 
-events generated by this button. 
+When a button is pressed and released, AWT sends an instance of ActionEvent to the button, by calling processEvent on the button. The button's processEvent method receives all 
+events for the button; it passes an action event along by calling its own processActionEvent method. The latter method passes the action event on to any action listeners that have 
+registered an interest in action events generated by this button. 
 
-If an application wants to perform some action based on a button being pressed 
-and released, it should implement ActionListener and register the new listener 
-to receive events from this button, by calling the button's addActionListener 
-method. The application can make use of the button's action command as a 
-messaging protocol. 
+If an application wants to perform some action based on a button being pressed and released, it should implement ActionListener and register the new listener to receive events 
+from this button, by calling the button's addActionListener method. The application can make use of the button's action command as a messaging protocol. 
+
 
 
 *java.awt.Button()*
@@ -87,9 +74,9 @@ Constructs a button with the specified label.
 
 public synchronized void addActionListener(java.awt.event.ActionListener l)
 
-Adds the specified action listener to receive action events from this button. 
-Action events occur when a user presses or releases the mouse over this button. 
-If l is null, no exception is thrown and no action is performed. 
+Adds the specified action listener to receive action events from this button. Action events occur when a user presses or releases the mouse over this button. If l is null, no 
+exception is thrown and no action is performed. 
+
 
     l - the action listener 
 
@@ -97,38 +84,39 @@ If l is null, no exception is thrown and no action is performed.
 
 public void addNotify()
 
-Creates the peer of the button. The button's peer allows the application to 
-change the look of the button without changing its functionality. 
+Creates the peer of the button. The button's peer allows the application to change the look of the button without changing its functionality. 
+
 
 
 *java.awt.Button.getAccessibleContext()*
 
 public |javax.accessibility.AccessibleContext| getAccessibleContext()
 
-Gets the AccessibleContext associated with this Button. For buttons, the 
-AccessibleContext takes the form of an AccessibleAWTButton. A new 
-AccessibleAWTButton instance is created if necessary. 
+Gets the AccessibleContext associated with this Button. For buttons, the AccessibleContext takes the form of an AccessibleAWTButton. A new AccessibleAWTButton instance is created 
+if necessary. 
+
 
 
     Returns: an AccessibleAWTButton that serves as the AccessibleContext of this Button 
+
 *java.awt.Button.getActionCommand()*
 
 public |java.lang.String| getActionCommand()
 
-Returns the command name of the action event fired by this button. If the 
-command name is null (default) then this method returns the label of the 
-button. 
+Returns the command name of the action event fired by this button. If the command name is null (default) then this method returns the label of the button. 
+
 
 
 *java.awt.Button.getActionListeners()*
 
-public synchronized |java.awt.event.ActionListener| getActionListeners()
+public synchronized |java.awt.event.ActionListener|[] getActionListeners()
 
 Returns an array of all the action listeners registered on this button. 
 
 
-    Returns: all of this button's ActionListeners or an empty array if no action listeners 
-             are currently registered 
+
+    Returns: all of this button's ActionListeners or an empty array if no action listeners are currently registered 
+
 *java.awt.Button.getLabel()*
 
 public |java.lang.String| getLabel()
@@ -136,54 +124,49 @@ public |java.lang.String| getLabel()
 Gets the label of this button. 
 
 
+
     Returns: the button's label, or null if the button has no label. 
-*java.awt.Button.getListeners(Class)*
 
-public |java.util.EventListener| getListeners(java.lang.Class listenerType)
+*java.awt.Button.getListeners(Class<T>)*
 
-Returns an array of all the objects currently registered as FooListeners upon 
-this Button. FooListeners are registered using the addFooListener method. 
+public |T|[] getListeners(java.lang.Class<T> listenerType)
 
-You can specify the listenerType argument with a class literal, such as 
-FooListener.class. For example, you can query a Button b for its action 
-listeners with the following code: 
+Returns an array of all the objects currently registered as FooListeners upon this Button. FooListeners are registered using the addFooListener method. 
 
-ActionListener[] als = 
-(ActionListener[])(b.getListeners(ActionListener.class)); 
+You can specify the listenerType argument with a class literal, such as FooListener.class. For example, you can query a Button b for its action listeners with the following code: 
+
+ActionListener[] als = (ActionListener[])(b.getListeners(ActionListener.class)); 
 
 If no such listeners exist, this method returns an empty array. 
 
-    listenerType - the type of listeners requested; this parameter should specify an interface 
-       that descends from java.util.EventListener 
 
-    Returns: an array of all objects registered as FooListeners on this button, or an empty 
-             array if no such listeners have been added 
+    listenerType - the type of listeners requested; this parameter should specify an interface that descends from java.util.EventListener 
+
+    Returns: an array of all objects registered as FooListeners on this button, or an empty array if no such listeners have been added 
+
 *java.awt.Button.paramString()*
 
 protected |java.lang.String| paramString()
 
-Returns a string representing the state of this Button. This method is intended 
-to be used only for debugging purposes, and the content and format of the 
-returned string may vary between implementations. The returned string may be 
-empty but may not be null. 
+Returns a string representing the state of this Button. This method is intended to be used only for debugging purposes, and the content and format of the returned string may vary 
+between implementations. The returned string may be empty but may not be null. 
+
 
 
     Returns: the parameter string of this button 
+
 *java.awt.Button.processActionEvent(ActionEvent)*
 
 protected void processActionEvent(java.awt.event.ActionEvent e)
 
-Processes action events occurring on this button by dispatching them to any 
-registered ActionListener objects. 
+Processes action events occurring on this button by dispatching them to any registered ActionListener objects. 
 
-This method is not called unless action events are enabled for this button. 
-Action events are enabled when one of the following occurs: 
+This method is not called unless action events are enabled for this button. Action events are enabled when one of the following occurs: 
 
-An ActionListener object is registered via addActionListener. Action events are 
-enabled via enableEvents. 
+An ActionListener object is registered via addActionListener. Action events are enabled via enableEvents. 
 
-Note that if the event parameter is null the behavior is unspecified and may 
-result in an exception. 
+Note that if the event parameter is null the behavior is unspecified and may result in an exception. 
+
 
     e - the action event 
 
@@ -191,10 +174,9 @@ result in an exception.
 
 protected void processEvent(java.awt.AWTEvent e)
 
-Processes events on this button. If an event is an instance of ActionEvent, 
-this method invokes the processActionEvent method. Otherwise, it invokes 
-processEvent on the superclass. Note that if the event parameter is null the 
-behavior is unspecified and may result in an exception. 
+Processes events on this button. If an event is an instance of ActionEvent, this method invokes the processActionEvent method. Otherwise, it invokes processEvent on the 
+superclass. Note that if the event parameter is null the behavior is unspecified and may result in an exception. 
+
 
     e - the event 
 
@@ -202,10 +184,9 @@ behavior is unspecified and may result in an exception.
 
 public synchronized void removeActionListener(java.awt.event.ActionListener l)
 
-Removes the specified action listener so that it no longer receives action 
-events from this button. Action events occur when a user presses or releases 
-the mouse over this button. If l is null, no exception is thrown and no action 
-is performed. 
+Removes the specified action listener so that it no longer receives action events from this button. Action events occur when a user presses or releases the mouse over this button. 
+If l is null, no exception is thrown and no action is performed. 
+
 
     l - the action listener 
 
@@ -213,17 +194,17 @@ is performed.
 
 public void setActionCommand(java.lang.String command)
 
-Sets the command name for the action event fired by this button. By default 
-this action command is set to match the label of the button. 
+Sets the command name for the action event fired by this button. By default this action command is set to match the label of the button. 
 
-    command - a string used to set the button's action command. If the string is null then 
-       the action command is set to match the label of the button. 
+
+    command - a string used to set the button's action command. If the string is null then the action command is set to match the label of the button. 
 
 *java.awt.Button.setLabel(String)*
 
 public void setLabel(java.lang.String label)
 
 Sets the button's label to be the specified string. 
+
 
     label - the new label, or null if the button has no label. 
 

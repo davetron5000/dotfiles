@@ -1,4 +1,4 @@
-*javax.swing.plaf.basic.BasicDirectoryModel* *BasicDirectoryModel* Basic impleme
+*javax.swing.plaf.basic.BasicDirectoryModel* *BasicDirectoryModel* Basic implementation of a file list.
 
 public class BasicDirectoryModel
   extends    |javax.swing.AbstractListModel|
@@ -9,7 +9,7 @@ public class BasicDirectoryModel
 |javax.swing.plaf.basic.BasicDirectoryModel_Constructors|
 |javax.swing.plaf.basic.BasicDirectoryModel_Methods|
 
-================================================================================
+====================================================================================================================================================================================
 
 *javax.swing.plaf.basic.BasicDirectoryModel_Constructors*
 |javax.swing.plaf.basic.BasicDirectoryModel(JFileChooser)|
@@ -22,18 +22,19 @@ public class BasicDirectoryModel
 |javax.swing.plaf.basic.BasicDirectoryModel.getFiles()|
 |javax.swing.plaf.basic.BasicDirectoryModel.getSize()|
 |javax.swing.plaf.basic.BasicDirectoryModel.indexOf(Object)|
-|javax.swing.plaf.basic.BasicDirectoryModel.intervalAdded(ListDataEvent)|Obsole
-|javax.swing.plaf.basic.BasicDirectoryModel.intervalRemoved(ListDataEvent)|Obso
-|javax.swing.plaf.basic.BasicDirectoryModel.invalidateFileCache()|Obsolete - no
+|javax.swing.plaf.basic.BasicDirectoryModel.intervalAdded(ListDataEvent)|Obsolete - not used.
+|javax.swing.plaf.basic.BasicDirectoryModel.intervalRemoved(ListDataEvent)|Obsolete - not used.
+|javax.swing.plaf.basic.BasicDirectoryModel.invalidateFileCache()|This method is used to interrupt file loading thread.
 |javax.swing.plaf.basic.BasicDirectoryModel.lt(File,File)|
 |javax.swing.plaf.basic.BasicDirectoryModel.propertyChange(PropertyChangeEvent)|
-|javax.swing.plaf.basic.BasicDirectoryModel.renameFile(File,File)|Renames a fil
-|javax.swing.plaf.basic.BasicDirectoryModel.sort(Vector)|
+|javax.swing.plaf.basic.BasicDirectoryModel.renameFile(File,File)|Renames a file in the underlying file system.
+|javax.swing.plaf.basic.BasicDirectoryModel.sort(Vector<?extendsFile>)|
 |javax.swing.plaf.basic.BasicDirectoryModel.validateFileCache()|
 
 *javax.swing.plaf.basic.BasicDirectoryModel_Description*
 
 Basic implementation of a file list. 
+
 
 
 *javax.swing.plaf.basic.BasicDirectoryModel(JFileChooser)*
@@ -50,6 +51,7 @@ public boolean contains(java.lang.Object o)
 
 
 
+
 *javax.swing.plaf.basic.BasicDirectoryModel.fireContentsChanged()*
 
 public void fireContentsChanged()
@@ -57,9 +59,11 @@ public void fireContentsChanged()
 
 
 
+
 *javax.swing.plaf.basic.BasicDirectoryModel.getDirectories()*
 
-public |java.util.Vector| getDirectories()
+public |java.util.Vector|<File> getDirectories()
+
 
 
 
@@ -71,9 +75,11 @@ public |java.lang.Object| getElementAt(int index)
 
 
 
+
 *javax.swing.plaf.basic.BasicDirectoryModel.getFiles()*
 
-public |java.util.Vector| getFiles()
+public |java.util.Vector|<File> getFiles()
+
 
 
 
@@ -85,9 +91,11 @@ public int getSize()
 
 
 
+
 *javax.swing.plaf.basic.BasicDirectoryModel.indexOf(Object)*
 
 public int indexOf(java.lang.Object o)
+
 
 
 
@@ -99,6 +107,7 @@ public void intervalAdded(javax.swing.event.ListDataEvent e)
 Obsolete - not used. 
 
 
+
 *javax.swing.plaf.basic.BasicDirectoryModel.intervalRemoved(ListDataEvent)*
 
 public void intervalRemoved(javax.swing.event.ListDataEvent e)
@@ -106,11 +115,13 @@ public void intervalRemoved(javax.swing.event.ListDataEvent e)
 Obsolete - not used. 
 
 
+
 *javax.swing.plaf.basic.BasicDirectoryModel.invalidateFileCache()*
 
 public void invalidateFileCache()
 
-Obsolete - not used. 
+This method is used to interrupt file loading thread. 
+
 
 
 *javax.swing.plaf.basic.BasicDirectoryModel.lt(File,File)*
@@ -122,9 +133,11 @@ protected boolean lt(
 
 
 
+
 *javax.swing.plaf.basic.BasicDirectoryModel.propertyChange(PropertyChangeEvent)*
 
 public void propertyChange(java.beans.PropertyChangeEvent e)
+
 
 
 
@@ -137,13 +150,16 @@ public boolean renameFile(
 
 Renames a file in the underlying file system. 
 
+
     oldFile - a File object representing the existing file 
     newFile - a File object representing the desired new file name 
 
     Returns: true if rename succeeded, otherwise false 
-*javax.swing.plaf.basic.BasicDirectoryModel.sort(Vector)*
 
-protected void sort(java.util.Vector v)
+*javax.swing.plaf.basic.BasicDirectoryModel.sort(Vector<?extendsFile>)*
+
+protected void sort(java.util.Vector<? extends java.io.File> v)
+
 
 
 
@@ -151,6 +167,7 @@ protected void sort(java.util.Vector v)
 *javax.swing.plaf.basic.BasicDirectoryModel.validateFileCache()*
 
 public void validateFileCache()
+
 
 
 

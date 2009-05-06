@@ -1,4 +1,5 @@
-*java.util.concurrent.Executors* *Executors* Factory and utility methods forExec
+*java.util.concurrent.Executors* *Executors* Factory and utility methods forExecutor,ExecutorService,ScheduledExecutorService,ThreadFactory, andCallableclasses defined in this
+ pac
 
 public class Executors
   extends    |java.lang.Object|
@@ -8,326 +9,298 @@ public class Executors
 |java.util.concurrent.Executors_Constructors|
 |java.util.concurrent.Executors_Methods|
 
-================================================================================
+====================================================================================================================================================================================
 
 *java.util.concurrent.Executors_Methods*
-|java.util.concurrent.Executors.callable(PrivilegedAction)|Returns aCallableobj
-|java.util.concurrent.Executors.callable(PrivilegedExceptionAction)|Returns aCa
-|java.util.concurrent.Executors.callable(Runnable)|Returns aCallableobject that
-|java.util.concurrent.Executors.callable(Runnable,T)|Returns aCallableobject th
-|java.util.concurrent.Executors.defaultThreadFactory()|Returns a default thread
-|java.util.concurrent.Executors.newCachedThreadPool()|Creates a thread pool tha
-|java.util.concurrent.Executors.newCachedThreadPool(ThreadFactory)|Creates a th
-|java.util.concurrent.Executors.newFixedThreadPool(int)|Creates a thread pool t
-|java.util.concurrent.Executors.newFixedThreadPool(int,ThreadFactory)|Creates a
-|java.util.concurrent.Executors.newScheduledThreadPool(int)|Creates a thread po
-|java.util.concurrent.Executors.newScheduledThreadPool(int,ThreadFactory)|Creat
-|java.util.concurrent.Executors.newSingleThreadExecutor()|Creates an Executor t
-|java.util.concurrent.Executors.newSingleThreadExecutor(ThreadFactory)|Creates 
-|java.util.concurrent.Executors.newSingleThreadScheduledExecutor()|Creates a si
-|java.util.concurrent.Executors.newSingleThreadScheduledExecutor(ThreadFactory)|
-|java.util.concurrent.Executors.privilegedCallable(Callable)|Returns aCallableo
-|java.util.concurrent.Executors.privilegedCallableUsingCurrentClassLoader(Callable)|
-|java.util.concurrent.Executors.privilegedThreadFactory()|Returns a thread fact
-|java.util.concurrent.Executors.unconfigurableExecutorService(ExecutorService)|
-|java.util.concurrent.Executors.unconfigurableScheduledExecutorService(ScheduledExecutorService)|
+|java.util.concurrent.Executors.callable(PrivilegedAction)|Returns aCallableobject that, when  called, runs the given privileged action and returns its result.
+|java.util.concurrent.Executors.callable(PrivilegedExceptionAction)|Returns aCallableobject that, when  called, runs the given privileged exception action and returns  its result.
+|java.util.concurrent.Executors.callable(Runnable)|Returns aCallableobject that, when  called, runs the given task and returns null.
+|java.util.concurrent.Executors.callable(Runnable,T)|Returns aCallableobject that, when  called, runs the given task and returns the given result.
+|java.util.concurrent.Executors.defaultThreadFactory()|Returns a default thread factory used to create new threads.
+|java.util.concurrent.Executors.newCachedThreadPool()|Creates a thread pool that creates new threads as needed, but  will reuse previously constructed threads when they are  avail
+|java.util.concurrent.Executors.newCachedThreadPool(ThreadFactory)|Creates a thread pool that creates new threads as needed, but  will reuse previously constructed threads when th
+|java.util.concurrent.Executors.newFixedThreadPool(int)|Creates a thread pool that reuses a fixed set of threads  operating off a shared unbounded queue.
+|java.util.concurrent.Executors.newFixedThreadPool(int,ThreadFactory)|Creates a thread pool that reuses a fixed set of threads  operating off a shared unbounded queue, using the p
+|java.util.concurrent.Executors.newScheduledThreadPool(int)|Creates a thread pool that can schedule commands to run after a   given delay, or to execute periodically.
+|java.util.concurrent.Executors.newScheduledThreadPool(int,ThreadFactory)|Creates a thread pool that can schedule commands to run after a   given delay, or to execute periodically
+|java.util.concurrent.Executors.newSingleThreadExecutor()|Creates an Executor that uses a single worker thread operating  off an unbounded queue.
+|java.util.concurrent.Executors.newSingleThreadExecutor(ThreadFactory)|Creates an Executor that uses a single worker thread operating  off an unbounded queue, and uses the provide
+|java.util.concurrent.Executors.newSingleThreadScheduledExecutor()|Creates a single-threaded executor that can schedule commands  to run after a given delay, or to execute periodi
+|java.util.concurrent.Executors.newSingleThreadScheduledExecutor(ThreadFactory)|Creates a single-threaded executor that can schedule commands  to run after a given delay, or to ex
+|java.util.concurrent.Executors.privilegedCallable(Callable<T>)|Returns aCallableobject that will, when  called, execute the given callable under the current  access control conte
+|java.util.concurrent.Executors.privilegedCallableUsingCurrentClassLoader(Callable<T>)|Returns aCallableobject that will, when  called, execute the given callable under the curren
+|java.util.concurrent.Executors.privilegedThreadFactory()|Returns a thread factory used to create new threads that  have the same permissions as the current thread.
+|java.util.concurrent.Executors.unconfigurableExecutorService(ExecutorService)|Returns an object that delegates all definedExecutorServicemethods to the given executor, but not an
+|java.util.concurrent.Executors.unconfigurableScheduledExecutorService(ScheduledExecutorService)|Returns an object that delegates all definedScheduledExecutorServicemethods to the
 
 *java.util.concurrent.Executors_Description*
 
-Factory and utility methods for (|java.util.concurrent.Executor|) , 
-(|java.util.concurrent.ExecutorService|) , 
-(|java.util.concurrent.ScheduledExecutorService|) , 
-(|java.util.concurrent.ThreadFactory|) , and (|java.util.concurrent.Callable|) 
-classes defined in this package. This class supports the following kinds of 
-methods: 
+Factory and utility methods for (|java.util.concurrent.Executor|) , (|java.util.concurrent.ExecutorService|) , (|java.util.concurrent.ScheduledExecutorService|) , 
+(|java.util.concurrent.ThreadFactory|) , and (|java.util.concurrent.Callable|) classes defined in this package. This class supports the following kinds of methods: 
 
-Methods that create and return an (|java.util.concurrent.ExecutorService|) set 
-up with commonly useful configuration settings. Methods that create and return 
-a (|java.util.concurrent.ScheduledExecutorService|) set up with commonly useful 
-configuration settings. Methods that create and return a "wrapped" 
-ExecutorService, that disables reconfiguration by making 
-implementation-specific methods inaccessible. Methods that create and return a 
-(|java.util.concurrent.ThreadFactory|) that sets newly created threads to a 
-known state. Methods that create and return a (|java.util.concurrent.Callable|) 
-out of other closure-like forms, so they can be used in execution methods 
-requiring Callable. 
+Methods that create and return an (|java.util.concurrent.ExecutorService|) set up with commonly useful configuration settings. Methods that create and return a 
+(|java.util.concurrent.ScheduledExecutorService|) set up with commonly useful configuration settings. Methods that create and return a "wrapped" ExecutorService, that disables 
+reconfiguration by making implementation-specific methods inaccessible. Methods that create and return a (|java.util.concurrent.ThreadFactory|) that sets newly created threads to 
+a known state. Methods that create and return a (|java.util.concurrent.Callable|) out of other closure-like forms, so they can be used in execution methods requiring Callable. 
+
 
 
 *java.util.concurrent.Executors.callable(PrivilegedAction)*
 
-public static |java.util.concurrent.Callable| callable(java.security.PrivilegedAction action)
+public static |java.util.concurrent.Callable|<Object> callable(java.security.PrivilegedAction action)
 
-Returns a (|java.util.concurrent.Callable|) object that, when called, runs the 
-given privileged action and returns its result. 
+Returns a (|java.util.concurrent.Callable|) object that, when called, runs the given privileged action and returns its result. 
+
 
     action - the privileged action to run 
 
     Returns: a callable object 
+
 *java.util.concurrent.Executors.callable(PrivilegedExceptionAction)*
 
-public static |java.util.concurrent.Callable| callable(java.security.PrivilegedExceptionAction action)
+public static |java.util.concurrent.Callable|<Object> callable(java.security.PrivilegedExceptionAction action)
 
-Returns a (|java.util.concurrent.Callable|) object that, when called, runs the 
-given privileged exception action and returns its result. 
+Returns a (|java.util.concurrent.Callable|) object that, when called, runs the given privileged exception action and returns its result. 
+
 
     action - the privileged exception action to run 
 
     Returns: a callable object 
+
 *java.util.concurrent.Executors.callable(Runnable)*
 
-public static |java.util.concurrent.Callable| callable(java.lang.Runnable task)
+public static |java.util.concurrent.Callable|<Object> callable(java.lang.Runnable task)
 
-Returns a (|java.util.concurrent.Callable|) object that, when called, runs the 
-given task and returns null. 
+Returns a (|java.util.concurrent.Callable|) object that, when called, runs the given task and returns null. 
+
 
     task - the task to run 
 
     Returns: a callable object 
+
 *java.util.concurrent.Executors.callable(Runnable,T)*
 
-public static |java.util.concurrent.Callable| callable(
+public static |java.util.concurrent.Callable|<T> callable(
   java.lang.Runnable task,
-  java.lang.Object result)
+  T result)
 
-Returns a (|java.util.concurrent.Callable|) object that, when called, runs the 
-given task and returns the given result. This can be useful when applying 
-methods requiring a Callable to an otherwise resultless action. 
+Returns a (|java.util.concurrent.Callable|) object that, when called, runs the given task and returns the given result. This can be useful when applying methods requiring a 
+Callable to an otherwise resultless action. 
+
 
     task - the task to run 
     result - the result to return 
 
     Returns: a callable object 
+
 *java.util.concurrent.Executors.defaultThreadFactory()*
 
 public static |java.util.concurrent.ThreadFactory| defaultThreadFactory()
 
-Returns a default thread factory used to create new threads. This factory 
-creates all new threads used by an Executor in the same 
-(|java.lang.ThreadGroup|) . If there is a (|java.lang.SecurityManager|) , it 
-uses the group of (|java.lang.System|) , else the group of the thread invoking 
-this defaultThreadFactory method. Each new thread is created as a non-daemon 
-thread with priority Thread.NORM_PRIORITY. New threads have names accessible 
-via (|java.lang.Thread|) of pool-N-thread-M, where N is the sequence number of 
-this factory, and M is the sequence number of the thread created by this 
-factory. 
+Returns a default thread factory used to create new threads. This factory creates all new threads used by an Executor in the same (|java.lang.ThreadGroup|) . If there is a 
+(|java.lang.SecurityManager|) , it uses the group of (|java.lang.System|) , else the group of the thread invoking this defaultThreadFactory method. Each new thread is created as a 
+non-daemon thread with priority Thread.NORM_PRIORITY. New threads have names accessible via (|java.lang.Thread|) of pool-N-thread-M, where N is the sequence number of this 
+factory, and M is the sequence number of the thread created by this factory. 
+
 
 
     Returns: a thread factory 
+
 *java.util.concurrent.Executors.newCachedThreadPool()*
 
 public static |java.util.concurrent.ExecutorService| newCachedThreadPool()
 
-Creates a thread pool that creates new threads as needed, but will reuse 
-previously constructed threads when they are available. These pools will 
-typically improve the performance of programs that execute many short-lived 
-asynchronous tasks. Calls to execute will reuse previously constructed threads 
-if available. If no existing thread is available, a new thread will be created 
-and added to the pool. Threads that have not been used for sixty seconds are 
-terminated and removed from the cache. Thus, a pool that remains idle for long 
-enough will not consume any resources. Note that pools with similar properties 
-but different details (for example, timeout parameters) may be created using 
+Creates a thread pool that creates new threads as needed, but will reuse previously constructed threads when they are available. These pools will typically improve the performance 
+of programs that execute many short-lived asynchronous tasks. Calls to execute will reuse previously constructed threads if available. If no existing thread is available, a new 
+thread will be created and added to the pool. Threads that have not been used for sixty seconds are terminated and removed from the cache. Thus, a pool that remains idle for long 
+enough will not consume any resources. Note that pools with similar properties but different details (for example, timeout parameters) may be created using 
 (|java.util.concurrent.ThreadPoolExecutor|) constructors. 
 
 
+
     Returns: the newly created thread pool 
+
 *java.util.concurrent.Executors.newCachedThreadPool(ThreadFactory)*
 
 public static |java.util.concurrent.ExecutorService| newCachedThreadPool(java.util.concurrent.ThreadFactory threadFactory)
 
-Creates a thread pool that creates new threads as needed, but will reuse 
-previously constructed threads when they are available, and uses the provided 
-ThreadFactory to create new threads when needed. 
+Creates a thread pool that creates new threads as needed, but will reuse previously constructed threads when they are available, and uses the provided ThreadFactory to create new 
+threads when needed. 
+
 
     threadFactory - the factory to use when creating new threads 
 
     Returns: the newly created thread pool 
+
 *java.util.concurrent.Executors.newFixedThreadPool(int)*
 
 public static |java.util.concurrent.ExecutorService| newFixedThreadPool(int nThreads)
 
-Creates a thread pool that reuses a fixed set of threads operating off a shared 
-unbounded queue. If any thread terminates due to a failure during execution 
-prior to shutdown, a new one will take its place if needed to execute 
-subsequent tasks. 
+Creates a thread pool that reuses a fixed set of threads operating off a shared unbounded queue. If any thread terminates due to a failure during execution prior to shutdown, a 
+new one will take its place if needed to execute subsequent tasks. 
+
 
     nThreads - the number of threads in the pool 
 
     Returns: the newly created thread pool 
+
 *java.util.concurrent.Executors.newFixedThreadPool(int,ThreadFactory)*
 
 public static |java.util.concurrent.ExecutorService| newFixedThreadPool(
   int nThreads,
   java.util.concurrent.ThreadFactory threadFactory)
 
-Creates a thread pool that reuses a fixed set of threads operating off a shared 
-unbounded queue, using the provided ThreadFactory to create new threads when 
-needed. 
+Creates a thread pool that reuses a fixed set of threads operating off a shared unbounded queue, using the provided ThreadFactory to create new threads when needed. 
+
 
     nThreads - the number of threads in the pool 
     threadFactory - the factory to use when creating new threads 
 
     Returns: the newly created thread pool 
+
 *java.util.concurrent.Executors.newScheduledThreadPool(int)*
 
 public static |java.util.concurrent.ScheduledExecutorService| newScheduledThreadPool(int corePoolSize)
 
-Creates a thread pool that can schedule commands to run after a given delay, or 
-to execute periodically. 
+Creates a thread pool that can schedule commands to run after a given delay, or to execute periodically. 
+
 
     corePoolSize - the number of threads to keep in the pool, even if they are idle. 
 
     Returns: a newly created scheduled thread pool 
+
 *java.util.concurrent.Executors.newScheduledThreadPool(int,ThreadFactory)*
 
 public static |java.util.concurrent.ScheduledExecutorService| newScheduledThreadPool(
   int corePoolSize,
   java.util.concurrent.ThreadFactory threadFactory)
 
-Creates a thread pool that can schedule commands to run after a given delay, or 
-to execute periodically. 
+Creates a thread pool that can schedule commands to run after a given delay, or to execute periodically. 
+
 
     corePoolSize - the number of threads to keep in the pool, even if they are idle. 
     threadFactory - the factory to use when the executor creates a new thread. 
 
     Returns: a newly created scheduled thread pool 
+
 *java.util.concurrent.Executors.newSingleThreadExecutor()*
 
 public static |java.util.concurrent.ExecutorService| newSingleThreadExecutor()
 
-Creates an Executor that uses a single worker thread operating off an unbounded 
-queue. (Note however that if this single thread terminates due to a failure 
-during execution prior to shutdown, a new one will take its place if needed to 
-execute subsequent tasks.) Tasks are guaranteed to execute sequentially, and no 
-more than one task will be active at any given time. Unlike the otherwise 
-equivalent newFixedThreadPool(1) the returned executor is guaranteed not to be 
-reconfigurable to use additional threads. 
+Creates an Executor that uses a single worker thread operating off an unbounded queue. (Note however that if this single thread terminates due to a failure during execution prior 
+to shutdown, a new one will take its place if needed to execute subsequent tasks.) Tasks are guaranteed to execute sequentially, and no more than one task will be active at any 
+given time. Unlike the otherwise equivalent newFixedThreadPool(1) the returned executor is guaranteed not to be reconfigurable to use additional threads. 
+
 
 
     Returns: the newly created single-threaded Executor 
+
 *java.util.concurrent.Executors.newSingleThreadExecutor(ThreadFactory)*
 
 public static |java.util.concurrent.ExecutorService| newSingleThreadExecutor(java.util.concurrent.ThreadFactory threadFactory)
 
-Creates an Executor that uses a single worker thread operating off an unbounded 
-queue, and uses the provided ThreadFactory to create a new thread when needed. 
-Unlike the otherwise equivalent newFixedThreadPool(1, threadFactory) the 
-returned executor is guaranteed not to be reconfigurable to use additional 
-threads. 
+Creates an Executor that uses a single worker thread operating off an unbounded queue, and uses the provided ThreadFactory to create a new thread when needed. Unlike the otherwise 
+equivalent newFixedThreadPool(1, threadFactory) the returned executor is guaranteed not to be reconfigurable to use additional threads. 
+
 
     threadFactory - the factory to use when creating new threads 
 
     Returns: the newly created single-threaded Executor 
+
 *java.util.concurrent.Executors.newSingleThreadScheduledExecutor()*
 
 public static |java.util.concurrent.ScheduledExecutorService| newSingleThreadScheduledExecutor()
 
-Creates a single-threaded executor that can schedule commands to run after a 
-given delay, or to execute periodically. (Note however that if this single 
-thread terminates due to a failure during execution prior to shutdown, a new 
-one will take its place if needed to execute subsequent tasks.) Tasks are 
-guaranteed to execute sequentially, and no more than one task will be active at 
-any given time. Unlike the otherwise equivalent newScheduledThreadPool(1) the 
-returned executor is guaranteed not to be reconfigurable to use additional 
+Creates a single-threaded executor that can schedule commands to run after a given delay, or to execute periodically. (Note however that if this single thread terminates due to a 
+failure during execution prior to shutdown, a new one will take its place if needed to execute subsequent tasks.) Tasks are guaranteed to execute sequentially, and no more than 
+one task will be active at any given time. Unlike the otherwise equivalent newScheduledThreadPool(1) the returned executor is guaranteed not to be reconfigurable to use additional 
 threads. 
 
 
+
     Returns: the newly created scheduled executor 
+
 *java.util.concurrent.Executors.newSingleThreadScheduledExecutor(ThreadFactory)*
 
 public static |java.util.concurrent.ScheduledExecutorService| newSingleThreadScheduledExecutor(java.util.concurrent.ThreadFactory threadFactory)
 
-Creates a single-threaded executor that can schedule commands to run after a 
-given delay, or to execute periodically. (Note however that if this single 
-thread terminates due to a failure during execution prior to shutdown, a new 
-one will take its place if needed to execute subsequent tasks.) Tasks are 
-guaranteed to execute sequentially, and no more than one task will be active at 
-any given time. Unlike the otherwise equivalent newScheduledThreadPool(1, 
-threadFactory) the returned executor is guaranteed not to be reconfigurable to 
+Creates a single-threaded executor that can schedule commands to run after a given delay, or to execute periodically. (Note however that if this single thread terminates due to a 
+failure during execution prior to shutdown, a new one will take its place if needed to execute subsequent tasks.) Tasks are guaranteed to execute sequentially, and no more than 
+one task will be active at any given time. Unlike the otherwise equivalent newScheduledThreadPool(1, threadFactory) the returned executor is guaranteed not to be reconfigurable to 
 use additional threads. 
+
 
     threadFactory - the factory to use when creating new threads 
 
     Returns: a newly created scheduled executor 
-*java.util.concurrent.Executors.privilegedCallable(Callable)*
 
-public static |java.util.concurrent.Callable| privilegedCallable(java.util.concurrent.Callable callable)
+*java.util.concurrent.Executors.privilegedCallable(Callable<T>)*
 
-Returns a (|java.util.concurrent.Callable|) object that will, when called, 
-execute the given callable under the current access control context. This 
-method should normally be invoked within an (|java.security.AccessController|) 
-action to create callables that will, if possible, execute under the selected 
-permission settings holding within that action; or if not possible, throw an 
-associated (|java.security.AccessControlException|) . 
+public static |java.util.concurrent.Callable|<T> privilegedCallable(java.util.concurrent.Callable<T> callable)
 
-    callable - the underlying task 
+Returns a (|java.util.concurrent.Callable|) object that will, when called, execute the given callable under the current access control context. This method should normally be 
+invoked within an (|java.security.AccessController|) action to create callables that will, if possible, execute under the selected permission settings holding within that action; 
+or if not possible, throw an associated (|java.security.AccessControlException|) . 
 
-    Returns: a callable object 
-*java.util.concurrent.Executors.privilegedCallableUsingCurrentClassLoader(Callable)*
-
-public static |java.util.concurrent.Callable| privilegedCallableUsingCurrentClassLoader(java.util.concurrent.Callable callable)
-
-Returns a (|java.util.concurrent.Callable|) object that will, when called, 
-execute the given callable under the current access control context, with the 
-current context class loader as the context class loader. This method should 
-normally be invoked within an (|java.security.AccessController|) action to 
-create callables that will, if possible, execute under the selected permission 
-settings holding within that action; or if not possible, throw an associated 
-(|java.security.AccessControlException|) . 
 
     callable - the underlying task 
 
     Returns: a callable object 
+
+*java.util.concurrent.Executors.privilegedCallableUsingCurrentClassLoader(Callable<T>)*
+
+public static |java.util.concurrent.Callable|<T> privilegedCallableUsingCurrentClassLoader(java.util.concurrent.Callable<T> callable)
+
+Returns a (|java.util.concurrent.Callable|) object that will, when called, execute the given callable under the current access control context, with the current context class 
+loader as the context class loader. This method should normally be invoked within an (|java.security.AccessController|) action to create callables that will, if possible, execute 
+under the selected permission settings holding within that action; or if not possible, throw an associated (|java.security.AccessControlException|) . 
+
+
+    callable - the underlying task 
+
+    Returns: a callable object 
+
 *java.util.concurrent.Executors.privilegedThreadFactory()*
 
 public static |java.util.concurrent.ThreadFactory| privilegedThreadFactory()
 
-Returns a thread factory used to create new threads that have the same 
-permissions as the current thread. This factory creates threads with the same 
-settings as (|java.util.concurrent.Executors|) , additionally setting the 
-AccessControlContext and contextClassLoader of new threads to be the same as 
-the thread invoking this privilegedThreadFactory method. A new 
-privilegedThreadFactory can be created within an 
-(|java.security.AccessController|) action setting the current thread's access 
-control context to create threads with the selected permission settings holding 
-within that action. 
+Returns a thread factory used to create new threads that have the same permissions as the current thread. This factory creates threads with the same settings as 
+(|java.util.concurrent.Executors|) , additionally setting the AccessControlContext and contextClassLoader of new threads to be the same as the thread invoking this 
+privilegedThreadFactory method. A new privilegedThreadFactory can be created within an (|java.security.AccessController|) action setting the current thread's access control 
+context to create threads with the selected permission settings holding within that action. 
 
-Note that while tasks running within such threads will have the same access 
-control and class loader settings as the current thread, they need not have the 
-same (|java.lang.ThreadLocal|) or (|java.lang.InheritableThreadLocal|) values. 
-If necessary, particular values of thread locals can be set or reset before any 
-task runs in (|java.util.concurrent.ThreadPoolExecutor|) subclasses using 
-(|java.util.concurrent.ThreadPoolExecutor|) . Also, if it is necessary to 
-initialize worker threads to have the same InheritableThreadLocal settings as 
-some other designated thread, you can create a custom ThreadFactory in which 
-that thread waits for and services requests to create others that will inherit 
-its values. 
+Note that while tasks running within such threads will have the same access control and class loader settings as the current thread, they need not have the same 
+(|java.lang.ThreadLocal|) or (|java.lang.InheritableThreadLocal|) values. If necessary, particular values of thread locals can be set or reset before any task runs in 
+(|java.util.concurrent.ThreadPoolExecutor|) subclasses using (|java.util.concurrent.ThreadPoolExecutor|) . Also, if it is necessary to initialize worker threads to have the same 
+InheritableThreadLocal settings as some other designated thread, you can create a custom ThreadFactory in which that thread waits for and services requests to create others that 
+will inherit its values. 
+
 
 
     Returns: a thread factory 
+
 *java.util.concurrent.Executors.unconfigurableExecutorService(ExecutorService)*
 
 public static |java.util.concurrent.ExecutorService| unconfigurableExecutorService(java.util.concurrent.ExecutorService executor)
 
-Returns an object that delegates all defined 
-(|java.util.concurrent.ExecutorService|) methods to the given executor, but not 
-any other methods that might otherwise be accessible using casts. This provides 
-a way to safely "freeze" configuration and disallow tuning of a given concrete 
-implementation. 
+Returns an object that delegates all defined (|java.util.concurrent.ExecutorService|) methods to the given executor, but not any other methods that might otherwise be accessible 
+using casts. This provides a way to safely "freeze" configuration and disallow tuning of a given concrete implementation. 
+
 
     executor - the underlying implementation 
 
     Returns: an ExecutorService instance 
+
 *java.util.concurrent.Executors.unconfigurableScheduledExecutorService(ScheduledExecutorService)*
 
 public static |java.util.concurrent.ScheduledExecutorService| unconfigurableScheduledExecutorService(java.util.concurrent.ScheduledExecutorService executor)
 
-Returns an object that delegates all defined 
-(|java.util.concurrent.ScheduledExecutorService|) methods to the given 
-executor, but not any other methods that might otherwise be accessible using 
-casts. This provides a way to safely "freeze" configuration and disallow tuning 
-of a given concrete implementation. 
+Returns an object that delegates all defined (|java.util.concurrent.ScheduledExecutorService|) methods to the given executor, but not any other methods that might otherwise be 
+accessible using casts. This provides a way to safely "freeze" configuration and disallow tuning of a given concrete implementation. 
+
 
     executor - the underlying implementation 
 
     Returns: a ScheduledExecutorService instance 
+
 

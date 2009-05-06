@@ -1,4 +1,6 @@
-*java.net.HttpRetryException* *HttpRetryException* Thrown to indicate that a HTT
+*java.net.HttpRetryException* *HttpRetryException* Thrown to indicate that a HTTP request needs to be retried
+ but cannot be retried automatically, due to streaming mode
+ being ena
 
 public class HttpRetryException
   extends    |java.io.IOException|
@@ -8,21 +10,21 @@ public class HttpRetryException
 |java.net.HttpRetryException_Constructors|
 |java.net.HttpRetryException_Methods|
 
-================================================================================
+====================================================================================================================================================================================
 
 *java.net.HttpRetryException_Constructors*
-|java.net.HttpRetryException(String,int)|Constructs a new HttpRetryException fr
-|java.net.HttpRetryException(String,int,String)|Constructs a new HttpRetryExcep
+|java.net.HttpRetryException(String,int)|Constructs a new HttpRetryException from the   specified response code and exception detail message
+|java.net.HttpRetryException(String,int,String)|Constructs a new HttpRetryException with detail message  responseCode and the contents of the Location response header field.
 
 *java.net.HttpRetryException_Methods*
-|java.net.HttpRetryException.getLocation()|Returns the value of the Location he
-|java.net.HttpRetryException.getReason()|Returns a string explaining why the ht
+|java.net.HttpRetryException.getLocation()|Returns the value of the Location header field if the  error resulted from redirection.
+|java.net.HttpRetryException.getReason()|Returns a string explaining why the http request could  not be retried.
 |java.net.HttpRetryException.responseCode()|Returns the http response code
 
 *java.net.HttpRetryException_Description*
 
-Thrown to indicate that a HTTP request needs to be retried but cannot be 
-retried automatically, due to streaming mode being enabled. 
+Thrown to indicate that a HTTP request needs to be retried but cannot be retried automatically, due to streaming mode being enabled. 
+
 
 
 *java.net.HttpRetryException(String,int)*
@@ -31,8 +33,7 @@ public HttpRetryException(
   java.lang.String detail,
   int code)
 
-Constructs a new HttpRetryException from the specified response code and 
-exception detail message 
+Constructs a new HttpRetryException from the specified response code and exception detail message 
 
     detail - the detail message. 
     code - the HTTP response code from server. 
@@ -44,8 +45,7 @@ public HttpRetryException(
   int code,
   java.lang.String location)
 
-Constructs a new HttpRetryException with detail message responseCode and the 
-contents of the Location response header field. 
+Constructs a new HttpRetryException with detail message responseCode and the contents of the Location response header field. 
 
     detail - the detail message. 
     code - the HTTP response code from server. 
@@ -55,11 +55,12 @@ contents of the Location response header field.
 
 public |java.lang.String| getLocation()
 
-Returns the value of the Location header field if the error resulted from 
-redirection. 
+Returns the value of the Location header field if the error resulted from redirection. 
+
 
 
     Returns: The location string 
+
 *java.net.HttpRetryException.getReason()*
 
 public |java.lang.String| getReason()
@@ -67,7 +68,9 @@ public |java.lang.String| getReason()
 Returns a string explaining why the http request could not be retried. 
 
 
+
     Returns: The reason string 
+
 *java.net.HttpRetryException.responseCode()*
 
 public int responseCode()
@@ -75,5 +78,7 @@ public int responseCode()
 Returns the http response code 
 
 
+
     Returns: The http response code. 
+
 

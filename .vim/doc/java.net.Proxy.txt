@@ -1,4 +1,5 @@
-*java.net.Proxy* *Proxy* This class represents a proxy setting, typically a type
+*java.net.Proxy* *Proxy* This class represents a proxy setting, typically a type (http, socks) and
+ a socket address.
 
 public class Proxy
   extends    |java.lang.Object|
@@ -8,31 +9,33 @@ public class Proxy
 |java.net.Proxy_Constructors|
 |java.net.Proxy_Methods|
 
-================================================================================
+====================================================================================================================================================================================
 
 *java.net.Proxy_Fields*
 |java.net.Proxy_java.net.Proxy.NO_PROXY|
 
 *java.net.Proxy_Constructors*
-|java.net.Proxy(Proxy.Type,SocketAddress)|Creates an entry representing a PROXY
+|java.net.Proxy(Proxy.Type,SocketAddress)|Creates an entry representing a PROXY connection.
 
 *java.net.Proxy_Methods*
-|java.net.Proxy.address()|Returns the socket address of the proxy, or   null if
-|java.net.Proxy.equals(Object)|Compares this object against the specified objec
+|java.net.Proxy.address()|Returns the socket address of the proxy, or   null if its a direct connection.
+|java.net.Proxy.equals(Object)|Compares this object against the specified object.
 |java.net.Proxy.hashCode()|Returns a hashcode for this Proxy.
 |java.net.Proxy.toString()|Constructs a string representation of this Proxy.
 |java.net.Proxy.type()|Returns the proxy type.
 
 *java.net.Proxy_Description*
 
-This class represents a proxy setting, typically a type (http, socks) and a 
-socket address. A Proxy is an immutable object. 
+This class represents a proxy setting, typically a type (http, socks) and a socket address. A Proxy is an immutable object. 
+
 
 
 *java.net.Proxy_java.net.Proxy.NO_PROXY*
 
-This class represents a proxy setting, typically a type (http, socks) and a 
-socket address. A Proxy is an immutable object. 
+A proxy setting that represents a DIRECT connection, basically telling the protocol handler not to use any proxying. Used, for instance, to create sockets bypassing any other 
+global proxy settings (like SOCKS): 
+
+Socket s = new Socket(Proxy.NO_PROXY); 
 
 
 
@@ -42,9 +45,7 @@ public Proxy(
   java.net.Proxy.Type type,
   java.net.SocketAddress sa)
 
-Creates an entry representing a PROXY connection. Certain combinations are 
-illegal. For instance, for types Http, and Socks, a SocketAddress must be 
-provided. 
+Creates an entry representing a PROXY connection. Certain combinations are illegal. For instance, for types Http, and Socks, a SocketAddress must be provided. 
 
 Use the Proxy.NO_PROXY constant for representing a direct connection. 
 
@@ -58,21 +59,22 @@ public |java.net.SocketAddress| address()
 Returns the socket address of the proxy, or null if its a direct connection. 
 
 
+
     Returns: a SocketAddress representing the socket end point of the proxy 
+
 *java.net.Proxy.equals(Object)*
 
 public final boolean equals(java.lang.Object obj)
 
-Compares this object against the specified object. The result is true if and 
-only if the argument is not null and it represents the same proxy as this 
-object. 
+Compares this object against the specified object. The result is true if and only if the argument is not null and it represents the same proxy as this object. 
 
-Two instances of Proxy represent the same address if both the SocketAddresses 
-and type are equal. 
+Two instances of Proxy represent the same address if both the SocketAddresses and type are equal. 
+
 
     obj - the object to compare against. 
 
     Returns: true if the objects are the same; false otherwise. 
+
 *java.net.Proxy.hashCode()*
 
 public final int hashCode()
@@ -80,17 +82,19 @@ public final int hashCode()
 Returns a hashcode for this Proxy. 
 
 
+
     Returns: a hash code value for this Proxy. 
+
 *java.net.Proxy.toString()*
 
 public |java.lang.String| toString()
 
-Constructs a string representation of this Proxy. This String is constructed by 
-calling toString() on its type and concatenating the toString() result from its 
-address if any. 
+Constructs a string representation of this Proxy. This String is constructed by calling toString() on its type and concatenating the toString() result from its address if any. 
+
 
 
     Returns: a string representation of this object. 
+
 *java.net.Proxy.type()*
 
 public |java.net.Proxy.Type| type()
@@ -98,5 +102,7 @@ public |java.net.Proxy.Type| type()
 Returns the proxy type. 
 
 
+
     Returns: a Type representing the proxy type 
+
 

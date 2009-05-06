@@ -1,4 +1,6 @@
-*java.security.SignedObject* *SignedObject*  SignedObject is a class for the pur
+*java.security.SignedObject* *SignedObject*  SignedObject is a class for the purpose of creating authentic
+ runtime objects whose integrity cannot be compromised without being
+ det
 
 public final class SignedObject
   extends    |java.lang.Object|
@@ -9,89 +11,64 @@ public final class SignedObject
 |java.security.SignedObject_Constructors|
 |java.security.SignedObject_Methods|
 
-================================================================================
+====================================================================================================================================================================================
 
 *java.security.SignedObject_Constructors*
-|java.security.SignedObject(Serializable,PrivateKey,Signature)|Constructs a Sig
+|java.security.SignedObject(Serializable,PrivateKey,Signature)|Constructs a SignedObject from any Serializable object.
 
 *java.security.SignedObject_Methods*
-|java.security.SignedObject.getAlgorithm()|Retrieves the name of the signature 
+|java.security.SignedObject.getAlgorithm()|Retrieves the name of the signature algorithm.
 |java.security.SignedObject.getObject()|Retrieves the encapsulated object.
-|java.security.SignedObject.getSignature()|Retrieves the signature on the signe
-|java.security.SignedObject.verify(PublicKey,Signature)|Verifies that the signa
+|java.security.SignedObject.getSignature()|Retrieves the signature on the signed object, in the form of a  byte array.
+|java.security.SignedObject.verify(PublicKey,Signature)|Verifies that the signature in this SignedObject is the valid  signature for the object stored inside, with the given  veri
 
 *java.security.SignedObject_Description*
 
-SignedObject is a class for the purpose of creating authentic runtime objects 
-whose integrity cannot be compromised without being detected. 
+SignedObject is a class for the purpose of creating authentic runtime objects whose integrity cannot be compromised without being detected. 
 
-More specifically, a SignedObject contains another Serializable object, the 
-(to-be-)signed object and its signature. 
+More specifically, a SignedObject contains another Serializable object, the (to-be-)signed object and its signature. 
 
-The signed object is a "deep copy" (in serialized form) of an original object. 
-Once the copy is made, further manipulation of the original object has no side 
-effect on the copy. 
+The signed object is a "deep copy" (in serialized form) of an original object. Once the copy is made, further manipulation of the original object has no side effect on the copy. 
 
-The underlying signing algorithm is designated by the Signature object passed 
-to the constructor and the verify method. A typical usage for signing is the 
-following: 
+The underlying signing algorithm is designated by the Signature object passed to the constructor and the verify method. A typical usage for signing is the following: 
 
 
 
-Signature signingEngine = Signature.getInstance(algorithm, provider); 
-SignedObject so = new SignedObject(myobject, signingKey, signingEngine); 
+Signature signingEngine = Signature.getInstance(algorithm, provider); SignedObject so = new SignedObject(myobject, signingKey, signingEngine); 
 
 
 
-A typical usage for verification is the following (having received SignedObject 
-so): 
+A typical usage for verification is the following (having received SignedObject so): 
 
 
 
-Signature verificationEngine = Signature.getInstance(algorithm, provider); if 
-(so.verify(publickey, verificationEngine)) try { Object myobj = so.getObject(); 
-} catch (java.lang.ClassNotFoundException e) {}; 
+Signature verificationEngine = Signature.getInstance(algorithm, provider); if (so.verify(publickey, verificationEngine)) try { Object myobj = so.getObject(); } catch 
+(java.lang.ClassNotFoundException e) {}; 
 
 
 
-Several points are worth noting. First, there is no need to initialize the 
-signing or verification engine, as it will be re-initialized inside the 
-constructor and the verify method. Secondly, for verification to succeed, the 
-specified public key must be the public key corresponding to the private key 
-used to generate the SignedObject. 
+Several points are worth noting. First, there is no need to initialize the signing or verification engine, as it will be re-initialized inside the constructor and the verify 
+method. Secondly, for verification to succeed, the specified public key must be the public key corresponding to the private key used to generate the SignedObject. 
 
-More importantly, for flexibility reasons, the constructor and verify method 
-allow for customized signature engines, which can implement signature 
-algorithms that are not installed formally as part of a crypto provider. 
-However, it is crucial that the programmer writing the verifier code be aware 
-what Signature engine is being used, as its own implementation of the verify 
-method is invoked to verify a signature. In other words, a malicious Signature 
-may choose to always return true on verification in an attempt to bypass a 
-security check. 
+More importantly, for flexibility reasons, the constructor and verify method allow for customized signature engines, which can implement signature algorithms that are not 
+installed formally as part of a crypto provider. However, it is crucial that the programmer writing the verifier code be aware what Signature engine is being used, as its own 
+implementation of the verify method is invoked to verify a signature. In other words, a malicious Signature may choose to always return true on verification in an attempt to 
+bypass a security check. 
 
-The signature algorithm can be, among others, the NIST standard DSA, using DSA 
-and SHA-1. The algorithm is specified using the same convention as that for 
-signatures. The DSA algorithm using the SHA-1 message digest algorithm can be 
-specified, for example, as "SHA/DSA" or "SHA-1/DSA" (they are equivalent). In 
-the case of RSA, there are multiple choices for the message digest algorithm, 
-so the signing algorithm could be specified as, for example, "MD2/RSA", 
-"MD5/RSA" or "SHA-1/RSA". The algorithm name must be specified, as there is no 
-default. 
+The signature algorithm can be, among others, the NIST standard DSA, using DSA and SHA-1. The algorithm is specified using the same convention as that for signatures. The DSA 
+algorithm using the SHA-1 message digest algorithm can be specified, for example, as "SHA/DSA" or "SHA-1/DSA" (they are equivalent). In the case of RSA, there are multiple choices 
+for the message digest algorithm, so the signing algorithm could be specified as, for example, "MD2/RSA", "MD5/RSA" or "SHA-1/RSA". The algorithm name must be specified, as there 
+is no default. 
 
-The name of the Cryptography Package Provider is designated also by the 
-Signature parameter to the constructor and the verify method. If the provider 
-is not specified, the default provider is used. Each installation can be 
-configured to use a particular provider as default. 
+The name of the Cryptography Package Provider is designated also by the Signature parameter to the constructor and the verify method. If the provider is not specified, the default 
+provider is used. Each installation can be configured to use a particular provider as default. 
 
 Potential applications of SignedObject include: 
 
-It can be used internally to any Java runtime as an unforgeable authorization 
-token -- one that can be passed around without the fear that the token can be 
-maliciously modified without being detected. It can be used to sign and 
-serialize data/object for storage outside the Java runtime (e.g., storing 
-critical access control data on disk). Nested SignedObjects can be used to 
-construct a logical sequence of signatures, resembling a chain of authorization 
-and delegation. 
+It can be used internally to any Java runtime as an unforgeable authorization token -- one that can be passed around without the fear that the token can be maliciously modified 
+without being detected. It can be used to sign and serialize data/object for storage outside the Java runtime (e.g., storing critical access control data on disk). Nested 
+SignedObjects can be used to construct a logical sequence of signatures, resembling a chain of authorization and delegation. 
+
 
 
 *java.security.SignedObject(Serializable,PrivateKey,Signature)*
@@ -104,8 +81,7 @@ public SignedObject(
          |java.io.IOException|
          |java.security.SignatureException|
          
-Constructs a SignedObject from any Serializable object. The given object is 
-signed with the given signing key, using the designated signature engine. 
+Constructs a SignedObject from any Serializable object. The given object is signed with the given signing key, using the designated signature engine. 
 
     object - the object to be signed. 
     signingKey - the private key for signing. 
@@ -118,26 +94,31 @@ public |java.lang.String| getAlgorithm()
 Retrieves the name of the signature algorithm. 
 
 
+
     Returns: the signature algorithm name. 
+
 *java.security.SignedObject.getObject()*
 
 public |java.lang.Object| getObject()
   throws |java.lang.ClassNotFoundException|
          |java.io.IOException|
          
-Retrieves the encapsulated object. The encapsulated object is de-serialized 
-before it is returned. 
+Retrieves the encapsulated object. The encapsulated object is de-serialized before it is returned. 
+
 
 
     Returns: the encapsulated object. 
+
 *java.security.SignedObject.getSignature()*
 
-public byte getSignature()
+public byte[] getSignature()
 
 Retrieves the signature on the signed object, in the form of a byte array. 
 
 
+
     Returns: the signature. Returns a new array each time this method is called. 
+
 *java.security.SignedObject.verify(PublicKey,Signature)*
 
 public boolean verify(
@@ -146,12 +127,12 @@ public boolean verify(
   throws |java.security.InvalidKeyException|
          |java.security.SignatureException|
          
-Verifies that the signature in this SignedObject is the valid signature for the 
-object stored inside, with the given verification key, using the designated 
-verification engine. 
+Verifies that the signature in this SignedObject is the valid signature for the object stored inside, with the given verification key, using the designated verification engine. 
+
 
     verificationKey - the public key for verification. 
     verificationEngine - the signature verification engine. 
 
     Returns: true if the signature is valid, false otherwise 
+
 

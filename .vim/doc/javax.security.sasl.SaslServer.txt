@@ -1,4 +1,4 @@
-*javax.security.sasl.SaslServer* *SaslServer* Performs SASL authentication as a 
+*javax.security.sasl.SaslServer* *SaslServer* Performs SASL authentication as a server.
 
 public interface interface SaslServer
 
@@ -8,51 +8,41 @@ public interface interface SaslServer
 |javax.security.sasl.SaslServer_Constructors|
 |javax.security.sasl.SaslServer_Methods|
 
-================================================================================
+====================================================================================================================================================================================
 
 *javax.security.sasl.SaslServer_Methods*
-|javax.security.sasl.SaslServer.dispose()|Disposes of any system resources or s
-|javax.security.sasl.SaslServer.evaluateResponse(byte[])|Evaluates the response
-|javax.security.sasl.SaslServer.getAuthorizationID()|Reports the authorization 
-|javax.security.sasl.SaslServer.getMechanismName()|Returns the IANA-registered 
-|javax.security.sasl.SaslServer.getNegotiatedProperty(String)|Retrieves the neg
-|javax.security.sasl.SaslServer.isComplete()|Determines whether the authenticat
-|javax.security.sasl.SaslServer.unwrap(byte[],int,int)|Unwraps a byte array rec
-|javax.security.sasl.SaslServer.wrap(byte[],int,int)|Wraps a byte array to be s
+|javax.security.sasl.SaslServer.dispose()|Disposes of any system resources or security-sensitive information  the SaslServer might be using.
+|javax.security.sasl.SaslServer.evaluateResponse(byte[])|Evaluates the response data and generates a challenge.
+|javax.security.sasl.SaslServer.getAuthorizationID()|Reports the authorization ID in effect for the client of this  session.
+|javax.security.sasl.SaslServer.getMechanismName()|Returns the IANA-registered mechanism name of this SASL server.
+|javax.security.sasl.SaslServer.getNegotiatedProperty(String)|Retrieves the negotiated property.
+|javax.security.sasl.SaslServer.isComplete()|Determines whether the authentication exchange has completed.
+|javax.security.sasl.SaslServer.unwrap(byte[],int,int)|Unwraps a byte array received from the client.
+|javax.security.sasl.SaslServer.wrap(byte[],int,int)|Wraps a byte array to be sent to the client.
 
 *javax.security.sasl.SaslServer_Description*
 
 Performs SASL authentication as a server. 
 
-A server such an LDAP server gets an instance of this class in order to perform 
-authentication defined by a specific SASL mechanism. Invoking methods on the 
-SaslServer instance generates challenges according to the SASL mechanism 
-implemented by the SaslServer. As the authentication proceeds, the instance 
-encapsulates the state of a SASL server's authentication exchange. 
+A server such an LDAP server gets an instance of this class in order to perform authentication defined by a specific SASL mechanism. Invoking methods on the SaslServer instance 
+generates challenges according to the SASL mechanism implemented by the SaslServer. As the authentication proceeds, the instance encapsulates the state of a SASL server's 
+authentication exchange. 
 
-Here's an example of how an LDAP server might use a SaslServer. It first gets 
-an instance of a SaslServer for the SASL mechanism requested by the client: 
+Here's an example of how an LDAP server might use a SaslServer. It first gets an instance of a SaslServer for the SASL mechanism requested by the client: 
 
-SaslServer ss = Sasl.createSaslServer(mechanism, "ldap", myFQDN, props, 
-callbackHandler); 
+SaslServer ss = Sasl.createSaslServer(mechanism, "ldap", myFQDN, props, callbackHandler); 
 
-It can then proceed to use the server for authentication. For example, suppose 
-the LDAP server received an LDAP BIND request containing the name of the SASL 
-mechanism and an (optional) initial response. It then might use the server as 
-follows: 
+It can then proceed to use the server for authentication. For example, suppose the LDAP server received an LDAP BIND request containing the name of the SASL mechanism and an 
+(optional) initial response. It then might use the server as follows: 
 
-while (!ss.isComplete()) { try { byte[] challenge = 
-ss.evaluateResponse(response); if (ss.isComplete()) { status = 
-ldap.sendBindResponse(mechanism, challenge, SUCCESS); } else { status = 
-ldap.sendBindResponse(mechanism, challenge, SASL_BIND_IN_PROGRESS); response = 
-ldap.readBindRequest(); } } catch (SaslException e) { status = 
-ldap.sendErrorResponse(e); break; } } if (ss.isComplete() status == SUCCESS) { 
-String qop = (String) sc.getNegotiatedProperty(Sasl.QOP); if (qop != null 
-(qop.equalsIgnoreCase("auth-int") || qop.equalsIgnoreCase("auth-conf"))) { 
+while (!ss.isComplete()) { try { byte[] challenge = ss.evaluateResponse(response); if (ss.isComplete()) { status = ldap.sendBindResponse(mechanism, challenge, SUCCESS); } else { 
+status = ldap.sendBindResponse(mechanism, challenge, SASL_BIND_IN_PROGRESS); response = ldap.readBindRequest(); } } catch (SaslException e) { status = ldap.sendErrorResponse(e); 
+break; } } if (ss.isComplete() status == SUCCESS) { String qop = (String) sc.getNegotiatedProperty(Sasl.QOP); if (qop != null (qop.equalsIgnoreCase("auth-int") || 
+qop.equalsIgnoreCase("auth-conf"))) { 
 
-// Use SaslServer.wrap() and SaslServer.unwrap() for future // communication 
-with client ldap.in = new SecureInputStream(ss, ldap.in); ldap.out = new 
-SecureOutputStream(ss, ldap.out); } } 
+// Use SaslServer.wrap() and SaslServer.unwrap() for future // communication with client ldap.in = new SecureInputStream(ss, ldap.in); ldap.out = new SecureOutputStream(ss, 
+ldap.out); } } 
+
 
 
 *javax.security.sasl.SaslServer.dispose()*
@@ -60,117 +50,111 @@ SecureOutputStream(ss, ldap.out); } }
 public void dispose()
   throws |javax.security.sasl.SaslException|
          
-Disposes of any system resources or security-sensitive information the 
-SaslServer might be using. Invoking this method invalidates the SaslServer 
-instance. This method is idempotent. 
+Disposes of any system resources or security-sensitive information the SaslServer might be using. Invoking this method invalidates the SaslServer instance. This method is 
+idempotent. 
+
 
 
 *javax.security.sasl.SaslServer.evaluateResponse(byte[])*
 
-public byte evaluateResponse(byte[] response)
+public byte[] evaluateResponse(byte[] response)
   throws |javax.security.sasl.SaslException|
          
 Evaluates the response data and generates a challenge. 
 
-If a response is received from the client during the authentication process, 
-this method is called to prepare an appropriate next challenge to submit to the 
-client. The challenge is null if the authentication has succeeded and no more 
-challenge data is to be sent to the client. It is non-null if the 
-authentication must be continued by sending a challenge to the client, or if 
-the authentication has succeeded but challenge data needs to be processed by 
-the client. isComplete() should be called after each call to 
-evaluateResponse(),to determine if any further response is needed from the 
-client. 
+If a response is received from the client during the authentication process, this method is called to prepare an appropriate next challenge to submit to the client. The challenge 
+is null if the authentication has succeeded and no more challenge data is to be sent to the client. It is non-null if the authentication must be continued by sending a challenge 
+to the client, or if the authentication has succeeded but challenge data needs to be processed by the client. isComplete() should be called after each call to 
+evaluateResponse(),to determine if any further response is needed from the client. 
+
 
     response - The non-null (but possibly empty) response sent by the client. 
 
-    Returns: The possibly null challenge to send to the client. It is null if the 
-             authentication has succeeded and there is no more challenge data 
-             to be sent to the client. 
+    Returns: The possibly null challenge to send to the client. It is null if the authentication has succeeded and there is no more challenge data to be sent to the client. 
+
 *javax.security.sasl.SaslServer.getAuthorizationID()*
 
 public |java.lang.String| getAuthorizationID()
 
-Reports the authorization ID in effect for the client of this session. This 
-method can only be called if isComplete() returns true. 
+Reports the authorization ID in effect for the client of this session. This method can only be called if isComplete() returns true. 
+
 
 
     Returns: The authorization ID of the client. 
+
 *javax.security.sasl.SaslServer.getMechanismName()*
 
 public |java.lang.String| getMechanismName()
 
-Returns the IANA-registered mechanism name of this SASL server. (e.g. 
-"CRAM-MD5", "GSSAPI"). 
+Returns the IANA-registered mechanism name of this SASL server. (e.g. "CRAM-MD5", "GSSAPI"). 
+
 
 
     Returns: A non-null string representing the IANA-registered mechanism name. 
+
 *javax.security.sasl.SaslServer.getNegotiatedProperty(String)*
 
 public |java.lang.Object| getNegotiatedProperty(java.lang.String propName)
 
-Retrieves the negotiated property. This method can be called only after the 
-authentication exchange has completed (i.e., when isComplete() returns true); 
-otherwise, an IllegalStateException is thrown. 
+Retrieves the negotiated property. This method can be called only after the authentication exchange has completed (i.e., when isComplete() returns true); otherwise, an 
+IllegalStateException is thrown. 
+
 
     propName - the property 
 
-    Returns: The value of the negotiated property. If null, the property was not negotiated 
-             or is not applicable to this mechanism. 
+    Returns: The value of the negotiated property. If null, the property was not negotiated or is not applicable to this mechanism. 
+
 *javax.security.sasl.SaslServer.isComplete()*
 
 public boolean isComplete()
 
-Determines whether the authentication exchange has completed. This method is 
-typically called after each invocation of evaluateResponse() to determine 
-whether the authentication has completed successfully or should be continued. 
+Determines whether the authentication exchange has completed. This method is typically called after each invocation of evaluateResponse() to determine whether the authentication 
+has completed successfully or should be continued. 
+
 
 
     Returns: true if the authentication exchange has completed; false otherwise. 
+
 *javax.security.sasl.SaslServer.unwrap(byte[],int,int)*
 
-public byte unwrap(
+public byte[] unwrap(
   byte[] incoming,
   int offset,
   int len)
   throws |javax.security.sasl.SaslException|
          
-Unwraps a byte array received from the client. This method can be called only 
-after the authentication exchange has completed (i.e., when isComplete() 
-returns true) and only if the authentication exchange has negotiated integrity 
-and/or privacy as the quality of protection; otherwise, an 
-IllegalStateException is thrown. 
+Unwraps a byte array received from the client. This method can be called only after the authentication exchange has completed (i.e., when isComplete() returns true) and only if 
+the authentication exchange has negotiated integrity and/or privacy as the quality of protection; otherwise, an IllegalStateException is thrown. 
 
-incoming is the contents of the SASL buffer as defined in RFC 2222 without the 
-leading four octet field that represents the length. offset and len specify the 
-portion of incoming to use. 
+incoming is the contents of the SASL buffer as defined in RFC 2222 without the leading four octet field that represents the length. offset and len specify the portion of incoming 
+to use. 
+
 
     incoming - A non-null byte array containing the encoded bytes from the client. 
     offset - The starting position at incoming of the bytes to use. 
     len - The number of bytes from incoming to use. 
 
     Returns: A non-null byte array containing the decoded bytes. 
+
 *javax.security.sasl.SaslServer.wrap(byte[],int,int)*
 
-public byte wrap(
+public byte[] wrap(
   byte[] outgoing,
   int offset,
   int len)
   throws |javax.security.sasl.SaslException|
          
-Wraps a byte array to be sent to the client. This method can be called only 
-after the authentication exchange has completed (i.e., when isComplete() 
-returns true) and only if the authentication exchange has negotiated integrity 
-and/or privacy as the quality of protection; otherwise, a SaslException is 
-thrown. 
+Wraps a byte array to be sent to the client. This method can be called only after the authentication exchange has completed (i.e., when isComplete() returns true) and only if the 
+authentication exchange has negotiated integrity and/or privacy as the quality of protection; otherwise, a SaslException is thrown. 
 
-The result of this method will make up the contents of the SASL buffer as 
-defined in RFC 2222 without the leading four octet field that represents the 
-length. offset and len specify the portion of outgoing to use. 
+The result of this method will make up the contents of the SASL buffer as defined in RFC 2222 without the leading four octet field that represents the length. offset and len 
+specify the portion of outgoing to use. 
+
 
     outgoing - A non-null byte array containing the bytes to encode. 
     offset - The starting position at outgoing of the bytes to use. 
     len - The number of bytes from outgoing to use. 
 
     Returns: A non-null byte array containing the encoded bytes. 
+
 

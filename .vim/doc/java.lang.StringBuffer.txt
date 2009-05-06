@@ -1,4 +1,4 @@
-*java.lang.StringBuffer* *StringBuffer* A thread-safe, mutable sequence of chara
+*java.lang.StringBuffer* *StringBuffer* A thread-safe, mutable sequence of characters.
 
 public final class StringBuffer
   extends    |java.lang.AbstractStringBuilder|
@@ -10,20 +10,20 @@ public final class StringBuffer
 |java.lang.StringBuffer_Constructors|
 |java.lang.StringBuffer_Methods|
 
-================================================================================
+====================================================================================================================================================================================
 
 *java.lang.StringBuffer_Constructors*
-|java.lang.StringBuffer()|Constructs a string buffer with no characters in it a
-|java.lang.StringBuffer(CharSequence)|Constructs a string buffer that contains 
-|java.lang.StringBuffer(int)|Constructs a string buffer with no characters in i
-|java.lang.StringBuffer(String)|Constructs a string buffer initialized to the c
+|java.lang.StringBuffer()|Constructs a string buffer with no characters in it and an   initial capacity of 16 characters.
+|java.lang.StringBuffer(CharSequence)|Constructs a string buffer that contains the same characters  as the specified CharSequence.
+|java.lang.StringBuffer(int)|Constructs a string buffer with no characters in it and   the specified initial capacity.
+|java.lang.StringBuffer(String)|Constructs a string buffer initialized to the contents of the   specified string.
 
 *java.lang.StringBuffer_Methods*
 |java.lang.StringBuffer.append(boolean)|
 |java.lang.StringBuffer.append(char)|
 |java.lang.StringBuffer.append(char[])|
 |java.lang.StringBuffer.append(char[],int,int)|
-|java.lang.StringBuffer.append(CharSequence)|Appends the specified CharSequence
+|java.lang.StringBuffer.append(CharSequence)|Appends the specified CharSequence to this  sequence.
 |java.lang.StringBuffer.append(CharSequence,int,int)|
 |java.lang.StringBuffer.append(double)|
 |java.lang.StringBuffer.append(float)|
@@ -31,7 +31,7 @@ public final class StringBuffer
 |java.lang.StringBuffer.append(long)|
 |java.lang.StringBuffer.append(Object)|
 |java.lang.StringBuffer.append(String)|
-|java.lang.StringBuffer.append(StringBuffer)|Appends the specified StringBuffer
+|java.lang.StringBuffer.append(StringBuffer)|Appends the specified StringBuffer to this sequence.
 |java.lang.StringBuffer.appendCodePoint(int)|
 |java.lang.StringBuffer.capacity()|
 |java.lang.StringBuffer.charAt(int)|
@@ -72,65 +72,47 @@ public final class StringBuffer
 
 *java.lang.StringBuffer_Description*
 
-A thread-safe, mutable sequence of characters. A string buffer is like a 
-(|java.lang.String|) , but can be modified. At any point in time it contains 
-some particular sequence of characters, but the length and content of the 
-sequence can be changed through certain method calls. 
+A thread-safe, mutable sequence of characters. A string buffer is like a (|java.lang.String|) , but can be modified. At any point in time it contains some particular sequence of 
+characters, but the length and content of the sequence can be changed through certain method calls. 
 
-String buffers are safe for use by multiple threads. The methods are 
-synchronized where necessary so that all the operations on any particular 
-instance behave as if they occur in some serial order that is consistent with 
-the order of the method calls made by each of the individual threads involved. 
+String buffers are safe for use by multiple threads. The methods are synchronized where necessary so that all the operations on any particular instance behave as if they occur in 
+some serial order that is consistent with the order of the method calls made by each of the individual threads involved. 
 
-The principal operations on a StringBuffer are the append and insert methods, 
-which are overloaded so as to accept data of any type. Each effectively 
-converts a given datum to a string and then appends or inserts the characters 
-of that string to the string buffer. The append method always adds these 
-characters at the end of the buffer; the insert method adds the characters at a 
-specified point. 
+The principal operations on a StringBuffer are the append and insert methods, which are overloaded so as to accept data of any type. Each effectively converts a given datum to a 
+string and then appends or inserts the characters of that string to the string buffer. The append method always adds these characters at the end of the buffer; the insert method 
+adds the characters at a specified point. 
 
-For example, if z refers to a string buffer object whose current contents are 
-"start", then the method call z.append("le") would cause the string buffer to 
-contain "startle", whereas z.insert(4, "le") would alter the string buffer to 
-contain "starlet". 
+For example, if z refers to a string buffer object whose current contents are "start", then the method call z.append("le") would cause the string buffer to contain "startle", 
+whereas z.insert(4, "le") would alter the string buffer to contain "starlet". 
 
-In general, if sb refers to an instance of a StringBuffer, then sb.append(x) 
-has the same effect as sb.insert(sb.length(),x). 
+In general, if sb refers to an instance of a StringBuffer, then sb.append(x) has the same effect as sb.insert(sb.length(),x). 
 
-Whenever an operation occurs involving a source sequence (such as appending or 
-inserting from a source sequence) this class synchronizes only on the string 
-buffer performing the operation, not on the source. 
+Whenever an operation occurs involving a source sequence (such as appending or inserting from a source sequence) this class synchronizes only on the string buffer performing the 
+operation, not on the source. 
 
-Every string buffer has a capacity. As long as the length of the character 
-sequence contained in the string buffer does not exceed the capacity, it is not 
-necessary to allocate a new internal buffer array. If the internal buffer 
-overflows, it is automatically made larger. 
+Every string buffer has a capacity. As long as the length of the character sequence contained in the string buffer does not exceed the capacity, it is not necessary to allocate a 
+new internal buffer array. If the internal buffer overflows, it is automatically made larger. 
 
-As of release JDK 5, this class has been supplemented with an equivalent class 
-designed for use by a single thread, (|java.lang.StringBuilder|) . The 
-StringBuilder class should generally be used in preference to this one, as it 
-supports all of the same operations but it is faster, as it performs no 
-synchronization. 
+As of release JDK 5, this class has been supplemented with an equivalent class designed for use by a single thread, (|java.lang.StringBuilder|) . The StringBuilder class should 
+generally be used in preference to this one, as it supports all of the same operations but it is faster, as it performs no synchronization. 
+
 
 
 *java.lang.StringBuffer()*
 
 public StringBuffer()
 
-Constructs a string buffer with no characters in it and an initial capacity of 
-16 characters. 
+Constructs a string buffer with no characters in it and an initial capacity of 16 characters. 
 
 
 *java.lang.StringBuffer(CharSequence)*
 
 public StringBuffer(java.lang.CharSequence seq)
 
-Constructs a string buffer that contains the same characters as the specified 
-CharSequence. The initial capacity of the string buffer is 16 plus the length 
-of the CharSequence argument. 
+Constructs a string buffer that contains the same characters as the specified CharSequence. The initial capacity of the string buffer is 16 plus the length of the CharSequence 
+argument. 
 
-If the length of the specified CharSequence is less than or equal to zero, then 
-an empty buffer of capacity 16 is returned. 
+If the length of the specified CharSequence is less than or equal to zero, then an empty buffer of capacity 16 is returned. 
 
     seq - the sequence to copy. 
 
@@ -138,8 +120,7 @@ an empty buffer of capacity 16 is returned.
 
 public StringBuffer(int capacity)
 
-Constructs a string buffer with no characters in it and the specified initial 
-capacity. 
+Constructs a string buffer with no characters in it and the specified initial capacity. 
 
     capacity - the initial capacity. 
 
@@ -147,15 +128,14 @@ capacity.
 
 public StringBuffer(java.lang.String str)
 
-Constructs a string buffer initialized to the contents of the specified string. 
-The initial capacity of the string buffer is 16 plus the length of the string 
-argument. 
+Constructs a string buffer initialized to the contents of the specified string. The initial capacity of the string buffer is 16 plus the length of the string argument. 
 
     str - the initial contents of the buffer. 
 
 *java.lang.StringBuffer.append(boolean)*
 
 public synchronized |java.lang.StringBuffer| append(boolean b)
+
 
 
 
@@ -167,9 +147,11 @@ public synchronized |java.lang.StringBuffer| append(char c)
 
 
 
+
 *java.lang.StringBuffer.append(char[])*
 
 public synchronized |java.lang.StringBuffer| append(char[] str)
+
 
 
 
@@ -184,32 +166,33 @@ public synchronized |java.lang.StringBuffer| append(
 
 
 
+
 *java.lang.StringBuffer.append(CharSequence)*
 
 public |java.lang.StringBuffer| append(java.lang.CharSequence s)
 
 Appends the specified CharSequence to this sequence. 
 
-The characters of the CharSequence argument are appended, in order, increasing 
-the length of this sequence by the length of the argument. 
+The characters of the CharSequence argument are appended, in order, increasing the length of this sequence by the length of the argument. 
 
-The result of this method is exactly the same as if it were an invocation of 
-this.append(s, 0, s.length()); 
+The result of this method is exactly the same as if it were an invocation of this.append(s, 0, s.length()); 
 
-This method synchronizes on this (the destination) object but does not 
-synchronize on the source (s). 
+This method synchronizes on this (the destination) object but does not synchronize on the source (s). 
 
 If s is null, then the four characters "null" are appended. 
+
 
     s - the CharSequence to append. 
 
     Returns: a reference to this object. 
+
 *java.lang.StringBuffer.append(CharSequence,int,int)*
 
 public synchronized |java.lang.StringBuffer| append(
   java.lang.CharSequence s,
   int start,
   int end)
+
 
 
 
@@ -221,9 +204,11 @@ public synchronized |java.lang.StringBuffer| append(double d)
 
 
 
+
 *java.lang.StringBuffer.append(float)*
 
 public synchronized |java.lang.StringBuffer| append(float f)
+
 
 
 
@@ -235,9 +220,11 @@ public synchronized |java.lang.StringBuffer| append(int i)
 
 
 
+
 *java.lang.StringBuffer.append(long)*
 
 public synchronized |java.lang.StringBuffer| append(long lng)
+
 
 
 
@@ -249,9 +236,11 @@ public synchronized |java.lang.StringBuffer| append(java.lang.Object obj)
 
 
 
+
 *java.lang.StringBuffer.append(String)*
 
 public synchronized |java.lang.StringBuffer| append(java.lang.String str)
+
 
 
 
@@ -262,26 +251,24 @@ public synchronized |java.lang.StringBuffer| append(java.lang.StringBuffer sb)
 
 Appends the specified StringBuffer to this sequence. 
 
-The characters of the StringBuffer argument are appended, in order, to the 
-contents of this StringBuffer, increasing the length of this StringBuffer by 
-the length of the argument. If sb is null, then the four characters "null" are 
-appended to this StringBuffer. 
+The characters of the StringBuffer argument are appended, in order, to the contents of this StringBuffer, increasing the length of this StringBuffer by the length of the argument. 
+If sb is null, then the four characters "null" are appended to this StringBuffer. 
 
-Let n be the length of the old character sequence, the one contained in the 
-StringBuffer just prior to execution of the append method. Then the character 
-at index k in the new character sequence is equal to the character at index k 
-in the old character sequence, if k is less than n; otherwise, it is equal to 
-the character at index k-n in the argument sb. 
+Let n be the length of the old character sequence, the one contained in the StringBuffer just prior to execution of the append method. Then the character at index k in the new 
+character sequence is equal to the character at index k in the old character sequence, if k is less than n; otherwise, it is equal to the character at index k-n in the argument 
+sb. 
 
-This method synchronizes on this (the destination) object but does not 
-synchronize on the source (sb). 
+This method synchronizes on this (the destination) object but does not synchronize on the source (sb). 
+
 
     sb - the StringBuffer to append. 
 
     Returns: a reference to this object. 
+
 *java.lang.StringBuffer.appendCodePoint(int)*
 
 public synchronized |java.lang.StringBuffer| appendCodePoint(int codePoint)
+
 
 
 
@@ -293,9 +280,11 @@ public synchronized int capacity()
 
 
 
+
 *java.lang.StringBuffer.charAt(int)*
 
 public synchronized char charAt(int index)
+
 
 
 
@@ -307,9 +296,11 @@ public synchronized int codePointAt(int index)
 
 
 
+
 *java.lang.StringBuffer.codePointBefore(int)*
 
 public synchronized int codePointBefore(int index)
+
 
 
 
@@ -323,11 +314,13 @@ public synchronized int codePointCount(
 
 
 
+
 *java.lang.StringBuffer.delete(int,int)*
 
 public synchronized |java.lang.StringBuffer| delete(
   int start,
   int end)
+
 
 
 
@@ -339,9 +332,11 @@ public synchronized |java.lang.StringBuffer| deleteCharAt(int index)
 
 
 
+
 *java.lang.StringBuffer.ensureCapacity(int)*
 
 public synchronized void ensureCapacity(int minimumCapacity)
+
 
 
 
@@ -357,9 +352,11 @@ public synchronized void getChars(
 
 
 
+
 *java.lang.StringBuffer.indexOf(String)*
 
 public int indexOf(java.lang.String str)
+
 
 
 
@@ -373,11 +370,13 @@ public synchronized int indexOf(
 
 
 
+
 *java.lang.StringBuffer.insert(int,boolean)*
 
 public |java.lang.StringBuffer| insert(
   int offset,
   boolean b)
+
 
 
 
@@ -391,11 +390,13 @@ public synchronized |java.lang.StringBuffer| insert(
 
 
 
+
 *java.lang.StringBuffer.insert(int,char[])*
 
 public synchronized |java.lang.StringBuffer| insert(
   int offset,
   char[] str)
+
 
 
 
@@ -411,11 +412,13 @@ public synchronized |java.lang.StringBuffer| insert(
 
 
 
+
 *java.lang.StringBuffer.insert(int,CharSequence)*
 
 public |java.lang.StringBuffer| insert(
   int dstOffset,
   java.lang.CharSequence s)
+
 
 
 
@@ -431,11 +434,13 @@ public synchronized |java.lang.StringBuffer| insert(
 
 
 
+
 *java.lang.StringBuffer.insert(int,double)*
 
 public |java.lang.StringBuffer| insert(
   int offset,
   double d)
+
 
 
 
@@ -449,11 +454,13 @@ public |java.lang.StringBuffer| insert(
 
 
 
+
 *java.lang.StringBuffer.insert(int,int)*
 
 public |java.lang.StringBuffer| insert(
   int offset,
   int i)
+
 
 
 
@@ -467,11 +474,13 @@ public |java.lang.StringBuffer| insert(
 
 
 
+
 *java.lang.StringBuffer.insert(int,Object)*
 
 public synchronized |java.lang.StringBuffer| insert(
   int offset,
   java.lang.Object obj)
+
 
 
 
@@ -485,9 +494,11 @@ public synchronized |java.lang.StringBuffer| insert(
 
 
 
+
 *java.lang.StringBuffer.lastIndexOf(String)*
 
 public int lastIndexOf(java.lang.String str)
+
 
 
 
@@ -501,9 +512,11 @@ public synchronized int lastIndexOf(
 
 
 
+
 *java.lang.StringBuffer.length()*
 
 public synchronized int length()
+
 
 
 
@@ -513,6 +526,7 @@ public synchronized int length()
 public synchronized int offsetByCodePoints(
   int index,
   int codePointOffset)
+
 
 
 
@@ -527,9 +541,11 @@ public synchronized |java.lang.StringBuffer| replace(
 
 
 
+
 *java.lang.StringBuffer.reverse()*
 
 public synchronized |java.lang.StringBuffer| reverse()
+
 
 
 
@@ -543,9 +559,11 @@ public synchronized void setCharAt(
 
 
 
+
 *java.lang.StringBuffer.setLength(int)*
 
 public synchronized void setLength(int newLength)
+
 
 
 
@@ -559,9 +577,11 @@ public synchronized |java.lang.CharSequence| subSequence(
 
 
 
+
 *java.lang.StringBuffer.substring(int)*
 
 public synchronized |java.lang.String| substring(int start)
+
 
 
 
@@ -575,6 +595,7 @@ public synchronized |java.lang.String| substring(
 
 
 
+
 *java.lang.StringBuffer.toString()*
 
 public synchronized |java.lang.String| toString()
@@ -582,9 +603,11 @@ public synchronized |java.lang.String| toString()
 
 
 
+
 *java.lang.StringBuffer.trimToSize()*
 
 public synchronized void trimToSize()
+
 
 
 

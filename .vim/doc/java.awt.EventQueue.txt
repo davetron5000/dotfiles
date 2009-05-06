@@ -1,5 +1,6 @@
 *java.awt.EventQueue* *EventQueue* EventQueue is a platform-independent class
- t
+ that queues events, both from the underlying peer classes
+ and from trusted application classes.
 
 public class EventQueue
   extends    |java.lang.Object|
@@ -9,52 +10,42 @@ public class EventQueue
 |java.awt.EventQueue_Constructors|
 |java.awt.EventQueue_Methods|
 
-================================================================================
+====================================================================================================================================================================================
 
 *java.awt.EventQueue_Constructors*
 |java.awt.EventQueue()|
 
 *java.awt.EventQueue_Methods*
 |java.awt.EventQueue.dispatchEvent(AWTEvent)|Dispatches an event.
-|java.awt.EventQueue.getCurrentEvent()|Returns the the event currently being di
-|java.awt.EventQueue.getMostRecentEventTime()|Returns the timestamp of the most
-|java.awt.EventQueue.getNextEvent()|Removes an event from the EventQueue and  r
-|java.awt.EventQueue.invokeAndWait(Runnable)|Causes runnable to have its run  m
-|java.awt.EventQueue.invokeLater(Runnable)|Causes runnable to have its run  met
-|java.awt.EventQueue.isDispatchThread()|Returns true if the calling thread is t
-|java.awt.EventQueue.peekEvent()|Returns the first event on the EventQueue  wit
-|java.awt.EventQueue.peekEvent(int)|Returns the first event with the specified 
+|java.awt.EventQueue.getCurrentEvent()|Returns the the event currently being dispatched by the  EventQueue associated with the calling thread.
+|java.awt.EventQueue.getMostRecentEventTime()|Returns the timestamp of the most recent event that had a timestamp, and  that was dispatched from the EventQueue associated with the
+|java.awt.EventQueue.getNextEvent()|Removes an event from the EventQueue and  returns it.
+|java.awt.EventQueue.invokeAndWait(Runnable)|Causes runnable to have its run  method called in the dispatch thread of the EventQueue.
+|java.awt.EventQueue.invokeLater(Runnable)|Causes runnable to have its run  method called in the dispatch thread of the EventQueue.
+|java.awt.EventQueue.isDispatchThread()|Returns true if the calling thread is the current AWT   EventQueue's dispatch thread.
+|java.awt.EventQueue.peekEvent()|Returns the first event on the EventQueue  without removing it.
+|java.awt.EventQueue.peekEvent(int)|Returns the first event with the specified id, if any.
 |java.awt.EventQueue.pop()|Stops dispatching events using this EventQueue.
-|java.awt.EventQueue.postEvent(AWTEvent)|Posts a 1.1-style event to the EventQu
-|java.awt.EventQueue.push(EventQueue)|Replaces the existing EventQueue with the
+|java.awt.EventQueue.postEvent(AWTEvent)|Posts a 1.1-style event to the EventQueue.
+|java.awt.EventQueue.push(EventQueue)|Replaces the existing EventQueue with the specified one.
 
 *java.awt.EventQueue_Description*
 
-EventQueue is a platform-independent class that queues events, both from the 
-underlying peer classes and from trusted application classes. 
+EventQueue is a platform-independent class that queues events, both from the underlying peer classes and from trusted application classes. 
 
-It encapsulates asynchronous event dispatch machinery which extracts events 
-from the queue and dispatches them by calling 
-dispatchEvent(AWTEvent)(|java.awt.EventQueue|) method on this EventQueue with 
-the event to be dispatched as an argument. The particular behavior of this 
-machinery is implementation-dependent. The only requirements are that events 
-which were actually enqueued to this queue (note that events being posted to 
-the EventQueue can be coalesced) are dispatched: 
+It encapsulates asynchronous event dispatch machinery which extracts events from the queue and dispatches them by calling dispatchEvent(AWTEvent)(|java.awt.EventQueue|) method on 
+this EventQueue with the event to be dispatched as an argument. The particular behavior of this machinery is implementation-dependent. The only requirements are that events which 
+were actually enqueued to this queue (note that events being posted to the EventQueue can be coalesced) are dispatched: 
 
-Sequentially. That is, it is not permitted that several events from this queue 
-are dispatched simultaneously. In the same order as they are enqueued. That is, 
-if AWTEventA is enqueued to the EventQueue before AWTEventB then event B will 
-not be dispatched before event A. 
+Sequentially. That is, it is not permitted that several events from this queue are dispatched simultaneously. In the same order as they are enqueued. That is, if AWTEventA is 
+enqueued to the EventQueue before AWTEventB then event B will not be dispatched before event A. 
 
-Some browsers partition applets in different code bases into separate contexts, 
-and establish walls between these contexts. In such a scenario, there will be 
-one EventQueue per context. Other browsers place all applets into the same 
-context, implying that there will be only a single, global EventQueue for all 
-applets. This behavior is implementation-dependent. Consult your browser's 
-documentation for more information. 
+Some browsers partition applets in different code bases into separate contexts, and establish walls between these contexts. In such a scenario, there will be one EventQueue per 
+context. Other browsers place all applets into the same context, implying that there will be only a single, global EventQueue for all applets. This behavior is 
+implementation-dependent. Consult your browser's documentation for more information. 
 
-For information on the threading issues of the event dispatch machinery, see 
-AWT Threading Issues. 
+For information on the threading issues of the event dispatch machinery, see AWT Threading Issues. 
+
 
 
 *java.awt.EventQueue()*
@@ -68,8 +59,7 @@ public EventQueue()
 
 protected void dispatchEvent(java.awt.AWTEvent event)
 
-Dispatches an event. The manner in which the event is dispatched depends upon 
-the type of the event and the type of the event's source object: 
+Dispatches an event. The manner in which the event is dispatched depends upon the type of the event and the type of the event's source object: 
 
 
 
@@ -85,84 +75,79 @@ Other Other No action (ignored)
 
 
 
+
     event - an instance of java.awt.AWTEvent, or a subclass of it 
 
 *java.awt.EventQueue.getCurrentEvent()*
 
 public static |java.awt.AWTEvent| getCurrentEvent()
 
-Returns the the event currently being dispatched by the EventQueue associated 
-with the calling thread. This is useful if a method needs access to the event, 
-but was not designed to receive a reference to it as an argument. Note that 
-this method should only be invoked from an application's event dispatching 
-thread. If this method is invoked from another thread, null will be returned. 
+Returns the the event currently being dispatched by the EventQueue associated with the calling thread. This is useful if a method needs access to the event, but was not designed 
+to receive a reference to it as an argument. Note that this method should only be invoked from an application's event dispatching thread. If this method is invoked from another 
+thread, null will be returned. 
 
 
-    Returns: the event currently being dispatched, or null if this method is invoked on a 
-             thread other than an event dispatching thread 
+
+    Returns: the event currently being dispatched, or null if this method is invoked on a thread other than an event dispatching thread 
+
 *java.awt.EventQueue.getMostRecentEventTime()*
 
 public static long getMostRecentEventTime()
 
-Returns the timestamp of the most recent event that had a timestamp, and that 
-was dispatched from the EventQueue associated with the calling thread. If an 
-event with a timestamp is currently being dispatched, its timestamp will be 
-returned. If no events have yet been dispatched, the EventQueue's 
-initialization time will be returned instead.In the current version of the JDK, 
-only InputEvents, ActionEvents, and InvocationEvents have timestamps; however, 
-future versions of the JDK may add timestamps to additional event types. Note 
-that this method should only be invoked from an application's event dispatching 
-thread. If this method is invoked from another thread, the current system time 
-(as reported by System.currentTimeMillis()) will be returned instead. 
+Returns the timestamp of the most recent event that had a timestamp, and that was dispatched from the EventQueue associated with the calling thread. If an event with a timestamp 
+is currently being dispatched, its timestamp will be returned. If no events have yet been dispatched, the EventQueue's initialization time will be returned instead.In the current 
+version of the JDK, only InputEvents, ActionEvents, and InvocationEvents have timestamps; however, future versions of the JDK may add timestamps to additional event types. Note 
+that this method should only be invoked from an application's event dispatching thread. If this method is invoked from another thread, the current system time (as reported by 
+System.currentTimeMillis()) will be returned instead. 
 
 
-    Returns: the timestamp of the last InputEvent, ActionEvent, or InvocationEvent to be 
-             dispatched, or System.currentTimeMillis() if this method is 
-             invoked on a thread other than an event dispatching thread 
+
+    Returns: the timestamp of the last InputEvent, ActionEvent, or InvocationEvent to be dispatched, or System.currentTimeMillis() if this method is invoked on a thread other than an event 
+             dispatching thread 
+
 *java.awt.EventQueue.getNextEvent()*
 
 public |java.awt.AWTEvent| getNextEvent()
   throws |java.lang.InterruptedException|
          
-Removes an event from the EventQueue and returns it. This method will block 
-until an event has been posted by another thread. 
+Removes an event from the EventQueue and returns it. This method will block until an event has been posted by another thread. 
+
 
 
     Returns: the next AWTEvent 
+
 *java.awt.EventQueue.invokeAndWait(Runnable)*
 
 public static void invokeAndWait(java.lang.Runnable runnable)
   throws |java.lang.InterruptedException|
          |java.lang.reflect.InvocationTargetException|
          
-Causes runnable to have its run method called in the dispatch thread of the 
-EventQueue. This will happen after all pending events are processed. The call 
-blocks until this has happened. This method will throw an Error if called from 
-the event dispatcher thread. 
+Causes runnable to have its run method called in the dispatch thread of the EventQueue. This will happen after all pending events are processed. The call blocks until this has 
+happened. This method will throw an Error if called from the event dispatcher thread. 
 
-    runnable - the Runnable whose run method should be executed synchronously on the 
-       EventQueue 
+
+    runnable - the Runnable whose run method should be executed synchronously on the EventQueue 
 
 *java.awt.EventQueue.invokeLater(Runnable)*
 
 public static void invokeLater(java.lang.Runnable runnable)
 
-Causes runnable to have its run method called in the dispatch thread of the 
-EventQueue. This will happen after all pending events are processed. 
+Causes runnable to have its run method called in the dispatch thread of the EventQueue. This will happen after all pending events are processed. 
 
-    runnable - the Runnable whose run method should be executed synchronously on the 
-       EventQueue 
+
+    runnable - the Runnable whose run method should be executed synchronously on the EventQueue 
 
 *java.awt.EventQueue.isDispatchThread()*
 
 public static boolean isDispatchThread()
 
-Returns true if the calling thread is the current AWT EventQueue's dispatch 
-thread. Use this call the ensure that a given task is being executed (or not 
-being) on the current AWT EventDispatchThread. 
+Returns true if the calling thread is the current AWT EventQueue's dispatch thread. Use this call the ensure that a given task is being executed (or not being) on the current AWT 
+EventDispatchThread. 
+
 
 
     Returns: true if running on the current AWT EventQueue's dispatch thread 
+
 *java.awt.EventQueue.peekEvent()*
 
 public synchronized |java.awt.AWTEvent| peekEvent()
@@ -170,35 +155,38 @@ public synchronized |java.awt.AWTEvent| peekEvent()
 Returns the first event on the EventQueue without removing it. 
 
 
+
     Returns: the first event 
+
 *java.awt.EventQueue.peekEvent(int)*
 
 public synchronized |java.awt.AWTEvent| peekEvent(int id)
 
 Returns the first event with the specified id, if any. 
 
+
     id - the id of the type of event desired 
 
     Returns: the first event of the specified id or null if there is no such event 
+
 *java.awt.EventQueue.pop()*
 
 protected void pop()
   throws |java.util.EmptyStackException|
          
-Stops dispatching events using this EventQueue. Any pending events are 
-transferred to the previous EventQueue for processing. 
+Stops dispatching events using this EventQueue. Any pending events are transferred to the previous EventQueue for processing. 
 
-Warning: To avoid deadlock, do not declare this method synchronized in a 
-subclass. 
+Warning: To avoid deadlock, do not declare this method synchronized in a subclass. 
+
 
 
 *java.awt.EventQueue.postEvent(AWTEvent)*
 
 public void postEvent(java.awt.AWTEvent theEvent)
 
-Posts a 1.1-style event to the EventQueue. If there is an existing event on the 
-queue with the same ID and event source, the source Component's coalesceEvents 
-method will be called. 
+Posts a 1.1-style event to the EventQueue. If there is an existing event on the queue with the same ID and event source, the source Component's coalesceEvents method will be 
+called. 
+
 
     theEvent - an instance of java.awt.AWTEvent, or a subclass of it 
 
@@ -206,8 +194,8 @@ method will be called.
 
 public synchronized void push(java.awt.EventQueue newEventQueue)
 
-Replaces the existing EventQueue with the specified one. Any pending events are 
-transferred to the new EventQueue for processing by it. 
+Replaces the existing EventQueue with the specified one. Any pending events are transferred to the new EventQueue for processing by it. 
+
 
     newEventQueue - an EventQueue (or subclass thereof) instance to be use 
 

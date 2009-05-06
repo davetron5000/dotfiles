@@ -1,4 +1,5 @@
-*javax.swing.text.DefaultStyledDocument* *DefaultStyledDocument* A document that
+*javax.swing.text.DefaultStyledDocument* *DefaultStyledDocument* A document that can be marked up with character and paragraph 
+ styles in a manner similar to the Rich Text Format.
 
 public class DefaultStyledDocument
   extends    |javax.swing.text.AbstractDocument|
@@ -9,7 +10,7 @@ public class DefaultStyledDocument
 |javax.swing.text.DefaultStyledDocument_Constructors|
 |javax.swing.text.DefaultStyledDocument_Methods|
 
-================================================================================
+====================================================================================================================================================================================
 
 *javax.swing.text.DefaultStyledDocument_Fields*
 |javax.swing.text.DefaultStyledDocument.ElementBuffer_javax.swing.text.DefaultStyledDocument.buffer|
@@ -17,79 +18,53 @@ public class DefaultStyledDocument
 
 *javax.swing.text.DefaultStyledDocument_Constructors*
 |javax.swing.text.DefaultStyledDocument()|Constructs a default styled document.
-|javax.swing.text.DefaultStyledDocument(AbstractDocument.Content,StyleContext)|
-|javax.swing.text.DefaultStyledDocument(StyleContext)|Constructs a styled docum
+|javax.swing.text.DefaultStyledDocument(AbstractDocument.Content,StyleContext)|Constructs a styled document.
+|javax.swing.text.DefaultStyledDocument(StyleContext)|Constructs a styled document with the default content  storage implementation and a shared set of styles.
 
 *javax.swing.text.DefaultStyledDocument_Methods*
-|javax.swing.text.DefaultStyledDocument.addDocumentListener(DocumentListener)|A
-|javax.swing.text.DefaultStyledDocument.addStyle(String,Style)|Adds a new style
-|javax.swing.text.DefaultStyledDocument.create(DefaultStyledDocument.ElementSpec[])|
-|javax.swing.text.DefaultStyledDocument.createDefaultRoot()|Creates the root el
-|javax.swing.text.DefaultStyledDocument.getBackground(AttributeSet)|Gets the ba
-|javax.swing.text.DefaultStyledDocument.getCharacterElement(int)|Gets a charact
-|javax.swing.text.DefaultStyledDocument.getDefaultRootElement()|Gets the defaul
-|javax.swing.text.DefaultStyledDocument.getFont(AttributeSet)|Gets the font fro
-|javax.swing.text.DefaultStyledDocument.getForeground(AttributeSet)|Gets the fo
-|javax.swing.text.DefaultStyledDocument.getLogicalStyle(int)|Fetches the logica
-|javax.swing.text.DefaultStyledDocument.getParagraphElement(int)|Gets the parag
-|javax.swing.text.DefaultStyledDocument.getStyle(String)|Fetches a named style 
-|javax.swing.text.DefaultStyledDocument.getStyleNames()|Fetches the list of of 
-|javax.swing.text.DefaultStyledDocument.insert(int,DefaultStyledDocument.ElementSpec[])|
-|javax.swing.text.DefaultStyledDocument.insertUpdate(AbstractDocument.DefaultDocumentEvent,AttributeSet)|
-|javax.swing.text.DefaultStyledDocument.removeDocumentListener(DocumentListener)|
-|javax.swing.text.DefaultStyledDocument.removeStyle(String)|Removes a named sty
-|javax.swing.text.DefaultStyledDocument.removeUpdate(AbstractDocument.DefaultDocumentEvent)|
-|javax.swing.text.DefaultStyledDocument.setCharacterAttributes(int,int,AttributeSet,boolean)|
-|javax.swing.text.DefaultStyledDocument.setLogicalStyle(int,Style)|Sets the log
-|javax.swing.text.DefaultStyledDocument.setParagraphAttributes(int,int,AttributeSet,boolean)|
-|javax.swing.text.DefaultStyledDocument.styleChanged(Style)|Called when any of 
+|javax.swing.text.DefaultStyledDocument.addDocumentListener(DocumentListener)|Adds a document listener for notification of any changes.
+|javax.swing.text.DefaultStyledDocument.addStyle(String,Style)|Adds a new style into the logical style hierarchy.
+|javax.swing.text.DefaultStyledDocument.create(DefaultStyledDocument.ElementSpec[])|Initialize the document to reflect the given element  structure (i.e.
+|javax.swing.text.DefaultStyledDocument.createDefaultRoot()|Creates the root element to be used to represent the  default document structure.
+|javax.swing.text.DefaultStyledDocument.getBackground(AttributeSet)|Gets the background color from an attribute set.
+|javax.swing.text.DefaultStyledDocument.getCharacterElement(int)|Gets a character element based on a position.
+|javax.swing.text.DefaultStyledDocument.getDefaultRootElement()|Gets the default root element.
+|javax.swing.text.DefaultStyledDocument.getFont(AttributeSet)|Gets the font from an attribute set.
+|javax.swing.text.DefaultStyledDocument.getForeground(AttributeSet)|Gets the foreground color from an attribute set.
+|javax.swing.text.DefaultStyledDocument.getLogicalStyle(int)|Fetches the logical style assigned to the paragraph   represented by the given position.
+|javax.swing.text.DefaultStyledDocument.getParagraphElement(int)|Gets the paragraph element at the offset pos.
+|javax.swing.text.DefaultStyledDocument.getStyle(String)|Fetches a named style previously added.
+|javax.swing.text.DefaultStyledDocument.getStyleNames()|Fetches the list of of style names.
+|javax.swing.text.DefaultStyledDocument.insert(int,DefaultStyledDocument.ElementSpec[])|Inserts new elements in bulk.
+|javax.swing.text.DefaultStyledDocument.insertUpdate(AbstractDocument.DefaultDocumentEvent,AttributeSet)|Updates document structure as a result of text insertion.
+|javax.swing.text.DefaultStyledDocument.removeDocumentListener(DocumentListener)|Removes a document listener.
+|javax.swing.text.DefaultStyledDocument.removeStyle(String)|Removes a named style previously added to the document.
+|javax.swing.text.DefaultStyledDocument.removeUpdate(AbstractDocument.DefaultDocumentEvent)|Updates document structure as a result of text removal.
+|javax.swing.text.DefaultStyledDocument.setCharacterAttributes(int,int,AttributeSet,boolean)|Sets attributes for some part of the document.
+|javax.swing.text.DefaultStyledDocument.setLogicalStyle(int,Style)|Sets the logical style to use for the paragraph at the  given position.
+|javax.swing.text.DefaultStyledDocument.setParagraphAttributes(int,int,AttributeSet,boolean)|Sets attributes for a paragraph.
+|javax.swing.text.DefaultStyledDocument.styleChanged(Style)|Called when any of this document's styles have changed.
 
 *javax.swing.text.DefaultStyledDocument_Description*
 
-A document that can be marked up with character and paragraph styles in a 
-manner similar to the Rich Text Format. The element structure for this document 
-represents style crossings for style runs. These style runs are mapped into a 
-paragraph element structure (which may reside in some other structure). The 
-style runs break at paragraph boundaries since logical styles are assigned to 
-paragraph boundaries. 
+A document that can be marked up with character and paragraph styles in a manner similar to the Rich Text Format. The element structure for this document represents style 
+crossings for style runs. These style runs are mapped into a paragraph element structure (which may reside in some other structure). The style runs break at paragraph boundaries 
+since logical styles are assigned to paragraph boundaries. 
 
-Warning: Serialized objects of this class will not be compatible with future 
-Swing releases. The current serialization support is appropriate for short term 
-storage or RMI between applications running the same version of Swing. As of 
-1.4, support for long term storage of all JavaBeansTM has been added to the 
-java.beans package. Please see (|java.beans.XMLEncoder|) . 
+Warning: Serialized objects of this class will not be compatible with future Swing releases. The current serialization support is appropriate for short term storage or RMI between 
+applications running the same version of Swing. As of 1.4, support for long term storage of all JavaBeansTM has been added to the java.beans package. Please see 
+(|java.beans.XMLEncoder|) . 
+
 
 
 *javax.swing.text.DefaultStyledDocument.ElementBuffer_javax.swing.text.DefaultStyledDocument.buffer*
 
-A document that can be marked up with character and paragraph styles in a 
-manner similar to the Rich Text Format. The element structure for this document 
-represents style crossings for style runs. These style runs are mapped into a 
-paragraph element structure (which may reside in some other structure). The 
-style runs break at paragraph boundaries since logical styles are assigned to 
-paragraph boundaries. 
 
-Warning: Serialized objects of this class will not be compatible with future 
-Swing releases. The current serialization support is appropriate for short term 
-storage or RMI between applications running the same version of Swing. As of 
-1.4, support for long term storage of all JavaBeansTM has been added to the 
-java.beans package. Please see (|java.beans.XMLEncoder|) . 
 
 
 *int_javax.swing.text.DefaultStyledDocument.BUFFER_SIZE_DEFAULT*
 
-A document that can be marked up with character and paragraph styles in a 
-manner similar to the Rich Text Format. The element structure for this document 
-represents style crossings for style runs. These style runs are mapped into a 
-paragraph element structure (which may reside in some other structure). The 
-style runs break at paragraph boundaries since logical styles are assigned to 
-paragraph boundaries. 
-
-Warning: Serialized objects of this class will not be compatible with future 
-Swing releases. The current serialization support is appropriate for short term 
-storage or RMI between applications running the same version of Swing. As of 
-1.4, support for long term storage of all JavaBeansTM has been added to the 
-java.beans package. Please see (|java.beans.XMLEncoder|) . 
+The default size of the initial content buffer. 
 
 
 
@@ -97,9 +72,8 @@ java.beans package. Please see (|java.beans.XMLEncoder|) .
 
 public DefaultStyledDocument()
 
-Constructs a default styled document. This buffers input content by a size of 
-BUFFER_SIZE_DEFAULT and has a style context that is scoped by the lifetime of 
-the document and is not shared with other documents. 
+Constructs a default styled document. This buffers input content by a size of BUFFER_SIZE_DEFAULT and has a style context that is scoped by the lifetime of the document and is not 
+shared with other documents. 
 
 
 *javax.swing.text.DefaultStyledDocument(AbstractDocument.Content,StyleContext)*
@@ -117,8 +91,7 @@ Constructs a styled document.
 
 public DefaultStyledDocument(javax.swing.text.StyleContext styles)
 
-Constructs a styled document with the default content storage implementation 
-and a shared set of styles. 
+Constructs a styled document with the default content storage implementation and a shared set of styles. 
 
     styles - the styles 
 
@@ -128,6 +101,7 @@ public void addDocumentListener(javax.swing.event.DocumentListener listener)
 
 Adds a document listener for notification of any changes. 
 
+
     listener - the listener 
 
 *javax.swing.text.DefaultStyledDocument.addStyle(String,Style)*
@@ -136,55 +110,56 @@ public |javax.swing.text.Style| addStyle(
   java.lang.String nm,
   javax.swing.text.Style parent)
 
-Adds a new style into the logical style hierarchy. Style attributes resolve 
-from bottom up so an attribute specified in a child will override an attribute 
-specified in the parent. 
+Adds a new style into the logical style hierarchy. Style attributes resolve from bottom up so an attribute specified in a child will override an attribute specified in the parent. 
 
-    nm - the name of the style (must be unique within the collection of named styles). 
-       The name may be null if the style is unnamed, but the caller is 
-       responsible for managing the reference returned as an unnamed style 
-       can't be fetched by name. An unnamed style may be useful for things like 
-       character attribute overrides such as found in a style run. 
-    parent - the parent style. This may be null if unspecified attributes need not be 
-       resolved in some other style. 
+
+    nm - the name of the style (must be unique within the collection of named styles). The name may be null if the style is unnamed, but the caller is responsible for managing the 
+       reference returned as an unnamed style can't be fetched by name. An unnamed style may be useful for things like character attribute overrides such as found in a style run. 
+    parent - the parent style. This may be null if unspecified attributes need not be resolved in some other style. 
 
     Returns: 
+
 *javax.swing.text.DefaultStyledDocument.create(DefaultStyledDocument.ElementSpec[])*
 
 protected void create(javax.swing.text.DefaultStyledDocument.ElementSpec[] data)
 
-Initialize the document to reflect the given element structure (i.e. the 
-structure reported by the getDefaultRootElement method. If the document 
-contained any data it will first be removed. 
+Initialize the document to reflect the given element structure (i.e. the structure reported by the getDefaultRootElement method. If the document contained any data it will first 
+be removed. 
+
 
 
 *javax.swing.text.DefaultStyledDocument.createDefaultRoot()*
 
 protected |javax.swing.text.AbstractDocument.AbstractElement| createDefaultRoot()
 
-Creates the root element to be used to represent the default document 
-structure. 
+Creates the root element to be used to represent the default document structure. 
+
 
 
     Returns: the element base 
+
 *javax.swing.text.DefaultStyledDocument.getBackground(AttributeSet)*
 
 public |java.awt.Color| getBackground(javax.swing.text.AttributeSet attr)
 
 Gets the background color from an attribute set. 
 
+
     attr - the attribute set 
 
     Returns: 
+
 *javax.swing.text.DefaultStyledDocument.getCharacterElement(int)*
 
 public |javax.swing.text.Element| getCharacterElement(int pos)
 
 Gets a character element based on a position. 
 
+
     pos - the position in the document >= 0 
 
     Returns: 
+
 *javax.swing.text.DefaultStyledDocument.getDefaultRootElement()*
 
 public |javax.swing.text.Element| getDefaultRootElement()
@@ -192,63 +167,74 @@ public |javax.swing.text.Element| getDefaultRootElement()
 Gets the default root element. 
 
 
+
     Returns: 
+
 *javax.swing.text.DefaultStyledDocument.getFont(AttributeSet)*
 
 public |java.awt.Font| getFont(javax.swing.text.AttributeSet attr)
 
 Gets the font from an attribute set. 
 
+
     attr - the attribute set 
 
     Returns: 
+
 *javax.swing.text.DefaultStyledDocument.getForeground(AttributeSet)*
 
 public |java.awt.Color| getForeground(javax.swing.text.AttributeSet attr)
 
 Gets the foreground color from an attribute set. 
 
+
     attr - the attribute set 
 
     Returns: 
+
 *javax.swing.text.DefaultStyledDocument.getLogicalStyle(int)*
 
 public |javax.swing.text.Style| getLogicalStyle(int p)
 
-Fetches the logical style assigned to the paragraph represented by the given 
-position. 
+Fetches the logical style assigned to the paragraph represented by the given position. 
 
-    p - the location to translate to a paragraph and determine the logical style 
-       assigned >= 0. This is an offset from the start of the document. 
+
+    p - the location to translate to a paragraph and determine the logical style assigned >= 0. This is an offset from the start of the document. 
 
     Returns: the style, null if none 
+
 *javax.swing.text.DefaultStyledDocument.getParagraphElement(int)*
 
 public |javax.swing.text.Element| getParagraphElement(int pos)
 
-Gets the paragraph element at the offset pos. A paragraph consists of at least 
-one child Element, which is usually a leaf. 
+Gets the paragraph element at the offset pos. A paragraph consists of at least one child Element, which is usually a leaf. 
+
 
     pos - the starting offset >= 0 
 
     Returns: 
+
 *javax.swing.text.DefaultStyledDocument.getStyle(String)*
 
 public |javax.swing.text.Style| getStyle(java.lang.String nm)
 
 Fetches a named style previously added. 
 
+
     nm - the name of the style 
 
     Returns: 
+
 *javax.swing.text.DefaultStyledDocument.getStyleNames()*
 
-public |java.util.Enumeration| getStyleNames()
+public |java.util.Enumeration|<?> getStyleNames()
 
 Fetches the list of of style names. 
 
 
+
     Returns: all the style names 
+
 *javax.swing.text.DefaultStyledDocument.insert(int,DefaultStyledDocument.ElementSpec[])*
 
 protected void insert(
@@ -256,14 +242,11 @@ protected void insert(
   javax.swing.text.DefaultStyledDocument.ElementSpec[] data)
   throws |javax.swing.text.BadLocationException|
          
-Inserts new elements in bulk. This is useful to allow parsing with the document 
-in an unlocked state and prepare an element structure modification. This method 
-takes an array of tokens that describe how to update an element structure so 
-the time within a write lock can be greatly reduced in an asynchronous update 
-situation. 
+Inserts new elements in bulk. This is useful to allow parsing with the document in an unlocked state and prepare an element structure modification. This method takes an array of 
+tokens that describe how to update an element structure so the time within a write lock can be greatly reduced in an asynchronous update situation. 
 
-This method is thread safe, although most Swing methods are not. Please see 
-Threads and Swing for more information. 
+This method is thread safe, although most Swing methods are not. Please see Threads and Swing for more information. 
+
 
     offset - the starting offset >= 0 
     data - the element data 
@@ -274,9 +257,9 @@ protected void insertUpdate(
   javax.swing.text.AbstractDocument.DefaultDocumentEvent chng,
   javax.swing.text.AttributeSet attr)
 
-Updates document structure as a result of text insertion. This will happen 
-within a write lock. This implementation simply parses the inserted content for 
-line breaks and builds up a set of instructions for the element buffer. 
+Updates document structure as a result of text insertion. This will happen within a write lock. This implementation simply parses the inserted content for line breaks and builds 
+up a set of instructions for the element buffer. 
+
 
     chng - a description of the document change 
     attr - the attributes 
@@ -287,6 +270,7 @@ public void removeDocumentListener(javax.swing.event.DocumentListener listener)
 
 Removes a document listener. 
 
+
     listener - the listener 
 
 *javax.swing.text.DefaultStyledDocument.removeStyle(String)*
@@ -295,6 +279,7 @@ public void removeStyle(java.lang.String nm)
 
 Removes a named style previously added to the document. 
 
+
     nm - the name of the style to remove 
 
 *javax.swing.text.DefaultStyledDocument.removeUpdate(AbstractDocument.DefaultDocumentEvent)*
@@ -302,6 +287,7 @@ Removes a named style previously added to the document.
 protected void removeUpdate(javax.swing.text.AbstractDocument.DefaultDocumentEvent chng)
 
 Updates document structure as a result of text removal. 
+
 
     chng - a description of the document change 
 
@@ -313,18 +299,16 @@ public void setCharacterAttributes(
   javax.swing.text.AttributeSet s,
   boolean replace)
 
-Sets attributes for some part of the document. A write lock is held by this 
-operation while changes are being made, and a DocumentEvent is sent to the 
-listeners after the change has been successfully completed. 
+Sets attributes for some part of the document. A write lock is held by this operation while changes are being made, and a DocumentEvent is sent to the listeners after the change 
+has been successfully completed. 
 
-This method is thread safe, although most Swing methods are not. Please see 
-Threads and Swing for more information. 
+This method is thread safe, although most Swing methods are not. Please see Threads and Swing for more information. 
+
 
     offset - the offset in the document >= 0 
     length - the length >= 0 
     s - the attributes 
-    replace - true if the previous attributes should be replaced before setting the new 
-       attributes 
+    replace - true if the previous attributes should be replaced before setting the new attributes 
 
 *javax.swing.text.DefaultStyledDocument.setLogicalStyle(int,Style)*
 
@@ -332,14 +316,11 @@ public void setLogicalStyle(
   int pos,
   javax.swing.text.Style s)
 
-Sets the logical style to use for the paragraph at the given position. If 
-attributes aren't explicitly set for character and paragraph attributes they 
-will resolve through the logical style assigned to the paragraph, which in turn 
-may resolve through some hierarchy completely independent of the element 
-hierarchy in the document. 
+Sets the logical style to use for the paragraph at the given position. If attributes aren't explicitly set for character and paragraph attributes they will resolve through the 
+logical style assigned to the paragraph, which in turn may resolve through some hierarchy completely independent of the element hierarchy in the document. 
 
-This method is thread safe, although most Swing methods are not. Please see 
-Threads and Swing for more information. 
+This method is thread safe, although most Swing methods are not. Please see Threads and Swing for more information. 
+
 
     pos - the offset from the start of the document >= 0 
     s - the logical style to assign to the paragraph, null if none 
@@ -354,8 +335,8 @@ public void setParagraphAttributes(
 
 Sets attributes for a paragraph. 
 
-This method is thread safe, although most Swing methods are not. Please see 
-Threads and Swing for more information. 
+This method is thread safe, although most Swing methods are not. Please see Threads and Swing for more information. 
+
 
     offset - the offset into the paragraph >= 0 
     length - the number of characters affected >= 0 
@@ -366,8 +347,8 @@ Threads and Swing for more information.
 
 protected void styleChanged(javax.swing.text.Style style)
 
-Called when any of this document's styles have changed. Subclasses may wish to 
-be intelligent about what gets damaged. 
+Called when any of this document's styles have changed. Subclasses may wish to be intelligent about what gets damaged. 
+
 
     style - The Style that has changed. 
 

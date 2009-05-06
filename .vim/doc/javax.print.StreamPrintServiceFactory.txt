@@ -1,4 +1,5 @@
-*javax.print.StreamPrintServiceFactory* *StreamPrintServiceFactory* A StreamPrin
+*javax.print.StreamPrintServiceFactory* *StreamPrintServiceFactory* A StreamPrintServiceFactory is the factory forStreamPrintServiceinstances,
+ which can print to an output stream 
 
 public abstract class StreamPrintServiceFactory
   extends    |java.lang.Object|
@@ -8,34 +9,30 @@ public abstract class StreamPrintServiceFactory
 |javax.print.StreamPrintServiceFactory_Constructors|
 |javax.print.StreamPrintServiceFactory_Methods|
 
-================================================================================
+====================================================================================================================================================================================
 
 *javax.print.StreamPrintServiceFactory_Constructors*
 |javax.print.StreamPrintServiceFactory()|
 
 *javax.print.StreamPrintServiceFactory_Methods*
-|javax.print.StreamPrintServiceFactory.getOutputFormat()|Queries the factory fo
-|javax.print.StreamPrintServiceFactory.getPrintService(OutputStream)|Returns a 
-|javax.print.StreamPrintServiceFactory.getSupportedDocFlavors()|Queries the fac
-|javax.print.StreamPrintServiceFactory.lookupStreamPrintServiceFactories(DocFlavor,String)|
+|javax.print.StreamPrintServiceFactory.getOutputFormat()|Queries the factory for the document format that is emitted  by printers obtained from this factory.
+|javax.print.StreamPrintServiceFactory.getPrintService(OutputStream)|Returns a StreamPrintService that can print to  the specified output stream.
+|javax.print.StreamPrintServiceFactory.getSupportedDocFlavors()|Queries the factory for the document flavors that can be accepted  by printers obtained from this factory.
+|javax.print.StreamPrintServiceFactory.lookupStreamPrintServiceFactories(DocFlavor,String)|Locates factories for print services that can be used with  a print job to output a stre
 
 *javax.print.StreamPrintServiceFactory_Description*
 
-A StreamPrintServiceFactory is the factory for 
-(|javax.print.StreamPrintService|) instances, which can print to an output 
-stream in a particular document format described as a mime type. A typical 
-output document format may be Postscript(TM). 
+A StreamPrintServiceFactory is the factory for (|javax.print.StreamPrintService|) instances, which can print to an output stream in a particular document format described as a 
+mime type. A typical output document format may be Postscript(TM). 
 
-This class is implemented by a service and located by the implementation using 
-the 
+This class is implemented by a service and located by the implementation using the 
 
 SPI JAR File specification. 
 
-Applications locate instances of this class by calling the 
-(|javax.print.StreamPrintServiceFactory|) method. 
+Applications locate instances of this class by calling the (|javax.print.StreamPrintServiceFactory|) method. 
 
-Applications can use a StreamPrintService obtained from a factory in place of a 
-PrintService which represents a physical printer device. 
+Applications can use a StreamPrintService obtained from a factory in place of a PrintService which represents a physical printer device. 
+
 
 
 *javax.print.StreamPrintServiceFactory()*
@@ -49,66 +46,56 @@ public StreamPrintServiceFactory()
 
 public abstract |java.lang.String| getOutputFormat()
 
-Queries the factory for the document format that is emitted by printers 
-obtained from this factory. 
+Queries the factory for the document format that is emitted by printers obtained from this factory. 
+
 
 
     Returns: the output format described as a mime type. 
+
 *javax.print.StreamPrintServiceFactory.getPrintService(OutputStream)*
 
 public abstract |javax.print.StreamPrintService| getPrintService(java.io.OutputStream out)
 
-Returns a StreamPrintService that can print to the specified output stream. The 
-output stream is created and managed by the application. It is the 
-application's responsibility to close the stream and to ensure that this 
-Printer is not reused. The application should not close this stream until any 
-print job created from the printer is complete. Doing so earlier may generate a 
-PrinterException and an event indicating that the job failed. 
+Returns a StreamPrintService that can print to the specified output stream. The output stream is created and managed by the application. It is the application's responsibility to 
+close the stream and to ensure that this Printer is not reused. The application should not close this stream until any print job created from the printer is complete. Doing so 
+earlier may generate a PrinterException and an event indicating that the job failed. 
 
-Whereas a PrintService connected to a physical printer can be reused, a 
-StreamPrintService connected to a stream cannot. The underlying 
-StreamPrintService may be disposed by the print system with the 
-dispose(|javax.print.StreamPrintService|) method before returning from the 
-print(|javax.print.DocPrintJob|) method of DocPrintJob so that the print system 
-knows this printer is no longer usable. This is equivalent to a physical 
-printer going offline - permanently. Applications may supply a null print 
-stream to create a queryable service. It is not valid to create a PrintJob for 
-such a stream. Implementations which allocate resources on construction should 
-examine the stream and may wish to only allocate resources if the stream is 
-non-null. 
+Whereas a PrintService connected to a physical printer can be reused, a StreamPrintService connected to a stream cannot. The underlying StreamPrintService may be disposed by the 
+print system with the dispose(|javax.print.StreamPrintService|) method before returning from the print(|javax.print.DocPrintJob|) method of DocPrintJob so that the print system 
+knows this printer is no longer usable. This is equivalent to a physical printer going offline - permanently. Applications may supply a null print stream to create a queryable 
+service. It is not valid to create a PrintJob for such a stream. Implementations which allocate resources on construction should examine the stream and may wish to only allocate 
+resources if the stream is non-null. 
+
 
     out - destination stream for generated output. 
 
-    Returns: a PrintService which will generate the format specified by the DocFlavor 
-             supported by this Factory. 
+    Returns: a PrintService which will generate the format specified by the DocFlavor supported by this Factory. 
+
 *javax.print.StreamPrintServiceFactory.getSupportedDocFlavors()*
 
-public abstract |javax.print.DocFlavor| getSupportedDocFlavors()
+public abstract |javax.print.DocFlavor|[] getSupportedDocFlavors()
 
-Queries the factory for the document flavors that can be accepted by printers 
-obtained from this factory. 
+Queries the factory for the document flavors that can be accepted by printers obtained from this factory. 
+
 
 
     Returns: array of supported doc flavors. 
+
 *javax.print.StreamPrintServiceFactory.lookupStreamPrintServiceFactories(DocFlavor,String)*
 
-public static |javax.print.StreamPrintServiceFactory| lookupStreamPrintServiceFactories(
+public static |javax.print.StreamPrintServiceFactory|[] lookupStreamPrintServiceFactories(
   javax.print.DocFlavor flavor,
   java.lang.String outputMimeType)
 
-Locates factories for print services that can be used with a print job to 
-output a stream of data in the format specified by flavor. For example, the doc 
-flavor is the document type that you want to create, not the flavor of the 
-document before printing. 
+Locates factories for print services that can be used with a print job to output a stream of data in the format specified by flavor. For example, the doc flavor is the document 
+type that you want to create, not the flavor of the document before printing. 
 
-Although null is an acceptable value to use in the lookup of stream printing 
-services, it's typical to search for a particular desired format, such as 
-Postscript(TM). 
+Although null is an acceptable value to use in the lookup of stream printing services, it's typical to search for a particular desired format, such as Postscript(TM). 
+
 
     flavor - of the input document type - null means match all types. 
-    outputMimeType - representing the required output format, used to identify suitable stream 
-       printer factories. A value of null means match all formats. 
+    outputMimeType - representing the required output format, used to identify suitable stream printer factories. A value of null means match all formats. 
 
-    Returns: - matching factories for stream print service instance, empty if no suitable 
-             factories could be located. 
+    Returns: - matching factories for stream print service instance, empty if no suitable factories could be located. 
+
 

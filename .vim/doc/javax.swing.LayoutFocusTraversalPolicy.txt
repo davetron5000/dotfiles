@@ -1,4 +1,5 @@
-*javax.swing.LayoutFocusTraversalPolicy* *LayoutFocusTraversalPolicy* A SortingF
+*javax.swing.LayoutFocusTraversalPolicy* *LayoutFocusTraversalPolicy* A SortingFocusTraversalPolicy which sorts Components based on their size,
+ position, and orientation.
 
 public class LayoutFocusTraversalPolicy
   extends    |javax.swing.SortingFocusTraversalPolicy|
@@ -9,28 +10,25 @@ public class LayoutFocusTraversalPolicy
 |javax.swing.LayoutFocusTraversalPolicy_Constructors|
 |javax.swing.LayoutFocusTraversalPolicy_Methods|
 
-================================================================================
+====================================================================================================================================================================================
 
 *javax.swing.LayoutFocusTraversalPolicy_Constructors*
-|javax.swing.LayoutFocusTraversalPolicy()|Constructs a LayoutFocusTraversalPoli
+|javax.swing.LayoutFocusTraversalPolicy()|Constructs a LayoutFocusTraversalPolicy.
 
 *javax.swing.LayoutFocusTraversalPolicy_Methods*
-|javax.swing.LayoutFocusTraversalPolicy.accept(Component)|Determines whether th
-|javax.swing.LayoutFocusTraversalPolicy.getComponentAfter(Container,Component)|
-|javax.swing.LayoutFocusTraversalPolicy.getComponentBefore(Container,Component)|
-|javax.swing.LayoutFocusTraversalPolicy.getFirstComponent(Container)|Returns th
-|javax.swing.LayoutFocusTraversalPolicy.getLastComponent(Container)|Returns the
+|javax.swing.LayoutFocusTraversalPolicy.accept(Component)|Determines whether the specified Component  is an acceptable choice as the new focus owner.
+|javax.swing.LayoutFocusTraversalPolicy.getComponentAfter(Container,Component)|Returns the Component that should receive the focus after aComponent.
+|javax.swing.LayoutFocusTraversalPolicy.getComponentBefore(Container,Component)|Returns the Component that should receive the focus before aComponent.
+|javax.swing.LayoutFocusTraversalPolicy.getFirstComponent(Container)|Returns the first Component in the traversal cycle.
+|javax.swing.LayoutFocusTraversalPolicy.getLastComponent(Container)|Returns the last Component in the traversal cycle.
 
 *javax.swing.LayoutFocusTraversalPolicy_Description*
 
-A SortingFocusTraversalPolicy which sorts Components based on their size, 
-position, and orientation. Based on their size and position, Components are 
-roughly categorized into rows and columns. For a Container with horizontal 
-orientation, columns run left-to-right or right-to-left, and rows run top- 
-to-bottom. For a Container with vertical orientation, columns run top-to- 
-bottom and rows run left-to-right or right-to-left. See ComponentOrientation 
-for more information. All columns in a row are fully traversed before 
-proceeding to the next row. 
+A SortingFocusTraversalPolicy which sorts Components based on their size, position, and orientation. Based on their size and position, Components are roughly categorized into rows 
+and columns. For a Container with horizontal orientation, columns run left-to-right or right-to-left, and rows run top- to-bottom. For a Container with vertical orientation, 
+columns run top-to- bottom and rows run left-to-right or right-to-left. See ComponentOrientation for more information. All columns in a row are fully traversed before proceeding 
+to the next row. 
+
 
 
 *javax.swing.LayoutFocusTraversalPolicy()*
@@ -44,88 +42,75 @@ Constructs a LayoutFocusTraversalPolicy.
 
 protected boolean accept(java.awt.Component aComponent)
 
-Determines whether the specified Component is an acceptable choice as the new 
-focus owner. This method performs the following sequence of operations: 
+Determines whether the specified Component is an acceptable choice as the new focus owner. This method performs the following sequence of operations: 
 
-Checks whether aComponent is visible, displayable, enabled, and focusable. If 
-any of these properties is false, this method returns false. If aComponent is 
-an instance of JTable, returns true. If aComponent is an instance of JComboBox, 
-then returns the value of aComponent.getUI().isFocusTraversable(aComponent). If 
-aComponent is a JComponent with a JComponent.WHEN_FOCUSED InputMap that is 
-neither null nor empty, returns true. Returns the value of 
-DefaultFocusTraversalPolicy.accept(aComponent). 
+Checks whether aComponent is visible, displayable, enabled, and focusable. If any of these properties is false, this method returns false. If aComponent is an instance of JTable, 
+returns true. If aComponent is an instance of JComboBox, then returns the value of aComponent.getUI().isFocusTraversable(aComponent). If aComponent is a JComponent with a 
+JComponent.WHEN_FOCUSED InputMap that is neither null nor empty, returns true. Returns the value of DefaultFocusTraversalPolicy.accept(aComponent). 
+
 
     aComponent - the Component whose fitness as a focus owner is to be tested 
 
     Returns: true if aComponent is a valid choice for a focus owner; otherwise false 
+
 *javax.swing.LayoutFocusTraversalPolicy.getComponentAfter(Container,Component)*
 
 public |java.awt.Component| getComponentAfter(
   java.awt.Container aContainer,
   java.awt.Component aComponent)
 
-Returns the Component that should receive the focus after aComponent. 
-aContainer must be a focus cycle root of aComponent. 
+Returns the Component that should receive the focus after aComponent. aContainer must be a focus cycle root of aComponent. 
 
-By default, LayoutFocusTraversalPolicy implicitly transfers focus down- cycle. 
-That is, during normal focus traversal, the Component traversed after a focus 
-cycle root will be the focus-cycle-root's default Component to focus. This 
-behavior can be disabled using the setImplicitDownCycleTraversal method. 
+By default, LayoutFocusTraversalPolicy implicitly transfers focus down- cycle. That is, during normal focus traversal, the Component traversed after a focus cycle root will be the 
+focus-cycle-root's default Component to focus. This behavior can be disabled using the setImplicitDownCycleTraversal method. 
 
-If aContainer is focus traversal policy provider, the focus is always 
-transferred down-cycle. 
+If aContainer is focus traversal policy provider, the focus is always transferred down-cycle. 
+
 
     aContainer - a focus cycle root of aComponent or a focus traversal policy provider 
     aComponent - a (possibly indirect) child of aContainer, or aContainer itself 
 
-    Returns: the Component that should receive the focus after aComponent, or null if no 
-             suitable Component can be found 
+    Returns: the Component that should receive the focus after aComponent, or null if no suitable Component can be found 
+
 *javax.swing.LayoutFocusTraversalPolicy.getComponentBefore(Container,Component)*
 
 public |java.awt.Component| getComponentBefore(
   java.awt.Container aContainer,
   java.awt.Component aComponent)
 
-Returns the Component that should receive the focus before aComponent. 
-aContainer must be a focus cycle root of aComponent. 
+Returns the Component that should receive the focus before aComponent. aContainer must be a focus cycle root of aComponent. 
 
-By default, LayoutFocusTraversalPolicy implicitly transfers focus down- cycle. 
-That is, during normal focus traversal, the Component traversed after a focus 
-cycle root will be the focus-cycle-root's default Component to focus. This 
-behavior can be disabled using the setImplicitDownCycleTraversal method. 
+By default, LayoutFocusTraversalPolicy implicitly transfers focus down- cycle. That is, during normal focus traversal, the Component traversed after a focus cycle root will be the 
+focus-cycle-root's default Component to focus. This behavior can be disabled using the setImplicitDownCycleTraversal method. 
 
-If aContainer is focus traversal policy provider, the focus is always 
-transferred down-cycle. 
+If aContainer is focus traversal policy provider, the focus is always transferred down-cycle. 
+
 
     aContainer - a focus cycle root of aComponent or a focus traversal policy provider 
     aComponent - a (possibly indirect) child of aContainer, or aContainer itself 
 
-    Returns: the Component that should receive the focus before aComponent, or null if no 
-             suitable Component can be found 
+    Returns: the Component that should receive the focus before aComponent, or null if no suitable Component can be found 
+
 *javax.swing.LayoutFocusTraversalPolicy.getFirstComponent(Container)*
 
 public |java.awt.Component| getFirstComponent(java.awt.Container aContainer)
 
-Returns the first Component in the traversal cycle. This method is used to 
-determine the next Component to focus when traversal wraps in the forward 
-direction. 
+Returns the first Component in the traversal cycle. This method is used to determine the next Component to focus when traversal wraps in the forward direction. 
 
-    aContainer - a focus cycle root of aComponent or a focus traversal policy provider whose 
-       first Component is to be returned 
 
-    Returns: the first Component in the traversal cycle of aContainer, or null if no 
-             suitable Component can be found 
+    aContainer - a focus cycle root of aComponent or a focus traversal policy provider whose first Component is to be returned 
+
+    Returns: the first Component in the traversal cycle of aContainer, or null if no suitable Component can be found 
+
 *javax.swing.LayoutFocusTraversalPolicy.getLastComponent(Container)*
 
 public |java.awt.Component| getLastComponent(java.awt.Container aContainer)
 
-Returns the last Component in the traversal cycle. This method is used to 
-determine the next Component to focus when traversal wraps in the reverse 
-direction. 
+Returns the last Component in the traversal cycle. This method is used to determine the next Component to focus when traversal wraps in the reverse direction. 
 
-    aContainer - a focus cycle root of aComponent or a focus traversal policy provider whose 
-       last Component is to be returned 
 
-    Returns: the last Component in the traversal cycle of aContainer, or null if no suitable 
-             Component can be found 
+    aContainer - a focus cycle root of aComponent or a focus traversal policy provider whose last Component is to be returned 
+
+    Returns: the last Component in the traversal cycle of aContainer, or null if no suitable Component can be found 
+
 

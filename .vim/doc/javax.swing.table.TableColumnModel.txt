@@ -1,4 +1,5 @@
-*javax.swing.table.TableColumnModel* *TableColumnModel* Defines the requirements
+*javax.swing.table.TableColumnModel* *TableColumnModel* Defines the requirements for a table column model object suitable for
+ use with JTable.
 
 public interface interface TableColumnModel
 
@@ -8,41 +9,41 @@ public interface interface TableColumnModel
 |javax.swing.table.TableColumnModel_Constructors|
 |javax.swing.table.TableColumnModel_Methods|
 
-================================================================================
+====================================================================================================================================================================================
 
 *javax.swing.table.TableColumnModel_Methods*
-|javax.swing.table.TableColumnModel.addColumn(TableColumn)|Appends aColumn to t
-|javax.swing.table.TableColumnModel.addColumnModelListener(TableColumnModelListener)|
-|javax.swing.table.TableColumnModel.getColumn(int)|Returns the TableColumn obje
-|javax.swing.table.TableColumnModel.getColumnCount()|Returns the number of colu
-|javax.swing.table.TableColumnModel.getColumnIndex(Object)|Returns the index of
-|javax.swing.table.TableColumnModel.getColumnIndexAtX(int)|Returns the index of
-|javax.swing.table.TableColumnModel.getColumnMargin()|Returns the width between
-|javax.swing.table.TableColumnModel.getColumns()|Returns an Enumeration of all 
-|javax.swing.table.TableColumnModel.getColumnSelectionAllowed()|Returns true if
-|javax.swing.table.TableColumnModel.getSelectedColumnCount()|Returns the number
-|javax.swing.table.TableColumnModel.getSelectedColumns()|Returns an array of in
-|javax.swing.table.TableColumnModel.getSelectionModel()|Returns the current sel
-|javax.swing.table.TableColumnModel.getTotalColumnWidth()|Returns the total wid
-|javax.swing.table.TableColumnModel.moveColumn(int,int)|Moves the column and it
-|javax.swing.table.TableColumnModel.removeColumn(TableColumn)|Deletes the Table
-|javax.swing.table.TableColumnModel.removeColumnModelListener(TableColumnModelListener)|
-|javax.swing.table.TableColumnModel.setColumnMargin(int)|Sets the TableColumn's
-|javax.swing.table.TableColumnModel.setColumnSelectionAllowed(boolean)|Sets whe
-|javax.swing.table.TableColumnModel.setSelectionModel(ListSelectionModel)|Sets 
+|javax.swing.table.TableColumnModel.addColumn(TableColumn)|Appends aColumn to the end of the   tableColumns array.
+|javax.swing.table.TableColumnModel.addColumnModelListener(TableColumnModelListener)|Adds a listener for table column model events.
+|javax.swing.table.TableColumnModel.getColumn(int)|Returns the TableColumn object for the column at  columnIndex.
+|javax.swing.table.TableColumnModel.getColumnCount()|Returns the number of columns in the model.
+|javax.swing.table.TableColumnModel.getColumnIndex(Object)|Returns the index of the first column in the table  whose identifier is equal to identifier,  when compared using equals
+|javax.swing.table.TableColumnModel.getColumnIndexAtX(int)|Returns the index of the column that lies on the   horizontal point, xPosition;  or -1 if it lies outside the any of the
+|javax.swing.table.TableColumnModel.getColumnMargin()|Returns the width between the cells in each column.
+|javax.swing.table.TableColumnModel.getColumns()|Returns an Enumeration of all the columns in the model.
+|javax.swing.table.TableColumnModel.getColumnSelectionAllowed()|Returns true if columns may be selected.
+|javax.swing.table.TableColumnModel.getSelectedColumnCount()|Returns the number of selected columns.
+|javax.swing.table.TableColumnModel.getSelectedColumns()|Returns an array of indicies of all selected columns.
+|javax.swing.table.TableColumnModel.getSelectionModel()|Returns the current selection model.
+|javax.swing.table.TableColumnModel.getTotalColumnWidth()|Returns the total width of all the columns.
+|javax.swing.table.TableColumnModel.moveColumn(int,int)|Moves the column and its header at columnIndex to  newIndex.
+|javax.swing.table.TableColumnModel.removeColumn(TableColumn)|Deletes the TableColumn column from the    tableColumns array.
+|javax.swing.table.TableColumnModel.removeColumnModelListener(TableColumnModelListener)|Removes a listener for table column model events.
+|javax.swing.table.TableColumnModel.setColumnMargin(int)|Sets the TableColumn's column margin to  newMargin.
+|javax.swing.table.TableColumnModel.setColumnSelectionAllowed(boolean)|Sets whether the columns in this model may be selected.
+|javax.swing.table.TableColumnModel.setSelectionModel(ListSelectionModel)|Sets the selection model.
 
 *javax.swing.table.TableColumnModel_Description*
 
-Defines the requirements for a table column model object suitable for use with 
-JTable. 
+Defines the requirements for a table column model object suitable for use with JTable. 
+
 
 
 *javax.swing.table.TableColumnModel.addColumn(TableColumn)*
 
 public void addColumn(javax.swing.table.TableColumn aColumn)
 
-Appends aColumn to the end of the tableColumns array. This method posts a 
-columnAdded event to its listeners. 
+Appends aColumn to the end of the tableColumns array. This method posts a columnAdded event to its listeners. 
+
 
     aColumn - the TableColumn to be added 
 
@@ -52,6 +53,7 @@ public void addColumnModelListener(javax.swing.event.TableColumnModelListener x)
 
 Adds a listener for table column model events. 
 
+
     x - a TableColumnModelListener object 
 
 *javax.swing.table.TableColumnModel.getColumn(int)*
@@ -60,9 +62,11 @@ public |javax.swing.table.TableColumn| getColumn(int columnIndex)
 
 Returns the TableColumn object for the column at columnIndex. 
 
+
     columnIndex - the index of the desired column 
 
     Returns: the TableColumn object for the column at columnIndex 
+
 *javax.swing.table.TableColumnModel.getColumnCount()*
 
 public int getColumnCount()
@@ -70,39 +74,36 @@ public int getColumnCount()
 Returns the number of columns in the model. 
 
 
+
     Returns: the number of columns in the model 
+
 *javax.swing.table.TableColumnModel.getColumnIndex(Object)*
 
 public int getColumnIndex(java.lang.Object columnIdentifier)
 
-Returns the index of the first column in the table whose identifier is equal to 
-identifier, when compared using equals. 
+Returns the index of the first column in the table whose identifier is equal to identifier, when compared using equals. 
+
 
     columnIdentifier - the identifier object 
 
     Returns: the index of the first table column whose identifier is equal to identifier 
+
 *javax.swing.table.TableColumnModel.getColumnIndexAtX(int)*
 
 public int getColumnIndexAtX(int xPosition)
 
-Returns the index of the column that lies on the horizontal point, xPosition; 
-or -1 if it lies outside the any of the column's bounds. 
+Returns the index of the column that lies on the horizontal point, xPosition; or -1 if it lies outside the any of the column's bounds. 
 
-In keeping with Swing's separable model architecture, a TableColumnModel does 
-not know how the table columns actually appear on screen. The visual 
-presentation of the columns is the responsibility of the view/controller object 
-using this model (typically JTable). The view/controller need not display the 
-columns sequentially from left to right. For example, columns could be 
-displayed from right to left to accomodate a locale preference or some columns 
-might be hidden at the request of the user. Because the model does not know how 
-the columns are laid out on screen, the given xPosition should not be 
-considered to be a coordinate in 2D graphics space. Instead, it should be 
-considered to be a width from the start of the first column in the model. If 
-the column index for a given X coordinate in 2D space is required, 
-JTable.columnAtPoint can be used instead. 
+In keeping with Swing's separable model architecture, a TableColumnModel does not know how the table columns actually appear on screen. The visual presentation of the columns is 
+the responsibility of the view/controller object using this model (typically JTable). The view/controller need not display the columns sequentially from left to right. For 
+example, columns could be displayed from right to left to accomodate a locale preference or some columns might be hidden at the request of the user. Because the model does not 
+know how the columns are laid out on screen, the given xPosition should not be considered to be a coordinate in 2D graphics space. Instead, it should be considered to be a width 
+from the start of the first column in the model. If the column index for a given X coordinate in 2D space is required, JTable.columnAtPoint can be used instead. 
+
 
 
     Returns: the index of the column; or -1 if no column is found 
+
 *javax.swing.table.TableColumnModel.getColumnMargin()*
 
 public int getColumnMargin()
@@ -110,15 +111,19 @@ public int getColumnMargin()
 Returns the width between the cells in each column. 
 
 
+
     Returns: the margin, in pixels, between the cells 
+
 *javax.swing.table.TableColumnModel.getColumns()*
 
-public |java.util.Enumeration| getColumns()
+public |java.util.Enumeration|<TableColumn> getColumns()
 
 Returns an Enumeration of all the columns in the model. 
 
 
+
     Returns: an Enumeration of all the columns in the model 
+
 *javax.swing.table.TableColumnModel.getColumnSelectionAllowed()*
 
 public boolean getColumnSelectionAllowed()
@@ -126,7 +131,9 @@ public boolean getColumnSelectionAllowed()
 Returns true if columns may be selected. 
 
 
+
     Returns: true if columns may be selected 
+
 *javax.swing.table.TableColumnModel.getSelectedColumnCount()*
 
 public int getSelectedColumnCount()
@@ -134,16 +141,19 @@ public int getSelectedColumnCount()
 Returns the number of selected columns. 
 
 
+
     Returns: the number of selected columns; or 0 if no columns are selected 
+
 *javax.swing.table.TableColumnModel.getSelectedColumns()*
 
-public int getSelectedColumns()
+public int[] getSelectedColumns()
 
 Returns an array of indicies of all selected columns. 
 
 
-    Returns: an array of integers containing the indicies of all selected columns; or an 
-             empty array if nothing is selected 
+
+    Returns: an array of integers containing the indicies of all selected columns; or an empty array if nothing is selected 
+
 *javax.swing.table.TableColumnModel.getSelectionModel()*
 
 public |javax.swing.ListSelectionModel| getSelectionModel()
@@ -151,7 +161,9 @@ public |javax.swing.ListSelectionModel| getSelectionModel()
 Returns the current selection model. 
 
 
+
     Returns: a ListSelectionModel object 
+
 *javax.swing.table.TableColumnModel.getTotalColumnWidth()*
 
 public int getTotalColumnWidth()
@@ -159,18 +171,18 @@ public int getTotalColumnWidth()
 Returns the total width of all the columns. 
 
 
+
     Returns: the total computed width of all columns 
+
 *javax.swing.table.TableColumnModel.moveColumn(int,int)*
 
 public void moveColumn(
   int columnIndex,
   int newIndex)
 
-Moves the column and its header at columnIndex to newIndex. The old column at 
-columnIndex will now be found at newIndex. The column that used to be at 
-newIndex is shifted left or right to make room. This will not move any columns 
-if columnIndex equals newIndex. This method posts a columnMoved event to its 
-listeners. 
+Moves the column and its header at columnIndex to newIndex. The old column at columnIndex will now be found at newIndex. The column that used to be at newIndex is shifted left or 
+right to make room. This will not move any columns if columnIndex equals newIndex. This method posts a columnMoved event to its listeners. 
+
 
     columnIndex - the index of column to be moved 
     newIndex - index of the column's new location 
@@ -179,9 +191,9 @@ listeners.
 
 public void removeColumn(javax.swing.table.TableColumn column)
 
-Deletes the TableColumn column from the tableColumns array. This method will do 
-nothing if column is not in the table's column list. This method posts a 
-columnRemoved event to its listeners. 
+Deletes the TableColumn column from the tableColumns array. This method will do nothing if column is not in the table's column list. This method posts a columnRemoved event to its 
+listeners. 
+
 
     column - the TableColumn to be removed 
 
@@ -191,14 +203,15 @@ public void removeColumnModelListener(javax.swing.event.TableColumnModelListener
 
 Removes a listener for table column model events. 
 
+
     x - a TableColumnModelListener object 
 
 *javax.swing.table.TableColumnModel.setColumnMargin(int)*
 
 public void setColumnMargin(int newMargin)
 
-Sets the TableColumn's column margin to newMargin. This method posts a 
-columnMarginChanged event to its listeners. 
+Sets the TableColumn's column margin to newMargin. This method posts a columnMarginChanged event to its listeners. 
+
 
     newMargin - the width, in pixels, of the new column margins 
 
@@ -208,6 +221,7 @@ public void setColumnSelectionAllowed(boolean flag)
 
 Sets whether the columns in this model may be selected. 
 
+
     flag - true if columns may be selected; otherwise false 
 
 *javax.swing.table.TableColumnModel.setSelectionModel(ListSelectionModel)*
@@ -215,6 +229,7 @@ Sets whether the columns in this model may be selected.
 public void setSelectionModel(javax.swing.ListSelectionModel newModel)
 
 Sets the selection model. 
+
 
     newModel - a ListSelectionModel object 
 

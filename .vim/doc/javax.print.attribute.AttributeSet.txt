@@ -1,4 +1,5 @@
-*javax.print.attribute.AttributeSet* *AttributeSet* Interface AttributeSet speci
+*javax.print.attribute.AttributeSet* *AttributeSet* Interface AttributeSet specifies the interface for a set of printing 
+ attributes.
 
 public interface interface AttributeSet
 
@@ -8,131 +9,95 @@ public interface interface AttributeSet
 |javax.print.attribute.AttributeSet_Constructors|
 |javax.print.attribute.AttributeSet_Methods|
 
-================================================================================
+====================================================================================================================================================================================
 
 *javax.print.attribute.AttributeSet_Methods*
-|javax.print.attribute.AttributeSet.add(Attribute)|Adds the specified attribute
-|javax.print.attribute.AttributeSet.addAll(AttributeSet)|Adds all of the elemen
-|javax.print.attribute.AttributeSet.clear()|Removes all attributes from this at
-|javax.print.attribute.AttributeSet.containsKey(Class)|Returns true if this att
-|javax.print.attribute.AttributeSet.containsValue(Attribute)|Returns true if th
-|javax.print.attribute.AttributeSet.equals(Object)|Compares the specified objec
-|javax.print.attribute.AttributeSet.get(Class)|Returns the attribute value whic
-|javax.print.attribute.AttributeSet.hashCode()|Returns the hash code value for 
-|javax.print.attribute.AttributeSet.isEmpty()|Returns true if this attribute se
-|javax.print.attribute.AttributeSet.remove(Attribute)|Removes the specified att
-|javax.print.attribute.AttributeSet.remove(Class)|Removes any attribute for thi
-|javax.print.attribute.AttributeSet.size()|Returns the number of attributes in 
-|javax.print.attribute.AttributeSet.toArray()|Returns an array of the attribute
+|javax.print.attribute.AttributeSet.add(Attribute)|Adds the specified attribute to this attribute set if it is not   already present, first removing any existing value in the same
+|javax.print.attribute.AttributeSet.addAll(AttributeSet)|Adds all of the elements in the specified set to this attribute.
+|javax.print.attribute.AttributeSet.clear()|Removes all attributes from this attribute set.
+|javax.print.attribute.AttributeSet.containsKey(Class<?>)|Returns true if this attribute set contains an   attribute for the specified category.
+|javax.print.attribute.AttributeSet.containsValue(Attribute)|Returns true if this attribute set contains the given    attribute value.
+|javax.print.attribute.AttributeSet.equals(Object)|Compares the specified object with this attribute set for equality.
+|javax.print.attribute.AttributeSet.get(Class<?>)|Returns the attribute value which this attribute set contains in the   given attribute category.
+|javax.print.attribute.AttributeSet.hashCode()|Returns the hash code value for this attribute set.
+|javax.print.attribute.AttributeSet.isEmpty()|Returns true if this attribute set contains no attributes.
+|javax.print.attribute.AttributeSet.remove(Attribute)|Removes the specified attribute from this attribute set if    present.
+|javax.print.attribute.AttributeSet.remove(Class<?>)|Removes any attribute for this category from this attribute set if    present.
+|javax.print.attribute.AttributeSet.size()|Returns the number of attributes in this attribute set.
+|javax.print.attribute.AttributeSet.toArray()|Returns an array of the attributes contained in this set.
 
 *javax.print.attribute.AttributeSet_Description*
 
-Interface AttributeSet specifies the interface for a set of printing 
-attributes. A printing attribute is an object whose class implements interface 
+Interface AttributeSet specifies the interface for a set of printing attributes. A printing attribute is an object whose class implements interface 
 Attribute(|javax.print.attribute.Attribute|) . 
 
-An attribute set contains a group of attribute values, where duplicate values 
-are not allowed in the set. Furthermore, each value in an attribute set is a 
-member of some category, and at most one value in any particular category is 
-allowed in the set. For an attribute set, the values are 
-Attribute(|javax.print.attribute.Attribute|) objects, and the categories are 
-Class(|java.lang.Class|) objects. An attribute's category is the class (or 
-interface) at the root of the class hierarchy for that kind of attribute. Note 
-that an attribute object's category may be a superclass of the attribute 
-object's class rather than the attribute object's class itself. An attribute 
-object's category is determined by calling the 
-<CODE>getCategory()</CODE>(|javax.print.attribute.Attribute|) method defined in 
-interface Attribute(|javax.print.attribute.Attribute|) . 
+An attribute set contains a group of attribute values, where duplicate values are not allowed in the set. Furthermore, each value in an attribute set is a member of some category, 
+and at most one value in any particular category is allowed in the set. For an attribute set, the values are Attribute(|javax.print.attribute.Attribute|) objects, and the 
+categories are Class(|java.lang.Class|) objects. An attribute's category is the class (or interface) at the root of the class hierarchy for that kind of attribute. Note that an 
+attribute object's category may be a superclass of the attribute object's class rather than the attribute object's class itself. An attribute object's category is determined by 
+calling the <CODE>getCategory()</CODE>(|javax.print.attribute.Attribute|) method defined in interface Attribute(|javax.print.attribute.Attribute|) . 
 
-The interfaces of an AttributeSet resemble those of the Java Collections API's 
-java.util.Map interface, but is more restrictive in the types it will accept, 
-and combines keys and values into an Attribute. 
+The interfaces of an AttributeSet resemble those of the Java Collections API's java.util.Map interface, but is more restrictive in the types it will accept, and combines keys and 
+values into an Attribute. 
 
-Attribute sets are used in several places in the Print Service API. In each 
-context, only certain kinds of attributes are allowed to appear in the 
-attribute set, as determined by the tagging interfaces which the attribute 
-class implements -- DocAttribute(|javax.print.attribute.DocAttribute|) , 
-PrintRequestAttribute(|javax.print.attribute.PrintRequestAttribute|) , 
-PrintJobAttribute(|javax.print.attribute.PrintJobAttribute|) , and 
-PrintServiceAttribute(|javax.print.attribute.PrintServiceAttribute|) . There 
-are four specializations of an attribute set that are restricted to contain 
-just one of the four kinds of attribute -- 
-DocAttributeSet(|javax.print.attribute.DocAttributeSet|) , 
-PrintRequestAttributeSet(|javax.print.attribute.PrintRequestAttributeSet|) , 
-PrintJobAttributeSet(|javax.print.attribute.PrintJobAttributeSet|) , and 
-PrintServiceAttributeSet(|javax.print.attribute.PrintServiceAttributeSet|) , 
-respectively. Note that many attribute classes implement more than one tagging 
-interface and so may appear in more than one context. 
+Attribute sets are used in several places in the Print Service API. In each context, only certain kinds of attributes are allowed to appear in the attribute set, as determined by 
+the tagging interfaces which the attribute class implements -- DocAttribute(|javax.print.attribute.DocAttribute|) , 
+PrintRequestAttribute(|javax.print.attribute.PrintRequestAttribute|) , PrintJobAttribute(|javax.print.attribute.PrintJobAttribute|) , and 
+PrintServiceAttribute(|javax.print.attribute.PrintServiceAttribute|) . There are four specializations of an attribute set that are restricted to contain just one of the four kinds 
+of attribute -- DocAttributeSet(|javax.print.attribute.DocAttributeSet|) , PrintRequestAttributeSet(|javax.print.attribute.PrintRequestAttributeSet|) , 
+PrintJobAttributeSet(|javax.print.attribute.PrintJobAttributeSet|) , and PrintServiceAttributeSet(|javax.print.attribute.PrintServiceAttributeSet|) , respectively. Note that many 
+attribute classes implement more than one tagging interface and so may appear in more than one context. 
 
-A DocAttributeSet(|javax.print.attribute.DocAttributeSet|) , containing 
-DocAttribute(|javax.print.attribute.DocAttribute|) s, specifies the 
-characteristics of an individual doc and the print job settings to be applied 
-to an individual doc. 
+A DocAttributeSet(|javax.print.attribute.DocAttributeSet|) , containing DocAttribute(|javax.print.attribute.DocAttribute|) s, specifies the characteristics of an individual doc 
+and the print job settings to be applied to an individual doc. 
 
-A PrintRequestAttributeSet(|javax.print.attribute.PrintRequestAttributeSet|) , 
-containing PrintRequestAttribute(|javax.print.attribute.PrintRequestAttribute|) 
-s, specifies the settings to be applied to a whole print job and to all the 
-docs in the print job. 
+A PrintRequestAttributeSet(|javax.print.attribute.PrintRequestAttributeSet|) , containing PrintRequestAttribute(|javax.print.attribute.PrintRequestAttribute|) s, specifies the 
+settings to be applied to a whole print job and to all the docs in the print job. 
 
-A PrintJobAttributeSet(|javax.print.attribute.PrintJobAttributeSet|) , 
-containing PrintJobAttribute(|javax.print.attribute.PrintJobAttribute|) s, 
-reports the status of a print job. 
+A PrintJobAttributeSet(|javax.print.attribute.PrintJobAttributeSet|) , containing PrintJobAttribute(|javax.print.attribute.PrintJobAttribute|) s, reports the status of a print 
+job. 
 
-A PrintServiceAttributeSet(|javax.print.attribute.PrintServiceAttributeSet|) , 
-containing PrintServiceAttribute(|javax.print.attribute.PrintServiceAttribute|) 
-s, reports the status of a Print Service instance. 
+A PrintServiceAttributeSet(|javax.print.attribute.PrintServiceAttributeSet|) , containing PrintServiceAttribute(|javax.print.attribute.PrintServiceAttribute|) s, reports the 
+status of a Print Service instance. 
 
-In some contexts, the client is only allowed to examine an attribute set's 
-contents but not change them (the set is read-only). In other places, the 
-client is allowed both to examine and to change an attribute set's contents 
-(the set is read-write). For a read-only attribute set, calling a mutating 
-operation throws an UnmodifiableSetException. 
+In some contexts, the client is only allowed to examine an attribute set's contents but not change them (the set is read-only). In other places, the client is allowed both to 
+examine and to change an attribute set's contents (the set is read-write). For a read-only attribute set, calling a mutating operation throws an UnmodifiableSetException. 
 
-The Print Service API provides one implementation of interface AttributeSet, 
-class HashAttributeSet(|javax.print.attribute.HashAttributeSet|) . A client can 
-use class HashAttributeSet(|javax.print.attribute.HashAttributeSet|) or provide 
-its own implementation of interface AttributeSet. The Print Service API also 
-provides implementations of interface AttributeSet's subinterfaces -- classes 
-HashDocAttributeSet(|javax.print.attribute.HashDocAttributeSet|) , 
-HashPrintRequestAttributeSet(|javax.print.attribute.HashPrintRequestAttributeSet|)
-, HashPrintJobAttributeSet(|javax.print.attribute.HashPrintJobAttributeSet|) , 
-and 
-HashPrintServiceAttributeSet(|javax.print.attribute.HashPrintServiceAttributeSet|)
-. 
+The Print Service API provides one implementation of interface AttributeSet, class HashAttributeSet(|javax.print.attribute.HashAttributeSet|) . A client can use class 
+HashAttributeSet(|javax.print.attribute.HashAttributeSet|) or provide its own implementation of interface AttributeSet. The Print Service API also provides implementations of 
+interface AttributeSet's subinterfaces -- classes HashDocAttributeSet(|javax.print.attribute.HashDocAttributeSet|) , 
+HashPrintRequestAttributeSet(|javax.print.attribute.HashPrintRequestAttributeSet|) , HashPrintJobAttributeSet(|javax.print.attribute.HashPrintJobAttributeSet|) , and 
+HashPrintServiceAttributeSet(|javax.print.attribute.HashPrintServiceAttributeSet|) . 
+
 
 
 *javax.print.attribute.AttributeSet.add(Attribute)*
 
 public boolean add(javax.print.attribute.Attribute attribute)
 
-Adds the specified attribute to this attribute set if it is not already 
-present, first removing any existing value in the same attribute category as 
-the specified attribute value. 
+Adds the specified attribute to this attribute set if it is not already present, first removing any existing value in the same attribute category as the specified attribute value. 
+
 
     attribute - Attribute value to be added to this attribute set. 
 
-    Returns: true if this attribute set changed as a result of the call, i.e., the given 
-             attribute value was not already a member of this attribute set. 
+    Returns: true if this attribute set changed as a result of the call, i.e., the given attribute value was not already a member of this attribute set. 
+
 *javax.print.attribute.AttributeSet.addAll(AttributeSet)*
 
 public boolean addAll(javax.print.attribute.AttributeSet attributes)
 
-Adds all of the elements in the specified set to this attribute. The outcome is 
-the same as if the = 
-<CODE>add(Attribute)</CODE>(|javax.print.attribute.AttributeSet|) operation had 
-been applied to this attribute set successively with each element from the 
-specified set. The behavior of the addAll(AttributeSet) operation is 
-unspecified if the specified set is modified while the operation is in 
-progress. 
+Adds all of the elements in the specified set to this attribute. The outcome is the same as if the = <CODE>add(Attribute)</CODE>(|javax.print.attribute.AttributeSet|) operation 
+had been applied to this attribute set successively with each element from the specified set. The behavior of the addAll(AttributeSet) operation is unspecified if the specified 
+set is modified while the operation is in progress. 
 
-If the addAll(AttributeSet) operation throws an exception, the effect on this 
-attribute set's state is implementation dependent; elements from the specified 
-set before the point of the exception may or may not have been added to this 
-attribute set. 
+If the addAll(AttributeSet) operation throws an exception, the effect on this attribute set's state is implementation dependent; elements from the specified set before the point 
+of the exception may or may not have been added to this attribute set. 
+
 
     attributes - whose elements are to be added to this attribute set. 
 
     Returns: true if this attribute set changed as a result of the call. 
+
 *javax.print.attribute.AttributeSet.clear()*
 
 public void clear()
@@ -140,66 +105,66 @@ public void clear()
 Removes all attributes from this attribute set. 
 
 
-*javax.print.attribute.AttributeSet.containsKey(Class)*
 
-public boolean containsKey(java.lang.Class category)
+*javax.print.attribute.AttributeSet.containsKey(Class<?>)*
 
-Returns true if this attribute set contains an attribute for the specified 
-category. 
+public boolean containsKey(java.lang.Class<?> category)
+
+Returns true if this attribute set contains an attribute for the specified category. 
+
 
     category - whose presence in this attribute set is to be tested. 
 
-    Returns: true if this attribute set contains an attribute value for the specified 
-             category. 
+    Returns: true if this attribute set contains an attribute value for the specified category. 
+
 *javax.print.attribute.AttributeSet.containsValue(Attribute)*
 
 public boolean containsValue(javax.print.attribute.Attribute attribute)
 
 Returns true if this attribute set contains the given attribute value. 
 
+
     attribute - Attribute value whose presence in this attribute set is to be tested. 
 
     Returns: true if this attribute set contains the given attribute value. 
+
 *javax.print.attribute.AttributeSet.equals(Object)*
 
 public boolean equals(java.lang.Object object)
 
-Compares the specified object with this attribute set for equality. Returns 
-true if the given object is also an attribute set and the two attribute sets 
-contain the same attribute category-attribute value mappings. This ensures that 
-the equals() method works properly across different implementations of the 
-AttributeSet interface. 
+Compares the specified object with this attribute set for equality. Returns true if the given object is also an attribute set and the two attribute sets contain the same attribute 
+category-attribute value mappings. This ensures that the equals() method works properly across different implementations of the AttributeSet interface. 
+
 
     object - to be compared for equality with this attribute set. 
 
     Returns: true if the specified object is equal to this attribute set. 
-*javax.print.attribute.AttributeSet.get(Class)*
 
-public |javax.print.attribute.Attribute| get(java.lang.Class category)
+*javax.print.attribute.AttributeSet.get(Class<?>)*
 
-Returns the attribute value which this attribute set contains in the given 
-attribute category. Returns null if this attribute set does not contain any 
-attribute value in the given attribute category. 
+public |javax.print.attribute.Attribute| get(java.lang.Class<?> category)
 
-    category - Attribute category whose associated attribute value is to be returned. It must 
-       be a {@link java.lang.Class Class} that implements interface {@link 
-       Attribute Attribute}. 
+Returns the attribute value which this attribute set contains in the given attribute category. Returns null if this attribute set does not contain any attribute value in the given 
+attribute category. 
 
-    Returns: The attribute value in the given attribute category contained in this attribute 
-             set, or null if this attribute set does not contain any attribute 
-             value in the given attribute category. 
+
+    category - Attribute category whose associated attribute value is to be returned. It must be a {@link java.lang.Class Class} that implements interface {@link Attribute Attribute}. 
+
+    Returns: The attribute value in the given attribute category contained in this attribute set, or null if this attribute set does not contain any attribute value in the given attribute 
+             category. 
+
 *javax.print.attribute.AttributeSet.hashCode()*
 
 public int hashCode()
 
-Returns the hash code value for this attribute set. The hash code of an 
-attribute set is defined to be the sum of the hash codes of each entry in the 
-AttributeSet. This ensures that t1.equals(t2) implies that 
-t1.hashCode()==t2.hashCode() for any two attribute sets t1 and t2, as required 
-by the general contract of <CODE>Object.hashCode()</CODE>(|java.lang.Object|) . 
+Returns the hash code value for this attribute set. The hash code of an attribute set is defined to be the sum of the hash codes of each entry in the AttributeSet. This ensures 
+that t1.equals(t2) implies that t1.hashCode()==t2.hashCode() for any two attribute sets t1 and t2, as required by the general contract of 
+<CODE>Object.hashCode()</CODE>(|java.lang.Object|) . 
+
 
 
     Returns: The hash code value for this attribute set. 
+
 *javax.print.attribute.AttributeSet.isEmpty()*
 
 public boolean isEmpty()
@@ -207,45 +172,49 @@ public boolean isEmpty()
 Returns true if this attribute set contains no attributes. 
 
 
+
     Returns: true if this attribute set contains no attributes. 
+
 *javax.print.attribute.AttributeSet.remove(Attribute)*
 
 public boolean remove(javax.print.attribute.Attribute attribute)
 
-Removes the specified attribute from this attribute set if present. If 
-attribute is null, then remove() does nothing and returns false. 
+Removes the specified attribute from this attribute set if present. If attribute is null, then remove() does nothing and returns false. 
+
 
     attribute - Attribute value to be removed from this attribute set. 
 
-    Returns: true if this attribute set changed as a result of the call, i.e., the given 
-             attribute value had been a member of this attribute set. 
-*javax.print.attribute.AttributeSet.remove(Class)*
+    Returns: true if this attribute set changed as a result of the call, i.e., the given attribute value had been a member of this attribute set. 
 
-public boolean remove(java.lang.Class category)
+*javax.print.attribute.AttributeSet.remove(Class<?>)*
 
-Removes any attribute for this category from this attribute set if present. If 
-category is null, then remove() does nothing and returns false. 
+public boolean remove(java.lang.Class<?> category)
+
+Removes any attribute for this category from this attribute set if present. If category is null, then remove() does nothing and returns false. 
+
 
     category - Attribute category to be removed from this attribute set. 
 
-    Returns: true if this attribute set changed as a result of the call, i.e., the given 
-             attribute value had been a member of this attribute set. 
+    Returns: true if this attribute set changed as a result of the call, i.e., the given attribute value had been a member of this attribute set. 
+
 *javax.print.attribute.AttributeSet.size()*
 
 public int size()
 
-Returns the number of attributes in this attribute set. If this attribute set 
-contains more than Integer.MAX_VALUE elements, returns Integer.MAX_VALUE. 
+Returns the number of attributes in this attribute set. If this attribute set contains more than Integer.MAX_VALUE elements, returns Integer.MAX_VALUE. 
+
 
 
     Returns: The number of attributes in this attribute set. 
+
 *javax.print.attribute.AttributeSet.toArray()*
 
-public |javax.print.attribute.Attribute| toArray()
+public |javax.print.attribute.Attribute|[] toArray()
 
 Returns an array of the attributes contained in this set. 
 
 
-    Returns: the Attributes contained in this set as an array, zero length if the 
-             AttributeSet is empty. 
+
+    Returns: the Attributes contained in this set as an array, zero length if the AttributeSet is empty. 
+
 

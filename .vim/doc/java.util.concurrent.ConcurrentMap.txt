@@ -1,6 +1,7 @@
-*java.util.concurrent.ConcurrentMap* *ConcurrentMap* Ajava.util.Mapproviding add
+*java.util.concurrent.ConcurrentMap* *ConcurrentMap* Ajava.util.Mapproviding additional atomic
+ putIfAbsent, remove, and replace methods.
 
-public interface interface ConcurrentMap
+public interface interface ConcurrentMap<K,V>
 
   implements |java.util.Map|
 
@@ -9,44 +10,41 @@ public interface interface ConcurrentMap
 |java.util.concurrent.ConcurrentMap_Constructors|
 |java.util.concurrent.ConcurrentMap_Methods|
 
-================================================================================
+====================================================================================================================================================================================
 
 *java.util.concurrent.ConcurrentMap_Methods*
-|java.util.concurrent.ConcurrentMap.putIfAbsent(K,V)|If the specified key is no
-|java.util.concurrent.ConcurrentMap.remove(Object,Object)|Remove entry for key 
-|java.util.concurrent.ConcurrentMap.replace(K,V)|Replace entry for key only if 
-|java.util.concurrent.ConcurrentMap.replace(K,V,V)|Replace entry for key only i
+|java.util.concurrent.ConcurrentMap.putIfAbsent(K,V)|If the specified key is not already associated  with a value, associate it with the given value.
+|java.util.concurrent.ConcurrentMap.remove(Object,Object)|Remove entry for key only if currently mapped to given value.
+|java.util.concurrent.ConcurrentMap.replace(K,V)|Replace entry for key only if currently mapped to some value.
+|java.util.concurrent.ConcurrentMap.replace(K,V,V)|Replace entry for key only if currently mapped to given value.
 
 *java.util.concurrent.ConcurrentMap_Description*
 
-A (|java.util.Map|) providing additional atomic putIfAbsent, remove, and 
-replace methods. 
+A (|java.util.Map|) providing additional atomic putIfAbsent, remove, and replace methods. 
 
-This interface is a member of the <a href="/../guide/collections/index.html"> 
-Java Collections Framework. 
+This interface is a member of the <a href="/../guide/collections/index.html"> Java Collections Framework. 
+
 
 
 *java.util.concurrent.ConcurrentMap.putIfAbsent(K,V)*
 
-public |java.lang.Object| putIfAbsent(
-  java.lang.Object key,
-  java.lang.Object value)
+public |V| putIfAbsent(
+  K key,
+  V value)
 
-If the specified key is not already associated with a value, associate it with 
-the given value. This is equivalent to 
+If the specified key is not already associated with a value, associate it with the given value. This is equivalent to 
 
-if (!map.containsKey(key)) return map.put(key, value); else return 
-map.get(key); 
+if (!map.containsKey(key)) return map.put(key, value); else return map.get(key); 
 
 Except that the action is performed atomically. 
+
 
     key - key with which the specified value is to be associated. 
     value - value to be associated with the specified key. 
 
-    Returns: previous value associated with specified key, or null if there was no mapping 
-             for key. A null return can also indicate that the map previously 
-             associated null with the specified key, if the implementation 
-             supports null values. 
+    Returns: previous value associated with specified key, or null if there was no mapping for key. A null return can also indicate that the map previously associated null with the specified 
+             key, if the implementation supports null values. 
+
 *java.util.concurrent.ConcurrentMap.remove(Object,Object)*
 
 public boolean remove(
@@ -55,20 +53,21 @@ public boolean remove(
 
 Remove entry for key only if currently mapped to given value. Acts as 
 
-if ((map.containsKey(key) map.get(key).equals(value)) { map.remove(key); return 
-true; } else return false; 
+if ((map.containsKey(key) map.get(key).equals(value)) { map.remove(key); return true; } else return false; 
 
 except that the action is performed atomically. 
+
 
     key - key with which the specified value is associated. 
     value - value associated with the specified key. 
 
     Returns: true if the value was removed, false otherwise 
+
 *java.util.concurrent.ConcurrentMap.replace(K,V)*
 
-public |java.lang.Object| replace(
-  java.lang.Object key,
-  java.lang.Object value)
+public |V| replace(
+  K key,
+  V value)
 
 Replace entry for key only if currently mapped to some value. Acts as 
 
@@ -76,30 +75,31 @@ if ((map.containsKey(key)) { return map.put(key, value); } else return null;
 
 except that the action is performed atomically. 
 
+
     key - key with which the specified value is associated. 
     value - value to be associated with the specified key. 
 
-    Returns: previous value associated with specified key, or null if there was no mapping 
-             for key. A null return can also indicate that the map previously 
-             associated null with the specified key, if the implementation 
-             supports null values. 
+    Returns: previous value associated with specified key, or null if there was no mapping for key. A null return can also indicate that the map previously associated null with the specified 
+             key, if the implementation supports null values. 
+
 *java.util.concurrent.ConcurrentMap.replace(K,V,V)*
 
 public boolean replace(
-  java.lang.Object key,
-  java.lang.Object oldValue,
-  java.lang.Object newValue)
+  K key,
+  V oldValue,
+  V newValue)
 
 Replace entry for key only if currently mapped to given value. Acts as 
 
-if ((map.containsKey(key) map.get(key).equals(oldValue)) { map.put(key, 
-newValue); return true; } else return false; 
+if ((map.containsKey(key) map.get(key).equals(oldValue)) { map.put(key, newValue); return true; } else return false; 
 
 except that the action is performed atomically. 
+
 
     key - key with which the specified value is associated. 
     oldValue - value expected to be associated with the specified key. 
     newValue - value to be associated with the specified key. 
 
     Returns: true if the value was replaced 
+
 

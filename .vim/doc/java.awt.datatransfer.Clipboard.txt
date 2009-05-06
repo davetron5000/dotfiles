@@ -1,4 +1,5 @@
-*java.awt.datatransfer.Clipboard* *Clipboard* A class that implements a mechanis
+*java.awt.datatransfer.Clipboard* *Clipboard* A class that implements a mechanism to transfer data using
+ cut/copy/paste operations.
 
 public class Clipboard
   extends    |java.lang.Object|
@@ -8,7 +9,7 @@ public class Clipboard
 |java.awt.datatransfer.Clipboard_Constructors|
 |java.awt.datatransfer.Clipboard_Methods|
 
-================================================================================
+====================================================================================================================================================================================
 
 *java.awt.datatransfer.Clipboard_Fields*
 |java.awt.datatransfer.Transferable_java.awt.datatransfer.Clipboard.contents|
@@ -18,41 +19,31 @@ public class Clipboard
 |java.awt.datatransfer.Clipboard(String)|Creates a clipboard object.
 
 *java.awt.datatransfer.Clipboard_Methods*
-|java.awt.datatransfer.Clipboard.addFlavorListener(FlavorListener)|Registers th
-|java.awt.datatransfer.Clipboard.getAvailableDataFlavors()|Returns an array of 
-|java.awt.datatransfer.Clipboard.getContents(Object)|Returns a transferable obj
-|java.awt.datatransfer.Clipboard.getData(DataFlavor)|Returns an object represen
-|java.awt.datatransfer.Clipboard.getFlavorListeners()|Returns an array of all t
-|java.awt.datatransfer.Clipboard.getName()|Returns the name of this clipboard o
-|java.awt.datatransfer.Clipboard.isDataFlavorAvailable(DataFlavor)|Returns whet
-|java.awt.datatransfer.Clipboard.removeFlavorListener(FlavorListener)|Removes t
-|java.awt.datatransfer.Clipboard.setContents(Transferable,ClipboardOwner)|Sets 
+|java.awt.datatransfer.Clipboard.addFlavorListener(FlavorListener)|Registers the specified FlavorListener to receive  FlavorEvents from this clipboard.
+|java.awt.datatransfer.Clipboard.getAvailableDataFlavors()|Returns an array of DataFlavors in which the current  contents of this clipboard can be provided.
+|java.awt.datatransfer.Clipboard.getContents(Object)|Returns a transferable object representing the current contents  of the clipboard.
+|java.awt.datatransfer.Clipboard.getData(DataFlavor)|Returns an object representing the current contents of this clipboard  in the specified DataFlavor.
+|java.awt.datatransfer.Clipboard.getFlavorListeners()|Returns an array of all the FlavorListeners currently  registered on this Clipboard.
+|java.awt.datatransfer.Clipboard.getName()|Returns the name of this clipboard object.
+|java.awt.datatransfer.Clipboard.isDataFlavorAvailable(DataFlavor)|Returns whether or not the current contents of this clipboard can be  provided in the specified DataFlavor.
+|java.awt.datatransfer.Clipboard.removeFlavorListener(FlavorListener)|Removes the specified FlavorListener so that it no longer  receives FlavorEvents from this Clipboard.
+|java.awt.datatransfer.Clipboard.setContents(Transferable,ClipboardOwner)|Sets the current contents of the clipboard to the specified  transferable object and registers the specif
 
 *java.awt.datatransfer.Clipboard_Description*
 
-A class that implements a mechanism to transfer data using cut/copy/paste 
-operations. (|java.awt.datatransfer.FlavorListener|) s may be registered on an 
-instance of the Clipboard class to be notified about changes to the set of 
-(|java.awt.datatransfer.DataFlavor|) s available on this clipboard (see 
-(|java.awt.datatransfer.Clipboard|) ). 
+A class that implements a mechanism to transfer data using cut/copy/paste operations. (|java.awt.datatransfer.FlavorListener|) s may be registered on an instance of the Clipboard 
+class to be notified about changes to the set of (|java.awt.datatransfer.DataFlavor|) s available on this clipboard (see (|java.awt.datatransfer.Clipboard|) ). 
+
 
 
 *java.awt.datatransfer.Transferable_java.awt.datatransfer.Clipboard.contents*
 
-A class that implements a mechanism to transfer data using cut/copy/paste 
-operations. (|java.awt.datatransfer.FlavorListener|) s may be registered on an 
-instance of the Clipboard class to be notified about changes to the set of 
-(|java.awt.datatransfer.DataFlavor|) s available on this clipboard (see 
-(|java.awt.datatransfer.Clipboard|) ). 
+
 
 
 *java.awt.datatransfer.ClipboardOwner_java.awt.datatransfer.Clipboard.owner*
 
-A class that implements a mechanism to transfer data using cut/copy/paste 
-operations. (|java.awt.datatransfer.FlavorListener|) s may be registered on an 
-instance of the Clipboard class to be notified about changes to the set of 
-(|java.awt.datatransfer.DataFlavor|) s available on this clipboard (see 
-(|java.awt.datatransfer.Clipboard|) ). 
+
 
 
 
@@ -67,61 +58,58 @@ Creates a clipboard object.
 
 public synchronized void addFlavorListener(java.awt.datatransfer.FlavorListener listener)
 
-Registers the specified FlavorListener to receive FlavorEvents from this 
-clipboard. If listener is null, no exception is thrown and no action is 
-performed. 
+Registers the specified FlavorListener to receive FlavorEvents from this clipboard. If listener is null, no exception is thrown and no action is performed. 
+
 
     listener - the listener to be added 
 
 *java.awt.datatransfer.Clipboard.getAvailableDataFlavors()*
 
-public |java.awt.datatransfer.DataFlavor| getAvailableDataFlavors()
+public |java.awt.datatransfer.DataFlavor|[] getAvailableDataFlavors()
 
-Returns an array of DataFlavors in which the current contents of this clipboard 
-can be provided. If there are no DataFlavors available, this method returns a 
-zero-length array. 
+Returns an array of DataFlavors in which the current contents of this clipboard can be provided. If there are no DataFlavors available, this method returns a zero-length array. 
 
 
-    Returns: an array of DataFlavors in which the current contents of this clipboard can be 
-             provided 
+
+    Returns: an array of DataFlavors in which the current contents of this clipboard can be provided 
+
 *java.awt.datatransfer.Clipboard.getContents(Object)*
 
 public synchronized |java.awt.datatransfer.Transferable| getContents(java.lang.Object requestor)
 
-Returns a transferable object representing the current contents of the 
-clipboard. If the clipboard currently has no contents, it returns null. The 
-parameter Object requestor is not currently used. The method throws 
-IllegalStateException if the clipboard is currently unavailable. For example, 
-on some platforms, the system clipboard is unavailable while it is accessed by 
-another application. 
+Returns a transferable object representing the current contents of the clipboard. If the clipboard currently has no contents, it returns null. The parameter Object requestor is 
+not currently used. The method throws IllegalStateException if the clipboard is currently unavailable. For example, on some platforms, the system clipboard is unavailable while it 
+is accessed by another application. 
+
 
     requestor - the object requesting the clip data (not used) 
 
     Returns: the current transferable object on the clipboard 
+
 *java.awt.datatransfer.Clipboard.getData(DataFlavor)*
 
 public |java.lang.Object| getData(java.awt.datatransfer.DataFlavor flavor)
   throws |java.io.IOException|
          |java.awt.datatransfer.UnsupportedFlavorException|
          
-Returns an object representing the current contents of this clipboard in the 
-specified DataFlavor. The class of the object returned is defined by the 
-representation class of flavor. 
+Returns an object representing the current contents of this clipboard in the specified DataFlavor. The class of the object returned is defined by the representation class of 
+flavor. 
+
 
     flavor - the requested DataFlavor for the contents 
 
-    Returns: an object representing the current contents of this clipboard in the specified 
-             DataFlavor 
+    Returns: an object representing the current contents of this clipboard in the specified DataFlavor 
+
 *java.awt.datatransfer.Clipboard.getFlavorListeners()*
 
-public synchronized |java.awt.datatransfer.FlavorListener| getFlavorListeners()
+public synchronized |java.awt.datatransfer.FlavorListener|[] getFlavorListeners()
 
-Returns an array of all the FlavorListeners currently registered on this 
-Clipboard. 
+Returns an array of all the FlavorListeners currently registered on this Clipboard. 
 
 
-    Returns: all of this clipboard's FlavorListeners or an empty array if no listeners are 
-             currently registered 
+
+    Returns: all of this clipboard's FlavorListeners or an empty array if no listeners are currently registered 
+
 *java.awt.datatransfer.Clipboard.getName()*
 
 public |java.lang.String| getName()
@@ -129,26 +117,25 @@ public |java.lang.String| getName()
 Returns the name of this clipboard object. 
 
 
+
 *java.awt.datatransfer.Clipboard.isDataFlavorAvailable(DataFlavor)*
 
 public boolean isDataFlavorAvailable(java.awt.datatransfer.DataFlavor flavor)
 
-Returns whether or not the current contents of this clipboard can be provided 
-in the specified DataFlavor. 
+Returns whether or not the current contents of this clipboard can be provided in the specified DataFlavor. 
+
 
     flavor - the requested DataFlavor for the contents 
 
-    Returns: true if the current contents of this clipboard can be provided in the specified 
-             DataFlavor; false otherwise 
+    Returns: true if the current contents of this clipboard can be provided in the specified DataFlavor; false otherwise 
+
 *java.awt.datatransfer.Clipboard.removeFlavorListener(FlavorListener)*
 
 public synchronized void removeFlavorListener(java.awt.datatransfer.FlavorListener listener)
 
-Removes the specified FlavorListener so that it no longer receives FlavorEvents 
-from this Clipboard. This method performs no function, nor does it throw an 
-exception, if the listener specified by the argument was not previously added 
-to this Clipboard. If listener is null, no exception is thrown and no action is 
-performed. 
+Removes the specified FlavorListener so that it no longer receives FlavorEvents from this Clipboard. This method performs no function, nor does it throw an exception, if the 
+listener specified by the argument was not previously added to this Clipboard. If listener is null, no exception is thrown and no action is performed. 
+
 
     listener - the listener to be removed 
 
@@ -158,19 +145,15 @@ public synchronized void setContents(
   java.awt.datatransfer.Transferable contents,
   java.awt.datatransfer.ClipboardOwner owner)
 
-Sets the current contents of the clipboard to the specified transferable object 
-and registers the specified clipboard owner as the owner of the new contents. 
+Sets the current contents of the clipboard to the specified transferable object and registers the specified clipboard owner as the owner of the new contents. 
 
-If there is an existing owner different from the argument owner, that owner is 
-notified that it no longer holds ownership of the clipboard contents via an 
-invocation of ClipboardOwner.lostOwnership() on that owner. An implementation 
-of setContents() is free not to invoke lostOwnership() directly from this 
-method. For example, lostOwnership() may be invoked later on a different 
-thread. The same applies to FlavorListeners registered on this clipboard. 
+If there is an existing owner different from the argument owner, that owner is notified that it no longer holds ownership of the clipboard contents via an invocation of 
+ClipboardOwner.lostOwnership() on that owner. An implementation of setContents() is free not to invoke lostOwnership() directly from this method. For example, lostOwnership() may 
+be invoked later on a different thread. The same applies to FlavorListeners registered on this clipboard. 
 
-The method throws IllegalStateException if the clipboard is currently 
-unavailable. For example, on some platforms, the system clipboard is 
-unavailable while it is accessed by another application. 
+The method throws IllegalStateException if the clipboard is currently unavailable. For example, on some platforms, the system clipboard is unavailable while it is accessed by 
+another application. 
+
 
     contents - the transferable object representing the clipboard content 
     owner - the object which owns the clipboard content 

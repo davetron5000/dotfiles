@@ -1,4 +1,5 @@
-*javax.rmi.ssl.SslRMIClientSocketFactory* *SslRMIClientSocketFactory* An SslRMIC
+*javax.rmi.ssl.SslRMIClientSocketFactory* *SslRMIClientSocketFactory* An SslRMIClientSocketFactory instance is used by the RMI
+ runtime in order to obtain client sockets for RMI ca
 
 public class SslRMIClientSocketFactory
   extends    |java.lang.Object|
@@ -10,45 +11,33 @@ public class SslRMIClientSocketFactory
 |javax.rmi.ssl.SslRMIClientSocketFactory_Constructors|
 |javax.rmi.ssl.SslRMIClientSocketFactory_Methods|
 
-================================================================================
+====================================================================================================================================================================================
 
 *javax.rmi.ssl.SslRMIClientSocketFactory_Constructors*
-|javax.rmi.ssl.SslRMIClientSocketFactory()|Creates a new SslRMIClientSocketFact
+|javax.rmi.ssl.SslRMIClientSocketFactory()|Creates a new SslRMIClientSocketFactory.
 
 *javax.rmi.ssl.SslRMIClientSocketFactory_Methods*
-|javax.rmi.ssl.SslRMIClientSocketFactory.createSocket(String,int)|Creates an SS
-|javax.rmi.ssl.SslRMIClientSocketFactory.equals(Object)|Indicates whether some 
-|javax.rmi.ssl.SslRMIClientSocketFactory.hashCode()|Returns a hash code value f
+|javax.rmi.ssl.SslRMIClientSocketFactory.createSocket(String,int)|Creates an SSL socket.
+|javax.rmi.ssl.SslRMIClientSocketFactory.equals(Object)|Indicates whether some other object is "equal to" this one.
+|javax.rmi.ssl.SslRMIClientSocketFactory.hashCode()|Returns a hash code value for this  SslRMIClientSocketFactory.
 
 *javax.rmi.ssl.SslRMIClientSocketFactory_Description*
 
-An SslRMIClientSocketFactory instance is used by the RMI runtime in order to 
-obtain client sockets for RMI calls via SSL. 
+An SslRMIClientSocketFactory instance is used by the RMI runtime in order to obtain client sockets for RMI calls via SSL. 
 
-This class implements RMIClientSocketFactory over the Secure Sockets Layer 
-(SSL) or Transport Layer Security (TLS) protocols. 
+This class implements RMIClientSocketFactory over the Secure Sockets Layer (SSL) or Transport Layer Security (TLS) protocols. 
 
-This class creates SSL sockets using the default SSLSocketFactory (see 
-(|javax.net.ssl.SSLSocketFactory|) ). All instances of this class are 
-functionally equivalent. In particular, they all share the same truststore, and 
-the same keystore when client authentication is required by the server. This 
-behavior can be modified in subclasses by overriding the 
-(|javax.rmi.ssl.SslRMIClientSocketFactory|) method; in that case, 
-equals(|javax.rmi.ssl.SslRMIClientSocketFactory|) and 
-hashCode(|javax.rmi.ssl.SslRMIClientSocketFactory|) may also need to be 
-overridden. 
+This class creates SSL sockets using the default SSLSocketFactory (see (|javax.net.ssl.SSLSocketFactory|) ). All instances of this class are functionally equivalent. In 
+particular, they all share the same truststore, and the same keystore when client authentication is required by the server. This behavior can be modified in subclasses by 
+overriding the (|javax.rmi.ssl.SslRMIClientSocketFactory|) method; in that case, equals(|javax.rmi.ssl.SslRMIClientSocketFactory|) and 
+hashCode(|javax.rmi.ssl.SslRMIClientSocketFactory|) may also need to be overridden. 
 
-If the system property javax.rmi.ssl.client.enabledCipherSuites is specified, 
-the (|javax.rmi.ssl.SslRMIClientSocketFactory|) method will call 
-(|javax.net.ssl.SSLSocket|) before returning the socket. The value of this 
-system property is a string that is a comma-separated list of SSL/TLS cipher 
-suites to enable. 
+If the system property javax.rmi.ssl.client.enabledCipherSuites is specified, the (|javax.rmi.ssl.SslRMIClientSocketFactory|) method will call (|javax.net.ssl.SSLSocket|) before 
+returning the socket. The value of this system property is a string that is a comma-separated list of SSL/TLS cipher suites to enable. 
 
-If the system property javax.rmi.ssl.client.enabledProtocols is specified, the 
-(|javax.rmi.ssl.SslRMIClientSocketFactory|) method will call 
-(|javax.net.ssl.SSLSocket|) before returning the socket. The value of this 
-system property is a string that is a comma-separated list of SSL/TLS protocol 
-versions to enable. 
+If the system property javax.rmi.ssl.client.enabledProtocols is specified, the (|javax.rmi.ssl.SslRMIClientSocketFactory|) method will call (|javax.net.ssl.SSLSocket|) before 
+returning the socket. The value of this system property is a string that is a comma-separated list of SSL/TLS protocol versions to enable. 
+
 
 
 *javax.rmi.ssl.SslRMIClientSocketFactory()*
@@ -67,15 +56,12 @@ public |java.net.Socket| createSocket(
          
 Creates an SSL socket. 
 
-If the system property javax.rmi.ssl.client.enabledCipherSuites is specified, 
-this method will call (|javax.net.ssl.SSLSocket|) before returning the socket. 
-The value of this system property is a string that is a comma-separated list of 
-SSL/TLS cipher suites to enable. 
+If the system property javax.rmi.ssl.client.enabledCipherSuites is specified, this method will call (|javax.net.ssl.SSLSocket|) before returning the socket. The value of this 
+system property is a string that is a comma-separated list of SSL/TLS cipher suites to enable. 
 
-If the system property javax.rmi.ssl.client.enabledProtocols is specified, this 
-method will call (|javax.net.ssl.SSLSocket|) before returning the socket. The 
-value of this system property is a string that is a comma-separated list of 
-SSL/TLS protocol versions to enable. 
+If the system property javax.rmi.ssl.client.enabledProtocols is specified, this method will call (|javax.net.ssl.SSLSocket|) before returning the socket. The value of this system 
+property is a string that is a comma-separated list of SSL/TLS protocol versions to enable. 
+
 
 
 *javax.rmi.ssl.SslRMIClientSocketFactory.equals(Object)*
@@ -84,13 +70,10 @@ public boolean equals(java.lang.Object obj)
 
 Indicates whether some other object is "equal to" this one. 
 
-Because all instances of this class are functionally equivalent (they all use 
-the default SSLSocketFactory), this method simply returns 
-this.getClass().equals(obj.getClass()). 
+Because all instances of this class are functionally equivalent (they all use the default SSLSocketFactory), this method simply returns this.getClass().equals(obj.getClass()). 
 
-A subclass should override this method (as well as 
-(|javax.rmi.ssl.SslRMIClientSocketFactory|) ) if its instances are not all 
-functionally equivalent. 
+A subclass should override this method (as well as (|javax.rmi.ssl.SslRMIClientSocketFactory|) ) if its instances are not all functionally equivalent. 
+
 
 
 *javax.rmi.ssl.SslRMIClientSocketFactory.hashCode()*
@@ -100,5 +83,7 @@ public int hashCode()
 Returns a hash code value for this SslRMIClientSocketFactory. 
 
 
+
     Returns: a hash code value for this SslRMIClientSocketFactory. 
+
 

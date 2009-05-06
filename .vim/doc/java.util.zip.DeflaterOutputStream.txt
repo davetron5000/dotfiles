@@ -1,4 +1,5 @@
-*java.util.zip.DeflaterOutputStream* *DeflaterOutputStream* This class implement
+*java.util.zip.DeflaterOutputStream* *DeflaterOutputStream* This class implements an output stream filter for compressing data in
+ the "deflate" compression format.
 
 public class DeflaterOutputStream
   extends    |java.io.FilterOutputStream|
@@ -8,43 +9,39 @@ public class DeflaterOutputStream
 |java.util.zip.DeflaterOutputStream_Constructors|
 |java.util.zip.DeflaterOutputStream_Methods|
 
-================================================================================
+====================================================================================================================================================================================
 
 *java.util.zip.DeflaterOutputStream_Fields*
 |byte[]_java.util.zip.DeflaterOutputStream.buf|
 |java.util.zip.Deflater_java.util.zip.DeflaterOutputStream.def|
 
 *java.util.zip.DeflaterOutputStream_Constructors*
-|java.util.zip.DeflaterOutputStream(OutputStream)|Creates a new output stream w
-|java.util.zip.DeflaterOutputStream(OutputStream,Deflater)|Creates a new output
-|java.util.zip.DeflaterOutputStream(OutputStream,Deflater,int)|Creates a new ou
+|java.util.zip.DeflaterOutputStream(OutputStream)|Creates a new output stream with a default compressor and buffer size.
+|java.util.zip.DeflaterOutputStream(OutputStream,Deflater)|Creates a new output stream with the specified compressor and  a default buffer size.
+|java.util.zip.DeflaterOutputStream(OutputStream,Deflater,int)|Creates a new output stream with the specified compressor and  buffer size.
 
 *java.util.zip.DeflaterOutputStream_Methods*
-|java.util.zip.DeflaterOutputStream.close()|Writes remaining compressed data to
-|java.util.zip.DeflaterOutputStream.deflate()|Writes next block of compressed d
-|java.util.zip.DeflaterOutputStream.finish()|Finishes writing compressed data t
-|java.util.zip.DeflaterOutputStream.write(byte[],int,int)|Writes an array of by
-|java.util.zip.DeflaterOutputStream.write(int)|Writes a byte to the compressed 
+|java.util.zip.DeflaterOutputStream.close()|Writes remaining compressed data to the output stream and closes the  underlying stream.
+|java.util.zip.DeflaterOutputStream.deflate()|Writes next block of compressed data to the output stream.
+|java.util.zip.DeflaterOutputStream.finish()|Finishes writing compressed data to the output stream without closing  the underlying stream.
+|java.util.zip.DeflaterOutputStream.write(byte[],int,int)|Writes an array of bytes to the compressed output stream.
+|java.util.zip.DeflaterOutputStream.write(int)|Writes a byte to the compressed output stream.
 
 *java.util.zip.DeflaterOutputStream_Description*
 
-This class implements an output stream filter for compressing data in the 
-"deflate" compression format. It is also used as the basis for other types of 
-compression filters, such as GZIPOutputStream. 
+This class implements an output stream filter for compressing data in the "deflate" compression format. It is also used as the basis for other types of compression filters, such 
+as GZIPOutputStream. 
+
 
 
 *byte[]_java.util.zip.DeflaterOutputStream.buf*
 
-This class implements an output stream filter for compressing data in the 
-"deflate" compression format. It is also used as the basis for other types of 
-compression filters, such as GZIPOutputStream. 
+Output buffer for writing compressed data. 
 
 
 *java.util.zip.Deflater_java.util.zip.DeflaterOutputStream.def*
 
-This class implements an output stream filter for compressing data in the 
-"deflate" compression format. It is also used as the basis for other types of 
-compression filters, such as GZIPOutputStream. 
+Compressor for this stream. 
 
 
 
@@ -62,8 +59,7 @@ public DeflaterOutputStream(
   java.io.OutputStream out,
   java.util.zip.Deflater def)
 
-Creates a new output stream with the specified compressor and a default buffer 
-size. 
+Creates a new output stream with the specified compressor and a default buffer size. 
 
     out - the output stream 
     def - the compressor ("deflater") 
@@ -86,8 +82,8 @@ Creates a new output stream with the specified compressor and buffer size.
 public void close()
   throws |java.io.IOException|
          
-Writes remaining compressed data to the output stream and closes the underlying 
-stream. 
+Writes remaining compressed data to the output stream and closes the underlying stream. 
+
 
 
 *java.util.zip.DeflaterOutputStream.deflate()*
@@ -98,14 +94,15 @@ protected void deflate()
 Writes next block of compressed data to the output stream. 
 
 
+
 *java.util.zip.DeflaterOutputStream.finish()*
 
 public void finish()
   throws |java.io.IOException|
          
-Finishes writing compressed data to the output stream without closing the 
-underlying stream. Use this method when applying multiple filters in succession 
-to the same output stream. 
+Finishes writing compressed data to the output stream without closing the underlying stream. Use this method when applying multiple filters in succession to the same output 
+stream. 
+
 
 
 *java.util.zip.DeflaterOutputStream.write(byte[],int,int)*
@@ -116,8 +113,8 @@ public void write(
   int len)
   throws |java.io.IOException|
          
-Writes an array of bytes to the compressed output stream. This method will 
-block until all the bytes are written. 
+Writes an array of bytes to the compressed output stream. This method will block until all the bytes are written. 
+
 
     b - the data to be written 
     off - the start offset of the data 
@@ -128,8 +125,8 @@ block until all the bytes are written.
 public void write(int b)
   throws |java.io.IOException|
          
-Writes a byte to the compressed output stream. This method will block until the 
-byte can be written. 
+Writes a byte to the compressed output stream. This method will block until the byte can be written. 
+
 
     b - the byte to be written 
 

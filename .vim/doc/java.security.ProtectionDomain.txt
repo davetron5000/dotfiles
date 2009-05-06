@@ -1,5 +1,6 @@
 *java.security.ProtectionDomain* *ProtectionDomain* 
- This ProtectionDomain clas
+ This ProtectionDomain class encapsulates the characteristics of a domain,
+ which encloses a set of classes whose instances are
 
 public class ProtectionDomain
   extends    |java.lang.Object|
@@ -9,31 +10,29 @@ public class ProtectionDomain
 |java.security.ProtectionDomain_Constructors|
 |java.security.ProtectionDomain_Methods|
 
-================================================================================
+====================================================================================================================================================================================
 
 *java.security.ProtectionDomain_Constructors*
-|java.security.ProtectionDomain(CodeSource,PermissionCollection)|Creates a new 
-|java.security.ProtectionDomain(CodeSource,PermissionCollection,ClassLoader,Principal[])|
+|java.security.ProtectionDomain(CodeSource,PermissionCollection)|Creates a new ProtectionDomain with the given CodeSource and  Permissions.
+|java.security.ProtectionDomain(CodeSource,PermissionCollection,ClassLoader,Principal[])|Creates a new ProtectionDomain qualified by the given CodeSource,  Permissions, ClassLoade
 
 *java.security.ProtectionDomain_Methods*
-|java.security.ProtectionDomain.getClassLoader()|Returns the ClassLoader of thi
-|java.security.ProtectionDomain.getCodeSource()|Returns the CodeSource of this 
-|java.security.ProtectionDomain.getPermissions()|Returns the static permissions
-|java.security.ProtectionDomain.getPrincipals()|Returns an array of principals 
-|java.security.ProtectionDomain.implies(Permission)|Check and see if this Prote
-|java.security.ProtectionDomain.toString()|Convert a ProtectionDomain to a Stri
+|java.security.ProtectionDomain.getClassLoader()|Returns the ClassLoader of this domain.
+|java.security.ProtectionDomain.getCodeSource()|Returns the CodeSource of this domain.
+|java.security.ProtectionDomain.getPermissions()|Returns the static permissions granted to this domain.
+|java.security.ProtectionDomain.getPrincipals()|Returns an array of principals for this domain.
+|java.security.ProtectionDomain.implies(Permission)|Check and see if this ProtectionDomain implies the permissions   expressed in the Permission object.
+|java.security.ProtectionDomain.toString()|Convert a ProtectionDomain to a String.
 
 *java.security.ProtectionDomain_Description*
 
-This ProtectionDomain class encapsulates the characteristics of a domain, which 
-encloses a set of classes whose instances are granted a set of permissions when 
-being executed on behalf of a given set of Principals. 
+This ProtectionDomain class encapsulates the characteristics of a domain, which encloses a set of classes whose instances are granted a set of permissions when being executed on 
+behalf of a given set of Principals. 
 
-A static set of permissions can be bound to a ProtectionDomain when it is 
-constructed; such permissions are granted to the domain regardless of the 
-Policy in force. However, to support dynamic security policies, a 
-ProtectionDomain can also be constructed such that it is dynamically mapped to 
-a set of permissions by the current Policy whenever a permission is checked. 
+A static set of permissions can be bound to a ProtectionDomain when it is constructed; such permissions are granted to the domain regardless of the Policy in force. However, to 
+support dynamic security policies, a ProtectionDomain can also be constructed such that it is dynamically mapped to a set of permissions by the current Policy whenever a 
+permission is checked. 
+
 
 
 *java.security.ProtectionDomain(CodeSource,PermissionCollection)*
@@ -42,10 +41,8 @@ public ProtectionDomain(
   java.security.CodeSource codesource,
   java.security.PermissionCollection permissions)
 
-Creates a new ProtectionDomain with the given CodeSource and Permissions. If 
-the permissions object is not null, then setReadOnly()) will be called on the 
-passed in Permissions object. The only permissions granted to this domain are 
-the ones specified; the current Policy will not be consulted. 
+Creates a new ProtectionDomain with the given CodeSource and Permissions. If the permissions object is not null, then setReadOnly()) will be called on the passed in Permissions 
+object. The only permissions granted to this domain are the ones specified; the current Policy will not be consulted. 
 
     codesource - the codesource associated with this domain 
     permissions - the permissions granted to this domain 
@@ -58,25 +55,18 @@ public ProtectionDomain(
   java.lang.ClassLoader classloader,
   java.security.Principal[] principals)
 
-Creates a new ProtectionDomain qualified by the given CodeSource, Permissions, 
-ClassLoader and array of Principals. If the permissions object is not null, 
-then setReadOnly() will be called on the passed in Permissions object. The 
-permissions granted to this domain are dynamic; they include both the static 
-permissions passed to this constructor, and any permissions granted to this 
-domain by the current Policy at the time a permission is checked. 
+Creates a new ProtectionDomain qualified by the given CodeSource, Permissions, ClassLoader and array of Principals. If the permissions object is not null, then setReadOnly() will 
+be called on the passed in Permissions object. The permissions granted to this domain are dynamic; they include both the static permissions passed to this constructor, and any 
+permissions granted to this domain by the current Policy at the time a permission is checked. 
 
-This constructor is typically used by 
-ClassLoaders(|java.security.SecureClassLoader|) and 
-DomainCombiners(|java.security.DomainCombiner|) which delegate to Policy to 
-actively associate the permissions granted to this domain. This constructor 
-affords the Policy provider the opportunity to augment the supplied 
-PermissionCollection to reflect policy changes. 
+This constructor is typically used by ClassLoaders(|java.security.SecureClassLoader|) and DomainCombiners(|java.security.DomainCombiner|) which delegate to Policy to actively 
+associate the permissions granted to this domain. This constructor affords the Policy provider the opportunity to augment the supplied PermissionCollection to reflect policy 
+changes. 
 
     codesource - the CodeSource associated with this domain 
     permissions - the permissions granted to this domain 
     classloader - the ClassLoader associated with this domain 
-    principals - the array of Principals associated with this domain. The contents of the array 
-       are copied to protect against subsequent modification. 
+    principals - the array of Principals associated with this domain. The contents of the array are copied to protect against subsequent modification. 
 
 *java.security.ProtectionDomain.getClassLoader()*
 
@@ -85,7 +75,9 @@ public final |java.lang.ClassLoader| getClassLoader()
 Returns the ClassLoader of this domain. 
 
 
+
     Returns: the ClassLoader of this domain which may be null. 
+
 *java.security.ProtectionDomain.getCodeSource()*
 
 public final |java.security.CodeSource| getCodeSource()
@@ -93,7 +85,9 @@ public final |java.security.CodeSource| getCodeSource()
 Returns the CodeSource of this domain. 
 
 
+
     Returns: the CodeSource of this domain which may be null. 
+
 *java.security.ProtectionDomain.getPermissions()*
 
 public final |java.security.PermissionCollection| getPermissions()
@@ -101,45 +95,45 @@ public final |java.security.PermissionCollection| getPermissions()
 Returns the static permissions granted to this domain. 
 
 
+
     Returns: the static set of permissions for this domain which may be null. 
+
 *java.security.ProtectionDomain.getPrincipals()*
 
-public final |java.security.Principal| getPrincipals()
+public final |java.security.Principal|[] getPrincipals()
 
 Returns an array of principals for this domain. 
 
 
-    Returns: a non-null array of principals for this domain. Returns a new array each time 
-             this method is called. 
+
+    Returns: a non-null array of principals for this domain. Returns a new array each time this method is called. 
+
 *java.security.ProtectionDomain.implies(Permission)*
 
 public boolean implies(java.security.Permission permission)
 
-Check and see if this ProtectionDomain implies the permissions expressed in the 
-Permission object. 
+Check and see if this ProtectionDomain implies the permissions expressed in the Permission object. 
 
-The set of permissions evaluated is a function of whether the ProtectionDomain 
-was constructed with a static set of permissions or it was bound to a 
-dynamically mapped set of permissions. 
+The set of permissions evaluated is a function of whether the ProtectionDomain was constructed with a static set of permissions or it was bound to a dynamically mapped set of 
+permissions. 
 
-If the ProtectionDomain was constructed to a statically 
-bound(|java.security.ProtectionDomain|) PermissionCollection then the 
-permission will only be checked against the PermissionCollection supplied at 
-construction. 
+If the ProtectionDomain was constructed to a statically bound(|java.security.ProtectionDomain|) PermissionCollection then the permission will only be checked against the 
+PermissionCollection supplied at construction. 
 
-However, if the ProtectionDomain was constructed with the constructor variant 
-which supports dynamically binding(|java.security.ProtectionDomain|) 
-permissions, then the permission will be checked against the combination of the 
-PermissionCollection supplied at construction and the current Policy binding. 
+However, if the ProtectionDomain was constructed with the constructor variant which supports dynamically binding(|java.security.ProtectionDomain|) permissions, then the permission 
+will be checked against the combination of the PermissionCollection supplied at construction and the current Policy binding. 
+
 
     permission - the Permission object to check. 
 
     Returns: true if "permission" is implicit to this ProtectionDomain. 
+
 *java.security.ProtectionDomain.toString()*
 
 public |java.lang.String| toString()
 
 Convert a ProtectionDomain to a String. 
+
 
 
 

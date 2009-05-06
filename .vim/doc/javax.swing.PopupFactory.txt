@@ -1,4 +1,5 @@
-*javax.swing.PopupFactory* *PopupFactory* PopupFactory, as the name implies, is 
+*javax.swing.PopupFactory* *PopupFactory* PopupFactory, as the name implies, is used to obtain
+ instances of Popups.
 
 public class PopupFactory
   extends    |java.lang.Object|
@@ -8,26 +9,23 @@ public class PopupFactory
 |javax.swing.PopupFactory_Constructors|
 |javax.swing.PopupFactory_Methods|
 
-================================================================================
+====================================================================================================================================================================================
 
 *javax.swing.PopupFactory_Constructors*
 |javax.swing.PopupFactory()|
 
 *javax.swing.PopupFactory_Methods*
-|javax.swing.PopupFactory.getPopup(Component,Component,int,int)|Creates a Popup
-|javax.swing.PopupFactory.getSharedInstance()|Returns the shared PopupFactory w
-|javax.swing.PopupFactory.setSharedInstance(PopupFactory)|Sets the PopupFactory
+|javax.swing.PopupFactory.getPopup(Component,Component,int,int)|Creates a Popup for the Component owner  containing the Component contents.
+|javax.swing.PopupFactory.getSharedInstance()|Returns the shared PopupFactory which can be used  to obtain Popups.
+|javax.swing.PopupFactory.setSharedInstance(PopupFactory)|Sets the PopupFactory that will be used to obtain  Popups.
 
 *javax.swing.PopupFactory_Description*
 
-PopupFactory, as the name implies, is used to obtain instances of Popups. 
-Popups are used to display a Component above all other Components in a 
-particular containment hierarchy. The general contract is that once you have 
-obtained a Popup from a PopupFactory, you must invoke hide on the Popup. The 
-typical usage is: 
+PopupFactory, as the name implies, is used to obtain instances of Popups. Popups are used to display a Component above all other Components in a particular containment hierarchy. 
+The general contract is that once you have obtained a Popup from a PopupFactory, you must invoke hide on the Popup. The typical usage is: 
 
-PopupFactory factory = PopupFactory.getSharedInstance(); Popup popup = 
-factory.getPopup(owner, contents, x, y); popup.show(); ... popup.hide(); 
+PopupFactory factory = PopupFactory.getSharedInstance(); Popup popup = factory.getPopup(owner, contents, x, y); popup.show(); ... popup.hide(); 
+
 
 
 *javax.swing.PopupFactory()*
@@ -46,11 +44,10 @@ public |javax.swing.Popup| getPopup(
   int y)
   throws |java.lang.IllegalArgumentException|
          
-Creates a Popup for the Component owner containing the Component contents. 
-owner is used to determine which Window the new Popup will parent the Component 
-the Popup creates to. A null owner implies there is no valid parent. x and y 
-specify the preferred initial location to place the Popup at. Based on screen 
-size, or other paramaters, the Popup may not display at x and y. 
+Creates a Popup for the Component owner containing the Component contents. owner is used to determine which Window the new Popup will parent the Component the Popup creates to. A 
+null owner implies there is no valid parent. x and y specify the preferred initial location to place the Popup at. Based on screen size, or other paramaters, the Popup may not 
+display at x and y. 
+
 
     owner - Component mouse coordinates are relative to, may be null 
     contents - Contents of the Popup 
@@ -58,6 +55,7 @@ size, or other paramaters, the Popup may not display at x and y.
     y - Initial y screen coordinate 
 
     Returns: Popup containing Contents 
+
 *javax.swing.PopupFactory.getSharedInstance()*
 
 public static |javax.swing.PopupFactory| getSharedInstance()
@@ -65,13 +63,15 @@ public static |javax.swing.PopupFactory| getSharedInstance()
 Returns the shared PopupFactory which can be used to obtain Popups. 
 
 
+
     Returns: Shared PopupFactory 
+
 *javax.swing.PopupFactory.setSharedInstance(PopupFactory)*
 
 public static void setSharedInstance(javax.swing.PopupFactory factory)
 
-Sets the PopupFactory that will be used to obtain Popups. This will throw an 
-IllegalArgumentException if factory is null. 
+Sets the PopupFactory that will be used to obtain Popups. This will throw an IllegalArgumentException if factory is null. 
+
 
     factory - Shared PopupFactory 
 

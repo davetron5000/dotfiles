@@ -1,6 +1,7 @@
-*java.util.concurrent.atomic.AtomicReferenceArray* *AtomicReferenceArray* An arr
+*java.util.concurrent.atomic.AtomicReferenceArray* *AtomicReferenceArray* An array of object references in which elements may be updated
+ atomically.
 
-public class AtomicReferenceArray
+public class AtomicReferenceArray<E>
   extends    |java.lang.Object|
   implements |java.io.Serializable|
 
@@ -9,34 +10,33 @@ public class AtomicReferenceArray
 |java.util.concurrent.atomic.AtomicReferenceArray_Constructors|
 |java.util.concurrent.atomic.AtomicReferenceArray_Methods|
 
-================================================================================
+====================================================================================================================================================================================
 
 *java.util.concurrent.atomic.AtomicReferenceArray_Constructors*
-|java.util.concurrent.atomic.AtomicReferenceArray(E[])|Create a new AtomicRefer
-|java.util.concurrent.atomic.AtomicReferenceArray(int)|Create a new AtomicRefer
+|java.util.concurrent.atomic.AtomicReferenceArray(E[])|Create a new AtomicReferenceArray with the same length as, and  all elements copied from, the given array.
+|java.util.concurrent.atomic.AtomicReferenceArray(int)|Create a new AtomicReferenceArray of given length.
 
 *java.util.concurrent.atomic.AtomicReferenceArray_Methods*
-|java.util.concurrent.atomic.AtomicReferenceArray.compareAndSet(int,E,E)|Atomic
-|java.util.concurrent.atomic.AtomicReferenceArray.get(int)|Get the current valu
-|java.util.concurrent.atomic.AtomicReferenceArray.getAndSet(int,E)|Set the elem
-|java.util.concurrent.atomic.AtomicReferenceArray.length()|Returns the length o
-|java.util.concurrent.atomic.AtomicReferenceArray.set(int,E)|Set the element at
-|java.util.concurrent.atomic.AtomicReferenceArray.toString()|Returns the String
-|java.util.concurrent.atomic.AtomicReferenceArray.weakCompareAndSet(int,E,E)|At
+|java.util.concurrent.atomic.AtomicReferenceArray.compareAndSet(int,E,E)|Atomically set the value to the given updated value  if the current value == the expected value.
+|java.util.concurrent.atomic.AtomicReferenceArray.get(int)|Get the current value at position i.
+|java.util.concurrent.atomic.AtomicReferenceArray.getAndSet(int,E)|Set the element at position i to the given value and return the  old value.
+|java.util.concurrent.atomic.AtomicReferenceArray.length()|Returns the length of the array.
+|java.util.concurrent.atomic.AtomicReferenceArray.set(int,E)|Set the element at position i to the given value.
+|java.util.concurrent.atomic.AtomicReferenceArray.toString()|Returns the String representation of the current values of array.
+|java.util.concurrent.atomic.AtomicReferenceArray.weakCompareAndSet(int,E,E)|Atomically set the value to the given updated value  if the current value == the expected value.
 
 *java.util.concurrent.atomic.AtomicReferenceArray_Description*
 
-An array of object references in which elements may be updated atomically. See 
-the (|java.util.concurrent.atomic|) package specification for description of 
-the properties of atomic variables. 
+An array of object references in which elements may be updated atomically. See the (|java.util.concurrent.atomic|) package specification for description of the properties of 
+atomic variables. 
+
 
 
 *java.util.concurrent.atomic.AtomicReferenceArray(E[])*
 
-public AtomicReferenceArray(java.lang.Object[] array)
+public AtomicReferenceArray(E[] array)
 
-Create a new AtomicReferenceArray with the same length as, and all elements 
-copied from, the given array. 
+Create a new AtomicReferenceArray with the same length as, and all elements copied from, the given array. 
 
     array - the array to copy elements from 
 
@@ -52,39 +52,43 @@ Create a new AtomicReferenceArray of given length.
 
 public final boolean compareAndSet(
   int i,
-  java.lang.Object expect,
-  java.lang.Object update)
+  E expect,
+  E update)
 
-Atomically set the value to the given updated value if the current value == the 
-expected value. 
+Atomically set the value to the given updated value if the current value == the expected value. 
+
 
     i - the index 
     expect - the expected value 
     update - the new value 
 
-    Returns: true if successful. False return indicates that the actual value was not equal 
-             to the expected value. 
+    Returns: true if successful. False return indicates that the actual value was not equal to the expected value. 
+
 *java.util.concurrent.atomic.AtomicReferenceArray.get(int)*
 
-public final |java.lang.Object| get(int i)
+public final |E| get(int i)
 
 Get the current value at position i. 
+
 
     i - the index 
 
     Returns: the current value 
+
 *java.util.concurrent.atomic.AtomicReferenceArray.getAndSet(int,E)*
 
-public final |java.lang.Object| getAndSet(
+public final |E| getAndSet(
   int i,
-  java.lang.Object newValue)
+  E newValue)
 
 Set the element at position i to the given value and return the old value. 
+
 
     i - the index 
     newValue - the new value 
 
     Returns: the previous value 
+
 *java.util.concurrent.atomic.AtomicReferenceArray.length()*
 
 public final int length()
@@ -92,14 +96,17 @@ public final int length()
 Returns the length of the array. 
 
 
+
     Returns: the length of the array 
+
 *java.util.concurrent.atomic.AtomicReferenceArray.set(int,E)*
 
 public final void set(
   int i,
-  java.lang.Object newValue)
+  E newValue)
 
 Set the element at position i to the given value. 
+
 
     i - the index 
     newValue - the new value 
@@ -111,20 +118,23 @@ public |java.lang.String| toString()
 Returns the String representation of the current values of array. 
 
 
+
     Returns: the String representation of the current values of array. 
+
 *java.util.concurrent.atomic.AtomicReferenceArray.weakCompareAndSet(int,E,E)*
 
 public final boolean weakCompareAndSet(
   int i,
-  java.lang.Object expect,
-  java.lang.Object update)
+  E expect,
+  E update)
 
-Atomically set the value to the given updated value if the current value == the 
-expected value. May fail spuriously. 
+Atomically set the value to the given updated value if the current value == the expected value. May fail spuriously. 
+
 
     i - the index 
     expect - the expected value 
     update - the new value 
 
     Returns: true if successful. 
+
 

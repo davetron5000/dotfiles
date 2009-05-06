@@ -1,4 +1,5 @@
-*java.io.PushbackReader* *PushbackReader* A character-stream reader that allows 
+*java.io.PushbackReader* *PushbackReader* A character-stream reader that allows characters to be pushed back into the
+ stream.
 
 public class PushbackReader
   extends    |java.io.FilterReader|
@@ -8,29 +9,29 @@ public class PushbackReader
 |java.io.PushbackReader_Constructors|
 |java.io.PushbackReader_Methods|
 
-================================================================================
+====================================================================================================================================================================================
 
 *java.io.PushbackReader_Constructors*
-|java.io.PushbackReader(Reader)|Create a new pushback reader with a one-charact
-|java.io.PushbackReader(Reader,int)|Create a new pushback reader with a pushbac
+|java.io.PushbackReader(Reader)|Create a new pushback reader with a one-character pushback buffer.
+|java.io.PushbackReader(Reader,int)|Create a new pushback reader with a pushback buffer of the given size.
 
 *java.io.PushbackReader_Methods*
 |java.io.PushbackReader.close()|Close the stream.
 |java.io.PushbackReader.mark(int)|Mark the present position in the stream.
-|java.io.PushbackReader.markSupported()|Tell whether this stream supports the m
+|java.io.PushbackReader.markSupported()|Tell whether this stream supports the mark() operation, which it does  not.
 |java.io.PushbackReader.read()|Read a single character.
-|java.io.PushbackReader.read(char[],int,int)|Read characters into a portion of 
+|java.io.PushbackReader.read(char[],int,int)|Read characters into a portion of an array.
 |java.io.PushbackReader.ready()|Tell whether this stream is ready to be read.
 |java.io.PushbackReader.reset()|Reset the stream.
 |java.io.PushbackReader.skip(long)|Skip characters.
-|java.io.PushbackReader.unread(char[])|Push back an array of characters by copy
-|java.io.PushbackReader.unread(char[],int,int)|Push back a portion of an array 
+|java.io.PushbackReader.unread(char[])|Push back an array of characters by copying it to the front of the  pushback buffer.
+|java.io.PushbackReader.unread(char[],int,int)|Push back a portion of an array of characters by copying it to the  front of the pushback buffer.
 |java.io.PushbackReader.unread(int)|Push back a single character.
 
 *java.io.PushbackReader_Description*
 
-A character-stream reader that allows characters to be pushed back into the 
-stream. 
+A character-stream reader that allows characters to be pushed back into the stream. 
+
 
 
 *java.io.PushbackReader(Reader)*
@@ -60,13 +61,14 @@ public void close()
 Close the stream. 
 
 
+
 *java.io.PushbackReader.mark(int)*
 
 public void mark(int readAheadLimit)
   throws |java.io.IOException|
          
-Mark the present position in the stream. The mark for class PushbackReader 
-always throws an exception. 
+Mark the present position in the stream. The mark for class PushbackReader always throws an exception. 
+
 
 
 *java.io.PushbackReader.markSupported()*
@@ -74,6 +76,7 @@ always throws an exception.
 public boolean markSupported()
 
 Tell whether this stream supports the mark() operation, which it does not. 
+
 
 
 *java.io.PushbackReader.read()*
@@ -84,7 +87,9 @@ public int read()
 Read a single character. 
 
 
+
     Returns: The character read, or -1 if the end of the stream has been reached 
+
 *java.io.PushbackReader.read(char[],int,int)*
 
 public int read(
@@ -95,11 +100,13 @@ public int read(
          
 Read characters into a portion of an array. 
 
+
     cbuf - Destination buffer 
     off - Offset at which to start writing characters 
     len - Maximum number of characters to read 
 
     Returns: The number of characters read, or -1 if the end of the stream has been reached 
+
 *java.io.PushbackReader.ready()*
 
 public boolean ready()
@@ -108,13 +115,14 @@ public boolean ready()
 Tell whether this stream is ready to be read. 
 
 
+
 *java.io.PushbackReader.reset()*
 
 public void reset()
   throws |java.io.IOException|
          
-Reset the stream. The reset method of PushbackReader always throws an 
-exception. 
+Reset the stream. The reset method of PushbackReader always throws an exception. 
+
 
 
 *java.io.PushbackReader.skip(long)*
@@ -122,21 +130,21 @@ exception.
 public long skip(long n)
   throws |java.io.IOException|
          
-Skip characters. This method will block until some characters are available, an 
-I/O error occurs, or the end of the stream is reached. 
+Skip characters. This method will block until some characters are available, an I/O error occurs, or the end of the stream is reached. 
+
 
     n - The number of characters to skip 
 
     Returns: The number of characters actually skipped 
+
 *java.io.PushbackReader.unread(char[])*
 
 public void unread(char[] cbuf)
   throws |java.io.IOException|
          
-Push back an array of characters by copying it to the front of the pushback 
-buffer. After this method returns, the next character to be read will have the 
-value cbuf[0], the character after that will have the value cbuf[1], and so 
-forth. 
+Push back an array of characters by copying it to the front of the pushback buffer. After this method returns, the next character to be read will have the value cbuf[0], the 
+character after that will have the value cbuf[1], and so forth. 
+
 
     cbuf - Character array to push back 
 
@@ -148,10 +156,9 @@ public void unread(
   int len)
   throws |java.io.IOException|
          
-Push back a portion of an array of characters by copying it to the front of the 
-pushback buffer. After this method returns, the next character to be read will 
-have the value cbuf[off], the character after that will have the value 
-cbuf[off+1], and so forth. 
+Push back a portion of an array of characters by copying it to the front of the pushback buffer. After this method returns, the next character to be read will have the value 
+cbuf[off], the character after that will have the value cbuf[off+1], and so forth. 
+
 
     cbuf - Character array 
     off - Offset of first character to push back 
@@ -163,6 +170,7 @@ public void unread(int c)
   throws |java.io.IOException|
          
 Push back a single character. 
+
 
     c - The character to push back 
 

@@ -1,5 +1,5 @@
 *java.beans.beancontext.BeanContext* *BeanContext* 
- The BeanContext acts a logi
+ The BeanContext acts a logical hierarchical container for JavaBeans.
 
 public interface interface BeanContext
 
@@ -13,26 +13,27 @@ public interface interface BeanContext
 |java.beans.beancontext.BeanContext_Constructors|
 |java.beans.beancontext.BeanContext_Methods|
 
-================================================================================
+====================================================================================================================================================================================
 
 *java.beans.beancontext.BeanContext_Fields*
 |java.lang.Object_java.beans.beancontext.BeanContext.globalHierarchyLock|
 
 *java.beans.beancontext.BeanContext_Methods*
-|java.beans.beancontext.BeanContext.addBeanContextMembershipListener(BeanContextMembershipListener)|
-|java.beans.beancontext.BeanContext.getResource(String,BeanContextChild)|Analag
-|java.beans.beancontext.BeanContext.getResourceAsStream(String,BeanContextChild)|
-|java.beans.beancontext.BeanContext.instantiateChild(String)|Instantiate the ja
-|java.beans.beancontext.BeanContext.removeBeanContextMembershipListener(BeanContextMembershipListener)|
+|java.beans.beancontext.BeanContext.addBeanContextMembershipListener(BeanContextMembershipListener)|Adds the specified BeanContextMembershipListener   to receive BeanContextMember
+|java.beans.beancontext.BeanContext.getResource(String,BeanContextChild)|Analagous to java.lang.ClassLoader.getResource(), this  method allows a BeanContext implementation to inte
+|java.beans.beancontext.BeanContext.getResourceAsStream(String,BeanContextChild)|Analagous to java.lang.ClassLoader.getResourceAsStream(),   this method allows a BeanContext imple
+|java.beans.beancontext.BeanContext.instantiateChild(String)|Instantiate the javaBean named as a   child of this BeanContext.
+|java.beans.beancontext.BeanContext.removeBeanContextMembershipListener(BeanContextMembershipListener)|Removes the specified BeanContextMembershipListener   so that it no longer r
 
 *java.beans.beancontext.BeanContext_Description*
 
 The BeanContext acts a logical hierarchical container for JavaBeans. 
 
 
+
 *java.lang.Object_java.beans.beancontext.BeanContext.globalHierarchyLock*
 
-The BeanContext acts a logical hierarchical container for JavaBeans. 
+This global lock is used by both BeanContext and BeanContextServices implementors to serialize changes in a BeanContext hierarchy and any service requests etc. 
 
 
 
@@ -40,9 +41,8 @@ The BeanContext acts a logical hierarchical container for JavaBeans.
 
 public void addBeanContextMembershipListener(java.beans.beancontext.BeanContextMembershipListener bcml)
 
-Adds the specified BeanContextMembershipListener to receive 
-BeanContextMembershipEvents from this BeanContext whenever it adds or removes a 
-child Component(s). 
+Adds the specified BeanContextMembershipListener to receive BeanContextMembershipEvents from this BeanContext whenever it adds or removes a child Component(s). 
+
 
     bcml - the BeanContextMembershipListener to be added 
 
@@ -53,14 +53,14 @@ public |java.net.URL| getResource(
   java.beans.beancontext.BeanContextChild bcc)
   throws |java.lang.IllegalArgumentException|
          
-Analagous to java.lang.ClassLoader.getResource(), this method allows a 
-BeanContext implementation to interpose behavior between the child Component 
-and underlying ClassLoader. 
+Analagous to java.lang.ClassLoader.getResource(), this method allows a BeanContext implementation to interpose behavior between the child Component and underlying ClassLoader. 
+
 
     name - the resource name 
     bcc - the specified child 
 
     Returns: a URL for the named resource for the specified child 
+
 *java.beans.beancontext.BeanContext.getResourceAsStream(String,BeanContextChild)*
 
 public |java.io.InputStream| getResourceAsStream(
@@ -68,24 +68,24 @@ public |java.io.InputStream| getResourceAsStream(
   java.beans.beancontext.BeanContextChild bcc)
   throws |java.lang.IllegalArgumentException|
          
-Analagous to java.lang.ClassLoader.getResourceAsStream(), this method allows a 
-BeanContext implementation to interpose behavior between the child Component 
-and underlying ClassLoader. 
+Analagous to java.lang.ClassLoader.getResourceAsStream(), this method allows a BeanContext implementation to interpose behavior between the child Component and underlying 
+ClassLoader. 
+
 
     name - the resource name 
     bcc - the specified child 
 
-    Returns: an InputStream for reading the resource, or null if the resource could not be 
-             found. 
+    Returns: an InputStream for reading the resource, or null if the resource could not be found. 
+
 *java.beans.beancontext.BeanContext.instantiateChild(String)*
 
 public |java.lang.Object| instantiateChild(java.lang.String beanName)
   throws |java.lang.ClassNotFoundException|
          |java.io.IOException|
          
-Instantiate the javaBean named as a child of this BeanContext. The 
-implementation of the JavaBean is derived from the value of the beanName 
-parameter, and is defined by the java.beans.Beans.instantiate() method. 
+Instantiate the javaBean named as a child of this BeanContext. The implementation of the JavaBean is derived from the value of the beanName parameter, and is defined by the 
+java.beans.Beans.instantiate() method. 
+
 
     beanName - The name of the JavaBean to instantiate as a child of this BeanContext 
 
@@ -93,9 +93,8 @@ parameter, and is defined by the java.beans.Beans.instantiate() method.
 
 public void removeBeanContextMembershipListener(java.beans.beancontext.BeanContextMembershipListener bcml)
 
-Removes the specified BeanContextMembershipListener so that it no longer 
-receives BeanContextMembershipEvents when the child Component(s) are added or 
-removed. 
+Removes the specified BeanContextMembershipListener so that it no longer receives BeanContextMembershipEvents when the child Component(s) are added or removed. 
+
 
     bcml - the BeanContextMembershipListener to be removed 
 

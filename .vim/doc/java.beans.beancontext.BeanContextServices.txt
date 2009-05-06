@@ -1,5 +1,6 @@
 *java.beans.beancontext.BeanContextServices* *BeanContextServices* 
- The BeanCon
+ The BeanContextServices interface provides a mechanism for a BeanContext
+ to expose generic "services" to the B
 
 public interface interface BeanContextServices
 
@@ -11,23 +12,23 @@ public interface interface BeanContextServices
 |java.beans.beancontext.BeanContextServices_Constructors|
 |java.beans.beancontext.BeanContextServices_Methods|
 
-================================================================================
+====================================================================================================================================================================================
 
 *java.beans.beancontext.BeanContextServices_Methods*
-|java.beans.beancontext.BeanContextServices.addBeanContextServicesListener(BeanContextServicesListener)|
-|java.beans.beancontext.BeanContextServices.addService(Class,BeanContextServiceProvider)|
-|java.beans.beancontext.BeanContextServices.getCurrentServiceClasses()|Gets the
-|java.beans.beancontext.BeanContextServices.getCurrentServiceSelectors(Class)|G
-|java.beans.beancontext.BeanContextServices.getService(BeanContextChild,Object,Class,Object,BeanContextServiceRevokedListener)|
-|java.beans.beancontext.BeanContextServices.hasService(Class)|Reports whether o
-|java.beans.beancontext.BeanContextServices.releaseService(BeanContextChild,Object,Object)|
-|java.beans.beancontext.BeanContextServices.removeBeanContextServicesListener(BeanContextServicesListener)|
-|java.beans.beancontext.BeanContextServices.revokeService(Class,BeanContextServiceProvider,boolean)|
+|java.beans.beancontext.BeanContextServices.addBeanContextServicesListener(BeanContextServicesListener)|Adds a BeanContextServicesListener to this BeanContext
+|java.beans.beancontext.BeanContextServices.addService(Class,BeanContextServiceProvider)|Adds a service to this BeanContext.
+|java.beans.beancontext.BeanContextServices.getCurrentServiceClasses()|Gets the currently available services for this context.
+|java.beans.beancontext.BeanContextServices.getCurrentServiceSelectors(Class)|Gets the list of service dependent service parameters   (Service Selectors) for the specified service
+|java.beans.beancontext.BeanContextServices.getService(BeanContextChild,Object,Class,Object,BeanContextServiceRevokedListener)|A BeanContextChild, or any arbitrary object   associ
+|java.beans.beancontext.BeanContextServices.hasService(Class)|Reports whether or not a given service is   currently available from this context.
+|java.beans.beancontext.BeanContextServices.releaseService(BeanContextChild,Object,Object)|Releases a BeanContextChild's   (or any arbitrary object associated with a BeanContextCh
+|java.beans.beancontext.BeanContextServices.removeBeanContextServicesListener(BeanContextServicesListener)|Removes a BeanContextServicesListener   from this BeanContext
+|java.beans.beancontext.BeanContextServices.revokeService(Class,BeanContextServiceProvider,boolean)|BeanContextServiceProviders wishing to remove   a currently registered service 
 
 *java.beans.beancontext.BeanContextServices_Description*
 
-The BeanContextServices interface provides a mechanism for a BeanContext to 
-expose generic "services" to the BeanContextChild objects within. 
+The BeanContextServices interface provides a mechanism for a BeanContext to expose generic "services" to the BeanContextChild objects within. 
+
 
 
 *java.beans.beancontext.BeanContextServices.addBeanContextServicesListener(BeanContextServicesListener)*
@@ -35,6 +36,7 @@ expose generic "services" to the BeanContextChild objects within.
 public void addBeanContextServicesListener(java.beans.beancontext.BeanContextServicesListener bcsl)
 
 Adds a BeanContextServicesListener to this BeanContext 
+
 
     bcsl - the BeanContextServicesListener to add 
 
@@ -44,13 +46,11 @@ public boolean addService(
   java.lang.Class serviceClass,
   java.beans.beancontext.BeanContextServiceProvider serviceProvider)
 
-Adds a service to this BeanContext. BeanContextServiceProviders call this 
-method to register a particular service with this context. If the service has 
-not previously been added, the BeanContextServices associates the service with 
-the BeanContextServiceProvider and fires a BeanContextServiceAvailableEvent to 
-all currently registered BeanContextServicesListeners. The method then returns 
-true, indicating that the addition of the service was successful. If the given 
-service has already been added, this method simply returns false. 
+Adds a service to this BeanContext. BeanContextServiceProviders call this method to register a particular service with this context. If the service has not previously been added, 
+the BeanContextServices associates the service with the BeanContextServiceProvider and fires a BeanContextServiceAvailableEvent to all currently registered 
+BeanContextServicesListeners. The method then returns true, indicating that the addition of the service was successful. If the given service has already been added, this method 
+simply returns false. 
+
 
     serviceClass - the service to add 
     serviceProvider - the BeanContextServiceProvider associated with the service 
@@ -62,18 +62,21 @@ public |java.util.Iterator| getCurrentServiceClasses()
 Gets the currently available services for this context. 
 
 
+
     Returns: an Iterator consisting of the currently available services 
+
 *java.beans.beancontext.BeanContextServices.getCurrentServiceSelectors(Class)*
 
 public |java.util.Iterator| getCurrentServiceSelectors(java.lang.Class serviceClass)
 
-Gets the list of service dependent service parameters (Service Selectors) for 
-the specified service, by calling getCurrentServiceSelectors() on the 
-underlying BeanContextServiceProvider. 
+Gets the list of service dependent service parameters (Service Selectors) for the specified service, by calling getCurrentServiceSelectors() on the underlying 
+BeanContextServiceProvider. 
+
 
     serviceClass - the specified service 
 
     Returns: the currently available service selectors for the named serviceClass 
+
 *java.beans.beancontext.BeanContextServices.getService(BeanContextChild,Object,Class,Object,BeanContextServiceRevokedListener)*
 
 public |java.lang.Object| getService(
@@ -84,30 +87,29 @@ public |java.lang.Object| getService(
   java.beans.beancontext.BeanContextServiceRevokedListener bcsrl)
   throws |java.util.TooManyListenersException|
          
-A BeanContextChild, or any arbitrary object associated with a BeanContextChild, 
-may obtain a reference to a currently registered service from its nesting 
-BeanContextServices via invocation of this method. When invoked, this method 
-gets the service by calling the getService() method on the underlying 
-BeanContextServiceProvider. 
+A BeanContextChild, or any arbitrary object associated with a BeanContextChild, may obtain a reference to a currently registered service from its nesting BeanContextServices via 
+invocation of this method. When invoked, this method gets the service by calling the getService() method on the underlying BeanContextServiceProvider. 
+
 
     child - the BeanContextChild associated with this request 
     requestor - the object requesting the service 
     serviceClass - class of the requested service 
     serviceSelector - the service dependent parameter 
-    bcsrl - the BeanContextServiceRevokedListener to notify if the service should later 
-       become revoked 
+    bcsrl - the BeanContextServiceRevokedListener to notify if the service should later become revoked 
 
     Returns: a reference to this context's named Service as requested or null 
+
 *java.beans.beancontext.BeanContextServices.hasService(Class)*
 
 public boolean hasService(java.lang.Class serviceClass)
 
-Reports whether or not a given service is currently available from this 
-context. 
+Reports whether or not a given service is currently available from this context. 
+
 
     serviceClass - the service in question 
 
     Returns: true if the service is available 
+
 *java.beans.beancontext.BeanContextServices.releaseService(BeanContextChild,Object,Object)*
 
 public void releaseService(
@@ -115,9 +117,9 @@ public void releaseService(
   java.lang.Object requestor,
   java.lang.Object service)
 
-Releases a BeanContextChild's (or any arbitrary object associated with a 
-BeanContextChild) reference to the specified service by calling 
-releaseService() on the underlying BeanContextServiceProvider. 
+Releases a BeanContextChild's (or any arbitrary object associated with a BeanContextChild) reference to the specified service by calling releaseService() on the underlying 
+BeanContextServiceProvider. 
+
 
     child - the BeanContextChild 
     requestor - the requestor 
@@ -129,6 +131,7 @@ public void removeBeanContextServicesListener(java.beans.beancontext.BeanContext
 
 Removes a BeanContextServicesListener from this BeanContext 
 
+
     bcsl - the BeanContextServicesListener to remove from this context 
 
 *java.beans.beancontext.BeanContextServices.revokeService(Class,BeanContextServiceProvider,boolean)*
@@ -138,18 +141,13 @@ public void revokeService(
   java.beans.beancontext.BeanContextServiceProvider serviceProvider,
   boolean revokeCurrentServicesNow)
 
-BeanContextServiceProviders wishing to remove a currently registered service 
-from this context may do so via invocation of this method. Upon revocation of 
-the service, the BeanContextServices fires a BeanContextServiceRevokedEvent to 
-its list of currently registered BeanContextServiceRevokedListeners and 
-BeanContextServicesListeners. 
+BeanContextServiceProviders wishing to remove a currently registered service from this context may do so via invocation of this method. Upon revocation of the service, the 
+BeanContextServices fires a BeanContextServiceRevokedEvent to its list of currently registered BeanContextServiceRevokedListeners and BeanContextServicesListeners. 
+
 
     serviceClass - the service to revoke from this BeanContextServices 
-    serviceProvider - the BeanContextServiceProvider associated with this particular service that is 
-       being revoked 
-    revokeCurrentServicesNow - a value of true indicates an exceptional circumstance where the 
-       BeanContextServiceProvider or BeanContextServices wishes to immediately 
-       terminate service to all currently outstanding references to the 
-       specified service. 
+    serviceProvider - the BeanContextServiceProvider associated with this particular service that is being revoked 
+    revokeCurrentServicesNow - a value of true indicates an exceptional circumstance where the BeanContextServiceProvider or BeanContextServices wishes to immediately terminate service to all currently 
+       outstanding references to the specified service. 
 
 

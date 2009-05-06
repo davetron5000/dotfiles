@@ -1,4 +1,5 @@
-*java.awt.image.ImageConsumer* *ImageConsumer* The interface for objects express
+*java.awt.image.ImageConsumer* *ImageConsumer* The interface for objects expressing interest in image data through
+ the ImageProducer interfaces.
 
 public interface interface ImageConsumer
 
@@ -8,7 +9,7 @@ public interface interface ImageConsumer
 |java.awt.image.ImageConsumer_Constructors|
 |java.awt.image.ImageConsumer_Methods|
 
-================================================================================
+====================================================================================================================================================================================
 
 *java.awt.image.ImageConsumer_Fields*
 |int_java.awt.image.ImageConsumer.COMPLETESCANLINES|
@@ -22,92 +23,68 @@ public interface interface ImageConsumer
 |int_java.awt.image.ImageConsumer.TOPDOWNLEFTRIGHT|
 
 *java.awt.image.ImageConsumer_Methods*
-|java.awt.image.ImageConsumer.imageComplete(int)|The imageComplete method is ca
-|java.awt.image.ImageConsumer.setColorModel(ColorModel)|Sets the ColorModel obj
-|java.awt.image.ImageConsumer.setDimensions(int,int)|The dimensions of the sour
-|java.awt.image.ImageConsumer.setHints(int)|Sets the hints that the ImageConsum
-|java.awt.image.ImageConsumer.setPixels(int,int,int,int,ColorModel,byte[],int,int)|
-|java.awt.image.ImageConsumer.setPixels(int,int,int,int,ColorModel,int[],int,int)|
-|java.awt.image.ImageConsumer.setProperties(Hashtable)|Sets the extensible list
+|java.awt.image.ImageConsumer.imageComplete(int)|The imageComplete method is called when the ImageProducer is  finished delivering all of the pixels that the source image  contain
+|java.awt.image.ImageConsumer.setColorModel(ColorModel)|Sets the ColorModel object used for the majority of  the pixels reported using the setPixels method  calls.
+|java.awt.image.ImageConsumer.setDimensions(int,int)|The dimensions of the source image are reported using the  setDimensions method call.
+|java.awt.image.ImageConsumer.setHints(int)|Sets the hints that the ImageConsumer uses to process the  pixels delivered by the ImageProducer.
+|java.awt.image.ImageConsumer.setPixels(int,int,int,int,ColorModel,byte[],int,int)|Delivers the pixels of the image with one or more calls  to this method.
+|java.awt.image.ImageConsumer.setPixels(int,int,int,int,ColorModel,int[],int,int)|The pixels of the image are delivered using one or more calls  to the setPixels method.
+|java.awt.image.ImageConsumer.setProperties(Hashtable<?,?>)|Sets the extensible list of properties associated with this image.
 
 *java.awt.image.ImageConsumer_Description*
 
-The interface for objects expressing interest in image data through the 
-ImageProducer interfaces. When a consumer is added to an image producer, the 
-producer delivers all of the data about the image using the method calls 
-defined in this interface. 
+The interface for objects expressing interest in image data through the ImageProducer interfaces. When a consumer is added to an image producer, the producer delivers all of the 
+data about the image using the method calls defined in this interface. 
+
 
 
 *int_java.awt.image.ImageConsumer.COMPLETESCANLINES*
 
-The interface for objects expressing interest in image data through the 
-ImageProducer interfaces. When a consumer is added to an image producer, the 
-producer delivers all of the data about the image using the method calls 
-defined in this interface. 
+The pixels will be delivered in (multiples of) complete scanlines at a time. 
 
 
 *int_java.awt.image.ImageConsumer.IMAGEABORTED*
 
-The interface for objects expressing interest in image data through the 
-ImageProducer interfaces. When a consumer is added to an image producer, the 
-producer delivers all of the data about the image using the method calls 
-defined in this interface. 
+The image creation process was deliberately aborted. 
 
 
 *int_java.awt.image.ImageConsumer.IMAGEERROR*
 
-The interface for objects expressing interest in image data through the 
-ImageProducer interfaces. When a consumer is added to an image producer, the 
-producer delivers all of the data about the image using the method calls 
-defined in this interface. 
+An error was encountered while producing the image. 
 
 
 *int_java.awt.image.ImageConsumer.RANDOMPIXELORDER*
 
-The interface for objects expressing interest in image data through the 
-ImageProducer interfaces. When a consumer is added to an image producer, the 
-producer delivers all of the data about the image using the method calls 
-defined in this interface. 
+The pixels will be delivered in a random order. This tells the ImageConsumer not to use any optimizations that depend on the order of pixel delivery, which should be the default 
+assumption in the absence of any call to the setHints method. 
 
 
 *int_java.awt.image.ImageConsumer.SINGLEFRAME*
 
-The interface for objects expressing interest in image data through the 
-ImageProducer interfaces. When a consumer is added to an image producer, the 
-producer delivers all of the data about the image using the method calls 
-defined in this interface. 
+The image contain a single static image. The pixels will be defined in calls to the setPixels methods and then the imageComplete method will be called with the STATICIMAGEDONE 
+flag after which no more image data will be delivered. An example of an image type which would not meet these criteria would be the output of a video feed, or the representation 
+of a 3D rendering being manipulated by the user. The end of each frame in those types of images will be indicated by calling imageComplete with the SINGLEFRAMEDONE flag. 
 
 
 *int_java.awt.image.ImageConsumer.SINGLEFRAMEDONE*
 
-The interface for objects expressing interest in image data through the 
-ImageProducer interfaces. When a consumer is added to an image producer, the 
-producer delivers all of the data about the image using the method calls 
-defined in this interface. 
+One frame of the image is complete but there are more frames to be delivered. 
 
 
 *int_java.awt.image.ImageConsumer.SINGLEPASS*
 
-The interface for objects expressing interest in image data through the 
-ImageProducer interfaces. When a consumer is added to an image producer, the 
-producer delivers all of the data about the image using the method calls 
-defined in this interface. 
+The pixels will be delivered in a single pass. Each pixel will appear in only one call to any of the setPixels methods. An example of an image format which does not meet this 
+criterion is a progressive JPEG image which defines pixels in multiple passes, each more refined than the previous. 
 
 
 *int_java.awt.image.ImageConsumer.STATICIMAGEDONE*
 
-The interface for objects expressing interest in image data through the 
-ImageProducer interfaces. When a consumer is added to an image producer, the 
-producer delivers all of the data about the image using the method calls 
-defined in this interface. 
+The image is complete and there are no more pixels or frames to be delivered. 
 
 
 *int_java.awt.image.ImageConsumer.TOPDOWNLEFTRIGHT*
 
-The interface for objects expressing interest in image data through the 
-ImageProducer interfaces. When a consumer is added to an image producer, the 
-producer delivers all of the data about the image using the method calls 
-defined in this interface. 
+The pixels will be delivered in top-down, left-to-right order. 
 
 
 
@@ -115,12 +92,10 @@ defined in this interface.
 
 public void imageComplete(int status)
 
-The imageComplete method is called when the ImageProducer is finished 
-delivering all of the pixels that the source image contains, or when a single 
-frame of a multi-frame animation has been completed, or when an error in 
-loading or producing the image has occured. The ImageConsumer should remove 
-itself from the list of consumers registered with the ImageProducer at this 
-time, unless it is interested in successive frames. 
+The imageComplete method is called when the ImageProducer is finished delivering all of the pixels that the source image contains, or when a single frame of a multi-frame 
+animation has been completed, or when an error in loading or producing the image has occured. The ImageConsumer should remove itself from the list of consumers registered with the 
+ImageProducer at this time, unless it is interested in successive frames. 
+
 
     status - the status of image loading 
 
@@ -128,15 +103,11 @@ time, unless it is interested in successive frames.
 
 public void setColorModel(java.awt.image.ColorModel model)
 
-Sets the ColorModel object used for the majority of the pixels reported using 
-the setPixels method calls. Note that each set of pixels delivered using 
-setPixels contains its own ColorModel object, so no assumption should be made 
-that this model will be the only one used in delivering pixel values. A notable 
-case where multiple ColorModel objects may be seen is a filtered image when for 
-each set of pixels that it filters, the filter determines whether the pixels 
-can be sent on untouched, using the original ColorModel, or whether the pixels 
-should be modified (filtered) and passed on using a ColorModel more convenient 
-for the filtering process. 
+Sets the ColorModel object used for the majority of the pixels reported using the setPixels method calls. Note that each set of pixels delivered using setPixels contains its own 
+ColorModel object, so no assumption should be made that this model will be the only one used in delivering pixel values. A notable case where multiple ColorModel objects may be 
+seen is a filtered image when for each set of pixels that it filters, the filter determines whether the pixels can be sent on untouched, using the original ColorModel, or whether 
+the pixels should be modified (filtered) and passed on using a ColorModel more convenient for the filtering process. 
+
 
     model - the specified ColorModel 
 
@@ -146,8 +117,8 @@ public void setDimensions(
   int width,
   int height)
 
-The dimensions of the source image are reported using the setDimensions method 
-call. 
+The dimensions of the source image are reported using the setDimensions method call. 
+
 
     width - the width of the source image 
     height - the height of the source image 
@@ -156,15 +127,11 @@ call.
 
 public void setHints(int hintflags)
 
-Sets the hints that the ImageConsumer uses to process the pixels delivered by 
-the ImageProducer. The ImageProducer can deliver the pixels in any order, but 
-the ImageConsumer may be able to scale or convert the pixels to the destination 
-ColorModel more efficiently or with higher quality if it knows some information 
-about how the pixels will be delivered up front. The setHints method should be 
-called before any calls to any of the setPixels methods with a bit mask of 
-hints about the manner in which the pixels will be delivered. If the 
-ImageProducer does not follow the guidelines for the indicated hint, the 
-results are undefined. 
+Sets the hints that the ImageConsumer uses to process the pixels delivered by the ImageProducer. The ImageProducer can deliver the pixels in any order, but the ImageConsumer may 
+be able to scale or convert the pixels to the destination ColorModel more efficiently or with higher quality if it knows some information about how the pixels will be delivered up 
+front. The setHints method should be called before any calls to any of the setPixels methods with a bit mask of hints about the manner in which the pixels will be delivered. If 
+the ImageProducer does not follow the guidelines for the indicated hint, the results are undefined. 
+
 
     hintflags - a set of hints that the ImageConsumer uses to process the pixels 
 
@@ -180,12 +147,10 @@ public void setPixels(
   int off,
   int scansize)
 
-Delivers the pixels of the image with one or more calls to this method. Each 
-call specifies the location and size of the rectangle of source pixels that are 
-contained in the array of pixels. The specified ColorModel object should be 
-used to convert the pixels into their corresponding color and alpha components. 
-Pixel (m,n) is stored in the pixels array at index (n * scansize + m + off). 
-The pixels delivered using this method are all stored as bytes. 
+Delivers the pixels of the image with one or more calls to this method. Each call specifies the location and size of the rectangle of source pixels that are contained in the array 
+of pixels. The specified ColorModel object should be used to convert the pixels into their corresponding color and alpha components. Pixel (m,n) is stored in the pixels array at 
+index (n * scansize + m + off). The pixels delivered using this method are all stored as bytes. 
+
 
     x,&nbsp;y - the coordinates of the upper-left corner of the area of pixels to be set 
     w - the width of the area of pixels 
@@ -207,13 +172,10 @@ public void setPixels(
   int off,
   int scansize)
 
-The pixels of the image are delivered using one or more calls to the setPixels 
-method. Each call specifies the location and size of the rectangle of source 
-pixels that are contained in the array of pixels. The specified ColorModel 
-object should be used to convert the pixels into their corresponding color and 
-alpha components. Pixel (m,n) is stored in the pixels array at index (n * 
-scansize + m + off). The pixels delivered using this method are all stored as 
-ints. this method are all stored as ints. 
+The pixels of the image are delivered using one or more calls to the setPixels method. Each call specifies the location and size of the rectangle of source pixels that are 
+contained in the array of pixels. The specified ColorModel object should be used to convert the pixels into their corresponding color and alpha components. Pixel (m,n) is stored 
+in the pixels array at index (n * scansize + m + off). The pixels delivered using this method are all stored as ints. this method are all stored as ints. 
+
 
     x,&nbsp;y - the coordinates of the upper-left corner of the area of pixels to be set 
     w - the width of the area of pixels 
@@ -223,11 +185,12 @@ ints. this method are all stored as ints.
     off - the offset into the pixels array 
     scansize - the distance from one row of pixels to the next in the pixels array 
 
-*java.awt.image.ImageConsumer.setProperties(Hashtable)*
+*java.awt.image.ImageConsumer.setProperties(Hashtable<?,?>)*
 
-public void setProperties(java.util.Hashtable props)
+public void setProperties(java.util.Hashtable<?, ?> props)
 
 Sets the extensible list of properties associated with this image. 
+
 
     props - the list of properties to be associated with this image 
 

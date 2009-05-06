@@ -1,4 +1,5 @@
-*java.util.logging.LogRecord* *LogRecord* LogRecord objects are used to pass log
+*java.util.logging.LogRecord* *LogRecord* LogRecord objects are used to pass logging requests between
+ the logging framework and individual log Handlers.
 
 public class LogRecord
   extends    |java.lang.Object|
@@ -9,66 +10,58 @@ public class LogRecord
 |java.util.logging.LogRecord_Constructors|
 |java.util.logging.LogRecord_Methods|
 
-================================================================================
+====================================================================================================================================================================================
 
 *java.util.logging.LogRecord_Constructors*
-|java.util.logging.LogRecord(Level,String)|Construct a LogRecord with the given
+|java.util.logging.LogRecord(Level,String)|Construct a LogRecord with the given level and message values.
 
 *java.util.logging.LogRecord_Methods*
-|java.util.logging.LogRecord.getLevel()|Get the logging message level, for exam
+|java.util.logging.LogRecord.getLevel()|Get the logging message level, for example Level.SEVERE.
 |java.util.logging.LogRecord.getLoggerName()|Get the source Logger name's
-|java.util.logging.LogRecord.getMessage()|Get the "raw" log message, before loc
-|java.util.logging.LogRecord.getMillis()|Get event time in milliseconds since 1
-|java.util.logging.LogRecord.getParameters()|Get the parameters to the log mess
-|java.util.logging.LogRecord.getResourceBundle()|Get the localization resource 
-|java.util.logging.LogRecord.getResourceBundleName()|Get the localization resou
+|java.util.logging.LogRecord.getMessage()|Get the "raw" log message, before localization or formatting.
+|java.util.logging.LogRecord.getMillis()|Get event time in milliseconds since 1970.
+|java.util.logging.LogRecord.getParameters()|Get the parameters to the log message.
+|java.util.logging.LogRecord.getResourceBundle()|Get the localization resource bundle
+|java.util.logging.LogRecord.getResourceBundleName()|Get the localization resource bundle name
 |java.util.logging.LogRecord.getSequenceNumber()|Get the sequence number.
-|java.util.logging.LogRecord.getSourceClassName()|Get the  name of the class th
-|java.util.logging.LogRecord.getSourceMethodName()|Get the  name of the method 
-|java.util.logging.LogRecord.getThreadID()|Get an identifier for the thread whe
-|java.util.logging.LogRecord.getThrown()|Get any throwable associated with the 
-|java.util.logging.LogRecord.setLevel(Level)|Set the logging message level, for
+|java.util.logging.LogRecord.getSourceClassName()|Get the  name of the class that (allegedly) issued the logging request.
+|java.util.logging.LogRecord.getSourceMethodName()|Get the  name of the method that (allegedly) issued the logging request.
+|java.util.logging.LogRecord.getThreadID()|Get an identifier for the thread where the message originated.
+|java.util.logging.LogRecord.getThrown()|Get any throwable associated with the log record.
+|java.util.logging.LogRecord.setLevel(Level)|Set the logging message level, for example Level.SEVERE.
 |java.util.logging.LogRecord.setLoggerName(String)|Set the source Logger name.
-|java.util.logging.LogRecord.setMessage(String)|Set the "raw" log message, befo
+|java.util.logging.LogRecord.setMessage(String)|Set the "raw" log message, before localization or formatting.
 |java.util.logging.LogRecord.setMillis(long)|Set event time.
-|java.util.logging.LogRecord.setParameters(Object[])|Set the parameters to the 
-|java.util.logging.LogRecord.setResourceBundle(ResourceBundle)|Set the localiza
-|java.util.logging.LogRecord.setResourceBundleName(String)|Set the localization
+|java.util.logging.LogRecord.setParameters(Object[])|Set the parameters to the log message.
+|java.util.logging.LogRecord.setResourceBundle(ResourceBundle)|Set the localization resource bundle.
+|java.util.logging.LogRecord.setResourceBundleName(String)|Set the localization resource bundle name.
 |java.util.logging.LogRecord.setSequenceNumber(long)|Set the sequence number.
-|java.util.logging.LogRecord.setSourceClassName(String)|Set the name of the cla
-|java.util.logging.LogRecord.setSourceMethodName(String)|Set the name of the me
-|java.util.logging.LogRecord.setThreadID(int)|Set an identifier for the thread 
-|java.util.logging.LogRecord.setThrown(Throwable)|Set a throwable associated wi
+|java.util.logging.LogRecord.setSourceClassName(String)|Set the name of the class that (allegedly) issued the logging request.
+|java.util.logging.LogRecord.setSourceMethodName(String)|Set the name of the method that (allegedly) issued the logging request.
+|java.util.logging.LogRecord.setThreadID(int)|Set an identifier for the thread where the message originated.
+|java.util.logging.LogRecord.setThrown(Throwable)|Set a throwable associated with the log event.
 
 *java.util.logging.LogRecord_Description*
 
-LogRecord objects are used to pass logging requests between the logging 
-framework and individual log Handlers. 
+LogRecord objects are used to pass logging requests between the logging framework and individual log Handlers. 
 
-When a LogRecord is passed into the logging framework it logically belongs to 
-the framework and should no longer be used or updated by the client 
-application. 
+When a LogRecord is passed into the logging framework it logically belongs to the framework and should no longer be used or updated by the client application. 
 
-Note that if the client application has not specified an explicit source method 
-name and source class name, then the LogRecord class will infer them 
-automatically when they are first accessed (due to a call on 
-getSourceMethodName or getSourceClassName) by analyzing the call stack. 
-Therefore, if a logging Handler wants to pass off a LogRecord to another 
-thread, or to transmit it over RMI, and if it wishes to subsequently obtain 
-method name or class name information it should call one of getSourceClassName 
-or getSourceMethodName to force the values to be filled in. 
+Note that if the client application has not specified an explicit source method name and source class name, then the LogRecord class will infer them automatically when they are 
+first accessed (due to a call on getSourceMethodName or getSourceClassName) by analyzing the call stack. Therefore, if a logging Handler wants to pass off a LogRecord to another 
+thread, or to transmit it over RMI, and if it wishes to subsequently obtain method name or class name information it should call one of getSourceClassName or getSourceMethodName 
+to force the values to be filled in. 
 
 Serialization notes: 
 
 The LogRecord class is serializable. 
 
-Because objects in the parameters array may not be serializable, during 
-serialization all objects in the parameters array are written as the 
-corresponding Strings (using Object.toString). 
+Because objects in the parameters array may not be serializable, during serialization all objects in the parameters array are written as the corresponding Strings (using 
+Object.toString). 
 
-The ResourceBundle is not transmitted as part of the serialized form, but the 
-resource bundle name is, and the recipient object's readObject method will 
-attempt to locate a suitable resource bundle. 
+The ResourceBundle is not transmitted as part of the serialized form, but the resource bundle name is, and the recipient object's readObject method will attempt to locate a 
+suitable resource bundle. 
+
 
 
 
@@ -81,13 +74,11 @@ public LogRecord(
 
 Construct a LogRecord with the given level and message values. 
 
-The sequence property will be initialized with a new unique value. These 
-sequence values are allocated in increasing order within a VM. 
+The sequence property will be initialized with a new unique value. These sequence values are allocated in increasing order within a VM. 
 
 The millis property will be initialized to the current time. 
 
-The thread ID property will be initialized with a unique ID for the current 
-thread. 
+The thread ID property will be initialized with a unique ID for the current thread. 
 
 All other properties will be initialized to "null". 
 
@@ -101,7 +92,9 @@ public |java.util.logging.Level| getLevel()
 Get the logging message level, for example Level.SEVERE. 
 
 
+
     Returns: the logging message level 
+
 *java.util.logging.LogRecord.getLoggerName()*
 
 public |java.lang.String| getLoggerName()
@@ -109,7 +102,9 @@ public |java.lang.String| getLoggerName()
 Get the source Logger name's 
 
 
+
     Returns: source logger name (may be null) 
+
 *java.util.logging.LogRecord.getMessage()*
 
 public |java.lang.String| getMessage()
@@ -120,12 +115,13 @@ May be null, which is equivalent to the empty string "".
 
 This message may be either the final text or a localization key. 
 
-During formatting, if the source logger has a localization ResourceBundle and 
-if that ResourceBundle has an entry for this message string, then the message 
-string is replaced with the localized value. 
+During formatting, if the source logger has a localization ResourceBundle and if that ResourceBundle has an entry for this message string, then the message string is replaced with 
+the localized value. 
+
 
 
     Returns: the raw message string 
+
 *java.util.logging.LogRecord.getMillis()*
 
 public long getMillis()
@@ -133,24 +129,28 @@ public long getMillis()
 Get event time in milliseconds since 1970. 
 
 
+
     Returns: event time in millis since 1970 
+
 *java.util.logging.LogRecord.getParameters()*
 
-public |java.lang.Object| getParameters()
+public |java.lang.Object|[] getParameters()
 
 Get the parameters to the log message. 
 
 
+
     Returns: the log message parameters. May be null if there are no parameters. 
+
 *java.util.logging.LogRecord.getResourceBundle()*
 
 public |java.util.ResourceBundle| getResourceBundle()
 
 Get the localization resource bundle 
 
-This is the ResourceBundle that should be used to localize the message string 
-before formatting it. The result may be null if the message is not localizable, 
-or if no suitable ResourceBundle is available. 
+This is the ResourceBundle that should be used to localize the message string before formatting it. The result may be null if the message is not localizable, or if no suitable 
+ResourceBundle is available. 
+
 
 
 *java.util.logging.LogRecord.getResourceBundleName()*
@@ -159,9 +159,8 @@ public |java.lang.String| getResourceBundleName()
 
 Get the localization resource bundle name 
 
-This is the name for the ResourceBundle that should be used to localize the 
-message string before formatting it. The result may be null if the message is 
-not localizable. 
+This is the name for the ResourceBundle that should be used to localize the message string before formatting it. The result may be null if the message is not localizable. 
+
 
 
 *java.util.logging.LogRecord.getSequenceNumber()*
@@ -170,70 +169,72 @@ public long getSequenceNumber()
 
 Get the sequence number. 
 
-Sequence numbers are normally assigned in the LogRecord constructor, which 
-assigns unique sequence numbers to each new LogRecord in increasing order. 
+Sequence numbers are normally assigned in the LogRecord constructor, which assigns unique sequence numbers to each new LogRecord in increasing order. 
+
 
 
     Returns: the sequence number 
+
 *java.util.logging.LogRecord.getSourceClassName()*
 
 public |java.lang.String| getSourceClassName()
 
 Get the name of the class that (allegedly) issued the logging request. 
 
-Note that this sourceClassName is not verified and may be spoofed. This 
-information may either have been provided as part of the logging call, or it 
-may have been inferred automatically by the logging framework. In the latter 
-case, the information may only be approximate and may in fact describe an 
-earlier call on the stack frame. 
+Note that this sourceClassName is not verified and may be spoofed. This information may either have been provided as part of the logging call, or it may have been inferred 
+automatically by the logging framework. In the latter case, the information may only be approximate and may in fact describe an earlier call on the stack frame. 
 
 May be null if no information could be obtained. 
 
 
+
     Returns: the source class name 
+
 *java.util.logging.LogRecord.getSourceMethodName()*
 
 public |java.lang.String| getSourceMethodName()
 
 Get the name of the method that (allegedly) issued the logging request. 
 
-Note that this sourceMethodName is not verified and may be spoofed. This 
-information may either have been provided as part of the logging call, or it 
-may have been inferred automatically by the logging framework. In the latter 
-case, the information may only be approximate and may in fact describe an 
-earlier call on the stack frame. 
+Note that this sourceMethodName is not verified and may be spoofed. This information may either have been provided as part of the logging call, or it may have been inferred 
+automatically by the logging framework. In the latter case, the information may only be approximate and may in fact describe an earlier call on the stack frame. 
 
 May be null if no information could be obtained. 
 
 
+
     Returns: the source method name 
+
 *java.util.logging.LogRecord.getThreadID()*
 
 public int getThreadID()
 
 Get an identifier for the thread where the message originated. 
 
-This is a thread identifier within the Java VM and may or may not map to any 
-operating system ID. 
+This is a thread identifier within the Java VM and may or may not map to any operating system ID. 
+
 
 
     Returns: 
+
 *java.util.logging.LogRecord.getThrown()*
 
 public |java.lang.Throwable| getThrown()
 
 Get any throwable associated with the log record. 
 
-If the event involved an exception, this will be the exception object. 
-Otherwise null. 
+If the event involved an exception, this will be the exception object. Otherwise null. 
+
 
 
     Returns: 
+
 *java.util.logging.LogRecord.setLevel(Level)*
 
 public void setLevel(java.util.logging.Level level)
 
 Set the logging message level, for example Level.SEVERE. 
+
 
     level - the logging message level 
 
@@ -243,6 +244,7 @@ public void setLoggerName(java.lang.String name)
 
 Set the source Logger name. 
 
+
     name - the source logger name (may be null) 
 
 *java.util.logging.LogRecord.setMessage(String)*
@@ -250,6 +252,7 @@ Set the source Logger name.
 public void setMessage(java.lang.String message)
 
 Set the "raw" log message, before localization or formatting. 
+
 
     message - the raw message string (may be null) 
 
@@ -259,6 +262,7 @@ public void setMillis(long millis)
 
 Set event time. 
 
+
     millis - event time in millis since 1970 
 
 *java.util.logging.LogRecord.setParameters(Object[])*
@@ -266,6 +270,7 @@ Set event time.
 public void setParameters(java.lang.Object[] parameters)
 
 Set the parameters to the log message. 
+
 
     parameters - the log message parameters. (may be null) 
 
@@ -275,6 +280,7 @@ public void setResourceBundle(java.util.ResourceBundle bundle)
 
 Set the localization resource bundle. 
 
+
     bundle - localization bundle (may be null) 
 
 *java.util.logging.LogRecord.setResourceBundleName(String)*
@@ -282,6 +288,7 @@ Set the localization resource bundle.
 public void setResourceBundleName(java.lang.String name)
 
 Set the localization resource bundle name. 
+
 
     name - localization bundle name (may be null) 
 
@@ -291,8 +298,8 @@ public void setSequenceNumber(long seq)
 
 Set the sequence number. 
 
-Sequence numbers are normally assigned in the LogRecord constructor, so it 
-should not normally be necessary to use this method. 
+Sequence numbers are normally assigned in the LogRecord constructor, so it should not normally be necessary to use this method. 
+
 
 
 *java.util.logging.LogRecord.setSourceClassName(String)*
@@ -300,6 +307,7 @@ should not normally be necessary to use this method.
 public void setSourceClassName(java.lang.String sourceClassName)
 
 Set the name of the class that (allegedly) issued the logging request. 
+
 
     sourceClassName - the source class name (may be null) 
 
@@ -309,6 +317,7 @@ public void setSourceMethodName(java.lang.String sourceMethodName)
 
 Set the name of the method that (allegedly) issued the logging request. 
 
+
     sourceMethodName - the source method name (may be null) 
 
 *java.util.logging.LogRecord.setThreadID(int)*
@@ -317,6 +326,7 @@ public void setThreadID(int threadID)
 
 Set an identifier for the thread where the message originated. 
 
+
     threadID - the thread ID 
 
 *java.util.logging.LogRecord.setThrown(Throwable)*
@@ -324,6 +334,7 @@ Set an identifier for the thread where the message originated.
 public void setThrown(java.lang.Throwable thrown)
 
 Set a throwable associated with the log event. 
+
 
     thrown - a throwable (may be null) 
 

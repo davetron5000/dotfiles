@@ -1,4 +1,5 @@
-*java.io.InputStreamReader* *InputStreamReader* An InputStreamReader is a bridge
+*java.io.InputStreamReader* *InputStreamReader* An InputStreamReader is a bridge from byte streams to character streams: It
+ reads bytes and decodes them into characters using a sp
 
 public class InputStreamReader
   extends    |java.io.Reader|
@@ -8,40 +9,35 @@ public class InputStreamReader
 |java.io.InputStreamReader_Constructors|
 |java.io.InputStreamReader_Methods|
 
-================================================================================
+====================================================================================================================================================================================
 
 *java.io.InputStreamReader_Constructors*
-|java.io.InputStreamReader(InputStream)|Create an InputStreamReader that uses t
-|java.io.InputStreamReader(InputStream,Charset)|Create an InputStreamReader tha
-|java.io.InputStreamReader(InputStream,CharsetDecoder)|Create an InputStreamRea
-|java.io.InputStreamReader(InputStream,String)|Create an InputStreamReader that
+|java.io.InputStreamReader(InputStream)|Create an InputStreamReader that uses the default charset.
+|java.io.InputStreamReader(InputStream,Charset)|Create an InputStreamReader that uses the given charset.
+|java.io.InputStreamReader(InputStream,CharsetDecoder)|Create an InputStreamReader that uses the given charset decoder.
+|java.io.InputStreamReader(InputStream,String)|Create an InputStreamReader that uses the named charset.
 
 *java.io.InputStreamReader_Methods*
 |java.io.InputStreamReader.close()|Close the stream.
-|java.io.InputStreamReader.getEncoding()|Return the name of the character encod
+|java.io.InputStreamReader.getEncoding()|Return the name of the character encoding being used by this stream.
 |java.io.InputStreamReader.read()|Read a single character.
-|java.io.InputStreamReader.read(char[],int,int)|Read characters into a portion 
-|java.io.InputStreamReader.ready()|Tell whether this stream is ready to be read
+|java.io.InputStreamReader.read(char[],int,int)|Read characters into a portion of an array.
+|java.io.InputStreamReader.ready()|Tell whether this stream is ready to be read.
 
 *java.io.InputStreamReader_Description*
 
-An InputStreamReader is a bridge from byte streams to character streams: It 
-reads bytes and decodes them into characters using a specified 
-<code>charset</code>(|java.nio.charset.Charset|) . The charset that it uses may 
-be specified by name or may be given explicitly, or the platform's default 
-charset may be accepted. 
+An InputStreamReader is a bridge from byte streams to character streams: It reads bytes and decodes them into characters using a specified 
+<code>charset</code>(|java.nio.charset.Charset|) . The charset that it uses may be specified by name or may be given explicitly, or the platform's default charset may be accepted. 
 
-Each invocation of one of an InputStreamReader's read() methods may cause one 
-or more bytes to be read from the underlying byte-input stream. To enable the 
-efficient conversion of bytes to characters, more bytes may be read ahead from 
-the underlying stream than are necessary to satisfy the current read operation. 
+Each invocation of one of an InputStreamReader's read() methods may cause one or more bytes to be read from the underlying byte-input stream. To enable the efficient conversion of 
+bytes to characters, more bytes may be read ahead from the underlying stream than are necessary to satisfy the current read operation. 
 
-For top efficiency, consider wrapping an InputStreamReader within a 
-BufferedReader. For example: 
+For top efficiency, consider wrapping an InputStreamReader within a BufferedReader. For example: 
 
 
 
 BufferedReader in = new BufferedReader(new InputStreamReader(System.in)); 
+
 
 
 *java.io.InputStreamReader(InputStream)*
@@ -94,23 +90,22 @@ public void close()
 Close the stream. 
 
 
+
 *java.io.InputStreamReader.getEncoding()*
 
 public |java.lang.String| getEncoding()
 
 Return the name of the character encoding being used by this stream. 
 
-If the encoding has an historical name then that name is returned; otherwise 
-the encoding's canonical name is returned. 
+If the encoding has an historical name then that name is returned; otherwise the encoding's canonical name is returned. 
 
-If this instance was created with the (|java.io.InputStreamReader|) constructor 
-then the returned name, being unique for the encoding, may differ from the name 
-passed to the constructor. This method may return null if the stream has been 
-closed. 
+If this instance was created with the (|java.io.InputStreamReader|) constructor then the returned name, being unique for the encoding, may differ from the name passed to the 
+constructor. This method may return null if the stream has been closed. 
 
 
-    Returns: The historical name of this encoding, or possibly null if the stream has been 
-             closed 
+
+    Returns: The historical name of this encoding, or possibly null if the stream has been closed 
+
 *java.io.InputStreamReader.read()*
 
 public int read()
@@ -119,7 +114,9 @@ public int read()
 Read a single character. 
 
 
+
     Returns: The character read, or -1 if the end of the stream has been reached 
+
 *java.io.InputStreamReader.read(char[],int,int)*
 
 public int read(
@@ -130,19 +127,20 @@ public int read(
          
 Read characters into a portion of an array. 
 
+
     cbuf - Destination buffer 
     offset - Offset at which to start storing characters 
     length - Maximum number of characters to read 
 
     Returns: The number of characters read, or -1 if the end of the stream has been reached 
+
 *java.io.InputStreamReader.ready()*
 
 public boolean ready()
   throws |java.io.IOException|
          
-Tell whether this stream is ready to be read. An InputStreamReader is ready if 
-its input buffer is not empty, or if bytes are available to be read from the 
-underlying byte stream. 
+Tell whether this stream is ready to be read. An InputStreamReader is ready if its input buffer is not empty, or if bytes are available to be read from the underlying byte stream. 
+
 
 
 

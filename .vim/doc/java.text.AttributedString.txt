@@ -1,4 +1,4 @@
-*java.text.AttributedString* *AttributedString* An AttributedString holds text a
+*java.text.AttributedString* *AttributedString* An AttributedString holds text and related attribute information.
 
 public class AttributedString
   extends    |java.lang.Object|
@@ -8,36 +8,35 @@ public class AttributedString
 |java.text.AttributedString_Constructors|
 |java.text.AttributedString_Methods|
 
-================================================================================
+====================================================================================================================================================================================
 
 *java.text.AttributedString_Constructors*
-|java.text.AttributedString(AttributedCharacterIterator)|Constructs an Attribut
-|java.text.AttributedString(AttributedCharacterIterator,int,int)|Constructs an 
-|java.text.AttributedString(AttributedCharacterIterator,int,int,AttributedCharacterIterator.Attribute[])|
-|java.text.AttributedString(String)|Constructs an AttributedString instance wit
-|java.text.AttributedString(String,Map)|Constructs an AttributedString instance
+|java.text.AttributedString(AttributedCharacterIterator)|Constructs an AttributedString instance with the given attributed  text represented by AttributedCharacterIterator.
+|java.text.AttributedString(AttributedCharacterIterator,int,int)|Constructs an AttributedString instance with the subrange of  the given attributed text represented by  Attributed
+|java.text.AttributedString(AttributedCharacterIterator,int,int,AttributedCharacterIterator.Attribute[])|Constructs an AttributedString instance with the subrange of  the given at
+|java.text.AttributedString(String)|Constructs an AttributedString instance with the given text.
+|java.text.AttributedString(String,Map<?extendsAttributedCharacterIterator.Attribute,?>)|Constructs an AttributedString instance with the given text and attributes.
 
 *java.text.AttributedString_Methods*
-|java.text.AttributedString.addAttribute(AttributedCharacterIterator.Attribute,Object)|
-|java.text.AttributedString.addAttribute(AttributedCharacterIterator.Attribute,Object,int,int)|
-|java.text.AttributedString.addAttributes(Map,int,int)|Adds a set of attributes
-|java.text.AttributedString.getIterator()|Creates an AttributedCharacterIterato
-|java.text.AttributedString.getIterator(AttributedCharacterIterator.Attribute[])|
-|java.text.AttributedString.getIterator(AttributedCharacterIterator.Attribute[],int,int)|
+|java.text.AttributedString.addAttribute(AttributedCharacterIterator.Attribute,Object)|Adds an attribute to the entire string.
+|java.text.AttributedString.addAttribute(AttributedCharacterIterator.Attribute,Object,int,int)|Adds an attribute to a subrange of the string.
+|java.text.AttributedString.addAttributes(Map<?extendsAttributedCharacterIterator.Attribute,?>,int,int)|Adds a set of attributes to a subrange of the string.
+|java.text.AttributedString.getIterator()|Creates an AttributedCharacterIterator instance that provides access to the entire contents of  this string.
+|java.text.AttributedString.getIterator(AttributedCharacterIterator.Attribute[])|Creates an AttributedCharacterIterator instance that provides access to  selected contents of this
+|java.text.AttributedString.getIterator(AttributedCharacterIterator.Attribute[],int,int)|Creates an AttributedCharacterIterator instance that provides access to  selected contents
 
 *java.text.AttributedString_Description*
 
-An AttributedString holds text and related attribute information. It may be 
-used as the actual data storage in some cases where a text reader wants to 
-access attributed text through the AttributedCharacterIterator interface. 
+An AttributedString holds text and related attribute information. It may be used as the actual data storage in some cases where a text reader wants to access attributed text 
+through the AttributedCharacterIterator interface. 
+
 
 
 *java.text.AttributedString(AttributedCharacterIterator)*
 
 public AttributedString(java.text.AttributedCharacterIterator text)
 
-Constructs an AttributedString instance with the given attributed text 
-represented by AttributedCharacterIterator. 
+Constructs an AttributedString instance with the given attributed text represented by AttributedCharacterIterator. 
 
     text - The text for this attributed string. 
 
@@ -48,11 +47,8 @@ public AttributedString(
   int beginIndex,
   int endIndex)
 
-Constructs an AttributedString instance with the subrange of the given 
-attributed text represented by AttributedCharacterIterator. If the given range 
-produces an empty text, all attributes will be discarded. Note that any 
-attributes wrapped by an Annotation object are discarded for a subrange of the 
-original attribute range. 
+Constructs an AttributedString instance with the subrange of the given attributed text represented by AttributedCharacterIterator. If the given range produces an empty text, all 
+attributes will be discarded. Note that any attributes wrapped by an Annotation object are discarded for a subrange of the original attribute range. 
 
     text - The text for this attributed string. 
     beginIndex - Index of the first character of the range. 
@@ -66,18 +62,14 @@ public AttributedString(
   int endIndex,
   java.text.AttributedCharacterIterator.Attribute[] attributes)
 
-Constructs an AttributedString instance with the subrange of the given 
-attributed text represented by AttributedCharacterIterator. Only attributes 
-that match the given attributes will be incorporated into the instance. If the 
-given range produces an empty text, all attributes will be discarded. Note that 
-any attributes wrapped by an Annotation object are discarded for a subrange of 
-the original attribute range. 
+Constructs an AttributedString instance with the subrange of the given attributed text represented by AttributedCharacterIterator. Only attributes that match the given attributes 
+will be incorporated into the instance. If the given range produces an empty text, all attributes will be discarded. Note that any attributes wrapped by an Annotation object are 
+discarded for a subrange of the original attribute range. 
 
     text - The text for this attributed string. 
     beginIndex - Index of the first character of the range. 
     endIndex - Index of the character following the last character of the range. 
-    attributes - Specifies attributes to be extracted from the text. If null is specified, all 
-       available attributes will be used. 
+    attributes - Specifies attributes to be extracted from the text. If null is specified, all available attributes will be used. 
 
 *java.text.AttributedString(String)*
 
@@ -87,11 +79,11 @@ Constructs an AttributedString instance with the given text.
 
     text - The text for this attributed string. 
 
-*java.text.AttributedString(String,Map)*
+*java.text.AttributedString(String,Map<?extendsAttributedCharacterIterator.Attribute,?>)*
 
 public AttributedString(
   java.lang.String text,
-  java.util.Map attributes)
+  java.util.Map<? extends java.text.AttributedCharacterIterator.Attribute, ?> attributes)
 
 Constructs an AttributedString instance with the given text and attributes. 
 
@@ -106,6 +98,7 @@ public void addAttribute(
 
 Adds an attribute to the entire string. 
 
+
     attribute - the attribute key 
     value - the value of the attribute; may be null 
 
@@ -119,19 +112,21 @@ public void addAttribute(
 
 Adds an attribute to a subrange of the string. 
 
+
     attribute - the attribute key 
     value - The value of the attribute. May be null. 
     beginIndex - Index of the first character of the range. 
     endIndex - Index of the character following the last character of the range. 
 
-*java.text.AttributedString.addAttributes(Map,int,int)*
+*java.text.AttributedString.addAttributes(Map<?extendsAttributedCharacterIterator.Attribute,?>,int,int)*
 
 public void addAttributes(
-  java.util.Map attributes,
+  java.util.Map<? extends java.text.AttributedCharacterIterator.Attribute, ?> attributes,
   int beginIndex,
   int endIndex)
 
 Adds a set of attributes to a subrange of the string. 
+
 
     attributes - The attributes to be added to the string. 
     beginIndex - Index of the first character of the range. 
@@ -141,24 +136,24 @@ Adds a set of attributes to a subrange of the string.
 
 public |java.text.AttributedCharacterIterator| getIterator()
 
-Creates an AttributedCharacterIterator instance that provides access to the 
-entire contents of this string. 
+Creates an AttributedCharacterIterator instance that provides access to the entire contents of this string. 
+
 
 
     Returns: An iterator providing access to the text and its attributes. 
+
 *java.text.AttributedString.getIterator(AttributedCharacterIterator.Attribute[])*
 
 public |java.text.AttributedCharacterIterator| getIterator(java.text.AttributedCharacterIterator.Attribute[] attributes)
 
-Creates an AttributedCharacterIterator instance that provides access to 
-selected contents of this string. Information about attributes not listed in 
-attributes that the implementor may have need not be made accessible through 
-the iterator. If the list is null, all available attribute information should 
-be made accessible. 
+Creates an AttributedCharacterIterator instance that provides access to selected contents of this string. Information about attributes not listed in attributes that the 
+implementor may have need not be made accessible through the iterator. If the list is null, all available attribute information should be made accessible. 
+
 
     attributes - a list of attributes that the client is interested in 
 
     Returns: an iterator providing access to the text and its attributes 
+
 *java.text.AttributedString.getIterator(AttributedCharacterIterator.Attribute[],int,int)*
 
 public |java.text.AttributedCharacterIterator| getIterator(
@@ -166,15 +161,14 @@ public |java.text.AttributedCharacterIterator| getIterator(
   int beginIndex,
   int endIndex)
 
-Creates an AttributedCharacterIterator instance that provides access to 
-selected contents of this string. Information about attributes not listed in 
-attributes that the implementor may have need not be made accessible through 
-the iterator. If the list is null, all available attribute information should 
-be made accessible. 
+Creates an AttributedCharacterIterator instance that provides access to selected contents of this string. Information about attributes not listed in attributes that the 
+implementor may have need not be made accessible through the iterator. If the list is null, all available attribute information should be made accessible. 
+
 
     attributes - a list of attributes that the client is interested in 
     beginIndex - the index of the first character 
     endIndex - the index of the character following the last character 
 
     Returns: an iterator providing access to the text and its attributes 
+
 

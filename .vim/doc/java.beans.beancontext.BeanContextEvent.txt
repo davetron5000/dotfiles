@@ -1,5 +1,7 @@
 *java.beans.beancontext.BeanContextEvent* *BeanContextEvent* 
- BeanContextEvent 
+ BeanContextEvent is the abstract root event class 
+ for all events emitted
+ from, and pertaining to the semantics of,
 
 public abstract class BeanContextEvent
   extends    |java.util.EventObject|
@@ -9,38 +11,31 @@ public abstract class BeanContextEvent
 |java.beans.beancontext.BeanContextEvent_Constructors|
 |java.beans.beancontext.BeanContextEvent_Methods|
 
-================================================================================
+====================================================================================================================================================================================
 
 *java.beans.beancontext.BeanContextEvent_Fields*
 |java.beans.beancontext.BeanContext_java.beans.beancontext.BeanContextEvent.propagatedFrom|
 
 *java.beans.beancontext.BeanContextEvent_Constructors*
-|java.beans.beancontext.BeanContextEvent(BeanContext)|Contruct a BeanContextEve
+|java.beans.beancontext.BeanContextEvent(BeanContext)|Contruct a BeanContextEvent
 
 *java.beans.beancontext.BeanContextEvent_Methods*
-|java.beans.beancontext.BeanContextEvent.getBeanContext()|Gets the BeanContext 
-|java.beans.beancontext.BeanContextEvent.getPropagatedFrom()|Gets the BeanConte
-|java.beans.beancontext.BeanContextEvent.isPropagated()|Reports whether or not 
-|java.beans.beancontext.BeanContextEvent.setPropagatedFrom(BeanContext)|Sets th
+|java.beans.beancontext.BeanContextEvent.getBeanContext()|Gets the BeanContext associated with this event.
+|java.beans.beancontext.BeanContextEvent.getPropagatedFrom()|Gets the BeanContext from which this event was propagated.
+|java.beans.beancontext.BeanContextEvent.isPropagated()|Reports whether or not this event is   propagated from some other BeanContext.
+|java.beans.beancontext.BeanContextEvent.setPropagatedFrom(BeanContext)|Sets the BeanContext from which this event was propagated.
 
 *java.beans.beancontext.BeanContextEvent_Description*
 
-BeanContextEvent is the abstract root event class for all events emitted from, 
-and pertaining to the semantics of, a BeanContext. This class introduces a 
-mechanism to allow the propagation of BeanContextEvent subclasses through a 
-hierarchy of BeanContexts. The setPropagatedFrom() and getPropagatedFrom() 
-methods allow a BeanContext to identify itself as the source of a propagated 
-event. 
+BeanContextEvent is the abstract root event class for all events emitted from, and pertaining to the semantics of, a BeanContext. This class introduces a mechanism to allow the 
+propagation of BeanContextEvent subclasses through a hierarchy of BeanContexts. The setPropagatedFrom() and getPropagatedFrom() methods allow a BeanContext to identify itself as 
+the source of a propagated event. 
+
 
 
 *java.beans.beancontext.BeanContext_java.beans.beancontext.BeanContextEvent.propagatedFrom*
 
-BeanContextEvent is the abstract root event class for all events emitted from, 
-and pertaining to the semantics of, a BeanContext. This class introduces a 
-mechanism to allow the propagation of BeanContextEvent subclasses through a 
-hierarchy of BeanContexts. The setPropagatedFrom() and getPropagatedFrom() 
-methods allow a BeanContext to identify itself as the source of a propagated 
-event. 
+The BeanContext from which this event was propagated 
 
 
 
@@ -59,7 +54,9 @@ public |java.beans.beancontext.BeanContext| getBeanContext()
 Gets the BeanContext associated with this event. 
 
 
+
     Returns: the BeanContext associated with this event. 
+
 *java.beans.beancontext.BeanContextEvent.getPropagatedFrom()*
 
 public synchronized |java.beans.beancontext.BeanContext| getPropagatedFrom()
@@ -67,7 +64,9 @@ public synchronized |java.beans.beancontext.BeanContext| getPropagatedFrom()
 Gets the BeanContext from which this event was propagated. 
 
 
+
     Returns: the BeanContext from which this event was propagated 
+
 *java.beans.beancontext.BeanContextEvent.isPropagated()*
 
 public synchronized boolean isPropagated()
@@ -75,12 +74,15 @@ public synchronized boolean isPropagated()
 Reports whether or not this event is propagated from some other BeanContext. 
 
 
+
     Returns: true if propagated, false if not 
+
 *java.beans.beancontext.BeanContextEvent.setPropagatedFrom(BeanContext)*
 
 public synchronized void setPropagatedFrom(java.beans.beancontext.BeanContext bc)
 
 Sets the BeanContext from which this event was propagated. 
+
 
     bc - the BeanContext from which this event was propagated 
 

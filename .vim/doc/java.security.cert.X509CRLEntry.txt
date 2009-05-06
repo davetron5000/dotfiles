@@ -1,4 +1,5 @@
-*java.security.cert.X509CRLEntry* *X509CRLEntry* Abstract class for a revoked ce
+*java.security.cert.X509CRLEntry* *X509CRLEntry* Abstract class for a revoked certificate in a CRL (Certificate
+ Revocation List).
 
 public abstract class X509CRLEntry
   extends    |java.lang.Object|
@@ -9,39 +10,37 @@ public abstract class X509CRLEntry
 |java.security.cert.X509CRLEntry_Constructors|
 |java.security.cert.X509CRLEntry_Methods|
 
-================================================================================
+====================================================================================================================================================================================
 
 *java.security.cert.X509CRLEntry_Constructors*
 |java.security.cert.X509CRLEntry()|
 
 *java.security.cert.X509CRLEntry_Methods*
-|java.security.cert.X509CRLEntry.equals(Object)|Compares this CRL entry for equ
-|java.security.cert.X509CRLEntry.getCertificateIssuer()|Get the issuer of the X
-|java.security.cert.X509CRLEntry.getEncoded()|Returns the ASN.1 DER-encoded for
-|java.security.cert.X509CRLEntry.getRevocationDate()|Gets the revocation date f
-|java.security.cert.X509CRLEntry.getSerialNumber()|Gets the serial number from 
-|java.security.cert.X509CRLEntry.hasExtensions()|Returns true if this CRL entry
-|java.security.cert.X509CRLEntry.hashCode()|Returns a hashcode value for this C
-|java.security.cert.X509CRLEntry.toString()|Returns a string representation of 
+|java.security.cert.X509CRLEntry.equals(Object)|Compares this CRL entry for equality with the given  object.
+|java.security.cert.X509CRLEntry.getCertificateIssuer()|Get the issuer of the X509Certificate described by this entry.
+|java.security.cert.X509CRLEntry.getEncoded()|Returns the ASN.1 DER-encoded form of this CRL Entry,  that is the inner SEQUENCE.
+|java.security.cert.X509CRLEntry.getRevocationDate()|Gets the revocation date from this X509CRLEntry,  the revocationDate.
+|java.security.cert.X509CRLEntry.getSerialNumber()|Gets the serial number from this X509CRLEntry,  the userCertificate.
+|java.security.cert.X509CRLEntry.hasExtensions()|Returns true if this CRL entry has extensions.
+|java.security.cert.X509CRLEntry.hashCode()|Returns a hashcode value for this CRL entry from its  encoded form.
+|java.security.cert.X509CRLEntry.toString()|Returns a string representation of this CRL entry.
 
 *java.security.cert.X509CRLEntry_Description*
 
-Abstract class for a revoked certificate in a CRL (Certificate Revocation 
-List). 
+Abstract class for a revoked certificate in a CRL (Certificate Revocation List). 
 
 The ASN.1 definition for revokedCertificates is: 
 
-revokedCertificates SEQUENCE OF SEQUENCE { userCertificate 
-CertificateSerialNumber, revocationDate ChoiceOfTime, crlEntryExtensions 
-Extensions OPTIONAL -- if present, must be v2 } OPTIONAL 
+revokedCertificates SEQUENCE OF SEQUENCE { userCertificate CertificateSerialNumber, revocationDate ChoiceOfTime, crlEntryExtensions Extensions OPTIONAL -- if present, must be v2 } 
+OPTIONAL 
 
 CertificateSerialNumber ::= INTEGER 
 
 Extensions ::= SEQUENCE SIZE (1..MAX) OF Extension 
 
-Extension ::= SEQUENCE { extnId OBJECT IDENTIFIER, critical BOOLEAN DEFAULT 
-FALSE, extnValue OCTET STRING -- contains a DER encoding of a value -- of the 
-type registered for use with -- the extnId object identifier value } 
+Extension ::= SEQUENCE { extnId OBJECT IDENTIFIER, critical BOOLEAN DEFAULT FALSE, extnValue OCTET STRING -- contains a DER encoding of a value -- of the type registered for use 
+with -- the extnId object identifier value } 
+
 
 
 *java.security.cert.X509CRLEntry()*
@@ -55,36 +54,37 @@ public X509CRLEntry()
 
 public boolean equals(java.lang.Object other)
 
-Compares this CRL entry for equality with the given object. If the other object 
-is an instanceof X509CRLEntry, then its encoded form (the inner SEQUENCE) is 
-retrieved and compared with the encoded form of this CRL entry. 
+Compares this CRL entry for equality with the given object. If the other object is an instanceof X509CRLEntry, then its encoded form (the inner SEQUENCE) is retrieved and compared 
+with the encoded form of this CRL entry. 
+
 
     other - the object to test for equality with this CRL entry. 
 
     Returns: true iff the encoded forms of the two CRL entries match, false otherwise. 
+
 *java.security.cert.X509CRLEntry.getCertificateIssuer()*
 
 public |javax.security.auth.x500.X500Principal| getCertificateIssuer()
 
-Get the issuer of the X509Certificate described by this entry. If the 
-certificate issuer is also the CRL issuer, this method returns null. 
+Get the issuer of the X509Certificate described by this entry. If the certificate issuer is also the CRL issuer, this method returns null. 
 
-This method is used with indirect CRLs. The default implementation always 
-returns null. Subclasses that wish to support indirect CRLs should override it. 
+This method is used with indirect CRLs. The default implementation always returns null. Subclasses that wish to support indirect CRLs should override it. 
 
 
-    Returns: the issuer of the X509Certificate described by this entry or null if it is 
-             issued by the CRL issuer. 
+
+    Returns: the issuer of the X509Certificate described by this entry or null if it is issued by the CRL issuer. 
+
 *java.security.cert.X509CRLEntry.getEncoded()*
 
-public abstract byte getEncoded()
+public abstract byte[] getEncoded()
   throws |java.security.cert.CRLException|
          
-Returns the ASN.1 DER-encoded form of this CRL Entry, that is the inner 
-SEQUENCE. 
+Returns the ASN.1 DER-encoded form of this CRL Entry, that is the inner SEQUENCE. 
+
 
 
     Returns: the encoded form of this certificate 
+
 *java.security.cert.X509CRLEntry.getRevocationDate()*
 
 public abstract |java.util.Date| getRevocationDate()
@@ -92,7 +92,9 @@ public abstract |java.util.Date| getRevocationDate()
 Gets the revocation date from this X509CRLEntry, the revocationDate. 
 
 
+
     Returns: the revocation date. 
+
 *java.security.cert.X509CRLEntry.getSerialNumber()*
 
 public abstract |java.math.BigInteger| getSerialNumber()
@@ -100,7 +102,9 @@ public abstract |java.math.BigInteger| getSerialNumber()
 Gets the serial number from this X509CRLEntry, the userCertificate. 
 
 
+
     Returns: the serial number. 
+
 *java.security.cert.X509CRLEntry.hasExtensions()*
 
 public abstract boolean hasExtensions()
@@ -108,7 +112,9 @@ public abstract boolean hasExtensions()
 Returns true if this CRL entry has extensions. 
 
 
+
     Returns: true if this entry has extensions, false otherwise. 
+
 *java.security.cert.X509CRLEntry.hashCode()*
 
 public int hashCode()
@@ -116,7 +122,9 @@ public int hashCode()
 Returns a hashcode value for this CRL entry from its encoded form. 
 
 
+
     Returns: the hashcode value. 
+
 *java.security.cert.X509CRLEntry.toString()*
 
 public abstract |java.lang.String| toString()
@@ -124,5 +132,7 @@ public abstract |java.lang.String| toString()
 Returns a string representation of this CRL entry. 
 
 
+
     Returns: a string representation of this CRL entry. 
+
 

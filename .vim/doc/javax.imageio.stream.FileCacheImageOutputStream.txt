@@ -1,4 +1,5 @@
-*javax.imageio.stream.FileCacheImageOutputStream* *FileCacheImageOutputStream* A
+*javax.imageio.stream.FileCacheImageOutputStream* *FileCacheImageOutputStream* An implementation of ImageOutputStream that writes its
+ output to a regular OutputStream.
 
 public class FileCacheImageOutputStream
   extends    |javax.imageio.stream.ImageOutputStreamImpl|
@@ -8,29 +9,28 @@ public class FileCacheImageOutputStream
 |javax.imageio.stream.FileCacheImageOutputStream_Constructors|
 |javax.imageio.stream.FileCacheImageOutputStream_Methods|
 
-================================================================================
+====================================================================================================================================================================================
 
 *javax.imageio.stream.FileCacheImageOutputStream_Constructors*
-|javax.imageio.stream.FileCacheImageOutputStream(OutputStream,File)|Constructs 
+|javax.imageio.stream.FileCacheImageOutputStream(OutputStream,File)|Constructs a FileCacheImageOutputStream that will write  to a given outputStream.
 
 *javax.imageio.stream.FileCacheImageOutputStream_Methods*
-|javax.imageio.stream.FileCacheImageOutputStream.close()|Closes this FileCacheI
+|javax.imageio.stream.FileCacheImageOutputStream.close()|Closes this FileCacheImageOututStream.
 |javax.imageio.stream.FileCacheImageOutputStream.flushBefore(long)|
-|javax.imageio.stream.FileCacheImageOutputStream.isCached()|Returns true since 
-|javax.imageio.stream.FileCacheImageOutputStream.isCachedFile()|Returns true si
-|javax.imageio.stream.FileCacheImageOutputStream.isCachedMemory()|Returns false
+|javax.imageio.stream.FileCacheImageOutputStream.isCached()|Returns true since this  ImageOutputStream caches data in order to allow  seeking backwards.
+|javax.imageio.stream.FileCacheImageOutputStream.isCachedFile()|Returns true since this  ImageOutputStream maintains a file cache.
+|javax.imageio.stream.FileCacheImageOutputStream.isCachedMemory()|Returns false since this  ImageOutputStream does not maintain a main memory  cache.
 |javax.imageio.stream.FileCacheImageOutputStream.length()|
 |javax.imageio.stream.FileCacheImageOutputStream.read()|
 |javax.imageio.stream.FileCacheImageOutputStream.read(byte[],int,int)|
-|javax.imageio.stream.FileCacheImageOutputStream.seek(long)|Sets the current st
+|javax.imageio.stream.FileCacheImageOutputStream.seek(long)|Sets the current stream position and resets the bit offset to  0.
 |javax.imageio.stream.FileCacheImageOutputStream.write(byte[],int,int)|
 |javax.imageio.stream.FileCacheImageOutputStream.write(int)|
 
 *javax.imageio.stream.FileCacheImageOutputStream_Description*
 
-An implementation of ImageOutputStream that writes its output to a regular 
-OutputStream. A file is used to cache data until it is flushed to the output 
-stream. 
+An implementation of ImageOutputStream that writes its output to a regular OutputStream. A file is used to cache data until it is flushed to the output stream. 
+
 
 
 *javax.imageio.stream.FileCacheImageOutputStream(OutputStream,File)*
@@ -40,26 +40,21 @@ public FileCacheImageOutputStream(
   java.io.File cacheDir)
   throws |java.io.IOException|
          
-Constructs a FileCacheImageOutputStream that will write to a given 
-outputStream. 
+Constructs a FileCacheImageOutputStream that will write to a given outputStream. 
 
-A temporary file is used as a cache. If cacheDiris non-null and is a directory, 
-the file will be created there. If it is null, the system-dependent default 
-temporary-file directory will be used (see the documentation for 
-File.createTempFile for details). 
+A temporary file is used as a cache. If cacheDiris non-null and is a directory, the file will be created there. If it is null, the system-dependent default temporary-file 
+directory will be used (see the documentation for File.createTempFile for details). 
 
     stream - an OutputStream to write to. 
-    cacheDir - a File indicating where the cache file should be created, or null to use the 
-       system directory. 
+    cacheDir - a File indicating where the cache file should be created, or null to use the system directory. 
 
 *javax.imageio.stream.FileCacheImageOutputStream.close()*
 
 public void close()
   throws |java.io.IOException|
          
-Closes this FileCacheImageOututStream. All pending data is flushed to the 
-output, and the cache file is closed and removed. The destination OutputStream 
-is not closed. 
+Closes this FileCacheImageOututStream. All pending data is flushed to the output, and the cache file is closed and removed. The destination OutputStream is not closed. 
+
 
 
 *javax.imageio.stream.FileCacheImageOutputStream.flushBefore(long)*
@@ -70,15 +65,17 @@ public void flushBefore(long pos)
 
 
 
+
 *javax.imageio.stream.FileCacheImageOutputStream.isCached()*
 
 public boolean isCached()
 
-Returns true since this ImageOutputStream caches data in order to allow seeking 
-backwards. 
+Returns true since this ImageOutputStream caches data in order to allow seeking backwards. 
+
 
 
     Returns: 
+
 *javax.imageio.stream.FileCacheImageOutputStream.isCachedFile()*
 
 public boolean isCachedFile()
@@ -86,19 +83,23 @@ public boolean isCachedFile()
 Returns true since this ImageOutputStream maintains a file cache. 
 
 
+
     Returns: 
+
 *javax.imageio.stream.FileCacheImageOutputStream.isCachedMemory()*
 
 public boolean isCachedMemory()
 
-Returns false since this ImageOutputStream does not maintain a main memory 
-cache. 
+Returns false since this ImageOutputStream does not maintain a main memory cache. 
+
 
 
     Returns: 
+
 *javax.imageio.stream.FileCacheImageOutputStream.length()*
 
 public long length()
+
 
 
 
@@ -108,6 +109,7 @@ public long length()
 public int read()
   throws |java.io.IOException|
          
+
 
 
 
@@ -122,14 +124,15 @@ public int read(
 
 
 
+
 *javax.imageio.stream.FileCacheImageOutputStream.seek(long)*
 
 public void seek(long pos)
   throws |java.io.IOException|
          
-Sets the current stream position and resets the bit offset to 0. It is legal to 
-seek past the end of the file; an EOFException will be thrown only if a read is 
-performed. The file length will not be increased until a write is performed. 
+Sets the current stream position and resets the bit offset to 0. It is legal to seek past the end of the file; an EOFException will be thrown only if a read is performed. The file 
+length will not be increased until a write is performed. 
+
 
 
 *javax.imageio.stream.FileCacheImageOutputStream.write(byte[],int,int)*
@@ -143,11 +146,13 @@ public void write(
 
 
 
+
 *javax.imageio.stream.FileCacheImageOutputStream.write(int)*
 
 public void write(int b)
   throws |java.io.IOException|
          
+
 
 
 

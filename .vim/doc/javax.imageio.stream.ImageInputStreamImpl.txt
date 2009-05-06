@@ -1,4 +1,4 @@
-*javax.imageio.stream.ImageInputStreamImpl* *ImageInputStreamImpl* An abstract c
+*javax.imageio.stream.ImageInputStreamImpl* *ImageInputStreamImpl* An abstract class implementing the ImageInputStream interface.
 
 public abstract class ImageInputStreamImpl
   extends    |java.lang.Object|
@@ -9,7 +9,7 @@ public abstract class ImageInputStreamImpl
 |javax.imageio.stream.ImageInputStreamImpl_Constructors|
 |javax.imageio.stream.ImageInputStreamImpl_Methods|
 
-================================================================================
+====================================================================================================================================================================================
 
 *javax.imageio.stream.ImageInputStreamImpl_Fields*
 |int_javax.imageio.stream.ImageInputStreamImpl.bitOffset|
@@ -18,26 +18,26 @@ public abstract class ImageInputStreamImpl
 |long_javax.imageio.stream.ImageInputStreamImpl.streamPos|
 
 *javax.imageio.stream.ImageInputStreamImpl_Constructors*
-|javax.imageio.stream.ImageInputStreamImpl()|Constructs an ImageInputStreamImpl
+|javax.imageio.stream.ImageInputStreamImpl()|Constructs an ImageInputStreamImpl.
 
 *javax.imageio.stream.ImageInputStreamImpl_Methods*
-|javax.imageio.stream.ImageInputStreamImpl.checkClosed()|Throws an IOException 
+|javax.imageio.stream.ImageInputStreamImpl.checkClosed()|Throws an IOException if the stream has been closed.
 |javax.imageio.stream.ImageInputStreamImpl.close()|
-|javax.imageio.stream.ImageInputStreamImpl.finalize()|Finalizes this object pri
+|javax.imageio.stream.ImageInputStreamImpl.finalize()|Finalizes this object prior to garbage collection.
 |javax.imageio.stream.ImageInputStreamImpl.flush()|
 |javax.imageio.stream.ImageInputStreamImpl.flushBefore(long)|
 |javax.imageio.stream.ImageInputStreamImpl.getBitOffset()|
 |javax.imageio.stream.ImageInputStreamImpl.getByteOrder()|
 |javax.imageio.stream.ImageInputStreamImpl.getFlushedPosition()|
 |javax.imageio.stream.ImageInputStreamImpl.getStreamPosition()|
-|javax.imageio.stream.ImageInputStreamImpl.isCached()|Default implementation re
-|javax.imageio.stream.ImageInputStreamImpl.isCachedFile()|Default implementatio
-|javax.imageio.stream.ImageInputStreamImpl.isCachedMemory()|Default implementat
-|javax.imageio.stream.ImageInputStreamImpl.length()|Returns -1L to indicate tha
-|javax.imageio.stream.ImageInputStreamImpl.mark()|Pushes the current stream pos
+|javax.imageio.stream.ImageInputStreamImpl.isCached()|Default implementation returns false.
+|javax.imageio.stream.ImageInputStreamImpl.isCachedFile()|Default implementation returns false.
+|javax.imageio.stream.ImageInputStreamImpl.isCachedMemory()|Default implementation returns false.
+|javax.imageio.stream.ImageInputStreamImpl.length()|Returns -1L to indicate that the stream has unknown  length.
+|javax.imageio.stream.ImageInputStreamImpl.mark()|Pushes the current stream position onto a stack of marked  positions.
 |javax.imageio.stream.ImageInputStreamImpl.read()|
-|javax.imageio.stream.ImageInputStreamImpl.read(byte[])|A convenience method th
-|javax.imageio.stream.ImageInputStreamImpl.read(byte[],int,int)|Reads up to len
+|javax.imageio.stream.ImageInputStreamImpl.read(byte[])|A convenience method that calls read(b, 0, b.length).
+|javax.imageio.stream.ImageInputStreamImpl.read(byte[],int,int)|Reads up to len bytes from the stream, and stores  them into b starting at index off.
 |javax.imageio.stream.ImageInputStreamImpl.readBit()|
 |javax.imageio.stream.ImageInputStreamImpl.readBits(int)|
 |javax.imageio.stream.ImageInputStreamImpl.readBoolean()|
@@ -62,61 +62,40 @@ public abstract class ImageInputStreamImpl
 |javax.imageio.stream.ImageInputStreamImpl.readUnsignedInt()|
 |javax.imageio.stream.ImageInputStreamImpl.readUnsignedShort()|
 |javax.imageio.stream.ImageInputStreamImpl.readUTF()|
-|javax.imageio.stream.ImageInputStreamImpl.reset()|Resets the current stream by
+|javax.imageio.stream.ImageInputStreamImpl.reset()|Resets the current stream byte and bit positions from the stack  of marked positions.
 |javax.imageio.stream.ImageInputStreamImpl.seek(long)|
 |javax.imageio.stream.ImageInputStreamImpl.setBitOffset(int)|
 |javax.imageio.stream.ImageInputStreamImpl.setByteOrder(ByteOrder)|
-|javax.imageio.stream.ImageInputStreamImpl.skipBytes(int)|Advances the current 
-|javax.imageio.stream.ImageInputStreamImpl.skipBytes(long)|Advances the current
+|javax.imageio.stream.ImageInputStreamImpl.skipBytes(int)|Advances the current stream position by calling  seek(getStreamPosition() + n).
+|javax.imageio.stream.ImageInputStreamImpl.skipBytes(long)|Advances the current stream position by calling  seek(getStreamPosition() + n).
 
 *javax.imageio.stream.ImageInputStreamImpl_Description*
 
-An abstract class implementing the ImageInputStream interface. This class is 
-designed to reduce the number of methods that must be implemented by 
-subclasses. 
+An abstract class implementing the ImageInputStream interface. This class is designed to reduce the number of methods that must be implemented by subclasses. 
 
-In particular, this class handles most or all of the details of byte order 
-interpretation, buffering, mark/reset, discarding, closing, and disposing. 
+In particular, this class handles most or all of the details of byte order interpretation, buffering, mark/reset, discarding, closing, and disposing. 
+
 
 
 *int_javax.imageio.stream.ImageInputStreamImpl.bitOffset*
 
-An abstract class implementing the ImageInputStream interface. This class is 
-designed to reduce the number of methods that must be implemented by 
-subclasses. 
-
-In particular, this class handles most or all of the details of byte order 
-interpretation, buffering, mark/reset, discarding, closing, and disposing. 
+The current bit offset within the stream. Subclasses are responsible for keeping this value current from any method they override that alters the bit offset. 
 
 
 *java.nio.ByteOrder_javax.imageio.stream.ImageInputStreamImpl.byteOrder*
 
-An abstract class implementing the ImageInputStream interface. This class is 
-designed to reduce the number of methods that must be implemented by 
-subclasses. 
-
-In particular, this class handles most or all of the details of byte order 
-interpretation, buffering, mark/reset, discarding, closing, and disposing. 
+The byte order of the stream as an instance of the enumeration class java.nio.ByteOrder, where ByteOrder.BIG_ENDIAN indicates network byte order and ByteOrder.LITTLE_ENDIAN 
+indicates the reverse order. By default, the value is ByteOrder.BIG_ENDIAN. 
 
 
 *long_javax.imageio.stream.ImageInputStreamImpl.flushedPos*
 
-An abstract class implementing the ImageInputStream interface. This class is 
-designed to reduce the number of methods that must be implemented by 
-subclasses. 
-
-In particular, this class handles most or all of the details of byte order 
-interpretation, buffering, mark/reset, discarding, closing, and disposing. 
+The position prior to which data may be discarded. Seeking to a smaller position is not allowed. flushedPos will always be >= 0. 
 
 
 *long_javax.imageio.stream.ImageInputStreamImpl.streamPos*
 
-An abstract class implementing the ImageInputStream interface. This class is 
-designed to reduce the number of methods that must be implemented by 
-subclasses. 
-
-In particular, this class handles most or all of the details of byte order 
-interpretation, buffering, mark/reset, discarding, closing, and disposing. 
+The current read position within the stream. Subclasses are responsible for keeping this value current from any method they override that alters the read position. 
 
 
 
@@ -132,8 +111,8 @@ Constructs an ImageInputStreamImpl.
 protected final void checkClosed()
   throws |java.io.IOException|
          
-Throws an IOException if the stream has been closed. Subclasses may call this 
-method from any of their methods that require the stream not to be closed. 
+Throws an IOException if the stream has been closed. Subclasses may call this method from any of their methods that require the stream not to be closed. 
+
 
 
 *javax.imageio.stream.ImageInputStreamImpl.close()*
@@ -144,14 +123,14 @@ public void close()
 
 
 
+
 *javax.imageio.stream.ImageInputStreamImpl.finalize()*
 
 protected void finalize()
   throws |java.lang.Throwable|
          
-Finalizes this object prior to garbage collection. The close method is called 
-to close any open input source. This method should not be called from 
-application code. 
+Finalizes this object prior to garbage collection. The close method is called to close any open input source. This method should not be called from application code. 
+
 
 
 *javax.imageio.stream.ImageInputStreamImpl.flush()*
@@ -159,6 +138,7 @@ application code.
 public void flush()
   throws |java.io.IOException|
          
+
 
 
 
@@ -170,11 +150,13 @@ public void flushBefore(long pos)
 
 
 
+
 *javax.imageio.stream.ImageInputStreamImpl.getBitOffset()*
 
 public int getBitOffset()
   throws |java.io.IOException|
          
+
 
 
 
@@ -185,9 +167,11 @@ public |java.nio.ByteOrder| getByteOrder()
 
 
 
+
 *javax.imageio.stream.ImageInputStreamImpl.getFlushedPosition()*
 
 public long getFlushedPosition()
+
 
 
 
@@ -200,39 +184,41 @@ public long getStreamPosition()
 
 
 
+
 *javax.imageio.stream.ImageInputStreamImpl.isCached()*
 
 public boolean isCached()
 
-Default implementation returns false. Subclasses should override this if they 
-cache data. 
+Default implementation returns false. Subclasses should override this if they cache data. 
+
 
 
 *javax.imageio.stream.ImageInputStreamImpl.isCachedFile()*
 
 public boolean isCachedFile()
 
-Default implementation returns false. Subclasses should override this if they 
-cache data in a temporary file. 
+Default implementation returns false. Subclasses should override this if they cache data in a temporary file. 
+
 
 
 *javax.imageio.stream.ImageInputStreamImpl.isCachedMemory()*
 
 public boolean isCachedMemory()
 
-Default implementation returns false. Subclasses should override this if they 
-cache data in main memory. 
+Default implementation returns false. Subclasses should override this if they cache data in main memory. 
+
 
 
 *javax.imageio.stream.ImageInputStreamImpl.length()*
 
 public long length()
 
-Returns -1L to indicate that the stream has unknown length. Subclasses must 
-override this method to provide actual length information. 
+Returns -1L to indicate that the stream has unknown length. Subclasses must override this method to provide actual length information. 
+
 
 
     Returns: -1L to indicate unknown length. 
+
 *javax.imageio.stream.ImageInputStreamImpl.mark()*
 
 public void mark()
@@ -240,11 +226,13 @@ public void mark()
 Pushes the current stream position onto a stack of marked positions. 
 
 
+
 *javax.imageio.stream.ImageInputStreamImpl.read()*
 
 public abstract int read()
   throws |java.io.IOException|
          
+
 
 
 
@@ -258,7 +246,9 @@ A convenience method that calls read(b, 0, b.length).
 The bit offset within the stream is reset to zero before the read occurs. 
 
 
+
     Returns: the number of bytes actually read, or -1 to indicate EOF. 
+
 *javax.imageio.stream.ImageInputStreamImpl.read(byte[],int,int)*
 
 public abstract int read(
@@ -267,25 +257,25 @@ public abstract int read(
   int len)
   throws |java.io.IOException|
          
-Reads up to len bytes from the stream, and stores them into b starting at index 
-off. If no bytes can be read because the end of the stream has been reached, -1 
-is returned. 
+Reads up to len bytes from the stream, and stores them into b starting at index off. If no bytes can be read because the end of the stream has been reached, -1 is returned. 
 
 The bit offset within the stream must be reset to zero before the read occurs. 
 
-Subclasses must provide an implementation for this method. The subclass 
-implementation should update the stream position before exiting. 
+Subclasses must provide an implementation for this method. The subclass implementation should update the stream position before exiting. 
+
 
     b - an array of bytes to be written to. 
     off - the starting position within b to write to. 
     len - the maximum number of bytes to read. 
 
     Returns: the number of bytes actually read, or -1 to indicate EOF. 
+
 *javax.imageio.stream.ImageInputStreamImpl.readBit()*
 
 public int readBit()
   throws |java.io.IOException|
          
+
 
 
 
@@ -297,6 +287,7 @@ public long readBits(int numBits)
 
 
 
+
 *javax.imageio.stream.ImageInputStreamImpl.readBoolean()*
 
 public boolean readBoolean()
@@ -305,11 +296,13 @@ public boolean readBoolean()
 
 
 
+
 *javax.imageio.stream.ImageInputStreamImpl.readByte()*
 
 public byte readByte()
   throws |java.io.IOException|
          
+
 
 
 
@@ -323,11 +316,13 @@ public void readBytes(
 
 
 
+
 *javax.imageio.stream.ImageInputStreamImpl.readChar()*
 
 public char readChar()
   throws |java.io.IOException|
          
+
 
 
 
@@ -339,6 +334,7 @@ public double readDouble()
 
 
 
+
 *javax.imageio.stream.ImageInputStreamImpl.readFloat()*
 
 public float readFloat()
@@ -347,11 +343,13 @@ public float readFloat()
 
 
 
+
 *javax.imageio.stream.ImageInputStreamImpl.readFully(byte[])*
 
 public void readFully(byte[] b)
   throws |java.io.IOException|
          
+
 
 
 
@@ -366,6 +364,7 @@ public void readFully(
 
 
 
+
 *javax.imageio.stream.ImageInputStreamImpl.readFully(char[],int,int)*
 
 public void readFully(
@@ -374,6 +373,7 @@ public void readFully(
   int len)
   throws |java.io.IOException|
          
+
 
 
 
@@ -388,6 +388,7 @@ public void readFully(
 
 
 
+
 *javax.imageio.stream.ImageInputStreamImpl.readFully(float[],int,int)*
 
 public void readFully(
@@ -396,6 +397,7 @@ public void readFully(
   int len)
   throws |java.io.IOException|
          
+
 
 
 
@@ -410,6 +412,7 @@ public void readFully(
 
 
 
+
 *javax.imageio.stream.ImageInputStreamImpl.readFully(long[],int,int)*
 
 public void readFully(
@@ -418,6 +421,7 @@ public void readFully(
   int len)
   throws |java.io.IOException|
          
+
 
 
 
@@ -432,11 +436,13 @@ public void readFully(
 
 
 
+
 *javax.imageio.stream.ImageInputStreamImpl.readInt()*
 
 public int readInt()
   throws |java.io.IOException|
          
+
 
 
 
@@ -448,11 +454,13 @@ public |java.lang.String| readLine()
 
 
 
+
 *javax.imageio.stream.ImageInputStreamImpl.readLong()*
 
 public long readLong()
   throws |java.io.IOException|
          
+
 
 
 
@@ -464,11 +472,13 @@ public short readShort()
 
 
 
+
 *javax.imageio.stream.ImageInputStreamImpl.readUnsignedByte()*
 
 public int readUnsignedByte()
   throws |java.io.IOException|
          
+
 
 
 
@@ -480,11 +490,13 @@ public long readUnsignedInt()
 
 
 
+
 *javax.imageio.stream.ImageInputStreamImpl.readUnsignedShort()*
 
 public int readUnsignedShort()
   throws |java.io.IOException|
          
+
 
 
 
@@ -496,16 +508,16 @@ public |java.lang.String| readUTF()
 
 
 
+
 *javax.imageio.stream.ImageInputStreamImpl.reset()*
 
 public void reset()
   throws |java.io.IOException|
          
-Resets the current stream byte and bit positions from the stack of marked 
-positions. 
+Resets the current stream byte and bit positions from the stack of marked positions. 
 
-An IOException will be thrown if the previous marked position lies in the 
-discarded portion of the stream. 
+An IOException will be thrown if the previous marked position lies in the discarded portion of the stream. 
+
 
 
 *javax.imageio.stream.ImageInputStreamImpl.seek(long)*
@@ -513,6 +525,7 @@ discarded portion of the stream.
 public void seek(long pos)
   throws |java.io.IOException|
          
+
 
 
 
@@ -524,9 +537,11 @@ public void setBitOffset(int bitOffset)
 
 
 
+
 *javax.imageio.stream.ImageInputStreamImpl.setByteOrder(ByteOrder)*
 
 public void setByteOrder(java.nio.ByteOrder byteOrder)
+
 
 
 
@@ -540,9 +555,11 @@ Advances the current stream position by calling seek(getStreamPosition() + n).
 
 The bit offset is reset to zero. 
 
+
     n - the number of bytes to seek forward. 
 
     Returns: an int representing the number of bytes skipped. 
+
 *javax.imageio.stream.ImageInputStreamImpl.skipBytes(long)*
 
 public long skipBytes(long n)
@@ -552,7 +569,9 @@ Advances the current stream position by calling seek(getStreamPosition() + n).
 
 The bit offset is reset to zero. 
 
+
     n - the number of bytes to seek forward. 
 
     Returns: a long representing the number of bytes skipped. 
+
 

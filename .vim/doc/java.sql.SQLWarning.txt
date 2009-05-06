@@ -1,4 +1,5 @@
-*java.sql.SQLWarning* *SQLWarning* An exception that provides information on  da
+*java.sql.SQLWarning* *SQLWarning* An exception that provides information on  database access
+ warnings.
 
 public class SQLWarning
   extends    |java.sql.SQLException|
@@ -8,45 +9,40 @@ public class SQLWarning
 |java.sql.SQLWarning_Constructors|
 |java.sql.SQLWarning_Methods|
 
-================================================================================
+====================================================================================================================================================================================
 
 *java.sql.SQLWarning_Constructors*
 |java.sql.SQLWarning()|Constructs a default SQLWarning object.
-|java.sql.SQLWarning(String)|Constructs an SQLWarning object  with the given va
-|java.sql.SQLWarning(String,String)|Constructs an SQLWarning object  with the g
-|java.sql.SQLWarning(String,String,int)|Constructs a fully-specified SQLWarning
+|java.sql.SQLWarning(String)|Constructs an SQLWarning object  with the given value for a reason; SQLstate defaults to  null, and vendorCode defaults to 0.
+|java.sql.SQLWarning(String,String)|Constructs an SQLWarning object  with the given reason and SQLState;  the vendorCode defaults to 0.
+|java.sql.SQLWarning(String,String,int)|Constructs a fully-specified SQLWarning object  initialized with the given values.
 
 *java.sql.SQLWarning_Methods*
-|java.sql.SQLWarning.getNextWarning()|Retrieves the warning chained to this SQL
-|java.sql.SQLWarning.setNextWarning(SQLWarning)|Adds an SQLWarning object to th
+|java.sql.SQLWarning.getNextWarning()|Retrieves the warning chained to this SQLWarning object.
+|java.sql.SQLWarning.setNextWarning(SQLWarning)|Adds an SQLWarning object to the end of the chain.
 
 *java.sql.SQLWarning_Description*
 
-An exception that provides information on database access warnings. Warnings 
-are silently chained to the object whose method caused it to be reported. 
+An exception that provides information on database access warnings. Warnings are silently chained to the object whose method caused it to be reported. 
 
-Warnings may be retrieved from Connection, Statement, and ResultSet objects. 
-Trying to retrieve a warning on a connection after it has been closed will 
-cause an exception to be thrown. Similarly, trying to retrieve a warning on a 
-statement after it has been closed or on a result set after it has been closed 
-will cause an exception to be thrown. Note that closing a statement also closes 
-a result set that it might have produced. 
+Warnings may be retrieved from Connection, Statement, and ResultSet objects. Trying to retrieve a warning on a connection after it has been closed will cause an exception to be 
+thrown. Similarly, trying to retrieve a warning on a statement after it has been closed or on a result set after it has been closed will cause an exception to be thrown. Note that 
+closing a statement also closes a result set that it might have produced. 
+
 
 
 *java.sql.SQLWarning()*
 
 public SQLWarning()
 
-Constructs a default SQLWarning object. The reason defaults to null, SQLState 
-defaults to null, and vendorCode defaults to 0. 
+Constructs a default SQLWarning object. The reason defaults to null, SQLState defaults to null, and vendorCode defaults to 0. 
 
 
 *java.sql.SQLWarning(String)*
 
 public SQLWarning(java.lang.String reason)
 
-Constructs an SQLWarning object with the given value for a reason; SQLstate 
-defaults to null, and vendorCode defaults to 0. 
+Constructs an SQLWarning object with the given value for a reason; SQLstate defaults to null, and vendorCode defaults to 0. 
 
     reason - a description of the warning 
 
@@ -56,8 +52,7 @@ public SQLWarning(
   java.lang.String reason,
   java.lang.String SQLstate)
 
-Constructs an SQLWarning object with the given reason and SQLState; the 
-vendorCode defaults to 0. 
+Constructs an SQLWarning object with the given reason and SQLState; the vendorCode defaults to 0. 
 
     reason - a description of the warning 
     SQLstate - an XOPEN code identifying the warning 
@@ -69,8 +64,7 @@ public SQLWarning(
   java.lang.String SQLstate,
   int vendorCode)
 
-Constructs a fully-specified SQLWarning object initialized with the given 
-values. 
+Constructs a fully-specified SQLWarning object initialized with the given values. 
 
     reason - a description of the warning 
     SQLstate - an XOPEN code identifying the warning 
@@ -83,12 +77,15 @@ public |java.sql.SQLWarning| getNextWarning()
 Retrieves the warning chained to this SQLWarning object. 
 
 
+
     Returns: the next SQLException in the chain; null if none 
+
 *java.sql.SQLWarning.setNextWarning(SQLWarning)*
 
 public void setNextWarning(java.sql.SQLWarning w)
 
 Adds an SQLWarning object to the end of the chain. 
+
 
     w - the new end of the SQLException chain 
 

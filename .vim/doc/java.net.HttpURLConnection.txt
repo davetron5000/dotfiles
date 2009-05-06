@@ -1,4 +1,4 @@
-*java.net.HttpURLConnection* *HttpURLConnection* A URLConnection with support fo
+*java.net.HttpURLConnection* *HttpURLConnection* A URLConnection with support for HTTP-specific features.
 
 public abstract class HttpURLConnection
   extends    |java.net.URLConnection|
@@ -8,7 +8,7 @@ public abstract class HttpURLConnection
 |java.net.HttpURLConnection_Constructors|
 |java.net.HttpURLConnection_Methods|
 
-================================================================================
+====================================================================================================================================================================================
 
 *java.net.HttpURLConnection_Fields*
 |int_java.net.HttpURLConnection.chunkLength|
@@ -58,624 +58,248 @@ public abstract class HttpURLConnection
 |java.net.HttpURLConnection(URL)|Constructor for the HttpURLConnection.
 
 *java.net.HttpURLConnection_Methods*
-|java.net.HttpURLConnection.disconnect()|Indicates that other requests to the s
-|java.net.HttpURLConnection.getErrorStream()|Returns the error stream if the co
-|java.net.HttpURLConnection.getFollowRedirects()|Returns a boolean indicating  
-|java.net.HttpURLConnection.getHeaderField(int)|Returns the value for the nth h
+|java.net.HttpURLConnection.disconnect()|Indicates that other requests to the server  are unlikely in the near future.
+|java.net.HttpURLConnection.getErrorStream()|Returns the error stream if the connection failed  but the server sent useful data nonetheless.
+|java.net.HttpURLConnection.getFollowRedirects()|Returns a boolean indicating  whether or not HTTP redirects (3xx) should  be automatically followed.
+|java.net.HttpURLConnection.getHeaderField(int)|Returns the value for the nth header field.
 |java.net.HttpURLConnection.getHeaderFieldDate(String,long)|
-|java.net.HttpURLConnection.getHeaderFieldKey(int)|Returns the key for the nth 
-|java.net.HttpURLConnection.getInstanceFollowRedirects()|Returns the value of t
+|java.net.HttpURLConnection.getHeaderFieldKey(int)|Returns the key for the nth header field.
+|java.net.HttpURLConnection.getInstanceFollowRedirects()|Returns the value of this HttpURLConnection's  instanceFollowRedirects field.
 |java.net.HttpURLConnection.getPermission()|
 |java.net.HttpURLConnection.getRequestMethod()|Get the request method.
-|java.net.HttpURLConnection.getResponseCode()|Gets the status code from an HTTP
-|java.net.HttpURLConnection.getResponseMessage()|Gets the HTTP response message
-|java.net.HttpURLConnection.setChunkedStreamingMode(int)|This method is used to
-|java.net.HttpURLConnection.setFixedLengthStreamingMode(int)|This method is use
-|java.net.HttpURLConnection.setFollowRedirects(boolean)|Sets whether HTTP redir
-|java.net.HttpURLConnection.setInstanceFollowRedirects(boolean)|Sets whether HT
-|java.net.HttpURLConnection.setRequestMethod(String)|Set the method for the URL
-|java.net.HttpURLConnection.usingProxy()|Indicates if the connection is going t
+|java.net.HttpURLConnection.getResponseCode()|Gets the status code from an HTTP response message.
+|java.net.HttpURLConnection.getResponseMessage()|Gets the HTTP response message, if any, returned along with the  response code from a server.
+|java.net.HttpURLConnection.setChunkedStreamingMode(int)|This method is used to enable streaming of a HTTP request body  without internal buffering, when the content length is not
+|java.net.HttpURLConnection.setFixedLengthStreamingMode(int)|This method is used to enable streaming of a HTTP request body  without internal buffering, when the content length is
+|java.net.HttpURLConnection.setFollowRedirects(boolean)|Sets whether HTTP redirects  (requests with response code 3xx) should   be automatically followed by this class.
+|java.net.HttpURLConnection.setInstanceFollowRedirects(boolean)|Sets whether HTTP redirects (requests with response code 3xx) should  be automatically followed by this HttpURLConn
+|java.net.HttpURLConnection.setRequestMethod(String)|Set the method for the URL request, one of:     GET   POST   HEAD   OPTIONS   PUT   DELETE   TRACE   are legal, subject to pro
+|java.net.HttpURLConnection.usingProxy()|Indicates if the connection is going through a proxy.
 
 *java.net.HttpURLConnection_Description*
 
-A URLConnection with support for HTTP-specific features. See the spec for 
-details. 
+A URLConnection with support for HTTP-specific features. See the spec for details. 
 
-Each HttpURLConnection instance is used to make a single request but the 
-underlying network connection to the HTTP server may be transparently shared by 
-other instances. Calling the close() methods on the InputStream or OutputStream 
-of an HttpURLConnection after a request may free network resources associated 
-with this instance but has no effect on any shared persistent connection. 
-Calling the disconnect() method may close the underlying socket if a persistent 
-connection is otherwise idle at that time. 
+Each HttpURLConnection instance is used to make a single request but the underlying network connection to the HTTP server may be transparently shared by other instances. Calling 
+the close() methods on the InputStream or OutputStream of an HttpURLConnection after a request may free network resources associated with this instance but has no effect on any 
+shared persistent connection. Calling the disconnect() method may close the underlying socket if a persistent connection is otherwise idle at that time. 
+
 
 
 *int_java.net.HttpURLConnection.chunkLength*
 
-A URLConnection with support for HTTP-specific features. See the spec for 
-details. 
-
-Each HttpURLConnection instance is used to make a single request but the 
-underlying network connection to the HTTP server may be transparently shared by 
-other instances. Calling the close() methods on the InputStream or OutputStream 
-of an HttpURLConnection after a request may free network resources associated 
-with this instance but has no effect on any shared persistent connection. 
-Calling the disconnect() method may close the underlying socket if a persistent 
-connection is otherwise idle at that time. 
+The chunk-length when using chunked encoding streaming mode for output. A value of -1 means chunked encoding is disabled for output. 
 
 
 *int_java.net.HttpURLConnection.fixedContentLength*
 
-A URLConnection with support for HTTP-specific features. See the spec for 
-details. 
-
-Each HttpURLConnection instance is used to make a single request but the 
-underlying network connection to the HTTP server may be transparently shared by 
-other instances. Calling the close() methods on the InputStream or OutputStream 
-of an HttpURLConnection after a request may free network resources associated 
-with this instance but has no effect on any shared persistent connection. 
-Calling the disconnect() method may close the underlying socket if a persistent 
-connection is otherwise idle at that time. 
+The fixed content-length when using fixed-length streaming mode. A value of -1 means fixed-length streaming mode is disabled for output. 
 
 
 *int_java.net.HttpURLConnection.HTTP_ACCEPTED*
 
-A URLConnection with support for HTTP-specific features. See the spec for 
-details. 
-
-Each HttpURLConnection instance is used to make a single request but the 
-underlying network connection to the HTTP server may be transparently shared by 
-other instances. Calling the close() methods on the InputStream or OutputStream 
-of an HttpURLConnection after a request may free network resources associated 
-with this instance but has no effect on any shared persistent connection. 
-Calling the disconnect() method may close the underlying socket if a persistent 
-connection is otherwise idle at that time. 
+HTTP Status-Code 202: Accepted. 
 
 
 *int_java.net.HttpURLConnection.HTTP_BAD_GATEWAY*
 
-A URLConnection with support for HTTP-specific features. See the spec for 
-details. 
-
-Each HttpURLConnection instance is used to make a single request but the 
-underlying network connection to the HTTP server may be transparently shared by 
-other instances. Calling the close() methods on the InputStream or OutputStream 
-of an HttpURLConnection after a request may free network resources associated 
-with this instance but has no effect on any shared persistent connection. 
-Calling the disconnect() method may close the underlying socket if a persistent 
-connection is otherwise idle at that time. 
+HTTP Status-Code 502: Bad Gateway. 
 
 
 *int_java.net.HttpURLConnection.HTTP_BAD_METHOD*
 
-A URLConnection with support for HTTP-specific features. See the spec for 
-details. 
-
-Each HttpURLConnection instance is used to make a single request but the 
-underlying network connection to the HTTP server may be transparently shared by 
-other instances. Calling the close() methods on the InputStream or OutputStream 
-of an HttpURLConnection after a request may free network resources associated 
-with this instance but has no effect on any shared persistent connection. 
-Calling the disconnect() method may close the underlying socket if a persistent 
-connection is otherwise idle at that time. 
+HTTP Status-Code 405: Method Not Allowed. 
 
 
 *int_java.net.HttpURLConnection.HTTP_BAD_REQUEST*
 
-A URLConnection with support for HTTP-specific features. See the spec for 
-details. 
-
-Each HttpURLConnection instance is used to make a single request but the 
-underlying network connection to the HTTP server may be transparently shared by 
-other instances. Calling the close() methods on the InputStream or OutputStream 
-of an HttpURLConnection after a request may free network resources associated 
-with this instance but has no effect on any shared persistent connection. 
-Calling the disconnect() method may close the underlying socket if a persistent 
-connection is otherwise idle at that time. 
+HTTP Status-Code 400: Bad Request. 
 
 
 *int_java.net.HttpURLConnection.HTTP_CLIENT_TIMEOUT*
 
-A URLConnection with support for HTTP-specific features. See the spec for 
-details. 
-
-Each HttpURLConnection instance is used to make a single request but the 
-underlying network connection to the HTTP server may be transparently shared by 
-other instances. Calling the close() methods on the InputStream or OutputStream 
-of an HttpURLConnection after a request may free network resources associated 
-with this instance but has no effect on any shared persistent connection. 
-Calling the disconnect() method may close the underlying socket if a persistent 
-connection is otherwise idle at that time. 
+HTTP Status-Code 408: Request Time-Out. 
 
 
 *int_java.net.HttpURLConnection.HTTP_CONFLICT*
 
-A URLConnection with support for HTTP-specific features. See the spec for 
-details. 
-
-Each HttpURLConnection instance is used to make a single request but the 
-underlying network connection to the HTTP server may be transparently shared by 
-other instances. Calling the close() methods on the InputStream or OutputStream 
-of an HttpURLConnection after a request may free network resources associated 
-with this instance but has no effect on any shared persistent connection. 
-Calling the disconnect() method may close the underlying socket if a persistent 
-connection is otherwise idle at that time. 
+HTTP Status-Code 409: Conflict. 
 
 
 *int_java.net.HttpURLConnection.HTTP_CREATED*
 
-A URLConnection with support for HTTP-specific features. See the spec for 
-details. 
-
-Each HttpURLConnection instance is used to make a single request but the 
-underlying network connection to the HTTP server may be transparently shared by 
-other instances. Calling the close() methods on the InputStream or OutputStream 
-of an HttpURLConnection after a request may free network resources associated 
-with this instance but has no effect on any shared persistent connection. 
-Calling the disconnect() method may close the underlying socket if a persistent 
-connection is otherwise idle at that time. 
+HTTP Status-Code 201: Created. 
 
 
 *int_java.net.HttpURLConnection.HTTP_ENTITY_TOO_LARGE*
 
-A URLConnection with support for HTTP-specific features. See the spec for 
-details. 
-
-Each HttpURLConnection instance is used to make a single request but the 
-underlying network connection to the HTTP server may be transparently shared by 
-other instances. Calling the close() methods on the InputStream or OutputStream 
-of an HttpURLConnection after a request may free network resources associated 
-with this instance but has no effect on any shared persistent connection. 
-Calling the disconnect() method may close the underlying socket if a persistent 
-connection is otherwise idle at that time. 
+HTTP Status-Code 413: Request Entity Too Large. 
 
 
 *int_java.net.HttpURLConnection.HTTP_FORBIDDEN*
 
-A URLConnection with support for HTTP-specific features. See the spec for 
-details. 
-
-Each HttpURLConnection instance is used to make a single request but the 
-underlying network connection to the HTTP server may be transparently shared by 
-other instances. Calling the close() methods on the InputStream or OutputStream 
-of an HttpURLConnection after a request may free network resources associated 
-with this instance but has no effect on any shared persistent connection. 
-Calling the disconnect() method may close the underlying socket if a persistent 
-connection is otherwise idle at that time. 
+HTTP Status-Code 403: Forbidden. 
 
 
 *int_java.net.HttpURLConnection.HTTP_GATEWAY_TIMEOUT*
 
-A URLConnection with support for HTTP-specific features. See the spec for 
-details. 
-
-Each HttpURLConnection instance is used to make a single request but the 
-underlying network connection to the HTTP server may be transparently shared by 
-other instances. Calling the close() methods on the InputStream or OutputStream 
-of an HttpURLConnection after a request may free network resources associated 
-with this instance but has no effect on any shared persistent connection. 
-Calling the disconnect() method may close the underlying socket if a persistent 
-connection is otherwise idle at that time. 
+HTTP Status-Code 504: Gateway Timeout. 
 
 
 *int_java.net.HttpURLConnection.HTTP_GONE*
 
-A URLConnection with support for HTTP-specific features. See the spec for 
-details. 
-
-Each HttpURLConnection instance is used to make a single request but the 
-underlying network connection to the HTTP server may be transparently shared by 
-other instances. Calling the close() methods on the InputStream or OutputStream 
-of an HttpURLConnection after a request may free network resources associated 
-with this instance but has no effect on any shared persistent connection. 
-Calling the disconnect() method may close the underlying socket if a persistent 
-connection is otherwise idle at that time. 
+HTTP Status-Code 410: Gone. 
 
 
 *int_java.net.HttpURLConnection.HTTP_INTERNAL_ERROR*
 
-A URLConnection with support for HTTP-specific features. See the spec for 
-details. 
-
-Each HttpURLConnection instance is used to make a single request but the 
-underlying network connection to the HTTP server may be transparently shared by 
-other instances. Calling the close() methods on the InputStream or OutputStream 
-of an HttpURLConnection after a request may free network resources associated 
-with this instance but has no effect on any shared persistent connection. 
-Calling the disconnect() method may close the underlying socket if a persistent 
-connection is otherwise idle at that time. 
+HTTP Status-Code 500: Internal Server Error. 
 
 
 *int_java.net.HttpURLConnection.HTTP_LENGTH_REQUIRED*
 
-A URLConnection with support for HTTP-specific features. See the spec for 
-details. 
-
-Each HttpURLConnection instance is used to make a single request but the 
-underlying network connection to the HTTP server may be transparently shared by 
-other instances. Calling the close() methods on the InputStream or OutputStream 
-of an HttpURLConnection after a request may free network resources associated 
-with this instance but has no effect on any shared persistent connection. 
-Calling the disconnect() method may close the underlying socket if a persistent 
-connection is otherwise idle at that time. 
+HTTP Status-Code 411: Length Required. 
 
 
 *int_java.net.HttpURLConnection.HTTP_MOVED_PERM*
 
-A URLConnection with support for HTTP-specific features. See the spec for 
-details. 
-
-Each HttpURLConnection instance is used to make a single request but the 
-underlying network connection to the HTTP server may be transparently shared by 
-other instances. Calling the close() methods on the InputStream or OutputStream 
-of an HttpURLConnection after a request may free network resources associated 
-with this instance but has no effect on any shared persistent connection. 
-Calling the disconnect() method may close the underlying socket if a persistent 
-connection is otherwise idle at that time. 
+HTTP Status-Code 301: Moved Permanently. 
 
 
 *int_java.net.HttpURLConnection.HTTP_MOVED_TEMP*
 
-A URLConnection with support for HTTP-specific features. See the spec for 
-details. 
-
-Each HttpURLConnection instance is used to make a single request but the 
-underlying network connection to the HTTP server may be transparently shared by 
-other instances. Calling the close() methods on the InputStream or OutputStream 
-of an HttpURLConnection after a request may free network resources associated 
-with this instance but has no effect on any shared persistent connection. 
-Calling the disconnect() method may close the underlying socket if a persistent 
-connection is otherwise idle at that time. 
+HTTP Status-Code 302: Temporary Redirect. 
 
 
 *int_java.net.HttpURLConnection.HTTP_MULT_CHOICE*
 
-A URLConnection with support for HTTP-specific features. See the spec for 
-details. 
-
-Each HttpURLConnection instance is used to make a single request but the 
-underlying network connection to the HTTP server may be transparently shared by 
-other instances. Calling the close() methods on the InputStream or OutputStream 
-of an HttpURLConnection after a request may free network resources associated 
-with this instance but has no effect on any shared persistent connection. 
-Calling the disconnect() method may close the underlying socket if a persistent 
-connection is otherwise idle at that time. 
+HTTP Status-Code 300: Multiple Choices. 
 
 
 *int_java.net.HttpURLConnection.HTTP_NO_CONTENT*
 
-A URLConnection with support for HTTP-specific features. See the spec for 
-details. 
-
-Each HttpURLConnection instance is used to make a single request but the 
-underlying network connection to the HTTP server may be transparently shared by 
-other instances. Calling the close() methods on the InputStream or OutputStream 
-of an HttpURLConnection after a request may free network resources associated 
-with this instance but has no effect on any shared persistent connection. 
-Calling the disconnect() method may close the underlying socket if a persistent 
-connection is otherwise idle at that time. 
+HTTP Status-Code 204: No Content. 
 
 
 *int_java.net.HttpURLConnection.HTTP_NOT_ACCEPTABLE*
 
-A URLConnection with support for HTTP-specific features. See the spec for 
-details. 
-
-Each HttpURLConnection instance is used to make a single request but the 
-underlying network connection to the HTTP server may be transparently shared by 
-other instances. Calling the close() methods on the InputStream or OutputStream 
-of an HttpURLConnection after a request may free network resources associated 
-with this instance but has no effect on any shared persistent connection. 
-Calling the disconnect() method may close the underlying socket if a persistent 
-connection is otherwise idle at that time. 
+HTTP Status-Code 406: Not Acceptable. 
 
 
 *int_java.net.HttpURLConnection.HTTP_NOT_AUTHORITATIVE*
 
-A URLConnection with support for HTTP-specific features. See the spec for 
-details. 
-
-Each HttpURLConnection instance is used to make a single request but the 
-underlying network connection to the HTTP server may be transparently shared by 
-other instances. Calling the close() methods on the InputStream or OutputStream 
-of an HttpURLConnection after a request may free network resources associated 
-with this instance but has no effect on any shared persistent connection. 
-Calling the disconnect() method may close the underlying socket if a persistent 
-connection is otherwise idle at that time. 
+HTTP Status-Code 203: Non-Authoritative Information. 
 
 
 *int_java.net.HttpURLConnection.HTTP_NOT_FOUND*
 
-A URLConnection with support for HTTP-specific features. See the spec for 
-details. 
-
-Each HttpURLConnection instance is used to make a single request but the 
-underlying network connection to the HTTP server may be transparently shared by 
-other instances. Calling the close() methods on the InputStream or OutputStream 
-of an HttpURLConnection after a request may free network resources associated 
-with this instance but has no effect on any shared persistent connection. 
-Calling the disconnect() method may close the underlying socket if a persistent 
-connection is otherwise idle at that time. 
+HTTP Status-Code 404: Not Found. 
 
 
 *int_java.net.HttpURLConnection.HTTP_NOT_IMPLEMENTED*
 
-A URLConnection with support for HTTP-specific features. See the spec for 
-details. 
-
-Each HttpURLConnection instance is used to make a single request but the 
-underlying network connection to the HTTP server may be transparently shared by 
-other instances. Calling the close() methods on the InputStream or OutputStream 
-of an HttpURLConnection after a request may free network resources associated 
-with this instance but has no effect on any shared persistent connection. 
-Calling the disconnect() method may close the underlying socket if a persistent 
-connection is otherwise idle at that time. 
+HTTP Status-Code 501: Not Implemented. 
 
 
 *int_java.net.HttpURLConnection.HTTP_NOT_MODIFIED*
 
-A URLConnection with support for HTTP-specific features. See the spec for 
-details. 
-
-Each HttpURLConnection instance is used to make a single request but the 
-underlying network connection to the HTTP server may be transparently shared by 
-other instances. Calling the close() methods on the InputStream or OutputStream 
-of an HttpURLConnection after a request may free network resources associated 
-with this instance but has no effect on any shared persistent connection. 
-Calling the disconnect() method may close the underlying socket if a persistent 
-connection is otherwise idle at that time. 
+HTTP Status-Code 304: Not Modified. 
 
 
 *int_java.net.HttpURLConnection.HTTP_OK*
 
-A URLConnection with support for HTTP-specific features. See the spec for 
-details. 
-
-Each HttpURLConnection instance is used to make a single request but the 
-underlying network connection to the HTTP server may be transparently shared by 
-other instances. Calling the close() methods on the InputStream or OutputStream 
-of an HttpURLConnection after a request may free network resources associated 
-with this instance but has no effect on any shared persistent connection. 
-Calling the disconnect() method may close the underlying socket if a persistent 
-connection is otherwise idle at that time. 
+HTTP Status-Code 200: OK. 
 
 
 *int_java.net.HttpURLConnection.HTTP_PARTIAL*
 
-A URLConnection with support for HTTP-specific features. See the spec for 
-details. 
-
-Each HttpURLConnection instance is used to make a single request but the 
-underlying network connection to the HTTP server may be transparently shared by 
-other instances. Calling the close() methods on the InputStream or OutputStream 
-of an HttpURLConnection after a request may free network resources associated 
-with this instance but has no effect on any shared persistent connection. 
-Calling the disconnect() method may close the underlying socket if a persistent 
-connection is otherwise idle at that time. 
+HTTP Status-Code 206: Partial Content. 
 
 
 *int_java.net.HttpURLConnection.HTTP_PAYMENT_REQUIRED*
 
-A URLConnection with support for HTTP-specific features. See the spec for 
-details. 
-
-Each HttpURLConnection instance is used to make a single request but the 
-underlying network connection to the HTTP server may be transparently shared by 
-other instances. Calling the close() methods on the InputStream or OutputStream 
-of an HttpURLConnection after a request may free network resources associated 
-with this instance but has no effect on any shared persistent connection. 
-Calling the disconnect() method may close the underlying socket if a persistent 
-connection is otherwise idle at that time. 
+HTTP Status-Code 402: Payment Required. 
 
 
 *int_java.net.HttpURLConnection.HTTP_PRECON_FAILED*
 
-A URLConnection with support for HTTP-specific features. See the spec for 
-details. 
-
-Each HttpURLConnection instance is used to make a single request but the 
-underlying network connection to the HTTP server may be transparently shared by 
-other instances. Calling the close() methods on the InputStream or OutputStream 
-of an HttpURLConnection after a request may free network resources associated 
-with this instance but has no effect on any shared persistent connection. 
-Calling the disconnect() method may close the underlying socket if a persistent 
-connection is otherwise idle at that time. 
+HTTP Status-Code 412: Precondition Failed. 
 
 
 *int_java.net.HttpURLConnection.HTTP_PROXY_AUTH*
 
-A URLConnection with support for HTTP-specific features. See the spec for 
-details. 
-
-Each HttpURLConnection instance is used to make a single request but the 
-underlying network connection to the HTTP server may be transparently shared by 
-other instances. Calling the close() methods on the InputStream or OutputStream 
-of an HttpURLConnection after a request may free network resources associated 
-with this instance but has no effect on any shared persistent connection. 
-Calling the disconnect() method may close the underlying socket if a persistent 
-connection is otherwise idle at that time. 
+HTTP Status-Code 407: Proxy Authentication Required. 
 
 
 *int_java.net.HttpURLConnection.HTTP_REQ_TOO_LONG*
 
-A URLConnection with support for HTTP-specific features. See the spec for 
-details. 
-
-Each HttpURLConnection instance is used to make a single request but the 
-underlying network connection to the HTTP server may be transparently shared by 
-other instances. Calling the close() methods on the InputStream or OutputStream 
-of an HttpURLConnection after a request may free network resources associated 
-with this instance but has no effect on any shared persistent connection. 
-Calling the disconnect() method may close the underlying socket if a persistent 
-connection is otherwise idle at that time. 
+HTTP Status-Code 414: Request-URI Too Large. 
 
 
 *int_java.net.HttpURLConnection.HTTP_RESET*
 
-A URLConnection with support for HTTP-specific features. See the spec for 
-details. 
-
-Each HttpURLConnection instance is used to make a single request but the 
-underlying network connection to the HTTP server may be transparently shared by 
-other instances. Calling the close() methods on the InputStream or OutputStream 
-of an HttpURLConnection after a request may free network resources associated 
-with this instance but has no effect on any shared persistent connection. 
-Calling the disconnect() method may close the underlying socket if a persistent 
-connection is otherwise idle at that time. 
+HTTP Status-Code 205: Reset Content. 
 
 
 *int_java.net.HttpURLConnection.HTTP_SEE_OTHER*
 
-A URLConnection with support for HTTP-specific features. See the spec for 
-details. 
-
-Each HttpURLConnection instance is used to make a single request but the 
-underlying network connection to the HTTP server may be transparently shared by 
-other instances. Calling the close() methods on the InputStream or OutputStream 
-of an HttpURLConnection after a request may free network resources associated 
-with this instance but has no effect on any shared persistent connection. 
-Calling the disconnect() method may close the underlying socket if a persistent 
-connection is otherwise idle at that time. 
+HTTP Status-Code 303: See Other. 
 
 
 *int_java.net.HttpURLConnection.HTTP_SERVER_ERROR*
 
-A URLConnection with support for HTTP-specific features. See the spec for 
-details. 
-
-Each HttpURLConnection instance is used to make a single request but the 
-underlying network connection to the HTTP server may be transparently shared by 
-other instances. Calling the close() methods on the InputStream or OutputStream 
-of an HttpURLConnection after a request may free network resources associated 
-with this instance but has no effect on any shared persistent connection. 
-Calling the disconnect() method may close the underlying socket if a persistent 
-connection is otherwise idle at that time. 
+HTTP Status-Code 500: Internal Server Error. 
 
 
 *int_java.net.HttpURLConnection.HTTP_UNAUTHORIZED*
 
-A URLConnection with support for HTTP-specific features. See the spec for 
-details. 
-
-Each HttpURLConnection instance is used to make a single request but the 
-underlying network connection to the HTTP server may be transparently shared by 
-other instances. Calling the close() methods on the InputStream or OutputStream 
-of an HttpURLConnection after a request may free network resources associated 
-with this instance but has no effect on any shared persistent connection. 
-Calling the disconnect() method may close the underlying socket if a persistent 
-connection is otherwise idle at that time. 
+HTTP Status-Code 401: Unauthorized. 
 
 
 *int_java.net.HttpURLConnection.HTTP_UNAVAILABLE*
 
-A URLConnection with support for HTTP-specific features. See the spec for 
-details. 
-
-Each HttpURLConnection instance is used to make a single request but the 
-underlying network connection to the HTTP server may be transparently shared by 
-other instances. Calling the close() methods on the InputStream or OutputStream 
-of an HttpURLConnection after a request may free network resources associated 
-with this instance but has no effect on any shared persistent connection. 
-Calling the disconnect() method may close the underlying socket if a persistent 
-connection is otherwise idle at that time. 
+HTTP Status-Code 503: Service Unavailable. 
 
 
 *int_java.net.HttpURLConnection.HTTP_UNSUPPORTED_TYPE*
 
-A URLConnection with support for HTTP-specific features. See the spec for 
-details. 
-
-Each HttpURLConnection instance is used to make a single request but the 
-underlying network connection to the HTTP server may be transparently shared by 
-other instances. Calling the close() methods on the InputStream or OutputStream 
-of an HttpURLConnection after a request may free network resources associated 
-with this instance but has no effect on any shared persistent connection. 
-Calling the disconnect() method may close the underlying socket if a persistent 
-connection is otherwise idle at that time. 
+HTTP Status-Code 415: Unsupported Media Type. 
 
 
 *int_java.net.HttpURLConnection.HTTP_USE_PROXY*
 
-A URLConnection with support for HTTP-specific features. See the spec for 
-details. 
-
-Each HttpURLConnection instance is used to make a single request but the 
-underlying network connection to the HTTP server may be transparently shared by 
-other instances. Calling the close() methods on the InputStream or OutputStream 
-of an HttpURLConnection after a request may free network resources associated 
-with this instance but has no effect on any shared persistent connection. 
-Calling the disconnect() method may close the underlying socket if a persistent 
-connection is otherwise idle at that time. 
+HTTP Status-Code 305: Use Proxy. 
 
 
 *int_java.net.HttpURLConnection.HTTP_VERSION*
 
-A URLConnection with support for HTTP-specific features. See the spec for 
-details. 
-
-Each HttpURLConnection instance is used to make a single request but the 
-underlying network connection to the HTTP server may be transparently shared by 
-other instances. Calling the close() methods on the InputStream or OutputStream 
-of an HttpURLConnection after a request may free network resources associated 
-with this instance but has no effect on any shared persistent connection. 
-Calling the disconnect() method may close the underlying socket if a persistent 
-connection is otherwise idle at that time. 
+HTTP Status-Code 505: HTTP Version Not Supported. 
 
 
 *boolean_java.net.HttpURLConnection.instanceFollowRedirects*
 
-A URLConnection with support for HTTP-specific features. See the spec for 
-details. 
+If true, the protocol will automatically follow redirects. If false, the protocol will not automatically follow redirects. 
 
-Each HttpURLConnection instance is used to make a single request but the 
-underlying network connection to the HTTP server may be transparently shared by 
-other instances. Calling the close() methods on the InputStream or OutputStream 
-of an HttpURLConnection after a request may free network resources associated 
-with this instance but has no effect on any shared persistent connection. 
-Calling the disconnect() method may close the underlying socket if a persistent 
-connection is otherwise idle at that time. 
+This field is set by the setInstanceFollowRedirects method. Its value is returned by the getInstanceFollowRedirects method. 
+
+Its default value is based on the value of the static followRedirects at HttpURLConnection construction time. 
 
 
 *java.lang.String_java.net.HttpURLConnection.method*
 
-A URLConnection with support for HTTP-specific features. See the spec for 
-details. 
-
-Each HttpURLConnection instance is used to make a single request but the 
-underlying network connection to the HTTP server may be transparently shared by 
-other instances. Calling the close() methods on the InputStream or OutputStream 
-of an HttpURLConnection after a request may free network resources associated 
-with this instance but has no effect on any shared persistent connection. 
-Calling the disconnect() method may close the underlying socket if a persistent 
-connection is otherwise idle at that time. 
+The HTTP method (GET,POST,PUT,etc.). 
 
 
 *int_java.net.HttpURLConnection.responseCode*
 
-A URLConnection with support for HTTP-specific features. See the spec for 
-details. 
+An int representing the three digit HTTP Status-Code. 
 
-Each HttpURLConnection instance is used to make a single request but the 
-underlying network connection to the HTTP server may be transparently shared by 
-other instances. Calling the close() methods on the InputStream or OutputStream 
-of an HttpURLConnection after a request may free network resources associated 
-with this instance but has no effect on any shared persistent connection. 
-Calling the disconnect() method may close the underlying socket if a persistent 
-connection is otherwise idle at that time. 
+1xx: Informational 2xx: Success 3xx: Redirection 4xx: Client Error 5xx: Server Error 
 
 
 *java.lang.String_java.net.HttpURLConnection.responseMessage*
 
-A URLConnection with support for HTTP-specific features. See the spec for 
-details. 
-
-Each HttpURLConnection instance is used to make a single request but the 
-underlying network connection to the HTTP server may be transparently shared by 
-other instances. Calling the close() methods on the InputStream or OutputStream 
-of an HttpURLConnection after a request may free network resources associated 
-with this instance but has no effect on any shared persistent connection. 
-Calling the disconnect() method may close the underlying socket if a persistent 
-connection is otherwise idle at that time. 
+The HTTP response message. 
 
 
 
@@ -691,52 +315,48 @@ Constructor for the HttpURLConnection.
 
 public abstract void disconnect()
 
-Indicates that other requests to the server are unlikely in the near future. 
-Calling disconnect() should not imply that this HttpURLConnection instance can 
-be reused for other requests. 
+Indicates that other requests to the server are unlikely in the near future. Calling disconnect() should not imply that this HttpURLConnection instance can be reused for other 
+requests. 
+
 
 
 *java.net.HttpURLConnection.getErrorStream()*
 
 public |java.io.InputStream| getErrorStream()
 
-Returns the error stream if the connection failed but the server sent useful 
-data nonetheless. The typical example is when an HTTP server responds with a 
-404, which will cause a FileNotFoundException to be thrown in connect, but the 
-server sent an HTML help page with suggestions as to what to do. 
+Returns the error stream if the connection failed but the server sent useful data nonetheless. The typical example is when an HTTP server responds with a 404, which will cause a 
+FileNotFoundException to be thrown in connect, but the server sent an HTML help page with suggestions as to what to do. 
 
-This method will not cause a connection to be initiated. If the connection was 
-not connected, or if the server did not have an error while connecting or if 
-the server had an error but no error data was sent, this method will return 
-null. This is the default. 
+This method will not cause a connection to be initiated. If the connection was not connected, or if the server did not have an error while connecting or if the server had an error 
+but no error data was sent, this method will return null. This is the default. 
 
 
-    Returns: an error stream if any, null if there have been no errors, the connection is 
-             not connected or the server sent no useful data. 
+
+    Returns: an error stream if any, null if there have been no errors, the connection is not connected or the server sent no useful data. 
+
 *java.net.HttpURLConnection.getFollowRedirects()*
 
 public static boolean getFollowRedirects()
 
-Returns a boolean indicating whether or not HTTP redirects (3xx) should be 
-automatically followed. 
+Returns a boolean indicating whether or not HTTP redirects (3xx) should be automatically followed. 
+
 
 
     Returns: true if HTTP redirects should be automatically followed, false if not. 
+
 *java.net.HttpURLConnection.getHeaderField(int)*
 
 public |java.lang.String| getHeaderField(int n)
 
-Returns the value for the nth header field. Some implementations may treat the 
-0th header field as special, i.e. as the status line returned by the HTTP 
-server. 
+Returns the value for the nth header field. Some implementations may treat the 0th header field as special, i.e. as the status line returned by the HTTP server. 
 
-This method can be used in conjunction with the 
-getHeaderFieldKey(|java.net.HttpURLConnection|) method to iterate through all 
-the headers in the message. 
+This method can be used in conjunction with the getHeaderFieldKey(|java.net.HttpURLConnection|) method to iterate through all the headers in the message. 
+
 
     n - an index, where n>=0. 
 
     Returns: the value of the nth header field, or null if the value does not exist. 
+
 *java.net.HttpURLConnection.getHeaderFieldDate(String,long)*
 
 public long getHeaderFieldDate(
@@ -746,18 +366,19 @@ public long getHeaderFieldDate(
 
 
 
+
 *java.net.HttpURLConnection.getHeaderFieldKey(int)*
 
 public |java.lang.String| getHeaderFieldKey(int n)
 
-Returns the key for the nth header field. Some implementations may treat the 
-0th header field as special, i.e. as the status line returned by the HTTP 
-server. In this case, getHeaderField(0)(|java.net.HttpURLConnection|) returns 
-the status line, but getHeaderFieldKey(0) returns null. 
+Returns the key for the nth header field. Some implementations may treat the 0th header field as special, i.e. as the status line returned by the HTTP server. In this case, 
+getHeaderField(0)(|java.net.HttpURLConnection|) returns the status line, but getHeaderFieldKey(0) returns null. 
+
 
     n - an index, where n >=0. 
 
     Returns: the key for the nth header field, or null if the key does not exist. 
+
 *java.net.HttpURLConnection.getInstanceFollowRedirects()*
 
 public boolean getInstanceFollowRedirects()
@@ -765,12 +386,15 @@ public boolean getInstanceFollowRedirects()
 Returns the value of this HttpURLConnection's instanceFollowRedirects field. 
 
 
+
     Returns: the value of this HttpURLConnection's instanceFollowRedirects field. 
+
 *java.net.HttpURLConnection.getPermission()*
 
 public |java.security.Permission| getPermission()
   throws |java.io.IOException|
          
+
 
 
 
@@ -781,73 +405,68 @@ public |java.lang.String| getRequestMethod()
 Get the request method. 
 
 
+
     Returns: the HTTP request method 
+
 *java.net.HttpURLConnection.getResponseCode()*
 
 public int getResponseCode()
   throws |java.io.IOException|
          
-Gets the status code from an HTTP response message. For example, in the case of 
-the following status lines: 
+Gets the status code from an HTTP response message. For example, in the case of the following status lines: 
 
 HTTP/1.0 200 OK HTTP/1.0 401 Unauthorized 
 
-It will return 200 and 401 respectively. Returns -1 if no code can be discerned 
-from the response (i.e., the response is not valid HTTP). 
+It will return 200 and 401 respectively. Returns -1 if no code can be discerned from the response (i.e., the response is not valid HTTP). 
+
 
 
     Returns: the HTTP Status-Code, or -1 
+
 *java.net.HttpURLConnection.getResponseMessage()*
 
 public |java.lang.String| getResponseMessage()
   throws |java.io.IOException|
          
-Gets the HTTP response message, if any, returned along with the response code 
-from a server. From responses like: 
+Gets the HTTP response message, if any, returned along with the response code from a server. From responses like: 
 
 HTTP/1.0 200 OK HTTP/1.0 404 Not Found 
 
-Extracts the Strings "OK" and "Not Found" respectively. Returns null if none 
-could be discerned from the responses (the result was not valid HTTP). 
+Extracts the Strings "OK" and "Not Found" respectively. Returns null if none could be discerned from the responses (the result was not valid HTTP). 
+
 
 
     Returns: the HTTP response message, or null 
+
 *java.net.HttpURLConnection.setChunkedStreamingMode(int)*
 
 public void setChunkedStreamingMode(int chunklen)
 
-This method is used to enable streaming of a HTTP request body without internal 
-buffering, when the content length is not known in advance. In this mode, 
-chunked transfer encoding is used to send the request body. Note, not all HTTP 
-servers support this mode. 
+This method is used to enable streaming of a HTTP request body without internal buffering, when the content length is not known in advance. In this mode, chunked transfer encoding 
+is used to send the request body. Note, not all HTTP servers support this mode. 
 
-When output streaming is enabled, authentication and redirection cannot be 
-handled automatically. A HttpRetryException will be thrown when reading the 
-response if authentication or redirection are required. This exception can be 
-queried for the details of the error. 
+When output streaming is enabled, authentication and redirection cannot be handled automatically. A HttpRetryException will be thrown when reading the response if authentication 
+or redirection are required. This exception can be queried for the details of the error. 
 
 This method must be called before the URLConnection is connected. 
 
-    chunklen - The number of bytes to write in each chunk. If chunklen is less than or equal 
-       to zero, a default value will be used. 
+
+    chunklen - The number of bytes to write in each chunk. If chunklen is less than or equal to zero, a default value will be used. 
 
 *java.net.HttpURLConnection.setFixedLengthStreamingMode(int)*
 
 public void setFixedLengthStreamingMode(int contentLength)
 
-This method is used to enable streaming of a HTTP request body without internal 
-buffering, when the content length is known in advance. 
+This method is used to enable streaming of a HTTP request body without internal buffering, when the content length is known in advance. 
 
-An exception will be thrown if the application attempts to write more data than 
-the indicated content-length, or if the application closes the OutputStream 
-before writing the indicated amount. 
+An exception will be thrown if the application attempts to write more data than the indicated content-length, or if the application closes the OutputStream before writing the 
+indicated amount. 
 
-When output streaming is enabled, authentication and redirection cannot be 
-handled automatically. A HttpRetryException will be thrown when reading the 
-response if authentication or redirection are required. This exception can be 
-queried for the details of the error. 
+When output streaming is enabled, authentication and redirection cannot be handled automatically. A HttpRetryException will be thrown when reading the response if authentication 
+or redirection are required. This exception can be queried for the details of the error. 
 
 This method must be called before the URLConnection is connected. 
+
 
     contentLength - The number of bytes which will be written to the OutputStream. 
 
@@ -855,13 +474,10 @@ This method must be called before the URLConnection is connected.
 
 public static void setFollowRedirects(boolean set)
 
-Sets whether HTTP redirects (requests with response code 3xx) should be 
-automatically followed by this class. True by default. Applets cannot change 
-this variable. 
+Sets whether HTTP redirects (requests with response code 3xx) should be automatically followed by this class. True by default. Applets cannot change this variable. 
 
-If there is a security manager, this method first calls the security manager's 
-checkSetFactory method to ensure the operation is allowed. This could result in 
-a SecurityException. 
+If there is a security manager, this method first calls the security manager's checkSetFactory method to ensure the operation is allowed. This could result in a SecurityException. 
+
 
     set - a boolean indicating whether or not to follow HTTP redirects. 
 
@@ -869,10 +485,10 @@ a SecurityException.
 
 public void setInstanceFollowRedirects(boolean followRedirects)
 
-Sets whether HTTP redirects (requests with response code 3xx) should be 
-automatically followed by this HttpURLConnection instance. 
+Sets whether HTTP redirects (requests with response code 3xx) should be automatically followed by this HttpURLConnection instance. 
 
 The default value comes from followRedirects, which defaults to true. 
+
 
     followRedirects - a boolean indicating whether or not to follow HTTP redirects. 
 
@@ -883,8 +499,8 @@ public void setRequestMethod(java.lang.String method)
          
 Set the method for the URL request, one of: 
 
-GET POST HEAD OPTIONS PUT DELETE TRACE are legal, subject to protocol 
-restrictions. The default method is GET. 
+GET POST HEAD OPTIONS PUT DELETE TRACE are legal, subject to protocol restrictions. The default method is GET. 
+
 
     method - the HTTP method 
 
@@ -895,5 +511,7 @@ public abstract boolean usingProxy()
 Indicates if the connection is going through a proxy. 
 
 
+
     Returns: a boolean indicating if the connection is using a proxy. 
+
 

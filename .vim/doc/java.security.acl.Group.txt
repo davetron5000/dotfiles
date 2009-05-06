@@ -1,4 +1,4 @@
-*java.security.acl.Group* *Group* This interface is used to represent a group of
+*java.security.acl.Group* *Group* This interface is used to represent a group of principals.
 
 public interface interface Group
 
@@ -9,23 +9,21 @@ public interface interface Group
 |java.security.acl.Group_Constructors|
 |java.security.acl.Group_Methods|
 
-================================================================================
+====================================================================================================================================================================================
 
 *java.security.acl.Group_Methods*
-|java.security.acl.Group.addMember(Principal)|Adds the specified member to the 
-|java.security.acl.Group.isMember(Principal)|Returns true if the passed princip
-|java.security.acl.Group.members()|Returns an enumeration of the members in the
-|java.security.acl.Group.removeMember(Principal)|Removes the specified member f
+|java.security.acl.Group.addMember(Principal)|Adds the specified member to the group.
+|java.security.acl.Group.isMember(Principal)|Returns true if the passed principal is a member of the group.
+|java.security.acl.Group.members()|Returns an enumeration of the members in the group.
+|java.security.acl.Group.removeMember(Principal)|Removes the specified member from the group.
 
 *java.security.acl.Group_Description*
 
-This interface is used to represent a group of principals. (A principal 
-represents an entity such as an individual user or a company). 
+This interface is used to represent a group of principals. (A principal represents an entity such as an individual user or a company). 
 
-Note that Group extends Principal. Thus, either a Principal or a Group can be 
-passed as an argument to methods containing a Principal parameter. For example, 
-you can add either a Principal or a Group to a Group object by calling the 
-object's addMember method, passing it the Principal or Group. 
+Note that Group extends Principal. Thus, either a Principal or a Group can be passed as an argument to methods containing a Principal parameter. For example, you can add either a 
+Principal or a Group to a Group object by calling the object's addMember method, passing it the Principal or Group. 
+
 
 
 *java.security.acl.Group.addMember(Principal)*
@@ -34,37 +32,42 @@ public boolean addMember(java.security.Principal user)
 
 Adds the specified member to the group. 
 
+
     user - the principal to add to this group. 
 
-    Returns: true if the member was successfully added, false if the principal was already a 
-             member. 
+    Returns: true if the member was successfully added, false if the principal was already a member. 
+
 *java.security.acl.Group.isMember(Principal)*
 
 public boolean isMember(java.security.Principal member)
 
-Returns true if the passed principal is a member of the group. This method does 
-a recursive search, so if a principal belongs to a group which is a member of 
-this group, true is returned. 
+Returns true if the passed principal is a member of the group. This method does a recursive search, so if a principal belongs to a group which is a member of this group, true is 
+returned. 
+
 
     member - the principal whose membership is to be checked. 
 
     Returns: true if the principal is a member of this group, false otherwise. 
+
 *java.security.acl.Group.members()*
 
-public |java.util.Enumeration| members()
+public |java.util.Enumeration|<? extends java.security.Principal> members()
 
-Returns an enumeration of the members in the group. The returned objects can be 
-instances of either Principal or Group (which is a subclass of Principal). 
+Returns an enumeration of the members in the group. The returned objects can be instances of either Principal or Group (which is a subclass of Principal). 
+
 
 
     Returns: an enumeration of the group members. 
+
 *java.security.acl.Group.removeMember(Principal)*
 
 public boolean removeMember(java.security.Principal user)
 
 Removes the specified member from the group. 
 
+
     user - the principal to remove from this group. 
 
     Returns: true if the principal was removed, or false if the principal was not a member. 
+
 

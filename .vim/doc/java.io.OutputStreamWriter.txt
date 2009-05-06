@@ -1,4 +1,5 @@
-*java.io.OutputStreamWriter* *OutputStreamWriter* An OutputStreamWriter is a bri
+*java.io.OutputStreamWriter* *OutputStreamWriter* An OutputStreamWriter is a bridge from character streams to byte streams:
+ Characters written to it are encoded into bytes using a
 
 public class OutputStreamWriter
   extends    |java.io.Writer|
@@ -8,54 +9,43 @@ public class OutputStreamWriter
 |java.io.OutputStreamWriter_Constructors|
 |java.io.OutputStreamWriter_Methods|
 
-================================================================================
+====================================================================================================================================================================================
 
 *java.io.OutputStreamWriter_Constructors*
-|java.io.OutputStreamWriter(OutputStream)|Create an OutputStreamWriter that use
-|java.io.OutputStreamWriter(OutputStream,Charset)|Create an OutputStreamWriter 
-|java.io.OutputStreamWriter(OutputStream,CharsetEncoder)|Create an OutputStream
-|java.io.OutputStreamWriter(OutputStream,String)|Create an OutputStreamWriter t
+|java.io.OutputStreamWriter(OutputStream)|Create an OutputStreamWriter that uses the default character encoding.
+|java.io.OutputStreamWriter(OutputStream,Charset)|Create an OutputStreamWriter that uses the given charset.
+|java.io.OutputStreamWriter(OutputStream,CharsetEncoder)|Create an OutputStreamWriter that uses the given charset encoder.
+|java.io.OutputStreamWriter(OutputStream,String)|Create an OutputStreamWriter that uses the named charset.
 
 *java.io.OutputStreamWriter_Methods*
 |java.io.OutputStreamWriter.close()|Close the stream.
 |java.io.OutputStreamWriter.flush()|Flush the stream.
-|java.io.OutputStreamWriter.getEncoding()|Return the name of the character enco
-|java.io.OutputStreamWriter.write(char[],int,int)|Write a portion of an array o
+|java.io.OutputStreamWriter.getEncoding()|Return the name of the character encoding being used by this stream.
+|java.io.OutputStreamWriter.write(char[],int,int)|Write a portion of an array of characters.
 |java.io.OutputStreamWriter.write(int)|Write a single character.
 |java.io.OutputStreamWriter.write(String,int,int)|Write a portion of a string.
 
 *java.io.OutputStreamWriter_Description*
 
-An OutputStreamWriter is a bridge from character streams to byte streams: 
-Characters written to it are encoded into bytes using a specified 
-<code>charset</code>(|java.nio.charset.Charset|) . The charset that it uses may 
-be specified by name or may be given explicitly, or the platform's default 
-charset may be accepted. 
+An OutputStreamWriter is a bridge from character streams to byte streams: Characters written to it are encoded into bytes using a specified 
+<code>charset</code>(|java.nio.charset.Charset|) . The charset that it uses may be specified by name or may be given explicitly, or the platform's default charset may be accepted. 
 
-Each invocation of a write() method causes the encoding converter to be invoked 
-on the given character(s). The resulting bytes are accumulated in a buffer 
-before being written to the underlying output stream. The size of this buffer 
-may be specified, but by default it is large enough for most purposes. Note 
-that the characters passed to the write() methods are not buffered. 
+Each invocation of a write() method causes the encoding converter to be invoked on the given character(s). The resulting bytes are accumulated in a buffer before being written to 
+the underlying output stream. The size of this buffer may be specified, but by default it is large enough for most purposes. Note that the characters passed to the write() methods 
+are not buffered. 
 
-For top efficiency, consider wrapping an OutputStreamWriter within a 
-BufferedWriter so as to avoid frequent converter invocations. For example: 
+For top efficiency, consider wrapping an OutputStreamWriter within a BufferedWriter so as to avoid frequent converter invocations. For example: 
 
 
 
 Writer out = new BufferedWriter(new OutputStreamWriter(System.out)); 
 
-A surrogate pair is a character represented by a sequence of two char values: A 
-high surrogate in the range 'uD800' to 'uDBFF' followed by a low surrogate in 
-the range 'uDC00' to 'uDFFF'. If the character represented by a surrogate pair 
-cannot be encoded by a given charset then a charset-dependent substitution 
-sequence is written to the output stream. 
+A surrogate pair is a character represented by a sequence of two char values: A high surrogate in the range 'uD800' to 'uDBFF' followed by a low surrogate in the range 'uDC00' to 
+'uDFFF'. If the character represented by a surrogate pair cannot be encoded by a given charset then a charset-dependent substitution sequence is written to the output stream. 
 
-A malformed surrogate element is a high surrogate that is not followed by a low 
-surrogate or a low surrogate that is not preceded by a high surrogate. It is 
-illegal to attempt to write a character stream containing malformed surrogate 
-elements. The behavior of an instance of this class when a malformed surrogate 
-element is written is not specified. 
+A malformed surrogate element is a high surrogate that is not followed by a low surrogate or a low surrogate that is not preceded by a high surrogate. It is illegal to attempt to 
+write a character stream containing malformed surrogate elements. The behavior of an instance of this class when a malformed surrogate element is written is not specified. 
+
 
 
 *java.io.OutputStreamWriter(OutputStream)*
@@ -108,6 +98,7 @@ public void close()
 Close the stream. 
 
 
+
 *java.io.OutputStreamWriter.flush()*
 
 public void flush()
@@ -116,23 +107,22 @@ public void flush()
 Flush the stream. 
 
 
+
 *java.io.OutputStreamWriter.getEncoding()*
 
 public |java.lang.String| getEncoding()
 
 Return the name of the character encoding being used by this stream. 
 
-If the encoding has an historical name then that name is returned; otherwise 
-the encoding's canonical name is returned. 
+If the encoding has an historical name then that name is returned; otherwise the encoding's canonical name is returned. 
 
-If this instance was created with the (|java.io.OutputStreamWriter|) 
-constructor then the returned name, being unique for the encoding, may differ 
-from the name passed to the constructor. This method may return null if the 
-stream has been closed. 
+If this instance was created with the (|java.io.OutputStreamWriter|) constructor then the returned name, being unique for the encoding, may differ from the name passed to the 
+constructor. This method may return null if the stream has been closed. 
 
 
-    Returns: The historical name of this encoding, or possibly null if the stream has been 
-             closed 
+
+    Returns: The historical name of this encoding, or possibly null if the stream has been closed 
+
 *java.io.OutputStreamWriter.write(char[],int,int)*
 
 public void write(
@@ -142,6 +132,7 @@ public void write(
   throws |java.io.IOException|
          
 Write a portion of an array of characters. 
+
 
     cbuf - Buffer of characters 
     off - Offset from which to start writing characters 
@@ -155,6 +146,7 @@ public void write(int c)
 Write a single character. 
 
 
+
 *java.io.OutputStreamWriter.write(String,int,int)*
 
 public void write(
@@ -164,6 +156,7 @@ public void write(
   throws |java.io.IOException|
          
 Write a portion of a string. 
+
 
     str - A String 
     off - Offset from which to start writing characters 

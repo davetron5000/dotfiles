@@ -1,4 +1,5 @@
-*javax.xml.transform.Templates* *Templates* An object that implements this inter
+*javax.xml.transform.Templates* *Templates* An object that implements this interface is the runtime representation of processed
+ transformation instructions.
 
 public interface interface Templates
 
@@ -8,47 +9,39 @@ public interface interface Templates
 |javax.xml.transform.Templates_Constructors|
 |javax.xml.transform.Templates_Methods|
 
-================================================================================
+====================================================================================================================================================================================
 
 *javax.xml.transform.Templates_Methods*
-|javax.xml.transform.Templates.getOutputProperties()|Get the properties corresp
-|javax.xml.transform.Templates.newTransformer()|Create a new transformation con
+|javax.xml.transform.Templates.getOutputProperties()|Get the properties corresponding to the effective xsl:output element.
+|javax.xml.transform.Templates.newTransformer()|Create a new transformation context for this Templates object.
 
 *javax.xml.transform.Templates_Description*
 
-An object that implements this interface is the runtime representation of 
-processed transformation instructions. 
+An object that implements this interface is the runtime representation of processed transformation instructions. 
 
-Templates must be threadsafe for a given instance over multiple threads running 
-concurrently, and may be used multiple times in a given session. 
+Templates must be threadsafe for a given instance over multiple threads running concurrently, and may be used multiple times in a given session. 
+
 
 
 *javax.xml.transform.Templates.getOutputProperties()*
 
 public |java.util.Properties| getOutputProperties()
 
-Get the properties corresponding to the effective xsl:output element. The 
-object returned will be a clone of the internal values. Accordingly, it can be 
-mutated without mutating the Templates object, and then handed in to 
-(|javax.xml.transform.Transformer|) . 
+Get the properties corresponding to the effective xsl:output element. The object returned will be a clone of the internal values. Accordingly, it can be mutated without mutating 
+the Templates object, and then handed in to (|javax.xml.transform.Transformer|) . 
 
-The properties returned should contain properties set by the stylesheet, and 
-these properties are "defaulted" by default properties specified by section 16 
-of the XSL Transformations (XSLT) W3C Recommendation. The properties that were 
-specifically set by the stylesheet should be in the base Properties list, while 
-the XSLT default properties that were not specifically set should be in the 
-"default" Properties list. Thus, getOutputProperties().getProperty(String key) 
-will obtain any property in that was set by the stylesheet, or the default 
-properties, while getOutputProperties().get(String key) will only retrieve 
-properties that were explicitly set in the stylesheet. 
+The properties returned should contain properties set by the stylesheet, and these properties are "defaulted" by default properties specified by section 16 of the XSL 
+Transformations (XSLT) W3C Recommendation. The properties that were specifically set by the stylesheet should be in the base Properties list, while the XSLT default properties 
+that were not specifically set should be in the "default" Properties list. Thus, getOutputProperties().getProperty(String key) will obtain any property in that was set by the 
+stylesheet, or the default properties, while getOutputProperties().get(String key) will only retrieve properties that were explicitly set in the stylesheet. 
 
-For XSLT, Attribute Value Templates attribute values will be returned 
-unexpanded (since there is no context at this point). The namespace prefixes 
-inside Attribute Value Templates will be unexpanded, so that they remain valid 
-XPath values. 
+For XSLT, Attribute Value Templates attribute values will be returned unexpanded (since there is no context at this point). The namespace prefixes inside Attribute Value Templates 
+will be unexpanded, so that they remain valid XPath values. 
+
 
 
     Returns: A Properties object, never null. 
+
 *javax.xml.transform.Templates.newTransformer()*
 
 public |javax.xml.transform.Transformer| newTransformer()
@@ -57,5 +50,7 @@ public |javax.xml.transform.Transformer| newTransformer()
 Create a new transformation context for this Templates object. 
 
 
+
     Returns: A valid non-null instance of a Transformer. 
+
 

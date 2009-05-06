@@ -1,4 +1,5 @@
-*java.util.jar.Manifest* *Manifest* The Manifest class is used to maintain Manif
+*java.util.jar.Manifest* *Manifest* The Manifest class is used to maintain Manifest entry names and their
+ associated Attributes.
 
 public class Manifest
   extends    |java.lang.Object|
@@ -9,31 +10,31 @@ public class Manifest
 |java.util.jar.Manifest_Constructors|
 |java.util.jar.Manifest_Methods|
 
-================================================================================
+====================================================================================================================================================================================
 
 *java.util.jar.Manifest_Constructors*
 |java.util.jar.Manifest()|Constructs a new, empty Manifest.
-|java.util.jar.Manifest(InputStream)|Constructs a new Manifest from the specifi
-|java.util.jar.Manifest(Manifest)|Constructs a new Manifest that is a copy of t
+|java.util.jar.Manifest(InputStream)|Constructs a new Manifest from the specified input stream.
+|java.util.jar.Manifest(Manifest)|Constructs a new Manifest that is a copy of the specified Manifest.
 
 *java.util.jar.Manifest_Methods*
-|java.util.jar.Manifest.clear()|Clears the main Attributes as well as the entri
+|java.util.jar.Manifest.clear()|Clears the main Attributes as well as the entries in this Manifest.
 |java.util.jar.Manifest.clone()|Returns a shallow copy of this Manifest.
-|java.util.jar.Manifest.equals(Object)|Returns true if the specified Object is 
-|java.util.jar.Manifest.getAttributes(String)|Returns the Attributes for the sp
-|java.util.jar.Manifest.getEntries()|Returns a Map of the entries contained in 
-|java.util.jar.Manifest.getMainAttributes()|Returns the main Attributes for the
+|java.util.jar.Manifest.equals(Object)|Returns true if the specified Object is also a Manifest and has  the same main Attributes and entries.
+|java.util.jar.Manifest.getAttributes(String)|Returns the Attributes for the specified entry name.
+|java.util.jar.Manifest.getEntries()|Returns a Map of the entries contained in this Manifest.
+|java.util.jar.Manifest.getMainAttributes()|Returns the main Attributes for the Manifest.
 |java.util.jar.Manifest.hashCode()|Returns the hash code for this Manifest.
-|java.util.jar.Manifest.read(InputStream)|Reads the Manifest from the specified
-|java.util.jar.Manifest.write(OutputStream)|Writes the Manifest to the specifie
+|java.util.jar.Manifest.read(InputStream)|Reads the Manifest from the specified InputStream.
+|java.util.jar.Manifest.write(OutputStream)|Writes the Manifest to the specified OutputStream.
 
 *java.util.jar.Manifest_Description*
 
-The Manifest class is used to maintain Manifest entry names and their 
-associated Attributes. There are main Manifest Attributes as well as per-entry 
-Attributes. For information on the Manifest format, please see the 
+The Manifest class is used to maintain Manifest entry names and their associated Attributes. There are main Manifest Attributes as well as per-entry Attributes. For information on 
+the Manifest format, please see the 
 
 Manifest format specification. 
+
 
 
 *java.util.jar.Manifest()*
@@ -67,28 +68,30 @@ public void clear()
 Clears the main Attributes as well as the entries in this Manifest. 
 
 
+
 *java.util.jar.Manifest.clone()*
 
 public |java.lang.Object| clone()
 
-Returns a shallow copy of this Manifest. The shallow copy is implemented as 
-follows: 
+Returns a shallow copy of this Manifest. The shallow copy is implemented as follows: 
 
 public Object clone() { return new Manifest(this); } 
 
 
+
     Returns: a shallow copy of this Manifest 
+
 *java.util.jar.Manifest.equals(Object)*
 
 public boolean equals(java.lang.Object o)
 
-Returns true if the specified Object is also a Manifest and has the same main 
-Attributes and entries. 
+Returns true if the specified Object is also a Manifest and has the same main Attributes and entries. 
+
 
     o - the object to be compared 
 
-    Returns: true if the specified Object is also a Manifest and has the same main 
-             Attributes and entries 
+    Returns: true if the specified Object is also a Manifest and has the same main Attributes and entries 
+
 *java.util.jar.Manifest.getAttributes(String)*
 
 public |java.util.jar.Attributes| getAttributes(java.lang.String name)
@@ -97,18 +100,21 @@ Returns the Attributes for the specified entry name. This method is defined as:
 
 return (Attributes)getEntries().get(name) 
 
+
     name - entry name 
 
     Returns: the Attributes for the specified entry name 
+
 *java.util.jar.Manifest.getEntries()*
 
-public |java.util.Map| getEntries()
+public |java.util.Map|<String,Attributes> getEntries()
 
-Returns a Map of the entries contained in this Manifest. Each entry is 
-represented by a String name (key) and associated Attributes (value). 
+Returns a Map of the entries contained in this Manifest. Each entry is represented by a String name (key) and associated Attributes (value). 
+
 
 
     Returns: a Map of the entries contained in this Manifest 
+
 *java.util.jar.Manifest.getMainAttributes()*
 
 public |java.util.jar.Attributes| getMainAttributes()
@@ -116,7 +122,9 @@ public |java.util.jar.Attributes| getMainAttributes()
 Returns the main Attributes for the Manifest. 
 
 
+
     Returns: the main Attributes for the Manifest 
+
 *java.util.jar.Manifest.hashCode()*
 
 public int hashCode()
@@ -124,13 +132,14 @@ public int hashCode()
 Returns the hash code for this Manifest. 
 
 
+
 *java.util.jar.Manifest.read(InputStream)*
 
 public void read(java.io.InputStream is)
   throws |java.io.IOException|
          
-Reads the Manifest from the specified InputStream. The entry names and 
-attributes read will be merged in with the current manifest entries. 
+Reads the Manifest from the specified InputStream. The entry names and attributes read will be merged in with the current manifest entries. 
+
 
     is - the input stream 
 
@@ -139,9 +148,8 @@ attributes read will be merged in with the current manifest entries.
 public void write(java.io.OutputStream out)
   throws |java.io.IOException|
          
-Writes the Manifest to the specified OutputStream. 
-Attributes.Name.MANIFEST_VERSION must be set in MainAttributes prior to 
-invoking this method. 
+Writes the Manifest to the specified OutputStream. Attributes.Name.MANIFEST_VERSION must be set in MainAttributes prior to invoking this method. 
+
 
     out - the output stream 
 

@@ -1,4 +1,6 @@
-*java.security.Policy* *Policy* This is an abstract class for representing the s
+*java.security.Policy* *Policy* This is an abstract class for representing the system security
+ policy for a Java application environment (specifying
+ which permissions are availab
 
 public abstract class Policy
   extends    |java.lang.Object|
@@ -8,54 +10,42 @@ public abstract class Policy
 |java.security.Policy_Constructors|
 |java.security.Policy_Methods|
 
-================================================================================
+====================================================================================================================================================================================
 
 *java.security.Policy_Constructors*
 |java.security.Policy()|
 
 *java.security.Policy_Methods*
-|java.security.Policy.getPermissions(CodeSource)|Evaluates the global policy an
-|java.security.Policy.getPermissions(ProtectionDomain)|Evaluates the global pol
+|java.security.Policy.getPermissions(CodeSource)|Evaluates the global policy and returns a  PermissionCollection object specifying the set of  permissions allowed for code from th
+|java.security.Policy.getPermissions(ProtectionDomain)|Evaluates the global policy and returns a  PermissionCollection object specifying the set of  permissions allowed given the 
 |java.security.Policy.getPolicy()|Returns the installed Policy object.
-|java.security.Policy.implies(ProtectionDomain,Permission)|Evaluates the global
+|java.security.Policy.implies(ProtectionDomain,Permission)|Evaluates the global policy for the permissions granted to  the ProtectionDomain and tests whether the permission is   g
 |java.security.Policy.refresh()|Refreshes/reloads the policy configuration.
 |java.security.Policy.setPolicy(Policy)|Sets the system-wide Policy object.
 
 *java.security.Policy_Description*
 
-This is an abstract class for representing the system security policy for a 
-Java application environment (specifying which permissions are available for 
-code from various sources). That is, the security policy is represented by a 
-Policy subclass providing an implementation of the abstract methods in this 
-Policy class. 
+This is an abstract class for representing the system security policy for a Java application environment (specifying which permissions are available for code from various 
+sources). That is, the security policy is represented by a Policy subclass providing an implementation of the abstract methods in this Policy class. 
 
 There is only one Policy object in effect at any given time. 
 
-The source location for the policy information utilized by the Policy object is 
-up to the Policy implementation. The policy configuration may be stored, for 
-example, as a flat ASCII file, as a serialized binary file of the Policy class, 
-or as a database. 
+The source location for the policy information utilized by the Policy object is up to the Policy implementation. The policy configuration may be stored, for example, as a flat 
+ASCII file, as a serialized binary file of the Policy class, or as a database. 
 
-The currently-installed Policy object can be obtained by calling the getPolicy 
-method, and it can be changed by a call to the setPolicy method (by code with 
-permission to reset the Policy). 
+The currently-installed Policy object can be obtained by calling the getPolicy method, and it can be changed by a call to the setPolicy method (by code with permission to reset 
+the Policy). 
 
-The refresh method causes the policy object to refresh/reload its current 
-configuration. 
+The refresh method causes the policy object to refresh/reload its current configuration. 
 
-This is implementation-dependent. For example, if the policy object stores its 
-policy in configuration files, calling refresh will cause it to re-read the 
-configuration policy files. The refreshed policy may not have an effect on 
-classes in a particular ProtectionDomain. This is dependent on the Policy 
-provider's implementation of the implies(|java.security.Policy|) method and the 
-PermissionCollection caching strategy. 
+This is implementation-dependent. For example, if the policy object stores its policy in configuration files, calling refresh will cause it to re-read the configuration policy 
+files. The refreshed policy may not have an effect on classes in a particular ProtectionDomain. This is dependent on the Policy provider's implementation of the 
+implies(|java.security.Policy|) method and the PermissionCollection caching strategy. 
 
-The default Policy implementation can be changed by setting the value of the 
-"policy.provider" security property (in the Java security properties file) to 
-the fully qualified name of the desired Policy implementation class. The Java 
-security properties file is located in the file named 
-<JAVA_HOME>/lib/security/java.security, where <JAVA_HOME> refers to the 
+The default Policy implementation can be changed by setting the value of the "policy.provider" security property (in the Java security properties file) to the fully qualified name 
+of the desired Policy implementation class. The Java security properties file is located in the file named <JAVA_HOME>/lib/security/java.security, where <JAVA_HOME> refers to the 
 directory where the JDK was installed. 
+
 
 
 *java.security.Policy()*
@@ -69,71 +59,66 @@ public Policy()
 
 public abstract |java.security.PermissionCollection| getPermissions(java.security.CodeSource codesource)
 
-Evaluates the global policy and returns a PermissionCollection object 
-specifying the set of permissions allowed for code from the specified code 
-source. 
+Evaluates the global policy and returns a PermissionCollection object specifying the set of permissions allowed for code from the specified code source. 
 
-    codesource - the CodeSource associated with the caller. This encapsulates the original 
-       location of the code (where the code came from) and the public key(s) of 
-       its signer. 
 
-    Returns: the set of permissions allowed for code from codesource according to the 
-             policy.The returned set of permissions must be a new mutable 
-             instance and it must support heterogeneous Permission types. 
+    codesource - the CodeSource associated with the caller. This encapsulates the original location of the code (where the code came from) and the public key(s) of its signer. 
+
+    Returns: the set of permissions allowed for code from codesource according to the policy.The returned set of permissions must be a new mutable instance and it must support heterogeneous 
+             Permission types. 
+
 *java.security.Policy.getPermissions(ProtectionDomain)*
 
 public |java.security.PermissionCollection| getPermissions(java.security.ProtectionDomain domain)
 
-Evaluates the global policy and returns a PermissionCollection object 
-specifying the set of permissions allowed given the characteristics of the 
-protection domain. 
+Evaluates the global policy and returns a PermissionCollection object specifying the set of permissions allowed given the characteristics of the protection domain. 
+
 
     domain - the ProtectionDomain associated with the caller. 
 
-    Returns: the set of permissions allowed for the domain according to the policy.The 
-             returned set of permissions must be a new mutable instance and it 
-             must support heterogeneous Permission types. 
+    Returns: the set of permissions allowed for the domain according to the policy.The returned set of permissions must be a new mutable instance and it must support heterogeneous Permission 
+             types. 
+
 *java.security.Policy.getPolicy()*
 
 public static |java.security.Policy| getPolicy()
 
-Returns the installed Policy object. This value should not be cached, as it may 
-be changed by a call to setPolicy. This method first calls 
-SecurityManager.checkPermission with a SecurityPermission("getPolicy") 
-permission to ensure it's ok to get the Policy object.. 
+Returns the installed Policy object. This value should not be cached, as it may be changed by a call to setPolicy. This method first calls SecurityManager.checkPermission with a 
+SecurityPermission("getPolicy") permission to ensure it's ok to get the Policy object.. 
+
 
 
     Returns: the installed Policy. 
+
 *java.security.Policy.implies(ProtectionDomain,Permission)*
 
 public boolean implies(
   java.security.ProtectionDomain domain,
   java.security.Permission permission)
 
-Evaluates the global policy for the permissions granted to the ProtectionDomain 
-and tests whether the permission is granted. 
+Evaluates the global policy for the permissions granted to the ProtectionDomain and tests whether the permission is granted. 
+
 
     domain - the ProtectionDomain to test 
     permission - the Permission object to be tested for implication. 
 
-    Returns: true if "permission" is a proper subset of a permission granted to this 
-             ProtectionDomain. 
+    Returns: true if "permission" is a proper subset of a permission granted to this ProtectionDomain. 
+
 *java.security.Policy.refresh()*
 
 public abstract void refresh()
 
-Refreshes/reloads the policy configuration. The behavior of this method depends 
-on the implementation. For example, calling refresh on a file-based policy will 
-cause the file to be re-read. 
+Refreshes/reloads the policy configuration. The behavior of this method depends on the implementation. For example, calling refresh on a file-based policy will cause the file to 
+be re-read. 
+
 
 
 *java.security.Policy.setPolicy(Policy)*
 
 public static void setPolicy(java.security.Policy p)
 
-Sets the system-wide Policy object. This method first calls 
-SecurityManager.checkPermission with a SecurityPermission("setPolicy") 
-permission to ensure it's ok to set the Policy. 
+Sets the system-wide Policy object. This method first calls SecurityManager.checkPermission with a SecurityPermission("setPolicy") permission to ensure it's ok to set the Policy. 
+
 
     p - the new system Policy object. 
 
