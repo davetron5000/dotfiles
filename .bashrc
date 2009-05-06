@@ -13,19 +13,22 @@ export ANT_OPTS=-Xmx640m
 export CLASSPATH=
 export EDITOR=vim
 export GREP_OPTIONS='--exclude=\*\.svn\*'
-export PATH_BASE=${PATH}:${ANT_HOME}/bin:${HOME}/bin:${CXOFFICE_HOME}/bin:/opt/local/bin
+export SCALA_HOME=/Applications/scala
+export PATH_BASE=${PATH}:${SCALA_HOME}/bin:${ANT_HOME}/bin:${HOME}/bin:${CXOFFICE_HOME}/bin:/opt/local/bin
 export PATH=${PATH_BASE}
 export JAVA_ROOT=/System/Library/Frameworks/JavaVM.framework/Versions
 export TOMCAT_HOME=/Applications/tomcat
-
-# Positive Energy config
-export FLEX_SDK=/Applications/flex
-export MAVEN_OPTS="-Xmx256M -Dflex.home=$FLEX_SDK -Djava.awt.headless=true"
-export R=svn+ssh://dev.positiveenergyusa.com/opt/svnroot/
 export R_HOME=/Library/Frameworks/R.framework/Versions/2.8/Resources/
 
-export workspace=/Users/davec/Projects/pose
+# Positive Energy config
 
+export workspace=/Users/davec/Projects/pose
+export SSH_TUNNEL_REMOTE_PORT=5468
+export POSE_USER=dave.copeland
+if [ -e ~/.passwordsrc ]; then
+    . ~/.passwordsrc
+fi
+source ~/pose.bash
 source ~/.git-completion.bash
 
 function mysqld()
@@ -42,24 +45,6 @@ function mysqld()
     fi
 }
 
-export SSH_TUNNEL_LOCAL_PORT=5455
-
-function mjr()
-{
-    if [ -z $1 ]; then
-        echo "Running Jetty for local database"
-        mvn -Dcxs -DCONFIG_DOMAIN=local jetty:run
-    else
-        PORT_OPEN=`netstat -an |grep LISTEN |grep 5455 | wc -l | sed 's/^ *//g'`
-        if [ -z $PORT_OPEN ] || [ $PORT_OPEN == "0" ];then
-            echo "You do not have your ssh tunnel to dev02 running"
-            return -1;
-        fi
-        echo "Running Jetty against dev02 for utility $1"
-        mvn -D$1 -DCONFIG_DOMAIN=local.dev02.$1 jetty:run
-    fi
-}
-
 function mvn()
 {
     /usr/bin/mvn $*
@@ -71,7 +56,7 @@ function mvn()
 
 }
 
-alias vi='gvim'
+alias vi='mvim'
 alias gem_server="ruby -r rubygems/server -e 'Gem::Server.run(:gemdir=>\"/Library/Ruby/Gems/1.8\",:port=>8088)'"
 alias psi='/opt/psi/bin/psi'
 alias ps='ps auxwwwwwwww'
@@ -89,63 +74,6 @@ function mysql()
     fi
 
     $MYSQL_EXE -u$USER -p$PASS
-}
-
-export SSH_TUNNEL_REMOTE_PORT=5468
-export POSE_USER=dave.copeland
-SSH_TUNNEL_TIMEOUT=30
-
-if [ -e ~/.passwordsrc ]; then
-    . ~/.passwordsrc
-fi
-
-export jdbc_username=${POSE_USER}
-export jdbc_password=${dev02_MYSQL_PASSWORD}
-# Start mysql to connect to a remote database via gateway
-function rmysql()
-{
-
-    if [ -z $1 ]; then
-        HOST=dev02
-    else
-        HOST=$1; shift
-    fi
-
-    if [ $HOST == dev02 ]; then
-        MYSQL_PASSWORD=${dev02_MYSQL_PASSWORD}
-    elif [ $HOST == int01 ];then
-        MYSQL_PASSWORD=${int01_MYSQL_PASSWORD}
-    else
-        echo "No known password for ${HOST}"
-        return
-    fi
-
-    ssh_tunnel $HOST blah
-    echo "Waiting for tunnel to complete startup on remote machines"
-    for ((i=40;i>0;i-=1)); do
-        echo -n . ; sleep .1 
-    done
-    echo
-    echo
-    echo "Starting mysql on ${HOST} for user ${POSE_USER}"
-    $MYSQL_EXE -A -u${POSE_USER} -p${MYSQL_PASSWORD} --host=localhost --port=${SSH_TUNNEL_LOCAL_PORT} --protocol=tcp  --prompt="mysql@${HOST}:\\d> " $*
-}
-
-# Establish an SSH tunnel to a machine accessible via gateway.positiveenergyusa.com
-function ssh_tunnel()
-{
-    if [ -z $1 ]; then
-        echo "usage: ssh_tunnel host"
-        return 1
-    fi
-    HOST=$1
-    echo "Establishing tunnel to ${HOST} with:"
-    echo "ssh -nfL ${SSH_TUNNEL_LOCAL_PORT}:localhost:${SSH_TUNNEL_REMOTE_PORT} -l ${POSE_USER} gateway.positiveenergyusa.com \\"
-    echo "    \"ssh -L ${SSH_TUNNEL_REMOTE_PORT}:localhost:3306 ${HOST} sleep ${SSH_TUNNEL_TIMEOUT}\""
-    ssh -AnfL ${SSH_TUNNEL_LOCAL_PORT}:localhost:${SSH_TUNNEL_REMOTE_PORT} -l ${POSE_USER} gateway.positiveenergyusa.com "ssh -AL ${SSH_TUNNEL_REMOTE_PORT}:localhost:3306 ${HOST} sleep ${SSH_TUNNEL_TIMEOUT}"
-    if [ -z $2 ]; then
-        echo "Tunnel will remain open for ${SSH_TUNNEL_TIMEOUT} seconds"
-    fi
 }
 
 complete -F get_go_targets go
@@ -196,15 +124,15 @@ function go()
         export CURRENT_PROJECT=$GO_TARGET
         if [ ! -z $3 ];  then
             if [ ! -z $4 ]; then
-                alias vi="gvim --cmd 'let g:project_root=\"$3\"' --cmd 'let g:build_file=\"$4\"' \$*"
+                alias vi="mvim --cmd 'let g:project_root=\"$3\"' --cmd 'let g:build_file=\"$4\"' \$*"
             else
-                alias vi="gvim --cmd 'let g:project_root=\"$3\"' \$*"
+                alias vi="mvim --cmd 'let g:project_root=\"$3\"' \$*"
             fi
         else
-            alias vi="gvim --cmd 'let g:project_root=\"$GO_DIR\"' \$*"
+            alias vi="mvim --cmd 'let g:project_root=\"$GO_DIR\"' \$*"
         fi
         if [ $1 == 'pose' ]; then
-            alias vi="gvim --cmd 'let g:pose=\"true\"' \$*"
+            alias vi="mvim --cmd 'let g:pose=\"true\"' \$*"
         fi
     fi
     update_prompt $GO_TARGET
@@ -212,15 +140,23 @@ function go()
     cd $GO_DIR
 }
 
+function colorless_update_prompt()
+{
+    PS1_START='\u@\h '
+    PS1_TARGET="[$1]\n"
+    PS1_GIT='$(__git_ps1 "git://%s") '
+    PS1_DIR='\w> '
+    export PS1=$PS1_START$PS1_TARGET$PS1_GIT$PS1_DIR
+}
+
 function update_prompt()
 {
     PS1_START='\[\033[0;35m\]\u@\[\033[1;37m\]\h '
     PS1_TARGET="\[\033[1;36m\][$1]\n"
     PS1_GIT='\[\033[1;33m\]$(__git_ps1 "git://%s")\[\033[0;32m\] '
-    PS1_DIR='\[\033[0;32m\]\w> '
+    #PS1_DIR='\[\033[0;32m\]\w> '
+    PS1_DIR='\033[1;37m\]\w>\033[0;37m\] '
     export PS1=$PS1_START$PS1_TARGET$PS1_GIT$PS1_DIR
-
-
 }
 
 go 
