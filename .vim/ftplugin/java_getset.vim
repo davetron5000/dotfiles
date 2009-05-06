@@ -1,9 +1,12 @@
+" Vim filetype plugin file for adding getter/setter methods
 " Language:	Java
 " Maintainer: Pete Kazmier (pete-vim AT kazmier DOT com)
 " Last Change: 2002 Nov 21 
-" Revision: $Id: java_getset.vim,v 1.6 2002/11/27 21:07:23 kaz Exp $
-" Credit: Based on jcommenter.vim by Kalle Björklid <bjorklid@st.jyu.fi.
-"         Thanks to Dan Sharp for his feedback, suggestions and help.
+" Revision: $Id: java_getset.vim,v 1.10 2002/12/02 15:14:31 kaz Exp $
+" Credit: 
+"    - Based on jcommenter.vim by Kalle Björklid <bjorklid@st.jyu.fi.
+"    - Thanks to Dan Sharp for his feedback, suggestions and help.
+"    - Thanks to Steven Op de beeck for his feedback and help.
 "
 " =======================================================================
 "
@@ -272,8 +275,7 @@ if exists("b:javagetset_getterTemplate")
 else  
   let s:javagetset_getterTemplate = 
     \ "\n" .
-    \ "%modifiers% %type% %funcname%()\n" .
-    \ "{\n" .
+    \ "%modifiers% %type% %funcname%() {\n" .
     \ "    return %varname%;\n" .
     \ "}"
 endif
@@ -283,13 +285,11 @@ if exists("b:javagetset_getterArrayTemplate")
 else  
   let s:javagetset_getterArrayTemplate =
     \ "\n" .
-    \ "%modifiers% %type%[] %funcname%()\n" .
-    \ "{\n" .
+    \ "%modifiers% %type%[] %funcname%() {\n" .
     \ "    return %varname%;\n" .
     \ "}\n" .
     \ "\n" .
-    \ "%modifiers% %type% %funcname%(int index)\n" .
-    \ "{\n" .
+    \ "%modifiers% %type% %funcname%(int index) {\n" .
     \ "    return %varname%[index];\n" .
     \ "}"
 endif
@@ -300,8 +300,7 @@ if exists("b:javagetset_setterTemplate")
 else  
   let s:javagetset_setterTemplate = 
   \ "\n" .
-  \ "%modifiers% void %funcname%(%type% %varname%)\n" .
-  \ "{\n" .
+  \ "%modifiers% void %funcname%(%type% %varname%) {\n" .
   \ "    this.%varname% = %varname%;\n" .
   \ "}"
 endif
@@ -311,13 +310,11 @@ if exists("b:javagetset_setterArrayTemplate")
 else  
   let s:javagetset_setterArrayTemplate =
   \ "\n" .
-  \ "%modifiers% void %funcname%(%type%[] %varname%)\n" .
-  \ "{\n" .
+  \ "%modifiers% void %funcname%(%type%[] %varname%) {\n" .
   \ "    this.%varname% = %varname%;\n" .
   \ "}\n" .
   \ "\n" .
-  \ "%modifiers% void %funcname%(%type% %varname%, int index)\n" .
-  \ "{\n" .
+  \ "%modifiers% void %funcname%(%type% %varname%, int index) {\n" .
   \ "    this.%varname%[index] = %varname%;\n" .
   \ "}"
 endif
@@ -374,7 +371,7 @@ let s:firstline = 0
 let s:lastline  = 0
 
 " Regular expressions used to match property statements
-let s:javaname = '[a-zA-Z_][a-zA-Z0-9_]*'
+let s:javaname = '[a-zA-Z_$][a-zA-Z0-9_$]*'
 let s:brackets = '\(\s*\(\[\s*\]\)\)\='
 let s:modifier = '\(private\|protected\|public\|volatile\|static\|final\)'
 let s:variable = '\(\s*\)\(\(' . s:modifier . '\s\+\)*\)\(' . s:javaname . '\)' . s:brackets . '\s\+\(' . s:javaname . '\)\s*\(;\|=[^;]\+;\)'
@@ -697,15 +694,15 @@ if !exists("*s:MoveToInsertPosition")
 
     " 1 indicates above the current block / line
     if s:javagetset_insertPosition == 1
-      execute "normal " . (s:firstline - 1) . "G0"
+      execute "normal! " . (s:firstline - 1) . "G0"
 
     " 2 indicates below the current block / line
     elseif s:javagetset_insertPosition == 2
-      execute "normal " . s:lastline . "G0"
+      execute "normal! " . s:lastline . "G0"
     
     " 0 indicates end of class (and is default)
     else
-      normal [[%k
+      execute "normal! ?{\<CR>w99[{%k" | nohls
 
     endif 
 
@@ -834,4 +831,3 @@ let &cpo = s:save_cpo
 "      return substitute(a:string, '\_s\+', ' ', 'g')
 "  endfunction
 "endif
-                                                      

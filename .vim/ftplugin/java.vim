@@ -39,7 +39,7 @@ setlocal suffixesadd=.java
 
 " Set 'formatoptions' to break comment lines but not other lines,
 " and insert the comment leader when hitting <CR> or using "o".
-setlocal fo-=t fo+=croql
+setlocal fo-=t fo+=croq
 
 " Set 'comments' to format dashed lists in comments
 setlocal com& com^=sO:*\ -,mO:*\ \ ,exO:*/  " Behaves just like C
