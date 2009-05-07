@@ -18,7 +18,7 @@ export PATH=${PATH_BASE}
 export JAVA_ROOT=/System/Library/Frameworks/JavaVM.framework/Versions
 export TOMCAT_HOME=/Applications/tomcat
 
-function gliffy()
+function go_gliffy()
 {
     JAVA=Java5
     if [ -z $1 ] ; then
