@@ -19,17 +19,21 @@
 " 
 
 " Determine the project_root
-if !exists("g:project_root")
-    let g:project_root="~/Projects"
+if exists("g:project_root")
     exec "cd " . g:project_root
-else
-    exec "cd " . g:project_root
-endif
-" Specify the location of the ant buildfile
-if !exists("g:build_file")
-    let g:ant_buildfile=g:project_root . "/build.xml"
-else
-    let g:ant_buildfile=g:project_root . "/" . g:build_file
+    " Specify the location of the ant buildfile
+    if !exists("g:build_file")
+        let g:ant_buildfile=g:project_root . "/build.xml"
+    else
+        let g:ant_buildfile=g:project_root . "/" . g:build_file
+    endif
+    exec "set path=" . g:project_root. "/**"
+    " Sets you up to grep your entire project, 
+    exec "map g :grep  " . g:project_root . "<Home><Right><Right><Right><Right><Right>"
+    " Greps the entre project for the word under the cursor, allowing you to edit the line
+    exec "map G :grep <cword> " . g:project_root
+    " Greps the entre project for the word under the cursor
+    exec "map  :grep <cword> " . g:project_root . ""
 endif
 
 " This function creates an IDE that contains a left-hand vertical window with
@@ -42,7 +46,11 @@ function! JavaIDE()
     " Go to the main window and vertically split
     wincmd k
     " Open our project root
-    exec "e " . g:project_root . "/src"
+    if exists("g:project_root")
+        exec "e " . g:project_root . "/src"
+    else
+        exec "e ."
+    endif
 endfunction
 
 " Config for XML editing plugin
@@ -64,10 +72,10 @@ set gfn=Monaco:h13:a
 """" Configuration
 " Check for local .vimrc
 set exrc
+set ex
 set noequalalways
 set whichwrap+=hl
 set formatoptions-=t formatoptions+=croqln2
-exec "set path=" . g:project_root. "/**"
 set ai
 set expandtab
 set ts=4
@@ -79,17 +87,10 @@ set go=arb
 set vb t_vb=
 set nohls
 set grepprg=grep\ -rn\ $*
-set suffixesadd=.ec
 " Does vim help for any "K", as opposed to going to man page
 set keywordprg=
 
 """" Mappings
-" Sets you up to grep your entire project, 
-exec "map g :grep  " . g:project_root . "<Home><Right><Right><Right><Right><Right>"
-" Greps the entre project for the word under the cursor, allowing you to edit the line
-exec "map G :grep <cword> " . g:project_root
-" Greps the entre project for the word under the cursor
-exec "map  :grep <cword> " . g:project_root . ""
 " cd to directory of current file
 map c :cd %:p:h
 " kill F1 (doesn't seem to actually work)
