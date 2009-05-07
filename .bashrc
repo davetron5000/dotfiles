@@ -28,7 +28,6 @@ export POSE_USER=dave.copeland
 if [ -e ~/.passwordsrc ]; then
     . ~/.passwordsrc
 fi
-source ~/pose.bash
 source ~/.git-completion.bash
 
 function mysqld()
