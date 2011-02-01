@@ -93,8 +93,6 @@ exec "map G :grep <cword> " . g:project_root . ""
 
 " cd to directory of current file
 map c :cd %:p:h
-" kill F1 (doesn't seem to actually work)
-map <F1> 
 " open buffer list
 map b n\be
 " build
@@ -131,7 +129,6 @@ map x ^icatch (lywea pb~$a){}ko
 :ab TRY try {}catch (SomeException e) {}klllllll
 :ab ITER for (Iterator i = list.iterator(); i.hasNext(); ){}kkllllllllllllllllll
 :ab JITER for (Iterator j = list.iterator(); j.hasNext(); ){}kkllllllllllllllllll
-:ab IF if (){}else{}<Up><Up><Up><Up><Up><Up><Right><Right><Right><Right>
 :ab FOR for (Object o: list) {}k^lllll
 :ab OLDFOR for (int i=0;i<list.length; i++) {}k^lllll
 :ab LOGGER itsLogger = Logger.getLogger(getClass().getName());
@@ -141,3 +138,8 @@ map x ^icatch (lywea pb~$a){}ko
 :ab ITEMIZE \begin{itemize} %(\end{itemize} %)O
 :ab ENUMERATE \begin{enumerate} %(\end{enumerate} %)O
 :ab DESCRIPTION \begin{description} %(\item{\textbf{}}\end{description} %)O
+
+au BufRead,BufNewFile *.scala set sw=2
+au BufRead,BufNewFile *.scala set ts=2
+au BufEnter *.scss set nocindent
+au BufLeave *.scss set cindent

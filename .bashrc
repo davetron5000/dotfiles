@@ -44,16 +44,16 @@ function mysqld()
     fi
 }
 
-function mvn()
-{
-    /usr/bin/mvn $*
-    if [ $? == 0 ]; then
-        growlnotify -s -n Maven -m "Build Successful" --image /Users/davec/Pictures/Icons/pass.jpg
-    else
-        growlnotify -s -n Maven -m "Build FAILED" --image /Users/davec/Pictures/Icons/fail.png
-    fi
-
-}
+#function mvn()
+#{
+#    /usr/bin/mvn $*
+#    if [ $? == 0 ]; then
+#        growlnotify -s -n Maven -m "Build Successful" --image /Users/davec/Pictures/Icons/pass.jpg
+#    else
+#        growlnotify -s -n Maven -m "Build FAILED" --image /Users/davec/Pictures/Icons/fail.png
+#    fi
+#
+#}
 
 alias vi='mvim'
 alias gem_server="ruby -r rubygems/server -e 'Gem::Server.run(:gemdir=>\"/Library/Ruby/Gems/1.8\",:port=>8088)'"
@@ -61,20 +61,17 @@ alias psi='/opt/psi/bin/psi'
 alias ps='ps auxwwwwwwww'
 alias ls='ls -F'
 export MYSQL_EXE='/usr/local/mysql/bin/mysql --show-warnings'
+alias mysql=$MYSQL_EXE
 
-function mysql()
+complete -F get_gliffy_targets gliffy
+function get_gliffy_targets() 
 {
-    if [ -z $1 ]; then
-        USER=poseur
-        PASS=poseur
+    if [ -z $2 ] ; then
+        COMPREPLY=(`gliffy help -c`)
     else
-        USER=$1
-        PASS=$2
+        COMPREPLY=(`gliffy help -c $2`)
     fi
-
-    $MYSQL_EXE -u$USER -p$PASS
 }
-
 complete -F get_go_targets go
 
 function get_go_targets()
@@ -160,3 +157,13 @@ function update_prompt()
 
 go 
 cd ~
+
+##
+# Your previous /Users/davec/.profile file was backed up as /Users/davec/.profile.macports-saved_2009-10-12_at_19:01:00
+##
+
+# MacPorts Installer addition on 2009-10-12_at_19:01:00: adding an appropriate PATH variable for use with MacPorts.
+export PATH=/opt/local/bin:/opt/local/sbin:$PATH
+# Finished adapting your PATH environment variable for use with MacPorts.
+
+[[ -s $HOME/.rvm/scripts/rvm ]] && source $HOME/.rvm/scripts/rvm
