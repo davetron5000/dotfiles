@@ -1,0 +1,223 @@
+*javax.sound.sampled.FloatControl* *FloatControl* A FloatControl object provides
+
+public abstract class FloatControl
+  extends    |javax.sound.sampled.Control|
+
+|javax.sound.sampled.FloatControl_Description|
+|javax.sound.sampled.FloatControl_Fields|
+|javax.sound.sampled.FloatControl_Constructors|
+|javax.sound.sampled.FloatControl_Methods|
+
+================================================================================
+
+*javax.sound.sampled.FloatControl_Constructors*
+|javax.sound.sampled.FloatControl(FloatControl.Type,float,float,float,int,float,String)|
+|javax.sound.sampled.FloatControl(FloatControl.Type,float,float,float,int,float,String,String,String,String)|
+
+*javax.sound.sampled.FloatControl_Methods*
+|javax.sound.sampled.FloatControl.getMaximum()|Obtains the maximum value permit
+|javax.sound.sampled.FloatControl.getMaxLabel()|Obtains the label for the maxim
+|javax.sound.sampled.FloatControl.getMidLabel()|Obtains the label for the mid-p
+|javax.sound.sampled.FloatControl.getMinimum()|Obtains the minimum value permit
+|javax.sound.sampled.FloatControl.getMinLabel()|Obtains the label for the minim
+|javax.sound.sampled.FloatControl.getPrecision()|Obtains the resolution or gran
+|javax.sound.sampled.FloatControl.getUnits()|Obtains the label for the units in
+|javax.sound.sampled.FloatControl.getUpdatePeriod()|Obtains the smallest time i
+|javax.sound.sampled.FloatControl.getValue()|Obtains this control's current val
+|javax.sound.sampled.FloatControl.setValue(float)|Sets the current value for th
+|javax.sound.sampled.FloatControl.shift(float,float,int)|Changes the control va
+|javax.sound.sampled.FloatControl.toString()|Provides a string representation o
+
+*javax.sound.sampled.FloatControl_Description*
+
+A FloatControl object provides control over a range of floating-point values. 
+Float controls are often represented in graphical user interfaces by 
+continuously adjustable objects such as sliders or rotary knobs. Concrete 
+subclasses of FloatControl implement controls, such as gain and pan, that 
+affect a line's audio signal in some way that an application can manipulate. 
+The (|javax.sound.sampled.FloatControl.Type|) inner class provides static 
+instances of types that are used to identify some common kinds of float 
+control. 
+
+The FloatControl abstract class provides methods to set and get the control's 
+current floating-point value. Other methods obtain the possible range of values 
+and the control's resolution (the smallest increment between returned values). 
+Some float controls allow ramping to a new value over a specified period of 
+time. FloatControl also includes methods that return string labels for the 
+minimum, maximum, and midpoint positions of the control. 
+
+
+*javax.sound.sampled.FloatControl(FloatControl.Type,float,float,float,int,float,String)*
+
+protected FloatControl(
+  javax.sound.sampled.FloatControl.Type type,
+  float minimum,
+  float maximum,
+  float precision,
+  int updatePeriod,
+  float initialValue,
+  java.lang.String units)
+
+Constructs a new float control object with the given parameters. The labels for 
+the minimum, maximum, and mid-point values are set to zero-length strings. 
+
+    type - the kind of control represented by this float control object 
+    minimum - the smallest value permitted for the control 
+    maximum - the largest value permitted for the control 
+    precision - the resolution or granularity of the control. This is the size of the increment 
+       between discrete valid values. 
+    updatePeriod - the smallest time interval, in microseconds, over which the control can change 
+       from one discrete value to the next during a {@link 
+       #shift(float,float,int) shift} 
+    initialValue - the value that the control starts with when constructed 
+    units - the label for the units in which the control's values are expressed, such as 
+       "dB" or "frames per second" 
+
+*javax.sound.sampled.FloatControl(FloatControl.Type,float,float,float,int,float,String,String,String,String)*
+
+protected FloatControl(
+  javax.sound.sampled.FloatControl.Type type,
+  float minimum,
+  float maximum,
+  float precision,
+  int updatePeriod,
+  float initialValue,
+  java.lang.String units,
+  java.lang.String minLabel,
+  java.lang.String midLabel,
+  java.lang.String maxLabel)
+
+Constructs a new float control object with the given parameters 
+
+    type - the kind of control represented by this float control object 
+    minimum - the smallest value permitted for the control 
+    maximum - the largest value permitted for the control 
+    precision - the resolution or granularity of the control. This is the size of the increment 
+       between discrete valid values. 
+    updatePeriod - the smallest time interval, in microseconds, over which the control can change 
+       from one discrete value to the next during a {@link 
+       #shift(float,float,int) shift} 
+    initialValue - the value that the control starts with when constructed 
+    units - the label for the units in which the control's values are expressed, such as 
+       "dB" or "frames per second" 
+    minLabel - the label for the minimum value, such as "Left" or "Off" 
+    midLabel - the label for the midpoint value, such as "Center" or "Default" 
+    maxLabel - the label for the maximum value, such as "Right" or "Full" 
+
+*javax.sound.sampled.FloatControl.getMaximum()*
+
+public float getMaximum()
+
+Obtains the maximum value permitted. 
+
+
+    Returns: the maximum allowable value 
+*javax.sound.sampled.FloatControl.getMaxLabel()*
+
+public |java.lang.String| getMaxLabel()
+
+Obtains the label for the maximum value, such as "Right" or "Full." 
+
+
+    Returns: the maximum value label, or a zero-length string if no label * has been set 
+*javax.sound.sampled.FloatControl.getMidLabel()*
+
+public |java.lang.String| getMidLabel()
+
+Obtains the label for the mid-point value, such as "Center" or "Default." 
+
+
+    Returns: the mid-point value label, or a zero-length string if no label * has been set 
+*javax.sound.sampled.FloatControl.getMinimum()*
+
+public float getMinimum()
+
+Obtains the minimum value permitted. 
+
+
+    Returns: the minimum allowable value 
+*javax.sound.sampled.FloatControl.getMinLabel()*
+
+public |java.lang.String| getMinLabel()
+
+Obtains the label for the minimum value, such as "Left" or "Off." 
+
+
+    Returns: the minimum value label, or a zero-length string if no label * has been set 
+*javax.sound.sampled.FloatControl.getPrecision()*
+
+public float getPrecision()
+
+Obtains the resolution or granularity of the control, in the units that the 
+control measures. The precision is the size of the increment between discrete 
+valid values for this control, over the set of supported floating-point values. 
+
+
+    Returns: the control's precision 
+*javax.sound.sampled.FloatControl.getUnits()*
+
+public |java.lang.String| getUnits()
+
+Obtains the label for the units in which the control's values are expressed, 
+such as "dB" or "frames per second." 
+
+
+    Returns: the units label, or a zero-length string if no label 
+*javax.sound.sampled.FloatControl.getUpdatePeriod()*
+
+public int getUpdatePeriod()
+
+Obtains the smallest time interval, in microseconds, over which the control's 
+value can change during a shift. The update period is the inverse of the 
+frequency with which the control updates its value during a shift. If the 
+implementation does not support value shifting over time, it should set the 
+control's value to the final value immediately and return -1 from this method. 
+
+
+    Returns: update period in microseconds, or -1 if shifting over time is unsupported 
+*javax.sound.sampled.FloatControl.getValue()*
+
+public float getValue()
+
+Obtains this control's current value. 
+
+
+    Returns: the current value 
+*javax.sound.sampled.FloatControl.setValue(float)*
+
+public void setValue(float newValue)
+
+Sets the current value for the control. The default implementation simply sets 
+the value as indicated. If the value indicated is greater than the maximum 
+value, or smaller than the minimum value, an IllegalArgumentException is 
+thrown. Some controls require that their line be open before they can be 
+affected by setting a value. 
+
+    newValue - desired new value 
+
+*javax.sound.sampled.FloatControl.shift(float,float,int)*
+
+public void shift(
+  float from,
+  float to,
+  int microseconds)
+
+Changes the control value from the initial value to the final value linearly 
+over the specified time period, specified in microseconds. This method returns 
+without blocking; it does not wait for the shift to complete. An implementation 
+should complete the operation within the time specified. The default 
+implementation simply changes the value to the final value immediately. 
+
+    from - initial value at the beginning of the shift 
+    to - final value after the shift 
+    microseconds - maximum duration of the shift in microseconds 
+
+*javax.sound.sampled.FloatControl.toString()*
+
+public |java.lang.String| toString()
+
+Provides a string representation of the control 
+
+
+    Returns: a string description 
+

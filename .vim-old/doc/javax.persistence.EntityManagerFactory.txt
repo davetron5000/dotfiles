@@ -1,0 +1,70 @@
+*javax.persistence.EntityManagerFactory* *EntityManagerFactory* The EntityManage
+
+public interface interface EntityManagerFactory
+
+
+|javax.persistence.EntityManagerFactory_Description|
+|javax.persistence.EntityManagerFactory_Fields|
+|javax.persistence.EntityManagerFactory_Constructors|
+|javax.persistence.EntityManagerFactory_Methods|
+
+================================================================================
+
+*javax.persistence.EntityManagerFactory_Methods*
+|javax.persistence.EntityManagerFactory.close()|Close the factory, releasing an
+|javax.persistence.EntityManagerFactory.createEntityManager()|Create a new Enti
+|javax.persistence.EntityManagerFactory.createEntityManager(Map)|Create a new E
+|javax.persistence.EntityManagerFactory.isOpen()|Indicates whether or not this 
+
+*javax.persistence.EntityManagerFactory_Description*
+
+The EntityManagerFactory interface is used by the application to obtain an 
+application-managed entity manager. When the application has finished using the 
+entity manager factory, and/or at application shutdown, the application should 
+close the entity manager factory. Once an EntityManagerFactory has been closed, 
+all its entity managers are considered to be in the closed state. 
+
+
+
+*javax.persistence.EntityManagerFactory.close()*
+
+public void close()
+
+Close the factory, releasing any resources that it holds. After a factory 
+instance is closed, all methods invoked on it will throw an 
+IllegalStateException, except for isOpen, which will return false. Once an 
+EntityManagerFactory has been closed, all its entity managers are considered to 
+be in the closed state. 
+
+
+
+*javax.persistence.EntityManagerFactory.createEntityManager()*
+
+public |javax.persistence.EntityManager| createEntityManager()
+
+Create a new EntityManager. This method returns a new EntityManager instance 
+each time it is invoked. The isOpen method will return true on the returned 
+instance. 
+
+
+
+*javax.persistence.EntityManagerFactory.createEntityManager(Map)*
+
+public |javax.persistence.EntityManager| createEntityManager(java.util.Map map)
+
+Create a new EntityManager with the specified Map of properties. This method 
+returns a new EntityManager instance each time it is invoked. The isOpen method 
+will return true on the returned instance. 
+
+
+
+*javax.persistence.EntityManagerFactory.isOpen()*
+
+public boolean isOpen()
+
+Indicates whether or not this factory is open. Returns true until a call to 
+close has been made. 
+
+
+
+

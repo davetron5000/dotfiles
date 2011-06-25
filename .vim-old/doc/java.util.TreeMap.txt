@@ -1,0 +1,345 @@
+*java.util.TreeMap* *TreeMap* Red-Black tree based implementation of the SortedMap interface.
+
+public class TreeMap<K,V>
+  extends    |java.util.AbstractMap|
+  implements |java.util.SortedMap|
+             |java.lang.Cloneable|
+             |java.io.Serializable|
+
+|java.util.TreeMap_Description|
+|java.util.TreeMap_Fields|
+|java.util.TreeMap_Constructors|
+|java.util.TreeMap_Methods|
+
+====================================================================================================================================================================================
+
+*java.util.TreeMap_Constructors*
+|java.util.TreeMap()|Constructs a new, empty map, sorted according to the keys' natural  order.
+|java.util.TreeMap(Comparator<?superK>)|Constructs a new, empty map, sorted according to the given comparator.
+|java.util.TreeMap(Map<?extendsK,?extendsV>)|Constructs a new map containing the same mappings as the given map,  sorted according to the keys' natural order.
+|java.util.TreeMap(SortedMap<K,?extendsV>)|Constructs a new map containing the same mappings as the given  SortedMap, sorted according to the same ordering.
+
+*java.util.TreeMap_Methods*
+|java.util.TreeMap.clear()|Removes all mappings from this TreeMap.
+|java.util.TreeMap.clone()|Returns a shallow copy of this TreeMap instance.
+|java.util.TreeMap.comparator()|Returns the comparator used to order this map, or null if this  map uses its keys' natural order.
+|java.util.TreeMap.containsKey(Object)|Returns true if this map contains a mapping for the specified  key.
+|java.util.TreeMap.containsValue(Object)|Returns true if this map maps one or more keys to the  specified value.
+|java.util.TreeMap.entrySet()|Returns a set view of the mappings contained in this map.
+|java.util.TreeMap.firstKey()|Returns the first (lowest) key currently in this sorted map.
+|java.util.TreeMap.get(Object)|Returns the value to which this map maps the specified key.
+|java.util.TreeMap.headMap(K)|Returns a view of the portion of this map whose keys are strictly less  than toKey.
+|java.util.TreeMap.keySet()|Returns a Set view of the keys contained in this map.
+|java.util.TreeMap.lastKey()|Returns the last (highest) key currently in this sorted map.
+|java.util.TreeMap.put(K,V)|Associates the specified value with the specified key in this map.
+|java.util.TreeMap.putAll(Map<?extendsK,?extendsV>)|Copies all of the mappings from the specified map to this map.
+|java.util.TreeMap.remove(Object)|Removes the mapping for this key from this TreeMap if present.
+|java.util.TreeMap.size()|Returns the number of key-value mappings in this map.
+|java.util.TreeMap.subMap(K,K)|Returns a view of the portion of this map whose keys range from  fromKey, inclusive, to toKey, exclusive.
+|java.util.TreeMap.tailMap(K)|Returns a view of the portion of this map whose keys are greater than  or equal to fromKey.
+|java.util.TreeMap.values()|Returns a collection view of the values contained in this map.
+
+*java.util.TreeMap_Description*
+
+Red-Black tree based implementation of the SortedMap interface. This class guarantees that the map will be in ascending key order, sorted according to the natural order for the 
+key's class (see Comparable), or by the comparator provided at creation time, depending on which constructor is used. 
+
+This implementation provides guaranteed log(n) time cost for the containsKey, get, put and remove operations. Algorithms are adaptations of those in Cormen, Leiserson, and 
+Rivest's Introduction to Algorithms. 
+
+Note that the ordering maintained by a sorted map (whether or not an explicit comparator is provided) must be consistent with equals if this sorted map is to correctly implement 
+the Map interface. (See Comparable or Comparator for a precise definition of consistent with equals.) This is so because the Map interface is defined in terms of the equals 
+operation, but a map performs all key comparisons using its compareTo (or compare) method, so two keys that are deemed equal by this method are, from the standpoint of the sorted 
+map, equal. The behavior of a sorted map is well-defined even if its ordering is inconsistent with equals; it just fails to obey the general contract of the Map interface. 
+
+Note that this implementation is not synchronized. If multiple threads access a map concurrently, and at least one of the threads modifies the map structurally, it must be 
+synchronized externally. (A structural modification is any operation that adds or deletes one or more mappings; merely changing the value associated with an existing key is not a 
+structural modification.) This is typically accomplished by synchronizing on some object that naturally encapsulates the map. If no such object exists, the map should be "wrapped" 
+using the Collections.synchronizedMap method. This is best done at creation time, to prevent accidental unsynchronized access to the map: 
+
+Map m = Collections.synchronizedMap(new TreeMap(...)); 
+
+The iterators returned by all of this class's "collection view methods" are fail-fast: if the map is structurally modified at any time after the iterator is created, in any way 
+except through the iterator's own remove or add methods, the iterator throws a ConcurrentModificationException. Thus, in the face of concurrent modification, the iterator fails 
+quickly and cleanly, rather than risking arbitrary, non-deterministic behavior at an undetermined time in the future. 
+
+Note that the fail-fast behavior of an iterator cannot be guaranteed as it is, generally speaking, impossible to make any hard guarantees in the presence of unsynchronized 
+concurrent modification. Fail-fast iterators throw ConcurrentModificationException on a best-effort basis. Therefore, it would be wrong to write a program that depended on this 
+exception for its correctness: the fail-fast behavior of iterators should be used only to detect bugs. 
+
+This class is a member of the <a href="/../guide/collections/index.html"> Java Collections Framework. 
+
+
+
+*java.util.TreeMap()*
+
+public TreeMap()
+
+Constructs a new, empty map, sorted according to the keys' natural order. All keys inserted into the map must implement the Comparable interface. Furthermore, all such keys must 
+be mutually comparable: k1.compareTo(k2) must not throw a ClassCastException for any elements k1 and k2 in the map. If the user attempts to put a key into the map that violates 
+this constraint (for example, the user attempts to put a string key into a map whose keys are integers), the put(Object key, Object value) call will throw a ClassCastException. 
+
+
+*java.util.TreeMap(Comparator<?superK>)*
+
+public TreeMap(java.util.Comparator<? super K> c)
+
+Constructs a new, empty map, sorted according to the given comparator. All keys inserted into the map must be mutually comparable by the given comparator: comparator.compare(k1, 
+k2) must not throw a ClassCastException for any keys k1 and k2 in the map. If the user attempts to put a key into the map that violates this constraint, the put(Object key, Object 
+value) call will throw a ClassCastException. 
+
+    c - the comparator that will be used to sort this map. A null value indicates that the keys' natural ordering should be used. 
+
+*java.util.TreeMap(Map<?extendsK,?extendsV>)*
+
+public TreeMap(java.util.Map<? extends K, ? extends V> m)
+
+Constructs a new map containing the same mappings as the given map, sorted according to the keys' natural order. All keys inserted into the new map must implement the Comparable 
+interface. Furthermore, all such keys must be mutually comparable: k1.compareTo(k2) must not throw a ClassCastException for any elements k1 and k2 in the map. This method runs in 
+n*log(n) time. 
+
+    m - the map whose mappings are to be placed in this map. 
+
+*java.util.TreeMap(SortedMap<K,?extendsV>)*
+
+public TreeMap(java.util.SortedMap<K, ? extends V> m)
+
+Constructs a new map containing the same mappings as the given SortedMap, sorted according to the same ordering. This method runs in linear time. 
+
+    m - the sorted map whose mappings are to be placed in this map, and whose comparator is to be used to sort this map. 
+
+*java.util.TreeMap.clear()*
+
+public void clear()
+
+Removes all mappings from this TreeMap. 
+
+
+
+*java.util.TreeMap.clone()*
+
+public |java.lang.Object| clone()
+
+Returns a shallow copy of this TreeMap instance. (The keys and values themselves are not cloned.) 
+
+
+
+    Returns: a shallow copy of this Map. 
+
+*java.util.TreeMap.comparator()*
+
+public |java.util.Comparator|<? super K> comparator()
+
+Returns the comparator used to order this map, or null if this map uses its keys' natural order. 
+
+
+
+    Returns: the comparator associated with this sorted map, or null if it uses its keys' natural sort method. 
+
+*java.util.TreeMap.containsKey(Object)*
+
+public boolean containsKey(java.lang.Object key)
+
+Returns true if this map contains a mapping for the specified key. 
+
+
+    key - key whose presence in this map is to be tested. 
+
+    Returns: true if this map contains a mapping for the specified key. 
+
+*java.util.TreeMap.containsValue(Object)*
+
+public boolean containsValue(java.lang.Object value)
+
+Returns true if this map maps one or more keys to the specified value. More formally, returns true if and only if this map contains at least one mapping to a value v such that 
+(value==null ? v==null : value.equals(v)). This operation will probably require time linear in the Map size for most implementations of Map. 
+
+
+    value - value whose presence in this Map is to be tested. 
+
+    Returns: true if a mapping to value exists; false otherwise. 
+
+*java.util.TreeMap.entrySet()*
+
+public |java.util.Set|<Entry<K,V>> entrySet()
+
+Returns a set view of the mappings contained in this map. The set's iterator returns the mappings in ascending key order. Each element in the returned set is a Map.Entry. The set 
+is backed by this map, so changes to this map are reflected in the set, and vice-versa. The set supports element removal, which removes the corresponding mapping from the TreeMap, 
+through the Iterator.remove, Set.remove, removeAll, retainAll and clear operations. It does not support the add or addAll operations. 
+
+
+
+    Returns: a set view of the mappings contained in this map. 
+
+*java.util.TreeMap.firstKey()*
+
+public |K| firstKey()
+
+Returns the first (lowest) key currently in this sorted map. 
+
+
+
+    Returns: the first (lowest) key currently in this sorted map. 
+
+*java.util.TreeMap.get(Object)*
+
+public |V| get(java.lang.Object key)
+
+Returns the value to which this map maps the specified key. Returns null if the map contains no mapping for this key. A return value of null does not necessarily indicate that the 
+map contains no mapping for the key; it's also possible that the map explicitly maps the key to null. The containsKey operation may be used to distinguish these two cases. 
+
+
+    key - key whose associated value is to be returned. 
+
+    Returns: the value to which this map maps the specified key, or null if the map contains no mapping for the key. 
+
+*java.util.TreeMap.headMap(K)*
+
+public |java.util.SortedMap|<K,V> headMap(K toKey)
+
+Returns a view of the portion of this map whose keys are strictly less than toKey. The returned sorted map is backed by this map, so changes in the returned sorted map are 
+reflected in this map, and vice-versa. The returned sorted map supports all optional map operations. 
+
+The sorted map returned by this method will throw an IllegalArgumentException if the user attempts to insert a key greater than or equal to toKey. 
+
+Note: this method always returns a view that does not contain its (high) endpoint. If you need a view that does contain this endpoint, and the key type allows for calculation of 
+the successor a given key, merely request a headMap bounded by successor(highEndpoint). For example, suppose that suppose that m is a sorted map whose keys are strings. The 
+following idiom obtains a view containing all of the key-value mappings in m whose keys are less than or equal to high: 
+
+SortedMap head = m.headMap(high+"\0"); 
+
+
+    toKey - high endpoint (exclusive) of the headMap. 
+
+    Returns: a view of the portion of this map whose keys are strictly less than toKey. 
+
+*java.util.TreeMap.keySet()*
+
+public |java.util.Set|<K> keySet()
+
+Returns a Set view of the keys contained in this map. The set's iterator will return the keys in ascending order. The map is backed by this TreeMap instance, so changes to this 
+map are reflected in the Set, and vice-versa. The Set supports element removal, which removes the corresponding mapping from the map, via the Iterator.remove, Set.remove, 
+removeAll, retainAll, and clear operations. It does not support the add or addAll operations. 
+
+
+
+    Returns: a set view of the keys contained in this TreeMap. 
+
+*java.util.TreeMap.lastKey()*
+
+public |K| lastKey()
+
+Returns the last (highest) key currently in this sorted map. 
+
+
+
+    Returns: the last (highest) key currently in this sorted map. 
+
+*java.util.TreeMap.put(K,V)*
+
+public |V| put(
+  K key,
+  V value)
+
+Associates the specified value with the specified key in this map. If the map previously contained a mapping for this key, the old value is replaced. 
+
+
+    key - key with which the specified value is to be associated. 
+    value - value to be associated with the specified key. 
+
+    Returns: previous value associated with specified key, or null if there was no mapping for key. A null return can also indicate that the map previously associated null with the specified 
+             key. 
+
+*java.util.TreeMap.putAll(Map<?extendsK,?extendsV>)*
+
+public void putAll(java.util.Map<? extends K, ? extends V> map)
+
+Copies all of the mappings from the specified map to this map. These mappings replace any mappings that this map had for any of the keys currently in the specified map. 
+
+
+    map - mappings to be stored in this map. 
+
+*java.util.TreeMap.remove(Object)*
+
+public |V| remove(java.lang.Object key)
+
+Removes the mapping for this key from this TreeMap if present. 
+
+
+    key - key for which mapping should be removed 
+
+    Returns: previous value associated with specified key, or null if there was no mapping for key. A null return can also indicate that the map previously associated null with the specified 
+             key. 
+
+*java.util.TreeMap.size()*
+
+public int size()
+
+Returns the number of key-value mappings in this map. 
+
+
+
+    Returns: the number of key-value mappings in this map. 
+
+*java.util.TreeMap.subMap(K,K)*
+
+public |java.util.SortedMap|<K,V> subMap(
+  K fromKey,
+  K toKey)
+
+Returns a view of the portion of this map whose keys range from fromKey, inclusive, to toKey, exclusive. (If fromKey and toKey are equal, the returned sorted map is empty.) The 
+returned sorted map is backed by this map, so changes in the returned sorted map are reflected in this map, and vice-versa. The returned sorted map supports all optional map 
+operations. 
+
+The sorted map returned by this method will throw an IllegalArgumentException if the user attempts to insert a key less than fromKey or greater than or equal to toKey. 
+
+Note: this method always returns a half-open range (which includes its low endpoint but not its high endpoint). If you need a closed range (which includes both endpoints), and the 
+key type allows for calculation of the successor a given key, merely request the subrange from lowEndpoint to successor(highEndpoint). For example, suppose that m is a sorted map 
+whose keys are strings. The following idiom obtains a view containing all of the key-value mappings in m whose keys are between low and high, inclusive: 
+
+SortedMap sub = m.submap(low, high+"\0"); 
+
+A similar technique can be used to generate an open range (which contains neither endpoint). The following idiom obtains a view containing all of the key-value mappings in m whose 
+keys are between low and high, exclusive: 
+
+SortedMap sub = m.subMap(low+"\0", high); 
+
+
+    fromKey - low endpoint (inclusive) of the subMap. 
+    toKey - high endpoint (exclusive) of the subMap. 
+
+    Returns: a view of the portion of this map whose keys range from fromKey, inclusive, to toKey, exclusive. 
+
+*java.util.TreeMap.tailMap(K)*
+
+public |java.util.SortedMap|<K,V> tailMap(K fromKey)
+
+Returns a view of the portion of this map whose keys are greater than or equal to fromKey. The returned sorted map is backed by this map, so changes in the returned sorted map are 
+reflected in this map, and vice-versa. The returned sorted map supports all optional map operations. 
+
+The sorted map returned by this method will throw an IllegalArgumentException if the user attempts to insert a key less than fromKey. 
+
+Note: this method always returns a view that contains its (low) endpoint. If you need a view that does not contain this endpoint, and the element type allows for calculation of 
+the successor a given value, merely request a tailMap bounded by successor(lowEndpoint). For example, suppose that m is a sorted map whose keys are strings. The following idiom 
+obtains a view containing all of the key-value mappings in m whose keys are strictly greater than low: 
+
+SortedMap tail = m.tailMap(low+"\0"); 
+
+
+    fromKey - low endpoint (inclusive) of the tailMap. 
+
+    Returns: a view of the portion of this map whose keys are greater than or equal to fromKey. 
+
+*java.util.TreeMap.values()*
+
+public |java.util.Collection|<V> values()
+
+Returns a collection view of the values contained in this map. The collection's iterator will return the values in the order that their corresponding keys appear in the tree. The 
+collection is backed by this TreeMap instance, so changes to this map are reflected in the collection, and vice-versa. The collection supports element removal, which removes the 
+corresponding mapping from the map through the Iterator.remove, Collection.remove, removeAll, retainAll, and clear operations. It does not support the add or addAll operations. 
+
+
+
+    Returns: a collection view of the values contained in this map. 
+
+

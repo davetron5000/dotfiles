@@ -1,0 +1,126 @@
+*javax.management.modelmbean.ModelMBeanNotificationInfo* *ModelMBeanNotificationInfo* 
+
+public class ModelMBeanNotificationInfo
+  extends    |javax.management.MBeanNotificationInfo|
+  implements |javax.management.DescriptorAccess|
+             |java.lang.Cloneable|
+
+|javax.management.modelmbean.ModelMBeanNotificationInfo_Description|
+|javax.management.modelmbean.ModelMBeanNotificationInfo_Fields|
+|javax.management.modelmbean.ModelMBeanNotificationInfo_Constructors|
+|javax.management.modelmbean.ModelMBeanNotificationInfo_Methods|
+
+================================================================================
+
+*javax.management.modelmbean.ModelMBeanNotificationInfo_Constructors*
+|javax.management.modelmbean.ModelMBeanNotificationInfo(ModelMBeanNotificationInfo)|
+|javax.management.modelmbean.ModelMBeanNotificationInfo(String[],String,String)|
+|javax.management.modelmbean.ModelMBeanNotificationInfo(String[],String,String,Descriptor)|
+
+*javax.management.modelmbean.ModelMBeanNotificationInfo_Methods*
+|javax.management.modelmbean.ModelMBeanNotificationInfo.clone()|Creates and ret
+|javax.management.modelmbean.ModelMBeanNotificationInfo.getDescriptor()|Returns
+|javax.management.modelmbean.ModelMBeanNotificationInfo.setDescriptor(Descriptor)|
+|javax.management.modelmbean.ModelMBeanNotificationInfo.toString()|Returns a hu
+
+*javax.management.modelmbean.ModelMBeanNotificationInfo_Description*
+
+The ModelMBeanNotificationInfo object describes a notification emitted by a 
+ModelMBean. It is a subclass of MBeanNotificationInfo with the addition of an 
+associated Descriptor and an implementation of the Descriptor interface. 
+
+The fields in the descriptor are defined, but not limited to, the following: 
+
+name : notification name descriptorType : must be "notification" severity : 0-6 
+where 0: unknown; 1: non-recoverable; 2: critical, failure; 3: major, severe; 
+4: minor, marginal, error; 5: warning; 6: normal, cleared, informative 
+messageID : unique key for message text (to allow translation, analysis) 
+messageText : text of notification log : T - log message F - do not log message 
+logfile : string fully qualified file name appropriate for operating system 
+visibility : 1-4 where 1: always visible 4: rarely visible presentationString : 
+xml formatted string to allow presentation of data 
+
+The default descriptor contains the name, descriptorType, displayName and 
+severity(=6) fields. 
+
+
+*javax.management.modelmbean.ModelMBeanNotificationInfo(ModelMBeanNotificationInfo)*
+
+public ModelMBeanNotificationInfo(javax.management.modelmbean.ModelMBeanNotificationInfo inInfo)
+
+Constructs a new ModelMBeanNotificationInfo object from this 
+ModelMBeanNotfication Object. 
+
+    inInfo - the ModelMBeanNotificationInfo to be duplicated 
+
+*javax.management.modelmbean.ModelMBeanNotificationInfo(String[],String,String)*
+
+public ModelMBeanNotificationInfo(
+  java.lang.String[] notifTypes,
+  java.lang.String name,
+  java.lang.String description)
+
+Constructs a ModelMBeanNotificationInfo object with a default descriptor. 
+
+    notifTypes - The array of strings (in dot notation) containing the notification types that 
+       may be emitted. 
+    name - The name of the Notification class. 
+    description - A human readable description of the Notification. Optional. 
+
+*javax.management.modelmbean.ModelMBeanNotificationInfo(String[],String,String,Descriptor)*
+
+public ModelMBeanNotificationInfo(
+  java.lang.String[] notifTypes,
+  java.lang.String name,
+  java.lang.String description,
+  javax.management.Descriptor descriptor)
+
+Constructs a ModelMBeanNotificationInfo object. 
+
+    notifTypes - The array of strings (in dot notation) containing the notification types that 
+       may be emitted. 
+    name - The name of the Notification class. 
+    description - A human readable description of the Notification. Optional. 
+    descriptor - An instance of Descriptor containing the appropriate metadata for this instance 
+       of the MBeanNotificationInfo. If it is null a default descriptor will be 
+       created. If the descriptor does not contain the fields "displayName" or 
+       "severity" these fields are added in the descriptor with their default 
+       values. 
+
+*javax.management.modelmbean.ModelMBeanNotificationInfo.clone()*
+
+public |java.lang.Object| clone()
+
+Creates and returns a new ModelMBeanNotificationInfo which is a duplicate of 
+this ModelMBeanNotificationInfo. 
+
+
+*javax.management.modelmbean.ModelMBeanNotificationInfo.getDescriptor()*
+
+public |javax.management.Descriptor| getDescriptor()
+
+Returns a copy of the associated Descriptor for the ModelMBeanNotificationInfo. 
+
+
+    Returns: Descriptor associated with the ModelMBeanNotificationInfo object. 
+*javax.management.modelmbean.ModelMBeanNotificationInfo.setDescriptor(Descriptor)*
+
+public void setDescriptor(javax.management.Descriptor inDescriptor)
+
+Sets associated Descriptor (full replace) for the ModelMBeanNotificationInfo If 
+the new Descriptor is null, then the associated Descriptor reverts to a default 
+descriptor. The Descriptor is validated before it is assigned. If the new 
+Descriptor is invalid, then a RuntimeOperationsException wrapping an 
+IllegalArgumentException is thrown. 
+
+    inDescriptor - replaces the Descriptor associated with the ModelMBeanNotification interface 
+
+*javax.management.modelmbean.ModelMBeanNotificationInfo.toString()*
+
+public |java.lang.String| toString()
+
+Returns a human readable string containing ModelMBeanNotificationInfo. 
+
+
+    Returns: a string describing this object. 
+

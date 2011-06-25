@@ -1,0 +1,319 @@
+*javax.xml.parsers.SAXParser* *SAXParser* Defines the API that wraps anorg.xml.sax.XMLReaderimplementation class.
+
+public abstract class SAXParser
+  extends    |java.lang.Object|
+
+|javax.xml.parsers.SAXParser_Description|
+|javax.xml.parsers.SAXParser_Fields|
+|javax.xml.parsers.SAXParser_Constructors|
+|javax.xml.parsers.SAXParser_Methods|
+
+====================================================================================================================================================================================
+
+*javax.xml.parsers.SAXParser_Constructors*
+|javax.xml.parsers.SAXParser()|Protected constructor to prevent instaniation.
+
+*javax.xml.parsers.SAXParser_Methods*
+|javax.xml.parsers.SAXParser.getParser()|Returns the SAX parser that is encapsultated by the  implementation of this class.
+|javax.xml.parsers.SAXParser.getProperty(String)|Returns the particular property requested for in the underlying  implementation oforg.xml.sax.XMLReader.
+|javax.xml.parsers.SAXParser.getSchema()|Get a reference to the theSchemabeing used by  the XML processor.
+|javax.xml.parsers.SAXParser.getXMLReader()|Returns theorg.xml.sax.XMLReaderthat is encapsulated by the  implementation of this class.
+|javax.xml.parsers.SAXParser.isNamespaceAware()|Indicates whether or not this parser is configured to  understand namespaces.
+|javax.xml.parsers.SAXParser.isValidating()|Indicates whether or not this parser is configured to  validate XML documents.
+|javax.xml.parsers.SAXParser.isXIncludeAware()|Get the XInclude processing mode for this parser.
+|javax.xml.parsers.SAXParser.parse(File,DefaultHandler)|Parse the content of the file specified as XML using the  specifiedorg.xml.sax.helpers.DefaultHandler.
+|javax.xml.parsers.SAXParser.parse(File,HandlerBase)|Parse the content of the file specified as XML using the  specifiedorg.xml.sax.HandlerBase.
+|javax.xml.parsers.SAXParser.parse(InputSource,DefaultHandler)|Parse the content givenorg.xml.sax.InputSourceas XML using the specifiedorg.xml.sax.helpers.DefaultHandler.
+|javax.xml.parsers.SAXParser.parse(InputSource,HandlerBase)|Parse the content givenorg.xml.sax.InputSourceas XML using the specifiedorg.xml.sax.HandlerBase.
+|javax.xml.parsers.SAXParser.parse(InputStream,DefaultHandler)|Parse the content of the givenjava.io.InputStreaminstance as XML using the specifiedorg.xml.sax.helpers.DefaultHandl
+|javax.xml.parsers.SAXParser.parse(InputStream,DefaultHandler,String)|Parse the content of the givenjava.io.InputStreaminstance as XML using the specifiedorg.xml.sax.helpers.Defau
+|javax.xml.parsers.SAXParser.parse(InputStream,HandlerBase)|Parse the content of the givenjava.io.InputStreaminstance as XML using the specifiedorg.xml.sax.HandlerBase.
+|javax.xml.parsers.SAXParser.parse(InputStream,HandlerBase,String)|Parse the content of the givenjava.io.InputStreaminstance as XML using the specifiedorg.xml.sax.HandlerBase.
+|javax.xml.parsers.SAXParser.parse(String,DefaultHandler)|Parse the content described by the giving Uniform Resource  Identifier (URI) as XML using the specifiedorg.xml.sax.helper
+|javax.xml.parsers.SAXParser.parse(String,HandlerBase)|Parse the content described by the giving Uniform Resource  Identifier (URI) as XML using the specifiedorg.xml.sax.HandlerBa
+|javax.xml.parsers.SAXParser.reset()|Reset this SAXParser to its original configuration.
+|javax.xml.parsers.SAXParser.setProperty(String,Object)|Sets the particular property in the underlying implementation oforg.xml.sax.XMLReader.
+
+*javax.xml.parsers.SAXParser_Description*
+
+Defines the API that wraps an (|org.xml.sax.XMLReader|) implementation class. In JAXP 1.0, this class wrapped the (|org.xml.sax.Parser|) interface, however this interface was 
+replaced by the (|org.xml.sax.XMLReader|) . For ease of transition, this class continues to support the same name and interface as well as supporting new methods. 
+
+An instance of this class can be obtained from the (|javax.xml.parsers.SAXParserFactory|) method. Once an instance of this class is obtained, XML can be parsed from a variety of 
+input sources. These input sources are InputStreams, Files, URLs, and SAX InputSources. 
+
+This static method creates a new factory instance based on a system property setting or uses the platform default if no property has been defined. 
+
+The system property that controls which Factory implementation to create is named javax.xml.parsers.SAXParserFactory. This property names a class that is a concrete subclass of 
+this abstract class. If no property is defined, a platform default will be used. 
+
+As the content is parsed by the underlying parser, methods of the given (|org.xml.sax.HandlerBase|) or the (|org.xml.sax.helpers.DefaultHandler|) are called. 
+
+Implementors of this class which wrap an underlaying implementation can consider using the (|org.xml.sax.helpers.ParserAdapter|) class to initially adapt their SAX1 impelemntation 
+to work under this revised class. 
+
+
+
+*javax.xml.parsers.SAXParser()*
+
+protected SAXParser()
+
+Protected constructor to prevent instaniation. Use (|javax.xml.parsers.SAXParserFactory|) . 
+
+
+*javax.xml.parsers.SAXParser.getParser()*
+
+public abstract |org.xml.sax.Parser| getParser()
+  throws |org.xml.sax.SAXException|
+         
+Returns the SAX parser that is encapsultated by the implementation of this class. 
+
+
+
+    Returns: The SAX parser that is encapsultated by the implementation of this class. 
+
+*javax.xml.parsers.SAXParser.getProperty(String)*
+
+public abstract |java.lang.Object| getProperty(java.lang.String name)
+  throws |org.xml.sax.SAXNotRecognizedException|
+         |org.xml.sax.SAXNotSupportedException|
+         
+Returns the particular property requested for in the underlying implementation of (|org.xml.sax.XMLReader|) . 
+
+
+    name - The name of the property to be retrieved. 
+
+    Returns: Value of the requested property. 
+
+*javax.xml.parsers.SAXParser.getSchema()*
+
+public |javax.xml.validation.Schema| getSchema()
+
+Get a reference to the the (|javax.xml.validation.Schema|) being used by the XML processor. 
+
+If no schema is being used, null is returned. 
+
+
+
+    Returns: {@link Schema} being used or null if none in use 
+
+*javax.xml.parsers.SAXParser.getXMLReader()*
+
+public abstract |org.xml.sax.XMLReader| getXMLReader()
+  throws |org.xml.sax.SAXException|
+         
+Returns the (|org.xml.sax.XMLReader|) that is encapsulated by the implementation of this class. 
+
+
+
+    Returns: The XMLReader that is encapsulated by the implementation of this class. 
+
+*javax.xml.parsers.SAXParser.isNamespaceAware()*
+
+public abstract boolean isNamespaceAware()
+
+Indicates whether or not this parser is configured to understand namespaces. 
+
+
+
+    Returns: true if this parser is configured to understand namespaces; false otherwise. 
+
+*javax.xml.parsers.SAXParser.isValidating()*
+
+public abstract boolean isValidating()
+
+Indicates whether or not this parser is configured to validate XML documents. 
+
+
+
+    Returns: true if this parser is configured to validate XML documents; false otherwise. 
+
+*javax.xml.parsers.SAXParser.isXIncludeAware()*
+
+public boolean isXIncludeAware()
+
+Get the XInclude processing mode for this parser. 
+
+
+
+    Returns: the return value of the {@link SAXParserFactory#isXIncludeAware()} when this parser was created from factory. 
+
+*javax.xml.parsers.SAXParser.parse(File,DefaultHandler)*
+
+public void parse(
+  java.io.File f,
+  org.xml.sax.helpers.DefaultHandler dh)
+  throws |java.io.IOException|
+         |org.xml.sax.SAXException|
+         
+Parse the content of the file specified as XML using the specified (|org.xml.sax.helpers.DefaultHandler|) . 
+
+
+    f - The file containing the XML to parse 
+    dh - The SAX DefaultHandler to use. 
+
+*javax.xml.parsers.SAXParser.parse(File,HandlerBase)*
+
+public void parse(
+  java.io.File f,
+  org.xml.sax.HandlerBase hb)
+  throws |java.io.IOException|
+         |org.xml.sax.SAXException|
+         
+Parse the content of the file specified as XML using the specified (|org.xml.sax.HandlerBase|) . Use of the DefaultHandler version of this method is recommended as the HandlerBase 
+class has been deprecated in SAX 2.0 
+
+
+    f - The file containing the XML to parse 
+    hb - The SAX HandlerBase to use. 
+
+*javax.xml.parsers.SAXParser.parse(InputSource,DefaultHandler)*
+
+public void parse(
+  org.xml.sax.InputSource is,
+  org.xml.sax.helpers.DefaultHandler dh)
+  throws |java.io.IOException|
+         |org.xml.sax.SAXException|
+         
+Parse the content given (|org.xml.sax.InputSource|) as XML using the specified (|org.xml.sax.helpers.DefaultHandler|) . 
+
+
+    is - The InputSource containing the content to be parsed. 
+    dh - The SAX DefaultHandler to use. 
+
+*javax.xml.parsers.SAXParser.parse(InputSource,HandlerBase)*
+
+public void parse(
+  org.xml.sax.InputSource is,
+  org.xml.sax.HandlerBase hb)
+  throws |java.io.IOException|
+         |org.xml.sax.SAXException|
+         
+Parse the content given (|org.xml.sax.InputSource|) as XML using the specified (|org.xml.sax.HandlerBase|) . Use of the DefaultHandler version of this method is recommended as the 
+HandlerBase class has been deprecated in SAX 2.0 
+
+
+    is - The InputSource containing the content to be parsed. 
+    hb - The SAX HandlerBase to use. 
+
+*javax.xml.parsers.SAXParser.parse(InputStream,DefaultHandler)*
+
+public void parse(
+  java.io.InputStream is,
+  org.xml.sax.helpers.DefaultHandler dh)
+  throws |java.io.IOException|
+         |org.xml.sax.SAXException|
+         
+Parse the content of the given (|java.io.InputStream|) instance as XML using the specified (|org.xml.sax.helpers.DefaultHandler|) . 
+
+
+    is - InputStream containing the content to be parsed. 
+    dh - The SAX DefaultHandler to use. 
+
+*javax.xml.parsers.SAXParser.parse(InputStream,DefaultHandler,String)*
+
+public void parse(
+  java.io.InputStream is,
+  org.xml.sax.helpers.DefaultHandler dh,
+  java.lang.String systemId)
+  throws |java.io.IOException|
+         |org.xml.sax.SAXException|
+         
+Parse the content of the given (|java.io.InputStream|) instance as XML using the specified (|org.xml.sax.helpers.DefaultHandler|) . 
+
+
+    is - InputStream containing the content to be parsed. 
+    dh - The SAX DefaultHandler to use. 
+    systemId - The systemId which is needed for resolving relative URIs. 
+
+*javax.xml.parsers.SAXParser.parse(InputStream,HandlerBase)*
+
+public void parse(
+  java.io.InputStream is,
+  org.xml.sax.HandlerBase hb)
+  throws |java.io.IOException|
+         |org.xml.sax.SAXException|
+         
+Parse the content of the given (|java.io.InputStream|) instance as XML using the specified (|org.xml.sax.HandlerBase|) . Use of the DefaultHandler version of this method is 
+recommended as the HandlerBase class has been deprecated in SAX 2.0. 
+
+
+    is - InputStream containing the content to be parsed. 
+    hb - The SAX HandlerBase to use. 
+
+*javax.xml.parsers.SAXParser.parse(InputStream,HandlerBase,String)*
+
+public void parse(
+  java.io.InputStream is,
+  org.xml.sax.HandlerBase hb,
+  java.lang.String systemId)
+  throws |java.io.IOException|
+         |org.xml.sax.SAXException|
+         
+Parse the content of the given (|java.io.InputStream|) instance as XML using the specified (|org.xml.sax.HandlerBase|) . Use of the DefaultHandler version of this method is 
+recommended as the HandlerBase class has been deprecated in SAX 2.0. 
+
+
+    is - InputStream containing the content to be parsed. 
+    hb - The SAX HandlerBase to use. 
+    systemId - The systemId which is needed for resolving relative URIs. 
+
+*javax.xml.parsers.SAXParser.parse(String,DefaultHandler)*
+
+public void parse(
+  java.lang.String uri,
+  org.xml.sax.helpers.DefaultHandler dh)
+  throws |java.io.IOException|
+         |org.xml.sax.SAXException|
+         
+Parse the content described by the giving Uniform Resource Identifier (URI) as XML using the specified (|org.xml.sax.helpers.DefaultHandler|) . 
+
+
+    uri - The location of the content to be parsed. 
+    dh - The SAX DefaultHandler to use. 
+
+*javax.xml.parsers.SAXParser.parse(String,HandlerBase)*
+
+public void parse(
+  java.lang.String uri,
+  org.xml.sax.HandlerBase hb)
+  throws |java.io.IOException|
+         |org.xml.sax.SAXException|
+         
+Parse the content described by the giving Uniform Resource Identifier (URI) as XML using the specified (|org.xml.sax.HandlerBase|) . Use of the DefaultHandler version of this 
+method is recommended as the HandlerBase class has been deprecated in SAX 2.0 
+
+
+    uri - The location of the content to be parsed. 
+    hb - The SAX HandlerBase to use. 
+
+*javax.xml.parsers.SAXParser.reset()*
+
+public void reset()
+
+Reset this SAXParser to its original configuration. 
+
+SAXParser is reset to the same state as when it was created with (|javax.xml.parsers.SAXParserFactory|) . reset() is designed to allow the reuse of existing SAXParsers thus saving 
+resources associated with the creation of new SAXParsers. 
+
+The reset SAXParser is not guaranteed to have the same (|javax.xml.validation.Schema|) Object, e.g. (|java.lang.Object|) . It is guaranteed to have a functionally equal Schema. 
+
+
+
+*javax.xml.parsers.SAXParser.setProperty(String,Object)*
+
+public abstract void setProperty(
+  java.lang.String name,
+  java.lang.Object value)
+  throws |org.xml.sax.SAXNotRecognizedException|
+         |org.xml.sax.SAXNotSupportedException|
+         
+Sets the particular property in the underlying implementation of (|org.xml.sax.XMLReader|) . A list of the core features and properties can be found at 
+
+http://sax.sourceforge.net/?selected=get-set. 
+
+
+    name - The name of the property to be set. 
+    value - The value of the property to be set. 
+
+

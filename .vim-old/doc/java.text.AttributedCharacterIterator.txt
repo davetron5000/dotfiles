@@ -1,0 +1,121 @@
+*java.text.AttributedCharacterIterator* *AttributedCharacterIterator* An AttributedCharacterIterator allows iteration through both text and
+ related attribute information.
+
+public interface interface AttributedCharacterIterator
+
+  implements |java.text.CharacterIterator|
+
+|java.text.AttributedCharacterIterator_Description|
+|java.text.AttributedCharacterIterator_Fields|
+|java.text.AttributedCharacterIterator_Constructors|
+|java.text.AttributedCharacterIterator_Methods|
+
+====================================================================================================================================================================================
+
+*java.text.AttributedCharacterIterator_Methods*
+|java.text.AttributedCharacterIterator.getAllAttributeKeys()|Returns the keys of all attributes defined on the  iterator's text range.
+|java.text.AttributedCharacterIterator.getAttribute(AttributedCharacterIterator.Attribute)|Returns the value of the named attribute for the current character.
+|java.text.AttributedCharacterIterator.getAttributes()|Returns a map with the attributes defined on the current  character.
+|java.text.AttributedCharacterIterator.getRunLimit()|Returns the index of the first character following the run  with respect to all attributes containing the current character.
+|java.text.AttributedCharacterIterator.getRunLimit(AttributedCharacterIterator.Attribute)|Returns the index of the first character following the run  with respect to the given att
+|java.text.AttributedCharacterIterator.getRunLimit(Set<?extendsAttributedCharacterIterator.Attribute>)|Returns the index of the first character following the run  with respect to 
+|java.text.AttributedCharacterIterator.getRunStart()|Returns the index of the first character of the run  with respect to all attributes containing the current character.
+|java.text.AttributedCharacterIterator.getRunStart(AttributedCharacterIterator.Attribute)|Returns the index of the first character of the run  with respect to the given attribute 
+|java.text.AttributedCharacterIterator.getRunStart(Set<?extendsAttributedCharacterIterator.Attribute>)|Returns the index of the first character of the run  with respect to the giv
+
+*java.text.AttributedCharacterIterator_Description*
+
+An AttributedCharacterIterator allows iteration through both text and related attribute information. 
+
+An attribute is a key/value pair, identified by the key. No two attributes on a given character can have the same key. 
+
+The values for an attribute are immutable, or must not be mutated by clients or storage. They are always passed by reference, and not cloned. 
+
+A run with respect to an attribute is a maximum text range for which: 
+
+the attribute is undefined or null for the entire range, or the attribute value is defined and has the same non-null value for the entire range. 
+
+A run with respect to a set of attributes is a maximum text range for which this condition is met for each member attribute. 
+
+The returned indexes are limited to the range of the iterator. 
+
+The returned attribute information is limited to runs that contain the current character. 
+
+Attribute keys are instances of AttributedCharacterIterator.Attribute and its subclasses, such as java.awt.font.TextAttribute. 
+
+
+
+*java.text.AttributedCharacterIterator.getAllAttributeKeys()*
+
+public |java.util.Set|<Attribute> getAllAttributeKeys()
+
+Returns the keys of all attributes defined on the iterator's text range. The set is empty if no attributes are defined. 
+
+
+
+*java.text.AttributedCharacterIterator.getAttribute(AttributedCharacterIterator.Attribute)*
+
+public |java.lang.Object| getAttribute(java.text.AttributedCharacterIterator.Attribute attribute)
+
+Returns the value of the named attribute for the current character. Returns null if the attribute is not defined. 
+
+
+    attribute - the key of the attribute whose value is requested. 
+
+*java.text.AttributedCharacterIterator.getAttributes()*
+
+public |java.util.Map|<Attribute,Object> getAttributes()
+
+Returns a map with the attributes defined on the current character. 
+
+
+
+*java.text.AttributedCharacterIterator.getRunLimit()*
+
+public int getRunLimit()
+
+Returns the index of the first character following the run with respect to all attributes containing the current character. 
+
+
+
+*java.text.AttributedCharacterIterator.getRunLimit(AttributedCharacterIterator.Attribute)*
+
+public int getRunLimit(java.text.AttributedCharacterIterator.Attribute attribute)
+
+Returns the index of the first character following the run with respect to the given attribute containing the current character. 
+
+
+
+*java.text.AttributedCharacterIterator.getRunLimit(Set<?extendsAttributedCharacterIterator.Attribute>)*
+
+public int getRunLimit(java.util.Set<? extends java.text.AttributedCharacterIterator.Attribute> attributes)
+
+Returns the index of the first character following the run with respect to the given attributes containing the current character. 
+
+
+
+*java.text.AttributedCharacterIterator.getRunStart()*
+
+public int getRunStart()
+
+Returns the index of the first character of the run with respect to all attributes containing the current character. 
+
+
+
+*java.text.AttributedCharacterIterator.getRunStart(AttributedCharacterIterator.Attribute)*
+
+public int getRunStart(java.text.AttributedCharacterIterator.Attribute attribute)
+
+Returns the index of the first character of the run with respect to the given attribute containing the current character. 
+
+
+
+*java.text.AttributedCharacterIterator.getRunStart(Set<?extendsAttributedCharacterIterator.Attribute>)*
+
+public int getRunStart(java.util.Set<? extends java.text.AttributedCharacterIterator.Attribute> attributes)
+
+Returns the index of the first character of the run with respect to the given attributes containing the current character. 
+
+
+
+

@@ -1,0 +1,480 @@
+*javax.servlet.http.HttpServletRequest* *HttpServletRequest* Extends thejavax.se
+
+public interface interface HttpServletRequest
+
+  implements |javax.servlet.ServletRequest|
+
+|javax.servlet.http.HttpServletRequest_Description|
+|javax.servlet.http.HttpServletRequest_Fields|
+|javax.servlet.http.HttpServletRequest_Constructors|
+|javax.servlet.http.HttpServletRequest_Methods|
+
+================================================================================
+
+*javax.servlet.http.HttpServletRequest_Fields*
+|java.lang.String_javax.servlet.http.HttpServletRequest.BASIC_AUTH|
+|java.lang.String_javax.servlet.http.HttpServletRequest.CLIENT_CERT_AUTH|
+|java.lang.String_javax.servlet.http.HttpServletRequest.DIGEST_AUTH|
+|java.lang.String_javax.servlet.http.HttpServletRequest.FORM_AUTH|
+
+*javax.servlet.http.HttpServletRequest_Methods*
+|javax.servlet.http.HttpServletRequest.getAuthType()|Returns the name of the au
+|javax.servlet.http.HttpServletRequest.getContextPath()|Returns the portion of 
+|javax.servlet.http.HttpServletRequest.getCookies()|Returns an array containing
+|javax.servlet.http.HttpServletRequest.getDateHeader(String)|Returns the value 
+|javax.servlet.http.HttpServletRequest.getHeader(String)|Returns the value of t
+|javax.servlet.http.HttpServletRequest.getHeaderNames()|Returns an enumeration 
+|javax.servlet.http.HttpServletRequest.getHeaders(String)|Returns all the value
+|javax.servlet.http.HttpServletRequest.getIntHeader(String)|Returns the value o
+|javax.servlet.http.HttpServletRequest.getMethod()|Returns the name of the HTTP
+|javax.servlet.http.HttpServletRequest.getPathInfo()|Returns any extra path inf
+|javax.servlet.http.HttpServletRequest.getPathTranslated()|Returns any extra pa
+|javax.servlet.http.HttpServletRequest.getQueryString()|Returns the query strin
+|javax.servlet.http.HttpServletRequest.getRemoteUser()|Returns the login of the
+|javax.servlet.http.HttpServletRequest.getRequestedSessionId()|Returns the sess
+|javax.servlet.http.HttpServletRequest.getRequestURI()|Returns the part of this
+|javax.servlet.http.HttpServletRequest.getRequestURL()|Reconstructs the URL the
+|javax.servlet.http.HttpServletRequest.getServletPath()|Returns the part of thi
+|javax.servlet.http.HttpServletRequest.getSession()|Returns the current session
+|javax.servlet.http.HttpServletRequest.getSession(boolean)|Returns the current 
+|javax.servlet.http.HttpServletRequest.getUserPrincipal()|Returns a java.securi
+|javax.servlet.http.HttpServletRequest.isRequestedSessionIdFromCookie()|Checks 
+|javax.servlet.http.HttpServletRequest.isRequestedSessionIdFromUrl()|
+|javax.servlet.http.HttpServletRequest.isRequestedSessionIdFromURL()|Checks whe
+|javax.servlet.http.HttpServletRequest.isRequestedSessionIdValid()|Checks wheth
+|javax.servlet.http.HttpServletRequest.isUserInRole(String)|Returns a boolean i
+
+*javax.servlet.http.HttpServletRequest_Description*
+
+Extends the (|javax.servlet.ServletRequest|) interface to provide request 
+information for HTTP servlets. 
+
+The servlet container creates an HttpServletRequest object and passes it as an 
+argument to the servlet's service methods (doGet, doPost, etc). 
+
+
+
+*java.lang.String_javax.servlet.http.HttpServletRequest.BASIC_AUTH*
+
+String identifier for Basic authentication. Value "BASIC" 
+
+
+*java.lang.String_javax.servlet.http.HttpServletRequest.CLIENT_CERT_AUTH*
+
+String identifier for Client Certificate authentication. Value "CLIENT_CERT" 
+
+
+*java.lang.String_javax.servlet.http.HttpServletRequest.DIGEST_AUTH*
+
+String identifier for Digest authentication. Value "DIGEST" 
+
+
+*java.lang.String_javax.servlet.http.HttpServletRequest.FORM_AUTH*
+
+String identifier for Form authentication. Value "FORM" 
+
+
+
+*javax.servlet.http.HttpServletRequest.getAuthType()*
+
+public |java.lang.String| getAuthType()
+
+Returns the name of the authentication scheme used to protect the servlet. All 
+servlet containers support basic, form and client certificate authentication, 
+and may additionally support digest authentication. If the servlet is not 
+authenticated null is returned. 
+
+Same as the value of the CGI variable AUTH_TYPE. 
+
+
+
+    Returns: one of the static members BASIC_AUTH, FORM_AUTH, CLIENT_CERT_AUTH, DIGEST_AUTH 
+             (suitable for == comparison) or the container-specific string 
+             indicating the authentication scheme, or null if the request was 
+             not authenticated. 
+
+*javax.servlet.http.HttpServletRequest.getContextPath()*
+
+public |java.lang.String| getContextPath()
+
+Returns the portion of the request URI that indicates the context of the 
+request. The context path always comes first in a request URI. The path starts 
+with a "/" character but does not end with a "/" character. For servlets in the 
+default (root) context, this method returns "". The container does not decode 
+this string. 
+
+It is possible that a servlet container may match a context by more than one 
+context path. In such cases this method will return the actual context path 
+used by the request and it may differ from the path returned by the 
+(|javax.servlet.ServletContext|) method. The context path returned by 
+(|javax.servlet.ServletContext|) should be considered as the prime or preferred 
+context path of the application. 
+
+
+
+    Returns: a String specifying the portion of the request URI that indicates the context 
+             of the request 
+
+*javax.servlet.http.HttpServletRequest.getCookies()*
+
+public |javax.servlet.http.Cookie|[] getCookies()
+
+Returns an array containing all of the Cookie objects the client sent with this 
+request. This method returns null if no cookies were sent. 
+
+
+
+    Returns: an array of all the Cookies included with this request, or null if the request 
+             has no cookies 
+
+*javax.servlet.http.HttpServletRequest.getDateHeader(String)*
+
+public long getDateHeader(java.lang.String name)
+
+Returns the value of the specified request header as a long value that 
+represents a Date object. Use this method with headers that contain dates, such 
+as If-Modified-Since. 
+
+The date is returned as the number of milliseconds since January 1, 1970 GMT. 
+The header name is case insensitive. 
+
+If the request did not have a header of the specified name, this method returns 
+-1. If the header can't be converted to a date, the method throws an 
+IllegalArgumentException. 
+
+
+    name - a String specifying the name of the header 
+
+    Returns: a long value representing the date specified in the header expressed as the 
+             number of milliseconds since January 1, 1970 GMT, or -1 if the 
+             named header was not included with the request 
+
+*javax.servlet.http.HttpServletRequest.getHeader(String)*
+
+public |java.lang.String| getHeader(java.lang.String name)
+
+Returns the value of the specified request header as a String. If the request 
+did not include a header of the specified name, this method returns null. If 
+there are multiple headers with the same name, this method returns the first 
+head in the request. The header name is case insensitive. You can use this 
+method with any request header. 
+
+
+    name - a String specifying the header name 
+
+    Returns: a String containing the value of the requested header, or null if the request 
+             does not have a header of that name 
+
+*javax.servlet.http.HttpServletRequest.getHeaderNames()*
+
+public |java.util.Enumeration| getHeaderNames()
+
+Returns an enumeration of all the header names this request contains. If the 
+request has no headers, this method returns an empty enumeration. 
+
+Some servlet containers do not allow servlets to access headers using this 
+method, in which case this method returns null 
+
+
+
+    Returns: an enumeration of all the header names sent with this request; if the request 
+             has no headers, an empty enumeration; if the servlet container 
+             does not allow servlets to use this method, null 
+
+*javax.servlet.http.HttpServletRequest.getHeaders(String)*
+
+public |java.util.Enumeration| getHeaders(java.lang.String name)
+
+Returns all the values of the specified request header as an Enumeration of 
+String objects. 
+
+Some headers, such as Accept-Language can be sent by clients as several headers 
+each with a different value rather than sending the header as a comma separated 
+list. 
+
+If the request did not include any headers of the specified name, this method 
+returns an empty Enumeration. The header name is case insensitive. You can use 
+this method with any request header. 
+
+
+    name - a String specifying the header name 
+
+    Returns: an Enumeration containing the values of the requested header. If the request 
+             does not have any headers of that name return an empty 
+             enumeration. If the container does not allow access to header 
+             information, return null 
+
+*javax.servlet.http.HttpServletRequest.getIntHeader(String)*
+
+public int getIntHeader(java.lang.String name)
+
+Returns the value of the specified request header as an int. If the request 
+does not have a header of the specified name, this method returns -1. If the 
+header cannot be converted to an integer, this method throws a 
+NumberFormatException. 
+
+The header name is case insensitive. 
+
+
+    name - a String specifying the name of a request header 
+
+    Returns: an integer expressing the value of the request header or -1 if the request 
+             doesn't have a header of this name 
+
+*javax.servlet.http.HttpServletRequest.getMethod()*
+
+public |java.lang.String| getMethod()
+
+Returns the name of the HTTP method with which this request was made, for 
+example, GET, POST, or PUT. Same as the value of the CGI variable 
+REQUEST_METHOD. 
+
+
+
+    Returns: a String specifying the name of the method with which this request was made 
+
+*javax.servlet.http.HttpServletRequest.getPathInfo()*
+
+public |java.lang.String| getPathInfo()
+
+Returns any extra path information associated with the URL the client sent when 
+it made this request. The extra path information follows the servlet path but 
+precedes the query string and will start with a "/" character. 
+
+This method returns null if there was no extra path information. 
+
+Same as the value of the CGI variable PATH_INFO. 
+
+
+
+    Returns: a String, decoded by the web container, specifying extra path information that 
+             comes after the servlet path but before the query string in the 
+             request URL; or null if the URL does not have any extra path 
+             information 
+
+*javax.servlet.http.HttpServletRequest.getPathTranslated()*
+
+public |java.lang.String| getPathTranslated()
+
+Returns any extra path information after the servlet name but before the query 
+string, and translates it to a real path. Same as the value of the CGI variable 
+PATH_TRANSLATED. 
+
+If the URL does not have any extra path information, this method returns null 
+or the servlet container cannot translate the virtual path to a real path for 
+any reason (such as when the web application is executed from an archive). 
+
+The web container does not decode this string. 
+
+
+
+    Returns: a String specifying the real path, or null if the URL does not have any extra 
+             path information 
+
+*javax.servlet.http.HttpServletRequest.getQueryString()*
+
+public |java.lang.String| getQueryString()
+
+Returns the query string that is contained in the request URL after the path. 
+This method returns null if the URL does not have a query string. Same as the 
+value of the CGI variable QUERY_STRING. 
+
+
+
+    Returns: a String containing the query string or null if the URL contains no query 
+             string. The value is not decoded by the container. 
+
+*javax.servlet.http.HttpServletRequest.getRemoteUser()*
+
+public |java.lang.String| getRemoteUser()
+
+Returns the login of the user making this request, if the user has been 
+authenticated, or null if the user has not been authenticated. Whether the user 
+name is sent with each subsequent request depends on the browser and type of 
+authentication. Same as the value of the CGI variable REMOTE_USER. 
+
+
+
+    Returns: a String specifying the login of the user making this request, or null if the 
+             user login is not known 
+
+*javax.servlet.http.HttpServletRequest.getRequestedSessionId()*
+
+public |java.lang.String| getRequestedSessionId()
+
+Returns the session ID specified by the client. This may not be the same as the 
+ID of the current valid session for this request. If the client did not specify 
+a session ID, this method returns null. 
+
+
+
+    Returns: a String specifying the session ID, or null if the request did not specify a 
+             session ID 
+
+*javax.servlet.http.HttpServletRequest.getRequestURI()*
+
+public |java.lang.String| getRequestURI()
+
+Returns the part of this request's URL from the protocol name up to the query 
+string in the first line of the HTTP request. The web container does not decode 
+this String. For example: 
+
+
+
+First line of HTTP request Returned Value POST /some/path.html 
+HTTP/1.1/some/path.html GET http://foo.bar/a.html HTTP/1.0 /a.html HEAD 
+/xyz?a=b HTTP/1.1/xyz 
+
+To reconstruct an URL with a scheme and host, use 
+(|javax.servlet.http.HttpUtils|) . 
+
+
+
+    Returns: a String containing the part of the URL from the protocol name up to the query 
+             string 
+
+*javax.servlet.http.HttpServletRequest.getRequestURL()*
+
+public |java.lang.StringBuffer| getRequestURL()
+
+Reconstructs the URL the client used to make the request. The returned URL 
+contains a protocol, server name, port number, and server path, but it does not 
+include query string parameters. 
+
+If this request has been forwarded using (|javax.servlet.RequestDispatcher|) , 
+the server path in the reconstructed URL must reflect the path used to obtain 
+the RequestDispatcher, and not the server path specified by the client. 
+
+Because this method returns a StringBuffer, not a string, you can modify the 
+URL easily, for example, to append query parameters. 
+
+This method is useful for creating redirect messages and for reporting errors. 
+
+
+
+    Returns: a StringBuffer object containing the reconstructed URL 
+
+*javax.servlet.http.HttpServletRequest.getServletPath()*
+
+public |java.lang.String| getServletPath()
+
+Returns the part of this request's URL that calls the servlet. This path starts 
+with a "/" character and includes either the servlet name or a path to the 
+servlet, but does not include any extra path information or a query string. 
+Same as the value of the CGI variable SCRIPT_NAME. 
+
+This method will return an empty string ("") if the servlet used to process 
+this request was matched using the "/*" pattern. 
+
+
+
+    Returns: a String containing the name or path of the servlet being called, as specified 
+             in the request URL, decoded, or an empty string if the servlet 
+             used to process the request is matched using the "/*" pattern. 
+
+*javax.servlet.http.HttpServletRequest.getSession()*
+
+public |javax.servlet.http.HttpSession| getSession()
+
+Returns the current session associated with this request, or if the request 
+does not have a session, creates one. 
+
+
+
+    Returns: the HttpSession associated with this request 
+
+*javax.servlet.http.HttpServletRequest.getSession(boolean)*
+
+public |javax.servlet.http.HttpSession| getSession(boolean create)
+
+Returns the current HttpSession associated with this request or, if there is no 
+current session and create is true, returns a new session. 
+
+If create is false and the request has no valid HttpSession, this method 
+returns null. 
+
+To make sure the session is properly maintained, you must call this method 
+before the response is committed. If the container is using cookies to maintain 
+session integrity and is asked to create a new session when the response is 
+committed, an IllegalStateException is thrown. 
+
+
+    create - true to create a new session for this request if necessary; false to return 
+       null if there's no current session 
+
+    Returns: the HttpSession associated with this request or null if create is false and the 
+             request has no valid session 
+
+*javax.servlet.http.HttpServletRequest.getUserPrincipal()*
+
+public |java.security.Principal| getUserPrincipal()
+
+Returns a java.security.Principal object containing the name of the current 
+authenticated user. If the user has not been authenticated, the method returns 
+null. 
+
+
+
+    Returns: a java.security.Principal containing the name of the user making this request; 
+             null if the user has not been authenticated 
+
+*javax.servlet.http.HttpServletRequest.isRequestedSessionIdFromCookie()*
+
+public boolean isRequestedSessionIdFromCookie()
+
+Checks whether the requested session ID came in as a cookie. 
+
+
+
+    Returns: true if the session ID came in as a cookie; otherwise, false 
+
+*javax.servlet.http.HttpServletRequest.isRequestedSessionIdFromUrl()*
+
+public boolean isRequestedSessionIdFromUrl()
+
+
+
+    Deprecated: As of Version 2.1 of the Java Servlet
+				API, use {@link #isRequestedSessionIdFromURL}
+				instead.
+
+
+*javax.servlet.http.HttpServletRequest.isRequestedSessionIdFromURL()*
+
+public boolean isRequestedSessionIdFromURL()
+
+Checks whether the requested session ID came in as part of the request URL. 
+
+
+
+    Returns: true if the session ID came in as part of a URL; otherwise, false 
+
+*javax.servlet.http.HttpServletRequest.isRequestedSessionIdValid()*
+
+public boolean isRequestedSessionIdValid()
+
+Checks whether the requested session ID is still valid. 
+
+If the client did not specify any session ID, this method returns false. 
+
+
+
+    Returns: true if this request has an id for a valid session in the current session 
+             context; false otherwise 
+
+*javax.servlet.http.HttpServletRequest.isUserInRole(String)*
+
+public boolean isUserInRole(java.lang.String role)
+
+Returns a boolean indicating whether the authenticated user is included in the 
+specified logical "role". Roles and role membership can be defined using 
+deployment descriptors. If the user has not been authenticated, the method 
+returns false. 
+
+
+    role - a String specifying the name of the role 
+
+    Returns: a boolean indicating whether the user making this request belongs to a given 
+             role; false if the user has not been authenticated 
+
+

@@ -1,0 +1,74 @@
+*java.nio.channels.Pipe* *Pipe* A pair of channels that implements a unidirectional pipe.
+
+public abstract class Pipe
+  extends    |java.lang.Object|
+
+|java.nio.channels.Pipe_Description|
+|java.nio.channels.Pipe_Fields|
+|java.nio.channels.Pipe_Constructors|
+|java.nio.channels.Pipe_Methods|
+
+====================================================================================================================================================================================
+
+*java.nio.channels.Pipe_Constructors*
+|java.nio.channels.Pipe()|Initializes a new instance of this class.
+
+*java.nio.channels.Pipe_Methods*
+|java.nio.channels.Pipe.open()|Opens a pipe.
+|java.nio.channels.Pipe.sink()|Returns this pipe's sink channel.
+|java.nio.channels.Pipe.source()|Returns this pipe's source channel.
+
+*java.nio.channels.Pipe_Description*
+
+A pair of channels that implements a unidirectional pipe. 
+
+A pipe consists of a pair of channels: A writable </code>sink<code>(|java.nio.channels.Pipe.SinkChannel|) channel and a readable 
+</code>source<code>(|java.nio.channels.Pipe.SourceChannel|) channel. Once some bytes are written to the sink channel they can be read from source channel in exactly the order in 
+which they were written. 
+
+Whether or not a thread writing bytes to a pipe will block until another thread reads those bytes, or some previously-written bytes, from the pipe is system-dependent and 
+therefore unspecified. Many pipe implementations will buffer up to a certain number of bytes between the sink and source channels, but such buffering should not be assumed. 
+
+
+
+*java.nio.channels.Pipe()*
+
+protected Pipe()
+
+Initializes a new instance of this class. 
+
+
+*java.nio.channels.Pipe.open()*
+
+public static |java.nio.channels.Pipe| open()
+  throws |java.io.IOException|
+         
+Opens a pipe. 
+
+The new pipe is created by invoking the openPipe(|java.nio.channels.spi.SelectorProvider|) method of the system-wide default (|java.nio.channels.spi.SelectorProvider|) object. 
+
+
+
+    Returns: 
+
+*java.nio.channels.Pipe.sink()*
+
+public abstract |java.nio.channels.Pipe.SinkChannel| sink()
+
+Returns this pipe's sink channel. 
+
+
+
+    Returns: This pipe's sink channel 
+
+*java.nio.channels.Pipe.source()*
+
+public abstract |java.nio.channels.Pipe.SourceChannel| source()
+
+Returns this pipe's source channel. 
+
+
+
+    Returns: This pipe's source channel 
+
+

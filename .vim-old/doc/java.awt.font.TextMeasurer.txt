@@ -1,0 +1,130 @@
+*java.awt.font.TextMeasurer* *TextMeasurer* The TextMeasurer class provides the primitive operations 
+ needed for line break: measuring up to a given advance, determining the 
+ adv
+
+public final class TextMeasurer
+  extends    |java.lang.Object|
+  implements |java.lang.Cloneable|
+
+|java.awt.font.TextMeasurer_Description|
+|java.awt.font.TextMeasurer_Fields|
+|java.awt.font.TextMeasurer_Constructors|
+|java.awt.font.TextMeasurer_Methods|
+
+====================================================================================================================================================================================
+
+*java.awt.font.TextMeasurer_Constructors*
+|java.awt.font.TextMeasurer(AttributedCharacterIterator,FontRenderContext)|Constructs a TextMeasurer from the source text.
+
+*java.awt.font.TextMeasurer_Methods*
+|java.awt.font.TextMeasurer.clone()|
+|java.awt.font.TextMeasurer.deleteChar(AttributedCharacterIterator,int)|Updates the TextMeasurer after a single character has   been deleted  from the paragraph currently represen
+|java.awt.font.TextMeasurer.getAdvanceBetween(int,int)|Returns the graphical width of a line beginning at start  and including characters up to limit.
+|java.awt.font.TextMeasurer.getLayout(int,int)|Returns a TextLayout on the given character range.
+|java.awt.font.TextMeasurer.getLineBreakIndex(int,float)|Returns the index of the first character which will not fit on  on a line beginning at start and possible  measuring up to
+|java.awt.font.TextMeasurer.insertChar(AttributedCharacterIterator,int)|Updates the TextMeasurer after a single character has   been inserted  into the paragraph currently represe
+
+*java.awt.font.TextMeasurer_Description*
+
+The TextMeasurer class provides the primitive operations needed for line break: measuring up to a given advance, determining the advance of a range of characters, and generating a 
+TextLayout for a range of characters. It also provides methods for incremental editing of paragraphs. 
+
+A TextMeasurer object is constructed with an AttributedCharacterIterator(|java.text.AttributedCharacterIterator|) representing a single paragraph of text. The value returned by 
+the getBeginIndex(|java.text.AttributedCharacterIterator|) method of AttributedCharacterIterator defines the absolute index of the first character. The value returned by the 
+getEndIndex(|java.text.AttributedCharacterIterator|) method of AttributedCharacterIterator defines the index past the last character. These values define the range of indexes to 
+use in calls to the TextMeasurer. For example, calls to get the advance of a range of text or the line break of a range of text must use indexes between the beginning and end 
+index values. Calls to insertChar(|java.awt.font.TextMeasurer|) and deleteChar(|java.awt.font.TextMeasurer|) reset the TextMeasurer to use the beginning index and end index of the 
+AttributedCharacterIterator passed in those calls. 
+
+Most clients will use the more convenient LineBreakMeasurer, which implements the standard line break policy (placing as many words as will fit on each line). 
+
+
+
+*java.awt.font.TextMeasurer(AttributedCharacterIterator,FontRenderContext)*
+
+public TextMeasurer(
+  java.text.AttributedCharacterIterator text,
+  java.awt.font.FontRenderContext frc)
+
+Constructs a TextMeasurer from the source text. The source text should be a single entire paragraph. 
+
+    text - the source paragraph. Cannot be null. 
+    frc - the information about a graphics device which is needed to measure the text correctly. Cannot be null. 
+
+*java.awt.font.TextMeasurer.clone()*
+
+protected |java.lang.Object| clone()
+
+
+
+
+
+*java.awt.font.TextMeasurer.deleteChar(AttributedCharacterIterator,int)*
+
+public void deleteChar(
+  java.text.AttributedCharacterIterator newParagraph,
+  int deletePos)
+
+Updates the TextMeasurer after a single character has been deleted from the paragraph currently represented by this TextMeasurer. After this call, this TextMeasurer is equivalent 
+to a new TextMeasurer created from the text; however, it will usually be more efficient to update an existing TextMeasurer than to create a new one from scratch. 
+
+
+    newParagraph - the text of the paragraph after performing the deletion. Cannot be null. 
+    deletePos - the position in the text where the character was removed. Must not be less than the start of newParagraph, and must not be greater than the end of newParagraph. 
+
+*java.awt.font.TextMeasurer.getAdvanceBetween(int,int)*
+
+public float getAdvanceBetween(
+  int start,
+  int limit)
+
+Returns the graphical width of a line beginning at start and including characters up to limit. start and limit are absolute indices, not relative to the start of the paragraph. 
+
+
+    start - the character index at which to start measuring 
+    limit - the character index at which to stop measuring 
+
+    Returns: the graphical width of a line beginning at start and including characters up to limit 
+
+*java.awt.font.TextMeasurer.getLayout(int,int)*
+
+public |java.awt.font.TextLayout| getLayout(
+  int start,
+  int limit)
+
+Returns a TextLayout on the given character range. 
+
+
+    start - the index of the first character 
+    limit - the index after the last character. Must be greater than start 
+
+    Returns: a TextLayout for the characters beginning at start up to (but not including) limit 
+
+*java.awt.font.TextMeasurer.getLineBreakIndex(int,float)*
+
+public int getLineBreakIndex(
+  int start,
+  float maxAdvance)
+
+Returns the index of the first character which will not fit on on a line beginning at start and possible measuring up to maxAdvance in graphical width. 
+
+
+    start - the character index at which to start measuring. start is an absolute index, not relative to the start of the paragraph 
+    maxAdvance - the graphical width in which the line must fit 
+
+    Returns: the index after the last character that will fit on a line beginning at start, which is not longer than maxAdvance in graphical width 
+
+*java.awt.font.TextMeasurer.insertChar(AttributedCharacterIterator,int)*
+
+public void insertChar(
+  java.text.AttributedCharacterIterator newParagraph,
+  int insertPos)
+
+Updates the TextMeasurer after a single character has been inserted into the paragraph currently represented by this TextMeasurer. After this call, this TextMeasurer is equivalent 
+to a new TextMeasurer created from the text; however, it will usually be more efficient to update an existing TextMeasurer than to create a new one from scratch. 
+
+
+    newParagraph - the text of the paragraph after performing the insertion. Cannot be null. 
+    insertPos - the position in the text where the character was inserted. Must not be less than the start of newParagraph, and must be less than the end of newParagraph. 
+
+

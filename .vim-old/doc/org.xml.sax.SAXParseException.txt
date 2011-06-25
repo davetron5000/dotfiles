@@ -1,0 +1,166 @@
+*org.xml.sax.SAXParseException* *SAXParseException* Encapsulate an XML parse err
+
+public class SAXParseException
+  extends    |org.xml.sax.SAXException|
+
+|org.xml.sax.SAXParseException_Description|
+|org.xml.sax.SAXParseException_Fields|
+|org.xml.sax.SAXParseException_Constructors|
+|org.xml.sax.SAXParseException_Methods|
+
+================================================================================
+
+*org.xml.sax.SAXParseException_Constructors*
+|org.xml.sax.SAXParseException(String,Locator)|Create a new SAXParseException f
+|org.xml.sax.SAXParseException(String,Locator,Exception)|Wrap an existing excep
+|org.xml.sax.SAXParseException(String,String,String,int,int)|Create a new SAXPa
+|org.xml.sax.SAXParseException(String,String,String,int,int,Exception)|Create a
+
+*org.xml.sax.SAXParseException_Methods*
+|org.xml.sax.SAXParseException.getColumnNumber()|The column number of the end o
+|org.xml.sax.SAXParseException.getLineNumber()|The line number of the end of th
+|org.xml.sax.SAXParseException.getPublicId()|Get the public identifier of the e
+|org.xml.sax.SAXParseException.getSystemId()|Get the system identifier of the e
+
+*org.xml.sax.SAXParseException_Description*
+
+Encapsulate an XML parse error or warning. 
+
+This module, both source code and documentation, is in the Public Domain, and 
+comes with NO WARRANTY. See http://www.saxproject.org for further information. 
+
+This exception may include information for locating the error in the original 
+XML document, as if it came from a (|org.xml.sax.Locator|) object. Note that 
+although the application will receive a SAXParseException as the argument to 
+the handlers in the ErrorHandler(|org.xml.sax.ErrorHandler|) interface, the 
+application is not actually required to throw the exception; instead, it can 
+simply read the information in it and take a different action. 
+
+Since this exception is a subclass of SAXException(|org.xml.sax.SAXException|) 
+, it inherits the ability to wrap another exception. 
+
+
+*org.xml.sax.SAXParseException(String,Locator)*
+
+public SAXParseException(
+  java.lang.String message,
+  org.xml.sax.Locator locator)
+
+Create a new SAXParseException from a message and a Locator. 
+
+This constructor is especially useful when an application is creating its own 
+exception from within a ContentHandler(|org.xml.sax.ContentHandler|) callback. 
+
+    message - The error or warning message. 
+    locator - The locator object for the error or warning (may be null). 
+
+*org.xml.sax.SAXParseException(String,Locator,Exception)*
+
+public SAXParseException(
+  java.lang.String message,
+  org.xml.sax.Locator locator,
+  java.lang.Exception e)
+
+Wrap an existing exception in a SAXParseException. 
+
+This constructor is especially useful when an application is creating its own 
+exception from within a ContentHandler(|org.xml.sax.ContentHandler|) callback, 
+and needs to wrap an existing exception that is not a subclass of 
+SAXException(|org.xml.sax.SAXException|) . 
+
+    message - The error or warning message, or null to use the message from the embedded 
+       exception. 
+    locator - The locator object for the error or warning (may be null). 
+    e - Any exception. 
+
+*org.xml.sax.SAXParseException(String,String,String,int,int)*
+
+public SAXParseException(
+  java.lang.String message,
+  java.lang.String publicId,
+  java.lang.String systemId,
+  int lineNumber,
+  int columnNumber)
+
+Create a new SAXParseException. 
+
+This constructor is most useful for parser writers. 
+
+All parameters except the message are as if they were provided by a 
+(|org.xml.sax.Locator|) . For example, if the system identifier is a URL 
+(including relative filename), the caller must resolve it fully before creating 
+the exception. 
+
+    message - The error or warning message. 
+    publicId - The public identifier of the entity that generated the error or warning. 
+    systemId - The system identifier of the entity that generated the error or warning. 
+    lineNumber - The line number of the end of the text that caused the error or warning. 
+    columnNumber - The column number of the end of the text that cause the error or warning. 
+
+*org.xml.sax.SAXParseException(String,String,String,int,int,Exception)*
+
+public SAXParseException(
+  java.lang.String message,
+  java.lang.String publicId,
+  java.lang.String systemId,
+  int lineNumber,
+  int columnNumber,
+  java.lang.Exception e)
+
+Create a new SAXParseException with an embedded exception. 
+
+This constructor is most useful for parser writers who need to wrap an 
+exception that is not a subclass of SAXException(|org.xml.sax.SAXException|) . 
+
+All parameters except the message and exception are as if they were provided by 
+a (|org.xml.sax.Locator|) . For example, if the system identifier is a URL 
+(including relative filename), the caller must resolve it fully before creating 
+the exception. 
+
+    message - The error or warning message, or null to use the message from the embedded 
+       exception. 
+    publicId - The public identifier of the entity that generated the error or warning. 
+    systemId - The system identifier of the entity that generated the error or warning. 
+    lineNumber - The line number of the end of the text that caused the error or warning. 
+    columnNumber - The column number of the end of the text that cause the error or warning. 
+    e - Another exception to embed in this one. 
+
+*org.xml.sax.SAXParseException.getColumnNumber()*
+
+public int getColumnNumber()
+
+The column number of the end of the text where the exception occurred. 
+
+The first column in a line is position 1. 
+
+
+    Returns: An integer representing the column number, or -1 if none is available. 
+*org.xml.sax.SAXParseException.getLineNumber()*
+
+public int getLineNumber()
+
+The line number of the end of the text where the exception occurred. 
+
+The first line is line 1. 
+
+
+    Returns: An integer representing the line number, or -1 if none is available. 
+*org.xml.sax.SAXParseException.getPublicId()*
+
+public |java.lang.String| getPublicId()
+
+Get the public identifier of the entity where the exception occurred. 
+
+
+    Returns: A string containing the public identifier, or null if none is available. 
+*org.xml.sax.SAXParseException.getSystemId()*
+
+public |java.lang.String| getSystemId()
+
+Get the system identifier of the entity where the exception occurred. 
+
+If the system identifier is a URL, it will have been resolved fully. 
+
+
+    Returns: A string containing the system identifier, or null if none is available. 
+

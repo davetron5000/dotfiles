@@ -1,0 +1,208 @@
+*org.xml.sax.ext.DefaultHandler2* *DefaultHandler2* This class extends the SAX2 
+
+public class DefaultHandler2
+  extends    |org.xml.sax.helpers.DefaultHandler|
+  implements |org.xml.sax.ext.LexicalHandler|
+             |org.xml.sax.ext.DeclHandler|
+             |org.xml.sax.ext.EntityResolver2|
+
+|org.xml.sax.ext.DefaultHandler2_Description|
+|org.xml.sax.ext.DefaultHandler2_Fields|
+|org.xml.sax.ext.DefaultHandler2_Constructors|
+|org.xml.sax.ext.DefaultHandler2_Methods|
+
+================================================================================
+
+*org.xml.sax.ext.DefaultHandler2_Constructors*
+|org.xml.sax.ext.DefaultHandler2()|Constructs a handler which ignores all parsi
+
+*org.xml.sax.ext.DefaultHandler2_Methods*
+|org.xml.sax.ext.DefaultHandler2.attributeDecl(String,String,String,String,String)|
+|org.xml.sax.ext.DefaultHandler2.comment(char[],int,int)|
+|org.xml.sax.ext.DefaultHandler2.elementDecl(String,String)|
+|org.xml.sax.ext.DefaultHandler2.endCDATA()|
+|org.xml.sax.ext.DefaultHandler2.endDTD()|
+|org.xml.sax.ext.DefaultHandler2.endEntity(String)|
+|org.xml.sax.ext.DefaultHandler2.externalEntityDecl(String,String,String)|
+|org.xml.sax.ext.DefaultHandler2.getExternalSubset(String,String)|Tells the par
+|org.xml.sax.ext.DefaultHandler2.internalEntityDecl(String,String)|
+|org.xml.sax.ext.DefaultHandler2.resolveEntity(String,String)|InvokesEntityReso
+|org.xml.sax.ext.DefaultHandler2.resolveEntity(String,String,String,String)|Tel
+|org.xml.sax.ext.DefaultHandler2.startCDATA()|
+|org.xml.sax.ext.DefaultHandler2.startDTD(String,String,String)|
+|org.xml.sax.ext.DefaultHandler2.startEntity(String)|
+
+*org.xml.sax.ext.DefaultHandler2_Description*
+
+This class extends the SAX2 base handler class to support the SAX2 
+(|org.xml.sax.ext.LexicalHandler|) , (|org.xml.sax.ext.DeclHandler|) , and 
+(|org.xml.sax.ext.EntityResolver2|) extensions. Except for overriding the 
+original SAX1 resolveEntity()(|org.xml.sax.helpers.DefaultHandler|) method the 
+added handler methods just return. Subclassers may override everything on a 
+method-by-method basis. 
+
+This module, both source code and documentation, is in the Public Domain, and 
+comes with NO WARRANTY. 
+
+Note: this class might yet learn that the ContentHandler.setDocumentLocator() 
+call might be passed a (|org.xml.sax.ext.Locator2|) object, and that the 
+ContentHandler.startElement() call might be passed a 
+(|org.xml.sax.ext.Attributes2|) object. 
+
+
+*org.xml.sax.ext.DefaultHandler2()*
+
+public DefaultHandler2()
+
+Constructs a handler which ignores all parsing events. 
+
+
+*org.xml.sax.ext.DefaultHandler2.attributeDecl(String,String,String,String,String)*
+
+public void attributeDecl(
+  java.lang.String eName,
+  java.lang.String aName,
+  java.lang.String type,
+  java.lang.String mode,
+  java.lang.String value)
+  throws |org.xml.sax.SAXException|
+         
+
+
+
+*org.xml.sax.ext.DefaultHandler2.comment(char[],int,int)*
+
+public void comment(
+  char[] ch,
+  int start,
+  int length)
+  throws |org.xml.sax.SAXException|
+         
+
+
+
+*org.xml.sax.ext.DefaultHandler2.elementDecl(String,String)*
+
+public void elementDecl(
+  java.lang.String name,
+  java.lang.String model)
+  throws |org.xml.sax.SAXException|
+         
+
+
+
+*org.xml.sax.ext.DefaultHandler2.endCDATA()*
+
+public void endCDATA()
+  throws |org.xml.sax.SAXException|
+         
+
+
+
+*org.xml.sax.ext.DefaultHandler2.endDTD()*
+
+public void endDTD()
+  throws |org.xml.sax.SAXException|
+         
+
+
+
+*org.xml.sax.ext.DefaultHandler2.endEntity(String)*
+
+public void endEntity(java.lang.String name)
+  throws |org.xml.sax.SAXException|
+         
+
+
+
+*org.xml.sax.ext.DefaultHandler2.externalEntityDecl(String,String,String)*
+
+public void externalEntityDecl(
+  java.lang.String name,
+  java.lang.String publicId,
+  java.lang.String systemId)
+  throws |org.xml.sax.SAXException|
+         
+
+
+
+*org.xml.sax.ext.DefaultHandler2.getExternalSubset(String,String)*
+
+public |org.xml.sax.InputSource| getExternalSubset(
+  java.lang.String name,
+  java.lang.String baseURI)
+  throws |java.io.IOException|
+         |org.xml.sax.SAXException|
+         
+Tells the parser that if no external subset has been declared in the document 
+text, none should be used. 
+
+
+*org.xml.sax.ext.DefaultHandler2.internalEntityDecl(String,String)*
+
+public void internalEntityDecl(
+  java.lang.String name,
+  java.lang.String value)
+  throws |org.xml.sax.SAXException|
+         
+
+
+
+*org.xml.sax.ext.DefaultHandler2.resolveEntity(String,String)*
+
+public |org.xml.sax.InputSource| resolveEntity(
+  java.lang.String publicId,
+  java.lang.String systemId)
+  throws |java.io.IOException|
+         |org.xml.sax.SAXException|
+         
+Invokes EntityResolver2.resolveEntity()(|org.xml.sax.ext.EntityResolver2|) with 
+null entity name and base URI. You only need to override that method to use 
+this class. 
+
+
+*org.xml.sax.ext.DefaultHandler2.resolveEntity(String,String,String,String)*
+
+public |org.xml.sax.InputSource| resolveEntity(
+  java.lang.String name,
+  java.lang.String publicId,
+  java.lang.String baseURI,
+  java.lang.String systemId)
+  throws |java.io.IOException|
+         |org.xml.sax.SAXException|
+         
+Tells the parser to resolve the systemId against the baseURI and read the 
+entity text from that resulting absolute URI. Note that because the older 
+DefaultHandler.resolveEntity()(|org.xml.sax.helpers.DefaultHandler|) , method 
+is overridden to call this one, this method may sometimes be invoked with null 
+name and baseURI, and with the systemId already absolutized. 
+
+
+*org.xml.sax.ext.DefaultHandler2.startCDATA()*
+
+public void startCDATA()
+  throws |org.xml.sax.SAXException|
+         
+
+
+
+*org.xml.sax.ext.DefaultHandler2.startDTD(String,String,String)*
+
+public void startDTD(
+  java.lang.String name,
+  java.lang.String publicId,
+  java.lang.String systemId)
+  throws |org.xml.sax.SAXException|
+         
+
+
+
+*org.xml.sax.ext.DefaultHandler2.startEntity(String)*
+
+public void startEntity(java.lang.String name)
+  throws |org.xml.sax.SAXException|
+         
+
+
+
+

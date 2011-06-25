@@ -1,0 +1,114 @@
+*java.util.jar.JarInputStream* *JarInputStream* The JarInputStream class is used to read the contents of
+ a JAR file from any input stream.
+
+public class JarInputStream
+  extends    |java.util.zip.ZipInputStream|
+
+|java.util.jar.JarInputStream_Description|
+|java.util.jar.JarInputStream_Fields|
+|java.util.jar.JarInputStream_Constructors|
+|java.util.jar.JarInputStream_Methods|
+
+====================================================================================================================================================================================
+
+*java.util.jar.JarInputStream_Constructors*
+|java.util.jar.JarInputStream(InputStream)|Creates a new JarInputStream and reads the optional  manifest.
+|java.util.jar.JarInputStream(InputStream,boolean)|Creates a new JarInputStream and reads the optional  manifest.
+
+*java.util.jar.JarInputStream_Methods*
+|java.util.jar.JarInputStream.createZipEntry(String)|Creates a new JarEntry (ZipEntry) for the  specified JAR file entry name.
+|java.util.jar.JarInputStream.getManifest()|Returns the Manifest for this JAR file, or  null if none.
+|java.util.jar.JarInputStream.getNextEntry()|Reads the next ZIP file entry and positions the stream at the  beginning of the entry data.
+|java.util.jar.JarInputStream.getNextJarEntry()|Reads the next JAR file entry and positions the stream at the  beginning of the entry data.
+|java.util.jar.JarInputStream.read(byte[],int,int)|Reads from the current JAR file entry into an array of bytes.
+
+*java.util.jar.JarInputStream_Description*
+
+The JarInputStream class is used to read the contents of a JAR file from any input stream. It extends the class java.util.zip.ZipInputStream with support for reading an optional 
+Manifest entry. The Manifest can be used to store meta-information about the JAR file and its entries. 
+
+
+
+*java.util.jar.JarInputStream(InputStream)*
+
+public JarInputStream(java.io.InputStream in)
+  throws |java.io.IOException|
+         
+Creates a new JarInputStream and reads the optional manifest. If a manifest is present, also attempts to verify the signatures if the JarInputStream is signed. 
+
+    in - the actual input stream 
+
+*java.util.jar.JarInputStream(InputStream,boolean)*
+
+public JarInputStream(
+  java.io.InputStream in,
+  boolean verify)
+  throws |java.io.IOException|
+         
+Creates a new JarInputStream and reads the optional manifest. If a manifest is present and verify is true, also attempts to verify the signatures if the JarInputStream is signed. 
+
+    in - the actual input stream 
+    verify - whether or not to verify the JarInputStream if it is signed. 
+
+*java.util.jar.JarInputStream.createZipEntry(String)*
+
+protected |java.util.zip.ZipEntry| createZipEntry(java.lang.String name)
+
+Creates a new JarEntry (ZipEntry) for the specified JAR file entry name. The manifest attributes of the specified JAR file entry name will be copied to the new JarEntry. 
+
+
+    name - the name of the JAR/ZIP file entry 
+
+    Returns: the JarEntry object just created 
+
+*java.util.jar.JarInputStream.getManifest()*
+
+public |java.util.jar.Manifest| getManifest()
+
+Returns the Manifest for this JAR file, or null if none. 
+
+
+
+    Returns: the Manifest for this JAR file, or null if none. 
+
+*java.util.jar.JarInputStream.getNextEntry()*
+
+public |java.util.zip.ZipEntry| getNextEntry()
+  throws |java.io.IOException|
+         
+Reads the next ZIP file entry and positions the stream at the beginning of the entry data. If verification has been enabled, any invalid signature detected while positioning the 
+stream for the next entry will result in an exception. 
+
+
+
+*java.util.jar.JarInputStream.getNextJarEntry()*
+
+public |java.util.jar.JarEntry| getNextJarEntry()
+  throws |java.io.IOException|
+         
+Reads the next JAR file entry and positions the stream at the beginning of the entry data. If verification has been enabled, any invalid signature detected while positioning the 
+stream for the next entry will result in an exception. 
+
+
+
+    Returns: the next JAR file entry, or null if there are no more entries 
+
+*java.util.jar.JarInputStream.read(byte[],int,int)*
+
+public int read(
+  byte[] b,
+  int off,
+  int len)
+  throws |java.io.IOException|
+         
+Reads from the current JAR file entry into an array of bytes. Blocks until some input is available. If verification has been enabled, any invalid signature on the current entry 
+will be reported at some point before the end of the entry is reached. 
+
+
+    b - the buffer into which the data is read 
+    off - the start offset of the data 
+    len - the maximum number of bytes to read 
+
+    Returns: the actual number of bytes read, or -1 if the end of the entry is reached 
+
+

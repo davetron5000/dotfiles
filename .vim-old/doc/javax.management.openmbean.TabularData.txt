@@ -1,0 +1,229 @@
+*javax.management.openmbean.TabularData* *TabularData* The TabularData interface
+
+public interface interface TabularData
+
+
+|javax.management.openmbean.TabularData_Description|
+|javax.management.openmbean.TabularData_Fields|
+|javax.management.openmbean.TabularData_Constructors|
+|javax.management.openmbean.TabularData_Methods|
+
+================================================================================
+
+*javax.management.openmbean.TabularData_Methods*
+|javax.management.openmbean.TabularData.calculateIndex(CompositeData)|Calculate
+|javax.management.openmbean.TabularData.clear()|Removes all CompositeData value
+|javax.management.openmbean.TabularData.containsKey(Object[])|Returns true if a
+|javax.management.openmbean.TabularData.containsValue(CompositeData)|Returns tr
+|javax.management.openmbean.TabularData.equals(Object)|Compares the specified o
+|javax.management.openmbean.TabularData.get(Object[])|Returns the CompositeData
+|javax.management.openmbean.TabularData.getTabularType()|Returns the tabular ty
+|javax.management.openmbean.TabularData.hashCode()|Returns the hash code value 
+|javax.management.openmbean.TabularData.isEmpty()|Returns true if the number of
+|javax.management.openmbean.TabularData.keySet()|Returns a set view of the keys
+|javax.management.openmbean.TabularData.put(CompositeData)|Adds value to this T
+|javax.management.openmbean.TabularData.putAll(CompositeData[])|Add all the ele
+|javax.management.openmbean.TabularData.remove(Object[])|Removes the CompositeD
+|javax.management.openmbean.TabularData.size()|Returns the number of CompositeD
+|javax.management.openmbean.TabularData.toString()|Returns a string representat
+|javax.management.openmbean.TabularData.values()|Returns a collection view of t
+
+*javax.management.openmbean.TabularData_Description*
+
+The TabularData interface specifies the behavior of a specific type of complex 
+open data objects which represent tabular data structures. 
+
+
+*javax.management.openmbean.TabularData.calculateIndex(CompositeData)*
+
+public |java.lang.Object| calculateIndex(javax.management.openmbean.CompositeData value)
+
+Calculates the index that would be used in this TabularData instance to refer 
+to the specified composite data value parameter if it were added to this 
+instance. This method checks for the type validity of the specified value, but 
+does not check if the calculated index is already used to refer to a value in 
+this TabularData instance. 
+
+    value - the composite data value whose index in this TabularData instance is to be 
+       calculated; must be of the same composite type as this instance's row 
+       type; must not be null. 
+
+    Returns: the index that the specified value would have in this TabularData instance. 
+*javax.management.openmbean.TabularData.clear()*
+
+public void clear()
+
+Removes all CompositeData values (ie rows) from this TabularData instance. 
+
+
+*javax.management.openmbean.TabularData.containsKey(Object[])*
+
+public boolean containsKey(java.lang.Object[] key)
+
+Returns true if and only if this TabularData instance contains a CompositeData 
+value (ie a row) whose index is the specified key. If key is null or does not 
+conform to this TabularData instance's TabularType definition, this method 
+simply returns false. 
+
+    key - the index value whose presence in this TabularData instance is to be tested. 
+
+    Returns: true if this TabularData indexes a row value with the specified key. 
+*javax.management.openmbean.TabularData.containsValue(CompositeData)*
+
+public boolean containsValue(javax.management.openmbean.CompositeData value)
+
+Returns true if and only if this TabularData instance contains the specified 
+CompositeData value. If value is null or does not conform to this TabularData 
+instance's row type definition, this method simply returns false. 
+
+    value - the row value whose presence in this TabularData instance is to be tested. 
+
+    Returns: true if this TabularData instance contains the specified row value. 
+*javax.management.openmbean.TabularData.equals(Object)*
+
+public boolean equals(java.lang.Object obj)
+
+Compares the specified obj parameter with this TabularData instance for 
+equality. 
+
+Returns true if and only if all of the following statements are true: 
+
+obj is non null, obj also implements the TabularData interface, their row types 
+are equal their contents (ie index to value mappings) are equal 
+
+This ensures that this equals method works properly for obj parameters which 
+are different implementations of the TabularData interface. 
+
+    obj - the object to be compared for equality with this TabularData instance; 
+
+    Returns: true if the specified object is equal to this TabularData instance. 
+*javax.management.openmbean.TabularData.get(Object[])*
+
+public |javax.management.openmbean.CompositeData| get(java.lang.Object[] key)
+
+Returns the CompositeData value whose index is key, or null if there is no 
+value mapping to key, in this TabularData instance. 
+
+    key - the key of the row to return. 
+
+    Returns: the value corresponding to key. 
+*javax.management.openmbean.TabularData.getTabularType()*
+
+public |javax.management.openmbean.TabularType| getTabularType()
+
+Returns the tabular type describing this TabularData instance. 
+
+
+    Returns: the tabular type. 
+*javax.management.openmbean.TabularData.hashCode()*
+
+public int hashCode()
+
+Returns the hash code value for this TabularData instance. 
+
+The hash code of a TabularData instance is the sum of the hash codes of all 
+elements of information used in equals comparisons (ie: its tabular type and 
+its content, where the content is defined as all the index to value mappings). 
+
+This ensures that t1.equals(t2) implies that t1.hashCode()==t2.hashCode() for 
+any two TabularDataSupport instances t1 and t2, as required by the general 
+contract of the method Object.hashCode()(|java.lang.Object|) . 
+
+
+    Returns: the hash code value for this TabularDataSupport instance 
+*javax.management.openmbean.TabularData.isEmpty()*
+
+public boolean isEmpty()
+
+Returns true if the number of CompositeData values (ie the number of rows) 
+contained in this TabularData instance is zero. 
+
+
+    Returns: true if this TabularData is empty. 
+*javax.management.openmbean.TabularData.keySet()*
+
+public |java.util.Set| keySet()
+
+Returns a set view of the keys (ie the index values) of the CompositeData 
+values (ie the rows) contained in this TabularData instance. The returned Set 
+can then be used to iterate over the keys. 
+
+
+    Returns: a set view of the index values used in this TabularData instance. 
+*javax.management.openmbean.TabularData.put(CompositeData)*
+
+public void put(javax.management.openmbean.CompositeData value)
+
+Adds value to this TabularData instance. The composite type of value must be 
+the same as this instance's row type (ie the composite type returned by 
+this.getTabularType(). getRowType()(|javax.management.openmbean.TabularType|) 
+), and there must not already be an existing value in this TabularData instance 
+whose index is the same as the one calculated for the value to be added. The 
+index for value is calculated according to this TabularData instance's 
+TabularType definition (see TabularType. 
+getIndexNames()(|javax.management.openmbean.TabularType|) ). 
+
+    value - the composite data value to be added as a new row to this TabularData instance; 
+       must be of the same composite type as this instance's row type; must not 
+       be null. 
+
+*javax.management.openmbean.TabularData.putAll(CompositeData[])*
+
+public void putAll(javax.management.openmbean.CompositeData[] values)
+
+Add all the elements in values to this TabularData instance. If any element in 
+values does not satisfy the constraints defined in 
+<tt>put</tt>(|javax.management.openmbean.TabularData|) , or if any two elements 
+in values have the same index calculated according to this TabularData 
+instance's TabularType definition, then an exception describing the failure is 
+thrown and no element of values is added, thus leaving this TabularData 
+instance unchanged. 
+
+    values - the array of composite data values to be added as new rows to this TabularData 
+       instance; if values is null or empty, this method returns without doing 
+       anything. 
+
+*javax.management.openmbean.TabularData.remove(Object[])*
+
+public |javax.management.openmbean.CompositeData| remove(java.lang.Object[] key)
+
+Removes the CompositeData value whose index is key from this TabularData 
+instance, and returns the removed value, or returns null if there is no value 
+whose index is key. 
+
+    key - the index of the value to get in this TabularData instance; must be valid with 
+       this TabularData instance's row type definition; must not be null. 
+
+    Returns: previous value associated with specified key, or null if there was no mapping 
+             for key. 
+*javax.management.openmbean.TabularData.size()*
+
+public int size()
+
+Returns the number of CompositeData values (ie the number of rows) contained in 
+this TabularData instance. 
+
+
+    Returns: the number of values contained. 
+*javax.management.openmbean.TabularData.toString()*
+
+public |java.lang.String| toString()
+
+Returns a string representation of this TabularData instance. 
+
+The string representation consists of the name of the implementing class, and 
+the tabular type of this instance. 
+
+
+    Returns: a string representation of this TabularData instance 
+*javax.management.openmbean.TabularData.values()*
+
+public |java.util.Collection| values()
+
+Returns a collection view of the CompositeData values (ie the rows) contained 
+in this TabularData instance. The returned collection can then be used to 
+iterate over the values. 
+
+
+    Returns: a collection view of the rows contained in this TabularData instance. 
+

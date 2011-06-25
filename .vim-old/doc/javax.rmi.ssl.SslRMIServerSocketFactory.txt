@@ -1,0 +1,127 @@
+*javax.rmi.ssl.SslRMIServerSocketFactory* *SslRMIServerSocketFactory* An SslRMIServerSocketFactory instance is used by the RMI
+ runtime in order to obtain server sockets for RMI ca
+
+public class SslRMIServerSocketFactory
+  extends    |java.lang.Object|
+  implements |java.rmi.server.RMIServerSocketFactory|
+
+|javax.rmi.ssl.SslRMIServerSocketFactory_Description|
+|javax.rmi.ssl.SslRMIServerSocketFactory_Fields|
+|javax.rmi.ssl.SslRMIServerSocketFactory_Constructors|
+|javax.rmi.ssl.SslRMIServerSocketFactory_Methods|
+
+====================================================================================================================================================================================
+
+*javax.rmi.ssl.SslRMIServerSocketFactory_Constructors*
+|javax.rmi.ssl.SslRMIServerSocketFactory()|Creates a new SslRMIServerSocketFactory with  the default SSL socket configuration.
+|javax.rmi.ssl.SslRMIServerSocketFactory(String[],String[],boolean)|Creates a new SslRMIServerSocketFactory with  the specified SSL socket configuration.
+
+*javax.rmi.ssl.SslRMIServerSocketFactory_Methods*
+|javax.rmi.ssl.SslRMIServerSocketFactory.createServerSocket(int)|Creates a server socket that accepts SSL connections  configured according to this factory's SSL socket configurat
+|javax.rmi.ssl.SslRMIServerSocketFactory.equals(Object)|Indicates whether some other object is "equal to" this one.
+|javax.rmi.ssl.SslRMIServerSocketFactory.getEnabledCipherSuites()|Returns the names of the cipher suites enabled on SSL  connections accepted by server sockets created by this fac
+|javax.rmi.ssl.SslRMIServerSocketFactory.getEnabledProtocols()|Returns the names of the protocol versions enabled on SSL  connections accepted by server sockets created by this fa
+|javax.rmi.ssl.SslRMIServerSocketFactory.getNeedClientAuth()|Returns true if client authentication is  required on SSL connections accepted by server sockets created  by this fact
+|javax.rmi.ssl.SslRMIServerSocketFactory.hashCode()|Returns a hash code value for this  SslRMIServerSocketFactory.
+
+*javax.rmi.ssl.SslRMIServerSocketFactory_Description*
+
+An SslRMIServerSocketFactory instance is used by the RMI runtime in order to obtain server sockets for RMI calls via SSL. 
+
+This class implements RMIServerSocketFactory over the Secure Sockets Layer (SSL) or Transport Layer Security (TLS) protocols. 
+
+This class creates SSL sockets using the default SSLSocketFactory (see (|javax.net.ssl.SSLSocketFactory|) ) or the default SSLServerSocketFactory (see 
+(|javax.net.ssl.SSLServerSocketFactory|) ). Therefore, all instances of this class share the same keystore, and the same truststore, when client authentication is required by the 
+server. This behavior can be modified in subclasses by overriding the (|javax.rmi.ssl.SslRMIServerSocketFactory|) method; in that case, 
+equals(|javax.rmi.ssl.SslRMIServerSocketFactory|) and hashCode(|javax.rmi.ssl.SslRMIServerSocketFactory|) may also need to be overridden. 
+
+
+
+*javax.rmi.ssl.SslRMIServerSocketFactory()*
+
+public SslRMIServerSocketFactory()
+
+Creates a new SslRMIServerSocketFactory with the default SSL socket configuration. 
+
+SSL connections accepted by server sockets created by this factory have the default cipher suites and protocol versions enabled and do not require client authentication. 
+
+
+*javax.rmi.ssl.SslRMIServerSocketFactory(String[],String[],boolean)*
+
+public SslRMIServerSocketFactory(
+  java.lang.String[] enabledCipherSuites,
+  java.lang.String[] enabledProtocols,
+  boolean needClientAuth)
+  throws |java.lang.IllegalArgumentException|
+         
+Creates a new SslRMIServerSocketFactory with the specified SSL socket configuration. 
+
+    enabledCipherSuites - names of all the cipher suites to enable on SSL connections accepted by server sockets created by this factory, or null to use the cipher suites that are enabled by default 
+    enabledProtocols - names of all the protocol versions to enable on SSL connections accepted by server sockets created by this factory, or null to use the protocol versions that are enabled by 
+       default 
+    needClientAuth - true to require client authentication on SSL connections accepted by server sockets created by this factory; false to not require client authentication 
+
+*javax.rmi.ssl.SslRMIServerSocketFactory.createServerSocket(int)*
+
+public |java.net.ServerSocket| createServerSocket(int port)
+  throws |java.io.IOException|
+         
+Creates a server socket that accepts SSL connections configured according to this factory's SSL socket configuration parameters. 
+
+
+
+*javax.rmi.ssl.SslRMIServerSocketFactory.equals(Object)*
+
+public boolean equals(java.lang.Object obj)
+
+Indicates whether some other object is "equal to" this one. 
+
+Two SslRMIServerSocketFactory objects are equal if they have been constructed with the same SSL socket configuration parameters. 
+
+A subclass should override this method (as well as (|javax.rmi.ssl.SslRMIServerSocketFactory|) ) if it adds instance state that affects equality. 
+
+
+
+*javax.rmi.ssl.SslRMIServerSocketFactory.getEnabledCipherSuites()*
+
+public final |java.lang.String|[] getEnabledCipherSuites()
+
+Returns the names of the cipher suites enabled on SSL connections accepted by server sockets created by this factory, or null if this factory uses the cipher suites that are 
+enabled by default. 
+
+
+
+    Returns: an array of cipher suites enabled, or null 
+
+*javax.rmi.ssl.SslRMIServerSocketFactory.getEnabledProtocols()*
+
+public final |java.lang.String|[] getEnabledProtocols()
+
+Returns the names of the protocol versions enabled on SSL connections accepted by server sockets created by this factory, or null if this factory uses the protocol versions that 
+are enabled by default. 
+
+
+
+    Returns: an array of protocol versions enabled, or null 
+
+*javax.rmi.ssl.SslRMIServerSocketFactory.getNeedClientAuth()*
+
+public final boolean getNeedClientAuth()
+
+Returns true if client authentication is required on SSL connections accepted by server sockets created by this factory. 
+
+
+
+    Returns: true if client authentication is required 
+
+*javax.rmi.ssl.SslRMIServerSocketFactory.hashCode()*
+
+public int hashCode()
+
+Returns a hash code value for this SslRMIServerSocketFactory. 
+
+
+
+    Returns: a hash code value for this SslRMIServerSocketFactory. 
+
+

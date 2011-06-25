@@ -1,0 +1,83 @@
+*java.security.AuthProvider* *AuthProvider* This class defines login and logout methods for a provider.
+
+public abstract class AuthProvider
+  extends    |java.security.Provider|
+
+|java.security.AuthProvider_Description|
+|java.security.AuthProvider_Fields|
+|java.security.AuthProvider_Constructors|
+|java.security.AuthProvider_Methods|
+
+====================================================================================================================================================================================
+
+*java.security.AuthProvider_Constructors*
+|java.security.AuthProvider(String,double,String)|Constructs a provider with the specified name, version number,  and information.
+
+*java.security.AuthProvider_Methods*
+|java.security.AuthProvider.login(Subject,CallbackHandler)|Log in to this provider.
+|java.security.AuthProvider.logout()|Log out from this provider.
+|java.security.AuthProvider.setCallbackHandler(CallbackHandler)|Set a CallbackHandler.
+
+*java.security.AuthProvider_Description*
+
+This class defines login and logout methods for a provider. 
+
+While callers may invoke login directly, the provider may also invoke login on behalf of callers if it determines that a login must be performed prior to certain operations. 
+
+
+
+*java.security.AuthProvider(String,double,String)*
+
+protected AuthProvider(
+  java.lang.String name,
+  double version,
+  java.lang.String info)
+
+Constructs a provider with the specified name, version number, and information. 
+
+    name - the provider name. 
+    version - the provider version number. 
+    info - a description of the provider and its services. 
+
+*java.security.AuthProvider.login(Subject,CallbackHandler)*
+
+public abstract void login(
+  javax.security.auth.Subject subject,
+  javax.security.auth.callback.CallbackHandler handler)
+  throws |javax.security.auth.login.LoginException|
+         
+Log in to this provider. 
+
+The provider relies on a CallbackHandler to obtain authentication information from the caller (a PIN, for example). If the caller passes a null handler to this method, the 
+provider uses the handler set in the setCallbackHandler method. If no handler was set in that method, the provider queries the auth.login.defaultCallbackHandler security property 
+for the fully qualified class name of a default handler implementation. If the security property is not set, the provider is assumed to have alternative means for obtaining 
+authentication information. 
+
+
+    subject - the Subject which may contain principals/credentials used for authentication, or may be populated with additional principals/credentials after successful authentication has 
+       completed. This parameter may be null. 
+    handler - the CallbackHandler used by this provider to obtain authentication information from the caller, which may be null 
+
+*java.security.AuthProvider.logout()*
+
+public abstract void logout()
+  throws |javax.security.auth.login.LoginException|
+         
+Log out from this provider. 
+
+
+
+*java.security.AuthProvider.setCallbackHandler(CallbackHandler)*
+
+public abstract void setCallbackHandler(javax.security.auth.callback.CallbackHandler handler)
+
+Set a CallbackHandler. 
+
+The provider uses this handler if one is not passed to the login method. The provider also uses this handler if it invokes login on behalf of callers. In either case if a handler 
+is not set via this method, the provider queries the auth.login.defaultCallbackHandler security property for the fully qualified class name of a default handler implementation. If 
+the security property is not set, the provider is assumed to have alternative means for obtaining authentication information. 
+
+
+    handler - a CallbackHandler for obtaining authentication information, which may be null 
+
+

@@ -1,0 +1,50 @@
+*javax.management.remote.JMXConnectorServerProvider* *JMXConnectorServerProvider* 
+
+public interface interface JMXConnectorServerProvider
+
+
+|javax.management.remote.JMXConnectorServerProvider_Description|
+|javax.management.remote.JMXConnectorServerProvider_Fields|
+|javax.management.remote.JMXConnectorServerProvider_Constructors|
+|javax.management.remote.JMXConnectorServerProvider_Methods|
+
+================================================================================
+
+*javax.management.remote.JMXConnectorServerProvider_Methods*
+|javax.management.remote.JMXConnectorServerProvider.newJMXConnectorServer(JMXServiceURL,Map,MBeanServer)|
+
+*javax.management.remote.JMXConnectorServerProvider_Description*
+
+A provider for creating JMX API connector servers using a given protocol. 
+Instances of this interface are created by 
+(|javax.management.remote.JMXConnectorServerFactory|) as part of its 
+newJMXConnectorServer(|javax.management.remote.JMXConnectorServerFactory|) 
+method. 
+
+
+*javax.management.remote.JMXConnectorServerProvider.newJMXConnectorServer(JMXServiceURL,Map,MBeanServer)*
+
+public |javax.management.remote.JMXConnectorServer| newJMXConnectorServer(
+  javax.management.remote.JMXServiceURL serviceURL,
+  java.util.Map environment,
+  javax.management.MBeanServer mbeanServer)
+  throws |java.io.IOException|
+         
+Creates a new connector server at the given address. Each successful call to 
+this method produces a different JMXConnectorServer object. 
+
+    serviceURL - the address of the new connector server. The actual address of the new 
+       connector server, as returned by its {@link 
+       JMXConnectorServer#getAddress() getAddress} method, will not necessarily 
+       be exactly the same. For example, it might include a port number if the 
+       original address did not. 
+    environment - a read-only Map containing named attributes to control the new connector 
+       server's behaviour. Keys in this map must be Strings. The appropriate 
+       type of each associated value depends on the attribute. 
+    mbeanServer - the MBean server that this connector server is attached to. Null if this 
+       connector server will be attached to an MBean server by being registered 
+       in it. 
+
+    Returns: a JMXConnectorServer representing the new connector server. Each successful 
+             call to this method produces a different object. 
+

@@ -1,0 +1,92 @@
+*java.awt.image.ShortLookupTable* *ShortLookupTable* This class defines a lookup table object.
+
+public class ShortLookupTable
+  extends    |java.awt.image.LookupTable|
+
+|java.awt.image.ShortLookupTable_Description|
+|java.awt.image.ShortLookupTable_Fields|
+|java.awt.image.ShortLookupTable_Constructors|
+|java.awt.image.ShortLookupTable_Methods|
+
+====================================================================================================================================================================================
+
+*java.awt.image.ShortLookupTable_Constructors*
+|java.awt.image.ShortLookupTable(int,short[])|Constructs a ShortLookupTable object from an array  of shorts representing a lookup table for each  band.
+|java.awt.image.ShortLookupTable(int,short[][])|Constructs a ShortLookupTable object from an array of short  arrays representing a lookup table for each  band.
+
+*java.awt.image.ShortLookupTable_Methods*
+|java.awt.image.ShortLookupTable.getTable()|Returns the lookup table data by reference.
+|java.awt.image.ShortLookupTable.lookupPixel(int[],int[])|Returns an array of samples of a pixel, translated with the lookup  table.
+|java.awt.image.ShortLookupTable.lookupPixel(short[],short[])|Returns an array of samples of a pixel, translated with the lookup  table.
+
+*java.awt.image.ShortLookupTable_Description*
+
+This class defines a lookup table object. The output of a lookup operation using an object of this class is interpreted as an unsigned short quantity. The lookup table contains 
+short data arrays for one or more bands (or components) of an image, and it contains an offset which will be subtracted from the input values before indexing the arrays. This 
+allows an array smaller than the native data size to be provided for a constrained input. If there is only one array in the lookup table, it will be applied to all bands. 
+
+
+
+*java.awt.image.ShortLookupTable(int,short[])*
+
+public ShortLookupTable(
+  int offset,
+  short[] data)
+
+Constructs a ShortLookupTable object from an array of shorts representing a lookup table for each band. The offset will be subtracted from the input values before indexing into 
+the array. The data array is stored as a reference. 
+
+    offset - the value subtracted from the input values before indexing into the arrays 
+    data - an array of shorts 
+
+*java.awt.image.ShortLookupTable(int,short[][])*
+
+public ShortLookupTable(
+  int offset,
+  short[][] data)
+
+Constructs a ShortLookupTable object from an array of short arrays representing a lookup table for each band. The offset will be subtracted from the input values before indexing 
+into the arrays. The number of bands is the length of the data argument. The data array for each band is stored as a reference. 
+
+    offset - the value subtracted from the input values before indexing into the arrays 
+    data - an array of short arrays representing a lookup table for each band 
+
+*java.awt.image.ShortLookupTable.getTable()*
+
+public final short[][] getTable()
+
+Returns the lookup table data by reference. If this ShortLookupTable was constructed using a single short array, the length of the returned array is one. 
+
+
+
+    Returns: ShortLookupTable data array. 
+
+*java.awt.image.ShortLookupTable.lookupPixel(int[],int[])*
+
+public int[] lookupPixel(
+  int[] src,
+  int[] dst)
+
+Returns an array of samples of a pixel, translated with the lookup table. The source and destination array can be the same array. Array dst is returned. 
+
+
+    src - the source array. 
+    dst - the destination array. This array must be at least as long as src. If dst is null, a new array will be allocated having the same length as src. 
+
+    Returns: the array dst, an int array of samples. 
+
+*java.awt.image.ShortLookupTable.lookupPixel(short[],short[])*
+
+public short[] lookupPixel(
+  short[] src,
+  short[] dst)
+
+Returns an array of samples of a pixel, translated with the lookup table. The source and destination array can be the same array. Array dst is returned. 
+
+
+    src - the source array. 
+    dst - the destination array. This array must be at least as long as src. If dst is null, a new array will be allocated having the same length as src. 
+
+    Returns: the array dst, an int array of samples. 
+
+

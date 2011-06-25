@@ -1,0 +1,291 @@
+*javax.swing.text.Utilities* *Utilities* A collection of methods to deal with various text
+ related activities.
+
+public class Utilities
+  extends    |java.lang.Object|
+
+|javax.swing.text.Utilities_Description|
+|javax.swing.text.Utilities_Fields|
+|javax.swing.text.Utilities_Constructors|
+|javax.swing.text.Utilities_Methods|
+
+====================================================================================================================================================================================
+
+*javax.swing.text.Utilities_Constructors*
+|javax.swing.text.Utilities()|
+
+*javax.swing.text.Utilities_Methods*
+|javax.swing.text.Utilities.drawTabbedText(Segment,int,int,Graphics,TabExpander,int)|Draws the given text, expanding any tabs that are contained  using the given tab expansion tec
+|javax.swing.text.Utilities.getBreakLocation(Segment,FontMetrics,int,int,TabExpander,int)|Determine where to break the given text to fit  within the given span.
+|javax.swing.text.Utilities.getNextWord(JTextComponent,int)|Determines the start of the next word for the given location.
+|javax.swing.text.Utilities.getParagraphElement(JTextComponent,int)|Determines the element to use for a paragraph/line.
+|javax.swing.text.Utilities.getPositionAbove(JTextComponent,int,int)|Determines the position in the model that is closest to the given   view location in the row above.
+|javax.swing.text.Utilities.getPositionBelow(JTextComponent,int,int)|Determines the position in the model that is closest to the given   view location in the row below.
+|javax.swing.text.Utilities.getPreviousWord(JTextComponent,int)|Determine the start of the prev word for the given location.
+|javax.swing.text.Utilities.getRowEnd(JTextComponent,int)|Determines the ending row model position of the row that contains  the specified model position.
+|javax.swing.text.Utilities.getRowStart(JTextComponent,int)|Determines the starting row model position of the row that contains  the specified model position.
+|javax.swing.text.Utilities.getTabbedTextOffset(Segment,FontMetrics,int,int,TabExpander,int)|Determines the relative offset into the given text that  best represents the given spa
+|javax.swing.text.Utilities.getTabbedTextOffset(Segment,FontMetrics,int,int,TabExpander,int,boolean)|
+|javax.swing.text.Utilities.getTabbedTextWidth(Segment,FontMetrics,int,TabExpander,int)|Determines the width of the given segment of text taking tabs   into consideration.
+|javax.swing.text.Utilities.getWordEnd(JTextComponent,int)|Determines the end of a word for the given location.
+|javax.swing.text.Utilities.getWordStart(JTextComponent,int)|Determines the start of a word for the given model location.
+
+*javax.swing.text.Utilities_Description*
+
+A collection of methods to deal with various text related activities. 
+
+
+
+*javax.swing.text.Utilities()*
+
+public Utilities()
+
+
+
+
+*javax.swing.text.Utilities.drawTabbedText(Segment,int,int,Graphics,TabExpander,int)*
+
+public static final int drawTabbedText(
+  javax.swing.text.Segment s,
+  int x,
+  int y,
+  java.awt.Graphics g,
+  javax.swing.text.TabExpander e,
+  int startOffset)
+
+Draws the given text, expanding any tabs that are contained using the given tab expansion technique. This particular implementation renders in a 1.1 style coordinate system where 
+ints are used and 72dpi is assumed. 
+
+
+    s - the source of the text 
+    x - the X origin >= 0 
+    y - the Y origin >= 0 
+    g - the graphics context 
+    e - how to expand the tabs. If this value is null, tabs will be expanded as a space character. 
+    startOffset - starting offset of the text in the document >= 0 
+
+    Returns: the X location at the end of the rendered text 
+
+*javax.swing.text.Utilities.getBreakLocation(Segment,FontMetrics,int,int,TabExpander,int)*
+
+public static final int getBreakLocation(
+  javax.swing.text.Segment s,
+  java.awt.FontMetrics metrics,
+  int x0,
+  int x,
+  javax.swing.text.TabExpander e,
+  int startOffset)
+
+Determine where to break the given text to fit within the given span. This tries to find a word boundary. 
+
+
+    s - the source of the text 
+    metrics - the font metrics to use for the calculation 
+    x0 - the starting view location representing the start of the given text. 
+    x - the target view location to translate to an offset into the text. 
+    e - how to expand the tabs. If this value is null, tabs will be expanded as a space character. 
+    startOffset - starting offset in the document of the text 
+
+    Returns: the offset into the given text 
+
+*javax.swing.text.Utilities.getNextWord(JTextComponent,int)*
+
+public static final int getNextWord(
+  javax.swing.text.JTextComponent c,
+  int offs)
+  throws |javax.swing.text.BadLocationException|
+         
+Determines the start of the next word for the given location. Uses BreakIterator.getWordInstance() to actually get the words. 
+
+
+    c - the editor 
+    offs - the offset in the document >= 0 
+
+    Returns: the location in the model of the word start >= 0 
+
+*javax.swing.text.Utilities.getParagraphElement(JTextComponent,int)*
+
+public static final |javax.swing.text.Element| getParagraphElement(
+  javax.swing.text.JTextComponent c,
+  int offs)
+
+Determines the element to use for a paragraph/line. 
+
+
+    c - the editor 
+    offs - the starting offset in the document >= 0 
+
+    Returns: 
+
+*javax.swing.text.Utilities.getPositionAbove(JTextComponent,int,int)*
+
+public static final int getPositionAbove(
+  javax.swing.text.JTextComponent c,
+  int offs,
+  int x)
+  throws |javax.swing.text.BadLocationException|
+         
+Determines the position in the model that is closest to the given view location in the row above. The component given must have a size to compute the result. If the component 
+doesn't have a size a value of -1 will be returned. 
+
+
+    c - the editor 
+    offs - the offset in the document >= 0 
+    x - the X coordinate >= 0 
+
+    Returns: the position >= 0 if the request can be computed, otherwise a value of -1 will be returned. 
+
+*javax.swing.text.Utilities.getPositionBelow(JTextComponent,int,int)*
+
+public static final int getPositionBelow(
+  javax.swing.text.JTextComponent c,
+  int offs,
+  int x)
+  throws |javax.swing.text.BadLocationException|
+         
+Determines the position in the model that is closest to the given view location in the row below. The component given must have a size to compute the result. If the component 
+doesn't have a size a value of -1 will be returned. 
+
+
+    c - the editor 
+    offs - the offset in the document >= 0 
+    x - the X coordinate >= 0 
+
+    Returns: the position >= 0 if the request can be computed, otherwise a value of -1 will be returned. 
+
+*javax.swing.text.Utilities.getPreviousWord(JTextComponent,int)*
+
+public static final int getPreviousWord(
+  javax.swing.text.JTextComponent c,
+  int offs)
+  throws |javax.swing.text.BadLocationException|
+         
+Determine the start of the prev word for the given location. Uses BreakIterator.getWordInstance() to actually get the words. 
+
+
+    c - the editor 
+    offs - the offset in the document >= 0 
+
+    Returns: the location in the model of the word start >= 0 
+
+*javax.swing.text.Utilities.getRowEnd(JTextComponent,int)*
+
+public static final int getRowEnd(
+  javax.swing.text.JTextComponent c,
+  int offs)
+  throws |javax.swing.text.BadLocationException|
+         
+Determines the ending row model position of the row that contains the specified model position. The component given must have a size to compute the result. If the component 
+doesn't have a size a value of -1 will be returned. 
+
+
+    c - the editor 
+    offs - the offset in the document >= 0 
+
+    Returns: the position >= 0 if the request can be computed, otherwise a value of -1 will be returned. 
+
+*javax.swing.text.Utilities.getRowStart(JTextComponent,int)*
+
+public static final int getRowStart(
+  javax.swing.text.JTextComponent c,
+  int offs)
+  throws |javax.swing.text.BadLocationException|
+         
+Determines the starting row model position of the row that contains the specified model position. The component given must have a size to compute the result. If the component 
+doesn't have a size a value of -1 will be returned. 
+
+
+    c - the editor 
+    offs - the offset in the document >= 0 
+
+    Returns: the position >= 0 if the request can be computed, otherwise a value of -1 will be returned. 
+
+*javax.swing.text.Utilities.getTabbedTextOffset(Segment,FontMetrics,int,int,TabExpander,int)*
+
+public static final int getTabbedTextOffset(
+  javax.swing.text.Segment s,
+  java.awt.FontMetrics metrics,
+  int x0,
+  int x,
+  javax.swing.text.TabExpander e,
+  int startOffset)
+
+Determines the relative offset into the given text that best represents the given span in the view coordinate system. This is implemented in a 1.1 style coordinate system where 
+ints are used and 72dpi is assumed. 
+
+
+    s - the source of the text 
+    metrics - the font metrics to use for the calculation 
+    x0 - the starting view location representing the start of the given text >= 0. 
+    x - the target view location to translate to an offset into the text >= 0. 
+    e - how to expand the tabs. If this value is null, tabs will be expanded as a space character. 
+    startOffset - starting offset of the text in the document >= 0 
+
+    Returns: the offset into the text >= 0 
+
+*javax.swing.text.Utilities.getTabbedTextOffset(Segment,FontMetrics,int,int,TabExpander,int,boolean)*
+
+public static final int getTabbedTextOffset(
+  javax.swing.text.Segment s,
+  java.awt.FontMetrics metrics,
+  int x0,
+  int x,
+  javax.swing.text.TabExpander e,
+  int startOffset,
+  boolean round)
+
+
+
+
+
+*javax.swing.text.Utilities.getTabbedTextWidth(Segment,FontMetrics,int,TabExpander,int)*
+
+public static final int getTabbedTextWidth(
+  javax.swing.text.Segment s,
+  java.awt.FontMetrics metrics,
+  int x,
+  javax.swing.text.TabExpander e,
+  int startOffset)
+
+Determines the width of the given segment of text taking tabs into consideration. This is implemented in a 1.1 style coordinate system where ints are used and 72dpi is assumed. 
+
+
+    s - the source of the text 
+    metrics - the font metrics to use for the calculation 
+    x - the X origin >= 0 
+    e - how to expand the tabs. If this value is null, tabs will be expanded as a space character. 
+    startOffset - starting offset of the text in the document >= 0 
+
+    Returns: the width of the text 
+
+*javax.swing.text.Utilities.getWordEnd(JTextComponent,int)*
+
+public static final int getWordEnd(
+  javax.swing.text.JTextComponent c,
+  int offs)
+  throws |javax.swing.text.BadLocationException|
+         
+Determines the end of a word for the given location. Uses BreakIterator.getWordInstance() to actually get the words. 
+
+
+    c - the editor 
+    offs - the offset in the document >= 0 
+
+    Returns: the location in the model of the word end >= 0 
+
+*javax.swing.text.Utilities.getWordStart(JTextComponent,int)*
+
+public static final int getWordStart(
+  javax.swing.text.JTextComponent c,
+  int offs)
+  throws |javax.swing.text.BadLocationException|
+         
+Determines the start of a word for the given model location. Uses BreakIterator.getWordInstance() to actually get the words. 
+
+
+    c - the editor 
+    offs - the offset in the document >= 0 
+
+    Returns: the location in the model of the word start >= 0 
+
+

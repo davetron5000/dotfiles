@@ -1,0 +1,117 @@
+*javax.sound.sampled.spi.AudioFileWriter* *AudioFileWriter* Provider for audio f
+
+public abstract class AudioFileWriter
+  extends    |java.lang.Object|
+
+|javax.sound.sampled.spi.AudioFileWriter_Description|
+|javax.sound.sampled.spi.AudioFileWriter_Fields|
+|javax.sound.sampled.spi.AudioFileWriter_Constructors|
+|javax.sound.sampled.spi.AudioFileWriter_Methods|
+
+================================================================================
+
+*javax.sound.sampled.spi.AudioFileWriter_Constructors*
+|javax.sound.sampled.spi.AudioFileWriter()|
+
+*javax.sound.sampled.spi.AudioFileWriter_Methods*
+|javax.sound.sampled.spi.AudioFileWriter.getAudioFileTypes()|Obtains the file t
+|javax.sound.sampled.spi.AudioFileWriter.getAudioFileTypes(AudioInputStream)|Ob
+|javax.sound.sampled.spi.AudioFileWriter.isFileTypeSupported(AudioFileFormat.Type)|
+|javax.sound.sampled.spi.AudioFileWriter.isFileTypeSupported(AudioFileFormat.Type,AudioInputStream)|
+|javax.sound.sampled.spi.AudioFileWriter.write(AudioInputStream,AudioFileFormat.Type,File)|
+|javax.sound.sampled.spi.AudioFileWriter.write(AudioInputStream,AudioFileFormat.Type,OutputStream)|
+
+*javax.sound.sampled.spi.AudioFileWriter_Description*
+
+Provider for audio file writing services. Classes providing concrete 
+implementations can write one or more types of audio file from an audio stream. 
+
+
+*javax.sound.sampled.spi.AudioFileWriter()*
+
+public AudioFileWriter()
+
+
+
+
+*javax.sound.sampled.spi.AudioFileWriter.getAudioFileTypes()*
+
+public abstract |javax.sound.sampled.AudioFileFormat.Type| getAudioFileTypes()
+
+Obtains the file types for which file writing support is provided by this audio 
+file writer. 
+
+
+    Returns: array of file types. If no file types are supported, an array of length 0 is 
+             returned. 
+*javax.sound.sampled.spi.AudioFileWriter.getAudioFileTypes(AudioInputStream)*
+
+public abstract |javax.sound.sampled.AudioFileFormat.Type| getAudioFileTypes(javax.sound.sampled.AudioInputStream stream)
+
+Obtains the file types that this audio file writer can write from the audio 
+input stream specified. 
+
+    stream - the audio input stream for which audio file type support is queried 
+
+    Returns: array of file types. If no file types are supported, an array of length 0 is 
+             returned. 
+*javax.sound.sampled.spi.AudioFileWriter.isFileTypeSupported(AudioFileFormat.Type)*
+
+public boolean isFileTypeSupported(javax.sound.sampled.AudioFileFormat.Type fileType)
+
+Indicates whether file writing support for the specified file type is provided 
+by this audio file writer. 
+
+    fileType - the file type for which write capabilities are queried 
+
+    Returns: true if the file type is supported, otherwise false 
+*javax.sound.sampled.spi.AudioFileWriter.isFileTypeSupported(AudioFileFormat.Type,AudioInputStream)*
+
+public boolean isFileTypeSupported(
+  javax.sound.sampled.AudioFileFormat.Type fileType,
+  javax.sound.sampled.AudioInputStream stream)
+
+Indicates whether an audio file of the type specified can be written from the 
+audio input stream indicated. 
+
+    fileType - file type for which write capabilities are queried 
+    stream - for which file writing support is queried 
+
+    Returns: true if the file type is supported for this audio input stream, otherwise false 
+*javax.sound.sampled.spi.AudioFileWriter.write(AudioInputStream,AudioFileFormat.Type,File)*
+
+public abstract int write(
+  javax.sound.sampled.AudioInputStream stream,
+  javax.sound.sampled.AudioFileFormat.Type fileType,
+  java.io.File out)
+  throws |java.io.IOException|
+         
+Writes a stream of bytes representing an audio file of the file format 
+indicated to the external file provided. 
+
+    stream - the audio input stream containing audio data to be written to the file 
+    fileType - file type to be written to the file 
+    out - external file to which the file data should be written 
+
+    Returns: the number of bytes written to the file 
+*javax.sound.sampled.spi.AudioFileWriter.write(AudioInputStream,AudioFileFormat.Type,OutputStream)*
+
+public abstract int write(
+  javax.sound.sampled.AudioInputStream stream,
+  javax.sound.sampled.AudioFileFormat.Type fileType,
+  java.io.OutputStream out)
+  throws |java.io.IOException|
+         
+Writes a stream of bytes representing an audio file of the file type indicated 
+to the output stream provided. Some file types require that the length be 
+written into the file header, and cannot be written from start to finish unless 
+the length is known in advance. An attempt to write such a file type will fail 
+with an IOException if the length in the audio file format is 
+AudioSystem.NOT_SPECIFIED(|javax.sound.sampled.AudioSystem|) . 
+
+    stream - the audio input stream containing audio data to be written to the output stream 
+    fileType - file type to be written to the output stream 
+    out - stream to which the file data should be written 
+
+    Returns: the number of bytes written to the output stream 
+

@@ -1,0 +1,392 @@
+*javax.swing.tree.DefaultTreeCellEditor* *DefaultTreeCellEditor* A TreeCellEditor.
+
+public class DefaultTreeCellEditor
+  extends    |java.lang.Object|
+  implements |java.awt.event.ActionListener|
+             |javax.swing.tree.TreeCellEditor|
+             |javax.swing.event.TreeSelectionListener|
+
+|javax.swing.tree.DefaultTreeCellEditor_Description|
+|javax.swing.tree.DefaultTreeCellEditor_Fields|
+|javax.swing.tree.DefaultTreeCellEditor_Constructors|
+|javax.swing.tree.DefaultTreeCellEditor_Methods|
+
+====================================================================================================================================================================================
+
+*javax.swing.tree.DefaultTreeCellEditor_Fields*
+|java.awt.Color_javax.swing.tree.DefaultTreeCellEditor.borderSelectionColor|
+|boolean_javax.swing.tree.DefaultTreeCellEditor.canEdit|
+|java.awt.Component_javax.swing.tree.DefaultTreeCellEditor.editingComponent|
+|java.awt.Container_javax.swing.tree.DefaultTreeCellEditor.editingContainer|
+|javax.swing.Icon_javax.swing.tree.DefaultTreeCellEditor.editingIcon|
+|java.awt.Font_javax.swing.tree.DefaultTreeCellEditor.font|
+|javax.swing.tree.TreePath_javax.swing.tree.DefaultTreeCellEditor.lastPath|
+|int_javax.swing.tree.DefaultTreeCellEditor.lastRow|
+|int_javax.swing.tree.DefaultTreeCellEditor.offset|
+|javax.swing.tree.TreeCellEditor_javax.swing.tree.DefaultTreeCellEditor.realEditor|
+|javax.swing.tree.DefaultTreeCellRenderer_javax.swing.tree.DefaultTreeCellEditor.renderer|
+|javax.swing.Timer_javax.swing.tree.DefaultTreeCellEditor.timer|
+|javax.swing.JTree_javax.swing.tree.DefaultTreeCellEditor.tree|
+
+*javax.swing.tree.DefaultTreeCellEditor_Constructors*
+|javax.swing.tree.DefaultTreeCellEditor(JTree,DefaultTreeCellRenderer)|Constructs a DefaultTreeCellEditor  object for a JTree using the specified renderer and  a default editor.
+|javax.swing.tree.DefaultTreeCellEditor(JTree,DefaultTreeCellRenderer,TreeCellEditor)|Constructs a DefaultTreeCellEditor  object for a JTree using the  specified renderer and the 
+
+*javax.swing.tree.DefaultTreeCellEditor_Methods*
+|javax.swing.tree.DefaultTreeCellEditor.actionPerformed(ActionEvent)|Messaged when the timer fires, this will start the editing  session.
+|javax.swing.tree.DefaultTreeCellEditor.addCellEditorListener(CellEditorListener)|Adds the CellEditorListener.
+|javax.swing.tree.DefaultTreeCellEditor.cancelCellEditing()|Messages cancelCellEditing to the   realEditor and removes it from this instance.
+|javax.swing.tree.DefaultTreeCellEditor.canEditImmediately(EventObject)|Returns true if event is null,  or it is a MouseEvent with a click count > 2  and inHitRegion returns true.
+|javax.swing.tree.DefaultTreeCellEditor.createContainer()|Creates the container to manage placement of   editingComponent.
+|javax.swing.tree.DefaultTreeCellEditor.createTreeCellEditor()|This is invoked if a TreeCellEditor  is not supplied in the constructor.
+|javax.swing.tree.DefaultTreeCellEditor.determineOffset(JTree,Object,boolean,boolean,boolean,int)|
+|javax.swing.tree.DefaultTreeCellEditor.getBorderSelectionColor()|Returns the color the border is drawn.
+|javax.swing.tree.DefaultTreeCellEditor.getCellEditorListeners()|Returns an array of all the CellEditorListeners added  to this DefaultTreeCellEditor with addCellEditorListener().
+|javax.swing.tree.DefaultTreeCellEditor.getCellEditorValue()|Returns the value currently being edited.
+|javax.swing.tree.DefaultTreeCellEditor.getFont()|Gets the font used for editing.
+|javax.swing.tree.DefaultTreeCellEditor.getTreeCellEditorComponent(JTree,Object,boolean,boolean,boolean,int)|Configures the editor.
+|javax.swing.tree.DefaultTreeCellEditor.inHitRegion(int,int)|Returns true if the passed in location is a valid mouse location  to start editing from.
+|javax.swing.tree.DefaultTreeCellEditor.isCellEditable(EventObject)|If the realEditor returns true to this  message, prepareForEditing  is messaged and true is returned.
+|javax.swing.tree.DefaultTreeCellEditor.prepareForEditing()|Invoked just before editing is to start.
+|javax.swing.tree.DefaultTreeCellEditor.removeCellEditorListener(CellEditorListener)|Removes the previously added CellEditorListener.
+|javax.swing.tree.DefaultTreeCellEditor.setBorderSelectionColor(Color)|Sets the color to use for the border.
+|javax.swing.tree.DefaultTreeCellEditor.setFont(Font)|Sets the font to edit with.
+|javax.swing.tree.DefaultTreeCellEditor.setTree(JTree)|Sets the tree currently editing for.
+|javax.swing.tree.DefaultTreeCellEditor.shouldSelectCell(EventObject)|Messages the realEditor for the return value.
+|javax.swing.tree.DefaultTreeCellEditor.shouldStartEditingTimer(EventObject)|Returns true if event is a MouseEvent  and the click count is 1.
+|javax.swing.tree.DefaultTreeCellEditor.startEditingTimer()|Starts the editing timer.
+|javax.swing.tree.DefaultTreeCellEditor.stopCellEditing()|If the realEditor will allow editing to stop,  the realEditor is removed and true is returned,  otherwise false is return
+|javax.swing.tree.DefaultTreeCellEditor.valueChanged(TreeSelectionEvent)|Resets lastPath.
+
+*javax.swing.tree.DefaultTreeCellEditor_Description*
+
+A TreeCellEditor. You need to supply an instance of DefaultTreeCellRenderer so that the icons can be obtained. You can optionally supply a TreeCellEditor that will be layed out 
+according to the icon in the DefaultTreeCellRenderer. If you do not supply a TreeCellEditor, a TextField will be used. Editing is started on a triple mouse click, or after a 
+click, pause, click and a delay of 1200 miliseconds. 
+
+Warning: Serialized objects of this class will not be compatible with future Swing releases. The current serialization support is appropriate for short term storage or RMI between 
+applications running the same version of Swing. As of 1.4, support for long term storage of all JavaBeansTM has been added to the java.beans package. Please see 
+(|java.beans.XMLEncoder|) . 
+
+
+
+*java.awt.Color_javax.swing.tree.DefaultTreeCellEditor.borderSelectionColor*
+
+True if the border selection color should be drawn. 
+
+
+*boolean_javax.swing.tree.DefaultTreeCellEditor.canEdit*
+
+As of Java 2 platform v1.4 this field should no longer be used. If you wish to provide similar behavior you should directly override isCellEditable. 
+
+
+*java.awt.Component_javax.swing.tree.DefaultTreeCellEditor.editingComponent*
+
+Component used in editing, obtained from the editingContainer. 
+
+
+*java.awt.Container_javax.swing.tree.DefaultTreeCellEditor.editingContainer*
+
+Editing container, will contain the editorComponent. 
+
+
+*javax.swing.Icon_javax.swing.tree.DefaultTreeCellEditor.editingIcon*
+
+Icon to use when editing. 
+
+
+*java.awt.Font_javax.swing.tree.DefaultTreeCellEditor.font*
+
+Font to paint with, null indicates font of renderer is to be used. 
+
+
+*javax.swing.tree.TreePath_javax.swing.tree.DefaultTreeCellEditor.lastPath*
+
+Last path that was selected. 
+
+
+*int_javax.swing.tree.DefaultTreeCellEditor.lastRow*
+
+Row that was last passed into getTreeCellEditorComponent. 
+
+
+*int_javax.swing.tree.DefaultTreeCellEditor.offset*
+
+Used in editing. Indicates x position to place editingComponent. 
+
+
+*javax.swing.tree.TreeCellEditor_javax.swing.tree.DefaultTreeCellEditor.realEditor*
+
+Editor handling the editing. 
+
+
+*javax.swing.tree.DefaultTreeCellRenderer_javax.swing.tree.DefaultTreeCellEditor.renderer*
+
+Renderer, used to get border and offsets from. 
+
+
+*javax.swing.Timer_javax.swing.tree.DefaultTreeCellEditor.timer*
+
+Used before starting the editing session. 
+
+
+*javax.swing.JTree_javax.swing.tree.DefaultTreeCellEditor.tree*
+
+JTree instance listening too. 
+
+
+
+*javax.swing.tree.DefaultTreeCellEditor(JTree,DefaultTreeCellRenderer)*
+
+public DefaultTreeCellEditor(
+  javax.swing.JTree tree,
+  javax.swing.tree.DefaultTreeCellRenderer renderer)
+
+Constructs a DefaultTreeCellEditor object for a JTree using the specified renderer and a default editor. (Use this constructor for normal editing.) 
+
+    tree - a JTree object 
+    renderer - a DefaultTreeCellRenderer object 
+
+*javax.swing.tree.DefaultTreeCellEditor(JTree,DefaultTreeCellRenderer,TreeCellEditor)*
+
+public DefaultTreeCellEditor(
+  javax.swing.JTree tree,
+  javax.swing.tree.DefaultTreeCellRenderer renderer,
+  javax.swing.tree.TreeCellEditor editor)
+
+Constructs a DefaultTreeCellEditor object for a JTree using the specified renderer and the specified editor. (Use this constructor for specialized editing.) 
+
+    tree - a JTree object 
+    renderer - a DefaultTreeCellRenderer object 
+    editor - a TreeCellEditor object 
+
+*javax.swing.tree.DefaultTreeCellEditor.actionPerformed(ActionEvent)*
+
+public void actionPerformed(java.awt.event.ActionEvent e)
+
+Messaged when the timer fires, this will start the editing session. 
+
+
+
+*javax.swing.tree.DefaultTreeCellEditor.addCellEditorListener(CellEditorListener)*
+
+public void addCellEditorListener(javax.swing.event.CellEditorListener l)
+
+Adds the CellEditorListener. 
+
+
+    l - the listener to be added 
+
+*javax.swing.tree.DefaultTreeCellEditor.cancelCellEditing()*
+
+public void cancelCellEditing()
+
+Messages cancelCellEditing to the realEditor and removes it from this instance. 
+
+
+
+*javax.swing.tree.DefaultTreeCellEditor.canEditImmediately(EventObject)*
+
+protected boolean canEditImmediately(java.util.EventObject event)
+
+Returns true if event is null, or it is a MouseEvent with a click count > 2 and inHitRegion returns true. 
+
+
+    event - the event being studied 
+
+*javax.swing.tree.DefaultTreeCellEditor.createContainer()*
+
+protected |java.awt.Container| createContainer()
+
+Creates the container to manage placement of editingComponent. 
+
+
+
+*javax.swing.tree.DefaultTreeCellEditor.createTreeCellEditor()*
+
+protected |javax.swing.tree.TreeCellEditor| createTreeCellEditor()
+
+This is invoked if a TreeCellEditor is not supplied in the constructor. It returns a TextField editor. 
+
+
+
+    Returns: a new TextField editor 
+
+*javax.swing.tree.DefaultTreeCellEditor.determineOffset(JTree,Object,boolean,boolean,boolean,int)*
+
+protected void determineOffset(
+  javax.swing.JTree tree,
+  java.lang.Object value,
+  boolean isSelected,
+  boolean expanded,
+  boolean leaf,
+  int row)
+
+
+
+
+
+*javax.swing.tree.DefaultTreeCellEditor.getBorderSelectionColor()*
+
+public |java.awt.Color| getBorderSelectionColor()
+
+Returns the color the border is drawn. 
+
+
+
+    Returns: the border selection color 
+
+*javax.swing.tree.DefaultTreeCellEditor.getCellEditorListeners()*
+
+public |javax.swing.event.CellEditorListener|[] getCellEditorListeners()
+
+Returns an array of all the CellEditorListeners added to this DefaultTreeCellEditor with addCellEditorListener(). 
+
+
+
+    Returns: all of the CellEditorListeners added or an empty array if no listeners have been added 
+
+*javax.swing.tree.DefaultTreeCellEditor.getCellEditorValue()*
+
+public |java.lang.Object| getCellEditorValue()
+
+Returns the value currently being edited. 
+
+
+
+    Returns: the value currently being edited 
+
+*javax.swing.tree.DefaultTreeCellEditor.getFont()*
+
+public |java.awt.Font| getFont()
+
+Gets the font used for editing. 
+
+
+
+    Returns: the editing Font 
+
+*javax.swing.tree.DefaultTreeCellEditor.getTreeCellEditorComponent(JTree,Object,boolean,boolean,boolean,int)*
+
+public |java.awt.Component| getTreeCellEditorComponent(
+  javax.swing.JTree tree,
+  java.lang.Object value,
+  boolean isSelected,
+  boolean expanded,
+  boolean leaf,
+  int row)
+
+Configures the editor. Passed onto the realEditor. 
+
+
+
+*javax.swing.tree.DefaultTreeCellEditor.inHitRegion(int,int)*
+
+protected boolean inHitRegion(
+  int x,
+  int y)
+
+Returns true if the passed in location is a valid mouse location to start editing from. This is implemented to return false if x is <= the width of the icon and icon gap displayed 
+by the renderer. In other words this returns true if the user clicks over the text part displayed by the renderer, and false otherwise. 
+
+
+    x - the x-coordinate of the point 
+    y - the y-coordinate of the point 
+
+    Returns: true if the passed in location is a valid mouse location 
+
+*javax.swing.tree.DefaultTreeCellEditor.isCellEditable(EventObject)*
+
+public boolean isCellEditable(java.util.EventObject event)
+
+If the realEditor returns true to this message, prepareForEditing is messaged and true is returned. 
+
+
+
+*javax.swing.tree.DefaultTreeCellEditor.prepareForEditing()*
+
+protected void prepareForEditing()
+
+Invoked just before editing is to start. Will add the editingComponent to the editingContainer. 
+
+
+
+*javax.swing.tree.DefaultTreeCellEditor.removeCellEditorListener(CellEditorListener)*
+
+public void removeCellEditorListener(javax.swing.event.CellEditorListener l)
+
+Removes the previously added CellEditorListener. 
+
+
+    l - the listener to be removed 
+
+*javax.swing.tree.DefaultTreeCellEditor.setBorderSelectionColor(Color)*
+
+public void setBorderSelectionColor(java.awt.Color newColor)
+
+Sets the color to use for the border. 
+
+
+    newColor - the new border color 
+
+*javax.swing.tree.DefaultTreeCellEditor.setFont(Font)*
+
+public void setFont(java.awt.Font font)
+
+Sets the font to edit with. null indicates the renderers font should be used. This will NOT override any font you have set in the editor the receiver was instantied with. If null 
+for an editor was passed in a default editor will be created that will pick up this font. 
+
+
+    font - the editing Font 
+
+*javax.swing.tree.DefaultTreeCellEditor.setTree(JTree)*
+
+protected void setTree(javax.swing.JTree newTree)
+
+Sets the tree currently editing for. This is needed to add a selection listener. 
+
+
+    newTree - the new tree to be edited 
+
+*javax.swing.tree.DefaultTreeCellEditor.shouldSelectCell(EventObject)*
+
+public boolean shouldSelectCell(java.util.EventObject event)
+
+Messages the realEditor for the return value. 
+
+
+
+*javax.swing.tree.DefaultTreeCellEditor.shouldStartEditingTimer(EventObject)*
+
+protected boolean shouldStartEditingTimer(java.util.EventObject event)
+
+Returns true if event is a MouseEvent and the click count is 1. 
+
+
+    event - the event being studied 
+
+*javax.swing.tree.DefaultTreeCellEditor.startEditingTimer()*
+
+protected void startEditingTimer()
+
+Starts the editing timer. 
+
+
+
+*javax.swing.tree.DefaultTreeCellEditor.stopCellEditing()*
+
+public boolean stopCellEditing()
+
+If the realEditor will allow editing to stop, the realEditor is removed and true is returned, otherwise false is returned. 
+
+
+
+*javax.swing.tree.DefaultTreeCellEditor.valueChanged(TreeSelectionEvent)*
+
+public void valueChanged(javax.swing.event.TreeSelectionEvent e)
+
+Resets lastPath. 
+
+
+
+

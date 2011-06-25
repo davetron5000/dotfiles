@@ -1,0 +1,148 @@
+*javax.management.loading.MLetMBean* *MLetMBean* Exposes the remote management i
+
+public interface interface MLetMBean
+
+
+|javax.management.loading.MLetMBean_Description|
+|javax.management.loading.MLetMBean_Fields|
+|javax.management.loading.MLetMBean_Constructors|
+|javax.management.loading.MLetMBean_Methods|
+
+================================================================================
+
+*javax.management.loading.MLetMBean_Methods*
+|javax.management.loading.MLetMBean.addURL(String)|Appends the specified URL to
+|javax.management.loading.MLetMBean.addURL(URL)|Appends the specified URL to th
+|javax.management.loading.MLetMBean.getLibraryDirectory()|Gets the current dire
+|javax.management.loading.MLetMBean.getMBeansFromURL(String)|Loads a text file 
+|javax.management.loading.MLetMBean.getMBeansFromURL(URL)|Loads a text file con
+|javax.management.loading.MLetMBean.getResource(String)|Finds the resource with
+|javax.management.loading.MLetMBean.getResourceAsStream(String)|Returns an inpu
+|javax.management.loading.MLetMBean.getResources(String)|Finds all the resource
+|javax.management.loading.MLetMBean.getURLs()|Returns the search path of URLs f
+|javax.management.loading.MLetMBean.setLibraryDirectory(String)|Sets the direct
+
+*javax.management.loading.MLetMBean_Description*
+
+Exposes the remote management interface of the MLet MBean. 
+
+
+*javax.management.loading.MLetMBean.addURL(String)*
+
+public void addURL(java.lang.String url)
+  throws |javax.management.ServiceNotFoundException|
+         
+Appends the specified URL to the list of URLs to search for classes and 
+resources. 
+
+    url - the URL to add. 
+
+*javax.management.loading.MLetMBean.addURL(URL)*
+
+public void addURL(java.net.URL url)
+
+Appends the specified URL to the list of URLs to search for classes and 
+resources. 
+
+    url - the URL to add. 
+
+*javax.management.loading.MLetMBean.getLibraryDirectory()*
+
+public |java.lang.String| getLibraryDirectory()
+
+Gets the current directory used by the library loader for storing native 
+libraries before they are loaded into memory. 
+
+
+    Returns: The current directory used by the library loader. 
+*javax.management.loading.MLetMBean.getMBeansFromURL(String)*
+
+public |java.util.Set| getMBeansFromURL(java.lang.String url)
+  throws |javax.management.ServiceNotFoundException|
+         
+Loads a text file containing MLET tags that define the MBeans to be added to 
+the agent. The location of the text file is specified by a URL. The text file 
+is read using the UTF-8 encoding. The MBeans specified in the MLET file will be 
+instantiated and registered by the MBeanServer. 
+
+    url - The URL of the text file to be loaded as String object. 
+
+    Returns: A set containing one entry per MLET tag in the m-let text file loaded. Each 
+             entry specifies either the ObjectInstance for the created MBean, 
+             or a throwable object (that is, an error or an exception) if the 
+             MBean could not be created. 
+*javax.management.loading.MLetMBean.getMBeansFromURL(URL)*
+
+public |java.util.Set| getMBeansFromURL(java.net.URL url)
+  throws |javax.management.ServiceNotFoundException|
+         
+Loads a text file containing MLET tags that define the MBeans to be added to 
+the agent. The location of the text file is specified by a URL. The text file 
+is read using the UTF-8 encoding. The MBeans specified in the MLET file will be 
+instantiated and registered by the MBeanServer. 
+
+    url - The URL of the text file to be loaded as URL object. 
+
+    Returns: A set containing one entry per MLET tag in the m-let text file loaded. Each 
+             entry specifies either the ObjectInstance for the created MBean, 
+             or a throwable object (that is, an error or an exception) if the 
+             MBean could not be created. 
+*javax.management.loading.MLetMBean.getResource(String)*
+
+public |java.net.URL| getResource(java.lang.String name)
+
+Finds the resource with the given name. A resource is some data (images, audio, 
+text, etc) that can be accessed by class code in a way that is independent of 
+the location of the code. The name of a resource is a "/"-separated path name 
+that identifies the resource. 
+
+    name - The resource name 
+
+    Returns: An URL for reading the resource, or null if the resource could not be found or 
+             the caller doesn't have adequate privileges to get the resource. 
+*javax.management.loading.MLetMBean.getResourceAsStream(String)*
+
+public |java.io.InputStream| getResourceAsStream(java.lang.String name)
+
+Returns an input stream for reading the specified resource. The search order is 
+described in the documentation for getResource(String). 
+
+    name - The resource name 
+
+    Returns: An input stream for reading the resource, or null if the resource could not be 
+             found 
+*javax.management.loading.MLetMBean.getResources(String)*
+
+public |java.util.Enumeration| getResources(java.lang.String name)
+  throws |java.io.IOException|
+         
+Finds all the resources with the given name. A resource is some data (images, 
+audio, text, etc) that can be accessed by class code in a way that is 
+independent of the location of the code. The name of a resource is a 
+"/"-separated path name that identifies the resource. 
+
+    name - The resource name. 
+
+    Returns: An enumeration of URL to the resource. If no resources could be found, the 
+             enumeration will be empty. Resources that cannot be accessed will 
+             not be in the enumeration. 
+*javax.management.loading.MLetMBean.getURLs()*
+
+public |java.net.URL| getURLs()
+
+Returns the search path of URLs for loading classes and resources. This 
+includes the original list of URLs specified to the constructor, along with any 
+URLs subsequently appended by the addURL() method. 
+
+
+    Returns: the list of URLs. 
+*javax.management.loading.MLetMBean.setLibraryDirectory(String)*
+
+public void setLibraryDirectory(java.lang.String libdir)
+
+Sets the directory used by the library loader for storing native libraries 
+before they are loaded into memory. 
+
+    libdir - The directory used by the library loader. 
+
+

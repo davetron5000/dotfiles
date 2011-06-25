@@ -1,0 +1,310 @@
+*org.xml.sax.helpers.ParserAdapter* *ParserAdapter* Adapt a SAX1 Parser as a SAX
+
+public class ParserAdapter
+  extends    |java.lang.Object|
+  implements |org.xml.sax.XMLReader|
+             |org.xml.sax.DocumentHandler|
+
+|org.xml.sax.helpers.ParserAdapter_Description|
+|org.xml.sax.helpers.ParserAdapter_Fields|
+|org.xml.sax.helpers.ParserAdapter_Constructors|
+|org.xml.sax.helpers.ParserAdapter_Methods|
+
+================================================================================
+
+*org.xml.sax.helpers.ParserAdapter_Constructors*
+|org.xml.sax.helpers.ParserAdapter()|Construct a new parser adapter.
+|org.xml.sax.helpers.ParserAdapter(Parser)|Construct a new parser adapter.
+
+*org.xml.sax.helpers.ParserAdapter_Methods*
+|org.xml.sax.helpers.ParserAdapter.characters(char[],int,int)|Adapter implement
+|org.xml.sax.helpers.ParserAdapter.endDocument()|Adapter implementation method;
+|org.xml.sax.helpers.ParserAdapter.endElement(String)|Adapter implementation me
+|org.xml.sax.helpers.ParserAdapter.getContentHandler()|Return the current conte
+|org.xml.sax.helpers.ParserAdapter.getDTDHandler()|Return the current DTD handl
+|org.xml.sax.helpers.ParserAdapter.getEntityResolver()|Return the current entit
+|org.xml.sax.helpers.ParserAdapter.getErrorHandler()|Return the current error h
+|org.xml.sax.helpers.ParserAdapter.getFeature(String)|Check a parser feature fl
+|org.xml.sax.helpers.ParserAdapter.getProperty(String)|Get a parser property.
+|org.xml.sax.helpers.ParserAdapter.ignorableWhitespace(char[],int,int)|Adapter 
+|org.xml.sax.helpers.ParserAdapter.parse(InputSource)|Parse an XML document.
+|org.xml.sax.helpers.ParserAdapter.parse(String)|Parse an XML document.
+|org.xml.sax.helpers.ParserAdapter.processingInstruction(String,String)|Adapter
+|org.xml.sax.helpers.ParserAdapter.setContentHandler(ContentHandler)|Set the co
+|org.xml.sax.helpers.ParserAdapter.setDocumentLocator(Locator)|Adapter implemen
+|org.xml.sax.helpers.ParserAdapter.setDTDHandler(DTDHandler)|Set the DTD handle
+|org.xml.sax.helpers.ParserAdapter.setEntityResolver(EntityResolver)|Set the en
+|org.xml.sax.helpers.ParserAdapter.setErrorHandler(ErrorHandler)|Set the error 
+|org.xml.sax.helpers.ParserAdapter.setFeature(String,boolean)|Set a feature fla
+|org.xml.sax.helpers.ParserAdapter.setProperty(String,Object)|Set a parser prop
+|org.xml.sax.helpers.ParserAdapter.startDocument()|Adapter implementation metho
+|org.xml.sax.helpers.ParserAdapter.startElement(String,AttributeList)|Adapter i
+
+*org.xml.sax.helpers.ParserAdapter_Description*
+
+Adapt a SAX1 Parser as a SAX2 XMLReader. 
+
+This module, both source code and documentation, is in the Public Domain, and 
+comes with NO WARRANTY. See http://www.saxproject.org for further information. 
+
+This class wraps a SAX1 Parser(|org.xml.sax.Parser|) and makes it act as a SAX2 
+XMLReader(|org.xml.sax.XMLReader|) , with feature, property, and Namespace 
+support. Note that it is not possible to report 
+skippedEntity(|org.xml.sax.ContentHandler|) events, since SAX1 does not make 
+that information available. 
+
+This adapter does not test for duplicate Namespace-qualified attribute names. 
+
+
+*org.xml.sax.helpers.ParserAdapter()*
+
+public ParserAdapter()
+  throws |org.xml.sax.SAXException|
+         
+Construct a new parser adapter. 
+
+Use the "org.xml.sax.parser" property to locate the embedded SAX1 driver. 
+
+
+*org.xml.sax.helpers.ParserAdapter(Parser)*
+
+public ParserAdapter(org.xml.sax.Parser parser)
+
+Construct a new parser adapter. 
+
+Note that the embedded parser cannot be changed once the adapter is created; to 
+embed a different parser, allocate a new ParserAdapter. 
+
+    parser - The SAX1 parser to embed. 
+
+*org.xml.sax.helpers.ParserAdapter.characters(char[],int,int)*
+
+public void characters(
+  char[] ch,
+  int start,
+  int length)
+  throws |org.xml.sax.SAXException|
+         
+Adapter implementation method; do not call. Adapt a SAX1 characters event. 
+
+    ch - An array of characters. 
+    start - The starting position in the array. 
+    length - The number of characters to use. 
+
+*org.xml.sax.helpers.ParserAdapter.endDocument()*
+
+public void endDocument()
+  throws |org.xml.sax.SAXException|
+         
+Adapter implementation method; do not call. Adapt a SAX1 end document event. 
+
+
+*org.xml.sax.helpers.ParserAdapter.endElement(String)*
+
+public void endElement(java.lang.String qName)
+  throws |org.xml.sax.SAXException|
+         
+Adapter implementation method; do not call. Adapt a SAX1 end element event. 
+
+    qName - The qualified (prefixed) name. 
+
+*org.xml.sax.helpers.ParserAdapter.getContentHandler()*
+
+public |org.xml.sax.ContentHandler| getContentHandler()
+
+Return the current content handler. 
+
+
+    Returns: The current content handler, or null if none was supplied. 
+*org.xml.sax.helpers.ParserAdapter.getDTDHandler()*
+
+public |org.xml.sax.DTDHandler| getDTDHandler()
+
+Return the current DTD handler. 
+
+
+    Returns: the current DTD handler, or null if none was supplied 
+*org.xml.sax.helpers.ParserAdapter.getEntityResolver()*
+
+public |org.xml.sax.EntityResolver| getEntityResolver()
+
+Return the current entity resolver. 
+
+
+    Returns: The current entity resolver, or null if none was supplied. 
+*org.xml.sax.helpers.ParserAdapter.getErrorHandler()*
+
+public |org.xml.sax.ErrorHandler| getErrorHandler()
+
+Return the current error handler. 
+
+
+    Returns: The current error handler, or null if none was supplied. 
+*org.xml.sax.helpers.ParserAdapter.getFeature(String)*
+
+public boolean getFeature(java.lang.String name)
+  throws |org.xml.sax.SAXNotRecognizedException|
+         |org.xml.sax.SAXNotSupportedException|
+         
+Check a parser feature flag. 
+
+The only features recognized are namespaces and namespace-prefixes. 
+
+    name - The feature name, as a complete URI. 
+
+    Returns: The current feature value. 
+*org.xml.sax.helpers.ParserAdapter.getProperty(String)*
+
+public |java.lang.Object| getProperty(java.lang.String name)
+  throws |org.xml.sax.SAXNotRecognizedException|
+         |org.xml.sax.SAXNotSupportedException|
+         
+Get a parser property. 
+
+No properties are currently recognized. 
+
+    name - The property name. 
+
+    Returns: The property value. 
+*org.xml.sax.helpers.ParserAdapter.ignorableWhitespace(char[],int,int)*
+
+public void ignorableWhitespace(
+  char[] ch,
+  int start,
+  int length)
+  throws |org.xml.sax.SAXException|
+         
+Adapter implementation method; do not call. Adapt a SAX1 ignorable whitespace 
+event. 
+
+    ch - An array of characters. 
+    start - The starting position in the array. 
+    length - The number of characters to use. 
+
+*org.xml.sax.helpers.ParserAdapter.parse(InputSource)*
+
+public void parse(org.xml.sax.InputSource input)
+  throws |java.io.IOException|
+         |org.xml.sax.SAXException|
+         
+Parse an XML document. 
+
+    input - An input source for the document. 
+
+*org.xml.sax.helpers.ParserAdapter.parse(String)*
+
+public void parse(java.lang.String systemId)
+  throws |java.io.IOException|
+         |org.xml.sax.SAXException|
+         
+Parse an XML document. 
+
+    systemId - The absolute URL of the document. 
+
+*org.xml.sax.helpers.ParserAdapter.processingInstruction(String,String)*
+
+public void processingInstruction(
+  java.lang.String target,
+  java.lang.String data)
+  throws |org.xml.sax.SAXException|
+         
+Adapter implementation method; do not call. Adapt a SAX1 processing instruction 
+event. 
+
+    target - The processing instruction target. 
+    data - The remainder of the processing instruction 
+
+*org.xml.sax.helpers.ParserAdapter.setContentHandler(ContentHandler)*
+
+public void setContentHandler(org.xml.sax.ContentHandler handler)
+
+Set the content handler. 
+
+    handler - the new content handler 
+
+*org.xml.sax.helpers.ParserAdapter.setDocumentLocator(Locator)*
+
+public void setDocumentLocator(org.xml.sax.Locator locator)
+
+Adapter implementation method; do not call. Adapt a SAX1 document locator 
+event. 
+
+    locator - A document locator. 
+
+*org.xml.sax.helpers.ParserAdapter.setDTDHandler(DTDHandler)*
+
+public void setDTDHandler(org.xml.sax.DTDHandler handler)
+
+Set the DTD handler. 
+
+    handler - the new DTD handler 
+
+*org.xml.sax.helpers.ParserAdapter.setEntityResolver(EntityResolver)*
+
+public void setEntityResolver(org.xml.sax.EntityResolver resolver)
+
+Set the entity resolver. 
+
+    resolver - The new entity resolver. 
+
+*org.xml.sax.helpers.ParserAdapter.setErrorHandler(ErrorHandler)*
+
+public void setErrorHandler(org.xml.sax.ErrorHandler handler)
+
+Set the error handler. 
+
+    handler - The new error handler. 
+
+*org.xml.sax.helpers.ParserAdapter.setFeature(String,boolean)*
+
+public void setFeature(
+  java.lang.String name,
+  boolean value)
+  throws |org.xml.sax.SAXNotRecognizedException|
+         |org.xml.sax.SAXNotSupportedException|
+         
+Set a feature flag for the parser. 
+
+The only features recognized are namespaces and namespace-prefixes. 
+
+    name - The feature name, as a complete URI. 
+    value - The requested feature value. 
+
+*org.xml.sax.helpers.ParserAdapter.setProperty(String,Object)*
+
+public void setProperty(
+  java.lang.String name,
+  java.lang.Object value)
+  throws |org.xml.sax.SAXNotRecognizedException|
+         |org.xml.sax.SAXNotSupportedException|
+         
+Set a parser property. 
+
+No properties are currently recognized. 
+
+    name - The property name. 
+    value - The property value. 
+
+*org.xml.sax.helpers.ParserAdapter.startDocument()*
+
+public void startDocument()
+  throws |org.xml.sax.SAXException|
+         
+Adapter implementation method; do not call. Adapt a SAX1 start document event. 
+
+
+*org.xml.sax.helpers.ParserAdapter.startElement(String,AttributeList)*
+
+public void startElement(
+  java.lang.String qName,
+  org.xml.sax.AttributeList qAtts)
+  throws |org.xml.sax.SAXException|
+         
+Adapter implementation method; do not call. Adapt a SAX1 startElement event. 
+
+If necessary, perform Namespace processing. 
+
+    qName - The qualified (prefixed) name. 
+    qAtts - The XML attribute list (with qnames). 
+
+

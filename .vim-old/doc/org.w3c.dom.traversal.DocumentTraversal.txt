@@ -1,0 +1,77 @@
+*org.w3c.dom.traversal.DocumentTraversal* *DocumentTraversal* DocumentTraversal 
+
+public interface interface DocumentTraversal
+
+
+|org.w3c.dom.traversal.DocumentTraversal_Description|
+|org.w3c.dom.traversal.DocumentTraversal_Fields|
+|org.w3c.dom.traversal.DocumentTraversal_Constructors|
+|org.w3c.dom.traversal.DocumentTraversal_Methods|
+
+================================================================================
+
+*org.w3c.dom.traversal.DocumentTraversal_Methods*
+|org.w3c.dom.traversal.DocumentTraversal.createNodeIterator(Node,int,NodeFilter,boolean)|
+|org.w3c.dom.traversal.DocumentTraversal.createTreeWalker(Node,int,NodeFilter,boolean)|
+
+*org.w3c.dom.traversal.DocumentTraversal_Description*
+
+DocumentTraversal contains methods that create NodeIterators and TreeWalkers to 
+traverse a node and its children in document order (depth first, pre-order 
+traversal, which is equivalent to the order in which the start tags occur in 
+the text representation of the document). In DOMs which support the Traversal 
+feature, DocumentTraversal will be implemented by the same objects that 
+implement the Document interface. See also the Document Object Model (DOM) 
+Level 2 Traversal and Range Specification. 
+
+
+*org.w3c.dom.traversal.DocumentTraversal.createNodeIterator(Node,int,NodeFilter,boolean)*
+
+public |org.w3c.dom.traversal.NodeIterator| createNodeIterator(
+  org.w3c.dom.Node root,
+  int whatToShow,
+  org.w3c.dom.traversal.NodeFilter filter,
+  boolean entityReferenceExpansion)
+  throws |org.w3c.dom.DOMException|
+         
+Create a new NodeIterator over the subtree rooted at the specified node. 
+
+    root - The node which will be iterated together with its children. The NodeIterator is 
+       initially positioned just before this node. The whatToShow flags and the 
+       filter, if any, are not considered when setting this position. The root 
+       must not be null. 
+    whatToShow - This flag specifies which node types may appear in the logical view of the tree 
+       presented by the NodeIterator. See the description of NodeFilter for the 
+       set of possible SHOW_ values.These flags can be combined using OR. 
+    filter - The NodeFilter to be used with this NodeIterator, or null to indicate no 
+       filter. 
+    entityReferenceExpansion - The value of this flag determines whether entity reference nodes are expanded. 
+
+    Returns: The newly created NodeIterator. 
+*org.w3c.dom.traversal.DocumentTraversal.createTreeWalker(Node,int,NodeFilter,boolean)*
+
+public |org.w3c.dom.traversal.TreeWalker| createTreeWalker(
+  org.w3c.dom.Node root,
+  int whatToShow,
+  org.w3c.dom.traversal.NodeFilter filter,
+  boolean entityReferenceExpansion)
+  throws |org.w3c.dom.DOMException|
+         
+Create a new TreeWalker over the subtree rooted at the specified node. 
+
+    root - The node which will serve as the root for the TreeWalker. The whatToShow flags 
+       and the NodeFilter are not considered when setting this value; any node 
+       type will be accepted as the root. The currentNode of the TreeWalker is 
+       initialized to this node, whether or not it is visible. The root 
+       functions as a stopping point for traversal methods that look upward in 
+       the document structure, such as parentNode and nextNode. The root must 
+       not be null. 
+    whatToShow - This flag specifies which node types may appear in the logical view of the tree 
+       presented by the TreeWalker. See the description of NodeFilter for the 
+       set of possible SHOW_ values.These flags can be combined using OR. 
+    filter - The NodeFilter to be used with this TreeWalker, or null to indicate no filter. 
+    entityReferenceExpansion - If this flag is false, the contents of EntityReference nodes are not presented 
+       in the logical view. 
+
+    Returns: The newly created TreeWalker. 
+

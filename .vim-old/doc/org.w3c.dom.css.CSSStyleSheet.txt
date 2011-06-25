@@ -1,0 +1,74 @@
+*org.w3c.dom.css.CSSStyleSheet* *CSSStyleSheet* The CSSStyleSheet interface is a
+
+public interface interface CSSStyleSheet
+
+  implements |org.w3c.dom.stylesheets.StyleSheet|
+
+|org.w3c.dom.css.CSSStyleSheet_Description|
+|org.w3c.dom.css.CSSStyleSheet_Fields|
+|org.w3c.dom.css.CSSStyleSheet_Constructors|
+|org.w3c.dom.css.CSSStyleSheet_Methods|
+
+================================================================================
+
+*org.w3c.dom.css.CSSStyleSheet_Methods*
+|org.w3c.dom.css.CSSStyleSheet.deleteRule(int)|Used to delete a rule from the s
+|org.w3c.dom.css.CSSStyleSheet.getCssRules()|The list of all CSS rules containe
+|org.w3c.dom.css.CSSStyleSheet.getOwnerRule()|If this style sheet comes from an
+|org.w3c.dom.css.CSSStyleSheet.insertRule(String,int)|Used to insert a new rule
+
+*org.w3c.dom.css.CSSStyleSheet_Description*
+
+The CSSStyleSheet interface is a concrete interface used to represent a CSS 
+style sheet i.e., a style sheet whose content type is "text/css". See also the 
+Document Object Model (DOM) Level 2 Style Specification. 
+
+
+*org.w3c.dom.css.CSSStyleSheet.deleteRule(int)*
+
+public void deleteRule(int index)
+  throws |org.w3c.dom.DOMException|
+         
+Used to delete a rule from the style sheet. 
+
+    index - The index within the style sheet's rule list of the rule to remove. 
+
+*org.w3c.dom.css.CSSStyleSheet.getCssRules()*
+
+public |org.w3c.dom.css.CSSRuleList| getCssRules()
+
+The list of all CSS rules contained within the style sheet. This includes both 
+rule sets and at-rules. 
+
+
+*org.w3c.dom.css.CSSStyleSheet.getOwnerRule()*
+
+public |org.w3c.dom.css.CSSRule| getOwnerRule()
+
+If this style sheet comes from an @import rule, the ownerRule attribute will 
+contain the CSSImportRule. In that case, the ownerNode attribute in the 
+StyleSheet interface will be null. If the style sheet comes from an element or 
+a processing instruction, the ownerRule attribute will be null and the 
+ownerNode attribute will contain the Node. 
+
+
+*org.w3c.dom.css.CSSStyleSheet.insertRule(String,int)*
+
+public int insertRule(
+  java.lang.String rule,
+  int index)
+  throws |org.w3c.dom.DOMException|
+         
+Used to insert a new rule into the style sheet. The new rule now becomes part 
+of the cascade. 
+
+    rule - The parsable text representing the rule. For rule sets this contains both the 
+       selector and the style declaration. For at-rules, this specifies both 
+       the at-identifier and the rule content. 
+    index - The index within the style sheet's rule list of the rule before which to insert 
+       the specified rule. If the specified index is equal to the length of the 
+       style sheet's rule collection, the rule will be added to the end of the 
+       style sheet. 
+
+    Returns: The index within the style sheet's rule collection of the newly inserted rule. 
+

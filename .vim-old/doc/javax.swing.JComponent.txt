@@ -1,0 +1,1824 @@
+*javax.swing.JComponent* *JComponent* The base class for all Swing components except top-level containers.
+
+public abstract class JComponent
+  extends    |java.awt.Container|
+  implements |java.io.Serializable|
+
+|javax.swing.JComponent_Description|
+|javax.swing.JComponent_Fields|
+|javax.swing.JComponent_Constructors|
+|javax.swing.JComponent_Methods|
+
+====================================================================================================================================================================================
+
+*javax.swing.JComponent_Fields*
+|javax.accessibility.AccessibleContext_javax.swing.JComponent.accessibleContext|
+|javax.swing.event.EventListenerList_javax.swing.JComponent.listenerList|
+|java.lang.String_javax.swing.JComponent.TOOL_TIP_TEXT_KEY|
+|javax.swing.plaf.ComponentUI_javax.swing.JComponent.ui|
+|int_javax.swing.JComponent.UNDEFINED_CONDITION|
+|int_javax.swing.JComponent.WHEN_ANCESTOR_OF_FOCUSED_COMPONENT|
+|int_javax.swing.JComponent.WHEN_FOCUSED|
+|int_javax.swing.JComponent.WHEN_IN_FOCUSED_WINDOW|
+
+*javax.swing.JComponent_Constructors*
+|javax.swing.JComponent()|Default JComponent constructor.
+
+*javax.swing.JComponent_Methods*
+|javax.swing.JComponent.addAncestorListener(AncestorListener)|Registers listener so that it will receive  AncestorEvents when it or any of its ancestors  move or are made visible 
+|javax.swing.JComponent.addNotify()|Notifies this component that it now has a parent component.
+|javax.swing.JComponent.addVetoableChangeListener(VetoableChangeListener)|Adds a VetoableChangeListener to the listener list.
+|javax.swing.JComponent.computeVisibleRect(Rectangle)|Returns the Component's "visible rect rectangle" -  the  intersection of the visible rectangles for this component  and all o
+|javax.swing.JComponent.contains(int,int)|Gives the UI delegate an opportunity to define the precise  shape of this component for the sake of mouse processing.
+|javax.swing.JComponent.createToolTip()|Returns the instance of JToolTip that should be used  to display the tooltip.
+|javax.swing.JComponent.disable()|
+|javax.swing.JComponent.enable()|
+|javax.swing.JComponent.firePropertyChange(String,boolean,boolean)|Support for reporting bound property changes for boolean properties.
+|javax.swing.JComponent.firePropertyChange(String,char,char)|
+|javax.swing.JComponent.firePropertyChange(String,int,int)|Support for reporting bound property changes for integer properties.
+|javax.swing.JComponent.fireVetoableChange(String,Object,Object)|Supports reporting constrained property changes.
+|javax.swing.JComponent.getAccessibleContext()|Returns the AccessibleContext associated with this  JComponent.
+|javax.swing.JComponent.getActionForKeyStroke(KeyStroke)|Returns the object that will perform the action registered for a  given keystroke.
+|javax.swing.JComponent.getActionMap()|Returns the ActionMap used to determine what  Action to fire for particular KeyStroke  binding.
+|javax.swing.JComponent.getAlignmentX()|Overrides Container.getAlignmentX to return  the vertical alignment.
+|javax.swing.JComponent.getAlignmentY()|Overrides Container.getAlignmentY to return  the horizontal alignment.
+|javax.swing.JComponent.getAncestorListeners()|Returns an array of all the ancestor listeners   registered on this component.
+|javax.swing.JComponent.getAutoscrolls()|Gets the autoscrolls property.
+|javax.swing.JComponent.getBorder()|Returns the border of this component or null if no   border is currently set.
+|javax.swing.JComponent.getBounds(Rectangle)|Stores the bounds of this component into "return value"  rv and returns rv.
+|javax.swing.JComponent.getClientProperty(Object)|Returns the value of the property with the specified key.
+|javax.swing.JComponent.getComponentGraphics(Graphics)|Returns the graphics object used to paint this component.
+|javax.swing.JComponent.getComponentPopupMenu()|Returns JPopupMenu that assigned for this component.
+|javax.swing.JComponent.getConditionForKeyStroke(KeyStroke)|Returns the condition that determines whether a registered action  occurs in response to the specified keystroke.
+|javax.swing.JComponent.getDebugGraphicsOptions()|Returns the state of graphics debugging.
+|javax.swing.JComponent.getDefaultLocale()|Returns the default locale used to initialize each JComponent's   locale property upon creation.
+|javax.swing.JComponent.getFontMetrics(Font)|Gets the FontMetrics for the specified Font.
+|javax.swing.JComponent.getGraphics()|Returns this component's graphics context, which lets you draw  on a component.
+|javax.swing.JComponent.getHeight()|Returns the current height of this component.
+|javax.swing.JComponent.getInheritsPopupMenu()|Returns true if the JPopupMenu should be inherited from the parent.
+|javax.swing.JComponent.getInputMap()|Returns the InputMap that is used when the  component has focus.
+|javax.swing.JComponent.getInputMap(int)|Returns the InputMap that is used during  condition.
+|javax.swing.JComponent.getInputVerifier()|Returns the input verifier for this component.
+|javax.swing.JComponent.getInsets()|If a border has been set on this component, returns the  border's insets; otherwise calls super.getInsets.
+|javax.swing.JComponent.getInsets(Insets)|Returns an Insets object containing this component's inset  values.
+|javax.swing.JComponent.getListeners(Class<T>)|Returns an array of all the objects currently registered  as FooListeners  upon this JComponent.
+|javax.swing.JComponent.getLocation(Point)|Stores the x,y origin of this component into "return value"  rv and returns rv.
+|javax.swing.JComponent.getMaximumSize()|If the maximum size has been set to a non-null value  just returns it.
+|javax.swing.JComponent.getMinimumSize()|If the minimum size has been set to a non-null value  just returns it.
+|javax.swing.JComponent.getNextFocusableComponent()|In release 1.4, the focus subsystem was rearchitected.
+|javax.swing.JComponent.getPopupLocation(MouseEvent)|Returns the preferred location to display the popup menu in this  component's coordinate system.
+|javax.swing.JComponent.getPreferredSize()|If the preferredSize has been set to a  non-null value just returns it.
+|javax.swing.JComponent.getRegisteredKeyStrokes()|Returns the KeyStrokes that will initiate  registered actions.
+|javax.swing.JComponent.getRootPane()|Returns the JRootPane ancestor for this component.
+|javax.swing.JComponent.getSize(Dimension)|Stores the width/height of this component into "return value"  rv and returns rv.
+|javax.swing.JComponent.getToolTipLocation(MouseEvent)|Returns the tooltip location in this component's coordinate system.
+|javax.swing.JComponent.getToolTipText()|Returns the tooltip string that has been set with  setToolTipText.
+|javax.swing.JComponent.getToolTipText(MouseEvent)|Returns the string to be used as the tooltip for event.
+|javax.swing.JComponent.getTopLevelAncestor()|Returns the top-level ancestor of this component (either the  containing Window or Applet),  or null if this component has not  been 
+|javax.swing.JComponent.getTransferHandler()|Gets the transferHandler property.
+|javax.swing.JComponent.getUIClassID()|Returns the UIDefaults key used to  look up the name of the swing.plaf.ComponentUI  class that defines the look and feel  for this component
+|javax.swing.JComponent.getVerifyInputWhenFocusTarget()|Returns the value that indicates whether the input verifier for the   current focus owner will be called before this compon
+|javax.swing.JComponent.getVetoableChangeListeners()|Returns an array of all the vetoable change listeners   registered on this component.
+|javax.swing.JComponent.getVisibleRect()|Returns the Component's "visible rectangle" -  the  intersection of this component's visible rectangle,  new Rectangle(0, 0, getWidth(), g
+|javax.swing.JComponent.getWidth()|Returns the current width of this component.
+|javax.swing.JComponent.getX()|Returns the current x coordinate of the component's origin.
+|javax.swing.JComponent.getY()|Returns the current y coordinate of the component's origin.
+|javax.swing.JComponent.grabFocus()|Requests that this Component get the input focus, and that this  Component's top-level ancestor become the focused Window.
+|javax.swing.JComponent.isDoubleBuffered()|Returns whether this component should use a buffer to paint.
+|javax.swing.JComponent.isLightweightComponent(Component)|Returns true if this component is lightweight, that is, if it doesn't  have a native window system peer.
+|javax.swing.JComponent.isManagingFocus()|In release 1.4, the focus subsystem was rearchitected.
+|javax.swing.JComponent.isOpaque()|Returns true if this component is completely opaque.
+|javax.swing.JComponent.isOptimizedDrawingEnabled()|Returns true if this component tiles its children -- that is, if  it can guarantee that the children will not overlap.
+|javax.swing.JComponent.isPaintingTile()|Returns true if the component is currently painting a tile.
+|javax.swing.JComponent.isRequestFocusEnabled()|Returns true if this JComponent should  get focus; otherwise returns false.
+|javax.swing.JComponent.isValidateRoot()|If this method returns true, revalidate calls by  descendants of this component will cause the entire tree  beginning with this root to be
+|javax.swing.JComponent.paint(Graphics)|Invoked by Swing to draw components.
+|javax.swing.JComponent.paintBorder(Graphics)|Paints the component's border.
+|javax.swing.JComponent.paintChildren(Graphics)|Paints this component's children.
+|javax.swing.JComponent.paintComponent(Graphics)|Calls the UI delegate's paint method, if the UI delegate  is non-null.
+|javax.swing.JComponent.paintImmediately(int,int,int,int)|Paints the specified region in this component and all of its  descendants that overlap the region, immediately.
+|javax.swing.JComponent.paintImmediately(Rectangle)|Paints the specified region now.
+|javax.swing.JComponent.paramString()|Returns a string representation of this JComponent.
+|javax.swing.JComponent.print(Graphics)|Invoke this method to print the component.
+|javax.swing.JComponent.printAll(Graphics)|Invoke this method to print the component.
+|javax.swing.JComponent.printBorder(Graphics)|Prints the component's border.
+|javax.swing.JComponent.printChildren(Graphics)|Prints this component's children.
+|javax.swing.JComponent.printComponent(Graphics)|This is invoked during a printing operation.
+|javax.swing.JComponent.processComponentKeyEvent(KeyEvent)|Processes any key events that the component itself  recognizes.
+|javax.swing.JComponent.processKeyBinding(KeyStroke,KeyEvent,int,boolean)|Invoked to process the key bindings for ks as the result  of the KeyEvent e.
+|javax.swing.JComponent.processKeyEvent(KeyEvent)|Overrides processKeyEvent to process events.
+|javax.swing.JComponent.processMouseEvent(MouseEvent)|Processes mouse events occurring on this component by  dispatching them to any registered  MouseListener objects, refer tojav
+|javax.swing.JComponent.processMouseMotionEvent(MouseEvent)|Processes mouse motion events, such as MouseEvent.MOUSE_DRAGGED.
+|javax.swing.JComponent.putClientProperty(Object,Object)|Adds an arbitrary key/value "client property" to this component.
+|javax.swing.JComponent.registerKeyboardAction(ActionListener,KeyStroke,int)|This method is now obsolete, please use a combination of  getActionMap() and getInputMap() for  simili
+|javax.swing.JComponent.registerKeyboardAction(ActionListener,String,KeyStroke,int)|This method is now obsolete, please use a combination of  getActionMap() and getInputMap() for 
+|javax.swing.JComponent.removeAncestorListener(AncestorListener)|Unregisters listener so that it will no longer receive  AncestorEvents.
+|javax.swing.JComponent.removeNotify()|Notifies this component that it no longer has a parent component.
+|javax.swing.JComponent.removeVetoableChangeListener(VetoableChangeListener)|Removes a VetoableChangeListener from the listener list.
+|javax.swing.JComponent.repaint(long,int,int,int,int)|Adds the specified region to the dirty region list if the component  is showing.
+|javax.swing.JComponent.repaint(Rectangle)|Adds the specified region to the dirty region list if the component  is showing.
+|javax.swing.JComponent.requestDefaultFocus()|In release 1.4, the focus subsystem was rearchitected.
+|javax.swing.JComponent.requestFocus()|Requests that this Component gets the input focus.
+|javax.swing.JComponent.requestFocus(boolean)|Requests that this Component gets the input focus.
+|javax.swing.JComponent.requestFocusInWindow()|Requests that this Component gets the input focus.
+|javax.swing.JComponent.requestFocusInWindow(boolean)|Requests that this Component gets the input focus.
+|javax.swing.JComponent.resetKeyboardActions()|Unregisters all the bindings in the first tier InputMaps  and ActionMap.
+|javax.swing.JComponent.reshape(int,int,int,int)|
+|javax.swing.JComponent.revalidate()|Supports deferred automatic layout.
+|javax.swing.JComponent.scrollRectToVisible(Rectangle)|Forwards the scrollRectToVisible() message to the  JComponent's parent.
+|javax.swing.JComponent.setActionMap(ActionMap)|Sets the ActionMap to am.
+|javax.swing.JComponent.setAlignmentX(float)|Sets the the vertical alignment.
+|javax.swing.JComponent.setAlignmentY(float)|Sets the the horizontal alignment.
+|javax.swing.JComponent.setAutoscrolls(boolean)|Sets the autoscrolls property.
+|javax.swing.JComponent.setBackground(Color)|Sets the background color of this component.
+|javax.swing.JComponent.setBorder(Border)|Sets the border of this component.
+|javax.swing.JComponent.setComponentPopupMenu(JPopupMenu)|Sets the JPopupMenu for this JComponent.
+|javax.swing.JComponent.setDebugGraphicsOptions(int)|Enables or disables diagnostic information about every graphics  operation performed within the component or one of its childr
+|javax.swing.JComponent.setDefaultLocale(Locale)|Sets the default locale used to initialize each JComponent's locale  property upon creation.
+|javax.swing.JComponent.setDoubleBuffered(boolean)|Sets whether the this component should use a buffer to paint.
+|javax.swing.JComponent.setEnabled(boolean)|Sets whether or not this component is enabled.
+|javax.swing.JComponent.setFocusTraversalKeys(int,Set<?extendsAWTKeyStroke>)|Sets the focus traversal keys for a given traversal operation for this  Component.
+|javax.swing.JComponent.setFont(Font)|Sets the font for this component.
+|javax.swing.JComponent.setForeground(Color)|Sets the foreground color of this component.
+|javax.swing.JComponent.setInheritsPopupMenu(boolean)|Sets whether or not getComponentPopupMenu should delegate  to the parent if this component does not have a JPopupMenu  assign
+|javax.swing.JComponent.setInputMap(int,InputMap)|Sets the InputMap to use under the condition  condition to  map.
+|javax.swing.JComponent.setInputVerifier(InputVerifier)|Sets the input verifier for this component.
+|javax.swing.JComponent.setMaximumSize(Dimension)|Sets the maximum size of this component to a constant  value.
+|javax.swing.JComponent.setMinimumSize(Dimension)|Sets the minimum size of this component to a constant  value.
+|javax.swing.JComponent.setNextFocusableComponent(Component)|In release 1.4, the focus subsystem was rearchitected.
+|javax.swing.JComponent.setOpaque(boolean)|If true the component paints every pixel within its bounds.
+|javax.swing.JComponent.setPreferredSize(Dimension)|Sets the preferred size of this component.
+|javax.swing.JComponent.setRequestFocusEnabled(boolean)|Provides a hint as to whether or not this JComponent  should get focus.
+|javax.swing.JComponent.setToolTipText(String)|Registers the text to display in a tool tip.
+|javax.swing.JComponent.setTransferHandler(TransferHandler)|Sets the transferHandler property,  which is null if the component does  not support data transfer operations.
+|javax.swing.JComponent.setUI(ComponentUI)|Sets the look and feel delegate for this component.
+|javax.swing.JComponent.setVerifyInputWhenFocusTarget(boolean)|Sets the value to indicate whether input verifier for the  current focus owner will be called before this component 
+|javax.swing.JComponent.setVisible(boolean)|Makes the component visible or invisible.
+|javax.swing.JComponent.unregisterKeyboardAction(KeyStroke)|This method is now obsolete.
+|javax.swing.JComponent.update(Graphics)|Calls paint.
+|javax.swing.JComponent.updateUI()|Resets the UI property to a value from the current look and feel.
+
+*javax.swing.JComponent_Description*
+
+The base class for all Swing components except top-level containers. To use a component that inherits from JComponent, you must place the component in a containment hierarchy 
+whose root is a top-level Swing container. Top-level Swing containers -- such as JFrame, JDialog, and JApplet -- are specialized components that provide a place for other Swing 
+components to paint themselves. For an explanation of containment hierarchies, see Swing Components and the Containment Hierarchy, a section in The Java Tutorial. 
+
+The JComponent class provides: 
+
+The base class for both standard and custom components that use the Swing architecture. A "pluggable look and feel" (Lthat can be specified by the programmer or (optionally) 
+selected by the user at runtime. The look and feel for each component is provided by a UI delegate -- an object that descends from (|javax.swing.plaf.ComponentUI|) . See How to 
+Set the Look and Feel in The Java Tutorial for more information. Comprehensive keystroke handling. See the document Keyboard Bindings in Swing, an article in The Swing Connection, 
+for more information. Support for tool tips -- short descriptions that pop up when the cursor lingers over a component. See How to Use Tool Tips in The Java Tutorial for more 
+information. Support for accessibility. JComponent contains all of the methods in the Accessible interface, but it doesn't actually implement the interface. That is the 
+responsibility of the individual classes that extend JComponent. Support for component-specific properties. With the (|javax.swing.JComponent|) and (|javax.swing.JComponent|) 
+methods, you can associate name-object pairs with any object that descends from JComponent. An infrastructure for painting that includes double buffering and support for borders. 
+For more information see Painting and How to Use Borders, both of which are sections in The Java Tutorial. 
+
+For more information on these subjects, see the Swing package description and The Java Tutorial section The JComponent Class. 
+
+JComponent and its subclasses document default values for certain properties. For example, JTable documents the default row height as 16. Each JComponent subclass that has a 
+ComponentUI will create the ComponentUI as part of its constructor. In order to provide a particular look and feel each ComponentUI may set properties back on the JComponent that 
+created it. For example, a custom look and feel may require JTables to have a row height of 24. The documented defaults are the value of a property BEFORE the ComponentUI has been 
+installed. If you need a specific value for a particular property you should explicitly set it. 
+
+In release 1.4, the focus subsystem was rearchitected. For more information, see 
+
+How to Use the Focus Subsystem, a section in The Java Tutorial. 
+
+Warning: Serialized objects of this class will not be compatible with future Swing releases. The current serialization support is appropriate for short term storage or RMI between 
+applications running the same version of Swing. As of 1.4, support for long term storage of all JavaBeansTM has been added to the java.beans package. Please see 
+(|java.beans.XMLEncoder|) . 
+
+
+
+*javax.accessibility.AccessibleContext_javax.swing.JComponent.accessibleContext*
+
+The AccessibleContext associated with this JComponent. 
+
+
+*javax.swing.event.EventListenerList_javax.swing.JComponent.listenerList*
+
+A list of event listeners for this component. 
+
+
+*java.lang.String_javax.swing.JComponent.TOOL_TIP_TEXT_KEY*
+
+The comment to display when the cursor is over the component, also known as a "value tip", "flyover help", or "flyover label". 
+
+
+*javax.swing.plaf.ComponentUI_javax.swing.JComponent.ui*
+
+The look and feel delegate for this component. 
+
+
+*int_javax.swing.JComponent.UNDEFINED_CONDITION*
+
+Constant used by some of the APIs to mean that no condition is defined. 
+
+
+*int_javax.swing.JComponent.WHEN_ANCESTOR_OF_FOCUSED_COMPONENT*
+
+Constant used for registerKeyboardAction that means that the command should be invoked when the receiving component is an ancestor of the focused component or is itself the 
+focused component. 
+
+
+*int_javax.swing.JComponent.WHEN_FOCUSED*
+
+Constant used for registerKeyboardAction that means that the command should be invoked when the component has the focus. 
+
+
+*int_javax.swing.JComponent.WHEN_IN_FOCUSED_WINDOW*
+
+Constant used for registerKeyboardAction that means that the command should be invoked when the receiving component is in the window that has the focus or is itself the focused 
+component. 
+
+
+
+*javax.swing.JComponent()*
+
+public JComponent()
+
+Default JComponent constructor. This constructor does very little initialization beyond calling the Container constructor. For example, the initial layout manager is null. It 
+does, however, set the component's locale property to the value returned by JComponent.getDefaultLocale. 
+
+
+*javax.swing.JComponent.addAncestorListener(AncestorListener)*
+
+public void addAncestorListener(javax.swing.event.AncestorListener listener)
+
+Registers listener so that it will receive AncestorEvents when it or any of its ancestors move or are made visible or invisible. Events are also sent when the component or its 
+ancestors are added or removed from the containment hierarchy. 
+
+
+    listener - the AncestorListener to register 
+
+*javax.swing.JComponent.addNotify()*
+
+public void addNotify()
+
+Notifies this component that it now has a parent component. When this method is invoked, the chain of parent components is set up with KeyboardAction event listeners. 
+
+
+
+*javax.swing.JComponent.addVetoableChangeListener(VetoableChangeListener)*
+
+public synchronized void addVetoableChangeListener(java.beans.VetoableChangeListener listener)
+
+Adds a VetoableChangeListener to the listener list. The listener is registered for all properties. 
+
+
+    listener - the VetoableChangeListener to be added 
+
+*javax.swing.JComponent.computeVisibleRect(Rectangle)*
+
+public void computeVisibleRect(java.awt.Rectangle visibleRect)
+
+Returns the Component's "visible rect rectangle" - the intersection of the visible rectangles for this component and all of its ancestors. The return value is stored in 
+visibleRect. 
+
+
+    visibleRect - a Rectangle computed as the intersection of all visible rectangles for this component and all of its ancestors -- this is the return value for this method 
+
+*javax.swing.JComponent.contains(int,int)*
+
+public boolean contains(
+  int x,
+  int y)
+
+Gives the UI delegate an opportunity to define the precise shape of this component for the sake of mouse processing. 
+
+
+
+    Returns: true if this component logically contains x,y 
+
+*javax.swing.JComponent.createToolTip()*
+
+public |javax.swing.JToolTip| createToolTip()
+
+Returns the instance of JToolTip that should be used to display the tooltip. Components typically would not override this method, but it can be used to cause different tooltips to 
+be displayed differently. 
+
+
+
+    Returns: the JToolTip used to display this toolTip 
+
+*javax.swing.JComponent.disable()*
+
+public void disable()
+
+
+
+    Deprecated: As of JDK version 1.1,
+ replaced by <code>java.awt.Component.setEnabled(boolean)</code>.
+
+
+*javax.swing.JComponent.enable()*
+
+public void enable()
+
+
+
+    Deprecated: As of JDK version 1.1,
+ replaced by <code>java.awt.Component.setEnabled(boolean)</code>.
+
+
+*javax.swing.JComponent.firePropertyChange(String,boolean,boolean)*
+
+public void firePropertyChange(
+  java.lang.String propertyName,
+  boolean oldValue,
+  boolean newValue)
+
+Support for reporting bound property changes for boolean properties. This method can be called when a bound property has changed and it will send the appropriate 
+PropertyChangeEvent to any registered PropertyChangeListeners. 
+
+
+    propertyName - the property whose value has changed 
+    oldValue - the property's previous value 
+    newValue - the property's new value 
+
+*javax.swing.JComponent.firePropertyChange(String,char,char)*
+
+public void firePropertyChange(
+  java.lang.String propertyName,
+  char oldValue,
+  char newValue)
+
+
+
+
+
+*javax.swing.JComponent.firePropertyChange(String,int,int)*
+
+public void firePropertyChange(
+  java.lang.String propertyName,
+  int oldValue,
+  int newValue)
+
+Support for reporting bound property changes for integer properties. This method can be called when a bound property has changed and it will send the appropriate 
+PropertyChangeEvent to any registered PropertyChangeListeners. 
+
+
+    propertyName - the property whose value has changed 
+    oldValue - the property's previous value 
+    newValue - the property's new value 
+
+*javax.swing.JComponent.fireVetoableChange(String,Object,Object)*
+
+protected void fireVetoableChange(
+  java.lang.String propertyName,
+  java.lang.Object oldValue,
+  java.lang.Object newValue)
+  throws |java.beans.PropertyVetoException|
+         
+Supports reporting constrained property changes. This method can be called when a constrained property has changed and it will send the appropriate PropertyChangeEvent to any 
+registered VetoableChangeListeners. 
+
+
+    propertyName - the name of the property that was listened on 
+    oldValue - the old value of the property 
+    newValue - the new value of the property 
+
+*javax.swing.JComponent.getAccessibleContext()*
+
+public |javax.accessibility.AccessibleContext| getAccessibleContext()
+
+Returns the AccessibleContext associated with this JComponent. The method implemented by this base class returns null. Classes that extend JComponent should implement this method 
+to return the AccessibleContext associated with the subclass. 
+
+
+
+    Returns: the AccessibleContext of this JComponent 
+
+*javax.swing.JComponent.getActionForKeyStroke(KeyStroke)*
+
+public |java.awt.event.ActionListener| getActionForKeyStroke(javax.swing.KeyStroke aKeyStroke)
+
+Returns the object that will perform the action registered for a given keystroke. 
+
+
+
+    Returns: the ActionListener object invoked when the keystroke occurs 
+
+*javax.swing.JComponent.getActionMap()*
+
+public final |javax.swing.ActionMap| getActionMap()
+
+Returns the ActionMap used to determine what Action to fire for particular KeyStroke binding. The returned ActionMap, unless otherwise set, will have the ActionMap from the UI set 
+as the parent. 
+
+
+
+    Returns: the ActionMap containing the key/action bindings 
+
+*javax.swing.JComponent.getAlignmentX()*
+
+public float getAlignmentX()
+
+Overrides Container.getAlignmentX to return the vertical alignment. 
+
+
+
+    Returns: the value of the alignmentX property 
+
+*javax.swing.JComponent.getAlignmentY()*
+
+public float getAlignmentY()
+
+Overrides Container.getAlignmentY to return the horizontal alignment. 
+
+
+
+    Returns: the value of the alignmentY property 
+
+*javax.swing.JComponent.getAncestorListeners()*
+
+public |javax.swing.event.AncestorListener|[] getAncestorListeners()
+
+Returns an array of all the ancestor listeners registered on this component. 
+
+
+
+    Returns: all of the component's AncestorListeners or an empty array if no ancestor listeners are currently registered 
+
+*javax.swing.JComponent.getAutoscrolls()*
+
+public boolean getAutoscrolls()
+
+Gets the autoscrolls property. 
+
+
+
+    Returns: the value of the autoscrolls property 
+
+*javax.swing.JComponent.getBorder()*
+
+public |javax.swing.border.Border| getBorder()
+
+Returns the border of this component or null if no border is currently set. 
+
+
+
+    Returns: the border object for this component 
+
+*javax.swing.JComponent.getBounds(Rectangle)*
+
+public |java.awt.Rectangle| getBounds(java.awt.Rectangle rv)
+
+Stores the bounds of this component into "return value" rv and returns rv. If rv is null a new Rectangle is allocated. This version of getBounds is useful if the caller wants to 
+avoid allocating a new Rectangle object on the heap. 
+
+
+    rv - the return value, modified to the component's bounds 
+
+    Returns: rv; if rv is null return a newly created Rectangle with this component's bounds 
+
+*javax.swing.JComponent.getClientProperty(Object)*
+
+public final |java.lang.Object| getClientProperty(java.lang.Object key)
+
+Returns the value of the property with the specified key. Only properties added with putClientProperty will return a non-null value. 
+
+
+    key - the being queried 
+
+    Returns: the value of this property or null 
+
+*javax.swing.JComponent.getComponentGraphics(Graphics)*
+
+protected |java.awt.Graphics| getComponentGraphics(java.awt.Graphics g)
+
+Returns the graphics object used to paint this component. If DebugGraphics is turned on we create a new DebugGraphics object if necessary. Otherwise we just configure the 
+specified graphics object's foreground and font. 
+
+
+    g - the original Graphics object 
+
+    Returns: a Graphics object configured for this component 
+
+*javax.swing.JComponent.getComponentPopupMenu()*
+
+public |javax.swing.JPopupMenu| getComponentPopupMenu()
+
+Returns JPopupMenu that assigned for this component. If this component does not have a JPopupMenu assigned to it and getInheritsPopupMenu is true, this will return 
+getParent().getComponentPopupMenu() (assuming the parent is valid.) 
+
+
+
+    Returns: JPopupMenu assigned for this component or null if no popup assigned 
+
+*javax.swing.JComponent.getConditionForKeyStroke(KeyStroke)*
+
+public int getConditionForKeyStroke(javax.swing.KeyStroke aKeyStroke)
+
+Returns the condition that determines whether a registered action occurs in response to the specified keystroke. 
+
+For Java 2 platform v1.3, a KeyStroke can be associated with more than one condition. For example, 'a' could be bound for the two conditions WHEN_FOCUSED and 
+WHEN_IN_FOCUSED_WINDOW condition. 
+
+
+
+    Returns: the action-keystroke condition 
+
+*javax.swing.JComponent.getDebugGraphicsOptions()*
+
+public int getDebugGraphicsOptions()
+
+Returns the state of graphics debugging. 
+
+
+
+    Returns: a bitwise OR'd flag of zero or more of the following options: 
+
+DebugGraphics.LOG_OPTION - causes a text message to be printed. DebugGraphics.FLASH_OPTION - causes the drawing to flash several times. DebugGraphics.BUFFERED_OPTION - creates an 
+             ExternalWindow that displays the operations performed on the View's offscreen buffer. DebugGraphics.NONE_OPTION disables debugging. A value of 0 causes no changes to 
+             the debugging options. 
+
+*javax.swing.JComponent.getDefaultLocale()*
+
+public static |java.util.Locale| getDefaultLocale()
+
+Returns the default locale used to initialize each JComponent's locale property upon creation. 
+
+The default locale has "AppContext" scope so that applets (and potentially multiple lightweight applications running in a single VM) can have their own setting. An applet can 
+safely alter its default locale because it will have no affect on other applets (or the browser). 
+
+
+
+    Returns: the default Locale. 
+
+*javax.swing.JComponent.getFontMetrics(Font)*
+
+public |java.awt.FontMetrics| getFontMetrics(java.awt.Font font)
+
+Gets the FontMetrics for the specified Font. 
+
+
+    font - the font for which font metrics is to be obtained 
+
+    Returns: the font metrics for font 
+
+*javax.swing.JComponent.getGraphics()*
+
+public |java.awt.Graphics| getGraphics()
+
+Returns this component's graphics context, which lets you draw on a component. Use this method get a Graphics object and then invoke operations on that object to draw on the 
+component. 
+
+
+
+    Returns: this components graphics context 
+
+*javax.swing.JComponent.getHeight()*
+
+public int getHeight()
+
+Returns the current height of this component. This method is preferable to writing component.getBounds().height, or component.getSize().height because it doesn't cause any heap 
+allocations. 
+
+
+
+    Returns: the current height of this component 
+
+*javax.swing.JComponent.getInheritsPopupMenu()*
+
+public boolean getInheritsPopupMenu()
+
+Returns true if the JPopupMenu should be inherited from the parent. 
+
+
+
+*javax.swing.JComponent.getInputMap()*
+
+public final |javax.swing.InputMap| getInputMap()
+
+Returns the InputMap that is used when the component has focus. This is convenience method for getInputMap(WHEN_FOCUSED). 
+
+
+
+    Returns: the InputMap used when the component has focus 
+
+*javax.swing.JComponent.getInputMap(int)*
+
+public final |javax.swing.InputMap| getInputMap(int condition)
+
+Returns the InputMap that is used during condition. 
+
+
+    condition - one of WHEN_IN_FOCUSED_WINDOW, WHEN_FOCUSED, WHEN_ANCESTOR_OF_FOCUSED_COMPONENT 
+
+    Returns: the InputMap for the specified condition 
+
+*javax.swing.JComponent.getInputVerifier()*
+
+public |javax.swing.InputVerifier| getInputVerifier()
+
+Returns the input verifier for this component. 
+
+
+
+    Returns: the inputVerifier property 
+
+*javax.swing.JComponent.getInsets()*
+
+public |java.awt.Insets| getInsets()
+
+If a border has been set on this component, returns the border's insets; otherwise calls super.getInsets. 
+
+
+
+    Returns: the value of the insets property 
+
+*javax.swing.JComponent.getInsets(Insets)*
+
+public |java.awt.Insets| getInsets(java.awt.Insets insets)
+
+Returns an Insets object containing this component's inset values. The passed-in Insets object will be reused if possible. Calling methods cannot assume that the same object will 
+be returned, however. All existing values within this object are overwritten. If insets is null, this will allocate a new one. 
+
+
+    insets - the Insets object, which can be reused 
+
+    Returns: the Insets object 
+
+*javax.swing.JComponent.getListeners(Class<T>)*
+
+public |T|[] getListeners(java.lang.Class<T> listenerType)
+
+Returns an array of all the objects currently registered as FooListeners upon this JComponent. FooListeners are registered using the addFooListener method. 
+
+
+
+You can specify the listenerType argument with a class literal, such as FooListener.class. For example, you can query a JComponent c for its mouse listeners with the following 
+code: 
+
+MouseListener[] mls = (MouseListener[])(c.getListeners(MouseListener.class)); 
+
+If no such listeners exist, this method returns an empty array. 
+
+
+    listenerType - the type of listeners requested; this parameter should specify an interface that descends from java.util.EventListener 
+
+    Returns: an array of all objects registered as FooListeners on this component, or an empty array if no such listeners have been added 
+
+*javax.swing.JComponent.getLocation(Point)*
+
+public |java.awt.Point| getLocation(java.awt.Point rv)
+
+Stores the x,y origin of this component into "return value" rv and returns rv. If rv is null a new Point is allocated. This version of getLocation is useful if the caller wants to 
+avoid allocating a new Point object on the heap. 
+
+
+    rv - the return value, modified to the component's location 
+
+    Returns: 
+
+*javax.swing.JComponent.getMaximumSize()*
+
+public |java.awt.Dimension| getMaximumSize()
+
+If the maximum size has been set to a non-null value just returns it. If the UI delegate's getMaximumSize method returns a non-null value then return that; otherwise defer to the 
+component's layout manager. 
+
+
+
+    Returns: the value of the maximumSize property 
+
+*javax.swing.JComponent.getMinimumSize()*
+
+public |java.awt.Dimension| getMinimumSize()
+
+If the minimum size has been set to a non-null value just returns it. If the UI delegate's getMinimumSize method returns a non-null value then return that; otherwise defer to the 
+component's layout manager. 
+
+
+
+    Returns: the value of the minimumSize property 
+
+*javax.swing.JComponent.getNextFocusableComponent()*
+
+public |java.awt.Component| getNextFocusableComponent()
+
+In release 1.4, the focus subsystem was rearchitected. For more information, see 
+
+How to Use the Focus Subsystem, a section in The Java Tutorial. 
+
+Returns the Component set by a prior call to setNextFocusableComponent(Component) on this JComponent. 
+
+    Deprecated: As of 1.4, replaced by <code>FocusTraversalPolicy</code>.
+
+
+    Returns: the Component that will follow this JComponent in the focus traversal cycle, or null if none has been explicitly specified 
+
+*javax.swing.JComponent.getPopupLocation(MouseEvent)*
+
+public |java.awt.Point| getPopupLocation(java.awt.event.MouseEvent event)
+
+Returns the preferred location to display the popup menu in this component's coordinate system. It is up to the look and feel to honor this propery, some may choose to ignore it. 
+If null is truend the look and feel will choose a suitable location. 
+
+
+    event - the MouseEvent that triggered the popup to be shown, or null if popup was is not being shown as the result of a mouse event 
+
+    Returns: Locatino to display the JPopupMenu. 
+
+*javax.swing.JComponent.getPreferredSize()*
+
+public |java.awt.Dimension| getPreferredSize()
+
+If the preferredSize has been set to a non-null value just returns it. If the UI delegate's getPreferredSize method returns a non null value then return that; otherwise defer to 
+the component's layout manager. 
+
+
+
+    Returns: the value of the preferredSize property 
+
+*javax.swing.JComponent.getRegisteredKeyStrokes()*
+
+public |javax.swing.KeyStroke|[] getRegisteredKeyStrokes()
+
+Returns the KeyStrokes that will initiate registered actions. 
+
+
+
+    Returns: an array of KeyStroke objects 
+
+*javax.swing.JComponent.getRootPane()*
+
+public |javax.swing.JRootPane| getRootPane()
+
+Returns the JRootPane ancestor for this component. 
+
+
+
+    Returns: the JRootPane that contains this component, or null if no JRootPane is found 
+
+*javax.swing.JComponent.getSize(Dimension)*
+
+public |java.awt.Dimension| getSize(java.awt.Dimension rv)
+
+Stores the width/height of this component into "return value" rv and returns rv. If rv is null a new Dimension object is allocated. This version of getSize is useful if the caller 
+wants to avoid allocating a new Dimension object on the heap. 
+
+
+    rv - the return value, modified to the component's size 
+
+    Returns: 
+
+*javax.swing.JComponent.getToolTipLocation(MouseEvent)*
+
+public |java.awt.Point| getToolTipLocation(java.awt.event.MouseEvent event)
+
+Returns the tooltip location in this component's coordinate system. If null is returned, Swing will choose a location. The default implementation returns null. 
+
+
+    event - the MouseEvent that caused the ToolTipManager to show the tooltip 
+
+    Returns: always returns null 
+
+*javax.swing.JComponent.getToolTipText()*
+
+public |java.lang.String| getToolTipText()
+
+Returns the tooltip string that has been set with setToolTipText. 
+
+
+
+    Returns: the text of the tool tip 
+
+*javax.swing.JComponent.getToolTipText(MouseEvent)*
+
+public |java.lang.String| getToolTipText(java.awt.event.MouseEvent event)
+
+Returns the string to be used as the tooltip for event. By default this returns any string set using setToolTipText. If a component provides more extensive API to support 
+differing tooltips at different locations, this method should be overridden. 
+
+
+
+*javax.swing.JComponent.getTopLevelAncestor()*
+
+public |java.awt.Container| getTopLevelAncestor()
+
+Returns the top-level ancestor of this component (either the containing Window or Applet), or null if this component has not been added to any container. 
+
+
+
+    Returns: the top-level Container that this component is in, or null if not in any container 
+
+*javax.swing.JComponent.getTransferHandler()*
+
+public |javax.swing.TransferHandler| getTransferHandler()
+
+Gets the transferHandler property. 
+
+
+
+    Returns: the value of the transferHandler property 
+
+*javax.swing.JComponent.getUIClassID()*
+
+public |java.lang.String| getUIClassID()
+
+Returns the UIDefaults key used to look up the name of the swing.plaf.ComponentUI class that defines the look and feel for this component. Most applications will never need to 
+call this method. Subclasses of JComponent that support pluggable look and feel should override this method to return a UIDefaults key that maps to the ComponentUI subclass that 
+defines their look and feel. 
+
+
+
+    Returns: the UIDefaults key for a ComponentUI subclass 
+
+*javax.swing.JComponent.getVerifyInputWhenFocusTarget()*
+
+public boolean getVerifyInputWhenFocusTarget()
+
+Returns the value that indicates whether the input verifier for the current focus owner will be called before this component requests focus. 
+
+
+
+    Returns: value of the verifyInputWhenFocusTarget property 
+
+*javax.swing.JComponent.getVetoableChangeListeners()*
+
+public synchronized |java.beans.VetoableChangeListener|[] getVetoableChangeListeners()
+
+Returns an array of all the vetoable change listeners registered on this component. 
+
+
+
+    Returns: all of the component's VetoableChangeListeners or an empty array if no vetoable change listeners are currently registered 
+
+*javax.swing.JComponent.getVisibleRect()*
+
+public |java.awt.Rectangle| getVisibleRect()
+
+Returns the Component's "visible rectangle" - the intersection of this component's visible rectangle, new Rectangle(0, 0, getWidth(), getHeight()), and all of its ancestors' 
+visible rectangles. 
+
+
+
+    Returns: the visible rectangle 
+
+*javax.swing.JComponent.getWidth()*
+
+public int getWidth()
+
+Returns the current width of this component. This method is preferable to writing component.getBounds().width, or component.getSize().width because it doesn't cause any heap 
+allocations. 
+
+
+
+    Returns: the current width of this component 
+
+*javax.swing.JComponent.getX()*
+
+public int getX()
+
+Returns the current x coordinate of the component's origin. This method is preferable to writing component.getBounds().x, or component.getLocation().x because it doesn't cause any 
+heap allocations. 
+
+
+
+    Returns: the current x coordinate of the component's origin 
+
+*javax.swing.JComponent.getY()*
+
+public int getY()
+
+Returns the current y coordinate of the component's origin. This method is preferable to writing component.getBounds().y, or component.getLocation().y because it doesn't cause any 
+heap allocations. 
+
+
+
+    Returns: the current y coordinate of the component's origin 
+
+*javax.swing.JComponent.grabFocus()*
+
+public void grabFocus()
+
+Requests that this Component get the input focus, and that this Component's top-level ancestor become the focused Window. This component must be displayable, visible, and 
+focusable for the request to be granted. 
+
+This method is intended for use by focus implementations. Client code should not use this method; instead, it should use requestFocusInWindow(). 
+
+
+
+*javax.swing.JComponent.isDoubleBuffered()*
+
+public boolean isDoubleBuffered()
+
+Returns whether this component should use a buffer to paint. 
+
+
+
+    Returns: true if this component is double buffered, otherwise false 
+
+*javax.swing.JComponent.isLightweightComponent(Component)*
+
+public static boolean isLightweightComponent(java.awt.Component c)
+
+Returns true if this component is lightweight, that is, if it doesn't have a native window system peer. 
+
+
+
+    Returns: true if this component is lightweight 
+
+*javax.swing.JComponent.isManagingFocus()*
+
+public boolean isManagingFocus()
+
+In release 1.4, the focus subsystem was rearchitected. For more information, see 
+
+How to Use the Focus Subsystem, a section in The Java Tutorial. 
+
+Changes this JComponent's focus traversal keys to CTRL+TAB and CTRL+SHIFT+TAB. Also prevents SortingFocusTraversalPolicy from considering descendants of this JComponent when 
+computing a focus traversal cycle. 
+
+    Deprecated: As of 1.4, replaced by
+   <code>Component.setFocusTraversalKeys(int, Set)</code> and
+   <code>Container.setFocusCycleRoot(boolean)</code>.
+
+
+*javax.swing.JComponent.isOpaque()*
+
+public boolean isOpaque()
+
+Returns true if this component is completely opaque. 
+
+An opaque component paints every pixel within its rectangular bounds. A non-opaque component paints only a subset of its pixels or none at all, allowing the pixels underneath it 
+to "show through". Therefore, a component that does not fully paint its pixels provides a degree of transparency. 
+
+Subclasses that guarantee to always completely paint their contents should override this method and return true. 
+
+
+
+    Returns: true if this component is completely opaque 
+
+*javax.swing.JComponent.isOptimizedDrawingEnabled()*
+
+public boolean isOptimizedDrawingEnabled()
+
+Returns true if this component tiles its children -- that is, if it can guarantee that the children will not overlap. The repainting system is substantially more efficient in this 
+common case. JComponent subclasses that can't make this guarantee, such as JLayeredPane, should override this method to return false. 
+
+
+
+    Returns: always returns true 
+
+*javax.swing.JComponent.isPaintingTile()*
+
+public boolean isPaintingTile()
+
+Returns true if the component is currently painting a tile. If this method returns true, paint will be called again for another tile. This method returns false if you are not 
+painting a tile or if the last tile is painted. Use this method to keep some state you might need between tiles. 
+
+
+
+    Returns: true if the component is currently painting a tile, false otherwise 
+
+*javax.swing.JComponent.isRequestFocusEnabled()*
+
+public boolean isRequestFocusEnabled()
+
+Returns true if this JComponent should get focus; otherwise returns false. 
+
+Please see 
+
+How to Use the Focus Subsystem, a section in The Java Tutorial, for more information. 
+
+
+
+    Returns: true if this component should get focus, otherwise returns false 
+
+*javax.swing.JComponent.isValidateRoot()*
+
+public boolean isValidateRoot()
+
+If this method returns true, revalidate calls by descendants of this component will cause the entire tree beginning with this root to be validated. Returns false by default. 
+JScrollPane overrides this method and returns true. 
+
+
+
+    Returns: always returns false 
+
+*javax.swing.JComponent.paint(Graphics)*
+
+public void paint(java.awt.Graphics g)
+
+Invoked by Swing to draw components. Applications should not invoke paint directly, but should instead use the repaint method to schedule the component for redrawing. 
+
+This method actually delegates the work of painting to three protected methods: paintComponent, paintBorder, and paintChildren. They're called in the order listed to ensure that 
+children appear on top of component itself. Generally speaking, the component and its children should not paint in the insets area allocated to the border. Subclasses can just 
+override this method, as always. A subclass that just wants to specialize the UI (look and feel) delegate's paint method should just override paintComponent. 
+
+
+    g - the Graphics context in which to paint 
+
+*javax.swing.JComponent.paintBorder(Graphics)*
+
+protected void paintBorder(java.awt.Graphics g)
+
+Paints the component's border. 
+
+If you override this in a subclass you should not make permanent changes to the passed in Graphics. For example, you should not alter the clip Rectangle or modify the transform. 
+If you need to do these operations you may find it easier to create a new Graphics from the passed in Graphics and manipulate it. 
+
+
+    g - the Graphics context in which to paint 
+
+*javax.swing.JComponent.paintChildren(Graphics)*
+
+protected void paintChildren(java.awt.Graphics g)
+
+Paints this component's children. If shouldUseBuffer is true, no component ancestor has a buffer and the component children can use a buffer if they have one. Otherwise, one 
+ancestor has a buffer currently in use and children should not use a buffer to paint. 
+
+
+    g - the Graphics context in which to paint 
+
+*javax.swing.JComponent.paintComponent(Graphics)*
+
+protected void paintComponent(java.awt.Graphics g)
+
+Calls the UI delegate's paint method, if the UI delegate is non-null. We pass the delegate a copy of the Graphics object to protect the rest of the paint code from irrevocable 
+changes (for example, Graphics.translate). 
+
+If you override this in a subclass you should not make permanent changes to the passed in Graphics. For example, you should not alter the clip Rectangle or modify the transform. 
+If you need to do these operations you may find it easier to create a new Graphics from the passed in Graphics and manipulate it. Further, if you do not invoker super's 
+implementation you must honor the opaque property, that is if this component is opaque, you must completely fill in the background in a non-opaque color. If you do not honor the 
+opaque property you will likely see visual artifacts. 
+
+The passed in Graphics object might have a transform other than the identify transform installed on it. In this case, you might get unexpected results if you cumulatively apply 
+another transform. 
+
+
+    g - the Graphics object to protect 
+
+*javax.swing.JComponent.paintImmediately(int,int,int,int)*
+
+public void paintImmediately(
+  int x,
+  int y,
+  int w,
+  int h)
+
+Paints the specified region in this component and all of its descendants that overlap the region, immediately. 
+
+It's rarely necessary to call this method. In most cases it's more efficient to call repaint, which defers the actual painting and can collapse redundant requests into a single 
+paint call. This method is useful if one needs to update the display while the current event is being dispatched. 
+
+
+    x - the x value of the region to be painted 
+    y - the y value of the region to be painted 
+    w - the width of the region to be painted 
+    h - the height of the region to be painted 
+
+*javax.swing.JComponent.paintImmediately(Rectangle)*
+
+public void paintImmediately(java.awt.Rectangle r)
+
+Paints the specified region now. 
+
+
+    r - a Rectangle containing the region to be painted 
+
+*javax.swing.JComponent.paramString()*
+
+protected |java.lang.String| paramString()
+
+Returns a string representation of this JComponent. This method is intended to be used only for debugging purposes, and the content and format of the returned string may vary 
+between implementations. The returned string may be empty but may not be null. 
+
+
+
+    Returns: a string representation of this JComponent 
+
+*javax.swing.JComponent.print(Graphics)*
+
+public void print(java.awt.Graphics g)
+
+Invoke this method to print the component. This method will result in invocations to printComponent, printBorder and printChildren. It is not recommended that you override this 
+method, instead override one of the previously mentioned methods. This method sets the component's state such that the double buffer will not be used, eg painting will be done 
+directly on the passed in Graphics. 
+
+
+    g - the Graphics context in which to paint 
+
+*javax.swing.JComponent.printAll(Graphics)*
+
+public void printAll(java.awt.Graphics g)
+
+Invoke this method to print the component. This method invokes print on the component. 
+
+
+    g - the Graphics context in which to paint 
+
+*javax.swing.JComponent.printBorder(Graphics)*
+
+protected void printBorder(java.awt.Graphics g)
+
+Prints the component's border. This is implemented to invoke paintBorder on the component. Override this if you wish to print the border differently that it is painted. 
+
+
+    g - the Graphics context in which to paint 
+
+*javax.swing.JComponent.printChildren(Graphics)*
+
+protected void printChildren(java.awt.Graphics g)
+
+Prints this component's children. This is implemented to invoke paintChildren on the component. Override this if you wish to print the children differently than painting. 
+
+
+    g - the Graphics context in which to paint 
+
+*javax.swing.JComponent.printComponent(Graphics)*
+
+protected void printComponent(java.awt.Graphics g)
+
+This is invoked during a printing operation. This is implemented to invoke paintComponent on the component. Override this if you wish to add special painting behavior when 
+printing. 
+
+
+    g - the Graphics context in which to paint 
+
+*javax.swing.JComponent.processComponentKeyEvent(KeyEvent)*
+
+protected void processComponentKeyEvent(java.awt.event.KeyEvent e)
+
+Processes any key events that the component itself recognizes. This is called after the focus manager and any interested listeners have been given a chance to steal away the 
+event. This method is called only if the event has not yet been consumed. This method is called prior to the keyboard UI logic. 
+
+This method is implemented to do nothing. Subclasses would normally override this method if they process some key events themselves. If the event is processed, it should be 
+consumed. 
+
+
+
+*javax.swing.JComponent.processKeyBinding(KeyStroke,KeyEvent,int,boolean)*
+
+protected boolean processKeyBinding(
+  javax.swing.KeyStroke ks,
+  java.awt.event.KeyEvent e,
+  int condition,
+  boolean pressed)
+
+Invoked to process the key bindings for ks as the result of the KeyEvent e. This obtains the appropriate InputMap, gets the binding, gets the action from the ActionMap, and then 
+(if the action is found and the component is enabled) invokes notifyAction to notify the action. 
+
+
+    ks - the KeyStroke queried 
+    e - the KeyEvent 
+    condition - one of the following values: 
+
+JComponent.WHEN_FOCUSED JComponent.WHEN_ANCESTOR_OF_FOCUSED_COMPONENT JComponent.WHEN_IN_FOCUSED_WINDOW 
+    pressed - true if the key is pressed 
+
+    Returns: true if there was a binding to an action, and the action was enabled 
+
+*javax.swing.JComponent.processKeyEvent(KeyEvent)*
+
+protected void processKeyEvent(java.awt.event.KeyEvent e)
+
+Overrides processKeyEvent to process events. 
+
+
+
+*javax.swing.JComponent.processMouseEvent(MouseEvent)*
+
+protected void processMouseEvent(java.awt.event.MouseEvent e)
+
+Processes mouse events occurring on this component by dispatching them to any registered MouseListener objects, refer to (|java.awt.Component|) for a complete description of this 
+method. 
+
+
+    e - the mouse event 
+
+*javax.swing.JComponent.processMouseMotionEvent(MouseEvent)*
+
+protected void processMouseMotionEvent(java.awt.event.MouseEvent e)
+
+Processes mouse motion events, such as MouseEvent.MOUSE_DRAGGED. 
+
+
+    e - the MouseEvent 
+
+*javax.swing.JComponent.putClientProperty(Object,Object)*
+
+public final void putClientProperty(
+  java.lang.Object key,
+  java.lang.Object value)
+
+Adds an arbitrary key/value "client property" to this component. 
+
+The get/putClientProperty methods provide access to a small per-instance hashtable. Callers can use get/putClientProperty to annotate components that were created by another 
+module. For example, a layout manager might store per child constraints this way. For example: 
+
+componentA.putClientProperty("to the left of", componentB); 
+
+If value is null this method will remove the property. Changes to client properties are reported with PropertyChange events. The name of the property (for the sake of 
+PropertyChange events) is key.toString(). 
+
+The clientProperty dictionary is not intended to support large scale extensions to JComponent nor should be it considered an alternative to subclassing when designing a new 
+component. 
+
+
+    key - the new client property key 
+    value - the new client property value; if null this method will remove the property 
+
+*javax.swing.JComponent.registerKeyboardAction(ActionListener,KeyStroke,int)*
+
+public void registerKeyboardAction(
+  java.awt.event.ActionListener anAction,
+  javax.swing.KeyStroke aKeyStroke,
+  int aCondition)
+
+This method is now obsolete, please use a combination of getActionMap() and getInputMap() for similiar behavior. 
+
+
+
+*javax.swing.JComponent.registerKeyboardAction(ActionListener,String,KeyStroke,int)*
+
+public void registerKeyboardAction(
+  java.awt.event.ActionListener anAction,
+  java.lang.String aCommand,
+  javax.swing.KeyStroke aKeyStroke,
+  int aCondition)
+
+This method is now obsolete, please use a combination of getActionMap() and getInputMap() for similiar behavior. For example, to bind the KeyStroke aKeyStroke to the Action 
+anAction now use: 
+
+component.getInputMap().put(aKeyStroke, aCommand); component.getActionMap().put(aCommmand, anAction); 
+
+The above assumes you want the binding to be applicable for WHEN_FOCUSED. To register bindings for other focus states use the getInputMap method that takes an integer. 
+
+Register a new keyboard action. anAction will be invoked if a key event matching aKeyStroke occurs and aCondition is verified. The KeyStroke object defines a particular 
+combination of a keyboard key and one or more modifiers (alt, shift, ctrl, meta). 
+
+The aCommand will be set in the delivered event if specified. 
+
+The aCondition can be one of: 
+
+WHEN_FOCUSED The action will be invoked only when the keystroke occurs while the component has the focus. WHEN_IN_FOCUSED_WINDOW The action will be invoked when the keystroke 
+occurs while the component has the focus or if the component is in the window that has the focus. Note that the component need not be an immediate descendent of the window -- it 
+can be anywhere in the window's containment hierarchy. In other words, whenever any component in the window has the focus, the action registered with this component is invoked. 
+WHEN_ANCESTOR_OF_FOCUSED_COMPONENT The action will be invoked when the keystroke occurs while the component has the focus or if the component is an ancestor of the component that 
+has the focus. 
+
+
+
+The combination of keystrokes and conditions lets you define high level (semantic) action events for a specified keystroke+modifier combination (using the KeyStroke class) and 
+direct to a parent or child of a component that has the focus, or to the component itself. In other words, in any hierarchical structure of components, an arbitrary 
+key-combination can be immediately directed to the appropriate component in the hierarchy, and cause a specific method to be invoked (usually by way of adapter objects). 
+
+If an action has already been registered for the receiving container, with the same charCode and the same modifiers, anAction will replace the action. 
+
+
+    anAction - the Action to be registered 
+    aCommand - the command to be set in the delivered event 
+    aKeyStroke - the KeyStroke to bind to the action 
+    aCondition - the condition that needs to be met, see above 
+
+*javax.swing.JComponent.removeAncestorListener(AncestorListener)*
+
+public void removeAncestorListener(javax.swing.event.AncestorListener listener)
+
+Unregisters listener so that it will no longer receive AncestorEvents. 
+
+
+    listener - the AncestorListener to be removed 
+
+*javax.swing.JComponent.removeNotify()*
+
+public void removeNotify()
+
+Notifies this component that it no longer has a parent component. When this method is invoked, any KeyboardActions set up in the the chain of parent components are removed. 
+
+
+
+*javax.swing.JComponent.removeVetoableChangeListener(VetoableChangeListener)*
+
+public synchronized void removeVetoableChangeListener(java.beans.VetoableChangeListener listener)
+
+Removes a VetoableChangeListener from the listener list. This removes a VetoableChangeListener that was registered for all properties. 
+
+
+    listener - the VetoableChangeListener to be removed 
+
+*javax.swing.JComponent.repaint(long,int,int,int,int)*
+
+public void repaint(
+  long tm,
+  int x,
+  int y,
+  int width,
+  int height)
+
+Adds the specified region to the dirty region list if the component is showing. The component will be repainted after all of the currently pending events have been dispatched. 
+
+
+    tm - this parameter is not used 
+    x - the x value of the dirty region 
+    y - the y value of the dirty region 
+    width - the width of the dirty region 
+    height - the height of the dirty region 
+
+*javax.swing.JComponent.repaint(Rectangle)*
+
+public void repaint(java.awt.Rectangle r)
+
+Adds the specified region to the dirty region list if the component is showing. The component will be repainted after all of the currently pending events have been dispatched. 
+
+
+    r - a Rectangle containing the dirty region 
+
+*javax.swing.JComponent.requestDefaultFocus()*
+
+public boolean requestDefaultFocus()
+
+In release 1.4, the focus subsystem was rearchitected. For more information, see 
+
+How to Use the Focus Subsystem, a section in The Java Tutorial. 
+
+Requests focus on this JComponent's FocusTraversalPolicy's default Component. If this JComponent is a focus cycle root, then its FocusTraversalPolicy is used. Otherwise, the 
+FocusTraversalPolicy of this JComponent's focus-cycle-root ancestor is used. 
+
+    Deprecated: As of 1.4, replaced by
+ <code>FocusTraversalPolicy.getDefaultComponent(Container).requestFocus()</code>
+
+
+*javax.swing.JComponent.requestFocus()*
+
+public void requestFocus()
+
+Requests that this Component gets the input focus. Refer to Component.requestFocus()(|java.awt.Component|) for a complete description of this method. 
+
+Note that the use of this method is discouraged because its behavior is platform dependent. Instead we recommend the use of requestFocusInWindow()(|javax.swing.JComponent|) . If 
+you would like more information on focus, see 
+
+
+
+*javax.swing.JComponent.requestFocus(boolean)*
+
+public boolean requestFocus(boolean temporary)
+
+Requests that this Component gets the input focus. Refer to Component.requestFocus(boolean)(|java.awt.Component|) for a complete description of this method. 
+
+Note that the use of this method is discouraged because its behavior is platform dependent. Instead we recommend the use of requestFocusInWindow(boolean)(|javax.swing.JComponent|) 
+. If you would like more information on focus, see 
+
+How to Use the Focus Subsystem, a section in The Java Tutorial. 
+
+
+    temporary - boolean indicating if the focus change is temporary 
+
+    Returns: false if the focus change request is guaranteed to fail; true if it is likely to succeed 
+
+*javax.swing.JComponent.requestFocusInWindow()*
+
+public boolean requestFocusInWindow()
+
+Requests that this Component gets the input focus. Refer to Component.requestFocusInWindow()(|java.awt.Component|) for a complete description of this method. 
+
+If you would like more information on focus, see 
+
+How to Use the Focus Subsystem, a section in The Java Tutorial. 
+
+
+
+    Returns: false if the focus change request is guaranteed to fail; true if it is likely to succeed 
+
+*javax.swing.JComponent.requestFocusInWindow(boolean)*
+
+protected boolean requestFocusInWindow(boolean temporary)
+
+Requests that this Component gets the input focus. Refer to Component.requestFocusInWindow(boolean)(|java.awt.Component|) for a complete description of this method. 
+
+If you would like more information on focus, see 
+
+
+    temporary - boolean indicating if the focus change is temporary 
+
+    Returns: false if the focus change request is guaranteed to fail; true if it is likely to succeed 
+
+*javax.swing.JComponent.resetKeyboardActions()*
+
+public void resetKeyboardActions()
+
+Unregisters all the bindings in the first tier InputMaps and ActionMap. This has the effect of removing any local bindings, and allowing the bindings defined in parent 
+InputMap/ActionMaps (the UI is usually defined in the second tier) to persist. 
+
+
+
+*javax.swing.JComponent.reshape(int,int,int,int)*
+
+public void reshape(
+  int x,
+  int y,
+  int w,
+  int h)
+
+
+
+    Deprecated: As of JDK 5,
+ replaced by <code>Component.setBounds(int, int, int, int)</code>.
+ <p>
+ Moves and resizes this component.
+
+    x - the new horizontal location 
+    y - the new vertical location 
+    w - the new width 
+    h - the new height 
+
+*javax.swing.JComponent.revalidate()*
+
+public void revalidate()
+
+Supports deferred automatic layout. 
+
+Calls invalidate and then adds this component's validateRoot to a list of components that need to be validated. Validation will occur after all currently pending events have been 
+dispatched. In other words after this method is called, the first validateRoot (if any) found when walking up the containment hierarchy of this component will be validated. By 
+default, JRootPane, JScrollPane, and JTextField return true from isValidateRoot. 
+
+This method will automatically be called on this component when a property value changes such that size, location, or internal layout of this component has been affected. This 
+automatic updating differs from the AWT because programs generally no longer need to invoke validate to get the contents of the GUI to update. 
+
+
+
+*javax.swing.JComponent.scrollRectToVisible(Rectangle)*
+
+public void scrollRectToVisible(java.awt.Rectangle aRect)
+
+Forwards the scrollRectToVisible() message to the JComponent's parent. Components that can service the request, such as JViewport, override this method and perform the scrolling. 
+
+
+    aRect - the visible Rectangle 
+
+*javax.swing.JComponent.setActionMap(ActionMap)*
+
+public final void setActionMap(javax.swing.ActionMap am)
+
+Sets the ActionMap to am. This does not set the parent of the am to be the ActionMap from the UI (if there was one), it is up to the caller to have done this. 
+
+
+    am - the new ActionMap 
+
+*javax.swing.JComponent.setAlignmentX(float)*
+
+public void setAlignmentX(float alignmentX)
+
+Sets the the vertical alignment. 
+
+
+    alignmentX - the new vertical alignment 
+
+*javax.swing.JComponent.setAlignmentY(float)*
+
+public void setAlignmentY(float alignmentY)
+
+Sets the the horizontal alignment. 
+
+
+    alignmentY - the new horizontal alignment 
+
+*javax.swing.JComponent.setAutoscrolls(boolean)*
+
+public void setAutoscrolls(boolean autoscrolls)
+
+Sets the autoscrolls property. If true mouse dragged events will be synthetically generated when the mouse is dragged outside of the component's bounds and mouse motion has paused 
+(while the button continues to be held down). The synthetic events make it appear that the drag gesture has resumed in the direction established when the component's boundary was 
+crossed. Components that support autoscrolling must handle mouseDragged events by calling scrollRectToVisible with a rectangle that contains the mouse event's location. All of the 
+Swing components that support item selection and are typically displayed in a JScrollPane (JTable, JList, JTree, JTextArea, and JEditorPane) already handle mouse dragged events in 
+this way. To enable autoscrolling in any other component, add a mouse motion listener that calls scrollRectToVisible. For example, given a JPanel, myPanel: 
+
+MouseMotionListener doScrollRectToVisible = new MouseMotionAdapter() { public void mouseDragged(MouseEvent e) { Rectangle r = new Rectangle(e.getX(), e.getY(), 1, 1); 
+((JPanel)e.getSource()).scrollRectToVisible(r); } }; myPanel.addMouseMotionListener(doScrollRectToVisible); 
+
+The default value of the autoScrolls property is false. 
+
+
+    autoscrolls - if true, synthetic mouse dragged events are generated when the mouse is dragged outside of a component's bounds and the mouse button continues to be held down; otherwise false 
+
+*javax.swing.JComponent.setBackground(Color)*
+
+public void setBackground(java.awt.Color bg)
+
+Sets the background color of this component. 
+
+
+    bg - the desired background Color 
+
+*javax.swing.JComponent.setBorder(Border)*
+
+public void setBorder(javax.swing.border.Border border)
+
+Sets the border of this component. The Border object is responsible for defining the insets for the component (overriding any insets set directly on the component) and for 
+optionally rendering any border decorations within the bounds of those insets. Borders should be used (rather than insets) for creating both decorative and non-decorative (such as 
+margins and padding) regions for a swing component. Compound borders can be used to nest multiple borders within a single component. 
+
+Although technically you can set the border on any object that inherits from JComponent, the look and feel implementation of many standard Swing components doesn't work well with 
+user-set borders. In general, when you want to set a border on a standard Swing component other than JPanel or JLabel, we recommend that you put the component in a JPanel and set 
+the border on the JPanel. 
+
+This is a bound property. 
+
+
+    border - the border to be rendered for this component 
+
+*javax.swing.JComponent.setComponentPopupMenu(JPopupMenu)*
+
+public void setComponentPopupMenu(javax.swing.JPopupMenu popup)
+
+Sets the JPopupMenu for this JComponent. The UI is responsible for registering bindings and adding the necessary listeners such that the JPopupMenu will be shown at the 
+appropriate time. When the JPopupMenu is shown depends upon the look and feel: some may show it on a mouse event, some may enable a key binding. 
+
+If popup is null, and getInheritsPopupMenu returns true, then getComponentPopupMenu will be delegated to the parent. This provides for a way to make all child components inherit 
+the popupmenu of the parent. 
+
+This is a bound property. 
+
+
+    popup - - the popup that will be assigned to this component may be null 
+
+*javax.swing.JComponent.setDebugGraphicsOptions(int)*
+
+public void setDebugGraphicsOptions(int debugOptions)
+
+Enables or disables diagnostic information about every graphics operation performed within the component or one of its children. 
+
+
+    debugOptions - determines how the component should display the information; one of the following options: 
+
+DebugGraphics.LOG_OPTION - causes a text message to be printed. DebugGraphics.FLASH_OPTION - causes the drawing to flash several times. DebugGraphics.BUFFERED_OPTION - creates an 
+       ExternalWindow that displays the operations performed on the View's offscreen buffer. DebugGraphics.NONE_OPTION disables debugging. A value of 0 causes no changes to the 
+       debugging options. 
+
+debugOptions is bitwise OR'd into the current value 
+
+*javax.swing.JComponent.setDefaultLocale(Locale)*
+
+public static void setDefaultLocale(java.util.Locale l)
+
+Sets the default locale used to initialize each JComponent's locale property upon creation. The initial value is the VM's default locale. 
+
+The default locale has "AppContext" scope so that applets (and potentially multiple lightweight applications running in a single VM) can have their own setting. An applet can 
+safely alter its default locale because it will have no affect on other applets (or the browser). 
+
+
+    l - the desired default Locale for new components. 
+
+*javax.swing.JComponent.setDoubleBuffered(boolean)*
+
+public void setDoubleBuffered(boolean aFlag)
+
+Sets whether the this component should use a buffer to paint. If set to true, all the drawing from this component will be done in an offscreen painting buffer. The offscreen 
+painting buffer will the be copied onto the screen. Swings painting system always uses a maximum of one double buffer. If a Component is buffered and one of its ancestor is also 
+buffered, the ancestor buffer will be used. 
+
+
+    aFlag - if true, set this component to be double buffered 
+
+*javax.swing.JComponent.setEnabled(boolean)*
+
+public void setEnabled(boolean enabled)
+
+Sets whether or not this component is enabled. A component that is enabled may respond to user input, while a component that is not enabled cannot respond to user input. Some 
+components may alter their visual representation when they are disabled in order to provide feedback to the user that they cannot take input. Note: Disabling a component does not 
+disable it's children. 
+
+Note: Disabling a lightweight component does not prevent it from receiving MouseEvents. 
+
+
+    enabled - true if this component should be enabled, false otherwise 
+
+*javax.swing.JComponent.setFocusTraversalKeys(int,Set<?extendsAWTKeyStroke>)*
+
+public void setFocusTraversalKeys(
+  int id,
+  java.util.Set<? extends java.awt.AWTKeyStroke> keystrokes)
+
+Sets the focus traversal keys for a given traversal operation for this Component. Refer to (|java.awt.Component|) for a complete description of this method. 
+
+
+    id - one of KeyboardFocusManager.FORWARD_TRAVERSAL_KEYS, KeyboardFocusManager.BACKWARD_TRAVERSAL_KEYS, or KeyboardFocusManager.UP_CYCLE_TRAVERSAL_KEYS 
+    keystrokes - the Set of AWTKeyStroke for the specified operation 
+
+*javax.swing.JComponent.setFont(Font)*
+
+public void setFont(java.awt.Font font)
+
+Sets the font for this component. 
+
+
+    font - the desired Font for this component 
+
+*javax.swing.JComponent.setForeground(Color)*
+
+public void setForeground(java.awt.Color fg)
+
+Sets the foreground color of this component. 
+
+
+    fg - the desired foreground Color 
+
+*javax.swing.JComponent.setInheritsPopupMenu(boolean)*
+
+public void setInheritsPopupMenu(boolean value)
+
+Sets whether or not getComponentPopupMenu should delegate to the parent if this component does not have a JPopupMenu assigned to it. 
+
+The default value for this is false, but some JComponent subclasses that are implemented as a number of JComponents may set this to true. 
+
+This is a bound property. 
+
+
+    value - whether or not the JPopupMenu is inherited 
+
+*javax.swing.JComponent.setInputMap(int,InputMap)*
+
+public final void setInputMap(
+  int condition,
+  javax.swing.InputMap map)
+
+Sets the InputMap to use under the condition condition to map. A null value implies you do not want any bindings to be used, even from the UI. This will not reinstall the UI 
+InputMap (if there was one). condition has one of the following values: 
+
+WHEN_IN_FOCUSED_WINDOW WHEN_FOCUSED WHEN_ANCESTOR_OF_FOCUSED_COMPONENT 
+
+If condition is WHEN_IN_FOCUSED_WINDOW and map is not a ComponentInputMap, an IllegalArgumentException will be thrown. Similarly, if condition is not one of the values listed, an 
+IllegalArgumentException will be thrown. 
+
+
+    condition - one of the values listed above 
+    map - the InputMap to use for the given condition 
+
+*javax.swing.JComponent.setInputVerifier(InputVerifier)*
+
+public void setInputVerifier(javax.swing.InputVerifier inputVerifier)
+
+Sets the input verifier for this component. 
+
+
+    inputVerifier - the new input verifier 
+
+*javax.swing.JComponent.setMaximumSize(Dimension)*
+
+public void setMaximumSize(java.awt.Dimension maximumSize)
+
+Sets the maximum size of this component to a constant value. Subsequent calls to getMaximumSize will always return this value; the component's UI will not be asked to compute it. 
+Setting the maximum size to null restores the default behavior. 
+
+
+    maximumSize - a Dimension containing the desired maximum allowable size 
+
+*javax.swing.JComponent.setMinimumSize(Dimension)*
+
+public void setMinimumSize(java.awt.Dimension minimumSize)
+
+Sets the minimum size of this component to a constant value. Subsequent calls to getMinimumSize will always return this value; the component's UI will not be asked to compute it. 
+Setting the minimum size to null restores the default behavior. 
+
+
+    minimumSize - the new minimum size of this component 
+
+*javax.swing.JComponent.setNextFocusableComponent(Component)*
+
+public void setNextFocusableComponent(java.awt.Component aComponent)
+
+In release 1.4, the focus subsystem was rearchitected. For more information, see 
+
+How to Use the Focus Subsystem, a section in The Java Tutorial. 
+
+Overrides the default FocusTraversalPolicy for this JComponent's focus traversal cycle by unconditionally setting the specified Component as the next Component in the cycle, and 
+this JComponent as the specified Component's previous Component in the cycle. 
+
+    Deprecated: As of 1.4, replaced by <code>FocusTraversalPolicy</code>
+
+    aComponent - the Component that should follow this JComponent in the focus traversal cycle 
+
+*javax.swing.JComponent.setOpaque(boolean)*
+
+public void setOpaque(boolean isOpaque)
+
+If true the component paints every pixel within its bounds. Otherwise, the component may not paint some or all of its pixels, allowing the underlying pixels to show through. 
+
+The default value of this property is false for JComponent. However, the default value for this property on most standard JComponent subclasses (such as JButton and JTree) is 
+look-and-feel dependent. 
+
+
+    isOpaque - true if this component should be opaque 
+
+*javax.swing.JComponent.setPreferredSize(Dimension)*
+
+public void setPreferredSize(java.awt.Dimension preferredSize)
+
+Sets the preferred size of this component. If preferredSize is null, the UI will be asked for the preferred size. 
+
+
+
+*javax.swing.JComponent.setRequestFocusEnabled(boolean)*
+
+public void setRequestFocusEnabled(boolean requestFocusEnabled)
+
+Provides a hint as to whether or not this JComponent should get focus. This is only a hint, and it is up to consumers that are requesting focus to honor this property. This is 
+typically honored for mouse operations, but not keyboard operations. For example, look and feels could verify this property is true before requesting focus during a mouse 
+operation. This would often times be used if you did not want a mouse press on a JComponent to steal focus, but did want the JComponent to be traversable via the keyboard. If you 
+do not want this JComponent focusable at all, use the setFocusable method instead. 
+
+Please see 
+
+How to Use the Focus Subsystem, a section in The Java Tutorial, for more information. 
+
+
+    requestFocusEnabled - indicates whether you want this JComponent to be focusable or not 
+
+*javax.swing.JComponent.setToolTipText(String)*
+
+public void setToolTipText(java.lang.String text)
+
+Registers the text to display in a tool tip. The text displays when the cursor lingers over the component. 
+
+See How to Use Tool Tips in The Java Tutorial for further documentation. 
+
+
+    text - the string to display; if the text is null, the tool tip is turned off for this component 
+
+*javax.swing.JComponent.setTransferHandler(TransferHandler)*
+
+public void setTransferHandler(javax.swing.TransferHandler newHandler)
+
+Sets the transferHandler property, which is null if the component does not support data transfer operations. 
+
+If newHandler is not null, and the system property suppressSwingDropSupport is not true, this will install a DropTarget on the JComponent. The default for the system property is 
+false, so that a DropTarget will be added. 
+
+Please see 
+
+How to Use Drag and Drop and Data Transfer, a section in The Java Tutorial, for more information. 
+
+
+    newHandler - mechanism for transfer of data to and from the component 
+
+*javax.swing.JComponent.setUI(ComponentUI)*
+
+protected void setUI(javax.swing.plaf.ComponentUI newUI)
+
+Sets the look and feel delegate for this component. JComponent subclasses generally override this method to narrow the argument type. For example, in JSlider: 
+
+public void setUI(SliderUI newUI) { super.setUI(newUI); } 
+
+Additionally JComponent subclasses must provide a getUI method that returns the correct type. For example: 
+
+public SliderUI getUI() { return (SliderUI)ui; } 
+
+
+    newUI - the new UI delegate 
+
+*javax.swing.JComponent.setVerifyInputWhenFocusTarget(boolean)*
+
+public void setVerifyInputWhenFocusTarget(boolean verifyInputWhenFocusTarget)
+
+Sets the value to indicate whether input verifier for the current focus owner will be called before this component requests focus. The default is true. Set to false on components 
+such as a Cancel button or a scrollbar, which should activate even if the input in the current focus owner is not "passed" by the input verifier for that component. 
+
+
+    verifyInputWhenFocusTarget - value for the verifyInputWhenFocusTarget property 
+
+*javax.swing.JComponent.setVisible(boolean)*
+
+public void setVisible(boolean aFlag)
+
+Makes the component visible or invisible. Overrides Component.setVisible. 
+
+
+    aFlag - true to make the component visible; false to make it invisible 
+
+*javax.swing.JComponent.unregisterKeyboardAction(KeyStroke)*
+
+public void unregisterKeyboardAction(javax.swing.KeyStroke aKeyStroke)
+
+This method is now obsolete. To unregister an existing binding you can either remove the binding from the ActionMap/InputMap, or place a dummy binding the InputMap. Removing the 
+binding from the InputMap allows bindings in parent InputMaps to be active, whereas putting a dummy binding in the InputMap effectively disables the binding from ever happening. 
+
+Unregisters a keyboard action. This will remove the binding from the ActionMap (if it exists) as well as the InputMaps. 
+
+
+
+*javax.swing.JComponent.update(Graphics)*
+
+public void update(java.awt.Graphics g)
+
+Calls paint. Doesn't clear the background but see ComponentUI.update, which is called by paintComponent. 
+
+
+    g - the Graphics context in which to paint 
+
+*javax.swing.JComponent.updateUI()*
+
+public void updateUI()
+
+Resets the UI property to a value from the current look and feel. JComponent subclasses must override this method like this: 
+
+public void updateUI() { setUI((SliderUI)UIManager.getUI(this); } 
+
+
+
+

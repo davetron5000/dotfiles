@@ -1,0 +1,209 @@
+*javax.swing.text.ZoneView* *ZoneView* ZoneView is a View implementation that creates zones for which 
+ the child views are not created or stored until they are needed
+ for display
+
+public class ZoneView
+  extends    |javax.swing.text.BoxView|
+
+|javax.swing.text.ZoneView_Description|
+|javax.swing.text.ZoneView_Fields|
+|javax.swing.text.ZoneView_Constructors|
+|javax.swing.text.ZoneView_Methods|
+
+====================================================================================================================================================================================
+
+*javax.swing.text.ZoneView_Constructors*
+|javax.swing.text.ZoneView(Element,int)|Constructs a ZoneView.
+
+*javax.swing.text.ZoneView_Methods*
+|javax.swing.text.ZoneView.createZone(int,int)|Create a view to represent a zone for the given  range within the model (which should be within  the range of this objects responsib
+|javax.swing.text.ZoneView.getMaximumZoneSize()|Get the current maximum zone size.
+|javax.swing.text.ZoneView.getMaxZonesLoaded()|Get the current setting of the number of zones   allowed to be loaded at the same time.
+|javax.swing.text.ZoneView.getViewIndexAtPosition(int)|Returns the child view index representing the given position in  the model.
+|javax.swing.text.ZoneView.insertUpdate(DocumentEvent,Shape,ViewFactory)|Gives notification that something was inserted into the document  in a location that this view is responsi
+|javax.swing.text.ZoneView.isZoneLoaded(View)|Determine if a zone is in the loaded state.
+|javax.swing.text.ZoneView.loadChildren(ViewFactory)|Loads all of the children to initialize the view.
+|javax.swing.text.ZoneView.removeUpdate(DocumentEvent,Shape,ViewFactory)|Gives notification that something was removed from the document  in a location that this view is responsib
+|javax.swing.text.ZoneView.setMaximumZoneSize(int)|Set the desired maximum zone size.
+|javax.swing.text.ZoneView.setMaxZonesLoaded(int)|Sets the current setting of the number of zones   allowed to be loaded at the same time.
+|javax.swing.text.ZoneView.unloadZone(View)|Unload a zone (Convert the zone to its memory saving state).
+|javax.swing.text.ZoneView.updateChildren(DocumentEvent.ElementChange,DocumentEvent,ViewFactory)|The superclass behavior will try to update the child views  which is not desired i
+|javax.swing.text.ZoneView.zoneWasLoaded(View)|Called by a zone when it gets loaded.
+
+*javax.swing.text.ZoneView_Description*
+
+ZoneView is a View implementation that creates zones for which the child views are not created or stored until they are needed for display or model/view translations. This enables 
+a substantial reduction in memory consumption for situations where the model being represented is very large, by building view objects only for the region being actively 
+viewed/edited. The size of the children can be estimated in some way, or calculated asynchronously with only the result being saved. 
+
+ZoneView extends BoxView to provide a box that implements zones for it's children. The zones are special View implementations (the children of an instance of this class) that 
+represent only a portion of the model that an instance of ZoneView is responsible for. The zones don't create child views until an attempt is made to display them. A box shaped 
+view is well suited to this because: 
+
+Boxes are a heavily used view, and having a box that provides this behavior gives substantial opportunity to plug the behavior into a view hierarchy from the view factory. 
+
+Boxes are tiled in one direction, so it is easy to divide them into zones in a reliable way. 
+
+Boxes typically have a simple relationship to the model (i.e. they create child views that directly represent the child elements). 
+
+Boxes are easier to estimate the size of than some other shapes. 
+
+The default behavior is controled by two properties, maxZoneSize and maxZonesLoaded. Setting maxZoneSize to Integer.MAX_VALUE would have the effect of causing only one zone to be 
+created. This would effectively turn the view into an implementation of the decorator pattern. Setting maxZonesLoaded to a value of Integer.MAX_VALUE would cause zones to never be 
+unloaded. For simplicity, zones are created on boundaries represented by the child elements of the element the view is responsible for. The zones can be any View implementation, 
+but the default implementation is based upon AsyncBoxView which supports fairly large zones efficiently. 
+
+
+
+*javax.swing.text.ZoneView(Element,int)*
+
+public ZoneView(
+  javax.swing.text.Element elem,
+  int axis)
+
+Constructs a ZoneView. 
+
+    elem - the element this view is responsible for 
+    axis - either View.X_AXIS or View.Y_AXIS 
+
+*javax.swing.text.ZoneView.createZone(int,int)*
+
+protected |javax.swing.text.View| createZone(
+  int p0,
+  int p1)
+
+Create a view to represent a zone for the given range within the model (which should be within the range of this objects responsibility). This is called by the zone management 
+logic to create new zones. Subclasses can provide a different implementation for a zone by changing this method. 
+
+
+    p0 - the start of the desired zone. This should be >= getStartOffset() and < getEndOffset(). This value should also be < p1. 
+    p1 - the end of the desired zone. This should be > getStartOffset() and p0. 
+
+*javax.swing.text.ZoneView.getMaximumZoneSize()*
+
+public int getMaximumZoneSize()
+
+Get the current maximum zone size. 
+
+
+
+*javax.swing.text.ZoneView.getMaxZonesLoaded()*
+
+public int getMaxZonesLoaded()
+
+Get the current setting of the number of zones allowed to be loaded at the same time. 
+
+
+
+*javax.swing.text.ZoneView.getViewIndexAtPosition(int)*
+
+protected int getViewIndexAtPosition(int pos)
+
+Returns the child view index representing the given position in the model. 
+
+
+    pos - the position >= 0 
+
+    Returns: index of the view representing the given position, or -1 if no view represents that position 
+
+*javax.swing.text.ZoneView.insertUpdate(DocumentEvent,Shape,ViewFactory)*
+
+public void insertUpdate(
+  javax.swing.event.DocumentEvent changes,
+  java.awt.Shape a,
+  javax.swing.text.ViewFactory f)
+
+Gives notification that something was inserted into the document in a location that this view is responsible for. This is largely delegated to the superclass, but is reimplemented 
+to update the relevant zone (i.e. determine if a zone needs to be split into a set of 2 or more zones). 
+
+
+    changes - the change information from the associated document 
+    a - the current allocation of the view 
+    f - the factory to use to rebuild if the view has children 
+
+*javax.swing.text.ZoneView.isZoneLoaded(View)*
+
+protected boolean isZoneLoaded(javax.swing.text.View zone)
+
+Determine if a zone is in the loaded state. The zones are expected to represent a subset of the child elements of the element this view is responsible for. Therefore, the default 
+implementation is to return true if the view has children. 
+
+
+
+*javax.swing.text.ZoneView.loadChildren(ViewFactory)*
+
+protected void loadChildren(javax.swing.text.ViewFactory f)
+
+Loads all of the children to initialize the view. This is called by the setParent method. This is reimplemented to not load any children directly (as they are created by the 
+zones). This method creates the initial set of zones. Zones don't actually get populated however until an attempt is made to display them or to do model/view coordinate 
+translation. 
+
+
+    f - the view factory 
+
+*javax.swing.text.ZoneView.removeUpdate(DocumentEvent,Shape,ViewFactory)*
+
+public void removeUpdate(
+  javax.swing.event.DocumentEvent changes,
+  java.awt.Shape a,
+  javax.swing.text.ViewFactory f)
+
+Gives notification that something was removed from the document in a location that this view is responsible for. This is largely delegated to the superclass, but is reimplemented 
+to update the relevant zones (i.e. determine if zones need to be removed or joined with another zone). 
+
+
+    changes - the change information from the associated document 
+    a - the current allocation of the view 
+    f - the factory to use to rebuild if the view has children 
+
+*javax.swing.text.ZoneView.setMaximumZoneSize(int)*
+
+public void setMaximumZoneSize(int size)
+
+Set the desired maximum zone size. A zone may get larger than this size if a single child view is larger than this size since zones are formed on child view boundaries. 
+
+
+    size - the number of characters the zone may represent before attempting to break the zone into a smaller size. 
+
+*javax.swing.text.ZoneView.setMaxZonesLoaded(int)*
+
+public void setMaxZonesLoaded(int mzl)
+
+Sets the current setting of the number of zones allowed to be loaded at the same time. This will throw an IllegalArgumentException if mzl is less than 1. 
+
+
+    mzl - the desired maximum number of zones to be actively loaded, must be greater than 0 
+
+*javax.swing.text.ZoneView.unloadZone(View)*
+
+protected void unloadZone(javax.swing.text.View zone)
+
+Unload a zone (Convert the zone to its memory saving state). The zones are expected to represent a subset of the child elements of the element this view is responsible for. 
+Therefore, the default implementation is to simple remove all the children. 
+
+
+    zone - the child view desired to be set to an unloaded state. 
+
+*javax.swing.text.ZoneView.updateChildren(DocumentEvent.ElementChange,DocumentEvent,ViewFactory)*
+
+protected boolean updateChildren(
+  javax.swing.event.DocumentEvent.ElementChange ec,
+  javax.swing.event.DocumentEvent e,
+  javax.swing.text.ViewFactory f)
+
+The superclass behavior will try to update the child views which is not desired in this case, since the children are zones and not directly effected by the changes to the 
+associated element. This is reimplemented to do nothing and return false. 
+
+
+
+*javax.swing.text.ZoneView.zoneWasLoaded(View)*
+
+protected void zoneWasLoaded(javax.swing.text.View zone)
+
+Called by a zone when it gets loaded. This happens when an attempt is made to display or perform a model/view translation on a zone that was in an unloaded state. This is 
+imlemented to check if the maximum number of zones was reached and to unload the oldest zone if so. 
+
+
+    zone - the child view that was just loaded. 
+
+

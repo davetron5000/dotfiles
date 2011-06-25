@@ -1,0 +1,146 @@
+*javax.management.modelmbean.ModelMBeanConstructorInfo* *ModelMBeanConstructorInfo* 
+
+public class ModelMBeanConstructorInfo
+  extends    |javax.management.MBeanConstructorInfo|
+  implements |javax.management.DescriptorAccess|
+             |java.lang.Cloneable|
+
+|javax.management.modelmbean.ModelMBeanConstructorInfo_Description|
+|javax.management.modelmbean.ModelMBeanConstructorInfo_Fields|
+|javax.management.modelmbean.ModelMBeanConstructorInfo_Constructors|
+|javax.management.modelmbean.ModelMBeanConstructorInfo_Methods|
+
+================================================================================
+
+*javax.management.modelmbean.ModelMBeanConstructorInfo_Constructors*
+|javax.management.modelmbean.ModelMBeanConstructorInfo(String,Constructor)|Cons
+|javax.management.modelmbean.ModelMBeanConstructorInfo(String,Constructor,Descriptor)|
+|javax.management.modelmbean.ModelMBeanConstructorInfo(String,String,MBeanParameterInfo[])|
+|javax.management.modelmbean.ModelMBeanConstructorInfo(String,String,MBeanParameterInfo[],Descriptor)|
+
+*javax.management.modelmbean.ModelMBeanConstructorInfo_Methods*
+|javax.management.modelmbean.ModelMBeanConstructorInfo.clone()|Creates and retu
+|javax.management.modelmbean.ModelMBeanConstructorInfo.getDescriptor()|Returns 
+|javax.management.modelmbean.ModelMBeanConstructorInfo.setDescriptor(Descriptor)|
+|javax.management.modelmbean.ModelMBeanConstructorInfo.toString()|Returns a str
+
+*javax.management.modelmbean.ModelMBeanConstructorInfo_Description*
+
+The ModelMBeanConstructorInfo object describes a constructor of the ModelMBean. 
+It is a subclass of MBeanConstructorInfo with the addition of an associated 
+Descriptor and an implementation of the DescriptorAccess interface. 
+
+
+
+The fields in the descriptor are defined, but not limited to, the following: 
+name : constructor name descriptorType : must be "operation" role : must be 
+"constructor" displayName : human readable name of constructor visibility : 1-4 
+where 1: always visible 4: rarely visible presentationString : xml formatted 
+string to describe how to present operation 
+
+The persistPolicy and currencyTimeLimit fields are not valid for the 
+constructor. The default descriptor will have the name, descriptorType, 
+displayName and role fields. 
+
+
+*javax.management.modelmbean.ModelMBeanConstructorInfo(String,Constructor)*
+
+public ModelMBeanConstructorInfo(
+  java.lang.String description,
+  java.lang.reflect.Constructor constructorMethod)
+
+Constructs a MBeanConstructorInfo object with a default descriptor. 
+
+    description - A human readable description of the constructor. 
+    constructorMethod - The java.lang.reflect.Method object describing the MBean constructor. 
+
+*javax.management.modelmbean.ModelMBeanConstructorInfo(String,Constructor,Descriptor)*
+
+public ModelMBeanConstructorInfo(
+  java.lang.String description,
+  java.lang.reflect.Constructor constructorMethod,
+  javax.management.Descriptor descriptor)
+
+Constructs a MBeanConstructorInfo object. 
+
+    description - A human readable description of the constructor. 
+    constructorMethod - The java.lang.reflect.Method object describing the ModelMBean constructor. 
+    descriptor - An instance of Descriptor containing the appropriate metadata for this instance 
+       of the ModelMBeanConstructorInfo. If it is null, then a default 
+       descriptor will be created.If the descriptor does not contain the field 
+       "displayName" this fields is added in the descriptor with its default 
+       value. 
+
+*javax.management.modelmbean.ModelMBeanConstructorInfo(String,String,MBeanParameterInfo[])*
+
+public ModelMBeanConstructorInfo(
+  java.lang.String name,
+  java.lang.String description,
+  javax.management.MBeanParameterInfo[] signature)
+
+Constructs a ModelMBeanConstructorInfo object with a default descriptor. 
+
+    name - The name of the constructor. 
+    description - A human readable description of the constructor. 
+    signature - MBeanParameterInfo object array describing the parameters(arguments) of the 
+       constructor. 
+
+*javax.management.modelmbean.ModelMBeanConstructorInfo(String,String,MBeanParameterInfo[],Descriptor)*
+
+public ModelMBeanConstructorInfo(
+  java.lang.String name,
+  java.lang.String description,
+  javax.management.MBeanParameterInfo[] signature,
+  javax.management.Descriptor descriptor)
+
+Constructs a MBeanConstructorInfo object. 
+
+    name - The name of the constructor. 
+    description - A human readable description of the constructor. 
+    signature - MBeanParameterInfo objects describing the parameters(arguments) of the 
+       constructor. 
+    descriptor - An instance of Descriptor containing the appropriate metadata for this instance 
+       of the MBeanConstructorInfo. If it is null then a default descriptor 
+       will be created. If the descriptor does not contain the field 
+       "displayName" this field is added in the descriptor with its default 
+       value. 
+
+*javax.management.modelmbean.ModelMBeanConstructorInfo.clone()*
+
+public |java.lang.Object| clone()
+
+Creates and returns a new ModelMBeanConstructorInfo which is a duplicate of 
+this ModelMBeanConstructorInfo. 
+
+
+*javax.management.modelmbean.ModelMBeanConstructorInfo.getDescriptor()*
+
+public |javax.management.Descriptor| getDescriptor()
+
+Returns a copy of the associated Descriptor. 
+
+
+    Returns: Descriptor associated with the ModelMBeanConstructorInfo object. 
+*javax.management.modelmbean.ModelMBeanConstructorInfo.setDescriptor(Descriptor)*
+
+public void setDescriptor(javax.management.Descriptor inDescriptor)
+
+Sets associated Descriptor (full replace) of ModelMBeanConstructorInfo. If the 
+new Descriptor is null, then the associated Descriptor reverts to a default 
+descriptor. The Descriptor is validated before it is assigned. If the new 
+Descriptor is invalid, then a RuntimeOperationsException wrapping an 
+IllegalArgumentException is thrown. 
+
+    inDescriptor - replaces the Descriptor associated with the ModelMBeanConstructor. If the 
+       descriptor does not contain the field "displayName" this field is added 
+       in the descriptor with its default value. 
+
+*javax.management.modelmbean.ModelMBeanConstructorInfo.toString()*
+
+public |java.lang.String| toString()
+
+Returns a string containing the entire contents of the 
+ModelMBeanConstructorInfo in human readable form. 
+
+
+

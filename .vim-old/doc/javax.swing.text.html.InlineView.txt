@@ -1,0 +1,150 @@
+*javax.swing.text.html.InlineView* *InlineView* Displays the inline element styles
+ based upon css attributes.
+
+public class InlineView
+  extends    |javax.swing.text.LabelView|
+
+|javax.swing.text.html.InlineView_Description|
+|javax.swing.text.html.InlineView_Fields|
+|javax.swing.text.html.InlineView_Constructors|
+|javax.swing.text.html.InlineView_Methods|
+
+====================================================================================================================================================================================
+
+*javax.swing.text.html.InlineView_Constructors*
+|javax.swing.text.html.InlineView(Element)|Constructs a new view wrapped on an element.
+
+*javax.swing.text.html.InlineView_Methods*
+|javax.swing.text.html.InlineView.breakView(int,int,float,float)|Tries to break this view on the given axis.
+|javax.swing.text.html.InlineView.changedUpdate(DocumentEvent,Shape,ViewFactory)|Gives notification from the document that attributes were changed  in a location that this view is
+|javax.swing.text.html.InlineView.getAttributes()|Fetches the attributes to use when rendering.
+|javax.swing.text.html.InlineView.getBreakWeight(int,float,float)|Determines how attractive a break opportunity in   this view is.
+|javax.swing.text.html.InlineView.getStyleSheet()|
+|javax.swing.text.html.InlineView.insertUpdate(DocumentEvent,Shape,ViewFactory)|Gives notification that something was inserted into   the document in a location that this view is 
+|javax.swing.text.html.InlineView.removeUpdate(DocumentEvent,Shape,ViewFactory)|Gives notification that something was removed from the document  in a location that this view is re
+|javax.swing.text.html.InlineView.setPropertiesFromAttributes()|Set the cached properties from the attributes.
+
+*javax.swing.text.html.InlineView_Description*
+
+Displays the inline element styles based upon css attributes. 
+
+
+
+*javax.swing.text.html.InlineView(Element)*
+
+public InlineView(javax.swing.text.Element elem)
+
+Constructs a new view wrapped on an element. 
+
+    elem - the element 
+
+*javax.swing.text.html.InlineView.breakView(int,int,float,float)*
+
+public |javax.swing.text.View| breakView(
+  int axis,
+  int offset,
+  float pos,
+  float len)
+
+Tries to break this view on the given axis. Refer to (|javax.swing.text.View|) for a complete description of this method. Behavior of this method is unspecified in case axis is 
+neither View.X_AXIS nor View.Y_AXIS, and in case offset, pos, or len is null. 
+
+
+    axis - may be either View.X_AXIS or View.Y_AXIS 
+    offset - the location in the document model that a broken fragment would occupy >= 0. This would be the starting offset of the fragment returned 
+    pos - the position along the axis that the broken view would occupy >= 0. This may be useful for things like tab calculations 
+    len - specifies the distance along the axis where a potential break is desired >= 0 
+
+    Returns: the fragment of the view that represents the given span. 
+
+*javax.swing.text.html.InlineView.changedUpdate(DocumentEvent,Shape,ViewFactory)*
+
+public void changedUpdate(
+  javax.swing.event.DocumentEvent e,
+  java.awt.Shape a,
+  javax.swing.text.ViewFactory f)
+
+Gives notification from the document that attributes were changed in a location that this view is responsible for. 
+
+
+    e - the change information from the associated document 
+    a - the current allocation of the view 
+    f - the factory to use to rebuild if the view has children 
+
+*javax.swing.text.html.InlineView.getAttributes()*
+
+public |javax.swing.text.AttributeSet| getAttributes()
+
+Fetches the attributes to use when rendering. This is implemented to multiplex the attributes specified in the model with a StyleSheet. 
+
+
+
+*javax.swing.text.html.InlineView.getBreakWeight(int,float,float)*
+
+public int getBreakWeight(
+  int axis,
+  float pos,
+  float len)
+
+Determines how attractive a break opportunity in this view is. This can be used for determining which view is the most attractive to call breakView on in the process of 
+formatting. A view that represents text that has whitespace in it might be more attractive than a view that has no whitespace, for example. The higher the weight, the more 
+attractive the break. A value equal to or lower than BadBreakWeight should not be considered for a break. A value greater than or equal to ForcedBreakWeight should be broken. 
+
+This is implemented to provide the default behavior of returning BadBreakWeight unless the length is greater than the length of the view in which case the entire view represents 
+the fragment. Unless a view has been written to support breaking behavior, it is not attractive to try and break the view. An example of a view that does support breaking is 
+LabelView. An example of a view that uses break weight is ParagraphView. 
+
+
+    axis - may be either View.X_AXIS or View.Y_AXIS 
+    pos - the potential location of the start of the broken view >= 0. This may be useful for calculating tab positions. 
+    len - specifies the relative length from pos where a potential break is desired >= 0. 
+
+    Returns: the weight, which should be a value between ForcedBreakWeight and BadBreakWeight. 
+
+*javax.swing.text.html.InlineView.getStyleSheet()*
+
+protected |javax.swing.text.html.StyleSheet| getStyleSheet()
+
+
+
+
+
+*javax.swing.text.html.InlineView.insertUpdate(DocumentEvent,Shape,ViewFactory)*
+
+public void insertUpdate(
+  javax.swing.event.DocumentEvent e,
+  java.awt.Shape a,
+  javax.swing.text.ViewFactory f)
+
+Gives notification that something was inserted into the document in a location that this view is responsible for. If either parameter is null, behavior of this method is 
+implementation dependent. 
+
+
+    e - the change information from the associated document 
+    a - the current allocation of the view 
+    f - the factory to use to rebuild if the view has children 
+
+*javax.swing.text.html.InlineView.removeUpdate(DocumentEvent,Shape,ViewFactory)*
+
+public void removeUpdate(
+  javax.swing.event.DocumentEvent e,
+  java.awt.Shape a,
+  javax.swing.text.ViewFactory f)
+
+Gives notification that something was removed from the document in a location that this view is responsible for. If either parameter is null, behavior of this method is 
+implementation dependent. 
+
+
+    e - the change information from the associated document 
+    a - the current allocation of the view 
+    f - the factory to use to rebuild if the view has children 
+
+*javax.swing.text.html.InlineView.setPropertiesFromAttributes()*
+
+protected void setPropertiesFromAttributes()
+
+Set the cached properties from the attributes. 
+
+
+
+

@@ -1,0 +1,93 @@
+*javax.servlet.http.HttpSessionBindingEvent* *HttpSessionBindingEvent* Events of
+
+public class HttpSessionBindingEvent
+  extends    |javax.servlet.http.HttpSessionEvent|
+
+|javax.servlet.http.HttpSessionBindingEvent_Description|
+|javax.servlet.http.HttpSessionBindingEvent_Fields|
+|javax.servlet.http.HttpSessionBindingEvent_Constructors|
+|javax.servlet.http.HttpSessionBindingEvent_Methods|
+
+================================================================================
+
+*javax.servlet.http.HttpSessionBindingEvent_Constructors*
+|javax.servlet.http.HttpSessionBindingEvent(HttpSession,String)|Constructs an e
+|javax.servlet.http.HttpSessionBindingEvent(HttpSession,String,Object)|Construc
+
+*javax.servlet.http.HttpSessionBindingEvent_Methods*
+|javax.servlet.http.HttpSessionBindingEvent.getName()|Returns the name with whi
+|javax.servlet.http.HttpSessionBindingEvent.getSession()|Return the session tha
+|javax.servlet.http.HttpSessionBindingEvent.getValue()|Returns the value of the
+
+*javax.servlet.http.HttpSessionBindingEvent_Description*
+
+Events of this type are either sent to an object that implements 
+(|javax.servlet.http.HttpSessionBindingListener|) when it is bound or unbound 
+from a session, or to a (|javax.servlet.http.HttpSessionAttributeListener|) 
+that has been configured in the deployment descriptor when any attribute is 
+bound, unbound or replaced in a session. 
+
+The session binds the object by a call to HttpSession.setAttribute and unbinds 
+the object by a call to HttpSession.removeAttribute. 
+
+
+
+*javax.servlet.http.HttpSessionBindingEvent(HttpSession,String)*
+
+public HttpSessionBindingEvent(
+  javax.servlet.http.HttpSession session,
+  java.lang.String name)
+
+Constructs an event that notifies an object that it has been bound to or 
+unbound from a session. To receive the event, the object must implement 
+(|javax.servlet.http.HttpSessionBindingListener|) . 
+
+    session - the session to which the object is bound or unbound 
+    name - the name with which the object is bound or unbound 
+
+*javax.servlet.http.HttpSessionBindingEvent(HttpSession,String,Object)*
+
+public HttpSessionBindingEvent(
+  javax.servlet.http.HttpSession session,
+  java.lang.String name,
+  java.lang.Object value)
+
+Constructs an event that notifies an object that it has been bound to or 
+unbound from a session. To receive the event, the object must implement 
+(|javax.servlet.http.HttpSessionBindingListener|) . 
+
+    session - the session to which the object is bound or unbound 
+    name - the name with which the object is bound or unbound 
+
+*javax.servlet.http.HttpSessionBindingEvent.getName()*
+
+public |java.lang.String| getName()
+
+Returns the name with which the attribute is bound to or unbound from the 
+session. 
+
+
+
+    Returns: a string specifying the name with which the object is bound to or unbound from 
+             the session 
+
+*javax.servlet.http.HttpSessionBindingEvent.getSession()*
+
+public |javax.servlet.http.HttpSession| getSession()
+
+Return the session that changed. 
+
+
+
+*javax.servlet.http.HttpSessionBindingEvent.getValue()*
+
+public |java.lang.Object| getValue()
+
+Returns the value of the attribute that has been added, removed or replaced. If 
+the attribute was added (or bound), this is the value of the attribute. If the 
+attribute was removed (or unbound), this is the value of the removed attribute. 
+If the attribute was replaced, this is the old value of the attribute. 
+
+
+
+

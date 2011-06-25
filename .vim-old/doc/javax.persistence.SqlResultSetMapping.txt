@@ -1,0 +1,35 @@
+*javax.persistence.SqlResultSetMapping* *SqlResultSetMapping* This annotation is
+
+public interface class SqlResultSetMapping
+
+  implements |java.lang.annotation.Annotation|
+
+|javax.persistence.SqlResultSetMapping_Description|
+|javax.persistence.SqlResultSetMapping_Fields|
+|javax.persistence.SqlResultSetMapping_Constructors|
+|javax.persistence.SqlResultSetMapping_Methods|
+
+================================================================================
+
+*javax.persistence.SqlResultSetMapping_Description*
+
+This annotation is used to specify the mapping of the result of a native SQL 
+query. 
+
+
+
+Example: 
+
+Query q = em.createNativeQuery( "SELECT o.id AS order_id, " + "o.quantity AS 
+order_quantity, " + "o.item AS order_item, " + "i.name AS item_name, " + "FROM 
+Order o, Item i " + "WHERE (order_quantity > 25) AND (order_item = i.id)", 
+"OrderResults"); 
+
+SqlResultSetMapping(name="OrderResults", entities={ 
+EntityResult(entityClass=com.acme.Order.class, fields={ FieldResult(name="id", 
+column="order_id"), FieldResult(name="quantity", column="order_quantity"), 
+FieldResult(name="item", column="order_item")})}, columns={ 
+ColumnResult(name="item_name")} ) 
+
+
+

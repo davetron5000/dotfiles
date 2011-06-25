@@ -1,0 +1,160 @@
+*java.awt.event.MouseWheelEvent* *MouseWheelEvent* An event which indicates that the mouse wheel was rotated in a component.
+
+public class MouseWheelEvent
+  extends    |java.awt.event.MouseEvent|
+
+|java.awt.event.MouseWheelEvent_Description|
+|java.awt.event.MouseWheelEvent_Fields|
+|java.awt.event.MouseWheelEvent_Constructors|
+|java.awt.event.MouseWheelEvent_Methods|
+
+====================================================================================================================================================================================
+
+*java.awt.event.MouseWheelEvent_Fields*
+|int_java.awt.event.MouseWheelEvent.WHEEL_BLOCK_SCROLL|
+|int_java.awt.event.MouseWheelEvent.WHEEL_UNIT_SCROLL|
+
+*java.awt.event.MouseWheelEvent_Constructors*
+|java.awt.event.MouseWheelEvent(Component,int,long,int,int,int,int,boolean,int,int,int)|Constructs a MouseWheelEvent object with the  specified source component, type, modifiers, 
+
+*java.awt.event.MouseWheelEvent_Methods*
+|java.awt.event.MouseWheelEvent.getScrollAmount()|Returns the number of units that should be scrolled in response to this  event.
+|java.awt.event.MouseWheelEvent.getScrollType()|Returns the type of scrolling that should take place in response to this  event.
+|java.awt.event.MouseWheelEvent.getUnitsToScroll()|This is a convenience method to aid in the implementation of  the common-case MouseWheelListener - to scroll a ScrollPane or  JS
+|java.awt.event.MouseWheelEvent.getWheelRotation()|Returns the number of "clicks" the mouse wheel was rotated.
+|java.awt.event.MouseWheelEvent.paramString()|Returns a parameter string identifying this event.
+
+*java.awt.event.MouseWheelEvent_Description*
+
+An event which indicates that the mouse wheel was rotated in a component. 
+
+A wheel mouse is a mouse which has a wheel in place of the middle button. This wheel can be rotated towards or away from the user. Mouse wheels are most often used for scrolling, 
+though other uses are possible. 
+
+A MouseWheelEvent object is passed to every MouseWheelListener object which registered to receive the "interesting" mouse events using the component's addMouseWheelListener 
+method. Each such listener object gets a MouseEvent containing the mouse event. 
+
+Due to the mouse wheel's special relationship to scrolling Components, MouseWheelEvents are delivered somewhat differently than other MouseEvents. This is because while other 
+MouseEvents usually affect a change on the Component directly under the mouse cursor (for instance, when clicking a button), MouseWheelEvents often have an effect away from the 
+mouse cursor (moving the wheel while over a Component inside a ScrollPane should scroll one of the Scrollbars on the ScrollPane). 
+
+MouseWheelEvents start delivery from the Component underneath the mouse cursor. If MouseWheelEvents are not enabled on the Component, the event is delivered to the first ancestor 
+Container with MouseWheelEvents enabled. This will usually be a ScrollPane with wheel scrolling enabled. The source Component and x,y coordinates will be relative to the event's 
+final destination (the ScrollPane). This allows a complex GUI to be installed without modification into a ScrollPane, and for all MouseWheelEvents to be delivered to the 
+ScrollPane for scrolling. 
+
+Some AWT Components are implemented using native widgets which display their own scrollbars and handle their own scrolling. The particular Components for which this is true will 
+vary from platform to platform. When the mouse wheel is moved over one of these Components, the event is delivered straight to the native widget, and not propagated to ancestors. 
+
+Platforms offer customization of the amount of scrolling that should take place when the mouse wheel is moved. The two most common settings are to scroll a certain number of 
+"units" (commonly lines of text in a text-based component) or an entire "block" (similar to page-up/page-down). The MouseWheelEvent offers methods for conforming to the underlying 
+platform settings. These platform settings can be changed at any time by the user. MouseWheelEvents reflect the most recent settings. 
+
+
+
+*int_java.awt.event.MouseWheelEvent.WHEEL_BLOCK_SCROLL*
+
+Constant representing scrolling by a "block" (like scrolling with page-up, page-down keys) 
+
+
+*int_java.awt.event.MouseWheelEvent.WHEEL_UNIT_SCROLL*
+
+Constant representing scrolling by "units" (like scrolling with the arrow keys) 
+
+
+
+*java.awt.event.MouseWheelEvent(Component,int,long,int,int,int,int,boolean,int,int,int)*
+
+public MouseWheelEvent(
+  java.awt.Component source,
+  int id,
+  long when,
+  int modifiers,
+  int x,
+  int y,
+  int clickCount,
+  boolean popupTrigger,
+  int scrollType,
+  int scrollAmount,
+  int wheelRotation)
+
+Constructs a MouseWheelEvent object with the specified source component, type, modifiers, coordinates, scroll type, scroll amount, and wheel rotation. Note that passing in an 
+invalid id results in unspecified behavior. This method throws an IllegalArgumentException if source is null. 
+
+    source - the Component that originated the event 
+    id - the integer that identifies the event 
+    when - a long that gives the time the event occurred 
+    modifiers - the modifier keys down during event (shift, ctrl, alt, meta) 
+    x - the horizontal x coordinate for the mouse location 
+    y - the vertical y coordinate for the mouse location 
+    clickCount - the number of mouse clicks associated with event 
+    popupTrigger - a boolean, true if this event is a trigger for a popup-menu 
+    scrollType - the type of scrolling which should take place in response to this event; valid values are WHEEL_UNIT_SCROLL and WHEEL_BLOCK_SCROLL 
+    scrollAmount - for scrollType WHEEL_UNIT_SCROLL, the number of units to be scrolled 
+    wheelRotation - the amount that the mouse wheel was rotated (the number of "clicks") 
+
+*java.awt.event.MouseWheelEvent.getScrollAmount()*
+
+public int getScrollAmount()
+
+Returns the number of units that should be scrolled in response to this event. Only valid if getScrollType returns MouseWheelEvent.WHEEL_UNIT_SCROLL 
+
+
+
+    Returns: number of units to scroll, or an undefined value if getScrollType returns MouseWheelEvent.WHEEL_BLOCK_SCROLL 
+
+*java.awt.event.MouseWheelEvent.getScrollType()*
+
+public int getScrollType()
+
+Returns the type of scrolling that should take place in response to this event. This is determined by the native platform. Legal values are: 
+
+MouseWheelEvent.WHEEL_UNIT_SCROLL MouseWheelEvent.WHEEL_BLOCK_SCROLL 
+
+
+
+    Returns: either MouseWheelEvent.WHEEL_UNIT_SCROLL or MouseWheelEvent.WHEEL_BLOCK_SCROLL, depending on the configuration of the native platform. 
+
+*java.awt.event.MouseWheelEvent.getUnitsToScroll()*
+
+public int getUnitsToScroll()
+
+This is a convenience method to aid in the implementation of the common-case MouseWheelListener - to scroll a ScrollPane or JScrollPane by an amount which conforms to the platform 
+settings. (Note, however, that ScrollPane and JScrollPane already have this functionality built in.) 
+
+This method returns the number of units to scroll when scroll type is MouseWheelEvent.WHEEL_UNIT_SCROLL, and should only be called if getScrollType returns 
+MouseWheelEvent.WHEEL_UNIT_SCROLL. 
+
+Direction of scroll, amount of wheel movement, and platform settings for wheel scrolling are all accounted for. This method does not and cannot take into account value of the 
+Adjustable/Scrollable unit increment, as this will vary among scrolling components. 
+
+A simplified example of how this method might be used in a listener: 
+
+mouseWheelMoved(MouseWheelEvent event) { ScrollPane sp = getScrollPaneFromSomewhere(); Adjustable adj = sp.getVAdjustable() if (MouseWheelEvent.getScrollType() == 
+WHEEL_UNIT_SCROLL) { int totalScrollAmount = event.getUnitsToScroll() * adj.getUnitIncrement(); adj.setValue(adj.getValue() + totalScrollAmount); } } 
+
+
+
+    Returns: the number of units to scroll based on the direction and amount of mouse wheel rotation, and on the wheel scrolling settings of the native platform 
+
+*java.awt.event.MouseWheelEvent.getWheelRotation()*
+
+public int getWheelRotation()
+
+Returns the number of "clicks" the mouse wheel was rotated. 
+
+
+
+    Returns: negative values if the mouse wheel was rotated up/away from the user, and positive values if the mouse wheel was rotated down/ towards the user 
+
+*java.awt.event.MouseWheelEvent.paramString()*
+
+public |java.lang.String| paramString()
+
+Returns a parameter string identifying this event. This method is useful for event-logging and for debugging. 
+
+
+
+    Returns: a string identifying the event and its attributes 
+
+

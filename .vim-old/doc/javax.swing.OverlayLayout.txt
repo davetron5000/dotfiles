@@ -1,0 +1,162 @@
+*javax.swing.OverlayLayout* *OverlayLayout* A layout manager to arrange components over the top
+ of each other.
+
+public class OverlayLayout
+  extends    |java.lang.Object|
+  implements |java.awt.LayoutManager2|
+             |java.io.Serializable|
+
+|javax.swing.OverlayLayout_Description|
+|javax.swing.OverlayLayout_Fields|
+|javax.swing.OverlayLayout_Constructors|
+|javax.swing.OverlayLayout_Methods|
+
+====================================================================================================================================================================================
+
+*javax.swing.OverlayLayout_Constructors*
+|javax.swing.OverlayLayout(Container)|Constructs a layout manager that performs overlay  arrangement of the children.
+
+*javax.swing.OverlayLayout_Methods*
+|javax.swing.OverlayLayout.addLayoutComponent(Component,Object)|Adds the specified component to the layout, using the specified  constraint object.
+|javax.swing.OverlayLayout.addLayoutComponent(String,Component)|Adds the specified component to the layout.
+|javax.swing.OverlayLayout.getLayoutAlignmentX(Container)|Returns the alignment along the x axis for the container.
+|javax.swing.OverlayLayout.getLayoutAlignmentY(Container)|Returns the alignment along the y axis for the container.
+|javax.swing.OverlayLayout.invalidateLayout(Container)|Indicates a child has changed its layout related information,  which causes any cached calculations to be flushed.
+|javax.swing.OverlayLayout.layoutContainer(Container)|Called by the AWT when the specified container needs to be laid out.
+|javax.swing.OverlayLayout.maximumLayoutSize(Container)|Returns the maximum dimensions needed to lay out the components  contained in the specified target container.
+|javax.swing.OverlayLayout.minimumLayoutSize(Container)|Returns the minimum dimensions needed to lay out the components  contained in the specified target container.
+|javax.swing.OverlayLayout.preferredLayoutSize(Container)|Returns the preferred dimensions for this layout given the components  in the specified target container.
+|javax.swing.OverlayLayout.removeLayoutComponent(Component)|Removes the specified component from the layout.
+
+*javax.swing.OverlayLayout_Description*
+
+A layout manager to arrange components over the top of each other. The requested size of the container will be the largest requested size of the children, taking alignment needs 
+into consideration. 
+
+The alignment is based upon what is needed to properly fit the children in the allocation area. The children will be placed such that their alignment points are all on top of each 
+other. 
+
+Warning: Serialized objects of this class will not be compatible with future Swing releases. The current serialization support is appropriate for short term storage or RMI between 
+applications running the same version of Swing. As of 1.4, support for long term storage of all JavaBeansTM has been added to the java.beans package. Please see 
+(|java.beans.XMLEncoder|) . 
+
+
+
+*javax.swing.OverlayLayout(Container)*
+
+public OverlayLayout(java.awt.Container target)
+
+Constructs a layout manager that performs overlay arrangement of the children. The layout manager created is dedicated to the given container. 
+
+    target - the container to do layout against 
+
+*javax.swing.OverlayLayout.addLayoutComponent(Component,Object)*
+
+public void addLayoutComponent(
+  java.awt.Component comp,
+  java.lang.Object constraints)
+
+Adds the specified component to the layout, using the specified constraint object. Used by this class to know when to invalidate layout. 
+
+
+    comp - the component to be added 
+    constraints - where/how the component is added to the layout. 
+
+*javax.swing.OverlayLayout.addLayoutComponent(String,Component)*
+
+public void addLayoutComponent(
+  java.lang.String name,
+  java.awt.Component comp)
+
+Adds the specified component to the layout. Used by this class to know when to invalidate layout. 
+
+
+    name - the name of the component 
+    comp - the the component to be added 
+
+*javax.swing.OverlayLayout.getLayoutAlignmentX(Container)*
+
+public float getLayoutAlignmentX(java.awt.Container target)
+
+Returns the alignment along the x axis for the container. 
+
+
+    target - the container 
+
+    Returns: the alignment >= 0.0f <= 1.0f 
+
+*javax.swing.OverlayLayout.getLayoutAlignmentY(Container)*
+
+public float getLayoutAlignmentY(java.awt.Container target)
+
+Returns the alignment along the y axis for the container. 
+
+
+    target - the container 
+
+    Returns: the alignment >= 0.0f <= 1.0f 
+
+*javax.swing.OverlayLayout.invalidateLayout(Container)*
+
+public void invalidateLayout(java.awt.Container target)
+
+Indicates a child has changed its layout related information, which causes any cached calculations to be flushed. 
+
+
+    target - the container 
+
+*javax.swing.OverlayLayout.layoutContainer(Container)*
+
+public void layoutContainer(java.awt.Container target)
+
+Called by the AWT when the specified container needs to be laid out. 
+
+
+    target - the container to lay out 
+
+*javax.swing.OverlayLayout.maximumLayoutSize(Container)*
+
+public |java.awt.Dimension| maximumLayoutSize(java.awt.Container target)
+
+Returns the maximum dimensions needed to lay out the components contained in the specified target container. Recomputes the layout if it has been invalidated, and factors in the 
+inset setting returned by getInset. 
+
+
+    target - the component that needs to be laid out 
+
+    Returns: a Dimension object containing the maximum dimensions 
+
+*javax.swing.OverlayLayout.minimumLayoutSize(Container)*
+
+public |java.awt.Dimension| minimumLayoutSize(java.awt.Container target)
+
+Returns the minimum dimensions needed to lay out the components contained in the specified target container. Recomputes the layout if it has been invalidated, and factors in the 
+current inset setting. 
+
+
+    target - the component which needs to be laid out 
+
+    Returns: a Dimension object containing the minimum dimensions 
+
+*javax.swing.OverlayLayout.preferredLayoutSize(Container)*
+
+public |java.awt.Dimension| preferredLayoutSize(java.awt.Container target)
+
+Returns the preferred dimensions for this layout given the components in the specified target container. Recomputes the layout if it has been invalidated. Factors in the current 
+inset setting returned by getInsets(). 
+
+
+    target - the component which needs to be laid out 
+
+    Returns: a Dimension object containing the preferred dimensions 
+
+*javax.swing.OverlayLayout.removeLayoutComponent(Component)*
+
+public void removeLayoutComponent(java.awt.Component comp)
+
+Removes the specified component from the layout. Used by this class to know when to invalidate layout. 
+
+
+    comp - the component to remove 
+
+

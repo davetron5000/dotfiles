@@ -1,0 +1,552 @@
+*javax.sql.rowset.RowSetMetaDataImpl* *RowSetMetaDataImpl* Provides implementations for the methods that set and get
+ metadata information about a RowSet object's columns.
+
+public class RowSetMetaDataImpl
+  extends    |java.lang.Object|
+  implements |javax.sql.RowSetMetaData|
+             |java.io.Serializable|
+
+|javax.sql.rowset.RowSetMetaDataImpl_Description|
+|javax.sql.rowset.RowSetMetaDataImpl_Fields|
+|javax.sql.rowset.RowSetMetaDataImpl_Constructors|
+|javax.sql.rowset.RowSetMetaDataImpl_Methods|
+
+====================================================================================================================================================================================
+
+*javax.sql.rowset.RowSetMetaDataImpl_Constructors*
+|javax.sql.rowset.RowSetMetaDataImpl()|
+
+*javax.sql.rowset.RowSetMetaDataImpl_Methods*
+|javax.sql.rowset.RowSetMetaDataImpl.getCatalogName(int)|Retrieves the catalog name of the table from which the value  in the designated column was derived.
+|javax.sql.rowset.RowSetMetaDataImpl.getColumnClassName(int)|Retrieves the fully-qualified name of the class in the Java  programming language to which a value in the designated c
+|javax.sql.rowset.RowSetMetaDataImpl.getColumnCount()|Retrieves the number of columns in the RowSet object  for which this RowSetMetaDataImpl object was created.
+|javax.sql.rowset.RowSetMetaDataImpl.getColumnDisplaySize(int)|Retrieves the normal maximum width in chars of the designated column.
+|javax.sql.rowset.RowSetMetaDataImpl.getColumnLabel(int)|Retrieves the the suggested column title for the designated  column for use in printouts and displays.
+|javax.sql.rowset.RowSetMetaDataImpl.getColumnName(int)|Retrieves the name of the designated column.
+|javax.sql.rowset.RowSetMetaDataImpl.getColumnType(int)|Retrieves the type code (one of the java.sql.Types  constants) for the SQL type of the value stored in the  designated colu
+|javax.sql.rowset.RowSetMetaDataImpl.getColumnTypeName(int)|Retrieves the DBMS-specific type name for values stored in the  designated column.
+|javax.sql.rowset.RowSetMetaDataImpl.getPrecision(int)|Retrieves the total number of digits for values stored in  the designated column.
+|javax.sql.rowset.RowSetMetaDataImpl.getScale(int)|Retrieves the number of digits to the right of the decimal point  for values stored in the designated column.
+|javax.sql.rowset.RowSetMetaDataImpl.getSchemaName(int)|Retrieves the schema name of the table from which the value  in the designated column was derived.
+|javax.sql.rowset.RowSetMetaDataImpl.getTableName(int)|Retrieves the name of the table from which the value  in the designated column was derived.
+|javax.sql.rowset.RowSetMetaDataImpl.isAutoIncrement(int)|Retrieves whether a value stored in the designated column is  automatically numbered, and thus readonly.
+|javax.sql.rowset.RowSetMetaDataImpl.isCaseSensitive(int)|Indicates whether the case of the designated column's name  matters.
+|javax.sql.rowset.RowSetMetaDataImpl.isCurrency(int)|Indicates whether a value stored in the designated column  is a cash value.
+|javax.sql.rowset.RowSetMetaDataImpl.isDefinitelyWritable(int)|Indicates whether a write operation on the designated column  will definitely succeed.
+|javax.sql.rowset.RowSetMetaDataImpl.isNullable(int)|Retrieves a constant indicating whether it is possible  to store a NULL value in the designated column.
+|javax.sql.rowset.RowSetMetaDataImpl.isReadOnly(int)|Indicates whether the designated column is definitely  not writable, thus readonly.
+|javax.sql.rowset.RowSetMetaDataImpl.isSearchable(int)|Indicates whether a value stored in the designated column  can be used in a WHERE clause.
+|javax.sql.rowset.RowSetMetaDataImpl.isSigned(int)|Indicates whether a value stored in the designated column is  a signed number.
+|javax.sql.rowset.RowSetMetaDataImpl.isWritable(int)|Indicates whether it is possible for a write operation on  the designated column to succeed.
+|javax.sql.rowset.RowSetMetaDataImpl.setAutoIncrement(int,boolean)|Sets whether the designated column is automatically  numbered, thus read-only, to the given boolean  value.
+|javax.sql.rowset.RowSetMetaDataImpl.setCaseSensitive(int,boolean)|Sets whether the name of the designated column is case sensitive to  the given boolean.
+|javax.sql.rowset.RowSetMetaDataImpl.setCatalogName(int,String)|Sets the catalog name of the table from which the designated  column was derived to catalogName.
+|javax.sql.rowset.RowSetMetaDataImpl.setColumnCount(int)|Sets to the given number the number of columns in the RowSet   object for which this RowSetMetaDataImpl object was created
+|javax.sql.rowset.RowSetMetaDataImpl.setColumnDisplaySize(int,int)|Sets the normal maximum number of chars in the designated column  to the given number.
+|javax.sql.rowset.RowSetMetaDataImpl.setColumnLabel(int,String)|Sets the suggested column label for use in printouts and  displays, if any, to label.
+|javax.sql.rowset.RowSetMetaDataImpl.setColumnName(int,String)|Sets the column name of the designated column to the given name.
+|javax.sql.rowset.RowSetMetaDataImpl.setColumnType(int,int)|Sets the SQL type code for values stored in the designated column  to the given type code from the class java.sql.Types
+|javax.sql.rowset.RowSetMetaDataImpl.setColumnTypeName(int,String)|Sets the type name used by the data source for values stored in the  designated column to the given type name.
+|javax.sql.rowset.RowSetMetaDataImpl.setCurrency(int,boolean)|Sets whether a value stored in the designated column is a cash  value to the given boolean.
+|javax.sql.rowset.RowSetMetaDataImpl.setNullable(int,int)|Sets whether a value stored in the designated column can be set  to NULL to the given constant from the interface  Result
+|javax.sql.rowset.RowSetMetaDataImpl.setPrecision(int,int)|Sets the total number of decimal digits in a value stored in the  designated column to the given number.
+|javax.sql.rowset.RowSetMetaDataImpl.setScale(int,int)|Sets the number of digits to the right of the decimal point in a value  stored in the designated column to the given number.
+|javax.sql.rowset.RowSetMetaDataImpl.setSchemaName(int,String)|Sets the designated column's table's schema name, if any, to   schemaName.
+|javax.sql.rowset.RowSetMetaDataImpl.setSearchable(int,boolean)|Sets whether a value stored in the designated column can be used  in a WHERE clause to the given boolean value.
+|javax.sql.rowset.RowSetMetaDataImpl.setSigned(int,boolean)|Sets whether a value stored in the designated column is a signed  number to the given boolean.
+|javax.sql.rowset.RowSetMetaDataImpl.setTableName(int,String)|Sets the name of the table from which the designated column  was derived to the given table name.
+
+*javax.sql.rowset.RowSetMetaDataImpl_Description*
+
+Provides implementations for the methods that set and get metadata information about a RowSet object's columns. A RowSetMetaDataImpl object keeps track of the number of columns in 
+the rowset and maintains an internal array of column attributes for each column. 
+
+A RowSet object creates a RowSetMetaDataImpl object internally in order to set and retrieve information about its columns. 
+
+NOTE: All metadata in a RowSetMetaDataImpl object should be considered as unavailable until the RowSet object that it describes is populated. Therefore, any RowSetMetaDataImpl 
+method that retrieves information is defined as having unspecified behavior when it is called before the RowSet object contains data. 
+
+
+
+*javax.sql.rowset.RowSetMetaDataImpl()*
+
+public RowSetMetaDataImpl()
+
+
+
+
+*javax.sql.rowset.RowSetMetaDataImpl.getCatalogName(int)*
+
+public |java.lang.String| getCatalogName(int columnIndex)
+  throws |java.sql.SQLException|
+         
+Retrieves the catalog name of the table from which the value in the designated column was derived. 
+
+
+    columnIndex - the first column is 1, the second is 2, and so on; must be between 1 and the number of columns, inclusive 
+
+    Returns: the catalog name of the column's table or an empty String if no catalog name is available 
+
+*javax.sql.rowset.RowSetMetaDataImpl.getColumnClassName(int)*
+
+public |java.lang.String| getColumnClassName(int columnIndex)
+  throws |java.sql.SQLException|
+         
+Retrieves the fully-qualified name of the class in the Java programming language to which a value in the designated column will be mapped. For example, if the value is an int, the 
+class name returned by this method will be java.lang.Integer. 
+
+If the value in the designated column has a custom mapping, this method returns the name of the class that implements SQLData. When the method ResultSet.getObject is called to 
+retrieve a value from the designated column, it will create an instance of this class or one of its subclasses. 
+
+
+    columnIndex - the first column is 1, the second is 2, and so on; must be between 1 and the number of columns, inclusive 
+
+    Returns: the fully-qualified name of the class in the Java programming language that would be used by the method RowSet.getObject to retrieve the value in the specified column. This is the 
+             class name used for custom mapping when there is a custom mapping. 
+
+*javax.sql.rowset.RowSetMetaDataImpl.getColumnCount()*
+
+public int getColumnCount()
+  throws |java.sql.SQLException|
+         
+Retrieves the number of columns in the RowSet object for which this RowSetMetaDataImpl object was created. 
+
+
+
+    Returns: the number of columns 
+
+*javax.sql.rowset.RowSetMetaDataImpl.getColumnDisplaySize(int)*
+
+public int getColumnDisplaySize(int columnIndex)
+  throws |java.sql.SQLException|
+         
+Retrieves the normal maximum width in chars of the designated column. 
+
+
+    columnIndex - the first column is 1, the second is 2, and so on; must be between 1 and the number of columns, inclusive 
+
+    Returns: the maximum number of chars that can be displayed in the designated column 
+
+*javax.sql.rowset.RowSetMetaDataImpl.getColumnLabel(int)*
+
+public |java.lang.String| getColumnLabel(int columnIndex)
+  throws |java.sql.SQLException|
+         
+Retrieves the the suggested column title for the designated column for use in printouts and displays. 
+
+
+    columnIndex - the first column is 1, the second is 2, and so on; must be between 1 and the number of columns, inclusive 
+
+    Returns: the suggested column name to use in printouts and displays 
+
+*javax.sql.rowset.RowSetMetaDataImpl.getColumnName(int)*
+
+public |java.lang.String| getColumnName(int columnIndex)
+  throws |java.sql.SQLException|
+         
+Retrieves the name of the designated column. 
+
+
+    columnIndex - the first column is 1, the second is 2, and so on; must be between 1 and the number of columns, inclusive 
+
+    Returns: the column name of the designated column 
+
+*javax.sql.rowset.RowSetMetaDataImpl.getColumnType(int)*
+
+public int getColumnType(int columnIndex)
+  throws |java.sql.SQLException|
+         
+Retrieves the type code (one of the java.sql.Types constants) for the SQL type of the value stored in the designated column. 
+
+
+    columnIndex - the first column is 1, the second is 2, and so on; must be between 1 and the number of columns, inclusive 
+
+    Returns: an int representing the SQL type of values stored in the designated column 
+
+*javax.sql.rowset.RowSetMetaDataImpl.getColumnTypeName(int)*
+
+public |java.lang.String| getColumnTypeName(int columnIndex)
+  throws |java.sql.SQLException|
+         
+Retrieves the DBMS-specific type name for values stored in the designated column. 
+
+
+    columnIndex - the first column is 1, the second is 2, and so on; must be between 1 and the number of columns, inclusive 
+
+    Returns: the type name used by the data source 
+
+*javax.sql.rowset.RowSetMetaDataImpl.getPrecision(int)*
+
+public int getPrecision(int columnIndex)
+  throws |java.sql.SQLException|
+         
+Retrieves the total number of digits for values stored in the designated column. 
+
+
+    columnIndex - the first column is 1, the second is 2, and so on; must be between 1 and the number of columns, inclusive 
+
+    Returns: the precision for values stored in the designated column 
+
+*javax.sql.rowset.RowSetMetaDataImpl.getScale(int)*
+
+public int getScale(int columnIndex)
+  throws |java.sql.SQLException|
+         
+Retrieves the number of digits to the right of the decimal point for values stored in the designated column. 
+
+
+    columnIndex - the first column is 1, the second is 2, and so on; must be between 1 and the number of columns, inclusive 
+
+    Returns: the scale for values stored in the designated column 
+
+*javax.sql.rowset.RowSetMetaDataImpl.getSchemaName(int)*
+
+public |java.lang.String| getSchemaName(int columnIndex)
+  throws |java.sql.SQLException|
+         
+Retrieves the schema name of the table from which the value in the designated column was derived. 
+
+
+    columnIndex - the first column is 1, the second is 2, and so on; must be between 1 and the number of columns, inclusive 
+
+    Returns: the schema name or an empty String if no schema name is available 
+
+*javax.sql.rowset.RowSetMetaDataImpl.getTableName(int)*
+
+public |java.lang.String| getTableName(int columnIndex)
+  throws |java.sql.SQLException|
+         
+Retrieves the name of the table from which the value in the designated column was derived. 
+
+
+    columnIndex - the first column is 1, the second is 2, and so on; must be between 1 and the number of columns, inclusive 
+
+    Returns: the table name or an empty String if no table name is available 
+
+*javax.sql.rowset.RowSetMetaDataImpl.isAutoIncrement(int)*
+
+public boolean isAutoIncrement(int columnIndex)
+  throws |java.sql.SQLException|
+         
+Retrieves whether a value stored in the designated column is automatically numbered, and thus readonly. 
+
+
+    columnIndex - the first column is 1, the second is 2, and so on; must be between 1 and the number of columns, inclusive 
+
+    Returns: true if the column is automatically numbered; false otherwise 
+
+*javax.sql.rowset.RowSetMetaDataImpl.isCaseSensitive(int)*
+
+public boolean isCaseSensitive(int columnIndex)
+  throws |java.sql.SQLException|
+         
+Indicates whether the case of the designated column's name matters. 
+
+
+    columnIndex - the first column is 1, the second is 2, and so on; must be between 1 and the number of columns, inclusive 
+
+    Returns: true if the column name is case sensitive; false otherwise 
+
+*javax.sql.rowset.RowSetMetaDataImpl.isCurrency(int)*
+
+public boolean isCurrency(int columnIndex)
+  throws |java.sql.SQLException|
+         
+Indicates whether a value stored in the designated column is a cash value. 
+
+
+    columnIndex - the first column is 1, the second is 2, and so on; must be between 1 and the number of columns, inclusive 
+
+    Returns: true if a value in the designated column is a cash value; false otherwise 
+
+*javax.sql.rowset.RowSetMetaDataImpl.isDefinitelyWritable(int)*
+
+public boolean isDefinitelyWritable(int columnIndex)
+  throws |java.sql.SQLException|
+         
+Indicates whether a write operation on the designated column will definitely succeed. 
+
+
+    columnIndex - the first column is 1, the second is 2, and so on; must be between 1 and the number of columns, inclusive 
+
+    Returns: true if a write operation on the designated column will definitely succeed; false otherwise 
+
+*javax.sql.rowset.RowSetMetaDataImpl.isNullable(int)*
+
+public int isNullable(int columnIndex)
+  throws |java.sql.SQLException|
+         
+Retrieves a constant indicating whether it is possible to store a NULL value in the designated column. 
+
+
+    columnIndex - the first column is 1, the second is 2, and so on; must be between 1 and the number of columns, inclusive 
+
+    Returns: a constant from the ResultSetMetaData interface; either columnNoNulls, columnNullable, or columnNullableUnknown 
+
+*javax.sql.rowset.RowSetMetaDataImpl.isReadOnly(int)*
+
+public boolean isReadOnly(int columnIndex)
+  throws |java.sql.SQLException|
+         
+Indicates whether the designated column is definitely not writable, thus readonly. 
+
+
+    columnIndex - the first column is 1, the second is 2, and so on; must be between 1 and the number of columns, inclusive 
+
+    Returns: true if this RowSet object is read-Only and thus not updatable; false otherwise 
+
+*javax.sql.rowset.RowSetMetaDataImpl.isSearchable(int)*
+
+public boolean isSearchable(int columnIndex)
+  throws |java.sql.SQLException|
+         
+Indicates whether a value stored in the designated column can be used in a WHERE clause. 
+
+
+    columnIndex - the first column is 1, the second is 2, and so on; must be between 1 and the number of columns, inclusive 
+
+    Returns: true if a value in the designated column can be used in a WHERE clause; false otherwise 
+
+*javax.sql.rowset.RowSetMetaDataImpl.isSigned(int)*
+
+public boolean isSigned(int columnIndex)
+  throws |java.sql.SQLException|
+         
+Indicates whether a value stored in the designated column is a signed number. 
+
+
+    columnIndex - the first column is 1, the second is 2, and so on; must be between 1 and the number of columns, inclusive 
+
+    Returns: true if if a value in the designated column is a signed number; false otherwise 
+
+*javax.sql.rowset.RowSetMetaDataImpl.isWritable(int)*
+
+public boolean isWritable(int columnIndex)
+  throws |java.sql.SQLException|
+         
+Indicates whether it is possible for a write operation on the designated column to succeed. A return value of true means that a write operation may or may not succeed. 
+
+
+    columnIndex - the first column is 1, the second is 2, and so on; must be between 1 and the number of columns, inclusive 
+
+    Returns: true if a write operation on the designated column may will succeed; false otherwise 
+
+*javax.sql.rowset.RowSetMetaDataImpl.setAutoIncrement(int,boolean)*
+
+public void setAutoIncrement(
+  int columnIndex,
+  boolean property)
+  throws |java.sql.SQLException|
+         
+Sets whether the designated column is automatically numbered, thus read-only, to the given boolean value. 
+
+
+    columnIndex - the first column is 1, the second is 2, and so on; must be between 1 and the number of columns in the rowset, inclusive 
+    property - true if the given column is automatically incremented; false otherwise 
+
+*javax.sql.rowset.RowSetMetaDataImpl.setCaseSensitive(int,boolean)*
+
+public void setCaseSensitive(
+  int columnIndex,
+  boolean property)
+  throws |java.sql.SQLException|
+         
+Sets whether the name of the designated column is case sensitive to the given boolean. 
+
+
+    columnIndex - the first column is 1, the second is 2, and so on; must be between 1 and the number of columns in the rowset, inclusive 
+    property - true to indicate that the column name is case sensitive; false otherwise 
+
+*javax.sql.rowset.RowSetMetaDataImpl.setCatalogName(int,String)*
+
+public void setCatalogName(
+  int columnIndex,
+  java.lang.String catalogName)
+  throws |java.sql.SQLException|
+         
+Sets the catalog name of the table from which the designated column was derived to catalogName. If catalogName is null, the catalog name is set to an empty string. 
+
+
+    columnIndex - the first column is 1, the second is 2, and so on; must be between 1 and the number of columns, inclusive 
+    catalogName - the column's table's catalog name; if the catalogName is null, an empty String is set 
+
+*javax.sql.rowset.RowSetMetaDataImpl.setColumnCount(int)*
+
+public void setColumnCount(int columnCount)
+  throws |java.sql.SQLException|
+         
+Sets to the given number the number of columns in the RowSet object for which this RowSetMetaDataImpl object was created. 
+
+
+    columnCount - an int giving the number of columns in the RowSet object 
+
+*javax.sql.rowset.RowSetMetaDataImpl.setColumnDisplaySize(int,int)*
+
+public void setColumnDisplaySize(
+  int columnIndex,
+  int size)
+  throws |java.sql.SQLException|
+         
+Sets the normal maximum number of chars in the designated column to the given number. 
+
+
+    columnIndex - the first column is 1, the second is 2, and so on; must be between 1 and the number of columns, inclusive 
+    size - the maximum size of the column in chars; must be 0 or more 
+
+*javax.sql.rowset.RowSetMetaDataImpl.setColumnLabel(int,String)*
+
+public void setColumnLabel(
+  int columnIndex,
+  java.lang.String label)
+  throws |java.sql.SQLException|
+         
+Sets the suggested column label for use in printouts and displays, if any, to label. If label is null, the column label is set to an empty string (""). 
+
+
+    columnIndex - the first column is 1, the second is 2, and so on; must be between 1 and the number of columns, inclusive 
+    label - the column label to be used in printouts and displays; if the column label is null, an empty String is set 
+
+*javax.sql.rowset.RowSetMetaDataImpl.setColumnName(int,String)*
+
+public void setColumnName(
+  int columnIndex,
+  java.lang.String columnName)
+  throws |java.sql.SQLException|
+         
+Sets the column name of the designated column to the given name. 
+
+
+    columnIndex - the first column is 1, the second is 2, and so on; must be between 1 and the number of columns, inclusive 
+    columnName - a String object indicating the column name; if the given name is null, an empty String is set 
+
+*javax.sql.rowset.RowSetMetaDataImpl.setColumnType(int,int)*
+
+public void setColumnType(
+  int columnIndex,
+  int SQLType)
+  throws |java.sql.SQLException|
+         
+Sets the SQL type code for values stored in the designated column to the given type code from the class java.sql.Types. 
+
+
+    columnIndex - the first column is 1, the second is 2, and so on; must be between 1 and the number of columns, inclusive 
+    SQLType - the designated column's SQL type, which must be one of the constants in the class java.sql.Types 
+
+*javax.sql.rowset.RowSetMetaDataImpl.setColumnTypeName(int,String)*
+
+public void setColumnTypeName(
+  int columnIndex,
+  java.lang.String typeName)
+  throws |java.sql.SQLException|
+         
+Sets the type name used by the data source for values stored in the designated column to the given type name. 
+
+
+    columnIndex - the first column is 1, the second is 2, and so on; must be between 1 and the number of columns, inclusive 
+    typeName - the data source-specific type name; if typeName is null, an empty String is set 
+
+*javax.sql.rowset.RowSetMetaDataImpl.setCurrency(int,boolean)*
+
+public void setCurrency(
+  int columnIndex,
+  boolean property)
+  throws |java.sql.SQLException|
+         
+Sets whether a value stored in the designated column is a cash value to the given boolean. 
+
+
+    columnIndex - the first column is 1, the second is 2, and so on; must be between 1 and the number of columns, inclusive between 1 and the number of columns, inclusive 
+    property - true if the value is a cash value; false otherwise. 
+
+*javax.sql.rowset.RowSetMetaDataImpl.setNullable(int,int)*
+
+public void setNullable(
+  int columnIndex,
+  int property)
+  throws |java.sql.SQLException|
+         
+Sets whether a value stored in the designated column can be set to NULL to the given constant from the interface ResultSetMetaData. 
+
+
+    columnIndex - the first column is 1, the second is 2, and so on; must be between 1 and the number of columns, inclusive 
+    property - one of the following ResultSetMetaData constants: columnNoNulls, columnNullable, or columnNullableUnknown 
+
+*javax.sql.rowset.RowSetMetaDataImpl.setPrecision(int,int)*
+
+public void setPrecision(
+  int columnIndex,
+  int precision)
+  throws |java.sql.SQLException|
+         
+Sets the total number of decimal digits in a value stored in the designated column to the given number. 
+
+
+    columnIndex - the first column is 1, the second is 2, and so on; must be between 1 and the number of columns, inclusive 
+    precision - the total number of decimal digits; must be 0 or more 
+
+*javax.sql.rowset.RowSetMetaDataImpl.setScale(int,int)*
+
+public void setScale(
+  int columnIndex,
+  int scale)
+  throws |java.sql.SQLException|
+         
+Sets the number of digits to the right of the decimal point in a value stored in the designated column to the given number. 
+
+
+    columnIndex - the first column is 1, the second is 2, and so on; must be between 1 and the number of columns, inclusive 
+    scale - the number of digits to the right of the decimal point; must be zero or greater 
+
+*javax.sql.rowset.RowSetMetaDataImpl.setSchemaName(int,String)*
+
+public void setSchemaName(
+  int columnIndex,
+  java.lang.String schemaName)
+  throws |java.sql.SQLException|
+         
+Sets the designated column's table's schema name, if any, to schemaName. If schemaName is null, the schema name is set to an empty string (""). 
+
+
+    columnIndex - the first column is 1, the second is 2, and so on; must be between 1 and the number of columns, inclusive 
+    schemaName - the schema name for the table from which a value in the designated column was derived; may be an empty String or null 
+
+*javax.sql.rowset.RowSetMetaDataImpl.setSearchable(int,boolean)*
+
+public void setSearchable(
+  int columnIndex,
+  boolean property)
+  throws |java.sql.SQLException|
+         
+Sets whether a value stored in the designated column can be used in a WHERE clause to the given boolean value. 
+
+
+    columnIndex - the first column is 1, the second is 2, and so on; must be between 1 and the number of columns in the rowset, inclusive 
+    property - true to indicate that a column value can be used in a WHERE clause; false otherwise 
+
+*javax.sql.rowset.RowSetMetaDataImpl.setSigned(int,boolean)*
+
+public void setSigned(
+  int columnIndex,
+  boolean property)
+  throws |java.sql.SQLException|
+         
+Sets whether a value stored in the designated column is a signed number to the given boolean. 
+
+
+    columnIndex - the first column is 1, the second is 2, and so on; must be between 1 and the number of columns, inclusive 
+    property - true to indicate that a column value is a signed number; false to indicate that it is not 
+
+*javax.sql.rowset.RowSetMetaDataImpl.setTableName(int,String)*
+
+public void setTableName(
+  int columnIndex,
+  java.lang.String tableName)
+  throws |java.sql.SQLException|
+         
+Sets the name of the table from which the designated column was derived to the given table name. 
+
+
+    columnIndex - the first column is 1, the second is 2, and so on; must be between 1 and the number of columns, inclusive 
+    tableName - the column's table name; may be null or an empty string 
+
+

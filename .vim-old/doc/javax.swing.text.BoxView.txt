@@ -1,0 +1,559 @@
+*javax.swing.text.BoxView* *BoxView* A view that arranges its children into a box shape by tiling
+ its children along an axis.
+
+public class BoxView
+  extends    |javax.swing.text.CompositeView|
+
+|javax.swing.text.BoxView_Description|
+|javax.swing.text.BoxView_Fields|
+|javax.swing.text.BoxView_Constructors|
+|javax.swing.text.BoxView_Methods|
+
+====================================================================================================================================================================================
+
+*javax.swing.text.BoxView_Constructors*
+|javax.swing.text.BoxView(Element,int)|Constructs a BoxView.
+
+*javax.swing.text.BoxView_Methods*
+|javax.swing.text.BoxView.baselineLayout(int,int,int[],int[])|Computes the location and extent of each child view  in this BoxView given the targetSpan,  which is the width (or he
+|javax.swing.text.BoxView.baselineRequirements(int,SizeRequirements)|Calculates the size requirements for this BoxView  by examining the size of each child view.
+|javax.swing.text.BoxView.calculateMajorAxisRequirements(int,SizeRequirements)|Calculates the size requirements for the major axis  axis.
+|javax.swing.text.BoxView.calculateMinorAxisRequirements(int,SizeRequirements)|Calculates the size requirements for the minor axis  axis.
+|javax.swing.text.BoxView.childAllocation(int,Rectangle)|Allocates a region for a child view.
+|javax.swing.text.BoxView.flipEastAndWestAtEnds(int,Position.Bias)|Determines in which direction the next view lays.
+|javax.swing.text.BoxView.forwardUpdate(DocumentEvent.ElementChange,DocumentEvent,Shape,ViewFactory)|Forwards the given DocumentEvent to the child views  that need to be notified 
+|javax.swing.text.BoxView.getAlignment(int)|Determines the desired alignment for this view along an  axis.
+|javax.swing.text.BoxView.getAxis()|Fetches the tile axis property.
+|javax.swing.text.BoxView.getChildAllocation(int,Shape)|Fetches the allocation for the given child view.
+|javax.swing.text.BoxView.getHeight()|Returns the current height of the box.
+|javax.swing.text.BoxView.getMaximumSpan(int)|Determines the maximum span for this view along an  axis.
+|javax.swing.text.BoxView.getMinimumSpan(int)|Determines the minimum span for this view along an  axis.
+|javax.swing.text.BoxView.getOffset(int,int)|Fetches the offset of a particular child's current layout.
+|javax.swing.text.BoxView.getPreferredSpan(int)|Determines the preferred span for this view along an  axis.
+|javax.swing.text.BoxView.getResizeWeight(int)|Gets the resize weight.
+|javax.swing.text.BoxView.getSpan(int,int)|Fetches the span of a particular childs current layout.
+|javax.swing.text.BoxView.getViewAtPoint(int,int,Rectangle)|Fetches the child view at the given coordinates.
+|javax.swing.text.BoxView.getWidth()|Returns the current width of the box.
+|javax.swing.text.BoxView.isAfter(int,int,Rectangle)|Determines if a point falls after an allocated region.
+|javax.swing.text.BoxView.isAllocationValid()|Are the allocations for the children still  valid?
+|javax.swing.text.BoxView.isBefore(int,int,Rectangle)|Determines if a point falls before an allocated region.
+|javax.swing.text.BoxView.isLayoutValid(int)|Determines if the layout is valid along the given axis.
+|javax.swing.text.BoxView.layout(int,int)|Perform layout on the box
+|javax.swing.text.BoxView.layoutChanged(int)|Invalidates the layout along an axis.
+|javax.swing.text.BoxView.layoutMajorAxis(int,int,int[],int[])|Performs layout for the major axis of the box (i.e.
+|javax.swing.text.BoxView.layoutMinorAxis(int,int,int[],int[])|Performs layout for the minor axis of the box (i.e.
+|javax.swing.text.BoxView.modelToView(int,Shape,Position.Bias)|Provides a mapping from the document model coordinate space  to the coordinate space of the view mapped to it.
+|javax.swing.text.BoxView.paint(Graphics,Shape)|Renders the BoxView using the given  rendering surface and area   on that surface.
+|javax.swing.text.BoxView.paintChild(Graphics,Rectangle,int)|Paints a child.
+|javax.swing.text.BoxView.preferenceChanged(View,boolean,boolean)|This is called by a child to indicate its   preferred span has changed.
+|javax.swing.text.BoxView.replace(int,int,View[])|Invalidates the layout and resizes the cache of   requests/allocations.
+|javax.swing.text.BoxView.setAxis(int)|Sets the tile axis property.
+|javax.swing.text.BoxView.setSize(float,float)|Sets the size of the view.
+|javax.swing.text.BoxView.viewToModel(float,float,Shape,Position.Bias[])|Provides a mapping from the view coordinate space to the logical  coordinate space of the model.
+
+*javax.swing.text.BoxView_Description*
+
+A view that arranges its children into a box shape by tiling its children along an axis. The box is somewhat like that found in TeX where there is alignment of the children, 
+flexibility of the children is considered, etc. This is a building block that might be useful to represent things like a collection of lines, paragraphs, lists, columns, pages, 
+etc. The axis along which the children are tiled is considered the major axis. The orthoginal axis is the minor axis. 
+
+Layout for each axis is handled separately by the methods layoutMajorAxis and layoutMinorAxis. Subclasses can change the layout algorithm by reimplementing these methods. These 
+methods will be called as necessary depending upon whether or not there is cached layout information and the cache is considered valid. These methods are typically called if the 
+given size along the axis changes, or if layoutChanged is called to force an updated layout. The layoutChanged method invalidates cached layout information, if there is any. The 
+requirements published to the parent view are calculated by the methods calculateMajorAxisRequirements and calculateMinorAxisRequirements. If the layout algorithm is changed, 
+these methods will likely need to be reimplemented. 
+
+
+
+*javax.swing.text.BoxView(Element,int)*
+
+public BoxView(
+  javax.swing.text.Element elem,
+  int axis)
+
+Constructs a BoxView. 
+
+    elem - the element this view is responsible for 
+    axis - either View.X_AXIS or View.Y_AXIS 
+
+*javax.swing.text.BoxView.baselineLayout(int,int,int[],int[])*
+
+protected void baselineLayout(
+  int targetSpan,
+  int axis,
+  int[] offsets,
+  int[] spans)
+
+Computes the location and extent of each child view in this BoxView given the targetSpan, which is the width (or height) of the region we have to work with. 
+
+
+    targetSpan - the total span given to the view, which would be used to layout the children 
+    axis - the axis being studied, either View.X_AXIS or View.Y_AXIS 
+    offsets - an empty array filled by this method with values specifying the location	of each child view 
+    spans - an empty array filled by this method with values specifying the extent of each child view 
+
+*javax.swing.text.BoxView.baselineRequirements(int,SizeRequirements)*
+
+protected |javax.swing.SizeRequirements| baselineRequirements(
+  int axis,
+  javax.swing.SizeRequirements r)
+
+Calculates the size requirements for this BoxView by examining the size of each child view. 
+
+
+    axis - the axis being studied 
+    r - the SizeRequirements object; if null one will be created 
+
+    Returns: the newly initialized SizeRequirements object 
+
+*javax.swing.text.BoxView.calculateMajorAxisRequirements(int,SizeRequirements)*
+
+protected |javax.swing.SizeRequirements| calculateMajorAxisRequirements(
+  int axis,
+  javax.swing.SizeRequirements r)
+
+Calculates the size requirements for the major axis axis. 
+
+
+    axis - the axis being studied 
+    r - the SizeRequirements object; if null one will be created 
+
+    Returns: the newly initialized SizeRequirements object 
+
+*javax.swing.text.BoxView.calculateMinorAxisRequirements(int,SizeRequirements)*
+
+protected |javax.swing.SizeRequirements| calculateMinorAxisRequirements(
+  int axis,
+  javax.swing.SizeRequirements r)
+
+Calculates the size requirements for the minor axis axis. 
+
+
+    axis - the axis being studied 
+    r - the SizeRequirements object; if null one will be created 
+
+    Returns: the newly initialized SizeRequirements object 
+
+*javax.swing.text.BoxView.childAllocation(int,Rectangle)*
+
+protected void childAllocation(
+  int index,
+  java.awt.Rectangle alloc)
+
+Allocates a region for a child view. 
+
+
+    index - the index of the child view to allocate, >= 0 < getViewCount() 
+    alloc - the allocated region 
+
+*javax.swing.text.BoxView.flipEastAndWestAtEnds(int,Position.Bias)*
+
+protected boolean flipEastAndWestAtEnds(
+  int position,
+  javax.swing.text.Position.Bias bias)
+
+Determines in which direction the next view lays. Consider the View at index n. Typically the Views are layed out from left to right, so that the View to the EAST will be at index 
+n + 1, and the View to the WEST will be at index n - 1. In certain situations, such as with bidirectional text, it is possible that the View to EAST is not at index n + 1, but 
+rather at index n - 1, or that the View to the WEST is not at index n - 1, but index n + 1. In this case this method would return true, indicating the Views are layed out in 
+descending order. Otherwise the method would return false indicating the Views are layed out in ascending order. 
+
+If the receiver is laying its Views along the Y_AXIS, this will will return the value from invoking the same method on the View responsible for rendering position and bias. 
+Otherwise this will return false. 
+
+
+    position - position into the model 
+    bias - either Position.Bias.Forward or Position.Bias.Backward 
+
+    Returns: true if the Views surrounding the View responding for rendering position and bias are layed out in descending order; otherwise false 
+
+*javax.swing.text.BoxView.forwardUpdate(DocumentEvent.ElementChange,DocumentEvent,Shape,ViewFactory)*
+
+protected void forwardUpdate(
+  javax.swing.event.DocumentEvent.ElementChange ec,
+  javax.swing.event.DocumentEvent e,
+  java.awt.Shape a,
+  javax.swing.text.ViewFactory f)
+
+Forwards the given DocumentEvent to the child views that need to be notified of the change to the model. If a child changed its requirements and the allocation was valid prior to 
+forwarding the portion of the box from the starting child to the end of the box will be repainted. 
+
+
+    ec - changes to the element this view is responsible for (may be null if there were no changes) 
+    e - the change information from the associated document 
+    a - the current allocation of the view 
+    f - the factory to use to rebuild if the view has children 
+
+*javax.swing.text.BoxView.getAlignment(int)*
+
+public float getAlignment(int axis)
+
+Determines the desired alignment for this view along an axis. This is implemented to give the total alignment needed to position the children with the alignment points lined up 
+along the axis orthoginal to the axis that is being tiled. The axis being tiled will request to be centered (i.e. 0.5f). 
+
+
+    axis - may be either View.X_AXIS or View.Y_AXIS 
+
+    Returns: the desired alignment >= 0.0f <= 1.0f; this should be a value between 0.0 and 1.0 where 0 indicates alignment at the origin and 1.0 indicates alignment to the full span away from 
+             the origin; an alignment of 0.5 would be the center of the view 
+
+*javax.swing.text.BoxView.getAxis()*
+
+public int getAxis()
+
+Fetches the tile axis property. This is the axis along which the child views are tiled. 
+
+
+
+    Returns: the major axis of the box, either View.X_AXIS or View.Y_AXIS 
+
+*javax.swing.text.BoxView.getChildAllocation(int,Shape)*
+
+public |java.awt.Shape| getChildAllocation(
+  int index,
+  java.awt.Shape a)
+
+Fetches the allocation for the given child view. This enables finding out where various views are located. This is implemented to return null if the layout is invalid, otherwise 
+the superclass behavior is executed. 
+
+
+    index - the index of the child, >= 0 < getViewCount() 
+    a - the allocation to this view 
+
+    Returns: the allocation to the child; or null if a is null; or null if the layout is invalid 
+
+*javax.swing.text.BoxView.getHeight()*
+
+public int getHeight()
+
+Returns the current height of the box. This is the height that it was last allocated. 
+
+
+
+    Returns: the current height of the box 
+
+*javax.swing.text.BoxView.getMaximumSpan(int)*
+
+public float getMaximumSpan(int axis)
+
+Determines the maximum span for this view along an axis. 
+
+
+    axis - may be either View.X_AXIS or View.Y_AXIS 
+
+    Returns: the span the view would like to be rendered into >= 0; typically the view is told to render into the span that is returned, although there is no guarantee; the parent may choose 
+             to resize or break the view 
+
+*javax.swing.text.BoxView.getMinimumSpan(int)*
+
+public float getMinimumSpan(int axis)
+
+Determines the minimum span for this view along an axis. 
+
+
+    axis - may be either View.X_AXIS or View.Y_AXIS 
+
+    Returns: the span the view would like to be rendered into >= 0; typically the view is told to render into the span that is returned, although there is no guarantee; the parent may choose 
+             to resize or break the view 
+
+*javax.swing.text.BoxView.getOffset(int,int)*
+
+protected int getOffset(
+  int axis,
+  int childIndex)
+
+Fetches the offset of a particular child's current layout. 
+
+
+    axis - the axis being studied 
+    childIndex - the index of the requested child 
+
+    Returns: the offset (location) for the specified child 
+
+*javax.swing.text.BoxView.getPreferredSpan(int)*
+
+public float getPreferredSpan(int axis)
+
+Determines the preferred span for this view along an axis. 
+
+
+    axis - may be either View.X_AXIS or View.Y_AXIS 
+
+    Returns: the span the view would like to be rendered into >= 0; typically the view is told to render into the span that is returned, although there is no guarantee; the parent may choose 
+             to resize or break the view 
+
+*javax.swing.text.BoxView.getResizeWeight(int)*
+
+public int getResizeWeight(int axis)
+
+Gets the resize weight. A value of 0 or less is not resizable. 
+
+
+    axis - may be either View.X_AXIS or View.Y_AXIS 
+
+    Returns: 
+
+*javax.swing.text.BoxView.getSpan(int,int)*
+
+protected int getSpan(
+  int axis,
+  int childIndex)
+
+Fetches the span of a particular childs current layout. 
+
+
+    axis - the axis being studied 
+    childIndex - the index of the requested child 
+
+    Returns: the span (width or height) of the specified child 
+
+*javax.swing.text.BoxView.getViewAtPoint(int,int,Rectangle)*
+
+protected |javax.swing.text.View| getViewAtPoint(
+  int x,
+  int y,
+  java.awt.Rectangle alloc)
+
+Fetches the child view at the given coordinates. 
+
+
+    x - the X coordinate >= 0 
+    y - the Y coordinate >= 0 
+    alloc - the parents inner allocation on entry, which should be changed to the childs allocation on exit 
+
+    Returns: 
+
+*javax.swing.text.BoxView.getWidth()*
+
+public int getWidth()
+
+Returns the current width of the box. This is the width that it was last allocated. 
+
+
+
+    Returns: the current width of the box 
+
+*javax.swing.text.BoxView.isAfter(int,int,Rectangle)*
+
+protected boolean isAfter(
+  int x,
+  int y,
+  java.awt.Rectangle innerAlloc)
+
+Determines if a point falls after an allocated region. 
+
+
+    x - the X coordinate >= 0 
+    y - the Y coordinate >= 0 
+    innerAlloc - the allocated region; this is the area inside of the insets 
+
+    Returns: true if the point lies after the region else false 
+
+*javax.swing.text.BoxView.isAllocationValid()*
+
+protected boolean isAllocationValid()
+
+Are the allocations for the children still valid? 
+
+
+
+    Returns: true if allocations still valid 
+
+*javax.swing.text.BoxView.isBefore(int,int,Rectangle)*
+
+protected boolean isBefore(
+  int x,
+  int y,
+  java.awt.Rectangle innerAlloc)
+
+Determines if a point falls before an allocated region. 
+
+
+    x - the X coordinate >= 0 
+    y - the Y coordinate >= 0 
+    innerAlloc - the allocated region; this is the area inside of the insets 
+
+    Returns: true if the point lies before the region else false 
+
+*javax.swing.text.BoxView.isLayoutValid(int)*
+
+protected boolean isLayoutValid(int axis)
+
+Determines if the layout is valid along the given axis. 
+
+
+    axis - either View.X_AXIS or View.Y_AXIS 
+
+*javax.swing.text.BoxView.layout(int,int)*
+
+protected void layout(
+  int width,
+  int height)
+
+Perform layout on the box 
+
+
+    width - the width (inside of the insets) >= 0 
+    height - the height (inside of the insets) >= 0 
+
+*javax.swing.text.BoxView.layoutChanged(int)*
+
+public void layoutChanged(int axis)
+
+Invalidates the layout along an axis. This happens automatically if the preferences have changed for any of the child views. In some cases the layout may need to be recalculated 
+when the preferences have not changed. The layout can be marked as invalid by calling this method. The layout will be updated the next time the setSize method is called on this 
+view (typically in paint). 
+
+
+    axis - either View.X_AXIS or View.Y_AXIS 
+
+*javax.swing.text.BoxView.layoutMajorAxis(int,int,int[],int[])*
+
+protected void layoutMajorAxis(
+  int targetSpan,
+  int axis,
+  int[] offsets,
+  int[] spans)
+
+Performs layout for the major axis of the box (i.e. the axis that it represents). The results of the layout should be placed in the given arrays which represent the allocations to 
+the children along the major axis. 
+
+
+    targetSpan - the total span given to the view, which would be used to layout the children 
+    axis - the axis being layed out 
+    offsets - the offsets from the origin of the view for each of the child views; this is a return value and is filled in by the implementation of this method 
+    spans - the span of each child view; this is a return value and is filled in by the implementation of this method 
+
+    Returns: the offset and span for each child view in the offsets and spans parameters 
+
+*javax.swing.text.BoxView.layoutMinorAxis(int,int,int[],int[])*
+
+protected void layoutMinorAxis(
+  int targetSpan,
+  int axis,
+  int[] offsets,
+  int[] spans)
+
+Performs layout for the minor axis of the box (i.e. the axis orthoginal to the axis that it represents). The results of the layout should be placed in the given arrays which 
+represent the allocations to the children along the minor axis. 
+
+
+    targetSpan - the total span given to the view, which would be used to layout the children 
+    axis - the axis being layed out 
+    offsets - the offsets from the origin of the view for each of the child views; this is a return value and is filled in by the implementation of this method 
+    spans - the span of each child view; this is a return value and is filled in by the implementation of this method 
+
+    Returns: the offset and span for each child view in the offsets and spans parameters 
+
+*javax.swing.text.BoxView.modelToView(int,Shape,Position.Bias)*
+
+public |java.awt.Shape| modelToView(
+  int pos,
+  java.awt.Shape a,
+  javax.swing.text.Position.Bias b)
+  throws |javax.swing.text.BadLocationException|
+         
+Provides a mapping from the document model coordinate space to the coordinate space of the view mapped to it. This makes sure the allocation is valid before calling the 
+superclass. 
+
+
+    pos - the position to convert >= 0 
+    a - the allocated region to render into 
+
+    Returns: the bounding box of the given position 
+
+*javax.swing.text.BoxView.paint(Graphics,Shape)*
+
+public void paint(
+  java.awt.Graphics g,
+  java.awt.Shape allocation)
+
+Renders the BoxView using the given rendering surface and area on that surface. Only the children that intersect the clip bounds of the given Graphics will be rendered. 
+
+
+    g - the rendering surface to use 
+    allocation - the allocated region to render into 
+
+*javax.swing.text.BoxView.paintChild(Graphics,Rectangle,int)*
+
+protected void paintChild(
+  java.awt.Graphics g,
+  java.awt.Rectangle alloc,
+  int index)
+
+Paints a child. By default that is all it does, but a subclass can use this to paint things relative to the child. 
+
+
+    g - the graphics context 
+    alloc - the allocated region to paint into 
+    index - the child index, >= 0 < getViewCount() 
+
+*javax.swing.text.BoxView.preferenceChanged(View,boolean,boolean)*
+
+public void preferenceChanged(
+  javax.swing.text.View child,
+  boolean width,
+  boolean height)
+
+This is called by a child to indicate its preferred span has changed. This is implemented to throw away cached layout information so that new calculations will be done the next 
+time the children need an allocation. 
+
+
+    child - the child view 
+    width - true if the width preference should change 
+    height - true if the height preference should change 
+
+*javax.swing.text.BoxView.replace(int,int,View[])*
+
+public void replace(
+  int index,
+  int length,
+  javax.swing.text.View[] elems)
+
+Invalidates the layout and resizes the cache of requests/allocations. The child allocations can still be accessed for the old layout, but the new children will have an offset and 
+span of 0. 
+
+
+    index - the starting index into the child views to insert the new views; this should be a value >= 0 and <= getViewCount 
+    length - the number of existing child views to remove; This should be a value >= 0 and <= (getViewCount() - offset) 
+    elems - the child views to add; this value can be nullto indicate no children are being added (useful to remove) 
+
+*javax.swing.text.BoxView.setAxis(int)*
+
+public void setAxis(int axis)
+
+Sets the tile axis property. This is the axis along which the child views are tiled. 
+
+
+    axis - either View.X_AXIS or View.Y_AXIS 
+
+*javax.swing.text.BoxView.setSize(float,float)*
+
+public void setSize(
+  float width,
+  float height)
+
+Sets the size of the view. This should cause layout of the view if the view caches any layout information. This is implemented to call the layout method with the sizes inside of 
+the insets. 
+
+
+    width - the width >= 0 
+    height - the height >= 0 
+
+*javax.swing.text.BoxView.viewToModel(float,float,Shape,Position.Bias[])*
+
+public int viewToModel(
+  float x,
+  float y,
+  java.awt.Shape a,
+  javax.swing.text.Position.Bias[] bias)
+
+Provides a mapping from the view coordinate space to the logical coordinate space of the model. 
+
+
+    x - x coordinate of the view location to convert >= 0 
+    y - y coordinate of the view location to convert >= 0 
+    a - the allocated region to render into 
+
+    Returns: the location within the model that best represents the given point in the view >= 0 
+
+

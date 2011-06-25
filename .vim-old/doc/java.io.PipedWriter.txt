@@ -1,0 +1,113 @@
+*java.io.PipedWriter* *PipedWriter* Piped character-output streams.
+
+public class PipedWriter
+  extends    |java.io.Writer|
+
+|java.io.PipedWriter_Description|
+|java.io.PipedWriter_Fields|
+|java.io.PipedWriter_Constructors|
+|java.io.PipedWriter_Methods|
+
+====================================================================================================================================================================================
+
+*java.io.PipedWriter_Constructors*
+|java.io.PipedWriter()|Creates a piped writer that is not yet connected to a   piped reader.
+|java.io.PipedWriter(PipedReader)|Creates a piped writer connected to the specified piped   reader.
+
+*java.io.PipedWriter_Methods*
+|java.io.PipedWriter.close()|Closes this piped output stream and releases any system resources   associated with this stream.
+|java.io.PipedWriter.connect(PipedReader)|Connects this piped writer to a receiver.
+|java.io.PipedWriter.flush()|Flushes this output stream and forces any buffered output characters   to be written out.
+|java.io.PipedWriter.write(char[],int,int)|Writes len characters from the specified character array   starting at offset off to this piped output stream.
+|java.io.PipedWriter.write(int)|Writes the specified char to the piped output stream.
+
+*java.io.PipedWriter_Description*
+
+Piped character-output streams. 
+
+
+
+*java.io.PipedWriter()*
+
+public PipedWriter()
+
+Creates a piped writer that is not yet connected to a piped reader. It must be connected to a piped reader, either by the receiver or the sender, before being used. 
+
+
+*java.io.PipedWriter(PipedReader)*
+
+public PipedWriter(java.io.PipedReader snk)
+  throws |java.io.IOException|
+         
+Creates a piped writer connected to the specified piped reader. Data characters written to this stream will then be available as input from snk. 
+
+    snk - The piped reader to connect to. 
+
+*java.io.PipedWriter.close()*
+
+public void close()
+  throws |java.io.IOException|
+         
+Closes this piped output stream and releases any system resources associated with this stream. This stream may no longer be used for writing characters. 
+
+
+
+*java.io.PipedWriter.connect(PipedReader)*
+
+public synchronized void connect(java.io.PipedReader snk)
+  throws |java.io.IOException|
+         
+Connects this piped writer to a receiver. If this object is already connected to some other piped reader, an IOException is thrown. 
+
+If snk is an unconnected piped reader and src is an unconnected piped writer, they may be connected by either the call: 
+
+src.connect(snk) 
+
+or the call: 
+
+snk.connect(src) 
+
+The two calls have the same effect. 
+
+
+    snk - the piped reader to connect to. 
+
+*java.io.PipedWriter.flush()*
+
+public synchronized void flush()
+  throws |java.io.IOException|
+         
+Flushes this output stream and forces any buffered output characters to be written out. This will notify any readers that characters are waiting in the pipe. 
+
+
+
+*java.io.PipedWriter.write(char[],int,int)*
+
+public void write(
+  char[] cbuf,
+  int off,
+  int len)
+  throws |java.io.IOException|
+         
+Writes len characters from the specified character array starting at offset off to this piped output stream. If a thread was reading data characters from the connected piped input 
+stream, but the thread is no longer alive, then an IOException is thrown. 
+
+
+    cbuf - the data. 
+    off - the start offset in the data. 
+    len - the number of characters to write. 
+
+*java.io.PipedWriter.write(int)*
+
+public void write(int c)
+  throws |java.io.IOException|
+         
+Writes the specified char to the piped output stream. If a thread was reading data characters from the connected piped input stream, but the thread is no longer alive, then an 
+IOException is thrown. 
+
+Implements the write method of Writer. 
+
+
+    c - the char to be written. 
+
+

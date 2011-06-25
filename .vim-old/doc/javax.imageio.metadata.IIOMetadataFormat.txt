@@ -1,0 +1,569 @@
+*javax.imageio.metadata.IIOMetadataFormat* *IIOMetadataFormat* An object describing the structure of metadata documents returned
+ from IIOMetadata.getAsTree and passed to
+ IIOMetad
+
+public interface interface IIOMetadataFormat
+
+
+|javax.imageio.metadata.IIOMetadataFormat_Description|
+|javax.imageio.metadata.IIOMetadataFormat_Fields|
+|javax.imageio.metadata.IIOMetadataFormat_Constructors|
+|javax.imageio.metadata.IIOMetadataFormat_Methods|
+
+====================================================================================================================================================================================
+
+*javax.imageio.metadata.IIOMetadataFormat_Fields*
+|int_javax.imageio.metadata.IIOMetadataFormat.CHILD_POLICY_ALL|
+|int_javax.imageio.metadata.IIOMetadataFormat.CHILD_POLICY_CHOICE|
+|int_javax.imageio.metadata.IIOMetadataFormat.CHILD_POLICY_EMPTY|
+|int_javax.imageio.metadata.IIOMetadataFormat.CHILD_POLICY_MAX|
+|int_javax.imageio.metadata.IIOMetadataFormat.CHILD_POLICY_REPEAT|
+|int_javax.imageio.metadata.IIOMetadataFormat.CHILD_POLICY_SEQUENCE|
+|int_javax.imageio.metadata.IIOMetadataFormat.CHILD_POLICY_SOME|
+|int_javax.imageio.metadata.IIOMetadataFormat.DATATYPE_BOOLEAN|
+|int_javax.imageio.metadata.IIOMetadataFormat.DATATYPE_DOUBLE|
+|int_javax.imageio.metadata.IIOMetadataFormat.DATATYPE_FLOAT|
+|int_javax.imageio.metadata.IIOMetadataFormat.DATATYPE_INTEGER|
+|int_javax.imageio.metadata.IIOMetadataFormat.DATATYPE_STRING|
+|int_javax.imageio.metadata.IIOMetadataFormat.VALUE_ARBITRARY|
+|int_javax.imageio.metadata.IIOMetadataFormat.VALUE_ENUMERATION|
+|int_javax.imageio.metadata.IIOMetadataFormat.VALUE_LIST|
+|int_javax.imageio.metadata.IIOMetadataFormat.VALUE_NONE|
+|int_javax.imageio.metadata.IIOMetadataFormat.VALUE_RANGE|
+|int_javax.imageio.metadata.IIOMetadataFormat.VALUE_RANGE_MAX_INCLUSIVE|
+|int_javax.imageio.metadata.IIOMetadataFormat.VALUE_RANGE_MAX_INCLUSIVE_MASK|
+|int_javax.imageio.metadata.IIOMetadataFormat.VALUE_RANGE_MIN_INCLUSIVE|
+|int_javax.imageio.metadata.IIOMetadataFormat.VALUE_RANGE_MIN_INCLUSIVE_MASK|
+|int_javax.imageio.metadata.IIOMetadataFormat.VALUE_RANGE_MIN_MAX_INCLUSIVE|
+
+*javax.imageio.metadata.IIOMetadataFormat_Methods*
+|javax.imageio.metadata.IIOMetadataFormat.canNodeAppear(String,ImageTypeSpecifier)|Returns true if the element (and the subtree below  it) is allowed to appear in a metadata docum
+|javax.imageio.metadata.IIOMetadataFormat.getAttributeDataType(String,String)|Returns one of the constants starting with  DATATYPE_, indicating the format and  interpretation of t
+|javax.imageio.metadata.IIOMetadataFormat.getAttributeDefaultValue(String,String)|Returns the default value of the named attribute, if it is not  explictly present within the name
+|javax.imageio.metadata.IIOMetadataFormat.getAttributeDescription(String,String,Locale)|Returns a String containing a description of the  named attribute, or null.
+|javax.imageio.metadata.IIOMetadataFormat.getAttributeEnumerations(String,String)|Returns an array of Strings containing the legal  enumerated values for the given attribute withi
+|javax.imageio.metadata.IIOMetadataFormat.getAttributeListMaxLength(String,String)|Returns the maximum number of list items that may be used to  define this attribute.
+|javax.imageio.metadata.IIOMetadataFormat.getAttributeListMinLength(String,String)|Returns the minimum number of list items that may be used to  define this attribute.
+|javax.imageio.metadata.IIOMetadataFormat.getAttributeMaxValue(String,String)|Returns the maximum legal value for the attribute.
+|javax.imageio.metadata.IIOMetadataFormat.getAttributeMinValue(String,String)|Returns the minimum legal value for the attribute.
+|javax.imageio.metadata.IIOMetadataFormat.getAttributeNames(String)|Returns an array of Strings listing the names of  the attributes that may be associated with the named element.
+|javax.imageio.metadata.IIOMetadataFormat.getAttributeValueType(String,String)|Returns one of the constants starting with VALUE_,  indicating whether the values of the given attri
+|javax.imageio.metadata.IIOMetadataFormat.getChildNames(String)|Returns an array of Strings indicating the names  of the element which are allowed to be children of the named  ele
+|javax.imageio.metadata.IIOMetadataFormat.getChildPolicy(String)|Returns one of the constants starting with  CHILD_POLICY_, indicating the legal pattern of  children for the named
+|javax.imageio.metadata.IIOMetadataFormat.getElementDescription(String,Locale)|Returns a String containing a description of the  named element, or null.
+|javax.imageio.metadata.IIOMetadataFormat.getElementMaxChildren(String)|Returns the maximum number of children of the named element  with child policy CHILD_POLICY_REPEAT.
+|javax.imageio.metadata.IIOMetadataFormat.getElementMinChildren(String)|Returns the minimum number of children of the named element  with child policy CHILD_POLICY_REPEAT.
+|javax.imageio.metadata.IIOMetadataFormat.getObjectArrayMaxLength(String)|Returns the maximum number of array elements that may be used  to define the Object reference within the 
+|javax.imageio.metadata.IIOMetadataFormat.getObjectArrayMinLength(String)|Returns the minimum number of array elements that may be used  to define the Object reference within the 
+|javax.imageio.metadata.IIOMetadataFormat.getObjectClass(String)|Returns the Class type of the Object  reference stored within the element.
+|javax.imageio.metadata.IIOMetadataFormat.getObjectDefaultValue(String)|Returns an Objects containing the default  value for the Object reference within  the named element.
+|javax.imageio.metadata.IIOMetadataFormat.getObjectEnumerations(String)|Returns an array of Objects containing the legal  enumerated values for the Object reference within  the na
+|javax.imageio.metadata.IIOMetadataFormat.getObjectMaxValue(String)|Returns the maximum legal value for the Object  reference within the named element.
+|javax.imageio.metadata.IIOMetadataFormat.getObjectMinValue(String)|Returns the minimum legal value for the Object  reference within the named element.
+|javax.imageio.metadata.IIOMetadataFormat.getObjectValueType(String)|Returns one of the enumerated values starting with  VALUE_, indicating the type of values  (enumeration, range
+|javax.imageio.metadata.IIOMetadataFormat.getRootName()|Returns the name of the root element of the format.
+|javax.imageio.metadata.IIOMetadataFormat.isAttributeRequired(String,String)|Returns true if the named attribute must be  present within the named element.
+
+*javax.imageio.metadata.IIOMetadataFormat_Description*
+
+An object describing the structure of metadata documents returned from IIOMetadata.getAsTree and passed to IIOMetadata.setFromTree and mergeTree. Document structures are described 
+by a set of constraints on the type and number of child elements that may belong to a given parent element type, the names, types, and values of attributes that may belong to an 
+element, and the type and values of Object reference that may be stored at a node. 
+
+N.B: classes that implement this interface should contain a method declared as public static getInstance() which returns an instance of the class. Commonly, an implentation will 
+construct only a single instance and cache it for future invocations of getInstance. 
+
+The structures that may be described by this class are a subset of those expressible using XML document type definitions (DTDs), with the addition of some basic information on the 
+datatypes of attributes and the ability to store an Object reference within a node. In the future, XML Schemas could be used to represent these structures, and many others. 
+
+The differences between IIOMetadataFormat-described structures and DTDs are as follows: 
+
+Elements may not contain text or mix text with embedded tags. 
+
+The children of an element must conform to one of a few simple patterns, described in the documentation for the CHILD_* constants; 
+
+The in-memory representation of an elements may contain a reference to an Object. There is no provision for representing such objects textually. 
+
+
+
+*int_javax.imageio.metadata.IIOMetadataFormat.CHILD_POLICY_ALL*
+
+A constant returned by getChildPolicy to indicate that an element must have a single instance of each of its legal child elements, in order. In DTD terms, the contents of the 
+element are defined by a sequence a,b,c,d,.... 
+
+
+*int_javax.imageio.metadata.IIOMetadataFormat.CHILD_POLICY_CHOICE*
+
+A constant returned by getChildPolicy to indicate that an element must have zero or one children, selected from among its legal child elements. In DTD terms, the contents of the 
+element are defined by a selection a|b|c|d|.... 
+
+
+*int_javax.imageio.metadata.IIOMetadataFormat.CHILD_POLICY_EMPTY*
+
+A constant returned by getChildPolicy to indicate that an element may not have any children. In other words, it is required to be a leaf node. 
+
+
+*int_javax.imageio.metadata.IIOMetadataFormat.CHILD_POLICY_MAX*
+
+The largest valid CHILD_POLICY_* constant, to be used for range checks. 
+
+
+*int_javax.imageio.metadata.IIOMetadataFormat.CHILD_POLICY_REPEAT*
+
+A constant returned by getChildPolicy to indicate that an element must have zero or more instances of its unique legal child element. In DTD terms, the contents of the element are 
+defined by a starred expression a*. 
+
+
+*int_javax.imageio.metadata.IIOMetadataFormat.CHILD_POLICY_SEQUENCE*
+
+A constant returned by getChildPolicy to indicate that an element must have a sequence of instances of any of its legal child elements. In DTD terms, the contents of the element 
+are defined by a sequence (a|b|c|d|...)*. 
+
+
+*int_javax.imageio.metadata.IIOMetadataFormat.CHILD_POLICY_SOME*
+
+A constant returned by getChildPolicy to indicate that an element must have zero or one instance of each of its legal child elements, in order. In DTD terms, the contents of the 
+element are defined by a sequence a?,b?,c?,d?,.... 
+
+
+*int_javax.imageio.metadata.IIOMetadataFormat.DATATYPE_BOOLEAN*
+
+A constant returned by getAttributeDataType indicating that the value of an attribute is one of 'true' or 'false'. 
+
+
+*int_javax.imageio.metadata.IIOMetadataFormat.DATATYPE_DOUBLE*
+
+A constant returned by getAttributeDataType indicating that the value of an attribute is a string representation of a double-precision decimal floating-point number. 
+
+
+*int_javax.imageio.metadata.IIOMetadataFormat.DATATYPE_FLOAT*
+
+A constant returned by getAttributeDataType indicating that the value of an attribute is a string representation of a decimal floating-point number. 
+
+
+*int_javax.imageio.metadata.IIOMetadataFormat.DATATYPE_INTEGER*
+
+A constant returned by getAttributeDataType indicating that the value of an attribute is a string representation of an integer. 
+
+
+*int_javax.imageio.metadata.IIOMetadataFormat.DATATYPE_STRING*
+
+A constant returned by getAttributeDataType indicating that the value of an attribute is a general Unicode string. 
+
+
+*int_javax.imageio.metadata.IIOMetadataFormat.VALUE_ARBITRARY*
+
+A constant returned by getAttributeValueType and getObjectValueType to indicate that the attribute or user object may be set a single, arbitrary value. 
+
+
+*int_javax.imageio.metadata.IIOMetadataFormat.VALUE_ENUMERATION*
+
+A constant returned by getAttributeValueType and getObjectValueType to indicate that the attribute or user object may be set one of a number of enumerated values. In the case of 
+attributes, these values are Strings; for objects, they are Objects implementing a given class or interface. 
+
+Attribute values of type DATATYPE_BOOLEAN should be marked as enumerations. 
+
+
+*int_javax.imageio.metadata.IIOMetadataFormat.VALUE_LIST*
+
+A constant returned by getAttributeValueType and getObjectValueType to indicate that the attribute or user object may be set to a list or array of values. In the case of 
+attributes, the list will consist of whitespace-separated values within a String; for objects, an array will be used. 
+
+
+*int_javax.imageio.metadata.IIOMetadataFormat.VALUE_NONE*
+
+A constant returned by getObjectValueType to indicate the absence of a user object. 
+
+
+*int_javax.imageio.metadata.IIOMetadataFormat.VALUE_RANGE*
+
+A constant returned by getAttributeValueType and getObjectValueType to indicate that the attribute or user object may be set a range of values. Both the minimum and maximum values 
+of the range are exclusive. It is recommended that ranges of integers be inclusive on both ends, and that exclusive ranges be used only for floating-point data. 
+
+
+*int_javax.imageio.metadata.IIOMetadataFormat.VALUE_RANGE_MAX_INCLUSIVE*
+
+A constant returned by getAttributeValueType and getObjectValueType to indicate that the attribute or user object may be set to a range of values. The maximum (but not the 
+minimum) value of the range is inclusive. 
+
+
+*int_javax.imageio.metadata.IIOMetadataFormat.VALUE_RANGE_MAX_INCLUSIVE_MASK*
+
+A value that may be or'ed with VALUE_RANGE to obtain VALUE_RANGE_MAX_INCLUSIVE, and with VALUE_RANGE_MIN_INCLUSIVE to obtain VALUE_RANGE_MIN_MAX_INCLUSIVE. 
+
+Similarly, the value may be and'ed with the value of getAttributeValueTypeor getObjectValueType to determine if the maximum value of the range is inclusive. 
+
+
+*int_javax.imageio.metadata.IIOMetadataFormat.VALUE_RANGE_MIN_INCLUSIVE*
+
+A constant returned by getAttributeValueType and getObjectValueType to indicate that the attribute or user object may be set to a range of values. The minimum (but not the 
+maximum) value of the range is inclusive. 
+
+
+*int_javax.imageio.metadata.IIOMetadataFormat.VALUE_RANGE_MIN_INCLUSIVE_MASK*
+
+A value that may be or'ed with VALUE_RANGE to obtain VALUE_RANGE_MIN_INCLUSIVE, and with VALUE_RANGE_MAX_INCLUSIVE to obtain VALUE_RANGE_MIN_MAX_INCLUSIVE. 
+
+Similarly, the value may be and'ed with the value of getAttributeValueTypeor getObjectValueType to determine if the minimum value of the range is inclusive. 
+
+
+*int_javax.imageio.metadata.IIOMetadataFormat.VALUE_RANGE_MIN_MAX_INCLUSIVE*
+
+A constant returned by getAttributeValueType and getObjectValueType to indicate that the attribute or user object may be set a range of values. Both the minimum and maximum values 
+of the range are inclusive. It is recommended that ranges of integers be inclusive on both ends, and that exclusive ranges be used only for floating-point data. 
+
+
+
+*javax.imageio.metadata.IIOMetadataFormat.canNodeAppear(String,ImageTypeSpecifier)*
+
+public boolean canNodeAppear(
+  java.lang.String elementName,
+  javax.imageio.ImageTypeSpecifier imageType)
+
+Returns true if the element (and the subtree below it) is allowed to appear in a metadata document for an image of the given type, defined by an ImageTypeSpecifier. For example, a 
+metadata document format might contain an element that describes the primary colors of the image, which would not be allowed when writing a grayscale image. 
+
+
+    elementName - the name of the element being queried. 
+    imageType - an ImageTypeSpecifier indicating the type of the image that will be associated with the metadata. 
+
+    Returns: true if the node is meaningful for images of the given type. 
+
+*javax.imageio.metadata.IIOMetadataFormat.getAttributeDataType(String,String)*
+
+public int getAttributeDataType(
+  java.lang.String elementName,
+  java.lang.String attrName)
+
+Returns one of the constants starting with DATATYPE_, indicating the format and interpretation of the value of the given attribute within th enamed element. If 
+getAttributeValueType returns VALUE_LIST, then the legal value is a whitespace-spearated list of values of the returned datatype. 
+
+
+    elementName - the name of the element being queried. 
+    attrName - the name of the attribute being queried. 
+
+    Returns: one of the DATATYPE_* constants. 
+
+*javax.imageio.metadata.IIOMetadataFormat.getAttributeDefaultValue(String,String)*
+
+public |java.lang.String| getAttributeDefaultValue(
+  java.lang.String elementName,
+  java.lang.String attrName)
+
+Returns the default value of the named attribute, if it is not explictly present within the named element, as a String, or null if no default value is available. 
+
+
+    elementName - the name of the element being queried. 
+    attrName - the name of the attribute being queried. 
+
+    Returns: a String containing the default value, or null. 
+
+*javax.imageio.metadata.IIOMetadataFormat.getAttributeDescription(String,String,Locale)*
+
+public |java.lang.String| getAttributeDescription(
+  java.lang.String elementName,
+  java.lang.String attrName,
+  java.util.Locale locale)
+
+Returns a String containing a description of the named attribute, or null. The desciption will be localized for the supplied Locale if possible. 
+
+If locale is null, the current default Locale returned by Locale.getLocale will be used. 
+
+
+    elementName - the name of the element. 
+    attrName - the name of the attribute. 
+    locale - the Locale for which localization will be attempted. 
+
+    Returns: the attribute description. 
+
+*javax.imageio.metadata.IIOMetadataFormat.getAttributeEnumerations(String,String)*
+
+public |java.lang.String|[] getAttributeEnumerations(
+  java.lang.String elementName,
+  java.lang.String attrName)
+
+Returns an array of Strings containing the legal enumerated values for the given attribute within the named element. This method should only be called if getAttributeValueType 
+returns VALUE_ENUMERATION. 
+
+
+    elementName - the name of the element being queried. 
+    attrName - the name of the attribute being queried. 
+
+    Returns: an array of Strings. 
+
+*javax.imageio.metadata.IIOMetadataFormat.getAttributeListMaxLength(String,String)*
+
+public int getAttributeListMaxLength(
+  java.lang.String elementName,
+  java.lang.String attrName)
+
+Returns the maximum number of list items that may be used to define this attribute. A value of Integer.MAX_VALUE may be used to specify that there is no upper bound. The attribute 
+itself is defined as a String containing multiple whitespace-separated items. This method should only be called if getAttributeValueType returns VALUE_LIST. 
+
+
+    elementName - the name of the element being queried. 
+    attrName - the name of the attribute being queried. 
+
+    Returns: the largest legal number of list items for the attribute. 
+
+*javax.imageio.metadata.IIOMetadataFormat.getAttributeListMinLength(String,String)*
+
+public int getAttributeListMinLength(
+  java.lang.String elementName,
+  java.lang.String attrName)
+
+Returns the minimum number of list items that may be used to define this attribute. The attribute itself is defined as a String containing multiple whitespace-separated items. 
+This method should only be called if getAttributeValueType returns VALUE_LIST. 
+
+
+    elementName - the name of the element being queried. 
+    attrName - the name of the attribute being queried. 
+
+    Returns: the smallest legal number of list items for the attribute. 
+
+*javax.imageio.metadata.IIOMetadataFormat.getAttributeMaxValue(String,String)*
+
+public |java.lang.String| getAttributeMaxValue(
+  java.lang.String elementName,
+  java.lang.String attrName)
+
+Returns the maximum legal value for the attribute. Whether this value is inclusive or exclusive may be determined by the value of getAttributeValueType. The value is returned as a 
+String; its interpretation is dependent on the value of getAttributeDataType. This method should only be called if getAttributeValueType returns VALUE_RANGE_*. 
+
+
+    elementName - the name of the element being queried, as a String. 
+    attrName - the name of the attribute being queried. 
+
+    Returns: a String containing the largest legal value for the attribute. 
+
+*javax.imageio.metadata.IIOMetadataFormat.getAttributeMinValue(String,String)*
+
+public |java.lang.String| getAttributeMinValue(
+  java.lang.String elementName,
+  java.lang.String attrName)
+
+Returns the minimum legal value for the attribute. Whether this value is inclusive or exclusive may be determined by the value of getAttributeValueType. The value is returned as a 
+String; its interpretation is dependent on the value of getAttributeDataType. This method should only be called if getAttributeValueType returns VALUE_RANGE_*. 
+
+
+    elementName - the name of the element being queried. 
+    attrName - the name of the attribute being queried. 
+
+    Returns: a String containing the smallest legal value for the attribute. 
+
+*javax.imageio.metadata.IIOMetadataFormat.getAttributeNames(String)*
+
+public |java.lang.String|[] getAttributeNames(java.lang.String elementName)
+
+Returns an array of Strings listing the names of the attributes that may be associated with the named element. 
+
+
+    elementName - the name of the element being queried. 
+
+    Returns: an array of Strings. 
+
+*javax.imageio.metadata.IIOMetadataFormat.getAttributeValueType(String,String)*
+
+public int getAttributeValueType(
+  java.lang.String elementName,
+  java.lang.String attrName)
+
+Returns one of the constants starting with VALUE_, indicating whether the values of the given attribute within the named element are arbitrary, constrained to lie within a 
+specified range, constrained to be one of a set of enumerated values, or are a whitespace-separated list of arbitrary values. 
+
+
+    elementName - the name of the element being queried. 
+    attrName - the name of the attribute being queried. 
+
+    Returns: one of the VALUE_* constants. 
+
+*javax.imageio.metadata.IIOMetadataFormat.getChildNames(String)*
+
+public |java.lang.String|[] getChildNames(java.lang.String elementName)
+
+Returns an array of Strings indicating the names of the element which are allowed to be children of the named element, in the order in which they should appear. If the element 
+cannot have children, null is returned. 
+
+
+    elementName - the name of the element being queried. 
+
+    Returns: an array of Strings, or null. 
+
+*javax.imageio.metadata.IIOMetadataFormat.getChildPolicy(String)*
+
+public int getChildPolicy(java.lang.String elementName)
+
+Returns one of the constants starting with CHILD_POLICY_, indicating the legal pattern of children for the named element. 
+
+
+    elementName - the name of the element being queried. 
+
+    Returns: one of the CHILD_POLICY_* constants. 
+
+*javax.imageio.metadata.IIOMetadataFormat.getElementDescription(String,Locale)*
+
+public |java.lang.String| getElementDescription(
+  java.lang.String elementName,
+  java.util.Locale locale)
+
+Returns a String containing a description of the named element, or null. The desciption will be localized for the supplied Locale if possible. 
+
+If locale is null, the current default Locale returned by Locale.getLocale will be used. 
+
+
+    elementName - the name of the element. 
+    locale - the Locale for which localization will be attempted. 
+
+    Returns: the element description. 
+
+*javax.imageio.metadata.IIOMetadataFormat.getElementMaxChildren(String)*
+
+public int getElementMaxChildren(java.lang.String elementName)
+
+Returns the maximum number of children of the named element with child policy CHILD_POLICY_REPEAT. For example, an element representing an entry in an 8-bit color palette might be 
+allowed to repeat up to 256 times. A value of Integer.MAX_VALUE may be used to specify that there is no upper bound. 
+
+
+    elementName - the name of the element being queried. 
+
+    Returns: 
+
+*javax.imageio.metadata.IIOMetadataFormat.getElementMinChildren(String)*
+
+public int getElementMinChildren(java.lang.String elementName)
+
+Returns the minimum number of children of the named element with child policy CHILD_POLICY_REPEAT. For example, an element representing color primary information might be required 
+to have at least 3 children, one for each primay. 
+
+
+    elementName - the name of the element being queried. 
+
+    Returns: 
+
+*javax.imageio.metadata.IIOMetadataFormat.getObjectArrayMaxLength(String)*
+
+public int getObjectArrayMaxLength(java.lang.String elementName)
+
+Returns the maximum number of array elements that may be used to define the Object reference within the named element. A value of Integer.MAX_VALUE may be used to specify that 
+there is no upper bound. This method should only be called if getObjectValueType returns VALUE_LIST. 
+
+
+    elementName - the name of the element being queried. 
+
+    Returns: the largest valid array length for the Object reference. 
+
+*javax.imageio.metadata.IIOMetadataFormat.getObjectArrayMinLength(String)*
+
+public int getObjectArrayMinLength(java.lang.String elementName)
+
+Returns the minimum number of array elements that may be used to define the Object reference within the named element. This method should only be called if getObjectValueType 
+returns VALUE_LIST. 
+
+
+    elementName - the name of the element being queried. 
+
+    Returns: the smallest valid array length for the Object reference. 
+
+*javax.imageio.metadata.IIOMetadataFormat.getObjectClass(String)*
+
+public |java.lang.Class|<?> getObjectClass(java.lang.String elementName)
+
+Returns the Class type of the Object reference stored within the element. If this element may not contain an Object reference, an IllegalArgumentException will be thrown. If the 
+class type is an array, this field indicates the underlying class type (e.g, for an array of ints, this method would return int.class). 
+
+Object references whose legal values are defined as a range must implement the Comparable interface. 
+
+
+    elementName - the name of the element being queried. 
+
+    Returns: a Class object. 
+
+*javax.imageio.metadata.IIOMetadataFormat.getObjectDefaultValue(String)*
+
+public |java.lang.Object| getObjectDefaultValue(java.lang.String elementName)
+
+Returns an Objects containing the default value for the Object reference within the named element. 
+
+
+    elementName - the name of the element being queried. 
+
+    Returns: 
+
+*javax.imageio.metadata.IIOMetadataFormat.getObjectEnumerations(String)*
+
+public |java.lang.Object|[] getObjectEnumerations(java.lang.String elementName)
+
+Returns an array of Objects containing the legal enumerated values for the Object reference within the named element. This method should only be called if getObjectValueType 
+returns VALUE_ENUMERATION. 
+
+The Object associated with a node that accepts emuerated values must be equal to one of the values returned by this method, as defined by the == operator (as opposed to the 
+Object.equals method). 
+
+
+    elementName - the name of the element being queried. 
+
+    Returns: an array of Objects. 
+
+*javax.imageio.metadata.IIOMetadataFormat.getObjectMaxValue(String)*
+
+public |java.lang.Comparable|<?> getObjectMaxValue(java.lang.String elementName)
+
+Returns the maximum legal value for the Object reference within the named element. Whether this value is inclusive or exclusive may be determined by the value of 
+getObjectValueType. This method should only be called if getObjectValueType returns one of the constants starting with VALUE_RANGE. 
+
+
+    elementName - the name of the element being queried. 
+
+    Returns: the smallest legal value for the attribute. 
+
+*javax.imageio.metadata.IIOMetadataFormat.getObjectMinValue(String)*
+
+public |java.lang.Comparable|<?> getObjectMinValue(java.lang.String elementName)
+
+Returns the minimum legal value for the Object reference within the named element. Whether this value is inclusive or exclusive may be determined by the value of 
+getObjectValueType. This method should only be called if getObjectValueType returns one of the constants starting with VALUE_RANGE. 
+
+
+    elementName - the name of the element being queried. 
+
+    Returns: the smallest legal value for the attribute. 
+
+*javax.imageio.metadata.IIOMetadataFormat.getObjectValueType(String)*
+
+public int getObjectValueType(java.lang.String elementName)
+
+Returns one of the enumerated values starting with VALUE_, indicating the type of values (enumeration, range, or array) that are allowed for the Object reference. If no object 
+value can be stored within the given element, the result of this method will be VALUE_NONE. 
+
+Object references whose legal values are defined as a range must implement the Comparable interface. 
+
+
+    elementName - the name of the element being queried. 
+
+    Returns: one of the VALUE_* constants. 
+
+*javax.imageio.metadata.IIOMetadataFormat.getRootName()*
+
+public |java.lang.String| getRootName()
+
+Returns the name of the root element of the format. 
+
+
+
+    Returns: 
+
+*javax.imageio.metadata.IIOMetadataFormat.isAttributeRequired(String,String)*
+
+public boolean isAttributeRequired(
+  java.lang.String elementName,
+  java.lang.String attrName)
+
+Returns true if the named attribute must be present within the named element. 
+
+
+    elementName - the name of the element being queried. 
+    attrName - the name of the attribute being queried. 
+
+    Returns: true if the attribut must be present. 
+
+

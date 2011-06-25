@@ -1,0 +1,186 @@
+*javax.management.modelmbean.ModelMBeanAttributeInfo* *ModelMBeanAttributeInfo* 
+
+public class ModelMBeanAttributeInfo
+  extends    |javax.management.MBeanAttributeInfo|
+  implements |javax.management.DescriptorAccess|
+             |java.lang.Cloneable|
+
+|javax.management.modelmbean.ModelMBeanAttributeInfo_Description|
+|javax.management.modelmbean.ModelMBeanAttributeInfo_Fields|
+|javax.management.modelmbean.ModelMBeanAttributeInfo_Constructors|
+|javax.management.modelmbean.ModelMBeanAttributeInfo_Methods|
+
+================================================================================
+
+*javax.management.modelmbean.ModelMBeanAttributeInfo_Constructors*
+|javax.management.modelmbean.ModelMBeanAttributeInfo(ModelMBeanAttributeInfo)|C
+|javax.management.modelmbean.ModelMBeanAttributeInfo(String,String,Method,Method)|
+|javax.management.modelmbean.ModelMBeanAttributeInfo(String,String,Method,Method,Descriptor)|
+|javax.management.modelmbean.ModelMBeanAttributeInfo(String,String,String,boolean,boolean,boolean)|
+|javax.management.modelmbean.ModelMBeanAttributeInfo(String,String,String,boolean,boolean,boolean,Descriptor)|
+
+*javax.management.modelmbean.ModelMBeanAttributeInfo_Methods*
+|javax.management.modelmbean.ModelMBeanAttributeInfo.clone()|Creates and return
+|javax.management.modelmbean.ModelMBeanAttributeInfo.getDescriptor()|Gets a cop
+|javax.management.modelmbean.ModelMBeanAttributeInfo.setDescriptor(Descriptor)|
+|javax.management.modelmbean.ModelMBeanAttributeInfo.toString()|Returns a human
+
+*javax.management.modelmbean.ModelMBeanAttributeInfo_Description*
+
+The ModelMBeanAttributeInfo object describes an attribute of the ModelMBean. It 
+is a subclass of MBeanAttributeInfo with the addition of an associated 
+Descriptor and an implementation of the DescriptorAccess interface. 
+
+The fields in the descriptor are defined, but not limited to, the following: 
+
+name : attribute name descriptorType : must be "attribute" value : current 
+value for attribute default : default value for attribute displayName : name of 
+attribute to be used in displays getMethod : name of operation descriptor for 
+get method setMethod : name of operation descriptor for set method protocolMap 
+: object which implements the Descriptor interface: mappings must be 
+appropriate for the attribute and entries can be updated or augmented at 
+runtime. persistPolicy : OnUpdate|OnTimer|NoMoreOftenThan|Always|Never 
+persistPeriod : seconds - frequency of persist cycle. Used when persistPolicy 
+is"OnTimer" or "NoMoreOftenThan". currencyTimeLimit : how long value is valid, 
+<0 never, =0 always, >0 seconds lastUpdatedTimeStamp : when value was set 
+visibility : 1-4 where 1: always visible 4: rarely visible presentationString : 
+xml formatted string to allow presentation of data 
+
+The default descriptor contains the name, descriptorType and displayName 
+fields. 
+
+Note: because of inconsistencies in previous versions of this specification, it 
+is recommended not to use negative or zero values for currencyTimeLimit. To 
+indicate that a cached value is never valid, omit the currencyTimeLimit field. 
+To indicate that it is always valid, use a very large number for this field. 
+
+
+*javax.management.modelmbean.ModelMBeanAttributeInfo(ModelMBeanAttributeInfo)*
+
+public ModelMBeanAttributeInfo(javax.management.modelmbean.ModelMBeanAttributeInfo inInfo)
+
+Constructs a new ModelMBeanAttributeInfo object from this 
+ModelMBeanAttributeInfo Object. A default descriptor will be created. 
+
+    inInfo - the ModelMBeanAttributeInfo to be duplicated 
+
+*javax.management.modelmbean.ModelMBeanAttributeInfo(String,String,Method,Method)*
+
+public ModelMBeanAttributeInfo(
+  java.lang.String name,
+  java.lang.String description,
+  java.lang.reflect.Method getter,
+  java.lang.reflect.Method setter)
+  throws |javax.management.IntrospectionException|
+         
+Constructs a ModelMBeanAttributeInfo object with a default descriptor. 
+
+    name - The name of the attribute. 
+    description - A human readable description of the attribute. Optional. 
+    getter - The method used for reading the attribute value. May be null if the property is 
+       write-only. 
+    setter - The method used for writing the attribute value. May be null if the attribute 
+       is read-only. 
+
+*javax.management.modelmbean.ModelMBeanAttributeInfo(String,String,Method,Method,Descriptor)*
+
+public ModelMBeanAttributeInfo(
+  java.lang.String name,
+  java.lang.String description,
+  java.lang.reflect.Method getter,
+  java.lang.reflect.Method setter,
+  javax.management.Descriptor descriptor)
+  throws |javax.management.IntrospectionException|
+         
+Constructs a ModelMBeanAttributeInfo object. 
+
+    name - The name of the attribute. 
+    description - A human readable description of the attribute. Optional. 
+    getter - The method used for reading the attribute value. May be null if the property is 
+       write-only. 
+    setter - The method used for writing the attribute value. May be null if the attribute 
+       is read-only. 
+    descriptor - An instance of Descriptor containing the appropriate metadata for this instance 
+       of the Attribute. If it is null, then a default descriptor will be 
+       created. If the descriptor does not contain the field "displayName" this 
+       field is added in the descriptor with its default value. 
+
+*javax.management.modelmbean.ModelMBeanAttributeInfo(String,String,String,boolean,boolean,boolean)*
+
+public ModelMBeanAttributeInfo(
+  java.lang.String name,
+  java.lang.String type,
+  java.lang.String description,
+  boolean isReadable,
+  boolean isWritable,
+  boolean isIs)
+
+Constructs a ModelMBeanAttributeInfo object with a default descriptor. 
+
+    name - The name of the attribute 
+    type - The type or class name of the attribute 
+    description - A human readable description of the attribute. 
+    isReadable - True if the attribute has a getter method, false otherwise. 
+    isWritable - True if the attribute has a setter method, false otherwise. 
+    isIs - True if the attribute has an "is" getter, false otherwise. 
+
+*javax.management.modelmbean.ModelMBeanAttributeInfo(String,String,String,boolean,boolean,boolean,Descriptor)*
+
+public ModelMBeanAttributeInfo(
+  java.lang.String name,
+  java.lang.String type,
+  java.lang.String description,
+  boolean isReadable,
+  boolean isWritable,
+  boolean isIs,
+  javax.management.Descriptor descriptor)
+
+Constructs a ModelMBeanAttributeInfo object with a default descriptor. 
+
+    name - The name of the attribute 
+    type - The type or class name of the attribute 
+    description - A human readable description of the attribute. 
+    isReadable - True if the attribute has a getter method, false otherwise. 
+    isWritable - True if the attribute has a setter method, false otherwise. 
+    isIs - True if the attribute has an "is" getter, false otherwise. 
+    descriptor - An instance of Descriptor containing the appropriate metadata for this instance 
+       of the Attribute. If it is null then a default descriptor will be 
+       created. If the descriptor does not contain the field "displayName" this 
+       field is added in the descriptor with its default value. 
+
+*javax.management.modelmbean.ModelMBeanAttributeInfo.clone()*
+
+public |java.lang.Object| clone()
+
+Creates and returns a new ModelMBeanAttributeInfo which is a duplicate of this 
+ModelMBeanAttributeInfo. 
+
+
+*javax.management.modelmbean.ModelMBeanAttributeInfo.getDescriptor()*
+
+public |javax.management.Descriptor| getDescriptor()
+
+Gets a copy of the associated Descriptor for the ModelMBeanAttributeInfo. 
+
+
+    Returns: Descriptor associated with the ModelMBeanAttributeInfo object. 
+*javax.management.modelmbean.ModelMBeanAttributeInfo.setDescriptor(Descriptor)*
+
+public void setDescriptor(javax.management.Descriptor inDescriptor)
+
+Sets associated Descriptor (full replace) for the 
+ModelMBeanAttributeDescriptor. If the new Descriptor is null, then the 
+associated Descriptor reverts to a default descriptor. The Descriptor is 
+validated before it is assigned. If the new Descriptor is invalid, then a 
+RuntimeOperationsException wrapping an IllegalArgumentException is thrown. 
+
+    inDescriptor - replaces the Descriptor associated with the ModelMBeanAttributeInfo 
+
+*javax.management.modelmbean.ModelMBeanAttributeInfo.toString()*
+
+public |java.lang.String| toString()
+
+Returns a human-readable version of the ModelMBeanAttributeInfo instance. 
+
+
+

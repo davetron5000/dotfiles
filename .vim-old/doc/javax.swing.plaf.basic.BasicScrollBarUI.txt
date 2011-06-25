@@ -1,0 +1,612 @@
+*javax.swing.plaf.basic.BasicScrollBarUI* *BasicScrollBarUI* Implementation of ScrollBarUI for the Basic Look and Feel
+
+public class BasicScrollBarUI
+  extends    |javax.swing.plaf.ScrollBarUI|
+  implements |java.awt.LayoutManager|
+             |javax.swing.SwingConstants|
+
+|javax.swing.plaf.basic.BasicScrollBarUI_Description|
+|javax.swing.plaf.basic.BasicScrollBarUI_Fields|
+|javax.swing.plaf.basic.BasicScrollBarUI_Constructors|
+|javax.swing.plaf.basic.BasicScrollBarUI_Methods|
+
+====================================================================================================================================================================================
+
+*javax.swing.plaf.basic.BasicScrollBarUI_Fields*
+|javax.swing.plaf.basic.BasicScrollBarUI.ArrowButtonListener_javax.swing.plaf.basic.BasicScrollBarUI.buttonListener|
+|javax.swing.JButton_javax.swing.plaf.basic.BasicScrollBarUI.decrButton|
+|int_javax.swing.plaf.basic.BasicScrollBarUI.DECREASE_HIGHLIGHT|
+|javax.swing.JButton_javax.swing.plaf.basic.BasicScrollBarUI.incrButton|
+|int_javax.swing.plaf.basic.BasicScrollBarUI.INCREASE_HIGHLIGHT|
+|boolean_javax.swing.plaf.basic.BasicScrollBarUI.isDragging|
+|java.awt.Dimension_javax.swing.plaf.basic.BasicScrollBarUI.maximumThumbSize|
+|java.awt.Dimension_javax.swing.plaf.basic.BasicScrollBarUI.minimumThumbSize|
+|javax.swing.plaf.basic.BasicScrollBarUI.ModelListener_javax.swing.plaf.basic.BasicScrollBarUI.modelListener|
+|int_javax.swing.plaf.basic.BasicScrollBarUI.NO_HIGHLIGHT|
+|java.beans.PropertyChangeListener_javax.swing.plaf.basic.BasicScrollBarUI.propertyChangeListener|
+|javax.swing.JScrollBar_javax.swing.plaf.basic.BasicScrollBarUI.scrollbar|
+|javax.swing.plaf.basic.BasicScrollBarUI.ScrollListener_javax.swing.plaf.basic.BasicScrollBarUI.scrollListener|
+|javax.swing.Timer_javax.swing.plaf.basic.BasicScrollBarUI.scrollTimer|
+|java.awt.Color_javax.swing.plaf.basic.BasicScrollBarUI.thumbColor|
+|java.awt.Color_javax.swing.plaf.basic.BasicScrollBarUI.thumbDarkShadowColor|
+|java.awt.Color_javax.swing.plaf.basic.BasicScrollBarUI.thumbHighlightColor|
+|java.awt.Color_javax.swing.plaf.basic.BasicScrollBarUI.thumbLightShadowColor|
+|java.awt.Rectangle_javax.swing.plaf.basic.BasicScrollBarUI.thumbRect|
+|java.awt.Color_javax.swing.plaf.basic.BasicScrollBarUI.trackColor|
+|int_javax.swing.plaf.basic.BasicScrollBarUI.trackHighlight|
+|java.awt.Color_javax.swing.plaf.basic.BasicScrollBarUI.trackHighlightColor|
+|javax.swing.plaf.basic.BasicScrollBarUI.TrackListener_javax.swing.plaf.basic.BasicScrollBarUI.trackListener|
+|java.awt.Rectangle_javax.swing.plaf.basic.BasicScrollBarUI.trackRect|
+
+*javax.swing.plaf.basic.BasicScrollBarUI_Constructors*
+|javax.swing.plaf.basic.BasicScrollBarUI()|
+
+*javax.swing.plaf.basic.BasicScrollBarUI_Methods*
+|javax.swing.plaf.basic.BasicScrollBarUI.addLayoutComponent(String,Component)|
+|javax.swing.plaf.basic.BasicScrollBarUI.configureScrollBarColors()|
+|javax.swing.plaf.basic.BasicScrollBarUI.createArrowButtonListener()|
+|javax.swing.plaf.basic.BasicScrollBarUI.createDecreaseButton(int)|
+|javax.swing.plaf.basic.BasicScrollBarUI.createIncreaseButton(int)|
+|javax.swing.plaf.basic.BasicScrollBarUI.createModelListener()|
+|javax.swing.plaf.basic.BasicScrollBarUI.createPropertyChangeListener()|
+|javax.swing.plaf.basic.BasicScrollBarUI.createScrollListener()|
+|javax.swing.plaf.basic.BasicScrollBarUI.createTrackListener()|
+|javax.swing.plaf.basic.BasicScrollBarUI.createUI(JComponent)|
+|javax.swing.plaf.basic.BasicScrollBarUI.getMaximumSize(JComponent)|
+|javax.swing.plaf.basic.BasicScrollBarUI.getMaximumThumbSize()|Return the largest acceptable size for the thumb.
+|javax.swing.plaf.basic.BasicScrollBarUI.getMinimumThumbSize()|Return the smallest acceptable size for the thumb.
+|javax.swing.plaf.basic.BasicScrollBarUI.getPreferredSize(JComponent)|A vertical scrollbar's preferred width is the maximum of   preferred widths of the (non null)  increment/decr
+|javax.swing.plaf.basic.BasicScrollBarUI.getSupportsAbsolutePositioning()|Indicates whether the user can absolutely position the thumb with  a mouse gesture (usually the middle mo
+|javax.swing.plaf.basic.BasicScrollBarUI.getThumbBounds()|Return the current size/location of the thumb.
+|javax.swing.plaf.basic.BasicScrollBarUI.getTrackBounds()|Returns the current bounds of the track, i.e.
+|javax.swing.plaf.basic.BasicScrollBarUI.installComponents()|
+|javax.swing.plaf.basic.BasicScrollBarUI.installDefaults()|
+|javax.swing.plaf.basic.BasicScrollBarUI.installKeyboardActions()|
+|javax.swing.plaf.basic.BasicScrollBarUI.installListeners()|
+|javax.swing.plaf.basic.BasicScrollBarUI.installUI(JComponent)|
+|javax.swing.plaf.basic.BasicScrollBarUI.isThumbRollover()|Returns true if the mouse is currently over the thumb.
+|javax.swing.plaf.basic.BasicScrollBarUI.layoutContainer(Container)|
+|javax.swing.plaf.basic.BasicScrollBarUI.layoutHScrollbar(JScrollBar)|
+|javax.swing.plaf.basic.BasicScrollBarUI.layoutVScrollbar(JScrollBar)|
+|javax.swing.plaf.basic.BasicScrollBarUI.minimumLayoutSize(Container)|
+|javax.swing.plaf.basic.BasicScrollBarUI.paint(Graphics,JComponent)|
+|javax.swing.plaf.basic.BasicScrollBarUI.paintDecreaseHighlight(Graphics)|
+|javax.swing.plaf.basic.BasicScrollBarUI.paintIncreaseHighlight(Graphics)|
+|javax.swing.plaf.basic.BasicScrollBarUI.paintThumb(Graphics,JComponent,Rectangle)|
+|javax.swing.plaf.basic.BasicScrollBarUI.paintTrack(Graphics,JComponent,Rectangle)|
+|javax.swing.plaf.basic.BasicScrollBarUI.preferredLayoutSize(Container)|
+|javax.swing.plaf.basic.BasicScrollBarUI.removeLayoutComponent(Component)|
+|javax.swing.plaf.basic.BasicScrollBarUI.scrollByBlock(int)|
+|javax.swing.plaf.basic.BasicScrollBarUI.scrollByUnit(int)|
+|javax.swing.plaf.basic.BasicScrollBarUI.setThumbBounds(int,int,int,int)|Set the bounds of the thumb and force a repaint that includes  the old thumbBounds and the new one.
+|javax.swing.plaf.basic.BasicScrollBarUI.setThumbRollover(boolean)|Sets whether or not the mouse is currently over the thumb.
+|javax.swing.plaf.basic.BasicScrollBarUI.uninstallComponents()|
+|javax.swing.plaf.basic.BasicScrollBarUI.uninstallDefaults()|
+|javax.swing.plaf.basic.BasicScrollBarUI.uninstallKeyboardActions()|
+|javax.swing.plaf.basic.BasicScrollBarUI.uninstallListeners()|
+|javax.swing.plaf.basic.BasicScrollBarUI.uninstallUI(JComponent)|
+
+*javax.swing.plaf.basic.BasicScrollBarUI_Description*
+
+Implementation of ScrollBarUI for the Basic Look and Feel 
+
+
+
+*javax.swing.plaf.basic.BasicScrollBarUI.ArrowButtonListener_javax.swing.plaf.basic.BasicScrollBarUI.buttonListener*
+
+
+
+
+*javax.swing.JButton_javax.swing.plaf.basic.BasicScrollBarUI.decrButton*
+
+
+
+
+*int_javax.swing.plaf.basic.BasicScrollBarUI.DECREASE_HIGHLIGHT*
+
+
+
+
+*javax.swing.JButton_javax.swing.plaf.basic.BasicScrollBarUI.incrButton*
+
+
+
+
+*int_javax.swing.plaf.basic.BasicScrollBarUI.INCREASE_HIGHLIGHT*
+
+
+
+
+*boolean_javax.swing.plaf.basic.BasicScrollBarUI.isDragging*
+
+
+
+
+*java.awt.Dimension_javax.swing.plaf.basic.BasicScrollBarUI.maximumThumbSize*
+
+
+
+
+*java.awt.Dimension_javax.swing.plaf.basic.BasicScrollBarUI.minimumThumbSize*
+
+
+
+
+*javax.swing.plaf.basic.BasicScrollBarUI.ModelListener_javax.swing.plaf.basic.BasicScrollBarUI.modelListener*
+
+
+
+
+*int_javax.swing.plaf.basic.BasicScrollBarUI.NO_HIGHLIGHT*
+
+
+
+
+*java.beans.PropertyChangeListener_javax.swing.plaf.basic.BasicScrollBarUI.propertyChangeListener*
+
+
+
+
+*javax.swing.JScrollBar_javax.swing.plaf.basic.BasicScrollBarUI.scrollbar*
+
+
+
+
+*javax.swing.plaf.basic.BasicScrollBarUI.ScrollListener_javax.swing.plaf.basic.BasicScrollBarUI.scrollListener*
+
+
+
+
+*javax.swing.Timer_javax.swing.plaf.basic.BasicScrollBarUI.scrollTimer*
+
+
+
+
+*java.awt.Color_javax.swing.plaf.basic.BasicScrollBarUI.thumbColor*
+
+
+
+
+*java.awt.Color_javax.swing.plaf.basic.BasicScrollBarUI.thumbDarkShadowColor*
+
+
+
+
+*java.awt.Color_javax.swing.plaf.basic.BasicScrollBarUI.thumbHighlightColor*
+
+
+
+
+*java.awt.Color_javax.swing.plaf.basic.BasicScrollBarUI.thumbLightShadowColor*
+
+
+
+
+*java.awt.Rectangle_javax.swing.plaf.basic.BasicScrollBarUI.thumbRect*
+
+
+
+
+*java.awt.Color_javax.swing.plaf.basic.BasicScrollBarUI.trackColor*
+
+
+
+
+*int_javax.swing.plaf.basic.BasicScrollBarUI.trackHighlight*
+
+
+
+
+*java.awt.Color_javax.swing.plaf.basic.BasicScrollBarUI.trackHighlightColor*
+
+
+
+
+*javax.swing.plaf.basic.BasicScrollBarUI.TrackListener_javax.swing.plaf.basic.BasicScrollBarUI.trackListener*
+
+
+
+
+*java.awt.Rectangle_javax.swing.plaf.basic.BasicScrollBarUI.trackRect*
+
+
+
+
+
+*javax.swing.plaf.basic.BasicScrollBarUI()*
+
+public BasicScrollBarUI()
+
+
+
+
+*javax.swing.plaf.basic.BasicScrollBarUI.addLayoutComponent(String,Component)*
+
+public void addLayoutComponent(
+  java.lang.String name,
+  java.awt.Component child)
+
+
+
+
+
+*javax.swing.plaf.basic.BasicScrollBarUI.configureScrollBarColors()*
+
+protected void configureScrollBarColors()
+
+
+
+
+
+*javax.swing.plaf.basic.BasicScrollBarUI.createArrowButtonListener()*
+
+protected |javax.swing.plaf.basic.BasicScrollBarUI.ArrowButtonListener| createArrowButtonListener()
+
+
+
+
+
+*javax.swing.plaf.basic.BasicScrollBarUI.createDecreaseButton(int)*
+
+protected |javax.swing.JButton| createDecreaseButton(int orientation)
+
+
+
+
+
+*javax.swing.plaf.basic.BasicScrollBarUI.createIncreaseButton(int)*
+
+protected |javax.swing.JButton| createIncreaseButton(int orientation)
+
+
+
+
+
+*javax.swing.plaf.basic.BasicScrollBarUI.createModelListener()*
+
+protected |javax.swing.plaf.basic.BasicScrollBarUI.ModelListener| createModelListener()
+
+
+
+
+
+*javax.swing.plaf.basic.BasicScrollBarUI.createPropertyChangeListener()*
+
+protected |java.beans.PropertyChangeListener| createPropertyChangeListener()
+
+
+
+
+
+*javax.swing.plaf.basic.BasicScrollBarUI.createScrollListener()*
+
+protected |javax.swing.plaf.basic.BasicScrollBarUI.ScrollListener| createScrollListener()
+
+
+
+
+
+*javax.swing.plaf.basic.BasicScrollBarUI.createTrackListener()*
+
+protected |javax.swing.plaf.basic.BasicScrollBarUI.TrackListener| createTrackListener()
+
+
+
+
+
+*javax.swing.plaf.basic.BasicScrollBarUI.createUI(JComponent)*
+
+public static |javax.swing.plaf.ComponentUI| createUI(javax.swing.JComponent c)
+
+
+
+
+
+*javax.swing.plaf.basic.BasicScrollBarUI.getMaximumSize(JComponent)*
+
+public |java.awt.Dimension| getMaximumSize(javax.swing.JComponent c)
+
+
+
+
+    c - The JScrollBar that's delegating this method to us. 
+
+    Returns: new Dimension(Integer.MAX_VALUE, Integer.MAX_VALUE); 
+
+*javax.swing.plaf.basic.BasicScrollBarUI.getMaximumThumbSize()*
+
+protected |java.awt.Dimension| getMaximumThumbSize()
+
+Return the largest acceptable size for the thumb. To create a fixed size thumb one make this method and getMinimumThumbSize return the same value. 
+
+Warning : the value returned by this method should not be be modified, it's a shared static constant. 
+
+
+
+    Returns: The largest acceptable size for the thumb. 
+
+*javax.swing.plaf.basic.BasicScrollBarUI.getMinimumThumbSize()*
+
+protected |java.awt.Dimension| getMinimumThumbSize()
+
+Return the smallest acceptable size for the thumb. If the scrollbar becomes so small that this size isn't available, the thumb will be hidden. 
+
+Warning : the value returned by this method should not be be modified, it's a shared static constant. 
+
+
+
+    Returns: The smallest acceptable size for the thumb. 
+
+*javax.swing.plaf.basic.BasicScrollBarUI.getPreferredSize(JComponent)*
+
+public |java.awt.Dimension| getPreferredSize(javax.swing.JComponent c)
+
+A vertical scrollbar's preferred width is the maximum of preferred widths of the (non null) increment/decrement buttons, and the minimum width of the thumb. The preferred height 
+is the sum of the preferred heights of the same parts. The basis for the preferred size of a horizontal scrollbar is similar. 
+
+The preferredSize is only computed once, subsequent calls to this method just return a cached size. 
+
+
+    c - the JScrollBar that's delegating this method to us 
+
+    Returns: the preferred size of a Basic JScrollBar 
+
+*javax.swing.plaf.basic.BasicScrollBarUI.getSupportsAbsolutePositioning()*
+
+public boolean getSupportsAbsolutePositioning()
+
+Indicates whether the user can absolutely position the thumb with a mouse gesture (usually the middle mouse button). 
+
+
+
+    Returns: true if a mouse gesture can absolutely position the thumb 
+
+*javax.swing.plaf.basic.BasicScrollBarUI.getThumbBounds()*
+
+protected |java.awt.Rectangle| getThumbBounds()
+
+Return the current size/location of the thumb. 
+
+Warning : the value returned by this method should not be be modified, it's a reference to the actual rectangle, not a copy. 
+
+
+
+    Returns: The current size/location of the thumb. 
+
+*javax.swing.plaf.basic.BasicScrollBarUI.getTrackBounds()*
+
+protected |java.awt.Rectangle| getTrackBounds()
+
+Returns the current bounds of the track, i.e. the space in between the increment and decrement buttons, less the insets. The value returned by this method is updated each time the 
+scrollbar is laid out (validated). 
+
+Warning : the value returned by this method should not be be modified, it's a reference to the actual rectangle, not a copy. 
+
+
+
+    Returns: the current bounds of the scrollbar track 
+
+*javax.swing.plaf.basic.BasicScrollBarUI.installComponents()*
+
+protected void installComponents()
+
+
+
+
+
+*javax.swing.plaf.basic.BasicScrollBarUI.installDefaults()*
+
+protected void installDefaults()
+
+
+
+
+
+*javax.swing.plaf.basic.BasicScrollBarUI.installKeyboardActions()*
+
+protected void installKeyboardActions()
+
+
+
+
+
+*javax.swing.plaf.basic.BasicScrollBarUI.installListeners()*
+
+protected void installListeners()
+
+
+
+
+
+*javax.swing.plaf.basic.BasicScrollBarUI.installUI(JComponent)*
+
+public void installUI(javax.swing.JComponent c)
+
+
+
+
+
+*javax.swing.plaf.basic.BasicScrollBarUI.isThumbRollover()*
+
+public boolean isThumbRollover()
+
+Returns true if the mouse is currently over the thumb. 
+
+
+
+    Returns: true if the thumb is currently active 
+
+*javax.swing.plaf.basic.BasicScrollBarUI.layoutContainer(Container)*
+
+public void layoutContainer(java.awt.Container scrollbarContainer)
+
+
+
+
+
+*javax.swing.plaf.basic.BasicScrollBarUI.layoutHScrollbar(JScrollBar)*
+
+protected void layoutHScrollbar(javax.swing.JScrollBar sb)
+
+
+
+
+
+*javax.swing.plaf.basic.BasicScrollBarUI.layoutVScrollbar(JScrollBar)*
+
+protected void layoutVScrollbar(javax.swing.JScrollBar sb)
+
+
+
+
+
+*javax.swing.plaf.basic.BasicScrollBarUI.minimumLayoutSize(Container)*
+
+public |java.awt.Dimension| minimumLayoutSize(java.awt.Container scrollbarContainer)
+
+
+
+
+
+*javax.swing.plaf.basic.BasicScrollBarUI.paint(Graphics,JComponent)*
+
+public void paint(
+  java.awt.Graphics g,
+  javax.swing.JComponent c)
+
+
+
+
+
+*javax.swing.plaf.basic.BasicScrollBarUI.paintDecreaseHighlight(Graphics)*
+
+protected void paintDecreaseHighlight(java.awt.Graphics g)
+
+
+
+
+
+*javax.swing.plaf.basic.BasicScrollBarUI.paintIncreaseHighlight(Graphics)*
+
+protected void paintIncreaseHighlight(java.awt.Graphics g)
+
+
+
+
+
+*javax.swing.plaf.basic.BasicScrollBarUI.paintThumb(Graphics,JComponent,Rectangle)*
+
+protected void paintThumb(
+  java.awt.Graphics g,
+  javax.swing.JComponent c,
+  java.awt.Rectangle thumbBounds)
+
+
+
+
+
+*javax.swing.plaf.basic.BasicScrollBarUI.paintTrack(Graphics,JComponent,Rectangle)*
+
+protected void paintTrack(
+  java.awt.Graphics g,
+  javax.swing.JComponent c,
+  java.awt.Rectangle trackBounds)
+
+
+
+
+
+*javax.swing.plaf.basic.BasicScrollBarUI.preferredLayoutSize(Container)*
+
+public |java.awt.Dimension| preferredLayoutSize(java.awt.Container scrollbarContainer)
+
+
+
+
+
+*javax.swing.plaf.basic.BasicScrollBarUI.removeLayoutComponent(Component)*
+
+public void removeLayoutComponent(java.awt.Component child)
+
+
+
+
+
+*javax.swing.plaf.basic.BasicScrollBarUI.scrollByBlock(int)*
+
+protected void scrollByBlock(int direction)
+
+
+
+
+
+*javax.swing.plaf.basic.BasicScrollBarUI.scrollByUnit(int)*
+
+protected void scrollByUnit(int direction)
+
+
+
+
+
+*javax.swing.plaf.basic.BasicScrollBarUI.setThumbBounds(int,int,int,int)*
+
+protected void setThumbBounds(
+  int x,
+  int y,
+  int width,
+  int height)
+
+Set the bounds of the thumb and force a repaint that includes the old thumbBounds and the new one. 
+
+
+
+*javax.swing.plaf.basic.BasicScrollBarUI.setThumbRollover(boolean)*
+
+protected void setThumbRollover(boolean active)
+
+Sets whether or not the mouse is currently over the thumb. 
+
+
+    active - True indicates the thumb is currently active. 
+
+*javax.swing.plaf.basic.BasicScrollBarUI.uninstallComponents()*
+
+protected void uninstallComponents()
+
+
+
+
+
+*javax.swing.plaf.basic.BasicScrollBarUI.uninstallDefaults()*
+
+protected void uninstallDefaults()
+
+
+
+
+
+*javax.swing.plaf.basic.BasicScrollBarUI.uninstallKeyboardActions()*
+
+protected void uninstallKeyboardActions()
+
+
+
+
+
+*javax.swing.plaf.basic.BasicScrollBarUI.uninstallListeners()*
+
+protected void uninstallListeners()
+
+
+
+
+
+*javax.swing.plaf.basic.BasicScrollBarUI.uninstallUI(JComponent)*
+
+public void uninstallUI(javax.swing.JComponent c)
+
+
+
+
+
+

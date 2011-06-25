@@ -1,0 +1,169 @@
+*javax.swing.text.TableView* *TableView* 
+ Implements View interface for a table, that is composed of an
+ element structure where the child elements of the element
+ this view is re
+
+public abstract class TableView
+  extends    |javax.swing.text.BoxView|
+
+|javax.swing.text.TableView_Description|
+|javax.swing.text.TableView_Fields|
+|javax.swing.text.TableView_Constructors|
+|javax.swing.text.TableView_Methods|
+
+====================================================================================================================================================================================
+
+*javax.swing.text.TableView_Constructors*
+|javax.swing.text.TableView(Element)|Constructs a TableView for the given element.
+
+*javax.swing.text.TableView_Methods*
+|javax.swing.text.TableView.calculateMinorAxisRequirements(int,SizeRequirements)|Calculate the requirements for the minor axis.
+|javax.swing.text.TableView.createTableCell(Element)|
+|javax.swing.text.TableView.createTableRow(Element)|Creates a new table row.
+|javax.swing.text.TableView.forwardUpdate(DocumentEvent.ElementChange,DocumentEvent,Shape,ViewFactory)|
+|javax.swing.text.TableView.getViewAtPosition(int,Rectangle)|Fetches the child view that represents the given position in  the model.
+|javax.swing.text.TableView.layoutColumns(int,int[],int[],SizeRequirements[])|Layout the columns to fit within the given target span.
+|javax.swing.text.TableView.layoutMinorAxis(int,int,int[],int[])|Perform layout for the minor axis of the box (i.e.
+|javax.swing.text.TableView.replace(int,int,View[])|Change the child views.
+
+*javax.swing.text.TableView_Description*
+
+Implements View interface for a table, that is composed of an element structure where the child elements of the element this view is responsible for represent rows and the child 
+elements of the row elements are cells. The cell elements can have an arbitrary element structure under them, which will be built with the ViewFactory returned by the 
+getViewFactory method. 
+
+TABLE ROW CELL CELL ROW CELL CELL 
+
+
+
+This is implemented as a hierarchy of boxes, the table itself is a vertical box, the rows are horizontal boxes, and the cells are vertical boxes. The cells are allowed to span 
+multiple columns and rows. By default, the table can be thought of as being formed over a grid (i.e. somewhat like one would find in gridbag layout), where table cells can request 
+to span more than one grid cell. The default horizontal span of table cells will be based upon this grid, but can be changed by reimplementing the requested span of the cell (i.e. 
+table cells can have independant spans if desired). 
+
+
+
+*javax.swing.text.TableView(Element)*
+
+public TableView(javax.swing.text.Element elem)
+
+Constructs a TableView for the given element. 
+
+    elem - the element that this view is responsible for 
+
+*javax.swing.text.TableView.calculateMinorAxisRequirements(int,SizeRequirements)*
+
+protected |javax.swing.SizeRequirements| calculateMinorAxisRequirements(
+  int axis,
+  javax.swing.SizeRequirements r)
+
+Calculate the requirements for the minor axis. This is called by the superclass whenever the requirements need to be updated (i.e. a preferenceChanged was messaged through this 
+view). 
+
+This is implemented to calculate the requirements as the sum of the requirements of the columns. 
+
+
+
+*javax.swing.text.TableView.createTableCell(Element)*
+
+protected |javax.swing.text.TableView.TableCell| createTableCell(javax.swing.text.Element elem)
+
+
+
+    Deprecated: Table cells can now be any arbitrary 
+ View implementation and should be produced by the
+ ViewFactory rather than the table.
+
+    elem - an element 
+
+    Returns: 
+
+*javax.swing.text.TableView.createTableRow(Element)*
+
+protected |javax.swing.text.TableView.TableRow| createTableRow(javax.swing.text.Element elem)
+
+Creates a new table row. 
+
+
+    elem - an element 
+
+    Returns: 
+
+*javax.swing.text.TableView.forwardUpdate(DocumentEvent.ElementChange,DocumentEvent,Shape,ViewFactory)*
+
+protected void forwardUpdate(
+  javax.swing.event.DocumentEvent.ElementChange ec,
+  javax.swing.event.DocumentEvent e,
+  java.awt.Shape a,
+  javax.swing.text.ViewFactory f)
+
+
+
+
+
+*javax.swing.text.TableView.getViewAtPosition(int,Rectangle)*
+
+protected |javax.swing.text.View| getViewAtPosition(
+  int pos,
+  java.awt.Rectangle a)
+
+Fetches the child view that represents the given position in the model. This is implemented to walk through the children looking for a range that contains the given position. In 
+this view the children do not necessarily have a one to one mapping with the child elements. 
+
+
+    pos - the search position >= 0 
+    a - the allocation to the table on entry, and the allocation of the view containing the position on exit 
+
+    Returns: the view representing the given position, or null if there isn't one 
+
+*javax.swing.text.TableView.layoutColumns(int,int[],int[],SizeRequirements[])*
+
+protected void layoutColumns(
+  int targetSpan,
+  int[] offsets,
+  int[] spans,
+  javax.swing.SizeRequirements[] reqs)
+
+Layout the columns to fit within the given target span. 
+
+
+    targetSpan - the given span for total of all the table columns. 
+    reqs - the requirements desired for each column. This is the column maximum of the cells minimum, preferred, and maximum requested span. 
+    spans - the return value of how much to allocated to each column. 
+    offsets - the return value of the offset from the origin for each column. 
+
+    Returns: the offset from the origin and the span for each column in the offsets and spans parameters 
+
+*javax.swing.text.TableView.layoutMinorAxis(int,int,int[],int[])*
+
+protected void layoutMinorAxis(
+  int targetSpan,
+  int axis,
+  int[] offsets,
+  int[] spans)
+
+Perform layout for the minor axis of the box (i.e. the axis orthoginal to the axis that it represents). The results of the layout should be placed in the given arrays which 
+represent the allocations to the children along the minor axis. This is called by the superclass whenever the layout needs to be updated along the minor axis. 
+
+This is implemented to call the layoutColumns method, and then forward to the superclass to actually carry out the layout of the tables rows. 
+
+
+    targetSpan - the total span given to the view, which whould be used to layout the children. 
+    axis - the axis being layed out. 
+    offsets - the offsets from the origin of the view for each of the child views. This is a return value and is filled in by the implementation of this method. 
+    spans - the span of each child view. This is a return value and is filled in by the implementation of this method. 
+
+    Returns: the offset and span for each child view in the offsets and spans parameters 
+
+*javax.swing.text.TableView.replace(int,int,View[])*
+
+public void replace(
+  int offset,
+  int length,
+  javax.swing.text.View[] views)
+
+Change the child views. This is implemented to provide the superclass behavior and invalidate the grid so that rows and columns will be recalculated. 
+
+
+
+

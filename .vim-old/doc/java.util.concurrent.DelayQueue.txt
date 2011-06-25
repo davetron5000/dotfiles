@@ -1,0 +1,238 @@
+*java.util.concurrent.DelayQueue* *DelayQueue* An unboundedBlockingQueue blocking queueof
+ Delayed elements, in which an element can only be taken
+ when its delay has expired.
+
+public class DelayQueue<E extends java.util.concurrent.Delayed>
+  extends    |java.util.AbstractQueue|
+  implements |java.util.concurrent.BlockingQueue|
+
+|java.util.concurrent.DelayQueue_Description|
+|java.util.concurrent.DelayQueue_Fields|
+|java.util.concurrent.DelayQueue_Constructors|
+|java.util.concurrent.DelayQueue_Methods|
+
+====================================================================================================================================================================================
+
+*java.util.concurrent.DelayQueue_Constructors*
+|java.util.concurrent.DelayQueue()|Creates a new DelayQueue that is initially empty.
+|java.util.concurrent.DelayQueue(Collection<?extendsE>)|Creates a DelayQueue initially containing the elements of the  given collection ofDelayedinstances.
+
+*java.util.concurrent.DelayQueue_Methods*
+|java.util.concurrent.DelayQueue.add(E)|Adds the specified element to this queue.
+|java.util.concurrent.DelayQueue.clear()|Atomically removes all of the elements from this delay queue.
+|java.util.concurrent.DelayQueue.drainTo(Collection<?superE>)|
+|java.util.concurrent.DelayQueue.drainTo(Collection<?superE>,int)|
+|java.util.concurrent.DelayQueue.iterator()|Returns an iterator over the elements in this queue.
+|java.util.concurrent.DelayQueue.offer(E)|Inserts the specified element into this delay queue.
+|java.util.concurrent.DelayQueue.offer(E,long,TimeUnit)|Inserts the specified element into this delay queue.
+|java.util.concurrent.DelayQueue.peek()|Retrieves, but does not remove, the head of this queue,  returning null if this queue has no elements with an  unexpired delay.
+|java.util.concurrent.DelayQueue.poll()|Retrieves and removes the head of this queue, or null  if this queue has no elements with an unexpired delay.
+|java.util.concurrent.DelayQueue.poll(long,TimeUnit)|Retrieves and removes the head of this queue, waiting  if necessary up to the specified wait time if no elements with  an unex
+|java.util.concurrent.DelayQueue.put(E)|Adds the specified element to this delay queue.
+|java.util.concurrent.DelayQueue.remainingCapacity()|Always returns Integer.MAX_VALUE because  a DelayQueue is not capacity constrained.
+|java.util.concurrent.DelayQueue.remove(Object)|Removes a single instance of the specified element from this  queue, if it is present.
+|java.util.concurrent.DelayQueue.size()|
+|java.util.concurrent.DelayQueue.take()|Retrieves and removes the head of this queue, waiting  if no elements with an unexpired delay are present on this queue.
+|java.util.concurrent.DelayQueue.toArray()|
+|java.util.concurrent.DelayQueue.toArray(T[])|
+
+*java.util.concurrent.DelayQueue_Description*
+
+An unbounded blocking queue(|java.util.concurrent.BlockingQueue|) of Delayed elements, in which an element can only be taken when its delay has expired. The head of the queue is 
+that Delayed element whose delay expired furthest in the past. If no delay has expired there is no head and poll will return null. Expiration occurs when an element's 
+getDelay(TimeUnit.NANOSECONDS) method returns a value less than or equal to zero. This queue does not permit null elements. 
+
+This class and its iterator implement all of the optional methods of the (|java.util.Collection|) and (|java.util.Iterator|) interfaces. 
+
+This class is a member of the <a href="/../guide/collections/index.html"> Java Collections Framework. 
+
+
+
+*java.util.concurrent.DelayQueue()*
+
+public DelayQueue()
+
+Creates a new DelayQueue that is initially empty. 
+
+
+*java.util.concurrent.DelayQueue(Collection<?extendsE>)*
+
+public DelayQueue(java.util.Collection<? extends E> c)
+
+Creates a DelayQueue initially containing the elements of the given collection of (|java.util.concurrent.Delayed|) instances. 
+
+    c - the collection 
+
+*java.util.concurrent.DelayQueue.add(E)*
+
+public boolean add(E extends java.util.concurrent.Delayed o)
+
+Adds the specified element to this queue. 
+
+
+    o - the element to add 
+
+    Returns: true (as per the general contract of Collection.add). 
+
+*java.util.concurrent.DelayQueue.clear()*
+
+public void clear()
+
+Atomically removes all of the elements from this delay queue. The queue will be empty after this call returns. 
+
+
+
+*java.util.concurrent.DelayQueue.drainTo(Collection<?superE>)*
+
+public int drainTo(java.util.Collection<? super E> c)
+
+
+
+
+
+*java.util.concurrent.DelayQueue.drainTo(Collection<?superE>,int)*
+
+public int drainTo(
+  java.util.Collection<? super E> c,
+  int maxElements)
+
+
+
+
+
+*java.util.concurrent.DelayQueue.iterator()*
+
+public |java.util.Iterator|<E extends java.util.concurrent.Delayed> iterator()
+
+Returns an iterator over the elements in this queue. The iterator does not return the elements in any particular order. The returned iterator is a thread-safe "fast-fail" iterator 
+that will throw (|java.util.ConcurrentModificationException|) upon detected interference. 
+
+
+
+    Returns: an iterator over the elements in this queue. 
+
+*java.util.concurrent.DelayQueue.offer(E)*
+
+public boolean offer(E extends java.util.concurrent.Delayed o)
+
+Inserts the specified element into this delay queue. 
+
+
+    o - the element to add 
+
+    Returns: 
+
+*java.util.concurrent.DelayQueue.offer(E,long,TimeUnit)*
+
+public boolean offer(
+  E extends java.util.concurrent.Delayed o,
+  long timeout,
+  java.util.concurrent.TimeUnit unit)
+
+Inserts the specified element into this delay queue. As the queue is unbounded this method will never block. 
+
+
+    o - the element to add 
+    timeout - This parameter is ignored as the method never blocks 
+    unit - This parameter is ignored as the method never blocks 
+
+    Returns: 
+
+*java.util.concurrent.DelayQueue.peek()*
+
+public |E| peek()
+
+Retrieves, but does not remove, the head of this queue, returning null if this queue has no elements with an unexpired delay. 
+
+
+
+    Returns: the head of this queue, or null if this queue has no elements with an unexpired delay. 
+
+*java.util.concurrent.DelayQueue.poll()*
+
+public |E| poll()
+
+Retrieves and removes the head of this queue, or null if this queue has no elements with an unexpired delay. 
+
+
+
+    Returns: the head of this queue, or null if this queue has no elements with an unexpired delay. 
+
+*java.util.concurrent.DelayQueue.poll(long,TimeUnit)*
+
+public |E| poll(
+  long timeout,
+  java.util.concurrent.TimeUnit unit)
+  throws |java.lang.InterruptedException|
+         
+Retrieves and removes the head of this queue, waiting if necessary up to the specified wait time if no elements with an unexpired delay are present on this queue. 
+
+
+    timeout - how long to wait before giving up, in units of unit 
+    unit - a TimeUnit determining how to interpret the timeout parameter 
+
+    Returns: the head of this queue, or null if the specified waiting time elapses before an element with an unexpired delay is present. 
+
+*java.util.concurrent.DelayQueue.put(E)*
+
+public void put(E extends java.util.concurrent.Delayed o)
+
+Adds the specified element to this delay queue. As the queue is unbounded this method will never block. 
+
+
+    o - the element to add 
+
+*java.util.concurrent.DelayQueue.remainingCapacity()*
+
+public int remainingCapacity()
+
+Always returns Integer.MAX_VALUE because a DelayQueue is not capacity constrained. 
+
+
+
+    Returns: Integer.MAX_VALUE 
+
+*java.util.concurrent.DelayQueue.remove(Object)*
+
+public boolean remove(java.lang.Object o)
+
+Removes a single instance of the specified element from this queue, if it is present. 
+
+
+
+*java.util.concurrent.DelayQueue.size()*
+
+public int size()
+
+
+
+
+
+*java.util.concurrent.DelayQueue.take()*
+
+public |E| take()
+  throws |java.lang.InterruptedException|
+         
+Retrieves and removes the head of this queue, waiting if no elements with an unexpired delay are present on this queue. 
+
+
+
+    Returns: the head of this queue 
+
+*java.util.concurrent.DelayQueue.toArray()*
+
+public |java.lang.Object|[] toArray()
+
+
+
+
+
+*java.util.concurrent.DelayQueue.toArray(T[])*
+
+public |T|[] toArray(T[] array)
+
+
+
+
+
+

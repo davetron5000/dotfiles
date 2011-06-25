@@ -1,0 +1,703 @@
+*java.nio.CharBuffer* *CharBuffer* A character buffer.
+
+public abstract class CharBuffer
+  extends    |java.nio.Buffer|
+  implements |java.lang.Comparable|
+             |java.lang.Appendable|
+             |java.lang.CharSequence|
+             |java.lang.Readable|
+
+|java.nio.CharBuffer_Description|
+|java.nio.CharBuffer_Fields|
+|java.nio.CharBuffer_Constructors|
+|java.nio.CharBuffer_Methods|
+
+====================================================================================================================================================================================
+
+*java.nio.CharBuffer_Methods*
+|java.nio.CharBuffer.allocate(int)|Allocates a new character buffer.
+|java.nio.CharBuffer.append(char)|Appends the specified character  to this  buffer(optional operation).
+|java.nio.CharBuffer.append(CharSequence)|Appends the specified character sequence  to this  buffer(optional operation).
+|java.nio.CharBuffer.append(CharSequence,int,int)|Appends a subsequence of the  specified character sequence  to this  buffer(optional operation).
+|java.nio.CharBuffer.array()|Returns the character array that backs this  buffer(optional operation).
+|java.nio.CharBuffer.arrayOffset()|Returns the offset within this buffer's backing array of the first  element of the buffer(optional operation).
+|java.nio.CharBuffer.asReadOnlyBuffer()|Creates a new, read-only character buffer that shares this buffer's  content.
+|java.nio.CharBuffer.charAt(int)|Reads the character at the given index relative to the current  position.
+|java.nio.CharBuffer.compact()|Compacts this buffer(optional operation).
+|java.nio.CharBuffer.compareTo(CharBuffer)|Compares this buffer to another.
+|java.nio.CharBuffer.duplicate()|Creates a new character buffer that shares this buffer's content.
+|java.nio.CharBuffer.equals(Object)|Tells whether or not this buffer is equal to another object.
+|java.nio.CharBuffer.get()|Relative get method.
+|java.nio.CharBuffer.get(char[])|Relative bulk get method.
+|java.nio.CharBuffer.get(char[],int,int)|Relative bulk get method.
+|java.nio.CharBuffer.get(int)|Absolute get method.
+|java.nio.CharBuffer.hasArray()|Tells whether or not this buffer is backed by an accessible character  array.
+|java.nio.CharBuffer.hashCode()|Returns the current hash code of this buffer.
+|java.nio.CharBuffer.isDirect()|Tells whether or not this character buffer is direct.
+|java.nio.CharBuffer.length()|Returns the length of this character buffer.
+|java.nio.CharBuffer.order()|Retrieves this buffer's byte order.
+|java.nio.CharBuffer.put(char)|Relative put method(optional operation).
+|java.nio.CharBuffer.put(char[])|Relative bulk put method(optional operation).
+|java.nio.CharBuffer.put(char[],int,int)|Relative bulk put method(optional operation).
+|java.nio.CharBuffer.put(CharBuffer)|Relative bulk put method(optional operation).
+|java.nio.CharBuffer.put(int,char)|Absolute put method(optional operation).
+|java.nio.CharBuffer.put(String)|Relative bulk put method(optional operation).
+|java.nio.CharBuffer.put(String,int,int)|Relative bulk put method(optional operation).
+|java.nio.CharBuffer.read(CharBuffer)|Attempts to read characters into the specified character buffer.
+|java.nio.CharBuffer.slice()|Creates a new character buffer whose content is a shared subsequence of  this buffer's content.
+|java.nio.CharBuffer.subSequence(int,int)|Creates a new character buffer that represents the specified subsequence  of this buffer, relative to the current position.
+|java.nio.CharBuffer.toString()|Returns a string containing the characters in this buffer.
+|java.nio.CharBuffer.wrap(char[])|Wraps a character array into a buffer.
+|java.nio.CharBuffer.wrap(char[],int,int)|Wraps a character array into a buffer.
+|java.nio.CharBuffer.wrap(CharSequence)|Wraps a string into a buffer.
+|java.nio.CharBuffer.wrap(CharSequence,int,int)|Wraps a character sequence into a buffer.
+
+*java.nio.CharBuffer_Description*
+
+A character buffer. 
+
+This class defines four categories of operations upon character buffers: 
+
+
+
+Absolute and relative </code><i>get</i><code>(|java.nio.CharBuffer|) and </code><i>put</i><code>(|java.nio.CharBuffer|) methods that read and write single characters; 
+
+Relative </code><i>bulk get</i><code>(|java.nio.CharBuffer|) methods that transfer contiguous sequences of characters from this buffer into an array; and 
+
+Relative </code><i>bulk put</i><code>(|java.nio.CharBuffer|) methods that transfer contiguous sequences of characters from a character array,astring, or some other character 
+buffer into this buffer;and 
+
+Methods for </code>compacting<code>(|java.nio.CharBuffer|) , </code>duplicating<code>(|java.nio.CharBuffer|) , and </code>slicing<code>(|java.nio.CharBuffer|) a character buffer. 
+
+
+
+Character buffers can be created either by </code><i>allocation</i><code>(|java.nio.CharBuffer|) , which allocates space for the buffer's 
+
+content, by </code><i>wrapping</i><code>(|java.nio.CharBuffer|) an existing character array orstring into a buffer, or by creating a view of an existing byte buffer 
+
+Like a byte buffer, a character buffer is either direct or non-direct. A character buffer created via the wrap methods of this class will be non-direct. A character buffer created 
+as a view of a byte buffer will be direct if, and only if, the byte buffer itself is direct. Whether or not a character buffer is direct may be determined by invoking the 
+isDirect(|java.nio.CharBuffer|) method. 
+
+This class implements the (|java.lang.CharSequence|) interface so that character buffers may be used wherever character sequences are accepted, for example in the 
+regular-expression package (|java.util.regex|) . 
+
+Methods in this class that do not otherwise have a value to return are specified to return the buffer upon which they are invoked. This allows method invocations to be chained. 
+
+The sequence of statements 
+
+
+
+cb.put("text/"); cb.put(subtype); cb.put("; charset="); cb.put(enc); 
+
+can, for example, be replaced by the single statement 
+
+
+
+cb.put("text/").put(subtype).put("; charset=").put(enc); 
+
+
+
+*java.nio.CharBuffer.allocate(int)*
+
+public static |java.nio.CharBuffer| allocate(int capacity)
+
+Allocates a new character buffer. 
+
+The new buffer's position will be zero, its limit will be its capacity, and its mark will be undefined. It will have a </code>backing array<code>(|java.nio.CharBuffer|) , and its 
+</code>array offset<code>(|java.nio.CharBuffer|) will be zero. 
+
+
+    capacity - The new buffer's capacity, in characters 
+
+    Returns: The new character buffer 
+
+*java.nio.CharBuffer.append(char)*
+
+public |java.nio.CharBuffer| append(char c)
+
+Appends the specified character to this buffer(optional operation). 
+
+An invocation of this method of the form dst.append(c) behaves in exactly the same way as the invocation 
+
+
+
+dst.put(c) 
+
+
+    c - The 16-bit character to append 
+
+    Returns: 
+
+*java.nio.CharBuffer.append(CharSequence)*
+
+public |java.nio.CharBuffer| append(java.lang.CharSequence csq)
+
+Appends the specified character sequence to this buffer(optional operation). 
+
+An invocation of this method of the form dst.append(csq) behaves in exactly the same way as the invocation 
+
+
+
+dst.put(csq.toString()) 
+
+Depending on the specification of toString for the character sequence csq, the entire sequence may not be appended. For instance, invoking the toString(|java.nio.CharBuffer|) 
+method of a character buffer will return a subsequence whose content depends upon the buffer's position and limit. 
+
+
+    csq - The character sequence to append. If csq is null, then the four characters "null" are appended to this character buffer. 
+
+    Returns: 
+
+*java.nio.CharBuffer.append(CharSequence,int,int)*
+
+public |java.nio.CharBuffer| append(
+  java.lang.CharSequence csq,
+  int start,
+  int end)
+
+Appends a subsequence of the specified character sequence to this buffer(optional operation). 
+
+An invocation of this method of the form dst.append(csq, start, end) when csq is not null, behaves in exactly the same way as the invocation 
+
+
+
+dst.put(csq.subSequence(start, end).toString()) 
+
+
+    csq - The character sequence from which a subsequence will be appended. If csq is null, then characters will be appended as if csq contained the four characters "null". 
+
+    Returns: 
+
+*java.nio.CharBuffer.array()*
+
+public final char[] array()
+
+Returns the character array that backs this buffer(optional operation). 
+
+Modifications to this buffer's content will cause the returned array's content to be modified, and vice versa. 
+
+Invoke the hasArray(|java.nio.CharBuffer|) method before invoking this method in order to ensure that this buffer has an accessible backing array. 
+
+
+
+    Returns: The array that backs this buffer 
+
+*java.nio.CharBuffer.arrayOffset()*
+
+public final int arrayOffset()
+
+Returns the offset within this buffer's backing array of the first element of the buffer(optional operation). 
+
+If this buffer is backed by an array then buffer position p corresponds to array index p+arrayOffset(). 
+
+Invoke the hasArray(|java.nio.CharBuffer|) method before invoking this method in order to ensure that this buffer has an accessible backing array. 
+
+
+
+    Returns: The offset within this buffer's array of the first element of the buffer 
+
+*java.nio.CharBuffer.asReadOnlyBuffer()*
+
+public abstract |java.nio.CharBuffer| asReadOnlyBuffer()
+
+Creates a new, read-only character buffer that shares this buffer's content. 
+
+The content of the new buffer will be that of this buffer. Changes to this buffer's content will be visible in the new buffer; the new buffer itself, however, will be read-only 
+and will not allow the shared content to be modified. The two buffers' position, limit, and mark values will be independent. 
+
+The new buffer's capacity, limit, position, and mark values will be identical to those of this buffer. 
+
+If this buffer is itself read-only then this method behaves in exactly the same way as the duplicate(|java.nio.CharBuffer|) method. 
+
+
+
+    Returns: The new, read-only character buffer 
+
+*java.nio.CharBuffer.charAt(int)*
+
+public final char charAt(int index)
+
+Reads the character at the given index relative to the current position. 
+
+
+    index - The index of the character to be read, relative to the position; must be non-negative and smaller than remaining() 
+
+    Returns: The character at index position()+index 
+
+*java.nio.CharBuffer.compact()*
+
+public abstract |java.nio.CharBuffer| compact()
+
+Compacts this buffer(optional operation). 
+
+The characters between the buffer's current position and its limit, if any, are copied to the beginning of the buffer. That is, the character at index p=position() is copied to 
+index zero, the character at index p+1 is copied to index one, and so forth until the character at index limit()-1 is copied to index n=limit()-1-p. The buffer's position is then 
+set to n+1 and its limit is set to its capacity. The mark, if defined, is discarded. 
+
+The buffer's position is set to the number of characters copied, rather than to zero, so that an invocation of this method can be followed immediately by an invocation of another 
+relative put method. 
+
+
+
+    Returns: 
+
+*java.nio.CharBuffer.compareTo(CharBuffer)*
+
+public int compareTo(java.nio.CharBuffer that)
+
+Compares this buffer to another. 
+
+Two char buffers are compared by comparing their sequences of remaining elements lexicographically, without regard to the starting position of each sequence within its 
+corresponding buffer. 
+
+A char buffer is not comparable to any other type of object. 
+
+
+
+    Returns: A negative integer, zero, or a positive integer as this buffer is less than, equal to, or greater than the given buffer 
+
+*java.nio.CharBuffer.duplicate()*
+
+public abstract |java.nio.CharBuffer| duplicate()
+
+Creates a new character buffer that shares this buffer's content. 
+
+The content of the new buffer will be that of this buffer. Changes to this buffer's content will be visible in the new buffer, and vice versa; the two buffers' position, limit, 
+and mark values will be independent. 
+
+The new buffer's capacity, limit, position, and mark values will be identical to those of this buffer. The new buffer will be direct if, and only if, this buffer is direct, and it 
+will be read-only if, and only if, this buffer is read-only. 
+
+
+
+    Returns: The new character buffer 
+
+*java.nio.CharBuffer.equals(Object)*
+
+public boolean equals(java.lang.Object ob)
+
+Tells whether or not this buffer is equal to another object. 
+
+Two char buffers are equal if, and only if, 
+
+
+
+They have the same element type, 
+
+They have the same number of remaining elements, and 
+
+The two sequences of remaining elements, considered independently of their starting positions, are pointwise equal. 
+
+
+
+A char buffer is not equal to any other type of object. 
+
+
+    ob - The object to which this buffer is to be compared 
+
+    Returns: true if, and only if, this buffer is equal to the given object 
+
+*java.nio.CharBuffer.get()*
+
+public abstract char get()
+
+Relative get method. Reads the character at this buffer's current position, and then increments the position. 
+
+
+
+    Returns: The character at the buffer's current position 
+
+*java.nio.CharBuffer.get(char[])*
+
+public |java.nio.CharBuffer| get(char[] dst)
+
+Relative bulk get method. 
+
+This method transfers characters from this buffer into the given destination array. An invocation of this method of the form src.get(a) behaves in exactly the same way as the 
+invocation 
+
+
+
+src.get(a, 0, a.length) 
+
+
+
+    Returns: 
+
+*java.nio.CharBuffer.get(char[],int,int)*
+
+public |java.nio.CharBuffer| get(
+  char[] dst,
+  int offset,
+  int length)
+
+Relative bulk get method. 
+
+This method transfers characters from this buffer into the given destination array. If there are fewer characters remaining in the buffer than are required to satisfy the request, 
+that is, if length>remaining(), then no characters are transferred and a (|java.nio.BufferUnderflowException|) is thrown. 
+
+Otherwise, this method copies length characters from this buffer into the given array, starting at the current position of this buffer and at the given offset in the array. The 
+position of this buffer is then incremented by length. 
+
+In other words, an invocation of this method of the form src.get(dst,off,len) has exactly the same effect as the loop 
+
+
+
+for (int i = off; i 
+
+
+    dst - The array into which characters are to be written 
+    offset - The offset within the array of the first character to be written; must be non-negative and no larger than dst.length 
+    length - The maximum number of characters to be written to the given array; must be non-negative and no larger than dst.length - offset 
+
+    Returns: 
+
+*java.nio.CharBuffer.get(int)*
+
+public abstract char get(int index)
+
+Absolute get method. Reads the character at the given index. 
+
+
+    index - The index from which the character will be read 
+
+    Returns: The character at the given index 
+
+*java.nio.CharBuffer.hasArray()*
+
+public final boolean hasArray()
+
+Tells whether or not this buffer is backed by an accessible character array. 
+
+If this method returns true then the array(|java.nio.CharBuffer|) and arrayOffset(|java.nio.CharBuffer|) methods may safely be invoked. 
+
+
+
+    Returns: true if, and only if, this buffer is backed by an array and is not read-only 
+
+*java.nio.CharBuffer.hashCode()*
+
+public int hashCode()
+
+Returns the current hash code of this buffer. 
+
+The hash code of a char buffer depends only upon its remaining elements; that is, upon the elements from position() up to, and including, the element at limit()-1. 
+
+Because buffer hash codes are content-dependent, it is inadvisable to use buffers as keys in hash maps or similar data structures unless it is known that their contents will not 
+change. 
+
+
+
+    Returns: The current hash code of this buffer 
+
+*java.nio.CharBuffer.isDirect()*
+
+public abstract boolean isDirect()
+
+Tells whether or not this character buffer is direct. 
+
+
+
+    Returns: true if, and only if, this buffer is direct 
+
+*java.nio.CharBuffer.length()*
+
+public final int length()
+
+Returns the length of this character buffer. 
+
+When viewed as a character sequence, the length of a character buffer is simply the number of characters between the position (inclusive) and the limit (exclusive); that is, it is 
+equivalent to remaining(). 
+
+
+
+    Returns: The length of this character buffer 
+
+*java.nio.CharBuffer.order()*
+
+public abstract |java.nio.ByteOrder| order()
+
+Retrieves this buffer's byte order. 
+
+The byte order of a character buffer created by allocation or by wrapping an existing char array is the </code>native order<code>(|java.nio.ByteOrder|) of the underlying hardware. 
+The byte order of a character buffer created as a view of a byte buffer is that of the byte buffer at the moment that the view is created. 
+
+
+
+    Returns: This buffer's byte order 
+
+*java.nio.CharBuffer.put(char)*
+
+public abstract |java.nio.CharBuffer| put(char c)
+
+Relative put method(optional operation). 
+
+Writes the given character into this buffer at the current position, and then increments the position. 
+
+
+    c - The character to be written 
+
+    Returns: 
+
+*java.nio.CharBuffer.put(char[])*
+
+public final |java.nio.CharBuffer| put(char[] src)
+
+Relative bulk put method(optional operation). 
+
+This method transfers the entire content of the given source character array into this buffer. An invocation of this method of the form dst.put(a) behaves in exactly the same way 
+as the invocation 
+
+
+
+dst.put(a, 0, a.length) 
+
+
+
+    Returns: 
+
+*java.nio.CharBuffer.put(char[],int,int)*
+
+public |java.nio.CharBuffer| put(
+  char[] src,
+  int offset,
+  int length)
+
+Relative bulk put method(optional operation). 
+
+This method transfers characters into this buffer from the given source array. If there are more characters to be copied from the array than remain in this buffer, that is, if 
+length>remaining(), then no characters are transferred and a (|java.nio.BufferOverflowException|) is thrown. 
+
+Otherwise, this method copies length characters from the given array into this buffer, starting at the given offset in the array and at the current position of this buffer. The 
+position of this buffer is then incremented by length. 
+
+In other words, an invocation of this method of the form dst.put(src,off,len) has exactly the same effect as the loop 
+
+
+
+for (int i = off; i 
+
+
+    src - The array from which characters are to be read 
+    offset - The offset within the array of the first character to be read; must be non-negative and no larger than array.length 
+    length - The number of characters to be read from the given array; must be non-negative and no larger than array.length - offset 
+
+    Returns: 
+
+*java.nio.CharBuffer.put(CharBuffer)*
+
+public |java.nio.CharBuffer| put(java.nio.CharBuffer src)
+
+Relative bulk put method(optional operation). 
+
+This method transfers the characters remaining in the given source buffer into this buffer. If there are more characters remaining in the source buffer than in this buffer, that 
+is, if src.remaining()>remaining(), then no characters are transferred and a (|java.nio.BufferOverflowException|) is thrown. 
+
+Otherwise, this method copies n=src.remaining() characters from the given buffer into this buffer, starting at each buffer's current position. The positions of both buffers are 
+then incremented by n. 
+
+In other words, an invocation of this method of the form dst.put(src) has exactly the same effect as the loop 
+
+
+
+while (src.hasRemaining()) dst.put(src.get()); 
+
+except that it first checks that there is sufficient space in this buffer and it is potentially much more efficient. 
+
+
+    src - The source buffer from which characters are to be read; must not be this buffer 
+
+    Returns: 
+
+*java.nio.CharBuffer.put(int,char)*
+
+public abstract |java.nio.CharBuffer| put(
+  int index,
+  char c)
+
+Absolute put method(optional operation). 
+
+Writes the given character into this buffer at the given index. 
+
+
+    index - The index at which the character will be written 
+    c - The character value to be written 
+
+    Returns: 
+
+*java.nio.CharBuffer.put(String)*
+
+public final |java.nio.CharBuffer| put(java.lang.String src)
+
+Relative bulk put method(optional operation). 
+
+This method transfers the entire content of the given source string into this buffer. An invocation of this method of the form dst.put(s) behaves in exactly the same way as the 
+invocation 
+
+
+
+dst.put(s, 0, s.length()) 
+
+
+
+    Returns: 
+
+*java.nio.CharBuffer.put(String,int,int)*
+
+public |java.nio.CharBuffer| put(
+  java.lang.String src,
+  int start,
+  int end)
+
+Relative bulk put method(optional operation). 
+
+This method transfers characters from the given string into this buffer. If there are more characters to be copied from the string than remain in this buffer, that is, if 
+end-start>remaining(), then no characters are transferred and a (|java.nio.BufferOverflowException|) is thrown. 
+
+Otherwise, this method copies n=end-start characters from the given string into this buffer, starting at the given start index and at the current position of this buffer. The 
+position of this buffer is then incremented by n. 
+
+In other words, an invocation of this method of the form dst.put(src,start,end) has exactly the same effect as the loop 
+
+
+
+for (int i = start; i 
+
+
+    src - The string from which characters are to be read 
+    start - The offset within the string of the first character to be read; must be non-negative and no larger than string.length() 
+    end - The offset within the string of the last character to be read, plus one; must be non-negative and no larger than string.length() 
+
+    Returns: 
+
+*java.nio.CharBuffer.read(CharBuffer)*
+
+public int read(java.nio.CharBuffer target)
+  throws |java.io.IOException|
+         
+Attempts to read characters into the specified character buffer. The buffer is used as a repository of characters as-is: the only changes made are the results of a put operation. 
+No flipping or rewinding of the buffer is performed. 
+
+
+    target - the buffer to read characters into 
+
+    Returns: The number of characters added to the buffer, or -1 if this source of characters is at its end 
+
+*java.nio.CharBuffer.slice()*
+
+public abstract |java.nio.CharBuffer| slice()
+
+Creates a new character buffer whose content is a shared subsequence of this buffer's content. 
+
+The content of the new buffer will start at this buffer's current position. Changes to this buffer's content will be visible in the new buffer, and vice versa; the two buffers' 
+position, limit, and mark values will be independent. 
+
+The new buffer's position will be zero, its capacity and its limit will be the number of characters remaining in this buffer, and its mark will be undefined. The new buffer will 
+be direct if, and only if, this buffer is direct, and it will be read-only if, and only if, this buffer is read-only. 
+
+
+
+    Returns: The new character buffer 
+
+*java.nio.CharBuffer.subSequence(int,int)*
+
+public abstract |java.lang.CharSequence| subSequence(
+  int start,
+  int end)
+
+Creates a new character buffer that represents the specified subsequence of this buffer, relative to the current position. 
+
+The new buffer will share this buffer's content; that is, if the content of this buffer is mutable then modifications to one buffer will cause the other to be modified. The new 
+buffer's capacity will be that of this buffer, its position will be position()+start, and its limit will be position()+end. The new buffer will be direct if, and only if, this 
+buffer is direct, and it will be read-only if, and only if, this buffer is read-only. 
+
+
+    start - The index, relative to the current position, of the first character in the subsequence; must be non-negative and no larger than remaining() 
+    end - The index, relative to the current position, of the character following the last character in the subsequence; must be no smaller than start and no larger than remaining() 
+
+    Returns: The new character buffer 
+
+*java.nio.CharBuffer.toString()*
+
+public |java.lang.String| toString()
+
+Returns a string containing the characters in this buffer. 
+
+The first character of the resulting string will be the character at this buffer's position, while the last character will be the character at index limit()-1. Invoking this 
+method does not change the buffer's position. 
+
+
+
+    Returns: The specified string 
+
+*java.nio.CharBuffer.wrap(char[])*
+
+public static |java.nio.CharBuffer| wrap(char[] array)
+
+Wraps a character array into a buffer. 
+
+The new buffer will be backed by the given character array; that is, modifications to the buffer will cause the array to be modified and vice versa. The new buffer's capacity and 
+limit will be array.length, its position will be zero, and its mark will be undefined. Its </code>backing array<code>(|java.nio.CharBuffer|) will be the given array, and its 
+</code>array offset<code>(|java.nio.CharBuffer|) will be zero. 
+
+
+    array - The array that will back this buffer 
+
+    Returns: The new character buffer 
+
+*java.nio.CharBuffer.wrap(char[],int,int)*
+
+public static |java.nio.CharBuffer| wrap(
+  char[] array,
+  int offset,
+  int length)
+
+Wraps a character array into a buffer. 
+
+The new buffer will be backed by the given character array; that is, modifications to the buffer will cause the array to be modified and vice versa. The new buffer's capacity will 
+be array.length, its position will be offset, its limit will be offset + length, and its mark will be undefined. Its </code>backing array<code>(|java.nio.CharBuffer|) will be the 
+given array, and its </code>array offset<code>(|java.nio.CharBuffer|) will be zero. 
+
+
+    array - The array that will back the new buffer 
+    offset - The offset of the subarray to be used; must be non-negative and no larger than array.length. The new buffer's position will be set to this value. 
+    length - The length of the subarray to be used; must be non-negative and no larger than array.length - offset. The new buffer's limit will be set to offset + length. 
+
+    Returns: The new character buffer 
+
+*java.nio.CharBuffer.wrap(CharSequence)*
+
+public static |java.nio.CharBuffer| wrap(java.lang.CharSequence csq)
+
+Wraps a string into a buffer. 
+
+The content of the new, read-only buffer will be the content of the given string. The new buffer's capacity and limit will be csq.length(), its position will be zero, and its mark 
+will be undefined. 
+
+
+    csq - The character sequence from which the new character buffer is to be created 
+
+    Returns: The new character buffer 
+
+*java.nio.CharBuffer.wrap(CharSequence,int,int)*
+
+public static |java.nio.CharBuffer| wrap(
+  java.lang.CharSequence csq,
+  int start,
+  int end)
+
+Wraps a character sequence into a buffer. 
+
+The content of the new, read-only buffer will be the content of the given character sequence. The buffer's capacity will be csq.length(), its position will be start, its limit 
+will be end, and its mark will be undefined. 
+
+
+    csq - The character sequence from which the new character buffer is to be created 
+    start - The index of the first character to be used; must be non-negative and no larger than csq.length(). The new buffer's position will be set to this value. 
+    end - The index of the character following the last character to be used; must be no smaller than start and no larger than csq.length(). The new buffer's limit will be set to this 
+       value. 
+
+    Returns: The new character buffer 
+
+

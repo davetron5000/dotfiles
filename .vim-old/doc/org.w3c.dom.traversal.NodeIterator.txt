@@ -1,0 +1,110 @@
+*org.w3c.dom.traversal.NodeIterator* *NodeIterator* NodeIterators are used to st
+
+public interface interface NodeIterator
+
+
+|org.w3c.dom.traversal.NodeIterator_Description|
+|org.w3c.dom.traversal.NodeIterator_Fields|
+|org.w3c.dom.traversal.NodeIterator_Constructors|
+|org.w3c.dom.traversal.NodeIterator_Methods|
+
+================================================================================
+
+*org.w3c.dom.traversal.NodeIterator_Methods*
+|org.w3c.dom.traversal.NodeIterator.detach()|Detaches the NodeIterator from the
+|org.w3c.dom.traversal.NodeIterator.getExpandEntityReferences()|The value of th
+|org.w3c.dom.traversal.NodeIterator.getFilter()|The NodeFilter used to screen n
+|org.w3c.dom.traversal.NodeIterator.getRoot()|The root node of the NodeIterator
+|org.w3c.dom.traversal.NodeIterator.getWhatToShow()|This attribute determines w
+|org.w3c.dom.traversal.NodeIterator.nextNode()|Returns the next node in the set
+|org.w3c.dom.traversal.NodeIterator.previousNode()|Returns the previous node in
+
+*org.w3c.dom.traversal.NodeIterator_Description*
+
+NodeIterators are used to step through a set of nodes, e.g. the set of nodes in 
+a NodeList, the document subtree governed by a particular Node, the results of 
+a query, or any other set of nodes. The set of nodes to be iterated is 
+determined by the implementation of the NodeIterator. DOM Level 2 specifies a 
+single NodeIterator implementation for document-order traversal of a document 
+subtree. Instances of these NodeIterators are created by calling 
+DocumentTraversal.createNodeIterator(). See also the Document Object Model 
+(DOM) Level 2 Traversal and Range Specification. 
+
+
+*org.w3c.dom.traversal.NodeIterator.detach()*
+
+public void detach()
+
+Detaches the NodeIterator from the set which it iterated over, releasing any 
+computational resources and placing the NodeIterator in the INVALID state. 
+After detach has been invoked, calls to nextNode or previousNode will raise the 
+exception INVALID_STATE_ERR. 
+
+
+*org.w3c.dom.traversal.NodeIterator.getExpandEntityReferences()*
+
+public boolean getExpandEntityReferences()
+
+The value of this flag determines whether the children of entity reference 
+nodes are visible to the NodeIterator. If false, these children and their 
+descendants will be rejected. Note that this rejection takes precedence over 
+whatToShow and the filter. Also note that this is currently the only situation 
+where NodeIterators may reject a complete subtree rather than skipping 
+individual nodes. 
+
+To produce a view of the document that has entity references expanded and does 
+not expose the entity reference node itself, use the whatToShow flags to hide 
+the entity reference node and set expandEntityReferences to true when creating 
+the NodeIterator. To produce a view of the document that has entity reference 
+nodes but no entity expansion, use the whatToShow flags to show the entity 
+reference node and set expandEntityReferences to false. 
+
+
+*org.w3c.dom.traversal.NodeIterator.getFilter()*
+
+public |org.w3c.dom.traversal.NodeFilter| getFilter()
+
+The NodeFilter used to screen nodes. 
+
+
+*org.w3c.dom.traversal.NodeIterator.getRoot()*
+
+public |org.w3c.dom.Node| getRoot()
+
+The root node of the NodeIterator, as specified when it was created. 
+
+
+*org.w3c.dom.traversal.NodeIterator.getWhatToShow()*
+
+public int getWhatToShow()
+
+This attribute determines which node types are presented via the NodeIterator. 
+The available set of constants is defined in the NodeFilter interface. Nodes 
+not accepted by whatToShow will be skipped, but their children may still be 
+considered. Note that this skip takes precedence over the filter, if any. 
+
+
+*org.w3c.dom.traversal.NodeIterator.nextNode()*
+
+public |org.w3c.dom.Node| nextNode()
+  throws |org.w3c.dom.DOMException|
+         
+Returns the next node in the set and advances the position of the NodeIterator 
+in the set. After a NodeIterator is created, the first call to nextNode() 
+returns the first node in the set. 
+
+
+    Returns: The next Node in the set being iterated over, or null if there are no more 
+             members in that set. 
+*org.w3c.dom.traversal.NodeIterator.previousNode()*
+
+public |org.w3c.dom.Node| previousNode()
+  throws |org.w3c.dom.DOMException|
+         
+Returns the previous node in the set and moves the position of the NodeIterator 
+backwards in the set. 
+
+
+    Returns: The previous Node in the set being iterated over, or null if there are no more 
+             members in that set. 
+

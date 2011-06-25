@@ -1,0 +1,613 @@
+*org.omg.CORBA.Any* *Any* Serves as a container for any data that can be
+ descri
+
+public abstract class Any
+  extends    |java.lang.Object|
+  implements |org.omg.CORBA.portable.IDLEntity|
+
+|org.omg.CORBA.Any_Description|
+|org.omg.CORBA.Any_Fields|
+|org.omg.CORBA.Any_Constructors|
+|org.omg.CORBA.Any_Methods|
+
+================================================================================
+
+*org.omg.CORBA.Any_Constructors*
+|org.omg.CORBA.Any()|
+
+*org.omg.CORBA.Any_Methods*
+|org.omg.CORBA.Any.create_input_stream()|Creates an input stream from which thi
+|org.omg.CORBA.Any.create_output_stream()|Creates an output stream into which t
+|org.omg.CORBA.Any.equal(Any)|Checks for equality between this Any object and t
+|org.omg.CORBA.Any.extract_any()|Extracts the Any object in this  Any object's 
+|org.omg.CORBA.Any.extract_boolean()|Extracts the boolean in this  Any object's
+|org.omg.CORBA.Any.extract_char()|Extracts the char in this  Any object's value
+|org.omg.CORBA.Any.extract_double()|Extracts the double in this  Any object's v
+|org.omg.CORBA.Any.extract_fixed()|Extracts the java.math.BigDecimal object in 
+|org.omg.CORBA.Any.extract_float()|Extracts the float in this  Any object's val
+|org.omg.CORBA.Any.extract_long()|Extracts the int in this  Any object's value 
+|org.omg.CORBA.Any.extract_longlong()|Extracts the long in this  Any object's v
+|org.omg.CORBA.Any.extract_Object()|Extracts the org.omg.CORBA.Object in this  
+|org.omg.CORBA.Any.extract_octet()|Extracts the byte in this  Any object's valu
+|org.omg.CORBA.Any.extract_Principal()|Extracts the Principal object in this  A
+|org.omg.CORBA.Any.extract_short()|Extracts the short in this  Any object's val
+|org.omg.CORBA.Any.extract_Streamable()|Extracts a Streamable from this Any obj
+|org.omg.CORBA.Any.extract_string()|Extracts the String object in this  Any obj
+|org.omg.CORBA.Any.extract_TypeCode()|Extracts the TypeCode object in this  Any
+|org.omg.CORBA.Any.extract_ulong()|Extracts the int in this  Any object's value
+|org.omg.CORBA.Any.extract_ulonglong()|Extracts the long in this  Any object's 
+|org.omg.CORBA.Any.extract_ushort()|Extracts the short in this  Any object's va
+|org.omg.CORBA.Any.extract_Value()|Extracts the java.io.Serializable object in 
+|org.omg.CORBA.Any.extract_wchar()|Extracts the char in this  Any object's valu
+|org.omg.CORBA.Any.extract_wstring()|Extracts the String object in this  Any ob
+|org.omg.CORBA.Any.insert_any(Any)|Inserts the given Any object  into this Any 
+|org.omg.CORBA.Any.insert_boolean(boolean)|Inserts the given boolean   into thi
+|org.omg.CORBA.Any.insert_char(char)|Inserts the given char   into this Any obj
+|org.omg.CORBA.Any.insert_double(double)|Inserts the given double   into this A
+|org.omg.CORBA.Any.insert_fixed(BigDecimal)|Throws an   org.omg.CORBA.NO_IMPLEM
+|org.omg.CORBA.Any.insert_fixed(BigDecimal,TypeCode)|Throws an   org.omg.CORBA.
+|org.omg.CORBA.Any.insert_float(float)|Inserts the given float   into this Any 
+|org.omg.CORBA.Any.insert_long(int)|Inserts the given int   into this Any objec
+|org.omg.CORBA.Any.insert_longlong(long)|Inserts the given long   into this Any
+|org.omg.CORBA.Any.insert_Object(Object)|Inserts the given org.omg.CORBA.Object
+|org.omg.CORBA.Any.insert_Object(Object,TypeCode)|Inserts the given org.omg.COR
+|org.omg.CORBA.Any.insert_octet(byte)|Inserts the given byte   into this Any ob
+|org.omg.CORBA.Any.insert_Principal(Principal)|Inserts the given Principal obje
+|org.omg.CORBA.Any.insert_short(short)|Inserts the given short   into this Any 
+|org.omg.CORBA.Any.insert_Streamable(Streamable)|Inserts the given Streamable o
+|org.omg.CORBA.Any.insert_string(String)|Inserts the given String object  into 
+|org.omg.CORBA.Any.insert_TypeCode(TypeCode)|Inserts the given TypeCode object 
+|org.omg.CORBA.Any.insert_ulong(int)|Inserts the given int   into this Any obje
+|org.omg.CORBA.Any.insert_ulonglong(long)|Inserts the given long   into this An
+|org.omg.CORBA.Any.insert_ushort(short)|Inserts the given short   into this Any
+|org.omg.CORBA.Any.insert_Value(Serializable)|Inserts the given java.io.Seriali
+|org.omg.CORBA.Any.insert_Value(Serializable,TypeCode)|Inserts the given java.i
+|org.omg.CORBA.Any.insert_wchar(char)|Inserts the given char   into this Any ob
+|org.omg.CORBA.Any.insert_wstring(String)|Inserts the given String object  into
+|org.omg.CORBA.Any.read_value(InputStream,TypeCode)|Reads off (unmarshals) the 
+|org.omg.CORBA.Any.type()|Returns type information for the element contained in
+|org.omg.CORBA.Any.type(TypeCode)|Sets this Any object's type field  to the giv
+|org.omg.CORBA.Any.write_value(OutputStream)|Writes out the value of this Any o
+
+*org.omg.CORBA.Any_Description*
+
+Serves as a container for any data that can be described in IDL or for any IDL 
+primitive type. An Any object is used as a component of a NamedValue object, 
+which provides information about arguments or return values in requests, and 
+which is used to define name/value pairs in Context objects. 
+
+An Any object consists of two parts: 
+
+a data value a TypeCode object describing the type of the data value contained 
+in the Any object. For example, a TypeCode object for an array contains a field 
+for the length of the array and a field for the type of elements in the array. 
+(Note that in	this case, the second field of the TypeCode object is itself a 
+TypeCode object.) 
+
+
+
+A large part of the Any class consists of pairs of methods for inserting values 
+into and extracting values from an Any object. 
+
+For a given primitive type X, these methods are: 
+
+void insert_X(X x) This method allows the insertion of an instance x of 
+primitive type X into the value field of the Any object. Note that the method 
+insert_X also resets the Any object's type field if necessary. X extract_X() 
+This method allows the extraction of an instance of type X from the Any object. 
+
+This method throws the exception BAD_OPERATION under two conditions: 
+
+the type of the element contained in the Any object is not X the method 
+extract_X is called before the value field of the Any object has been set 
+
+
+
+There are distinct method pairs for each primitive IDL data type (insert_long 
+and extract_long, insert_string and extract_string, and so on). 
+
+The class Any also has methods for getting and setting the type code, for 
+testing two Any objects for equality, and for reading an Any object from a 
+stream or writing it to a stream. 
+
+
+*org.omg.CORBA.Any()*
+
+public Any()
+
+
+
+
+*org.omg.CORBA.Any.create_input_stream()*
+
+public abstract |org.omg.CORBA.portable.InputStream| create_input_stream()
+
+Creates an input stream from which this Any object's value can be unmarshalled. 
+
+
+    Returns: the newly-created InputStream 
+*org.omg.CORBA.Any.create_output_stream()*
+
+public abstract |org.omg.CORBA.portable.OutputStream| create_output_stream()
+
+Creates an output stream into which this Any object's value can be marshalled. 
+
+
+    Returns: the newly-created OutputStream 
+*org.omg.CORBA.Any.equal(Any)*
+
+public abstract boolean equal(org.omg.CORBA.Any a)
+
+Checks for equality between this Any object and the given Any object. Two Any 
+objects are equal if both their values and type codes are equal. 
+
+    a - the Any object to test for equality 
+
+    Returns: true if the Any objects are equal; false otherwise 
+*org.omg.CORBA.Any.extract_any()*
+
+public abstract |org.omg.CORBA.Any| extract_any()
+  throws |org.omg.CORBA.BAD_OPERATION|
+         
+Extracts the Any object in this Any object's value field. 
+
+
+    Returns: the Any object stored in this Any object 
+*org.omg.CORBA.Any.extract_boolean()*
+
+public abstract boolean extract_boolean()
+  throws |org.omg.CORBA.BAD_OPERATION|
+         
+Extracts the boolean in this Any object's value field. 
+
+
+    Returns: the boolean stored in this Any object 
+*org.omg.CORBA.Any.extract_char()*
+
+public abstract char extract_char()
+  throws |org.omg.CORBA.BAD_OPERATION|
+         
+Extracts the char in this Any object's value field. 
+
+
+    Returns: the char stored in this Any object 
+*org.omg.CORBA.Any.extract_double()*
+
+public abstract double extract_double()
+  throws |org.omg.CORBA.BAD_OPERATION|
+         
+Extracts the double in this Any object's value field. 
+
+
+    Returns: the double stored in this Any object 
+*org.omg.CORBA.Any.extract_fixed()*
+
+public |java.math.BigDecimal| extract_fixed()
+
+Extracts the java.math.BigDecimal object in this Any object's value field. 
+
+
+    Returns: the java.math.BigDecimal object stored in this Any object 
+*org.omg.CORBA.Any.extract_float()*
+
+public abstract float extract_float()
+  throws |org.omg.CORBA.BAD_OPERATION|
+         
+Extracts the float in this Any object's value field. 
+
+
+    Returns: the float stored in this Any object 
+*org.omg.CORBA.Any.extract_long()*
+
+public abstract int extract_long()
+  throws |org.omg.CORBA.BAD_OPERATION|
+         
+Extracts the int in this Any object's value field. 
+
+
+    Returns: the int stored in this Any object 
+*org.omg.CORBA.Any.extract_longlong()*
+
+public abstract long extract_longlong()
+  throws |org.omg.CORBA.BAD_OPERATION|
+         
+Extracts the long in this Any object's value field. 
+
+
+    Returns: the long stored in this Any object 
+*org.omg.CORBA.Any.extract_Object()*
+
+public abstract |org.omg.CORBA.Object| extract_Object()
+  throws |org.omg.CORBA.BAD_OPERATION|
+         
+Extracts the org.omg.CORBA.Object in this Any object's value field. 
+
+
+    Returns: the org.omg.CORBA.Object stored in this Any object 
+*org.omg.CORBA.Any.extract_octet()*
+
+public abstract byte extract_octet()
+  throws |org.omg.CORBA.BAD_OPERATION|
+         
+Extracts the byte in this Any object's value field. 
+
+
+    Returns: the byte stored in this Any object 
+*org.omg.CORBA.Any.extract_Principal()*
+
+public |org.omg.CORBA.Principal| extract_Principal()
+  throws |org.omg.CORBA.BAD_OPERATION|
+         
+Extracts the Principal object in this Any object's value field. Note that the 
+class Principal has been deprecated. 
+
+
+    Returns: the Principal object stored in this Any object 
+*org.omg.CORBA.Any.extract_short()*
+
+public abstract short extract_short()
+  throws |org.omg.CORBA.BAD_OPERATION|
+         
+Extracts the short in this Any object's value field. 
+
+
+    Returns: the short stored in this Any object 
+*org.omg.CORBA.Any.extract_Streamable()*
+
+public |org.omg.CORBA.portable.Streamable| extract_Streamable()
+  throws |org.omg.CORBA.BAD_INV_ORDER|
+         
+Extracts a Streamable from this Any object's value field. This method allows 
+the extraction of non-primitive IDL types. 
+
+
+    Returns: the Streamable stored in the Any object. 
+*org.omg.CORBA.Any.extract_string()*
+
+public abstract |java.lang.String| extract_string()
+  throws |org.omg.CORBA.BAD_OPERATION|
+         
+Extracts the String object in this Any object's value field. 
+
+
+    Returns: the String object stored in this Any object 
+*org.omg.CORBA.Any.extract_TypeCode()*
+
+public abstract |org.omg.CORBA.TypeCode| extract_TypeCode()
+  throws |org.omg.CORBA.BAD_OPERATION|
+         
+Extracts the TypeCode object in this Any object's value field. 
+
+
+    Returns: the TypeCode object stored in this Any object 
+*org.omg.CORBA.Any.extract_ulong()*
+
+public abstract int extract_ulong()
+  throws |org.omg.CORBA.BAD_OPERATION|
+         
+Extracts the int in this Any object's value field. 
+
+
+    Returns: the int stored in this Any object 
+*org.omg.CORBA.Any.extract_ulonglong()*
+
+public abstract long extract_ulonglong()
+  throws |org.omg.CORBA.BAD_OPERATION|
+         
+Extracts the long in this Any object's value field. 
+
+
+    Returns: the long stored in this Any object 
+*org.omg.CORBA.Any.extract_ushort()*
+
+public abstract short extract_ushort()
+  throws |org.omg.CORBA.BAD_OPERATION|
+         
+Extracts the short in this Any object's value field. 
+
+
+    Returns: the short stored in this Any object 
+*org.omg.CORBA.Any.extract_Value()*
+
+public abstract |java.io.Serializable| extract_Value()
+  throws |org.omg.CORBA.BAD_OPERATION|
+         
+Extracts the java.io.Serializable object in this Any object's value field. 
+
+
+    Returns: the java.io.Serializable object stored in this Any object 
+*org.omg.CORBA.Any.extract_wchar()*
+
+public abstract char extract_wchar()
+  throws |org.omg.CORBA.BAD_OPERATION|
+         
+Extracts the char in this Any object's value field. 
+
+
+    Returns: the char stored in this Any object 
+*org.omg.CORBA.Any.extract_wstring()*
+
+public abstract |java.lang.String| extract_wstring()
+  throws |org.omg.CORBA.BAD_OPERATION|
+         
+Extracts the String object in this Any object's value field. 
+
+
+    Returns: the String object stored in this Any object 
+*org.omg.CORBA.Any.insert_any(Any)*
+
+public abstract void insert_any(org.omg.CORBA.Any a)
+
+Inserts the given Any object into this Any object's value field. 
+
+    a - the Any object to insert into this Any object 
+
+*org.omg.CORBA.Any.insert_boolean(boolean)*
+
+public abstract void insert_boolean(boolean b)
+
+Inserts the given boolean into this Any object's value field. 
+
+    b - the boolean to insert into this Any object 
+
+*org.omg.CORBA.Any.insert_char(char)*
+
+public abstract void insert_char(char c)
+  throws |org.omg.CORBA.DATA_CONVERSION|
+         
+Inserts the given char into this Any object's value field. 
+
+    c - the char to insert into this Any object 
+
+*org.omg.CORBA.Any.insert_double(double)*
+
+public abstract void insert_double(double d)
+
+Inserts the given double into this Any object's value field. 
+
+    d - the double to insert into this Any object 
+
+*org.omg.CORBA.Any.insert_fixed(BigDecimal)*
+
+public void insert_fixed(java.math.BigDecimal value)
+
+Throws an org.omg.CORBA.NO_IMPLEMENT exception. 
+
+Inserts the given java.math.BigDecimal object into this Any object's value 
+field. 
+
+    value - the java.math.BigDecimal object to insert into this Any object 
+
+*org.omg.CORBA.Any.insert_fixed(BigDecimal,TypeCode)*
+
+public void insert_fixed(
+  java.math.BigDecimal value,
+  org.omg.CORBA.TypeCode type)
+  throws |org.omg.CORBA.BAD_INV_ORDER|
+         
+Throws an org.omg.CORBA.NO_IMPLEMENT exception. 
+
+Inserts the given java.math.BigDecimal object into this Any object's value 
+field. 
+
+    value - the java.math.BigDecimal object to insert into this Any object 
+    type - the TypeCode object that is to be inserted into this Any object's type field 
+       and that describes the java.math.BigDecimal object being inserted 
+
+*org.omg.CORBA.Any.insert_float(float)*
+
+public abstract void insert_float(float f)
+
+Inserts the given float into this Any object's value field. 
+
+    f - the float to insert into this Any object 
+
+*org.omg.CORBA.Any.insert_long(int)*
+
+public abstract void insert_long(int l)
+
+Inserts the given int into this Any object's value field. 
+
+    l - the int to insert into this Any object 
+
+*org.omg.CORBA.Any.insert_longlong(long)*
+
+public abstract void insert_longlong(long l)
+
+Inserts the given long into this Any object's value field. 
+
+    l - the long to insert into this Any object 
+
+*org.omg.CORBA.Any.insert_Object(Object)*
+
+public abstract void insert_Object(org.omg.CORBA.Object o)
+
+Inserts the given org.omg.CORBA.Object object into this Any object's value 
+field. 
+
+    o - the org.omg.CORBA.Object object to insert into this Any object 
+
+*org.omg.CORBA.Any.insert_Object(Object,TypeCode)*
+
+public abstract void insert_Object(
+  org.omg.CORBA.Object o,
+  org.omg.CORBA.TypeCode t)
+  throws |org.omg.CORBA.BAD_PARAM|
+         
+Inserts the given org.omg.CORBA.Object object into this Any object's value 
+field. 
+
+    o - the org.omg.CORBA.Object instance to insert into this Any object 
+    t - the TypeCode object that is to be inserted into this Any object and that 
+       describes the Object being inserted 
+
+*org.omg.CORBA.Any.insert_octet(byte)*
+
+public abstract void insert_octet(byte b)
+
+Inserts the given byte into this Any object's value field. 
+
+    b - the byte to insert into this Any object 
+
+*org.omg.CORBA.Any.insert_Principal(Principal)*
+
+public void insert_Principal(org.omg.CORBA.Principal p)
+
+Inserts the given Principal object into this Any object's value field. Note 
+that the class Principal has been deprecated. 
+
+    p - the Principal object to insert into this Any object 
+
+*org.omg.CORBA.Any.insert_short(short)*
+
+public abstract void insert_short(short s)
+
+Inserts the given short into this Any object's value field. 
+
+    s - the short to insert into this Any object 
+
+*org.omg.CORBA.Any.insert_Streamable(Streamable)*
+
+public void insert_Streamable(org.omg.CORBA.portable.Streamable s)
+
+Inserts the given Streamable object into this Any object's value field. This 
+method allows the insertion of non-primitive IDL types. 
+
+    s - the Streamable object to insert into this Any object; may be a non-primitive 
+       IDL type 
+
+*org.omg.CORBA.Any.insert_string(String)*
+
+public abstract void insert_string(java.lang.String s)
+  throws |org.omg.CORBA.DATA_CONVERSION|
+         |org.omg.CORBA.MARSHAL|
+         
+Inserts the given String object into this Any object's value field. 
+
+    s - the String object to insert into this Any object 
+
+*org.omg.CORBA.Any.insert_TypeCode(TypeCode)*
+
+public abstract void insert_TypeCode(org.omg.CORBA.TypeCode t)
+
+Inserts the given TypeCode object into this Any object's value field. 
+
+    t - the TypeCode object to insert into this Any object 
+
+*org.omg.CORBA.Any.insert_ulong(int)*
+
+public abstract void insert_ulong(int l)
+
+Inserts the given int into this Any object's value field. 
+
+    l - the int to insert into this Any object 
+
+*org.omg.CORBA.Any.insert_ulonglong(long)*
+
+public abstract void insert_ulonglong(long l)
+
+Inserts the given long into this Any object's value field. 
+
+    l - the long to insert into this Any object 
+
+*org.omg.CORBA.Any.insert_ushort(short)*
+
+public abstract void insert_ushort(short s)
+
+Inserts the given short into this Any object's value field. 
+
+    s - the short to insert into this Any object 
+
+*org.omg.CORBA.Any.insert_Value(Serializable)*
+
+public abstract void insert_Value(java.io.Serializable v)
+
+Inserts the given java.io.Serializable object into this Any object's value 
+field. 
+
+    v - the java.io.Serializable object to insert into this Any object 
+
+*org.omg.CORBA.Any.insert_Value(Serializable,TypeCode)*
+
+public abstract void insert_Value(
+  java.io.Serializable v,
+  org.omg.CORBA.TypeCode t)
+  throws |org.omg.CORBA.MARSHAL|
+         
+Inserts the given java.io.Serializable object into this Any object's value 
+field. 
+
+    v - the java.io.Serializable object to insert into this Any object 
+    t - the TypeCode object that is to be inserted into this Any object's type field 
+       and that describes the java.io.Serializable object being inserted 
+
+*org.omg.CORBA.Any.insert_wchar(char)*
+
+public abstract void insert_wchar(char c)
+
+Inserts the given char into this Any object's value field. 
+
+    c - the char to insert into this Any object 
+
+*org.omg.CORBA.Any.insert_wstring(String)*
+
+public abstract void insert_wstring(java.lang.String s)
+  throws |org.omg.CORBA.MARSHAL|
+         
+Inserts the given String object into this Any object's value field. 
+
+    s - the String object to insert into this Any object 
+
+*org.omg.CORBA.Any.read_value(InputStream,TypeCode)*
+
+public abstract void read_value(
+  org.omg.CORBA.portable.InputStream is,
+  org.omg.CORBA.TypeCode t)
+  throws |org.omg.CORBA.MARSHAL|
+         
+Reads off (unmarshals) the value of an Any object from the given input stream 
+using the given typecode. 
+
+    is - the org.omg.CORBA.portable.InputStream object from which to read the value 
+       contained in this Any object 
+    t - a TypeCode object containing type information about the value to be read 
+
+*org.omg.CORBA.Any.type()*
+
+public abstract |org.omg.CORBA.TypeCode| type()
+
+Returns type information for the element contained in this Any object. 
+
+
+    Returns: the TypeCode object containing type information about the value contained in 
+             this Any object 
+*org.omg.CORBA.Any.type(TypeCode)*
+
+public abstract void type(org.omg.CORBA.TypeCode t)
+
+Sets this Any object's type field to the given TypeCode object and clears its 
+value. 
+
+Note that using this method to set the type code wipes out the value if there 
+is one. The method is provided primarily so that the type may be set properly 
+for IDL out parameters. Generally, setting the type is done by the insert_X 
+methods, which will set the type to X if it is not already set to X. 
+
+    t - the TypeCode object giving information for the value in this Any object 
+
+*org.omg.CORBA.Any.write_value(OutputStream)*
+
+public abstract void write_value(org.omg.CORBA.portable.OutputStream os)
+
+Writes out the value of this Any object to the given output stream. If both 
+typecode and value need to be written, use create_output_stream() to create an 
+OutputStream, then use write_any on the OutputStream. 
+
+If this method is called on an Any object that has not had a value inserted 
+into its value field, it will throw the exception 
+java.lang.NullPointerException. 
+
+    os - the org.omg.CORBA.portable.OutputStream object into which to marshal the value 
+       of this Any object 
+
+

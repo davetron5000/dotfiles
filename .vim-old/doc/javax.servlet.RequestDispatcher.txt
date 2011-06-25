@@ -1,0 +1,87 @@
+*javax.servlet.RequestDispatcher* *RequestDispatcher* Defines an object that rec
+
+public interface interface RequestDispatcher
+
+
+|javax.servlet.RequestDispatcher_Description|
+|javax.servlet.RequestDispatcher_Fields|
+|javax.servlet.RequestDispatcher_Constructors|
+|javax.servlet.RequestDispatcher_Methods|
+
+================================================================================
+
+*javax.servlet.RequestDispatcher_Methods*
+|javax.servlet.RequestDispatcher.forward(ServletRequest,ServletResponse)|Forwar
+|javax.servlet.RequestDispatcher.include(ServletRequest,ServletResponse)|Includ
+
+*javax.servlet.RequestDispatcher_Description*
+
+Defines an object that receives requests from the client and sends them to any 
+resource (such as a servlet, HTML file, or JSP file) on the server. The servlet 
+container creates the RequestDispatcher object, which is used as a wrapper 
+around a server resource located at a particular path or given by a particular 
+name. 
+
+This interface is intended to wrap servlets, but a servlet container can create 
+RequestDispatcher objects to wrap any type of resource. 
+
+
+
+*javax.servlet.RequestDispatcher.forward(ServletRequest,ServletResponse)*
+
+public void forward(
+  javax.servlet.ServletRequest request,
+  javax.servlet.ServletResponse response)
+  throws |java.io.IOException|
+         |javax.servlet.ServletException|
+         
+Forwards a request from a servlet to another resource (servlet, JSP file, or 
+HTML file) on the server. This method allows one servlet to do preliminary 
+processing of a request and another resource to generate the response. 
+
+For a RequestDispatcher obtained via getRequestDispatcher(), the ServletRequest 
+object has its path elements and parameters adjusted to match the path of the 
+target resource. 
+
+forward should be called before the response has been committed to the client 
+(before response body output has been flushed). If the response already has 
+been committed, this method throws an IllegalStateException. Uncommitted output 
+in the response buffer is automatically cleared before the forward. 
+
+The request and response parameters must be either the same objects as were 
+passed to the calling servlet's service method or be subclasses of the 
+(|javax.servlet.ServletRequestWrapper|) or 
+(|javax.servlet.ServletResponseWrapper|) classes that wrap them. 
+
+
+    request - a {@link ServletRequest} object that represents the request the client makes of 
+       the servlet 
+    response - a {@link ServletResponse} object that represents the response the servlet 
+       returns to the client 
+
+*javax.servlet.RequestDispatcher.include(ServletRequest,ServletResponse)*
+
+public void include(
+  javax.servlet.ServletRequest request,
+  javax.servlet.ServletResponse response)
+  throws |java.io.IOException|
+         |javax.servlet.ServletException|
+         
+Includes the content of a resource (servlet, JSP page, HTML file) in the 
+response. In essence, this method enables programmatic server-side includes. 
+
+The (|javax.servlet.ServletResponse|) object has its path elements and 
+parameters remain unchanged from the caller's. The included servlet cannot 
+change the response status code or set headers; any attempt to make a change is 
+ignored. 
+
+The request and response parameters must be either the same objects as were 
+passed to the calling servlet's service method or be subclasses of the 
+(|javax.servlet.ServletRequestWrapper|) or 
+(|javax.servlet.ServletResponseWrapper|) classes that wrap them. 
+
+
+    request - a {@link ServletRequest} object that contains the client's request 
+    response - a {@link ServletResponse} object that contains the servlet's response 
+
+

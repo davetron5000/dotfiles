@@ -1,0 +1,174 @@
+*javax.swing.JFormattedTextField.AbstractFormatter* *JFormattedTextField.AbstractFormatter* Instances of AbstractFormatter are used by
+ JFormattedTextField to handle the conversion
+
+public abstract static class JFormattedTextField.AbstractFormatter
+  extends    |java.lang.Object|
+  implements |java.io.Serializable|
+
+|javax.swing.JFormattedTextField.AbstractFormatter_Description|
+|javax.swing.JFormattedTextField.AbstractFormatter_Fields|
+|javax.swing.JFormattedTextField.AbstractFormatter_Constructors|
+|javax.swing.JFormattedTextField.AbstractFormatter_Methods|
+
+====================================================================================================================================================================================
+
+*javax.swing.JFormattedTextField.AbstractFormatter_Constructors*
+|javax.swing.JFormattedTextField.AbstractFormatter()|
+
+*javax.swing.JFormattedTextField.AbstractFormatter_Methods*
+|javax.swing.JFormattedTextField.AbstractFormatter.clone()|Clones the AbstractFormatter.
+|javax.swing.JFormattedTextField.AbstractFormatter.getActions()|Subclass and override if you wish to provide a custom set of  Actions.
+|javax.swing.JFormattedTextField.AbstractFormatter.getDocumentFilter()|Subclass and override if you wish to provide a   DocumentFilter to restrict what can be input.
+|javax.swing.JFormattedTextField.AbstractFormatter.getFormattedTextField()|Returns the current JFormattedTextField the  AbstractFormatter is installed on.
+|javax.swing.JFormattedTextField.AbstractFormatter.getNavigationFilter()|Subclass and override if you wish to provide a filter to restrict  where the user can navigate to.
+|javax.swing.JFormattedTextField.AbstractFormatter.install(JFormattedTextField)|Installs the AbstractFormatter onto a particular  JFormattedTextField.
+|javax.swing.JFormattedTextField.AbstractFormatter.invalidEdit()|This should be invoked when the user types an invalid character.
+|javax.swing.JFormattedTextField.AbstractFormatter.setEditValid(boolean)|Invoke this to update the editValid property of the  JFormattedTextField.
+|javax.swing.JFormattedTextField.AbstractFormatter.stringToValue(String)|Parses text returning an arbitrary Object.
+|javax.swing.JFormattedTextField.AbstractFormatter.uninstall()|Uninstalls any state the AbstractFormatter may have  installed on the JFormattedTextField.
+|javax.swing.JFormattedTextField.AbstractFormatter.valueToString(Object)|Returns the string value to display for value.
+
+*javax.swing.JFormattedTextField.AbstractFormatter_Description*
+
+Instances of AbstractFormatter are used by JFormattedTextField to handle the conversion both from an Object to a String, and back from a String to an Object. AbstractFormatters 
+can also enfore editing policies, or navigation policies, or manipulate the JFormattedTextField in any way it sees fit to enforce the desired policy. 
+
+An AbstractFormatter can only be active in one JFormattedTextField at a time. JFormattedTextField invokes install when it is ready to use it followed by uninstall when done. 
+Subclasses that wish to install additional state should override install and message super appropriately. 
+
+Subclasses must override the conversion methods stringToValue and valueToString. Optionally they can override getActions, getNavigationFilter and getDocumentFilter to restrict the 
+JFormattedTextField in a particular way. 
+
+Subclasses that allow the JFormattedTextField to be in a temporarily invalid state should invoke setEditValid at the appropriate times. 
+
+
+
+*javax.swing.JFormattedTextField.AbstractFormatter()*
+
+public JFormattedTextField.AbstractFormatter()
+
+
+
+
+*javax.swing.JFormattedTextField.AbstractFormatter.clone()*
+
+protected |java.lang.Object| clone()
+  throws |java.lang.CloneNotSupportedException|
+         
+Clones the AbstractFormatter. The returned instance is not associated with a JFormattedTextField. 
+
+
+
+    Returns: Copy of the AbstractFormatter 
+
+*javax.swing.JFormattedTextField.AbstractFormatter.getActions()*
+
+protected |javax.swing.Action|[] getActions()
+
+Subclass and override if you wish to provide a custom set of Actions. install will install these on the JFormattedTextField's ActionMap. 
+
+
+
+    Returns: Array of Actions to install on JFormattedTextField 
+
+*javax.swing.JFormattedTextField.AbstractFormatter.getDocumentFilter()*
+
+protected |javax.swing.text.DocumentFilter| getDocumentFilter()
+
+Subclass and override if you wish to provide a DocumentFilter to restrict what can be input. install will install the returned value onto the JFormattedTextField. 
+
+
+
+    Returns: DocumentFilter to restrict edits 
+
+*javax.swing.JFormattedTextField.AbstractFormatter.getFormattedTextField()*
+
+protected |javax.swing.JFormattedTextField| getFormattedTextField()
+
+Returns the current JFormattedTextField the AbstractFormatter is installed on. 
+
+
+
+    Returns: JFormattedTextField formatting for. 
+
+*javax.swing.JFormattedTextField.AbstractFormatter.getNavigationFilter()*
+
+protected |javax.swing.text.NavigationFilter| getNavigationFilter()
+
+Subclass and override if you wish to provide a filter to restrict where the user can navigate to. install will install the returned value onto the JFormattedTextField. 
+
+
+
+    Returns: NavigationFilter to restrict navigation 
+
+*javax.swing.JFormattedTextField.AbstractFormatter.install(JFormattedTextField)*
+
+public void install(javax.swing.JFormattedTextField ftf)
+
+Installs the AbstractFormatter onto a particular JFormattedTextField. This will invoke valueToString to convert the current value from the JFormattedTextField to a String. This 
+will then install the Actions from getActions, the DocumentFilter returned from getDocumentFilter and the NavigationFilter returned from getNavigationFilter onto the 
+JFormattedTextField. 
+
+Subclasses will typically only need to override this if they wish to install additional listeners on the JFormattedTextField. 
+
+If there is a ParseException in converting the current value to a String, this will set the text to an empty String, and mark the JFormattedTextField as being in an invalid state. 
+
+While this is a public method, this is typically only useful for subclassers of JFormattedTextField. JFormattedTextField will invoke this method at the appropriate times when the 
+value changes, or its internal state changes. You will only need to invoke this yourself if you are subclassing JFormattedTextField and installing/uninstalling AbstractFormatter 
+at a different time than JFormattedTextField does. 
+
+
+    ftf - JFormattedTextField to format for, may be null indicating uninstall from current JFormattedTextField. 
+
+*javax.swing.JFormattedTextField.AbstractFormatter.invalidEdit()*
+
+protected void invalidEdit()
+
+This should be invoked when the user types an invalid character. This forwards the call to the current JFormattedTextField. 
+
+
+
+*javax.swing.JFormattedTextField.AbstractFormatter.setEditValid(boolean)*
+
+protected void setEditValid(boolean valid)
+
+Invoke this to update the editValid property of the JFormattedTextField. If you an enforce a policy such that the JFormattedTextField is always in a valid state, you will never 
+need to invoke this. 
+
+
+    valid - Valid state of the JFormattedTextField 
+
+*javax.swing.JFormattedTextField.AbstractFormatter.stringToValue(String)*
+
+public abstract |java.lang.Object| stringToValue(java.lang.String text)
+  throws |java.text.ParseException|
+         
+Parses text returning an arbitrary Object. Some formatters may return null. 
+
+
+    text - String to convert 
+
+    Returns: Object representation of text 
+
+*javax.swing.JFormattedTextField.AbstractFormatter.uninstall()*
+
+public void uninstall()
+
+Uninstalls any state the AbstractFormatter may have installed on the JFormattedTextField. This resets the DocumentFilter, NavigationFilter and additional Actions installed on the 
+JFormattedTextField. 
+
+
+
+*javax.swing.JFormattedTextField.AbstractFormatter.valueToString(Object)*
+
+public abstract |java.lang.String| valueToString(java.lang.Object value)
+  throws |java.text.ParseException|
+         
+Returns the string value to display for value. 
+
+
+    value - Value to convert 
+
+    Returns: String representation of value 
+
+

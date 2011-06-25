@@ -1,0 +1,129 @@
+*org.w3c.dom.ls.DOMImplementationLS* *DOMImplementationLS* DOMImplementationLS c
+
+public interface interface DOMImplementationLS
+
+
+|org.w3c.dom.ls.DOMImplementationLS_Description|
+|org.w3c.dom.ls.DOMImplementationLS_Fields|
+|org.w3c.dom.ls.DOMImplementationLS_Constructors|
+|org.w3c.dom.ls.DOMImplementationLS_Methods|
+
+================================================================================
+
+*org.w3c.dom.ls.DOMImplementationLS_Fields*
+|short_org.w3c.dom.ls.DOMImplementationLS.MODE_ASYNCHRONOUS|
+|short_org.w3c.dom.ls.DOMImplementationLS.MODE_SYNCHRONOUS|
+
+*org.w3c.dom.ls.DOMImplementationLS_Methods*
+|org.w3c.dom.ls.DOMImplementationLS.createLSInput()|Create a new empty input so
+|org.w3c.dom.ls.DOMImplementationLS.createLSOutput()|Create a new empty output 
+|org.w3c.dom.ls.DOMImplementationLS.createLSParser(short,String)|Create a new L
+|org.w3c.dom.ls.DOMImplementationLS.createLSSerializer()|Create a new LSSeriali
+
+*org.w3c.dom.ls.DOMImplementationLS_Description*
+
+DOMImplementationLS contains the factory methods for creating Load and Save 
+objects. The expectation is that an instance of the DOMImplementationLS 
+interface can be obtained by using binding-specific casting methods on an 
+instance of the DOMImplementation interface or, if the Document supports the 
+feature "Core" version "3.0" defined in [DOM Level 3 Core] , by using the 
+method DOMImplementation.getFeature with parameter values "LS" (or "LS-Async") 
+and "3.0" (respectively). See also the Document Object Model (DOM) Level 3 Load 
+and Save Specification. 
+
+
+*short_org.w3c.dom.ls.DOMImplementationLS.MODE_ASYNCHRONOUS*
+
+DOMImplementationLS contains the factory methods for creating Load and Save 
+objects. The expectation is that an instance of the DOMImplementationLS 
+interface can be obtained by using binding-specific casting methods on an 
+instance of the DOMImplementation interface or, if the Document supports the 
+feature "Core" version "3.0" defined in [DOM Level 3 Core] , by using the 
+method DOMImplementation.getFeature with parameter values "LS" (or "LS-Async") 
+and "3.0" (respectively). See also the Document Object Model (DOM) Level 3 Load 
+and Save Specification. 
+
+
+*short_org.w3c.dom.ls.DOMImplementationLS.MODE_SYNCHRONOUS*
+
+DOMImplementationLS contains the factory methods for creating Load and Save 
+objects. The expectation is that an instance of the DOMImplementationLS 
+interface can be obtained by using binding-specific casting methods on an 
+instance of the DOMImplementation interface or, if the Document supports the 
+feature "Core" version "3.0" defined in [DOM Level 3 Core] , by using the 
+method DOMImplementation.getFeature with parameter values "LS" (or "LS-Async") 
+and "3.0" (respectively). See also the Document Object Model (DOM) Level 3 Load 
+and Save Specification. 
+
+
+
+*org.w3c.dom.ls.DOMImplementationLS.createLSInput()*
+
+public |org.w3c.dom.ls.LSInput| createLSInput()
+
+Create a new empty input source object where LSInput.characterStream, 
+LSInput.byteStream , LSInput.stringData LSInput.systemId, LSInput.publicId, 
+LSInput.baseURI, and LSInput.encoding are null, and LSInput.certifiedText is 
+false. 
+
+
+    Returns: The newly created input object. 
+*org.w3c.dom.ls.DOMImplementationLS.createLSOutput()*
+
+public |org.w3c.dom.ls.LSOutput| createLSOutput()
+
+Create a new empty output destination object where LSOutput.characterStream, 
+LSOutput.byteStream, LSOutput.systemId, LSOutput.encoding are null. 
+
+
+    Returns: The newly created output object. 
+*org.w3c.dom.ls.DOMImplementationLS.createLSParser(short,String)*
+
+public |org.w3c.dom.ls.LSParser| createLSParser(
+  short mode,
+  java.lang.String schemaType)
+  throws |org.w3c.dom.DOMException|
+         
+Create a new LSParser. The newly constructed parser may then be configured by 
+means of its DOMConfiguration object, and used to parse documents by means of 
+its parse method. 
+
+    mode - The mode argument is either MODE_SYNCHRONOUS or MODE_ASYNCHRONOUS, if mode is 
+       MODE_SYNCHRONOUS then the LSParser that is created will operate in 
+       synchronous mode, if it's MODE_ASYNCHRONOUS then the LSParser that is 
+       created will operate in asynchronous mode. 
+    schemaType - An absolute URI representing the type of the schema language used during the 
+       load of a Document using the newly created LSParser. Note that no 
+       lexical checking is done on the absolute URI. In order to create a 
+       LSParser for any kind of schema types (i.e. the LSParser will be free to 
+       use any schema found), use the value null. Note: For W3C XML Schema [XML 
+       Schema Part 1] , applications must use the value 
+       "http://www.w3.org/2001/XMLSchema". For XML DTD [XML 1.0], applications 
+       must use the value "http://www.w3.org/TR/REC-xml". Other Schema 
+       languages are outside the scope of the W3C and therefore should 
+       recommend an absolute URI in order to use this method. 
+
+    Returns: The newly created LSParser object. This LSParser is either synchronous or 
+             asynchronous depending on the value of the mode argument. Note: By 
+             default, the newly created LSParser does not contain a 
+             DOMErrorHandler, i.e. the value of the " error-handler" 
+             configuration parameter is null. However, implementations may 
+             provide a default error handler at creation time. In that case, 
+             the initial value of the "error-handler" configuration parameter 
+             on the new LSParser object contains a reference to the default 
+             error handler. 
+*org.w3c.dom.ls.DOMImplementationLS.createLSSerializer()*
+
+public |org.w3c.dom.ls.LSSerializer| createLSSerializer()
+
+Create a new LSSerializer object. 
+
+
+    Returns: The newly created LSSerializer object. Note: By default, the newly created 
+             LSSerializer has no DOMErrorHandler, i.e. the value of the 
+             "error-handler" configuration parameter is null. However, 
+             implementations may provide a default error handler at creation 
+             time. In that case, the initial value of the "error-handler" 
+             configuration parameter on the new LSSerializer object contains a 
+             reference to the default error handler. 
+

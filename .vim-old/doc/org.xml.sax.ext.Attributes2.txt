@@ -1,0 +1,122 @@
+*org.xml.sax.ext.Attributes2* *Attributes2* SAX2 extension to augment the per-at
+
+public interface interface Attributes2
+
+  implements |org.xml.sax.Attributes|
+
+|org.xml.sax.ext.Attributes2_Description|
+|org.xml.sax.ext.Attributes2_Fields|
+|org.xml.sax.ext.Attributes2_Constructors|
+|org.xml.sax.ext.Attributes2_Methods|
+
+================================================================================
+
+*org.xml.sax.ext.Attributes2_Methods*
+|org.xml.sax.ext.Attributes2.isDeclared(int)|Returns false unless the attribute
+|org.xml.sax.ext.Attributes2.isDeclared(String)|Returns false unless the attrib
+|org.xml.sax.ext.Attributes2.isDeclared(String,String)|Returns false unless the
+|org.xml.sax.ext.Attributes2.isSpecified(int)|Returns true unless the attribute
+|org.xml.sax.ext.Attributes2.isSpecified(String)|Returns true unless the attrib
+|org.xml.sax.ext.Attributes2.isSpecified(String,String)|Returns true unless the
+
+*org.xml.sax.ext.Attributes2_Description*
+
+SAX2 extension to augment the per-attribute information provided though 
+(|org.xml.sax.Attributes|) . If an implementation supports this extension, the 
+attributes provided in ContentHandler.startElement() 
+(|org.xml.sax.ContentHandler|) will implement this interface, and the 
+http://xml.org/sax/features/use-attributes2 feature flag will have the value 
+true. 
+
+This module, both source code and documentation, is in the Public Domain, and 
+comes with NO WARRANTY. 
+
+XMLReader implementations are not required to support this information, and it 
+is not part of core-only SAX2 distributions. 
+
+Note that if an attribute was defaulted (!isSpecified()) it will of necessity 
+also have been declared (isDeclared()) in the DTD. Similarly if an attribute's 
+type is anything except CDATA, then it must have been declared. 
+
+
+*org.xml.sax.ext.Attributes2.isDeclared(int)*
+
+public boolean isDeclared(int index)
+
+Returns false unless the attribute was declared in the DTD. This helps 
+distinguish two kinds of attributes that SAX reports as CDATA: ones that were 
+declared (and hence are usually valid), and those that were not (and which are 
+never valid). 
+
+    index - The attribute index (zero-based). 
+
+    Returns: true if the attribute was declared in the DTD, false otherwise. 
+*org.xml.sax.ext.Attributes2.isDeclared(String)*
+
+public boolean isDeclared(java.lang.String qName)
+
+Returns false unless the attribute was declared in the DTD. This helps 
+distinguish two kinds of attributes that SAX reports as CDATA: ones that were 
+declared (and hence are usually valid), and those that were not (and which are 
+never valid). 
+
+    qName - The XML qualified (prefixed) name. 
+
+    Returns: true if the attribute was declared in the DTD, false otherwise. 
+*org.xml.sax.ext.Attributes2.isDeclared(String,String)*
+
+public boolean isDeclared(
+  java.lang.String uri,
+  java.lang.String localName)
+
+Returns false unless the attribute was declared in the DTD. This helps 
+distinguish two kinds of attributes that SAX reports as CDATA: ones that were 
+declared (and hence are usually valid), and those that were not (and which are 
+never valid). 
+
+Remember that since DTDs do not "understand" namespaces, the namespace URI 
+associated with an attribute may not have come from the DTD. The declaration 
+will have applied to the attribute's qName. 
+
+    uri - The Namespace URI, or the empty string if the name has no Namespace URI. 
+    localName - The attribute's local name. 
+
+    Returns: true if the attribute was declared in the DTD, false otherwise. 
+*org.xml.sax.ext.Attributes2.isSpecified(int)*
+
+public boolean isSpecified(int index)
+
+Returns true unless the attribute value was provided by DTD defaulting. 
+
+    index - The attribute index (zero-based). 
+
+    Returns: true if the value was found in the XML text, false if the value was provided by 
+             DTD defaulting. 
+*org.xml.sax.ext.Attributes2.isSpecified(String)*
+
+public boolean isSpecified(java.lang.String qName)
+
+Returns true unless the attribute value was provided by DTD defaulting. 
+
+    qName - The XML qualified (prefixed) name. 
+
+    Returns: true if the value was found in the XML text, false if the value was provided by 
+             DTD defaulting. 
+*org.xml.sax.ext.Attributes2.isSpecified(String,String)*
+
+public boolean isSpecified(
+  java.lang.String uri,
+  java.lang.String localName)
+
+Returns true unless the attribute value was provided by DTD defaulting. 
+
+Remember that since DTDs do not "understand" namespaces, the namespace URI 
+associated with an attribute may not have come from the DTD. The declaration 
+will have applied to the attribute's qName. 
+
+    uri - The Namespace URI, or the empty string if the name has no Namespace URI. 
+    localName - The attribute's local name. 
+
+    Returns: true if the value was found in the XML text, false if the value was provided by 
+             DTD defaulting. 
+

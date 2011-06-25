@@ -1,0 +1,59 @@
+*org.w3c.dom.DOMImplementationSource* *DOMImplementationSource* This interface p
+
+public interface interface DOMImplementationSource
+
+
+|org.w3c.dom.DOMImplementationSource_Description|
+|org.w3c.dom.DOMImplementationSource_Fields|
+|org.w3c.dom.DOMImplementationSource_Constructors|
+|org.w3c.dom.DOMImplementationSource_Methods|
+
+================================================================================
+
+*org.w3c.dom.DOMImplementationSource_Methods*
+|org.w3c.dom.DOMImplementationSource.getDOMImplementation(String)|A method to r
+|org.w3c.dom.DOMImplementationSource.getDOMImplementationList(String)|A method 
+
+*org.w3c.dom.DOMImplementationSource_Description*
+
+This interface permits a DOM implementer to supply one or more implementations, 
+based upon requested features and versions, as specified in . Each implemented 
+DOMImplementationSource object is listed in the binding-specific list of 
+available sources so that its DOMImplementation objects are made available. See 
+also the Document Object Model (DOM) Level 3 Core Specification. 
+
+
+*org.w3c.dom.DOMImplementationSource.getDOMImplementation(String)*
+
+public |org.w3c.dom.DOMImplementation| getDOMImplementation(java.lang.String features)
+
+A method to request the first DOM implementation that supports the specified 
+features. 
+
+    features - A string that specifies which features and versions are required. This is a 
+       space separated list in which each feature is specified by its name 
+       optionally followed by a space and a version number. This method returns 
+       the first item of the list returned by getDOMImplementationList. As an 
+       example, the string "XML 3.0 Traversal +Events 2.0" will request a DOM 
+       implementation that supports the module "XML" for its 3.0 version, a 
+       module that support of the "Traversal" module for any version, and the 
+       module "Events" for its 2.0 version. The module "Events" must be 
+       accessible using the method Node.getFeature() and 
+       DOMImplementation.getFeature(). 
+
+    Returns: The first DOM implementation that support the desired features, or null if this 
+             source has none. 
+*org.w3c.dom.DOMImplementationSource.getDOMImplementationList(String)*
+
+public |org.w3c.dom.DOMImplementationList| getDOMImplementationList(java.lang.String features)
+
+A method to request a list of DOM implementations that support the specified 
+features and versions, as specified in . 
+
+    features - A string that specifies which features and versions are required. This is a 
+       space separated list in which each feature is specified by its name 
+       optionally followed by a space and a version number. This is something 
+       like: "XML 3.0 Traversal +Events 2.0" 
+
+    Returns: A list of DOM implementations that support the desired features. 
+

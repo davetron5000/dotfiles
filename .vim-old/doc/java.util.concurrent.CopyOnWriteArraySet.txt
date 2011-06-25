@@ -1,0 +1,178 @@
+*java.util.concurrent.CopyOnWriteArraySet* *CopyOnWriteArraySet* Ajava.util.Setthat usesjava.util.concurrent.CopyOnWriteArrayListfor all of its
+ operations.
+
+public class CopyOnWriteArraySet<E>
+  extends    |java.util.AbstractSet|
+  implements |java.io.Serializable|
+
+|java.util.concurrent.CopyOnWriteArraySet_Description|
+|java.util.concurrent.CopyOnWriteArraySet_Fields|
+|java.util.concurrent.CopyOnWriteArraySet_Constructors|
+|java.util.concurrent.CopyOnWriteArraySet_Methods|
+
+====================================================================================================================================================================================
+
+*java.util.concurrent.CopyOnWriteArraySet_Constructors*
+|java.util.concurrent.CopyOnWriteArraySet()|Creates an empty set.
+|java.util.concurrent.CopyOnWriteArraySet(Collection<?extendsE>)|Creates a set containing all of the elements of the specified  Collection.
+
+*java.util.concurrent.CopyOnWriteArraySet_Methods*
+|java.util.concurrent.CopyOnWriteArraySet.add(E)|
+|java.util.concurrent.CopyOnWriteArraySet.addAll(Collection<?extendsE>)|
+|java.util.concurrent.CopyOnWriteArraySet.clear()|
+|java.util.concurrent.CopyOnWriteArraySet.contains(Object)|
+|java.util.concurrent.CopyOnWriteArraySet.containsAll(Collection<?>)|
+|java.util.concurrent.CopyOnWriteArraySet.isEmpty()|
+|java.util.concurrent.CopyOnWriteArraySet.iterator()|
+|java.util.concurrent.CopyOnWriteArraySet.remove(Object)|
+|java.util.concurrent.CopyOnWriteArraySet.removeAll(Collection<?>)|
+|java.util.concurrent.CopyOnWriteArraySet.retainAll(Collection<?>)|
+|java.util.concurrent.CopyOnWriteArraySet.size()|
+|java.util.concurrent.CopyOnWriteArraySet.toArray()|
+|java.util.concurrent.CopyOnWriteArraySet.toArray(T[])|
+
+*java.util.concurrent.CopyOnWriteArraySet_Description*
+
+A (|java.util.Set|) that uses (|java.util.concurrent.CopyOnWriteArrayList|) for all of its operations. Thus, it shares the same basic properties: 
+
+It is best suited for applications in which set sizes generally stay small, read-only operations vastly outnumber mutative operations, and you need to prevent interference among 
+threads during traversal. It is thread-safe. Mutative operations(add, set, remove, etc) are expensive since they usually entail copying the entire underlying array. Iterators do 
+not support the mutative remove operation. Traversal via iterators is fast and cannot encounter interference from other threads. Iterators rely on unchanging snapshots of the 
+array at the time the iterators were constructed. 
+
+Sample Usage. The following code sketch uses a copy-on-write set to maintain a set of Handler objects that perform some action upon state updates. 
+
+
+
+class Handler { void handle(); ... } 
+
+class X { private final CopyOnWriteArraySet<Handler> handlers = new CopyOnWriteArraySet<Handler>(); public void addHandler(Handler h) { handlers.add(h); } 
+
+private long internalState; private synchronized void changeState() { internalState = ...; } 
+
+public void update() { changeState(); for (Handler handler : handlers) handler.handle(); } } 
+
+This class is a member of the <a href="/../guide/collections/index.html"> Java Collections Framework. 
+
+
+
+*java.util.concurrent.CopyOnWriteArraySet()*
+
+public CopyOnWriteArraySet()
+
+Creates an empty set. 
+
+
+*java.util.concurrent.CopyOnWriteArraySet(Collection<?extendsE>)*
+
+public CopyOnWriteArraySet(java.util.Collection<? extends E> c)
+
+Creates a set containing all of the elements of the specified Collection. 
+
+    c - the collection 
+
+*java.util.concurrent.CopyOnWriteArraySet.add(E)*
+
+public boolean add(E o)
+
+
+
+
+
+*java.util.concurrent.CopyOnWriteArraySet.addAll(Collection<?extendsE>)*
+
+public boolean addAll(java.util.Collection<? extends E> c)
+
+
+
+
+
+*java.util.concurrent.CopyOnWriteArraySet.clear()*
+
+public void clear()
+
+
+
+
+
+*java.util.concurrent.CopyOnWriteArraySet.contains(Object)*
+
+public boolean contains(java.lang.Object o)
+
+
+
+
+
+*java.util.concurrent.CopyOnWriteArraySet.containsAll(Collection<?>)*
+
+public boolean containsAll(java.util.Collection<?> c)
+
+
+
+
+
+*java.util.concurrent.CopyOnWriteArraySet.isEmpty()*
+
+public boolean isEmpty()
+
+
+
+
+
+*java.util.concurrent.CopyOnWriteArraySet.iterator()*
+
+public |java.util.Iterator|<E> iterator()
+
+
+
+
+
+*java.util.concurrent.CopyOnWriteArraySet.remove(Object)*
+
+public boolean remove(java.lang.Object o)
+
+
+
+
+
+*java.util.concurrent.CopyOnWriteArraySet.removeAll(Collection<?>)*
+
+public boolean removeAll(java.util.Collection<?> c)
+
+
+
+
+
+*java.util.concurrent.CopyOnWriteArraySet.retainAll(Collection<?>)*
+
+public boolean retainAll(java.util.Collection<?> c)
+
+
+
+
+
+*java.util.concurrent.CopyOnWriteArraySet.size()*
+
+public int size()
+
+
+
+
+
+*java.util.concurrent.CopyOnWriteArraySet.toArray()*
+
+public |java.lang.Object|[] toArray()
+
+
+
+
+
+*java.util.concurrent.CopyOnWriteArraySet.toArray(T[])*
+
+public |T|[] toArray(T[] a)
+
+
+
+
+
+

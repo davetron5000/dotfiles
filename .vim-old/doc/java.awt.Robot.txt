@@ -1,0 +1,228 @@
+*java.awt.Robot* *Robot* This class is used to generate native system input events
+ for the purposes of test automation, self-running demos, and
+ other applications where control o
+
+public class Robot
+  extends    |java.lang.Object|
+
+|java.awt.Robot_Description|
+|java.awt.Robot_Fields|
+|java.awt.Robot_Constructors|
+|java.awt.Robot_Methods|
+
+====================================================================================================================================================================================
+
+*java.awt.Robot_Constructors*
+|java.awt.Robot()|Constructs a Robot object in the coordinate system of the primary screen.
+|java.awt.Robot(GraphicsDevice)|Creates a Robot for the given screen device.
+
+*java.awt.Robot_Methods*
+|java.awt.Robot.createScreenCapture(Rectangle)|Creates an image containing pixels read from the screen.
+|java.awt.Robot.delay(int)|Sleeps for the specified time.
+|java.awt.Robot.getAutoDelay()|Returns the number of milliseconds this Robot sleeps after generating an event.
+|java.awt.Robot.getPixelColor(int,int)|Returns the color of a pixel at the given screen coordinates.
+|java.awt.Robot.isAutoWaitForIdle()|Returns whether this Robot automatically invokes waitForIdle  after generating an event.
+|java.awt.Robot.keyPress(int)|Presses a given key.
+|java.awt.Robot.keyRelease(int)|Releases a given key.
+|java.awt.Robot.mouseMove(int,int)|Moves mouse pointer to given screen coordinates.
+|java.awt.Robot.mousePress(int)|Presses one or more mouse buttons.
+|java.awt.Robot.mouseRelease(int)|Releases one or more mouse buttons.
+|java.awt.Robot.mouseWheel(int)|Rotates the scroll wheel on wheel-equipped mice.
+|java.awt.Robot.setAutoDelay(int)|Sets the number of milliseconds this Robot sleeps after generating an event.
+|java.awt.Robot.setAutoWaitForIdle(boolean)|Sets whether this Robot automatically invokes waitForIdle  after generating an event.
+|java.awt.Robot.toString()|Returns a string representation of this Robot.
+|java.awt.Robot.waitForIdle()|Waits until all events currently on the event queue have been processed.
+
+*java.awt.Robot_Description*
+
+This class is used to generate native system input events for the purposes of test automation, self-running demos, and other applications where control of the mouse and keyboard 
+is needed. The primary purpose of Robot is to facilitate automated testing of Java platform implementations. 
+
+Using the class to generate input events differs from posting events to the AWT event queue or AWT components in that the events are generated in the platform's native input 
+queue. For example, Robot.mouseMove will actually move the mouse cursor instead of just generating mouse move events. 
+
+Note that some platforms require special privileges or extensions to access low-level input control. If the current platform configuration does not allow input control, an 
+AWTException will be thrown when trying to construct Robot objects. For example, X-Window systems will throw the exception if the XTEST 2.2 standard extension is not supported (or 
+not enabled) by the X server. 
+
+Applications that use Robot for purposes other than self-testing should handle these error conditions gracefully. 
+
+
+
+*java.awt.Robot()*
+
+public Robot()
+  throws |java.awt.AWTException|
+         
+Constructs a Robot object in the coordinate system of the primary screen. 
+
+
+*java.awt.Robot(GraphicsDevice)*
+
+public Robot(java.awt.GraphicsDevice screen)
+  throws |java.awt.AWTException|
+         
+Creates a Robot for the given screen device. Coordinates passed to Robot method calls like mouseMove and createScreenCapture will be interpreted as being in the same coordinate 
+system as the specified screen. Note that depending on the platform configuration, multiple screens may either: 
+
+share the same coordinate system to form a combined virtual screen use different coordinate systems to act as independent screens 
+
+This constructor is meant for the latter case. 
+
+If screen devices are reconfigured such that the coordinate system is affected, the behavior of existing Robot objects is undefined. 
+
+    screen - A screen GraphicsDevice indicating the coordinate system the Robot will operate in. 
+
+*java.awt.Robot.createScreenCapture(Rectangle)*
+
+public synchronized |java.awt.image.BufferedImage| createScreenCapture(java.awt.Rectangle screenRect)
+
+Creates an image containing pixels read from the screen. This image does not include the mouse cursor. 
+
+
+    screenRect - Rect to capture in screen coordinates 
+
+    Returns: The captured image 
+
+*java.awt.Robot.delay(int)*
+
+public synchronized void delay(int ms)
+
+Sleeps for the specified time. To catch any InterruptedExceptions that occur, Thread.sleep() may be used instead. 
+
+
+    ms - time to sleep in milliseconds 
+
+*java.awt.Robot.getAutoDelay()*
+
+public synchronized int getAutoDelay()
+
+Returns the number of milliseconds this Robot sleeps after generating an event. 
+
+
+
+*java.awt.Robot.getPixelColor(int,int)*
+
+public synchronized |java.awt.Color| getPixelColor(
+  int x,
+  int y)
+
+Returns the color of a pixel at the given screen coordinates. 
+
+
+    x - X position of pixel 
+    y - Y position of pixel 
+
+    Returns: Color of the pixel 
+
+*java.awt.Robot.isAutoWaitForIdle()*
+
+public synchronized boolean isAutoWaitForIdle()
+
+Returns whether this Robot automatically invokes waitForIdle after generating an event. 
+
+
+
+    Returns: Whether waitForIdle is automatically called 
+
+*java.awt.Robot.keyPress(int)*
+
+public synchronized void keyPress(int keycode)
+
+Presses a given key. The key should be released using the keyRelease method. 
+
+Key codes that have more than one physical key associated with them (e.g. KeyEvent.VK_SHIFT could mean either the left or right shift key) will map to the left key. 
+
+
+    keycode - Key to press (e.g. KeyEvent.VK_A) 
+
+*java.awt.Robot.keyRelease(int)*
+
+public synchronized void keyRelease(int keycode)
+
+Releases a given key. 
+
+Key codes that have more than one physical key associated with them (e.g. KeyEvent.VK_SHIFT could mean either the left or right shift key) will map to the left key. 
+
+
+    keycode - Key to release (e.g. KeyEvent.VK_A) 
+
+*java.awt.Robot.mouseMove(int,int)*
+
+public synchronized void mouseMove(
+  int x,
+  int y)
+
+Moves mouse pointer to given screen coordinates. 
+
+
+    x - X position 
+    y - Y position 
+
+*java.awt.Robot.mousePress(int)*
+
+public synchronized void mousePress(int buttons)
+
+Presses one or more mouse buttons. The mouse buttons should be released using the mouseRelease method. 
+
+
+    buttons - the Button mask; a combination of one or more of these flags: 
+
+InputEvent.BUTTON1_MASK InputEvent.BUTTON2_MASK InputEvent.BUTTON3_MASK 
+
+*java.awt.Robot.mouseRelease(int)*
+
+public synchronized void mouseRelease(int buttons)
+
+Releases one or more mouse buttons. 
+
+
+    buttons - the Button mask; a combination of one or more of these flags: 
+
+InputEvent.BUTTON1_MASK InputEvent.BUTTON2_MASK InputEvent.BUTTON3_MASK 
+
+*java.awt.Robot.mouseWheel(int)*
+
+public synchronized void mouseWheel(int wheelAmt)
+
+Rotates the scroll wheel on wheel-equipped mice. 
+
+
+    wheelAmt - number of "notches" to move the mouse wheel Negative values indicate movement up/away from the user, positive values indicate movement down/towards the user. 
+
+*java.awt.Robot.setAutoDelay(int)*
+
+public synchronized void setAutoDelay(int ms)
+
+Sets the number of milliseconds this Robot sleeps after generating an event. 
+
+
+
+*java.awt.Robot.setAutoWaitForIdle(boolean)*
+
+public synchronized void setAutoWaitForIdle(boolean isOn)
+
+Sets whether this Robot automatically invokes waitForIdle after generating an event. 
+
+
+    isOn - Whether waitForIdle is automatically invoked 
+
+*java.awt.Robot.toString()*
+
+public synchronized |java.lang.String| toString()
+
+Returns a string representation of this Robot. 
+
+
+
+    Returns: the string representation. 
+
+*java.awt.Robot.waitForIdle()*
+
+public synchronized void waitForIdle()
+
+Waits until all events currently on the event queue have been processed. 
+
+
+
+

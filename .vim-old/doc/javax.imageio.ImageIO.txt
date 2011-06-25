@@ -1,0 +1,445 @@
+*javax.imageio.ImageIO* *ImageIO* A class containing static convenience methods for locating
+ ImageReaders and ImageWriters, and
+ performing simple encoding and decoding.
+
+public final class ImageIO
+  extends    |java.lang.Object|
+
+|javax.imageio.ImageIO_Description|
+|javax.imageio.ImageIO_Fields|
+|javax.imageio.ImageIO_Constructors|
+|javax.imageio.ImageIO_Methods|
+
+====================================================================================================================================================================================
+
+*javax.imageio.ImageIO_Methods*
+|javax.imageio.ImageIO.createImageInputStream(Object)|Returns an ImageInputStream that will take its  input from the given Object.
+|javax.imageio.ImageIO.createImageOutputStream(Object)|Returns an ImageOutputStream that will send its  output to the given Object.
+|javax.imageio.ImageIO.getCacheDirectory()|Returns the current value set by  setCacheDirectory, or null if no  explicit setting has been made.
+|javax.imageio.ImageIO.getImageReader(ImageWriter)|Returns an ImageReadercorresponding to the given  ImageWriter, if there is one, or null  if the plug-in for this ImageWriter doe
+|javax.imageio.ImageIO.getImageReaders(Object)|Returns an Iterator containing all currently  registered ImageReaders that claim to be able to  decode the supplied Object, typicall
+|javax.imageio.ImageIO.getImageReadersByFormatName(String)|Returns an Iterator containing all currently  registered ImageReaders that claim to be able to  decode the named format.
+|javax.imageio.ImageIO.getImageReadersByMIMEType(String)|Returns an Iterator containing all currently  registered ImageReaders that claim to be able to  decode files with the give
+|javax.imageio.ImageIO.getImageReadersBySuffix(String)|Returns an Iterator containing all currently  registered ImageReaders that claim to be able to  decode files with the given 
+|javax.imageio.ImageIO.getImageTranscoders(ImageReader,ImageWriter)|Returns an Iterator containing all currently  registered ImageTranscoders that claim to be  able to transcode b
+|javax.imageio.ImageIO.getImageWriter(ImageReader)|Returns an ImageWritercorresponding to the given  ImageReader, if there is one, or null  if the plug-in for this ImageReader doe
+|javax.imageio.ImageIO.getImageWriters(ImageTypeSpecifier,String)|Returns an Iterator containing all currently  registered ImageWriters that claim to be able to  encode images of 
+|javax.imageio.ImageIO.getImageWritersByFormatName(String)|Returns an Iterator containing all currently  registered ImageWriters that claim to be able to  encode the named format.
+|javax.imageio.ImageIO.getImageWritersByMIMEType(String)|Returns an Iterator containing all currently  registered ImageWriters that claim to be able to  encode files with the give
+|javax.imageio.ImageIO.getImageWritersBySuffix(String)|Returns an Iterator containing all currently  registered ImageWriters that claim to be able to  encode files with the given 
+|javax.imageio.ImageIO.getReaderFormatNames()|Returns an array of Strings listing all of the  informal format names understood by the current set of registered  readers.
+|javax.imageio.ImageIO.getReaderMIMETypes()|Returns an array of Strings listing all of the  MIME types understood by the current set of registered  readers.
+|javax.imageio.ImageIO.getUseCache()|Returns the current value set by setUseCache, or  true if no explicit setting has been made.
+|javax.imageio.ImageIO.getWriterFormatNames()|Returns an array of Strings listing all of the  informal format names understood by the current set of registered  writers.
+|javax.imageio.ImageIO.getWriterMIMETypes()|Returns an array of Strings listing all of the  MIME types understood by the current set of registered  writers.
+|javax.imageio.ImageIO.read(File)|Returns a BufferedImage as the result of decoding  a supplied File with an ImageReader  chosen automatically from among those currently registere
+|javax.imageio.ImageIO.read(ImageInputStream)|Returns a BufferedImage as the result of decoding  a supplied ImageInputStream with an  ImageReader chosen automatically from among t
+|javax.imageio.ImageIO.read(InputStream)|Returns a BufferedImage as the result of decoding  a supplied InputStream with an ImageReader  chosen automatically from among those curre
+|javax.imageio.ImageIO.read(URL)|Returns a BufferedImage as the result of decoding  a supplied URL with an ImageReader  chosen automatically from among those currently registered.
+|javax.imageio.ImageIO.scanForPlugins()|Scans for plug-ins on the application class path,  loads their service provider classes, and registers a service  provider instance for eac
+|javax.imageio.ImageIO.setCacheDirectory(File)|Sets the directory where cache files are to be created.
+|javax.imageio.ImageIO.setUseCache(boolean)|Sets a flag indicating whether a disk-based cache file should  be used when creating ImageInputStreams and  ImageOutputStreams.
+|javax.imageio.ImageIO.write(RenderedImage,String,File)|Writes an image using an arbitrary ImageWriter  that supports the given format to a File.
+|javax.imageio.ImageIO.write(RenderedImage,String,ImageOutputStream)|Writes an image using the an arbitrary ImageWriter  that supports the given format to an  ImageOutputStream.
+|javax.imageio.ImageIO.write(RenderedImage,String,OutputStream)|Writes an image using an arbitrary ImageWriter  that supports the given format to an OutputStream.
+
+*javax.imageio.ImageIO_Description*
+
+A class containing static convenience methods for locating ImageReaders and ImageWriters, and performing simple encoding and decoding. 
+
+
+
+*javax.imageio.ImageIO.createImageInputStream(Object)*
+
+public static |javax.imageio.stream.ImageInputStream| createImageInputStream(java.lang.Object input)
+  throws |java.io.IOException|
+         
+Returns an ImageInputStream that will take its input from the given Object. The set of ImageInputStreamSpis registered with the IIORegistry class is queried and the first one that 
+is able to take input from the supplied object is used to create the returned ImageInputStream. If no suitable ImageInputStreamSpi exists, null is returned. 
+
+The current cache settings from getUseCacheand getCacheDirectory will be used to control caching. 
+
+
+    input - an Object to be used as an input source, such as a File, readable RandomAccessFile, or InputStream. 
+
+    Returns: an ImageInputStream, or null. 
+
+*javax.imageio.ImageIO.createImageOutputStream(Object)*
+
+public static |javax.imageio.stream.ImageOutputStream| createImageOutputStream(java.lang.Object output)
+  throws |java.io.IOException|
+         
+Returns an ImageOutputStream that will send its output to the given Object. The set of ImageOutputStreamSpis registered with the IIORegistry class is queried and the first one 
+that is able to send output from the supplied object is used to create the returned ImageOutputStream. If no suitable ImageOutputStreamSpi exists, null is returned. 
+
+The current cache settings from getUseCacheand getCacheDirectory will be used to control caching. 
+
+
+    output - an Object to be used as an output destination, such as a File, writable RandomAccessFile, or OutputStream. 
+
+    Returns: an ImageOutputStream, or null. 
+
+*javax.imageio.ImageIO.getCacheDirectory()*
+
+public static |java.io.File| getCacheDirectory()
+
+Returns the current value set by setCacheDirectory, or null if no explicit setting has been made. 
+
+
+
+    Returns: a File indicating the directory where cache files will be created, or null to indicate the system-dependent default temporary-file directory. 
+
+*javax.imageio.ImageIO.getImageReader(ImageWriter)*
+
+public static |javax.imageio.ImageReader| getImageReader(javax.imageio.ImageWriter writer)
+
+Returns an ImageReadercorresponding to the given ImageWriter, if there is one, or null if the plug-in for this ImageWriter does not specify a corresponding ImageReader, or if the 
+given ImageWriter is not registered. This method is provided principally for symmetry with getImageWriter(ImageReader). Note that this method returns the "preferred" reader, which 
+is the first in the list returned by javax.imageio.spi.ImageWriterSpi.getImageReaderSpiNames(). 
+
+
+    writer - an instance of a registered ImageWriter. 
+
+    Returns: an ImageReader, or null. 
+
+*javax.imageio.ImageIO.getImageReaders(Object)*
+
+public static |java.util.Iterator|<ImageReader> getImageReaders(java.lang.Object input)
+
+Returns an Iterator containing all currently registered ImageReaders that claim to be able to decode the supplied Object, typically an ImageInputStream. 
+
+The stream position is left at its prior position upon exit from this method. 
+
+
+    input - an ImageInputStream or other Object containing encoded image data. 
+
+    Returns: an Iterator containing ImageReaders. 
+
+*javax.imageio.ImageIO.getImageReadersByFormatName(String)*
+
+public static |java.util.Iterator|<ImageReader> getImageReadersByFormatName(java.lang.String formatName)
+
+Returns an Iterator containing all currently registered ImageReaders that claim to be able to decode the named format. 
+
+
+    formatName - a String containing the informal name of a format (e.g., "jpeg" or "tiff". 
+
+    Returns: an Iterator containing ImageReaders. 
+
+*javax.imageio.ImageIO.getImageReadersByMIMEType(String)*
+
+public static |java.util.Iterator|<ImageReader> getImageReadersByMIMEType(java.lang.String MIMEType)
+
+Returns an Iterator containing all currently registered ImageReaders that claim to be able to decode files with the given MIME type. 
+
+
+    MIMEType - a String containing a file suffix (e.g., "image/jpeg" or "image/x-bmp"). 
+
+    Returns: an Iterator containing ImageReaders. 
+
+*javax.imageio.ImageIO.getImageReadersBySuffix(String)*
+
+public static |java.util.Iterator|<ImageReader> getImageReadersBySuffix(java.lang.String fileSuffix)
+
+Returns an Iterator containing all currently registered ImageReaders that claim to be able to decode files with the given suffix. 
+
+
+    fileSuffix - a String containing a file suffix (e.g., "jpg" or "tiff"). 
+
+    Returns: an Iterator containing ImageReaders. 
+
+*javax.imageio.ImageIO.getImageTranscoders(ImageReader,ImageWriter)*
+
+public static |java.util.Iterator|<ImageTranscoder> getImageTranscoders(
+  javax.imageio.ImageReader reader,
+  javax.imageio.ImageWriter writer)
+
+Returns an Iterator containing all currently registered ImageTranscoders that claim to be able to transcode between the metadata of the given ImageReader and ImageWriter. 
+
+
+    reader - an ImageReader. 
+    writer - an ImageWriter. 
+
+    Returns: an Iterator containing ImageTranscoders. 
+
+*javax.imageio.ImageIO.getImageWriter(ImageReader)*
+
+public static |javax.imageio.ImageWriter| getImageWriter(javax.imageio.ImageReader reader)
+
+Returns an ImageWritercorresponding to the given ImageReader, if there is one, or null if the plug-in for this ImageReader does not specify a corresponding ImageWriter, or if the 
+given ImageReader is not registered. This mechanism may be used to obtain an ImageWriter that will understand the internal structure of non-pixel metadata (as encoded by 
+IIOMetadata objects) generated by the ImageReader. By obtaining this data from the ImageReader and passing it on to the ImageWriter obtained with this method, a client program can 
+read an image, modify it in some way, and write it back out preserving all metadata, without having to understand anything about the structure of the metadata, or even about the 
+image format. Note that this method returns the "preferred" writer, which is the first in the list returned by javax.imageio.spi.ImageReaderSpi.getImageWriterSpiNames(). 
+
+
+    reader - an instance of a registered ImageReader. 
+
+    Returns: an ImageWriter, or null. 
+
+*javax.imageio.ImageIO.getImageWriters(ImageTypeSpecifier,String)*
+
+public static |java.util.Iterator|<ImageWriter> getImageWriters(
+  javax.imageio.ImageTypeSpecifier type,
+  java.lang.String formatName)
+
+Returns an Iterator containing all currently registered ImageWriters that claim to be able to encode images of the given layout (specified using an ImageTypeSpecifier) in the 
+given format. 
+
+
+    type - an ImageTypeSpecifier indicating the layout of the image to be written. 
+    formatName - the informal name of the format. 
+
+    Returns: an Iterator containing ImageWriters. 
+
+*javax.imageio.ImageIO.getImageWritersByFormatName(String)*
+
+public static |java.util.Iterator|<ImageWriter> getImageWritersByFormatName(java.lang.String formatName)
+
+Returns an Iterator containing all currently registered ImageWriters that claim to be able to encode the named format. 
+
+
+    formatName - a String containing the informal name of a format (e.g., "jpeg" or "tiff". 
+
+    Returns: an Iterator containing ImageWriters. 
+
+*javax.imageio.ImageIO.getImageWritersByMIMEType(String)*
+
+public static |java.util.Iterator|<ImageWriter> getImageWritersByMIMEType(java.lang.String MIMEType)
+
+Returns an Iterator containing all currently registered ImageWriters that claim to be able to encode files with the given MIME type. 
+
+
+    MIMEType - a String containing a file suffix (e.g., "image/jpeg" or "image/x-bmp"). 
+
+    Returns: an Iterator containing ImageWriters. 
+
+*javax.imageio.ImageIO.getImageWritersBySuffix(String)*
+
+public static |java.util.Iterator|<ImageWriter> getImageWritersBySuffix(java.lang.String fileSuffix)
+
+Returns an Iterator containing all currently registered ImageWriters that claim to be able to encode files with the given suffix. 
+
+
+    fileSuffix - a String containing a file suffix (e.g., "jpg" or "tiff"). 
+
+    Returns: an Iterator containing ImageWriters. 
+
+*javax.imageio.ImageIO.getReaderFormatNames()*
+
+public static |java.lang.String|[] getReaderFormatNames()
+
+Returns an array of Strings listing all of the informal format names understood by the current set of registered readers. 
+
+
+
+    Returns: an array of Strings. 
+
+*javax.imageio.ImageIO.getReaderMIMETypes()*
+
+public static |java.lang.String|[] getReaderMIMETypes()
+
+Returns an array of Strings listing all of the MIME types understood by the current set of registered readers. 
+
+
+
+    Returns: an array of Strings. 
+
+*javax.imageio.ImageIO.getUseCache()*
+
+public static boolean getUseCache()
+
+Returns the current value set by setUseCache, or true if no explicit setting has been made. 
+
+
+
+    Returns: true if a disk-based cache may be used for ImageInputStreams and ImageOutputStreams. 
+
+*javax.imageio.ImageIO.getWriterFormatNames()*
+
+public static |java.lang.String|[] getWriterFormatNames()
+
+Returns an array of Strings listing all of the informal format names understood by the current set of registered writers. 
+
+
+
+    Returns: an array of Strings. 
+
+*javax.imageio.ImageIO.getWriterMIMETypes()*
+
+public static |java.lang.String|[] getWriterMIMETypes()
+
+Returns an array of Strings listing all of the MIME types understood by the current set of registered writers. 
+
+
+
+    Returns: an array of Strings. 
+
+*javax.imageio.ImageIO.read(File)*
+
+public static |java.awt.image.BufferedImage| read(java.io.File input)
+  throws |java.io.IOException|
+         
+Returns a BufferedImage as the result of decoding a supplied File with an ImageReader chosen automatically from among those currently registered. The File is wrapped in an 
+ImageInputStream. If no registered ImageReader claims to be able to read the resulting stream, null is returned. 
+
+The current cache settings from getUseCacheand getCacheDirectory will be used to control caching in the ImageInputStream that is created. 
+
+Note that there is no read method that takes a filename as a String; use this method instead after creating a File from the filename. 
+
+This methods does not attempt to locate ImageReaders that can read directly from a File; that may be accomplished using IIORegistry and ImageReaderSpi. 
+
+
+    input - a File to read from. 
+
+    Returns: a BufferedImage containing the decoded contents of the input, or null. 
+
+*javax.imageio.ImageIO.read(ImageInputStream)*
+
+public static |java.awt.image.BufferedImage| read(javax.imageio.stream.ImageInputStream stream)
+  throws |java.io.IOException|
+         
+Returns a BufferedImage as the result of decoding a supplied ImageInputStream with an ImageReader chosen automatically from among those currently registered. If no registered 
+ImageReader claims to be able to read the stream, null is returned. 
+
+
+    stream - an ImageInputStream to read from. 
+
+    Returns: a BufferedImage containing the decoded contents of the input, or null. 
+
+*javax.imageio.ImageIO.read(InputStream)*
+
+public static |java.awt.image.BufferedImage| read(java.io.InputStream input)
+  throws |java.io.IOException|
+         
+Returns a BufferedImage as the result of decoding a supplied InputStream with an ImageReader chosen automatically from among those currently registered. The InputStream is wrapped 
+in an ImageInputStream. If no registered ImageReader claims to be able to read the resulting stream, null is returned. 
+
+The current cache settings from getUseCacheand getCacheDirectory will be used to control caching in the ImageInputStream that is created. 
+
+This methods does not attempt to locate ImageReaders that can read directly from an InputStream; that may be accomplished using IIORegistry and ImageReaderSpi. 
+
+
+    input - an InputStream to read from. 
+
+    Returns: a BufferedImage containing the decoded contents of the input, or null. 
+
+*javax.imageio.ImageIO.read(URL)*
+
+public static |java.awt.image.BufferedImage| read(java.net.URL input)
+  throws |java.io.IOException|
+         
+Returns a BufferedImage as the result of decoding a supplied URL with an ImageReader chosen automatically from among those currently registered. An InputStream is obtained from 
+the URL, which is wrapped in an ImageInputStream. If no registered ImageReader claims to be able to read the resulting stream, null is returned. 
+
+The current cache settings from getUseCacheand getCacheDirectory will be used to control caching in the ImageInputStream that is created. 
+
+This methods does not attempt to locate ImageReaders that can read directly from a URL; that may be accomplished using IIORegistry and ImageReaderSpi. 
+
+
+    input - a URL to read from. 
+
+    Returns: a BufferedImage containing the decoded contents of the input, or null. 
+
+*javax.imageio.ImageIO.scanForPlugins()*
+
+public static void scanForPlugins()
+
+Scans for plug-ins on the application class path, loads their service provider classes, and registers a service provider instance for each one found with the IIORegistry. 
+
+This method is needed because the application class path can theoretically change, or additional plug-ins may become available. Rather than re-scanning the classpath on every 
+invocation of the API, the class path is scanned automatically only on the first invocation. Clients can call this method to prompt a re-scan. Thus this method need only be 
+invoked by sophisticated applications which dynamically make new plug-ins available at runtime. 
+
+The getResources method of the context ClassLoader is used locate JAR files containing files named META-INF/services/javax.imageio.spi.classname, where classname is one of 
+ImageReaderSpi, ImageWriterSpi, ImageTranscoderSpi, ImageInputStreamSpi, or ImageOutputStreamSpi, along the application class path. 
+
+The contents of the located files indicate the names of actual implementation classes which implement the aforementioned service provider interfaces; the default class loader is 
+then used to load each of these classes and to instantiate an instance of each class, which is then placed into the registry for later retrieval. 
+
+The exact set of locations searched depends on the implementation of the Java runtime enviroment. 
+
+
+
+*javax.imageio.ImageIO.setCacheDirectory(File)*
+
+public static void setCacheDirectory(java.io.File cacheDirectory)
+
+Sets the directory where cache files are to be created. A value of null indicates that the system-dependent default temporary-file directory is to be used. If getUseCache returns 
+false, this value is ignored. 
+
+
+    cacheDirectory - a File specifying a directory. 
+
+*javax.imageio.ImageIO.setUseCache(boolean)*
+
+public static void setUseCache(boolean useCache)
+
+Sets a flag indicating whether a disk-based cache file should be used when creating ImageInputStreams and ImageOutputStreams. 
+
+When reading from a standard InputStream>, it may be necessary to save previously read information in a cache since the underlying stream does not allow data to be re-read. 
+Similarly, when writing to a standard OutputStream, a cache may be used to allow a previously written value to be changed before flushing it to the final destination. 
+
+The cache may reside in main memory or on disk. Setting this flag to false disallows the use of disk for future streams, which may be advantageous when working with small images, 
+as the overhead of creating and destroying files is removed. 
+
+On startup, the value is set to true. 
+
+
+    useCache - a boolean indicating whether a cache file should be used, in cases where it is optional. 
+
+*javax.imageio.ImageIO.write(RenderedImage,String,File)*
+
+public static boolean write(
+  java.awt.image.RenderedImage im,
+  java.lang.String formatName,
+  java.io.File output)
+  throws |java.io.IOException|
+         
+Writes an image using an arbitrary ImageWriter that supports the given format to a File. If there is already a File present, its contents are discarded. 
+
+
+    im - a RenderedImage to be written. 
+    formatName - a String containg the informal name of the format. 
+    output - a File to be written to. 
+
+    Returns: false if no appropriate writer is found. 
+
+*javax.imageio.ImageIO.write(RenderedImage,String,ImageOutputStream)*
+
+public static boolean write(
+  java.awt.image.RenderedImage im,
+  java.lang.String formatName,
+  javax.imageio.stream.ImageOutputStream output)
+  throws |java.io.IOException|
+         
+Writes an image using the an arbitrary ImageWriter that supports the given format to an ImageOutputStream. The image is written to the ImageOutputStream starting at the current 
+stream pointer, overwriting existing stream data from that point forward, if present. 
+
+
+    im - a RenderedImage to be written. 
+    formatName - a String containg the informal name of the format. 
+    output - an ImageOutputStream to be written to. 
+
+    Returns: false if no appropriate writer is found. 
+
+*javax.imageio.ImageIO.write(RenderedImage,String,OutputStream)*
+
+public static boolean write(
+  java.awt.image.RenderedImage im,
+  java.lang.String formatName,
+  java.io.OutputStream output)
+  throws |java.io.IOException|
+         
+Writes an image using an arbitrary ImageWriter that supports the given format to an OutputStream. 
+
+The current cache settings from getUseCacheand getCacheDirectory will be used to control caching. 
+
+
+    im - a RenderedImage to be written. 
+    formatName - a String containg the informal name of the format. 
+    output - an OutputStream to be written to. 
+
+    Returns: false if no appropriate writer is found. 
+
+

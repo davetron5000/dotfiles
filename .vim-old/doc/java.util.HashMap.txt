@@ -1,0 +1,258 @@
+*java.util.HashMap* *HashMap* Hash table based implementation of the Map interface.
+
+public class HashMap<K,V>
+  extends    |java.util.AbstractMap|
+  implements |java.util.Map|
+             |java.lang.Cloneable|
+             |java.io.Serializable|
+
+|java.util.HashMap_Description|
+|java.util.HashMap_Fields|
+|java.util.HashMap_Constructors|
+|java.util.HashMap_Methods|
+
+====================================================================================================================================================================================
+
+*java.util.HashMap_Constructors*
+|java.util.HashMap()|Constructs an empty HashMap with the default initial capacity  (16) and the default load factor (0.75).
+|java.util.HashMap(int)|Constructs an empty HashMap with the specified initial  capacity and the default load factor (0.75).
+|java.util.HashMap(int,float)|Constructs an empty HashMap with the specified initial  capacity and load factor.
+|java.util.HashMap(Map<?extendsK,?extendsV>)|Constructs a new HashMap with the same mappings as the  specified Map.
+
+*java.util.HashMap_Methods*
+|java.util.HashMap.clear()|Removes all mappings from this map.
+|java.util.HashMap.clone()|Returns a shallow copy of this HashMap instance: the keys and  values themselves are not cloned.
+|java.util.HashMap.containsKey(Object)|Returns true if this map contains a mapping for the  specified key.
+|java.util.HashMap.containsValue(Object)|Returns true if this map maps one or more keys to the  specified value.
+|java.util.HashMap.entrySet()|Returns a collection view of the mappings contained in this map.
+|java.util.HashMap.get(Object)|Returns the value to which the specified key is mapped in this identity  hash map, or null if the map contains no mapping for this key.
+|java.util.HashMap.isEmpty()|Returns true if this map contains no key-value mappings.
+|java.util.HashMap.keySet()|Returns a set view of the keys contained in this map.
+|java.util.HashMap.put(K,V)|Associates the specified value with the specified key in this map.
+|java.util.HashMap.putAll(Map<?extendsK,?extendsV>)|Copies all of the mappings from the specified map to this map  These mappings will replace any mappings that  this map had for 
+|java.util.HashMap.remove(Object)|Removes the mapping for this key from this map if present.
+|java.util.HashMap.size()|Returns the number of key-value mappings in this map.
+|java.util.HashMap.values()|Returns a collection view of the values contained in this map.
+
+*java.util.HashMap_Description*
+
+Hash table based implementation of the Map interface. This implementation provides all of the optional map operations, and permits null values and the null key. (The HashMap class 
+is roughly equivalent to Hashtable, except that it is unsynchronized and permits nulls.) This class makes no guarantees as to the order of the map; in particular, it does not 
+guarantee that the order will remain constant over time. 
+
+This implementation provides constant-time performance for the basic operations (get and put), assuming the hash function disperses the elements properly among the buckets. 
+Iteration over collection views requires time proportional to the "capacity" of the HashMap instance (the number of buckets) plus its size (the number of key-value mappings). 
+Thus, it's very important not to set the initial capacity too high (or the load factor too low) if iteration performance is important. 
+
+An instance of HashMap has two parameters that affect its performance: initial capacity and load factor. The capacity is the number of buckets in the hash table, and the initial 
+capacity is simply the capacity at the time the hash table is created. The load factor is a measure of how full the hash table is allowed to get before its capacity is 
+automatically increased. When the number of entries in the hash table exceeds the product of the load factor and the current capacity, the capacity is roughly doubled by calling 
+the rehash method. 
+
+As a general rule, the default load factor (.75) offers a good tradeoff between time and space costs. Higher values decrease the space overhead but increase the lookup cost 
+(reflected in most of the operations of the HashMap class, including get and put). The expected number of entries in the map and its load factor should be taken into account when 
+setting its initial capacity, so as to minimize the number of rehash operations. If the initial capacity is greater than the maximum number of entries divided by the load factor, 
+no rehash operations will ever occur. 
+
+If many mappings are to be stored in a HashMap instance, creating it with a sufficiently large capacity will allow the mappings to be stored more efficiently than letting it 
+perform automatic rehashing as needed to grow the table. 
+
+Note that this implementation is not synchronized. If multiple threads access this map concurrently, and at least one of the threads modifies the map structurally, it must be 
+synchronized externally. (A structural modification is any operation that adds or deletes one or more mappings; merely changing the value associated with a key that an instance 
+already contains is not a structural modification.) This is typically accomplished by synchronizing on some object that naturally encapsulates the map. If no such object exists, 
+the map should be "wrapped" using the Collections.synchronizedMap method. This is best done at creation time, to prevent accidental unsynchronized access to the map: Map m = 
+Collections.synchronizedMap(new HashMap(...)); 
+
+The iterators returned by all of this class's "collection view methods" are fail-fast: if the map is structurally modified at any time after the iterator is created, in any way 
+except through the iterator's own remove or add methods, the iterator will throw a ConcurrentModificationException. Thus, in the face of concurrent modification, the iterator 
+fails quickly and cleanly, rather than risking arbitrary, non-deterministic behavior at an undetermined time in the future. 
+
+Note that the fail-fast behavior of an iterator cannot be guaranteed as it is, generally speaking, impossible to make any hard guarantees in the presence of unsynchronized 
+concurrent modification. Fail-fast iterators throw ConcurrentModificationException on a best-effort basis. Therefore, it would be wrong to write a program that depended on this 
+exception for its correctness: the fail-fast behavior of iterators should be used only to detect bugs. 
+
+This class is a member of the <a href="/../guide/collections/index.html"> Java Collections Framework. 
+
+
+
+*java.util.HashMap()*
+
+public HashMap()
+
+Constructs an empty HashMap with the default initial capacity (16) and the default load factor (0.75). 
+
+
+*java.util.HashMap(int)*
+
+public HashMap(int initialCapacity)
+
+Constructs an empty HashMap with the specified initial capacity and the default load factor (0.75). 
+
+    initialCapacity - the initial capacity. 
+
+*java.util.HashMap(int,float)*
+
+public HashMap(
+  int initialCapacity,
+  float loadFactor)
+
+Constructs an empty HashMap with the specified initial capacity and load factor. 
+
+    initialCapacity - The initial capacity. 
+    loadFactor - The load factor. 
+
+*java.util.HashMap(Map<?extendsK,?extendsV>)*
+
+public HashMap(java.util.Map<? extends K, ? extends V> m)
+
+Constructs a new HashMap with the same mappings as the specified Map. The HashMap is created with default load factor (0.75) and an initial capacity sufficient to hold the 
+mappings in the specified Map. 
+
+    m - the map whose mappings are to be placed in this map. 
+
+*java.util.HashMap.clear()*
+
+public void clear()
+
+Removes all mappings from this map. 
+
+
+
+*java.util.HashMap.clone()*
+
+public |java.lang.Object| clone()
+
+Returns a shallow copy of this HashMap instance: the keys and values themselves are not cloned. 
+
+
+
+    Returns: a shallow copy of this map. 
+
+*java.util.HashMap.containsKey(Object)*
+
+public boolean containsKey(java.lang.Object key)
+
+Returns true if this map contains a mapping for the specified key. 
+
+
+    key - The key whose presence in this map is to be tested 
+
+    Returns: true if this map contains a mapping for the specified key. 
+
+*java.util.HashMap.containsValue(Object)*
+
+public boolean containsValue(java.lang.Object value)
+
+Returns true if this map maps one or more keys to the specified value. 
+
+
+    value - value whose presence in this map is to be tested. 
+
+    Returns: true if this map maps one or more keys to the specified value. 
+
+*java.util.HashMap.entrySet()*
+
+public |java.util.Set|<Entry<K,V>> entrySet()
+
+Returns a collection view of the mappings contained in this map. Each element in the returned collection is a Map.Entry. The collection is backed by the map, so changes to the map 
+are reflected in the collection, and vice-versa. The collection supports element removal, which removes the corresponding mapping from the map, via the Iterator.remove, 
+Collection.remove, removeAll, retainAll, and clear operations. It does not support the add or addAll operations. 
+
+
+
+    Returns: a collection view of the mappings contained in this map. 
+
+*java.util.HashMap.get(Object)*
+
+public |V| get(java.lang.Object key)
+
+Returns the value to which the specified key is mapped in this identity hash map, or null if the map contains no mapping for this key. A return value of null does not necessarily 
+indicate that the map contains no mapping for the key; it is also possible that the map explicitly maps the key to null. The containsKey method may be used to distinguish these 
+two cases. 
+
+
+    key - the key whose associated value is to be returned. 
+
+    Returns: the value to which this map maps the specified key, or null if the map contains no mapping for this key. 
+
+*java.util.HashMap.isEmpty()*
+
+public boolean isEmpty()
+
+Returns true if this map contains no key-value mappings. 
+
+
+
+    Returns: true if this map contains no key-value mappings. 
+
+*java.util.HashMap.keySet()*
+
+public |java.util.Set|<K> keySet()
+
+Returns a set view of the keys contained in this map. The set is backed by the map, so changes to the map are reflected in the set, and vice-versa. The set supports element 
+removal, which removes the corresponding mapping from this map, via the Iterator.remove, Set.remove, removeAll, retainAll, and clear operations. It does not support the add or 
+addAll operations. 
+
+
+
+    Returns: a set view of the keys contained in this map. 
+
+*java.util.HashMap.put(K,V)*
+
+public |V| put(
+  K key,
+  V value)
+
+Associates the specified value with the specified key in this map. If the map previously contained a mapping for this key, the old value is replaced. 
+
+
+    key - key with which the specified value is to be associated. 
+    value - value to be associated with the specified key. 
+
+    Returns: previous value associated with specified key, or null if there was no mapping for key. A null return can also indicate that the HashMap previously associated null with the 
+             specified key. 
+
+*java.util.HashMap.putAll(Map<?extendsK,?extendsV>)*
+
+public void putAll(java.util.Map<? extends K, ? extends V> m)
+
+Copies all of the mappings from the specified map to this map These mappings will replace any mappings that this map had for any of the keys currently in the specified map. 
+
+
+    m - mappings to be stored in this map. 
+
+*java.util.HashMap.remove(Object)*
+
+public |V| remove(java.lang.Object key)
+
+Removes the mapping for this key from this map if present. 
+
+
+    key - key whose mapping is to be removed from the map. 
+
+    Returns: previous value associated with specified key, or null if there was no mapping for key. A null return can also indicate that the map previously associated null with the specified 
+             key. 
+
+*java.util.HashMap.size()*
+
+public int size()
+
+Returns the number of key-value mappings in this map. 
+
+
+
+    Returns: the number of key-value mappings in this map. 
+
+*java.util.HashMap.values()*
+
+public |java.util.Collection|<V> values()
+
+Returns a collection view of the values contained in this map. The collection is backed by the map, so changes to the map are reflected in the collection, and vice-versa. The 
+collection supports element removal, which removes the corresponding mapping from this map, via the Iterator.remove, Collection.remove, removeAll, retainAll, and clear operations. 
+It does not support the add or addAll operations. 
+
+
+
+    Returns: a collection view of the values contained in this map. 
+
+

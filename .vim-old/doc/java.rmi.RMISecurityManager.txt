@@ -1,0 +1,40 @@
+*java.rmi.RMISecurityManager* *RMISecurityManager* A subclass ofSecurityManagerused by RMI applications that use
+ downloaded code.
+
+public class RMISecurityManager
+  extends    |java.lang.SecurityManager|
+
+|java.rmi.RMISecurityManager_Description|
+|java.rmi.RMISecurityManager_Fields|
+|java.rmi.RMISecurityManager_Constructors|
+|java.rmi.RMISecurityManager_Methods|
+
+====================================================================================================================================================================================
+
+*java.rmi.RMISecurityManager_Constructors*
+|java.rmi.RMISecurityManager()|Constructs a new RMISecurityManager.
+
+*java.rmi.RMISecurityManager_Description*
+
+A subclass of (|java.lang.SecurityManager|) used by RMI applications that use downloaded code. RMI's class loader will not download any classes from remote locations if no 
+security manager has been set. RMISecurityManager does not apply to applets, which run under the protection of their browser's security manager. 
+
+RMISecurityManager implements a policy that is no different than the policy implemented by (|java.lang.SecurityManager|) . Therefore an RMI application should use the 
+SecurityManager class or another application-specific SecurityManager implementation instead of this class. 
+
+To use a SecurityManager in your application, add the following statement to your code (it needs to be executed before RMI can download code from remote hosts, so it most likely 
+needs to appear in the main method of your application): 
+
+
+
+System.setSecurityManager(new SecurityManager()); 
+
+
+
+*java.rmi.RMISecurityManager()*
+
+public RMISecurityManager()
+
+Constructs a new RMISecurityManager. 
+
+

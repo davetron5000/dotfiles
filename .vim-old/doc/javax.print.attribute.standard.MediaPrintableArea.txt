@@ -1,0 +1,240 @@
+*javax.print.attribute.standard.MediaPrintableArea* *MediaPrintableArea* Class MediaPrintableArea is a printing attribute used to distinguish
+ the printable and non-printable areas
+
+public final class MediaPrintableArea
+  extends    |java.lang.Object|
+  implements |javax.print.attribute.DocAttribute|
+             |javax.print.attribute.PrintRequestAttribute|
+             |javax.print.attribute.PrintJobAttribute|
+
+|javax.print.attribute.standard.MediaPrintableArea_Description|
+|javax.print.attribute.standard.MediaPrintableArea_Fields|
+|javax.print.attribute.standard.MediaPrintableArea_Constructors|
+|javax.print.attribute.standard.MediaPrintableArea_Methods|
+
+====================================================================================================================================================================================
+
+*javax.print.attribute.standard.MediaPrintableArea_Fields*
+|int_javax.print.attribute.standard.MediaPrintableArea.INCH|
+|int_javax.print.attribute.standard.MediaPrintableArea.MM|
+
+*javax.print.attribute.standard.MediaPrintableArea_Constructors*
+|javax.print.attribute.standard.MediaPrintableArea(float,float,float,float,int)|Constructs a MediaPrintableArea object from floating point values.
+|javax.print.attribute.standard.MediaPrintableArea(int,int,int,int,int)|Constructs a MediaPrintableArea object from integer values.
+
+*javax.print.attribute.standard.MediaPrintableArea_Methods*
+|javax.print.attribute.standard.MediaPrintableArea.equals(Object)|Returns whether this media margins attribute is equivalent to the passed  in object.
+|javax.print.attribute.standard.MediaPrintableArea.getCategory()|Get the printing attribute class which is to be used as the "category"  for this printing attribute value.
+|javax.print.attribute.standard.MediaPrintableArea.getHeight(int)|Get the height of the printable area in the specified units.
+|javax.print.attribute.standard.MediaPrintableArea.getName()|Get the name of the category of which this attribute value is an  instance.
+|javax.print.attribute.standard.MediaPrintableArea.getPrintableArea(int)|Get the printable area as an array of 4 values in the order  x, y, w, h.
+|javax.print.attribute.standard.MediaPrintableArea.getWidth(int)|Get the width of the printable area in the specified units.
+|javax.print.attribute.standard.MediaPrintableArea.getX(int)|Get the x location of the origin of the printable area in the  specified units.
+|javax.print.attribute.standard.MediaPrintableArea.getY(int)|Get the y location of the origin of the printable area in the  specified units.
+|javax.print.attribute.standard.MediaPrintableArea.hashCode()|Returns a hash code value for this attribute.
+|javax.print.attribute.standard.MediaPrintableArea.toString()|Returns a string version of this rectangular size attribute in mm.
+|javax.print.attribute.standard.MediaPrintableArea.toString(int,String)|Returns a string version of this rectangular size attribute in the  given units.
+
+*javax.print.attribute.standard.MediaPrintableArea_Description*
+
+Class MediaPrintableArea is a printing attribute used to distinguish the printable and non-printable areas of media. 
+
+The printable area is specified to be a rectangle, within the overall dimensions of a media. 
+
+Most printers cannot print on the entire surface of the media, due to printer hardware limitations. This class can be used to query the acceptable values for a supposed print job, 
+and to request an area within the constraints of the printable area to be used in a print job. 
+
+To query for the printable area, a client must supply a suitable context. Without specifying at the very least the size of the media being used no meaningful value for printable 
+area can be obtained. 
+
+The attribute is not described in terms of the distance from the edge of the paper, in part to emphasise that this attribute is not independent of a particular media, but must be 
+described within the context of a choice of other attributes. Additionally it is usually more convenient for a client to use the printable area. 
+
+The hardware's minimum margins is not just a property of the printer, but may be a function of the media size, orientation, media type, and any specified finishings. PrintService 
+provides the method to query the supported values of an attribute in a suitable context : See <code>PrintService.getSupportedAttributeValues()</code>(|javax.print.PrintService|) 
+The rectangular printable area is defined thus: The (x,y) origin is positioned at the top-left of the paper in portrait mode regardless of the orientation specified in the 
+requesting context. For example a printable area for A4 paper in portrait or landscape orientation will have height > width. 
+
+A printable area attribute's values are stored internally as integers in units of micrometers (m), where 1 micrometer = 10-6 meter = 1/1000 millimeter = 1/25400 inch. This permits 
+dimensions to be represented exactly to a precision of 1/1000 mm (= 1 m) or 1/100 inch (= 254 m). If fractional inches are expressed in 
+
+negative powers of two, this permits dimensions to be represented exactly to a precision of 1/8 inch (= 3175 m) but not 1/16 inch (because 1/16 inch 
+
+does not equal an integral number of m). 
+
+IPP Compatibility: MediaPrintableArea is not an IPP attribute. 
+
+
+
+*int_javax.print.attribute.standard.MediaPrintableArea.INCH*
+
+Value to indicate units of inches (in). It is actually the conversion factor by which to multiply inches to yield m (25400). 
+
+
+*int_javax.print.attribute.standard.MediaPrintableArea.MM*
+
+Value to indicate units of millimeters (mm). It is actually the conversion factor by which to multiply mm to yield m (1000). 
+
+
+
+*javax.print.attribute.standard.MediaPrintableArea(float,float,float,float,int)*
+
+public MediaPrintableArea(
+  float x,
+  float y,
+  float w,
+  float h,
+  int units)
+
+Constructs a MediaPrintableArea object from floating point values. 
+
+    x - printable x 
+    y - printable y 
+    w - printable width 
+    h - printable height 
+    units - in which the values are expressed. 
+
+*javax.print.attribute.standard.MediaPrintableArea(int,int,int,int,int)*
+
+public MediaPrintableArea(
+  int x,
+  int y,
+  int w,
+  int h,
+  int units)
+
+Constructs a MediaPrintableArea object from integer values. 
+
+    x - printable x 
+    y - printable y 
+    w - printable width 
+    h - printable height 
+    units - in which the values are expressed. 
+
+*javax.print.attribute.standard.MediaPrintableArea.equals(Object)*
+
+public boolean equals(java.lang.Object object)
+
+Returns whether this media margins attribute is equivalent to the passed in object. To be equivalent, all of the following conditions must be true: 
+
+object is not null. 
+
+object is an instance of class MediaPrintableArea. 
+
+The origin and dimensions are the same. 
+
+
+    object - Object to compare to. 
+
+    Returns: True if object is equivalent to this media margins attribute, false otherwise. 
+
+*javax.print.attribute.standard.MediaPrintableArea.getCategory()*
+
+public final |java.lang.Class|<? extends javax.print.attribute.Attribute> getCategory()
+
+Get the printing attribute class which is to be used as the "category" for this printing attribute value. 
+
+For class MediaPrintableArea, the category is class MediaPrintableArea itself. 
+
+
+
+    Returns: Printing attribute class (category), an instance of class {@link java.lang.Class java.lang.Class}. 
+
+*javax.print.attribute.standard.MediaPrintableArea.getHeight(int)*
+
+public float getHeight(int units)
+
+Get the height of the printable area in the specified units. 
+
+
+    units - Unit conversion factor, e.g. {@link #INCH INCH} or {@link #MM MM}. 
+
+    Returns: height of the printable area in the specified units. 
+
+*javax.print.attribute.standard.MediaPrintableArea.getName()*
+
+public final |java.lang.String| getName()
+
+Get the name of the category of which this attribute value is an instance. 
+
+For class MediaPrintableArea, the category name is "media-printable-area". This is not an IPP V1.1 attribute. 
+
+
+
+    Returns: Attribute category name. 
+
+*javax.print.attribute.standard.MediaPrintableArea.getPrintableArea(int)*
+
+public float[] getPrintableArea(int units)
+
+Get the printable area as an array of 4 values in the order x, y, w, h. The values returned are in the given units. 
+
+
+    units - Unit conversion factor, e.g. {@link #INCH INCH} or {@link #MM MM}. 
+
+    Returns: printable area as array of x, y, w, h in the specified units. 
+
+*javax.print.attribute.standard.MediaPrintableArea.getWidth(int)*
+
+public float getWidth(int units)
+
+Get the width of the printable area in the specified units. 
+
+
+    units - Unit conversion factor, e.g. {@link #INCH INCH} or {@link #MM MM}. 
+
+    Returns: width of the printable area in the specified units. 
+
+*javax.print.attribute.standard.MediaPrintableArea.getX(int)*
+
+public float getX(int units)
+
+Get the x location of the origin of the printable area in the specified units. 
+
+
+    units - Unit conversion factor, e.g. {@link #INCH INCH} or {@link #MM MM}. 
+
+    Returns: x location of the origin of the printable area in the specified units. 
+
+*javax.print.attribute.standard.MediaPrintableArea.getY(int)*
+
+public float getY(int units)
+
+Get the y location of the origin of the printable area in the specified units. 
+
+
+    units - Unit conversion factor, e.g. {@link #INCH INCH} or {@link #MM MM}. 
+
+    Returns: y location of the origin of the printable area in the specified units. 
+
+*javax.print.attribute.standard.MediaPrintableArea.hashCode()*
+
+public int hashCode()
+
+Returns a hash code value for this attribute. 
+
+
+
+*javax.print.attribute.standard.MediaPrintableArea.toString()*
+
+public |java.lang.String| toString()
+
+Returns a string version of this rectangular size attribute in mm. 
+
+
+
+*javax.print.attribute.standard.MediaPrintableArea.toString(int,String)*
+
+public |java.lang.String| toString(
+  int units,
+  java.lang.String unitsName)
+
+Returns a string version of this rectangular size attribute in the given units. 
+
+
+    units - Unit conversion factor, e.g. {@link #INCH INCH} or {@link #MM MM}. 
+    unitsName - Units name string, e.g. "in" or "mm". If null, no units name is appended to the result. 
+
+    Returns: String version of this two-dimensional size attribute. 
+
+

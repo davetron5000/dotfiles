@@ -1,0 +1,34 @@
+*org.omg.CORBA.portable.RemarshalException* *RemarshalException* This class is u
+
+public final class RemarshalException
+  extends    |java.lang.Exception|
+
+|org.omg.CORBA.portable.RemarshalException_Description|
+|org.omg.CORBA.portable.RemarshalException_Fields|
+|org.omg.CORBA.portable.RemarshalException_Constructors|
+|org.omg.CORBA.portable.RemarshalException_Methods|
+
+================================================================================
+
+*org.omg.CORBA.portable.RemarshalException_Constructors*
+|org.omg.CORBA.portable.RemarshalException()|Constructs a RemarshalException.
+
+*org.omg.CORBA.portable.RemarshalException_Description*
+
+This class is used for reporting locate forward exceptions and object forward 
+GIOP messages back to the ORB. In this case the ORB must remarshal the request 
+before trying again. Stubs which use the stream-based model shall catch the 
+RemarshalException which is potentially thrown from the _invoke() method of 
+ObjectImpl. Upon catching the exception, the stub shall immediately remarshal 
+the request by calling _request(), marshalling the arguments (if any), and then 
+calling _invoke(). The stub shall repeat this process until _invoke() returns 
+normally or raises some exception other than RemarshalException. 
+
+
+*org.omg.CORBA.portable.RemarshalException()*
+
+public RemarshalException()
+
+Constructs a RemarshalException. 
+
+

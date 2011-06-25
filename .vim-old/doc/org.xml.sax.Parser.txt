@@ -1,0 +1,160 @@
+*org.xml.sax.Parser* *Parser* Basic interface for SAX (Simple API for XML) parse
+
+public interface interface Parser
+
+
+|org.xml.sax.Parser_Description|
+|org.xml.sax.Parser_Fields|
+|org.xml.sax.Parser_Constructors|
+|org.xml.sax.Parser_Methods|
+
+================================================================================
+
+*org.xml.sax.Parser_Methods*
+|org.xml.sax.Parser.parse(InputSource)|Parse an XML document.
+|org.xml.sax.Parser.parse(String)|Parse an XML document from a system identifie
+|org.xml.sax.Parser.setDocumentHandler(DocumentHandler)|Allow an application to
+|org.xml.sax.Parser.setDTDHandler(DTDHandler)|Allow an application to register 
+|org.xml.sax.Parser.setEntityResolver(EntityResolver)|Allow an application to r
+|org.xml.sax.Parser.setErrorHandler(ErrorHandler)|Allow an application to regis
+|org.xml.sax.Parser.setLocale(Locale)|Allow an application to request a locale 
+
+*org.xml.sax.Parser_Description*
+
+Basic interface for SAX (Simple API for XML) parsers. 
+
+This module, both source code and documentation, is in the Public Domain, and 
+comes with NO WARRANTY. See http://www.saxproject.org for further information. 
+
+This was the main event supplier interface for SAX1; it has been replaced in 
+SAX2 by XMLReader(|org.xml.sax.XMLReader|) , which includes Namespace support 
+and sophisticated configurability and extensibility. 
+
+All SAX1 parsers must implement this basic interface: it allows applications to 
+register handlers for different types of events and to initiate a parse from a 
+URI, or a character stream. 
+
+All SAX1 parsers must also implement a zero-argument constructor (though other 
+constructors are also allowed). 
+
+SAX1 parsers are reusable but not re-entrant: the application may reuse a 
+parser object (possibly with a different input source) once the first parse has 
+completed successfully, but it may not invoke the parse() methods recursively 
+within a parse. 
+
+
+*org.xml.sax.Parser.parse(InputSource)*
+
+public void parse(org.xml.sax.InputSource source)
+  throws |java.io.IOException|
+         |org.xml.sax.SAXException|
+         
+Parse an XML document. 
+
+The application can use this method to instruct the SAX parser to begin parsing 
+an XML document from any valid input source (a character stream, a byte stream, 
+or a URI). 
+
+Applications may not invoke this method while a parse is in progress (they 
+should create a new Parser instead for each additional XML document). Once a 
+parse is complete, an application may reuse the same Parser object, possibly 
+with a different input source. 
+
+    source - The input source for the top-level of the XML document. 
+
+*org.xml.sax.Parser.parse(String)*
+
+public void parse(java.lang.String systemId)
+  throws |java.io.IOException|
+         |org.xml.sax.SAXException|
+         
+Parse an XML document from a system identifier (URI). 
+
+This method is a shortcut for the common case of reading a document from a 
+system identifier. It is the exact equivalent of the following: 
+
+
+
+parse(new InputSource(systemId)); 
+
+If the system identifier is a URL, it must be fully resolved by the application 
+before it is passed to the parser. 
+
+    systemId - The system identifier (URI). 
+
+*org.xml.sax.Parser.setDocumentHandler(DocumentHandler)*
+
+public void setDocumentHandler(org.xml.sax.DocumentHandler handler)
+
+Allow an application to register a document event handler. 
+
+If the application does not register a document handler, all document events 
+reported by the SAX parser will be silently ignored (this is the default 
+behaviour implemented by HandlerBase). 
+
+Applications may register a new or different handler in the middle of a parse, 
+and the SAX parser must begin using the new handler immediately. 
+
+    handler - The document handler. 
+
+*org.xml.sax.Parser.setDTDHandler(DTDHandler)*
+
+public void setDTDHandler(org.xml.sax.DTDHandler handler)
+
+Allow an application to register a DTD event handler. 
+
+If the application does not register a DTD handler, all DTD events reported by 
+the SAX parser will be silently ignored (this is the default behaviour 
+implemented by HandlerBase). 
+
+Applications may register a new or different handler in the middle of a parse, 
+and the SAX parser must begin using the new handler immediately. 
+
+    handler - The DTD handler. 
+
+*org.xml.sax.Parser.setEntityResolver(EntityResolver)*
+
+public void setEntityResolver(org.xml.sax.EntityResolver resolver)
+
+Allow an application to register a custom entity resolver. 
+
+If the application does not register an entity resolver, the SAX parser will 
+resolve system identifiers and open connections to entities itself (this is the 
+default behaviour implemented in HandlerBase). 
+
+Applications may register a new or different entity resolver in the middle of a 
+parse, and the SAX parser must begin using the new resolver immediately. 
+
+    resolver - The object for resolving entities. 
+
+*org.xml.sax.Parser.setErrorHandler(ErrorHandler)*
+
+public void setErrorHandler(org.xml.sax.ErrorHandler handler)
+
+Allow an application to register an error event handler. 
+
+If the application does not register an error event handler, all error events 
+reported by the SAX parser will be silently ignored, except for fatalError, 
+which will throw a SAXException (this is the default behaviour implemented by 
+HandlerBase). 
+
+Applications may register a new or different handler in the middle of a parse, 
+and the SAX parser must begin using the new handler immediately. 
+
+    handler - The error handler. 
+
+*org.xml.sax.Parser.setLocale(Locale)*
+
+public void setLocale(java.util.Locale locale)
+  throws |org.xml.sax.SAXException|
+         
+Allow an application to request a locale for errors and warnings. 
+
+SAX parsers are not required to provide localisation for errors and warnings; 
+if they cannot support the requested locale, however, they must throw a SAX 
+exception. Applications may not request a locale change in the middle of a 
+parse. 
+
+    locale - A Java Locale object. 
+
+

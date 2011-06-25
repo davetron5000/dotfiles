@@ -1,0 +1,85 @@
+*javax.servlet.ServletException* *ServletException* Defines a general exception 
+
+public class ServletException
+  extends    |java.lang.Exception|
+
+|javax.servlet.ServletException_Description|
+|javax.servlet.ServletException_Fields|
+|javax.servlet.ServletException_Constructors|
+|javax.servlet.ServletException_Methods|
+
+================================================================================
+
+*javax.servlet.ServletException_Constructors*
+|javax.servlet.ServletException()|Constructs a new servlet exception.
+|javax.servlet.ServletException(String)|Constructs a new servlet exception with
+|javax.servlet.ServletException(String,Throwable)|Constructs a new servlet exce
+|javax.servlet.ServletException(Throwable)|Constructs a new servlet exception w
+
+*javax.servlet.ServletException_Methods*
+|javax.servlet.ServletException.getRootCause()|Returns the exception that cause
+
+*javax.servlet.ServletException_Description*
+
+Defines a general exception a servlet can throw when it encounters difficulty. 
+
+
+
+*javax.servlet.ServletException()*
+
+public ServletException()
+
+Constructs a new servlet exception. 
+
+
+*javax.servlet.ServletException(String)*
+
+public ServletException(java.lang.String message)
+
+Constructs a new servlet exception with the specified message. The message can 
+be written to the server log and/or displayed for the user. 
+
+    message - a String specifying the text of the exception message 
+
+*javax.servlet.ServletException(String,Throwable)*
+
+public ServletException(
+  java.lang.String message,
+  java.lang.Throwable rootCause)
+
+Constructs a new servlet exception when the servlet needs to throw an exception 
+and include a message about the "root cause" exception that interfered with its 
+normal operation, including a description message. 
+
+    message - a String containing the text of the exception message 
+    rootCause - the Throwable exception that interfered with the servlet's normal operation, 
+       making this servlet exception necessary 
+
+*javax.servlet.ServletException(Throwable)*
+
+public ServletException(java.lang.Throwable rootCause)
+
+Constructs a new servlet exception when the servlet needs to throw an exception 
+and include a message about the "root cause" exception that interfered with its 
+normal operation. The exception's message is based on the localized message of 
+the underlying exception. 
+
+This method calls the getLocalizedMessage method on the Throwable exception to 
+get a localized exception message. When subclassing ServletException, this 
+method can be overridden to create an exception message designed for a specific 
+locale. 
+
+    rootCause - the Throwable exception that interfered with the servlet's normal operation, 
+       making the servlet exception necessary 
+
+*javax.servlet.ServletException.getRootCause()*
+
+public |java.lang.Throwable| getRootCause()
+
+Returns the exception that caused this servlet exception. 
+
+
+
+    Returns: the Throwable that caused this servlet exception 
+
+

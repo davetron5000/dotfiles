@@ -1,0 +1,206 @@
+*javax.swing.text.Caret* *Caret* A place within a document view that represents where
+ things can be inserted into the document model.
+
+public interface interface Caret
+
+
+|javax.swing.text.Caret_Description|
+|javax.swing.text.Caret_Fields|
+|javax.swing.text.Caret_Constructors|
+|javax.swing.text.Caret_Methods|
+
+====================================================================================================================================================================================
+
+*javax.swing.text.Caret_Methods*
+|javax.swing.text.Caret.addChangeListener(ChangeListener)|Adds a listener to track whenever the caret position  has been changed.
+|javax.swing.text.Caret.deinstall(JTextComponent)|Called when the UI is being removed from the  interface of a JTextComponent.
+|javax.swing.text.Caret.getBlinkRate()|Gets the blink rate of the caret.
+|javax.swing.text.Caret.getDot()|Fetches the current position of the caret.
+|javax.swing.text.Caret.getMagicCaretPosition()|Gets the current caret visual location.
+|javax.swing.text.Caret.getMark()|Fetches the current position of the mark.
+|javax.swing.text.Caret.install(JTextComponent)|Called when the UI is being installed into the  interface of a JTextComponent.
+|javax.swing.text.Caret.isSelectionVisible()|Determines if the selection is currently visible.
+|javax.swing.text.Caret.isVisible()|Determines if the caret is currently visible.
+|javax.swing.text.Caret.moveDot(int)|Moves the caret position (dot) to some other position,  leaving behind the mark.
+|javax.swing.text.Caret.paint(Graphics)|Renders the caret.
+|javax.swing.text.Caret.removeChangeListener(ChangeListener)|Removes a listener that was tracking caret position changes.
+|javax.swing.text.Caret.setBlinkRate(int)|Sets the blink rate of the caret.
+|javax.swing.text.Caret.setDot(int)|Sets the caret position to some position.
+|javax.swing.text.Caret.setMagicCaretPosition(Point)|Set the current caret visual location.
+|javax.swing.text.Caret.setSelectionVisible(boolean)|Sets the visibility of the selection
+|javax.swing.text.Caret.setVisible(boolean)|Sets the visibility of the caret.
+
+*javax.swing.text.Caret_Description*
+
+A place within a document view that represents where things can be inserted into the document model. A caret has a position in the document referred to as a dot. The dot is where 
+the caret is currently located in the model. There is a second position maintained by the caret that represents the other end of a selection called mark. If there is no selection 
+the dot and mark will be equal. If a selection exists, the two values will be different. 
+
+The dot can be placed by either calling setDot or moveDot. Setting the dot has the effect of removing any selection that may have previously existed. The dot and mark will be 
+equal. Moving the dot has the effect of creating a selection as the mark is left at whatever position it previously had. 
+
+
+
+*javax.swing.text.Caret.addChangeListener(ChangeListener)*
+
+public void addChangeListener(javax.swing.event.ChangeListener l)
+
+Adds a listener to track whenever the caret position has been changed. 
+
+
+    l - the change listener 
+
+*javax.swing.text.Caret.deinstall(JTextComponent)*
+
+public void deinstall(javax.swing.text.JTextComponent c)
+
+Called when the UI is being removed from the interface of a JTextComponent. This is used to unregister any listeners that were attached. 
+
+
+    c - the JTextComponent 
+
+*javax.swing.text.Caret.getBlinkRate()*
+
+public int getBlinkRate()
+
+Gets the blink rate of the caret. This determines if and how fast the caret blinks, commonly used as one way to attract attention to the caret. 
+
+
+
+    Returns: the delay in milliseconds >= 0. If this is zero the caret will not blink. 
+
+*javax.swing.text.Caret.getDot()*
+
+public int getDot()
+
+Fetches the current position of the caret. 
+
+
+
+    Returns: the position >= 0 
+
+*javax.swing.text.Caret.getMagicCaretPosition()*
+
+public |java.awt.Point| getMagicCaretPosition()
+
+Gets the current caret visual location. 
+
+
+
+    Returns: the visual position. 
+
+*javax.swing.text.Caret.getMark()*
+
+public int getMark()
+
+Fetches the current position of the mark. If there is a selection, the mark will not be the same as the dot. 
+
+
+
+    Returns: the position >= 0 
+
+*javax.swing.text.Caret.install(JTextComponent)*
+
+public void install(javax.swing.text.JTextComponent c)
+
+Called when the UI is being installed into the interface of a JTextComponent. This can be used to gain access to the model that is being navigated by the implementation of this 
+interface. 
+
+
+    c - the JTextComponent 
+
+*javax.swing.text.Caret.isSelectionVisible()*
+
+public boolean isSelectionVisible()
+
+Determines if the selection is currently visible. 
+
+
+
+    Returns: true if the caret is visible else false 
+
+*javax.swing.text.Caret.isVisible()*
+
+public boolean isVisible()
+
+Determines if the caret is currently visible. 
+
+
+
+    Returns: true if the caret is visible else false 
+
+*javax.swing.text.Caret.moveDot(int)*
+
+public void moveDot(int dot)
+
+Moves the caret position (dot) to some other position, leaving behind the mark. This is useful for making selections. 
+
+
+    dot - the new position to move the caret to >= 0 
+
+*javax.swing.text.Caret.paint(Graphics)*
+
+public void paint(java.awt.Graphics g)
+
+Renders the caret. 
+
+
+    g - the graphics context 
+
+*javax.swing.text.Caret.removeChangeListener(ChangeListener)*
+
+public void removeChangeListener(javax.swing.event.ChangeListener l)
+
+Removes a listener that was tracking caret position changes. 
+
+
+    l - the change listener 
+
+*javax.swing.text.Caret.setBlinkRate(int)*
+
+public void setBlinkRate(int rate)
+
+Sets the blink rate of the caret. This determines if and how fast the caret blinks, commonly used as one way to attract attention to the caret. 
+
+
+    rate - the delay in milliseconds >= 0. If this is zero the caret will not blink. 
+
+*javax.swing.text.Caret.setDot(int)*
+
+public void setDot(int dot)
+
+Sets the caret position to some position. This causes the mark to become the same as the dot, effectively setting the selection range to zero. 
+
+
+    dot - the new position to set the caret to >= 0 
+
+*javax.swing.text.Caret.setMagicCaretPosition(Point)*
+
+public void setMagicCaretPosition(java.awt.Point p)
+
+Set the current caret visual location. This can be used when moving between lines that have uneven end positions (such as when caret up or down actions occur). If text flows 
+left-to-right or right-to-left the x-coordinate will indicate the desired navigation location for vertical movement. If the text flow is top-to-bottom, the y-coordinate will 
+indicate the desired navigation location for horizontal movement. 
+
+
+    p - the Point to use for the saved position. This can be null to indicate there is no visual location. 
+
+*javax.swing.text.Caret.setSelectionVisible(boolean)*
+
+public void setSelectionVisible(boolean v)
+
+Sets the visibility of the selection 
+
+
+    v - true if the caret should be shown, and false if the caret should be hidden 
+
+*javax.swing.text.Caret.setVisible(boolean)*
+
+public void setVisible(boolean v)
+
+Sets the visibility of the caret. 
+
+
+    v - true if the caret should be shown, and false if the caret should be hidden 
+
+

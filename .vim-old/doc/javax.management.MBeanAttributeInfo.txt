@@ -1,0 +1,136 @@
+*javax.management.MBeanAttributeInfo* *MBeanAttributeInfo* Describes an MBean at
+
+public class MBeanAttributeInfo
+  extends    |javax.management.MBeanFeatureInfo|
+  implements |java.io.Serializable|
+             |java.lang.Cloneable|
+
+|javax.management.MBeanAttributeInfo_Description|
+|javax.management.MBeanAttributeInfo_Fields|
+|javax.management.MBeanAttributeInfo_Constructors|
+|javax.management.MBeanAttributeInfo_Methods|
+
+================================================================================
+
+*javax.management.MBeanAttributeInfo_Constructors*
+|javax.management.MBeanAttributeInfo(String,String,Method,Method)|This construc
+|javax.management.MBeanAttributeInfo(String,String,String,boolean,boolean,boolean)|
+
+*javax.management.MBeanAttributeInfo_Methods*
+|javax.management.MBeanAttributeInfo.clone()|Returns a shallow clone of this in
+|javax.management.MBeanAttributeInfo.equals(Object)|Compare this MBeanAttribute
+|javax.management.MBeanAttributeInfo.getType()|Returns the class name of the at
+|javax.management.MBeanAttributeInfo.hashCode()|
+|javax.management.MBeanAttributeInfo.isIs()|Indicates if this attribute has an 
+|javax.management.MBeanAttributeInfo.isReadable()|Whether the value of the attr
+|javax.management.MBeanAttributeInfo.isWritable()|Whether new values can be wri
+
+*javax.management.MBeanAttributeInfo_Description*
+
+Describes an MBean attribute exposed for management. Instances of this class 
+are immutable. Subclasses may be mutable but this is not recommended. 
+
+
+*javax.management.MBeanAttributeInfo(String,String,Method,Method)*
+
+public MBeanAttributeInfo(
+  java.lang.String name,
+  java.lang.String description,
+  java.lang.reflect.Method getter,
+  java.lang.reflect.Method setter)
+  throws |javax.management.IntrospectionException|
+         
+This constructor takes the name of a simple attribute, and Method objects for 
+reading and writing the attribute. 
+
+    name - The programmatic name of the attribute. 
+    description - A human readable description of the attribute. 
+    getter - The method used for reading the attribute value. May be null if the property is 
+       write-only. 
+    setter - The method used for writing the attribute value. May be null if the attribute 
+       is read-only. 
+
+*javax.management.MBeanAttributeInfo(String,String,String,boolean,boolean,boolean)*
+
+public MBeanAttributeInfo(
+  java.lang.String name,
+  java.lang.String type,
+  java.lang.String description,
+  boolean isReadable,
+  boolean isWritable,
+  boolean isIs)
+  throws |java.lang.IllegalArgumentException|
+         
+Constructs an MBeanAttributeInfo object. 
+
+    name - The name of the attribute. 
+    type - The type or class name of the attribute. 
+    description - A human readable description of the attribute. 
+    isReadable - True if the attribute has a getter method, false otherwise. 
+    isWritable - True if the attribute has a setter method, false otherwise. 
+    isIs - True if this attribute has an "is" getter, false otherwise. 
+
+*javax.management.MBeanAttributeInfo.clone()*
+
+public |java.lang.Object| clone()
+
+Returns a shallow clone of this instance. The clone is obtained by simply 
+calling super.clone(), thus calling the default native shallow cloning 
+mechanism implemented by Object.clone(). No deeper cloning of any internal 
+field is made. 
+
+Since this class is immutable, cloning is chiefly of interest to subclasses. 
+
+
+*javax.management.MBeanAttributeInfo.equals(Object)*
+
+public boolean equals(java.lang.Object o)
+
+Compare this MBeanAttributeInfo to another. 
+
+    o - the object to compare to. 
+
+    Returns: true iff o is an MBeanAttributeInfo such that its {@link #getName()}, {@link 
+             #getType()}, {@link #getDescription()}, {@link #isReadable()}, 
+             {@link #isWritable()}, and {@link #isIs()} values are equal (not 
+             necessarily identical) to those of this MBeanAttributeInfo. 
+*javax.management.MBeanAttributeInfo.getType()*
+
+public |java.lang.String| getType()
+
+Returns the class name of the attribute. 
+
+
+    Returns: the class name. 
+*javax.management.MBeanAttributeInfo.hashCode()*
+
+public int hashCode()
+
+
+
+
+*javax.management.MBeanAttributeInfo.isIs()*
+
+public boolean isIs()
+
+Indicates if this attribute has an "is" getter. 
+
+
+    Returns: true if this attribute has an "is" getter. 
+*javax.management.MBeanAttributeInfo.isReadable()*
+
+public boolean isReadable()
+
+Whether the value of the attribute can be read. 
+
+
+    Returns: True if the attribute can be read, false otherwise. 
+*javax.management.MBeanAttributeInfo.isWritable()*
+
+public boolean isWritable()
+
+Whether new values can be written to the attribute. 
+
+
+    Returns: True if the attribute can be written to, false otherwise. 
+

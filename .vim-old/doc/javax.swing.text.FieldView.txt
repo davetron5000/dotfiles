@@ -1,0 +1,163 @@
+*javax.swing.text.FieldView* *FieldView* Extends the multi-line plain text view to be suitable
+ for a single-line editor view.
+
+public class FieldView
+  extends    |javax.swing.text.PlainView|
+
+|javax.swing.text.FieldView_Description|
+|javax.swing.text.FieldView_Fields|
+|javax.swing.text.FieldView_Constructors|
+|javax.swing.text.FieldView_Methods|
+
+====================================================================================================================================================================================
+
+*javax.swing.text.FieldView_Constructors*
+|javax.swing.text.FieldView(Element)|Constructs a new FieldView wrapped on an element.
+
+*javax.swing.text.FieldView_Methods*
+|javax.swing.text.FieldView.adjustAllocation(Shape)|Adjusts the allocation given to the view  to be a suitable allocation for a text field.
+|javax.swing.text.FieldView.getFontMetrics()|Fetches the font metrics associated with the component hosting  this view.
+|javax.swing.text.FieldView.getPreferredSpan(int)|Determines the preferred span for this view along an  axis.
+|javax.swing.text.FieldView.getResizeWeight(int)|Determines the resizability of the view along the  given axis.
+|javax.swing.text.FieldView.insertUpdate(DocumentEvent,Shape,ViewFactory)|Gives notification that something was inserted into the document  in a location that this view is respons
+|javax.swing.text.FieldView.modelToView(int,Shape,Position.Bias)|Provides a mapping from the document model coordinate space  to the coordinate space of the view mapped to it.
+|javax.swing.text.FieldView.paint(Graphics,Shape)|Renders using the given rendering surface and area on that surface.
+|javax.swing.text.FieldView.removeUpdate(DocumentEvent,Shape,ViewFactory)|Gives notification that something was removed from the document  in a location that this view is responsi
+|javax.swing.text.FieldView.viewToModel(float,float,Shape,Position.Bias[])|Provides a mapping from the view coordinate space to the logical  coordinate space of the model.
+
+*javax.swing.text.FieldView_Description*
+
+Extends the multi-line plain text view to be suitable for a single-line editor view. If the view is allocated extra space, the field must adjust for it. If the hosting component 
+is a JTextField, this view will manage the ranges of the associated BoundedRangeModel and will adjust the horizontal allocation to match the current visibility settings of the 
+JTextField. 
+
+
+
+*javax.swing.text.FieldView(Element)*
+
+public FieldView(javax.swing.text.Element elem)
+
+Constructs a new FieldView wrapped on an element. 
+
+    elem - the element 
+
+*javax.swing.text.FieldView.adjustAllocation(Shape)*
+
+protected |java.awt.Shape| adjustAllocation(java.awt.Shape a)
+
+Adjusts the allocation given to the view to be a suitable allocation for a text field. If the view has been allocated more than the preferred span vertically, the allocation is 
+changed to be centered vertically. Horizontally the view is adjusted according to the horizontal alignment property set on the associated JTextField (if that is the type of the 
+hosting component). 
+
+
+    a - the allocation given to the view, which may need to be adjusted. 
+
+    Returns: the allocation that the superclass should use. 
+
+*javax.swing.text.FieldView.getFontMetrics()*
+
+protected |java.awt.FontMetrics| getFontMetrics()
+
+Fetches the font metrics associated with the component hosting this view. 
+
+
+
+    Returns: 
+
+*javax.swing.text.FieldView.getPreferredSpan(int)*
+
+public float getPreferredSpan(int axis)
+
+Determines the preferred span for this view along an axis. 
+
+
+    axis - may be either View.X_AXIS or View.Y_AXIS 
+
+    Returns: the span the view would like to be rendered into >= 0. Typically the view is told to render into the span that is returned, although there is no guarantee. The parent may choose 
+             to resize or break the view. 
+
+*javax.swing.text.FieldView.getResizeWeight(int)*
+
+public int getResizeWeight(int axis)
+
+Determines the resizability of the view along the given axis. A value of 0 or less is not resizable. 
+
+
+    axis - View.X_AXIS or View.Y_AXIS 
+
+    Returns: the weight -> 1 for View.X_AXIS, else 0 
+
+*javax.swing.text.FieldView.insertUpdate(DocumentEvent,Shape,ViewFactory)*
+
+public void insertUpdate(
+  javax.swing.event.DocumentEvent changes,
+  java.awt.Shape a,
+  javax.swing.text.ViewFactory f)
+
+Gives notification that something was inserted into the document in a location that this view is responsible for. 
+
+
+    changes - the change information from the associated document 
+    a - the current allocation of the view 
+    f - the factory to use to rebuild if the view has children 
+
+*javax.swing.text.FieldView.modelToView(int,Shape,Position.Bias)*
+
+public |java.awt.Shape| modelToView(
+  int pos,
+  java.awt.Shape a,
+  javax.swing.text.Position.Bias b)
+  throws |javax.swing.text.BadLocationException|
+         
+Provides a mapping from the document model coordinate space to the coordinate space of the view mapped to it. 
+
+
+    pos - the position to convert >= 0 
+    a - the allocated region to render into 
+
+    Returns: the bounding box of the given position 
+
+*javax.swing.text.FieldView.paint(Graphics,Shape)*
+
+public void paint(
+  java.awt.Graphics g,
+  java.awt.Shape a)
+
+Renders using the given rendering surface and area on that surface. The view may need to do layout and create child views to enable itself to render into the given allocation. 
+
+
+    g - the rendering surface to use 
+    a - the allocated region to render into 
+
+*javax.swing.text.FieldView.removeUpdate(DocumentEvent,Shape,ViewFactory)*
+
+public void removeUpdate(
+  javax.swing.event.DocumentEvent changes,
+  java.awt.Shape a,
+  javax.swing.text.ViewFactory f)
+
+Gives notification that something was removed from the document in a location that this view is responsible for. 
+
+
+    changes - the change information from the associated document 
+    a - the current allocation of the view 
+    f - the factory to use to rebuild if the view has children 
+
+*javax.swing.text.FieldView.viewToModel(float,float,Shape,Position.Bias[])*
+
+public int viewToModel(
+  float fx,
+  float fy,
+  java.awt.Shape a,
+  javax.swing.text.Position.Bias[] bias)
+
+Provides a mapping from the view coordinate space to the logical coordinate space of the model. 
+
+
+    fx - the X coordinate >= 0.0f 
+    fy - the Y coordinate >= 0.0f 
+    a - the allocated region to render into 
+
+    Returns: the location within the model that best represents the given point in the view 
+
+

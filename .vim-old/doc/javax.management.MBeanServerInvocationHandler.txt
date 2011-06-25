@@ -1,0 +1,140 @@
+*javax.management.MBeanServerInvocationHandler* *MBeanServerInvocationHandler* I
+
+public class MBeanServerInvocationHandler
+  extends    |java.lang.Object|
+  implements |java.lang.reflect.InvocationHandler|
+
+|javax.management.MBeanServerInvocationHandler_Description|
+|javax.management.MBeanServerInvocationHandler_Fields|
+|javax.management.MBeanServerInvocationHandler_Constructors|
+|javax.management.MBeanServerInvocationHandler_Methods|
+
+================================================================================
+
+*javax.management.MBeanServerInvocationHandler_Constructors*
+|javax.management.MBeanServerInvocationHandler(MBeanServerConnection,ObjectName)|
+
+*javax.management.MBeanServerInvocationHandler_Methods*
+|javax.management.MBeanServerInvocationHandler.invoke(Object,Method,Object[])|
+|javax.management.MBeanServerInvocationHandler.newProxyInstance(MBeanServerConnection,ObjectName,Class,boolean)|
+
+*javax.management.MBeanServerInvocationHandler_Description*
+
+(|java.lang.reflect.InvocationHandler|) that forwards methods in an MBean's 
+management interface through the MBean server to the MBean. 
+
+Given an (|javax.management.MBeanServerConnection|) , the 
+(|javax.management.ObjectName|) of an MBean within that MBean server, and a 
+Java interface Intf that describes the management interface of the MBean using 
+the patterns for a Standard MBean, this class can be used to construct a proxy 
+for the MBean. The proxy implements the interface Intf such that all of its 
+methods are forwarded through the MBean server to the MBean. 
+
+If you have an MBean server mbs containing an MBean with 
+(|javax.management.ObjectName|) name, and if the MBean's management interface 
+is described by the Java interface Intf, you can construct a proxy for the 
+MBean like this: 
+
+
+
+Intf proxy = (Intf) MBeanServerInvocationHandler. 
+newProxyInstance(|javax.management.MBeanServerInvocationHandler|) (mbs, name, 
+Intf.class, false); 
+
+Suppose, for example, Intf looks like this: 
+
+
+
+public interface Intf { public String getSomeAttribute(); public void 
+setSomeAttribute(String value); public void someOperation(String param1, int 
+param2); } 
+
+Then you can execute: 
+
+
+
+proxy.getSomeAttribute() which will result in a call to mbs. 
+getAttribute(|javax.management.MBeanServerConnection|) (name, "SomeAttribute"). 
+
+proxy.setSomeAttribute("whatever") which will result in a call to mbs. 
+setAttribute(|javax.management.MBeanServerConnection|) (name, new 
+Attribute("SomeAttribute", "whatever")). 
+
+proxy.someOperation("param1", 2) which will be translated into a call to mbs. 
+invoke(|javax.management.MBeanServerConnection|) (name, "someOperation", 
+<etc>). 
+
+
+
+If the last parameter to 
+newProxyInstance(|javax.management.MBeanServerInvocationHandler|) is true, then 
+the MBean is assumed to be a (|javax.management.NotificationBroadcaster|) or 
+(|javax.management.NotificationEmitter|) and the returned proxy will implement 
+(|javax.management.NotificationEmitter|) . A call to 
+(|javax.management.NotificationBroadcaster|) on the proxy will result in a call 
+to (|javax.management.MBeanServerConnection|) , and likewise for the other 
+methods of (|javax.management.NotificationBroadcaster|) and 
+(|javax.management.NotificationEmitter|) . 
+
+The methods (|java.lang.Object|) , (|java.lang.Object|) , and 
+(|java.lang.Object|) , when invoked on a proxy using this invocation handler, 
+are forwarded to the MBean server as methods on the proxied MBean. This will 
+only work if the MBean declares those methods in its management interface. 
+
+
+*javax.management.MBeanServerInvocationHandler(MBeanServerConnection,ObjectName)*
+
+public MBeanServerInvocationHandler(
+  javax.management.MBeanServerConnection connection,
+  javax.management.ObjectName objectName)
+
+Invocation handler that forwards methods through an MBean server. This 
+constructor may be called instead of relying on 
+(|javax.management.MBeanServerInvocationHandler|) , for instance if you need to 
+supply a different (|java.lang.ClassLoader|) to 
+Proxy.newProxyInstance(|java.lang.reflect.Proxy|) . 
+
+    connection - the MBean server connection through which all methods of a proxy using this 
+       handler will be forwarded. 
+    objectName - the name of the MBean within the MBean server to which methods will be 
+       forwarded. 
+
+*javax.management.MBeanServerInvocationHandler.invoke(Object,Method,Object[])*
+
+public |java.lang.Object| invoke(
+  java.lang.Object proxy,
+  java.lang.reflect.Method method,
+  java.lang.Object[] args)
+  throws |java.lang.Throwable|
+         
+
+
+
+*javax.management.MBeanServerInvocationHandler.newProxyInstance(MBeanServerConnection,ObjectName,Class,boolean)*
+
+public static |java.lang.Object| newProxyInstance(
+  javax.management.MBeanServerConnection connection,
+  javax.management.ObjectName objectName,
+  java.lang.Class interfaceClass,
+  boolean notificationBroadcaster)
+
+Return a proxy that implements the given interface by forwarding its methods 
+through the given MBean server to the named MBean. 
+
+This method is equivalent to Proxy.newProxyInstance(|java.lang.reflect.Proxy|) 
+(interfaceClass.getClassLoader(), interfaces, handler). Here handler is the 
+result of new MBeanServerInvocationHandler(connection, 
+objectName)(|javax.management.MBeanServerInvocationHandler|) , and interfaces 
+is an array that has one element if notificationBroadcaster is false and two if 
+it is true. The first element of interfaces is interfaceClass and the second, 
+if present, is NotificationEmitter.class. 
+
+    connection - the MBean server to forward to. 
+    objectName - the name of the MBean within connection to forward to. 
+    interfaceClass - the management interface that the MBean exports, which will also be implemented 
+       by the returned proxy. 
+    notificationBroadcaster - make the returned proxy implement {@link NotificationEmitter} by forwarding its 
+       methods via connection. 
+
+    Returns: the new proxy instance. 
+

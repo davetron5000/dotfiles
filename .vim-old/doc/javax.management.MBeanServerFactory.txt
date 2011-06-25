@@ -1,0 +1,167 @@
+*javax.management.MBeanServerFactory* *MBeanServerFactory* Provides MBean server
+
+public class MBeanServerFactory
+  extends    |java.lang.Object|
+
+|javax.management.MBeanServerFactory_Description|
+|javax.management.MBeanServerFactory_Fields|
+|javax.management.MBeanServerFactory_Constructors|
+|javax.management.MBeanServerFactory_Methods|
+
+================================================================================
+
+*javax.management.MBeanServerFactory_Methods*
+|javax.management.MBeanServerFactory.createMBeanServer()|Return a new object im
+|javax.management.MBeanServerFactory.createMBeanServer(String)|Return a new obj
+|javax.management.MBeanServerFactory.findMBeanServer(String)|Return a list of r
+|javax.management.MBeanServerFactory.getClassLoaderRepository(MBeanServer)|Retu
+|javax.management.MBeanServerFactory.newMBeanServer()|Return a new object imple
+|javax.management.MBeanServerFactory.newMBeanServer(String)|Return a new object
+|javax.management.MBeanServerFactory.releaseMBeanServer(MBeanServer)|Remove int
+
+*javax.management.MBeanServerFactory_Description*
+
+Provides MBean server references. There are no instances of this class. 
+
+Since JMX 1.2 this class makes it possible to replace the default MBeanServer 
+implementation. This is done using the (|javax.management.MBeanServerBuilder|) 
+class. The class of the initial MBeanServerBuilder to be instantiated can be 
+specified through the javax.management.builder.initial system property. The 
+specified class must be a public subclass of 
+(|javax.management.MBeanServerBuilder|) , and must have a public empty 
+constructor. By default, if no value for that property is specified, an 
+instance of 
+javax.management.MBeanServerBuilder(|javax.management.MBeanServerBuilder|) is 
+created. Otherwise, the MBeanServerFactory attempts to load the specified class 
+using Thread.currentThread().getContextClassLoader()(|java.lang.Thread|) , or 
+if that is null, Class.forName()(|java.lang.Class|) . Then it creates an 
+initial instance of that Class using (|java.lang.Class|) . If any checked 
+exception is raised during this process (e.g. 
+(|java.lang.ClassNotFoundException|) , (|java.lang.InstantiationException|) ) 
+the MBeanServerFactory will propagate this exception from within a 
+RuntimeException. 
+
+The javax.management.builder.initial system property is consulted every time a 
+new MBeanServer needs to be created, and the class pointed to by that property 
+is loaded. If that class is different from that of the current 
+MBeanServerBuilder, then a new MBeanServerBuilder is created. Otherwise, the 
+MBeanServerFactory may create a new MBeanServerBuilder or reuse the current 
+one. 
+
+If the class pointed to by the property cannot be loaded, or does not 
+correspond to a valid subclass of MBeanServerBuilder then an exception is 
+propagated, and no MBeanServer can be created until the 
+javax.management.builder.initial system property is reset to valid value. 
+
+The MBeanServerBuilder makes it possible to wrap the MBeanServers returned by 
+the default MBeanServerBuilder implementation, for the purpose of e.g. adding 
+an additional security layer. 
+
+
+*javax.management.MBeanServerFactory.createMBeanServer()*
+
+public static |javax.management.MBeanServer| createMBeanServer()
+
+Return a new object implementing the MBeanServer interface with a standard 
+default domain name. The default domain name is used as the domain part in the 
+ObjectName of MBeans when the domain is specified by the user is null. 
+
+The standard default domain name is DefaultDomain. 
+
+The MBeanServer reference is internally kept. This will allow findMBeanServer 
+to return a reference to this MBeanServer object. 
+
+This method is equivalent to createMBeanServer(null). 
+
+
+    Returns: the newly created MBeanServer. 
+*javax.management.MBeanServerFactory.createMBeanServer(String)*
+
+public static |javax.management.MBeanServer| createMBeanServer(java.lang.String domain)
+
+Return a new object implementing the (|javax.management.MBeanServer|) interface 
+with the specified default domain name. The given domain name is used as the 
+domain part in the ObjectName of MBeans when the domain is specified by the 
+user is null. 
+
+The MBeanServer reference is internally kept. This will allow findMBeanServer 
+to return a reference to this MBeanServer object. 
+
+    domain - the default domain name for the created MBeanServer. This is the value that 
+       will be returned by {@link MBeanServer#getDefaultDomain}. 
+
+    Returns: the newly created MBeanServer. 
+*javax.management.MBeanServerFactory.findMBeanServer(String)*
+
+public static synchronized |java.util.ArrayList| findMBeanServer(java.lang.String agentId)
+
+Return a list of registered MBeanServer objects. A registered MBeanServer 
+object is one that was created by one of the createMBeanServer methods and not 
+subsequently released with releaseMBeanServer. 
+
+    agentId - The agent identifier of the MBeanServer to retrieve. If this parameter is null, 
+       all registered MBeanServers in this JVM are returned. Otherwise, only 
+       MBeanServers whose id is equal to agentId are returned. The id of an 
+       MBeanServer is the MBeanServerId attribute of its delegate MBean. 
+
+    Returns: A list of MBeanServer objects. 
+*javax.management.MBeanServerFactory.getClassLoaderRepository(MBeanServer)*
+
+public static |javax.management.loading.ClassLoaderRepository| getClassLoaderRepository(javax.management.MBeanServer server)
+
+Return the ClassLoaderRepository used by the given MBeanServer. This method is 
+equivalent to server.getClassLoaderRepository()(|javax.management.MBeanServer|) 
+. 
+
+    server - The MBeanServer under examination. Since JMX 1.2, if server is null, the result 
+       is a {@link NullPointerException}. This behavior differs from what was 
+       implemented in JMX 1.1 - where the possibility to use null was 
+       deprecated. 
+
+    Returns: The Class Loader Repository used by the given MBeanServer. 
+*javax.management.MBeanServerFactory.newMBeanServer()*
+
+public static |javax.management.MBeanServer| newMBeanServer()
+
+Return a new object implementing the MBeanServer interface with a standard 
+default domain name, without keeping an internal reference to this new object. 
+The default domain name is used as the domain part in the ObjectName of MBeans 
+when the domain is specified by the user is null. 
+
+The standard default domain name is DefaultDomain. 
+
+No reference is kept. findMBeanServer will not be able to return a reference to 
+this MBeanServer object, but the garbage collector will be able to remove the 
+MBeanServer object when it is no longer referenced. 
+
+This method is equivalent to newMBeanServer(null). 
+
+
+    Returns: the newly created MBeanServer. 
+*javax.management.MBeanServerFactory.newMBeanServer(String)*
+
+public static |javax.management.MBeanServer| newMBeanServer(java.lang.String domain)
+
+Return a new object implementing the MBeanServer interface with the specified 
+default domain name, without keeping an internal reference to this new object. 
+The given domain name is used as the domain part in the ObjectName of MBeans 
+when the domain is specified by the user is null. 
+
+No reference is kept. findMBeanServer will not be able to return a reference to 
+this MBeanServer object, but the garbage collector will be able to remove the 
+MBeanServer object when it is no longer referenced. 
+
+    domain - the default domain name for the created MBeanServer. This is the value that 
+       will be returned by {@link MBeanServer#getDefaultDomain}. 
+
+    Returns: the newly created MBeanServer. 
+*javax.management.MBeanServerFactory.releaseMBeanServer(MBeanServer)*
+
+public static void releaseMBeanServer(javax.management.MBeanServer mbeanServer)
+
+Remove internal MBeanServerFactory references to a created MBeanServer. This 
+allows the garbage collector to remove the MBeanServer object. 
+
+    mbeanServer - the MBeanServer object to remove. 
+
+

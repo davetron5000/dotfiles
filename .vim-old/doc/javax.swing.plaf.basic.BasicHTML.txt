@@ -1,0 +1,83 @@
+*javax.swing.plaf.basic.BasicHTML* *BasicHTML* Support for providing html views for the swing components.
+
+public class BasicHTML
+  extends    |java.lang.Object|
+
+|javax.swing.plaf.basic.BasicHTML_Description|
+|javax.swing.plaf.basic.BasicHTML_Fields|
+|javax.swing.plaf.basic.BasicHTML_Constructors|
+|javax.swing.plaf.basic.BasicHTML_Methods|
+
+====================================================================================================================================================================================
+
+*javax.swing.plaf.basic.BasicHTML_Fields*
+|java.lang.String_javax.swing.plaf.basic.BasicHTML.documentBaseKey|
+|java.lang.String_javax.swing.plaf.basic.BasicHTML.propertyKey|
+
+*javax.swing.plaf.basic.BasicHTML_Constructors*
+|javax.swing.plaf.basic.BasicHTML()|
+
+*javax.swing.plaf.basic.BasicHTML_Methods*
+|javax.swing.plaf.basic.BasicHTML.createHTMLView(JComponent,String)|Create an html renderer for the given component and  string of html.
+|javax.swing.plaf.basic.BasicHTML.isHTMLString(String)|Check the given string to see if it should trigger the  html rendering logic in a non-text component that supports   html re
+|javax.swing.plaf.basic.BasicHTML.updateRenderer(JComponent,String)|Stash the HTML render for the given text into the client  properties of the given JComponent.
+
+*javax.swing.plaf.basic.BasicHTML_Description*
+
+Support for providing html views for the swing components. This translates a simple html string to a javax.swing.text.View implementation that can render the html and provide the 
+necessary layout semantics. 
+
+
+
+*java.lang.String_javax.swing.plaf.basic.BasicHTML.documentBaseKey*
+
+Key stored as a client property to indicate the base that relative references are resolved against. For example, lets say you keep your images in the directory resources relative 
+to the code path, you would use the following the set the base: 
+
+jComponent.putClientProperty(documentBaseKey, xxx.class.getResource("resources/")); 
+
+
+*java.lang.String_javax.swing.plaf.basic.BasicHTML.propertyKey*
+
+Key to use for the html renderer when stored as a client property of a JComponent. 
+
+
+
+*javax.swing.plaf.basic.BasicHTML()*
+
+public BasicHTML()
+
+
+
+
+*javax.swing.plaf.basic.BasicHTML.createHTMLView(JComponent,String)*
+
+public static |javax.swing.text.View| createHTMLView(
+  javax.swing.JComponent c,
+  java.lang.String html)
+
+Create an html renderer for the given component and string of html. 
+
+
+
+*javax.swing.plaf.basic.BasicHTML.isHTMLString(String)*
+
+public static boolean isHTMLString(java.lang.String s)
+
+Check the given string to see if it should trigger the html rendering logic in a non-text component that supports html rendering. 
+
+
+
+*javax.swing.plaf.basic.BasicHTML.updateRenderer(JComponent,String)*
+
+public static void updateRenderer(
+  javax.swing.JComponent c,
+  java.lang.String text)
+
+Stash the HTML render for the given text into the client properties of the given JComponent. If the given text is NOT HTML the property will be cleared of any renderer. 
+
+This method is useful for ComponentUI implementations that are static (i.e. shared) and get their state entirely from the JComponent. 
+
+
+
+

@@ -1,0 +1,313 @@
+*javax.swing.text.PlainView* *PlainView* Implements View interface for a simple multi-line text view 
+ that has text in one font and color.
+
+public class PlainView
+  extends    |javax.swing.text.View|
+  implements |javax.swing.text.TabExpander|
+
+|javax.swing.text.PlainView_Description|
+|javax.swing.text.PlainView_Fields|
+|javax.swing.text.PlainView_Constructors|
+|javax.swing.text.PlainView_Methods|
+
+====================================================================================================================================================================================
+
+*javax.swing.text.PlainView_Fields*
+|java.awt.FontMetrics_javax.swing.text.PlainView.metrics|
+
+*javax.swing.text.PlainView_Constructors*
+|javax.swing.text.PlainView(Element)|Constructs a new PlainView wrapped on an element.
+
+*javax.swing.text.PlainView_Methods*
+|javax.swing.text.PlainView.changedUpdate(DocumentEvent,Shape,ViewFactory)|Gives notification from the document that attributes were changed  in a location that this view is respo
+|javax.swing.text.PlainView.damageLineRange(int,int,Shape,Component)|Repaint the given line range.
+|javax.swing.text.PlainView.drawLine(int,Graphics,int,int)|Renders a line of text, suppressing whitespace at the end  and expanding any tabs.
+|javax.swing.text.PlainView.drawSelectedText(Graphics,int,int,int,int)|Renders the given range in the model as selected text.
+|javax.swing.text.PlainView.drawUnselectedText(Graphics,int,int,int,int)|Renders the given range in the model as normal unselected  text.
+|javax.swing.text.PlainView.getLineBuffer()|Gives access to a buffer that can be used to fetch   text from the associated document.
+|javax.swing.text.PlainView.getPreferredSpan(int)|Determines the preferred span for this view along an  axis.
+|javax.swing.text.PlainView.getTabSize()|Returns the tab size set for the document, defaulting to 8.
+|javax.swing.text.PlainView.insertUpdate(DocumentEvent,Shape,ViewFactory)|Gives notification that something was inserted into the document  in a location that this view is respons
+|javax.swing.text.PlainView.lineToRect(Shape,int)|Determine the rectangle that represents the given line.
+|javax.swing.text.PlainView.modelToView(int,Shape,Position.Bias)|Provides a mapping from the document model coordinate space  to the coordinate space of the view mapped to it.
+|javax.swing.text.PlainView.nextTabStop(float,int)|Returns the next tab stop position after a given reference position.
+|javax.swing.text.PlainView.paint(Graphics,Shape)|Renders using the given rendering surface and area on that surface.
+|javax.swing.text.PlainView.removeUpdate(DocumentEvent,Shape,ViewFactory)|Gives notification that something was removed from the document  in a location that this view is responsi
+|javax.swing.text.PlainView.setSize(float,float)|Sets the size of the view.
+|javax.swing.text.PlainView.updateDamage(DocumentEvent,Shape,ViewFactory)|
+|javax.swing.text.PlainView.updateMetrics()|Checks to see if the font metrics and longest line  are up-to-date.
+|javax.swing.text.PlainView.viewToModel(float,float,Shape,Position.Bias[])|Provides a mapping from the view coordinate space to the logical  coordinate space of the model.
+
+*javax.swing.text.PlainView_Description*
+
+Implements View interface for a simple multi-line text view that has text in one font and color. The view represents each child element as a line of text. 
+
+
+
+*java.awt.FontMetrics_javax.swing.text.PlainView.metrics*
+
+Font metrics for the current font. 
+
+
+
+*javax.swing.text.PlainView(Element)*
+
+public PlainView(javax.swing.text.Element elem)
+
+Constructs a new PlainView wrapped on an element. 
+
+    elem - the element 
+
+*javax.swing.text.PlainView.changedUpdate(DocumentEvent,Shape,ViewFactory)*
+
+public void changedUpdate(
+  javax.swing.event.DocumentEvent changes,
+  java.awt.Shape a,
+  javax.swing.text.ViewFactory f)
+
+Gives notification from the document that attributes were changed in a location that this view is responsible for. 
+
+
+    changes - the change information from the associated document 
+    a - the current allocation of the view 
+    f - the factory to use to rebuild if the view has children 
+
+*javax.swing.text.PlainView.damageLineRange(int,int,Shape,Component)*
+
+protected void damageLineRange(
+  int line0,
+  int line1,
+  java.awt.Shape a,
+  java.awt.Component host)
+
+Repaint the given line range. 
+
+
+    host - the component hosting the view (used to call repaint) 
+    a - the region allocated for the view to render into 
+    line0 - the starting line number to repaint. This must be a valid line number in the model. 
+    line1 - the ending line number to repaint. This must be a valid line number in the model. 
+
+*javax.swing.text.PlainView.drawLine(int,Graphics,int,int)*
+
+protected void drawLine(
+  int lineIndex,
+  java.awt.Graphics g,
+  int x,
+  int y)
+
+Renders a line of text, suppressing whitespace at the end and expanding any tabs. This is implemented to make calls to the methods drawUnselectedText and drawSelectedText so that 
+the way selected and unselected text are rendered can be customized. 
+
+
+    lineIndex - the line to draw >= 0 
+    g - the Graphics context 
+    x - the starting X position >= 0 
+    y - the starting Y position >= 0 
+
+*javax.swing.text.PlainView.drawSelectedText(Graphics,int,int,int,int)*
+
+protected int drawSelectedText(
+  java.awt.Graphics g,
+  int x,
+  int y,
+  int p0,
+  int p1)
+  throws |javax.swing.text.BadLocationException|
+         
+Renders the given range in the model as selected text. This is implemented to render the text in the color specified in the hosting component. It assumes the highlighter will 
+render the selected background. 
+
+
+    g - the graphics context 
+    x - the starting X coordinate >= 0 
+    y - the starting Y coordinate >= 0 
+    p0 - the beginning position in the model >= 0 
+    p1 - the ending position in the model >= 0 
+
+    Returns: the location of the end of the range 
+
+*javax.swing.text.PlainView.drawUnselectedText(Graphics,int,int,int,int)*
+
+protected int drawUnselectedText(
+  java.awt.Graphics g,
+  int x,
+  int y,
+  int p0,
+  int p1)
+  throws |javax.swing.text.BadLocationException|
+         
+Renders the given range in the model as normal unselected text. Uses the foreground or disabled color to render the text. 
+
+
+    g - the graphics context 
+    x - the starting X coordinate >= 0 
+    y - the starting Y coordinate >= 0 
+    p0 - the beginning position in the model >= 0 
+    p1 - the ending position in the model >= 0 
+
+    Returns: the X location of the end of the range >= 0 
+
+*javax.swing.text.PlainView.getLineBuffer()*
+
+protected final |javax.swing.text.Segment| getLineBuffer()
+
+Gives access to a buffer that can be used to fetch text from the associated document. 
+
+
+
+    Returns: 
+
+*javax.swing.text.PlainView.getPreferredSpan(int)*
+
+public float getPreferredSpan(int axis)
+
+Determines the preferred span for this view along an axis. 
+
+
+    axis - may be either View.X_AXIS or View.Y_AXIS 
+
+    Returns: the span the view would like to be rendered into >= 0. Typically the view is told to render into the span that is returned, although there is no guarantee. The parent may choose 
+             to resize or break the view. 
+
+*javax.swing.text.PlainView.getTabSize()*
+
+protected int getTabSize()
+
+Returns the tab size set for the document, defaulting to 8. 
+
+
+
+    Returns: 
+
+*javax.swing.text.PlainView.insertUpdate(DocumentEvent,Shape,ViewFactory)*
+
+public void insertUpdate(
+  javax.swing.event.DocumentEvent changes,
+  java.awt.Shape a,
+  javax.swing.text.ViewFactory f)
+
+Gives notification that something was inserted into the document in a location that this view is responsible for. 
+
+
+    changes - the change information from the associated document 
+    a - the current allocation of the view 
+    f - the factory to use to rebuild if the view has children 
+
+*javax.swing.text.PlainView.lineToRect(Shape,int)*
+
+protected |java.awt.Rectangle| lineToRect(
+  java.awt.Shape a,
+  int line)
+
+Determine the rectangle that represents the given line. 
+
+
+    a - the region allocated for the view to render into 
+    line - the line number to find the region of. This must be a valid line number in the model. 
+
+*javax.swing.text.PlainView.modelToView(int,Shape,Position.Bias)*
+
+public |java.awt.Shape| modelToView(
+  int pos,
+  java.awt.Shape a,
+  javax.swing.text.Position.Bias b)
+  throws |javax.swing.text.BadLocationException|
+         
+Provides a mapping from the document model coordinate space to the coordinate space of the view mapped to it. 
+
+
+    pos - the position to convert >= 0 
+    a - the allocated region to render into 
+
+    Returns: the bounding box of the given position 
+
+*javax.swing.text.PlainView.nextTabStop(float,int)*
+
+public float nextTabStop(
+  float x,
+  int tabOffset)
+
+Returns the next tab stop position after a given reference position. This implementation does not support things like centering so it ignores the tabOffset argument. 
+
+
+    x - the current position >= 0 
+    tabOffset - the position within the text stream that the tab occurred at >= 0. 
+
+    Returns: the tab stop, measured in points >= 0 
+
+*javax.swing.text.PlainView.paint(Graphics,Shape)*
+
+public void paint(
+  java.awt.Graphics g,
+  java.awt.Shape a)
+
+Renders using the given rendering surface and area on that surface. The view may need to do layout and create child views to enable itself to render into the given allocation. 
+
+
+    g - the rendering surface to use 
+    a - the allocated region to render into 
+
+*javax.swing.text.PlainView.removeUpdate(DocumentEvent,Shape,ViewFactory)*
+
+public void removeUpdate(
+  javax.swing.event.DocumentEvent changes,
+  java.awt.Shape a,
+  javax.swing.text.ViewFactory f)
+
+Gives notification that something was removed from the document in a location that this view is responsible for. 
+
+
+    changes - the change information from the associated document 
+    a - the current allocation of the view 
+    f - the factory to use to rebuild if the view has children 
+
+*javax.swing.text.PlainView.setSize(float,float)*
+
+public void setSize(
+  float width,
+  float height)
+
+Sets the size of the view. This should cause layout of the view along the given axis, if it has any layout duties. 
+
+
+    width - the width >= 0 
+    height - the height >= 0 
+
+*javax.swing.text.PlainView.updateDamage(DocumentEvent,Shape,ViewFactory)*
+
+protected void updateDamage(
+  javax.swing.event.DocumentEvent changes,
+  java.awt.Shape a,
+  javax.swing.text.ViewFactory f)
+
+
+
+
+
+*javax.swing.text.PlainView.updateMetrics()*
+
+protected void updateMetrics()
+
+Checks to see if the font metrics and longest line are up-to-date. 
+
+
+
+*javax.swing.text.PlainView.viewToModel(float,float,Shape,Position.Bias[])*
+
+public int viewToModel(
+  float fx,
+  float fy,
+  java.awt.Shape a,
+  javax.swing.text.Position.Bias[] bias)
+
+Provides a mapping from the view coordinate space to the logical coordinate space of the model. 
+
+
+    fx - the X coordinate >= 0 
+    fy - the Y coordinate >= 0 
+    a - the allocated region to render into 
+
+    Returns: the location within the model that best represents the given point in the view >= 0 
+
+

@@ -1,0 +1,180 @@
+*javax.management.remote.rmi.RMIConnector* *RMIConnector* A connection to a remo
+
+public class RMIConnector
+  extends    |java.lang.Object|
+  implements |javax.management.remote.JMXConnector|
+             |java.io.Serializable|
+
+|javax.management.remote.rmi.RMIConnector_Description|
+|javax.management.remote.rmi.RMIConnector_Fields|
+|javax.management.remote.rmi.RMIConnector_Constructors|
+|javax.management.remote.rmi.RMIConnector_Methods|
+
+================================================================================
+
+*javax.management.remote.rmi.RMIConnector_Constructors*
+|javax.management.remote.rmi.RMIConnector(JMXServiceURL,Map)|Constructs an RMIC
+|javax.management.remote.rmi.RMIConnector(RMIServer,Map)|Constructs an RMIConne
+
+*javax.management.remote.rmi.RMIConnector_Methods*
+|javax.management.remote.rmi.RMIConnector.addConnectionNotificationListener(NotificationListener,NotificationFilter,Object)|
+|javax.management.remote.rmi.RMIConnector.close()|
+|javax.management.remote.rmi.RMIConnector.connect()|
+|javax.management.remote.rmi.RMIConnector.connect(Map)|
+|javax.management.remote.rmi.RMIConnector.getConnectionId()|
+|javax.management.remote.rmi.RMIConnector.getMBeanServerConnection()|
+|javax.management.remote.rmi.RMIConnector.getMBeanServerConnection(Subject)|
+|javax.management.remote.rmi.RMIConnector.removeConnectionNotificationListener(NotificationListener)|
+|javax.management.remote.rmi.RMIConnector.removeConnectionNotificationListener(NotificationListener,NotificationFilter,Object)|
+|javax.management.remote.rmi.RMIConnector.toString()|Returns a string represent
+
+*javax.management.remote.rmi.RMIConnector_Description*
+
+A connection to a remote RMI connector. Usually, such connections are made 
+using JMXConnectorFactory(|javax.management.remote.JMXConnectorFactory|) . 
+However, specialized applications can use this class directly, for example with 
+an (|javax.management.remote.rmi.RMIServer|) stub obtained without going 
+through JNDI. 
+
+
+*javax.management.remote.rmi.RMIConnector(JMXServiceURL,Map)*
+
+public RMIConnector(
+  javax.management.remote.JMXServiceURL url,
+  java.util.Map environment)
+
+Constructs an RMIConnector that will connect the RMI connector server with the 
+given address. 
+
+The address can refer directly to the connector server, using one of the 
+following syntaxes: 
+
+
+
+service:jmx:rmi://[host[:port]]/stub/encoded-stub 
+service:jmx:iiop://[host[:port]]/ior/encoded-IOR 
+
+(Here, the square brackets [] are not part of the address but indicate that the 
+host and port are optional.) 
+
+The address can instead indicate where to find an RMI stub through JNDI, using 
+one of the following syntaxes: 
+
+
+
+service:jmx:rmi://[host[:port]]/jndi/jndi-name 
+service:jmx:iiop://[host[:port]]/jndi/jndi-name 
+
+An implementation may also recognize additional address syntaxes, for example: 
+
+
+
+service:jmx:iiop://[host[:port]]/stub/encoded-stub 
+
+    url - the address of the RMI connector server. 
+    environment - additional attributes specifying how to make the connection. For JNDI-based 
+       addresses, these attributes can usefully include JNDI attributes 
+       recognized by {@link InitialContext#InitialContext(Hashtable) 
+       InitialContext}. This parameter can be null, which is equivalent to an 
+       empty Map. 
+
+*javax.management.remote.rmi.RMIConnector(RMIServer,Map)*
+
+public RMIConnector(
+  javax.management.remote.rmi.RMIServer rmiServer,
+  java.util.Map environment)
+
+Constructs an RMIConnector using the given RMI stub. 
+
+    rmiServer - an RMI stub representing the RMI connector server. 
+    environment - additional attributes specifying how to make the connection. This parameter can 
+       be null, which is equivalent to an empty Map. 
+
+*javax.management.remote.rmi.RMIConnector.addConnectionNotificationListener(NotificationListener,NotificationFilter,Object)*
+
+public void addConnectionNotificationListener(
+  javax.management.NotificationListener listener,
+  javax.management.NotificationFilter filter,
+  java.lang.Object handback)
+
+
+
+
+*javax.management.remote.rmi.RMIConnector.close()*
+
+public synchronized void close()
+  throws |java.io.IOException|
+         
+
+
+
+*javax.management.remote.rmi.RMIConnector.connect()*
+
+public void connect()
+  throws |java.io.IOException|
+         
+
+
+
+*javax.management.remote.rmi.RMIConnector.connect(Map)*
+
+public synchronized void connect(java.util.Map environment)
+  throws |java.io.IOException|
+         
+
+
+
+*javax.management.remote.rmi.RMIConnector.getConnectionId()*
+
+public synchronized |java.lang.String| getConnectionId()
+  throws |java.io.IOException|
+         
+
+
+
+*javax.management.remote.rmi.RMIConnector.getMBeanServerConnection()*
+
+public synchronized |javax.management.MBeanServerConnection| getMBeanServerConnection()
+  throws |java.io.IOException|
+         
+
+
+
+*javax.management.remote.rmi.RMIConnector.getMBeanServerConnection(Subject)*
+
+public synchronized |javax.management.MBeanServerConnection| getMBeanServerConnection(javax.security.auth.Subject delegationSubject)
+  throws |java.io.IOException|
+         
+
+
+
+*javax.management.remote.rmi.RMIConnector.removeConnectionNotificationListener(NotificationListener)*
+
+public void removeConnectionNotificationListener(javax.management.NotificationListener listener)
+  throws |javax.management.ListenerNotFoundException|
+         
+
+
+
+*javax.management.remote.rmi.RMIConnector.removeConnectionNotificationListener(NotificationListener,NotificationFilter,Object)*
+
+public void removeConnectionNotificationListener(
+  javax.management.NotificationListener listener,
+  javax.management.NotificationFilter filter,
+  java.lang.Object handback)
+  throws |javax.management.ListenerNotFoundException|
+         
+
+
+
+*javax.management.remote.rmi.RMIConnector.toString()*
+
+public |java.lang.String| toString()
+
+Returns a string representation of this object. In general, the toString method 
+returns a string that "textually represents" this object. The result should be 
+a concise but informative representation that is easy for a person to read. 
+
+
+    Returns: a String representation of this object. 
+

@@ -1,0 +1,105 @@
+*javax.servlet.http.HttpUtils* *HttpUtils* 
+
+public class HttpUtils
+  extends    |java.lang.Object|
+
+|javax.servlet.http.HttpUtils_Description|
+|javax.servlet.http.HttpUtils_Fields|
+|javax.servlet.http.HttpUtils_Constructors|
+|javax.servlet.http.HttpUtils_Methods|
+
+================================================================================
+
+*javax.servlet.http.HttpUtils_Constructors*
+|javax.servlet.http.HttpUtils()|Constructs an empty HttpUtils object.
+
+*javax.servlet.http.HttpUtils_Methods*
+|javax.servlet.http.HttpUtils.getRequestURL(HttpServletRequest)|Reconstructs th
+|javax.servlet.http.HttpUtils.parsePostData(int,ServletInputStream)|Parses data
+|javax.servlet.http.HttpUtils.parseQueryString(String)|Parses a query string pa
+
+*javax.servlet.http.HttpUtils_Description*
+
+
+
+
+  Deprecated: As of Java(tm) Servlet API 2.3. 
+			These methods were only useful
+			with the default encoding and have been moved
+			to the request interfaces.
+
+*javax.servlet.http.HttpUtils()*
+
+public HttpUtils()
+
+Constructs an empty HttpUtils object. 
+
+
+*javax.servlet.http.HttpUtils.getRequestURL(HttpServletRequest)*
+
+public static |java.lang.StringBuffer| getRequestURL(javax.servlet.http.HttpServletRequest req)
+
+Reconstructs the URL the client used to make the request, using information in 
+the HttpServletRequest object. The returned URL contains a protocol, server 
+name, port number, and server path, but it does not include query string 
+parameters. 
+
+Because this method returns a StringBuffer, not a string, you can modify the 
+URL easily, for example, to append query parameters. 
+
+This method is useful for creating redirect messages and for reporting errors. 
+
+
+    req - a HttpServletRequest object containing the client's request 
+
+    Returns: a StringBuffer object containing the reconstructed URL 
+
+*javax.servlet.http.HttpUtils.parsePostData(int,ServletInputStream)*
+
+public static |java.util.Hashtable| parsePostData(
+  int len,
+  javax.servlet.ServletInputStream in)
+
+Parses data from an HTML form that the client sends to the server using the 
+HTTP POST method and the application/x-www-form-urlencoded MIME type. 
+
+The data sent by the POST method contains key-value pairs. A key can appear 
+more than once in the POST data with different values. However, the key appears 
+only once in the hashtable, with its value being an array of strings containing 
+the multiple values sent by the POST method. 
+
+The keys and values in the hashtable are stored in their decoded form, so any + 
+characters are converted to spaces, and characters sent in hexadecimal notation 
+(like %xx) are converted to ASCII characters. 
+
+
+    len - an integer specifying the length, in characters, of the ServletInputStream 
+       object that is also passed to this method 
+    in - the ServletInputStream object that contains the data sent from the client 
+
+    Returns: a HashTable object built from the parsed key-value pairs 
+
+*javax.servlet.http.HttpUtils.parseQueryString(String)*
+
+public static |java.util.Hashtable| parseQueryString(java.lang.String s)
+
+Parses a query string passed from the client to the server and builds a 
+HashTable object with key-value pairs. The query string should be in the form 
+of a string packaged by the GET or POST method, that is, it should have 
+key-value pairs in the form key=value, with each pair separated from the next 
+by a and character. 
+
+A key can appear more than once in the query string with different values. 
+However, the key appears only once in the hashtable, with its value being an 
+array of strings containing the multiple values sent by the query string. 
+
+The keys and values in the hashtable are stored in their decoded form, so any + 
+characters are converted to spaces, and characters sent in hexadecimal notation 
+(like %xx) are converted to ASCII characters. 
+
+
+    s - a string containing the query to be parsed 
+
+    Returns: a HashTable object built from the parsed key-value pairs 
+
+

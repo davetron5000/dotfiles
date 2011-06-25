@@ -1,0 +1,426 @@
+*javax.swing.text.html.HTMLEditorKit* *HTMLEditorKit* The Swing JEditorPane text component supports different kinds
+ of content via a plug-in mechanism called an EditorKit.
+
+public class HTMLEditorKit
+  extends    |javax.swing.text.StyledEditorKit|
+  implements |javax.accessibility.Accessible|
+
+|javax.swing.text.html.HTMLEditorKit_Description|
+|javax.swing.text.html.HTMLEditorKit_Fields|
+|javax.swing.text.html.HTMLEditorKit_Constructors|
+|javax.swing.text.html.HTMLEditorKit_Methods|
+
+====================================================================================================================================================================================
+
+*javax.swing.text.html.HTMLEditorKit_Fields*
+|java.lang.String_javax.swing.text.html.HTMLEditorKit.BOLD_ACTION|
+|java.lang.String_javax.swing.text.html.HTMLEditorKit.COLOR_ACTION|
+|java.lang.String_javax.swing.text.html.HTMLEditorKit.DEFAULT_CSS|
+|java.lang.String_javax.swing.text.html.HTMLEditorKit.FONT_CHANGE_BIGGER|
+|java.lang.String_javax.swing.text.html.HTMLEditorKit.FONT_CHANGE_SMALLER|
+|java.lang.String_javax.swing.text.html.HTMLEditorKit.IMG_ALIGN_BOTTOM|
+|java.lang.String_javax.swing.text.html.HTMLEditorKit.IMG_ALIGN_MIDDLE|
+|java.lang.String_javax.swing.text.html.HTMLEditorKit.IMG_ALIGN_TOP|
+|java.lang.String_javax.swing.text.html.HTMLEditorKit.IMG_BORDER|
+|java.lang.String_javax.swing.text.html.HTMLEditorKit.ITALIC_ACTION|
+|java.lang.String_javax.swing.text.html.HTMLEditorKit.LOGICAL_STYLE_ACTION|
+|java.lang.String_javax.swing.text.html.HTMLEditorKit.PARA_INDENT_LEFT|
+|java.lang.String_javax.swing.text.html.HTMLEditorKit.PARA_INDENT_RIGHT|
+
+*javax.swing.text.html.HTMLEditorKit_Constructors*
+|javax.swing.text.html.HTMLEditorKit()|Constructs an HTMLEditorKit, creates a StyleContext,  and loads the style sheet.
+
+*javax.swing.text.html.HTMLEditorKit_Methods*
+|javax.swing.text.html.HTMLEditorKit.clone()|Creates a copy of the editor kit.
+|javax.swing.text.html.HTMLEditorKit.createDefaultDocument()|Create an uninitialized text storage model  that is appropriate for this type of editor.
+|javax.swing.text.html.HTMLEditorKit.createInputAttributes(Element,MutableAttributeSet)|Copies the key/values in elements AttributeSet into  set.
+|javax.swing.text.html.HTMLEditorKit.deinstall(JEditorPane)|Called when the kit is being removed from the  JEditorPane.
+|javax.swing.text.html.HTMLEditorKit.getAccessibleContext()|returns the AccessibleContext associated with this editor kit
+|javax.swing.text.html.HTMLEditorKit.getActions()|Fetches the command list for the editor.
+|javax.swing.text.html.HTMLEditorKit.getContentType()|Get the MIME type of the data that this  kit represents support for.
+|javax.swing.text.html.HTMLEditorKit.getDefaultCursor()|Returns the default cursor.
+|javax.swing.text.html.HTMLEditorKit.getInputAttributes()|Gets the input attributes used for the styled   editing actions.
+|javax.swing.text.html.HTMLEditorKit.getLinkCursor()|Returns the cursor to use over hyper links.
+|javax.swing.text.html.HTMLEditorKit.getParser()|Fetch the parser to use for reading HTML streams.
+|javax.swing.text.html.HTMLEditorKit.getStyleSheet()|Get the set of styles currently being used to render the  HTML elements.
+|javax.swing.text.html.HTMLEditorKit.getViewFactory()|Fetch a factory that is suitable for producing   views of any models that are produced by this  kit.
+|javax.swing.text.html.HTMLEditorKit.insertHTML(HTMLDocument,int,String,int,int,HTML.Tag)|Inserts HTML into an existing document.
+|javax.swing.text.html.HTMLEditorKit.install(JEditorPane)|Called when the kit is being installed into the  a JEditorPane.
+|javax.swing.text.html.HTMLEditorKit.isAutoFormSubmission()|Indicates whether an html form submission is processed automatically   or only FormSubmitEvent is fired.
+|javax.swing.text.html.HTMLEditorKit.read(Reader,Document,int)|Inserts content from the given stream.
+|javax.swing.text.html.HTMLEditorKit.setAutoFormSubmission(boolean)|Specifies if an html form submission is processed  automatically or only FormSubmitEvent is fired.
+|javax.swing.text.html.HTMLEditorKit.setDefaultCursor(Cursor)|Sets the default cursor.
+|javax.swing.text.html.HTMLEditorKit.setLinkCursor(Cursor)|Sets the cursor to use over links.
+|javax.swing.text.html.HTMLEditorKit.setStyleSheet(StyleSheet)|Set the set of styles to be used to render the various  HTML elements.
+|javax.swing.text.html.HTMLEditorKit.write(Writer,Document,int,int)|Write content from a document to the given stream  in a format appropriate for this kind of content handler.
+
+*javax.swing.text.html.HTMLEditorKit_Description*
+
+The Swing JEditorPane text component supports different kinds of content via a plug-in mechanism called an EditorKit. Because HTML is a very popular format of content, some 
+support is provided by default. The default support is provided by this class, which supports HTML version 3.2 (with some extensions), and is migrating toward version 4.0. The 
+<applet> tag is not supported, but some support is provided for the <object> tag. 
+
+There are several goals of the HTML EditorKit provided, that have an effect upon the way that HTML is modeled. These have influenced its design in a substantial way. 
+
+
+
+Support editing 
+
+It might seem fairly obvious that a plug-in for JEditorPane should provide editing support, but that fact has several design considerations. There are a substantial number of HTML 
+documents that don't properly conform to an HTML specification. These must be normalized somewhat into a correct form if one is to edit them. Additionally, users don't like to be 
+presented with an excessive amount of structure editing, so using traditional text editing gestures is preferred over using the HTML structure exactly as defined in the HTML 
+document. 
+
+The modeling of HTML is provided by the class HTMLDocument. Its documention describes the details of how the HTML is modeled. The editing support leverages heavily off of the text 
+package. 
+
+Extendable/Scalable 
+
+To maximize the usefulness of this kit, a great deal of effort has gone into making it extendable. These are some of the features. 
+
+The parser is replacable. The default parser is the Hot Java parser which is DTD based. A different DTD can be used, or an entirely different parser can be used. To change the 
+parser, reimplement the getParser method. The default parser is dynamically loaded when first asked for, so the class files will never be loaded if an alternative parser is used. 
+The default parser is in a separate package called parser below this package. 
+
+The parser drives the ParserCallback, which is provided by HTMLDocument. To change the callback, subclass HTMLDocument and reimplement the createDefaultDocument method to return 
+document that produces a different reader. The reader controls how the document is structured. Although the Document provides HTML support by default, there is nothing preventing 
+support of non-HTML tags that result in alternative element structures. 
+
+The default view of the models are provided as a hierarchy of View implementations, so one can easily customize how a particular element is displayed or add capabilities for new 
+kinds of elements by providing new View implementations. The default set of views are provided by the HTMLFactory class. This can be easily changed by subclassing or replacing the 
+HTMLFactory and reimplementing the getViewFactory method to return the alternative factory. 
+
+The View implementations work primarily off of CSS attributes, which are kept in the views. This makes it possible to have multiple views mapped over the same model that appear 
+substantially different. This can be especially useful for printing. For most HTML attributes, the HTML attributes are converted to CSS attributes for display. This helps make the 
+View implementations more general purpose 
+
+
+
+Asynchronous Loading 
+
+Larger documents involve a lot of parsing and take some time to load. By default, this kit produces documents that will be loaded asynchronously if loaded using 
+JEditorPane.setPage. This is controlled by a property on the document. The method createDefaultDocument can be overriden to change this. The batching of work is done by the 
+HTMLDocument.HTMLReader class. The actual work is done by the DefaultStyledDocument and AbstractDocument classes in the text package. 
+
+Customization from current LAF 
+
+HTML provides a well known set of features without exactly specifying the display characteristics. Swing has a theme mechanism for its look-and-feel implementations. It is 
+desirable for the look-and-feel to feed display characteristics into the HTML views. An user with poor vision for example would want high contrast and larger than typical fonts. 
+
+The support for this is provided by the StyleSheet class. The presentation of the HTML can be heavily influenced by the setting of the StyleSheet property on the EditorKit. 
+
+Not lossy 
+
+An EditorKit has the ability to be read and save documents. It is generally the most pleasing to users if there is no loss of data between the two operation. The policy of the 
+HTMLEditorKit will be to store things not recognized or not necessarily visible so they can be subsequently written out. The model of the HTML document should therefore contain 
+all information discovered while reading the document. This is constrained in some ways by the need to support editing (i.e. incorrect documents sometimes must be normalized). The 
+guiding principle is that information shouldn't be lost, but some might be synthesized to produce a more correct model or it might be rearranged. 
+
+
+
+*java.lang.String_javax.swing.text.html.HTMLEditorKit.BOLD_ACTION*
+
+The bold action identifier 
+
+
+*java.lang.String_javax.swing.text.html.HTMLEditorKit.COLOR_ACTION*
+
+The Color choice action identifier The color is passed as an argument 
+
+
+*java.lang.String_javax.swing.text.html.HTMLEditorKit.DEFAULT_CSS*
+
+Default Cascading Style Sheet file that sets up the tag views. 
+
+
+*java.lang.String_javax.swing.text.html.HTMLEditorKit.FONT_CHANGE_BIGGER*
+
+The font size increase to next value action identifier 
+
+
+*java.lang.String_javax.swing.text.html.HTMLEditorKit.FONT_CHANGE_SMALLER*
+
+The font size decrease to next value action identifier 
+
+
+*java.lang.String_javax.swing.text.html.HTMLEditorKit.IMG_ALIGN_BOTTOM*
+
+Align images at the bottom. 
+
+
+*java.lang.String_javax.swing.text.html.HTMLEditorKit.IMG_ALIGN_MIDDLE*
+
+Align images in the middle. 
+
+
+*java.lang.String_javax.swing.text.html.HTMLEditorKit.IMG_ALIGN_TOP*
+
+Align images at the top. 
+
+
+*java.lang.String_javax.swing.text.html.HTMLEditorKit.IMG_BORDER*
+
+Align images at the border. 
+
+
+*java.lang.String_javax.swing.text.html.HTMLEditorKit.ITALIC_ACTION*
+
+The italic action identifier 
+
+
+*java.lang.String_javax.swing.text.html.HTMLEditorKit.LOGICAL_STYLE_ACTION*
+
+The logical style choice action identifier The logical style is passed in as an argument 
+
+
+*java.lang.String_javax.swing.text.html.HTMLEditorKit.PARA_INDENT_LEFT*
+
+The paragraph left indent action identifier 
+
+
+*java.lang.String_javax.swing.text.html.HTMLEditorKit.PARA_INDENT_RIGHT*
+
+The paragraph right indent action identifier 
+
+
+
+*javax.swing.text.html.HTMLEditorKit()*
+
+public HTMLEditorKit()
+
+Constructs an HTMLEditorKit, creates a StyleContext, and loads the style sheet. 
+
+
+*javax.swing.text.html.HTMLEditorKit.clone()*
+
+public |java.lang.Object| clone()
+
+Creates a copy of the editor kit. 
+
+
+
+    Returns: 
+
+*javax.swing.text.html.HTMLEditorKit.createDefaultDocument()*
+
+public |javax.swing.text.Document| createDefaultDocument()
+
+Create an uninitialized text storage model that is appropriate for this type of editor. 
+
+
+
+    Returns: 
+
+*javax.swing.text.html.HTMLEditorKit.createInputAttributes(Element,MutableAttributeSet)*
+
+protected void createInputAttributes(
+  javax.swing.text.Element element,
+  javax.swing.text.MutableAttributeSet set)
+
+Copies the key/values in elements AttributeSet into set. This does not copy component, icon, or element names attributes. Subclasses may wish to refine what is and what isn't 
+copied here. But be sure to first remove all the attributes that are in set. This is called anytime the caret moves over a different location. 
+
+
+
+*javax.swing.text.html.HTMLEditorKit.deinstall(JEditorPane)*
+
+public void deinstall(javax.swing.JEditorPane c)
+
+Called when the kit is being removed from the JEditorPane. This is used to unregister any listeners that were attached. 
+
+
+    c - the JEditorPane 
+
+*javax.swing.text.html.HTMLEditorKit.getAccessibleContext()*
+
+public |javax.accessibility.AccessibleContext| getAccessibleContext()
+
+returns the AccessibleContext associated with this editor kit 
+
+
+
+    Returns: the AccessibleContext associated with this editor kit 
+
+*javax.swing.text.html.HTMLEditorKit.getActions()*
+
+public |javax.swing.Action|[] getActions()
+
+Fetches the command list for the editor. This is the list of commands supported by the superclass augmented by the collection of commands defined locally for style operations. 
+
+
+
+    Returns: the command list 
+
+*javax.swing.text.html.HTMLEditorKit.getContentType()*
+
+public |java.lang.String| getContentType()
+
+Get the MIME type of the data that this kit represents support for. This kit supports the type text/html. 
+
+
+
+    Returns: 
+
+*javax.swing.text.html.HTMLEditorKit.getDefaultCursor()*
+
+public |java.awt.Cursor| getDefaultCursor()
+
+Returns the default cursor. 
+
+
+
+*javax.swing.text.html.HTMLEditorKit.getInputAttributes()*
+
+public |javax.swing.text.MutableAttributeSet| getInputAttributes()
+
+Gets the input attributes used for the styled editing actions. 
+
+
+
+    Returns: the attribute set 
+
+*javax.swing.text.html.HTMLEditorKit.getLinkCursor()*
+
+public |java.awt.Cursor| getLinkCursor()
+
+Returns the cursor to use over hyper links. 
+
+
+
+*javax.swing.text.html.HTMLEditorKit.getParser()*
+
+protected |javax.swing.text.html.HTMLEditorKit.Parser| getParser()
+
+Fetch the parser to use for reading HTML streams. This can be reimplemented to provide a different parser. The default implementation is loaded dynamically to avoid the overhead 
+of loading the default parser if it's not used. The default parser is the HotJava parser using an HTML 3.2 DTD. 
+
+
+
+*javax.swing.text.html.HTMLEditorKit.getStyleSheet()*
+
+public |javax.swing.text.html.StyleSheet| getStyleSheet()
+
+Get the set of styles currently being used to render the HTML elements. By default the resource specified by DEFAULT_CSS gets loaded, and is shared by all HTMLEditorKit instances. 
+
+
+
+*javax.swing.text.html.HTMLEditorKit.getViewFactory()*
+
+public |javax.swing.text.ViewFactory| getViewFactory()
+
+Fetch a factory that is suitable for producing views of any models that are produced by this kit. 
+
+
+
+    Returns: 
+
+*javax.swing.text.html.HTMLEditorKit.insertHTML(HTMLDocument,int,String,int,int,HTML.Tag)*
+
+public void insertHTML(
+  javax.swing.text.html.HTMLDocument doc,
+  int offset,
+  java.lang.String html,
+  int popDepth,
+  int pushDepth,
+  javax.swing.text.html.HTML.Tag insertTag)
+  throws |javax.swing.text.BadLocationException|
+         |java.io.IOException|
+         
+Inserts HTML into an existing document. 
+
+
+    doc - the document to insert into 
+    offset - the offset to insert HTML at 
+    popDepth - the number of ElementSpec.EndTagTypes to generate before inserting 
+    pushDepth - the number of ElementSpec.StartTagTypes with a direction of ElementSpec.JoinNextDirection that should be generated before inserting, but after the end tags have been generated 
+    insertTag - the first tag to start inserting into document 
+
+*javax.swing.text.html.HTMLEditorKit.install(JEditorPane)*
+
+public void install(javax.swing.JEditorPane c)
+
+Called when the kit is being installed into the a JEditorPane. 
+
+
+    c - the JEditorPane 
+
+*javax.swing.text.html.HTMLEditorKit.isAutoFormSubmission()*
+
+public boolean isAutoFormSubmission()
+
+Indicates whether an html form submission is processed automatically or only FormSubmitEvent is fired. 
+
+
+
+    Returns: true if html form submission is processed automatically, false otherwise. 
+
+*javax.swing.text.html.HTMLEditorKit.read(Reader,Document,int)*
+
+public void read(
+  java.io.Reader in,
+  javax.swing.text.Document doc,
+  int pos)
+  throws |javax.swing.text.BadLocationException|
+         |java.io.IOException|
+         
+Inserts content from the given stream. If doc is an instance of HTMLDocument, this will read HTML 3.2 text. Inserting HTML into a non-empty document must be inside the body 
+Element, if you do not insert into the body an exception will be thrown. When inserting into a non-empty document all tags outside of the body (head, title) will be dropped. 
+
+
+    in - the stream to read from 
+    doc - the destination for the insertion 
+    pos - the location in the document to place the content 
+
+*javax.swing.text.html.HTMLEditorKit.setAutoFormSubmission(boolean)*
+
+public void setAutoFormSubmission(boolean isAuto)
+
+Specifies if an html form submission is processed automatically or only FormSubmitEvent is fired. By default it is set to true. 
+
+
+
+*javax.swing.text.html.HTMLEditorKit.setDefaultCursor(Cursor)*
+
+public void setDefaultCursor(java.awt.Cursor cursor)
+
+Sets the default cursor. 
+
+
+
+*javax.swing.text.html.HTMLEditorKit.setLinkCursor(Cursor)*
+
+public void setLinkCursor(java.awt.Cursor cursor)
+
+Sets the cursor to use over links. 
+
+
+
+*javax.swing.text.html.HTMLEditorKit.setStyleSheet(StyleSheet)*
+
+public void setStyleSheet(javax.swing.text.html.StyleSheet s)
+
+Set the set of styles to be used to render the various HTML elements. These styles are specified in terms of CSS specifications. Each document produced by the kit will have a copy 
+of the sheet which it can add the document specific styles to. By default, the StyleSheet specified is shared by all HTMLEditorKit instances. This should be reimplemented to 
+provide a finer granularity if desired. 
+
+
+
+*javax.swing.text.html.HTMLEditorKit.write(Writer,Document,int,int)*
+
+public void write(
+  java.io.Writer out,
+  javax.swing.text.Document doc,
+  int pos,
+  int len)
+  throws |javax.swing.text.BadLocationException|
+         |java.io.IOException|
+         
+Write content from a document to the given stream in a format appropriate for this kind of content handler. 
+
+
+    out - the stream to write to 
+    doc - the source for the write 
+    pos - the location in the document to fetch the content 
+    len - the amount to write out 
+
+

@@ -1,0 +1,205 @@
+*org.xml.sax.DocumentHandler* *DocumentHandler* Receive notification of general 
+
+public interface interface DocumentHandler
+
+
+|org.xml.sax.DocumentHandler_Description|
+|org.xml.sax.DocumentHandler_Fields|
+|org.xml.sax.DocumentHandler_Constructors|
+|org.xml.sax.DocumentHandler_Methods|
+
+================================================================================
+
+*org.xml.sax.DocumentHandler_Methods*
+|org.xml.sax.DocumentHandler.characters(char[],int,int)|Receive notification of
+|org.xml.sax.DocumentHandler.endDocument()|Receive notification of the end of a
+|org.xml.sax.DocumentHandler.endElement(String)|Receive notification of the end
+|org.xml.sax.DocumentHandler.ignorableWhitespace(char[],int,int)|Receive notifi
+|org.xml.sax.DocumentHandler.processingInstruction(String,String)|Receive notif
+|org.xml.sax.DocumentHandler.setDocumentLocator(Locator)|Receive an object for 
+|org.xml.sax.DocumentHandler.startDocument()|Receive notification of the beginn
+|org.xml.sax.DocumentHandler.startElement(String,AttributeList)|Receive notific
+
+*org.xml.sax.DocumentHandler_Description*
+
+Receive notification of general document events. 
+
+This module, both source code and documentation, is in the Public Domain, and 
+comes with NO WARRANTY. See http://www.saxproject.org for further information. 
+
+This was the main event-handling interface for SAX1; in SAX2, it has been 
+replaced by ContentHandler(|org.xml.sax.ContentHandler|) , which provides 
+Namespace support and reporting of skipped entities. This interface is included 
+in SAX2 only to support legacy SAX1 applications. 
+
+The order of events in this interface is very important, and mirrors the order 
+of information in the document itself. For example, all of an element's content 
+(character data, processing instructions, and/or subelements) will appear, in 
+order, between the startElement event and the corresponding endElement event. 
+
+Application writers who do not want to implement the entire interface can 
+derive a class from HandlerBase, which implements the default functionality; 
+parser writers can instantiate HandlerBase to obtain a default handler. The 
+application can find the location of any document event using the Locator 
+interface supplied by the Parser through the setDocumentLocator method. 
+
+
+*org.xml.sax.DocumentHandler.characters(char[],int,int)*
+
+public void characters(
+  char[] ch,
+  int start,
+  int length)
+  throws |org.xml.sax.SAXException|
+         
+Receive notification of character data. 
+
+The Parser will call this method to report each chunk of character data. SAX 
+parsers may return all contiguous character data in a single chunk, or they may 
+split it into several chunks; however, all of the characters in any single 
+event must come from the same external entity, so that the Locator provides 
+useful information. 
+
+The application must not attempt to read from the array outside of the 
+specified range. 
+
+Note that some parsers will report whitespace using the ignorableWhitespace() 
+method rather than this one (validating parsers must do so). 
+
+    ch - The characters from the XML document. 
+    start - The start position in the array. 
+    length - The number of characters to read from the array. 
+
+*org.xml.sax.DocumentHandler.endDocument()*
+
+public void endDocument()
+  throws |org.xml.sax.SAXException|
+         
+Receive notification of the end of a document. 
+
+The SAX parser will invoke this method only once, and it will be the last 
+method invoked during the parse. The parser shall not invoke this method until 
+it has either abandoned parsing (because of an unrecoverable error) or reached 
+the end of input. 
+
+
+*org.xml.sax.DocumentHandler.endElement(String)*
+
+public void endElement(java.lang.String name)
+  throws |org.xml.sax.SAXException|
+         
+Receive notification of the end of an element. 
+
+The SAX parser will invoke this method at the end of every element in the XML 
+document; there will be a corresponding startElement() event for every 
+endElement() event (even when the element is empty). 
+
+If the element name has a namespace prefix, the prefix will still be attached 
+to the name. 
+
+    name - The element type name 
+
+*org.xml.sax.DocumentHandler.ignorableWhitespace(char[],int,int)*
+
+public void ignorableWhitespace(
+  char[] ch,
+  int start,
+  int length)
+  throws |org.xml.sax.SAXException|
+         
+Receive notification of ignorable whitespace in element content. 
+
+Validating Parsers must use this method to report each chunk of ignorable 
+whitespace (see the W3C XML 1.0 recommendation, section 2.10): non-validating 
+parsers may also use this method if they are capable of parsing and using 
+content models. 
+
+SAX parsers may return all contiguous whitespace in a single chunk, or they may 
+split it into several chunks; however, all of the characters in any single 
+event must come from the same external entity, so that the Locator provides 
+useful information. 
+
+The application must not attempt to read from the array outside of the 
+specified range. 
+
+    ch - The characters from the XML document. 
+    start - The start position in the array. 
+    length - The number of characters to read from the array. 
+
+*org.xml.sax.DocumentHandler.processingInstruction(String,String)*
+
+public void processingInstruction(
+  java.lang.String target,
+  java.lang.String data)
+  throws |org.xml.sax.SAXException|
+         
+Receive notification of a processing instruction. 
+
+The Parser will invoke this method once for each processing instruction found: 
+note that processing instructions may occur before or after the main document 
+element. 
+
+A SAX parser should never report an XML declaration (XML 1.0, section 2.8) or a 
+text declaration (XML 1.0, section 4.3.1) using this method. 
+
+    target - The processing instruction target. 
+    data - The processing instruction data, or null if none was supplied. 
+
+*org.xml.sax.DocumentHandler.setDocumentLocator(Locator)*
+
+public void setDocumentLocator(org.xml.sax.Locator locator)
+
+Receive an object for locating the origin of SAX document events. 
+
+SAX parsers are strongly encouraged (though not absolutely required) to supply 
+a locator: if it does so, it must supply the locator to the application by 
+invoking this method before invoking any of the other methods in the 
+DocumentHandler interface. 
+
+The locator allows the application to determine the end position of any 
+document-related event, even if the parser is not reporting an error. 
+Typically, the application will use this information for reporting its own 
+errors (such as character content that does not match an application's business 
+rules). The information returned by the locator is probably not sufficient for 
+use with a search engine. 
+
+Note that the locator will return correct information only during the 
+invocation of the events in this interface. The application should not attempt 
+to use it at any other time. 
+
+    locator - An object that can return the location of any SAX document event. 
+
+*org.xml.sax.DocumentHandler.startDocument()*
+
+public void startDocument()
+  throws |org.xml.sax.SAXException|
+         
+Receive notification of the beginning of a document. 
+
+The SAX parser will invoke this method only once, before any other methods in 
+this interface or in DTDHandler (except for setDocumentLocator). 
+
+
+*org.xml.sax.DocumentHandler.startElement(String,AttributeList)*
+
+public void startElement(
+  java.lang.String name,
+  org.xml.sax.AttributeList atts)
+  throws |org.xml.sax.SAXException|
+         
+Receive notification of the beginning of an element. 
+
+The Parser will invoke this method at the beginning of every element in the XML 
+document; there will be a corresponding endElement() event for every 
+startElement() event (even when the element is empty). All of the element's 
+content will be reported, in order, before the corresponding endElement() 
+event. 
+
+If the element name has a namespace prefix, the prefix will still be attached. 
+Note that the attribute list provided will contain only attributes with 
+explicit values (specified or defaulted): #IMPLIED attributes will be omitted. 
+
+    name - The element type name. 
+    atts - The attributes attached to the element, if any. 
+
+

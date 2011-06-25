@@ -1,0 +1,203 @@
+*javax.swing.text.EditorKit* *EditorKit* Establishes the set of things needed by a text component
+ to be a reasonably functioning editor for some type
+ of text content.
+
+public abstract class EditorKit
+  extends    |java.lang.Object|
+  implements |java.lang.Cloneable|
+             |java.io.Serializable|
+
+|javax.swing.text.EditorKit_Description|
+|javax.swing.text.EditorKit_Fields|
+|javax.swing.text.EditorKit_Constructors|
+|javax.swing.text.EditorKit_Methods|
+
+====================================================================================================================================================================================
+
+*javax.swing.text.EditorKit_Constructors*
+|javax.swing.text.EditorKit()|Construct an EditorKit.
+
+*javax.swing.text.EditorKit_Methods*
+|javax.swing.text.EditorKit.clone()|Creates a copy of the editor kit.
+|javax.swing.text.EditorKit.createCaret()|Fetches a caret that can navigate through views  produced by the associated ViewFactory.
+|javax.swing.text.EditorKit.createDefaultDocument()|Creates an uninitialized text storage model  that is appropriate for this type of editor.
+|javax.swing.text.EditorKit.deinstall(JEditorPane)|Called when the kit is being removed from the  JEditorPane.
+|javax.swing.text.EditorKit.getActions()|Fetches the set of commands that can be used  on a text component that is using a model and  view produced by this kit.
+|javax.swing.text.EditorKit.getContentType()|Gets the MIME type of the data that this  kit represents support for.
+|javax.swing.text.EditorKit.getViewFactory()|Fetches a factory that is suitable for producing   views of any models that are produced by this  kit.
+|javax.swing.text.EditorKit.install(JEditorPane)|Called when the kit is being installed into the  a JEditorPane.
+|javax.swing.text.EditorKit.read(InputStream,Document,int)|Inserts content from the given stream which is expected   to be in a format appropriate for this kind of content  handle
+|javax.swing.text.EditorKit.read(Reader,Document,int)|Inserts content from the given stream which is expected   to be in a format appropriate for this kind of content  handler.
+|javax.swing.text.EditorKit.write(OutputStream,Document,int,int)|Writes content from a document to the given stream  in a format appropriate for this kind of content handler.
+|javax.swing.text.EditorKit.write(Writer,Document,int,int)|Writes content from a document to the given stream  in a format appropriate for this kind of content handler.
+
+*javax.swing.text.EditorKit_Description*
+
+Establishes the set of things needed by a text component to be a reasonably functioning editor for some type of text content. The EditorKit acts as a factory for some kind of 
+policy. For example, an implementation of html and rtf can be provided that is replaceable with other implementations. 
+
+A kit can safely store editing state as an instance of the kit will be dedicated to a text component. New kits will normally be created by cloning a prototype kit. The kit will 
+have it's setComponent method called to establish it's relationship with a JTextComponent. 
+
+
+
+*javax.swing.text.EditorKit()*
+
+public EditorKit()
+
+Construct an EditorKit. 
+
+
+*javax.swing.text.EditorKit.clone()*
+
+public |java.lang.Object| clone()
+
+Creates a copy of the editor kit. This is implemented to use Object.clone. If the kit cannot be cloned, null is returned. 
+
+
+
+    Returns: 
+
+*javax.swing.text.EditorKit.createCaret()*
+
+public abstract |javax.swing.text.Caret| createCaret()
+
+Fetches a caret that can navigate through views produced by the associated ViewFactory. 
+
+
+
+    Returns: 
+
+*javax.swing.text.EditorKit.createDefaultDocument()*
+
+public abstract |javax.swing.text.Document| createDefaultDocument()
+
+Creates an uninitialized text storage model that is appropriate for this type of editor. 
+
+
+
+    Returns: 
+
+*javax.swing.text.EditorKit.deinstall(JEditorPane)*
+
+public void deinstall(javax.swing.JEditorPane c)
+
+Called when the kit is being removed from the JEditorPane. This is used to unregister any listeners that were attached. 
+
+
+    c - the JEditorPane 
+
+*javax.swing.text.EditorKit.getActions()*
+
+public abstract |javax.swing.Action|[] getActions()
+
+Fetches the set of commands that can be used on a text component that is using a model and view produced by this kit. 
+
+
+
+    Returns: the set of actions 
+
+*javax.swing.text.EditorKit.getContentType()*
+
+public abstract |java.lang.String| getContentType()
+
+Gets the MIME type of the data that this kit represents support for. 
+
+
+
+    Returns: 
+
+*javax.swing.text.EditorKit.getViewFactory()*
+
+public abstract |javax.swing.text.ViewFactory| getViewFactory()
+
+Fetches a factory that is suitable for producing views of any models that are produced by this kit. 
+
+
+
+    Returns: 
+
+*javax.swing.text.EditorKit.install(JEditorPane)*
+
+public void install(javax.swing.JEditorPane c)
+
+Called when the kit is being installed into the a JEditorPane. 
+
+
+    c - the JEditorPane 
+
+*javax.swing.text.EditorKit.read(InputStream,Document,int)*
+
+public abstract void read(
+  java.io.InputStream in,
+  javax.swing.text.Document doc,
+  int pos)
+  throws |javax.swing.text.BadLocationException|
+         |java.io.IOException|
+         
+Inserts content from the given stream which is expected to be in a format appropriate for this kind of content handler. 
+
+
+    in - The stream to read from 
+    doc - The destination for the insertion. 
+    pos - The location in the document to place the content >= 0. 
+
+*javax.swing.text.EditorKit.read(Reader,Document,int)*
+
+public abstract void read(
+  java.io.Reader in,
+  javax.swing.text.Document doc,
+  int pos)
+  throws |javax.swing.text.BadLocationException|
+         |java.io.IOException|
+         
+Inserts content from the given stream which is expected to be in a format appropriate for this kind of content handler. 
+
+Since actual text editing is unicode based, this would generally be the preferred way to read in the data. Some types of content are stored in an 8-bit form however, and will 
+favor the InputStream. 
+
+
+    in - The stream to read from 
+    doc - The destination for the insertion. 
+    pos - The location in the document to place the content >= 0. 
+
+*javax.swing.text.EditorKit.write(OutputStream,Document,int,int)*
+
+public abstract void write(
+  java.io.OutputStream out,
+  javax.swing.text.Document doc,
+  int pos,
+  int len)
+  throws |javax.swing.text.BadLocationException|
+         |java.io.IOException|
+         
+Writes content from a document to the given stream in a format appropriate for this kind of content handler. 
+
+
+    out - The stream to write to 
+    doc - The source for the write. 
+    pos - The location in the document to fetch the content from >= 0. 
+    len - The amount to write out >= 0. 
+
+*javax.swing.text.EditorKit.write(Writer,Document,int,int)*
+
+public abstract void write(
+  java.io.Writer out,
+  javax.swing.text.Document doc,
+  int pos,
+  int len)
+  throws |javax.swing.text.BadLocationException|
+         |java.io.IOException|
+         
+Writes content from a document to the given stream in a format appropriate for this kind of content handler. 
+
+Since actual text editing is unicode based, this would generally be the preferred way to write the data. Some types of content are stored in an 8-bit form however, and will favor 
+the OutputStream. 
+
+
+    out - The stream to write to 
+    doc - The source for the write. 
+    pos - The location in the document to fetch the content >= 0. 
+    len - The amount to write out >= 0. 
+
+

@@ -1,0 +1,210 @@
+*javax.swing.table.DefaultTableCellRenderer* *DefaultTableCellRenderer* The standard class for rendering (displaying) individual cells
+ in a JTable.
+
+public class DefaultTableCellRenderer
+  extends    |javax.swing.JLabel|
+  implements |javax.swing.table.TableCellRenderer|
+             |java.io.Serializable|
+
+|javax.swing.table.DefaultTableCellRenderer_Description|
+|javax.swing.table.DefaultTableCellRenderer_Fields|
+|javax.swing.table.DefaultTableCellRenderer_Constructors|
+|javax.swing.table.DefaultTableCellRenderer_Methods|
+
+====================================================================================================================================================================================
+
+*javax.swing.table.DefaultTableCellRenderer_Fields*
+|javax.swing.border.Border_javax.swing.table.DefaultTableCellRenderer.noFocusBorder|
+
+*javax.swing.table.DefaultTableCellRenderer_Constructors*
+|javax.swing.table.DefaultTableCellRenderer()|Creates a default table cell renderer.
+
+*javax.swing.table.DefaultTableCellRenderer_Methods*
+|javax.swing.table.DefaultTableCellRenderer.firePropertyChange(String,boolean,boolean)|Overridden for performance reasons.
+|javax.swing.table.DefaultTableCellRenderer.firePropertyChange(String,Object,Object)|Overridden for performance reasons.
+|javax.swing.table.DefaultTableCellRenderer.getTableCellRendererComponent(JTable,Object,boolean,boolean,int,int)|Returns the default table cell renderer.
+|javax.swing.table.DefaultTableCellRenderer.invalidate()|Overridden for performance reasons.
+|javax.swing.table.DefaultTableCellRenderer.isOpaque()|Overridden for performance reasons.
+|javax.swing.table.DefaultTableCellRenderer.repaint()|Overridden for performance reasons.
+|javax.swing.table.DefaultTableCellRenderer.repaint(long,int,int,int,int)|Overridden for performance reasons.
+|javax.swing.table.DefaultTableCellRenderer.repaint(Rectangle)|Overridden for performance reasons.
+|javax.swing.table.DefaultTableCellRenderer.revalidate()|Overridden for performance reasons.
+|javax.swing.table.DefaultTableCellRenderer.setBackground(Color)|Overrides JComponent.setBackground to assign  the unselected-background color to the specified color.
+|javax.swing.table.DefaultTableCellRenderer.setForeground(Color)|Overrides JComponent.setForeground to assign  the unselected-foreground color to the specified color.
+|javax.swing.table.DefaultTableCellRenderer.setValue(Object)|Sets the String object for the cell being rendered to  value.
+|javax.swing.table.DefaultTableCellRenderer.updateUI()|Notification from the UIManager that the look and feel  [Lhas changed.
+|javax.swing.table.DefaultTableCellRenderer.validate()|Overridden for performance reasons.
+
+*javax.swing.table.DefaultTableCellRenderer_Description*
+
+The standard class for rendering (displaying) individual cells in a JTable. 
+
+Implementation Note: This class inherits from JLabel, a standard component class. However JTable employs a unique mechanism for rendering its cells and therefore requires some 
+slightly modified behavior from its cell renderer. The table class defines a single cell renderer and uses it as a as a rubber-stamp for rendering all cells in the table; it 
+renders the first cell, changes the contents of that cell renderer, shifts the origin to the new location, re-draws it, and so on. The standard JLabel component was not designed 
+to be used this way and we want to avoid triggering a revalidate each time the cell is drawn. This would greatly decrease performance because the revalidate message would be 
+passed up the hierarchy of the container to determine whether any other components would be affected. As the renderer is only parented for the lifetime of a painting operation we 
+similarly want to avoid the overhead associated with walking the hierarchy for painting operations. So this class overrides the validate, invalidate, revalidate, repaint, and 
+firePropertyChange methods to be no-ops and override the isOpaque method solely to improve performance. If you write your own renderer, please keep this performance consideration 
+in mind. 
+
+Warning: Serialized objects of this class will not be compatible with future Swing releases. The current serialization support is appropriate for short term storage or RMI between 
+applications running the same version of Swing. As of 1.4, support for long term storage of all JavaBeansTM has been added to the java.beans package. Please see 
+(|java.beans.XMLEncoder|) . 
+
+
+
+*javax.swing.border.Border_javax.swing.table.DefaultTableCellRenderer.noFocusBorder*
+
+
+
+
+
+*javax.swing.table.DefaultTableCellRenderer()*
+
+public DefaultTableCellRenderer()
+
+Creates a default table cell renderer. 
+
+
+*javax.swing.table.DefaultTableCellRenderer.firePropertyChange(String,boolean,boolean)*
+
+public void firePropertyChange(
+  java.lang.String propertyName,
+  boolean oldValue,
+  boolean newValue)
+
+Overridden for performance reasons. See the Implementation Note for more information. 
+
+
+
+*javax.swing.table.DefaultTableCellRenderer.firePropertyChange(String,Object,Object)*
+
+protected void firePropertyChange(
+  java.lang.String propertyName,
+  java.lang.Object oldValue,
+  java.lang.Object newValue)
+
+Overridden for performance reasons. See the Implementation Note for more information. 
+
+
+
+*javax.swing.table.DefaultTableCellRenderer.getTableCellRendererComponent(JTable,Object,boolean,boolean,int,int)*
+
+public |java.awt.Component| getTableCellRendererComponent(
+  javax.swing.JTable table,
+  java.lang.Object value,
+  boolean isSelected,
+  boolean hasFocus,
+  int row,
+  int column)
+
+Returns the default table cell renderer. 
+
+
+    table - the JTable 
+    value - the value to assign to the cell at [row, column] 
+    isSelected - true if cell is selected 
+    hasFocus - true if cell has focus 
+    row - the row of the cell to render 
+    column - the column of the cell to render 
+
+    Returns: the default table cell renderer 
+
+*javax.swing.table.DefaultTableCellRenderer.invalidate()*
+
+public void invalidate()
+
+Overridden for performance reasons. See the Implementation Note for more information. 
+
+
+
+*javax.swing.table.DefaultTableCellRenderer.isOpaque()*
+
+public boolean isOpaque()
+
+Overridden for performance reasons. See the Implementation Note for more information. 
+
+
+
+*javax.swing.table.DefaultTableCellRenderer.repaint()*
+
+public void repaint()
+
+Overridden for performance reasons. See the Implementation Note for more information. 
+
+
+
+*javax.swing.table.DefaultTableCellRenderer.repaint(long,int,int,int,int)*
+
+public void repaint(
+  long tm,
+  int x,
+  int y,
+  int width,
+  int height)
+
+Overridden for performance reasons. See the Implementation Note for more information. 
+
+
+
+*javax.swing.table.DefaultTableCellRenderer.repaint(Rectangle)*
+
+public void repaint(java.awt.Rectangle r)
+
+Overridden for performance reasons. See the Implementation Note for more information. 
+
+
+
+*javax.swing.table.DefaultTableCellRenderer.revalidate()*
+
+public void revalidate()
+
+Overridden for performance reasons. See the Implementation Note for more information. 
+
+
+
+*javax.swing.table.DefaultTableCellRenderer.setBackground(Color)*
+
+public void setBackground(java.awt.Color c)
+
+Overrides JComponent.setBackground to assign the unselected-background color to the specified color. 
+
+
+    c - set the background color to this value 
+
+*javax.swing.table.DefaultTableCellRenderer.setForeground(Color)*
+
+public void setForeground(java.awt.Color c)
+
+Overrides JComponent.setForeground to assign the unselected-foreground color to the specified color. 
+
+
+    c - set the foreground color to this value 
+
+*javax.swing.table.DefaultTableCellRenderer.setValue(Object)*
+
+protected void setValue(java.lang.Object value)
+
+Sets the String object for the cell being rendered to value. 
+
+
+    value - the string value for this cell; if value is null it sets the text value to an empty string 
+
+*javax.swing.table.DefaultTableCellRenderer.updateUI()*
+
+public void updateUI()
+
+Notification from the UIManager that the look and feel [Lhas changed. Replaces the current UI object with the latest version from the UIManager. 
+
+
+
+*javax.swing.table.DefaultTableCellRenderer.validate()*
+
+public void validate()
+
+Overridden for performance reasons. See the Implementation Note for more information. 
+
+
+
+

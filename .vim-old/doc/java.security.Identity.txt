@@ -1,0 +1,241 @@
+*java.security.Identity* *Identity* This class represents identities: real-world objects such as people,
+ companies or organizations whose identities can be authenticated using 
+ t
+
+public abstract class Identity
+  extends    |java.lang.Object|
+  implements |java.security.Principal|
+             |java.io.Serializable|
+
+|java.security.Identity_Description|
+|java.security.Identity_Fields|
+|java.security.Identity_Constructors|
+|java.security.Identity_Methods|
+
+====================================================================================================================================================================================
+
+*java.security.Identity_Constructors*
+|java.security.Identity()|Constructor for serialization only.
+|java.security.Identity(String)|Constructs an identity with the specified name and no scope.
+|java.security.Identity(String,IdentityScope)|Constructs an identity with the specified name and scope.
+
+*java.security.Identity_Methods*
+|java.security.Identity.addCertificate(Certificate)|Adds a certificate for this identity.
+|java.security.Identity.certificates()|Returns a copy of all the certificates for this identity.
+|java.security.Identity.equals(Object)|Tests for equality between the specified object and this identity.
+|java.security.Identity.getInfo()|Returns general information previously specified for this identity.
+|java.security.Identity.getName()|Returns this identity's name.
+|java.security.Identity.getPublicKey()|Returns this identity's public key.
+|java.security.Identity.getScope()|Returns this identity's scope.
+|java.security.Identity.hashCode()|Returns a hashcode for this identity.
+|java.security.Identity.identityEquals(Identity)|Tests for equality between the specified identity and this identity.
+|java.security.Identity.removeCertificate(Certificate)|Removes a certificate from this identity.
+|java.security.Identity.setInfo(String)|Specifies a general information string for this identity.
+|java.security.Identity.setPublicKey(PublicKey)|Sets this identity's public key.
+|java.security.Identity.toString()|Returns a short string describing this identity, telling its  name and its scope (if any).
+|java.security.Identity.toString(boolean)|Returns a string representation of this identity, with  optionally more details than that provided by the  toString method without any ar
+
+*java.security.Identity_Description*
+
+This class represents identities: real-world objects such as people, companies or organizations whose identities can be authenticated using their public keys. Identities may also 
+be more abstract (or concrete) constructs, such as daemon threads or smart cards. 
+
+All Identity objects have a name and a public key. Names are immutable. Identities may also be scoped. That is, if an Identity is specified to have a particular scope, then the 
+name and public key of the Identity are unique within that scope. 
+
+An Identity also has a set of certificates (all certifying its own public key). The Principal names specified in these certificates need not be the same, only the key. 
+
+An Identity can be subclassed, to include postal and email addresses, telephone numbers, images of faces and logos, and so on. 
+
+
+  Deprecated: This class is no longer used. Its functionality has been
+ replaced by <code>java.security.KeyStore</code>, the
+ <code>java.security.cert</code> package, and
+ <code>java.security.Principal</code>.
+
+*java.security.Identity()*
+
+protected Identity()
+
+Constructor for serialization only. 
+
+
+*java.security.Identity(String)*
+
+public Identity(java.lang.String name)
+
+Constructs an identity with the specified name and no scope. 
+
+    name - the identity name. 
+
+*java.security.Identity(String,IdentityScope)*
+
+public Identity(
+  java.lang.String name,
+  java.security.IdentityScope scope)
+  throws |java.security.KeyManagementException|
+         
+Constructs an identity with the specified name and scope. 
+
+    name - the identity name. 
+    scope - the scope of the identity. 
+
+*java.security.Identity.addCertificate(Certificate)*
+
+public void addCertificate(java.security.Certificate certificate)
+  throws |java.security.KeyManagementException|
+         
+Adds a certificate for this identity. If the identity has a public key, the public key in the certificate must be the same, and if the identity does not have a public key, the 
+identity's public key is set to be that specified in the certificate. 
+
+First, if there is a security manager, its checkSecurityAccess method is called with "addIdentityCertificate" as its argument to see if it's ok to add a certificate. 
+
+
+    certificate - the certificate to be added. 
+
+*java.security.Identity.certificates()*
+
+public |java.security.Certificate|[] certificates()
+
+Returns a copy of all the certificates for this identity. 
+
+
+
+    Returns: a copy of all the certificates for this identity. 
+
+*java.security.Identity.equals(Object)*
+
+public final boolean equals(java.lang.Object identity)
+
+Tests for equality between the specified object and this identity. This first tests to see if the entities actually refer to the same object, in which case it returns true. Next, 
+it checks to see if the entities have the same name and the same scope. If they do, the method returns true. Otherwise, it calls identityEquals(|java.security.Identity|) , which 
+subclasses should override. 
+
+
+    identity - the object to test for equality with this identity. 
+
+    Returns: true if the objects are considered equal, false otherwise. 
+
+*java.security.Identity.getInfo()*
+
+public |java.lang.String| getInfo()
+
+Returns general information previously specified for this identity. 
+
+
+
+    Returns: general information about this identity. 
+
+*java.security.Identity.getName()*
+
+public final |java.lang.String| getName()
+
+Returns this identity's name. 
+
+
+
+    Returns: the name of this identity. 
+
+*java.security.Identity.getPublicKey()*
+
+public |java.security.PublicKey| getPublicKey()
+
+Returns this identity's public key. 
+
+
+
+    Returns: the public key for this identity. 
+
+*java.security.Identity.getScope()*
+
+public final |java.security.IdentityScope| getScope()
+
+Returns this identity's scope. 
+
+
+
+    Returns: the scope of this identity. 
+
+*java.security.Identity.hashCode()*
+
+public int hashCode()
+
+Returns a hashcode for this identity. 
+
+
+
+    Returns: a hashcode for this identity. 
+
+*java.security.Identity.identityEquals(Identity)*
+
+protected boolean identityEquals(java.security.Identity identity)
+
+Tests for equality between the specified identity and this identity. This method should be overriden by subclasses to test for equality. The default behavior is to return true if 
+the names and public keys are equal. 
+
+
+    identity - the identity to test for equality with this identity. 
+
+    Returns: true if the identities are considered equal, false otherwise. 
+
+*java.security.Identity.removeCertificate(Certificate)*
+
+public void removeCertificate(java.security.Certificate certificate)
+  throws |java.security.KeyManagementException|
+         
+Removes a certificate from this identity. 
+
+First, if there is a security manager, its checkSecurityAccess method is called with "removeIdentityCertificate" as its argument to see if it's ok to remove a certificate. 
+
+
+    certificate - the certificate to be removed. 
+
+*java.security.Identity.setInfo(String)*
+
+public void setInfo(java.lang.String info)
+
+Specifies a general information string for this identity. 
+
+First, if there is a security manager, its checkSecurityAccess method is called with "setIdentityInfo" as its argument to see if it's ok to specify the information string. 
+
+
+    info - the information string. 
+
+*java.security.Identity.setPublicKey(PublicKey)*
+
+public void setPublicKey(java.security.PublicKey key)
+  throws |java.security.KeyManagementException|
+         
+Sets this identity's public key. The old key and all of this identity's certificates are removed by this operation. 
+
+First, if there is a security manager, its checkSecurityAccess method is called with "setIdentityPublicKey" as its argument to see if it's ok to set the public key. 
+
+
+    key - the public key for this identity. 
+
+*java.security.Identity.toString()*
+
+public |java.lang.String| toString()
+
+Returns a short string describing this identity, telling its name and its scope (if any). 
+
+First, if there is a security manager, its checkSecurityAccess method is called with "printIdentity" as its argument to see if it's ok to return the string. 
+
+
+
+    Returns: information about this identity, such as its name and the name of its scope (if any). 
+
+*java.security.Identity.toString(boolean)*
+
+public |java.lang.String| toString(boolean detailed)
+
+Returns a string representation of this identity, with optionally more details than that provided by the toString method without any arguments. 
+
+First, if there is a security manager, its checkSecurityAccess method is called with "printIdentity" as its argument to see if it's ok to return the string. 
+
+
+    detailed - whether or not to provide detailed information. 
+
+    Returns: information about this identity. If detailed is true, then this method returns more information than that provided by the toString method without any arguments. 
+
+

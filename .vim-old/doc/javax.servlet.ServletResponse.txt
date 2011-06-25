@@ -1,0 +1,298 @@
+*javax.servlet.ServletResponse* *ServletResponse* Defines an object to assist a 
+
+public interface interface ServletResponse
+
+
+|javax.servlet.ServletResponse_Description|
+|javax.servlet.ServletResponse_Fields|
+|javax.servlet.ServletResponse_Constructors|
+|javax.servlet.ServletResponse_Methods|
+
+================================================================================
+
+*javax.servlet.ServletResponse_Methods*
+|javax.servlet.ServletResponse.flushBuffer()|Forces any content in the buffer t
+|javax.servlet.ServletResponse.getBufferSize()|Returns the actual buffer size u
+|javax.servlet.ServletResponse.getCharacterEncoding()|Returns the name of the c
+|javax.servlet.ServletResponse.getContentType()|Returns the content type used f
+|javax.servlet.ServletResponse.getLocale()|Returns the locale specified for thi
+|javax.servlet.ServletResponse.getOutputStream()|Returns aServletOutputStreamsu
+|javax.servlet.ServletResponse.getWriter()|Returns a PrintWriter object that  c
+|javax.servlet.ServletResponse.isCommitted()|Returns a boolean indicating if th
+|javax.servlet.ServletResponse.reset()|Clears any data that exists in the buffe
+|javax.servlet.ServletResponse.resetBuffer()|Clears the content of the underlyi
+|javax.servlet.ServletResponse.setBufferSize(int)|Sets the preferred buffer siz
+|javax.servlet.ServletResponse.setCharacterEncoding(String)|Sets the character 
+|javax.servlet.ServletResponse.setContentLength(int)|Sets the length of the con
+|javax.servlet.ServletResponse.setContentType(String)|Sets the content type of 
+|javax.servlet.ServletResponse.setLocale(Locale)|Sets the locale of the respons
+
+*javax.servlet.ServletResponse_Description*
+
+Defines an object to assist a servlet in sending a response to the client. The 
+servlet container creates a ServletResponse object and passes it as an argument 
+to the servlet's service method. 
+
+To send binary data in a MIME body response, use the 
+(|javax.servlet.ServletOutputStream|) returned by 
+(|javax.servlet.ServletResponse|) . To send character data, use the PrintWriter 
+object returned by (|javax.servlet.ServletResponse|) . To mix binary and text 
+data, for example, to create a multipart response, use a ServletOutputStream 
+and manage the character sections manually. 
+
+The charset for the MIME body response can be specified explicitly using the 
+(|javax.servlet.ServletResponse|) and (|javax.servlet.ServletResponse|) 
+methods, or implicitly using the (|javax.servlet.ServletResponse|) method. 
+Explicit specifications take precedence over implicit specifications. If no 
+charset is specified, ISO-8859-1 will be used. The setCharacterEncoding, 
+setContentType, or setLocale method must be called before getWriter and before 
+committing the response for the character encoding to be used. 
+
+See the Internet RFCs such as 
+
+RFC 2045 for more information on MIME. Protocols such as SMTP and HTTP define 
+profiles of MIME, and those standards are still evolving. 
+
+
+
+*javax.servlet.ServletResponse.flushBuffer()*
+
+public void flushBuffer()
+  throws |java.io.IOException|
+         
+Forces any content in the buffer to be written to the client. A call to this 
+method automatically commits the response, meaning the status code and headers 
+will be written. 
+
+
+
+*javax.servlet.ServletResponse.getBufferSize()*
+
+public int getBufferSize()
+
+Returns the actual buffer size used for the response. If no buffering is used, 
+this method returns 0. 
+
+
+
+    Returns: the actual buffer size used 
+
+*javax.servlet.ServletResponse.getCharacterEncoding()*
+
+public |java.lang.String| getCharacterEncoding()
+
+Returns the name of the character encoding (MIME charset) used for the body 
+sent in this response. The character encoding may have been specified 
+explicitly using the (|javax.servlet.ServletResponse|) or 
+(|javax.servlet.ServletResponse|) methods, or implicitly using the 
+(|javax.servlet.ServletResponse|) method. Explicit specifications take 
+precedence over implicit specifications. Calls made to these methods after 
+getWriter has been called or after the response has been committed have no 
+effect on the character encoding. If no character encoding has been specified, 
+ISO-8859-1 is returned. See RFC 2047 (http://www.ietf.org/rfc/rfc2047.txt) for 
+more information about character encoding and MIME. 
+
+
+
+    Returns: a String specifying the name of the character encoding, for example, UTF-8 
+
+*javax.servlet.ServletResponse.getContentType()*
+
+public |java.lang.String| getContentType()
+
+Returns the content type used for the MIME body sent in this response. The 
+content type proper must have been specified using 
+(|javax.servlet.ServletResponse|) before the response is committed. If no 
+content type has been specified, this method returns null. If a content type 
+has been specified, and a character encoding has been explicitly or implicitly 
+specified as described in (|javax.servlet.ServletResponse|) or 
+(|javax.servlet.ServletResponse|) has been called, the charset parameter is 
+included in the string returned. If no character encoding has been specified, 
+the charset parameter is omitted. 
+
+
+
+    Returns: a String specifying the content type, for example, text/html; charset=UTF-8, or 
+             null 
+
+*javax.servlet.ServletResponse.getLocale()*
+
+public |java.util.Locale| getLocale()
+
+Returns the locale specified for this response using the 
+(|javax.servlet.ServletResponse|) method. Calls made to setLocale after the 
+response is committed have no effect. If no locale has been specified, the 
+container's default locale is returned. 
+
+
+
+*javax.servlet.ServletResponse.getOutputStream()*
+
+public |javax.servlet.ServletOutputStream| getOutputStream()
+  throws |java.io.IOException|
+         
+Returns a (|javax.servlet.ServletOutputStream|) suitable for writing binary 
+data in the response. The servlet container does not encode the binary data. 
+
+Calling flush() on the ServletOutputStream commits the response. 
+
+Either this method or (|javax.servlet.ServletResponse|) may be called to write 
+the body, not both. 
+
+
+
+    Returns: a {@link ServletOutputStream} for writing binary data 
+
+*javax.servlet.ServletResponse.getWriter()*
+
+public |java.io.PrintWriter| getWriter()
+  throws |java.io.IOException|
+         
+Returns a PrintWriter object that can send character text to the client. The 
+PrintWriter uses the character encoding returned by 
+(|javax.servlet.ServletResponse|) . If the response's character encoding has 
+not been specified as described in getCharacterEncoding (i.e., the method just 
+returns the default value ISO-8859-1), getWriter updates it to ISO-8859-1. 
+Calling flush() on the PrintWriter commits the response. Either this method or 
+(|javax.servlet.ServletResponse|) may be called to write the body, not both. 
+
+
+
+    Returns: a PrintWriter object that can return character data to the client 
+
+*javax.servlet.ServletResponse.isCommitted()*
+
+public boolean isCommitted()
+
+Returns a boolean indicating if the response has been committed. A committed 
+response has already had its status code and headers written. 
+
+
+
+    Returns: a boolean indicating if the response has been committed 
+
+*javax.servlet.ServletResponse.reset()*
+
+public void reset()
+
+Clears any data that exists in the buffer as well as the status code and 
+headers. If the response has been committed, this method throws an 
+IllegalStateException. 
+
+
+
+*javax.servlet.ServletResponse.resetBuffer()*
+
+public void resetBuffer()
+
+Clears the content of the underlying buffer in the response without clearing 
+headers or status code. If the response has been committed, this method throws 
+an IllegalStateException. 
+
+
+
+*javax.servlet.ServletResponse.setBufferSize(int)*
+
+public void setBufferSize(int size)
+
+Sets the preferred buffer size for the body of the response. The servlet 
+container will use a buffer at least as large as the size requested. The actual 
+buffer size used can be found using getBufferSize. 
+
+A larger buffer allows more content to be written before anything is actually 
+sent, thus providing the servlet with more time to set appropriate status codes 
+and headers. A smaller buffer decreases server memory load and allows the 
+client to start receiving data more quickly. 
+
+This method must be called before any response body content is written; if 
+content has been written or the response object has been committed, this method 
+throws an IllegalStateException. 
+
+
+    size - the preferred buffer size 
+
+*javax.servlet.ServletResponse.setCharacterEncoding(String)*
+
+public void setCharacterEncoding(java.lang.String charset)
+
+Sets the character encoding (MIME charset) of the response being sent to the 
+client, for example, to UTF-8. If the character encoding has already been set 
+by (|javax.servlet.ServletResponse|) or (|javax.servlet.ServletResponse|) , 
+this method overrides it. Calling (|javax.servlet.ServletResponse|) with the 
+String of text/html and calling this method with the String of UTF-8 is 
+equivalent with calling setContentType with the String of text/html; 
+charset=UTF-8. This method can be called repeatedly to change the character 
+encoding. This method has no effect if it is called after getWriter has been 
+called or after the response has been committed. Containers must communicate 
+the character encoding used for the servlet response's writer to the client if 
+the protocol provides a way for doing so. In the case of HTTP, the character 
+encoding is communicated as part of the Content-Type header for text media 
+types. Note that the character encoding cannot be communicated via HTTP headers 
+if the servlet does not specify a content type; however, it is still used to 
+encode text written via the servlet response's writer. 
+
+
+    charset - a String specifying only the character set defined by IANA Character Sets 
+       (http://www.iana.org/assignments/character-sets) 
+
+*javax.servlet.ServletResponse.setContentLength(int)*
+
+public void setContentLength(int len)
+
+Sets the length of the content body in the response In HTTP servlets, this 
+method sets the HTTP Content-Length header. 
+
+
+    len - an integer specifying the length of the content being returned to the client; 
+       sets the Content-Length header 
+
+*javax.servlet.ServletResponse.setContentType(String)*
+
+public void setContentType(java.lang.String type)
+
+Sets the content type of the response being sent to the client, if the response 
+has not been committed yet. The given content type may include a character 
+encoding specification, for example, text/html;charset=UTF-8. The response's 
+character encoding is only set from the given content type if this method is 
+called before getWriter is called. This method may be called repeatedly to 
+change content type and character encoding. This method has no effect if called 
+after the response has been committed. It does not set the response's character 
+encoding if it is called after getWriter has been called or after the response 
+has been committed. Containers must communicate the content type and the 
+character encoding used for the servlet response's writer to the client if the 
+protocol provides a way for doing so. In the case of HTTP, the Content-Type 
+header is used. 
+
+
+    type - a String specifying the MIME type of the content 
+
+*javax.servlet.ServletResponse.setLocale(Locale)*
+
+public void setLocale(java.util.Locale loc)
+
+Sets the locale of the response, if the response has not been committed yet. It 
+also sets the response's character encoding appropriately for the locale, if 
+the character encoding has not been explicitly set using 
+(|javax.servlet.ServletResponse|) or (|javax.servlet.ServletResponse|) , 
+getWriter hasn't been called yet, and the response hasn't been committed yet. 
+If the deployment descriptor contains a locale-encoding-mapping-list element, 
+and that element provides a mapping for the given locale, that mapping is used. 
+Otherwise, the mapping from locale to character encoding is container 
+dependent. This method may be called repeatedly to change locale and character 
+encoding. The method has no effect if called after the response has been 
+committed. It does not set the response's character encoding if it is called 
+after (|javax.servlet.ServletResponse|) has been called with a charset 
+specification, after (|javax.servlet.ServletResponse|) has been called, after 
+getWriter has been called, or after the response has been committed. Containers 
+must communicate the locale and the character encoding used for the servlet 
+response's writer to the client if the protocol provides a way for doing so. In 
+the case of HTTP, the locale is communicated via the Content-Language header, 
+the character encoding as part of the Content-Type header for text media types. 
+Note that the character encoding cannot be communicated via HTTP headers if the 
+servlet does not specify a content type; however, it is still used to encode 
+text written via the servlet response's writer. 
+
+
+    loc - the locale of the response 
+
+

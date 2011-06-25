@@ -1,0 +1,131 @@
+*org.xml.sax.ext.DeclHandler* *DeclHandler* SAX2 extension handler for DTD decla
+
+public interface interface DeclHandler
+
+
+|org.xml.sax.ext.DeclHandler_Description|
+|org.xml.sax.ext.DeclHandler_Fields|
+|org.xml.sax.ext.DeclHandler_Constructors|
+|org.xml.sax.ext.DeclHandler_Methods|
+
+================================================================================
+
+*org.xml.sax.ext.DeclHandler_Methods*
+|org.xml.sax.ext.DeclHandler.attributeDecl(String,String,String,String,String)|
+|org.xml.sax.ext.DeclHandler.elementDecl(String,String)|Report an element type 
+|org.xml.sax.ext.DeclHandler.externalEntityDecl(String,String,String)|Report a 
+|org.xml.sax.ext.DeclHandler.internalEntityDecl(String,String)|Report an intern
+
+*org.xml.sax.ext.DeclHandler_Description*
+
+SAX2 extension handler for DTD declaration events. 
+
+This module, both source code and documentation, is in the Public Domain, and 
+comes with NO WARRANTY. See http://www.saxproject.org for further information. 
+
+This is an optional extension handler for SAX2 to provide more complete 
+information about DTD declarations in an XML document. XML readers are not 
+required to recognize this handler, and it is not part of core-only SAX2 
+distributions. 
+
+Note that data-related DTD declarations (unparsed entities and notations) are 
+already reported through the DTDHandler(|org.xml.sax.DTDHandler|) interface. 
+
+If you are using the declaration handler together with a lexical handler, all 
+of the events will occur between the startDTD(|org.xml.sax.ext.LexicalHandler|) 
+and the endDTD(|org.xml.sax.ext.LexicalHandler|) events. 
+
+To set the DeclHandler for an XML reader, use the 
+setProperty(|org.xml.sax.XMLReader|) method with the property name 
+http://xml.org/sax/properties/declaration-handler and an object implementing 
+this interface (or null) as the value. If the reader does not report 
+declaration events, it will throw a 
+SAXNotRecognizedException(|org.xml.sax.SAXNotRecognizedException|) when you 
+attempt to register the handler. 
+
+
+*org.xml.sax.ext.DeclHandler.attributeDecl(String,String,String,String,String)*
+
+public void attributeDecl(
+  java.lang.String eName,
+  java.lang.String aName,
+  java.lang.String type,
+  java.lang.String mode,
+  java.lang.String value)
+  throws |org.xml.sax.SAXException|
+         
+Report an attribute type declaration. 
+
+Only the effective (first) declaration for an attribute will be reported. The 
+type will be one of the strings "CDATA", "ID", "IDREF", "IDREFS", "NMTOKEN", 
+"NMTOKENS", "ENTITY", "ENTITIES", a parenthesized token group with the 
+separator "|" and all whitespace removed, or the word "NOTATION" followed by a 
+space followed by a parenthesized token group with all whitespace removed. 
+
+The value will be the value as reported to applications, appropriately 
+normalized and with entity and character references expanded. 
+
+    eName - The name of the associated element. 
+    aName - The name of the attribute. 
+    type - A string representing the attribute type. 
+    mode - A string representing the attribute defaulting mode ("#IMPLIED", "#REQUIRED", 
+       or "#FIXED") or null if none of these applies. 
+    value - A string representing the attribute's default value, or null if there is none. 
+
+*org.xml.sax.ext.DeclHandler.elementDecl(String,String)*
+
+public void elementDecl(
+  java.lang.String name,
+  java.lang.String model)
+  throws |org.xml.sax.SAXException|
+         
+Report an element type declaration. 
+
+The content model will consist of the string "EMPTY", the string "ANY", or a 
+parenthesised group, optionally followed by an occurrence indicator. The model 
+will be normalized so that all parameter entities are fully resolved and all 
+whitespace is removed,and will include the enclosing parentheses. Other 
+normalization (such as removing redundant parentheses or simplifying occurrence 
+indicators) is at the discretion of the parser. 
+
+    name - The element type name. 
+    model - The content model as a normalized string. 
+
+*org.xml.sax.ext.DeclHandler.externalEntityDecl(String,String,String)*
+
+public void externalEntityDecl(
+  java.lang.String name,
+  java.lang.String publicId,
+  java.lang.String systemId)
+  throws |org.xml.sax.SAXException|
+         
+Report a parsed external entity declaration. 
+
+Only the effective (first) declaration for each entity will be reported. 
+
+If the system identifier is a URL, the parser must resolve it fully before 
+passing it to the application. 
+
+    name - The name of the entity. If it is a parameter entity, the name will begin with 
+       '%'. 
+    publicId - The entity's public identifier, or null if none was given. 
+    systemId - The entity's system identifier. 
+
+*org.xml.sax.ext.DeclHandler.internalEntityDecl(String,String)*
+
+public void internalEntityDecl(
+  java.lang.String name,
+  java.lang.String value)
+  throws |org.xml.sax.SAXException|
+         
+Report an internal entity declaration. 
+
+Only the effective (first) declaration for each entity will be reported. All 
+parameter entities in the value will be expanded, but general entities will 
+not. 
+
+    name - The name of the entity. If it is a parameter entity, the name will begin with 
+       '%'. 
+    value - The replacement text of the entity. 
+
+

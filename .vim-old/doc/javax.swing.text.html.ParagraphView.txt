@@ -1,0 +1,147 @@
+*javax.swing.text.html.ParagraphView* *ParagraphView* Displays the a paragraph, and uses css attributes for its
+ configuration.
+
+public class ParagraphView
+  extends    |javax.swing.text.ParagraphView|
+
+|javax.swing.text.html.ParagraphView_Description|
+|javax.swing.text.html.ParagraphView_Fields|
+|javax.swing.text.html.ParagraphView_Constructors|
+|javax.swing.text.html.ParagraphView_Methods|
+
+====================================================================================================================================================================================
+
+*javax.swing.text.html.ParagraphView_Constructors*
+|javax.swing.text.html.ParagraphView(Element)|Constructs a ParagraphView for the given element.
+
+*javax.swing.text.html.ParagraphView_Methods*
+|javax.swing.text.html.ParagraphView.calculateMinorAxisRequirements(int,SizeRequirements)|Calculate the needs for the paragraph along the minor axis.
+|javax.swing.text.html.ParagraphView.getAttributes()|Fetches the attributes to use when rendering.
+|javax.swing.text.html.ParagraphView.getMaximumSpan(int)|Determines the maximum span for this view along an  axis.
+|javax.swing.text.html.ParagraphView.getMinimumSpan(int)|Determines the minimum span for this view along an  axis.
+|javax.swing.text.html.ParagraphView.getPreferredSpan(int)|Determines the preferred span for this view.
+|javax.swing.text.html.ParagraphView.getStyleSheet()|
+|javax.swing.text.html.ParagraphView.isVisible()|Indicates whether or not this view should be   displayed.
+|javax.swing.text.html.ParagraphView.paint(Graphics,Shape)|Renders using the given rendering surface and area on that  surface.
+|javax.swing.text.html.ParagraphView.setParent(View)|Establishes the parent view for this view.
+|javax.swing.text.html.ParagraphView.setPropertiesFromAttributes()|Sets up the paragraph from css attributes instead of  the values found in StyleConstants (i.e.
+
+*javax.swing.text.html.ParagraphView_Description*
+
+Displays the a paragraph, and uses css attributes for its configuration. 
+
+
+
+*javax.swing.text.html.ParagraphView(Element)*
+
+public ParagraphView(javax.swing.text.Element elem)
+
+Constructs a ParagraphView for the given element. 
+
+    elem - the element that this view is responsible for 
+
+*javax.swing.text.html.ParagraphView.calculateMinorAxisRequirements(int,SizeRequirements)*
+
+protected |javax.swing.SizeRequirements| calculateMinorAxisRequirements(
+  int axis,
+  javax.swing.SizeRequirements r)
+
+Calculate the needs for the paragraph along the minor axis. This implemented to use the requirements of the superclass, modified slightly to set a minimum span allowed. Typical 
+html rendering doesn't let the view size shrink smaller than the length of the longest word. 
+
+
+
+*javax.swing.text.html.ParagraphView.getAttributes()*
+
+public |javax.swing.text.AttributeSet| getAttributes()
+
+Fetches the attributes to use when rendering. This is implemented to multiplex the attributes specified in the model with a StyleSheet. 
+
+
+
+*javax.swing.text.html.ParagraphView.getMaximumSpan(int)*
+
+public float getMaximumSpan(int axis)
+
+Determines the maximum span for this view along an axis. Returns 0 if the view is not visible, otherwise it calls the superclass method ot get the maximum span. 
+
+
+    axis - may be either View.X_AXIS or View.Y_AXIS 
+
+    Returns: the maximum span the view can be rendered into 
+
+*javax.swing.text.html.ParagraphView.getMinimumSpan(int)*
+
+public float getMinimumSpan(int axis)
+
+Determines the minimum span for this view along an axis. Returns 0 if the view is not visible, otherwise it calls the superclass method to get the minimum span. 
+
+
+    axis - may be either View.X_AXIS or View.Y_AXIS 
+
+    Returns: the minimum span the view can be rendered into 
+
+*javax.swing.text.html.ParagraphView.getPreferredSpan(int)*
+
+public float getPreferredSpan(int axis)
+
+Determines the preferred span for this view. Returns 0 if the view is not visible, otherwise it calls the superclass method to get the preferred span. axis. 
+
+
+    axis - may be either View.X_AXIS or View.Y_AXIS 
+
+    Returns: the span the view would like to be rendered into; typically the view is told to render into the span that is returned, although there is no guarantee; the parent may choose to 
+             resize or break the view 
+
+*javax.swing.text.html.ParagraphView.getStyleSheet()*
+
+protected |javax.swing.text.html.StyleSheet| getStyleSheet()
+
+
+
+
+
+*javax.swing.text.html.ParagraphView.isVisible()*
+
+public boolean isVisible()
+
+Indicates whether or not this view should be displayed. If none of the children wish to be displayed and the only visible child is the break that ends the paragraph, the paragraph 
+will not be considered visible. Otherwise, it will be considered visible and return true. 
+
+
+
+    Returns: true if the paragraph should be displayed 
+
+*javax.swing.text.html.ParagraphView.paint(Graphics,Shape)*
+
+public void paint(
+  java.awt.Graphics g,
+  java.awt.Shape a)
+
+Renders using the given rendering surface and area on that surface. This is implemented to delgate to the superclass after stashing the base coordinate for tab calculations. 
+
+
+    g - the rendering surface to use 
+    a - the allocated region to render into 
+
+*javax.swing.text.html.ParagraphView.setParent(View)*
+
+public void setParent(javax.swing.text.View parent)
+
+Establishes the parent view for this view. This is guaranteed to be called before any other methods if the parent view is functioning properly. 
+
+This is implemented to forward to the superclass as well as call the setPropertiesFromAttributes method to set the paragraph properties from the css attributes. The call is made 
+at this time to ensure the ability to resolve upward through the parents view attributes. 
+
+
+    parent - the new parent, or null if the view is being removed from a parent it was previously added to 
+
+*javax.swing.text.html.ParagraphView.setPropertiesFromAttributes()*
+
+protected void setPropertiesFromAttributes()
+
+Sets up the paragraph from css attributes instead of the values found in StyleConstants (i.e. which are used by the superclass). Since 
+
+
+
+

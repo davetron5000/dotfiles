@@ -1,0 +1,185 @@
+*javax.accessibility.AccessibleText* *AccessibleText* The AccessibleText interface should be implemented by all 
+ classes that present textual information on the display.
+
+public interface interface AccessibleText
+
+
+|javax.accessibility.AccessibleText_Description|
+|javax.accessibility.AccessibleText_Fields|
+|javax.accessibility.AccessibleText_Constructors|
+|javax.accessibility.AccessibleText_Methods|
+
+====================================================================================================================================================================================
+
+*javax.accessibility.AccessibleText_Fields*
+|int_javax.accessibility.AccessibleText.CHARACTER|
+|int_javax.accessibility.AccessibleText.SENTENCE|
+|int_javax.accessibility.AccessibleText.WORD|
+
+*javax.accessibility.AccessibleText_Methods*
+|javax.accessibility.AccessibleText.getAfterIndex(int,int)|Returns the String after a given index.
+|javax.accessibility.AccessibleText.getAtIndex(int,int)|Returns the String at a given index.
+|javax.accessibility.AccessibleText.getBeforeIndex(int,int)|Returns the String before a given index.
+|javax.accessibility.AccessibleText.getCaretPosition()|Returns the zero-based offset of the caret.
+|javax.accessibility.AccessibleText.getCharacterAttribute(int)|Returns the AttributeSet for a given character at a given index
+|javax.accessibility.AccessibleText.getCharacterBounds(int)|Determines the bounding box of the character at the given   index into the string.
+|javax.accessibility.AccessibleText.getCharCount()|Returns the number of characters (valid indicies)
+|javax.accessibility.AccessibleText.getIndexAtPoint(Point)|Given a point in local coordinates, return the zero-based index  of the character under that Point.
+|javax.accessibility.AccessibleText.getSelectedText()|Returns the portion of the text that is selected.
+|javax.accessibility.AccessibleText.getSelectionEnd()|Returns the end offset within the selected text.
+|javax.accessibility.AccessibleText.getSelectionStart()|Returns the start offset within the selected text.
+
+*javax.accessibility.AccessibleText_Description*
+
+The AccessibleText interface should be implemented by all classes that present textual information on the display. This interface provides the standard mechanism for an assistive 
+technology to access that text via its content, attributes, and spatial location. Applications can determine if an object supports the AccessibleText interface by first obtaining 
+its AccessibleContext (see (|javax.accessibility.Accessible|) ) and then calling the (|javax.accessibility.AccessibleContext|) method of AccessibleContext. If the return value is 
+not null, the object supports this interface. 
+
+
+
+*int_javax.accessibility.AccessibleText.CHARACTER*
+
+Constant used to indicate that the part of the text that should be retrieved is a character. 
+
+
+*int_javax.accessibility.AccessibleText.SENTENCE*
+
+Constant used to indicate that the part of the text that should be retrieved is a sentence. 
+
+
+*int_javax.accessibility.AccessibleText.WORD*
+
+Constant used to indicate that the part of the text that should be retrieved is a word. 
+
+
+
+*javax.accessibility.AccessibleText.getAfterIndex(int,int)*
+
+public |java.lang.String| getAfterIndex(
+  int part,
+  int index)
+
+Returns the String after a given index. 
+
+
+    part - the CHARACTER, WORD, or SENTENCE to retrieve 
+    index - an index within the text 
+
+    Returns: the letter, word, or sentence 
+
+*javax.accessibility.AccessibleText.getAtIndex(int,int)*
+
+public |java.lang.String| getAtIndex(
+  int part,
+  int index)
+
+Returns the String at a given index. 
+
+
+    part - the CHARACTER, WORD, or SENTENCE to retrieve 
+    index - an index within the text 
+
+    Returns: the letter, word, or sentence 
+
+*javax.accessibility.AccessibleText.getBeforeIndex(int,int)*
+
+public |java.lang.String| getBeforeIndex(
+  int part,
+  int index)
+
+Returns the String before a given index. 
+
+
+    part - the CHARACTER, WORD, or SENTENCE to retrieve 
+    index - an index within the text 
+
+    Returns: the letter, word, or sentence 
+
+*javax.accessibility.AccessibleText.getCaretPosition()*
+
+public int getCaretPosition()
+
+Returns the zero-based offset of the caret. 
+
+Note: That to the right of the caret will have the same index value as the offset (the caret is between two characters). 
+
+
+
+    Returns: the zero-based offset of the caret. 
+
+*javax.accessibility.AccessibleText.getCharacterAttribute(int)*
+
+public |javax.swing.text.AttributeSet| getCharacterAttribute(int i)
+
+Returns the AttributeSet for a given character at a given index 
+
+
+    i - the zero-based index into the text 
+
+    Returns: the AttributeSet of the character 
+
+*javax.accessibility.AccessibleText.getCharacterBounds(int)*
+
+public |java.awt.Rectangle| getCharacterBounds(int i)
+
+Determines the bounding box of the character at the given index into the string. The bounds are returned in local coordinates. If the index is invalid an empty rectangle is 
+returned. 
+
+
+    i - the index into the String 
+
+    Returns: the screen coordinates of the character's bounding box, if index is invalid return an empty rectangle. 
+
+*javax.accessibility.AccessibleText.getCharCount()*
+
+public int getCharCount()
+
+Returns the number of characters (valid indicies) 
+
+
+
+    Returns: the number of characters 
+
+*javax.accessibility.AccessibleText.getIndexAtPoint(Point)*
+
+public int getIndexAtPoint(java.awt.Point p)
+
+Given a point in local coordinates, return the zero-based index of the character under that Point. If the point is invalid, this method returns -1. 
+
+
+    p - the Point in local coordinates 
+
+    Returns: the zero-based index of the character under Point p; if Point is invalid return -1. 
+
+*javax.accessibility.AccessibleText.getSelectedText()*
+
+public |java.lang.String| getSelectedText()
+
+Returns the portion of the text that is selected. 
+
+
+
+    Returns: the String portion of the text that is selected 
+
+*javax.accessibility.AccessibleText.getSelectionEnd()*
+
+public int getSelectionEnd()
+
+Returns the end offset within the selected text. If there is no selection, but there is a caret, the start and end offsets will be the same. 
+
+
+
+    Returns: the index into teh text of the end of the selection 
+
+*javax.accessibility.AccessibleText.getSelectionStart()*
+
+public int getSelectionStart()
+
+Returns the start offset within the selected text. If there is no selection, but there is a caret, the start and end offsets will be the same. 
+
+
+
+    Returns: the index into the text of the start of the selection 
+
+

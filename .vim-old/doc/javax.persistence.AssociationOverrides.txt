@@ -1,0 +1,39 @@
+*javax.persistence.AssociationOverrides* *AssociationOverrides* This annotation 
+
+public interface class AssociationOverrides
+
+  implements |java.lang.annotation.Annotation|
+
+|javax.persistence.AssociationOverrides_Description|
+|javax.persistence.AssociationOverrides_Fields|
+|javax.persistence.AssociationOverrides_Constructors|
+|javax.persistence.AssociationOverrides_Methods|
+
+================================================================================
+
+*javax.persistence.AssociationOverrides_Description*
+
+This annotation is used to override mappings of multiple many-to-one or 
+one-to-one relationship properties or fields. 
+
+
+
+Example: MappedSuperclass public class Employee { 
+
+Id protected Integer id; Version protected Integer version; ManyToOne protected 
+Address address; OneToOne protected Locker locker; 
+
+public Integer getId() { ... } public void setId(Integer id) { ... } public 
+Address getAddress() { ... } public void setAddress(Address address) { ... } 
+public Locker getLocker() { ... } public void setLocker(Locker locker) { ... } 
+
+} 
+
+Entity AssociationOverrides({ 
+
+AssociationOverride(name="address", joinColumns=JoinColumn("ADDR_ID")), 
+AttributeOverride(name="locker", joinColumns=JoinColumn("LCKR_ID"))}) public 
+PartTimeEmployee { ... } 
+
+
+

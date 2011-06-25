@@ -1,0 +1,64 @@
+*javax.servlet.ServletInputStream* *ServletInputStream* Provides an input stream
+
+public abstract class ServletInputStream
+  extends    |java.io.InputStream|
+
+|javax.servlet.ServletInputStream_Description|
+|javax.servlet.ServletInputStream_Fields|
+|javax.servlet.ServletInputStream_Constructors|
+|javax.servlet.ServletInputStream_Methods|
+
+================================================================================
+
+*javax.servlet.ServletInputStream_Constructors*
+|javax.servlet.ServletInputStream()|Does nothing, because this is an abstract c
+
+*javax.servlet.ServletInputStream_Methods*
+|javax.servlet.ServletInputStream.readLine(byte[],int,int)|Reads the input stre
+
+*javax.servlet.ServletInputStream_Description*
+
+Provides an input stream for reading binary data from a client request, 
+including an efficient readLine method for reading data one line at a time. 
+With some protocols, such as HTTP POST and PUT, a ServletInputStream object can 
+be used to read data sent from the client. 
+
+A ServletInputStream object is normally retrieved via the 
+(|javax.servlet.ServletRequest|) method. 
+
+This is an abstract class that a servlet container implements. Subclasses of 
+this class must implement the java.io.InputStream.read() method. 
+
+
+
+*javax.servlet.ServletInputStream()*
+
+protected ServletInputStream()
+
+Does nothing, because this is an abstract class. 
+
+
+*javax.servlet.ServletInputStream.readLine(byte[],int,int)*
+
+public int readLine(
+  byte[] b,
+  int off,
+  int len)
+  throws |java.io.IOException|
+         
+Reads the input stream, one line at a time. Starting at an offset, reads bytes 
+into an array, until it reads a certain number of bytes or reaches a newline 
+character, which it reads into the array as well. 
+
+This method returns -1 if it reaches the end of the input stream before reading 
+the maximum number of bytes. 
+
+
+    b - an array of bytes into which data is read 
+    off - an integer specifying the character at which this method begins reading 
+    len - an integer specifying the maximum number of bytes to read 
+
+    Returns: an integer specifying the actual number of bytes read, or -1 if the end of the 
+             stream is reached 
+
+

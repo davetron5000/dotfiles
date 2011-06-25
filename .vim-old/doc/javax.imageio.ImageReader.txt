@@ -1,0 +1,1448 @@
+*javax.imageio.ImageReader* *ImageReader* An abstract superclass for parsing and decoding of images.
+
+public abstract class ImageReader
+  extends    |java.lang.Object|
+
+|javax.imageio.ImageReader_Description|
+|javax.imageio.ImageReader_Fields|
+|javax.imageio.ImageReader_Constructors|
+|javax.imageio.ImageReader_Methods|
+
+====================================================================================================================================================================================
+
+*javax.imageio.ImageReader_Fields*
+|java.util.Locale[]_javax.imageio.ImageReader.availableLocales|
+|boolean_javax.imageio.ImageReader.ignoreMetadata|
+|java.lang.Object_javax.imageio.ImageReader.input|
+|java.util.Locale_javax.imageio.ImageReader.locale|
+|int_javax.imageio.ImageReader.minIndex|
+|javax.imageio.spi.ImageReaderSpi_javax.imageio.ImageReader.originatingProvider|
+|java.util.List<javax.imageio.event.IIOReadProgressListener>_javax.imageio.ImageReader.progressListeners|
+|boolean_javax.imageio.ImageReader.seekForwardOnly|
+|java.util.List<javax.imageio.event.IIOReadUpdateListener>_javax.imageio.ImageReader.updateListeners|
+|java.util.List<javax.imageio.event.IIOReadWarningListener>_javax.imageio.ImageReader.warningListeners|
+|java.util.List<java.util.Locale>_javax.imageio.ImageReader.warningLocales|
+
+*javax.imageio.ImageReader_Constructors*
+|javax.imageio.ImageReader(ImageReaderSpi)|Constructs an ImageReader and sets its  originatingProvider field to the supplied value.
+
+*javax.imageio.ImageReader_Methods*
+|javax.imageio.ImageReader.abort()|Requests that any current read operation be aborted.
+|javax.imageio.ImageReader.abortRequested()|Returns true if a request to abort the current  read operation has been made since the reader was instantiated or  clearAbortRequest wa
+|javax.imageio.ImageReader.addIIOReadProgressListener(IIOReadProgressListener)|Adds an IIOReadProgressListener to the list of  registered progress listeners.
+|javax.imageio.ImageReader.addIIOReadUpdateListener(IIOReadUpdateListener)|Adds an IIOReadUpdateListener to the list of  registered update listeners.
+|javax.imageio.ImageReader.addIIOReadWarningListener(IIOReadWarningListener)|Adds an IIOReadWarningListener to the list of  registered warning listeners.
+|javax.imageio.ImageReader.canReadRaster()|Returns true if this plug-in supports reading  just ajava.awt.image.Raster Rasterof pixel data.
+|javax.imageio.ImageReader.checkReadParamBandSettings(ImageReadParam,int,int)|A utility method that may be used by readers to test the  validity of the source and destination band
+|javax.imageio.ImageReader.clearAbortRequest()|Clears any previous abort request.
+|javax.imageio.ImageReader.computeRegions(ImageReadParam,int,int,BufferedImage,Rectangle,Rectangle)|Computes the source region of interest and the destination  region of interest,
+|javax.imageio.ImageReader.dispose()|Allows any resources held by this object to be released.
+|javax.imageio.ImageReader.getAspectRatio(int)|Returns the aspect ratio of the given image (that is, its width  divided by its height) as a float.
+|javax.imageio.ImageReader.getAvailableLocales()|Returns an array of Locales that may be used to  localize warning listeners and compression settings.
+|javax.imageio.ImageReader.getDefaultReadParam()|Returns a default ImageReadParam object  appropriate for this format.
+|javax.imageio.ImageReader.getDestination(ImageReadParam,Iterator<ImageTypeSpecifier>,int,int)|Returns the BufferedImage to which decoded pixel  data should be written.
+|javax.imageio.ImageReader.getFormatName()|Returns a String identifying the format of the  input source.
+|javax.imageio.ImageReader.getHeight(int)|Returns the height in pixels of the given image within the  input source.
+|javax.imageio.ImageReader.getImageMetadata(int)|Returns an IIOMetadata object containing metadata  associated with the given image, or null if the  reader does not support readin
+|javax.imageio.ImageReader.getImageMetadata(int,String,Set<String>)|Returns an IIOMetadata object representing the  metadata associated with the given image, or null   if the read
+|javax.imageio.ImageReader.getImageTypes(int)|Returns an Iterator containing possible image  types to which the given image may be decoded, in the form of  ImageTypeSpecifierss.
+|javax.imageio.ImageReader.getInput()|Returns the ImageInputStream or other  Object previously set as the input source.
+|javax.imageio.ImageReader.getLocale()|Returns the currently set Locale, or  null if none has been set.
+|javax.imageio.ImageReader.getMinIndex()|Returns the lowest valid index for reading an image, thumbnail,  or image metadata.
+|javax.imageio.ImageReader.getNumImages(boolean)|Returns the number of images, not including thumbnails, available  from the current input source.
+|javax.imageio.ImageReader.getNumThumbnails(int)|Returns the number of thumbnail preview images associated with  the given image.
+|javax.imageio.ImageReader.getOriginatingProvider()|Returns the ImageReaderSpi that was passed in on  the constructor.
+|javax.imageio.ImageReader.getRawImageType(int)|Returns an ImageTypeSpecifier indicating the  SampleModel and ColorModel which most  closely represents the "raw" internal format o
+|javax.imageio.ImageReader.getSourceRegion(ImageReadParam,int,int)|A utility method that may be used by readers to compute the  region of the source image that should be read, tak
+|javax.imageio.ImageReader.getStreamMetadata()|Returns an IIOMetadata object representing the  metadata associated with the input source as a whole (i.e., not  associated with any
+|javax.imageio.ImageReader.getStreamMetadata(String,Set<String>)|Returns an IIOMetadata object representing the  metadata associated with the input source as a whole (i.e.,  not a
+|javax.imageio.ImageReader.getThumbnailHeight(int,int)|Returns the height of the thumbnail preview image indexed by  thumbnailIndex, associated with the image indexed  by ImageInd
+|javax.imageio.ImageReader.getThumbnailWidth(int,int)|Returns the width of the thumbnail preview image indexed by  thumbnailIndex, associated with the image indexed  by ImageIndex
+|javax.imageio.ImageReader.getTileGridXOffset(int)|Returns the X coordinate of the upper-left corner of tile (0,  0) in the given image.
+|javax.imageio.ImageReader.getTileGridYOffset(int)|Returns the Y coordinate of the upper-left corner of tile (0,  0) in the given image.
+|javax.imageio.ImageReader.getTileHeight(int)|Returns the height of a tile in the given image.
+|javax.imageio.ImageReader.getTileWidth(int)|Returns the width of a tile in the given image.
+|javax.imageio.ImageReader.getWidth(int)|Returns the width in pixels of the given image within the input  source.
+|javax.imageio.ImageReader.hasThumbnails(int)|Returns true if the given image has thumbnail  preview images associated with it.
+|javax.imageio.ImageReader.isIgnoringMetadata()|Returns true if the current input source has been  marked as allowing metadata to be ignored by passing  true as the ignoreMetadata
+|javax.imageio.ImageReader.isImageTiled(int)|Returns true if the image is organized into  tiles, that is, equal-sized non-overlapping rectangles.
+|javax.imageio.ImageReader.isRandomAccessEasy(int)|Returns true if the storage format of the given  image places no inherent impediment on random access to pixels.
+|javax.imageio.ImageReader.isSeekForwardOnly()|Returns true if the current input source has been  marked as seek forward only by passing true as the  seekForwardOnly argument to t
+|javax.imageio.ImageReader.processImageComplete()|Broadcasts the completion of an image read to all registered  IIOReadProgressListeners by calling their  imageComplete method.
+|javax.imageio.ImageReader.processImageProgress(float)|Broadcasts the current percentage of image completion to all  registered IIOReadProgressListeners by calling  their imagePro
+|javax.imageio.ImageReader.processImageStarted(int)|Broadcasts the start of an image read to all registered  IIOReadProgressListeners by calling their  imageStarted method.
+|javax.imageio.ImageReader.processImageUpdate(BufferedImage,int,int,int,int,int,int,int[])|Broadcasts the update of a set of samples to all registered  IIOReadUpdateListeners by c
+|javax.imageio.ImageReader.processPassComplete(BufferedImage)|Broadcasts the end of a progressive pass to all  registered IIOReadUpdateListeners by calling their  passComplete met
+|javax.imageio.ImageReader.processPassStarted(BufferedImage,int,int,int,int,int,int,int,int[])|Broadcasts the beginning of a progressive pass to all  registered IIOReadUpdateListe
+|javax.imageio.ImageReader.processReadAborted()|Broadcasts that the read has been aborted to all registered  IIOReadProgressListeners by calling their  readAborted method.
+|javax.imageio.ImageReader.processSequenceComplete()|Broadcasts the completion of an sequence of image reads to all  registered IIOReadProgressListeners by calling  their sequence
+|javax.imageio.ImageReader.processSequenceStarted(int)|Broadcasts the start of an sequence of image reads to all  registered IIOReadProgressListeners by calling  their sequenceSta
+|javax.imageio.ImageReader.processThumbnailComplete()|Broadcasts the completion of a thumbnail read to all registered  IIOReadProgressListeners by calling their  thumbnailComplete
+|javax.imageio.ImageReader.processThumbnailPassComplete(BufferedImage)|Broadcasts the end of a thumbnail progressive pass to all  registered IIOReadUpdateListeners by calling thei
+|javax.imageio.ImageReader.processThumbnailPassStarted(BufferedImage,int,int,int,int,int,int,int,int[])|Broadcasts the beginning of a thumbnail progressive pass to all  registered
+|javax.imageio.ImageReader.processThumbnailProgress(float)|Broadcasts the current percentage of thumbnail completion to  all registered IIOReadProgressListeners by calling  their 
+|javax.imageio.ImageReader.processThumbnailStarted(int,int)|Broadcasts the start of a thumbnail read to all registered  IIOReadProgressListeners by calling their  thumbnailStarted
+|javax.imageio.ImageReader.processThumbnailUpdate(BufferedImage,int,int,int,int,int,int,int[])|Broadcasts the update of a set of samples in a thumbnail image  to all registered II
+|javax.imageio.ImageReader.processWarningOccurred(String)|Broadcasts a warning message to all registered  IIOReadWarningListeners by calling their  warningOccurred method.
+|javax.imageio.ImageReader.processWarningOccurred(String,String)|Broadcasts a localized warning message to all registered  IIOReadWarningListeners by calling their  warningOccurre
+|javax.imageio.ImageReader.read(int)|Reads the image indexed by imageIndex and returns  it as a complete BufferedImage, using a default  ImageReadParam.
+|javax.imageio.ImageReader.read(int,ImageReadParam)|Reads the image indexed by imageIndex and returns  it as a complete BufferedImage, using a supplied  ImageReadParam.
+|javax.imageio.ImageReader.readAll(int,ImageReadParam)|Reads the image indexed by imageIndex and returns  an IIOImage containing the image, thumbnails, and  associated image metad
+|javax.imageio.ImageReader.readAll(Iterator<?extendsImageReadParam>)|Returns an Iterator containing all the images,  thumbnails, and metadata, starting at the index given by  getM
+|javax.imageio.ImageReader.readAsRenderedImage(int,ImageReadParam)|Returns a RenderedImage object that contains the  contents of the image indexed by imageIndex.
+|javax.imageio.ImageReader.readerSupportsThumbnails()|Returns true if the image format understood by  this reader supports thumbnail preview images associated with  it.
+|javax.imageio.ImageReader.readRaster(int,ImageReadParam)|Returns a new Raster object containing the raw pixel data  from the image stream, without any color conversion applied.
+|javax.imageio.ImageReader.readThumbnail(int,int)|Returns the thumbnail preview image indexed by  thumbnailIndex, associated with the image indexed  by ImageIndex as a BufferedIma
+|javax.imageio.ImageReader.readTile(int,int,int)|Reads the tile indicated by the tileX and  tileY arguments, returning it as a  BufferedImage.
+|javax.imageio.ImageReader.readTileRaster(int,int,int)|Returns a new Raster object containing the raw  pixel data from the tile, without any color conversion applied.
+|javax.imageio.ImageReader.removeAllIIOReadProgressListeners()|Removes all currently registered  IIOReadProgressListener objects.
+|javax.imageio.ImageReader.removeAllIIOReadUpdateListeners()|Removes all currently registered  IIOReadUpdateListener objects.
+|javax.imageio.ImageReader.removeAllIIOReadWarningListeners()|Removes all currently registered  IIOReadWarningListener objects.
+|javax.imageio.ImageReader.removeIIOReadProgressListener(IIOReadProgressListener)|Removes an IIOReadProgressListener from the list  of registered progress listeners.
+|javax.imageio.ImageReader.removeIIOReadUpdateListener(IIOReadUpdateListener)|Removes an IIOReadUpdateListener from the list of  registered update listeners.
+|javax.imageio.ImageReader.removeIIOReadWarningListener(IIOReadWarningListener)|Removes an IIOReadWarningListener from the list of  registered error listeners.
+|javax.imageio.ImageReader.reset()|Restores the ImageReader to its initial state.
+|javax.imageio.ImageReader.setInput(Object)|Sets the input source to use to the given  ImageInputStream or other Object.
+|javax.imageio.ImageReader.setInput(Object,boolean)|Sets the input source to use to the given  ImageInputStream or other Object.
+|javax.imageio.ImageReader.setInput(Object,boolean,boolean)|Sets the input source to use to the given  ImageInputStream or other Object.
+|javax.imageio.ImageReader.setLocale(Locale)|Sets the current Locale of this  ImageReader to the given value.
+
+*javax.imageio.ImageReader_Description*
+
+An abstract superclass for parsing and decoding of images. This class must be subclassed by classes that read in images in the context of the Java Image I/O framework. 
+
+ImageReader objects are normally instantiated by the service provider interface (SPI) class for the specific format. Service provider classes (e.g., instances of ImageReaderSpi) 
+are registered with the IIORegistry, which uses them for format recognition and presentation of available format readers and writers. 
+
+When an input source is set (using the setInput method), it may be marked as "seek forward only". This setting means that images contained within the input source will only be 
+read in order, possibly allowing the reader to avoid caching portions of the input containing data associated with images that have been read previously. 
+
+
+
+*java.util.Locale[]_javax.imageio.ImageReader.availableLocales*
+
+An array of Locales which may be used to localize warning messages, or null if localization is not supported. 
+
+
+*boolean_javax.imageio.ImageReader.ignoreMetadata*
+
+true if the current input source has been marked as allowing metadata to be ignored by setInput. By default, the value is false. 
+
+
+*java.lang.Object_javax.imageio.ImageReader.input*
+
+The ImageInputStream or other Object by setInput and retrieved by getInput. By default it is initialized to null. 
+
+
+*java.util.Locale_javax.imageio.ImageReader.locale*
+
+The current Locale to be used for localization, or null if none has been set. 
+
+
+*int_javax.imageio.ImageReader.minIndex*
+
+The smallest valid index for reading, initially 0. When seekForwardOnly is true, various methods may throw an IndexOutOfBoundsException on an attempt to access data associate with 
+an image having a lower index. 
+
+
+*javax.imageio.spi.ImageReaderSpi_javax.imageio.ImageReader.originatingProvider*
+
+The ImageReaderSpi that instantiated this object, or null if its identity is not known or none exists. By default it is initialized to null. 
+
+
+*java.util.List<javax.imageio.event.IIOReadProgressListener>_javax.imageio.ImageReader.progressListeners*
+
+A List of currently registered IIOReadProgressListeners, initialized by default to null, which is synonymous with an empty List. 
+
+
+*boolean_javax.imageio.ImageReader.seekForwardOnly*
+
+true if the current input source has been marked as allowing only forward seeking by setInput. By default, the value is false. 
+
+
+*java.util.List<javax.imageio.event.IIOReadUpdateListener>_javax.imageio.ImageReader.updateListeners*
+
+A List of currently registered IIOReadUpdateListeners, initialized by default to null, which is synonymous with an empty List. 
+
+
+*java.util.List<javax.imageio.event.IIOReadWarningListener>_javax.imageio.ImageReader.warningListeners*
+
+A List of currently registered IIOReadWarningListeners, initialized by default to null, which is synonymous with an empty List. 
+
+
+*java.util.List<java.util.Locale>_javax.imageio.ImageReader.warningLocales*
+
+A List of the Locales associated with each currently registered IIOReadWarningListener, initialized by default to null, which is synonymous with an empty List. 
+
+
+
+*javax.imageio.ImageReader(ImageReaderSpi)*
+
+protected ImageReader(javax.imageio.spi.ImageReaderSpi originatingProvider)
+
+Constructs an ImageReader and sets its originatingProvider field to the supplied value. 
+
+Subclasses that make use of extensions should provide a constructor with signature (ImageReaderSpi, Object) in order to retrieve the extension object. If the extension object is 
+unsuitable, an IllegalArgumentException should be thrown. 
+
+    originatingProvider - the ImageReaderSpi that is invoking this constructor, or null. 
+
+*javax.imageio.ImageReader.abort()*
+
+public synchronized void abort()
+
+Requests that any current read operation be aborted. The contents of the image following the abort will be undefined. 
+
+Readers should call clearAbortRequest at the beginning of each read operation, and poll the value of abortRequested regularly during the read. 
+
+
+
+*javax.imageio.ImageReader.abortRequested()*
+
+protected synchronized boolean abortRequested()
+
+Returns true if a request to abort the current read operation has been made since the reader was instantiated or clearAbortRequest was called. 
+
+
+
+    Returns: true if the current read operation should be aborted. 
+
+*javax.imageio.ImageReader.addIIOReadProgressListener(IIOReadProgressListener)*
+
+public void addIIOReadProgressListener(javax.imageio.event.IIOReadProgressListener listener)
+
+Adds an IIOReadProgressListener to the list of registered progress listeners. If listener is null, no exception will be thrown and no action will be taken. 
+
+
+    listener - an IIOReadProgressListener to be registered. 
+
+*javax.imageio.ImageReader.addIIOReadUpdateListener(IIOReadUpdateListener)*
+
+public void addIIOReadUpdateListener(javax.imageio.event.IIOReadUpdateListener listener)
+
+Adds an IIOReadUpdateListener to the list of registered update listeners. If listener is null, no exception will be thrown and no action will be taken. The listener will receive 
+notification of pixel updates as images and thumbnails are decoded, including the starts and ends of progressive passes. 
+
+If no update listeners are present, the reader may choose to perform fewer updates to the pixels of the destination images and/or thumbnails, which may result in more efficient 
+decoding. 
+
+For example, in progressive JPEG decoding each pass contains updates to a set of coefficients, which would have to be transformed into pixel values and converted to an RGB color 
+space for each pass if listeners are present. If no listeners are present, the coefficients may simply be accumulated and the final results transformed and color converted one 
+time only. 
+
+The final results of decoding will be the same whether or not intermediate updates are performed. Thus if only the final image is desired it may be perferable not to register any 
+IIOReadUpdateListeners. In general, progressive updating is most effective when fetching images over a network connection that is very slow compared to local CPU processing; over 
+a fast connection, progressive updates may actually slow down the presentation of the image. 
+
+
+    listener - an IIOReadUpdateListener to be registered. 
+
+*javax.imageio.ImageReader.addIIOReadWarningListener(IIOReadWarningListener)*
+
+public void addIIOReadWarningListener(javax.imageio.event.IIOReadWarningListener listener)
+
+Adds an IIOReadWarningListener to the list of registered warning listeners. If listener is null, no exception will be thrown and no action will be taken. Messages sent to the 
+given listener will be localized, if possible, to match the current Locale. If no Locale has been set, warning messages may be localized as the reader sees fit. 
+
+
+    listener - an IIOReadWarningListener to be registered. 
+
+*javax.imageio.ImageReader.canReadRaster()*
+
+public boolean canReadRaster()
+
+Returns true if this plug-in supports reading just a <code>Raster</code>(|java.awt.image.Raster|) of pixel data. If this method returns false, calls to 
+<code>readRaster</code>(|javax.imageio.ImageReader|) or <code>readTileRaster</code>(|javax.imageio.ImageReader|) will throw an UnsupportedOperationException. 
+
+The default implementation returns false. 
+
+
+
+    Returns: true if this plug-in supports reading raw Rasters. 
+
+*javax.imageio.ImageReader.checkReadParamBandSettings(ImageReadParam,int,int)*
+
+protected static void checkReadParamBandSettings(
+  javax.imageio.ImageReadParam param,
+  int numSrcBands,
+  int numDstBands)
+
+A utility method that may be used by readers to test the validity of the source and destination band settings of an ImageReadParam. This method may be called as soon as the reader 
+knows both the number of bands of the source image as it exists in the input stream, and the number of bands of the destination image that being written. 
+
+The method retrieves the source and destination band setting arrays from param using the getSourceBands and getDestinationBandsmethods (or considers them to be null if param is 
+null). If the source band setting array is null, it is considered to be equal to the array { 0, 1, ..., numSrcBands - 1 }, and similarly for the destination band setting array. 
+
+The method then tests that both arrays are equal in length, and that neither array contains a value larger than the largest available band index. 
+
+Any failure results in an IllegalArgumentException being thrown; success results in the method returning silently. 
+
+
+    param - the ImageReadParam being used to read the image. 
+    numSrcBands - the number of bands of the image as it exists int the input source. 
+    numDstBands - the number of bands in the destination image being written. 
+
+*javax.imageio.ImageReader.clearAbortRequest()*
+
+protected synchronized void clearAbortRequest()
+
+Clears any previous abort request. After this method has been called, abortRequested will return false. 
+
+
+
+*javax.imageio.ImageReader.computeRegions(ImageReadParam,int,int,BufferedImage,Rectangle,Rectangle)*
+
+protected static void computeRegions(
+  javax.imageio.ImageReadParam param,
+  int srcWidth,
+  int srcHeight,
+  java.awt.image.BufferedImage image,
+  java.awt.Rectangle srcRegion,
+  java.awt.Rectangle destRegion)
+
+Computes the source region of interest and the destination region of interest, taking the width and height of the source image, an optional destination image, and an optional 
+ImageReadParam into account. The source region begins with the entire source image. Then that is clipped to the source region specified in the ImageReadParam, if one is specified. 
+
+If either of the destination offsets are negative, the source region is clipped so that its top left will coincide with the top left of the destination image, taking subsampling 
+into account. Then the result is clipped to the destination image on the right and bottom, if one is specified, taking subsampling and destination offsets into account. 
+
+Similarly, the destination region begins with the source image, is translated to the destination offset given in the ImageReadParam if there is one, and finally is clipped to the 
+destination image, if there is one. 
+
+If either the source or destination regions end up having a width or height of 0, an IllegalArgumentException is thrown. 
+
+The <code>getSourceRegion</code>(|javax.imageio.ImageReader|) method may be used if only source clipping is desired. 
+
+
+    param - an ImageReadParam, or null. 
+    srcWidth - the width of the source image. 
+    srcHeight - the height of the source image. 
+    image - a BufferedImage that will be the destination image, or null. 
+    srcRegion - a Rectangle that will be filled with the source region of interest. 
+    destRegion - a Rectangle that will be filled with the destination region of interest. 
+
+*javax.imageio.ImageReader.dispose()*
+
+public void dispose()
+
+Allows any resources held by this object to be released. The result of calling any other method (other than finalize) subsequent to a call to this method is undefined. 
+
+It is important for applications to call this method when they know they will no longer be using this ImageReader. Otherwise, the reader may continue to hold on to resources 
+indefinitely. 
+
+The default implementation of this method in the superclass does nothing. Subclass implementations should ensure that all resources, especially native resources, are released. 
+
+
+
+*javax.imageio.ImageReader.getAspectRatio(int)*
+
+public float getAspectRatio(int imageIndex)
+  throws |java.io.IOException|
+         
+Returns the aspect ratio of the given image (that is, its width divided by its height) as a float. For images that are inherently resizable, this method provides a way to 
+determine the appropriate width given a deired height, or vice versa. For non-resizable images, the true width and height are used. 
+
+The default implementation simply returns (float)getWidth(imageIndex)/getHeight(imageIndex). 
+
+
+    imageIndex - the index of the image to be queried. 
+
+    Returns: a float indicating the aspect ratio of the given image. 
+
+*javax.imageio.ImageReader.getAvailableLocales()*
+
+public |java.util.Locale|[] getAvailableLocales()
+
+Returns an array of Locales that may be used to localize warning listeners and compression settings. A return value of null indicates that localization is not supported. 
+
+The default implementation returns a clone of the availableLocales instance variable if it is non-null, or else returns null. 
+
+
+
+    Returns: an array of Locales that may be used as arguments to setLocale, or null. 
+
+*javax.imageio.ImageReader.getDefaultReadParam()*
+
+public |javax.imageio.ImageReadParam| getDefaultReadParam()
+
+Returns a default ImageReadParam object appropriate for this format. All subclasses should define a set of default values for all parameters and return them with this call. This 
+method may be called before the input source is set. 
+
+The default implementation constructs and returns a new ImageReadParam object that does not allow source scaling (i.e., it returns new ImageReadParam(). 
+
+
+
+    Returns: an ImageReadParam object which may be used to control the decoding process using a set of default settings. 
+
+*javax.imageio.ImageReader.getDestination(ImageReadParam,Iterator<ImageTypeSpecifier>,int,int)*
+
+protected static |java.awt.image.BufferedImage| getDestination(
+  javax.imageio.ImageReadParam param,
+  java.util.Iterator<javax.imageio.ImageTypeSpecifier> imageTypes,
+  int width,
+  int height)
+  throws |javax.imageio.IIOException|
+         
+Returns the BufferedImage to which decoded pixel data should be written. The image is determined by inspecting the supplied ImageReadParam if it is non-null; if its getDestination 
+method returns a non-null value, that image is simply returned. Otherwise, param.getDestinationType method is called to determine if a particular image type has been specified. If 
+so, the returned ImageTypeSpecifier is used after checking that it is equal to one of those included in imageTypes. 
+
+If param is null or the above steps have not yielded an image or an ImageTypeSpecifier, the first value obtained from the imageTypes parameter is used. Typically, the caller will 
+set imageTypes to the value of getImageTypes(imageIndex). 
+
+Next, the dimensions of the image are determined by a call to computeRegions. The actual width and height of the image being decoded are passed in as the width and height 
+parameters. 
+
+
+    param - an ImageReadParam to be used to get the destination image or image type, or null. 
+    imageTypes - an Iterator of ImageTypeSpecifiers indicating the legal image types, with the default first. 
+    width - the true width of the image or tile begin decoded. 
+    height - the true width of the image or tile being decoded. 
+
+    Returns: the BufferedImage to which decoded pixel data should be written. 
+
+*javax.imageio.ImageReader.getFormatName()*
+
+public |java.lang.String| getFormatName()
+  throws |java.io.IOException|
+         
+Returns a String identifying the format of the input source. 
+
+The default implementation returns originatingProvider.getFormatNames()[0]. Implementations that may not have an originating service provider, or which desire a different naming 
+policy should override this method. 
+
+
+
+    Returns: the format name, as a String. 
+
+*javax.imageio.ImageReader.getHeight(int)*
+
+public abstract int getHeight(int imageIndex)
+  throws |java.io.IOException|
+         
+Returns the height in pixels of the given image within the input source. 
+
+If the image can be rendered to a user-specified size, then this method returns the default height. 
+
+
+    imageIndex - the index of the image to be queried. 
+
+    Returns: the height of the image, as an int. 
+
+*javax.imageio.ImageReader.getImageMetadata(int)*
+
+public abstract |javax.imageio.metadata.IIOMetadata| getImageMetadata(int imageIndex)
+  throws |java.io.IOException|
+         
+Returns an IIOMetadata object containing metadata associated with the given image, or null if the reader does not support reading metadata, is set to ignore metadata, or if no 
+metadata is available. 
+
+
+    imageIndex - the index of the image whose metadata is to be retrieved. 
+
+    Returns: an IIOMetadata object, or null. 
+
+*javax.imageio.ImageReader.getImageMetadata(int,String,Set<String>)*
+
+public |javax.imageio.metadata.IIOMetadata| getImageMetadata(
+  int imageIndex,
+  java.lang.String formatName,
+  java.util.Set<java.lang.String> nodeNames)
+  throws |java.io.IOException|
+         
+Returns an IIOMetadata object representing the metadata associated with the given image, or null if the reader does not support reading metadata or none is available. 
+
+The resuting metadata object is only responsible for returning documents in the format named by formatName. Within any documents that are returned, only nodes whose names are 
+members of nodeNames are required to be returned. In this way, the amount of metadata processing done by the reader may be kept to a minimum, based on what information is actually 
+needed. 
+
+If formatName is not the name of a supported metadata format, null may be returned. 
+
+In all cases, it is legal to return a more capable metadata object than strictly necessary. The format name and node names are merely hints that may be used to reduce the reader's 
+workload. 
+
+The default implementation simply returns the result of calling getImageMetadata(imageIndex), after checking that the format name is supported. If it is not, null is returned. 
+
+
+    imageIndex - the index of the image whose metadata is to be retrieved. 
+    formatName - a metadata format name that may be used to retrieve a document from the returned IIOMetadata object. 
+    nodeNames - a Set containing the names of nodes that may be contained in a retrieved document. 
+
+    Returns: an IIOMetadata object, or null. 
+
+*javax.imageio.ImageReader.getImageTypes(int)*
+
+public abstract |java.util.Iterator|<ImageTypeSpecifier> getImageTypes(int imageIndex)
+  throws |java.io.IOException|
+         
+Returns an Iterator containing possible image types to which the given image may be decoded, in the form of ImageTypeSpecifierss. At least one legal image type will be returned. 
+
+The first element of the iterator should be the most "natural" type for decoding the image with as little loss as possible. For example, for a JPEG image the first entry should be 
+an RGB image, even though the image data is stored internally in a YCbCr color space. 
+
+
+    imageIndex - the index of the image to be retrieved. 
+
+    Returns: an Iterator containing at least one ImageTypeSpecifier representing suggested image types for decoding the current given image. 
+
+*javax.imageio.ImageReader.getInput()*
+
+public |java.lang.Object| getInput()
+
+Returns the ImageInputStream or other Object previously set as the input source. If the input source has not been set, null is returned. 
+
+
+
+    Returns: the Object that will be used for future decoding, or null. 
+
+*javax.imageio.ImageReader.getLocale()*
+
+public |java.util.Locale| getLocale()
+
+Returns the currently set Locale, or null if none has been set. 
+
+
+
+    Returns: the current Locale, or null. 
+
+*javax.imageio.ImageReader.getMinIndex()*
+
+public int getMinIndex()
+
+Returns the lowest valid index for reading an image, thumbnail, or image metadata. If seekForwardOnly() is false, this value will typically remain 0, indicating that random access 
+is possible. Otherwise, it will contain the value of the most recently accessed index, and increase in a monotonic fashion. 
+
+
+
+    Returns: the minimum legal index for reading. 
+
+*javax.imageio.ImageReader.getNumImages(boolean)*
+
+public abstract int getNumImages(boolean allowSearch)
+  throws |java.io.IOException|
+         
+Returns the number of images, not including thumbnails, available from the current input source. 
+
+Note that some image formats (such as animated GIF) do not specify how many images are present in the stream. Thus determining the number of images will require the entire stream 
+to be scanned and may require memory for buffering. If images are to be processed in order, it may be more efficient to simply call read with increasing indices until an 
+IndexOutOfBoundsException is thrown to indicate that no more images are available. The allowSearch parameter may be set to false to indicate that an exhaustive search is not 
+desired; the return value will be -1 to indicate that a search is necessary. If the input has been specified with seekForwardOnly set to true, this method throws an 
+IllegalStateException if allowSearch is set to true. 
+
+
+    allowSearch - if true, the true number of images will be returned even if a search is required. If false, the reader may return -1 without performing the search. 
+
+    Returns: the number of images, as an int, or -1 if allowSearch is false and a search would be required. 
+
+*javax.imageio.ImageReader.getNumThumbnails(int)*
+
+public int getNumThumbnails(int imageIndex)
+  throws |java.io.IOException|
+         
+Returns the number of thumbnail preview images associated with the given image. If the format does not support thumbnails, (readerSupportsThumbnails returns false), 0 will be 
+returned regardless of whether an input source has been set or whether imageIndex is in bounds. 
+
+The default implementation returns 0 without checking its argument. 
+
+
+    imageIndex - the index of the image being queried. 
+
+    Returns: the number of thumbnails associated with the given image. 
+
+*javax.imageio.ImageReader.getOriginatingProvider()*
+
+public |javax.imageio.spi.ImageReaderSpi| getOriginatingProvider()
+
+Returns the ImageReaderSpi that was passed in on the constructor. Note that this value may be null. 
+
+
+
+    Returns: an ImageReaderSpi, or null. 
+
+*javax.imageio.ImageReader.getRawImageType(int)*
+
+public |javax.imageio.ImageTypeSpecifier| getRawImageType(int imageIndex)
+  throws |java.io.IOException|
+         
+Returns an ImageTypeSpecifier indicating the SampleModel and ColorModel which most closely represents the "raw" internal format of the image. For example, for a JPEG image the raw 
+type might have a YCbCr color space even though the image would conventionally be transformed into an RGB color space prior to display. The returned value should also be included 
+in the list of values returned by getImageTypes. 
+
+The default implementation simply returns the first entry from the list provided by getImageType. 
+
+
+    imageIndex - the index of the image to be queried. 
+
+    Returns: an ImageTypeSpecifier. 
+
+*javax.imageio.ImageReader.getSourceRegion(ImageReadParam,int,int)*
+
+protected static |java.awt.Rectangle| getSourceRegion(
+  javax.imageio.ImageReadParam param,
+  int srcWidth,
+  int srcHeight)
+
+A utility method that may be used by readers to compute the region of the source image that should be read, taking into account any source region and subsampling offset settings 
+in the supplied ImageReadParam. The actual subsampling factors, destination size, and destination offset are not taken into consideration, thus further clipping must take place. 
+The <code>computeRegions</code>(|javax.imageio.ImageReader|) method performs all necessary clipping. 
+
+
+    param - the ImageReadParam being used, or null. 
+    srcWidth - the width of the source image. 
+    srcHeight - the height of the source image. 
+
+    Returns: the source region as a Rectangle. 
+
+*javax.imageio.ImageReader.getStreamMetadata()*
+
+public abstract |javax.imageio.metadata.IIOMetadata| getStreamMetadata()
+  throws |java.io.IOException|
+         
+Returns an IIOMetadata object representing the metadata associated with the input source as a whole (i.e., not associated with any particular image), or null if the reader does 
+not support reading metadata, is set to ignore metadata, or if no metadata is available. 
+
+
+
+    Returns: an IIOMetadata object, or null. 
+
+*javax.imageio.ImageReader.getStreamMetadata(String,Set<String>)*
+
+public |javax.imageio.metadata.IIOMetadata| getStreamMetadata(
+  java.lang.String formatName,
+  java.util.Set<java.lang.String> nodeNames)
+  throws |java.io.IOException|
+         
+Returns an IIOMetadata object representing the metadata associated with the input source as a whole (i.e., not associated with any particular image). If no such data exists, null 
+is returned. 
+
+The resuting metadata object is only responsible for returning documents in the format named by formatName. Within any documents that are returned, only nodes whose names are 
+members of nodeNames are required to be returned. In this way, the amount of metadata processing done by the reader may be kept to a minimum, based on what information is actually 
+needed. 
+
+If formatName is not the name of a supported metadata format, null is returned. 
+
+In all cases, it is legal to return a more capable metadata object than strictly necessary. The format name and node names are merely hints that may be used to reduce the reader's 
+workload. 
+
+The default implementation simply returns the result of calling getStreamMetadata(), after checking that the format name is supported. If it is not, null is returned. 
+
+
+    formatName - a metadata format name that may be used to retrieve a document from the returned IIOMetadata object. 
+    nodeNames - a Set containing the names of nodes that may be contained in a retrieved document. 
+
+    Returns: an IIOMetadata object, or null. 
+
+*javax.imageio.ImageReader.getThumbnailHeight(int,int)*
+
+public int getThumbnailHeight(
+  int imageIndex,
+  int thumbnailIndex)
+  throws |java.io.IOException|
+         
+Returns the height of the thumbnail preview image indexed by thumbnailIndex, associated with the image indexed by ImageIndex. 
+
+If the reader does not support thumbnails, (readerSupportsThumbnails returns false), an UnsupportedOperationException will be thrown. 
+
+The default implementation simply returns readThumbnail(imageindex, thumbnailIndex).getHeight(). Subclasses should therefore override this method if possible in order to avoid 
+forcing the thumbnail to be read. 
+
+
+    imageIndex - the index of the image to be retrieved. 
+    thumbnailIndex - the index of the thumbnail to be retrieved. 
+
+    Returns: the height of the desired thumbnail as an int. 
+
+*javax.imageio.ImageReader.getThumbnailWidth(int,int)*
+
+public int getThumbnailWidth(
+  int imageIndex,
+  int thumbnailIndex)
+  throws |java.io.IOException|
+         
+Returns the width of the thumbnail preview image indexed by thumbnailIndex, associated with the image indexed by ImageIndex. 
+
+If the reader does not support thumbnails, (readerSupportsThumbnails returns false), an UnsupportedOperationException will be thrown. 
+
+The default implementation simply returns readThumbnail(imageindex, thumbnailIndex).getWidth(). Subclasses should therefore override this method if possible in order to avoid 
+forcing the thumbnail to be read. 
+
+
+    imageIndex - the index of the image to be retrieved. 
+    thumbnailIndex - the index of the thumbnail to be retrieved. 
+
+    Returns: the width of the desired thumbnail as an int. 
+
+*javax.imageio.ImageReader.getTileGridXOffset(int)*
+
+public int getTileGridXOffset(int imageIndex)
+  throws |java.io.IOException|
+         
+Returns the X coordinate of the upper-left corner of tile (0, 0) in the given image. 
+
+A reader for which the tile grid X offset always has the same value (usually 0), may return the value without accessing any image data. In such cases, it is not necessary to throw 
+an exception even if no input source has been set or the image index is out of bounds. 
+
+The default implementation simply returns 0, which is correct for non-tiled images and tiled images in most formats. Readers that support tiling with non-(0, 0) offsets should 
+override this method. 
+
+
+    imageIndex - the index of the image to be queried. 
+
+    Returns: the X offset of the tile grid. 
+
+*javax.imageio.ImageReader.getTileGridYOffset(int)*
+
+public int getTileGridYOffset(int imageIndex)
+  throws |java.io.IOException|
+         
+Returns the Y coordinate of the upper-left corner of tile (0, 0) in the given image. 
+
+A reader for which the tile grid Y offset always has the same value (usually 0), may return the value without accessing any image data. In such cases, it is not necessary to throw 
+an exception even if no input source has been set or the image index is out of bounds. 
+
+The default implementation simply returns 0, which is correct for non-tiled images and tiled images in most formats. Readers that support tiling with non-(0, 0) offsets should 
+override this method. 
+
+
+    imageIndex - the index of the image to be queried. 
+
+    Returns: the Y offset of the tile grid. 
+
+*javax.imageio.ImageReader.getTileHeight(int)*
+
+public int getTileHeight(int imageIndex)
+  throws |java.io.IOException|
+         
+Returns the height of a tile in the given image. 
+
+The default implementation simply returns getHeight(imageIndex), which is correct for non-tiled images. Readers that support tiling should override this method. 
+
+
+    imageIndex - the index of the image to be queried. 
+
+    Returns: the height of a tile. 
+
+*javax.imageio.ImageReader.getTileWidth(int)*
+
+public int getTileWidth(int imageIndex)
+  throws |java.io.IOException|
+         
+Returns the width of a tile in the given image. 
+
+The default implementation simply returns getWidth(imageIndex), which is correct for non-tiled images. Readers that support tiling should override this method. 
+
+
+    imageIndex - the index of the image to be queried. 
+
+    Returns: the width of a tile. 
+
+*javax.imageio.ImageReader.getWidth(int)*
+
+public abstract int getWidth(int imageIndex)
+  throws |java.io.IOException|
+         
+Returns the width in pixels of the given image within the input source. 
+
+If the image can be rendered to a user-specified size, then this method returns the default width. 
+
+
+    imageIndex - the index of the image to be queried. 
+
+    Returns: the width of the image, as an int. 
+
+*javax.imageio.ImageReader.hasThumbnails(int)*
+
+public boolean hasThumbnails(int imageIndex)
+  throws |java.io.IOException|
+         
+Returns true if the given image has thumbnail preview images associated with it. If the format does not support thumbnails (readerSupportsThumbnails returns false), false will be 
+returned regardless of whether an input source has been set or whether imageIndex is in bounds. 
+
+The default implementation returns true if getNumThumbnails returns a value greater than 0. 
+
+
+    imageIndex - the index of the image being queried. 
+
+    Returns: true if the given image has thumbnails. 
+
+*javax.imageio.ImageReader.isIgnoringMetadata()*
+
+public boolean isIgnoringMetadata()
+
+Returns true if the current input source has been marked as allowing metadata to be ignored by passing true as the ignoreMetadata argument to the setInput method. 
+
+
+
+    Returns: true if the metadata may be ignored. 
+
+*javax.imageio.ImageReader.isImageTiled(int)*
+
+public boolean isImageTiled(int imageIndex)
+  throws |java.io.IOException|
+         
+Returns true if the image is organized into tiles, that is, equal-sized non-overlapping rectangles. 
+
+A reader plug-in may choose whether or not to expose tiling that is present in the image as it is stored. It may even choose to advertise tiling when none is explicitly present. 
+In general, tiling should only be advertised if there is some advantage (in speed or space) to accessing individual tiles. Regardless of whether the reader advertises tiling, it 
+must be capable of reading an arbitrary rectangular region specified in an ImageReadParam. 
+
+A reader for which all images are guaranteed to be tiled, or are guaranteed not to be tiled, may return true or false respectively without accessing any image data. In such cases, 
+it is not necessary to throw an exception even if no input source has been set or the image index is out of bounds. 
+
+The default implementation just returns false. 
+
+
+    imageIndex - the index of the image to be queried. 
+
+    Returns: true if the image is tiled. 
+
+*javax.imageio.ImageReader.isRandomAccessEasy(int)*
+
+public boolean isRandomAccessEasy(int imageIndex)
+  throws |java.io.IOException|
+         
+Returns true if the storage format of the given image places no inherent impediment on random access to pixels. For most compressed formats, such as JPEG, this method should 
+return false, as a large section of the image in addition to the region of interest may need to be decoded. 
+
+This is merely a hint for programs that wish to be efficient; all readers must be able to read arbitrary regions as specified in an ImageReadParam. 
+
+Note that formats that return false from this method may nonetheless allow tiling (e.g. Restart Markers in JPEG), and random access will likely be reasonably efficient on tiles. 
+See <code>isImageTiled</code>(|javax.imageio.ImageReader|) . 
+
+A reader for which all images are guaranteed to support easy random access, or are guaranteed not to support easy random access, may return true or false respectively without 
+accessing any image data. In such cases, it is not necessary to throw an exception even if no input source has been set or the image index is out of bounds. 
+
+The default implementation returns false. 
+
+
+    imageIndex - the index of the image to be queried. 
+
+    Returns: true if reading a region of interest of the given image is likely to be efficient. 
+
+*javax.imageio.ImageReader.isSeekForwardOnly()*
+
+public boolean isSeekForwardOnly()
+
+Returns true if the current input source has been marked as seek forward only by passing true as the seekForwardOnly argument to the setInput method. 
+
+
+
+    Returns: true if the input source is seek forward only. 
+
+*javax.imageio.ImageReader.processImageComplete()*
+
+protected void processImageComplete()
+
+Broadcasts the completion of an image read to all registered IIOReadProgressListeners by calling their imageComplete method. Subclasses may use this method as a convenience. 
+
+
+
+*javax.imageio.ImageReader.processImageProgress(float)*
+
+protected void processImageProgress(float percentageDone)
+
+Broadcasts the current percentage of image completion to all registered IIOReadProgressListeners by calling their imageProgress method. Subclasses may use this method as a 
+convenience. 
+
+
+    percentageDone - the current percentage of completion, as a float. 
+
+*javax.imageio.ImageReader.processImageStarted(int)*
+
+protected void processImageStarted(int imageIndex)
+
+Broadcasts the start of an image read to all registered IIOReadProgressListeners by calling their imageStarted method. Subclasses may use this method as a convenience. 
+
+
+    imageIndex - the index of the image about to be read. 
+
+*javax.imageio.ImageReader.processImageUpdate(BufferedImage,int,int,int,int,int,int,int[])*
+
+protected void processImageUpdate(
+  java.awt.image.BufferedImage theImage,
+  int minX,
+  int minY,
+  int width,
+  int height,
+  int periodX,
+  int periodY,
+  int[] bands)
+
+Broadcasts the update of a set of samples to all registered IIOReadUpdateListeners by calling their imageUpdate method. Subclasses may use this method as a convenience. 
+
+
+    theImage - the BufferedImage being updated. 
+    minX - the X coordinate of the upper-left pixel included in the pass. 
+    minY - the X coordinate of the upper-left pixel included in the pass. 
+    width - the total width of the area being updated, including pixels being skipped if periodX > 1. 
+    height - the total height of the area being updated, including pixels being skipped if periodY > 1. 
+    periodX - the horizontal separation between pixels. 
+    periodY - the vertical separation between pixels. 
+    bands - an array of ints indicating the set of affected bands of the destination. 
+
+*javax.imageio.ImageReader.processPassComplete(BufferedImage)*
+
+protected void processPassComplete(java.awt.image.BufferedImage theImage)
+
+Broadcasts the end of a progressive pass to all registered IIOReadUpdateListeners by calling their passComplete method. Subclasses may use this method as a convenience. 
+
+
+    theImage - the BufferedImage being updated. 
+
+*javax.imageio.ImageReader.processPassStarted(BufferedImage,int,int,int,int,int,int,int,int[])*
+
+protected void processPassStarted(
+  java.awt.image.BufferedImage theImage,
+  int pass,
+  int minPass,
+  int maxPass,
+  int minX,
+  int minY,
+  int periodX,
+  int periodY,
+  int[] bands)
+
+Broadcasts the beginning of a progressive pass to all registered IIOReadUpdateListeners by calling their passStarted method. Subclasses may use this method as a convenience. 
+
+
+    theImage - the BufferedImage being updated. 
+    pass - the index of the current pass, starting with 0. 
+    minPass - the index of the first pass that will be decoded. 
+    maxPass - the index of the last pass that will be decoded. 
+    minX - the X coordinate of the upper-left pixel included in the pass. 
+    minY - the X coordinate of the upper-left pixel included in the pass. 
+    periodX - the horizontal separation between pixels. 
+    periodY - the vertical separation between pixels. 
+    bands - an array of ints indicating the set of affected bands of the destination. 
+
+*javax.imageio.ImageReader.processReadAborted()*
+
+protected void processReadAborted()
+
+Broadcasts that the read has been aborted to all registered IIOReadProgressListeners by calling their readAborted method. Subclasses may use this method as a convenience. 
+
+
+
+*javax.imageio.ImageReader.processSequenceComplete()*
+
+protected void processSequenceComplete()
+
+Broadcasts the completion of an sequence of image reads to all registered IIOReadProgressListeners by calling their sequenceComplete method. Subclasses may use this method as a 
+convenience. 
+
+
+
+*javax.imageio.ImageReader.processSequenceStarted(int)*
+
+protected void processSequenceStarted(int minIndex)
+
+Broadcasts the start of an sequence of image reads to all registered IIOReadProgressListeners by calling their sequenceStarted method. Subclasses may use this method as a 
+convenience. 
+
+
+    minIndex - the lowest index being read. 
+
+*javax.imageio.ImageReader.processThumbnailComplete()*
+
+protected void processThumbnailComplete()
+
+Broadcasts the completion of a thumbnail read to all registered IIOReadProgressListeners by calling their thumbnailComplete method. Subclasses may use this method as a 
+convenience. 
+
+
+
+*javax.imageio.ImageReader.processThumbnailPassComplete(BufferedImage)*
+
+protected void processThumbnailPassComplete(java.awt.image.BufferedImage theThumbnail)
+
+Broadcasts the end of a thumbnail progressive pass to all registered IIOReadUpdateListeners by calling their thumbnailPassComplete method. Subclasses may use this method as a 
+convenience. 
+
+
+    theThumbnail - the BufferedImage thumbnail being updated. 
+
+*javax.imageio.ImageReader.processThumbnailPassStarted(BufferedImage,int,int,int,int,int,int,int,int[])*
+
+protected void processThumbnailPassStarted(
+  java.awt.image.BufferedImage theThumbnail,
+  int pass,
+  int minPass,
+  int maxPass,
+  int minX,
+  int minY,
+  int periodX,
+  int periodY,
+  int[] bands)
+
+Broadcasts the beginning of a thumbnail progressive pass to all registered IIOReadUpdateListeners by calling their thumbnailPassStarted method. Subclasses may use this method as a 
+convenience. 
+
+
+    theThumbnail - the BufferedImage thumbnail being updated. 
+    pass - the index of the current pass, starting with 0. 
+    minPass - the index of the first pass that will be decoded. 
+    maxPass - the index of the last pass that will be decoded. 
+    minX - the X coordinate of the upper-left pixel included in the pass. 
+    minY - the X coordinate of the upper-left pixel included in the pass. 
+    periodX - the horizontal separation between pixels. 
+    periodY - the vertical separation between pixels. 
+    bands - an array of ints indicating the set of affected bands of the destination. 
+
+*javax.imageio.ImageReader.processThumbnailProgress(float)*
+
+protected void processThumbnailProgress(float percentageDone)
+
+Broadcasts the current percentage of thumbnail completion to all registered IIOReadProgressListeners by calling their thumbnailProgress method. Subclasses may use this method as a 
+convenience. 
+
+
+    percentageDone - the current percentage of completion, as a float. 
+
+*javax.imageio.ImageReader.processThumbnailStarted(int,int)*
+
+protected void processThumbnailStarted(
+  int imageIndex,
+  int thumbnailIndex)
+
+Broadcasts the start of a thumbnail read to all registered IIOReadProgressListeners by calling their thumbnailStarted method. Subclasses may use this method as a convenience. 
+
+
+    imageIndex - the index of the image associated with the thumbnail. 
+    thumbnailIndex - the index of the thumbnail. 
+
+*javax.imageio.ImageReader.processThumbnailUpdate(BufferedImage,int,int,int,int,int,int,int[])*
+
+protected void processThumbnailUpdate(
+  java.awt.image.BufferedImage theThumbnail,
+  int minX,
+  int minY,
+  int width,
+  int height,
+  int periodX,
+  int periodY,
+  int[] bands)
+
+Broadcasts the update of a set of samples in a thumbnail image to all registered IIOReadUpdateListeners by calling their thumbnailUpdate method. Subclasses may use this method as 
+a convenience. 
+
+
+    theThumbnail - the BufferedImage thumbnail being updated. 
+    minX - the X coordinate of the upper-left pixel included in the pass. 
+    minY - the X coordinate of the upper-left pixel included in the pass. 
+    width - the total width of the area being updated, including pixels being skipped if periodX > 1. 
+    height - the total height of the area being updated, including pixels being skipped if periodY > 1. 
+    periodX - the horizontal separation between pixels. 
+    periodY - the vertical separation between pixels. 
+    bands - an array of ints indicating the set of affected bands of the destination. 
+
+*javax.imageio.ImageReader.processWarningOccurred(String)*
+
+protected void processWarningOccurred(java.lang.String warning)
+
+Broadcasts a warning message to all registered IIOReadWarningListeners by calling their warningOccurred method. Subclasses may use this method as a convenience. 
+
+
+    warning - the warning message to send. 
+
+*javax.imageio.ImageReader.processWarningOccurred(String,String)*
+
+protected void processWarningOccurred(
+  java.lang.String baseName,
+  java.lang.String keyword)
+
+Broadcasts a localized warning message to all registered IIOReadWarningListeners by calling their warningOccurred method with a string taken from a ResourceBundle. Subclasses may 
+use this method as a convenience. 
+
+
+    baseName - the base name of a set of ResourceBundles containing localized warning messages. 
+    keyword - the keyword used to index the warning message within the set of ResourceBundles. 
+
+*javax.imageio.ImageReader.read(int)*
+
+public |java.awt.image.BufferedImage| read(int imageIndex)
+  throws |java.io.IOException|
+         
+Reads the image indexed by imageIndex and returns it as a complete BufferedImage, using a default ImageReadParam. This is a convenience method that calls read(imageIndex, null). 
+
+The image returned will be formatted according to the first ImageTypeSpecifier returned from getImageTypes. 
+
+Any registered IIOReadProgressListener objects will be notified by calling their imageStarted method, followed by calls to their imageProgress method as the read progresses. 
+Finally their imageComplete method will be called. IIOReadUpdateListener objects may be updated at other times during the read as pixels are decoded. Finally, 
+IIOReadWarningListener objects will receive notification of any non-fatal warnings that occur during decoding. 
+
+
+    imageIndex - the index of the image to be retrieved. 
+
+    Returns: the desired portion of the image as a BufferedImage. 
+
+*javax.imageio.ImageReader.read(int,ImageReadParam)*
+
+public abstract |java.awt.image.BufferedImage| read(
+  int imageIndex,
+  javax.imageio.ImageReadParam param)
+  throws |java.io.IOException|
+         
+Reads the image indexed by imageIndex and returns it as a complete BufferedImage, using a supplied ImageReadParam. 
+
+The actual BufferedImage returned will be chosen using the algorithm defined by the getDestination method. 
+
+Any registered IIOReadProgressListener objects will be notified by calling their imageStarted method, followed by calls to their imageProgress method as the read progresses. 
+Finally their imageComplete method will be called. IIOReadUpdateListener objects may be updated at other times during the read as pixels are decoded. Finally, 
+IIOReadWarningListener objects will receive notification of any non-fatal warnings that occur during decoding. 
+
+The set of source bands to be read and destination bands to be written is determined by calling getSourceBands and getDestinationBands on the supplied ImageReadParam. If the 
+lengths of the arrays returned by these methods differ, the set of source bands contains an index larger that the largest available source index, or the set of destination bands 
+contains an index larger than the largest legal destination index, an IllegalArgumentException is thrown. 
+
+If the supplied ImageReadParam contains optional setting values not supported by this reader (e.g. source render size or any format-specific settings), they will be ignored. 
+
+
+    imageIndex - the index of the image to be retrieved. 
+    param - an ImageReadParam used to control the reading process, or null. 
+
+    Returns: the desired portion of the image as a BufferedImage. 
+
+*javax.imageio.ImageReader.readAll(int,ImageReadParam)*
+
+public |javax.imageio.IIOImage| readAll(
+  int imageIndex,
+  javax.imageio.ImageReadParam param)
+  throws |java.io.IOException|
+         
+Reads the image indexed by imageIndex and returns an IIOImage containing the image, thumbnails, and associated image metadata, using a supplied ImageReadParam. 
+
+The actual BufferedImage referenced by the returned IIOImage will be chosen using the algorithm defined by the getDestination method. 
+
+Any registered IIOReadProgressListener objects will be notified by calling their imageStarted method, followed by calls to their imageProgress method as the read progresses. 
+Finally their imageComplete method will be called. IIOReadUpdateListener objects may be updated at other times during the read as pixels are decoded. Finally, 
+IIOReadWarningListener objects will receive notification of any non-fatal warnings that occur during decoding. 
+
+The set of source bands to be read and destination bands to be written is determined by calling getSourceBands and getDestinationBands on the supplied ImageReadParam. If the 
+lengths of the arrays returned by these methods differ, the set of source bands contains an index larger that the largest available source index, or the set of destination bands 
+contains an index larger than the largest legal destination index, an IllegalArgumentException is thrown. 
+
+Thumbnails will be returned in their entirety regardless of the region settings. 
+
+If the supplied ImageReadParam contains optional setting values not supported by this reader (e.g. source render size or any format-specific settings), those values will be 
+ignored. 
+
+
+    imageIndex - the index of the image to be retrieved. 
+    param - an ImageReadParam used to control the reading process, or null. 
+
+    Returns: an IIOImage containing the desired portion of the image, a set of thumbnails, and associated image metadata. 
+
+*javax.imageio.ImageReader.readAll(Iterator<?extendsImageReadParam>)*
+
+public |java.util.Iterator|<IIOImage> readAll(java.util.Iterator<? extends javax.imageio.ImageReadParam> params)
+  throws |java.io.IOException|
+         
+Returns an Iterator containing all the images, thumbnails, and metadata, starting at the index given by getMinIndex, from the input source in the form of IIOImage objects. An 
+Iterator containing ImageReadParam objects is supplied; one element is consumed for each image read from the input source until no more images are available. If the read param 
+Iterator runs out of elements, but there are still more images available from the input source, default read params are used for the remaining images. 
+
+If params is null, a default read param will be used for all images. 
+
+The actual BufferedImage referenced by the returned IIOImage will be chosen using the algorithm defined by the getDestination method. 
+
+Any registered IIOReadProgressListener objects will be notified by calling their sequenceStarted method once. Then, for each image decoded, there will be a call to imageStarted, 
+followed by calls to imageProgress as the read progresses, and finally to imageComplete. The sequenceComplete method will be called after the last image has been decoded. 
+IIOReadUpdateListener objects may be updated at other times during the read as pixels are decoded. Finally, IIOReadWarningListener objects will receive notification of any 
+non-fatal warnings that occur during decoding. 
+
+The set of source bands to be read and destination bands to be written is determined by calling getSourceBands and getDestinationBands on the supplied ImageReadParam. If the 
+lengths of the arrays returned by these methods differ, the set of source bands contains an index larger that the largest available source index, or the set of destination bands 
+contains an index larger than the largest legal destination index, an IllegalArgumentException is thrown. 
+
+Thumbnails will be returned in their entirety regardless of the region settings. 
+
+If any of the supplied ImageReadParams contain optional setting values not supported by this reader (e.g. source render size or any format-specific settings), they will be 
+ignored. 
+
+
+    params - an Iterator containing ImageReadParam objects. 
+
+    Returns: an Iterator representing the contents of the input source as IIOImages. 
+
+*javax.imageio.ImageReader.readAsRenderedImage(int,ImageReadParam)*
+
+public |java.awt.image.RenderedImage| readAsRenderedImage(
+  int imageIndex,
+  javax.imageio.ImageReadParam param)
+  throws |java.io.IOException|
+         
+Returns a RenderedImage object that contains the contents of the image indexed by imageIndex. By default, the returned image is simply the BufferedImage returned by 
+read(imageIndex, param). 
+
+The semantics of this method may differ from those of the other read methods in several ways. First, any destination image and/or image type set in the ImageReadParam may be 
+ignored. Second, the usual listener calls are not guaranteed to be made, or to be meaningful if they are. This is because the returned image may not be fully populated with pixel 
+data at the time it is returned, or indeed at any time. 
+
+If the supplied ImageReadParam contains optional setting values not supported by this reader (e.g. source render size or any format-specific settings), they will be ignored. 
+
+The default implementation just calls <code>read(imageIndex, param)</code>(|javax.imageio.ImageReader|) . 
+
+
+    imageIndex - the index of the image to be retrieved. 
+    param - an ImageReadParam used to control the reading process, or null. 
+
+    Returns: a RenderedImage object providing a view of the image. 
+
+*javax.imageio.ImageReader.readerSupportsThumbnails()*
+
+public boolean readerSupportsThumbnails()
+
+Returns true if the image format understood by this reader supports thumbnail preview images associated with it. The default implementation returns false. 
+
+If this method returns false, hasThumbnails and getNumThumbnails will return false and 0, respectively, and readThumbnail will throw an UnsupportedOperationException, regardless 
+of their arguments. 
+
+A reader that does not support thumbnails need not implement any of the thumbnail-related methods. 
+
+
+
+    Returns: true if thumbnails are supported. 
+
+*javax.imageio.ImageReader.readRaster(int,ImageReadParam)*
+
+public |java.awt.image.Raster| readRaster(
+  int imageIndex,
+  javax.imageio.ImageReadParam param)
+  throws |java.io.IOException|
+         
+Returns a new Raster object containing the raw pixel data from the image stream, without any color conversion applied. The application must determine how to interpret the pixel 
+data by other means. Any destination or image-type parameters in the supplied ImageReadParam object are ignored, but all other parameters are used exactly as in the 
+<code>read</code>(|javax.imageio.ImageReader|) method, except that any destination offset is used as a logical rather than a physical offset. The size of the returned Raster will 
+always be that of the source region clipped to the actual image. Logical offsets in the stream itself are ignored. 
+
+This method allows formats that normally apply a color conversion, such as JPEG, and formats that do not normally have an associated colorspace, such as remote sensing or medical 
+imaging data, to provide access to raw pixel data. 
+
+Any registered readUpdateListeners are ignored, as there is no BufferedImage, but all other listeners are called exactly as they are for the 
+<code>read</code>(|javax.imageio.ImageReader|) method. 
+
+If <code>canReadRaster()</code>(|javax.imageio.ImageReader|) returns false, this method throws an UnsupportedOperationException. 
+
+If the supplied ImageReadParam contains optional setting values not supported by this reader (e.g. source render size or any format-specific settings), they will be ignored. 
+
+The default implementation throws an UnsupportedOperationException. 
+
+
+    imageIndex - the index of the image to be read. 
+    param - an ImageReadParam used to control the reading process, or null. 
+
+    Returns: the desired portion of the image as a Raster. 
+
+*javax.imageio.ImageReader.readThumbnail(int,int)*
+
+public |java.awt.image.BufferedImage| readThumbnail(
+  int imageIndex,
+  int thumbnailIndex)
+  throws |java.io.IOException|
+         
+Returns the thumbnail preview image indexed by thumbnailIndex, associated with the image indexed by ImageIndex as a BufferedImage. 
+
+Any registered IIOReadProgressListener objects will be notified by calling their thumbnailStarted, thumbnailProgress, and thumbnailComplete methods. 
+
+If the reader does not support thumbnails, (readerSupportsThumbnails returns false), an UnsupportedOperationException will be thrown regardless of whether an input source has been 
+set or whether the indices are in bounds. 
+
+The default implementation throws an UnsupportedOperationException. 
+
+
+    imageIndex - the index of the image to be retrieved. 
+    thumbnailIndex - the index of the thumbnail to be retrieved. 
+
+    Returns: the desired thumbnail as a BufferedImage. 
+
+*javax.imageio.ImageReader.readTile(int,int,int)*
+
+public |java.awt.image.BufferedImage| readTile(
+  int imageIndex,
+  int tileX,
+  int tileY)
+  throws |java.io.IOException|
+         
+Reads the tile indicated by the tileX and tileY arguments, returning it as a BufferedImage. If the arguments are out of range, an IllegalArgumentException is thrown. If the image 
+is not tiled, the values 0, 0 will return the entire image; any other values will cause an IllegalArgumentException to be thrown. 
+
+This method is merely a convenience equivalent to calling read(int, ImageReadParam) with a read param specifiying a source region having offsets of tileX*getTileWidth(imageIndex), 
+tileY*getTileHeight(imageIndex) and width and height of getTileWidth(imageIndex), getTileHeight(imageIndex); and subsampling factors of 1 and offsets of 0. To subsample a tile, 
+call read with a read param specifying this region and different subsampling parameters. 
+
+The default implementation returns the entire image if tileX and tileY are 0, or throws an IllegalArgumentException otherwise. 
+
+
+    imageIndex - the index of the image to be retrieved. 
+    tileX - the column index (starting with 0) of the tile to be retrieved. 
+    tileY - the row index (starting with 0) of the tile to be retrieved. 
+
+    Returns: the tile as a BufferedImage. 
+
+*javax.imageio.ImageReader.readTileRaster(int,int,int)*
+
+public |java.awt.image.Raster| readTileRaster(
+  int imageIndex,
+  int tileX,
+  int tileY)
+  throws |java.io.IOException|
+         
+Returns a new Raster object containing the raw pixel data from the tile, without any color conversion applied. The application must determine how to interpret the pixel data by 
+other means. 
+
+If <code>canReadRaster()</code>(|javax.imageio.ImageReader|) returns false, this method throws an UnsupportedOperationException. 
+
+The default implementation checks if reading Rasters is supported, and if so calls <code>readRaster(imageIndex, null)</code>(|javax.imageio.ImageReader|) if tileX and tileY are 0, 
+or throws an IllegalArgumentException otherwise. 
+
+
+    imageIndex - the index of the image to be retrieved. 
+    tileX - the column index (starting with 0) of the tile to be retrieved. 
+    tileY - the row index (starting with 0) of the tile to be retrieved. 
+
+    Returns: the tile as a Raster. 
+
+*javax.imageio.ImageReader.removeAllIIOReadProgressListeners()*
+
+public void removeAllIIOReadProgressListeners()
+
+Removes all currently registered IIOReadProgressListener objects. 
+
+The default implementation sets the progressListeners instance variable to null. 
+
+
+
+*javax.imageio.ImageReader.removeAllIIOReadUpdateListeners()*
+
+public void removeAllIIOReadUpdateListeners()
+
+Removes all currently registered IIOReadUpdateListener objects. 
+
+The default implementation sets the updateListeners instance variable to null. 
+
+
+
+*javax.imageio.ImageReader.removeAllIIOReadWarningListeners()*
+
+public void removeAllIIOReadWarningListeners()
+
+Removes all currently registered IIOReadWarningListener objects. 
+
+The default implementation sets the warningListeners and warningLocales instance variables to null. 
+
+
+
+*javax.imageio.ImageReader.removeIIOReadProgressListener(IIOReadProgressListener)*
+
+public void removeIIOReadProgressListener(javax.imageio.event.IIOReadProgressListener listener)
+
+Removes an IIOReadProgressListener from the list of registered progress listeners. If the listener was not previously registered, or if listener is null, no exception will be 
+thrown and no action will be taken. 
+
+
+    listener - an IIOReadProgressListener to be unregistered. 
+
+*javax.imageio.ImageReader.removeIIOReadUpdateListener(IIOReadUpdateListener)*
+
+public void removeIIOReadUpdateListener(javax.imageio.event.IIOReadUpdateListener listener)
+
+Removes an IIOReadUpdateListener from the list of registered update listeners. If the listener was not previously registered, or if listener is null, no exception will be thrown 
+and no action will be taken. 
+
+
+    listener - an IIOReadUpdateListener to be unregistered. 
+
+*javax.imageio.ImageReader.removeIIOReadWarningListener(IIOReadWarningListener)*
+
+public void removeIIOReadWarningListener(javax.imageio.event.IIOReadWarningListener listener)
+
+Removes an IIOReadWarningListener from the list of registered error listeners. If the listener was not previously registered, or if listener is null, no exception will be thrown 
+and no action will be taken. 
+
+
+    listener - an IIOReadWarningListener to be unregistered. 
+
+*javax.imageio.ImageReader.reset()*
+
+public void reset()
+
+Restores the ImageReader to its initial state. 
+
+The default implementation calls setInput(null, false), setLocale(null), removeAllIIOReadUpdateListeners(), removeAllIIOReadWarningListeners(), 
+removeAllIIOReadProgressListeners(), and clearAbortRequest. 
+
+
+
+*javax.imageio.ImageReader.setInput(Object)*
+
+public void setInput(java.lang.Object input)
+
+Sets the input source to use to the given ImageInputStream or other Object. The input source must be set before any of the query or read methods are used. If input is null, any 
+currently set input source will be removed. In any case, the value of minIndex will be initialized to 0. 
+
+This method is equivalent to setInput(input, false, false). 
+
+
+    input - the ImageInputStream or other Object to use for future decoding. 
+
+*javax.imageio.ImageReader.setInput(Object,boolean)*
+
+public void setInput(
+  java.lang.Object input,
+  boolean seekForwardOnly)
+
+Sets the input source to use to the given ImageInputStream or other Object. The input source must be set before any of the query or read methods are used. If input is null, any 
+currently set input source will be removed. In any case, the value of minIndex will be initialized to 0. 
+
+The seekForwardOnly parameter controls whether the value returned by getMinIndex will be increased as each image (or thumbnail, or image metadata) is read. If seekForwardOnly is 
+true, then a call to read(index) will throw an IndexOutOfBoundsException if index this.minIndex; otherwise, the value of minIndex will be set to index. If seekForwardOnly is 
+false, the value of minIndex will remain 0 regardless of any read operations. 
+
+This method is equivalent to setInput(input, seekForwardOnly, false). 
+
+
+    input - the ImageInputStream or other Object to use for future decoding. 
+    seekForwardOnly - if true, images and metadata may only be read in ascending order from this input source. 
+
+*javax.imageio.ImageReader.setInput(Object,boolean,boolean)*
+
+public void setInput(
+  java.lang.Object input,
+  boolean seekForwardOnly,
+  boolean ignoreMetadata)
+
+Sets the input source to use to the given ImageInputStream or other Object. The input source must be set before any of the query or read methods are used. If input is null, any 
+currently set input source will be removed. In any case, the value of minIndex will be initialized to 0. 
+
+The seekForwardOnly parameter controls whether the value returned by getMinIndex will be increased as each image (or thumbnail, or image metadata) is read. If seekForwardOnly is 
+true, then a call to read(index) will throw an IndexOutOfBoundsException if index this.minIndex; otherwise, the value of minIndex will be set to index. If seekForwardOnly is 
+false, the value of minIndex will remain 0 regardless of any read operations. 
+
+The ignoreMetadata parameter, if set to true, allows the reader to disregard any metadata encountered during the read. Subsequent calls to the getStreamMetadata and 
+getImageMetadata methods may return null, and an IIOImage returned from readAll may return null from their getMetadata method. Setting this parameter may allow the reader to work 
+more efficiently. The reader may choose to disregard this setting and return metadata normally. 
+
+Subclasses should take care to remove any cached information based on the previous stream, such as header information or partially decoded image data. 
+
+Use of a general Object other than an ImageInputStream is intended for readers that interact directly with a capture device or imaging protocol. The set of legal classes is 
+advertised by the reader's service provider's getInputTypes method; most readers will return a single-element array containing only ImageInputStream.class to indicate that they 
+accept only an ImageInputStream. 
+
+The default implementation checks the input argument against the list returned by originatingProvider.getInputTypes() and fails if the argument is not an instance of one of the 
+classes in the list. If the originating provider is set to null, the input is accepted only if it is an ImageInputStream. 
+
+
+    input - the ImageInputStream or other Object to use for future decoding. 
+    seekForwardOnly - if true, images and metadata may only be read in ascending order from this input source. 
+    ignoreMetadata - if true, metadata may be ignored during reads. 
+
+*javax.imageio.ImageReader.setLocale(Locale)*
+
+public void setLocale(java.util.Locale locale)
+
+Sets the current Locale of this ImageReader to the given value. A value of null removes any previous setting, and indicates that the reader should localize as it sees fit. 
+
+
+    locale - the desired Locale, or null. 
+
+

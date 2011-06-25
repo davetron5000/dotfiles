@@ -1,0 +1,179 @@
+*java.nio.channels.Channels* *Channels* Utility methods for channels and streams.
+
+public final class Channels
+  extends    |java.lang.Object|
+
+|java.nio.channels.Channels_Description|
+|java.nio.channels.Channels_Fields|
+|java.nio.channels.Channels_Constructors|
+|java.nio.channels.Channels_Methods|
+
+====================================================================================================================================================================================
+
+*java.nio.channels.Channels_Methods*
+|java.nio.channels.Channels.newChannel(InputStream)|Constructs a channel that reads bytes from the given stream.
+|java.nio.channels.Channels.newChannel(OutputStream)|Constructs a channel that writes bytes to the given stream.
+|java.nio.channels.Channels.newInputStream(ReadableByteChannel)|Constructs a stream that reads bytes from the given channel.
+|java.nio.channels.Channels.newOutputStream(WritableByteChannel)|Constructs a stream that writes bytes to the given channel.
+|java.nio.channels.Channels.newReader(ReadableByteChannel,CharsetDecoder,int)|Constructs a reader that decodes bytes from the given channel using the  given decoder.
+|java.nio.channels.Channels.newReader(ReadableByteChannel,String)|Constructs a reader that decodes bytes from the given channel according  to the named charset.
+|java.nio.channels.Channels.newWriter(WritableByteChannel,CharsetEncoder,int)|Constructs a writer that encodes characters using the given encoder and  writes the resulting bytes t
+|java.nio.channels.Channels.newWriter(WritableByteChannel,String)|Constructs a writer that encodes characters according to the named  charset and writes the resulting bytes to the
+
+*java.nio.channels.Channels_Description*
+
+Utility methods for channels and streams. 
+
+This class defines static methods that support the interoperation of the stream classes of the (|java.io|) package with the channel classes of this package. 
+
+
+
+*java.nio.channels.Channels.newChannel(InputStream)*
+
+public static |java.nio.channels.ReadableByteChannel| newChannel(java.io.InputStream in)
+
+Constructs a channel that reads bytes from the given stream. 
+
+The resulting channel will not be buffered; it will simply redirect its I/O operations to the given stream. Closing the channel will in turn cause the stream to be closed. 
+
+
+    in - The stream from which bytes are to be read 
+
+    Returns: A new readable byte channel 
+
+*java.nio.channels.Channels.newChannel(OutputStream)*
+
+public static |java.nio.channels.WritableByteChannel| newChannel(java.io.OutputStream out)
+
+Constructs a channel that writes bytes to the given stream. 
+
+The resulting channel will not be buffered; it will simply redirect its I/O operations to the given stream. Closing the channel will in turn cause the stream to be closed. 
+
+
+    out - The stream to which bytes are to be written 
+
+    Returns: A new writable byte channel 
+
+*java.nio.channels.Channels.newInputStream(ReadableByteChannel)*
+
+public static |java.io.InputStream| newInputStream(java.nio.channels.ReadableByteChannel ch)
+
+Constructs a stream that reads bytes from the given channel. 
+
+The read methods of the resulting stream will throw an (|java.nio.channels.IllegalBlockingModeException|) if invoked while the underlying channel is in non-blocking mode. The 
+stream will not be buffered, and it will not support the mark(|java.io.InputStream|) or reset(|java.io.InputStream|) methods. The stream will be safe for access by multiple 
+concurrent threads. Closing the stream will in turn cause the channel to be closed. 
+
+
+    ch - The channel from which bytes will be read 
+
+    Returns: A new input stream 
+
+*java.nio.channels.Channels.newOutputStream(WritableByteChannel)*
+
+public static |java.io.OutputStream| newOutputStream(java.nio.channels.WritableByteChannel ch)
+
+Constructs a stream that writes bytes to the given channel. 
+
+The write methods of the resulting stream will throw an (|java.nio.channels.IllegalBlockingModeException|) if invoked while the underlying channel is in non-blocking mode. The 
+stream will not be buffered. The stream will be safe for access by multiple concurrent threads. Closing the stream will in turn cause the channel to be closed. 
+
+
+    ch - The channel to which bytes will be written 
+
+    Returns: A new output stream 
+
+*java.nio.channels.Channels.newReader(ReadableByteChannel,CharsetDecoder,int)*
+
+public static |java.io.Reader| newReader(
+  java.nio.channels.ReadableByteChannel ch,
+  java.nio.charset.CharsetDecoder dec,
+  int minBufferCap)
+
+Constructs a reader that decodes bytes from the given channel using the given decoder. 
+
+The resulting stream will contain an internal input buffer of at least minBufferCap bytes. The stream's read methods will, as needed, fill the buffer by reading bytes from the 
+underlying channel; if the channel is in non-blocking mode when bytes are to be read then an (|java.nio.channels.IllegalBlockingModeException|) will be thrown. The resulting 
+stream will not otherwise be buffered, and it will not support the mark(|java.io.Reader|) or reset(|java.io.Reader|) methods. Closing the stream will in turn cause the channel to 
+be closed. 
+
+
+    ch - The channel from which bytes will be read 
+    dec - The charset decoder to be used 
+    minBufferCap - The minimum capacity of the internal byte buffer, or -1 if an implementation-dependent default capacity is to be used 
+
+    Returns: 
+
+*java.nio.channels.Channels.newReader(ReadableByteChannel,String)*
+
+public static |java.io.Reader| newReader(
+  java.nio.channels.ReadableByteChannel ch,
+  java.lang.String csName)
+
+Constructs a reader that decodes bytes from the given channel according to the named charset. 
+
+An invocation of this method of the form 
+
+
+
+Channels.newReader(ch, csname) 
+
+behaves in exactly the same way as the expression 
+
+
+
+Channels.newReader(ch, Charset.forName(csName) .newDecoder(), -1); 
+
+
+    ch - The channel from which bytes will be read 
+    csName - The name of the charset to be used 
+
+    Returns: 
+
+*java.nio.channels.Channels.newWriter(WritableByteChannel,CharsetEncoder,int)*
+
+public static |java.io.Writer| newWriter(
+  java.nio.channels.WritableByteChannel ch,
+  java.nio.charset.CharsetEncoder enc,
+  int minBufferCap)
+
+Constructs a writer that encodes characters using the given encoder and writes the resulting bytes to the given channel. 
+
+The resulting stream will contain an internal output buffer of at least minBufferCap bytes. The stream's write methods will, as needed, flush the buffer by writing bytes to the 
+underlying channel; if the channel is in non-blocking mode when bytes are to be written then an (|java.nio.channels.IllegalBlockingModeException|) will be thrown. The resulting 
+stream will not otherwise be buffered. Closing the stream will in turn cause the channel to be closed. 
+
+
+    ch - The channel to which bytes will be written 
+    enc - The charset encoder to be used 
+    minBufferCap - The minimum capacity of the internal byte buffer, or -1 if an implementation-dependent default capacity is to be used 
+
+    Returns: 
+
+*java.nio.channels.Channels.newWriter(WritableByteChannel,String)*
+
+public static |java.io.Writer| newWriter(
+  java.nio.channels.WritableByteChannel ch,
+  java.lang.String csName)
+
+Constructs a writer that encodes characters according to the named charset and writes the resulting bytes to the given channel. 
+
+An invocation of this method of the form 
+
+
+
+Channels.newWriter(ch, csname) 
+
+behaves in exactly the same way as the expression 
+
+
+
+Channels.newWriter(ch, Charset.forName(csName) .newEncoder(), -1); 
+
+
+    ch - The channel to which bytes will be written 
+    csName - The name of the charset to be used 
+
+    Returns: 
+
+

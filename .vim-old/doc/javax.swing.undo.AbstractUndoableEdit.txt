@@ -1,0 +1,191 @@
+*javax.swing.undo.AbstractUndoableEdit* *AbstractUndoableEdit* An abstract implementation of UndoableEdit,
+ implementing simple responses to all boolean methods in
+ that interface.
+
+public class AbstractUndoableEdit
+  extends    |java.lang.Object|
+  implements |javax.swing.undo.UndoableEdit|
+             |java.io.Serializable|
+
+|javax.swing.undo.AbstractUndoableEdit_Description|
+|javax.swing.undo.AbstractUndoableEdit_Fields|
+|javax.swing.undo.AbstractUndoableEdit_Constructors|
+|javax.swing.undo.AbstractUndoableEdit_Methods|
+
+====================================================================================================================================================================================
+
+*javax.swing.undo.AbstractUndoableEdit_Fields*
+|java.lang.String_javax.swing.undo.AbstractUndoableEdit.RedoName|
+|java.lang.String_javax.swing.undo.AbstractUndoableEdit.UndoName|
+
+*javax.swing.undo.AbstractUndoableEdit_Constructors*
+|javax.swing.undo.AbstractUndoableEdit()|Creates an AbstractUndoableEdit which defaults   and alive to true.
+
+*javax.swing.undo.AbstractUndoableEdit_Methods*
+|javax.swing.undo.AbstractUndoableEdit.addEdit(UndoableEdit)|This default implementation returns false.
+|javax.swing.undo.AbstractUndoableEdit.canRedo()|Returns true if this edit is alive  and hasBeenDone is false.
+|javax.swing.undo.AbstractUndoableEdit.canUndo()|Returns true if this edit is alive  and hasBeenDone is true.
+|javax.swing.undo.AbstractUndoableEdit.die()|Sets alive to false.
+|javax.swing.undo.AbstractUndoableEdit.getPresentationName()|This default implementation returns "".
+|javax.swing.undo.AbstractUndoableEdit.getRedoPresentationName()|Retreives the value from the defaults table with key  AbstractUndoableEdit.redoText and returns  that value follow
+|javax.swing.undo.AbstractUndoableEdit.getUndoPresentationName()|Retreives the value from the defaults table with key  AbstractUndoableEdit.undoText and returns  that value follow
+|javax.swing.undo.AbstractUndoableEdit.isSignificant()|This default implementation returns true.
+|javax.swing.undo.AbstractUndoableEdit.redo()|Throws CannotRedoException if canRedo  returns false.
+|javax.swing.undo.AbstractUndoableEdit.replaceEdit(UndoableEdit)|This default implementation returns false.
+|javax.swing.undo.AbstractUndoableEdit.toString()|Returns a string that displays and identifies this  object's properties.
+|javax.swing.undo.AbstractUndoableEdit.undo()|Throws CannotUndoException if canUndo  returns false.
+
+*javax.swing.undo.AbstractUndoableEdit_Description*
+
+An abstract implementation of UndoableEdit, implementing simple responses to all boolean methods in that interface. 
+
+
+
+*java.lang.String_javax.swing.undo.AbstractUndoableEdit.RedoName*
+
+String returned by getRedoPresentationName; as of Java 2 platform v1.3.1 this field is no longer used. This value is now localized and comes from the defaults table with key 
+AbstractUndoableEdit.redoText. 
+
+
+*java.lang.String_javax.swing.undo.AbstractUndoableEdit.UndoName*
+
+String returned by getUndoPresentationName; as of Java 2 platform v1.3.1 this field is no longer used. This value is now localized and comes from the defaults table with key 
+AbstractUndoableEdit.undoText. 
+
+
+
+*javax.swing.undo.AbstractUndoableEdit()*
+
+public AbstractUndoableEdit()
+
+Creates an AbstractUndoableEdit which defaults and alive to true. 
+
+
+*javax.swing.undo.AbstractUndoableEdit.addEdit(UndoableEdit)*
+
+public boolean addEdit(javax.swing.undo.UndoableEdit anEdit)
+
+This default implementation returns false. 
+
+
+    anEdit - the edit to be added 
+
+    Returns: 
+
+*javax.swing.undo.AbstractUndoableEdit.canRedo()*
+
+public boolean canRedo()
+
+Returns true if this edit is alive and hasBeenDone is false. 
+
+
+
+    Returns: true if this edit is alive and hasBeenDone is false 
+
+*javax.swing.undo.AbstractUndoableEdit.canUndo()*
+
+public boolean canUndo()
+
+Returns true if this edit is alive and hasBeenDone is true. 
+
+
+
+    Returns: true if this edit is alive and hasBeenDone is true 
+
+*javax.swing.undo.AbstractUndoableEdit.die()*
+
+public void die()
+
+Sets alive to false. Note that this is a one way operation; dead edits cannot be resurrected. Sending undo or redo to a dead edit results in an exception being thrown. 
+
+Typically an edit is killed when it is consolidated by another edit's addEdit or replaceEdit method, or when it is dequeued from an UndoManager. 
+
+
+
+*javax.swing.undo.AbstractUndoableEdit.getPresentationName()*
+
+public |java.lang.String| getPresentationName()
+
+This default implementation returns "". Used by getUndoPresentationName and getRedoPresentationName to construct the strings they return. Subclasses should override to return an 
+appropriate description of the operation this edit represents. 
+
+
+
+    Returns: the empty string "" 
+
+*javax.swing.undo.AbstractUndoableEdit.getRedoPresentationName()*
+
+public |java.lang.String| getRedoPresentationName()
+
+Retreives the value from the defaults table with key AbstractUndoableEdit.redoText and returns that value followed by a space, followed by getPresentationName. If 
+getPresentationName returns "", then the defaults value is returned alone. 
+
+
+
+    Returns: the value from the defaults table with key AbstractUndoableEdit.redoText, followed by a space, followed by getPresentationName unless getPresentationName is "" in which case, the 
+             defaults value is returned alone. 
+
+*javax.swing.undo.AbstractUndoableEdit.getUndoPresentationName()*
+
+public |java.lang.String| getUndoPresentationName()
+
+Retreives the value from the defaults table with key AbstractUndoableEdit.undoText and returns that value followed by a space, followed by getPresentationName. If 
+getPresentationName returns "", then the defaults value is returned alone. 
+
+
+
+    Returns: the value from the defaults table with key AbstractUndoableEdit.undoText, followed by a space, followed by getPresentationName unless getPresentationName is "" in which case, the 
+             defaults value is returned alone. 
+
+*javax.swing.undo.AbstractUndoableEdit.isSignificant()*
+
+public boolean isSignificant()
+
+This default implementation returns true. 
+
+
+
+    Returns: 
+
+*javax.swing.undo.AbstractUndoableEdit.redo()*
+
+public void redo()
+  throws |javax.swing.undo.CannotRedoException|
+         
+Throws CannotRedoException if canRedo returns false. Sets hasBeenDone to true. Subclasses should override to redo the operation represented by this edit. Override should begin 
+with a call to super. 
+
+
+
+*javax.swing.undo.AbstractUndoableEdit.replaceEdit(UndoableEdit)*
+
+public boolean replaceEdit(javax.swing.undo.UndoableEdit anEdit)
+
+This default implementation returns false. 
+
+
+    anEdit - the edit to replace 
+
+    Returns: 
+
+*javax.swing.undo.AbstractUndoableEdit.toString()*
+
+public |java.lang.String| toString()
+
+Returns a string that displays and identifies this object's properties. 
+
+
+
+    Returns: a String representation of this object 
+
+*javax.swing.undo.AbstractUndoableEdit.undo()*
+
+public void undo()
+  throws |javax.swing.undo.CannotUndoException|
+         
+Throws CannotUndoException if canUndo returns false. Sets hasBeenDone to false. Subclasses should override to undo the operation represented by this edit. Override should begin 
+with a call to super. 
+
+
+
+

@@ -1,0 +1,114 @@
+*javax.sound.midi.spi.MidiFileWriter* *MidiFileWriter* A MidiFileWriter supplies
+
+public abstract class MidiFileWriter
+  extends    |java.lang.Object|
+
+|javax.sound.midi.spi.MidiFileWriter_Description|
+|javax.sound.midi.spi.MidiFileWriter_Fields|
+|javax.sound.midi.spi.MidiFileWriter_Constructors|
+|javax.sound.midi.spi.MidiFileWriter_Methods|
+
+================================================================================
+
+*javax.sound.midi.spi.MidiFileWriter_Constructors*
+|javax.sound.midi.spi.MidiFileWriter()|
+
+*javax.sound.midi.spi.MidiFileWriter_Methods*
+|javax.sound.midi.spi.MidiFileWriter.getMidiFileTypes()|Obtains the set of MIDI
+|javax.sound.midi.spi.MidiFileWriter.getMidiFileTypes(Sequence)|Obtains the fil
+|javax.sound.midi.spi.MidiFileWriter.isFileTypeSupported(int)|Indicates whether
+|javax.sound.midi.spi.MidiFileWriter.isFileTypeSupported(int,Sequence)|Indicate
+|javax.sound.midi.spi.MidiFileWriter.write(Sequence,int,File)|Writes a stream o
+|javax.sound.midi.spi.MidiFileWriter.write(Sequence,int,OutputStream)|Writes a 
+
+*javax.sound.midi.spi.MidiFileWriter_Description*
+
+A MidiFileWriter supplies MIDI file-writing services. Classes that implement 
+this interface can write one or more types of MIDI file from a 
+(|javax.sound.midi.Sequence|) object. 
+
+
+*javax.sound.midi.spi.MidiFileWriter()*
+
+public MidiFileWriter()
+
+
+
+
+*javax.sound.midi.spi.MidiFileWriter.getMidiFileTypes()*
+
+public abstract int getMidiFileTypes()
+
+Obtains the set of MIDI file types for which file writing support is provided 
+by this file writer. 
+
+
+    Returns: array of file types. If no file types are supported, an array of length 0 is 
+             returned. 
+*javax.sound.midi.spi.MidiFileWriter.getMidiFileTypes(Sequence)*
+
+public abstract int getMidiFileTypes(javax.sound.midi.Sequence sequence)
+
+Obtains the file types that this file writer can write from the sequence 
+specified. 
+
+    sequence - the sequence for which MIDI file type support is queried 
+
+    Returns: array of file types. If no file types are supported, returns an array of length 
+             0. 
+*javax.sound.midi.spi.MidiFileWriter.isFileTypeSupported(int)*
+
+public boolean isFileTypeSupported(int fileType)
+
+Indicates whether file writing support for the specified MIDI file type is 
+provided by this file writer. 
+
+    fileType - the file type for which write capabilities are queried 
+
+    Returns: true if the file type is supported, otherwise false 
+*javax.sound.midi.spi.MidiFileWriter.isFileTypeSupported(int,Sequence)*
+
+public boolean isFileTypeSupported(
+  int fileType,
+  javax.sound.midi.Sequence sequence)
+
+Indicates whether a MIDI file of the file type specified can be written from 
+the sequence indicated. 
+
+    fileType - the file type for which write capabilities are queried 
+    sequence - the sequence for which file writing support is queried 
+
+    Returns: true if the file type is supported for this sequence, otherwise false 
+*javax.sound.midi.spi.MidiFileWriter.write(Sequence,int,File)*
+
+public abstract int write(
+  javax.sound.midi.Sequence in,
+  int fileType,
+  java.io.File out)
+  throws |java.io.IOException|
+         
+Writes a stream of bytes representing a MIDI file of the file type indicated to 
+the external file provided. 
+
+    in - sequence containing MIDI data to be written to the external file 
+    fileType - type of the file to be written to the external file 
+    out - external file to which the file data should be written 
+
+    Returns: the number of bytes written to the file 
+*javax.sound.midi.spi.MidiFileWriter.write(Sequence,int,OutputStream)*
+
+public abstract int write(
+  javax.sound.midi.Sequence in,
+  int fileType,
+  java.io.OutputStream out)
+  throws |java.io.IOException|
+         
+Writes a stream of bytes representing a MIDI file of the file type indicated to 
+the output stream provided. 
+
+    in - sequence containing MIDI data to be written to the file 
+    fileType - type of the file to be written to the output stream 
+    out - stream to which the file data should be written 
+
+    Returns: the number of bytes written to the output stream 
+

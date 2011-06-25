@@ -1,0 +1,299 @@
+*java.rmi.activation.Activatable* *Activatable* The Activatable class provides support for remote
+ objects that require persistent access over time and that
+ can be activated by th
+
+public abstract class Activatable
+  extends    |java.rmi.server.RemoteServer|
+
+|java.rmi.activation.Activatable_Description|
+|java.rmi.activation.Activatable_Fields|
+|java.rmi.activation.Activatable_Constructors|
+|java.rmi.activation.Activatable_Methods|
+
+====================================================================================================================================================================================
+
+*java.rmi.activation.Activatable_Constructors*
+|java.rmi.activation.Activatable(ActivationID,int)|Constructor used to activate/export the object on a specified  port.
+|java.rmi.activation.Activatable(ActivationID,int,RMIClientSocketFactory,RMIServerSocketFactory)|Constructor used to activate/export the object on a specified  port.
+|java.rmi.activation.Activatable(String,MarshalledObject,boolean,int)|Constructor used to register and export the object on a  specified port (an anonymous port is chosen if port=
+|java.rmi.activation.Activatable(String,MarshalledObject,boolean,int,RMIClientSocketFactory,RMIServerSocketFactory)|Constructor used to register and export the object on a  specif
+
+*java.rmi.activation.Activatable_Methods*
+|java.rmi.activation.Activatable.exportObject(Remote,ActivationID,int)|Export the activatable remote object to the RMI runtime to make  the object available to receive incoming ca
+|java.rmi.activation.Activatable.exportObject(Remote,ActivationID,int,RMIClientSocketFactory,RMIServerSocketFactory)|Export the activatable remote object to the RMI runtime to mak
+|java.rmi.activation.Activatable.exportObject(Remote,String,MarshalledObject,boolean,int)|This exportObject method may be invoked explicitly  by an "activatable" object, that does
+|java.rmi.activation.Activatable.exportObject(Remote,String,MarshalledObject,boolean,int,RMIClientSocketFactory,RMIServerSocketFactory)|This exportObject method may be invoked exp
+|java.rmi.activation.Activatable.getID()|Returns the object's activation identifier.
+|java.rmi.activation.Activatable.inactive(ActivationID)|Informs the system that the object with the corresponding activation  id is currently inactive.
+|java.rmi.activation.Activatable.register(ActivationDesc)|Register an object descriptor for an activatable remote  object so that is can be activated on demand.
+|java.rmi.activation.Activatable.unexportObject(Remote,boolean)|Remove the remote object, obj, from the RMI runtime.
+|java.rmi.activation.Activatable.unregister(ActivationID)|Revokes previous registration for the activation descriptor  associated with id.
+
+*java.rmi.activation.Activatable_Description*
+
+The Activatable class provides support for remote objects that require persistent access over time and that can be activated by the system. 
+
+For the constructors and static exportObject methods, the stub for a remote object being exported is obtained as described in (|java.rmi.server.UnicastRemoteObject|) . 
+
+
+
+*java.rmi.activation.Activatable(ActivationID,int)*
+
+protected Activatable(
+  java.rmi.activation.ActivationID id,
+  int port)
+  throws |java.rmi.RemoteException|
+         
+Constructor used to activate/export the object on a specified port. An "activatable" remote object must have a constructor that takes two arguments: the object's activation 
+identifier (ActivationID), and the object's initialization data (a MarshalledObject). 
+
+A concrete subclass of this class must call this constructor when it is activated via the two parameter constructor described above. As a side-effect of construction, the remote 
+object is "exported" to the RMI runtime (on the specified port) and is available to accept incoming calls from clients. 
+
+    id - activation identifier for the object 
+    port - the port number on which the object is exported 
+
+*java.rmi.activation.Activatable(ActivationID,int,RMIClientSocketFactory,RMIServerSocketFactory)*
+
+protected Activatable(
+  java.rmi.activation.ActivationID id,
+  int port,
+  java.rmi.server.RMIClientSocketFactory csf,
+  java.rmi.server.RMIServerSocketFactory ssf)
+  throws |java.rmi.RemoteException|
+         
+Constructor used to activate/export the object on a specified port. An "activatable" remote object must have a constructor that takes two arguments: the object's activation 
+identifier (ActivationID), and the object's initialization data (a MarshalledObject). 
+
+A concrete subclass of this class must call this constructor when it is activated via the two parameter constructor described above. As a side-effect of construction, the remote 
+object is "exported" to the RMI runtime (on the specified port) and is available to accept incoming calls from clients. 
+
+    id - activation identifier for the object 
+    port - the port number on which the object is exported 
+    csf - the client-side socket factory for making calls to the remote object 
+    ssf - the server-side socket factory for receiving remote calls 
+
+*java.rmi.activation.Activatable(String,MarshalledObject,boolean,int)*
+
+protected Activatable(
+  java.lang.String location,
+  java.rmi.MarshalledObject data,
+  boolean restart,
+  int port)
+  throws |java.rmi.activation.ActivationException|
+         |java.rmi.RemoteException|
+         
+Constructor used to register and export the object on a specified port (an anonymous port is chosen if port=0) . 
+
+A concrete subclass of this class must call this constructor to register and export the object during initial construction. As a side-effect of activatable object construction, 
+the remote object is both "registered" with the activation system and "exported" (on an anonymous port if port=0) to the RMI runtime so that it is available to accept incoming 
+calls from clients. 
+
+    location - the location for classes for this object 
+    data - the object's initialization data 
+    port - the port on which the object is exported (an anonymous port is used if port=0) 
+    restart - if true, the object is restarted (reactivated) when either the activator is restarted or the object's activation group is restarted after an unexpected crash; if false, the object 
+       is only activated on demand. Specifying restart to be true does not force an initial immediate activation of a newly registered object; initial activation is lazy. 
+
+*java.rmi.activation.Activatable(String,MarshalledObject,boolean,int,RMIClientSocketFactory,RMIServerSocketFactory)*
+
+protected Activatable(
+  java.lang.String location,
+  java.rmi.MarshalledObject data,
+  boolean restart,
+  int port,
+  java.rmi.server.RMIClientSocketFactory csf,
+  java.rmi.server.RMIServerSocketFactory ssf)
+  throws |java.rmi.activation.ActivationException|
+         |java.rmi.RemoteException|
+         
+Constructor used to register and export the object on a specified port (an anonymous port is chosen if port=0) . 
+
+A concrete subclass of this class must call this constructor to register and export the object during initial construction. As a side-effect of activatable object construction, 
+the remote object is both "registered" with the activation system and "exported" (on an anonymous port if port=0) to the RMI runtime so that it is available to accept incoming 
+calls from clients. 
+
+    location - the location for classes for this object 
+    data - the object's initialization data 
+    restart - if true, the object is restarted (reactivated) when either the activator is restarted or the object's activation group is restarted after an unexpected crash; if false, the object 
+       is only activated on demand. Specifying restart to be true does not force an initial immediate activation of a newly registered object; initial activation is lazy. 
+    port - the port on which the object is exported (an anonymous port is used if port=0) 
+    csf - the client-side socket factory for making calls to the remote object 
+    ssf - the server-side socket factory for receiving remote calls 
+
+*java.rmi.activation.Activatable.exportObject(Remote,ActivationID,int)*
+
+public static |java.rmi.Remote| exportObject(
+  java.rmi.Remote obj,
+  java.rmi.activation.ActivationID id,
+  int port)
+  throws |java.rmi.RemoteException|
+         
+Export the activatable remote object to the RMI runtime to make the object available to receive incoming calls. The object is exported on an anonymous port, if port is zero. 
+
+During activation, this exportObject method should be invoked explicitly by an "activatable" object, that does not extend the Activatable class. There is no need for objects that 
+do extend the Activatable class to invoke this method directly; this method is called by the second constructor above (which a subclass should invoke from its special activation 
+constructor). 
+
+
+    obj - the remote object implementation 
+    id - the object's activation identifier 
+    port - the port on which the object is exported (an anonymous port is used if port=0) 
+
+    Returns: the stub for the activatable remote object 
+
+*java.rmi.activation.Activatable.exportObject(Remote,ActivationID,int,RMIClientSocketFactory,RMIServerSocketFactory)*
+
+public static |java.rmi.Remote| exportObject(
+  java.rmi.Remote obj,
+  java.rmi.activation.ActivationID id,
+  int port,
+  java.rmi.server.RMIClientSocketFactory csf,
+  java.rmi.server.RMIServerSocketFactory ssf)
+  throws |java.rmi.RemoteException|
+         
+Export the activatable remote object to the RMI runtime to make the object available to receive incoming calls. The object is exported on an anonymous port, if port is zero. 
+
+During activation, this exportObject method should be invoked explicitly by an "activatable" object, that does not extend the Activatable class. There is no need for objects that 
+do extend the Activatable class to invoke this method directly; this method is called by the second constructor above (which a subclass should invoke from its special activation 
+constructor). 
+
+
+    obj - the remote object implementation 
+    id - the object's activation identifier 
+    port - the port on which the object is exported (an anonymous port is used if port=0) 
+    csf - the client-side socket factory for making calls to the remote object 
+    ssf - the server-side socket factory for receiving remote calls 
+
+    Returns: the stub for the activatable remote object 
+
+*java.rmi.activation.Activatable.exportObject(Remote,String,MarshalledObject,boolean,int)*
+
+public static |java.rmi.activation.ActivationID| exportObject(
+  java.rmi.Remote obj,
+  java.lang.String location,
+  java.rmi.MarshalledObject data,
+  boolean restart,
+  int port)
+  throws |java.rmi.activation.ActivationException|
+         |java.rmi.RemoteException|
+         
+This exportObject method may be invoked explicitly by an "activatable" object, that does not extend the Activatable class, in order to both a) register the object's activation 
+descriptor, constructed from the supplied location, and data, with the activation system (so the object can be activated), and b) export the remote object, obj, on a specific port 
+(if port=0, then an anonymous port is chosen). Once the object is exported, it can receive incoming RMI calls. 
+
+This method does not need to be called if obj extends Activatable, since the first constructor calls this method. 
+
+
+    obj - the object being exported 
+    location - the object's code location 
+    data - the object's bootstrapping data 
+    restart - if true, the object is restarted (reactivated) when either the activator is restarted or the object's activation group is restarted after an unexpected crash; if false, the object 
+       is only activated on demand. Specifying restart to be true does not force an initial immediate activation of a newly registered object; initial activation is lazy. 
+    port - the port on which the object is exported (an anonymous port is used if port=0) 
+
+    Returns: the activation identifier obtained from registering the descriptor, desc, with the activation system the wrong group 
+
+*java.rmi.activation.Activatable.exportObject(Remote,String,MarshalledObject,boolean,int,RMIClientSocketFactory,RMIServerSocketFactory)*
+
+public static |java.rmi.activation.ActivationID| exportObject(
+  java.rmi.Remote obj,
+  java.lang.String location,
+  java.rmi.MarshalledObject data,
+  boolean restart,
+  int port,
+  java.rmi.server.RMIClientSocketFactory csf,
+  java.rmi.server.RMIServerSocketFactory ssf)
+  throws |java.rmi.activation.ActivationException|
+         |java.rmi.RemoteException|
+         
+This exportObject method may be invoked explicitly by an "activatable" object, that does not extend the Activatable class, in order to both a) register the object's activation 
+descriptor, constructed from the supplied location, and data, with the activation system (so the object can be activated), and b) export the remote object, obj, on a specific port 
+(if port=0, then an anonymous port is chosen). Once the object is exported, it can receive incoming RMI calls. 
+
+This method does not need to be called if obj extends Activatable, since the first constructor calls this method. 
+
+
+    obj - the object being exported 
+    location - the object's code location 
+    data - the object's bootstrapping data 
+    restart - if true, the object is restarted (reactivated) when either the activator is restarted or the object's activation group is restarted after an unexpected crash; if false, the object 
+       is only activated on demand. Specifying restart to be true does not force an initial immediate activation of a newly registered object; initial activation is lazy. 
+    port - the port on which the object is exported (an anonymous port is used if port=0) 
+    csf - the client-side socket factory for making calls to the remote object 
+    ssf - the server-side socket factory for receiving remote calls 
+
+    Returns: the activation identifier obtained from registering the descriptor, desc, with the activation system the wrong group 
+
+*java.rmi.activation.Activatable.getID()*
+
+protected |java.rmi.activation.ActivationID| getID()
+
+Returns the object's activation identifier. The method is protected so that only subclasses can obtain an object's identifier. 
+
+
+
+    Returns: the object's activation identifier 
+
+*java.rmi.activation.Activatable.inactive(ActivationID)*
+
+public static boolean inactive(java.rmi.activation.ActivationID id)
+  throws |java.rmi.activation.ActivationException|
+         |java.rmi.RemoteException|
+         |java.rmi.activation.UnknownObjectException|
+         
+Informs the system that the object with the corresponding activation id is currently inactive. If the object is currently active, the object is "unexported" from the RMI runtime 
+(only if there are no pending or in-progress calls) so the that it can no longer receive incoming calls. This call informs this VM's ActivationGroup that the object is inactive, 
+that, in turn, informs its ActivationMonitor. If this call completes successfully, a subsequent activate request to the activator will cause the object to reactivate. The 
+operation may still succeed if the object is considered active but has already unexported itself. 
+
+
+    id - the object's activation identifier 
+
+    Returns: true if the operation succeeds (the operation will succeed if the object in currently known to be active and is either already unexported or is currently exported and has no 
+             pending/executing calls); false is returned if the object has pending/executing calls in which case it cannot be deactivated 
+
+*java.rmi.activation.Activatable.register(ActivationDesc)*
+
+public static |java.rmi.Remote| register(java.rmi.activation.ActivationDesc desc)
+  throws |java.rmi.activation.ActivationException|
+         |java.rmi.RemoteException|
+         |java.rmi.activation.UnknownGroupException|
+         
+Register an object descriptor for an activatable remote object so that is can be activated on demand. 
+
+
+    desc - the object's descriptor 
+
+    Returns: the stub for the activatable remote object 
+
+*java.rmi.activation.Activatable.unexportObject(Remote,boolean)*
+
+public static boolean unexportObject(
+  java.rmi.Remote obj,
+  boolean force)
+  throws |java.rmi.NoSuchObjectException|
+         
+Remove the remote object, obj, from the RMI runtime. If successful, the object can no longer accept incoming RMI calls. If the force parameter is true, the object is forcibly 
+unexported even if there are pending calls to the remote object or the remote object still has calls in progress. If the force parameter is false, the object is only unexported if 
+there are no pending or in progress calls to the object. 
+
+
+    obj - the remote object to be unexported 
+    force - if true, unexports the object even if there are pending or in-progress calls; if false, only unexports the object if there are no pending or in-progress calls 
+
+    Returns: true if operation is successful, false otherwise 
+
+*java.rmi.activation.Activatable.unregister(ActivationID)*
+
+public static void unregister(java.rmi.activation.ActivationID id)
+  throws |java.rmi.activation.ActivationException|
+         |java.rmi.RemoteException|
+         |java.rmi.activation.UnknownObjectException|
+         
+Revokes previous registration for the activation descriptor associated with id. An object can no longer be activated via that id. 
+
+
+    id - the object's activation identifier 
+
+

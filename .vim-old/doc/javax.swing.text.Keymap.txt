@@ -1,0 +1,166 @@
+*javax.swing.text.Keymap* *Keymap* A collection of bindings of KeyStrokes to actions.
+
+public interface interface Keymap
+
+
+|javax.swing.text.Keymap_Description|
+|javax.swing.text.Keymap_Fields|
+|javax.swing.text.Keymap_Constructors|
+|javax.swing.text.Keymap_Methods|
+
+====================================================================================================================================================================================
+
+*javax.swing.text.Keymap_Methods*
+|javax.swing.text.Keymap.addActionForKeyStroke(KeyStroke,Action)|Adds a binding to the keymap.
+|javax.swing.text.Keymap.getAction(KeyStroke)|Fetches the action appropriate for the given symbolic  event sequence.
+|javax.swing.text.Keymap.getBoundActions()|Fetches all of the actions defined in this keymap.
+|javax.swing.text.Keymap.getBoundKeyStrokes()|Fetches all of the keystrokes in this map that  are bound to some action.
+|javax.swing.text.Keymap.getDefaultAction()|Fetches the default action to fire if a   key is typed (i.e.
+|javax.swing.text.Keymap.getKeyStrokesForAction(Action)|Fetches the keystrokes that will result in   the given action.
+|javax.swing.text.Keymap.getName()|Fetches the name of the set of key-bindings.
+|javax.swing.text.Keymap.getResolveParent()|Fetches the parent keymap used to resolve key-bindings.
+|javax.swing.text.Keymap.isLocallyDefined(KeyStroke)|Determines if the given key sequence is locally defined.
+|javax.swing.text.Keymap.removeBindings()|Removes all bindings from the keymap.
+|javax.swing.text.Keymap.removeKeyStrokeBinding(KeyStroke)|Removes a binding from the keymap.
+|javax.swing.text.Keymap.setDefaultAction(Action)|Set the default action to fire if a key is typed.
+|javax.swing.text.Keymap.setResolveParent(Keymap)|Sets the parent keymap, which will be used to   resolve key-bindings.
+
+*javax.swing.text.Keymap_Description*
+
+A collection of bindings of KeyStrokes to actions. The bindings are basically name-value pairs that potentially resolve in a hierarchy. 
+
+
+
+*javax.swing.text.Keymap.addActionForKeyStroke(KeyStroke,Action)*
+
+public void addActionForKeyStroke(
+  javax.swing.KeyStroke key,
+  javax.swing.Action a)
+
+Adds a binding to the keymap. 
+
+
+    key - the key sequence 
+    a - the action 
+
+*javax.swing.text.Keymap.getAction(KeyStroke)*
+
+public |javax.swing.Action| getAction(javax.swing.KeyStroke key)
+
+Fetches the action appropriate for the given symbolic event sequence. This is used by JTextController to determine how to interpret key sequences. If the binding is not resolved 
+locally, an attempt is made to resolve through the parent keymap, if one is set. 
+
+
+    key - the key sequence 
+
+    Returns: the action associated with the key sequence if one is defined, otherwise null 
+
+*javax.swing.text.Keymap.getBoundActions()*
+
+public |javax.swing.Action|[] getBoundActions()
+
+Fetches all of the actions defined in this keymap. 
+
+
+
+    Returns: the list of actions 
+
+*javax.swing.text.Keymap.getBoundKeyStrokes()*
+
+public |javax.swing.KeyStroke|[] getBoundKeyStrokes()
+
+Fetches all of the keystrokes in this map that are bound to some action. 
+
+
+
+    Returns: the list of keystrokes 
+
+*javax.swing.text.Keymap.getDefaultAction()*
+
+public |javax.swing.Action| getDefaultAction()
+
+Fetches the default action to fire if a key is typed (i.e. a KEY_TYPED KeyEvent is received) and there is no binding for it. Typically this would be some action that inserts text 
+so that the keymap doesn't require an action for each possible key. 
+
+
+
+    Returns: the default action 
+
+*javax.swing.text.Keymap.getKeyStrokesForAction(Action)*
+
+public |javax.swing.KeyStroke|[] getKeyStrokesForAction(javax.swing.Action a)
+
+Fetches the keystrokes that will result in the given action. 
+
+
+    a - the action 
+
+    Returns: the list of keystrokes 
+
+*javax.swing.text.Keymap.getName()*
+
+public |java.lang.String| getName()
+
+Fetches the name of the set of key-bindings. 
+
+
+
+    Returns: 
+
+*javax.swing.text.Keymap.getResolveParent()*
+
+public |javax.swing.text.Keymap| getResolveParent()
+
+Fetches the parent keymap used to resolve key-bindings. 
+
+
+
+    Returns: 
+
+*javax.swing.text.Keymap.isLocallyDefined(KeyStroke)*
+
+public boolean isLocallyDefined(javax.swing.KeyStroke key)
+
+Determines if the given key sequence is locally defined. 
+
+
+    key - the key sequence 
+
+    Returns: true if the key sequence is locally defined else false 
+
+*javax.swing.text.Keymap.removeBindings()*
+
+public void removeBindings()
+
+Removes all bindings from the keymap. 
+
+
+
+*javax.swing.text.Keymap.removeKeyStrokeBinding(KeyStroke)*
+
+public void removeKeyStrokeBinding(javax.swing.KeyStroke keys)
+
+Removes a binding from the keymap. 
+
+
+    keys - the key sequence 
+
+*javax.swing.text.Keymap.setDefaultAction(Action)*
+
+public void setDefaultAction(javax.swing.Action a)
+
+Set the default action to fire if a key is typed. 
+
+
+    a - the action 
+
+*javax.swing.text.Keymap.setResolveParent(Keymap)*
+
+public void setResolveParent(javax.swing.text.Keymap parent)
+
+Sets the parent keymap, which will be used to resolve key-bindings. 
+
+
+    parent - the parent keymap 
+
+

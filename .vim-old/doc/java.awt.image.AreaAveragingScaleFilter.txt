@@ -1,0 +1,96 @@
+*java.awt.image.AreaAveragingScaleFilter* *AreaAveragingScaleFilter* An ImageFilter class for scaling images using a simple area averaging
+ algorithm that produces smoother results
+
+public class AreaAveragingScaleFilter
+  extends    |java.awt.image.ReplicateScaleFilter|
+
+|java.awt.image.AreaAveragingScaleFilter_Description|
+|java.awt.image.AreaAveragingScaleFilter_Fields|
+|java.awt.image.AreaAveragingScaleFilter_Constructors|
+|java.awt.image.AreaAveragingScaleFilter_Methods|
+
+====================================================================================================================================================================================
+
+*java.awt.image.AreaAveragingScaleFilter_Constructors*
+|java.awt.image.AreaAveragingScaleFilter(int,int)|Constructs an AreaAveragingScaleFilter that scales the pixels from  its source Image as specified by the width and height paramet
+
+*java.awt.image.AreaAveragingScaleFilter_Methods*
+|java.awt.image.AreaAveragingScaleFilter.setHints(int)|Detect if the data is being delivered with the necessary hints  to allow the averaging algorithm to do its work.
+|java.awt.image.AreaAveragingScaleFilter.setPixels(int,int,int,int,ColorModel,byte[],int,int)|Combine the components for the delivered byte pixels into the  accumulation arrays an
+|java.awt.image.AreaAveragingScaleFilter.setPixels(int,int,int,int,ColorModel,int[],int,int)|Combine the components for the delivered int pixels into the  accumulation arrays and 
+
+*java.awt.image.AreaAveragingScaleFilter_Description*
+
+An ImageFilter class for scaling images using a simple area averaging algorithm that produces smoother results than the nearest neighbor algorithm. This class extends the basic 
+ImageFilter Class to scale an existing image and provide a source for a new image containing the resampled image. The pixels in the source image are blended to produce pixels for 
+an image of the specified size. The blending process is analogous to scaling up the source image to a multiple of the destination size using pixel replication and then scaling it 
+back down to the destination size by simply averaging all the pixels in the supersized image that fall within a given pixel of the destination image. If the data from the source 
+is not delivered in TopDownLeftRight order then the filter will back off to a simple pixel replication behavior and utilize the requestTopDownLeftRightResend() method to refilter 
+the pixels in a better way at the end. It is meant to be used in conjunction with a FilteredImageSource object to produce scaled versions of existing images. Due to implementation 
+dependencies, there may be differences in pixel values of an image filtered on different platforms. 
+
+
+
+*java.awt.image.AreaAveragingScaleFilter(int,int)*
+
+public AreaAveragingScaleFilter(
+  int width,
+  int height)
+
+Constructs an AreaAveragingScaleFilter that scales the pixels from its source Image as specified by the width and height parameters. 
+
+    width - the target width to scale the image 
+    height - the target height to scale the image 
+
+*java.awt.image.AreaAveragingScaleFilter.setHints(int)*
+
+public void setHints(int hints)
+
+Detect if the data is being delivered with the necessary hints to allow the averaging algorithm to do its work. 
+
+Note: This method is intended to be called by the ImageProducer of the Image whose pixels are being filtered. Developers using this class to filter pixels from an image should 
+avoid calling this method directly since that operation could interfere with the filtering operation. 
+
+
+
+*java.awt.image.AreaAveragingScaleFilter.setPixels(int,int,int,int,ColorModel,byte[],int,int)*
+
+public void setPixels(
+  int x,
+  int y,
+  int w,
+  int h,
+  java.awt.image.ColorModel model,
+  byte[] pixels,
+  int off,
+  int scansize)
+
+Combine the components for the delivered byte pixels into the accumulation arrays and send on any averaged data for rows of pixels that are complete. If the correct hints were not 
+specified in the setHints call then relay the work to our superclass which is capable of scaling pixels regardless of the delivery hints. 
+
+Note: This method is intended to be called by the ImageProducer of the Image whose pixels are being filtered. Developers using this class to filter pixels from an image should 
+avoid calling this method directly since that operation could interfere with the filtering operation. 
+
+
+
+*java.awt.image.AreaAveragingScaleFilter.setPixels(int,int,int,int,ColorModel,int[],int,int)*
+
+public void setPixels(
+  int x,
+  int y,
+  int w,
+  int h,
+  java.awt.image.ColorModel model,
+  int[] pixels,
+  int off,
+  int scansize)
+
+Combine the components for the delivered int pixels into the accumulation arrays and send on any averaged data for rows of pixels that are complete. If the correct hints were not 
+specified in the setHints call then relay the work to our superclass which is capable of scaling pixels regardless of the delivery hints. 
+
+Note: This method is intended to be called by the ImageProducer of the Image whose pixels are being filtered. Developers using this class to filter pixels from an image should 
+avoid calling this method directly since that operation could interfere with the filtering operation. 
+
+
+
+

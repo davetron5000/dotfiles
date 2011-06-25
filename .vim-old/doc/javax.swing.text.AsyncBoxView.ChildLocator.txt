@@ -1,0 +1,133 @@
+*javax.swing.text.AsyncBoxView.ChildLocator* *AsyncBoxView.ChildLocator* A class to manage the effective position of the
+ child views in a localized area while changes are
+ being m
+
+public class AsyncBoxView.ChildLocator
+  extends    |java.lang.Object|
+
+|javax.swing.text.AsyncBoxView.ChildLocator_Description|
+|javax.swing.text.AsyncBoxView.ChildLocator_Fields|
+|javax.swing.text.AsyncBoxView.ChildLocator_Constructors|
+|javax.swing.text.AsyncBoxView.ChildLocator_Methods|
+
+====================================================================================================================================================================================
+
+*javax.swing.text.AsyncBoxView.ChildLocator_Fields*
+|java.awt.Rectangle_javax.swing.text.AsyncBoxView.ChildLocator.childAlloc|
+|java.awt.Rectangle_javax.swing.text.AsyncBoxView.ChildLocator.lastAlloc|
+|javax.swing.text.AsyncBoxView.ChildState_javax.swing.text.AsyncBoxView.ChildLocator.lastValidOffset|
+
+*javax.swing.text.AsyncBoxView.ChildLocator_Constructors*
+|javax.swing.text.AsyncBoxView.ChildLocator()|construct a child locator.
+
+*javax.swing.text.AsyncBoxView.ChildLocator_Methods*
+|javax.swing.text.AsyncBoxView.ChildLocator.childChanged(AsyncBoxView.ChildState)|Notification that a child changed.
+|javax.swing.text.AsyncBoxView.ChildLocator.getChildAllocation(int)|Fetch the allocation to use for a child view.
+|javax.swing.text.AsyncBoxView.ChildLocator.getChildAllocation(int,Shape)|Fetch the allocation to use for a child view.
+|javax.swing.text.AsyncBoxView.ChildLocator.getViewIndexAtPoint(float,float,Shape)|Fetches the child view index at the given point.
+|javax.swing.text.AsyncBoxView.ChildLocator.getViewIndexAtVisualOffset(float)|Locate the view responsible for an offset into the box  along the major axis.
+|javax.swing.text.AsyncBoxView.ChildLocator.paintChildren(Graphics)|Paint the children that intersect the clip area.
+|javax.swing.text.AsyncBoxView.ChildLocator.setAllocation(Shape)|Copy the currently allocated shape into the Rectangle  used to store the current allocation.
+
+*javax.swing.text.AsyncBoxView.ChildLocator_Description*
+
+A class to manage the effective position of the child views in a localized area while changes are being made around the localized area. The AsyncBoxView may be continuously 
+changing, but the visible area needs to remain fairly stable until the layout thread decides to publish an update to the parent. 
+
+
+
+*java.awt.Rectangle_javax.swing.text.AsyncBoxView.ChildLocator.childAlloc*
+
+A shape to use for the child allocation to avoid creating a lot of garbage. 
+
+
+*java.awt.Rectangle_javax.swing.text.AsyncBoxView.ChildLocator.lastAlloc*
+
+The last seen allocation (for repainting when changes are flushed upward). 
+
+
+*javax.swing.text.AsyncBoxView.ChildState_javax.swing.text.AsyncBoxView.ChildLocator.lastValidOffset*
+
+The location of the last offset calculation that is valid. 
+
+
+
+*javax.swing.text.AsyncBoxView.ChildLocator()*
+
+public AsyncBoxView.ChildLocator()
+
+construct a child locator. 
+
+
+*javax.swing.text.AsyncBoxView.ChildLocator.childChanged(AsyncBoxView.ChildState)*
+
+public synchronized void childChanged(javax.swing.text.AsyncBoxView.ChildState cs)
+
+Notification that a child changed. This can effect whether or not new offset calculations are needed. This is called by a ChildState object that has changed it's major span. This 
+can therefore be called by multiple threads. 
+
+
+
+*javax.swing.text.AsyncBoxView.ChildLocator.getChildAllocation(int)*
+
+protected |java.awt.Shape| getChildAllocation(int index)
+
+Fetch the allocation to use for a child view. This does not update the offsets in the ChildState records. 
+
+
+
+*javax.swing.text.AsyncBoxView.ChildLocator.getChildAllocation(int,Shape)*
+
+public synchronized |java.awt.Shape| getChildAllocation(
+  int index,
+  java.awt.Shape a)
+
+Fetch the allocation to use for a child view. This will update the offsets for all children not yet updated before the given index. 
+
+
+
+*javax.swing.text.AsyncBoxView.ChildLocator.getViewIndexAtPoint(float,float,Shape)*
+
+public int getViewIndexAtPoint(
+  float x,
+  float y,
+  java.awt.Shape a)
+
+Fetches the child view index at the given point. This is called by the various View methods that need to calculate which child to forward a message to. This should be called by a 
+block synchronized on this object, and would typically be followed with one or more calls to getChildAllocation that should also be in the synchronized block. 
+
+
+    x - the X coordinate >= 0 
+    y - the Y coordinate >= 0 
+    a - the allocation to the View 
+
+    Returns: the nearest child index 
+
+*javax.swing.text.AsyncBoxView.ChildLocator.getViewIndexAtVisualOffset(float)*
+
+protected int getViewIndexAtVisualOffset(float targetOffset)
+
+Locate the view responsible for an offset into the box along the major axis. Make sure that offsets are set on the ChildState objects up to the given target span past the desired 
+offset. 
+
+
+
+    Returns: index of the view representing the given visual location (targetOffset), or -1 if no view represents that location 
+
+*javax.swing.text.AsyncBoxView.ChildLocator.paintChildren(Graphics)*
+
+public synchronized void paintChildren(java.awt.Graphics g)
+
+Paint the children that intersect the clip area. 
+
+
+
+*javax.swing.text.AsyncBoxView.ChildLocator.setAllocation(Shape)*
+
+protected void setAllocation(java.awt.Shape a)
+
+Copy the currently allocated shape into the Rectangle used to store the current allocation. This would be a floating point rectangle in a Java2D-specific implmentation. 
+
+
+
+

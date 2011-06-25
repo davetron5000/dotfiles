@@ -1,0 +1,261 @@
+*javax.swing.ListSelectionModel* *ListSelectionModel* This interface represents the current state of the 
+ selection for any of the components that display a 
+ list of values with 
+
+public interface interface ListSelectionModel
+
+
+|javax.swing.ListSelectionModel_Description|
+|javax.swing.ListSelectionModel_Fields|
+|javax.swing.ListSelectionModel_Constructors|
+|javax.swing.ListSelectionModel_Methods|
+
+====================================================================================================================================================================================
+
+*javax.swing.ListSelectionModel_Fields*
+|int_javax.swing.ListSelectionModel.MULTIPLE_INTERVAL_SELECTION|
+|int_javax.swing.ListSelectionModel.SINGLE_INTERVAL_SELECTION|
+|int_javax.swing.ListSelectionModel.SINGLE_SELECTION|
+
+*javax.swing.ListSelectionModel_Methods*
+|javax.swing.ListSelectionModel.addListSelectionListener(ListSelectionListener)|Add a listener to the list that's notified each time a change  to the selection occurs.
+|javax.swing.ListSelectionModel.addSelectionInterval(int,int)|Change the selection to be the set union of the current selection  and the indices between index0 and index1 inclusiv
+|javax.swing.ListSelectionModel.clearSelection()|Change the selection to the empty set.
+|javax.swing.ListSelectionModel.getAnchorSelectionIndex()|Return the first index argument from the most recent call to   setSelectionInterval(), addSelectionInterval() or removeSe
+|javax.swing.ListSelectionModel.getLeadSelectionIndex()|Return the second index argument from the most recent call to   setSelectionInterval(), addSelectionInterval() or removeSel
+|javax.swing.ListSelectionModel.getMaxSelectionIndex()|Returns the last selected index or -1 if the selection is empty.
+|javax.swing.ListSelectionModel.getMinSelectionIndex()|Returns the first selected index or -1 if the selection is empty.
+|javax.swing.ListSelectionModel.getSelectionMode()|Returns the current selection mode.
+|javax.swing.ListSelectionModel.getValueIsAdjusting()|Returns true if the value is undergoing a series of changes.
+|javax.swing.ListSelectionModel.insertIndexInterval(int,int,boolean)|Insert length indices beginning before/after index.
+|javax.swing.ListSelectionModel.isSelectedIndex(int)|Returns true if the specified index is selected.
+|javax.swing.ListSelectionModel.isSelectionEmpty()|Returns true if no indices are selected.
+|javax.swing.ListSelectionModel.removeIndexInterval(int,int)|Remove the indices in the interval index0,index1 (inclusive) from  the selection model.
+|javax.swing.ListSelectionModel.removeListSelectionListener(ListSelectionListener)|Remove a listener from the list that's notified each time a   change to the selection occurs.
+|javax.swing.ListSelectionModel.removeSelectionInterval(int,int)|Change the selection to be the set difference of the current selection  and the indices between index0 and index1 
+|javax.swing.ListSelectionModel.setAnchorSelectionIndex(int)|Set the anchor selection index.
+|javax.swing.ListSelectionModel.setLeadSelectionIndex(int)|Set the lead selection index.
+|javax.swing.ListSelectionModel.setSelectionInterval(int,int)|Change the selection to be between index0 and index1 inclusive.
+|javax.swing.ListSelectionModel.setSelectionMode(int)|Set the selection mode.
+|javax.swing.ListSelectionModel.setValueIsAdjusting(boolean)|This property is true if upcoming changes to the value  of the model should be considered a single event.
+
+*javax.swing.ListSelectionModel_Description*
+
+This interface represents the current state of the selection for any of the components that display a list of values with stable indices. The selection is modeled as a set of 
+intervals, each interval represents a contiguous range of selected list elements. The methods for modifying the set of selected intervals all take a pair of indices, index0 and 
+index1, that represent a closed interval, i.e. the interval includes both index0 and index1. 
+
+
+
+*int_javax.swing.ListSelectionModel.MULTIPLE_INTERVAL_SELECTION*
+
+A value for the selectionMode property: select one or more contiguous ranges of indices at a time. 
+
+
+*int_javax.swing.ListSelectionModel.SINGLE_INTERVAL_SELECTION*
+
+A value for the selectionMode property: select one contiguous range of indices at a time. 
+
+
+*int_javax.swing.ListSelectionModel.SINGLE_SELECTION*
+
+A value for the selectionMode property: select one list index at a time. 
+
+
+
+*javax.swing.ListSelectionModel.addListSelectionListener(ListSelectionListener)*
+
+public void addListSelectionListener(javax.swing.event.ListSelectionListener x)
+
+Add a listener to the list that's notified each time a change to the selection occurs. 
+
+
+    x - the ListSelectionListener 
+
+*javax.swing.ListSelectionModel.addSelectionInterval(int,int)*
+
+public void addSelectionInterval(
+  int index0,
+  int index1)
+
+Change the selection to be the set union of the current selection and the indices between index0 and index1 inclusive. If this represents a change to the current selection, then 
+notify each ListSelectionListener. Note that index0 doesn't have to be less than or equal to index1. 
+
+
+    index0 - one end of the interval. 
+    index1 - other end of the interval 
+
+*javax.swing.ListSelectionModel.clearSelection()*
+
+public void clearSelection()
+
+Change the selection to the empty set. If this represents a change to the current selection then notify each ListSelectionListener. 
+
+
+
+*javax.swing.ListSelectionModel.getAnchorSelectionIndex()*
+
+public int getAnchorSelectionIndex()
+
+Return the first index argument from the most recent call to setSelectionInterval(), addSelectionInterval() or removeSelectionInterval(). The most recent index0 is considered the 
+"anchor" and the most recent index1 is considered the "lead". Some interfaces display these indices specially, e.g. Windows95 displays the lead index with a dotted yellow outline. 
+
+
+
+*javax.swing.ListSelectionModel.getLeadSelectionIndex()*
+
+public int getLeadSelectionIndex()
+
+Return the second index argument from the most recent call to setSelectionInterval(), addSelectionInterval() or removeSelectionInterval(). 
+
+
+
+*javax.swing.ListSelectionModel.getMaxSelectionIndex()*
+
+public int getMaxSelectionIndex()
+
+Returns the last selected index or -1 if the selection is empty. 
+
+
+
+*javax.swing.ListSelectionModel.getMinSelectionIndex()*
+
+public int getMinSelectionIndex()
+
+Returns the first selected index or -1 if the selection is empty. 
+
+
+
+*javax.swing.ListSelectionModel.getSelectionMode()*
+
+public int getSelectionMode()
+
+Returns the current selection mode. 
+
+
+
+    Returns: The value of the selectionMode property. 
+
+*javax.swing.ListSelectionModel.getValueIsAdjusting()*
+
+public boolean getValueIsAdjusting()
+
+Returns true if the value is undergoing a series of changes. 
+
+
+
+    Returns: true if the value is currently adjusting 
+
+*javax.swing.ListSelectionModel.insertIndexInterval(int,int,boolean)*
+
+public void insertIndexInterval(
+  int index,
+  int length,
+  boolean before)
+
+Insert length indices beginning before/after index. This is typically called to sync the selection model with a corresponding change in the data model. 
+
+
+
+*javax.swing.ListSelectionModel.isSelectedIndex(int)*
+
+public boolean isSelectedIndex(int index)
+
+Returns true if the specified index is selected. 
+
+
+
+*javax.swing.ListSelectionModel.isSelectionEmpty()*
+
+public boolean isSelectionEmpty()
+
+Returns true if no indices are selected. 
+
+
+
+*javax.swing.ListSelectionModel.removeIndexInterval(int,int)*
+
+public void removeIndexInterval(
+  int index0,
+  int index1)
+
+Remove the indices in the interval index0,index1 (inclusive) from the selection model. This is typically called to sync the selection model width a corresponding change in the 
+data model. 
+
+
+
+*javax.swing.ListSelectionModel.removeListSelectionListener(ListSelectionListener)*
+
+public void removeListSelectionListener(javax.swing.event.ListSelectionListener x)
+
+Remove a listener from the list that's notified each time a change to the selection occurs. 
+
+
+    x - the ListSelectionListener 
+
+*javax.swing.ListSelectionModel.removeSelectionInterval(int,int)*
+
+public void removeSelectionInterval(
+  int index0,
+  int index1)
+
+Change the selection to be the set difference of the current selection and the indices between index0 and index1 inclusive. If this represents a change to the current selection, 
+then notify each ListSelectionListener. Note that index0 doesn't have to be less than or equal to index1. 
+
+
+    index0 - one end of the interval. 
+    index1 - other end of the interval 
+
+*javax.swing.ListSelectionModel.setAnchorSelectionIndex(int)*
+
+public void setAnchorSelectionIndex(int index)
+
+Set the anchor selection index. 
+
+
+
+*javax.swing.ListSelectionModel.setLeadSelectionIndex(int)*
+
+public void setLeadSelectionIndex(int index)
+
+Set the lead selection index. 
+
+
+
+*javax.swing.ListSelectionModel.setSelectionInterval(int,int)*
+
+public void setSelectionInterval(
+  int index0,
+  int index1)
+
+Change the selection to be between index0 and index1 inclusive. If this represents a change to the current selection, then notify each ListSelectionListener. Note that index0 
+doesn't have to be less than or equal to index1. 
+
+
+    index0 - one end of the interval. 
+    index1 - other end of the interval 
+
+*javax.swing.ListSelectionModel.setSelectionMode(int)*
+
+public void setSelectionMode(int selectionMode)
+
+Set the selection mode. The following selectionMode values are allowed: 
+
+SINGLE_SELECTION Only one list index can be selected at a time. In this mode the setSelectionInterval and addSelectionInterval methods are equivalent, and only the second index 
+argument (the "lead index") is used. SINGLE_INTERVAL_SELECTION One contiguous index interval can be selected at a time. In this mode setSelectionInterval and addSelectionInterval 
+are equivalent. MULTIPLE_INTERVAL_SELECTION In this mode, there's no restriction on what can be selected. 
+
+
+
+*javax.swing.ListSelectionModel.setValueIsAdjusting(boolean)*
+
+public void setValueIsAdjusting(boolean valueIsAdjusting)
+
+This property is true if upcoming changes to the value of the model should be considered a single event. For example if the model is being updated in response to a user drag, the 
+value of the valueIsAdjusting property will be set to true when the drag is initiated and be set to false when the drag is finished. This property allows listeners to to update 
+only when a change has been finalized, rather than always handling all of the intermediate values. 
+
+
+    valueIsAdjusting - The new value of the property. 
+
+

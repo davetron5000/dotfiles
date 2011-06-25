@@ -1,0 +1,113 @@
+*org.w3c.dom.stylesheets.StyleSheet* *StyleSheet* The StyleSheet interface is th
+
+public interface interface StyleSheet
+
+
+|org.w3c.dom.stylesheets.StyleSheet_Description|
+|org.w3c.dom.stylesheets.StyleSheet_Fields|
+|org.w3c.dom.stylesheets.StyleSheet_Constructors|
+|org.w3c.dom.stylesheets.StyleSheet_Methods|
+
+================================================================================
+
+*org.w3c.dom.stylesheets.StyleSheet_Methods*
+|org.w3c.dom.stylesheets.StyleSheet.getDisabled()|false if the style sheet is a
+|org.w3c.dom.stylesheets.StyleSheet.getHref()|If the style sheet is a linked st
+|org.w3c.dom.stylesheets.StyleSheet.getMedia()|The intended destination media f
+|org.w3c.dom.stylesheets.StyleSheet.getOwnerNode()|The node that associates thi
+|org.w3c.dom.stylesheets.StyleSheet.getParentStyleSheet()|For style sheet langu
+|org.w3c.dom.stylesheets.StyleSheet.getTitle()|The advisory title.
+|org.w3c.dom.stylesheets.StyleSheet.getType()|This specifies the style sheet la
+|org.w3c.dom.stylesheets.StyleSheet.setDisabled(boolean)|
+
+*org.w3c.dom.stylesheets.StyleSheet_Description*
+
+The StyleSheet interface is the abstract base interface for any type of style 
+sheet. It represents a single style sheet associated with a structured 
+document. In HTML, the StyleSheet interface represents either an external style 
+sheet, included via the HTML LINK element, or an inline STYLE element. In XML, 
+this interface represents an external style sheet, included via a style sheet 
+processing instruction. See also the Document Object Model (DOM) Level 2 Style 
+Specification. 
+
+
+*org.w3c.dom.stylesheets.StyleSheet.getDisabled()*
+
+public boolean getDisabled()
+
+false if the style sheet is applied to the document. true if it is not. 
+Modifying this attribute may cause a new resolution of style for the document. 
+A stylesheet only applies if both an appropriate medium definition is present 
+and the disabled attribute is false. So, if the media doesn't apply to the 
+current user agent, the disabled attribute is ignored. 
+
+
+*org.w3c.dom.stylesheets.StyleSheet.getHref()*
+
+public |java.lang.String| getHref()
+
+If the style sheet is a linked style sheet, the value of its attribute is its 
+location. For inline style sheets, the value of this attribute is null. See the 
+href attribute definition for the LINK element in HTML 4.0, and the href 
+pseudo-attribute for the XML style sheet processing instruction. 
+
+
+*org.w3c.dom.stylesheets.StyleSheet.getMedia()*
+
+public |org.w3c.dom.stylesheets.MediaList| getMedia()
+
+The intended destination media for style information. The media is often 
+specified in the ownerNode. If no media has been specified, the MediaList will 
+be empty. See the media attribute definition for the LINK element in HTML 4.0, 
+and the media pseudo-attribute for the XML style sheet processing instruction . 
+Modifying the media list may cause a change to the attribute disabled. 
+
+
+*org.w3c.dom.stylesheets.StyleSheet.getOwnerNode()*
+
+public |org.w3c.dom.Node| getOwnerNode()
+
+The node that associates this style sheet with the document. For HTML, this may 
+be the corresponding LINK or STYLE element. For XML, it may be the linking 
+processing instruction. For style sheets that are included by other style 
+sheets, the value of this attribute is null. 
+
+
+*org.w3c.dom.stylesheets.StyleSheet.getParentStyleSheet()*
+
+public |org.w3c.dom.stylesheets.StyleSheet| getParentStyleSheet()
+
+For style sheet languages that support the concept of style sheet inclusion, 
+this attribute represents the including style sheet, if one exists. If the 
+style sheet is a top-level style sheet, or the style sheet language does not 
+support inclusion, the value of this attribute is null. 
+
+
+*org.w3c.dom.stylesheets.StyleSheet.getTitle()*
+
+public |java.lang.String| getTitle()
+
+The advisory title. The title is often specified in the ownerNode. See the 
+title attribute definition for the LINK element in HTML 4.0, and the title 
+pseudo-attribute for the XML style sheet processing instruction. 
+
+
+*org.w3c.dom.stylesheets.StyleSheet.getType()*
+
+public |java.lang.String| getType()
+
+This specifies the style sheet language for this style sheet. The style sheet 
+language is specified as a content type (e.g. "text/css"). The content type is 
+often specified in the ownerNode. Also see the type attribute definition for 
+the LINK element in HTML 4.0, and the type pseudo-attribute for the XML style 
+sheet processing instruction. 
+
+
+*org.w3c.dom.stylesheets.StyleSheet.setDisabled(boolean)*
+
+public void setDisabled(boolean disabled)
+
+
+
+
+

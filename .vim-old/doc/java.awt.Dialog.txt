@@ -1,0 +1,297 @@
+*java.awt.Dialog* *Dialog* A Dialog is a top-level window with a title and a border
+ that is typically used to take some form of input from the user.
+
+public class Dialog
+  extends    |java.awt.Window|
+
+|java.awt.Dialog_Description|
+|java.awt.Dialog_Fields|
+|java.awt.Dialog_Constructors|
+|java.awt.Dialog_Methods|
+
+====================================================================================================================================================================================
+
+*java.awt.Dialog_Constructors*
+|java.awt.Dialog(Dialog)|Constructs an initially invisible, non-modal Dialog with   an empty title and the specified owner dialog.
+|java.awt.Dialog(Dialog,String)|Constructs an initially invisible, non-modal Dialog   with the specified owner dialog and title.
+|java.awt.Dialog(Dialog,String,boolean)|Constructs an initially invisible Dialog with the  specified owner dialog, title, and modality.
+|java.awt.Dialog(Dialog,String,boolean,GraphicsConfiguration)|Constructs an initially invisible Dialog with the  specified owner dialog, title, modality, and  GraphicsConfiguratio
+|java.awt.Dialog(Frame)|Constructs an initially invisible, non-modal Dialog with   an empty title and the specified owner frame.
+|java.awt.Dialog(Frame,boolean)|Constructs an initially invisible Dialog with an empty title,  the specified owner frame and modality.
+|java.awt.Dialog(Frame,String)|Constructs an initially invisible, non-modal Dialog with   the specified owner frame and title.
+|java.awt.Dialog(Frame,String,boolean)|Constructs an initially invisible Dialog with the  specified owner frame, title, and modality.
+|java.awt.Dialog(Frame,String,boolean,GraphicsConfiguration)|Constructs an initially invisible Dialog with the  specified owner frame, title, modality, and  GraphicsConfiguration.
+
+*java.awt.Dialog_Methods*
+|java.awt.Dialog.addNotify()|Makes this Dialog displayable by connecting it to  a native screen resource.
+|java.awt.Dialog.getAccessibleContext()|Gets the AccessibleContext associated with this Dialog.
+|java.awt.Dialog.getTitle()|Gets the title of the dialog.
+|java.awt.Dialog.hide()|
+|java.awt.Dialog.isModal()|Indicates whether the dialog is modal.
+|java.awt.Dialog.isResizable()|Indicates whether this dialog is resizable by the user.
+|java.awt.Dialog.isUndecorated()|Indicates whether this dialog is undecorated.
+|java.awt.Dialog.paramString()|Returns a string representing the state of this dialog.
+|java.awt.Dialog.setModal(boolean)|Specifies whether this dialog should be modal.
+|java.awt.Dialog.setResizable(boolean)|Sets whether this dialog is resizable by the user.
+|java.awt.Dialog.setTitle(String)|Sets the title of the Dialog.
+|java.awt.Dialog.setUndecorated(boolean)|Disables or enables decorations for this dialog.
+|java.awt.Dialog.show()|
+
+*java.awt.Dialog_Description*
+
+A Dialog is a top-level window with a title and a border that is typically used to take some form of input from the user. 
+
+The size of the dialog includes any area designated for the border. The dimensions of the border area can be obtained using the getInsets method, however, since these dimensions 
+are platform-dependent, a valid insets value cannot be obtained until the dialog is made displayable by either calling pack or show. Since the border area is included in the 
+overall size of the dialog, the border effectively obscures a portion of the dialog, constraining the area available for rendering and/or displaying subcomponents to the rectangle 
+which has an upper-left corner location of (insets.left, insets.top), and has a size of width - (insets.left + insets.right) by height - (insets.top + insets.bottom). 
+
+The default layout for a dialog is BorderLayout. 
+
+A dialog may have its native decorations (i.e. Frame & Titlebar) turned off with setUndecorated. This can only be done while the dialog is not displayable(|java.awt.Component|) . 
+
+A dialog must have either a frame or another dialog defined as its owner when it's constructed. When the owner window of a visible dialog is minimized, the dialog will 
+automatically be hidden from the user. When the owner window is subsequently restored, the dialog is made visible to the user again. 
+
+In a multi-screen environment, you can create a Dialog on a different screen device than its owner. See (|java.awt.Frame|) for more information. 
+
+A dialog can be either modeless (the default) or modal. A modal dialog is one which blocks input to all other toplevel windows in the application, except for any windows created 
+with the dialog as their owner. 
+
+Dialogs are capable of generating the following WindowEvents: WindowOpened, WindowClosing, WindowClosed, WindowActivated, WindowDeactivated, WindowGainedFocus, WindowLostFocus. 
+
+
+
+*java.awt.Dialog(Dialog)*
+
+public Dialog(java.awt.Dialog owner)
+
+Constructs an initially invisible, non-modal Dialog with an empty title and the specified owner dialog. 
+
+    owner - the owner of the dialog 
+
+*java.awt.Dialog(Dialog,String)*
+
+public Dialog(
+  java.awt.Dialog owner,
+  java.lang.String title)
+
+Constructs an initially invisible, non-modal Dialog with the specified owner dialog and title. 
+
+    owner - the owner of the dialog 
+    title - the title of the dialog. A null value will be accepted without causing a NullPointerException to be thrown. 
+
+*java.awt.Dialog(Dialog,String,boolean)*
+
+public Dialog(
+  java.awt.Dialog owner,
+  java.lang.String title,
+  boolean modal)
+
+Constructs an initially invisible Dialog with the specified owner dialog, title, and modality. 
+
+    owner - the owner of the dialog 
+    title - the title of the dialog; a null value will be accepted without causing a NullPointerException to be thrown 
+    modal - if true, dialog blocks input to other app windows when shown 
+
+*java.awt.Dialog(Dialog,String,boolean,GraphicsConfiguration)*
+
+public Dialog(
+  java.awt.Dialog owner,
+  java.lang.String title,
+  boolean modal,
+  java.awt.GraphicsConfiguration gc)
+
+Constructs an initially invisible Dialog with the specified owner dialog, title, modality, and GraphicsConfiguration. 
+
+    owner - the owner of the dialog 
+    title - the title of the dialog; a null value will be accepted without causing a NullPointerException to be thrown 
+    modal - if true, dialog blocks input to other app windows when shown 
+    gc - the GraphicsConfiguration of the target screen device; if gc is null, the same GraphicsConfiguration as the owning Dialog is used 
+
+*java.awt.Dialog(Frame)*
+
+public Dialog(java.awt.Frame owner)
+
+Constructs an initially invisible, non-modal Dialog with an empty title and the specified owner frame. 
+
+    owner - the owner of the dialog 
+
+*java.awt.Dialog(Frame,boolean)*
+
+public Dialog(
+  java.awt.Frame owner,
+  boolean modal)
+
+Constructs an initially invisible Dialog with an empty title, the specified owner frame and modality. 
+
+    owner - the owner of the dialog 
+    modal - if true, dialog blocks input to other app windows when shown 
+
+*java.awt.Dialog(Frame,String)*
+
+public Dialog(
+  java.awt.Frame owner,
+  java.lang.String title)
+
+Constructs an initially invisible, non-modal Dialog with the specified owner frame and title. 
+
+    owner - the owner of the dialog 
+    title - the title of the dialog; a null value will be accepted without causing a NullPointerException to be thrown 
+
+*java.awt.Dialog(Frame,String,boolean)*
+
+public Dialog(
+  java.awt.Frame owner,
+  java.lang.String title,
+  boolean modal)
+
+Constructs an initially invisible Dialog with the specified owner frame, title, and modality. 
+
+    owner - the owner of the dialog 
+    title - the title of the dialog; a null value will be accepted without causing a NullPointerException to be thrown 
+    modal - if true, dialog blocks input to other app windows when shown 
+
+*java.awt.Dialog(Frame,String,boolean,GraphicsConfiguration)*
+
+public Dialog(
+  java.awt.Frame owner,
+  java.lang.String title,
+  boolean modal,
+  java.awt.GraphicsConfiguration gc)
+
+Constructs an initially invisible Dialog with the specified owner frame, title, modality, and GraphicsConfiguration. 
+
+    owner - the owner of the dialog 
+    title - the title of the dialog. A null value will be accepted without causing a NullPointerException to be thrown. 
+    modal - if true, dialog blocks input to other app windows when shown 
+    gc - the GraphicsConfiguration of the target screen device. If gc is null, the same GraphicsConfiguration as the owning Frame is used. 
+
+*java.awt.Dialog.addNotify()*
+
+public void addNotify()
+
+Makes this Dialog displayable by connecting it to a native screen resource. Making a dialog displayable will cause any of its children to be made displayable. This method is 
+called internally by the toolkit and should not be called directly by programs. 
+
+
+
+*java.awt.Dialog.getAccessibleContext()*
+
+public |javax.accessibility.AccessibleContext| getAccessibleContext()
+
+Gets the AccessibleContext associated with this Dialog. For dialogs, the AccessibleContext takes the form of an AccessibleAWTDialog. A new AccessibleAWTDialog instance is created 
+if necessary. 
+
+
+
+    Returns: an AccessibleAWTDialog that serves as the AccessibleContext of this Dialog 
+
+*java.awt.Dialog.getTitle()*
+
+public |java.lang.String| getTitle()
+
+Gets the title of the dialog. The title is displayed in the dialog's border. 
+
+
+
+    Returns: the title of this dialog window. The title may be null. 
+
+*java.awt.Dialog.hide()*
+
+public void hide()
+
+
+
+    Deprecated: As of JDK version 1.5, replaced by
+ {@link Component#setVisible(boolean) Component.setVisible(boolean)}.
+
+
+*java.awt.Dialog.isModal()*
+
+public boolean isModal()
+
+Indicates whether the dialog is modal. When a modal Dialog is made visible, user input will be blocked to the other windows in the application, except for any windows created with 
+this dialog as their owner. 
+
+
+
+    Returns: true if this dialog window is modal; false otherwise. 
+
+*java.awt.Dialog.isResizable()*
+
+public boolean isResizable()
+
+Indicates whether this dialog is resizable by the user. 
+
+
+
+    Returns: true if the user can resize the dialog; false otherwise. 
+
+*java.awt.Dialog.isUndecorated()*
+
+public boolean isUndecorated()
+
+Indicates whether this dialog is undecorated. By default, all dialogs are initially decorated. 
+
+
+
+    Returns: true if dialog is undecorated; false otherwise. 
+
+*java.awt.Dialog.paramString()*
+
+protected |java.lang.String| paramString()
+
+Returns a string representing the state of this dialog. This method is intended to be used only for debugging purposes, and the content and format of the returned string may vary 
+between implementations. The returned string may be empty but may not be null. 
+
+
+
+    Returns: the parameter string of this dialog window. 
+
+*java.awt.Dialog.setModal(boolean)*
+
+public void setModal(boolean b)
+
+Specifies whether this dialog should be modal. 
+
+
+
+*java.awt.Dialog.setResizable(boolean)*
+
+public void setResizable(boolean resizable)
+
+Sets whether this dialog is resizable by the user. 
+
+
+    resizable - true if the user can resize this dialog; false otherwise. 
+
+*java.awt.Dialog.setTitle(String)*
+
+public void setTitle(java.lang.String title)
+
+Sets the title of the Dialog. 
+
+
+    title - the title displayed in the dialog's border; a null value results in an empty title 
+
+*java.awt.Dialog.setUndecorated(boolean)*
+
+public void setUndecorated(boolean undecorated)
+
+Disables or enables decorations for this dialog. This method can only be called while the dialog is not displayable. 
+
+
+    undecorated - true if no dialog decorations are to be enabled; false if dialog decorations are to be enabled. 
+
+*java.awt.Dialog.show()*
+
+public void show()
+
+
+
+    Deprecated: As of JDK version 1.5, replaced by
+ {@link Component#setVisible(boolean) Component.setVisible(boolean)}.
+
+
+

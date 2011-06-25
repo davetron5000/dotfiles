@@ -1,0 +1,633 @@
+*javax.xml.datatype.DatatypeFactory* *DatatypeFactory* Factory that creates new javax.xml.datatype Objects that map XML to/from Java Objects.
+
+public abstract class DatatypeFactory
+  extends    |java.lang.Object|
+
+|javax.xml.datatype.DatatypeFactory_Description|
+|javax.xml.datatype.DatatypeFactory_Fields|
+|javax.xml.datatype.DatatypeFactory_Constructors|
+|javax.xml.datatype.DatatypeFactory_Methods|
+
+====================================================================================================================================================================================
+
+*javax.xml.datatype.DatatypeFactory_Fields*
+|java.lang.String_javax.xml.datatype.DatatypeFactory.DATATYPEFACTORY_IMPLEMENTATION_CLASS|
+|java.lang.String_javax.xml.datatype.DatatypeFactory.DATATYPEFACTORY_PROPERTY|
+
+*javax.xml.datatype.DatatypeFactory_Constructors*
+|javax.xml.datatype.DatatypeFactory()|Protected constructor to prevent instaniation outside of package.
+
+*javax.xml.datatype.DatatypeFactory_Methods*
+|javax.xml.datatype.DatatypeFactory.newDuration(boolean,BigInteger,BigInteger,BigInteger,BigInteger,BigInteger,BigDecimal)|Obtain a new instance of a Duration  specifying the Dura
+|javax.xml.datatype.DatatypeFactory.newDuration(boolean,int,int,int,int,int,int)|Obtain a new instance of a Duration  specifying the Duration as isPositive, years, months, days, h
+|javax.xml.datatype.DatatypeFactory.newDuration(long)|Obtain a new instance of a Duration  specifying the Duration as milliseconds.
+|javax.xml.datatype.DatatypeFactory.newDuration(String)|Obtain a new instance of a Duration  specifying the Duration as its string representation, "PnYnMnDTnHnMnS",  as defined in
+|javax.xml.datatype.DatatypeFactory.newDurationDayTime(boolean,BigInteger,BigInteger,BigInteger,BigInteger)|Create a Duration of type xdt:dayTimeDuration using the specified  day,
+|javax.xml.datatype.DatatypeFactory.newDurationDayTime(boolean,int,int,int,int)|Create a Duration of type xdt:dayTimeDuration using the specified  day, hour, minute and second as 
+|javax.xml.datatype.DatatypeFactory.newDurationDayTime(long)|Create a Duration of type xdt:dayTimeDuration using the specified milliseconds as defined in      XQuery 1.0 and XPath
+|javax.xml.datatype.DatatypeFactory.newDurationDayTime(String)|Create a Duration of type xdt:dayTimeDuration by parsing its String representation,  "PnDTnHnMnS",     XQuery 1.0 an
+|javax.xml.datatype.DatatypeFactory.newDurationYearMonth(boolean,BigInteger,BigInteger)|Create a Duration of type xdt:yearMonthDuration using the specified  year and month as defi
+|javax.xml.datatype.DatatypeFactory.newDurationYearMonth(boolean,int,int)|Create a Duration of type xdt:yearMonthDuration using the specified  year and month as defined in      XQ
+|javax.xml.datatype.DatatypeFactory.newDurationYearMonth(long)|Create a Duration of type xdt:yearMonthDuration using the specified milliseconds as defined in      XQuery 1.0 and X
+|javax.xml.datatype.DatatypeFactory.newDurationYearMonth(String)|Create a Duration of type xdt:yearMonthDuration by parsing its String representation,  "PnYnM",     XQuery 1.0 and
+|javax.xml.datatype.DatatypeFactory.newInstance()|Obtain a new instance of a DatatypeFactory.
+|javax.xml.datatype.DatatypeFactory.newXMLGregorianCalendar()|Create a new instance of an XMLGregorianCalendar.
+|javax.xml.datatype.DatatypeFactory.newXMLGregorianCalendar(BigInteger,int,int,int,int,int,BigDecimal,int)|Constructor allowing for complete value spaces allowed by   W3C XML Sche
+|javax.xml.datatype.DatatypeFactory.newXMLGregorianCalendar(GregorianCalendar)|Create an XMLGregorianCalendar from aGregorianCalendar.
+|javax.xml.datatype.DatatypeFactory.newXMLGregorianCalendar(int,int,int,int,int,int,int,int)|Constructor of value spaces that a  java.util.GregorianCalendar instance would need to
+|javax.xml.datatype.DatatypeFactory.newXMLGregorianCalendar(String)|Create a new XMLGregorianCalendar by parsing the String as a lexical representation.
+|javax.xml.datatype.DatatypeFactory.newXMLGregorianCalendarDate(int,int,int,int)|Create a Java representation of XML Schema builtin datatype date or g*.
+|javax.xml.datatype.DatatypeFactory.newXMLGregorianCalendarTime(int,int,int,BigDecimal,int)|Create a Java instance of XML Schema builtin datatype time.
+|javax.xml.datatype.DatatypeFactory.newXMLGregorianCalendarTime(int,int,int,int)|Create a Java instance of XML Schema builtin datatype time.
+|javax.xml.datatype.DatatypeFactory.newXMLGregorianCalendarTime(int,int,int,int,int)|Create a Java instance of XML Schema builtin datatype time.
+
+*javax.xml.datatype.DatatypeFactory_Description*
+
+Factory that creates new javax.xml.datatype Objects that map XML to/from Java Objects. 
+
+(|javax.xml.datatype.DatatypeFactory|) is used to create a new DatatypeFactory. The following implementation resolution mechanisms are used in the following order: 
+
+If the system property specified by (|javax.xml.datatype.DatatypeFactory|) , "javax.xml.datatype.DatatypeFactory", exists, a class with the name of the property's value is 
+instantiated. Any Exception thrown during the instantiation process is wrapped as a (|javax.xml.datatype.DatatypeConfigurationException|) . 
+
+If the file ${JAVA_HOME}/lib/jaxp.properties exists, it is loaded in a (|java.util.Properties|) Object. The Properties Object is then queried for the property as documented in the 
+prior step and processed as documented in the prior step. 
+
+The services resolution mechanism is used, e.g. META-INF/services/java.xml.datatype.DatatypeFactory. Any Exception thrown during the instantiation process is wrapped as a 
+(|javax.xml.datatype.DatatypeConfigurationException|) . 
+
+The final mechanism is to attempt to instantiate the Class specified by (|javax.xml.datatype.DatatypeFactory|) , "javax.xml.datatype.DatatypeFactoryImpl". Any Exception thrown 
+during the instantiation process is wrapped as a (|javax.xml.datatype.DatatypeConfigurationException|) . 
+
+
+
+
+
+*java.lang.String_javax.xml.datatype.DatatypeFactory.DATATYPEFACTORY_IMPLEMENTATION_CLASS*
+
+Default implementation class name as defined in JSR 206: Java(TM) API for XML Processing (JAXP) 1.3. 
+
+Default value is com.sun.org.apache.xerces.internal.jaxp.datatype.DatatypeFactoryImpl. 
+
+
+*java.lang.String_javax.xml.datatype.DatatypeFactory.DATATYPEFACTORY_PROPERTY*
+
+Default property name as defined in JSR 206: Java(TM) API for XML Processing (JAXP) 1.3. 
+
+Default value is javax.xml.datatype.DatatypeFactory. 
+
+
+
+*javax.xml.datatype.DatatypeFactory()*
+
+protected DatatypeFactory()
+
+Protected constructor to prevent instaniation outside of package. 
+
+Use (|javax.xml.datatype.DatatypeFactory|) to create a DatatypeFactory. 
+
+
+*javax.xml.datatype.DatatypeFactory.newDuration(boolean,BigInteger,BigInteger,BigInteger,BigInteger,BigInteger,BigDecimal)*
+
+public abstract |javax.xml.datatype.Duration| newDuration(
+  boolean isPositive,
+  java.math.BigInteger years,
+  java.math.BigInteger months,
+  java.math.BigInteger days,
+  java.math.BigInteger hours,
+  java.math.BigInteger minutes,
+  java.math.BigDecimal seconds)
+
+Obtain a new instance of a Duration specifying the Duration as isPositive, years, months, days, hours, minutes, seconds. 
+
+The XML Schema specification states that values can be of an arbitrary size. Implementations may chose not to or be incapable of supporting arbitrarily large and/or small values. 
+An (|java.lang.UnsupportedOperationException|) will be thrown with a message indicating implementation limits if implementation capacities are exceeded. 
+
+A null value indicates that field isnot set. 
+
+
+    isPositive - Set to false to create a negative duration. When the length of the duration is zero, this parameter will be ignored. 
+    years - of this Duration 
+    months - of this Duration 
+    days - of this Duration 
+    hours - of this Duration 
+    minutes - of this Duration 
+    seconds - of this Duration 
+
+    Returns: New Duration created from the specified values. 
+
+*javax.xml.datatype.DatatypeFactory.newDuration(boolean,int,int,int,int,int,int)*
+
+public |javax.xml.datatype.Duration| newDuration(
+  boolean isPositive,
+  int years,
+  int months,
+  int days,
+  int hours,
+  int minutes,
+  int seconds)
+
+Obtain a new instance of a Duration specifying the Duration as isPositive, years, months, days, hours, minutes, seconds. 
+
+A (|javax.xml.datatype.DatatypeConstants|) value indicates that field isnot set. 
+
+
+    isPositive - Set to false to create a negative duration. When the length of the duration is zero, this parameter will be ignored. 
+    years - of this Duration 
+    months - of this Duration 
+    days - of this Duration 
+    hours - of this Duration 
+    minutes - of this Duration 
+    seconds - of this Duration 
+
+    Returns: New Duration created from the specified values. 
+
+*javax.xml.datatype.DatatypeFactory.newDuration(long)*
+
+public abstract |javax.xml.datatype.Duration| newDuration(long durationInMilliSeconds)
+
+Obtain a new instance of a Duration specifying the Duration as milliseconds. 
+
+XML Schema Part 2: Datatypes, 3.2.6 duration, defines duration as: 
+
+duration represents a duration of time. The value space of duration is a six-dimensional space where the coordinates designate the Gregorian year, month, day, hour, minute, and 
+second components defined in Section 5.5.3.2 of [ISO 8601], respectively. These components are ordered in their significance by their order of appearance i.e. as year, month, day, 
+hour, minute, and second. 
+
+All six values are set by computing their values from the specified milliseconds and are availabe using the get methods of the created (|javax.xml.datatype.Duration|) . The values 
+conform to and are defined by: 
+
+ISO 8601:2000(E) Section 5.5.3.2 Alternative format 
+
+W3C XML Schema 1.0 Part 2, Appendix D, ISO 8601 Date and Time Formats 
+
+(|javax.xml.datatype.XMLGregorianCalendar|) Date/Time Datatype Field Mapping Between XML Schema 1.0 and Java Representation 
+
+The default start instance is defined by (|java.util.GregorianCalendar|) 's use of the start of the epoch: i.e., (|java.util.Calendar|) = 1970, (|java.util.Calendar|) = 
+(|java.util.Calendar|) , (|java.util.Calendar|) = 1, etc. This is important as there are variations in the Gregorian Calendar, e.g. leap years have different days in the month = 
+(|java.util.Calendar|) so the result of (|javax.xml.datatype.Duration|) and (|javax.xml.datatype.Duration|) can be influenced. 
+
+
+    durationInMilliSeconds - Duration in milliseconds to create. 
+
+    Returns: New Duration representing durationInMilliSeconds. 
+
+*javax.xml.datatype.DatatypeFactory.newDuration(String)*
+
+public abstract |javax.xml.datatype.Duration| newDuration(java.lang.String lexicalRepresentation)
+
+Obtain a new instance of a Duration specifying the Duration as its string representation, "PnYnMnDTnHnMnS", as defined in XML Schema 1.0 section 3.2.6.1. 
+
+XML Schema Part 2: Datatypes, 3.2.6 duration, defines duration as: 
+
+duration represents a duration of time. The value space of duration is a six-dimensional space where the coordinates designate the Gregorian year, month, day, hour, minute, and 
+second components defined in Section 5.5.3.2 of [ISO 8601], respectively. These components are ordered in their significance by their order of appearance i.e. as year, month, day, 
+hour, minute, and second. 
+
+All six values are set and availabe from the created (|javax.xml.datatype.Duration|) 
+
+The XML Schema specification states that values can be of an arbitrary size. Implementations may chose not to or be incapable of supporting arbitrarily large and/or small values. 
+An (|java.lang.UnsupportedOperationException|) will be thrown with a message indicating implementation limits if implementation capacities are exceeded. 
+
+
+    lexicalRepresentation - String representation of a Duration. 
+
+    Returns: New Duration created from parsing the lexicalRepresentation. 
+
+*javax.xml.datatype.DatatypeFactory.newDurationDayTime(boolean,BigInteger,BigInteger,BigInteger,BigInteger)*
+
+public |javax.xml.datatype.Duration| newDurationDayTime(
+  boolean isPositive,
+  java.math.BigInteger day,
+  java.math.BigInteger hour,
+  java.math.BigInteger minute,
+  java.math.BigInteger second)
+
+Create a Duration of type xdt:dayTimeDuration using the specified day, hour, minute and second as defined in 
+
+XQuery 1.0 and XPath 2.0 Data Model, xdt:dayTimeDuration. 
+
+The datatype xdt:dayTimeDuration is a subtype of xs:duration whose lexical representation contains only day, hour, minute, and second components. This datatype resides in the 
+namespace http://www.w3.org/2003/11/xpath-datatypes. 
+
+The XML Schema specification states that values can be of an arbitrary size. Implementations may chose not to or be incapable of supporting arbitrarily large and/or small values. 
+An (|java.lang.UnsupportedOperationException|) will be thrown with a message indicating implementation limits if implementation capacities are exceeded. 
+
+A null value indicates that field isnot set. 
+
+
+    isPositive - Set to false to create a negative duration. When the length of the duration is zero, this parameter will be ignored. 
+    day - Day of Duration. 
+    hour - Hour of Duration. 
+    minute - Minute of Duration. 
+    second - Second of Duration. 
+
+    Returns: New Duration created with the specified day, hour, minute and second. 
+
+*javax.xml.datatype.DatatypeFactory.newDurationDayTime(boolean,int,int,int,int)*
+
+public |javax.xml.datatype.Duration| newDurationDayTime(
+  boolean isPositive,
+  int day,
+  int hour,
+  int minute,
+  int second)
+
+Create a Duration of type xdt:dayTimeDuration using the specified day, hour, minute and second as defined in 
+
+XQuery 1.0 and XPath 2.0 Data Model, xdt:dayTimeDuration. 
+
+The datatype xdt:dayTimeDuration is a subtype of xs:duration whose lexical representation contains only day, hour, minute, and second components. This datatype resides in the 
+namespace http://www.w3.org/2003/11/xpath-datatypes. 
+
+A (|javax.xml.datatype.DatatypeConstants|) value indicates that field isnot set. 
+
+
+    isPositive - Set to false to create a negative duration. When the length of the duration is zero, this parameter will be ignored. 
+    day - Day of Duration. 
+    hour - Hour of Duration. 
+    minute - Minute of Duration. 
+    second - Second of Duration. 
+
+    Returns: New Duration created with the specified day, hour, minute and second. 
+
+*javax.xml.datatype.DatatypeFactory.newDurationDayTime(long)*
+
+public |javax.xml.datatype.Duration| newDurationDayTime(long durationInMilliseconds)
+
+Create a Duration of type xdt:dayTimeDuration using the specified milliseconds as defined in 
+
+XQuery 1.0 and XPath 2.0 Data Model, xdt:dayTimeDuration. 
+
+The datatype xdt:dayTimeDuration is a subtype of xs:duration whose lexical representation contains only day, hour, minute, and second components. This datatype resides in the 
+namespace http://www.w3.org/2003/11/xpath-datatypes. 
+
+All four values are set by computing their values from the specified milliseconds and are availabe using the get methods of the created (|javax.xml.datatype.Duration|) . The 
+values conform to and are defined by: 
+
+ISO 8601:2000(E) Section 5.5.3.2 Alternative format 
+
+W3C XML Schema 1.0 Part 2, Appendix D, ISO 8601 Date and Time Formats 
+
+(|javax.xml.datatype.XMLGregorianCalendar|) Date/Time Datatype Field Mapping Between XML Schema 1.0 and Java Representation 
+
+The default start instance is defined by (|java.util.GregorianCalendar|) 's use of the start of the epoch: i.e., (|java.util.Calendar|) = 1970, (|java.util.Calendar|) = 
+(|java.util.Calendar|) , (|java.util.Calendar|) = 1, etc. This is important as there are variations in the Gregorian Calendar, e.g. leap years have different days in the month = 
+(|java.util.Calendar|) so the result of (|javax.xml.datatype.Duration|) can be influenced. 
+
+Any remaining milliseconds after determining the day, hour, minute and second are discarded. 
+
+
+    durationInMilliseconds - Milliseconds of Duration to create. 
+
+    Returns: New Duration created with the specified durationInMilliseconds. 
+
+*javax.xml.datatype.DatatypeFactory.newDurationDayTime(String)*
+
+public |javax.xml.datatype.Duration| newDurationDayTime(java.lang.String lexicalRepresentation)
+
+Create a Duration of type xdt:dayTimeDuration by parsing its String representation, "PnDTnHnMnS", XQuery 1.0 and XPath 2.0 Data Model, xdt:dayTimeDuration. 
+
+The datatype xdt:dayTimeDuration is a subtype of xs:duration whose lexical representation contains only day, hour, minute, and second components. This datatype resides in the 
+namespace http://www.w3.org/2003/11/xpath-datatypes. 
+
+All four values are set and availabe from the created (|javax.xml.datatype.Duration|) 
+
+The XML Schema specification states that values can be of an arbitrary size. Implementations may chose not to or be incapable of supporting arbitrarily large and/or small values. 
+An (|java.lang.UnsupportedOperationException|) will be thrown with a message indicating implementation limits if implementation capacities are exceeded. 
+
+
+    lexicalRepresentation - Lexical representation of a duration. 
+
+    Returns: New Duration created using the specified lexicalRepresentation. 
+
+*javax.xml.datatype.DatatypeFactory.newDurationYearMonth(boolean,BigInteger,BigInteger)*
+
+public |javax.xml.datatype.Duration| newDurationYearMonth(
+  boolean isPositive,
+  java.math.BigInteger year,
+  java.math.BigInteger month)
+
+Create a Duration of type xdt:yearMonthDuration using the specified year and month as defined in 
+
+XQuery 1.0 and XPath 2.0 Data Model, xdt:yearMonthDuration. 
+
+The XML Schema specification states that values can be of an arbitrary size. Implementations may chose not to or be incapable of supporting arbitrarily large and/or small values. 
+An (|java.lang.UnsupportedOperationException|) will be thrown with a message indicating implementation limits if implementation capacities are exceeded. 
+
+A null value indicates that field isnot set. 
+
+
+    isPositive - Set to false to create a negative duration. When the length of the duration is zero, this parameter will be ignored. 
+    year - Year of Duration. 
+    month - Month of Duration. 
+
+    Returns: New Duration created using the specified year and month. 
+
+*javax.xml.datatype.DatatypeFactory.newDurationYearMonth(boolean,int,int)*
+
+public |javax.xml.datatype.Duration| newDurationYearMonth(
+  boolean isPositive,
+  int year,
+  int month)
+
+Create a Duration of type xdt:yearMonthDuration using the specified year and month as defined in 
+
+XQuery 1.0 and XPath 2.0 Data Model, xdt:yearMonthDuration. 
+
+A (|javax.xml.datatype.DatatypeConstants|) value indicates that field isnot set. 
+
+
+    isPositive - Set to false to create a negative duration. When the length of the duration is zero, this parameter will be ignored. 
+    year - Year of Duration. 
+    month - Month of Duration. 
+
+    Returns: New Duration created using the specified year and month. 
+
+*javax.xml.datatype.DatatypeFactory.newDurationYearMonth(long)*
+
+public |javax.xml.datatype.Duration| newDurationYearMonth(long durationInMilliseconds)
+
+Create a Duration of type xdt:yearMonthDuration using the specified milliseconds as defined in 
+
+XQuery 1.0 and XPath 2.0 Data Model, xdt:yearMonthDuration. 
+
+The datatype xdt:yearMonthDuration is a subtype of xs:duration whose lexical representation contains only year and month components. This datatype resides in the namespace 
+(|javax.xml.XMLConstants|) . 
+
+Both values are set by computing their values from the specified milliseconds and are availabe using the get methods of the created (|javax.xml.datatype.Duration|) . The values 
+conform to and are defined by: 
+
+ISO 8601:2000(E) Section 5.5.3.2 Alternative format 
+
+W3C XML Schema 1.0 Part 2, Appendix D, ISO 8601 Date and Time Formats 
+
+(|javax.xml.datatype.XMLGregorianCalendar|) Date/Time Datatype Field Mapping Between XML Schema 1.0 and Java Representation 
+
+The default start instance is defined by (|java.util.GregorianCalendar|) 's use of the start of the epoch: i.e., (|java.util.Calendar|) = 1970, (|java.util.Calendar|) = 
+(|java.util.Calendar|) , (|java.util.Calendar|) = 1, etc. This is important as there are variations in the Gregorian Calendar, e.g. leap years have different days in the month = 
+(|java.util.Calendar|) so the result of (|javax.xml.datatype.Duration|) can be influenced. 
+
+Any remaining milliseconds after determining the year and month are discarded. 
+
+
+    durationInMilliseconds - Milliseconds of Duration to create. 
+
+    Returns: New Duration created using the specified durationInMilliseconds. 
+
+*javax.xml.datatype.DatatypeFactory.newDurationYearMonth(String)*
+
+public |javax.xml.datatype.Duration| newDurationYearMonth(java.lang.String lexicalRepresentation)
+
+Create a Duration of type xdt:yearMonthDuration by parsing its String representation, "PnYnM", XQuery 1.0 and XPath 2.0 Data Model, xdt:yearMonthDuration. 
+
+The datatype xdt:yearMonthDuration is a subtype of xs:duration whose lexical representation contains only year and month components. This datatype resides in the namespace 
+(|javax.xml.XMLConstants|) . 
+
+Both values are set and availabe from the created (|javax.xml.datatype.Duration|) 
+
+The XML Schema specification states that values can be of an arbitrary size. Implementations may chose not to or be incapable of supporting arbitrarily large and/or small values. 
+An (|java.lang.UnsupportedOperationException|) will be thrown with a message indicating implementation limits if implementation capacities are exceeded. 
+
+
+    lexicalRepresentation - Lexical representation of a duration. 
+
+    Returns: New Duration created using the specified lexicalRepresentation. 
+
+*javax.xml.datatype.DatatypeFactory.newInstance()*
+
+public static |javax.xml.datatype.DatatypeFactory| newInstance()
+  throws |javax.xml.datatype.DatatypeConfigurationException|
+         
+Obtain a new instance of a DatatypeFactory. 
+
+The implementation resolution mechanisms are defined in this Class's documentation. 
+
+
+
+    Returns: New instance of a DocumentBuilderFactory 
+
+*javax.xml.datatype.DatatypeFactory.newXMLGregorianCalendar()*
+
+public abstract |javax.xml.datatype.XMLGregorianCalendar| newXMLGregorianCalendar()
+
+Create a new instance of an XMLGregorianCalendar. 
+
+All date/time datatype fields set to (|javax.xml.datatype.DatatypeConstants|) or null. 
+
+
+
+    Returns: New XMLGregorianCalendar with all date/time datatype fields set to {@link DatatypeConstants#FIELD_UNDEFINED} or null. 
+
+*javax.xml.datatype.DatatypeFactory.newXMLGregorianCalendar(BigInteger,int,int,int,int,int,BigDecimal,int)*
+
+public abstract |javax.xml.datatype.XMLGregorianCalendar| newXMLGregorianCalendar(
+  java.math.BigInteger year,
+  int month,
+  int day,
+  int hour,
+  int minute,
+  int second,
+  java.math.BigDecimal fractionalSecond,
+  int timezone)
+
+Constructor allowing for complete value spaces allowed by W3C XML Schema 1.0 recommendation for xsd:dateTime and related builtin datatypes. Note that year parameter supports 
+arbitrarily large numbers and fractionalSecond has infinite precision. 
+
+A null value indicates that field isnot set. 
+
+
+    year - of XMLGregorianCalendar to be created. 
+    month - of XMLGregorianCalendar to be created. 
+    day - of XMLGregorianCalendar to be created. 
+    hour - of XMLGregorianCalendar to be created. 
+    minute - of XMLGregorianCalendar to be created. 
+    second - of XMLGregorianCalendar to be created. 
+    fractionalSecond - of XMLGregorianCalendar to be created. 
+    timezone - of XMLGregorianCalendar to be created. 
+
+    Returns: XMLGregorianCalendar created from specified values. 
+
+*javax.xml.datatype.DatatypeFactory.newXMLGregorianCalendar(GregorianCalendar)*
+
+public abstract |javax.xml.datatype.XMLGregorianCalendar| newXMLGregorianCalendar(java.util.GregorianCalendar cal)
+
+Create an XMLGregorianCalendar from a (|java.util.GregorianCalendar|) . 
+
+
+
+
+
+Field by Field Conversion from (|java.util.GregorianCalendar|) to an (|javax.xml.datatype.XMLGregorianCalendar|) 
+
+java.util.GregorianCalendar field javax.xml.datatype.XMLGregorianCalendar field 
+
+
+
+ERA == GregorianCalendar.BC ? -YEAR : YEAR (|javax.xml.datatype.XMLGregorianCalendar|) 
+
+MONTH + 1 (|javax.xml.datatype.XMLGregorianCalendar|) 
+
+DAY_OF_MONTH (|javax.xml.datatype.XMLGregorianCalendar|) 
+
+HOUR_OF_DAY, MINUTE, SECOND, MILLISECOND (|javax.xml.datatype.XMLGregorianCalendar|) 
+
+
+
+(ZONE_OFFSET + DST_OFFSET) / (60*1000) (in minutes) 
+
+(|javax.xml.datatype.XMLGregorianCalendar|) * 
+
+
+
+*conversion loss of information. It is not possible to represent a java.util.GregorianCalendar daylight savings timezone id in the XML Schema 1.0 date/time datatype 
+representation. 
+
+To compute the return value's TimeZone field, 
+
+when this.getTimezone() != FIELD_UNDEFINED, create a java.util.TimeZone with a custom timezone id using the this.getTimezone(). else use the GregorianCalendar default timezone 
+value for the host is defined as specified by java.util.TimeZone.getDefault(). 
+
+
+    cal - java.util.GregorianCalendar used to create XMLGregorianCalendar 
+
+    Returns: XMLGregorianCalendar created from java.util.GregorianCalendar 
+
+*javax.xml.datatype.DatatypeFactory.newXMLGregorianCalendar(int,int,int,int,int,int,int,int)*
+
+public |javax.xml.datatype.XMLGregorianCalendar| newXMLGregorianCalendar(
+  int year,
+  int month,
+  int day,
+  int hour,
+  int minute,
+  int second,
+  int millisecond,
+  int timezone)
+
+Constructor of value spaces that a java.util.GregorianCalendar instance would need to convert to an XMLGregorianCalendar instance. 
+
+XMLGregorianCalendar eon and fractionalSecond are set to null 
+
+A (|javax.xml.datatype.DatatypeConstants|) value indicates that field isnot set. 
+
+
+    year - of XMLGregorianCalendar to be created. 
+    month - of XMLGregorianCalendar to be created. 
+    day - of XMLGregorianCalendar to be created. 
+    hour - of XMLGregorianCalendar to be created. 
+    minute - of XMLGregorianCalendar to be created. 
+    second - of XMLGregorianCalendar to be created. 
+    millisecond - of XMLGregorianCalendar to be created. 
+    timezone - of XMLGregorianCalendar to be created. 
+
+    Returns: XMLGregorianCalendar created from specified values. 
+
+*javax.xml.datatype.DatatypeFactory.newXMLGregorianCalendar(String)*
+
+public abstract |javax.xml.datatype.XMLGregorianCalendar| newXMLGregorianCalendar(java.lang.String lexicalRepresentation)
+
+Create a new XMLGregorianCalendar by parsing the String as a lexical representation. 
+
+Parsing the lexical string representation is defined in XML Schema 1.0 Part 2, Section 3.2.[7-14].1, Lexical Representation. 
+
+The string representation may not have any leading and trailing whitespaces. 
+
+The parsing is done field by field so that the following holds for any lexically correct String x: 
+
+newXMLGregorianCalendar(x).toXMLFormat().equals(x) 
+
+Except for the noted lexical/canonical representation mismatches listed in XML Schema 1.0 errata, Section 3.2.7.2. 
+
+
+    lexicalRepresentation - Lexical representation of one the eight XML Schema date/time datatypes. 
+
+    Returns: XMLGregorianCalendar created from the lexicalRepresentation. 
+
+*javax.xml.datatype.DatatypeFactory.newXMLGregorianCalendarDate(int,int,int,int)*
+
+public |javax.xml.datatype.XMLGregorianCalendar| newXMLGregorianCalendarDate(
+  int year,
+  int month,
+  int day,
+  int timezone)
+
+Create a Java representation of XML Schema builtin datatype date or g*. 
+
+For example, an instance of gYear can be created invoking this factory with month and day parameters set to (|javax.xml.datatype.DatatypeConstants|) . 
+
+A (|javax.xml.datatype.DatatypeConstants|) value indicates that field isnot set. 
+
+
+    year - of XMLGregorianCalendar to be created. 
+    month - of XMLGregorianCalendar to be created. 
+    day - of XMLGregorianCalendar to be created. 
+    timezone - offset in minutes. {@link DatatypeConstants#FIELD_UNDEFINED} indicates optional field is not set. 
+
+    Returns: XMLGregorianCalendar created from parameter values. 
+
+*javax.xml.datatype.DatatypeFactory.newXMLGregorianCalendarTime(int,int,int,BigDecimal,int)*
+
+public |javax.xml.datatype.XMLGregorianCalendar| newXMLGregorianCalendarTime(
+  int hours,
+  int minutes,
+  int seconds,
+  java.math.BigDecimal fractionalSecond,
+  int timezone)
+
+Create a Java instance of XML Schema builtin datatype time. 
+
+A null value indicates that field isnot set. A (|javax.xml.datatype.DatatypeConstants|) value indicates that field isnot set. 
+
+
+    hours - number of hours 
+    minutes - number of minutes 
+    seconds - number of seconds 
+    fractionalSecond - value of null indicates that this optional field is not set. 
+    timezone - offset in minutes. {@link DatatypeConstants#FIELD_UNDEFINED} indicates optional field is not set. 
+
+    Returns: XMLGregorianCalendar created from parameter values. 
+
+*javax.xml.datatype.DatatypeFactory.newXMLGregorianCalendarTime(int,int,int,int)*
+
+public |javax.xml.datatype.XMLGregorianCalendar| newXMLGregorianCalendarTime(
+  int hours,
+  int minutes,
+  int seconds,
+  int timezone)
+
+Create a Java instance of XML Schema builtin datatype time. 
+
+A (|javax.xml.datatype.DatatypeConstants|) value indicates that field isnot set. 
+
+
+    hours - number of hours 
+    minutes - number of minutes 
+    seconds - number of seconds 
+    timezone - offset in minutes. {@link DatatypeConstants#FIELD_UNDEFINED} indicates optional field is not set. 
+
+    Returns: XMLGregorianCalendar created from parameter values. 
+
+*javax.xml.datatype.DatatypeFactory.newXMLGregorianCalendarTime(int,int,int,int,int)*
+
+public |javax.xml.datatype.XMLGregorianCalendar| newXMLGregorianCalendarTime(
+  int hours,
+  int minutes,
+  int seconds,
+  int milliseconds,
+  int timezone)
+
+Create a Java instance of XML Schema builtin datatype time. 
+
+A (|javax.xml.datatype.DatatypeConstants|) value indicates that field isnot set. 
+
+
+    hours - number of hours 
+    minutes - number of minutes 
+    seconds - number of seconds 
+    milliseconds - number of milliseconds 
+    timezone - offset in minutes. {@link DatatypeConstants#FIELD_UNDEFINED} indicates optional field is not set. 
+
+    Returns: XMLGregorianCalendar created from parameter values. 
+
+

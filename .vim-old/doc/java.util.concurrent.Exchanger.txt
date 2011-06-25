@@ -1,0 +1,104 @@
+*java.util.concurrent.Exchanger* *Exchanger* A synchronization point at which two threads can exchange objects.
+
+public class Exchanger<V>
+  extends    |java.lang.Object|
+
+|java.util.concurrent.Exchanger_Description|
+|java.util.concurrent.Exchanger_Fields|
+|java.util.concurrent.Exchanger_Constructors|
+|java.util.concurrent.Exchanger_Methods|
+
+====================================================================================================================================================================================
+
+*java.util.concurrent.Exchanger_Constructors*
+|java.util.concurrent.Exchanger()|Create a new Exchanger.
+
+*java.util.concurrent.Exchanger_Methods*
+|java.util.concurrent.Exchanger.exchange(V)|Waits for another thread to arrive at this exchange point (unless  it isThread#interrupt interrupted),  and then transfers the given ob
+|java.util.concurrent.Exchanger.exchange(V,long,TimeUnit)|Waits for another thread to arrive at this exchange point (unless  it isThread#interrupt interrupted, or the specified wa
+
+*java.util.concurrent.Exchanger_Description*
+
+A synchronization point at which two threads can exchange objects. Each thread presents some object on entry to the exchange(|java.util.concurrent.Exchanger|) method, and receives 
+the object presented by the other thread on return. 
+
+Sample Usage: Here are the highlights of a class that uses an Exchanger to swap buffers between threads so that the thread filling the buffer gets a freshly emptied one when it 
+needs it, handing off the filled one to the thread emptying the buffer. 
+
+class FillAndEmpty { Exchanger<DataBuffer> exchanger = new Exchanger(); DataBuffer initialEmptyBuffer = ... a made-up type DataBuffer initialFullBuffer = ... 
+
+class FillingLoop implements Runnable { public void run() { DataBuffer currentBuffer = initialEmptyBuffer; try { while (currentBuffer != null) { addToBuffer(currentBuffer); if 
+(currentBuffer.full()) currentBuffer = exchanger.exchange(currentBuffer); } } catch (InterruptedException ex) { ... handle ... } } } 
+
+class EmptyingLoop implements Runnable { public void run() { DataBuffer currentBuffer = initialFullBuffer; try { while (currentBuffer != null) { takeFromBuffer(currentBuffer); if 
+(currentBuffer.empty()) currentBuffer = exchanger.exchange(currentBuffer); } } catch (InterruptedException ex) { ... handle ...} } } 
+
+void start() { new Thread(new FillingLoop()).start(); new Thread(new EmptyingLoop()).start(); } } 
+
+
+
+*java.util.concurrent.Exchanger()*
+
+public Exchanger()
+
+Create a new Exchanger. 
+
+
+*java.util.concurrent.Exchanger.exchange(V)*
+
+public |V| exchange(V x)
+  throws |java.lang.InterruptedException|
+         
+Waits for another thread to arrive at this exchange point (unless it is interrupted(|java.lang.Thread|) ), and then transfers the given object to it, receiving its object in 
+return. If another thread is already waiting at the exchange point then it is resumed for thread scheduling purposes and receives the object passed in by the current thread. The 
+current thread returns immediately, receiving the object passed to the exchange by that other thread. If no other thread is already waiting at the exchange then the current thread 
+is disabled for thread scheduling purposes and lies dormant until one of two things happens: 
+
+Some other thread enters the exchange; or Some other thread interrupts(|java.lang.Thread|) the current thread. 
+
+If the current thread: 
+
+has its interrupted status set on entry to this method; or is interrupted(|java.lang.Thread|) while waiting for the exchange, 
+
+then (|java.lang.InterruptedException|) is thrown and the current thread's interrupted status is cleared. 
+
+
+    x - the object to exchange 
+
+    Returns: the object provided by the other thread. 
+
+*java.util.concurrent.Exchanger.exchange(V,long,TimeUnit)*
+
+public |V| exchange(
+  V x,
+  long timeout,
+  java.util.concurrent.TimeUnit unit)
+  throws |java.lang.InterruptedException|
+         |java.util.concurrent.TimeoutException|
+         
+Waits for another thread to arrive at this exchange point (unless it is interrupted(|java.lang.Thread|) , or the specified waiting time elapses), and then transfers the given 
+object to it, receiving its object in return. 
+
+If another thread is already waiting at the exchange point then it is resumed for thread scheduling purposes and receives the object passed in by the current thread. The current 
+thread returns immediately, receiving the object passed to the exchange by that other thread. 
+
+If no other thread is already waiting at the exchange then the current thread is disabled for thread scheduling purposes and lies dormant until one of three things happens: 
+
+Some other thread enters the exchange; or Some other thread interrupts(|java.lang.Thread|) the current thread; or The specified waiting time elapses. 
+
+If the current thread: 
+
+has its interrupted status set on entry to this method; or is interrupted(|java.lang.Thread|) while waiting for the exchange, 
+
+then (|java.lang.InterruptedException|) is thrown and the current thread's interrupted status is cleared. 
+
+If the specified waiting time elapses then (|java.util.concurrent.TimeoutException|) is thrown. If the time is less than or equal to zero, the method will not wait at all. 
+
+
+    x - the object to exchange 
+    timeout - the maximum time to wait 
+    unit - the time unit of the timeout argument. 
+
+    Returns: the object provided by the other thread. 
+
+

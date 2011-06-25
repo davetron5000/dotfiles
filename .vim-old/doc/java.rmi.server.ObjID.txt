@@ -1,0 +1,146 @@
+*java.rmi.server.ObjID* *ObjID* An ObjID is used to identify a remote object exported
+ to an RMI runtime.
+
+public final class ObjID
+  extends    |java.lang.Object|
+  implements |java.io.Serializable|
+
+|java.rmi.server.ObjID_Description|
+|java.rmi.server.ObjID_Fields|
+|java.rmi.server.ObjID_Constructors|
+|java.rmi.server.ObjID_Methods|
+
+====================================================================================================================================================================================
+
+*java.rmi.server.ObjID_Fields*
+|int_java.rmi.server.ObjID.ACTIVATOR_ID|
+|int_java.rmi.server.ObjID.DGC_ID|
+|int_java.rmi.server.ObjID.REGISTRY_ID|
+
+*java.rmi.server.ObjID_Constructors*
+|java.rmi.server.ObjID()|Generates a unique object identifier.
+|java.rmi.server.ObjID(int)|Creates a "well-known" object identifier.
+
+*java.rmi.server.ObjID_Methods*
+|java.rmi.server.ObjID.equals(Object)|Compares the specified object with this ObjID for  equality.
+|java.rmi.server.ObjID.hashCode()|Returns the hash code value for this object identifier, the  object number.
+|java.rmi.server.ObjID.read(ObjectInput)|Constructs and returns a new ObjID instance by  unmarshalling a binary representation from an  ObjectInput instance.
+|java.rmi.server.ObjID.toString()|Returns a string representation of this object identifier.
+|java.rmi.server.ObjID.write(ObjectOutput)|Marshals a binary representation of this ObjID to  an ObjectOutput instance.
+
+*java.rmi.server.ObjID_Description*
+
+An ObjID is used to identify a remote object exported to an RMI runtime. When a remote object is exported, it is assigned an object identifier either implicitly or explicitly, 
+depending on the API used to export. 
+
+The (|java.rmi.server.ObjID|) constructor can be used to generate a unique object identifier. Such an ObjID is unique over time with respect to the host it is generated on. 
+
+The (|java.rmi.server.ObjID|) constructor can be used to create a "well-known" object identifier. The scope of a well-known ObjID depends on the RMI runtime it is exported to. 
+
+An ObjID instance contains an object number (of type long) and an address space identifier (of type (|java.rmi.server.UID|) ). In a unique ObjID, the address space identifier is 
+unique with respect to a given host over time. In a well-known ObjID, the address space identifier is equivalent to one returned by invoking the (|java.rmi.server.UID|) 
+constructor with the value zero. 
+
+If the system property java.rmi.server.randomIDs is defined to equal the string "true" (case insensitive), then the (|java.rmi.server.ObjID|) constructor will use a 
+cryptographically strong random number generator to choose the object number of the returned ObjID. 
+
+
+
+*int_java.rmi.server.ObjID.ACTIVATOR_ID*
+
+Object number for well-known ObjID of the activator. 
+
+
+*int_java.rmi.server.ObjID.DGC_ID*
+
+Object number for well-known ObjID of the distributed garbage collector. 
+
+
+*int_java.rmi.server.ObjID.REGISTRY_ID*
+
+Object number for well-known ObjID of the registry. 
+
+
+
+*java.rmi.server.ObjID()*
+
+public ObjID()
+
+Generates a unique object identifier. 
+
+If the system property java.rmi.server.randomIDs is defined to equal the string "true" (case insensitive), then this constructor will use a cryptographically strong random number 
+generator to choose the object number of the returned ObjID. 
+
+
+*java.rmi.server.ObjID(int)*
+
+public ObjID(int objNum)
+
+Creates a "well-known" object identifier. 
+
+An ObjID created via this constructor will not clash with any ObjIDs generated via the no-arg constructor. 
+
+    objNum - object number for well-known object identifier 
+
+*java.rmi.server.ObjID.equals(Object)*
+
+public boolean equals(java.lang.Object obj)
+
+Compares the specified object with this ObjID for equality. 
+
+This method returns true if and only if the specified object is an ObjID instance with the same object number and address space identifier as this one. 
+
+
+    obj - the object to compare this ObjID to 
+
+    Returns: true if the given object is equivalent to this one, and false otherwise 
+
+*java.rmi.server.ObjID.hashCode()*
+
+public int hashCode()
+
+Returns the hash code value for this object identifier, the object number. 
+
+
+
+    Returns: the hash code value for this object identifier 
+
+*java.rmi.server.ObjID.read(ObjectInput)*
+
+public static |java.rmi.server.ObjID| read(java.io.ObjectInput in)
+  throws |java.io.IOException|
+         
+Constructs and returns a new ObjID instance by unmarshalling a binary representation from an ObjectInput instance. 
+
+Specifically, this method first invokes the given stream's (|java.io.ObjectInput|) method to read an object number, then it invokes (|java.rmi.server.UID|) with the stream to read 
+an address space identifier, and then it creates and returns a new ObjID instance that contains the object number and address space identifier that were read from the stream. 
+
+
+    in - the ObjectInput instance to read ObjID from 
+
+    Returns: unmarshalled ObjID instance 
+
+*java.rmi.server.ObjID.toString()*
+
+public |java.lang.String| toString()
+
+Returns a string representation of this object identifier. 
+
+
+
+    Returns: a string representation of this object identifier 
+
+*java.rmi.server.ObjID.write(ObjectOutput)*
+
+public void write(java.io.ObjectOutput out)
+  throws |java.io.IOException|
+         
+Marshals a binary representation of this ObjID to an ObjectOutput instance. 
+
+Specifically, this method first invokes the given stream's (|java.io.ObjectOutput|) method with this object identifier's object number, and then it writes its address space 
+identifier by invoking its (|java.rmi.server.UID|) method with the stream. 
+
+
+    out - the ObjectOutput instance to write this ObjID to 
+
+

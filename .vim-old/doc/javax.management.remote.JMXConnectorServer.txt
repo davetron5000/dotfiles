@@ -1,0 +1,275 @@
+*javax.management.remote.JMXConnectorServer* *JMXConnectorServer* Superclass of 
+
+public abstract class JMXConnectorServer
+  extends    |javax.management.NotificationBroadcasterSupport|
+  implements |javax.management.remote.JMXConnectorServerMBean|
+             |javax.management.MBeanRegistration|
+
+|javax.management.remote.JMXConnectorServer_Description|
+|javax.management.remote.JMXConnectorServer_Fields|
+|javax.management.remote.JMXConnectorServer_Constructors|
+|javax.management.remote.JMXConnectorServer_Methods|
+
+================================================================================
+
+*javax.management.remote.JMXConnectorServer_Fields*
+|java.lang.String_javax.management.remote.JMXConnectorServer.AUTHENTICATOR|
+
+*javax.management.remote.JMXConnectorServer_Constructors*
+|javax.management.remote.JMXConnectorServer()|Constructs a connector server tha
+|javax.management.remote.JMXConnectorServer(MBeanServer)|Constructs a connector
+
+*javax.management.remote.JMXConnectorServer_Methods*
+|javax.management.remote.JMXConnectorServer.connectionClosed(String,String,Object)|
+|javax.management.remote.JMXConnectorServer.connectionFailed(String,String,Object)|
+|javax.management.remote.JMXConnectorServer.connectionOpened(String,String,Object)|
+|javax.management.remote.JMXConnectorServer.getConnectionIds()|
+|javax.management.remote.JMXConnectorServer.getMBeanServer()|Returns the MBean 
+|javax.management.remote.JMXConnectorServer.getNotificationInfo()|Returns an ar
+|javax.management.remote.JMXConnectorServer.postDeregister()|
+|javax.management.remote.JMXConnectorServer.postRegister(Boolean)|
+|javax.management.remote.JMXConnectorServer.preDeregister()|Called by an MBean 
+|javax.management.remote.JMXConnectorServer.preRegister(MBeanServer,ObjectName)|
+|javax.management.remote.JMXConnectorServer.setMBeanServerForwarder(MBeanServerForwarder)|
+|javax.management.remote.JMXConnectorServer.toJMXConnector(Map)|Returns a clien
+
+*javax.management.remote.JMXConnectorServer_Description*
+
+Superclass of every connector server. A connector server is attached to an 
+MBean server. It listens for client connection requests and creates a 
+connection for each one. 
+
+A connector server is associated with an MBean server either by registering it 
+in that MBean server, or by passing the MBean server to its constructor. 
+
+A connector server is inactive when created. It only starts listening for 
+client connections when the start(|javax.management.remote.JMXConnectorServer|) 
+method is called. A connector server stops listening for client connections 
+when the stop(|javax.management.remote.JMXConnectorServer|) method is called or 
+when the connector server is unregistered from its MBean server. 
+
+Stopping a connector server does not unregister it from its MBean server. A 
+connector server once stopped cannot be restarted. 
+
+Each time a client connection is made or broken, a notification of class 
+(|javax.management.remote.JMXConnectionNotification|) is emitted. 
+
+
+*java.lang.String_javax.management.remote.JMXConnectorServer.AUTHENTICATOR*
+
+Superclass of every connector server. A connector server is attached to an 
+MBean server. It listens for client connection requests and creates a 
+connection for each one. 
+
+A connector server is associated with an MBean server either by registering it 
+in that MBean server, or by passing the MBean server to its constructor. 
+
+A connector server is inactive when created. It only starts listening for 
+client connections when the start(|javax.management.remote.JMXConnectorServer|) 
+method is called. A connector server stops listening for client connections 
+when the stop(|javax.management.remote.JMXConnectorServer|) method is called or 
+when the connector server is unregistered from its MBean server. 
+
+Stopping a connector server does not unregister it from its MBean server. A 
+connector server once stopped cannot be restarted. 
+
+Each time a client connection is made or broken, a notification of class 
+(|javax.management.remote.JMXConnectionNotification|) is emitted. 
+
+
+
+*javax.management.remote.JMXConnectorServer()*
+
+public JMXConnectorServer()
+
+Constructs a connector server that will be registered as an MBean in the MBean 
+server it is attached to. This constructor is typically called by one of the 
+createMBean methods when creating, within an MBean server, a connector server 
+that makes it available remotely. 
+
+
+*javax.management.remote.JMXConnectorServer(MBeanServer)*
+
+public JMXConnectorServer(javax.management.MBeanServer mbeanServer)
+
+Constructs a connector server that is attached to the given MBean server. A 
+connector server that is created in this way can be registered in a different 
+MBean server. 
+
+    mbeanServer - the MBean server that this connector server is attached to. Null if this 
+       connector server will be attached to an MBean server by being registered 
+       in it. 
+
+*javax.management.remote.JMXConnectorServer.connectionClosed(String,String,Object)*
+
+protected void connectionClosed(
+  java.lang.String connectionId,
+  java.lang.String message,
+  java.lang.Object userData)
+
+Called by a subclass when a client connection is closed normally. Removes 
+connectionId from the list returned by 
+(|javax.management.remote.JMXConnectorServer|) , then emits a 
+(|javax.management.remote.JMXConnectionNotification|) with type 
+(|javax.management.remote.JMXConnectionNotification|) . 
+
+    connectionId - the ID of the closed connection. 
+    message - the message for the emitted {@link JMXConnectionNotification}. Can be null. See 
+       {@link Notification#getMessage()}. 
+    userData - the userData for the emitted {@link JMXConnectionNotification}. Can be null. 
+       See {@link Notification#getUserData()}. 
+
+*javax.management.remote.JMXConnectorServer.connectionFailed(String,String,Object)*
+
+protected void connectionFailed(
+  java.lang.String connectionId,
+  java.lang.String message,
+  java.lang.Object userData)
+
+Called by a subclass when a client connection fails. Removes connectionId from 
+the list returned by (|javax.management.remote.JMXConnectorServer|) , then 
+emits a (|javax.management.remote.JMXConnectionNotification|) with type 
+(|javax.management.remote.JMXConnectionNotification|) . 
+
+    connectionId - the ID of the failed connection. 
+    message - the message for the emitted {@link JMXConnectionNotification}. Can be null. See 
+       {@link Notification#getMessage()}. 
+    userData - the userData for the emitted {@link JMXConnectionNotification}. Can be null. 
+       See {@link Notification#getUserData()}. 
+
+*javax.management.remote.JMXConnectorServer.connectionOpened(String,String,Object)*
+
+protected void connectionOpened(
+  java.lang.String connectionId,
+  java.lang.String message,
+  java.lang.Object userData)
+
+Called by a subclass when a new client connection is opened. Adds connectionId 
+to the list returned by (|javax.management.remote.JMXConnectorServer|) , then 
+emits a (|javax.management.remote.JMXConnectionNotification|) with type 
+(|javax.management.remote.JMXConnectionNotification|) . 
+
+    connectionId - the ID of the new connection. This must be different from the ID of any 
+       connection previously opened by this connector server. 
+    message - the message for the emitted {@link JMXConnectionNotification}. Can be null. See 
+       {@link Notification#getMessage()}. 
+    userData - the userData for the emitted {@link JMXConnectionNotification}. Can be null. 
+       See {@link Notification#getUserData()}. 
+
+*javax.management.remote.JMXConnectorServer.getConnectionIds()*
+
+public |java.lang.String| getConnectionIds()
+
+
+
+
+*javax.management.remote.JMXConnectorServer.getMBeanServer()*
+
+public synchronized |javax.management.MBeanServer| getMBeanServer()
+
+Returns the MBean server that this connector server is attached to. 
+
+
+    Returns: the MBean server that this connector server is attached to, or null if it is 
+             not yet attached to an MBean server. 
+*javax.management.remote.JMXConnectorServer.getNotificationInfo()*
+
+public |javax.management.MBeanNotificationInfo| getNotificationInfo()
+
+Returns an array indicating the notifications that this MBean sends. The 
+implementation in JMXConnectorServer returns an array with one element, 
+indicating that it can emit notifications of class 
+(|javax.management.remote.JMXConnectionNotification|) with the types defined in 
+that class. A subclass that can emit other notifications should return an array 
+that contains this element plus descriptions of the other notifications. 
+
+
+    Returns: the array of possible notifications. 
+*javax.management.remote.JMXConnectorServer.postDeregister()*
+
+public void postDeregister()
+
+
+
+
+*javax.management.remote.JMXConnectorServer.postRegister(Boolean)*
+
+public void postRegister(java.lang.Boolean registrationDone)
+
+
+
+
+*javax.management.remote.JMXConnectorServer.preDeregister()*
+
+public synchronized void preDeregister()
+  throws |java.lang.Exception|
+         
+Called by an MBean server when this connector server is unregistered from that 
+MBean server. If this connector server was attached to that MBean server by 
+being registered in it, and if the connector server is still active, then 
+unregistering it will call the 
+stop(|javax.management.remote.JMXConnectorServer|) method. If the stop method 
+throws an exception, the unregistration attempt will fail. It is recommended to 
+call the stop method explicitly before unregistering the MBean. 
+
+
+*javax.management.remote.JMXConnectorServer.preRegister(MBeanServer,ObjectName)*
+
+public synchronized |javax.management.ObjectName| preRegister(
+  javax.management.MBeanServer mbs,
+  javax.management.ObjectName name)
+
+Called by an MBean server when this connector server is registered in that 
+MBean server. This connector server becomes attached to the MBean server and 
+its (|javax.management.remote.JMXConnectorServer|) method will return mbs. 
+
+If this connector server is already attached to an MBean server, this method 
+has no effect. The MBean server it is attached to is not necessarily the one it 
+is being registered in. 
+
+    mbs - the MBean server in which this connection server is being registered. 
+    name - The object name of the MBean. 
+
+    Returns: The name under which the MBean is to be registered. 
+*javax.management.remote.JMXConnectorServer.setMBeanServerForwarder(MBeanServerForwarder)*
+
+public synchronized void setMBeanServerForwarder(javax.management.remote.MBeanServerForwarder mbsf)
+
+
+
+
+*javax.management.remote.JMXConnectorServer.toJMXConnector(Map)*
+
+public |javax.management.remote.JMXConnector| toJMXConnector(java.util.Map env)
+  throws |java.io.IOException|
+         
+Returns a client stub for this connector server. A client stub is a 
+serializable object whose connect(|javax.management.remote.JMXConnector|) 
+method can be used to make one new connection to this connector server. 
+
+A given connector need not support the generation of client stubs. However, the 
+connectors specified by the JMX Remote API do (JMXMP Connector and RMI 
+Connector). 
+
+The default implementation of this method uses 
+(|javax.management.remote.JMXConnectorServer|) and 
+(|javax.management.remote.JMXConnectorFactory|) to generate the stub, with code 
+equivalent to the following: 
+
+
+
+JMXServiceURL addr = getAddress()(|javax.management.remote.JMXConnectorServer|) 
+; return JMXConnectorFactory.newJMXConnector(addr, 
+env)(|javax.management.remote.JMXConnectorFactory|) ; 
+
+A connector server for which this is inappropriate must override this method so 
+that it either implements the appropriate logic or throws 
+(|java.lang.UnsupportedOperationException|) . 
+
+    env - client connection parameters of the same sort that could be provided to {@link 
+       JMXConnector#connect(Map) JMXConnector.connect(Map)}. Can be null, which 
+       is equivalent to an empty map. 
+
+    Returns: a client stub that can be used to make a new connection to this connector 
+             server. 
+

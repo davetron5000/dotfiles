@@ -1,0 +1,500 @@
+*java.util.Locale* *Locale* A Locale object represents a specific geographical, political,
+ or cultural region.
+
+public final class Locale
+  extends    |java.lang.Object|
+  implements |java.lang.Cloneable|
+             |java.io.Serializable|
+
+|java.util.Locale_Description|
+|java.util.Locale_Fields|
+|java.util.Locale_Constructors|
+|java.util.Locale_Methods|
+
+====================================================================================================================================================================================
+
+*java.util.Locale_Fields*
+|java.util.Locale_java.util.Locale.CANADA|
+|java.util.Locale_java.util.Locale.CANADA_FRENCH|
+|java.util.Locale_java.util.Locale.CHINA|
+|java.util.Locale_java.util.Locale.CHINESE|
+|java.util.Locale_java.util.Locale.ENGLISH|
+|java.util.Locale_java.util.Locale.FRANCE|
+|java.util.Locale_java.util.Locale.FRENCH|
+|java.util.Locale_java.util.Locale.GERMAN|
+|java.util.Locale_java.util.Locale.GERMANY|
+|java.util.Locale_java.util.Locale.ITALIAN|
+|java.util.Locale_java.util.Locale.ITALY|
+|java.util.Locale_java.util.Locale.JAPAN|
+|java.util.Locale_java.util.Locale.JAPANESE|
+|java.util.Locale_java.util.Locale.KOREA|
+|java.util.Locale_java.util.Locale.KOREAN|
+|java.util.Locale_java.util.Locale.PRC|
+|java.util.Locale_java.util.Locale.SIMPLIFIED_CHINESE|
+|java.util.Locale_java.util.Locale.TAIWAN|
+|java.util.Locale_java.util.Locale.TRADITIONAL_CHINESE|
+|java.util.Locale_java.util.Locale.UK|
+|java.util.Locale_java.util.Locale.US|
+
+*java.util.Locale_Constructors*
+|java.util.Locale(String)|Construct a locale from a language code.
+|java.util.Locale(String,String)|Construct a locale from language, country.
+|java.util.Locale(String,String,String)|Construct a locale from language, country, variant.
+
+*java.util.Locale_Methods*
+|java.util.Locale.clone()|Overrides Cloneable
+|java.util.Locale.equals(Object)|Returns true if this Locale is equal to another object.
+|java.util.Locale.getAvailableLocales()|Returns an array of all installed locales.
+|java.util.Locale.getCountry()|Returns the country/region code for this locale, which will  either be the empty string or an uppercase ISO 3166 2-letter code.
+|java.util.Locale.getDefault()|Gets the current value of the default locale for this instance  of the Java Virtual Machine.
+|java.util.Locale.getDisplayCountry()|Returns a name for the locale's country that is appropriate for display to the  user.
+|java.util.Locale.getDisplayCountry(Locale)|Returns a name for the locale's country that is appropriate for display to the  user.
+|java.util.Locale.getDisplayLanguage()|Returns a name for the locale's language that is appropriate for display to the  user.
+|java.util.Locale.getDisplayLanguage(Locale)|Returns a name for the locale's language that is appropriate for display to the  user.
+|java.util.Locale.getDisplayName()|Returns a name for the locale that is appropriate for display to the  user.
+|java.util.Locale.getDisplayName(Locale)|Returns a name for the locale that is appropriate for display to the  user.
+|java.util.Locale.getDisplayVariant()|Returns a name for the locale's variant code that is appropriate for display to the  user.
+|java.util.Locale.getDisplayVariant(Locale)|Returns a name for the locale's variant code that is appropriate for display to the  user.
+|java.util.Locale.getISO3Country()|Returns a three-letter abbreviation for this locale's country.
+|java.util.Locale.getISO3Language()|Returns a three-letter abbreviation for this locale's language.
+|java.util.Locale.getISOCountries()|Returns a list of all 2-letter country codes defined in ISO 3166.
+|java.util.Locale.getISOLanguages()|Returns a list of all 2-letter language codes defined in ISO 639.
+|java.util.Locale.getLanguage()|Returns the language code for this locale, which will either be the empty string  or a lowercase ISO 639 code.
+|java.util.Locale.getVariant()|Returns the variant code for this locale.
+|java.util.Locale.hashCode()|Override hashCode.
+|java.util.Locale.setDefault(Locale)|Sets the default locale for this instance of the Java Virtual Machine.
+|java.util.Locale.toString()|Getter for the programmatic name of the entire locale,  with the language, country and variant separated by underbars.
+
+*java.util.Locale_Description*
+
+A Locale object represents a specific geographical, political, or cultural region. An operation that requires a Locale to perform its task is called locale-sensitive and uses the 
+Locale to tailor information for the user. For example, displaying a number is a locale-sensitive operation--the number should be formatted according to the customs/conventions of 
+the user's native country, region, or culture. 
+
+Create a Locale object using the constructors in this class: 
+
+
+
+Locale(String language) Locale(String language, String country) Locale(String language, String country, String variant) 
+
+The language argument is a valid ISO Language Code. These codes are the lower-case, two-letter codes as defined by ISO-639. You can find a full list of these codes at a number of 
+sites, such as: 
+
+http://www.loc.gov/standards/iso639-2/englangn.html 
+
+The country argument is a valid ISO Country Code. These codes are the upper-case, two-letter codes as defined by ISO-3166. You can find a full list of these codes at a number of 
+sites, such as: 
+
+http://www.iso.ch/iso/en/prods-services/iso3166ma/02iso-3166-code-lists/list-en1.html 
+
+The variant argument is a vendor or browser-specific code. For example, use WIN for Windows, MAC for Macintosh, and POSIX for POSIX. Where there are two variants, separate them 
+with an underscore, and put the most important one first. For example, a Traditional Spanish collation might construct a locale with parameters for language, country and variant 
+as: "es", "ES", "Traditional_WIN". 
+
+Because a Locale object is just an identifier for a region, no validity check is performed when you construct a Locale. If you want to see whether particular resources are 
+available for the Locale you construct, you must query those resources. For example, ask the NumberFormat for the locales it supports using its getAvailableLocales method. Note: 
+When you ask for a resource for a particular locale, you get back the best available match, not necessarily precisely what you asked for. For more information, look at 
+(|java.util.ResourceBundle|) . 
+
+The Locale class provides a number of convenient constants that you can use to create Locale objects for commonly used locales. For example, the following creates a Locale object 
+for the United States: 
+
+
+
+Locale.US 
+
+
+
+Once you've created a Locale you can query it for information about itself. Use getCountry to get the ISO Country Code and getLanguage to get the ISO Language Code. You can use 
+getDisplayCountry to get the name of the country suitable for displaying to the user. Similarly, you can use getDisplayLanguage to get the name of the language suitable for 
+displaying to the user. Interestingly, the getDisplayXXX methods are themselves locale-sensitive and have two versions: one that uses the default locale and one that uses the 
+locale specified as an argument. 
+
+The Java 2 platform provides a number of classes that perform locale-sensitive operations. For example, the NumberFormat class formats numbers, currency, or percentages in a 
+locale-sensitive manner. Classes such as NumberFormat have a number of convenience methods for creating a default object of that type. For example, the NumberFormat class provides 
+these three convenience methods for creating a default NumberFormat object: 
+
+
+
+NumberFormat.getInstance() NumberFormat.getCurrencyInstance() NumberFormat.getPercentInstance() 
+
+These methods have two variants; one with an explicit locale and one without; the latter using the default locale. 
+
+
+
+NumberFormat.getInstance(myLocale) NumberFormat.getCurrencyInstance(myLocale) NumberFormat.getPercentInstance(myLocale) 
+
+A Locale is the mechanism for identifying the kind of object (NumberFormat) that you would like to get. The locale is just a mechanism for identifying objects, not a container for 
+the objects themselves. 
+
+
+
+*java.util.Locale_java.util.Locale.CANADA*
+
+Useful constant for country. 
+
+
+*java.util.Locale_java.util.Locale.CANADA_FRENCH*
+
+Useful constant for country. 
+
+
+*java.util.Locale_java.util.Locale.CHINA*
+
+Useful constant for country. 
+
+
+*java.util.Locale_java.util.Locale.CHINESE*
+
+Useful constant for language. 
+
+
+*java.util.Locale_java.util.Locale.ENGLISH*
+
+Useful constant for language. 
+
+
+*java.util.Locale_java.util.Locale.FRANCE*
+
+Useful constant for country. 
+
+
+*java.util.Locale_java.util.Locale.FRENCH*
+
+Useful constant for language. 
+
+
+*java.util.Locale_java.util.Locale.GERMAN*
+
+Useful constant for language. 
+
+
+*java.util.Locale_java.util.Locale.GERMANY*
+
+Useful constant for country. 
+
+
+*java.util.Locale_java.util.Locale.ITALIAN*
+
+Useful constant for language. 
+
+
+*java.util.Locale_java.util.Locale.ITALY*
+
+Useful constant for country. 
+
+
+*java.util.Locale_java.util.Locale.JAPAN*
+
+Useful constant for country. 
+
+
+*java.util.Locale_java.util.Locale.JAPANESE*
+
+Useful constant for language. 
+
+
+*java.util.Locale_java.util.Locale.KOREA*
+
+Useful constant for country. 
+
+
+*java.util.Locale_java.util.Locale.KOREAN*
+
+Useful constant for language. 
+
+
+*java.util.Locale_java.util.Locale.PRC*
+
+Useful constant for country. 
+
+
+*java.util.Locale_java.util.Locale.SIMPLIFIED_CHINESE*
+
+Useful constant for language. 
+
+
+*java.util.Locale_java.util.Locale.TAIWAN*
+
+Useful constant for country. 
+
+
+*java.util.Locale_java.util.Locale.TRADITIONAL_CHINESE*
+
+Useful constant for language. 
+
+
+*java.util.Locale_java.util.Locale.UK*
+
+Useful constant for country. 
+
+
+*java.util.Locale_java.util.Locale.US*
+
+Useful constant for country. 
+
+
+
+*java.util.Locale(String)*
+
+public Locale(java.lang.String language)
+
+Construct a locale from a language code. NOTE: ISO 639 is not a stable standard; some of the language codes it defines (specifically iw, ji, and in) have changed. This constructor 
+accepts both the old codes (iw, ji, and in) and the new codes (he, yi, and id), but all other API on Locale will return only the OLD codes. 
+
+    language - lowercase two-letter ISO-639 code. 
+
+*java.util.Locale(String,String)*
+
+public Locale(
+  java.lang.String language,
+  java.lang.String country)
+
+Construct a locale from language, country. NOTE: ISO 639 is not a stable standard; some of the language codes it defines (specifically iw, ji, and in) have changed. This 
+constructor accepts both the old codes (iw, ji, and in) and the new codes (he, yi, and id), but all other API on Locale will return only the OLD codes. 
+
+    language - lowercase two-letter ISO-639 code. 
+    country - uppercase two-letter ISO-3166 code. 
+
+*java.util.Locale(String,String,String)*
+
+public Locale(
+  java.lang.String language,
+  java.lang.String country,
+  java.lang.String variant)
+
+Construct a locale from language, country, variant. NOTE: ISO 639 is not a stable standard; some of the language codes it defines (specifically iw, ji, and in) have changed. This 
+constructor accepts both the old codes (iw, ji, and in) and the new codes (he, yi, and id), but all other API on Locale will return only the OLD codes. 
+
+    language - lowercase two-letter ISO-639 code. 
+    country - uppercase two-letter ISO-3166 code. 
+    variant - vendor and browser specific code. See class description. 
+
+*java.util.Locale.clone()*
+
+public |java.lang.Object| clone()
+
+Overrides Cloneable 
+
+
+
+*java.util.Locale.equals(Object)*
+
+public boolean equals(java.lang.Object obj)
+
+Returns true if this Locale is equal to another object. A Locale is deemed equal to another Locale with identical language, country, and variant, and unequal to all other objects. 
+
+
+
+    Returns: true if this Locale is equal to the specified object. 
+
+*java.util.Locale.getAvailableLocales()*
+
+public static |java.util.Locale|[] getAvailableLocales()
+
+Returns an array of all installed locales. The array returned must contain at least a Locale instance equal to Locale.US(|java.util.Locale|) . 
+
+
+
+    Returns: An array of installed locales. 
+
+*java.util.Locale.getCountry()*
+
+public |java.lang.String| getCountry()
+
+Returns the country/region code for this locale, which will either be the empty string or an uppercase ISO 3166 2-letter code. 
+
+
+
+*java.util.Locale.getDefault()*
+
+public static |java.util.Locale| getDefault()
+
+Gets the current value of the default locale for this instance of the Java Virtual Machine. 
+
+The Java Virtual Machine sets the default locale during startup based on the host environment. It is used by many locale-sensitive methods if no locale is explicitly specified. It 
+can be changed using the setDefault(|java.util.Locale|) method. 
+
+
+
+    Returns: the default locale for this instance of the Java Virtual Machine 
+
+*java.util.Locale.getDisplayCountry()*
+
+public final |java.lang.String| getDisplayCountry()
+
+Returns a name for the locale's country that is appropriate for display to the user. If possible, the name returned will be localized for the default locale. For example, if the 
+locale is fr_FR and the default locale is en_US, getDisplayCountry() will return "France"; if the locale is en_US and the default locale is fr_FR, getDisplayLanguage() will return 
+"Etats-Unis". If the name returned cannot be localized for the default locale, (say, we don't have a Japanese name for Croatia), this function falls back on the English name, and 
+uses the ISO code as a last-resort value. If the locale doesn't specify a country, this function returns the empty string. 
+
+
+
+*java.util.Locale.getDisplayCountry(Locale)*
+
+public |java.lang.String| getDisplayCountry(java.util.Locale inLocale)
+
+Returns a name for the locale's country that is appropriate for display to the user. If possible, the name returned will be localized according to inLocale. For example, if the 
+locale is fr_FR and inLocale is en_US, getDisplayCountry() will return "France"; if the locale is en_US and inLocale is fr_FR, getDisplayLanguage() will return "Etats-Unis". If 
+the name returned cannot be localized according to inLocale. (say, we don't have a Japanese name for Croatia), this function falls back on the default locale, on the English name, 
+and finally on the ISO code as a last-resort value. If the locale doesn't specify a country, this function returns the empty string. 
+
+
+
+*java.util.Locale.getDisplayLanguage()*
+
+public final |java.lang.String| getDisplayLanguage()
+
+Returns a name for the locale's language that is appropriate for display to the user. If possible, the name returned will be localized for the default locale. For example, if the 
+locale is fr_FR and the default locale is en_US, getDisplayLanguage() will return "French"; if the locale is en_US and the default locale is fr_FR, getDisplayLanguage() will 
+return "anglais". If the name returned cannot be localized for the default locale, (say, we don't have a Japanese name for Croatian), this function falls back on the English name, 
+and uses the ISO code as a last-resort value. If the locale doesn't specify a language, this function returns the empty string. 
+
+
+
+*java.util.Locale.getDisplayLanguage(Locale)*
+
+public |java.lang.String| getDisplayLanguage(java.util.Locale inLocale)
+
+Returns a name for the locale's language that is appropriate for display to the user. If possible, the name returned will be localized according to inLocale. For example, if the 
+locale is fr_FR and inLocale is en_US, getDisplayLanguage() will return "French"; if the locale is en_US and inLocale is fr_FR, getDisplayLanguage() will return "anglais". If the 
+name returned cannot be localized according to inLocale, (say, we don't have a Japanese name for Croatian), this function falls back on the default locale, on the English name, 
+and finally on the ISO code as a last-resort value. If the locale doesn't specify a language, this function returns the empty string. 
+
+
+
+*java.util.Locale.getDisplayName()*
+
+public final |java.lang.String| getDisplayName()
+
+Returns a name for the locale that is appropriate for display to the user. This will be the values returned by getDisplayLanguage(), getDisplayCountry(), and getDisplayVariant() 
+assembled into a single string. The display name will have one of the following forms: language (country, variant) language (country) language (variant) country (variant) language 
+country variant depending on which fields are specified in the locale. If the language, country, and variant fields are all empty, this function returns the empty string. 
+
+
+
+*java.util.Locale.getDisplayName(Locale)*
+
+public |java.lang.String| getDisplayName(java.util.Locale inLocale)
+
+Returns a name for the locale that is appropriate for display to the user. This will be the values returned by getDisplayLanguage(), getDisplayCountry(), and getDisplayVariant() 
+assembled into a single string. The display name will have one of the following forms: language (country, variant) language (country) language (variant) country (variant) language 
+country variant depending on which fields are specified in the locale. If the language, country, and variant fields are all empty, this function returns the empty string. 
+
+
+
+*java.util.Locale.getDisplayVariant()*
+
+public final |java.lang.String| getDisplayVariant()
+
+Returns a name for the locale's variant code that is appropriate for display to the user. If possible, the name will be localized for the default locale. If the locale doesn't 
+specify a variant code, this function returns the empty string. 
+
+
+
+*java.util.Locale.getDisplayVariant(Locale)*
+
+public |java.lang.String| getDisplayVariant(java.util.Locale inLocale)
+
+Returns a name for the locale's variant code that is appropriate for display to the user. If possible, the name will be localized for inLocale. If the locale doesn't specify a 
+variant code, this function returns the empty string. 
+
+
+
+*java.util.Locale.getISO3Country()*
+
+public |java.lang.String| getISO3Country()
+  throws |java.util.MissingResourceException|
+         
+Returns a three-letter abbreviation for this locale's country. If the locale doesn't specify a country, this will be the empty string. Otherwise, this will be an uppercase ISO 
+3166 3-letter country code. The ISO 3166-2 country codes can be found on-line at http://www.davros.org/misc/iso3166.txt 
+
+
+
+*java.util.Locale.getISO3Language()*
+
+public |java.lang.String| getISO3Language()
+  throws |java.util.MissingResourceException|
+         
+Returns a three-letter abbreviation for this locale's language. If the locale doesn't specify a language, this will be the empty string. Otherwise, this will be a lowercase ISO 
+639-2/T language code. The ISO 639-2 language codes can be found on-line at http://www.loc.gov/standards/iso639-2/englangn.html 
+
+
+
+*java.util.Locale.getISOCountries()*
+
+public static |java.lang.String|[] getISOCountries()
+
+Returns a list of all 2-letter country codes defined in ISO 3166. Can be used to create Locales. 
+
+
+
+*java.util.Locale.getISOLanguages()*
+
+public static |java.lang.String|[] getISOLanguages()
+
+Returns a list of all 2-letter language codes defined in ISO 639. Can be used to create Locales. [NOTE: ISO 639 is not a stable standard-- some languages' codes have changed. The 
+list this function returns includes both the new and the old codes for the languages whose codes have changed.] 
+
+
+
+*java.util.Locale.getLanguage()*
+
+public |java.lang.String| getLanguage()
+
+Returns the language code for this locale, which will either be the empty string or a lowercase ISO 639 code. NOTE: ISO 639 is not a stable standard-- some languages' codes have 
+changed. Locale's constructor recognizes both the new and the old codes for the languages whose codes have changed, but this function always returns the old code. If you want to 
+check for a specific language whose code has changed, don't do 
+
+if (locale.getLanguage().equals("he") ... 
+
+Instead, do 
+
+if (locale.getLanguage().equals(new Locale("he", "", "").getLanguage()) ... 
+
+
+
+*java.util.Locale.getVariant()*
+
+public |java.lang.String| getVariant()
+
+Returns the variant code for this locale. 
+
+
+
+*java.util.Locale.hashCode()*
+
+public int hashCode()
+
+Override hashCode. Since Locales are often used in hashtables, caches the value for speed. 
+
+
+
+*java.util.Locale.setDefault(Locale)*
+
+public static synchronized void setDefault(java.util.Locale newLocale)
+
+Sets the default locale for this instance of the Java Virtual Machine. This does not affect the host locale. 
+
+If there is a security manager, its checkPermission method is called with a PropertyPermission("user.language", "write") permission before the default locale is changed. 
+
+The Java Virtual Machine sets the default locale during startup based on the host environment. It is used by many locale-sensitive methods if no locale is explicitly specified. 
+
+Since changing the default locale may affect many different areas of functionality, this method should only be used if the caller is prepared to reinitialize locale-sensitive code 
+running within the same Java Virtual Machine, such as the user interface. 
+
+
+    newLocale - the new default locale 
+
+*java.util.Locale.toString()*
+
+public final |java.lang.String| toString()
+
+Getter for the programmatic name of the entire locale, with the language, country and variant separated by underbars. Language is always lower case, and country is always upper 
+case. If the language is missing, the string will begin with an underbar. If both the language and country fields are missing, this function will return the empty string, even if 
+the variant field is filled in (you can't have a locale with just a variant-- the variant must accompany a valid language or country code). Examples: "en", "de_DE", "_GB", 
+"en_US_WIN", "de__POSIX", "fr__MAC" 
+
+
+
+

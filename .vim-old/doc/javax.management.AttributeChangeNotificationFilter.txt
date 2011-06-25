@@ -1,0 +1,93 @@
+*javax.management.AttributeChangeNotificationFilter* *AttributeChangeNotificationFilter* 
+
+public class AttributeChangeNotificationFilter
+  extends    |java.lang.Object|
+  implements |javax.management.NotificationFilter|
+             |java.io.Serializable|
+
+|javax.management.AttributeChangeNotificationFilter_Description|
+|javax.management.AttributeChangeNotificationFilter_Fields|
+|javax.management.AttributeChangeNotificationFilter_Constructors|
+|javax.management.AttributeChangeNotificationFilter_Methods|
+
+================================================================================
+
+*javax.management.AttributeChangeNotificationFilter_Constructors*
+|javax.management.AttributeChangeNotificationFilter()|
+
+*javax.management.AttributeChangeNotificationFilter_Methods*
+|javax.management.AttributeChangeNotificationFilter.disableAllAttributes()|Disa
+|javax.management.AttributeChangeNotificationFilter.disableAttribute(String)|Di
+|javax.management.AttributeChangeNotificationFilter.enableAttribute(String)|Ena
+|javax.management.AttributeChangeNotificationFilter.getEnabledAttributes()|Gets
+|javax.management.AttributeChangeNotificationFilter.isNotificationEnabled(Notification)|
+
+*javax.management.AttributeChangeNotificationFilter_Description*
+
+This class implements of the 
+NotificationFilter(|javax.management.NotificationFilter|) interface for the 
+attribute change notification(|javax.management.AttributeChangeNotification|) . 
+The filtering is performed on the name of the observed attribute. 
+
+It manages a list of enabled attribute names. A method allows users to 
+enable/disable as many attribute names as required. 
+
+
+*javax.management.AttributeChangeNotificationFilter()*
+
+public AttributeChangeNotificationFilter()
+
+
+
+
+*javax.management.AttributeChangeNotificationFilter.disableAllAttributes()*
+
+public synchronized void disableAllAttributes()
+
+Disables all the attribute names. 
+
+
+*javax.management.AttributeChangeNotificationFilter.disableAttribute(String)*
+
+public synchronized void disableAttribute(java.lang.String name)
+
+Disables all the attribute change notifications the attribute name of which 
+equals the specified attribute name to be sent to the listener. If the 
+specified name is not in the list of enabled attribute names, this method has 
+no effect. 
+
+    name - The attribute name. 
+
+*javax.management.AttributeChangeNotificationFilter.enableAttribute(String)*
+
+public synchronized void enableAttribute(java.lang.String name)
+  throws |java.lang.IllegalArgumentException|
+         
+Enables all the attribute change notifications the attribute name of which 
+equals the specified name to be sent to the listener. If the specified name is 
+already in the list of enabled attribute names, this method has no effect. 
+
+    name - The attribute name. 
+
+*javax.management.AttributeChangeNotificationFilter.getEnabledAttributes()*
+
+public synchronized |java.util.Vector| getEnabledAttributes()
+
+Gets all the enabled attribute names for this filter. 
+
+
+    Returns: The list containing all the enabled attribute names. 
+*javax.management.AttributeChangeNotificationFilter.isNotificationEnabled(Notification)*
+
+public synchronized boolean isNotificationEnabled(javax.management.Notification notification)
+
+Invoked before sending the specified notification to the listener. This filter 
+compares the attribute name of the specified attribute change notification with 
+each enabled attribute name. If the attribute name equals one of the enabled 
+attribute names, the notification must be sent to the listener and this method 
+returns true. 
+
+    notification - The attribute change notification to be sent. 
+
+    Returns: true if the notification has to be sent to the listener, false otherwise. 
+
