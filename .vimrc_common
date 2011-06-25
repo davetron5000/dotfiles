@@ -18,6 +18,11 @@
 "
 " 
 
+" Needed on some linux distros.
+" " see http://www.adamlowe.me/2009/12/vim-destroys-all-other-rails-editors.html
+filetype off 
+call pathogen#helptags()
+call pathogen#runtime_append_all_bundles()
 " Determine the project_root
 if exists("g:pose")
     let g:project_root="~/Projects/pose"
@@ -143,3 +148,5 @@ au BufRead,BufNewFile *.scala set sw=2
 au BufRead,BufNewFile *.scala set ts=2
 au BufEnter *.scss set nocindent
 au BufLeave *.scss set cindent
+au BufEnter *.pml runtime syntax/xml.vim
+au BufEnter *.pml runtime indent/xml.vim
