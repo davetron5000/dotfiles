@@ -19,6 +19,7 @@ export PATH=${PATH_BASE}
 export JAVA_ROOT=/System/Library/Frameworks/JavaVM.framework/Versions
 export TOMCAT_HOME=/Applications/tomcat
 export R_HOME=/Library/Frameworks/R.framework/Versions/2.8/Resources/
+export SVN_EDITOR='vim -u ~/.vimrc_for_fucking_subversion'
 
 # Positive Energy config
 
@@ -59,7 +60,7 @@ alias vi='mvim'
 alias gem_server="ruby -r rubygems/server -e 'Gem::Server.run(:gemdir=>\"/Library/Ruby/Gems/1.8\",:port=>8088)'"
 alias psi='/opt/psi/bin/psi'
 alias ps='ps auxwwwwwwww'
-alias ls='ls -F'
+alias ls='ls -FG'
 export MYSQL_EXE='/usr/local/mysql/bin/mysql --show-warnings'
 alias mysql=$MYSQL_EXE
 
@@ -131,7 +132,7 @@ function go()
             alias vi="mvim --cmd 'let g:pose=\"true\"' \$*"
         fi
     fi
-    update_prompt $GO_TARGET
+    colorless_update_prompt $GO_TARGET
 
     cd $GO_DIR
 }
@@ -141,8 +142,9 @@ function colorless_update_prompt()
     PS1_START='\u@\h '
     PS1_TARGET="[$1]\n"
     PS1_GIT='$(__git_ps1 "git://%s") '
+    PS1_RVM='[$(rvm-prompt)]'
     PS1_DIR='\w> '
-    export PS1=$PS1_START$PS1_TARGET$PS1_GIT$PS1_DIR
+    export PS1=$PS1_START$PS1_RVM$PS1_TARGET$PS1_GIT$PS1_DIR
 }
 
 function update_prompt()
