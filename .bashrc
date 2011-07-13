@@ -23,12 +23,15 @@ export SVN_EDITOR='vim -u ~/.vimrc_for_fucking_subversion'
 
 # Positive Energy config
 
-export workspace=/Users/davec/Projects/pose
+export workspace=/Users/davec/Projects/opower
 export SSH_TUNNEL_REMOTE_PORT=5468
 export POSE_USER=dave.copeland
 if [ -e ~/.passwordsrc ]; then
     . ~/.passwordsrc
 fi
+export NO_SVN_PROMPT=1
+source ~/pose.bash
+export MAVEN_OPTS='-Xms512m -Xmx1024m -XX:PermSize=128m -XX:MaxPermSize=128m'
 source ~/.git-completion.bash
 
 function mysqld()
