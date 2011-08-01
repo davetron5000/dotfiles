@@ -1,0 +1,31 @@
+" OPOWER Specifics
+
+" Define project root
+let g:project_root="~/Projects/opower"
+" Get common stuff
+source ~/.vimrc_generic_project
+" Here's the source paths in our app
+let paths_list = ['core/src/**', 'scrapi/src/**', 'report/src/**', 'ei/src/**', 'content**', 'dino/src/**']
+call SetSourcePaths(paths_list)
+set grepprg=~/bin/pose_grep.sh\ $*
+
+set title
+function! ChangePom(pom,prefix)
+    "compiler! maven2
+    let g:maven_pom=g:project_root . "/" . a:pom . "/pom.xml"
+    let &makeprg="~/Projects/sfte/bin/sfte -p " . a:prefix . " mvn -d test -v very -f " . g:maven_pom . " "
+    let &titlestring="POM: " . a:pom . " %F"
+    exe 'noremap o :CommandT ' . g:project_root . "/" . a:pom . '/src'
+endfun
+
+call ChangePom('','pos')
+
+map  :call ChangePom('scrapi','opower')
+map  :call ChangePom('core','pos')
+map  :call ChangePom('report','pos')
+map  :call ChangePom('ei','opower')
+map  :call ChangePom('dino','pos')
+
+map  :make -- test -Dtest=%:t:r
+map  :make -- test -Dtest=Test%:t:r
+autocmd BufWritePre *.java :%s/\s\+$//e
