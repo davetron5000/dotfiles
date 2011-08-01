@@ -8,18 +8,17 @@ export FIGNORE=~:.bak:.tmp:.swp
 export HISTCONTROL=ignoredups
 export LANG=en_US
 
-export ANT_HOME=/opt/ant
-export ANT_OPTS=-Xmx640m
 export CLASSPATH=
 export EDITOR=vim
 export GREP_OPTIONS='--exclude=\*\.svn\*'
 export SCALA_HOME=/Applications/scala
-export PATH_BASE=${PATH}:${SCALA_HOME}/bin:${ANT_HOME}/bin:${HOME}/bin:${CXOFFICE_HOME}/bin:/opt/local/bin
-export PATH=${PATH_BASE}
+#export PATH_BASE=${PATH}:${SCALA_HOME}/bin:${ANT_HOME}/bin:${HOME}/bin:${CXOFFICE_HOME}/bin:/opt/local/bin
+#export PATH=${PATH_BASE}
 export JAVA_ROOT=/System/Library/Frameworks/JavaVM.framework/Versions
 export TOMCAT_HOME=/Applications/tomcat
 export R_HOME=/Library/Frameworks/R.framework/Versions/2.8/Resources/
 export SVN_EDITOR='vim -u ~/.vimrc_for_fucking_subversion'
+export PATH=${PATH}:${HOME}/bin
 
 # Positive Energy config
 
@@ -160,15 +159,11 @@ function update_prompt()
     export PS1=$PS1_START$PS1_TARGET$PS1_GIT$PS1_DIR
 }
 
-go 
-cd ~
-
 ##
 # Your previous /Users/davec/.profile file was backed up as /Users/davec/.profile.macports-saved_2009-10-12_at_19:01:00
 ##
-
-# MacPorts Installer addition on 2009-10-12_at_19:01:00: adding an appropriate PATH variable for use with MacPorts.
-export PATH=/opt/local/bin:/opt/local/sbin:$PATH
-# Finished adapting your PATH environment variable for use with MacPorts.
+go 
+cd ~
 
 [[ -s $HOME/.rvm/scripts/rvm ]] && source $HOME/.rvm/scripts/rvm
+
