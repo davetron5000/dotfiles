@@ -18,8 +18,16 @@ git_bundles = [
   "git://github.com/depuracao/vim-rdoc.git",
   "git://github.com/altercation/vim-colors-solarized.git",
   "git://github.com/tpope/vim-rails.git",
+  #"git://github.com/davetron5000/java-javadoc-vim.git",
+  #"git://github.com/davetron5000/javax-javadoc-vim.git",
+  "https://github.com/leshill/vim-json.git",
 ]
 
+mine = [
+  'vim-pml',
+  'java-javadoc-vim',
+  'javax-javadoc-vim',
+]
 vim_org_scripts = [
 #  ["xml", "14039",  "ftplugin"],
 ]
@@ -32,13 +40,20 @@ bundles_dir = File.join(File.dirname(__FILE__), "bundle")
 FileUtils.cd(bundles_dir)
 
 puts "Trashing everything (lookout!)"
-Dir["*"].each {|d| FileUtils.rm_rf d }
+Dir["*"].each do |d| 
+  if mine.include? d
+    puts "Skipping #{d}; it's mine, manually pull to update"
+  else
+    FileUtils.rm_rf d
+  end
+end
 
 git_bundles.each do |url|
   dir = url.split('/').last.sub(/\.git$/, '')
   puts "  Unpacking #{url} into #{dir}"
   `git clone #{url} #{dir}`
   FileUtils.rm_rf(File.join(dir, ".git"))
+  end
 end
 
 vim_org_scripts.each do |name, script_id, script_type|
