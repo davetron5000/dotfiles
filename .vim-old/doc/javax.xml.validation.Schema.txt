@@ -1,0 +1,71 @@
+*javax.xml.validation.Schema* *Schema* Immutable in-memory representation of grammar.
+
+public abstract class Schema
+  extends    |java.lang.Object|
+
+|javax.xml.validation.Schema_Description|
+|javax.xml.validation.Schema_Fields|
+|javax.xml.validation.Schema_Constructors|
+|javax.xml.validation.Schema_Methods|
+
+====================================================================================================================================================================================
+
+*javax.xml.validation.Schema_Constructors*
+|javax.xml.validation.Schema()|Constructor for the derived class.
+
+*javax.xml.validation.Schema_Methods*
+|javax.xml.validation.Schema.newValidator()|Creates a newValidatorfor thisSchema.
+|javax.xml.validation.Schema.newValidatorHandler()|Creates a newValidatorHandlerfor thisSchema.
+
+*javax.xml.validation.Schema_Description*
+
+Immutable in-memory representation of grammar. 
+
+This object represents a set of constraints that can be checked/ enforced against an XML document. 
+
+A (|javax.xml.validation.Schema|) object is thread safe and applications are encouraged to share it across many parsers in many threads. 
+
+A (|javax.xml.validation.Schema|) object is immutable in the sense that it shouldn't change the set of constraints once it is created. In other words, if an application validates 
+the same document twice against the same (|javax.xml.validation.Schema|) , it must always produce the same result. 
+
+A (|javax.xml.validation.Schema|) object is usually created from (|javax.xml.validation.SchemaFactory|) . 
+
+Two kinds of validators can be created from a (|javax.xml.validation.Schema|) object. One is (|javax.xml.validation.Validator|) , which provides highly-level validation operations 
+that cover typical use cases. The other is (|javax.xml.validation.ValidatorHandler|) , which works on top of SAX for better modularity. 
+
+This specification does not refine the (|java.lang.Object|) method. In other words, if you parse the same schema twice, you may still get !schemaA.equals(schemaB). 
+
+
+
+*javax.xml.validation.Schema()*
+
+protected Schema()
+
+Constructor for the derived class. 
+
+The constructor does nothing. 
+
+
+*javax.xml.validation.Schema.newValidator()*
+
+public abstract |javax.xml.validation.Validator| newValidator()
+
+Creates a new (|javax.xml.validation.Validator|) for this (|javax.xml.validation.Schema|) . 
+
+A validator enforces/checks the set of constraints this object represents. 
+
+
+
+    Returns: Always return a non-null valid object. 
+
+*javax.xml.validation.Schema.newValidatorHandler()*
+
+public abstract |javax.xml.validation.ValidatorHandler| newValidatorHandler()
+
+Creates a new (|javax.xml.validation.ValidatorHandler|) for this (|javax.xml.validation.Schema|) . 
+
+
+
+    Returns: Always return a non-null valid object. 
+
+

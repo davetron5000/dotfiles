@@ -1,0 +1,329 @@
+*java.awt.geom.Area* *Area* The Area class is a device-independent specification of an
+ arbitrarily-shaped area.
+
+public class Area
+  extends    |java.lang.Object|
+  implements |java.awt.Shape|
+             |java.lang.Cloneable|
+
+|java.awt.geom.Area_Description|
+|java.awt.geom.Area_Fields|
+|java.awt.geom.Area_Constructors|
+|java.awt.geom.Area_Methods|
+
+====================================================================================================================================================================================
+
+*java.awt.geom.Area_Constructors*
+|java.awt.geom.Area()|Default constructor which creates an empty area.
+|java.awt.geom.Area(Shape)|The Area class creates an area geometry from the  specifiedShapeobject.
+
+*java.awt.geom.Area_Methods*
+|java.awt.geom.Area.add(Area)|Adds the shape of the specified Area to the  shape of this Area.
+|java.awt.geom.Area.clone()|Returns an exact copy of this Area object.
+|java.awt.geom.Area.contains(double,double)|Tests if a specifed point lies inside the boundary of  this Area object.
+|java.awt.geom.Area.contains(double,double,double,double)|Tests whether or not the interior of this Area object  completely contains the specified rectangular area.
+|java.awt.geom.Area.contains(Point2D)|Tests if a specifiedPoint2Dlies inside the boundary of the   this Area object.
+|java.awt.geom.Area.contains(Rectangle2D)|Tests whether or not the interior of this Area object  completely contains the specified Rectangle2D.
+|java.awt.geom.Area.createTransformedArea(AffineTransform)|Creates a new Area object that contains the same  geometry as this Area transformed by the specified  AffineTransform.
+|java.awt.geom.Area.equals(Area)|Tests whether the geometries of the two Area objects  are equal.
+|java.awt.geom.Area.exclusiveOr(Area)|Sets the shape of this Area to be the combined area  of its current shape and the shape of the specified Area,   minus their intersection.
+|java.awt.geom.Area.getBounds()|Returns a boundingRectanglethat completely encloses  this Area.
+|java.awt.geom.Area.getBounds2D()|Returns a high precision boundingRectangle2Dthat  completely encloses this Area.
+|java.awt.geom.Area.getPathIterator(AffineTransform)|Creates aPathIteratorfor the outline of this   Area object.
+|java.awt.geom.Area.getPathIterator(AffineTransform,double)|Creates a PathIterator for the flattened outline of   this Area object.
+|java.awt.geom.Area.intersect(Area)|Sets the shape of this Area to the intersection of   its current shape and the shape of the specified Area.
+|java.awt.geom.Area.intersects(double,double,double,double)|Tests whether the interior of this Area object  intersects the interior of the specified rectangular area.
+|java.awt.geom.Area.intersects(Rectangle2D)|Tests whether the interior of this Area object  intersects the interior of the specified Rectangle2D.
+|java.awt.geom.Area.isEmpty()|Tests whether this Area object encloses any area.
+|java.awt.geom.Area.isPolygonal()|Tests whether this Area consists entirely of  straight edged polygonal geometry.
+|java.awt.geom.Area.isRectangular()|Tests whether this Area is rectangular in shape.
+|java.awt.geom.Area.isSingular()|Tests whether this Area is comprised of a single  closed subpath.
+|java.awt.geom.Area.reset()|Removes all of the geometry from this Area and  restores it to an empty area.
+|java.awt.geom.Area.subtract(Area)|Subtracts the shape of the specified Area from the   shape of this Area.
+|java.awt.geom.Area.transform(AffineTransform)|Transforms the geometry of this Area using the specifiedAffineTransform.
+
+*java.awt.geom.Area_Description*
+
+The Area class is a device-independent specification of an arbitrarily-shaped area. The Area object is defined as an object that performs certain binary CAG (Constructive Area 
+Geometry) operations on other area-enclosing geometries, such as rectangles, ellipses, and polygons. The CAG operations are Add(union), Subtract, Intersect, and ExclusiveOR. For 
+example, an Area can be made up of the area of a rectangle minus the area of an ellipse. 
+
+
+
+*java.awt.geom.Area()*
+
+public Area()
+
+Default constructor which creates an empty area. 
+
+
+*java.awt.geom.Area(Shape)*
+
+public Area(java.awt.Shape s)
+
+The Area class creates an area geometry from the specified (|java.awt.Shape|) object. The geometry is explicitly closed, if the Shape is not already closed. The fill rule 
+(even-odd or winding) specified by the geometry of the Shape is used to determine the resulting enclosed area. 
+
+    s - the Shape from which the area is constructed 
+
+*java.awt.geom.Area.add(Area)*
+
+public void add(java.awt.geom.Area rhs)
+
+Adds the shape of the specified Area to the shape of this Area. Addition is achieved through union. 
+
+
+    rhs - the Area to be added to the current shape 
+
+*java.awt.geom.Area.clone()*
+
+public |java.lang.Object| clone()
+
+Returns an exact copy of this Area object. 
+
+
+
+    Returns: Created clone object 
+
+*java.awt.geom.Area.contains(double,double)*
+
+public boolean contains(
+  double x,
+  double y)
+
+Tests if a specifed point lies inside the boundary of this Area object. 
+
+
+    x,&nbsp;y - the specified point 
+
+    Returns: true if the point lies completely within the interior of the Area; false otherwise. 
+
+*java.awt.geom.Area.contains(double,double,double,double)*
+
+public boolean contains(
+  double x,
+  double y,
+  double w,
+  double h)
+
+Tests whether or not the interior of this Area object completely contains the specified rectangular area. 
+
+
+    x,&nbsp;y - the coordinates of the upper left corner of the specified rectangular area 
+    w - the width of the specified rectangular area 
+    h - the height of the specified rectangular area 
+
+    Returns: true if the specified rectangular area lies completely within the interior of the Area; false otherwise. 
+
+*java.awt.geom.Area.contains(Point2D)*
+
+public boolean contains(java.awt.geom.Point2D p)
+
+Tests if a specified (|java.awt.geom.Point2D|) lies inside the boundary of the this Area object. 
+
+
+    p - the Point2D to test 
+
+    Returns: true if the specified Point2D lies completely within the interior of the Area; false otherwise. 
+
+*java.awt.geom.Area.contains(Rectangle2D)*
+
+public boolean contains(java.awt.geom.Rectangle2D p)
+
+Tests whether or not the interior of this Area object completely contains the specified Rectangle2D. 
+
+
+    p - the Rectangle2D to test 
+
+    Returns: true if the Rectangle2D lies completely within the interior of the Area; false otherwise. 
+
+*java.awt.geom.Area.createTransformedArea(AffineTransform)*
+
+public |java.awt.geom.Area| createTransformedArea(java.awt.geom.AffineTransform t)
+
+Creates a new Area object that contains the same geometry as this Area transformed by the specified AffineTransform. This Area object is unchanged. 
+
+
+    t - the specified AffineTransform used to transform the new Area 
+
+    Returns: a new Area object representing the transformed geometry. 
+
+*java.awt.geom.Area.equals(Area)*
+
+public boolean equals(java.awt.geom.Area other)
+
+Tests whether the geometries of the two Area objects are equal. 
+
+
+    other - the Area to be compared to this Area 
+
+    Returns: true if the two geometries are equal; false otherwise. 
+
+*java.awt.geom.Area.exclusiveOr(Area)*
+
+public void exclusiveOr(java.awt.geom.Area rhs)
+
+Sets the shape of this Area to be the combined area of its current shape and the shape of the specified Area, minus their intersection. 
+
+
+    rhs - the Area to be exclusive ORed with this Area. 
+
+*java.awt.geom.Area.getBounds()*
+
+public |java.awt.Rectangle| getBounds()
+
+Returns a bounding (|java.awt.Rectangle|) that completely encloses this Area. 
+
+The Area class will attempt to return the tightest bounding box possible for the Shape. The bounding box will not be padded to include the control points of curves in the outline 
+of the Shape, but should tightly fit the actual geometry of the outline itself. Since the returned object represents the bounding box with integers, the bounding box can only be 
+as tight as the nearest integer coordinates that encompass the geometry of the Shape. 
+
+
+
+    Returns: the bounding Rectangle for the Area. 
+
+*java.awt.geom.Area.getBounds2D()*
+
+public |java.awt.geom.Rectangle2D| getBounds2D()
+
+Returns a high precision bounding (|java.awt.geom.Rectangle2D|) that completely encloses this Area. 
+
+The Area class will attempt to return the tightest bounding box possible for the Shape. The bounding box will not be padded to include the control points of curves in the outline 
+of the Shape, but should tightly fit the actual geometry of the outline itself. 
+
+
+
+    Returns: the bounding Rectangle2D for the Area. 
+
+*java.awt.geom.Area.getPathIterator(AffineTransform)*
+
+public |java.awt.geom.PathIterator| getPathIterator(java.awt.geom.AffineTransform at)
+
+Creates a (|java.awt.geom.PathIterator|) for the outline of this Area object. This Area object is unchanged. 
+
+
+    at - an optional AffineTransform to be applied to the coordinates as they are returned in the iteration, or null if untransformed coordinates are desired 
+
+    Returns: the PathIterator object that returns the geometry of the outline of this Area, one segment at a time. 
+
+*java.awt.geom.Area.getPathIterator(AffineTransform,double)*
+
+public |java.awt.geom.PathIterator| getPathIterator(
+  java.awt.geom.AffineTransform at,
+  double flatness)
+
+Creates a PathIterator for the flattened outline of this Area object. Only uncurved path segments represented by the SEG_MOVETO, SEG_LINETO, and SEG_CLOSE point types are returned 
+by the iterator. This Area object is unchanged. 
+
+
+    at - an optional AffineTransform to be applied to the coordinates as they are returned in the iteration, or null if untransformed coordinates are desired 
+    flatness - the maximum amount that the control points for a given curve can vary from colinear before a subdivided curve is replaced by a straight line connecting the endpoints 
+
+    Returns: the PathIterator object that returns the geometry of the outline of this Area, one segment at a time. 
+
+*java.awt.geom.Area.intersect(Area)*
+
+public void intersect(java.awt.geom.Area rhs)
+
+Sets the shape of this Area to the intersection of its current shape and the shape of the specified Area. 
+
+
+    rhs - the Area to be intersected with this Area 
+
+*java.awt.geom.Area.intersects(double,double,double,double)*
+
+public boolean intersects(
+  double x,
+  double y,
+  double w,
+  double h)
+
+Tests whether the interior of this Area object intersects the interior of the specified rectangular area. 
+
+
+    x,&nbsp;y - the coordinates of the upper left corner of the specified rectangular area 
+    w - the width of the specified rectangular area 
+    h - the height of teh specified rectangular area 
+
+    Returns: true if the interior intersects the specified rectangular area; false otherwise; 
+
+*java.awt.geom.Area.intersects(Rectangle2D)*
+
+public boolean intersects(java.awt.geom.Rectangle2D p)
+
+Tests whether the interior of this Area object intersects the interior of the specified Rectangle2D. 
+
+
+    p - the Rectangle2D to test for intersection 
+
+    Returns: true if the interior intersects the specified Rectangle2D; false otherwise. 
+
+*java.awt.geom.Area.isEmpty()*
+
+public boolean isEmpty()
+
+Tests whether this Area object encloses any area. 
+
+
+
+    Returns: true if this Area object represents an empty area; false otherwise. 
+
+*java.awt.geom.Area.isPolygonal()*
+
+public boolean isPolygonal()
+
+Tests whether this Area consists entirely of straight edged polygonal geometry. 
+
+
+
+    Returns: true if the geometry of this Area consists entirely of line segments; false otherwise. 
+
+*java.awt.geom.Area.isRectangular()*
+
+public boolean isRectangular()
+
+Tests whether this Area is rectangular in shape. 
+
+
+
+    Returns: true if the geometry of this Area is rectangular in shape; false otherwise. 
+
+*java.awt.geom.Area.isSingular()*
+
+public boolean isSingular()
+
+Tests whether this Area is comprised of a single closed subpath. This method returns true if the path contains 0 or 1 subpaths, or false if the path contains more than 1 subpath. 
+The subpaths are counted by the number of SEG_MOVETO(|java.awt.geom.PathIterator|) segments that appear in the path. 
+
+
+
+    Returns: true if the Area is comprised of a single basic geometry; false otherwise. 
+
+*java.awt.geom.Area.reset()*
+
+public void reset()
+
+Removes all of the geometry from this Area and restores it to an empty area. 
+
+
+
+*java.awt.geom.Area.subtract(Area)*
+
+public void subtract(java.awt.geom.Area rhs)
+
+Subtracts the shape of the specified Area from the shape of this Area. 
+
+
+    rhs - the Area to be subtracted from the current shape 
+
+*java.awt.geom.Area.transform(AffineTransform)*
+
+public void transform(java.awt.geom.AffineTransform t)
+
+Transforms the geometry of this Area using the specified (|java.awt.geom.AffineTransform|) . The geometry is transformed in place, which permanently changes the enclosed area 
+defined by this object. 
+
+
+    t - the transformation used to transform the area 
+
+

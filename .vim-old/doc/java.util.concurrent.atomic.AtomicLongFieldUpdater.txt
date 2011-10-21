@@ -1,0 +1,205 @@
+*java.util.concurrent.atomic.AtomicLongFieldUpdater* *AtomicLongFieldUpdater* A reflection-based utility that enables atomic updates to
+ designated volatile long fields of designat
+
+public abstract class AtomicLongFieldUpdater<T>
+  extends    |java.lang.Object|
+
+|java.util.concurrent.atomic.AtomicLongFieldUpdater_Description|
+|java.util.concurrent.atomic.AtomicLongFieldUpdater_Fields|
+|java.util.concurrent.atomic.AtomicLongFieldUpdater_Constructors|
+|java.util.concurrent.atomic.AtomicLongFieldUpdater_Methods|
+
+====================================================================================================================================================================================
+
+*java.util.concurrent.atomic.AtomicLongFieldUpdater_Constructors*
+|java.util.concurrent.atomic.AtomicLongFieldUpdater()|Protected do-nothing constructor for use by subclasses.
+
+*java.util.concurrent.atomic.AtomicLongFieldUpdater_Methods*
+|java.util.concurrent.atomic.AtomicLongFieldUpdater.addAndGet(T,long)|Atomically add the given value to current value.
+|java.util.concurrent.atomic.AtomicLongFieldUpdater.compareAndSet(T,long,long)|Atomically set the value of the field of the given object managed  by this Updater to the given upda
+|java.util.concurrent.atomic.AtomicLongFieldUpdater.decrementAndGet(T)|Atomically decrement by one the current value.
+|java.util.concurrent.atomic.AtomicLongFieldUpdater.get(T)|Get the current value held in the field by the given object.
+|java.util.concurrent.atomic.AtomicLongFieldUpdater.getAndAdd(T,long)|Atomically add the given value to current value.
+|java.util.concurrent.atomic.AtomicLongFieldUpdater.getAndDecrement(T)|Atomically decrement by one the current value.
+|java.util.concurrent.atomic.AtomicLongFieldUpdater.getAndIncrement(T)|Atomically increment by one the current value.
+|java.util.concurrent.atomic.AtomicLongFieldUpdater.getAndSet(T,long)|Set to the given value and return the old value.
+|java.util.concurrent.atomic.AtomicLongFieldUpdater.incrementAndGet(T)|Atomically increment by one the current value.
+|java.util.concurrent.atomic.AtomicLongFieldUpdater.newUpdater(Class<U>,String)|Creates an updater for objects with the given field.
+|java.util.concurrent.atomic.AtomicLongFieldUpdater.set(T,long)|Set the field of the given object managed by this updater.
+|java.util.concurrent.atomic.AtomicLongFieldUpdater.weakCompareAndSet(T,long,long)|Atomically set the value of the field of the given object managed  by this Updater to the given 
+
+*java.util.concurrent.atomic.AtomicLongFieldUpdater_Description*
+
+A reflection-based utility that enables atomic updates to designated volatile long fields of designated classes. This class is designed for use in atomic data structures in which 
+several fields of the same node are independently subject to atomic updates. 
+
+Note that the guarantees of the compareAndSet method in this class are weaker than in other atomic classes. Because this class cannot ensure that all uses of the field are 
+appropriate for purposes of atomic access, it can guarantee atomicity and volatile semantics only with respect to other invocations of compareAndSet and set. 
+
+
+
+*java.util.concurrent.atomic.AtomicLongFieldUpdater()*
+
+protected AtomicLongFieldUpdater()
+
+Protected do-nothing constructor for use by subclasses. 
+
+
+*java.util.concurrent.atomic.AtomicLongFieldUpdater.addAndGet(T,long)*
+
+public long addAndGet(
+  T obj,
+  long delta)
+
+Atomically add the given value to current value. 
+
+
+    obj - An object whose field to get and set 
+    delta - the value to add 
+
+    Returns: the updated value; 
+
+*java.util.concurrent.atomic.AtomicLongFieldUpdater.compareAndSet(T,long,long)*
+
+public abstract boolean compareAndSet(
+  T obj,
+  long expect,
+  long update)
+
+Atomically set the value of the field of the given object managed by this Updater to the given updated value if the current value == the expected value. This method is guaranteed 
+to be atomic with respect to other calls to compareAndSet and set, but not necessarily with respect to other changes in the field. 
+
+
+    obj - An object whose field to conditionally set 
+    expect - the expected value 
+    update - the new value 
+
+    Returns: true if successful. 
+
+*java.util.concurrent.atomic.AtomicLongFieldUpdater.decrementAndGet(T)*
+
+public long decrementAndGet(T obj)
+
+Atomically decrement by one the current value. 
+
+
+    obj - An object whose field to get and set 
+
+    Returns: the updated value; 
+
+*java.util.concurrent.atomic.AtomicLongFieldUpdater.get(T)*
+
+public abstract long get(T obj)
+
+Get the current value held in the field by the given object. 
+
+
+    obj - An object whose field to get 
+
+    Returns: the current value 
+
+*java.util.concurrent.atomic.AtomicLongFieldUpdater.getAndAdd(T,long)*
+
+public long getAndAdd(
+  T obj,
+  long delta)
+
+Atomically add the given value to current value. 
+
+
+    obj - An object whose field to get and set 
+    delta - the value to add 
+
+    Returns: the previous value; 
+
+*java.util.concurrent.atomic.AtomicLongFieldUpdater.getAndDecrement(T)*
+
+public long getAndDecrement(T obj)
+
+Atomically decrement by one the current value. 
+
+
+    obj - An object whose field to get and set 
+
+    Returns: the previous value; 
+
+*java.util.concurrent.atomic.AtomicLongFieldUpdater.getAndIncrement(T)*
+
+public long getAndIncrement(T obj)
+
+Atomically increment by one the current value. 
+
+
+    obj - An object whose field to get and set 
+
+    Returns: the previous value; 
+
+*java.util.concurrent.atomic.AtomicLongFieldUpdater.getAndSet(T,long)*
+
+public long getAndSet(
+  T obj,
+  long newValue)
+
+Set to the given value and return the old value. 
+
+
+    obj - An object whose field to get and set 
+    newValue - the new value 
+
+    Returns: the previous value 
+
+*java.util.concurrent.atomic.AtomicLongFieldUpdater.incrementAndGet(T)*
+
+public long incrementAndGet(T obj)
+
+Atomically increment by one the current value. 
+
+
+    obj - An object whose field to get and set 
+
+    Returns: the updated value; 
+
+*java.util.concurrent.atomic.AtomicLongFieldUpdater.newUpdater(Class<U>,String)*
+
+public static |java.util.concurrent.atomic.AtomicLongFieldUpdater|<U> newUpdater(
+  java.lang.Class<U> tclass,
+  java.lang.String fieldName)
+
+Creates an updater for objects with the given field. The Class argument is needed to check that reflective types and generic types match. 
+
+
+    tclass - the class of the objects holding the field 
+    fieldName - the name of the field to be updated. 
+
+    Returns: 
+
+*java.util.concurrent.atomic.AtomicLongFieldUpdater.set(T,long)*
+
+public abstract void set(
+  T obj,
+  long newValue)
+
+Set the field of the given object managed by this updater. This operation is guaranteed to act as a volatile store with respect to subsequent invocations of compareAndSet. 
+
+
+    obj - An object whose field to set 
+    newValue - the new value 
+
+*java.util.concurrent.atomic.AtomicLongFieldUpdater.weakCompareAndSet(T,long,long)*
+
+public abstract boolean weakCompareAndSet(
+  T obj,
+  long expect,
+  long update)
+
+Atomically set the value of the field of the given object managed by this Updater to the given updated value if the current value == the expected value. This method is guaranteed 
+to be atomic with respect to other calls to compareAndSet and set, but not necessarily with respect to other changes in the field, and may fail spuriously. 
+
+
+    obj - An object whose field to conditionally set 
+    expect - the expected value 
+    update - the new value 
+
+    Returns: true if successful. 
+
+

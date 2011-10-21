@@ -1,0 +1,145 @@
+*javax.xml.xpath.XPathExpression* *XPathExpression* XPathExpression provides access to compiled XPath expressions.
+
+public interface interface XPathExpression
+
+
+|javax.xml.xpath.XPathExpression_Description|
+|javax.xml.xpath.XPathExpression_Fields|
+|javax.xml.xpath.XPathExpression_Constructors|
+|javax.xml.xpath.XPathExpression_Methods|
+
+====================================================================================================================================================================================
+
+*javax.xml.xpath.XPathExpression_Methods*
+|javax.xml.xpath.XPathExpression.evaluate(InputSource)|Evaluate the compiled XPath expression in the context of the specified InputSource and return the result as a  String.
+|javax.xml.xpath.XPathExpression.evaluate(InputSource,QName)|Evaluate the compiled XPath expression in the context of the specified InputSource and return the result as the  speci
+|javax.xml.xpath.XPathExpression.evaluate(Object)|Evaluate the compiled XPath expression in the specified context and return the result as a String.
+|javax.xml.xpath.XPathExpression.evaluate(Object,QName)|Evaluate the compiled XPath expression in the specified context and return the result as the specified type.
+
+*javax.xml.xpath.XPathExpression_Description*
+
+XPathExpression provides access to compiled XPath expressions. 
+
+
+
+Evaluation of XPath Expressions. 
+
+
+
+context 
+
+If a request is made to evaluate the expression in the absence of a context item, an empty document node will be used for the context. For the purposes of evaluating XPath 
+expressions, a DocumentFragment is treated like a Document node. 
+
+
+
+variables 
+
+If the expression contains a variable reference, its value will be found through the (|javax.xml.xpath.XPathVariableResolver|) . An (|javax.xml.xpath.XPathExpressionException|) is 
+raised if the variable resolver is undefined or the resolver returns null for the variable. The value of a variable must be immutable through the course of any single evaluation. 
+
+
+
+functions 
+
+If the expression contains a function reference, the function will be found through the (|javax.xml.xpath.XPathFunctionResolver|) . An (|javax.xml.xpath.XPathExpressionException|) 
+is raised if the function resolver is undefined or the function resolver returns null for the function. 
+
+
+
+QNames 
+
+QNames in the expression are resolved against the XPath namespace context. 
+
+
+
+result 
+
+This result of evaluating an expression is converted to an instance of the desired return type. Valid return types are defined in (|javax.xml.xpath.XPathConstants|) . Conversion 
+to the return type follows XPath conversion rules. 
+
+
+
+
+
+*javax.xml.xpath.XPathExpression.evaluate(InputSource)*
+
+public |java.lang.String| evaluate(org.xml.sax.InputSource source)
+  throws |javax.xml.xpath.XPathExpressionException|
+         
+Evaluate the compiled XPath expression in the context of the specified InputSource and return the result as a String. 
+
+This method calls (|javax.xml.xpath.XPathExpression|) with a returnType of (|javax.xml.xpath.XPathConstants|) . 
+
+See Evaluation of XPath Expressions for context item evaluation, variable, function and QName resolution and return type conversion. 
+
+If source is null, then a NullPointerException is thrown. 
+
+
+    source - The InputSource of the document to evaluate over. 
+
+    Returns: The String that is the result of evaluating the expression and converting the result to a String. 
+
+*javax.xml.xpath.XPathExpression.evaluate(InputSource,QName)*
+
+public |java.lang.Object| evaluate(
+  org.xml.sax.InputSource source,
+  javax.xml.namespace.QName returnType)
+  throws |javax.xml.xpath.XPathExpressionException|
+         
+Evaluate the compiled XPath expression in the context of the specified InputSource and return the result as the specified type. 
+
+This method builds a data model for the (|org.xml.sax.InputSource|) and calls (|javax.xml.xpath.XPathExpression|) on the resulting document object. 
+
+See Evaluation of XPath Expressions for context item evaluation, variable, function and QName resolution and return type conversion. 
+
+If returnType is not one of the types defined in (|javax.xml.xpath.XPathConstants|) , then an IllegalArgumentException is thrown. 
+
+If source or returnType is null, then a NullPointerException is thrown. 
+
+
+    source - The InputSource of the document to evaluate over. 
+    returnType - The desired return type. 
+
+    Returns: The Object that is the result of evaluating the expression and converting the result to returnType. 
+
+*javax.xml.xpath.XPathExpression.evaluate(Object)*
+
+public |java.lang.String| evaluate(java.lang.Object item)
+  throws |javax.xml.xpath.XPathExpressionException|
+         
+Evaluate the compiled XPath expression in the specified context and return the result as a String. 
+
+This method calls (|javax.xml.xpath.XPathExpression|) with a returnType of (|javax.xml.xpath.XPathConstants|) . 
+
+See Evaluation of XPath Expressions for context item evaluation, variable, function and QName resolution and return type conversion. 
+
+If a null value is provided for item, an empty document will be used for the context. 
+
+
+    item - The starting context (node or node list, for example). 
+
+    Returns: The String that is the result of evaluating the expression and converting the result to a String. 
+
+*javax.xml.xpath.XPathExpression.evaluate(Object,QName)*
+
+public |java.lang.Object| evaluate(
+  java.lang.Object item,
+  javax.xml.namespace.QName returnType)
+  throws |javax.xml.xpath.XPathExpressionException|
+         
+Evaluate the compiled XPath expression in the specified context and return the result as the specified type. 
+
+See Evaluation of XPath Expressions for context item evaluation, variable, function and QName resolution and return type conversion. 
+
+If returnType is not one of the types defined in (|javax.xml.xpath.XPathConstants|) , then an IllegalArgumentException is thrown. 
+
+If a null value is provided for item, an empty document will be used for the context. If returnType is null, then a NullPointerException is thrown. 
+
+
+    item - The starting context (node or node list, for example). 
+    returnType - The desired return type. 
+
+    Returns: The Object that is the result of evaluating the expression and converting the result to returnType. 
+
+

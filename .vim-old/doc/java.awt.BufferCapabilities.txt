@@ -1,0 +1,118 @@
+*java.awt.BufferCapabilities* *BufferCapabilities* Capabilities and properties of buffers.
+
+public class BufferCapabilities
+  extends    |java.lang.Object|
+  implements |java.lang.Cloneable|
+
+|java.awt.BufferCapabilities_Description|
+|java.awt.BufferCapabilities_Fields|
+|java.awt.BufferCapabilities_Constructors|
+|java.awt.BufferCapabilities_Methods|
+
+====================================================================================================================================================================================
+
+*java.awt.BufferCapabilities_Constructors*
+|java.awt.BufferCapabilities(ImageCapabilities,ImageCapabilities,BufferCapabilities.FlipContents)|Creates a new object for specifying buffering capabilities
+
+*java.awt.BufferCapabilities_Methods*
+|java.awt.BufferCapabilities.clone()|
+|java.awt.BufferCapabilities.getBackBufferCapabilities()|
+|java.awt.BufferCapabilities.getFlipContents()|
+|java.awt.BufferCapabilities.getFrontBufferCapabilities()|
+|java.awt.BufferCapabilities.isFullScreenRequired()|
+|java.awt.BufferCapabilities.isMultiBufferAvailable()|
+|java.awt.BufferCapabilities.isPageFlipping()|
+
+*java.awt.BufferCapabilities_Description*
+
+Capabilities and properties of buffers. 
+
+
+
+*java.awt.BufferCapabilities(ImageCapabilities,ImageCapabilities,BufferCapabilities.FlipContents)*
+
+public BufferCapabilities(
+  java.awt.ImageCapabilities frontCaps,
+  java.awt.ImageCapabilities backCaps,
+  java.awt.BufferCapabilities.FlipContents flipContents)
+
+Creates a new object for specifying buffering capabilities 
+
+    frontCaps - the capabilities of the front buffer; cannot be null 
+    backCaps - the capabilities of the back and intermediate buffers; cannot be null 
+    flipContents - the contents of the back buffer after page-flipping, null if page flipping is not used (implies blitting) 
+
+*java.awt.BufferCapabilities.clone()*
+
+public |java.lang.Object| clone()
+
+
+
+
+
+    Returns: a copy of this BufferCapabilities object. 
+
+*java.awt.BufferCapabilities.getBackBufferCapabilities()*
+
+public |java.awt.ImageCapabilities| getBackBufferCapabilities()
+
+
+
+
+
+    Returns: the image capabilities of all back buffers (intermediate buffers are considered back buffers) 
+
+*java.awt.BufferCapabilities.getFlipContents()*
+
+public |java.awt.BufferCapabilities.FlipContents| getFlipContents()
+
+
+
+
+
+    Returns: the resulting contents of the back buffer after page-flipping. This value is null when the isPageFlipping returns false, implying blitting. It can be one of FlipContents.UNDEFINED 
+             (the assumed default), FlipContents.BACKGROUND, FlipContents.PRIOR, or FlipContents.COPIED. 
+
+*java.awt.BufferCapabilities.getFrontBufferCapabilities()*
+
+public |java.awt.ImageCapabilities| getFrontBufferCapabilities()
+
+
+
+
+
+    Returns: the image capabilities of the front (displayed) buffer 
+
+*java.awt.BufferCapabilities.isFullScreenRequired()*
+
+public boolean isFullScreenRequired()
+
+
+
+
+
+    Returns: whether page flipping is only available in full-screen mode. If this is true, full-screen exclusive mode is required for page-flipping. 
+
+*java.awt.BufferCapabilities.isMultiBufferAvailable()*
+
+public boolean isMultiBufferAvailable()
+
+
+
+
+
+    Returns: whether or not page flipping can be performed using more than two buffers (one or more intermediate buffers as well as the front and back buffer). 
+
+*java.awt.BufferCapabilities.isPageFlipping()*
+
+public boolean isPageFlipping()
+
+
+
+
+
+    Returns: whether or not the buffer strategy uses page flipping; a set of buffers that uses page flipping can swap the contents internally between the front buffer and one or more back 
+             buffers by switching the video pointer (or by copying memory internally). A non-flipping set of buffers uses blitting to copy the contents from one buffer to another; 
+             when this is the case, getFlipContents returns null 
+
+

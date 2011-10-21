@@ -1,0 +1,164 @@
+*java.nio.channels.spi.AbstractSelector* *AbstractSelector* Base implementation class for selectors.
+
+public abstract class AbstractSelector
+  extends    |java.nio.channels.Selector|
+
+|java.nio.channels.spi.AbstractSelector_Description|
+|java.nio.channels.spi.AbstractSelector_Fields|
+|java.nio.channels.spi.AbstractSelector_Constructors|
+|java.nio.channels.spi.AbstractSelector_Methods|
+
+====================================================================================================================================================================================
+
+*java.nio.channels.spi.AbstractSelector_Constructors*
+|java.nio.channels.spi.AbstractSelector(SelectorProvider)|Initializes a new instance of this class.
+
+*java.nio.channels.spi.AbstractSelector_Methods*
+|java.nio.channels.spi.AbstractSelector.begin()|Marks the beginning of an I/O operation that might block indefinitely.
+|java.nio.channels.spi.AbstractSelector.cancelledKeys()|Retrieves this selector's cancelled-key set.
+|java.nio.channels.spi.AbstractSelector.close()|Closes this selector.
+|java.nio.channels.spi.AbstractSelector.deregister(AbstractSelectionKey)|Removes the given key from its channel's key set.
+|java.nio.channels.spi.AbstractSelector.end()|Marks the end of an I/O operation that might block indefinitely.
+|java.nio.channels.spi.AbstractSelector.implCloseSelector()|Closes this selector.
+|java.nio.channels.spi.AbstractSelector.isOpen()|
+|java.nio.channels.spi.AbstractSelector.provider()|Returns the provider that created this channel.
+|java.nio.channels.spi.AbstractSelector.register(AbstractSelectableChannel,int,Object)|Registers the given channel with this selector.
+
+*java.nio.channels.spi.AbstractSelector_Description*
+
+Base implementation class for selectors. 
+
+This class encapsulates the low-level machinery required to implement the interruption of selection operations. A concrete selector class must invoke the 
+begin(|java.nio.channels.spi.AbstractSelector|) and end(|java.nio.channels.spi.AbstractSelector|) methods before and after, respectively, invoking an I/O operation that might 
+block indefinitely. In order to ensure that the end(|java.nio.channels.spi.AbstractSelector|) method is always invoked, these methods should be used within a try...finally block: 
+
+
+
+try { begin(); // Perform blocking I/O operation here ... } finally { end(); } 
+
+This class also defines methods for maintaining a selector's cancelled-key set and for removing a key from its channel's key set, and declares the abstract 
+register(|java.nio.channels.spi.AbstractSelector|) method that is invoked by a selectable channel's register(|java.nio.channels.spi.AbstractSelectableChannel|) method in order to 
+perform the actual work of registering a channel. 
+
+
+
+*java.nio.channels.spi.AbstractSelector(SelectorProvider)*
+
+protected AbstractSelector(java.nio.channels.spi.SelectorProvider provider)
+
+Initializes a new instance of this class. 
+
+
+*java.nio.channels.spi.AbstractSelector.begin()*
+
+protected final void begin()
+
+Marks the beginning of an I/O operation that might block indefinitely. 
+
+This method should be invoked in tandem with the end(|java.nio.channels.spi.AbstractSelector|) method, using a try...finally block as shown above, in order to implement 
+interruption for this selector. 
+
+Invoking this method arranges for the selector's wakeup(|java.nio.channels.Selector|) method to be invoked if a thread's interrupt(|java.lang.Thread|) method is invoked while the 
+thread is blocked in an I/O operation upon the selector. 
+
+
+
+*java.nio.channels.spi.AbstractSelector.cancelledKeys()*
+
+protected final |java.util.Set|<SelectionKey> cancelledKeys()
+
+Retrieves this selector's cancelled-key set. 
+
+This set should only be used while synchronized upon it. 
+
+
+
+    Returns: The cancelled-key set 
+
+*java.nio.channels.spi.AbstractSelector.close()*
+
+public final void close()
+  throws |java.io.IOException|
+         
+Closes this selector. 
+
+If the selector has already been closed then this method returns immediately. Otherwise it marks the selector as closed and then invokes the 
+implCloseSelector(|java.nio.channels.spi.AbstractSelector|) method in order to complete the close operation. 
+
+
+
+*java.nio.channels.spi.AbstractSelector.deregister(AbstractSelectionKey)*
+
+protected final void deregister(java.nio.channels.spi.AbstractSelectionKey key)
+
+Removes the given key from its channel's key set. 
+
+This method must be invoked by the selector for each channel that it deregisters. 
+
+
+    key - The selection key to be removed 
+
+*java.nio.channels.spi.AbstractSelector.end()*
+
+protected final void end()
+
+Marks the end of an I/O operation that might block indefinitely. 
+
+This method should be invoked in tandem with the end(|java.nio.channels.spi.AbstractSelector|) method, using a try...finally block as shown above, in order to implement 
+interruption for this selector. 
+
+
+
+*java.nio.channels.spi.AbstractSelector.implCloseSelector()*
+
+protected abstract void implCloseSelector()
+  throws |java.io.IOException|
+         
+Closes this selector. 
+
+This method is invoked by the close(|java.nio.channels.spi.AbstractSelector|) method in order to perform the actual work of closing the selector. This method is only invoked if 
+the selector has not yet been closed, and it is never invoked more than once. 
+
+An implementation of this method must arrange for any other thread that is blocked in a selection operation upon this selector to return immediately as if by invoking the 
+wakeup(|java.nio.channels.Selector|) method. 
+
+
+
+*java.nio.channels.spi.AbstractSelector.isOpen()*
+
+public final boolean isOpen()
+
+
+
+
+
+*java.nio.channels.spi.AbstractSelector.provider()*
+
+public final |java.nio.channels.spi.SelectorProvider| provider()
+
+Returns the provider that created this channel. 
+
+
+
+    Returns: The provider that created this channel 
+
+*java.nio.channels.spi.AbstractSelector.register(AbstractSelectableChannel,int,Object)*
+
+protected abstract |java.nio.channels.SelectionKey| register(
+  java.nio.channels.spi.AbstractSelectableChannel ch,
+  int ops,
+  java.lang.Object att)
+
+Registers the given channel with this selector. 
+
+This method is invoked by a channel's register(|java.nio.channels.spi.AbstractSelectableChannel|) method in order to perform the actual work of registering the channel with this 
+selector. 
+
+
+    ch - The channel to be registered 
+    ops - The initial interest set, which must be valid 
+    att - The initial attachment for the resulting key 
+
+    Returns: A new key representing the registration of the given channel with this selector 
+
+

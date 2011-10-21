@@ -1,0 +1,142 @@
+*java.rmi.activation.ActivationGroupDesc* *ActivationGroupDesc* An activation group descriptor contains the information necessary to
+ create/recreate an activation group in which t
+
+public final class ActivationGroupDesc
+  extends    |java.lang.Object|
+  implements |java.io.Serializable|
+
+|java.rmi.activation.ActivationGroupDesc_Description|
+|java.rmi.activation.ActivationGroupDesc_Fields|
+|java.rmi.activation.ActivationGroupDesc_Constructors|
+|java.rmi.activation.ActivationGroupDesc_Methods|
+
+====================================================================================================================================================================================
+
+*java.rmi.activation.ActivationGroupDesc_Constructors*
+|java.rmi.activation.ActivationGroupDesc(Properties,ActivationGroupDesc.CommandEnvironment)|Constructs a group descriptor that uses the system defaults for group  implementation a
+|java.rmi.activation.ActivationGroupDesc(String,String,MarshalledObject,Properties,ActivationGroupDesc.CommandEnvironment)|Specifies an alternate group implementation and executio
+
+*java.rmi.activation.ActivationGroupDesc_Methods*
+|java.rmi.activation.ActivationGroupDesc.equals(Object)|Compares two activation group descriptors for content equality.
+|java.rmi.activation.ActivationGroupDesc.getClassName()|Returns the group's class name (possibly null).
+|java.rmi.activation.ActivationGroupDesc.getCommandEnvironment()|Returns the group's command-environment control object.
+|java.rmi.activation.ActivationGroupDesc.getData()|Returns the group's initialization data.
+|java.rmi.activation.ActivationGroupDesc.getLocation()|Returns the group's code location.
+|java.rmi.activation.ActivationGroupDesc.getPropertyOverrides()|Returns the group's property-override list.
+|java.rmi.activation.ActivationGroupDesc.hashCode()|Produce identical numbers for similar ActivationGroupDescs.
+
+*java.rmi.activation.ActivationGroupDesc_Description*
+
+An activation group descriptor contains the information necessary to create/recreate an activation group in which to activate objects. Such a descriptor contains: the group's 
+class name, the group's code location (the location of the group's class), and a "marshalled" object that can contain group specific initialization data. 
+
+The group's class must be a concrete subclass of ActivationGroup. A subclass of ActivationGroup is created/recreated via the ActivationGroup.createGroup static method that invokes 
+a special constructor that takes two arguments: 
+
+the group's ActivationGroupID, and the group's initialization data (in a java.rmi.MarshalledObject) 
+
+
+
+*java.rmi.activation.ActivationGroupDesc(Properties,ActivationGroupDesc.CommandEnvironment)*
+
+public ActivationGroupDesc(
+  java.util.Properties overrides,
+  java.rmi.activation.ActivationGroupDesc.CommandEnvironment cmd)
+
+Constructs a group descriptor that uses the system defaults for group implementation and code location. Properties specify Java environment overrides (which will override system 
+properties in the group implementation's VM). The command environment can control the exact command/options used in starting the child VM, or can be null to accept rmid's default. 
+
+This constructor will create an ActivationGroupDesc with a null group class name, which indicates the system's default ActivationGroup implementation. 
+
+    overrides - the set of properties to set when the group is recreated. 
+    cmd - the controlling options for executing the VM in another process (or null). 
+
+*java.rmi.activation.ActivationGroupDesc(String,String,MarshalledObject,Properties,ActivationGroupDesc.CommandEnvironment)*
+
+public ActivationGroupDesc(
+  java.lang.String className,
+  java.lang.String location,
+  java.rmi.MarshalledObject data,
+  java.util.Properties overrides,
+  java.rmi.activation.ActivationGroupDesc.CommandEnvironment cmd)
+
+Specifies an alternate group implementation and execution environment to be used for the group. 
+
+    className - the group's package qualified class name or null. A null group class name indicates the system's default ActivationGroup implementation. 
+    location - the location from where to load the group's class 
+    data - the group's initialization data contained in marshalled form (could contain properties, for example) 
+    overrides - a properties map which will override those set by default in the subprocess environment (will be translated into -D options), or null. 
+    cmd - the controlling options for executing the VM in another process (or null). 
+
+*java.rmi.activation.ActivationGroupDesc.equals(Object)*
+
+public boolean equals(java.lang.Object obj)
+
+Compares two activation group descriptors for content equality. 
+
+
+    obj - the Object to compare with 
+
+    Returns: true if these Objects are equal; false otherwise. 
+
+*java.rmi.activation.ActivationGroupDesc.getClassName()*
+
+public |java.lang.String| getClassName()
+
+Returns the group's class name (possibly null). A null group class name indicates the system's default ActivationGroup implementation. 
+
+
+
+    Returns: the group's class name 
+
+*java.rmi.activation.ActivationGroupDesc.getCommandEnvironment()*
+
+public |java.rmi.activation.ActivationGroupDesc.CommandEnvironment| getCommandEnvironment()
+
+Returns the group's command-environment control object. 
+
+
+
+    Returns: the command-environment object, or null 
+
+*java.rmi.activation.ActivationGroupDesc.getData()*
+
+public |java.rmi.MarshalledObject| getData()
+
+Returns the group's initialization data. 
+
+
+
+    Returns: the group's initialization data 
+
+*java.rmi.activation.ActivationGroupDesc.getLocation()*
+
+public |java.lang.String| getLocation()
+
+Returns the group's code location. 
+
+
+
+    Returns: the group's code location 
+
+*java.rmi.activation.ActivationGroupDesc.getPropertyOverrides()*
+
+public |java.util.Properties| getPropertyOverrides()
+
+Returns the group's property-override list. 
+
+
+
+    Returns: the property-override list, or null 
+
+*java.rmi.activation.ActivationGroupDesc.hashCode()*
+
+public int hashCode()
+
+Produce identical numbers for similar ActivationGroupDescs. 
+
+
+
+    Returns: 
+
+

@@ -1,0 +1,100 @@
+*javax.print.event.PrintJobEvent* *PrintJobEvent* Class PrintJobEvent encapsulates common events a print job
+ reports to let a listener know of progress in the processing of theDoc
+
+public class PrintJobEvent
+  extends    |javax.print.event.PrintEvent|
+
+|javax.print.event.PrintJobEvent_Description|
+|javax.print.event.PrintJobEvent_Fields|
+|javax.print.event.PrintJobEvent_Constructors|
+|javax.print.event.PrintJobEvent_Methods|
+
+====================================================================================================================================================================================
+
+*javax.print.event.PrintJobEvent_Fields*
+|int_javax.print.event.PrintJobEvent.DATA_TRANSFER_COMPLETE|
+|int_javax.print.event.PrintJobEvent.JOB_CANCELED|
+|int_javax.print.event.PrintJobEvent.JOB_COMPLETE|
+|int_javax.print.event.PrintJobEvent.JOB_FAILED|
+|int_javax.print.event.PrintJobEvent.NO_MORE_EVENTS|
+|int_javax.print.event.PrintJobEvent.REQUIRES_ATTENTION|
+
+*javax.print.event.PrintJobEvent_Constructors*
+|javax.print.event.PrintJobEvent(DocPrintJob,int)|Constructs a PrintJobEvent object.
+
+*javax.print.event.PrintJobEvent_Methods*
+|javax.print.event.PrintJobEvent.getPrintEventType()|Gets the reason for this event.
+|javax.print.event.PrintJobEvent.getPrintJob()|Determines the DocPrintJob to which this print job   event pertains.
+
+*javax.print.event.PrintJobEvent_Description*
+
+Class PrintJobEvent encapsulates common events a print job reports to let a listener know of progress in the processing of the (|javax.print.DocPrintJob|) . 
+
+
+
+*int_javax.print.event.PrintJobEvent.DATA_TRANSFER_COMPLETE*
+
+The job is not necessarily printed yet, but the data has been transferred successfully from the client to the print service. The client may free data resources. 
+
+
+*int_javax.print.event.PrintJobEvent.JOB_CANCELED*
+
+The job was canceled by the PrintService(|javax.print.PrintService|) . 
+
+
+*int_javax.print.event.PrintJobEvent.JOB_COMPLETE*
+
+The document cis completely printed. 
+
+
+*int_javax.print.event.PrintJobEvent.JOB_FAILED*
+
+The print service reports that the job cannot be completed. The application must resubmit the job. 
+
+
+*int_javax.print.event.PrintJobEvent.NO_MORE_EVENTS*
+
+Not all print services may be capable of delivering interesting events, or even telling when a job is complete. This message indicates the print job has no further information or 
+communication with the print service. This message should always be delivered if a terminal event (completed/failed/canceled) is not delivered. For example, if messages such as 
+JOB_COMPLETE have NOT been received before receiving this message, the only inference that should be drawn is that the print service does not support delivering such an event. 
+
+
+*int_javax.print.event.PrintJobEvent.REQUIRES_ATTENTION*
+
+The print service indicates that a - possibly transient - problem may require external intervention before the print service can continue. One example of an event that can 
+generate this message is when the printer runs out of paper. 
+
+
+
+*javax.print.event.PrintJobEvent(DocPrintJob,int)*
+
+public PrintJobEvent(
+  javax.print.DocPrintJob source,
+  int reason)
+
+Constructs a PrintJobEvent object. 
+
+    source - a DocPrintJob object 
+    reason - an int specifying the reason. 
+
+*javax.print.event.PrintJobEvent.getPrintEventType()*
+
+public int getPrintEventType()
+
+Gets the reason for this event. 
+
+
+
+    Returns: 
+
+*javax.print.event.PrintJobEvent.getPrintJob()*
+
+public |javax.print.DocPrintJob| getPrintJob()
+
+Determines the DocPrintJob to which this print job event pertains. 
+
+
+
+    Returns: the DocPrintJob object that represents the print job that reports the events encapsulated by this PrintJobEvent. 
+
+

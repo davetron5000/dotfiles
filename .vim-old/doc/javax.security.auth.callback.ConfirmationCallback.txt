@@ -1,0 +1,291 @@
+*javax.security.auth.callback.ConfirmationCallback* *ConfirmationCallback*  Underlying security services instantiate and pass a
+ ConfirmationCallback to the handle
+ method of a Cal
+
+public class ConfirmationCallback
+  extends    |java.lang.Object|
+  implements |javax.security.auth.callback.Callback|
+             |java.io.Serializable|
+
+|javax.security.auth.callback.ConfirmationCallback_Description|
+|javax.security.auth.callback.ConfirmationCallback_Fields|
+|javax.security.auth.callback.ConfirmationCallback_Constructors|
+|javax.security.auth.callback.ConfirmationCallback_Methods|
+
+====================================================================================================================================================================================
+
+*javax.security.auth.callback.ConfirmationCallback_Fields*
+|int_javax.security.auth.callback.ConfirmationCallback.CANCEL|
+|int_javax.security.auth.callback.ConfirmationCallback.ERROR|
+|int_javax.security.auth.callback.ConfirmationCallback.INFORMATION|
+|int_javax.security.auth.callback.ConfirmationCallback.NO|
+|int_javax.security.auth.callback.ConfirmationCallback.OK|
+|int_javax.security.auth.callback.ConfirmationCallback.OK_CANCEL_OPTION|
+|int_javax.security.auth.callback.ConfirmationCallback.UNSPECIFIED_OPTION|
+|int_javax.security.auth.callback.ConfirmationCallback.WARNING|
+|int_javax.security.auth.callback.ConfirmationCallback.YES|
+|int_javax.security.auth.callback.ConfirmationCallback.YES_NO_CANCEL_OPTION|
+|int_javax.security.auth.callback.ConfirmationCallback.YES_NO_OPTION|
+
+*javax.security.auth.callback.ConfirmationCallback_Constructors*
+|javax.security.auth.callback.ConfirmationCallback(int,int,int)|Construct a ConfirmationCallback with a  message type, an option type and a default option.
+|javax.security.auth.callback.ConfirmationCallback(int,String[],int)|Construct a ConfirmationCallback with a  message type, a list of options and a default option.
+|javax.security.auth.callback.ConfirmationCallback(String,int,int,int)|Construct a ConfirmationCallback with a prompt,  message type, an option type and a default option.
+|javax.security.auth.callback.ConfirmationCallback(String,int,String[],int)|Construct a ConfirmationCallback with a prompt,  message type, a list of options and a default option.
+
+*javax.security.auth.callback.ConfirmationCallback_Methods*
+|javax.security.auth.callback.ConfirmationCallback.getDefaultOption()|Get the default option.
+|javax.security.auth.callback.ConfirmationCallback.getMessageType()|Get the message type.
+|javax.security.auth.callback.ConfirmationCallback.getOptions()|Get the confirmation options.
+|javax.security.auth.callback.ConfirmationCallback.getOptionType()|Get the option type.
+|javax.security.auth.callback.ConfirmationCallback.getPrompt()|Get the prompt.
+|javax.security.auth.callback.ConfirmationCallback.getSelectedIndex()|Get the selected confirmation option.
+|javax.security.auth.callback.ConfirmationCallback.setSelectedIndex(int)|Set the selected confirmation option.
+
+*javax.security.auth.callback.ConfirmationCallback_Description*
+
+Underlying security services instantiate and pass a ConfirmationCallback to the handle method of a CallbackHandler to ask for YES/NO, OK/CANCEL, YES/NO/CANCEL or other similar 
+confirmations. 
+
+
+
+*int_javax.security.auth.callback.ConfirmationCallback.CANCEL*
+
+CANCEL option. 
+
+If an optionType was specified to this ConfirmationCallback, this option may be specified as a defaultOption or returned as the selected index. 
+
+
+*int_javax.security.auth.callback.ConfirmationCallback.ERROR*
+
+ERROR message type. 
+
+
+*int_javax.security.auth.callback.ConfirmationCallback.INFORMATION*
+
+INFORMATION message type. 
+
+
+*int_javax.security.auth.callback.ConfirmationCallback.NO*
+
+NO option. 
+
+If an optionType was specified to this ConfirmationCallback, this option may be specified as a defaultOption or returned as the selected index. 
+
+
+*int_javax.security.auth.callback.ConfirmationCallback.OK*
+
+OK option. 
+
+If an optionType was specified to this ConfirmationCallback, this option may be specified as a defaultOption or returned as the selected index. 
+
+
+*int_javax.security.auth.callback.ConfirmationCallback.OK_CANCEL_OPTION*
+
+OK/CANCEL confirmation confirmation option. 
+
+An underlying security service specifies this as the optionType to a ConfirmationCallback constructor if it requires a confirmation which can be answered with either OK or CANCEL. 
+
+
+*int_javax.security.auth.callback.ConfirmationCallback.UNSPECIFIED_OPTION*
+
+Unspecified option type. 
+
+The getOptionType method returns this value if this ConfirmationCallback was instantiated with options instead of an optionType. 
+
+
+*int_javax.security.auth.callback.ConfirmationCallback.WARNING*
+
+WARNING message type. 
+
+
+*int_javax.security.auth.callback.ConfirmationCallback.YES*
+
+YES option. 
+
+If an optionType was specified to this ConfirmationCallback, this option may be specified as a defaultOption or returned as the selected index. 
+
+
+*int_javax.security.auth.callback.ConfirmationCallback.YES_NO_CANCEL_OPTION*
+
+YES/NO/CANCEL confirmation confirmation option. 
+
+An underlying security service specifies this as the optionType to a ConfirmationCallback constructor if it requires a confirmation which can be answered with either YES, NO or 
+CANCEL. 
+
+
+*int_javax.security.auth.callback.ConfirmationCallback.YES_NO_OPTION*
+
+YES/NO confirmation option. 
+
+An underlying security service specifies this as the optionType to a ConfirmationCallback constructor if it requires a confirmation which can be answered with either YES or NO. 
+
+
+
+*javax.security.auth.callback.ConfirmationCallback(int,int,int)*
+
+public ConfirmationCallback(
+  int messageType,
+  int optionType,
+  int defaultOption)
+
+Construct a ConfirmationCallback with a message type, an option type and a default option. 
+
+Underlying security services use this constructor if they require either a YES/NO, YES/NO/CANCEL or OK/CANCEL confirmation. 
+
+
+
+    messageType - the message type (INFORMATION, WARNING or ERROR). 
+    optionType - the option type (YES_NO_OPTION, YES_NO_CANCEL_OPTION or OK_CANCEL_OPTION). 
+    defaultOption - the default option from the provided optionType (YES, NO, CANCEL or OK). 
+
+*javax.security.auth.callback.ConfirmationCallback(int,String[],int)*
+
+public ConfirmationCallback(
+  int messageType,
+  java.lang.String[] options,
+  int defaultOption)
+
+Construct a ConfirmationCallback with a message type, a list of options and a default option. 
+
+Underlying security services use this constructor if they require a confirmation different from the available preset confirmations provided (for example, CONTINUE/ABORT or 
+STOP/GO). The confirmation options are listed in the options array, and are displayed by the CallbackHandler implementation in a manner consistent with the way preset options are 
+displayed. 
+
+
+
+    messageType - the message type (INFORMATION, WARNING or ERROR). 
+    options - the list of confirmation options. 
+    defaultOption - the default option, represented as an index into the options array. 
+
+*javax.security.auth.callback.ConfirmationCallback(String,int,int,int)*
+
+public ConfirmationCallback(
+  java.lang.String prompt,
+  int messageType,
+  int optionType,
+  int defaultOption)
+
+Construct a ConfirmationCallback with a prompt, message type, an option type and a default option. 
+
+Underlying security services use this constructor if they require either a YES/NO, YES/NO/CANCEL or OK/CANCEL confirmation. 
+
+
+
+    prompt - the prompt used to describe the list of options. 
+    messageType - the message type (INFORMATION, WARNING or ERROR). 
+    optionType - the option type (YES_NO_OPTION, YES_NO_CANCEL_OPTION or OK_CANCEL_OPTION). 
+    defaultOption - the default option from the provided optionType (YES, NO, CANCEL or OK). 
+
+*javax.security.auth.callback.ConfirmationCallback(String,int,String[],int)*
+
+public ConfirmationCallback(
+  java.lang.String prompt,
+  int messageType,
+  java.lang.String[] options,
+  int defaultOption)
+
+Construct a ConfirmationCallback with a prompt, message type, a list of options and a default option. 
+
+Underlying security services use this constructor if they require a confirmation different from the available preset confirmations provided (for example, CONTINUE/ABORT or 
+STOP/GO). The confirmation options are listed in the options array, and are displayed by the CallbackHandler implementation in a manner consistent with the way preset options are 
+displayed. 
+
+
+
+    prompt - the prompt used to describe the list of options. 
+    messageType - the message type (INFORMATION, WARNING or ERROR). 
+    options - the list of confirmation options. 
+    defaultOption - the default option, represented as an index into the options array. 
+
+*javax.security.auth.callback.ConfirmationCallback.getDefaultOption()*
+
+public int getDefaultOption()
+
+Get the default option. 
+
+
+
+
+
+    Returns: the default option, represented as YES, NO, OK or CANCEL if an optionType was specified to the constructor of this ConfirmationCallback. Otherwise, this method returns the default 
+             option as an index into the options array specified to the constructor of this ConfirmationCallback. 
+
+*javax.security.auth.callback.ConfirmationCallback.getMessageType()*
+
+public int getMessageType()
+
+Get the message type. 
+
+
+
+
+
+    Returns: the message type (INFORMATION, WARNING or ERROR). 
+
+*javax.security.auth.callback.ConfirmationCallback.getOptions()*
+
+public |java.lang.String|[] getOptions()
+
+Get the confirmation options. 
+
+
+
+
+
+    Returns: the list of confirmation options, or null if this ConfirmationCallback was instantiated with an optionType instead of options. 
+
+*javax.security.auth.callback.ConfirmationCallback.getOptionType()*
+
+public int getOptionType()
+
+Get the option type. 
+
+If this method returns UNSPECIFIED_OPTION, then this ConfirmationCallback was instantiated with options instead of an optionType. In this case, invoke the getOptions method to 
+determine which confirmation options to display. 
+
+
+
+
+
+    Returns: the option type (YES_NO_OPTION, YES_NO_CANCEL_OPTION or OK_CANCEL_OPTION), or UNSPECIFIED_OPTION if this ConfirmationCallback was instantiated with options instead of an 
+             optionType. 
+
+*javax.security.auth.callback.ConfirmationCallback.getPrompt()*
+
+public |java.lang.String| getPrompt()
+
+Get the prompt. 
+
+
+
+
+
+    Returns: the prompt, or null if this ConfirmationCallback was instantiated without a prompt. 
+
+*javax.security.auth.callback.ConfirmationCallback.getSelectedIndex()*
+
+public int getSelectedIndex()
+
+Get the selected confirmation option. 
+
+
+
+
+
+    Returns: the selected confirmation option represented as YES, NO, OK or CANCEL if an optionType was specified to the constructor of this ConfirmationCallback. Otherwise, this method 
+             returns the selected confirmation option as an index into the options array specified to the constructor of this ConfirmationCallback. 
+
+*javax.security.auth.callback.ConfirmationCallback.setSelectedIndex(int)*
+
+public void setSelectedIndex(int selection)
+
+Set the selected confirmation option. 
+
+
+
+
+    selection - the selection represented as YES, NO, OK or CANCEL if an optionType was specified to the constructor of this ConfirmationCallback. Otherwise, the selection represents the index 
+       into the options array specified to the constructor of this ConfirmationCallback. 
+
+

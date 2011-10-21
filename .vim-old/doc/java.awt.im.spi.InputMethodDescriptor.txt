@@ -1,0 +1,100 @@
+*java.awt.im.spi.InputMethodDescriptor* *InputMethodDescriptor* Defines methods that provide sufficient information about an input method
+ to enable selection and loading of that i
+
+public interface interface InputMethodDescriptor
+
+
+|java.awt.im.spi.InputMethodDescriptor_Description|
+|java.awt.im.spi.InputMethodDescriptor_Fields|
+|java.awt.im.spi.InputMethodDescriptor_Constructors|
+|java.awt.im.spi.InputMethodDescriptor_Methods|
+
+====================================================================================================================================================================================
+
+*java.awt.im.spi.InputMethodDescriptor_Methods*
+|java.awt.im.spi.InputMethodDescriptor.createInputMethod()|Creates a new instance of the corresponding input method.
+|java.awt.im.spi.InputMethodDescriptor.getAvailableLocales()|Returns the locales supported by the corresponding input method.
+|java.awt.im.spi.InputMethodDescriptor.getInputMethodDisplayName(Locale,Locale)|Returns the user-visible name of the corresponding  input method for the given input locale in the 
+|java.awt.im.spi.InputMethodDescriptor.getInputMethodIcon(Locale)|Returns an icon for the corresponding input method.
+|java.awt.im.spi.InputMethodDescriptor.hasDynamicLocaleList()|Returns whether the list of available locales can change  at runtime.
+
+*java.awt.im.spi.InputMethodDescriptor_Description*
+
+Defines methods that provide sufficient information about an input method to enable selection and loading of that input method. The input method itself is only loaded when it is 
+actually used. 
+
+
+
+*java.awt.im.spi.InputMethodDescriptor.createInputMethod()*
+
+public |java.awt.im.spi.InputMethod| createInputMethod()
+  throws |java.lang.Exception|
+         
+Creates a new instance of the corresponding input method. 
+
+
+
+    Returns: a new instance of the corresponding input method 
+
+*java.awt.im.spi.InputMethodDescriptor.getAvailableLocales()*
+
+public |java.util.Locale|[] getAvailableLocales()
+  throws |java.awt.AWTException|
+         
+Returns the locales supported by the corresponding input method. The locale may describe just the language, or may also include country and variant information if needed. The 
+information is used to select input methods by locale ( (|java.awt.im.InputContext|) ). It may also be used to sort input methods by locale in a user-visible list of input 
+methods. 
+
+Only the input method's primary locales should be returned. For example, if a Japanese input method also has a pass-through mode for Roman characters, typically still only 
+Japanese would be returned. Thus, the list of locales returned is typically a subset of the locales for which the corresponding input method's implementation of 
+(|java.awt.im.spi.InputMethod|) returns true. 
+
+If (|java.awt.im.spi.InputMethodDescriptor|) returns true, this method is called each time the information is needed. This gives input methods that depend on network resources the 
+chance to add or remove locales as resources become available or unavailable. 
+
+
+
+    Returns: the locales supported by the input method 
+
+*java.awt.im.spi.InputMethodDescriptor.getInputMethodDisplayName(Locale,Locale)*
+
+public |java.lang.String| getInputMethodDisplayName(
+  java.util.Locale inputLocale,
+  java.util.Locale displayLanguage)
+
+Returns the user-visible name of the corresponding input method for the given input locale in the language in which the name will be displayed. 
+
+The inputLocale parameter specifies the locale for which text is input. This parameter can only take values obtained from this descriptor's 
+(|java.awt.im.spi.InputMethodDescriptor|) method or null. If it is null, an input locale independent name for the input method should be returned. 
+
+If a name for the desired display language is not available, the method may fall back to some other language. 
+
+
+    inputLocale - the locale for which text input is supported, or null 
+    displayLanguage - the language in which the name will be displayed 
+
+*java.awt.im.spi.InputMethodDescriptor.getInputMethodIcon(Locale)*
+
+public |java.awt.Image| getInputMethodIcon(java.util.Locale inputLocale)
+
+Returns an icon for the corresponding input method. The icon may be used by a user interface for selecting input methods. 
+
+The inputLocale parameter specifies the locale for which text is input. This parameter can only take values obtained from this descriptor's 
+(|java.awt.im.spi.InputMethodDescriptor|) method or null. If it is null, an input locale independent icon for the input method should be returned. 
+
+The icon's size should be 1616 pixels. 
+
+
+    inputLocale - the locale for which text input is supported, or null 
+
+    Returns: an icon for the corresponding input method, or null 
+
+*java.awt.im.spi.InputMethodDescriptor.hasDynamicLocaleList()*
+
+public boolean hasDynamicLocaleList()
+
+Returns whether the list of available locales can change at runtime. This may be the case, for example, for adapters that access real input methods over the network. 
+
+
+
+

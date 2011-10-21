@@ -1,0 +1,570 @@
+*java.awt.Scrollbar* *Scrollbar* The Scrollbar class embodies a scroll bar, a
+ familiar user-interface object.
+
+public class Scrollbar
+  extends    |java.awt.Component|
+  implements |java.awt.Adjustable|
+             |javax.accessibility.Accessible|
+
+|java.awt.Scrollbar_Description|
+|java.awt.Scrollbar_Fields|
+|java.awt.Scrollbar_Constructors|
+|java.awt.Scrollbar_Methods|
+
+====================================================================================================================================================================================
+
+*java.awt.Scrollbar_Fields*
+|int_java.awt.Scrollbar.HORIZONTAL|
+|int_java.awt.Scrollbar.VERTICAL|
+
+*java.awt.Scrollbar_Constructors*
+|java.awt.Scrollbar()|Constructs a new vertical scroll bar.
+|java.awt.Scrollbar(int)|Constructs a new scroll bar with the specified orientation.
+|java.awt.Scrollbar(int,int,int,int,int)|Constructs a new scroll bar with the specified orientation,  initial value, visible amount, and minimum and maximum values.
+
+*java.awt.Scrollbar_Methods*
+|java.awt.Scrollbar.addAdjustmentListener(AdjustmentListener)|Adds the specified adjustment listener to receive instances of  AdjustmentEvent from this scroll bar.
+|java.awt.Scrollbar.addNotify()|Creates the Scrollbar's peer.
+|java.awt.Scrollbar.getAccessibleContext()|Gets the AccessibleContext associated with this   Scrollbar.
+|java.awt.Scrollbar.getAdjustmentListeners()|Returns an array of all the adjustment listeners  registered on this scrollbar.
+|java.awt.Scrollbar.getBlockIncrement()|Gets the block increment of this scroll bar.
+|java.awt.Scrollbar.getLineIncrement()|
+|java.awt.Scrollbar.getListeners(Class<T>)|Returns an array of all the objects currently registered  as FooListeners  upon this Scrollbar.
+|java.awt.Scrollbar.getMaximum()|Gets the maximum value of this scroll bar.
+|java.awt.Scrollbar.getMinimum()|Gets the minimum value of this scroll bar.
+|java.awt.Scrollbar.getOrientation()|Returns the orientation of this scroll bar.
+|java.awt.Scrollbar.getPageIncrement()|
+|java.awt.Scrollbar.getUnitIncrement()|Gets the unit increment for this scrollbar.
+|java.awt.Scrollbar.getValue()|Gets the current value of this scroll bar.
+|java.awt.Scrollbar.getValueIsAdjusting()|Returns true if the value is in the process of changing as a  result of actions being taken by the user.
+|java.awt.Scrollbar.getVisible()|
+|java.awt.Scrollbar.getVisibleAmount()|Gets the visible amount of this scroll bar.
+|java.awt.Scrollbar.paramString()|Returns a string representing the state of this Scrollbar.
+|java.awt.Scrollbar.processAdjustmentEvent(AdjustmentEvent)|Processes adjustment events occurring on this  scrollbar by dispatching them to any registered  AdjustmentListener obje
+|java.awt.Scrollbar.processEvent(AWTEvent)|Processes events on this scroll bar.
+|java.awt.Scrollbar.removeAdjustmentListener(AdjustmentListener)|Removes the specified adjustment listener so that it no longer  receives instances of AdjustmentEvent from this sc
+|java.awt.Scrollbar.setBlockIncrement(int)|Sets the block increment for this scroll bar.
+|java.awt.Scrollbar.setLineIncrement(int)|
+|java.awt.Scrollbar.setMaximum(int)|Sets the maximum value of this scroll bar.
+|java.awt.Scrollbar.setMinimum(int)|Sets the minimum value of this scroll bar.
+|java.awt.Scrollbar.setOrientation(int)|Sets the orientation for this scroll bar.
+|java.awt.Scrollbar.setPageIncrement(int)|
+|java.awt.Scrollbar.setUnitIncrement(int)|Sets the unit increment for this scroll bar.
+|java.awt.Scrollbar.setValue(int)|Sets the value of this scroll bar to the specified value.
+|java.awt.Scrollbar.setValueIsAdjusting(boolean)|Sets the valueIsAdjusting property.
+|java.awt.Scrollbar.setValues(int,int,int,int)|Sets the values of four properties for this scroll bar:   value, visibleAmount,   minimum, and maximum.
+|java.awt.Scrollbar.setVisibleAmount(int)|Sets the visible amount of this scroll bar.
+
+*java.awt.Scrollbar_Description*
+
+The Scrollbar class embodies a scroll bar, a familiar user-interface object. A scroll bar provides a convenient means for allowing a user to select from a range of values. The 
+following three vertical scroll bars could be used as slider controls to pick the red, green, and blue components of a color: 
+
+
+
+Each scroll bar in this example could be created with code similar to the following: 
+
+
+
+redSlider=new Scrollbar(Scrollbar.VERTICAL, 0, 1, 0, 255); add(redSlider); 
+
+Alternatively, a scroll bar can represent a range of values. For example, if a scroll bar is used for scrolling through text, the width of the "bubble" (also called the "thumb" or 
+"scroll box") can be used to represent the amount of text that is visible. Here is an example of a scroll bar that represents a range: 
+
+
+
+The value range represented by the bubble in this example is the visible amount. The horizontal scroll bar in this example could be created with code like the following: 
+
+
+
+ranger = new Scrollbar(Scrollbar.HORIZONTAL, 0, 60, 0, 300); add(ranger); 
+
+Note that the actual maximum value of the scroll bar is the maximum minus the visible amount. In the previous example, because the maximum is 300 and the visible amount is 60, the 
+actual maximum value is 240. The range of the scrollbar track is 0 - 300. The left side of the bubble indicates the value of the scroll bar. 
+
+Normally, the user changes the value of the scroll bar by making a gesture with the mouse. For example, the user can drag the scroll bar's bubble up and down, or click in the 
+scroll bar's unit increment or block increment areas. Keyboard gestures can also be mapped to the scroll bar. By convention, the PageUp and PageDown keys are equivalent to 
+clicking in the scroll bar's block increment and block decrement areas. 
+
+When the user changes the value of the scroll bar, the scroll bar receives an instance of AdjustmentEvent. The scroll bar processes this event, passing it along to any registered 
+listeners. 
+
+Any object that wishes to be notified of changes to the scroll bar's value should implement AdjustmentListener, an interface defined in the package java.awt.event. Listeners can 
+be added and removed dynamically by calling the methods addAdjustmentListener and removeAdjustmentListener. 
+
+The AdjustmentEvent class defines five types of adjustment event, listed here: 
+
+AdjustmentEvent.TRACK is sent out when the user drags the scroll bar's bubble. AdjustmentEvent.UNIT_INCREMENT is sent out when the user clicks in the left arrow of a horizontal 
+scroll bar, or the top arrow of a vertical scroll bar, or makes the equivalent gesture from the keyboard. AdjustmentEvent.UNIT_DECREMENT is sent out when the user clicks in the 
+right arrow of a horizontal scroll bar, or the bottom arrow of a vertical scroll bar, or makes the equivalent gesture from the keyboard. AdjustmentEvent.BLOCK_INCREMENT is sent 
+out when the user clicks in the track, to the left of the bubble on a horizontal scroll bar, or above the bubble on a vertical scroll bar. By convention, the PageUp key is 
+equivalent, if the user is using a keyboard that defines a PageUp key. AdjustmentEvent.BLOCK_DECREMENT is sent out when the user clicks in the track, to the right of the bubble on 
+a horizontal scroll bar, or below the bubble on a vertical scroll bar. By convention, the PageDown key is equivalent, if the user is using a keyboard that defines a PageDown key. 
+
+The JDK1.0 event system is supported for backwards compatibility, but its use with newer versions of the platform is discouraged. The five types of adjustment events introduced 
+with JDK1.1 correspond to the five event types that are associated with scroll bars in previous platform versions. The following list gives the adjustment event type, and the 
+corresponding JDK1.0 event type it replaces. 
+
+AdjustmentEvent.TRACK replaces Event.SCROLL_ABSOLUTE AdjustmentEvent.UNIT_INCREMENT replaces Event.SCROLL_LINE_UP AdjustmentEvent.UNIT_DECREMENT replaces Event.SCROLL_LINE_DOWN 
+AdjustmentEvent.BLOCK_INCREMENT replaces Event.SCROLL_PAGE_UP AdjustmentEvent.BLOCK_DECREMENT replaces Event.SCROLL_PAGE_DOWN 
+
+Note: We recommend using a Scrollbar for value selection only. If you want to implement a scrollable component inside a container, we recommend you use a 
+ScrollPane(|java.awt.ScrollPane|) . If you use a Scrollbar for this purpose, you are likely to encounter issues with painting, key handling, sizing and positioning. 
+
+
+
+*int_java.awt.Scrollbar.HORIZONTAL*
+
+A constant that indicates a horizontal scroll bar. 
+
+
+*int_java.awt.Scrollbar.VERTICAL*
+
+A constant that indicates a vertical scroll bar. 
+
+
+
+*java.awt.Scrollbar()*
+
+public Scrollbar()
+  throws |java.awt.HeadlessException|
+         
+Constructs a new vertical scroll bar. The default properties of the scroll bar are listed in the following table: 
+
+
+
+Property Description Default Value 
+
+orientation indicates whether the scroll bar is vertical or horizontal Scrollbar.VERTICAL 
+
+value value which controls the location of the scroll bar's bubble 0 
+
+visible amount visible amount of the scroll bar's range, typically represented by the size of the scroll bar's bubble 10 
+
+minimum minimum value of the scroll bar 0 
+
+maximum maximum value of the scroll bar 100 
+
+unit increment amount the value changes when the Line Up or Line Down key is pressed, or when the end arrows of the scrollbar are clicked 1 
+
+block increment amount the value changes when the Page Up or Page Down key is pressed, or when the scrollbar track is clicked on either side of the bubble 10 
+
+
+
+
+*java.awt.Scrollbar(int)*
+
+public Scrollbar(int orientation)
+  throws |java.awt.HeadlessException|
+         
+Constructs a new scroll bar with the specified orientation. 
+
+The orientation argument must take one of the two values Scrollbar.HORIZONTAL, or Scrollbar.VERTICAL, indicating a horizontal or vertical scroll bar, respectively. 
+
+    orientation - indicates the orientation of the scroll bar 
+
+*java.awt.Scrollbar(int,int,int,int,int)*
+
+public Scrollbar(
+  int orientation,
+  int value,
+  int visible,
+  int minimum,
+  int maximum)
+  throws |java.awt.HeadlessException|
+         
+Constructs a new scroll bar with the specified orientation, initial value, visible amount, and minimum and maximum values. 
+
+The orientation argument must take one of the two values Scrollbar.HORIZONTAL, or Scrollbar.VERTICAL, indicating a horizontal or vertical scroll bar, respectively. 
+
+The parameters supplied to this constructor are subject to the constraints described in (|java.awt.Scrollbar|) . 
+
+    orientation - indicates the orientation of the scroll bar. 
+    value - the initial value of the scroll bar 
+    visible - the visible amount of the scroll bar, typically represented by the size of the bubble 
+    minimum - the minimum value of the scroll bar 
+    maximum - the maximum value of the scroll bar 
+
+*java.awt.Scrollbar.addAdjustmentListener(AdjustmentListener)*
+
+public synchronized void addAdjustmentListener(java.awt.event.AdjustmentListener l)
+
+Adds the specified adjustment listener to receive instances of AdjustmentEvent from this scroll bar. If l is null, no exception is thrown and no action is performed. 
+
+
+    l - the adjustment listener 
+
+*java.awt.Scrollbar.addNotify()*
+
+public void addNotify()
+
+Creates the Scrollbar's peer. The peer allows you to modify the appearance of the Scrollbar without changing any of its functionality. 
+
+
+
+*java.awt.Scrollbar.getAccessibleContext()*
+
+public |javax.accessibility.AccessibleContext| getAccessibleContext()
+
+Gets the AccessibleContext associated with this Scrollbar. For scrollbars, the AccessibleContext takes the form of an AccessibleAWTScrollBar. A new AccessibleAWTScrollBar instance 
+is created if necessary. 
+
+
+
+    Returns: an AccessibleAWTScrollBar that serves as the AccessibleContext of this ScrollBar 
+
+*java.awt.Scrollbar.getAdjustmentListeners()*
+
+public synchronized |java.awt.event.AdjustmentListener|[] getAdjustmentListeners()
+
+Returns an array of all the adjustment listeners registered on this scrollbar. 
+
+
+
+    Returns: all of this scrollbar's AdjustmentListeners or an empty array if no adjustment listeners are currently registered 
+
+*java.awt.Scrollbar.getBlockIncrement()*
+
+public int getBlockIncrement()
+
+Gets the block increment of this scroll bar. 
+
+The block increment is the value that is added or subtracted when the user activates the block increment area of the scroll bar, generally through a mouse or keyboard gesture that 
+the scroll bar receives as an adjustment event. The block increment must be greater than zero. 
+
+
+
+    Returns: the block increment of this scroll bar 
+
+*java.awt.Scrollbar.getLineIncrement()*
+
+public int getLineIncrement()
+
+
+
+    Deprecated: As of JDK version 1.1,
+ replaced by <code>getUnitIncrement()</code>.
+
+
+*java.awt.Scrollbar.getListeners(Class<T>)*
+
+public |T|[] getListeners(java.lang.Class<T> listenerType)
+
+Returns an array of all the objects currently registered as FooListeners upon this Scrollbar. FooListeners are registered using the addFooListener method. 
+
+You can specify the listenerType argument with a class literal, such as FooListener.class. For example, you can query a Scrollbar c for its mouse listeners with the following 
+code: 
+
+MouseListener[] mls = (MouseListener[])(c.getListeners(MouseListener.class)); 
+
+If no such listeners exist, this method returns an empty array. 
+
+
+    listenerType - the type of listeners requested; this parameter should specify an interface that descends from java.util.EventListener 
+
+    Returns: an array of all objects registered as FooListeners on this component, or an empty array if no such listeners have been added 
+
+*java.awt.Scrollbar.getMaximum()*
+
+public int getMaximum()
+
+Gets the maximum value of this scroll bar. 
+
+
+
+    Returns: the maximum value of this scroll bar 
+
+*java.awt.Scrollbar.getMinimum()*
+
+public int getMinimum()
+
+Gets the minimum value of this scroll bar. 
+
+
+
+    Returns: the minimum value of this scroll bar 
+
+*java.awt.Scrollbar.getOrientation()*
+
+public int getOrientation()
+
+Returns the orientation of this scroll bar. 
+
+
+
+    Returns: the orientation of this scroll bar, either Scrollbar.HORIZONTAL or Scrollbar.VERTICAL 
+
+*java.awt.Scrollbar.getPageIncrement()*
+
+public int getPageIncrement()
+
+
+
+    Deprecated: As of JDK version 1.1,
+ replaced by <code>getBlockIncrement()</code>.
+
+
+*java.awt.Scrollbar.getUnitIncrement()*
+
+public int getUnitIncrement()
+
+Gets the unit increment for this scrollbar. 
+
+The unit increment is the value that is added or subtracted when the user activates the unit increment area of the scroll bar, generally through a mouse or keyboard gesture that 
+the scroll bar receives as an adjustment event. The unit increment must be greater than zero. 
+
+
+
+    Returns: the unit increment of this scroll bar 
+
+*java.awt.Scrollbar.getValue()*
+
+public int getValue()
+
+Gets the current value of this scroll bar. 
+
+
+
+    Returns: the current value of this scroll bar 
+
+*java.awt.Scrollbar.getValueIsAdjusting()*
+
+public boolean getValueIsAdjusting()
+
+Returns true if the value is in the process of changing as a result of actions being taken by the user. 
+
+
+
+    Returns: the value of the valueIsAdjusting property 
+
+*java.awt.Scrollbar.getVisible()*
+
+public int getVisible()
+
+
+
+    Deprecated: As of JDK version 1.1,
+ replaced by <code>getVisibleAmount()</code>.
+
+
+*java.awt.Scrollbar.getVisibleAmount()*
+
+public int getVisibleAmount()
+
+Gets the visible amount of this scroll bar. 
+
+When a scroll bar is used to select a range of values, the visible amount is used to represent the range of values that are currently visible. The size of the scroll bar's bubble 
+(also called a thumb or scroll box), usually gives a visual representation of the relationship of the visible amount to the range of the scroll bar. 
+
+The scroll bar's bubble may not be displayed when it is not moveable (e.g. when it takes up the entire length of the scroll bar's track, or when the scroll bar is disabled). 
+Whether the bubble is displayed or not will not affect the value returned by getVisibleAmount. 
+
+
+
+    Returns: the visible amount of this scroll bar 
+
+*java.awt.Scrollbar.paramString()*
+
+protected |java.lang.String| paramString()
+
+Returns a string representing the state of this Scrollbar. This method is intended to be used only for debugging purposes, and the content and format of the returned string may 
+vary between implementations. The returned string may be empty but may not be null. 
+
+
+
+    Returns: the parameter string of this scroll bar 
+
+*java.awt.Scrollbar.processAdjustmentEvent(AdjustmentEvent)*
+
+protected void processAdjustmentEvent(java.awt.event.AdjustmentEvent e)
+
+Processes adjustment events occurring on this scrollbar by dispatching them to any registered AdjustmentListener objects. 
+
+This method is not called unless adjustment events are enabled for this component. Adjustment events are enabled when one of the following occurs: 
+
+An AdjustmentListener object is registered via addAdjustmentListener. Adjustment events are enabled via enableEvents. 
+
+Note that if the event parameter is null the behavior is unspecified and may result in an exception. 
+
+
+    e - the adjustment event 
+
+*java.awt.Scrollbar.processEvent(AWTEvent)*
+
+protected void processEvent(java.awt.AWTEvent e)
+
+Processes events on this scroll bar. If the event is an instance of AdjustmentEvent, it invokes the processAdjustmentEvent method. Otherwise, it invokes its superclass's 
+processEvent method. Note that if the event parameter is null the behavior is unspecified and may result in an exception. 
+
+
+    e - the event 
+
+*java.awt.Scrollbar.removeAdjustmentListener(AdjustmentListener)*
+
+public synchronized void removeAdjustmentListener(java.awt.event.AdjustmentListener l)
+
+Removes the specified adjustment listener so that it no longer receives instances of AdjustmentEvent from this scroll bar. If l is null, no exception is thrown and no action is 
+performed. 
+
+
+    l - the adjustment listener 
+
+*java.awt.Scrollbar.setBlockIncrement(int)*
+
+public void setBlockIncrement(int v)
+
+Sets the block increment for this scroll bar. 
+
+The block increment is the value that is added or subtracted when the user activates the block increment area of the scroll bar, generally through a mouse or keyboard gesture that 
+the scroll bar receives as an adjustment event. The block increment must be greater than zero. Attepts to set the block increment to a value lower than 1 will result in a value of 
+1 being set. 
+
+
+    v - the amount by which to increment or decrement the scroll bar's value 
+
+*java.awt.Scrollbar.setLineIncrement(int)*
+
+public synchronized void setLineIncrement(int v)
+
+
+
+    Deprecated: As of JDK version 1.1,
+ replaced by <code>setUnitIncrement(int)</code>.
+
+
+*java.awt.Scrollbar.setMaximum(int)*
+
+public void setMaximum(int newMaximum)
+
+Sets the maximum value of this scroll bar. 
+
+When setMaximum is called, the maximum value is changed, and other values (including the minimum, the visible amount, and the current scroll bar value) are changed to be 
+consistent with the new maximum. 
+
+Normally, a program should change a scroll bar's maximum value only by calling setValues. The setValues method simultaneously and synchronously sets the minimum, maximum, visible 
+amount, and value properties of a scroll bar, so that they are mutually consistent. 
+
+Note that setting the maximum value to Integer.MIN_VALUE will result in the new maximum value being set to Integer.MIN_VALUE + 1. 
+
+
+    newMaximum - the new maximum value for this scroll bar 
+
+*java.awt.Scrollbar.setMinimum(int)*
+
+public void setMinimum(int newMinimum)
+
+Sets the minimum value of this scroll bar. 
+
+When setMinimum is called, the minimum value is changed, and other values (including the maximum, the visible amount, and the current scroll bar value) are changed to be 
+consistent with the new minimum. 
+
+Normally, a program should change a scroll bar's minimum value only by calling setValues. The setValues method simultaneously and synchronously sets the minimum, maximum, visible 
+amount, and value properties of a scroll bar, so that they are mutually consistent. 
+
+Note that setting the minimum value to Integer.MAX_VALUE will result in the new minimum value being set to Integer.MAX_VALUE - 1. 
+
+
+    newMinimum - the new minimum value for this scroll bar 
+
+*java.awt.Scrollbar.setOrientation(int)*
+
+public void setOrientation(int orientation)
+
+Sets the orientation for this scroll bar. 
+
+
+    orientation - the orientation of this scroll bar, either Scrollbar.HORIZONTAL or Scrollbar.VERTICAL 
+
+*java.awt.Scrollbar.setPageIncrement(int)*
+
+public synchronized void setPageIncrement(int v)
+
+
+
+    Deprecated: As of JDK version 1.1,
+ replaced by <code>setBlockIncrement()</code>.
+
+
+*java.awt.Scrollbar.setUnitIncrement(int)*
+
+public void setUnitIncrement(int v)
+
+Sets the unit increment for this scroll bar. 
+
+The unit increment is the value that is added or subtracted when the user activates the unit increment area of the scroll bar, generally through a mouse or keyboard gesture that 
+the scroll bar receives as an adjustment event. The unit increment must be greater than zero. Attepts to set the unit increment to a value lower than 1 will result in a value of 1 
+being set. 
+
+
+    v - the amount by which to increment or decrement the scroll bar's value 
+
+*java.awt.Scrollbar.setValue(int)*
+
+public void setValue(int newValue)
+
+Sets the value of this scroll bar to the specified value. 
+
+If the value supplied is less than the current minimum or greater than the current maximum - visibleAmount, then either minimum or maximum - visibleAmount is substituted, as 
+appropriate. 
+
+Normally, a program should change a scroll bar's value only by calling setValues. The setValues method simultaneously and synchronously sets the minimum, maximum, visible amount, 
+and value properties of a scroll bar, so that they are mutually consistent. 
+
+Calling this method does not fire an AdjustmentEvent. 
+
+
+    newValue - the new value of the scroll bar 
+
+*java.awt.Scrollbar.setValueIsAdjusting(boolean)*
+
+public void setValueIsAdjusting(boolean b)
+
+Sets the valueIsAdjusting property. 
+
+
+    b - new adjustment-in-progress status 
+
+*java.awt.Scrollbar.setValues(int,int,int,int)*
+
+public void setValues(
+  int value,
+  int visible,
+  int minimum,
+  int maximum)
+
+Sets the values of four properties for this scroll bar: value, visibleAmount, minimum, and maximum. If the values supplied for these properties are inconsistent or incorrect, they 
+will be changed to ensure consistency. 
+
+This method simultaneously and synchronously sets the values of four scroll bar properties, assuring that the values of these properties are mutually consistent. It enforces the 
+following constraints: maximum must be greater than minimum, maximum - minimum must not be greater than Integer.MAX_VALUE, visibleAmount must be greater than zero. visibleAmount 
+must not be greater than maximum - minimum, value must not be less than minimum, and value must not be greater than maximum - visibleAmount 
+
+Calling this method does not fire an AdjustmentEvent. 
+
+
+    value - is the position in the current window 
+    visible - is the visible amount of the scroll bar 
+    minimum - is the minimum value of the scroll bar 
+    maximum - is the maximum value of the scroll bar 
+
+*java.awt.Scrollbar.setVisibleAmount(int)*
+
+public void setVisibleAmount(int newAmount)
+
+Sets the visible amount of this scroll bar. 
+
+When a scroll bar is used to select a range of values, the visible amount is used to represent the range of values that are currently visible. The size of the scroll bar's bubble 
+(also called a thumb or scroll box), usually gives a visual representation of the relationship of the visible amount to the range of the scroll bar. 
+
+The scroll bar's bubble may not be displayed when it is not moveable (e.g. when it takes up the entire length of the scroll bar's track, or when the scroll bar is disabled). 
+Whether the bubble is displayed or not will not affect the value returned by getVisibleAmount. 
+
+If the visible amount supplied is less than one or greater than the current maximum - minimum, then either one or maximum - minimum is substituted, as appropriate. 
+
+Normally, a program should change a scroll bar's value only by calling setValues. The setValues method simultaneously and synchronously sets the minimum, maximum, visible amount, 
+and value properties of a scroll bar, so that they are mutually consistent. 
+
+
+    newAmount - the new visible amount 
+
+

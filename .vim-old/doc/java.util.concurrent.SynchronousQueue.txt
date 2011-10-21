@@ -1,0 +1,304 @@
+*java.util.concurrent.SynchronousQueue* *SynchronousQueue* ABlockingQueue blocking queuein which each
+ put must wait for a take, and vice versa.
+
+public class SynchronousQueue<E>
+  extends    |java.util.AbstractQueue|
+  implements |java.util.concurrent.BlockingQueue|
+             |java.io.Serializable|
+
+|java.util.concurrent.SynchronousQueue_Description|
+|java.util.concurrent.SynchronousQueue_Fields|
+|java.util.concurrent.SynchronousQueue_Constructors|
+|java.util.concurrent.SynchronousQueue_Methods|
+
+====================================================================================================================================================================================
+
+*java.util.concurrent.SynchronousQueue_Constructors*
+|java.util.concurrent.SynchronousQueue()|Creates a SynchronousQueue with nonfair access policy.
+|java.util.concurrent.SynchronousQueue(boolean)|Creates a SynchronousQueue with specified fairness policy.
+
+*java.util.concurrent.SynchronousQueue_Methods*
+|java.util.concurrent.SynchronousQueue.clear()|Does nothing.
+|java.util.concurrent.SynchronousQueue.contains(Object)|Always returns false.
+|java.util.concurrent.SynchronousQueue.containsAll(Collection<?>)|Returns false unless given collection is empty.
+|java.util.concurrent.SynchronousQueue.drainTo(Collection<?superE>)|
+|java.util.concurrent.SynchronousQueue.drainTo(Collection<?superE>,int)|
+|java.util.concurrent.SynchronousQueue.isEmpty()|Always returns true.
+|java.util.concurrent.SynchronousQueue.iterator()|Returns an empty iterator in which hasNext always returns  false.
+|java.util.concurrent.SynchronousQueue.offer(E)|Inserts the specified element into this queue, if another thread is  waiting to receive it.
+|java.util.concurrent.SynchronousQueue.offer(E,long,TimeUnit)|Inserts the specified element into this queue, waiting if necessary  up to the specified wait time for another thread
+|java.util.concurrent.SynchronousQueue.peek()|Always returns null.
+|java.util.concurrent.SynchronousQueue.poll()|Retrieves and removes the head of this queue, if another thread  is currently making an element available.
+|java.util.concurrent.SynchronousQueue.poll(long,TimeUnit)|Retrieves and removes the head of this queue, waiting  if necessary up to the specified wait time, for another thread  t
+|java.util.concurrent.SynchronousQueue.put(E)|Adds the specified element to this queue, waiting if necessary for  another thread to receive it.
+|java.util.concurrent.SynchronousQueue.remainingCapacity()|Always returns zero.
+|java.util.concurrent.SynchronousQueue.remove(Object)|Always returns false.
+|java.util.concurrent.SynchronousQueue.removeAll(Collection<?>)|Always returns false.
+|java.util.concurrent.SynchronousQueue.retainAll(Collection<?>)|Always returns false.
+|java.util.concurrent.SynchronousQueue.size()|Always returns zero.
+|java.util.concurrent.SynchronousQueue.take()|Retrieves and removes the head of this queue, waiting if necessary  for another thread to insert it.
+|java.util.concurrent.SynchronousQueue.toArray()|Returns a zero-length array.
+|java.util.concurrent.SynchronousQueue.toArray(T[])|Sets the zeroeth element of the specified array to null  (if the array has non-zero length) and returns it.
+
+*java.util.concurrent.SynchronousQueue_Description*
+
+A blocking queue(|java.util.concurrent.BlockingQueue|) in which each put must wait for a take, and vice versa. A synchronous queue does not have any internal capacity, not even a 
+capacity of one. You cannot peek at a synchronous queue because an element is only present when you try to take it; you cannot add an element (using any method) unless another 
+thread is trying to remove it; you cannot iterate as there is nothing to iterate. The head of the queue is the element that the first queued thread is trying to add to the queue; 
+if there are no queued threads then no element is being added and the head is null. For purposes of other Collection methods (for example contains), a SynchronousQueue acts as an 
+empty collection. This queue does not permit null elements. 
+
+Synchronous queues are similar to rendezvous channels used in CSP and Ada. They are well suited for handoff designs, in which an object running in one thread must sync up with an 
+object running in another thread in order to hand it some information, event, or task. 
+
+This class supports an optional fairness policy for ordering waiting producer and consumer threads. By default, this ordering is not guaranteed. However, a queue constructed with 
+fairness set to true grants threads access in FIFO order. Fairness generally decreases throughput but reduces variability and avoids starvation. 
+
+This class and its iterator implement all of the optional methods of the (|java.util.Collection|) and (|java.util.Iterator|) interfaces. 
+
+This class is a member of the <a href="/../guide/collections/index.html"> Java Collections Framework. 
+
+
+
+*java.util.concurrent.SynchronousQueue()*
+
+public SynchronousQueue()
+
+Creates a SynchronousQueue with nonfair access policy. 
+
+
+*java.util.concurrent.SynchronousQueue(boolean)*
+
+public SynchronousQueue(boolean fair)
+
+Creates a SynchronousQueue with specified fairness policy. 
+
+    fair - if true, threads contend in FIFO order for access; otherwise the order is unspecified. 
+
+*java.util.concurrent.SynchronousQueue.clear()*
+
+public void clear()
+
+Does nothing. A SynchronousQueue has no internal capacity. 
+
+
+
+*java.util.concurrent.SynchronousQueue.contains(Object)*
+
+public boolean contains(java.lang.Object o)
+
+Always returns false. A SynchronousQueue has no internal capacity. 
+
+
+    o - the element 
+
+    Returns: 
+
+*java.util.concurrent.SynchronousQueue.containsAll(Collection<?>)*
+
+public boolean containsAll(java.util.Collection<?> c)
+
+Returns false unless given collection is empty. A SynchronousQueue has no internal capacity. 
+
+
+    c - the collection 
+
+    Returns: false unless given collection is empty 
+
+*java.util.concurrent.SynchronousQueue.drainTo(Collection<?superE>)*
+
+public int drainTo(java.util.Collection<? super E> c)
+
+
+
+
+
+*java.util.concurrent.SynchronousQueue.drainTo(Collection<?superE>,int)*
+
+public int drainTo(
+  java.util.Collection<? super E> c,
+  int maxElements)
+
+
+
+
+
+*java.util.concurrent.SynchronousQueue.isEmpty()*
+
+public boolean isEmpty()
+
+Always returns true. A SynchronousQueue has no internal capacity. 
+
+
+
+    Returns: 
+
+*java.util.concurrent.SynchronousQueue.iterator()*
+
+public |java.util.Iterator|<E> iterator()
+
+Returns an empty iterator in which hasNext always returns false. 
+
+
+
+    Returns: an empty iterator 
+
+*java.util.concurrent.SynchronousQueue.offer(E)*
+
+public boolean offer(E o)
+
+Inserts the specified element into this queue, if another thread is waiting to receive it. 
+
+
+    o - the element to add. 
+
+    Returns: true if it was possible to add the element to this queue, else false 
+
+*java.util.concurrent.SynchronousQueue.offer(E,long,TimeUnit)*
+
+public boolean offer(
+  E o,
+  long timeout,
+  java.util.concurrent.TimeUnit unit)
+  throws |java.lang.InterruptedException|
+         
+Inserts the specified element into this queue, waiting if necessary up to the specified wait time for another thread to receive it. 
+
+
+    o - the element to add 
+    timeout - how long to wait before giving up, in units of unit 
+    unit - a TimeUnit determining how to interpret the timeout parameter 
+
+    Returns: true if successful, or false if the specified waiting time elapses before a consumer appears. 
+
+*java.util.concurrent.SynchronousQueue.peek()*
+
+public |E| peek()
+
+Always returns null. A SynchronousQueue does not return elements unless actively waited on. 
+
+
+
+    Returns: 
+
+*java.util.concurrent.SynchronousQueue.poll()*
+
+public |E| poll()
+
+Retrieves and removes the head of this queue, if another thread is currently making an element available. 
+
+
+
+    Returns: the head of this queue, or null if no element is available. 
+
+*java.util.concurrent.SynchronousQueue.poll(long,TimeUnit)*
+
+public |E| poll(
+  long timeout,
+  java.util.concurrent.TimeUnit unit)
+  throws |java.lang.InterruptedException|
+         
+Retrieves and removes the head of this queue, waiting if necessary up to the specified wait time, for another thread to insert it. 
+
+
+    timeout - how long to wait before giving up, in units of unit 
+    unit - a TimeUnit determining how to interpret the timeout parameter 
+
+    Returns: the head of this queue, or null if the specified waiting time elapses before an element is present. 
+
+*java.util.concurrent.SynchronousQueue.put(E)*
+
+public void put(E o)
+  throws |java.lang.InterruptedException|
+         
+Adds the specified element to this queue, waiting if necessary for another thread to receive it. 
+
+
+    o - the element to add 
+
+*java.util.concurrent.SynchronousQueue.remainingCapacity()*
+
+public int remainingCapacity()
+
+Always returns zero. A SynchronousQueue has no internal capacity. 
+
+
+
+    Returns: 
+
+*java.util.concurrent.SynchronousQueue.remove(Object)*
+
+public boolean remove(java.lang.Object o)
+
+Always returns false. A SynchronousQueue has no internal capacity. 
+
+
+    o - the element to remove 
+
+    Returns: 
+
+*java.util.concurrent.SynchronousQueue.removeAll(Collection<?>)*
+
+public boolean removeAll(java.util.Collection<?> c)
+
+Always returns false. A SynchronousQueue has no internal capacity. 
+
+
+    c - the collection 
+
+    Returns: 
+
+*java.util.concurrent.SynchronousQueue.retainAll(Collection<?>)*
+
+public boolean retainAll(java.util.Collection<?> c)
+
+Always returns false. A SynchronousQueue has no internal capacity. 
+
+
+    c - the collection 
+
+    Returns: 
+
+*java.util.concurrent.SynchronousQueue.size()*
+
+public int size()
+
+Always returns zero. A SynchronousQueue has no internal capacity. 
+
+
+
+    Returns: 
+
+*java.util.concurrent.SynchronousQueue.take()*
+
+public |E| take()
+  throws |java.lang.InterruptedException|
+         
+Retrieves and removes the head of this queue, waiting if necessary for another thread to insert it. 
+
+
+
+    Returns: the head of this queue 
+
+*java.util.concurrent.SynchronousQueue.toArray()*
+
+public |java.lang.Object|[] toArray()
+
+Returns a zero-length array. 
+
+
+
+    Returns: a zero-length array 
+
+*java.util.concurrent.SynchronousQueue.toArray(T[])*
+
+public |T|[] toArray(T[] a)
+
+Sets the zeroeth element of the specified array to null (if the array has non-zero length) and returns it. 
+
+
+    a - the array 
+
+    Returns: the specified array 
+
+

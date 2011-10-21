@@ -1,0 +1,244 @@
+*java.util.concurrent.LinkedBlockingQueue* *LinkedBlockingQueue* An optionally-boundedBlockingQueue blocking queuebased on
+ linked nodes.
+
+public class LinkedBlockingQueue<E>
+  extends    |java.util.AbstractQueue|
+  implements |java.util.concurrent.BlockingQueue|
+             |java.io.Serializable|
+
+|java.util.concurrent.LinkedBlockingQueue_Description|
+|java.util.concurrent.LinkedBlockingQueue_Fields|
+|java.util.concurrent.LinkedBlockingQueue_Constructors|
+|java.util.concurrent.LinkedBlockingQueue_Methods|
+
+====================================================================================================================================================================================
+
+*java.util.concurrent.LinkedBlockingQueue_Constructors*
+|java.util.concurrent.LinkedBlockingQueue()|Creates a LinkedBlockingQueue with a capacity ofInteger#MAX_VALUE.
+|java.util.concurrent.LinkedBlockingQueue(Collection<?extendsE>)|Creates a LinkedBlockingQueue with a capacity ofInteger#MAX_VALUE, initially containing the elements of the  given
+|java.util.concurrent.LinkedBlockingQueue(int)|Creates a LinkedBlockingQueue with the given (fixed) capacity.
+
+*java.util.concurrent.LinkedBlockingQueue_Methods*
+|java.util.concurrent.LinkedBlockingQueue.clear()|Atomically removes all of the elements from this queue.
+|java.util.concurrent.LinkedBlockingQueue.drainTo(Collection<?superE>)|
+|java.util.concurrent.LinkedBlockingQueue.drainTo(Collection<?superE>,int)|
+|java.util.concurrent.LinkedBlockingQueue.iterator()|Returns an iterator over the elements in this queue in proper sequence.
+|java.util.concurrent.LinkedBlockingQueue.offer(E)|Inserts the specified element at the tail of this queue if possible,  returning immediately if this queue is full.
+|java.util.concurrent.LinkedBlockingQueue.offer(E,long,TimeUnit)|Inserts the specified element at the tail of this queue, waiting if  necessary up to the specified wait time for s
+|java.util.concurrent.LinkedBlockingQueue.peek()|
+|java.util.concurrent.LinkedBlockingQueue.poll()|
+|java.util.concurrent.LinkedBlockingQueue.poll(long,TimeUnit)|
+|java.util.concurrent.LinkedBlockingQueue.put(E)|Adds the specified element to the tail of this queue, waiting if  necessary for space to become available.
+|java.util.concurrent.LinkedBlockingQueue.remainingCapacity()|Returns the number of elements that this queue can ideally (in  the absence of memory or resource constraints) accept
+|java.util.concurrent.LinkedBlockingQueue.remove(Object)|Removes a single instance of the specified element from this  queue, if it is present.
+|java.util.concurrent.LinkedBlockingQueue.size()|Returns the number of elements in this queue.
+|java.util.concurrent.LinkedBlockingQueue.take()|
+|java.util.concurrent.LinkedBlockingQueue.toArray()|
+|java.util.concurrent.LinkedBlockingQueue.toArray(T[])|
+|java.util.concurrent.LinkedBlockingQueue.toString()|
+
+*java.util.concurrent.LinkedBlockingQueue_Description*
+
+An optionally-bounded blocking queue(|java.util.concurrent.BlockingQueue|) based on linked nodes. This queue orders elements FIFO (first-in-first-out). The head of the queue is 
+that element that has been on the queue the longest time. The tail of the queue is that element that has been on the queue the shortest time. New elements are inserted at the tail 
+of the queue, and the queue retrieval operations obtain elements at the head of the queue. Linked queues typically have higher throughput than array-based queues but less 
+predictable performance in most concurrent applications. 
+
+The optional capacity bound constructor argument serves as a way to prevent excessive queue expansion. The capacity, if unspecified, is equal to (|java.lang.Integer|) . Linked 
+nodes are dynamically created upon each insertion unless this would bring the queue above capacity. 
+
+This class and its iterator implement all of the optional methods of the (|java.util.Collection|) and (|java.util.Iterator|) interfaces. 
+
+This class is a member of the <a href="/../guide/collections/index.html"> Java Collections Framework. 
+
+
+
+*java.util.concurrent.LinkedBlockingQueue()*
+
+public LinkedBlockingQueue()
+
+Creates a LinkedBlockingQueue with a capacity of (|java.lang.Integer|) . 
+
+
+*java.util.concurrent.LinkedBlockingQueue(Collection<?extendsE>)*
+
+public LinkedBlockingQueue(java.util.Collection<? extends E> c)
+
+Creates a LinkedBlockingQueue with a capacity of (|java.lang.Integer|) , initially containing the elements of the given collection, added in traversal order of the collection's 
+iterator. 
+
+    c - the collection of elements to initially contain 
+
+*java.util.concurrent.LinkedBlockingQueue(int)*
+
+public LinkedBlockingQueue(int capacity)
+
+Creates a LinkedBlockingQueue with the given (fixed) capacity. 
+
+    capacity - the capacity of this queue. 
+
+*java.util.concurrent.LinkedBlockingQueue.clear()*
+
+public void clear()
+
+Atomically removes all of the elements from this queue. The queue will be empty after this call returns. 
+
+
+
+*java.util.concurrent.LinkedBlockingQueue.drainTo(Collection<?superE>)*
+
+public int drainTo(java.util.Collection<? super E> c)
+
+
+
+
+
+*java.util.concurrent.LinkedBlockingQueue.drainTo(Collection<?superE>,int)*
+
+public int drainTo(
+  java.util.Collection<? super E> c,
+  int maxElements)
+
+
+
+
+
+*java.util.concurrent.LinkedBlockingQueue.iterator()*
+
+public |java.util.Iterator|<E> iterator()
+
+Returns an iterator over the elements in this queue in proper sequence. The returned Iterator is a "weakly consistent" iterator that will never throw 
+(|java.util.ConcurrentModificationException|) , and guarantees to traverse elements as they existed upon construction of the iterator, and may (but is not guaranteed to) reflect 
+any modifications subsequent to construction. 
+
+
+
+    Returns: an iterator over the elements in this queue in proper sequence. 
+
+*java.util.concurrent.LinkedBlockingQueue.offer(E)*
+
+public boolean offer(E o)
+
+Inserts the specified element at the tail of this queue if possible, returning immediately if this queue is full. 
+
+
+    o - the element to add. 
+
+    Returns: true if it was possible to add the element to this queue, else false 
+
+*java.util.concurrent.LinkedBlockingQueue.offer(E,long,TimeUnit)*
+
+public boolean offer(
+  E o,
+  long timeout,
+  java.util.concurrent.TimeUnit unit)
+  throws |java.lang.InterruptedException|
+         
+Inserts the specified element at the tail of this queue, waiting if necessary up to the specified wait time for space to become available. 
+
+
+    o - the element to add 
+    timeout - how long to wait before giving up, in units of unit 
+    unit - a TimeUnit determining how to interpret the timeout parameter 
+
+    Returns: true if successful, or false if the specified waiting time elapses before space is available. 
+
+*java.util.concurrent.LinkedBlockingQueue.peek()*
+
+public |E| peek()
+
+
+
+
+
+*java.util.concurrent.LinkedBlockingQueue.poll()*
+
+public |E| poll()
+
+
+
+
+
+*java.util.concurrent.LinkedBlockingQueue.poll(long,TimeUnit)*
+
+public |E| poll(
+  long timeout,
+  java.util.concurrent.TimeUnit unit)
+  throws |java.lang.InterruptedException|
+         
+
+
+
+
+*java.util.concurrent.LinkedBlockingQueue.put(E)*
+
+public void put(E o)
+  throws |java.lang.InterruptedException|
+         
+Adds the specified element to the tail of this queue, waiting if necessary for space to become available. 
+
+
+    o - the element to add 
+
+*java.util.concurrent.LinkedBlockingQueue.remainingCapacity()*
+
+public int remainingCapacity()
+
+Returns the number of elements that this queue can ideally (in the absence of memory or resource constraints) accept without blocking. This is always equal to the initial capacity 
+of this queue less the current size of this queue. Note that you cannot always tell if an attempt to add an element will succeed by inspecting remainingCapacity because it may be 
+the case that a waiting consumer is ready to take an element out of an otherwise full queue. 
+
+
+
+*java.util.concurrent.LinkedBlockingQueue.remove(Object)*
+
+public boolean remove(java.lang.Object o)
+
+Removes a single instance of the specified element from this queue, if it is present. 
+
+
+
+*java.util.concurrent.LinkedBlockingQueue.size()*
+
+public int size()
+
+Returns the number of elements in this queue. 
+
+
+
+    Returns: the number of elements in this queue. 
+
+*java.util.concurrent.LinkedBlockingQueue.take()*
+
+public |E| take()
+  throws |java.lang.InterruptedException|
+         
+
+
+
+
+*java.util.concurrent.LinkedBlockingQueue.toArray()*
+
+public |java.lang.Object|[] toArray()
+
+
+
+
+
+*java.util.concurrent.LinkedBlockingQueue.toArray(T[])*
+
+public |T|[] toArray(T[] a)
+
+
+
+
+
+*java.util.concurrent.LinkedBlockingQueue.toString()*
+
+public |java.lang.String| toString()
+
+
+
+
+
+

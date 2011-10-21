@@ -1,0 +1,786 @@
+*java.util.prefs.AbstractPreferences* *AbstractPreferences* This class provides a skeletal implementation of thePreferencesclass, greatly easing the task of implementing it.
+
+public abstract class AbstractPreferences
+  extends    |java.util.prefs.Preferences|
+
+|java.util.prefs.AbstractPreferences_Description|
+|java.util.prefs.AbstractPreferences_Fields|
+|java.util.prefs.AbstractPreferences_Constructors|
+|java.util.prefs.AbstractPreferences_Methods|
+
+====================================================================================================================================================================================
+
+*java.util.prefs.AbstractPreferences_Fields*
+|java.lang.Object_java.util.prefs.AbstractPreferences.lock|
+|boolean_java.util.prefs.AbstractPreferences.newNode|
+
+*java.util.prefs.AbstractPreferences_Constructors*
+|java.util.prefs.AbstractPreferences(AbstractPreferences,String)|Creates a preference node with the specified parent and the specified  name relative to its parent.
+
+*java.util.prefs.AbstractPreferences_Methods*
+|java.util.prefs.AbstractPreferences.absolutePath()|Implements the absolutePath method as per the specification inPreferences#absolutePath().
+|java.util.prefs.AbstractPreferences.addNodeChangeListener(NodeChangeListener)|
+|java.util.prefs.AbstractPreferences.addPreferenceChangeListener(PreferenceChangeListener)|
+|java.util.prefs.AbstractPreferences.cachedChildren()|Returns all known unremoved children of this node.
+|java.util.prefs.AbstractPreferences.childrenNames()|Implements the children method as per the specification inPreferences#childrenNames().
+|java.util.prefs.AbstractPreferences.childrenNamesSpi()|Returns the names of the children of this preference node.
+|java.util.prefs.AbstractPreferences.childSpi(String)|Returns the named child of this preference node, creating it if it does  not already exist.
+|java.util.prefs.AbstractPreferences.clear()|Implements the clear method as per the specification inPreferences#clear().
+|java.util.prefs.AbstractPreferences.exportNode(OutputStream)|Implements the exportNode method as per the specification inPreferences#exportNode(OutputStream).
+|java.util.prefs.AbstractPreferences.exportSubtree(OutputStream)|Implements the exportSubtree method as per the specification inPreferences#exportSubtree(OutputStream).
+|java.util.prefs.AbstractPreferences.flush()|Implements the flush method as per the specification inPreferences#flush().
+|java.util.prefs.AbstractPreferences.flushSpi()|This method is invoked with this node locked.
+|java.util.prefs.AbstractPreferences.get(String,String)|Implements the get method as per the specification inPreferences#get(String,String).
+|java.util.prefs.AbstractPreferences.getBoolean(String,boolean)|Implements the getBoolean method as per the specification inPreferences#getBoolean(String,boolean).
+|java.util.prefs.AbstractPreferences.getByteArray(String,byte[])|Implements the getByteArray method as per the specification inPreferences#getByteArray(String,byte[]).
+|java.util.prefs.AbstractPreferences.getChild(String)|Returns the named child if it exists, or null if it does not.
+|java.util.prefs.AbstractPreferences.getDouble(String,double)|Implements the getDouble method as per the specification inPreferences#getDouble(String,double).
+|java.util.prefs.AbstractPreferences.getFloat(String,float)|Implements the getFloat method as per the specification inPreferences#getFloat(String,float).
+|java.util.prefs.AbstractPreferences.getInt(String,int)|Implements the getInt method as per the specification inPreferences#getInt(String,int).
+|java.util.prefs.AbstractPreferences.getLong(String,long)|Implements the getLong method as per the specification inPreferences#getLong(String,long).
+|java.util.prefs.AbstractPreferences.getSpi(String)|Return the value associated with the specified key at this preference  node, or null if there is no association for this key, o
+|java.util.prefs.AbstractPreferences.isRemoved()|Returns true iff this node (or an ancestor) has been  removed with the#removeNode()method.
+|java.util.prefs.AbstractPreferences.isUserNode()|Implements the isUserNode method as per the specification inPreferences#isUserNode().
+|java.util.prefs.AbstractPreferences.keys()|Implements the keys method as per the specification inPreferences#keys().
+|java.util.prefs.AbstractPreferences.keysSpi()|Returns all of the keys that have an associated value in this  preference node.
+|java.util.prefs.AbstractPreferences.name()|Implements the name method as per the specification inPreferences#name().
+|java.util.prefs.AbstractPreferences.node(String)|Implements the node method as per the specification inPreferences#node(String).
+|java.util.prefs.AbstractPreferences.nodeExists(String)|Implements the nodeExists method as per the specification inPreferences#nodeExists(String).
+|java.util.prefs.AbstractPreferences.parent()|Implements the parent method as per the specification inPreferences#parent().
+|java.util.prefs.AbstractPreferences.put(String,String)|Implements the put method as per the specification inPreferences#put(String,String).
+|java.util.prefs.AbstractPreferences.putBoolean(String,boolean)|Implements the putBoolean method as per the specification inPreferences#putBoolean(String,boolean).
+|java.util.prefs.AbstractPreferences.putByteArray(String,byte[])|Implements the putByteArray method as per the specification inPreferences#putByteArray(String,byte[]).
+|java.util.prefs.AbstractPreferences.putDouble(String,double)|Implements the putDouble method as per the specification inPreferences#putDouble(String,double).
+|java.util.prefs.AbstractPreferences.putFloat(String,float)|Implements the putFloat method as per the specification inPreferences#putFloat(String,float).
+|java.util.prefs.AbstractPreferences.putInt(String,int)|Implements the putInt method as per the specification inPreferences#putInt(String,int).
+|java.util.prefs.AbstractPreferences.putLong(String,long)|Implements the putLong method as per the specification inPreferences#putLong(String,long).
+|java.util.prefs.AbstractPreferences.putSpi(String,String)|Put the given key-value association into this preference node.
+|java.util.prefs.AbstractPreferences.remove(String)|Implements the remove(String) method as per the specification  inPreferences#remove(String).
+|java.util.prefs.AbstractPreferences.removeNode()|Implements the removeNode() method as per the specification inPreferences#removeNode().
+|java.util.prefs.AbstractPreferences.removeNodeChangeListener(NodeChangeListener)|
+|java.util.prefs.AbstractPreferences.removeNodeSpi()|Removes this preference node, invalidating it and any preferences that  it contains.
+|java.util.prefs.AbstractPreferences.removePreferenceChangeListener(PreferenceChangeListener)|
+|java.util.prefs.AbstractPreferences.removeSpi(String)|Remove the association (if any) for the specified key at this   preference node.
+|java.util.prefs.AbstractPreferences.sync()|Implements the sync method as per the specification inPreferences#sync().
+|java.util.prefs.AbstractPreferences.syncSpi()|This method is invoked with this node locked.
+|java.util.prefs.AbstractPreferences.toString()|Returns the absolute path name of this preferences node.
+
+*java.util.prefs.AbstractPreferences_Description*
+
+This class provides a skeletal implementation of the (|java.util.prefs.Preferences|) class, greatly easing the task of implementing it. 
+
+This class is for Preferences implementers only. Normal users of the Preferences facility should have no need to consult this documentation. The (|java.util.prefs.Preferences|) 
+documentation should suffice. 
+
+Implementors must override the nine abstract service-provider interface (SPI) methods: (|java.util.prefs.AbstractPreferences|) , (|java.util.prefs.AbstractPreferences|) , 
+(|java.util.prefs.AbstractPreferences|) , (|java.util.prefs.AbstractPreferences|) , (|java.util.prefs.AbstractPreferences|) , (|java.util.prefs.AbstractPreferences|) , 
+(|java.util.prefs.AbstractPreferences|) , (|java.util.prefs.AbstractPreferences|) and (|java.util.prefs.AbstractPreferences|) . All of the concrete methods specify precisely how 
+they are implemented atop these SPI methods. The implementor may, at his discretion, override one or more of the concrete methods if the default implementation is unsatisfactory 
+for any reason, such as performance. 
+
+The SPI methods fall into three groups concerning exception behavior. The getSpi method should never throw exceptions, but it doesn't really matter, as any exception thrown by 
+this method will be intercepted by (|java.util.prefs.AbstractPreferences|) , which will return the specified default value to the caller. The removeNodeSpi, keysSpi, 
+childrenNamesSpi, syncSpi and flushSpi methods are specified to throw (|java.util.prefs.BackingStoreException|) , and the implementation is required to throw this checked 
+exception if it is unable to perform the operation. The exception propagates outward, causing the corresponding API method to fail. 
+
+The remaining SPI methods (|java.util.prefs.AbstractPreferences|) , (|java.util.prefs.AbstractPreferences|) and (|java.util.prefs.AbstractPreferences|) have more complicated 
+exception behavior. They are not specified to throw BackingStoreException, as they can generally obey their contracts even if the backing store is unavailable. This is true 
+because they return no information and their effects are not required to become permanent until a subsequent call to {Preferences#flush()} or {Preferences#sync()}. Generally 
+speaking, these SPI methods should not throw exceptions. In some implementations, there may be circumstances under which these calls cannot even enqueue the requested operation 
+for later processing. Even under these circumstances it is generally better to simply ignore the invocation and return, rather than throwing an exception. Under these 
+circumstances, however, all subsequent invocations of flush() and sync should return false, as returning true would imply that all previous operations had successfully been made 
+permanent. 
+
+There is one circumstance under which putSpi, removeSpi and childSpi should throw an exception: if the caller lacks sufficient privileges on the underlying operating system to 
+perform the requested operation. This will, for instance, occur on most systems if a non-privileged user attempts to modify system preferences. (The required privileges will vary 
+from implementation to implementation. On some implementations, they are the right to modify the contents of some directory in the file system; on others they are the right to 
+modify contents of some key in a registry.) Under any of these circumstances, it would generally be undesirable to let the program continue executing as if these operations would 
+become permanent at a later time. While implementations are not required to throw an exception under these circumstances, they are encouraged to do so. A 
+(|java.lang.SecurityException|) would be appropriate. 
+
+Most of the SPI methods require the implementation to read or write information at a preferences node. The implementor should beware of the fact that another VM may have 
+concurrently deleted this node from the backing store. It is the implementation's responsibility to recreate the node if it has been deleted. 
+
+Implementation note: In Sun's default Preferences implementations, the user's identity is inherited from the underlying operating system and does not change for the lifetime of 
+the virtual machine. It is recognized that server-side Preferences implementations may have the user identity change from request to request, implicitly passed to Preferences 
+methods via the use of a static (|java.lang.ThreadLocal|) instance. Authors of such implementations are strongly encouraged to determine the user at the time preferences are 
+accessed (for example by the (|java.util.prefs.AbstractPreferences|) or (|java.util.prefs.AbstractPreferences|) method) rather than permanently associating a user with each 
+Preferences instance. The latter behavior conflicts with normal Preferences usage and would lead to great confusion. 
+
+
+
+*java.lang.Object_java.util.prefs.AbstractPreferences.lock*
+
+An object whose monitor is used to lock this node. This object is used in preference to the node itself to reduce the likelihood of intentional or unintentional denial of service 
+due to a locked node. To avoid deadlock, a node is never locked by a thread that holds a lock on a descendant of that node. 
+
+
+*boolean_java.util.prefs.AbstractPreferences.newNode*
+
+This field should be true if this node did not exist in the backing store prior to the creation of this object. The field is initialized to false, but may be set to true by a 
+subclass constructor (and should not be modified thereafter). This field indicates whether a node change event should be fired when creation is complete. 
+
+
+
+*java.util.prefs.AbstractPreferences(AbstractPreferences,String)*
+
+protected AbstractPreferences(
+  java.util.prefs.AbstractPreferences parent,
+  java.lang.String name)
+
+Creates a preference node with the specified parent and the specified name relative to its parent. 
+
+    parent - the parent of this preference node, or null if this is the root. 
+    name - the name of this preference node, relative to its parent, or "" if this is the root. 
+
+*java.util.prefs.AbstractPreferences.absolutePath()*
+
+public |java.lang.String| absolutePath()
+
+Implements the absolutePath method as per the specification in (|java.util.prefs.Preferences|) . 
+
+This implementation merely returns the absolute path name that was computed at the time that this node was constructed (based on the name that was passed to this node's 
+constructor, and the names that were passed to this node's ancestors' constructors). 
+
+
+
+    Returns: this preference node's absolute path name. 
+
+*java.util.prefs.AbstractPreferences.addNodeChangeListener(NodeChangeListener)*
+
+public void addNodeChangeListener(java.util.prefs.NodeChangeListener ncl)
+
+
+
+
+
+*java.util.prefs.AbstractPreferences.addPreferenceChangeListener(PreferenceChangeListener)*
+
+public void addPreferenceChangeListener(java.util.prefs.PreferenceChangeListener pcl)
+
+
+
+
+
+*java.util.prefs.AbstractPreferences.cachedChildren()*
+
+protected final |java.util.prefs.AbstractPreferences|[] cachedChildren()
+
+Returns all known unremoved children of this node. 
+
+
+
+    Returns: all known unremoved children of this node. 
+
+*java.util.prefs.AbstractPreferences.childrenNames()*
+
+public |java.lang.String|[] childrenNames()
+  throws |java.util.prefs.BackingStoreException|
+         
+Implements the children method as per the specification in (|java.util.prefs.Preferences|) . 
+
+This implementation obtains this preference node's lock, checks that the node has not been removed, constructs a TreeSet initialized to the names of children already cached (the 
+children in this node's "child-cache"), invokes (|java.util.prefs.AbstractPreferences|) , and adds all of the returned child-names into the set. The elements of the tree set are 
+dumped into a String array using the toArray method, and this array is returned. 
+
+
+
+    Returns: the names of the children of this preference node. 
+
+*java.util.prefs.AbstractPreferences.childrenNamesSpi()*
+
+protected abstract |java.lang.String|[] childrenNamesSpi()
+  throws |java.util.prefs.BackingStoreException|
+         
+Returns the names of the children of this preference node. (The returned array will be of size zero if this node has no children.) This method need not return the names of any 
+nodes already cached, but may do so without harm. 
+
+This method is invoked with the lock on this node held. 
+
+If this node throws a BackingStoreException, the exception will propagate out beyond the enclosing (|java.util.prefs.AbstractPreferences|) invocation. 
+
+
+
+    Returns: an array containing the names of the children of this preference node. 
+
+*java.util.prefs.AbstractPreferences.childSpi(String)*
+
+protected abstract |java.util.prefs.AbstractPreferences| childSpi(java.lang.String name)
+
+Returns the named child of this preference node, creating it if it does not already exist. It is guaranteed that name is non-null, non-empty, does not contain the slash character 
+('/'), and is no longer than (|java.util.prefs.AbstractPreferences|) characters. Also, it is guaranteed that this node has not been removed. (The implementor needn't check for any 
+of these things.) 
+
+Finally, it is guaranteed that the named node has not been returned by a previous invocation of this method or (|java.util.prefs.AbstractPreferences|) after the last time that it 
+was removed. In other words, a cached value will always be used in preference to invoking this method. Subclasses need not maintain their own cache of previously returned 
+children. 
+
+The implementer must ensure that the returned node has not been removed. If a like-named child of this node was previously removed, the implementer must return a newly constructed 
+AbstractPreferences node; once removed, an AbstractPreferences node cannot be "resuscitated." 
+
+If this method causes a node to be created, this node is not guaranteed to be persistent until the flush method is invoked on this node or one of its ancestors (or descendants). 
+
+This method is invoked with the lock on this node held. 
+
+
+    name - The name of the child node to return, relative to this preference node. 
+
+    Returns: The named child node. 
+
+*java.util.prefs.AbstractPreferences.clear()*
+
+public void clear()
+  throws |java.util.prefs.BackingStoreException|
+         
+Implements the clear method as per the specification in (|java.util.prefs.Preferences|) . 
+
+This implementation obtains this preference node's lock, invokes (|java.util.prefs.AbstractPreferences|) to obtain an array of keys, and iterates over the array invoking 
+(|java.util.prefs.AbstractPreferences|) on each key. 
+
+
+
+*java.util.prefs.AbstractPreferences.exportNode(OutputStream)*
+
+public void exportNode(java.io.OutputStream os)
+  throws |java.util.prefs.BackingStoreException|
+         |java.io.IOException|
+         
+Implements the exportNode method as per the specification in (|java.util.prefs.Preferences|) . 
+
+
+    os - the output stream on which to emit the XML document. 
+
+*java.util.prefs.AbstractPreferences.exportSubtree(OutputStream)*
+
+public void exportSubtree(java.io.OutputStream os)
+  throws |java.util.prefs.BackingStoreException|
+         |java.io.IOException|
+         
+Implements the exportSubtree method as per the specification in (|java.util.prefs.Preferences|) . 
+
+
+    os - the output stream on which to emit the XML document. 
+
+*java.util.prefs.AbstractPreferences.flush()*
+
+public void flush()
+  throws |java.util.prefs.BackingStoreException|
+         
+Implements the flush method as per the specification in (|java.util.prefs.Preferences|) . 
+
+This implementation calls a recursive helper method that locks this node, invokes flushSpi() on it, unlocks this node, and recursively invokes this method on each "cached child." 
+A cached child is a child of this node that has been created in this VM and not subsequently removed. In effect, this method does a depth first traversal of the "cached subtree" 
+rooted at this node, calling flushSpi() on each node in the subTree while only that node is locked. Note that flushSpi() is invoked top-down. 
+
+If this method is invoked on a node that has been removed with the (|java.util.prefs.AbstractPreferences|) method, flushSpi() is invoked on this node, but not on others. 
+
+
+
+*java.util.prefs.AbstractPreferences.flushSpi()*
+
+protected abstract void flushSpi()
+  throws |java.util.prefs.BackingStoreException|
+         
+This method is invoked with this node locked. The contract of this method is to force any cached changes in the contents of this preference node to the backing store, guaranteeing 
+their persistence. (It is perfectly possible that this node does not exist on the backing store, either because it has been deleted by another VM, or because it has not yet been 
+created.) Note that this method should not flush the preferences in any subnodes of this node. If the backing store naturally flushes an entire subtree at once, the implementer is 
+encouraged to override flush(), rather than merely overriding this method. 
+
+If this node throws a BackingStoreException, the exception will propagate out beyond the enclosing (|java.util.prefs.AbstractPreferences|) invocation. 
+
+
+
+*java.util.prefs.AbstractPreferences.get(String,String)*
+
+public |java.lang.String| get(
+  java.lang.String key,
+  java.lang.String def)
+
+Implements the get method as per the specification in (|java.util.prefs.Preferences|) . 
+
+This implementation first checks to see if key is null throwing a NullPointerException if this is the case. Then it obtains this preference node's lock, checks that the node has 
+not been removed, invokes (|java.util.prefs.AbstractPreferences|) , and returns the result, unless the getSpi invocation returns null or throws an exception, in which case this 
+invocation returns def. 
+
+
+    key - key whose associated value is to be returned. 
+    def - the value to be returned in the event that this preference node has no value associated with key. 
+
+    Returns: the value associated with key, or def if no value is associated with key. 
+
+*java.util.prefs.AbstractPreferences.getBoolean(String,boolean)*
+
+public boolean getBoolean(
+  java.lang.String key,
+  boolean def)
+
+Implements the getBoolean method as per the specification in (|java.util.prefs.Preferences|) . 
+
+This implementation invokes <tt>get(key, null)</tt>(|java.util.prefs.AbstractPreferences|) . If the return value is non-null, it is compared with "true" using (|java.lang.String|) 
+. If the comparison returns true, this invocation returns true. Otherwise, the original return value is compared with "false", again using (|java.lang.String|) . If the comparison 
+returns true, this invocation returns false. Otherwise, this invocation returns def. 
+
+
+    key - key whose associated value is to be returned as a boolean. 
+    def - the value to be returned in the event that this preference node has no value associated with key or the associated value cannot be interpreted as a boolean. 
+
+    Returns: the boolean value represented by the string associated with key in this preference node, or def if the associated value does not exist or cannot be interpreted as a boolean. 
+
+*java.util.prefs.AbstractPreferences.getByteArray(String,byte[])*
+
+public byte[] getByteArray(
+  java.lang.String key,
+  byte[] def)
+
+Implements the getByteArray method as per the specification in (|java.util.prefs.Preferences|) . 
+
+
+    key - key whose associated value is to be returned as a byte array. 
+    def - the value to be returned in the event that this preference node has no value associated with key or the associated value cannot be interpreted as a byte array. 
+
+    Returns: the byte array value represented by the string associated with key in this preference node, or def if the associated value does not exist or cannot be interpreted as a byte array. 
+
+*java.util.prefs.AbstractPreferences.getChild(String)*
+
+protected |java.util.prefs.AbstractPreferences| getChild(java.lang.String nodeName)
+  throws |java.util.prefs.BackingStoreException|
+         
+Returns the named child if it exists, or null if it does not. It is guaranteed that nodeName is non-null, non-empty, does not contain the slash character ('/'), and is no longer 
+than (|java.util.prefs.AbstractPreferences|) characters. Also, it is guaranteed that this node has not been removed. (The implementor needn't check for any of these things if he 
+chooses to override this method.) 
+
+Finally, it is guaranteed that the named node has not been returned by a previous invocation of this method or (|java.util.prefs.AbstractPreferences|) after the last time that it 
+was removed. In other words, a cached value will always be used in preference to invoking this method. (The implementor needn't maintain his own cache of previously returned 
+children if he chooses to override this method.) 
+
+This implementation obtains this preference node's lock, invokes (|java.util.prefs.AbstractPreferences|) to get an array of the names of this node's children, and iterates over 
+the array comparing the name of each child with the specified node name. If a child node has the correct name, the (|java.util.prefs.AbstractPreferences|) method is invoked and 
+the resulting node is returned. If the iteration completes without finding the specified name, null is returned. 
+
+
+    nodeName - name of the child to be searched for. 
+
+    Returns: the named child if it exists, or null if it does not. 
+
+*java.util.prefs.AbstractPreferences.getDouble(String,double)*
+
+public double getDouble(
+  java.lang.String key,
+  double def)
+
+Implements the getDouble method as per the specification in (|java.util.prefs.Preferences|) . 
+
+This implementation invokes <tt>get(key, null)</tt>(|java.util.prefs.AbstractPreferences|) . If the return value is non-null, the implementation attempts to translate it to an 
+double with (|java.lang.Double|) . If the attempt succeeds, the return value is returned by this method. Otherwise, def is returned. 
+
+
+    key - key whose associated value is to be returned as a double. 
+    def - the value to be returned in the event that this preference node has no value associated with key or the associated value cannot be interpreted as a double. 
+
+    Returns: the double value represented by the string associated with key in this preference node, or def if the associated value does not exist or cannot be interpreted as a double. 
+
+*java.util.prefs.AbstractPreferences.getFloat(String,float)*
+
+public float getFloat(
+  java.lang.String key,
+  float def)
+
+Implements the getFloat method as per the specification in (|java.util.prefs.Preferences|) . 
+
+This implementation invokes <tt>get(key, null)</tt>(|java.util.prefs.AbstractPreferences|) . If the return value is non-null, the implementation attempts to translate it to an 
+float with (|java.lang.Float|) . If the attempt succeeds, the return value is returned by this method. Otherwise, def is returned. 
+
+
+    key - key whose associated value is to be returned as a float. 
+    def - the value to be returned in the event that this preference node has no value associated with key or the associated value cannot be interpreted as a float. 
+
+    Returns: the float value represented by the string associated with key in this preference node, or def if the associated value does not exist or cannot be interpreted as a float. 
+
+*java.util.prefs.AbstractPreferences.getInt(String,int)*
+
+public int getInt(
+  java.lang.String key,
+  int def)
+
+Implements the getInt method as per the specification in (|java.util.prefs.Preferences|) . 
+
+This implementation invokes <tt>get(key, null)</tt>(|java.util.prefs.AbstractPreferences|) . If the return value is non-null, the implementation attempts to translate it to an int 
+with (|java.lang.Integer|) . If the attempt succeeds, the return value is returned by this method. Otherwise, def is returned. 
+
+
+    key - key whose associated value is to be returned as an int. 
+    def - the value to be returned in the event that this preference node has no value associated with key or the associated value cannot be interpreted as an int. 
+
+    Returns: the int value represented by the string associated with key in this preference node, or def if the associated value does not exist or cannot be interpreted as an int. 
+
+*java.util.prefs.AbstractPreferences.getLong(String,long)*
+
+public long getLong(
+  java.lang.String key,
+  long def)
+
+Implements the getLong method as per the specification in (|java.util.prefs.Preferences|) . 
+
+This implementation invokes <tt>get(key, null)</tt>(|java.util.prefs.AbstractPreferences|) . If the return value is non-null, the implementation attempts to translate it to a long 
+with (|java.lang.Long|) . If the attempt succeeds, the return value is returned by this method. Otherwise, def is returned. 
+
+
+    key - key whose associated value is to be returned as a long. 
+    def - the value to be returned in the event that this preference node has no value associated with key or the associated value cannot be interpreted as a long. 
+
+    Returns: the long value represented by the string associated with key in this preference node, or def if the associated value does not exist or cannot be interpreted as a long. 
+
+*java.util.prefs.AbstractPreferences.getSpi(String)*
+
+protected abstract |java.lang.String| getSpi(java.lang.String key)
+
+Return the value associated with the specified key at this preference node, or null if there is no association for this key, or the association cannot be determined at this time. 
+It is guaranteed that key is non-null. Also, it is guaranteed that this node has not been removed. (The implementor needn't check for either of these things.) 
+
+Generally speaking, this method should not throw an exception under any circumstances. If, however, if it does throw an exception, the exception will be intercepted and treated as 
+a null return value. 
+
+This method is invoked with the lock on this node held. 
+
+
+
+    Returns: the value associated with the specified key at this preference node, or null if there is no association for this key, or the association cannot be determined at this time. 
+
+*java.util.prefs.AbstractPreferences.isRemoved()*
+
+protected boolean isRemoved()
+
+Returns true iff this node (or an ancestor) has been removed with the (|java.util.prefs.AbstractPreferences|) method. This method locks this node prior to returning the contents 
+of the private field used to track this state. 
+
+
+
+    Returns: true iff this node (or an ancestor) has been removed with the {@link #removeNode()} method. 
+
+*java.util.prefs.AbstractPreferences.isUserNode()*
+
+public boolean isUserNode()
+
+Implements the isUserNode method as per the specification in (|java.util.prefs.Preferences|) . 
+
+This implementation compares this node's root node (which is stored in a private field) with the value returned by (|java.util.prefs.Preferences|) . If the two object references 
+are identical, this method returns true. 
+
+
+
+    Returns: true if this preference node is in the user preference tree, false if it's in the system preference tree. 
+
+*java.util.prefs.AbstractPreferences.keys()*
+
+public |java.lang.String|[] keys()
+  throws |java.util.prefs.BackingStoreException|
+         
+Implements the keys method as per the specification in (|java.util.prefs.Preferences|) . 
+
+This implementation obtains this preference node's lock, checks that the node has not been removed and invokes (|java.util.prefs.AbstractPreferences|) . 
+
+
+
+    Returns: an array of the keys that have an associated value in this preference node. 
+
+*java.util.prefs.AbstractPreferences.keysSpi()*
+
+protected abstract |java.lang.String|[] keysSpi()
+  throws |java.util.prefs.BackingStoreException|
+         
+Returns all of the keys that have an associated value in this preference node. (The returned array will be of size zero if this node has no preferences.) It is guaranteed that 
+this node has not been removed. 
+
+This method is invoked with the lock on this node held. 
+
+If this node throws a BackingStoreException, the exception will propagate out beyond the enclosing (|java.util.prefs.AbstractPreferences|) invocation. 
+
+
+
+    Returns: an array of the keys that have an associated value in this preference node. 
+
+*java.util.prefs.AbstractPreferences.name()*
+
+public |java.lang.String| name()
+
+Implements the name method as per the specification in (|java.util.prefs.Preferences|) . 
+
+This implementation merely returns the name that was passed to this node's constructor. 
+
+
+
+    Returns: this preference node's name, relative to its parent. 
+
+*java.util.prefs.AbstractPreferences.node(String)*
+
+public |java.util.prefs.Preferences| node(java.lang.String path)
+
+Implements the node method as per the specification in (|java.util.prefs.Preferences|) . 
+
+This implementation obtains this preference node's lock and checks that the node has not been removed. If path is "", this node is returned; if path is "/", this node's root is 
+returned. If the first character in path is not '/', the implementation breaks path into tokens and recursively traverses the path from this node to the named node, "consuming" a 
+name and a slash from path at each step of the traversal. At each step, the current node is locked and the node's child-cache is checked for the named node. If it is not found, 
+the name is checked to make sure its length does not exceed MAX_NAME_LENGTH. Then the (|java.util.prefs.AbstractPreferences|) method is invoked, and the result stored in this 
+node's child-cache. If the newly created Preferences object's (|java.util.prefs.AbstractPreferences|) field is true and there are any node change listeners, a notification event 
+is enqueued for processing by the event dispatch thread. 
+
+When there are no more tokens, the last value found in the child-cache or returned by childSpi is returned by this method. If during the traversal, two "/" tokens occur 
+consecutively, or the final token is "/" (rather than a name), an appropriate IllegalArgumentException is thrown. 
+
+If the first character of path is '/' (indicating an absolute path name name) this preference node's lock is dropped prior to breaking path into tokens, and this method 
+recursively traverses the path starting from the root (rather than starting from this node). The traversal is otherwise identical to the one described for relative path names. 
+Dropping the lock on this node prior to commencing the traversal at the root node is essential to avoid the possibility of deadlock, as per the locking 
+invariant(|java.util.prefs.AbstractPreferences|) . 
+
+
+    path - the path name of the preference node to return. 
+
+    Returns: the specified preference node. 
+
+*java.util.prefs.AbstractPreferences.nodeExists(String)*
+
+public boolean nodeExists(java.lang.String path)
+  throws |java.util.prefs.BackingStoreException|
+         
+Implements the nodeExists method as per the specification in (|java.util.prefs.Preferences|) . 
+
+This implementation is very similar to (|java.util.prefs.AbstractPreferences|) , except that (|java.util.prefs.AbstractPreferences|) is used instead of 
+(|java.util.prefs.AbstractPreferences|) . 
+
+
+    path - the path name of the node whose existence is to be checked. 
+
+    Returns: true if the specified node exists. 
+
+*java.util.prefs.AbstractPreferences.parent()*
+
+public |java.util.prefs.Preferences| parent()
+
+Implements the parent method as per the specification in (|java.util.prefs.Preferences|) . 
+
+This implementation obtains this preference node's lock, checks that the node has not been removed and returns the parent value that was passed to this node's constructor. 
+
+
+
+    Returns: the parent of this preference node. 
+
+*java.util.prefs.AbstractPreferences.put(String,String)*
+
+public void put(
+  java.lang.String key,
+  java.lang.String value)
+
+Implements the put method as per the specification in (|java.util.prefs.Preferences|) . 
+
+This implementation checks that the key and value are legal, obtains this preference node's lock, checks that the node has not been removed, invokes 
+(|java.util.prefs.AbstractPreferences|) , and if there are any preference change listeners, enqueues a notification event for processing by the event dispatch thread. 
+
+
+    key - key with which the specified value is to be associated. 
+    value - value to be associated with the specified key. 
+
+*java.util.prefs.AbstractPreferences.putBoolean(String,boolean)*
+
+public void putBoolean(
+  java.lang.String key,
+  boolean value)
+
+Implements the putBoolean method as per the specification in (|java.util.prefs.Preferences|) . 
+
+This implementation translates value to a string with (|java.lang.String|) and invokes (|java.util.prefs.AbstractPreferences|) on the result. 
+
+
+    key - key with which the string form of value is to be associated. 
+    value - value whose string form is to be associated with key. 
+
+*java.util.prefs.AbstractPreferences.putByteArray(String,byte[])*
+
+public void putByteArray(
+  java.lang.String key,
+  byte[] value)
+
+Implements the putByteArray method as per the specification in (|java.util.prefs.Preferences|) . 
+
+
+    key - key with which the string form of value is to be associated. 
+    value - value whose string form is to be associated with key. 
+
+*java.util.prefs.AbstractPreferences.putDouble(String,double)*
+
+public void putDouble(
+  java.lang.String key,
+  double value)
+
+Implements the putDouble method as per the specification in (|java.util.prefs.Preferences|) . 
+
+This implementation translates value to a string with (|java.lang.Double|) and invokes (|java.util.prefs.AbstractPreferences|) on the result. 
+
+
+    key - key with which the string form of value is to be associated. 
+    value - value whose string form is to be associated with key. 
+
+*java.util.prefs.AbstractPreferences.putFloat(String,float)*
+
+public void putFloat(
+  java.lang.String key,
+  float value)
+
+Implements the putFloat method as per the specification in (|java.util.prefs.Preferences|) . 
+
+This implementation translates value to a string with (|java.lang.Float|) and invokes (|java.util.prefs.AbstractPreferences|) on the result. 
+
+
+    key - key with which the string form of value is to be associated. 
+    value - value whose string form is to be associated with key. 
+
+*java.util.prefs.AbstractPreferences.putInt(String,int)*
+
+public void putInt(
+  java.lang.String key,
+  int value)
+
+Implements the putInt method as per the specification in (|java.util.prefs.Preferences|) . 
+
+This implementation translates value to a string with (|java.lang.Integer|) and invokes (|java.util.prefs.AbstractPreferences|) on the result. 
+
+
+    key - key with which the string form of value is to be associated. 
+    value - value whose string form is to be associated with key. 
+
+*java.util.prefs.AbstractPreferences.putLong(String,long)*
+
+public void putLong(
+  java.lang.String key,
+  long value)
+
+Implements the putLong method as per the specification in (|java.util.prefs.Preferences|) . 
+
+This implementation translates value to a string with (|java.lang.Long|) and invokes (|java.util.prefs.AbstractPreferences|) on the result. 
+
+
+    key - key with which the string form of value is to be associated. 
+    value - value whose string form is to be associated with key. 
+
+*java.util.prefs.AbstractPreferences.putSpi(String,String)*
+
+protected abstract void putSpi(
+  java.lang.String key,
+  java.lang.String value)
+
+Put the given key-value association into this preference node. It is guaranteed that key and value are non-null and of legal length. Also, it is guaranteed that this node has not 
+been removed. (The implementor needn't check for any of these things.) 
+
+This method is invoked with the lock on this node held. 
+
+
+
+*java.util.prefs.AbstractPreferences.remove(String)*
+
+public void remove(java.lang.String key)
+
+Implements the remove(String) method as per the specification in (|java.util.prefs.Preferences|) . 
+
+This implementation obtains this preference node's lock, checks that the node has not been removed, invokes (|java.util.prefs.AbstractPreferences|) and if there are any preference 
+change listeners, enqueues a notification event for processing by the event dispatch thread. 
+
+
+    key - key whose mapping is to be removed from the preference node. 
+
+*java.util.prefs.AbstractPreferences.removeNode()*
+
+public void removeNode()
+  throws |java.util.prefs.BackingStoreException|
+         
+Implements the removeNode() method as per the specification in (|java.util.prefs.Preferences|) . 
+
+This implementation checks to see that this node is the root; if so, it throws an appropriate exception. Then, it locks this node's parent, and calls a recursive helper method 
+that traverses the subtree rooted at this node. The recursive method locks the node on which it was called, checks that it has not already been removed, and then ensures that all 
+of its children are cached: The (|java.util.prefs.AbstractPreferences|) method is invoked and each returned child name is checked for containment in the child-cache. If a child is 
+not already cached, the (|java.util.prefs.AbstractPreferences|) method is invoked to create a Preferences instance for it, and this instance is put into the child-cache. Then the 
+helper method calls itself recursively on each node contained in its child-cache. Next, it invokes (|java.util.prefs.AbstractPreferences|) , marks itself as removed, and removes 
+itself from its parent's child-cache. Finally, if there are any node change listeners, it enqueues a notification event for processing by the event dispatch thread. 
+
+Note that the helper method is always invoked with all ancestors up to the "closest non-removed ancestor" locked. 
+
+
+
+*java.util.prefs.AbstractPreferences.removeNodeChangeListener(NodeChangeListener)*
+
+public void removeNodeChangeListener(java.util.prefs.NodeChangeListener ncl)
+
+
+
+
+
+*java.util.prefs.AbstractPreferences.removeNodeSpi()*
+
+protected abstract void removeNodeSpi()
+  throws |java.util.prefs.BackingStoreException|
+         
+Removes this preference node, invalidating it and any preferences that it contains. The named child will have no descendants at the time this invocation is made (i.e., the 
+(|java.util.prefs.Preferences|) method invokes this method repeatedly in a bottom-up fashion, removing each of a node's descendants before removing the node itself). 
+
+This method is invoked with the lock held on this node and its parent (and all ancestors that are being removed as a result of a single invocation to 
+(|java.util.prefs.Preferences|) ). 
+
+The removal of a node needn't become persistent until the flush method is invoked on this node (or an ancestor). 
+
+If this node throws a BackingStoreException, the exception will propagate out beyond the enclosing (|java.util.prefs.AbstractPreferences|) invocation. 
+
+
+
+*java.util.prefs.AbstractPreferences.removePreferenceChangeListener(PreferenceChangeListener)*
+
+public void removePreferenceChangeListener(java.util.prefs.PreferenceChangeListener pcl)
+
+
+
+
+
+*java.util.prefs.AbstractPreferences.removeSpi(String)*
+
+protected abstract void removeSpi(java.lang.String key)
+
+Remove the association (if any) for the specified key at this preference node. It is guaranteed that key is non-null. Also, it is guaranteed that this node has not been removed. 
+(The implementor needn't check for either of these things.) 
+
+This method is invoked with the lock on this node held. 
+
+
+
+*java.util.prefs.AbstractPreferences.sync()*
+
+public void sync()
+  throws |java.util.prefs.BackingStoreException|
+         
+Implements the sync method as per the specification in (|java.util.prefs.Preferences|) . 
+
+This implementation calls a recursive helper method that locks this node, invokes syncSpi() on it, unlocks this node, and recursively invokes this method on each "cached child." A 
+cached child is a child of this node that has been created in this VM and not subsequently removed. In effect, this method does a depth first traversal of the "cached subtree" 
+rooted at this node, calling syncSpi() on each node in the subTree while only that node is locked. Note that syncSpi() is invoked top-down. 
+
+
+
+*java.util.prefs.AbstractPreferences.syncSpi()*
+
+protected abstract void syncSpi()
+  throws |java.util.prefs.BackingStoreException|
+         
+This method is invoked with this node locked. The contract of this method is to synchronize any cached preferences stored at this node with any stored in the backing store. (It is 
+perfectly possible that this node does not exist on the backing store, either because it has been deleted by another VM, or because it has not yet been created.) Note that this 
+method should not synchronize the preferences in any subnodes of this node. If the backing store naturally syncs an entire subtree at once, the implementer is encouraged to 
+override sync(), rather than merely overriding this method. 
+
+If this node throws a BackingStoreException, the exception will propagate out beyond the enclosing (|java.util.prefs.AbstractPreferences|) invocation. 
+
+
+
+*java.util.prefs.AbstractPreferences.toString()*
+
+public |java.lang.String| toString()
+
+Returns the absolute path name of this preferences node. 
+
+
+
+

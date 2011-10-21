@@ -1,0 +1,86 @@
+*javax.print.StreamPrintService* *StreamPrintService* This class extendsPrintServiceand represents a 
+ print service that prints data in different formats to a 
+ client-provided ou
+
+public abstract class StreamPrintService
+  extends    |java.lang.Object|
+  implements |javax.print.PrintService|
+
+|javax.print.StreamPrintService_Description|
+|javax.print.StreamPrintService_Fields|
+|javax.print.StreamPrintService_Constructors|
+|javax.print.StreamPrintService_Methods|
+
+====================================================================================================================================================================================
+
+*javax.print.StreamPrintService_Constructors*
+|javax.print.StreamPrintService(OutputStream)|Constructs a StreamPrintService object.
+
+*javax.print.StreamPrintService_Methods*
+|javax.print.StreamPrintService.dispose()|Disposes this StreamPrintService.
+|javax.print.StreamPrintService.getOutputFormat()|Returns the document format emitted by this print service.
+|javax.print.StreamPrintService.getOutputStream()|Gets the output stream.
+|javax.print.StreamPrintService.isDisposed()|Returns a boolean indicating whether or not  this StreamPrintService has been disposed.
+
+*javax.print.StreamPrintService_Description*
+
+This class extends (|javax.print.PrintService|) and represents a print service that prints data in different formats to a client-provided output stream. This is principally 
+intended for services where the output format is a document type suitable for viewing or archiving. The output format must be declared as a mime type. This is equivalent to an 
+output document flavor where the representation class is always "java.io.OutputStream" An instance of the StreamPrintService class is obtained from a 
+(|javax.print.StreamPrintServiceFactory|) instance. 
+
+Note that a StreamPrintService is different from a PrintService, which supports a Destination(|javax.print.attribute.standard.Destination|) attribute. A StreamPrintService always 
+requires an output stream, whereas a PrintService optionally accepts a Destination. A StreamPrintService has no default destination for its formatted output. Additionally a 
+StreamPrintService is expected to generate output in a format useful in other contexts. StreamPrintService's are not expected to support the Destination attribute. 
+
+
+
+*javax.print.StreamPrintService(OutputStream)*
+
+protected StreamPrintService(java.io.OutputStream out)
+
+Constructs a StreamPrintService object. 
+
+    out - stream to which to send formatted print data. 
+
+*javax.print.StreamPrintService.dispose()*
+
+public void dispose()
+
+Disposes this StreamPrintService. If a stream service cannot be re-used, it must be disposed to indicate this. Typically the client will call this method. Services which write 
+data which cannot meaningfully be appended to may also dispose the stream. This does not close the stream. It just marks it as not for further use by this service. 
+
+
+
+*javax.print.StreamPrintService.getOutputFormat()*
+
+public abstract |java.lang.String| getOutputFormat()
+
+Returns the document format emitted by this print service. Must be in mimetype format, compatible with the mime type components of DocFlavors @see DocFlavor. 
+
+
+
+    Returns: mime type identifying the output format. 
+
+*javax.print.StreamPrintService.getOutputStream()*
+
+public |java.io.OutputStream| getOutputStream()
+
+Gets the output stream. 
+
+
+
+    Returns: the stream to which this service will send formatted print data. 
+
+*javax.print.StreamPrintService.isDisposed()*
+
+public boolean isDisposed()
+
+Returns a boolean indicating whether or not this StreamPrintService has been disposed. If this object has been disposed, will return true. Used by services and client applications 
+to recognize streams to which no further data should be written. 
+
+
+
+    Returns: if this StreamPrintService has been disposed 
+
+

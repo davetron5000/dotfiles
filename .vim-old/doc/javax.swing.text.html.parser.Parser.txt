@@ -1,0 +1,299 @@
+*javax.swing.text.html.parser.Parser* *Parser* A simple DTD-driven HTML parser.
+
+public class Parser
+  extends    |java.lang.Object|
+  implements |javax.swing.text.html.parser.DTDConstants|
+
+|javax.swing.text.html.parser.Parser_Description|
+|javax.swing.text.html.parser.Parser_Fields|
+|javax.swing.text.html.parser.Parser_Constructors|
+|javax.swing.text.html.parser.Parser_Methods|
+
+====================================================================================================================================================================================
+
+*javax.swing.text.html.parser.Parser_Fields*
+|javax.swing.text.html.parser.DTD_javax.swing.text.html.parser.Parser.dtd|
+|boolean_javax.swing.text.html.parser.Parser.strict|
+
+*javax.swing.text.html.parser.Parser_Constructors*
+|javax.swing.text.html.parser.Parser(DTD)|
+
+*javax.swing.text.html.parser.Parser_Methods*
+|javax.swing.text.html.parser.Parser.endTag(boolean)|Handle an end tag.
+|javax.swing.text.html.parser.Parser.error(String)|
+|javax.swing.text.html.parser.Parser.error(String,String)|
+|javax.swing.text.html.parser.Parser.error(String,String,String)|
+|javax.swing.text.html.parser.Parser.error(String,String,String,String)|Invoke the error handler.
+|javax.swing.text.html.parser.Parser.flushAttributes()|
+|javax.swing.text.html.parser.Parser.getAttributes()|
+|javax.swing.text.html.parser.Parser.getCurrentLine()|
+|javax.swing.text.html.parser.Parser.getCurrentPos()|
+|javax.swing.text.html.parser.Parser.handleComment(char[])|Called when an HTML comment is encountered.
+|javax.swing.text.html.parser.Parser.handleEmptyTag(TagElement)|Called when an empty tag is encountered.
+|javax.swing.text.html.parser.Parser.handleEndTag(TagElement)|Called when an end tag is encountered.
+|javax.swing.text.html.parser.Parser.handleEOFInComment()|
+|javax.swing.text.html.parser.Parser.handleError(int,String)|An error has occurred.
+|javax.swing.text.html.parser.Parser.handleStartTag(TagElement)|Called when a start tag is encountered.
+|javax.swing.text.html.parser.Parser.handleText(char[])|Called when PCDATA is encountered.
+|javax.swing.text.html.parser.Parser.handleTitle(char[])|Called when an HTML title tag is encountered.
+|javax.swing.text.html.parser.Parser.makeTag(Element)|
+|javax.swing.text.html.parser.Parser.makeTag(Element,boolean)|Makes a TagElement.
+|javax.swing.text.html.parser.Parser.markFirstTime(Element)|Marks the first time a tag has been seen in a document
+|javax.swing.text.html.parser.Parser.parse(Reader)|Parse an HTML stream, given a DTD.
+|javax.swing.text.html.parser.Parser.parseDTDMarkup()|Parses th Document Declaration Type markup declaration.
+|javax.swing.text.html.parser.Parser.parseMarkupDeclarations(StringBuffer)|Parse markup declarations.
+|javax.swing.text.html.parser.Parser.startTag(TagElement)|Handle a start tag.
+
+*javax.swing.text.html.parser.Parser_Description*
+
+A simple DTD-driven HTML parser. The parser reads an HTML file from an InputStream and calls various methods (which should be overridden in a subclass) when tags and data are 
+encountered. 
+
+Unfortunately there are many badly implemented HTML parsers out there, and as a result there are many badly formatted HTML files. This parser attempts to parse most HTML files. 
+This means that the implementation sometimes deviates from the SGML specification in favor of HTML. 
+
+The parser treats \r and \r\n as \n. Newlines after starttags and before end tags are ignored just as specified in the SGML/HTML specification. 
+
+The html spec does not specify how spaces are to be coalesced very well. Specifically, the following scenarios are not discussed (note that a space should be used here, but I am 
+using and nbsp to force the space to be displayed): 
+
+'<b>blah<i><strike>foo' which can be treated as: '<b>blah<i><strike>foo' as well as: '<p><a href="xx"><em>Using</em></a></p>' which appears to be treated as: '<p><a 
+href="xx"><em>Using</em></a></p>' 
+
+If strict is false, when a tag that breaks flow, (TagElement.breaksFlows) or trailing whitespace is encountered, all whitespace will be ignored until a non whitespace character is 
+encountered. This appears to give behavior closer to the popular browsers. 
+
+
+
+*javax.swing.text.html.parser.DTD_javax.swing.text.html.parser.Parser.dtd*
+
+
+
+
+*boolean_javax.swing.text.html.parser.Parser.strict*
+
+This flag determines whether or not the Parser will be strict in enforcing SGML compatibility. If false, it will be lenient with certain common classes of erroneous HTML 
+constructs. Strict or not, in either case an error will be recorded. 
+
+
+
+*javax.swing.text.html.parser.Parser(DTD)*
+
+public Parser(javax.swing.text.html.parser.DTD dtd)
+
+
+
+
+*javax.swing.text.html.parser.Parser.endTag(boolean)*
+
+protected void endTag(boolean omitted)
+
+Handle an end tag. The end tag is popped from the tag stack. 
+
+
+
+*javax.swing.text.html.parser.Parser.error(String)*
+
+protected void error(java.lang.String err)
+
+
+
+
+
+*javax.swing.text.html.parser.Parser.error(String,String)*
+
+protected void error(
+  java.lang.String err,
+  java.lang.String arg1)
+
+
+
+
+
+*javax.swing.text.html.parser.Parser.error(String,String,String)*
+
+protected void error(
+  java.lang.String err,
+  java.lang.String arg1,
+  java.lang.String arg2)
+
+
+
+
+
+*javax.swing.text.html.parser.Parser.error(String,String,String,String)*
+
+protected void error(
+  java.lang.String err,
+  java.lang.String arg1,
+  java.lang.String arg2,
+  java.lang.String arg3)
+
+Invoke the error handler. 
+
+
+
+*javax.swing.text.html.parser.Parser.flushAttributes()*
+
+protected void flushAttributes()
+
+
+
+
+
+*javax.swing.text.html.parser.Parser.getAttributes()*
+
+protected |javax.swing.text.SimpleAttributeSet| getAttributes()
+
+
+
+
+
+*javax.swing.text.html.parser.Parser.getCurrentLine()*
+
+protected int getCurrentLine()
+
+
+
+
+
+    Returns: the line number of the line currently being parsed 
+
+*javax.swing.text.html.parser.Parser.getCurrentPos()*
+
+protected int getCurrentPos()
+
+
+
+
+
+*javax.swing.text.html.parser.Parser.handleComment(char[])*
+
+protected void handleComment(char[] text)
+
+Called when an HTML comment is encountered. 
+
+
+
+*javax.swing.text.html.parser.Parser.handleEmptyTag(TagElement)*
+
+protected void handleEmptyTag(javax.swing.text.html.parser.TagElement tag)
+  throws |javax.swing.text.ChangedCharSetException|
+         
+Called when an empty tag is encountered. 
+
+
+
+*javax.swing.text.html.parser.Parser.handleEndTag(TagElement)*
+
+protected void handleEndTag(javax.swing.text.html.parser.TagElement tag)
+
+Called when an end tag is encountered. 
+
+
+
+*javax.swing.text.html.parser.Parser.handleEOFInComment()*
+
+protected void handleEOFInComment()
+
+
+
+
+
+*javax.swing.text.html.parser.Parser.handleError(int,String)*
+
+protected void handleError(
+  int ln,
+  java.lang.String msg)
+
+An error has occurred. 
+
+
+
+*javax.swing.text.html.parser.Parser.handleStartTag(TagElement)*
+
+protected void handleStartTag(javax.swing.text.html.parser.TagElement tag)
+
+Called when a start tag is encountered. 
+
+
+
+*javax.swing.text.html.parser.Parser.handleText(char[])*
+
+protected void handleText(char[] text)
+
+Called when PCDATA is encountered. 
+
+
+
+*javax.swing.text.html.parser.Parser.handleTitle(char[])*
+
+protected void handleTitle(char[] text)
+
+Called when an HTML title tag is encountered. 
+
+
+
+*javax.swing.text.html.parser.Parser.makeTag(Element)*
+
+protected |javax.swing.text.html.parser.TagElement| makeTag(javax.swing.text.html.parser.Element elem)
+
+
+
+
+
+*javax.swing.text.html.parser.Parser.makeTag(Element,boolean)*
+
+protected |javax.swing.text.html.parser.TagElement| makeTag(
+  javax.swing.text.html.parser.Element elem,
+  boolean fictional)
+
+Makes a TagElement. 
+
+
+
+*javax.swing.text.html.parser.Parser.markFirstTime(Element)*
+
+protected void markFirstTime(javax.swing.text.html.parser.Element elem)
+
+Marks the first time a tag has been seen in a document 
+
+
+
+*javax.swing.text.html.parser.Parser.parse(Reader)*
+
+public synchronized void parse(java.io.Reader in)
+  throws |java.io.IOException|
+         
+Parse an HTML stream, given a DTD. 
+
+
+
+*javax.swing.text.html.parser.Parser.parseDTDMarkup()*
+
+public |java.lang.String| parseDTDMarkup()
+  throws |java.io.IOException|
+         
+Parses th Document Declaration Type markup declaration. Currently ignores it. 
+
+
+
+*javax.swing.text.html.parser.Parser.parseMarkupDeclarations(StringBuffer)*
+
+protected boolean parseMarkupDeclarations(java.lang.StringBuffer strBuff)
+  throws |java.io.IOException|
+         
+Parse markup declarations. Currently only handles the Document Type Declaration markup. Returns true if it is a markup declaration false otherwise. 
+
+
+
+*javax.swing.text.html.parser.Parser.startTag(TagElement)*
+
+protected void startTag(javax.swing.text.html.parser.TagElement tag)
+  throws |javax.swing.text.ChangedCharSetException|
+         
+Handle a start tag. The new tag is pushed onto the tag stack. The attribute list is checked for required attributes. 
+
+
+
+

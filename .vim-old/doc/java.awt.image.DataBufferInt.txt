@@ -1,0 +1,191 @@
+*java.awt.image.DataBufferInt* *DataBufferInt* This class extends DataBuffer and stores data internally 
+ as integers.
+
+public final class DataBufferInt
+  extends    |java.awt.image.DataBuffer|
+
+|java.awt.image.DataBufferInt_Description|
+|java.awt.image.DataBufferInt_Fields|
+|java.awt.image.DataBufferInt_Constructors|
+|java.awt.image.DataBufferInt_Methods|
+
+====================================================================================================================================================================================
+
+*java.awt.image.DataBufferInt_Constructors*
+|java.awt.image.DataBufferInt(int)|Constructs an integer-based DataBuffer with a single bank   and the specified size.
+|java.awt.image.DataBufferInt(int[][],int)|Constructs an integer-based DataBuffer with the specified arrays.
+|java.awt.image.DataBufferInt(int[][],int,int[])|Constructs an integer-based DataBuffer with the specified arrays, size,  and offsets.
+|java.awt.image.DataBufferInt(int[],int)|Constructs an integer-based DataBuffer with a single bank using the  specified array.
+|java.awt.image.DataBufferInt(int[],int,int)|Constructs an integer-based DataBuffer with a single bank using the  specified array, size, and offset.
+|java.awt.image.DataBufferInt(int,int)|Constructs an integer-based DataBuffer with the specified number of  banks, all of which are the specified size.
+
+*java.awt.image.DataBufferInt_Methods*
+|java.awt.image.DataBufferInt.getBankData()|Returns the data arrays for all banks.
+|java.awt.image.DataBufferInt.getData()|Returns the default (first) int data array in DataBuffer.
+|java.awt.image.DataBufferInt.getData(int)|Returns the data array for the specified bank.
+|java.awt.image.DataBufferInt.getElem(int)|Returns the requested data array element from the first (default) bank.
+|java.awt.image.DataBufferInt.getElem(int,int)|Returns the requested data array element from the specified bank.
+|java.awt.image.DataBufferInt.setElem(int,int)|Sets the requested data array element in the first (default) bank  to the specified value.
+|java.awt.image.DataBufferInt.setElem(int,int,int)|Sets the requested data array element in the specified bank  to the integer value i.
+
+*java.awt.image.DataBufferInt_Description*
+
+This class extends DataBuffer and stores data internally as integers. 
+
+
+
+*java.awt.image.DataBufferInt(int)*
+
+public DataBufferInt(int size)
+
+Constructs an integer-based DataBuffer with a single bank and the specified size. 
+
+    size - The size of the DataBuffer. 
+
+*java.awt.image.DataBufferInt(int[][],int)*
+
+public DataBufferInt(
+  int[][] dataArray,
+  int size)
+
+Constructs an integer-based DataBuffer with the specified arrays. The number of banks will be equal to dataArray.length. Only the first size elements of each array should be used 
+by accessors of this DataBuffer. 
+
+    dataArray - The integer arrays for the DataBuffer. 
+    size - The size of the banks in the DataBuffer. 
+
+*java.awt.image.DataBufferInt(int[][],int,int[])*
+
+public DataBufferInt(
+  int[][] dataArray,
+  int size,
+  int[] offsets)
+
+Constructs an integer-based DataBuffer with the specified arrays, size, and offsets. The number of banks is equal to dataArray.length. Each array must be at least as large as size 
++ the corresponding offset. There must be an entry in the offset array for each dataArray entry. For each bank, only elements offset through offset + size - 1 should be used by 
+accessors of this DataBuffer. 
+
+    dataArray - The integer arrays for the DataBuffer. 
+    size - The size of the banks in the DataBuffer. 
+    offsets - The offsets into each array. 
+
+*java.awt.image.DataBufferInt(int[],int)*
+
+public DataBufferInt(
+  int[] dataArray,
+  int size)
+
+Constructs an integer-based DataBuffer with a single bank using the specified array. Only the first size elements should be used by accessors of this DataBuffer. dataArray must be 
+large enough to hold size elements. 
+
+    dataArray - The integer array for the DataBuffer. 
+    size - The size of the DataBuffer bank. 
+
+*java.awt.image.DataBufferInt(int[],int,int)*
+
+public DataBufferInt(
+  int[] dataArray,
+  int size,
+  int offset)
+
+Constructs an integer-based DataBuffer with a single bank using the specified array, size, and offset. dataArray must have at least offset + size elements. Only elements offset 
+through offset + size - 1 should be used by accessors of this DataBuffer. 
+
+    dataArray - The integer array for the DataBuffer. 
+    size - The size of the DataBuffer bank. 
+    offset - The offset into the dataArray. 
+
+*java.awt.image.DataBufferInt(int,int)*
+
+public DataBufferInt(
+  int size,
+  int numBanks)
+
+Constructs an integer-based DataBuffer with the specified number of banks, all of which are the specified size. 
+
+    size - The size of the banks in the DataBuffer. 
+    numBanks - The number of banks in the aDataBuffer. 
+
+*java.awt.image.DataBufferInt.getBankData()*
+
+public int[][] getBankData()
+
+Returns the data arrays for all banks. 
+
+
+
+    Returns: All of the data arrays. 
+
+*java.awt.image.DataBufferInt.getData()*
+
+public int[] getData()
+
+Returns the default (first) int data array in DataBuffer. 
+
+
+
+    Returns: The first integer data array. 
+
+*java.awt.image.DataBufferInt.getData(int)*
+
+public int[] getData(int bank)
+
+Returns the data array for the specified bank. 
+
+
+    bank - The bank whose data array you want to get. 
+
+    Returns: The data array for the specified bank. 
+
+*java.awt.image.DataBufferInt.getElem(int)*
+
+public int getElem(int i)
+
+Returns the requested data array element from the first (default) bank. 
+
+
+    i - The data array element you want to get. 
+
+    Returns: The requested data array element as an integer. 
+
+*java.awt.image.DataBufferInt.getElem(int,int)*
+
+public int getElem(
+  int bank,
+  int i)
+
+Returns the requested data array element from the specified bank. 
+
+
+    bank - The bank from which you want to get a data array element. 
+    i - The data array element you want to get. 
+
+    Returns: The requested data array element as an integer. 
+
+*java.awt.image.DataBufferInt.setElem(int,int)*
+
+public void setElem(
+  int i,
+  int val)
+
+Sets the requested data array element in the first (default) bank to the specified value. 
+
+
+    i - The data array element you want to set. 
+    val - The integer value to which you want to set the data array element. 
+
+*java.awt.image.DataBufferInt.setElem(int,int,int)*
+
+public void setElem(
+  int bank,
+  int i,
+  int val)
+
+Sets the requested data array element in the specified bank to the integer value i. 
+
+
+    bank - The bank in which you want to set the data array element. 
+    i - The data array element you want to set. 
+    val - The integer value to which you want to set the specified data array element. 
+
+

@@ -1,0 +1,255 @@
+*java.beans.PropertyChangeSupport* *PropertyChangeSupport* This is a utility class that can be used by beans that support bound
+ properties.
+
+public class PropertyChangeSupport
+  extends    |java.lang.Object|
+  implements |java.io.Serializable|
+
+|java.beans.PropertyChangeSupport_Description|
+|java.beans.PropertyChangeSupport_Fields|
+|java.beans.PropertyChangeSupport_Constructors|
+|java.beans.PropertyChangeSupport_Methods|
+
+====================================================================================================================================================================================
+
+*java.beans.PropertyChangeSupport_Constructors*
+|java.beans.PropertyChangeSupport(Object)|Constructs a PropertyChangeSupport object.
+
+*java.beans.PropertyChangeSupport_Methods*
+|java.beans.PropertyChangeSupport.addPropertyChangeListener(PropertyChangeListener)|Add a PropertyChangeListener to the listener list.
+|java.beans.PropertyChangeSupport.addPropertyChangeListener(String,PropertyChangeListener)|Add a PropertyChangeListener for a specific property.
+|java.beans.PropertyChangeSupport.fireIndexedPropertyChange(String,int,boolean,boolean)|Report a boolean bound indexed property update to any   registered listeners.
+|java.beans.PropertyChangeSupport.fireIndexedPropertyChange(String,int,int,int)|Report an int bound indexed property update to any registered   listeners.
+|java.beans.PropertyChangeSupport.fireIndexedPropertyChange(String,int,Object,Object)|Report a bound indexed property update to any registered  listeners.
+|java.beans.PropertyChangeSupport.firePropertyChange(PropertyChangeEvent)|Fire an existing PropertyChangeEvent to any registered listeners.
+|java.beans.PropertyChangeSupport.firePropertyChange(String,boolean,boolean)|Report a boolean bound property update to any registered listeners.
+|java.beans.PropertyChangeSupport.firePropertyChange(String,int,int)|Report an int bound property update to any registered listeners.
+|java.beans.PropertyChangeSupport.firePropertyChange(String,Object,Object)|Report a bound property update to any registered listeners.
+|java.beans.PropertyChangeSupport.getPropertyChangeListeners()|Returns an array of all the listeners that were added to the  PropertyChangeSupport object with addPropertyChangeLis
+|java.beans.PropertyChangeSupport.getPropertyChangeListeners(String)|Returns an array of all the listeners which have been associated   with the named property.
+|java.beans.PropertyChangeSupport.hasListeners(String)|Check if there are any listeners for a specific property, including  those registered on all properties.
+|java.beans.PropertyChangeSupport.removePropertyChangeListener(PropertyChangeListener)|Remove a PropertyChangeListener from the listener list.
+|java.beans.PropertyChangeSupport.removePropertyChangeListener(String,PropertyChangeListener)|Remove a PropertyChangeListener for a specific property.
+
+*java.beans.PropertyChangeSupport_Description*
+
+This is a utility class that can be used by beans that support bound properties. You can use an instance of this class as a member field of your bean and delegate various work to 
+it. 
+
+This class is serializable. When it is serialized it will save (and restore) any listeners that are themselves serializable. Any non-serializable listeners will be skipped during 
+serialization. 
+
+
+
+*java.beans.PropertyChangeSupport(Object)*
+
+public PropertyChangeSupport(java.lang.Object sourceBean)
+
+Constructs a PropertyChangeSupport object. 
+
+    sourceBean - The bean to be given as the source for any events. 
+
+*java.beans.PropertyChangeSupport.addPropertyChangeListener(PropertyChangeListener)*
+
+public synchronized void addPropertyChangeListener(java.beans.PropertyChangeListener listener)
+
+Add a PropertyChangeListener to the listener list. The listener is registered for all properties. The same listener object may be added more than once, and will be called as many 
+times as it is added. If listener is null, no exception is thrown and no action is taken. 
+
+
+    listener - The PropertyChangeListener to be added 
+
+*java.beans.PropertyChangeSupport.addPropertyChangeListener(String,PropertyChangeListener)*
+
+public synchronized void addPropertyChangeListener(
+  java.lang.String propertyName,
+  java.beans.PropertyChangeListener listener)
+
+Add a PropertyChangeListener for a specific property. The listener will be invoked only when a call on firePropertyChange names that specific property. The same listener object 
+may be added more than once. For each property, the listener will be invoked the number of times it was added for that property. If propertyName or listener is null, no exception 
+is thrown and no action is taken. 
+
+
+    propertyName - The name of the property to listen on. 
+    listener - The PropertyChangeListener to be added 
+
+*java.beans.PropertyChangeSupport.fireIndexedPropertyChange(String,int,boolean,boolean)*
+
+public void fireIndexedPropertyChange(
+  java.lang.String propertyName,
+  int index,
+  boolean oldValue,
+  boolean newValue)
+
+Report a boolean bound indexed property update to any registered listeners. 
+
+No event is fired if old and new values are equal and non-null. 
+
+This is merely a convenience wrapper around the more general fireIndexedPropertyChange method which takes Object values. 
+
+
+    propertyName - The programmatic name of the property that was changed. 
+    index - index of the property element that was changed. 
+    oldValue - The old value of the property. 
+    newValue - The new value of the property. 
+
+*java.beans.PropertyChangeSupport.fireIndexedPropertyChange(String,int,int,int)*
+
+public void fireIndexedPropertyChange(
+  java.lang.String propertyName,
+  int index,
+  int oldValue,
+  int newValue)
+
+Report an int bound indexed property update to any registered listeners. 
+
+No event is fired if old and new values are equal and non-null. 
+
+This is merely a convenience wrapper around the more general fireIndexedPropertyChange method which takes Object values. 
+
+
+    propertyName - The programmatic name of the property that was changed. 
+    index - index of the property element that was changed. 
+    oldValue - The old value of the property. 
+    newValue - The new value of the property. 
+
+*java.beans.PropertyChangeSupport.fireIndexedPropertyChange(String,int,Object,Object)*
+
+public void fireIndexedPropertyChange(
+  java.lang.String propertyName,
+  int index,
+  java.lang.Object oldValue,
+  java.lang.Object newValue)
+
+Report a bound indexed property update to any registered listeners. 
+
+No event is fired if old and new values are equal and non-null. 
+
+
+    propertyName - The programmatic name of the property that was changed. 
+    index - index of the property element that was changed. 
+    oldValue - The old value of the property. 
+    newValue - The new value of the property. 
+
+*java.beans.PropertyChangeSupport.firePropertyChange(PropertyChangeEvent)*
+
+public void firePropertyChange(java.beans.PropertyChangeEvent evt)
+
+Fire an existing PropertyChangeEvent to any registered listeners. No event is fired if the given event's old and new values are equal and non-null. 
+
+
+    evt - The PropertyChangeEvent object. 
+
+*java.beans.PropertyChangeSupport.firePropertyChange(String,boolean,boolean)*
+
+public void firePropertyChange(
+  java.lang.String propertyName,
+  boolean oldValue,
+  boolean newValue)
+
+Report a boolean bound property update to any registered listeners. No event is fired if old and new are equal and non-null. 
+
+This is merely a convenience wrapper around the more general firePropertyChange method that takes Object values. 
+
+
+    propertyName - The programmatic name of the property that was changed. 
+    oldValue - The old value of the property. 
+    newValue - The new value of the property. 
+
+*java.beans.PropertyChangeSupport.firePropertyChange(String,int,int)*
+
+public void firePropertyChange(
+  java.lang.String propertyName,
+  int oldValue,
+  int newValue)
+
+Report an int bound property update to any registered listeners. No event is fired if old and new are equal and non-null. 
+
+This is merely a convenience wrapper around the more general firePropertyChange method that takes Object values. 
+
+
+    propertyName - The programmatic name of the property that was changed. 
+    oldValue - The old value of the property. 
+    newValue - The new value of the property. 
+
+*java.beans.PropertyChangeSupport.firePropertyChange(String,Object,Object)*
+
+public void firePropertyChange(
+  java.lang.String propertyName,
+  java.lang.Object oldValue,
+  java.lang.Object newValue)
+
+Report a bound property update to any registered listeners. No event is fired if old and new are equal and non-null. 
+
+
+    propertyName - The programmatic name of the property that was changed. 
+    oldValue - The old value of the property. 
+    newValue - The new value of the property. 
+
+*java.beans.PropertyChangeSupport.getPropertyChangeListeners()*
+
+public synchronized |java.beans.PropertyChangeListener|[] getPropertyChangeListeners()
+
+Returns an array of all the listeners that were added to the PropertyChangeSupport object with addPropertyChangeListener(). 
+
+If some listeners have been added with a named property, then the returned array will be a mixture of PropertyChangeListeners and PropertyChangeListenerProxys. If the calling 
+method is interested in distinguishing the listeners then it must test each element to see if it's a PropertyChangeListenerProxy, perform the cast, and examine the parameter. 
+
+
+
+PropertyChangeListener[] listeners = bean.getPropertyChangeListeners(); for (int i = 0; i < listeners.length; i++) { if (listeners[i] instanceof PropertyChangeListenerProxy) { 
+PropertyChangeListenerProxy proxy = (PropertyChangeListenerProxy)listeners[i]; if (proxy.getPropertyName().equals("foo")) { // proxy is a PropertyChangeListener which was 
+associated // with the property named "foo" } } } 
+
+
+
+    Returns: all of the PropertyChangeListeners added or an empty array if no listeners have been added 
+
+*java.beans.PropertyChangeSupport.getPropertyChangeListeners(String)*
+
+public synchronized |java.beans.PropertyChangeListener|[] getPropertyChangeListeners(java.lang.String propertyName)
+
+Returns an array of all the listeners which have been associated with the named property. 
+
+
+    propertyName - The name of the property being listened to 
+
+    Returns: all of the PropertyChangeListeners associated with the named property. If no such listeners have been added, or if propertyName is null, an empty array is returned. 
+
+*java.beans.PropertyChangeSupport.hasListeners(String)*
+
+public synchronized boolean hasListeners(java.lang.String propertyName)
+
+Check if there are any listeners for a specific property, including those registered on all properties. If propertyName is null, only check for listeners registered on all 
+properties. 
+
+
+    propertyName - the property name. 
+
+    Returns: true if there are one or more listeners for the given property 
+
+*java.beans.PropertyChangeSupport.removePropertyChangeListener(PropertyChangeListener)*
+
+public synchronized void removePropertyChangeListener(java.beans.PropertyChangeListener listener)
+
+Remove a PropertyChangeListener from the listener list. This removes a PropertyChangeListener that was registered for all properties. If listener was added more than once to the 
+same event source, it will be notified one less time after being removed. If listener is null, or was never added, no exception is thrown and no action is taken. 
+
+
+    listener - The PropertyChangeListener to be removed 
+
+*java.beans.PropertyChangeSupport.removePropertyChangeListener(String,PropertyChangeListener)*
+
+public synchronized void removePropertyChangeListener(
+  java.lang.String propertyName,
+  java.beans.PropertyChangeListener listener)
+
+Remove a PropertyChangeListener for a specific property. If listener was added more than once to the same event source for the specified property, it will be notified one less 
+time after being removed. If propertyName is null, no exception is thrown and no action is taken. If listener is null, or was never added for the specified property, no exception 
+is thrown and no action is taken. 
+
+
+    propertyName - The name of the property that was listened on. 
+    listener - The PropertyChangeListener to be removed 
+
+

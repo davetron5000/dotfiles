@@ -1,0 +1,87 @@
+*javax.swing.JScrollPane.ScrollBar* *JScrollPane.ScrollBar* By default JScrollPane creates scrollbars
+ that are instances
+ of this class.
+
+protected class JScrollPane.ScrollBar
+  extends    |javax.swing.JScrollBar|
+  implements |javax.swing.plaf.UIResource|
+
+|javax.swing.JScrollPane.ScrollBar_Description|
+|javax.swing.JScrollPane.ScrollBar_Fields|
+|javax.swing.JScrollPane.ScrollBar_Constructors|
+|javax.swing.JScrollPane.ScrollBar_Methods|
+
+====================================================================================================================================================================================
+
+*javax.swing.JScrollPane.ScrollBar_Constructors*
+|javax.swing.JScrollPane.ScrollBar(int)|Creates a scrollbar with the specified orientation.
+
+*javax.swing.JScrollPane.ScrollBar_Methods*
+|javax.swing.JScrollPane.ScrollBar.getBlockIncrement(int)|Computes the block increment for scrolling if the viewport's  view is a Scrollable object.
+|javax.swing.JScrollPane.ScrollBar.getUnitIncrement(int)|Computes the unit increment for scrolling if the viewport's  view is a Scrollable object.
+|javax.swing.JScrollPane.ScrollBar.setBlockIncrement(int)|Messages super to set the value, and resets the  blockIncrementSet instance variable to true.
+|javax.swing.JScrollPane.ScrollBar.setUnitIncrement(int)|Messages super to set the value, and resets the  unitIncrementSet instance variable to true.
+
+*javax.swing.JScrollPane.ScrollBar_Description*
+
+By default JScrollPane creates scrollbars that are instances of this class. Scrollbar overrides the getUnitIncrement and getBlockIncrement methods so that, if the viewport's view 
+is a Scrollable, the view is asked to compute these values. Unless the unit/block increment have been explicitly set. 
+
+Warning: Serialized objects of this class will not be compatible with future Swing releases. The current serialization support is appropriate for short term storage or RMI between 
+applications running the same version of Swing. As of 1.4, support for long term storage of all JavaBeansTM has been added to the java.beans package. Please see 
+(|java.beans.XMLEncoder|) . 
+
+
+
+*javax.swing.JScrollPane.ScrollBar(int)*
+
+public JScrollPane.ScrollBar(int orientation)
+
+Creates a scrollbar with the specified orientation. The options are: 
+
+ScrollPaneConstants.VERTICAL ScrollPaneConstants.HORIZONTAL 
+
+    orientation - an integer specifying one of the legal orientation values shown above 
+
+*javax.swing.JScrollPane.ScrollBar.getBlockIncrement(int)*
+
+public int getBlockIncrement(int direction)
+
+Computes the block increment for scrolling if the viewport's view is a Scrollable object. Otherwise the blockIncrement equals the viewport's width or height. If there's no 
+viewport return super.getBlockIncrement. 
+
+
+    direction - less than zero to scroll up/left, greater than zero for down/right 
+
+    Returns: an integer, in pixels, containing the block increment 
+
+*javax.swing.JScrollPane.ScrollBar.getUnitIncrement(int)*
+
+public int getUnitIncrement(int direction)
+
+Computes the unit increment for scrolling if the viewport's view is a Scrollable object. Otherwise return super.getUnitIncrement. 
+
+
+    direction - less than zero to scroll up/left, greater than zero for down/right 
+
+    Returns: an integer, in pixels, containing the unit increment 
+
+*javax.swing.JScrollPane.ScrollBar.setBlockIncrement(int)*
+
+public void setBlockIncrement(int blockIncrement)
+
+Messages super to set the value, and resets the blockIncrementSet instance variable to true. 
+
+
+    blockIncrement - the new block increment value, in pixels 
+
+*javax.swing.JScrollPane.ScrollBar.setUnitIncrement(int)*
+
+public void setUnitIncrement(int unitIncrement)
+
+Messages super to set the value, and resets the unitIncrementSet instance variable to true. 
+
+
+    unitIncrement - the new unit increment value, in pixels 
+
+

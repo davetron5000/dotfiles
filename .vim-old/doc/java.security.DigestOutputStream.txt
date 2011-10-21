@@ -1,0 +1,123 @@
+*java.security.DigestOutputStream* *DigestOutputStream* A transparent stream that updates the associated message digest using
+ the bits going through the stream.
+
+public class DigestOutputStream
+  extends    |java.io.FilterOutputStream|
+
+|java.security.DigestOutputStream_Description|
+|java.security.DigestOutputStream_Fields|
+|java.security.DigestOutputStream_Constructors|
+|java.security.DigestOutputStream_Methods|
+
+====================================================================================================================================================================================
+
+*java.security.DigestOutputStream_Fields*
+|java.security.MessageDigest_java.security.DigestOutputStream.digest|
+
+*java.security.DigestOutputStream_Constructors*
+|java.security.DigestOutputStream(OutputStream,MessageDigest)|Creates a digest output stream, using the specified output stream  and message digest.
+
+*java.security.DigestOutputStream_Methods*
+|java.security.DigestOutputStream.getMessageDigest()|Returns the message digest associated with this stream.
+|java.security.DigestOutputStream.on(boolean)|Turns the digest function on or off.
+|java.security.DigestOutputStream.setMessageDigest(MessageDigest)|Associates the specified message digest with this stream.
+|java.security.DigestOutputStream.toString()|Prints a string representation of this digest output stream and  its associated message digest object.
+|java.security.DigestOutputStream.write(byte[],int,int)|Updates the message digest (if the digest function is on) using  the specified subarray, and in any case writes the subarra
+|java.security.DigestOutputStream.write(int)|Updates the message digest (if the digest function is on) using  the specified byte, and in any case writes the byte  to the output st
+
+*java.security.DigestOutputStream_Description*
+
+A transparent stream that updates the associated message digest using the bits going through the stream. 
+
+To complete the message digest computation, call one of the digest methods on the associated message digest after your calls to one of this digest ouput stream's 
+write(|java.security.DigestOutputStream|) methods. 
+
+It is possible to turn this stream on or off (see on(|java.security.DigestOutputStream|) ). When it is on, a call to one of the write methods results in an update on the message 
+digest. But when it is off, the message digest is not updated. The default is for the stream to be on. 
+
+
+
+*java.security.MessageDigest_java.security.DigestOutputStream.digest*
+
+The message digest associated with this stream. 
+
+
+
+*java.security.DigestOutputStream(OutputStream,MessageDigest)*
+
+public DigestOutputStream(
+  java.io.OutputStream stream,
+  java.security.MessageDigest digest)
+
+Creates a digest output stream, using the specified output stream and message digest. 
+
+    stream - the output stream. 
+    digest - the message digest to associate with this stream. 
+
+*java.security.DigestOutputStream.getMessageDigest()*
+
+public |java.security.MessageDigest| getMessageDigest()
+
+Returns the message digest associated with this stream. 
+
+
+
+    Returns: the message digest associated with this stream. 
+
+*java.security.DigestOutputStream.on(boolean)*
+
+public void on(boolean on)
+
+Turns the digest function on or off. The default is on. When it is on, a call to one of the write methods results in an update on the message digest. But when it is off, the 
+message digest is not updated. 
+
+
+    on - true to turn the digest function on, false to turn it off. 
+
+*java.security.DigestOutputStream.setMessageDigest(MessageDigest)*
+
+public void setMessageDigest(java.security.MessageDigest digest)
+
+Associates the specified message digest with this stream. 
+
+
+    digest - the message digest to be associated with this stream. 
+
+*java.security.DigestOutputStream.toString()*
+
+public |java.lang.String| toString()
+
+Prints a string representation of this digest output stream and its associated message digest object. 
+
+
+
+*java.security.DigestOutputStream.write(byte[],int,int)*
+
+public void write(
+  byte[] b,
+  int off,
+  int len)
+  throws |java.io.IOException|
+         
+Updates the message digest (if the digest function is on) using the specified subarray, and in any case writes the subarray to the output stream. That is, if the digest function 
+is on (see on(|java.security.DigestOutputStream|) ), this method calls update on the message digest associated with this stream, passing it the subarray specifications. This 
+method then writes the subarray bytes to the output stream, blocking until the bytes are actually written. 
+
+
+    b - the array containing the subarray to be used for updating and writing to the output stream. 
+    off - the offset into b of the first byte to be updated and written. 
+    len - the number of bytes of data to be updated and written from b, starting at offset off. 
+
+*java.security.DigestOutputStream.write(int)*
+
+public void write(int b)
+  throws |java.io.IOException|
+         
+Updates the message digest (if the digest function is on) using the specified byte, and in any case writes the byte to the output stream. That is, if the digest function is on 
+(see on(|java.security.DigestOutputStream|) ), this method calls update on the message digest associated with this stream, passing it the byte b. This method then writes the byte 
+to the output stream, blocking until the byte is actually written. 
+
+
+    b - the byte to be used for updating and writing to the output stream. 
+
+

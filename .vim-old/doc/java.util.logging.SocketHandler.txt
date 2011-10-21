@@ -1,0 +1,80 @@
+*java.util.logging.SocketHandler* *SocketHandler* Simple network logging Handler.
+
+public class SocketHandler
+  extends    |java.util.logging.StreamHandler|
+
+|java.util.logging.SocketHandler_Description|
+|java.util.logging.SocketHandler_Fields|
+|java.util.logging.SocketHandler_Constructors|
+|java.util.logging.SocketHandler_Methods|
+
+====================================================================================================================================================================================
+
+*java.util.logging.SocketHandler_Constructors*
+|java.util.logging.SocketHandler()|Create a SocketHandler, using only LogManager properties  (or their defaults).
+|java.util.logging.SocketHandler(String,int)|Construct a SocketHandler using a specified host and port.
+
+*java.util.logging.SocketHandler_Methods*
+|java.util.logging.SocketHandler.close()|Close this output stream.
+|java.util.logging.SocketHandler.publish(LogRecord)|Format and publish a LogRecord.
+
+*java.util.logging.SocketHandler_Description*
+
+Simple network logging Handler. 
+
+LogRecords are published to a network stream connection. By default the XMLFormatter class is used for formatting. 
+
+Configuration: By default each SocketHandler is initialized using the following LogManager configuration properties. If properties are not defined (or have invalid values) then 
+the specified default values are used. 
+
+java.util.logging.SocketHandler.level specifies the default level for the Handler (defaults to Level.ALL). java.util.logging.SocketHandler.filter specifies the name of a Filter 
+class to use (defaults to no Filter). java.util.logging.SocketHandler.formatter specifies the name of a Formatter class to use (defaults to java.util.logging.XMLFormatter). 
+java.util.logging.SocketHandler.encoding the name of the character set encoding to use (defaults to the default platform encoding). java.util.logging.SocketHandler.host specifies 
+the target host name to connect to (no default). java.util.logging.SocketHandler.port specifies the target TCP port to use (no default). 
+
+The output IO stream is buffered, but is flushed after each LogRecord is written. 
+
+
+
+*java.util.logging.SocketHandler()*
+
+public SocketHandler()
+  throws |java.io.IOException|
+         
+Create a SocketHandler, using only LogManager properties (or their defaults). 
+
+
+*java.util.logging.SocketHandler(String,int)*
+
+public SocketHandler(
+  java.lang.String host,
+  int port)
+  throws |java.io.IOException|
+         
+Construct a SocketHandler using a specified host and port. 
+
+The SocketHandler is configured based on LogManager properties (or their default values) except that the given target host and port arguments are used. If the host argument is 
+empty, but not null String then the localhost is used. 
+
+    host - target host. 
+    port - target port. 
+
+*java.util.logging.SocketHandler.close()*
+
+public synchronized void close()
+  throws |java.lang.SecurityException|
+         
+Close this output stream. 
+
+
+
+*java.util.logging.SocketHandler.publish(LogRecord)*
+
+public synchronized void publish(java.util.logging.LogRecord record)
+
+Format and publish a LogRecord. 
+
+
+    record - description of the log event. A null record is silently ignored and is not published 
+
+

@@ -1,0 +1,323 @@
+*java.sql.ResultSetMetaData* *ResultSetMetaData* An object that can be used to get information about the types 
+ and properties of the columns in a ResultSet object.
+
+public interface interface ResultSetMetaData
+
+
+|java.sql.ResultSetMetaData_Description|
+|java.sql.ResultSetMetaData_Fields|
+|java.sql.ResultSetMetaData_Constructors|
+|java.sql.ResultSetMetaData_Methods|
+
+====================================================================================================================================================================================
+
+*java.sql.ResultSetMetaData_Fields*
+|int_java.sql.ResultSetMetaData.columnNoNulls|
+|int_java.sql.ResultSetMetaData.columnNullable|
+|int_java.sql.ResultSetMetaData.columnNullableUnknown|
+
+*java.sql.ResultSetMetaData_Methods*
+|java.sql.ResultSetMetaData.getCatalogName(int)|Gets the designated column's table's catalog name.
+|java.sql.ResultSetMetaData.getColumnClassName(int)|Returns the fully-qualified name of the Java class whose instances   are manufactured if the method ResultSet.getObject  is cal
+|java.sql.ResultSetMetaData.getColumnCount()|Returns the number of columns in this ResultSet object.
+|java.sql.ResultSetMetaData.getColumnDisplaySize(int)|Indicates the designated column's normal maximum width in characters.
+|java.sql.ResultSetMetaData.getColumnLabel(int)|Gets the designated column's suggested title for use in printouts and  displays.
+|java.sql.ResultSetMetaData.getColumnName(int)|Get the designated column's name.
+|java.sql.ResultSetMetaData.getColumnType(int)|Retrieves the designated column's SQL type.
+|java.sql.ResultSetMetaData.getColumnTypeName(int)|Retrieves the designated column's database-specific type name.
+|java.sql.ResultSetMetaData.getPrecision(int)|Get the designated column's number of decimal digits.
+|java.sql.ResultSetMetaData.getScale(int)|Gets the designated column's number of digits to right of the decimal point.
+|java.sql.ResultSetMetaData.getSchemaName(int)|Get the designated column's table's schema.
+|java.sql.ResultSetMetaData.getTableName(int)|Gets the designated column's table name.
+|java.sql.ResultSetMetaData.isAutoIncrement(int)|Indicates whether the designated column is automatically numbered, thus read-only.
+|java.sql.ResultSetMetaData.isCaseSensitive(int)|Indicates whether a column's case matters.
+|java.sql.ResultSetMetaData.isCurrency(int)|Indicates whether the designated column is a cash value.
+|java.sql.ResultSetMetaData.isDefinitelyWritable(int)|Indicates whether a write on the designated column will definitely succeed.
+|java.sql.ResultSetMetaData.isNullable(int)|Indicates the nullability of values in the designated column.
+|java.sql.ResultSetMetaData.isReadOnly(int)|Indicates whether the designated column is definitely not writable.
+|java.sql.ResultSetMetaData.isSearchable(int)|Indicates whether the designated column can be used in a where clause.
+|java.sql.ResultSetMetaData.isSigned(int)|Indicates whether values in the designated column are signed numbers.
+|java.sql.ResultSetMetaData.isWritable(int)|Indicates whether it is possible for a write on the designated column to succeed.
+
+*java.sql.ResultSetMetaData_Description*
+
+An object that can be used to get information about the types and properties of the columns in a ResultSet object. The following code fragment creates the ResultSet object rs, 
+creates the ResultSetMetaData object rsmd, and uses rsmd to find out how many columns rs has and whether the first column in rs can be used in a WHERE clause. 
+
+ResultSet rs = stmt.executeQuery("SELECT a, b, c FROM TABLE2"); ResultSetMetaData rsmd = rs.getMetaData(); int numberOfColumns = rsmd.getColumnCount(); boolean b = 
+rsmd.isSearchable(1); 
+
+
+
+
+
+*int_java.sql.ResultSetMetaData.columnNoNulls*
+
+The constant indicating that a column does not allow NULL values. 
+
+
+*int_java.sql.ResultSetMetaData.columnNullable*
+
+The constant indicating that a column allows NULL values. 
+
+
+*int_java.sql.ResultSetMetaData.columnNullableUnknown*
+
+The constant indicating that the nullability of a column's values is unknown. 
+
+
+
+*java.sql.ResultSetMetaData.getCatalogName(int)*
+
+public |java.lang.String| getCatalogName(int column)
+  throws |java.sql.SQLException|
+         
+Gets the designated column's table's catalog name. 
+
+
+    column - the first column is 1, the second is 2, ... 
+
+    Returns: the name of the catalog for the table in which the given column appears or "" if not applicable 
+
+*java.sql.ResultSetMetaData.getColumnClassName(int)*
+
+public |java.lang.String| getColumnClassName(int column)
+  throws |java.sql.SQLException|
+         
+Returns the fully-qualified name of the Java class whose instances are manufactured if the method ResultSet.getObject is called to retrieve a value from the column. 
+ResultSet.getObject may return a subclass of the class returned by this method. 
+
+
+    column - the first column is 1, the second is 2, ... 
+
+    Returns: the fully-qualified name of the class in the Java programming language that would be used by the method ResultSet.getObject to retrieve the value in the specified column. This is 
+             the class name used for custom mapping. 
+
+*java.sql.ResultSetMetaData.getColumnCount()*
+
+public int getColumnCount()
+  throws |java.sql.SQLException|
+         
+Returns the number of columns in this ResultSet object. 
+
+
+
+    Returns: the number of columns 
+
+*java.sql.ResultSetMetaData.getColumnDisplaySize(int)*
+
+public int getColumnDisplaySize(int column)
+  throws |java.sql.SQLException|
+         
+Indicates the designated column's normal maximum width in characters. 
+
+
+    column - the first column is 1, the second is 2, ... 
+
+    Returns: the normal maximum number of characters allowed as the width of the designated column 
+
+*java.sql.ResultSetMetaData.getColumnLabel(int)*
+
+public |java.lang.String| getColumnLabel(int column)
+  throws |java.sql.SQLException|
+         
+Gets the designated column's suggested title for use in printouts and displays. 
+
+
+    column - the first column is 1, the second is 2, ... 
+
+    Returns: the suggested column title 
+
+*java.sql.ResultSetMetaData.getColumnName(int)*
+
+public |java.lang.String| getColumnName(int column)
+  throws |java.sql.SQLException|
+         
+Get the designated column's name. 
+
+
+    column - the first column is 1, the second is 2, ... 
+
+    Returns: 
+
+*java.sql.ResultSetMetaData.getColumnType(int)*
+
+public int getColumnType(int column)
+  throws |java.sql.SQLException|
+         
+Retrieves the designated column's SQL type. 
+
+
+    column - the first column is 1, the second is 2, ... 
+
+    Returns: SQL type from java.sql.Types 
+
+*java.sql.ResultSetMetaData.getColumnTypeName(int)*
+
+public |java.lang.String| getColumnTypeName(int column)
+  throws |java.sql.SQLException|
+         
+Retrieves the designated column's database-specific type name. 
+
+
+    column - the first column is 1, the second is 2, ... 
+
+    Returns: type name used by the database. If the column type is a user-defined type, then a fully-qualified type name is returned. 
+
+*java.sql.ResultSetMetaData.getPrecision(int)*
+
+public int getPrecision(int column)
+  throws |java.sql.SQLException|
+         
+Get the designated column's number of decimal digits. 
+
+
+    column - the first column is 1, the second is 2, ... 
+
+    Returns: 
+
+*java.sql.ResultSetMetaData.getScale(int)*
+
+public int getScale(int column)
+  throws |java.sql.SQLException|
+         
+Gets the designated column's number of digits to right of the decimal point. 
+
+
+    column - the first column is 1, the second is 2, ... 
+
+    Returns: 
+
+*java.sql.ResultSetMetaData.getSchemaName(int)*
+
+public |java.lang.String| getSchemaName(int column)
+  throws |java.sql.SQLException|
+         
+Get the designated column's table's schema. 
+
+
+    column - the first column is 1, the second is 2, ... 
+
+    Returns: schema name or "" if not applicable 
+
+*java.sql.ResultSetMetaData.getTableName(int)*
+
+public |java.lang.String| getTableName(int column)
+  throws |java.sql.SQLException|
+         
+Gets the designated column's table name. 
+
+
+    column - the first column is 1, the second is 2, ... 
+
+    Returns: table name or "" if not applicable 
+
+*java.sql.ResultSetMetaData.isAutoIncrement(int)*
+
+public boolean isAutoIncrement(int column)
+  throws |java.sql.SQLException|
+         
+Indicates whether the designated column is automatically numbered, thus read-only. 
+
+
+    column - the first column is 1, the second is 2, ... 
+
+    Returns: true if so; false otherwise 
+
+*java.sql.ResultSetMetaData.isCaseSensitive(int)*
+
+public boolean isCaseSensitive(int column)
+  throws |java.sql.SQLException|
+         
+Indicates whether a column's case matters. 
+
+
+    column - the first column is 1, the second is 2, ... 
+
+    Returns: true if so; false otherwise 
+
+*java.sql.ResultSetMetaData.isCurrency(int)*
+
+public boolean isCurrency(int column)
+  throws |java.sql.SQLException|
+         
+Indicates whether the designated column is a cash value. 
+
+
+    column - the first column is 1, the second is 2, ... 
+
+    Returns: true if so; false otherwise 
+
+*java.sql.ResultSetMetaData.isDefinitelyWritable(int)*
+
+public boolean isDefinitelyWritable(int column)
+  throws |java.sql.SQLException|
+         
+Indicates whether a write on the designated column will definitely succeed. 
+
+
+    column - the first column is 1, the second is 2, ... 
+
+    Returns: true if so; false otherwise 
+
+*java.sql.ResultSetMetaData.isNullable(int)*
+
+public int isNullable(int column)
+  throws |java.sql.SQLException|
+         
+Indicates the nullability of values in the designated column. 
+
+
+    column - the first column is 1, the second is 2, ... 
+
+    Returns: the nullability status of the given column; one of columnNoNulls, columnNullable or columnNullableUnknown 
+
+*java.sql.ResultSetMetaData.isReadOnly(int)*
+
+public boolean isReadOnly(int column)
+  throws |java.sql.SQLException|
+         
+Indicates whether the designated column is definitely not writable. 
+
+
+    column - the first column is 1, the second is 2, ... 
+
+    Returns: true if so; false otherwise 
+
+*java.sql.ResultSetMetaData.isSearchable(int)*
+
+public boolean isSearchable(int column)
+  throws |java.sql.SQLException|
+         
+Indicates whether the designated column can be used in a where clause. 
+
+
+    column - the first column is 1, the second is 2, ... 
+
+    Returns: true if so; false otherwise 
+
+*java.sql.ResultSetMetaData.isSigned(int)*
+
+public boolean isSigned(int column)
+  throws |java.sql.SQLException|
+         
+Indicates whether values in the designated column are signed numbers. 
+
+
+    column - the first column is 1, the second is 2, ... 
+
+    Returns: true if so; false otherwise 
+
+*java.sql.ResultSetMetaData.isWritable(int)*
+
+public boolean isWritable(int column)
+  throws |java.sql.SQLException|
+         
+Indicates whether it is possible for a write on the designated column to succeed. 
+
+
+    column - the first column is 1, the second is 2, ... 
+
+    Returns: true if so; false otherwise 
+
+

@@ -1,0 +1,245 @@
+*java.util.WeakHashMap* *WeakHashMap* A hashtable-based Map implementation with weak keys.
+
+public class WeakHashMap<K,V>
+  extends    |java.util.AbstractMap|
+  implements |java.util.Map|
+
+|java.util.WeakHashMap_Description|
+|java.util.WeakHashMap_Fields|
+|java.util.WeakHashMap_Constructors|
+|java.util.WeakHashMap_Methods|
+
+====================================================================================================================================================================================
+
+*java.util.WeakHashMap_Constructors*
+|java.util.WeakHashMap()|Constructs a new, empty WeakHashMap with the default initial  capacity (16) and the default load factor (0.75).
+|java.util.WeakHashMap(int)|Constructs a new, empty WeakHashMap with the given initial  capacity and the default load factor, which is 0.75.
+|java.util.WeakHashMap(int,float)|Constructs a new, empty WeakHashMap with the given initial  capacity and the given load factor.
+|java.util.WeakHashMap(Map<?extendsK,?extendsV>)|Constructs a new WeakHashMap with the same mappings as the  specified Map.
+
+*java.util.WeakHashMap_Methods*
+|java.util.WeakHashMap.clear()|Removes all mappings from this map.
+|java.util.WeakHashMap.containsKey(Object)|Returns true if this map contains a mapping for the  specified key.
+|java.util.WeakHashMap.containsValue(Object)|Returns true if this map maps one or more keys to the  specified value.
+|java.util.WeakHashMap.entrySet()|Returns a collection view of the mappings contained in this map.
+|java.util.WeakHashMap.get(Object)|Returns the value to which the specified key is mapped in this weak  hash map, or null if the map contains no mapping for  this key.
+|java.util.WeakHashMap.isEmpty()|Returns true if this map contains no key-value mappings.
+|java.util.WeakHashMap.keySet()|Returns a set view of the keys contained in this map.
+|java.util.WeakHashMap.put(K,V)|Associates the specified value with the specified key in this map.
+|java.util.WeakHashMap.putAll(Map<?extendsK,?extendsV>)|Copies all of the mappings from the specified map to this map These  mappings will replace any mappings that this map had f
+|java.util.WeakHashMap.remove(Object)|Removes the mapping for this key from this map if present.
+|java.util.WeakHashMap.size()|Returns the number of key-value mappings in this map.
+|java.util.WeakHashMap.values()|Returns a collection view of the values contained in this map.
+
+*java.util.WeakHashMap_Description*
+
+A hashtable-based Map implementation with weak keys. An entry in a WeakHashMap will automatically be removed when its key is no longer in ordinary use. More precisely, the 
+presence of a mapping for a given key will not prevent the key from being discarded by the garbage collector, that is, made finalizable, finalized, and then reclaimed. When a key 
+has been discarded its entry is effectively removed from the map, so this class behaves somewhat differently than other Map implementations. 
+
+Both null values and the null key are supported. This class has performance characteristics similar to those of the HashMap class, and has the same efficiency parameters of 
+initial capacity and load factor. 
+
+Like most collection classes, this class is not synchronized. A synchronized WeakHashMap may be constructed using the Collections.synchronizedMap method. 
+
+This class is intended primarily for use with key objects whose equals methods test for object identity using the == operator. Once such a key is discarded it can never be 
+recreated, so it is impossible to do a lookup of that key in a WeakHashMap at some later time and be surprised that its entry has been removed. This class will work perfectly well 
+with key objects whose equals methods are not based upon object identity, such as String instances. With such recreatable key objects, however, the automatic removal of 
+WeakHashMap entries whose keys have been discarded may prove to be confusing. 
+
+The behavior of the WeakHashMap class depends in part upon the actions of the garbage collector, so several familiar (though not required) Map invariants do not hold for this 
+class. Because the garbage collector may discard keys at any time, a WeakHashMap may behave as though an unknown thread is silently removing entries. In particular, even if you 
+synchronize on a WeakHashMap instance and invoke none of its mutator methods, it is possible for the size method to return smaller values over time, for the isEmpty method to 
+return false and then true, for the containsKey method to return true and later false for a given key, for the get method to return a value for a given key but later return null, 
+for the put method to return null and the remove method to return false for a key that previously appeared to be in the map, and for successive examinations of the key set, the 
+value set, and the entry set to yield successively smaller numbers of elements. 
+
+Each key object in a WeakHashMap is stored indirectly as the referent of a weak reference. Therefore a key will automatically be removed only after the weak references to it, both 
+inside and outside of the map, have been cleared by the garbage collector. 
+
+Implementation note: The value objects in a WeakHashMap are held by ordinary strong references. Thus care should be taken to ensure that value objects do not strongly refer to 
+their own keys, either directly or indirectly, since that will prevent the keys from being discarded. Note that a value object may refer indirectly to its key via the WeakHashMap 
+itself; that is, a value object may strongly refer to some other key object whose associated value object, in turn, strongly refers to the key of the first value object. One way 
+to deal with this is to wrap values themselves within WeakReferences before inserting, as in: m.put(key, new WeakReference(value)), and then unwrapping upon each get. 
+
+The iterators returned by all of this class's "collection view methods" are fail-fast: if the map is structurally modified at any time after the iterator is created, in any way 
+except through the iterator's own remove or add methods, the iterator will throw a ConcurrentModificationException. Thus, in the face of concurrent modification, the iterator 
+fails quickly and cleanly, rather than risking arbitrary, non-deterministic behavior at an undetermined time in the future. 
+
+Note that the fail-fast behavior of an iterator cannot be guaranteed as it is, generally speaking, impossible to make any hard guarantees in the presence of unsynchronized 
+concurrent modification. Fail-fast iterators throw ConcurrentModificationException on a best-effort basis. Therefore, it would be wrong to write a program that depended on this 
+exception for its correctness: the fail-fast behavior of iterators should be used only to detect bugs. 
+
+This class is a member of the <a href="/../guide/collections/index.html"> Java Collections Framework. 
+
+
+
+*java.util.WeakHashMap()*
+
+public WeakHashMap()
+
+Constructs a new, empty WeakHashMap with the default initial capacity (16) and the default load factor (0.75). 
+
+
+*java.util.WeakHashMap(int)*
+
+public WeakHashMap(int initialCapacity)
+
+Constructs a new, empty WeakHashMap with the given initial capacity and the default load factor, which is 0.75. 
+
+    initialCapacity - The initial capacity of the WeakHashMap 
+
+*java.util.WeakHashMap(int,float)*
+
+public WeakHashMap(
+  int initialCapacity,
+  float loadFactor)
+
+Constructs a new, empty WeakHashMap with the given initial capacity and the given load factor. 
+
+    initialCapacity - The initial capacity of the WeakHashMap 
+    loadFactor - The load factor of the WeakHashMap 
+
+*java.util.WeakHashMap(Map<?extendsK,?extendsV>)*
+
+public WeakHashMap(java.util.Map<? extends K, ? extends V> t)
+
+Constructs a new WeakHashMap with the same mappings as the specified Map. The WeakHashMap is created with default load factor, which is 0.75 and an initial capacity sufficient to 
+hold the mappings in the specified Map. 
+
+    t - the map whose mappings are to be placed in this map. 
+
+*java.util.WeakHashMap.clear()*
+
+public void clear()
+
+Removes all mappings from this map. 
+
+
+
+*java.util.WeakHashMap.containsKey(Object)*
+
+public boolean containsKey(java.lang.Object key)
+
+Returns true if this map contains a mapping for the specified key. 
+
+
+    key - The key whose presence in this map is to be tested 
+
+    Returns: true if there is a mapping for key; false otherwise 
+
+*java.util.WeakHashMap.containsValue(Object)*
+
+public boolean containsValue(java.lang.Object value)
+
+Returns true if this map maps one or more keys to the specified value. 
+
+
+    value - value whose presence in this map is to be tested. 
+
+    Returns: true if this map maps one or more keys to the specified value. 
+
+*java.util.WeakHashMap.entrySet()*
+
+public |java.util.Set|<Entry<K,V>> entrySet()
+
+Returns a collection view of the mappings contained in this map. Each element in the returned collection is a Map.Entry. The collection is backed by the map, so changes to the map 
+are reflected in the collection, and vice-versa. The collection supports element removal, which removes the corresponding mapping from the map, via the Iterator.remove, 
+Collection.remove, removeAll, retainAll, and clear operations. It does not support the add or addAll operations. 
+
+
+
+    Returns: a collection view of the mappings contained in this map. 
+
+*java.util.WeakHashMap.get(Object)*
+
+public |V| get(java.lang.Object key)
+
+Returns the value to which the specified key is mapped in this weak hash map, or null if the map contains no mapping for this key. A return value of null does not necessarily 
+indicate that the map contains no mapping for the key; it is also possible that the map explicitly maps the key to null. The containsKey method may be used to distinguish these 
+two cases. 
+
+
+    key - the key whose associated value is to be returned. 
+
+    Returns: the value to which this map maps the specified key, or null if the map contains no mapping for this key. 
+
+*java.util.WeakHashMap.isEmpty()*
+
+public boolean isEmpty()
+
+Returns true if this map contains no key-value mappings. This result is a snapshot, and may not reflect unprocessed entries that will be removed before next attempted access 
+because they are no longer referenced. 
+
+
+
+*java.util.WeakHashMap.keySet()*
+
+public |java.util.Set|<K> keySet()
+
+Returns a set view of the keys contained in this map. The set is backed by the map, so changes to the map are reflected in the set, and vice-versa. The set supports element 
+removal, which removes the corresponding mapping from this map, via the Iterator.remove, Set.remove, removeAll, retainAll, and clear operations. It does not support the add or 
+addAll operations. 
+
+
+
+    Returns: a set view of the keys contained in this map. 
+
+*java.util.WeakHashMap.put(K,V)*
+
+public |V| put(
+  K key,
+  V value)
+
+Associates the specified value with the specified key in this map. If the map previously contained a mapping for this key, the old value is replaced. 
+
+
+    key - key with which the specified value is to be associated. 
+    value - value to be associated with the specified key. 
+
+    Returns: previous value associated with specified key, or null if there was no mapping for key. A null return can also indicate that the HashMap previously associated null with the 
+             specified key. 
+
+*java.util.WeakHashMap.putAll(Map<?extendsK,?extendsV>)*
+
+public void putAll(java.util.Map<? extends K, ? extends V> m)
+
+Copies all of the mappings from the specified map to this map These mappings will replace any mappings that this map had for any of the keys currently in the specified map. 
+
+
+    m - mappings to be stored in this map. 
+
+*java.util.WeakHashMap.remove(Object)*
+
+public |V| remove(java.lang.Object key)
+
+Removes the mapping for this key from this map if present. 
+
+
+    key - key whose mapping is to be removed from the map. 
+
+    Returns: previous value associated with specified key, or null if there was no mapping for key. A null return can also indicate that the map previously associated null with the specified 
+             key. 
+
+*java.util.WeakHashMap.size()*
+
+public int size()
+
+Returns the number of key-value mappings in this map. This result is a snapshot, and may not reflect unprocessed entries that will be removed before next attempted access because 
+they are no longer referenced. 
+
+
+
+*java.util.WeakHashMap.values()*
+
+public |java.util.Collection|<V> values()
+
+Returns a collection view of the values contained in this map. The collection is backed by the map, so changes to the map are reflected in the collection, and vice-versa. The 
+collection supports element removal, which removes the corresponding mapping from this map, via the Iterator.remove, Collection.remove, removeAll, retainAll, and clear operations. 
+It does not support the add or addAll operations. 
+
+
+
+    Returns: a collection view of the values contained in this map. 
+
+

@@ -1,0 +1,911 @@
+*java.lang.Math* *Math* The class Math contains methods for performing basic
+ numeric operations such as the elementary exponential, logarithm,
+ square root, and trigonometric func
+
+public final class Math
+  extends    |java.lang.Object|
+
+|java.lang.Math_Description|
+|java.lang.Math_Fields|
+|java.lang.Math_Constructors|
+|java.lang.Math_Methods|
+
+====================================================================================================================================================================================
+
+*java.lang.Math_Fields*
+|double_java.lang.Math.E|
+|double_java.lang.Math.PI|
+
+*java.lang.Math_Methods*
+|java.lang.Math.abs(double)|Returns the absolute value of a double value.
+|java.lang.Math.abs(float)|Returns the absolute value of a float value.
+|java.lang.Math.abs(int)|Returns the absolute value of an int value.
+|java.lang.Math.abs(long)|Returns the absolute value of a long value.
+|java.lang.Math.acos(double)|Returns the arc cosine of an angle, in the range of 0.0 through  pi.
+|java.lang.Math.asin(double)|Returns the arc sine of an angle, in the range of -pi/2 through  pi/2.
+|java.lang.Math.atan(double)|Returns the arc tangent of an angle, in the range of -pi/2  through pi/2.
+|java.lang.Math.atan2(double,double)|Converts rectangular coordinates (x,y)  to polar (r,theta).
+|java.lang.Math.cbrt(double)|Returns the cube root of a double value.
+|java.lang.Math.ceil(double)|Returns the smallest (closest to negative infinity)  double value that is greater than or equal to the  argument and is equal to a mathematical intege
+|java.lang.Math.cos(double)|Returns the trigonometric cosine of an angle.
+|java.lang.Math.cosh(double)|Returns the hyperbolic cosine of a double value.
+|java.lang.Math.exp(double)|Returns Euler's number e raised to the power of a  double value.
+|java.lang.Math.expm1(double)|Returns ex-1.
+|java.lang.Math.floor(double)|Returns the largest (closest to positive infinity)  double value that is less than or equal to the  argument and is equal to a mathematical integer.
+|java.lang.Math.hypot(double,double)|Returns sqrt(x2+y2)  without intermediate overflow or underflow.
+|java.lang.Math.IEEEremainder(double,double)|Computes the remainder operation on two arguments as prescribed   by the IEEE 754 standard.
+|java.lang.Math.log(double)|Returns the natural logarithm (base e) of a double  value.
+|java.lang.Math.log10(double)|Returns the base 10 logarithm of a double value.
+|java.lang.Math.log1p(double)|Returns the natural logarithm of the sum of the argument and 1.
+|java.lang.Math.max(double,double)|Returns the greater of two double values.
+|java.lang.Math.max(float,float)|Returns the greater of two float values.
+|java.lang.Math.max(int,int)|Returns the greater of two int values.
+|java.lang.Math.max(long,long)|Returns the greater of two long values.
+|java.lang.Math.min(double,double)|Returns the smaller of two double values.
+|java.lang.Math.min(float,float)|Returns the smaller of two float values.
+|java.lang.Math.min(int,int)|Returns the smaller of two int values.
+|java.lang.Math.min(long,long)|Returns the smaller of two long values.
+|java.lang.Math.pow(double,double)|Returns the value of the first argument raised to the power of the  second argument.
+|java.lang.Math.random()|Returns a double value with a positive sign, greater   than or equal to 0.0 and less than 1.0.
+|java.lang.Math.rint(double)|Returns the double value that is closest in value  to the argument and is equal to a mathematical integer.
+|java.lang.Math.round(double)|Returns the closest long to the argument.
+|java.lang.Math.round(float)|Returns the closest int to the argument.
+|java.lang.Math.signum(double)|Returns the signum function of the argument; zero if the argument  is zero, 1.0 if the argument is greater than zero, -1.0 if the  argument is less 
+|java.lang.Math.signum(float)|Returns the signum function of the argument; zero if the argument  is zero, 1.0f if the argument is greater than zero, -1.0f if the  argument is less
+|java.lang.Math.sin(double)|Returns the trigonometric sine of an angle.
+|java.lang.Math.sinh(double)|Returns the hyperbolic sine of a double value.
+|java.lang.Math.sqrt(double)|Returns the correctly rounded positive square root of a   double value.
+|java.lang.Math.tan(double)|Returns the trigonometric tangent of an angle.
+|java.lang.Math.tanh(double)|Returns the hyperbolic tangent of a double value.
+|java.lang.Math.toDegrees(double)|Converts an angle measured in radians to an approximately  equivalent angle measured in degrees.
+|java.lang.Math.toRadians(double)|Converts an angle measured in degrees to an approximately  equivalent angle measured in radians.
+|java.lang.Math.ulp(double)|Returns the size of an ulp of the argument.
+|java.lang.Math.ulp(float)|Returns the size of an ulp of the argument.
+
+*java.lang.Math_Description*
+
+The class Math contains methods for performing basic numeric operations such as the elementary exponential, logarithm, square root, and trigonometric functions. 
+
+Unlike some of the numeric methods of class StrictMath, all implementations of the equivalent functions of class Math are not defined to return the bit-for-bit same results. This 
+relaxation permits better-performing implementations where strict reproducibility is not required. 
+
+By default many of the Math methods simply call the equivalent method in StrictMath for their implementation. Code generators are encouraged to use platform-specific native 
+libraries or microprocessor instructions, where available, to provide higher-performance implementations of Math methods. Such higher-performance implementations still must 
+conform to the specification for Math. 
+
+The quality of implementation specifications concern two properties, accuracy of the returned result and monotonicity of the method. Accuracy of the floating-point Math methods is 
+measured in terms of ulps, units in the last place. For a given floating-point format, an ulp of a specific real number value is the distance between the two floating-point values 
+bracketing that numerical value. When discussing the accuracy of a method as a whole rather than at a specific argument, the number of ulps cited is for the worst-case error at 
+any argument. If a method always has an error less than 0.5 ulps, the method always returns the floating-point number nearest the exact result; such a method is correctly rounded. 
+A correctly rounded method is generally the best a floating-point approximation can be; however, it is impractical for many floating-point methods to be correctly rounded. 
+Instead, for the Math class, a larger error bound of 1 or 2 ulps is allowed for certain methods. Informally, with a 1 ulp error bound, when the exact result is a representable 
+number, the exact result should be returned as the computed result; otherwise, either of the two floating-point values which bracket the exact result may be returned. For exact 
+results large in magnitude, one of the endpoints of the bracket may be infinite. Besides accuracy at individual arguments, maintaining proper relations between the method at 
+different arguments is also important. Therefore, most methods with more than 0.5 ulp errors are required to be semi-monotonic: whenever the mathematical function is 
+non-decreasing, so is the floating-point approximation, likewise, whenever the mathematical function is non-increasing, so is the floating-point approximation. Not all 
+approximations that have 1 ulp accuracy will automatically meet the monotonicity requirements. 
+
+
+
+*double_java.lang.Math.E*
+
+The double value that is closer than any other to e, the base of the natural logarithms. 
+
+
+*double_java.lang.Math.PI*
+
+The double value that is closer than any other to pi, the ratio of the circumference of a circle to its diameter. 
+
+
+
+*java.lang.Math.abs(double)*
+
+public static double abs(double a)
+
+Returns the absolute value of a double value. If the argument is not negative, the argument is returned. If the argument is negative, the negation of the argument is returned. 
+Special cases: If the argument is positive zero or negative zero, the result is positive zero. If the argument is infinite, the result is positive infinity. If the argument is 
+NaN, the result is NaN. In other words, the result is the same as the value of the expression: Double.longBitsToDouble((Double.doubleToLongBits(a)<<1)>>>1) 
+
+
+    a - the argument whose absolute value is to be determined 
+
+    Returns: the absolute value of the argument. 
+
+*java.lang.Math.abs(float)*
+
+public static float abs(float a)
+
+Returns the absolute value of a float value. If the argument is not negative, the argument is returned. If the argument is negative, the negation of the argument is returned. 
+Special cases: If the argument is positive zero or negative zero, the result is positive zero. If the argument is infinite, the result is positive infinity. If the argument is 
+NaN, the result is NaN. In other words, the result is the same as the value of the expression: 
+
+Float.intBitsToFloat(0x7fffffff & Float.floatToIntBits(a)) 
+
+
+    a - the argument whose absolute value is to be determined 
+
+    Returns: the absolute value of the argument. 
+
+*java.lang.Math.abs(int)*
+
+public static int abs(int a)
+
+Returns the absolute value of an int value. If the argument is not negative, the argument is returned. If the argument is negative, the negation of the argument is returned. 
+
+Note that if the argument is equal to the value of Integer.MIN_VALUE, the most negative representable int value, the result is that same value, which is negative. 
+
+
+    a - the argument whose absolute value is to be determined 
+
+    Returns: the absolute value of the argument. 
+
+*java.lang.Math.abs(long)*
+
+public static long abs(long a)
+
+Returns the absolute value of a long value. If the argument is not negative, the argument is returned. If the argument is negative, the negation of the argument is returned. 
+
+Note that if the argument is equal to the value of Long.MIN_VALUE, the most negative representable long value, the result is that same value, which is negative. 
+
+
+    a - the argument whose absolute value is to be determined 
+
+    Returns: the absolute value of the argument. 
+
+*java.lang.Math.acos(double)*
+
+public static double acos(double a)
+
+Returns the arc cosine of an angle, in the range of 0.0 through pi. Special case: If the argument is NaN or its absolute value is greater than 1, then the result is NaN. 
+
+The computed result must be within 1 ulp of the exact result. Results must be semi-monotonic. 
+
+
+    a - the value whose arc cosine is to be returned. 
+
+    Returns: the arc cosine of the argument. 
+
+*java.lang.Math.asin(double)*
+
+public static double asin(double a)
+
+Returns the arc sine of an angle, in the range of -pi/2 through pi/2. Special cases: If the argument is NaN or its absolute value is greater than 1, then the result is NaN. If the 
+argument is zero, then the result is a zero with the same sign as the argument. 
+
+The computed result must be within 1 ulp of the exact result. Results must be semi-monotonic. 
+
+
+    a - the value whose arc sine is to be returned. 
+
+    Returns: the arc sine of the argument. 
+
+*java.lang.Math.atan(double)*
+
+public static double atan(double a)
+
+Returns the arc tangent of an angle, in the range of -pi/2 through pi/2. Special cases: If the argument is NaN, then the result is NaN. If the argument is zero, then the result is 
+a zero with the same sign as the argument. 
+
+The computed result must be within 1 ulp of the exact result. Results must be semi-monotonic. 
+
+
+    a - the value whose arc tangent is to be returned. 
+
+    Returns: the arc tangent of the argument. 
+
+*java.lang.Math.atan2(double,double)*
+
+public static double atan2(
+  double y,
+  double x)
+
+Converts rectangular coordinates (x,y) to polar (r,theta). This method computes the phase theta by computing an arc tangent of y/x in the range of -pi to pi. Special cases: If 
+either argument is NaN, then the result is NaN. If the first argument is positive zero and the second argument is positive, or the first argument is positive and finite and the 
+second argument is positive infinity, then the result is positive zero. If the first argument is negative zero and the second argument is positive, or the first argument is 
+negative and finite and the second argument is positive infinity, then the result is negative zero. If the first argument is positive zero and the second argument is negative, or 
+the first argument is positive and finite and the second argument is negative infinity, then the result is the double value closest to pi. If the first argument is negative zero 
+and the second argument is negative, or the first argument is negative and finite and the second argument is negative infinity, then the result is the double value closest to -pi. 
+If the first argument is positive and the second argument is positive zero or negative zero, or the first argument is positive infinity and the second argument is finite, then the 
+result is the double value closest to pi/2. If the first argument is negative and the second argument is positive zero or negative zero, or the first argument is negative infinity 
+and the second argument is finite, then the result is the double value closest to -pi/2. If both arguments are positive infinity, then the result is the double value closest to 
+pi/4. If the first argument is positive infinity and the second argument is negative infinity, then the result is the double value closest to 3*pi/4. If the first argument is 
+negative infinity and the second argument is positive infinity, then the result is the double value closest to -pi/4. If both arguments are negative infinity, then the result is 
+the double value closest to -3*pi/4. 
+
+The computed result must be within 2 ulps of the exact result. Results must be semi-monotonic. 
+
+
+    y - the ordinate coordinate 
+    x - the abscissa coordinate 
+
+    Returns: the theta component of the point (r,theta) in polar coordinates that corresponds to the point (x,y) in Cartesian coordinates. 
+
+*java.lang.Math.cbrt(double)*
+
+public static double cbrt(double a)
+
+Returns the cube root of a double value. For positive finite x, cbrt(-x) == -cbrt(x); that is, the cube root of a negative value is the negative of the cube root of that value's 
+magnitude. 
+
+Special cases: 
+
+
+
+If the argument is NaN, then the result is NaN. 
+
+If the argument is infinite, then the result is an infinity with the same sign as the argument. 
+
+If the argument is zero, then the result is a zero with the same sign as the argument. 
+
+
+
+The computed result must be within 1 ulp of the exact result. 
+
+
+    a - a value. 
+
+    Returns: the cube root of a. 
+
+*java.lang.Math.ceil(double)*
+
+public static double ceil(double a)
+
+Returns the smallest (closest to negative infinity) double value that is greater than or equal to the argument and is equal to a mathematical integer. Special cases: If the 
+argument value is already equal to a mathematical integer, then the result is the same as the argument. If the argument is NaN or an infinity or positive zero or negative zero, 
+then the result is the same as the argument. If the argument value is less than zero but greater than -1.0, then the result is negative zero. Note that the value of Math.ceil(x) 
+is exactly the value of -Math.floor(-x). 
+
+
+    a - a value. 
+
+    Returns: the smallest (closest to negative infinity) floating-point value that is greater than or equal to the argument and is equal to a mathematical integer. 
+
+*java.lang.Math.cos(double)*
+
+public static double cos(double a)
+
+Returns the trigonometric cosine of an angle. Special cases: If the argument is NaN or an infinity, then the result is NaN. 
+
+The computed result must be within 1 ulp of the exact result. Results must be semi-monotonic. 
+
+
+    a - an angle, in radians. 
+
+    Returns: the cosine of the argument. 
+
+*java.lang.Math.cosh(double)*
+
+public static double cosh(double x)
+
+Returns the hyperbolic cosine of a double value. The hyperbolic cosine of x is defined to be (ex+e-x)/2 where e is Euler's number(|java.lang.Math|) . 
+
+Special cases: 
+
+If the argument is NaN, then the result is NaN. 
+
+If the argument is infinite, then the result is positive infinity. 
+
+If the argument is zero, then the result is 1.0. 
+
+
+
+The computed result must be within 2.5 ulps of the exact result. 
+
+
+    x - The number whose hyperbolic cosine is to be returned. 
+
+    Returns: The hyperbolic cosine of x. 
+
+*java.lang.Math.exp(double)*
+
+public static double exp(double a)
+
+Returns Euler's number e raised to the power of a double value. Special cases: If the argument is NaN, the result is NaN. If the argument is positive infinity, then the result is 
+positive infinity. If the argument is negative infinity, then the result is positive zero. 
+
+The computed result must be within 1 ulp of the exact result. Results must be semi-monotonic. 
+
+
+    a - the exponent to raise e to. 
+
+    Returns: the value ea, where e is the base of the natural logarithms. 
+
+*java.lang.Math.expm1(double)*
+
+public static double expm1(double x)
+
+Returns ex-1. Note that for values of x near 0, the exact sum of expm1(x)+1 is much closer to the true result of ex than exp(x). 
+
+Special cases: 
+
+If the argument is NaN, the result is NaN. 
+
+If the argument is positive infinity, then the result is positive infinity. 
+
+If the argument is negative infinity, then the result is -1.0. 
+
+If the argument is zero, then the result is a zero with the same sign as the argument. 
+
+
+
+The computed result must be within 1 ulp of the exact result. Results must be semi-monotonic. The result of expm1 for any finite input must be greater than or equal to -1.0. Note 
+that once the exact result of ex-1 is within 1/2 ulp of the limit value -1, -1.0 should be returned. 
+
+
+    x - the exponent to raise e to in the computation of ex-1. 
+
+    Returns: the value ex-1. 
+
+*java.lang.Math.floor(double)*
+
+public static double floor(double a)
+
+Returns the largest (closest to positive infinity) double value that is less than or equal to the argument and is equal to a mathematical integer. Special cases: If the argument 
+value is already equal to a mathematical integer, then the result is the same as the argument. If the argument is NaN or an infinity or positive zero or negative zero, then the 
+result is the same as the argument. 
+
+
+    a - a value. 
+
+    Returns: the largest (closest to positive infinity) floating-point value that less than or equal to the argument and is equal to a mathematical integer. 
+
+*java.lang.Math.hypot(double,double)*
+
+public static double hypot(
+  double x,
+  double y)
+
+Returns sqrt(x2+y2) without intermediate overflow or underflow. 
+
+Special cases: 
+
+If either argument is infinite, then the result is positive infinity. 
+
+If either argument is NaN and neither argument is infinite, then the result is NaN. 
+
+
+
+The computed result must be within 1 ulp of the exact result. If one parameter is held constant, the results must be semi-monotonic in the other parameter. 
+
+
+    x - a value 
+    y - a value 
+
+    Returns: sqrt(x2+y2) without intermediate overflow or underflow 
+
+*java.lang.Math.IEEEremainder(double,double)*
+
+public static double IEEEremainder(
+  double f1,
+  double f2)
+
+Computes the remainder operation on two arguments as prescribed by the IEEE 754 standard. The remainder value is mathematically equal to f1-f2n, where n is the mathematical 
+integer closest to the exact mathematical value of the quotient f1/f2, and if two mathematical integers are equally close to f1/f2, then n is the integer that is even. If the 
+remainder is zero, its sign is the same as the sign of the first argument. Special cases: If either argument is NaN, or the first argument is infinite, or the second argument is 
+positive zero or negative zero, then the result is NaN. If the first argument is finite and the second argument is infinite, then the result is the same as the first argument. 
+
+
+    f1 - the dividend. 
+    f2 - the divisor. 
+
+    Returns: the remainder when f1 is divided by f2. 
+
+*java.lang.Math.log(double)*
+
+public static double log(double a)
+
+Returns the natural logarithm (base e) of a double value. Special cases: If the argument is NaN or less than zero, then the result is NaN. If the argument is positive infinity, 
+then the result is positive infinity. If the argument is positive zero or negative zero, then the result is negative infinity. 
+
+The computed result must be within 1 ulp of the exact result. Results must be semi-monotonic. 
+
+
+    a - a value 
+
+    Returns: the value lna, the natural logarithm of a. 
+
+*java.lang.Math.log10(double)*
+
+public static double log10(double a)
+
+Returns the base 10 logarithm of a double value. Special cases: 
+
+If the argument is NaN or less than zero, then the result is NaN. If the argument is positive infinity, then the result is positive infinity. If the argument is positive zero or 
+negative zero, then the result is negative infinity. If the argument is equal to 10n for integer n, then the result is n. 
+
+The computed result must be within 1 ulp of the exact result. Results must be semi-monotonic. 
+
+
+    a - a value 
+
+    Returns: the base 10 logarithm of a. 
+
+*java.lang.Math.log1p(double)*
+
+public static double log1p(double x)
+
+Returns the natural logarithm of the sum of the argument and 1. Note that for small values x, the result of log1p(x) is much closer to the true result of ln(1 + x) than the 
+floating-point evaluation of log(1.0+x). 
+
+Special cases: 
+
+
+
+If the argument is NaN or less than -1, then the result is NaN. 
+
+If the argument is positive infinity, then the result is positive infinity. 
+
+If the argument is negative one, then the result is negative infinity. 
+
+If the argument is zero, then the result is a zero with the same sign as the argument. 
+
+
+
+The computed result must be within 1 ulp of the exact result. Results must be semi-monotonic. 
+
+
+    x - a value 
+
+    Returns: the value ln(x+1), the natural log of x+1 
+
+*java.lang.Math.max(double,double)*
+
+public static double max(
+  double a,
+  double b)
+
+Returns the greater of two double values. That is, the result is the argument closer to positive infinity. If the arguments have the same value, the result is that same value. If 
+either value is NaN, then the result is NaN. Unlike the numerical comparison operators, this method considers negative zero to be strictly smaller than positive zero. If one 
+argument is positive zero and the other negative zero, the result is positive zero. 
+
+
+    a - an argument. 
+    b - another argument. 
+
+    Returns: the larger of a and b. 
+
+*java.lang.Math.max(float,float)*
+
+public static float max(
+  float a,
+  float b)
+
+Returns the greater of two float values. That is, the result is the argument closer to positive infinity. If the arguments have the same value, the result is that same value. If 
+either value is NaN, then the result is NaN. Unlike the numerical comparison operators, this method considers negative zero to be strictly smaller than positive zero. If one 
+argument is positive zero and the other negative zero, the result is positive zero. 
+
+
+    a - an argument. 
+    b - another argument. 
+
+    Returns: the larger of a and b. 
+
+*java.lang.Math.max(int,int)*
+
+public static int max(
+  int a,
+  int b)
+
+Returns the greater of two int values. That is, the result is the argument closer to the value of Integer.MAX_VALUE. If the arguments have the same value, the result is that same 
+value. 
+
+
+    a - an argument. 
+    b - another argument. 
+
+    Returns: the larger of a and b. 
+
+*java.lang.Math.max(long,long)*
+
+public static long max(
+  long a,
+  long b)
+
+Returns the greater of two long values. That is, the result is the argument closer to the value of Long.MAX_VALUE. If the arguments have the same value, the result is that same 
+value. 
+
+
+    a - an argument. 
+    b - another argument. 
+
+    Returns: the larger of a and b. 
+
+*java.lang.Math.min(double,double)*
+
+public static double min(
+  double a,
+  double b)
+
+Returns the smaller of two double values. That is, the result is the value closer to negative infinity. If the arguments have the same value, the result is that same value. If 
+either value is NaN, then the result is NaN. Unlike the numerical comparison operators, this method considers negative zero to be strictly smaller than positive zero. If one 
+argument is positive zero and the other is negative zero, the result is negative zero. 
+
+
+    a - an argument. 
+    b - another argument. 
+
+    Returns: the smaller of a and b. 
+
+*java.lang.Math.min(float,float)*
+
+public static float min(
+  float a,
+  float b)
+
+Returns the smaller of two float values. That is, the result is the value closer to negative infinity. If the arguments have the same value, the result is that same value. If 
+either value is NaN, then the result is NaN. Unlike the numerical comparison operators, this method considers negative zero to be strictly smaller than positive zero. If one 
+argument is positive zero and the other is negative zero, the result is negative zero. 
+
+
+    a - an argument. 
+    b - another argument. 
+
+    Returns: the smaller of a and b. 
+
+*java.lang.Math.min(int,int)*
+
+public static int min(
+  int a,
+  int b)
+
+Returns the smaller of two int values. That is, the result the argument closer to the value of Integer.MIN_VALUE. If the arguments have the same value, the result is that same 
+value. 
+
+
+    a - an argument. 
+    b - another argument. 
+
+    Returns: the smaller of a and b. 
+
+*java.lang.Math.min(long,long)*
+
+public static long min(
+  long a,
+  long b)
+
+Returns the smaller of two long values. That is, the result is the argument closer to the value of Long.MIN_VALUE. If the arguments have the same value, the result is that same 
+value. 
+
+
+    a - an argument. 
+    b - another argument. 
+
+    Returns: the smaller of a and b. 
+
+*java.lang.Math.pow(double,double)*
+
+public static double pow(
+  double a,
+  double b)
+
+Returns the value of the first argument raised to the power of the second argument. Special cases: 
+
+If the second argument is positive or negative zero, then the result is 1.0. If the second argument is 1.0, then the result is the same as the first argument. If the second 
+argument is NaN, then the result is NaN. If the first argument is NaN and the second argument is nonzero, then the result is NaN. 
+
+If 
+
+the absolute value of the first argument is greater than 1 and the second argument is positive infinity, or the absolute value of the first argument is less than 1 and the second 
+argument is negative infinity, 
+
+then the result is positive infinity. 
+
+If 
+
+the absolute value of the first argument is greater than 1 and the second argument is negative infinity, or the absolute value of the first argument is less than 1 and the second 
+argument is positive infinity, 
+
+then the result is positive zero. 
+
+If the absolute value of the first argument equals 1 and the second argument is infinite, then the result is NaN. 
+
+If 
+
+the first argument is positive zero and the second argument is greater than zero, or the first argument is positive infinity and the second argument is less than zero, 
+
+then the result is positive zero. 
+
+If 
+
+the first argument is positive zero and the second argument is less than zero, or the first argument is positive infinity and the second argument is greater than zero, 
+
+then the result is positive infinity. 
+
+If 
+
+the first argument is negative zero and the second argument is greater than zero but not a finite odd integer, or the first argument is negative infinity and the second argument 
+is less than zero but not a finite odd integer, 
+
+then the result is positive zero. 
+
+If 
+
+the first argument is negative zero and the second argument is a positive finite odd integer, or the first argument is negative infinity and the second argument is a negative 
+finite odd integer, 
+
+then the result is negative zero. 
+
+If 
+
+the first argument is negative zero and the second argument is less than zero but not a finite odd integer, or the first argument is negative infinity and the second argument is 
+greater than zero but not a finite odd integer, 
+
+then the result is positive infinity. 
+
+If 
+
+the first argument is negative zero and the second argument is a negative finite odd integer, or the first argument is negative infinity and the second argument is a positive 
+finite odd integer, 
+
+then the result is negative infinity. 
+
+If the first argument is finite and less than zero 
+
+if the second argument is a finite even integer, the result is equal to the result of raising the absolute value of the first argument to the power of the second argument 
+
+if the second argument is a finite odd integer, the result is equal to the negative of the result of raising the absolute value of the first argument to the power of the second 
+argument 
+
+if the second argument is finite and not an integer, then the result is NaN. 
+
+If both arguments are integers, then the result is exactly equal to the mathematical result of raising the first argument to the power of the second argument if that result can in 
+fact be represented exactly as a double value. 
+
+(In the foregoing descriptions, a floating-point value is considered to be an integer if and only if it is finite and a fixed point of the method <tt>ceil</tt>(|java.lang.Math|) 
+or, equivalently, a fixed point of the method <tt>floor</tt>(|java.lang.Math|) . A value is a fixed point of a one-argument method if and only if the result of applying the method 
+to the value is equal to the value.) 
+
+The computed result must be within 1 ulp of the exact result. Results must be semi-monotonic. 
+
+
+    a - the base. 
+    b - the exponent. 
+
+    Returns: the value ab. 
+
+*java.lang.Math.random()*
+
+public static double random()
+
+Returns a double value with a positive sign, greater than or equal to 0.0 and less than 1.0. Returned values are chosen pseudorandomly with (approximately) uniform distribution 
+from that range. 
+
+When this method is first called, it creates a single new pseudorandom-number generator, exactly as if by the expression 
+
+new java.util.Random This new pseudorandom-number generator is used thereafter for all calls to this method and is used nowhere else. 
+
+This method is properly synchronized to allow correct use by more than one thread. However, if many threads need to generate pseudorandom numbers at a great rate, it may reduce 
+contention for each thread to have its own pseudorandom-number generator. 
+
+
+
+    Returns: a pseudorandom double greater than or equal to 0.0 and less than 1.0. 
+
+*java.lang.Math.rint(double)*
+
+public static double rint(double a)
+
+Returns the double value that is closest in value to the argument and is equal to a mathematical integer. If two double values that are mathematical integers are equally close, 
+the result is the integer value that is even. Special cases: If the argument value is already equal to a mathematical integer, then the result is the same as the argument. If the 
+argument is NaN or an infinity or positive zero or negative zero, then the result is the same as the argument. 
+
+
+    a - a double value. 
+
+    Returns: the closest floating-point value to a that is equal to a mathematical integer. 
+
+*java.lang.Math.round(double)*
+
+public static long round(double a)
+
+Returns the closest long to the argument. The result is rounded to an integer by adding 1/2, taking the floor of the result, and casting the result to type long. In other words, 
+the result is equal to the value of the expression: 
+
+(long)Math.floor(a + 0.5d) 
+
+Special cases: If the argument is NaN, the result is 0. If the argument is negative infinity or any value less than or equal to the value of Long.MIN_VALUE, the result is equal to 
+the value of Long.MIN_VALUE. If the argument is positive infinity or any value greater than or equal to the value of Long.MAX_VALUE, the result is equal to the value of 
+Long.MAX_VALUE. 
+
+
+    a - a floating-point value to be rounded to a long. 
+
+    Returns: the value of the argument rounded to the nearest long value. 
+
+*java.lang.Math.round(float)*
+
+public static int round(float a)
+
+Returns the closest int to the argument. The result is rounded to an integer by adding 1/2, taking the floor of the result, and casting the result to type int. In other words, the 
+result is equal to the value of the expression: 
+
+(int)Math.floor(a + 0.5f) 
+
+Special cases: If the argument is NaN, the result is 0. If the argument is negative infinity or any value less than or equal to the value of Integer.MIN_VALUE, the result is equal 
+to the value of Integer.MIN_VALUE. If the argument is positive infinity or any value greater than or equal to the value of Integer.MAX_VALUE, the result is equal to the value of 
+Integer.MAX_VALUE. 
+
+
+    a - a floating-point value to be rounded to an integer. 
+
+    Returns: the value of the argument rounded to the nearest int value. 
+
+*java.lang.Math.signum(double)*
+
+public static double signum(double d)
+
+Returns the signum function of the argument; zero if the argument is zero, 1.0 if the argument is greater than zero, -1.0 if the argument is less than zero. 
+
+Special Cases: 
+
+If the argument is NaN, then the result is NaN. If the argument is positive zero or negative zero, then the result is the same as the argument. 
+
+
+    d - the floating-point value whose signum is to be returned 
+
+    Returns: the signum function of the argument 
+
+*java.lang.Math.signum(float)*
+
+public static float signum(float f)
+
+Returns the signum function of the argument; zero if the argument is zero, 1.0f if the argument is greater than zero, -1.0f if the argument is less than zero. 
+
+Special Cases: 
+
+If the argument is NaN, then the result is NaN. If the argument is positive zero or negative zero, then the result is the same as the argument. 
+
+
+    f - the floating-point value whose signum is to be returned 
+
+    Returns: the signum function of the argument 
+
+*java.lang.Math.sin(double)*
+
+public static double sin(double a)
+
+Returns the trigonometric sine of an angle. Special cases: If the argument is NaN or an infinity, then the result is NaN. If the argument is zero, then the result is a zero with 
+the same sign as the argument. 
+
+The computed result must be within 1 ulp of the exact result. Results must be semi-monotonic. 
+
+
+    a - an angle, in radians. 
+
+    Returns: the sine of the argument. 
+
+*java.lang.Math.sinh(double)*
+
+public static double sinh(double x)
+
+Returns the hyperbolic sine of a double value. The hyperbolic sine of x is defined to be (ex-e-x)/2 where e is Euler's number(|java.lang.Math|) . 
+
+Special cases: 
+
+If the argument is NaN, then the result is NaN. 
+
+If the argument is infinite, then the result is an infinity with the same sign as the argument. 
+
+If the argument is zero, then the result is a zero with the same sign as the argument. 
+
+
+
+The computed result must be within 2.5 ulps of the exact result. 
+
+
+    x - The number whose hyperbolic sine is to be returned. 
+
+    Returns: The hyperbolic sine of x. 
+
+*java.lang.Math.sqrt(double)*
+
+public static double sqrt(double a)
+
+Returns the correctly rounded positive square root of a double value. Special cases: If the argument is NaN or less than zero, then the result is NaN. If the argument is positive 
+infinity, then the result is positive infinity. If the argument is positive zero or negative zero, then the result is the same as the argument. Otherwise, the result is the double 
+value closest to the true mathematical square root of the argument value. 
+
+
+    a - a value. 
+
+    Returns: the positive square root of a. If the argument is NaN or less than zero, the result is NaN. 
+
+*java.lang.Math.tan(double)*
+
+public static double tan(double a)
+
+Returns the trigonometric tangent of an angle. Special cases: If the argument is NaN or an infinity, then the result is NaN. If the argument is zero, then the result is a zero 
+with the same sign as the argument. 
+
+The computed result must be within 1 ulp of the exact result. Results must be semi-monotonic. 
+
+
+    a - an angle, in radians. 
+
+    Returns: the tangent of the argument. 
+
+*java.lang.Math.tanh(double)*
+
+public static double tanh(double x)
+
+Returns the hyperbolic tangent of a double value. The hyperbolic tangent of x is defined to be (ex-e-x)/(ex+e-x), in other words, sinh(<i>x</i>)(|java.lang.Math|) / 
+cosh(<i>x</i>)(|java.lang.Math|) . Note that the absolute value of the exact tanh is always less than 1. 
+
+Special cases: 
+
+If the argument is NaN, then the result is NaN. 
+
+If the argument is zero, then the result is a zero with the same sign as the argument. 
+
+If the argument is positive infinity, then the result is +1.0. 
+
+If the argument is negative infinity, then the result is -1.0. 
+
+
+
+The computed result must be within 2.5 ulps of the exact result. The result of tanh for any finite input must have an absolute value less than or equal to 1. Note that once the 
+exact result of tanh is within 1/2 of an ulp of the limit value of 1, correctly signed 1.0 should be returned. 
+
+
+    x - The number whose hyperbolic tangent is to be returned. 
+
+    Returns: The hyperbolic tangent of x. 
+
+*java.lang.Math.toDegrees(double)*
+
+public static double toDegrees(double angrad)
+
+Converts an angle measured in radians to an approximately equivalent angle measured in degrees. The conversion from radians to degrees is generally inexact; users should not 
+expect cos(toRadians(90.0)) to exactly equal 0.0. 
+
+
+    angrad - an angle, in radians 
+
+    Returns: the measurement of the angle angrad in degrees. 
+
+*java.lang.Math.toRadians(double)*
+
+public static double toRadians(double angdeg)
+
+Converts an angle measured in degrees to an approximately equivalent angle measured in radians. The conversion from degrees to radians is generally inexact. 
+
+
+    angdeg - an angle, in degrees 
+
+    Returns: the measurement of the angle angdeg in radians. 
+
+*java.lang.Math.ulp(double)*
+
+public static double ulp(double d)
+
+Returns the size of an ulp of the argument. An ulp of a double value is the positive distance between this floating-point value and the double value next larger in magnitude. Note 
+that for non-NaN x, ulp(-x) == ulp(x). 
+
+Special Cases: 
+
+If the argument is NaN, then the result is NaN. If the argument is positive or negative infinity, then the result is positive infinity. If the argument is positive or negative 
+zero, then the result is Double.MIN_VALUE. If the argument is Double.MAX_VALUE, then the result is equal to 2971. 
+
+
+    d - the floating-point value whose ulp is to be returned 
+
+    Returns: the size of an ulp of the argument 
+
+*java.lang.Math.ulp(float)*
+
+public static float ulp(float f)
+
+Returns the size of an ulp of the argument. An ulp of a float value is the positive distance between this floating-point value and the float value next larger in magnitude. Note 
+that for non-NaN x, ulp(-x) == ulp(x). 
+
+Special Cases: 
+
+If the argument is NaN, then the result is NaN. If the argument is positive or negative infinity, then the result is positive infinity. If the argument is positive or negative 
+zero, then the result is Float.MIN_VALUE. If the argument is Float.MAX_VALUE, then the result is equal to 2104. 
+
+
+    f - the floating-point value whose ulp is to be returned 
+
+    Returns: the size of an ulp of the argument 
+
+

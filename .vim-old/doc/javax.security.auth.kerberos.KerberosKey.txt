@@ -1,0 +1,162 @@
+*javax.security.auth.kerberos.KerberosKey* *KerberosKey* This class encapsulates a long term secret key for a Kerberos
+ principal.
+
+public class KerberosKey
+  extends    |java.lang.Object|
+  implements |javax.crypto.SecretKey|
+             |javax.security.auth.Destroyable|
+
+|javax.security.auth.kerberos.KerberosKey_Description|
+|javax.security.auth.kerberos.KerberosKey_Fields|
+|javax.security.auth.kerberos.KerberosKey_Constructors|
+|javax.security.auth.kerberos.KerberosKey_Methods|
+
+====================================================================================================================================================================================
+
+*javax.security.auth.kerberos.KerberosKey_Constructors*
+|javax.security.auth.kerberos.KerberosKey(KerberosPrincipal,byte[],int,int)|Constructs a KerberosKey from the given bytes when the key type and  key version number are known.
+|javax.security.auth.kerberos.KerberosKey(KerberosPrincipal,char[],String)|Constructs a KerberosKey from a principal's password.
+
+*javax.security.auth.kerberos.KerberosKey_Methods*
+|javax.security.auth.kerberos.KerberosKey.destroy()|Destroys this key.
+|javax.security.auth.kerberos.KerberosKey.getAlgorithm()|Returns the standard algorithm name for this key.
+|javax.security.auth.kerberos.KerberosKey.getEncoded()|Returns the key material of this secret key.
+|javax.security.auth.kerberos.KerberosKey.getFormat()|Returns the name of the encoding format for this secret key.
+|javax.security.auth.kerberos.KerberosKey.getKeyType()|Returns the key type for this long-term key.
+|javax.security.auth.kerberos.KerberosKey.getPrincipal()|Returns the principal that this key belongs to.
+|javax.security.auth.kerberos.KerberosKey.getVersionNumber()|Returns the key version number.
+|javax.security.auth.kerberos.KerberosKey.isDestroyed()|Determines if this key has been destroyed.
+|javax.security.auth.kerberos.KerberosKey.toString()|
+
+*javax.security.auth.kerberos.KerberosKey_Description*
+
+This class encapsulates a long term secret key for a Kerberos principal. 
+
+All Kerberos JAAS login modules that obtain a principal's password and generate the secret key from it should use this class. Where available, the login module might even read 
+this secret key directly from a Kerberos "keytab". Sometimes, such as when authenticating a server in the absence of user-to-user authentication, the login module will store an 
+instance of this class in the private credential set of a Subject(|javax.security.auth.Subject|) during the commit phase of the authentication process. 
+
+It might be necessary for the application to be granted a PrivateCredentialPermission(|javax.security.auth.PrivateCredentialPermission|) if it needs to access the KerberosKey 
+instance from a Subject. This permission is not needed when the application depends on the default JGSS Kerberos mechanism to access the KerberosKey. In that case, however, the 
+application will need an appropriate ServicePermission(|javax.security.auth.kerberos.ServicePermission|) . 
+
+
+
+*javax.security.auth.kerberos.KerberosKey(KerberosPrincipal,byte[],int,int)*
+
+public KerberosKey(
+  javax.security.auth.kerberos.KerberosPrincipal principal,
+  byte[] keyBytes,
+  int keyType,
+  int versionNum)
+
+Constructs a KerberosKey from the given bytes when the key type and key version number are known. This can be used when reading the secret key information from a Kerberos 
+"keytab". 
+
+    principal - the principal that this secret key belongs to 
+    keyBytes - the raw bytes for the secret key 
+    keyType - the key type for the secret key as defined by the Kerberos protocol specification. 
+    versionNum - the version number of this secret key 
+
+*javax.security.auth.kerberos.KerberosKey(KerberosPrincipal,char[],String)*
+
+public KerberosKey(
+  javax.security.auth.kerberos.KerberosPrincipal principal,
+  char[] password,
+  java.lang.String algorithm)
+
+Constructs a KerberosKey from a principal's password. 
+
+    principal - the principal that this password belongs to 
+    password - the password that should be used to compute the key 
+    algorithm - the name for the algorithm that this key will be used for. This parameter may be null in which case the default algorithm "DES" will be assumed. 
+
+*javax.security.auth.kerberos.KerberosKey.destroy()*
+
+public void destroy()
+  throws |javax.security.auth.DestroyFailedException|
+         
+Destroys this key. A call to any of its other methods after this will cause an IllegalStateException to be thrown. 
+
+
+
+*javax.security.auth.kerberos.KerberosKey.getAlgorithm()*
+
+public final |java.lang.String| getAlgorithm()
+
+Returns the standard algorithm name for this key. For example, "DES" would indicate that this key is a DES key. See Appendix A in the Java Cryptography Architecture API 
+Specification and Reference 
+
+for information about standard algorithm names. 
+
+
+
+    Returns: the name of the algorithm associated with this key. 
+
+*javax.security.auth.kerberos.KerberosKey.getEncoded()*
+
+public final byte[] getEncoded()
+
+Returns the key material of this secret key. 
+
+
+
+    Returns: the key material 
+
+*javax.security.auth.kerberos.KerberosKey.getFormat()*
+
+public final |java.lang.String| getFormat()
+
+Returns the name of the encoding format for this secret key. 
+
+
+
+    Returns: the String "RAW" 
+
+*javax.security.auth.kerberos.KerberosKey.getKeyType()*
+
+public final int getKeyType()
+
+Returns the key type for this long-term key. 
+
+
+
+    Returns: the key type. 
+
+*javax.security.auth.kerberos.KerberosKey.getPrincipal()*
+
+public final |javax.security.auth.kerberos.KerberosPrincipal| getPrincipal()
+
+Returns the principal that this key belongs to. 
+
+
+
+    Returns: the principal this key belongs to. 
+
+*javax.security.auth.kerberos.KerberosKey.getVersionNumber()*
+
+public final int getVersionNumber()
+
+Returns the key version number. 
+
+
+
+    Returns: the key version number. 
+
+*javax.security.auth.kerberos.KerberosKey.isDestroyed()*
+
+public boolean isDestroyed()
+
+Determines if this key has been destroyed. 
+
+
+
+*javax.security.auth.kerberos.KerberosKey.toString()*
+
+public |java.lang.String| toString()
+
+
+
+
+
+

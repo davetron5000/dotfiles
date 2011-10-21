@@ -1,0 +1,194 @@
+*javax.swing.plaf.ComponentUI* *ComponentUI* The base class for all UI delegate objects in the Swing pluggable
+ look and feel architecture.
+
+public abstract class ComponentUI
+  extends    |java.lang.Object|
+
+|javax.swing.plaf.ComponentUI_Description|
+|javax.swing.plaf.ComponentUI_Fields|
+|javax.swing.plaf.ComponentUI_Constructors|
+|javax.swing.plaf.ComponentUI_Methods|
+
+====================================================================================================================================================================================
+
+*javax.swing.plaf.ComponentUI_Constructors*
+|javax.swing.plaf.ComponentUI()|Sole constructor.
+
+*javax.swing.plaf.ComponentUI_Methods*
+|javax.swing.plaf.ComponentUI.contains(JComponent,int,int)|Returns true if the specified x,y location is  contained within the look and feel's defined shape of the specified   com
+|javax.swing.plaf.ComponentUI.createUI(JComponent)|Returns an instance of the UI delegate for the specified component.
+|javax.swing.plaf.ComponentUI.getAccessibleChild(JComponent,int)|Returns the ith Accessible child of the object.
+|javax.swing.plaf.ComponentUI.getAccessibleChildrenCount(JComponent)|Returns the number of accessible children in the object.
+|javax.swing.plaf.ComponentUI.getMaximumSize(JComponent)|Returns the specified component's maximum size appropriate for  the look and feel.
+|javax.swing.plaf.ComponentUI.getMinimumSize(JComponent)|Returns the specified component's minimum size appropriate for  the look and feel.
+|javax.swing.plaf.ComponentUI.getPreferredSize(JComponent)|Returns the specified component's preferred size appropriate for  the look and feel.
+|javax.swing.plaf.ComponentUI.installUI(JComponent)|Configures the specified component appropriate for the look and feel.
+|javax.swing.plaf.ComponentUI.paint(Graphics,JComponent)|Paints the specified component appropriate for the look and feel.
+|javax.swing.plaf.ComponentUI.uninstallUI(JComponent)|Reverses configuration which was done on the specified component during  installUI.
+|javax.swing.plaf.ComponentUI.update(Graphics,JComponent)|Notifies this UI delegate that it's time to paint the specified  component.
+
+*javax.swing.plaf.ComponentUI_Description*
+
+The base class for all UI delegate objects in the Swing pluggable look and feel architecture. The UI delegate object for a Swing component is responsible for implementing the 
+aspects of the component that depend on the look and feel. The JComponent class invokes methods from this class in order to delegate operations (painting, layout calculations, 
+etc.) that may vary depending on the look and feel installed. Client programs should not invoke methods on this class directly. 
+
+
+
+*javax.swing.plaf.ComponentUI()*
+
+public ComponentUI()
+
+Sole constructor. (For invocation by subclass constructors, typically implicit.) 
+
+
+*javax.swing.plaf.ComponentUI.contains(JComponent,int,int)*
+
+public boolean contains(
+  javax.swing.JComponent c,
+  int x,
+  int y)
+
+Returns true if the specified x,y location is contained within the look and feel's defined shape of the specified component. x and y are defined to be relative to the coordinate 
+system of the specified component. Although a component's bounds is constrained to a rectangle, this method provides the means for defining a non-rectangular shape within those 
+bounds for the purpose of hit detection. 
+
+
+    c - the component where the x,y location is being queried; this argument is often ignored, but might be used if the UI object is stateless and shared by multiple components 
+    x - the x coordinate of the point 
+    y - the y coordinate of the point 
+
+*javax.swing.plaf.ComponentUI.createUI(JComponent)*
+
+public static |javax.swing.plaf.ComponentUI| createUI(javax.swing.JComponent c)
+
+Returns an instance of the UI delegate for the specified component. Each subclass must provide its own static createUI method that returns an instance of that UI delegate 
+subclass. If the UI delegate subclass is stateless, it may return an instance that is shared by multiple components. If the UI delegate is stateful, then it should return a new 
+instance per component. The default implementation of this method throws an error, as it should never be invoked. 
+
+
+
+*javax.swing.plaf.ComponentUI.getAccessibleChild(JComponent,int)*
+
+public |javax.accessibility.Accessible| getAccessibleChild(
+  javax.swing.JComponent c,
+  int i)
+
+Returns the ith Accessible child of the object. UIs might need to override this if they present areas on the screen that can be viewed as components, but actual components are not 
+used for presenting those areas. 
+
+
+
+Note: As of v1.3, it is recommended that developers call Component.AccessibleAWTComponent.getAccessibleChild() instead of this method. 
+
+
+    i - zero-based index of child 
+
+    Returns: the ith Accessible child of the object 
+
+*javax.swing.plaf.ComponentUI.getAccessibleChildrenCount(JComponent)*
+
+public int getAccessibleChildrenCount(javax.swing.JComponent c)
+
+Returns the number of accessible children in the object. If all of the children of this object implement Accessible, this method should return the number of children of this 
+object. UIs might wish to override this if they present areas on the screen that can be viewed as components, but actual components are not used for presenting those areas. 
+
+Note: As of v1.3, it is recommended that developers call Component.AccessibleAWTComponent.getAccessibleChildrenCount() instead of this method. 
+
+
+
+    Returns: the number of accessible children in the object 
+
+*javax.swing.plaf.ComponentUI.getMaximumSize(JComponent)*
+
+public |java.awt.Dimension| getMaximumSize(javax.swing.JComponent c)
+
+Returns the specified component's maximum size appropriate for the look and feel. If null is returned, the maximum size will be calculated by the component's layout manager 
+instead (this is the preferred approach for any component with a specific layout manager installed). The default implementation of this method invokes getPreferredSize and returns 
+that value. 
+
+
+    c - the component whose maximum size is being queried; this argument is often ignored, but might be used if the UI object is stateless and shared by multiple components 
+
+    Returns: a Dimension object or null 
+
+*javax.swing.plaf.ComponentUI.getMinimumSize(JComponent)*
+
+public |java.awt.Dimension| getMinimumSize(javax.swing.JComponent c)
+
+Returns the specified component's minimum size appropriate for the look and feel. If null is returned, the minimum size will be calculated by the component's layout manager 
+instead (this is the preferred approach for any component with a specific layout manager installed). The default implementation of this method invokes getPreferredSize and returns 
+that value. 
+
+
+    c - the component whose minimum size is being queried; this argument is often ignored, but might be used if the UI object is stateless and shared by multiple components 
+
+    Returns: a Dimension object or null 
+
+*javax.swing.plaf.ComponentUI.getPreferredSize(JComponent)*
+
+public |java.awt.Dimension| getPreferredSize(javax.swing.JComponent c)
+
+Returns the specified component's preferred size appropriate for the look and feel. If null is returned, the preferred size will be calculated by the component's layout manager 
+instead (this is the preferred approach for any component with a specific layout manager installed). The default implementation of this method returns null. 
+
+
+    c - the component whose preferred size is being queried; this argument is often ignored, but might be used if the UI object is stateless and shared by multiple components 
+
+*javax.swing.plaf.ComponentUI.installUI(JComponent)*
+
+public void installUI(javax.swing.JComponent c)
+
+Configures the specified component appropriate for the look and feel. This method is invoked when the ComponentUI instance is being installed as the UI delegate on the specified 
+component. This method should completely configure the component for the look and feel, including the following: 
+
+Install any default property values for color, fonts, borders, icons, opacity, etc. on the component. Whenever possible, property values initialized by the client program should 
+not be overridden. Install a LayoutManager on the component if necessary. Create/add any required sub-components to the component. Create/install event listeners on the component. 
+Create/install a PropertyChangeListener on the component in order to detect and respond to component property changes appropriately. Install keyboard UI (mnemonics, traversal, 
+etc.) on the component. Initialize any appropriate instance data. 
+
+
+    c - the component where this UI delegate is being installed 
+
+*javax.swing.plaf.ComponentUI.paint(Graphics,JComponent)*
+
+public void paint(
+  java.awt.Graphics g,
+  javax.swing.JComponent c)
+
+Paints the specified component appropriate for the look and feel. This method is invoked from the ComponentUI.update method when the specified component is being painted. 
+Subclasses should override this method and use the specified Graphics object to render the content of the component. 
+
+
+    g - the Graphics context in which to paint 
+    c - the component being painted; this argument is often ignored, but might be used if the UI object is stateless and shared by multiple components 
+
+*javax.swing.plaf.ComponentUI.uninstallUI(JComponent)*
+
+public void uninstallUI(javax.swing.JComponent c)
+
+Reverses configuration which was done on the specified component during installUI. This method is invoked when this UIComponent instance is being removed as the UI delegate for 
+the specified component. This method should undo the configuration performed in installUI, being careful to leave the JComponent instance in a clean state (no extraneous 
+listeners, look-and-feel-specific property objects, etc.). This should include the following: 
+
+Remove any UI-set borders from the component. Remove any UI-set layout managers on the component. Remove any UI-added sub-components from the component. Remove any UI-added 
+event/property listeners from the component. Remove any UI-installed keyboard UI from the component. Nullify any allocated instance data objects to allow for GC. 
+
+
+    c - the component from which this UI delegate is being removed; this argument is often ignored, but might be used if the UI object is stateless and shared by multiple components 
+
+*javax.swing.plaf.ComponentUI.update(Graphics,JComponent)*
+
+public void update(
+  java.awt.Graphics g,
+  javax.swing.JComponent c)
+
+Notifies this UI delegate that it's time to paint the specified component. This method is invoked by JComponent when the specified component is being painted. By default this 
+method will fill the specified component with its background color (if its opaque property is true) and then immediately call paint. In general this method need not be overridden 
+by subclasses; all look-and-feel rendering code should reside in the paint method. 
+
+
+    g - the Graphics context in which to paint 
+    c - the component being painted; this argument is often ignored, but might be used if the UI object is stateless and shared by multiple components 
+
+

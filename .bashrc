@@ -8,28 +8,19 @@ export FIGNORE=~:.bak:.tmp:.swp
 export HISTCONTROL=ignoredups
 export LANG=en_US
 
-export ANT_HOME=/opt/ant
-export ANT_OPTS=-Xmx640m
 export CLASSPATH=
 export EDITOR=vim
 export GREP_OPTIONS='--exclude=\*\.svn\*'
-export PATH_BASE=${PATH}:${ANT_HOME}/bin:${HOME}/bin:${CXOFFICE_HOME}/bin:/opt/local/bin
-export PATH=${PATH_BASE}
+export SCALA_HOME=/Applications/scala
+#export PATH_BASE=${PATH}:${SCALA_HOME}/bin:${ANT_HOME}/bin:${HOME}/bin:${CXOFFICE_HOME}/bin:/opt/local/bin
+#export PATH=${PATH_BASE}
 export JAVA_ROOT=/System/Library/Frameworks/JavaVM.framework/Versions
 export TOMCAT_HOME=/Applications/tomcat
+export R_HOME=/Library/Frameworks/R.framework/Versions/2.8/Resources/
+export SVN_EDITOR='vim -u ~/.vimrc_for_fucking_subversion'
+export PATH=${PATH}:${HOME}/bin
 
-function go_gliffy()
-{
-    JAVA=Java5
-    if [ -z $1 ] ; then
-        export JAVA_HOME=$JAVA_ROOT/CurrentJDK/Home
-    else
-        export JAVA_HOME=$JAVA_ROOT/1.4.2/Home
-        JAVA=Java1.4.2
-    fi
-    export PATH=$JAVA_HOME/bin:$PATH_BASE
-    go gliffy.git $JAVA ~/Projects/gliffy.git/svnroot/gliffy online/build.xml
-}
+source ~/.git-completion.bash
 
 function mysqld()
 {
@@ -45,29 +36,34 @@ function mysqld()
     fi
 }
 
-function tomcat()
-{
-    if [ -z $1 ] ; then
-        echo "usage: tomcat [start|stop]";
-        return -1;
-    else
-        if [ $1 == "start" ] ; then
-            $TOMCAT_HOME/bin/startup.sh
-        elif [ $1 == "stop" ] ; then
-            $TOMCAT_HOME/bin/shutdown.sh
-        elif [ $1 == "log" ] ; then
-            open -a /Applications/Utilities/Console.app $TOMCAT_HOME/logs/catalina.out
-        fi
-    fi
-}
+#function mvn()
+#{
+#    /usr/bin/mvn $*
+#    if [ $? == 0 ]; then
+#        growlnotify -s -n Maven -m "Build Successful" --image /Users/davec/Pictures/Icons/pass.jpg
+#    else
+#        growlnotify -s -n Maven -m "Build FAILED" --image /Users/davec/Pictures/Icons/fail.png
+#    fi
+#
+#}
 
-alias vi='gvim'
+alias vi='mvim'
 alias gem_server="ruby -r rubygems/server -e 'Gem::Server.run(:gemdir=>\"/Library/Ruby/Gems/1.8\",:port=>8088)'"
 alias psi='/opt/psi/bin/psi'
 alias ps='ps auxwwwwwwww'
-alias ls='ls -F'
-alias mysql='/usr/local/mysql/bin/mysql'
+alias ls='ls -FG'
+export MYSQL_EXE='/usr/local/mysql/bin/mysql --show-warnings'
+alias mysql=$MYSQL_EXE
 
+complete -F get_gliffy_targets gliffy
+function get_gliffy_targets() 
+{
+    if [ -z $2 ] ; then
+        COMPREPLY=(`gliffy help -c`)
+    else
+        COMPREPLY=(`gliffy help -c $2`)
+    fi
+}
 complete -F get_go_targets go
 
 function get_go_targets()
@@ -113,25 +109,51 @@ function go()
             echo "$GO_TARGET not found!"
             return;
         fi
+        export CURRENT_PROJECT=$GO_TARGET
         if [ ! -z $3 ];  then
             if [ ! -z $4 ]; then
-                alias vi="gvim --cmd 'let g:project_root=\"$3\"' --cmd 'let g:build_file=\"$4\"' \$*"
+                alias vi="mvim --cmd 'let g:project_root=\"$3\"' --cmd 'let g:build_file=\"$4\"' \$*"
             else
-                alias vi="gvim --cmd 'let g:project_root=\"$3\"' \$*"
+                alias vi="mvim --cmd 'let g:project_root=\"$3\"' \$*"
             fi
         else
-            alias vi="gvim --cmd 'let g:project_root=\"$GO_DIR\"' \$*"
+            alias vi="mvim --cmd 'let g:project_root=\"$GO_DIR\"' \$*"
         fi
-        alias tailjboss='tail -f $JBOSS_LOG'
+        if [ $1 == 'pose' ]; then
+            alias vi="mvim --cmd 'let g:pose=\"true\"' \$*"
+        fi
     fi
+    colorless_update_prompt $GO_TARGET
 
-    if [ ! -z $2 ]; then
-        export PS1="${TITLEBAR}[\@] ${PROMPT_MAGENTA}\u${PROMPT_BOLD_WHITE}${PROMPT_GREY}\w\n${PROMPT_WHITE} [$GO_TARGET: ($2)]->${PROMPT_GREEN}"
-    else
-        export PS1="${TITLEBAR}[\@] ${PROMPT_MAGENTA}\u${PROMPT_BOLD_WHITE}${PROMPT_GREY}\w\n${PROMPT_WHITE} [$GO_TARGET:]->${PROMPT_GREEN}"
-    fi
     cd $GO_DIR
 }
 
+function colorless_update_prompt()
+{
+    PS1_START='\u@\h '
+    PS1_TARGET="[$1]\n"
+    PS1_GIT='$(__git_ps1 "git://%s") '
+    PS1_RVM='[$(rvm-prompt)]'
+    PS1_DIR='\w> '
+    PS1_DIR='\w❺➠ '
+    export PS1=$PS1_START$PS1_RVM$PS1_TARGET$PS1_GIT$PS1_DIR
+}
+
+function update_prompt()
+{
+    PS1_START='\[\033[0;35m\]\u@\[\033[1;37m\]\h '
+    PS1_TARGET="\[\033[1;36m\][$1]\n"
+    PS1_GIT='\[\033[1;33m\]$(__git_ps1 "git://%s")\[\033[0;32m\] '
+    #PS1_DIR='\[\033[0;32m\]\w> '
+    PS1_DIR='\033[1;37m\]\w❺➠\033[0;37m\] '
+    export PS1=$PS1_START$PS1_TARGET$PS1_GIT$PS1_DIR
+}
+
+##
+# Your previous /Users/davec/.profile file was backed up as /Users/davec/.profile.macports-saved_2009-10-12_at_19:01:00
+##
 go 
 cd ~
+
+[[ -s $HOME/.rvm/scripts/rvm ]] && source $HOME/.rvm/scripts/rvm
+

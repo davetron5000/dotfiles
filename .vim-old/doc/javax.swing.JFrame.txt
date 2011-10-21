@@ -1,0 +1,424 @@
+*javax.swing.JFrame* *JFrame* An extended version of java.awt.Frame that adds support for 
+ the JFC/Swing component architecture.
+
+public class JFrame
+  extends    |java.awt.Frame|
+  implements |javax.swing.WindowConstants|
+             |javax.accessibility.Accessible|
+             |javax.swing.RootPaneContainer|
+
+|javax.swing.JFrame_Description|
+|javax.swing.JFrame_Fields|
+|javax.swing.JFrame_Constructors|
+|javax.swing.JFrame_Methods|
+
+====================================================================================================================================================================================
+
+*javax.swing.JFrame_Fields*
+|javax.accessibility.AccessibleContext_javax.swing.JFrame.accessibleContext|
+|int_javax.swing.JFrame.EXIT_ON_CLOSE|
+|javax.swing.JRootPane_javax.swing.JFrame.rootPane|
+|boolean_javax.swing.JFrame.rootPaneCheckingEnabled|
+
+*javax.swing.JFrame_Constructors*
+|javax.swing.JFrame()|Constructs a new frame that is initially invisible.
+|javax.swing.JFrame(GraphicsConfiguration)|Creates a Frame in the specified  GraphicsConfiguration of  a screen device and a blank title.
+|javax.swing.JFrame(String)|Creates a new, initially invisible Frame with the   specified title.
+|javax.swing.JFrame(String,GraphicsConfiguration)|Creates a JFrame with the specified title and the  specified GraphicsConfiguration of a screen device.
+
+*javax.swing.JFrame_Methods*
+|javax.swing.JFrame.addImpl(Component,Object,int)|Adds the specified child Component.
+|javax.swing.JFrame.createRootPane()|Called by the constructor methods to create the default  rootPane.
+|javax.swing.JFrame.frameInit()|Called by the constructors to init the JFrame properly.
+|javax.swing.JFrame.getAccessibleContext()|Gets the AccessibleContext associated with this JFrame.
+|javax.swing.JFrame.getContentPane()|Returns the contentPane object for this frame.
+|javax.swing.JFrame.getDefaultCloseOperation()|Returns the operation that occurs when the user  initiates a "close" on this frame.
+|javax.swing.JFrame.getGlassPane()|Returns the glassPane object for this frame.
+|javax.swing.JFrame.getJMenuBar()|Returns the menubar set on this frame.
+|javax.swing.JFrame.getLayeredPane()|Returns the layeredPane object for this frame.
+|javax.swing.JFrame.getRootPane()|Returns the rootPane object for this frame.
+|javax.swing.JFrame.isDefaultLookAndFeelDecorated()|Returns true if newly created JFrames should have their  Window decorations provided by the current look and feel.
+|javax.swing.JFrame.isRootPaneCheckingEnabled()|Returns whether calls to add and   setLayout are forwarded to the contentPane.
+|javax.swing.JFrame.paramString()|Returns a string representation of this JFrame.
+|javax.swing.JFrame.processWindowEvent(WindowEvent)|Processes window events occurring on this component.
+|javax.swing.JFrame.remove(Component)|Removes the specified component from the container.
+|javax.swing.JFrame.setContentPane(Container)|Sets the contentPane property.
+|javax.swing.JFrame.setDefaultCloseOperation(int)|Sets the operation that will happen by default when  the user initiates a "close" on this frame.
+|javax.swing.JFrame.setDefaultLookAndFeelDecorated(boolean)|Provides a hint as to whether or not newly created JFrames  should have their Window decorations (such as borders, widg
+|javax.swing.JFrame.setGlassPane(Component)|Sets the glassPane property.
+|javax.swing.JFrame.setIconImage(Image)|
+|javax.swing.JFrame.setJMenuBar(JMenuBar)|Sets the menubar for this frame.
+|javax.swing.JFrame.setLayeredPane(JLayeredPane)|Sets the layeredPane property.
+|javax.swing.JFrame.setLayout(LayoutManager)|Sets the LayoutManager.
+|javax.swing.JFrame.setRootPane(JRootPane)|Sets the rootPane property.
+|javax.swing.JFrame.setRootPaneCheckingEnabled(boolean)|Sets whether calls to add and   setLayout are forwarded to the contentPane.
+|javax.swing.JFrame.update(Graphics)|Just calls paint(g).
+
+*javax.swing.JFrame_Description*
+
+An extended version of java.awt.Frame that adds support for the JFC/Swing component architecture. You can find task-oriented documentation about using JFrame in The Java Tutorial, 
+in the section How to Make Frames. 
+
+The JFrame class is slightly incompatible with Frame. Like all other JFC/Swing top-level containers, a JFrame contains a JRootPane as its only child. The content pane provided by 
+the root pane should, as a rule, contain all the non-menu components displayed by the JFrame. This is different from the AWT Frame case. As a conveniance add and its variants, 
+remove and setLayout have been overridden to forward to the contentPane as necessary. This means you can write: 
+
+frame.add(child); 
+
+And the child will be added to the contentPane. The content pane will always be non-null. Attempting to set it to null will cause the JFrame to throw an exception. The default 
+content pane will have a BorderLayout manager set on it. Refer to (|javax.swing.RootPaneContainer|) for details on adding, removing and setting the LayoutManager of a JFrame. 
+
+Unlike a Frame, a JFrame has some notion of how to respond when the user attempts to close the window. The default behavior is to simply hide the JFrame when the user closes the 
+window. To change the default behavior, you invoke the method (|javax.swing.JFrame|) . To make the JFrame behave the same as a Frame instance, use 
+setDefaultCloseOperation(WindowConstants.DO_NOTHING_ON_CLOSE). 
+
+For more information on content panes and other features that root panes provide, see Using Top-Level Containers in The Java Tutorial. 
+
+In a multi-screen environment, you can create a JFrame on a different screen device. See (|java.awt.Frame|) for more information. 
+
+Warning: Serialized objects of this class will not be compatible with future Swing releases. The current serialization support is appropriate for short term storage or RMI between 
+applications running the same version of Swing. As of 1.4, support for long term storage of all JavaBeansTM has been added to the java.beans package. Please see 
+(|java.beans.XMLEncoder|) . 
+
+
+
+*javax.accessibility.AccessibleContext_javax.swing.JFrame.accessibleContext*
+
+The accessible context property. 
+
+
+*int_javax.swing.JFrame.EXIT_ON_CLOSE*
+
+The exit application default window close operation. If a window has this set as the close operation and is closed in an applet, a SecurityException may be thrown. It is 
+recommended you only use this in an application. 
+
+
+*javax.swing.JRootPane_javax.swing.JFrame.rootPane*
+
+The JRootPane instance that manages the contentPane and optional menuBar for this frame, as well as the glassPane. 
+
+
+*boolean_javax.swing.JFrame.rootPaneCheckingEnabled*
+
+If true then calls to add and setLayout will be forwarded to the contentPane. This is initially false, but is set to true when the JFrame is constructed. 
+
+
+
+*javax.swing.JFrame()*
+
+public JFrame()
+  throws |java.awt.HeadlessException|
+         
+Constructs a new frame that is initially invisible. 
+
+This constructor sets the component's locale property to the value returned by JComponent.getDefaultLocale. 
+
+
+*javax.swing.JFrame(GraphicsConfiguration)*
+
+public JFrame(java.awt.GraphicsConfiguration gc)
+
+Creates a Frame in the specified GraphicsConfiguration of a screen device and a blank title. 
+
+This constructor sets the component's locale property to the value returned by JComponent.getDefaultLocale. 
+
+    gc - the GraphicsConfiguration that is used to construct the new Frame; if gc is null, the system default GraphicsConfiguration is assumed 
+
+*javax.swing.JFrame(String)*
+
+public JFrame(java.lang.String title)
+  throws |java.awt.HeadlessException|
+         
+Creates a new, initially invisible Frame with the specified title. 
+
+This constructor sets the component's locale property to the value returned by JComponent.getDefaultLocale. 
+
+    title - the title for the frame 
+
+*javax.swing.JFrame(String,GraphicsConfiguration)*
+
+public JFrame(
+  java.lang.String title,
+  java.awt.GraphicsConfiguration gc)
+
+Creates a JFrame with the specified title and the specified GraphicsConfiguration of a screen device. 
+
+This constructor sets the component's locale property to the value returned by JComponent.getDefaultLocale. 
+
+    title - the title to be displayed in the frame's border. A null value is treated as an empty string, "". 
+    gc - the GraphicsConfiguration that is used to construct the new JFrame with; if gc is null, the system default GraphicsConfiguration is assumed 
+
+*javax.swing.JFrame.addImpl(Component,Object,int)*
+
+protected void addImpl(
+  java.awt.Component comp,
+  java.lang.Object constraints,
+  int index)
+
+Adds the specified child Component. This method is overridden to conditionally forwad calls to the contentPane. By default, children are added to the contentPane instead of the 
+frame, refer to (|javax.swing.RootPaneContainer|) for details. 
+
+
+    comp - the component to be enhanced 
+    constraints - the constraints to be respected 
+    index - the index 
+
+*javax.swing.JFrame.createRootPane()*
+
+protected |javax.swing.JRootPane| createRootPane()
+
+Called by the constructor methods to create the default rootPane. 
+
+
+
+*javax.swing.JFrame.frameInit()*
+
+protected void frameInit()
+
+Called by the constructors to init the JFrame properly. 
+
+
+
+*javax.swing.JFrame.getAccessibleContext()*
+
+public |javax.accessibility.AccessibleContext| getAccessibleContext()
+
+Gets the AccessibleContext associated with this JFrame. For JFrames, the AccessibleContext takes the form of an AccessibleJFrame. A new AccessibleJFrame instance is created if 
+necessary. 
+
+
+
+    Returns: an AccessibleJFrame that serves as the AccessibleContext of this JFrame 
+
+*javax.swing.JFrame.getContentPane()*
+
+public |java.awt.Container| getContentPane()
+
+Returns the contentPane object for this frame. 
+
+
+
+    Returns: the contentPane property 
+
+*javax.swing.JFrame.getDefaultCloseOperation()*
+
+public int getDefaultCloseOperation()
+
+Returns the operation that occurs when the user initiates a "close" on this frame. 
+
+
+
+    Returns: an integer indicating the window-close operation 
+
+*javax.swing.JFrame.getGlassPane()*
+
+public |java.awt.Component| getGlassPane()
+
+Returns the glassPane object for this frame. 
+
+
+
+    Returns: the glassPane property 
+
+*javax.swing.JFrame.getJMenuBar()*
+
+public |javax.swing.JMenuBar| getJMenuBar()
+
+Returns the menubar set on this frame. 
+
+
+
+    Returns: the menubar for this frame 
+
+*javax.swing.JFrame.getLayeredPane()*
+
+public |javax.swing.JLayeredPane| getLayeredPane()
+
+Returns the layeredPane object for this frame. 
+
+
+
+    Returns: the layeredPane property 
+
+*javax.swing.JFrame.getRootPane()*
+
+public |javax.swing.JRootPane| getRootPane()
+
+Returns the rootPane object for this frame. 
+
+
+
+    Returns: the rootPane property 
+
+*javax.swing.JFrame.isDefaultLookAndFeelDecorated()*
+
+public static boolean isDefaultLookAndFeelDecorated()
+
+Returns true if newly created JFrames should have their Window decorations provided by the current look and feel. This is only a hint, as certain look and feels may not support 
+this feature. 
+
+
+
+    Returns: true if look and feel should provide Window decorations. 
+
+*javax.swing.JFrame.isRootPaneCheckingEnabled()*
+
+protected boolean isRootPaneCheckingEnabled()
+
+Returns whether calls to add and setLayout are forwarded to the contentPane. 
+
+
+
+    Returns: true if add and setLayout are fowarded; false otherwise 
+
+*javax.swing.JFrame.paramString()*
+
+protected |java.lang.String| paramString()
+
+Returns a string representation of this JFrame. This method is intended to be used only for debugging purposes, and the content and format of the returned string may vary between 
+implementations. The returned string may be empty but may not be null. 
+
+
+
+    Returns: a string representation of this JFrame 
+
+*javax.swing.JFrame.processWindowEvent(WindowEvent)*
+
+protected void processWindowEvent(java.awt.event.WindowEvent e)
+
+Processes window events occurring on this component. Hides the window or disposes of it, as specified by the setting of the defaultCloseOperation property. 
+
+
+    e - the window event 
+
+*javax.swing.JFrame.remove(Component)*
+
+public void remove(java.awt.Component comp)
+
+Removes the specified component from the container. If comp is not the rootPane, this will forward the call to the contentPane. This will do nothing if comp is not a child of the 
+JFrame or contentPane. 
+
+
+    comp - the component to be removed 
+
+*javax.swing.JFrame.setContentPane(Container)*
+
+public void setContentPane(java.awt.Container contentPane)
+
+Sets the contentPane property. This method is called by the constructor. 
+
+Swing's painting architecture requires an opaque JComponent in the containment hiearchy. This is typically provided by the content pane. If you replace the content pane it is 
+recommended you replace it with an opaque JComponent. 
+
+
+    contentPane - the contentPane object for this frame 
+
+*javax.swing.JFrame.setDefaultCloseOperation(int)*
+
+public void setDefaultCloseOperation(int operation)
+
+Sets the operation that will happen by default when the user initiates a "close" on this frame. You must specify one of the following choices: 
+
+DO_NOTHING_ON_CLOSE (defined in WindowConstants): Don't do anything; require the program to handle the operation in the windowClosing method of a registered WindowListener object. 
+
+HIDE_ON_CLOSE (defined in WindowConstants): Automatically hide the frame after invoking any registered WindowListener objects. 
+
+DISPOSE_ON_CLOSE (defined in WindowConstants): Automatically hide and dispose the frame after invoking any registered WindowListener objects. 
+
+EXIT_ON_CLOSE (defined in JFrame): Exit the application using the System exit method. Use this only in applications. 
+
+The value is set to HIDE_ON_CLOSE by default. 
+
+Note: When the last displayable window within the Java virtual machine (VM) is disposed of, the VM may terminate. See AWT Threading Issues for more information. 
+
+
+    operation - the operation which should be performed when the user closes the frame 
+
+*javax.swing.JFrame.setDefaultLookAndFeelDecorated(boolean)*
+
+public static void setDefaultLookAndFeelDecorated(boolean defaultLookAndFeelDecorated)
+
+Provides a hint as to whether or not newly created JFrames should have their Window decorations (such as borders, widgets to close the window, title...) provided by the current 
+look and feel. If defaultLookAndFeelDecorated is true, the current LookAndFeel supports providing window decorations, and the current window manager supports undecorated windows, 
+then newly created JFrames will have their Window decorations provided by the current LookAndFeel. Otherwise, newly created JFrames will have their Window decorations provided by 
+the current window manager. 
+
+You can get the same effect on a single JFrame by doing the following: 
+
+JFrame frame = new JFrame(); frame.setUndecorated(true); frame.getRootPane().setWindowDecorationStyle(JRootPane.FRAME); 
+
+
+    defaultLookAndFeelDecorated - A hint as to whether or not current look and feel should provide window decorations 
+
+*javax.swing.JFrame.setGlassPane(Component)*
+
+public void setGlassPane(java.awt.Component glassPane)
+
+Sets the glassPane property. This method is called by the constructor. 
+
+
+    glassPane - the glassPane object for this frame 
+
+*javax.swing.JFrame.setIconImage(Image)*
+
+public void setIconImage(java.awt.Image image)
+
+
+
+
+
+*javax.swing.JFrame.setJMenuBar(JMenuBar)*
+
+public void setJMenuBar(javax.swing.JMenuBar menubar)
+
+Sets the menubar for this frame. 
+
+
+    menubar - the menubar being placed in the frame 
+
+*javax.swing.JFrame.setLayeredPane(JLayeredPane)*
+
+public void setLayeredPane(javax.swing.JLayeredPane layeredPane)
+
+Sets the layeredPane property. This method is called by the constructor. 
+
+
+    layeredPane - the layeredPane object for this frame 
+
+*javax.swing.JFrame.setLayout(LayoutManager)*
+
+public void setLayout(java.awt.LayoutManager manager)
+
+Sets the LayoutManager. Overridden to conditionally forward the call to the contentPane. Refer to (|javax.swing.RootPaneContainer|) for more information. 
+
+
+    manager - the LayoutManager 
+
+*javax.swing.JFrame.setRootPane(JRootPane)*
+
+protected void setRootPane(javax.swing.JRootPane root)
+
+Sets the rootPane property. This method is called by the constructor. 
+
+
+    root - the rootPane object for this frame 
+
+*javax.swing.JFrame.setRootPaneCheckingEnabled(boolean)*
+
+protected void setRootPaneCheckingEnabled(boolean enabled)
+
+Sets whether calls to add and setLayout are forwarded to the contentPane. 
+
+
+    enabled - true if add and setLayout are forwarded, false if they should operate directly on the JFrame. 
+
+*javax.swing.JFrame.update(Graphics)*
+
+public void update(java.awt.Graphics g)
+
+Just calls paint(g). This method was overridden to prevent an unnecessary call to clear the background. 
+
+
+    g - the Graphics context in which to paint 
+
+

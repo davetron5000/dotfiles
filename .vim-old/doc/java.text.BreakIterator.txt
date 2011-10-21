@@ -1,0 +1,413 @@
+*java.text.BreakIterator* *BreakIterator* The BreakIterator class implements methods for finding
+ the location of boundaries in text.
+
+public abstract class BreakIterator
+  extends    |java.lang.Object|
+  implements |java.lang.Cloneable|
+
+|java.text.BreakIterator_Description|
+|java.text.BreakIterator_Fields|
+|java.text.BreakIterator_Constructors|
+|java.text.BreakIterator_Methods|
+
+====================================================================================================================================================================================
+
+*java.text.BreakIterator_Fields*
+|int_java.text.BreakIterator.DONE|
+
+*java.text.BreakIterator_Constructors*
+|java.text.BreakIterator()|Constructor.
+
+*java.text.BreakIterator_Methods*
+|java.text.BreakIterator.clone()|Create a copy of this iterator
+|java.text.BreakIterator.current()|Return character index of the text boundary that was most recently  returned by next(), previous(), first(), or last()
+|java.text.BreakIterator.first()|Return the first boundary.
+|java.text.BreakIterator.following(int)|Return the first boundary following the specified offset.
+|java.text.BreakIterator.getAvailableLocales()|Returns an array of all locales for which the  get*Instance methods of this class can return  localized instances.
+|java.text.BreakIterator.getCharacterInstance()|Create BreakIterator for character-breaks using default locale  Returns an instance of a BreakIterator implementing character break
+|java.text.BreakIterator.getCharacterInstance(Locale)|Create BreakIterator for character-breaks using specified locale  Returns an instance of a BreakIterator implementing charact
+|java.text.BreakIterator.getInt(byte[],int)|
+|java.text.BreakIterator.getLineInstance()|Create BreakIterator for line-breaks using default locale.
+|java.text.BreakIterator.getLineInstance(Locale)|Create BreakIterator for line-breaks using specified locale.
+|java.text.BreakIterator.getLong(byte[],int)|
+|java.text.BreakIterator.getSentenceInstance()|Create BreakIterator for sentence-breaks using default locale  Returns an instance of a BreakIterator implementing sentence breaks.
+|java.text.BreakIterator.getSentenceInstance(Locale)|Create BreakIterator for sentence-breaks using specified locale  Returns an instance of a BreakIterator implementing sentence 
+|java.text.BreakIterator.getShort(byte[],int)|
+|java.text.BreakIterator.getText()|Get the text being scanned
+|java.text.BreakIterator.getWordInstance()|Create BreakIterator for word-breaks using default locale.
+|java.text.BreakIterator.getWordInstance(Locale)|Create BreakIterator for word-breaks using specified locale.
+|java.text.BreakIterator.isBoundary(int)|Return true if the specified position is a boundary position.
+|java.text.BreakIterator.last()|Return the last boundary.
+|java.text.BreakIterator.next()|Return the boundary following the current boundary.
+|java.text.BreakIterator.next(int)|Return the nth boundary from the current boundary
+|java.text.BreakIterator.preceding(int)|Return the last boundary preceding the specfied offset.
+|java.text.BreakIterator.previous()|Return the boundary preceding the current boundary.
+|java.text.BreakIterator.setText(CharacterIterator)|Set a new text for scanning.
+|java.text.BreakIterator.setText(String)|Set a new text string to be scanned.
+
+*java.text.BreakIterator_Description*
+
+The BreakIterator class implements methods for finding the location of boundaries in text. Instances of BreakIterator maintain a current position and scan over text returning the 
+index of characters where boundaries occur. Internally, BreakIterator scans text using a CharacterIterator, and is thus able to scan text held by any object implementing that 
+protocol. A StringCharacterIterator is used to scan String objects passed to setText. 
+
+You use the factory methods provided by this class to create instances of various types of break iterators. In particular, use getWordIterator, getLineIterator, 
+getSentenceIterator, and getCharacterIterator to create BreakIterators that perform word, line, sentence, and character boundary analysis respectively. A single BreakIterator can 
+work only on one unit (word, line, sentence, and so on). You must use a different iterator for each unit boundary analysis you wish to perform. 
+
+Line boundary analysis determines where a text string can be broken when line-wrapping. The mechanism correctly handles punctuation and hyphenated words. 
+
+Sentence boundary analysis allows selection with correct interpretation of periods within numbers and abbreviations, and trailing punctuation marks such as quotation marks and 
+parentheses. 
+
+Word boundary analysis is used by search and replace functions, as well as within text editing applications that allow the user to select words with a double click. Word selection 
+provides correct interpretation of punctuation marks within and following words. Characters that are not part of a word, such as symbols or punctuation marks, have word-breaks on 
+both sides. 
+
+Character boundary analysis allows users to interact with characters as they expect to, for example, when moving the cursor through a text string. Character boundary analysis 
+provides correct navigation of through character strings, regardless of how the character is stored. For example, an accented character might be stored as a base character and a 
+diacritical mark. What users consider to be a character can differ between languages. 
+
+BreakIterator is intended for use with natural languages only. Do not use this class to tokenize a programming language. 
+
+Examples: Creating and using text boundaries 
+
+
+
+public static void main(String args[]) { if (args.length == 1) { String stringToExamine = args[0]; //print each word in order BreakIterator boundary = 
+BreakIterator.getWordInstance(); boundary.setText(stringToExamine); printEachForward(boundary, stringToExamine); //print each sentence in reverse order boundary = 
+BreakIterator.getSentenceInstance(Locale.US); boundary.setText(stringToExamine); printEachBackward(boundary, stringToExamine); printFirst(boundary, stringToExamine); 
+printLast(boundary, stringToExamine); } } 
+
+
+
+Print each element in order 
+
+
+
+public static void printEachForward(BreakIterator boundary, String source) { int start = boundary.first(); for (int end = boundary.next(); end != BreakIterator.DONE; start = end, 
+end = boundary.next()) { System.out.println(source.substring(start,end)); } } 
+
+
+
+Print each element in reverse order 
+
+
+
+public static void printEachBackward(BreakIterator boundary, String source) { int end = boundary.last(); for (int start = boundary.previous(); start != BreakIterator.DONE; end = 
+start, start = boundary.previous()) { System.out.println(source.substring(start,end)); } } 
+
+
+
+Print first element 
+
+
+
+public static void printFirst(BreakIterator boundary, String source) { int start = boundary.first(); int end = boundary.next(); System.out.println(source.substring(start,end)); } 
+
+
+
+Print last element 
+
+
+
+public static void printLast(BreakIterator boundary, String source) { int end = boundary.last(); int start = boundary.previous(); System.out.println(source.substring(start,end)); 
+} 
+
+
+
+Print the element at a specified position 
+
+
+
+public static void printAt(BreakIterator boundary, int pos, String source) { int end = boundary.following(pos); int start = boundary.previous(); 
+System.out.println(source.substring(start,end)); } 
+
+
+
+Find the next word 
+
+
+
+public static int nextWordStartAfter(int pos, String text) { BreakIterator wb = BreakIterator.getWordInstance(); wb.setText(text); int last = wb.following(pos); int current = 
+wb.next(); while (current != BreakIterator.DONE) { for (int p = last; p 
+
+
+
+*int_java.text.BreakIterator.DONE*
+
+DONE is returned by previous() and next() after all valid boundaries have been returned. 
+
+
+
+*java.text.BreakIterator()*
+
+protected BreakIterator()
+
+Constructor. BreakIterator is stateless and has no default behavior. 
+
+
+*java.text.BreakIterator.clone()*
+
+public |java.lang.Object| clone()
+
+Create a copy of this iterator 
+
+
+
+    Returns: A copy of this 
+
+*java.text.BreakIterator.current()*
+
+public abstract int current()
+
+Return character index of the text boundary that was most recently returned by next(), previous(), first(), or last() 
+
+
+
+    Returns: The boundary most recently returned. 
+
+*java.text.BreakIterator.first()*
+
+public abstract int first()
+
+Return the first boundary. The iterator's current position is set to the first boundary. 
+
+
+
+    Returns: The character index of the first text boundary. 
+
+*java.text.BreakIterator.following(int)*
+
+public abstract int following(int offset)
+
+Return the first boundary following the specified offset. The value returned is always greater than the offset or the value BreakIterator.DONE 
+
+
+    offset - the offset to begin scanning. Valid values are determined by the CharacterIterator passed to setText(). Invalid values cause an IllegalArgumentException to be thrown. 
+
+    Returns: The first boundary after the specified offset. 
+
+*java.text.BreakIterator.getAvailableLocales()*
+
+public static synchronized |java.util.Locale|[] getAvailableLocales()
+
+Returns an array of all locales for which the get*Instance methods of this class can return localized instances. The array returned must contain at least a Locale instance equal 
+to Locale.US(|java.util.Locale|) . 
+
+
+
+    Returns: An array of locales for which localized BreakIterator instances are available. 
+
+*java.text.BreakIterator.getCharacterInstance()*
+
+public static |java.text.BreakIterator| getCharacterInstance()
+
+Create BreakIterator for character-breaks using default locale Returns an instance of a BreakIterator implementing character breaks. Character breaks are boundaries of combining 
+character sequences. 
+
+
+
+    Returns: A BreakIterator for character-breaks 
+
+*java.text.BreakIterator.getCharacterInstance(Locale)*
+
+public static |java.text.BreakIterator| getCharacterInstance(java.util.Locale where)
+
+Create BreakIterator for character-breaks using specified locale Returns an instance of a BreakIterator implementing character breaks. Character breaks are boundaries of combining 
+character sequences. 
+
+
+    where - the local. If a specific character break is not avaliable for the specified local, a default character break is returned. 
+
+    Returns: A BreakIterator for character-breaks 
+
+*java.text.BreakIterator.getInt(byte[],int)*
+
+protected static int getInt(
+  byte[] buf,
+  int offset)
+
+
+
+
+
+*java.text.BreakIterator.getLineInstance()*
+
+public static |java.text.BreakIterator| getLineInstance()
+
+Create BreakIterator for line-breaks using default locale. Returns an instance of a BreakIterator implementing line breaks. Line breaks are logically possible line breaks, actual 
+line breaks are usually determined based on display width. LineBreak is useful for word wrapping text. 
+
+
+
+    Returns: A BreakIterator for line-breaks 
+
+*java.text.BreakIterator.getLineInstance(Locale)*
+
+public static |java.text.BreakIterator| getLineInstance(java.util.Locale where)
+
+Create BreakIterator for line-breaks using specified locale. Returns an instance of a BreakIterator implementing line breaks. Line breaks are logically possible line breaks, 
+actual line breaks are usually determined based on display width. LineBreak is useful for word wrapping text. 
+
+
+    where - the local. If a specific LineBreak is not avaliable for the specified locale, a default LineBreak is returned. 
+
+    Returns: A BreakIterator for line-breaks 
+
+*java.text.BreakIterator.getLong(byte[],int)*
+
+protected static long getLong(
+  byte[] buf,
+  int offset)
+
+
+
+
+
+*java.text.BreakIterator.getSentenceInstance()*
+
+public static |java.text.BreakIterator| getSentenceInstance()
+
+Create BreakIterator for sentence-breaks using default locale Returns an instance of a BreakIterator implementing sentence breaks. 
+
+
+
+    Returns: A BreakIterator for sentence-breaks 
+
+*java.text.BreakIterator.getSentenceInstance(Locale)*
+
+public static |java.text.BreakIterator| getSentenceInstance(java.util.Locale where)
+
+Create BreakIterator for sentence-breaks using specified locale Returns an instance of a BreakIterator implementing sentence breaks. 
+
+
+    where - the local. If a specific SentenceBreak is not avaliable for the specified local, a default SentenceBreak is returned. 
+
+    Returns: A BreakIterator for sentence-breaks 
+
+*java.text.BreakIterator.getShort(byte[],int)*
+
+protected static short getShort(
+  byte[] buf,
+  int offset)
+
+
+
+
+
+*java.text.BreakIterator.getText()*
+
+public abstract |java.text.CharacterIterator| getText()
+
+Get the text being scanned 
+
+
+
+    Returns: the text being scanned 
+
+*java.text.BreakIterator.getWordInstance()*
+
+public static |java.text.BreakIterator| getWordInstance()
+
+Create BreakIterator for word-breaks using default locale. Returns an instance of a BreakIterator implementing word breaks. WordBreak is usefull for word selection (ex. double 
+click) 
+
+
+
+    Returns: A BreakIterator for word-breaks 
+
+*java.text.BreakIterator.getWordInstance(Locale)*
+
+public static |java.text.BreakIterator| getWordInstance(java.util.Locale where)
+
+Create BreakIterator for word-breaks using specified locale. Returns an instance of a BreakIterator implementing word breaks. WordBreak is usefull for word selection (ex. double 
+click) 
+
+
+    where - the local. If a specific WordBreak is not avaliable for the specified locale, a default WordBreak is returned. 
+
+    Returns: A BreakIterator for word-breaks 
+
+*java.text.BreakIterator.isBoundary(int)*
+
+public boolean isBoundary(int offset)
+
+Return true if the specified position is a boundary position. 
+
+
+    offset - the offset to check. 
+
+    Returns: True if "offset" is a boundary position. 
+
+*java.text.BreakIterator.last()*
+
+public abstract int last()
+
+Return the last boundary. The iterator's current position is set to the last boundary. 
+
+
+
+    Returns: The character index of the last text boundary. 
+
+*java.text.BreakIterator.next()*
+
+public abstract int next()
+
+Return the boundary following the current boundary. 
+
+
+
+    Returns: The character index of the next text boundary or DONE if all boundaries have been returned. Equivalent to next(1). 
+
+*java.text.BreakIterator.next(int)*
+
+public abstract int next(int n)
+
+Return the nth boundary from the current boundary 
+
+
+    n - which boundary to return. A value of 0 does nothing. Negative values move to previous boundaries and positive values move to later boundaries. 
+
+    Returns: The index of the nth boundary from the current position. 
+
+*java.text.BreakIterator.preceding(int)*
+
+public int preceding(int offset)
+
+Return the last boundary preceding the specfied offset. The value returned is always less than the offset or the value BreakIterator.DONE. 
+
+
+    offset - the offset to begin scanning. Valid values are determined by the CharacterIterator passed to setText(). Invalid values cause an IllegalArgumentException to be thrown. 
+
+    Returns: The last boundary before the specified offset. 
+
+*java.text.BreakIterator.previous()*
+
+public abstract int previous()
+
+Return the boundary preceding the current boundary. 
+
+
+
+    Returns: The character index of the previous text boundary or DONE if all boundaries have been returned. 
+
+*java.text.BreakIterator.setText(CharacterIterator)*
+
+public abstract void setText(java.text.CharacterIterator newText)
+
+Set a new text for scanning. The current scan position is reset to first(). 
+
+
+    newText - new text to scan. 
+
+*java.text.BreakIterator.setText(String)*
+
+public void setText(java.lang.String newText)
+
+Set a new text string to be scanned. The current scan position is reset to first(). 
+
+
+    newText - new text to scan. 
+
+

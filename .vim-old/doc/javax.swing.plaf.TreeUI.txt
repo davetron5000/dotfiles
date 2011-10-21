@@ -1,0 +1,133 @@
+*javax.swing.plaf.TreeUI* *TreeUI* Pluggable look and feel interface for JTree.
+
+public abstract class TreeUI
+  extends    |javax.swing.plaf.ComponentUI|
+
+|javax.swing.plaf.TreeUI_Description|
+|javax.swing.plaf.TreeUI_Fields|
+|javax.swing.plaf.TreeUI_Constructors|
+|javax.swing.plaf.TreeUI_Methods|
+
+====================================================================================================================================================================================
+
+*javax.swing.plaf.TreeUI_Constructors*
+|javax.swing.plaf.TreeUI()|
+
+*javax.swing.plaf.TreeUI_Methods*
+|javax.swing.plaf.TreeUI.cancelEditing(JTree)|Cancels the current editing session.
+|javax.swing.plaf.TreeUI.getClosestPathForLocation(JTree,int,int)|Returns the path to the node that is closest to x,y.
+|javax.swing.plaf.TreeUI.getEditingPath(JTree)|Returns the path to the element that is being edited.
+|javax.swing.plaf.TreeUI.getPathBounds(JTree,TreePath)|Returns the Rectangle enclosing the label portion that the  last item in path will be drawn into.
+|javax.swing.plaf.TreeUI.getPathForRow(JTree,int)|Returns the path for passed in row.
+|javax.swing.plaf.TreeUI.getRowCount(JTree)|Returns the number of rows that are being displayed.
+|javax.swing.plaf.TreeUI.getRowForPath(JTree,TreePath)|Returns the row that the last item identified in path is visible  at.
+|javax.swing.plaf.TreeUI.isEditing(JTree)|Returns true if the tree is being edited.
+|javax.swing.plaf.TreeUI.startEditingAtPath(JTree,TreePath)|Selects the last item in path and tries to edit it.
+|javax.swing.plaf.TreeUI.stopEditing(JTree)|Stops the current editing session.
+
+*javax.swing.plaf.TreeUI_Description*
+
+Pluggable look and feel interface for JTree. 
+
+
+
+*javax.swing.plaf.TreeUI()*
+
+public TreeUI()
+
+
+
+
+*javax.swing.plaf.TreeUI.cancelEditing(JTree)*
+
+public abstract void cancelEditing(javax.swing.JTree tree)
+
+Cancels the current editing session. This has no effect if the tree isn't being edited. Returns true if the editor allows the editing session to stop. 
+
+
+
+*javax.swing.plaf.TreeUI.getClosestPathForLocation(JTree,int,int)*
+
+public abstract |javax.swing.tree.TreePath| getClosestPathForLocation(
+  javax.swing.JTree tree,
+  int x,
+  int y)
+
+Returns the path to the node that is closest to x,y. If there is nothing currently visible this will return null, otherwise it'll always return a valid path. If you need to test 
+if the returned object is exactly at x, y you should get the bounds for the returned path and test x, y against that. 
+
+
+
+*javax.swing.plaf.TreeUI.getEditingPath(JTree)*
+
+public abstract |javax.swing.tree.TreePath| getEditingPath(javax.swing.JTree tree)
+
+Returns the path to the element that is being edited. 
+
+
+
+*javax.swing.plaf.TreeUI.getPathBounds(JTree,TreePath)*
+
+public abstract |java.awt.Rectangle| getPathBounds(
+  javax.swing.JTree tree,
+  javax.swing.tree.TreePath path)
+
+Returns the Rectangle enclosing the label portion that the last item in path will be drawn into. Will return null if any component in path is currently valid. 
+
+
+
+*javax.swing.plaf.TreeUI.getPathForRow(JTree,int)*
+
+public abstract |javax.swing.tree.TreePath| getPathForRow(
+  javax.swing.JTree tree,
+  int row)
+
+Returns the path for passed in row. If row is not visible null is returned. 
+
+
+
+*javax.swing.plaf.TreeUI.getRowCount(JTree)*
+
+public abstract int getRowCount(javax.swing.JTree tree)
+
+Returns the number of rows that are being displayed. 
+
+
+
+*javax.swing.plaf.TreeUI.getRowForPath(JTree,TreePath)*
+
+public abstract int getRowForPath(
+  javax.swing.JTree tree,
+  javax.swing.tree.TreePath path)
+
+Returns the row that the last item identified in path is visible at. Will return -1 if any of the elements in path are not currently visible. 
+
+
+
+*javax.swing.plaf.TreeUI.isEditing(JTree)*
+
+public abstract boolean isEditing(javax.swing.JTree tree)
+
+Returns true if the tree is being edited. The item that is being edited can be returned by getEditingPath(). 
+
+
+
+*javax.swing.plaf.TreeUI.startEditingAtPath(JTree,TreePath)*
+
+public abstract void startEditingAtPath(
+  javax.swing.JTree tree,
+  javax.swing.tree.TreePath path)
+
+Selects the last item in path and tries to edit it. Editing will fail if the CellEditor won't allow it for the selected item. 
+
+
+
+*javax.swing.plaf.TreeUI.stopEditing(JTree)*
+
+public abstract boolean stopEditing(javax.swing.JTree tree)
+
+Stops the current editing session. This has no effect if the tree isn't being edited. Returns true if the editor allows the editing session to stop. 
+
+
+
+

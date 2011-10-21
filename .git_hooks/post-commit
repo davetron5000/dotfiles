@@ -1,0 +1,13 @@
+#!/bin/sh
+#
+# An example hook script that is called after a successful
+# commit is made.
+#
+# To enable this hook, rename this file to "post-commit".
+
+REMOTE=`git config --get post-commit.remote`
+if [ -z $REMOTE ] ; then
+    echo "You must set post-commit.remote in your git config"
+    exit
+fi
+git push --force --all $REMOTE

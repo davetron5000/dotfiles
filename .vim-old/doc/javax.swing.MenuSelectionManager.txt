@@ -1,0 +1,174 @@
+*javax.swing.MenuSelectionManager* *MenuSelectionManager* A MenuSelectionManager owns the selection in menu hierarchy.
+
+public class MenuSelectionManager
+  extends    |java.lang.Object|
+
+|javax.swing.MenuSelectionManager_Description|
+|javax.swing.MenuSelectionManager_Fields|
+|javax.swing.MenuSelectionManager_Constructors|
+|javax.swing.MenuSelectionManager_Methods|
+
+====================================================================================================================================================================================
+
+*javax.swing.MenuSelectionManager_Fields*
+|javax.swing.event.ChangeEvent_javax.swing.MenuSelectionManager.changeEvent|
+|javax.swing.event.EventListenerList_javax.swing.MenuSelectionManager.listenerList|
+
+*javax.swing.MenuSelectionManager_Constructors*
+|javax.swing.MenuSelectionManager()|
+
+*javax.swing.MenuSelectionManager_Methods*
+|javax.swing.MenuSelectionManager.addChangeListener(ChangeListener)|Adds a ChangeListener to the button.
+|javax.swing.MenuSelectionManager.clearSelectedPath()|Tell the menu selection to close and unselect all the menu components.
+|javax.swing.MenuSelectionManager.componentForPoint(Component,Point)|Returns the component in the currently selected path   which contains sourcePoint.
+|javax.swing.MenuSelectionManager.defaultManager()|Returns the default menu selection manager.
+|javax.swing.MenuSelectionManager.fireStateChanged()|Notifies all listeners that have registered interest for  notification on this event type.
+|javax.swing.MenuSelectionManager.getChangeListeners()|Returns an array of all the ChangeListeners added  to this MenuSelectionManager with addChangeListener().
+|javax.swing.MenuSelectionManager.getSelectedPath()|Returns the path to the currently selected menu item
+|javax.swing.MenuSelectionManager.isComponentPartOfCurrentMenu(Component)|Return true if c is part of the currently used menu
+|javax.swing.MenuSelectionManager.processKeyEvent(KeyEvent)|When a MenuElement receives an event from a KeyListener, it should never process the event  directly.
+|javax.swing.MenuSelectionManager.processMouseEvent(MouseEvent)|When a MenuElement receives an event from a MouseListener, it should never process the event  directly.
+|javax.swing.MenuSelectionManager.removeChangeListener(ChangeListener)|Removes a ChangeListener from the button.
+|javax.swing.MenuSelectionManager.setSelectedPath(MenuElement[])|Changes the selection in the menu hierarchy.
+
+*javax.swing.MenuSelectionManager_Description*
+
+A MenuSelectionManager owns the selection in menu hierarchy. 
+
+
+
+*javax.swing.event.ChangeEvent_javax.swing.MenuSelectionManager.changeEvent*
+
+Only one ChangeEvent is needed per button model instance since the event's only state is the source property. The source of events generated is always "this". 
+
+
+*javax.swing.event.EventListenerList_javax.swing.MenuSelectionManager.listenerList*
+
+
+
+
+
+*javax.swing.MenuSelectionManager()*
+
+public MenuSelectionManager()
+
+
+
+
+*javax.swing.MenuSelectionManager.addChangeListener(ChangeListener)*
+
+public void addChangeListener(javax.swing.event.ChangeListener l)
+
+Adds a ChangeListener to the button. 
+
+
+    l - the listener to add 
+
+*javax.swing.MenuSelectionManager.clearSelectedPath()*
+
+public void clearSelectedPath()
+
+Tell the menu selection to close and unselect all the menu components. Call this method when a choice has been made 
+
+
+
+*javax.swing.MenuSelectionManager.componentForPoint(Component,Point)*
+
+public |java.awt.Component| componentForPoint(
+  java.awt.Component source,
+  java.awt.Point sourcePoint)
+
+Returns the component in the currently selected path which contains sourcePoint. 
+
+
+    source - The component in whose coordinate space sourcePoint is given 
+    sourcePoint - The point which is being tested 
+
+    Returns: The component in the currently selected path which contains sourcePoint (relative to the source component's coordinate space. If sourcePoint is not inside a component on the 
+             currently selected path, null is returned. 
+
+*javax.swing.MenuSelectionManager.defaultManager()*
+
+public static |javax.swing.MenuSelectionManager| defaultManager()
+
+Returns the default menu selection manager. 
+
+
+
+    Returns: a MenuSelectionManager object 
+
+*javax.swing.MenuSelectionManager.fireStateChanged()*
+
+protected void fireStateChanged()
+
+Notifies all listeners that have registered interest for notification on this event type. The event instance is created lazily. 
+
+
+
+*javax.swing.MenuSelectionManager.getChangeListeners()*
+
+public |javax.swing.event.ChangeListener|[] getChangeListeners()
+
+Returns an array of all the ChangeListeners added to this MenuSelectionManager with addChangeListener(). 
+
+
+
+    Returns: all of the ChangeListeners added or an empty array if no listeners have been added 
+
+*javax.swing.MenuSelectionManager.getSelectedPath()*
+
+public |javax.swing.MenuElement|[] getSelectedPath()
+
+Returns the path to the currently selected menu item 
+
+
+
+    Returns: an array of MenuElement objects representing the selected path 
+
+*javax.swing.MenuSelectionManager.isComponentPartOfCurrentMenu(Component)*
+
+public boolean isComponentPartOfCurrentMenu(java.awt.Component c)
+
+Return true if c is part of the currently used menu 
+
+
+
+*javax.swing.MenuSelectionManager.processKeyEvent(KeyEvent)*
+
+public void processKeyEvent(java.awt.event.KeyEvent e)
+
+When a MenuElement receives an event from a KeyListener, it should never process the event directly. Instead all MenuElements should call this method with the event. 
+
+
+    e - a KeyEvent object 
+
+*javax.swing.MenuSelectionManager.processMouseEvent(MouseEvent)*
+
+public void processMouseEvent(java.awt.event.MouseEvent event)
+
+When a MenuElement receives an event from a MouseListener, it should never process the event directly. Instead all MenuElements should call this method with the event. 
+
+
+    event - a MouseEvent object 
+
+*javax.swing.MenuSelectionManager.removeChangeListener(ChangeListener)*
+
+public void removeChangeListener(javax.swing.event.ChangeListener l)
+
+Removes a ChangeListener from the button. 
+
+
+    l - the listener to remove 
+
+*javax.swing.MenuSelectionManager.setSelectedPath(MenuElement[])*
+
+public void setSelectedPath(javax.swing.MenuElement[] path)
+
+Changes the selection in the menu hierarchy. The elements in the array are sorted in order from the root menu element to the currently selected menu element. 
+
+Note that this method is public but is used by the look and feel engine and should not be called by client applications. 
+
+
+    path - an array of MenuElement objects specifying the selected path 
+
+

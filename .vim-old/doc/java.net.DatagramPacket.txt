@@ -1,0 +1,256 @@
+*java.net.DatagramPacket* *DatagramPacket* This class represents a datagram packet.
+
+public final class DatagramPacket
+  extends    |java.lang.Object|
+
+|java.net.DatagramPacket_Description|
+|java.net.DatagramPacket_Fields|
+|java.net.DatagramPacket_Constructors|
+|java.net.DatagramPacket_Methods|
+
+====================================================================================================================================================================================
+
+*java.net.DatagramPacket_Constructors*
+|java.net.DatagramPacket(byte[],int)|Constructs a DatagramPacket for receiving packets of   length length.
+|java.net.DatagramPacket(byte[],int,InetAddress,int)|Constructs a datagram packet for sending packets of length   length to the specified port number on the specified   host.
+|java.net.DatagramPacket(byte[],int,int)|Constructs a DatagramPacket for receiving packets of   length length, specifying an offset into the buffer.
+|java.net.DatagramPacket(byte[],int,int,InetAddress,int)|Constructs a datagram packet for sending packets of length  length with offset ioffsetto the  specified port number on the
+|java.net.DatagramPacket(byte[],int,int,SocketAddress)|Constructs a datagram packet for sending packets of length  length with offset ioffsetto the  specified port number on the s
+|java.net.DatagramPacket(byte[],int,SocketAddress)|Constructs a datagram packet for sending packets of length   length to the specified port number on the specified   host.
+
+*java.net.DatagramPacket_Methods*
+|java.net.DatagramPacket.getAddress()|Returns the IP address of the machine to which this datagram is being  sent or from which the datagram was received.
+|java.net.DatagramPacket.getData()|Returns the data buffer.
+|java.net.DatagramPacket.getLength()|Returns the length of the data to be sent or the length of the  data received.
+|java.net.DatagramPacket.getOffset()|Returns the offset of the data to be sent or the offset of the  data received.
+|java.net.DatagramPacket.getPort()|Returns the port number on the remote host to which this datagram is  being sent or from which the datagram was received.
+|java.net.DatagramPacket.getSocketAddress()|Gets the SocketAddress (usually IP address + port number) of the remote  host that this packet is being sent to or is coming from.
+|java.net.DatagramPacket.setAddress(InetAddress)|Sets the IP address of the machine to which this datagram  is being sent.
+|java.net.DatagramPacket.setData(byte[])|Set the data buffer for this packet.
+|java.net.DatagramPacket.setData(byte[],int,int)|Set the data buffer for this packet.
+|java.net.DatagramPacket.setLength(int)|Set the length for this packet.
+|java.net.DatagramPacket.setPort(int)|Sets the port number on the remote host to which this datagram  is being sent.
+|java.net.DatagramPacket.setSocketAddress(SocketAddress)|Sets the SocketAddress (usually IP address + port number) of the remote  host to which this datagram is being sent.
+
+*java.net.DatagramPacket_Description*
+
+This class represents a datagram packet. 
+
+Datagram packets are used to implement a connectionless packet delivery service. Each message is routed from one machine to another based solely on information contained within 
+that packet. Multiple packets sent from one machine to another might be routed differently, and might arrive in any order. Packet delivery is not guaranteed. 
+
+
+
+*java.net.DatagramPacket(byte[],int)*
+
+public DatagramPacket(
+  byte[] buf,
+  int length)
+
+Constructs a DatagramPacket for receiving packets of length length. 
+
+The length argument must be less than or equal to buf.length. 
+
+    buf - buffer for holding the incoming datagram. 
+    length - the number of bytes to read. 
+
+*java.net.DatagramPacket(byte[],int,InetAddress,int)*
+
+public DatagramPacket(
+  byte[] buf,
+  int length,
+  java.net.InetAddress address,
+  int port)
+
+Constructs a datagram packet for sending packets of length length to the specified port number on the specified host. The length argument must be less than or equal to buf.length. 
+
+    buf - the packet data. 
+    length - the packet length. 
+    address - the destination address. 
+    port - the destination port number. 
+
+*java.net.DatagramPacket(byte[],int,int)*
+
+public DatagramPacket(
+  byte[] buf,
+  int offset,
+  int length)
+
+Constructs a DatagramPacket for receiving packets of length length, specifying an offset into the buffer. 
+
+The length argument must be less than or equal to buf.length. 
+
+    buf - buffer for holding the incoming datagram. 
+    offset - the offset for the buffer 
+    length - the number of bytes to read. 
+
+*java.net.DatagramPacket(byte[],int,int,InetAddress,int)*
+
+public DatagramPacket(
+  byte[] buf,
+  int offset,
+  int length,
+  java.net.InetAddress address,
+  int port)
+
+Constructs a datagram packet for sending packets of length length with offset ioffsetto the specified port number on the specified host. The length argument must be less than or 
+equal to buf.length. 
+
+    buf - the packet data. 
+    offset - the packet data offset. 
+    length - the packet data length. 
+    address - the destination address. 
+    port - the destination port number. 
+
+*java.net.DatagramPacket(byte[],int,int,SocketAddress)*
+
+public DatagramPacket(
+  byte[] buf,
+  int offset,
+  int length,
+  java.net.SocketAddress address)
+  throws |java.net.SocketException|
+         
+Constructs a datagram packet for sending packets of length length with offset ioffsetto the specified port number on the specified host. The length argument must be less than or 
+equal to buf.length. 
+
+    buf - the packet data. 
+    offset - the packet data offset. 
+    length - the packet data length. 
+    address - the destination socket address. 
+
+*java.net.DatagramPacket(byte[],int,SocketAddress)*
+
+public DatagramPacket(
+  byte[] buf,
+  int length,
+  java.net.SocketAddress address)
+  throws |java.net.SocketException|
+         
+Constructs a datagram packet for sending packets of length length to the specified port number on the specified host. The length argument must be less than or equal to buf.length. 
+
+    buf - the packet data. 
+    length - the packet length. 
+    address - the destination address. 
+
+*java.net.DatagramPacket.getAddress()*
+
+public synchronized |java.net.InetAddress| getAddress()
+
+Returns the IP address of the machine to which this datagram is being sent or from which the datagram was received. 
+
+
+
+    Returns: the IP address of the machine to which this datagram is being sent or from which the datagram was received. 
+
+*java.net.DatagramPacket.getData()*
+
+public synchronized byte[] getData()
+
+Returns the data buffer. The data received or the data to be sent starts from the offset in the buffer, and runs for length long. 
+
+
+
+    Returns: the buffer used to receive or send data 
+
+*java.net.DatagramPacket.getLength()*
+
+public synchronized int getLength()
+
+Returns the length of the data to be sent or the length of the data received. 
+
+
+
+    Returns: the length of the data to be sent or the length of the data received. 
+
+*java.net.DatagramPacket.getOffset()*
+
+public synchronized int getOffset()
+
+Returns the offset of the data to be sent or the offset of the data received. 
+
+
+
+    Returns: the offset of the data to be sent or the offset of the data received. 
+
+*java.net.DatagramPacket.getPort()*
+
+public synchronized int getPort()
+
+Returns the port number on the remote host to which this datagram is being sent or from which the datagram was received. 
+
+
+
+    Returns: the port number on the remote host to which this datagram is being sent or from which the datagram was received. 
+
+*java.net.DatagramPacket.getSocketAddress()*
+
+public synchronized |java.net.SocketAddress| getSocketAddress()
+
+Gets the SocketAddress (usually IP address + port number) of the remote host that this packet is being sent to or is coming from. 
+
+
+
+    Returns: the SocketAddress 
+
+*java.net.DatagramPacket.setAddress(InetAddress)*
+
+public synchronized void setAddress(java.net.InetAddress iaddr)
+
+Sets the IP address of the machine to which this datagram is being sent. 
+
+
+    iaddr - the InetAddress 
+
+*java.net.DatagramPacket.setData(byte[])*
+
+public synchronized void setData(byte[] buf)
+
+Set the data buffer for this packet. With the offset of this DatagramPacket set to 0, and the length set to the length of buf. 
+
+
+    buf - the buffer to set for this packet. 
+
+*java.net.DatagramPacket.setData(byte[],int,int)*
+
+public synchronized void setData(
+  byte[] buf,
+  int offset,
+  int length)
+
+Set the data buffer for this packet. This sets the data, length and offset of the packet. 
+
+
+    buf - the buffer to set for this packet 
+    offset - the offset into the data 
+    length - the length of the data and/or the length of the buffer used to receive data 
+
+*java.net.DatagramPacket.setLength(int)*
+
+public synchronized void setLength(int length)
+
+Set the length for this packet. The length of the packet is the number of bytes from the packet's data buffer that will be sent, or the number of bytes of the packet's data buffer 
+that will be used for receiving data. The length must be lesser or equal to the offset plus the length of the packet's buffer. 
+
+
+    length - the length to set for this packet. 
+
+*java.net.DatagramPacket.setPort(int)*
+
+public synchronized void setPort(int iport)
+
+Sets the port number on the remote host to which this datagram is being sent. 
+
+
+    iport - the port number 
+
+*java.net.DatagramPacket.setSocketAddress(SocketAddress)*
+
+public synchronized void setSocketAddress(java.net.SocketAddress address)
+
+Sets the SocketAddress (usually IP address + port number) of the remote host to which this datagram is being sent. 
+
+
+    address - the SocketAddress 
+
+

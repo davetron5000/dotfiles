@@ -1,0 +1,81 @@
+*java.beans.beancontext.BeanContextServiceProvider* *BeanContextServiceProvider* 
+ One of the primary functions of a BeanContext is to act a as rendezvous 
+ between JavaBeans, and 
+
+public interface interface BeanContextServiceProvider
+
+
+|java.beans.beancontext.BeanContextServiceProvider_Description|
+|java.beans.beancontext.BeanContextServiceProvider_Fields|
+|java.beans.beancontext.BeanContextServiceProvider_Constructors|
+|java.beans.beancontext.BeanContextServiceProvider_Methods|
+
+====================================================================================================================================================================================
+
+*java.beans.beancontext.BeanContextServiceProvider_Methods*
+|java.beans.beancontext.BeanContextServiceProvider.getCurrentServiceSelectors(BeanContextServices,Class)|Invoked by BeanContextServices, this method  gets the current service sele
+|java.beans.beancontext.BeanContextServiceProvider.getService(BeanContextServices,Object,Class,Object)|Invoked by BeanContextServices, this method   requests an instance of a  ser
+|java.beans.beancontext.BeanContextServiceProvider.releaseService(BeanContextServices,Object,Object)|Invoked by BeanContextServices,   this method releases a nested BeanContextChi
+
+*java.beans.beancontext.BeanContextServiceProvider_Description*
+
+One of the primary functions of a BeanContext is to act a as rendezvous between JavaBeans, and BeanContextServiceProviders. 
+
+A JavaBean nested within a BeanContext, may ask that BeanContext to provide an instance of a "service", based upon a reference to a Java Class object that represents that service. 
+
+If such a service has been registered with the context, or one of its nesting context's, in the case where a context delegate to its context to satisfy a service request, then the 
+BeanContextServiceProvider associated with the service is asked to provide an instance of that service. 
+
+The ServcieProvider may always return the same instance, or it may construct a new instance for each request. 
+
+
+
+*java.beans.beancontext.BeanContextServiceProvider.getCurrentServiceSelectors(BeanContextServices,Class)*
+
+public |java.util.Iterator| getCurrentServiceSelectors(
+  java.beans.beancontext.BeanContextServices bcs,
+  java.lang.Class serviceClass)
+
+Invoked by BeanContextServices, this method gets the current service selectors for the specified service. A service selector is a service specific parameter, typical examples of 
+which could include: a parameter to a constructor for the service implementation class, a value for a particular service's property, or a key into a map of existing 
+implementations. 
+
+
+    bcs - the BeanContextServices for this request 
+    serviceClass - the specified service 
+
+    Returns: the current service selectors for the specified serviceClass 
+
+*java.beans.beancontext.BeanContextServiceProvider.getService(BeanContextServices,Object,Class,Object)*
+
+public |java.lang.Object| getService(
+  java.beans.beancontext.BeanContextServices bcs,
+  java.lang.Object requestor,
+  java.lang.Class serviceClass,
+  java.lang.Object serviceSelector)
+
+Invoked by BeanContextServices, this method requests an instance of a service from this BeanContextServiceProvider. 
+
+
+    bcs - The BeanContextServices associated with this particular request. This parameter enables the BeanContextServiceProvider to distinguish service requests from multiple sources. 
+    requestor - The object requesting the service 
+    serviceClass - The service requested 
+    serviceSelector - the service dependent parameter for a particular service, or null if not applicable. 
+
+    Returns: a reference to the requested service 
+
+*java.beans.beancontext.BeanContextServiceProvider.releaseService(BeanContextServices,Object,Object)*
+
+public void releaseService(
+  java.beans.beancontext.BeanContextServices bcs,
+  java.lang.Object requestor,
+  java.lang.Object service)
+
+Invoked by BeanContextServices, this method releases a nested BeanContextChild's (or any arbitrary object associated with a BeanContextChild) reference to the specified service. 
+
+
+    bcs - the BeanContextServices associated with this particular release request 
+    requestor - the object requesting the service to be released 
+    service - the service that is to be released 
+
+

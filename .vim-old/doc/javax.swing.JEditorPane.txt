@@ -1,0 +1,555 @@
+*javax.swing.JEditorPane* *JEditorPane* A text component to edit various kinds of content.
+
+public class JEditorPane
+  extends    |javax.swing.text.JTextComponent|
+
+|javax.swing.JEditorPane_Description|
+|javax.swing.JEditorPane_Fields|
+|javax.swing.JEditorPane_Constructors|
+|javax.swing.JEditorPane_Methods|
+
+====================================================================================================================================================================================
+
+*javax.swing.JEditorPane_Fields*
+|java.lang.String_javax.swing.JEditorPane.HONOR_DISPLAY_PROPERTIES|
+|java.lang.String_javax.swing.JEditorPane.W3C_LENGTH_UNITS|
+
+*javax.swing.JEditorPane_Constructors*
+|javax.swing.JEditorPane()|Creates a new JEditorPane.
+|javax.swing.JEditorPane(String)|Creates a JEditorPane based on a string containing  a URL specification.
+|javax.swing.JEditorPane(String,String)|Creates a JEditorPane that has been initialized  to the given text.
+|javax.swing.JEditorPane(URL)|Creates a JEditorPane based on a specified URL for input.
+
+*javax.swing.JEditorPane_Methods*
+|javax.swing.JEditorPane.addHyperlinkListener(HyperlinkListener)|Adds a hyperlink listener for notification of any changes, for example  when a link is selected and entered.
+|javax.swing.JEditorPane.createDefaultEditorKit()|Creates the default editor kit (PlainEditorKit) for when  the component is first created.
+|javax.swing.JEditorPane.createEditorKitForContentType(String)|Creates a handler for the given type from the default registry  of editor kits.
+|javax.swing.JEditorPane.fireHyperlinkUpdate(HyperlinkEvent)|Notifies all listeners that have registered interest for  notification on this event type.
+|javax.swing.JEditorPane.getAccessibleContext()|Gets the AccessibleContext associated with this JEditorPane.
+|javax.swing.JEditorPane.getContentType()|Gets the type of content that this editor   is currently set to deal with.
+|javax.swing.JEditorPane.getEditorKit()|Fetches the currently installed kit for handling content.
+|javax.swing.JEditorPane.getEditorKitClassNameForContentType(String)|Returns the currently registered EditorKit  class name for the type type.
+|javax.swing.JEditorPane.getEditorKitForContentType(String)|Fetches the editor kit to use for the given type  of content.
+|javax.swing.JEditorPane.getHyperlinkListeners()|Returns an array of all the HyperLinkListeners added  to this JEditorPane with addHyperlinkListener().
+|javax.swing.JEditorPane.getPage()|Gets the current URL being displayed.
+|javax.swing.JEditorPane.getPreferredSize()|Returns the preferred size for the JEditorPane.
+|javax.swing.JEditorPane.getScrollableTracksViewportHeight()|Returns true if a viewport should always force the height of this   Scrollable to match the height of the viewport.
+|javax.swing.JEditorPane.getScrollableTracksViewportWidth()|Returns true if a viewport should always force the width of this   Scrollable to match the width of the viewport.
+|javax.swing.JEditorPane.getStream(URL)|Fetches a stream for the given URL, which is about to   be loaded by the setPage method.
+|javax.swing.JEditorPane.getText()|Returns the text contained in this TextComponent  in terms of the  content type of this editor.
+|javax.swing.JEditorPane.getUIClassID()|Gets the class ID for the UI.
+|javax.swing.JEditorPane.paramString()|Returns a string representation of this JEditorPane.
+|javax.swing.JEditorPane.read(InputStream,Object)|This method initializes from a stream.
+|javax.swing.JEditorPane.registerEditorKitForContentType(String,String)|Establishes the default bindings of type to  classname.
+|javax.swing.JEditorPane.registerEditorKitForContentType(String,String,ClassLoader)|Establishes the default bindings of type to  classname.
+|javax.swing.JEditorPane.removeHyperlinkListener(HyperlinkListener)|Removes a hyperlink listener.
+|javax.swing.JEditorPane.replaceSelection(String)|Replaces the currently selected content with new content  represented by the given string.
+|javax.swing.JEditorPane.scrollToReference(String)|Scrolls the view to the given reference location  (that is, the value returned by the UL.getRef  method for the URL being displa
+|javax.swing.JEditorPane.setContentType(String)|Sets the type of content that this editor  handles.
+|javax.swing.JEditorPane.setEditorKit(EditorKit)|Sets the currently installed kit for handling  content.
+|javax.swing.JEditorPane.setEditorKitForContentType(String,EditorKit)|Directly sets the editor kit to use for the given type.
+|javax.swing.JEditorPane.setPage(String)|Sets the current URL being displayed.
+|javax.swing.JEditorPane.setPage(URL)|Sets the current URL being displayed.
+|javax.swing.JEditorPane.setText(String)|Sets the text of this TextComponent to the specified  content,  which is expected to be in the format of the content type of  this editor.
+
+*javax.swing.JEditorPane_Description*
+
+A text component to edit various kinds of content. You can find how-to information and examples of using editor panes in Using Text Components, a section in The Java Tutorial. 
+
+This component uses implementations of the EditorKit to accomplish its behavior. It effectively morphs into the proper kind of text editor for the kind of content it is given. The 
+content type that editor is bound to at any given time is determined by the EditorKit currently installed. If the content is set to a new URL, its type is used to determine the 
+EditorKit that should be used to load the content. 
+
+By default, the following types of content are known: 
+
+text/plain Plain text, which is the default the type given isn't recognized. The kit used in this case is an extension of DefaultEditorKit that produces a wrapped plain text view. 
+text/html HTML text. The kit used in this case is the class javax.swing.text.html.HTMLEditorKit which provides HTML 3.2 support. text/rtf RTF text. The kit used in this case is 
+the class javax.swing.text.rtf.RTFEditorKit which provides a limited support of the Rich Text Format. 
+
+There are several ways to load content into this component. 
+
+The setText method can be used to initialize the component from a string. In this case the current EditorKit will be used, and the content type will be expected to be of this 
+type. 
+
+The read method can be used to initialize the component from a Reader. Note that if the content type is HTML, relative references (e.g. for things like images) can't be resolved 
+unless the <base> tag is used or the Base property on HTMLDocument is set. In this case the current EditorKit will be used, and the content type will be expected to be of this 
+type. 
+
+The setPage method can be used to initialize the component from a URL. In this case, the content type will be determined from the URL, and the registered EditorKit for that 
+content type will be set. 
+
+Some kinds of content may provide hyperlink support by generating hyperlink events. The HTML EditorKit will generate hyperlink events if the JEditorPane is not editable 
+(JEditorPane.setEditable(false); has been called). If HTML frames are embedded in the document, the typical response would be to change a portion of the current document. The 
+following code fragment is a possible hyperlink listener implementation, that treats HTML frame events specially, and simply displays any other activated hyperlinks. 
+
+class Hyperactive implements HyperlinkListener { 
+
+public void hyperlinkUpdate(HyperlinkEvent e) { if (e.getEventType() == HyperlinkEvent.EventType.ACTIVATED) { JEditorPane pane = (JEditorPane) e.getSource(); if (e instanceof 
+HTMLFrameHyperlinkEvent) { HTMLFrameHyperlinkEvent evt = (HTMLFrameHyperlinkEvent)e; HTMLDocument doc = (HTMLDocument)pane.getDocument(); doc.processHTMLFrameHyperlinkEvent(evt); 
+} else { try { pane.setPage(e.getURL()); } catch (Throwable t) { t.printStackTrace(); } } } } } 
+
+
+
+For information on customizing how text/html is rendered please see (|javax.swing.JEditorPane|) and (|javax.swing.JEditorPane|) Culturally dependent information in some documents 
+is handled through a mechanism called character encoding. Character encoding is an unambiguous mapping of the members of a character set (letters, ideographs, digits, symbols, or 
+control functions) to specific numeric code values. It represents the way the file is stored. Example character encodings are ISO-8859-1, ISO-8859-5, Shift-jis, Euc-jp, and UTF-8. 
+When the file is passed to an user agent (JEditorPane) it is converted to the document character set (ISO-10646 aka Unicode). 
+
+There are multiple ways to get a character set mapping to happen with JEditorPane. 
+
+One way is to specify the character set as a parameter of the MIME type. This will be established by a call to the setContentType method. If the content is loaded by the setPage 
+method the content type will have been set according to the specification of the URL. It the file is loaded directly, the content type would be expected to have been set prior to 
+loading. 
+
+Another way the character set can be specified is in the document itself. This requires reading the document prior to determining the character set that is desired. To handle 
+this, it is expected that the EditorKit.read operation throw a ChangedCharSetException which will be caught. The read is then restarted with a new Reader that uses the character 
+set specified in the ChangedCharSetException (which is an IOException). 
+
+Newlines 
+
+For a discussion on how newlines are handled, see DefaultEditorKit. 
+
+Warning: Serialized objects of this class will not be compatible with future Swing releases. The current serialization support is appropriate for short term storage or RMI between 
+applications running the same version of Swing. As of 1.4, support for long term storage of all JavaBeansTM has been added to the java.beans package. Please see 
+(|java.beans.XMLEncoder|) . 
+
+
+
+*java.lang.String_javax.swing.JEditorPane.HONOR_DISPLAY_PROPERTIES*
+
+Key for a client property used to indicate whether the default font and foreground color from the component are used if a font or foreground color is not specified in the styled 
+text. 
+
+The default varies based on the look and feel; to enable it set the client property(|putClientProperty|) with this name to Boolean.TRUE. 
+
+
+*java.lang.String_javax.swing.JEditorPane.W3C_LENGTH_UNITS*
+
+Key for a client property used to indicate whether 
+
+w3c compliant length units are used for html rendering. 
+
+By default this is not enabled; to enable it set the client property(|putClientProperty|) with this name to Boolean.TRUE. 
+
+
+
+*javax.swing.JEditorPane()*
+
+public JEditorPane()
+
+Creates a new JEditorPane. The document model is set to null. 
+
+
+*javax.swing.JEditorPane(String)*
+
+public JEditorPane(java.lang.String url)
+  throws |java.io.IOException|
+         
+Creates a JEditorPane based on a string containing a URL specification. 
+
+    url - the URL 
+
+*javax.swing.JEditorPane(String,String)*
+
+public JEditorPane(
+  java.lang.String type,
+  java.lang.String text)
+
+Creates a JEditorPane that has been initialized to the given text. This is a convenience constructor that calls the setContentType and setText methods. 
+
+    type - mime type of the given text 
+    text - the text to initialize with; may be null 
+
+*javax.swing.JEditorPane(URL)*
+
+public JEditorPane(java.net.URL initialPage)
+  throws |java.io.IOException|
+         
+Creates a JEditorPane based on a specified URL for input. 
+
+    initialPage - the URL 
+
+*javax.swing.JEditorPane.addHyperlinkListener(HyperlinkListener)*
+
+public synchronized void addHyperlinkListener(javax.swing.event.HyperlinkListener listener)
+
+Adds a hyperlink listener for notification of any changes, for example when a link is selected and entered. 
+
+
+    listener - the listener 
+
+*javax.swing.JEditorPane.createDefaultEditorKit()*
+
+protected |javax.swing.text.EditorKit| createDefaultEditorKit()
+
+Creates the default editor kit (PlainEditorKit) for when the component is first created. 
+
+
+
+    Returns: the editor kit 
+
+*javax.swing.JEditorPane.createEditorKitForContentType(String)*
+
+public static |javax.swing.text.EditorKit| createEditorKitForContentType(java.lang.String type)
+
+Creates a handler for the given type from the default registry of editor kits. The registry is created if necessary. If the registered class has not yet been loaded, an attempt is 
+made to dynamically load the prototype of the kit for the given type. If the type was registered with a ClassLoader, that ClassLoader will be used to load the prototype. If there 
+was no registered ClassLoader, Class.forName will be used to load the prototype. 
+
+Once a prototype EditorKit instance is successfully located, it is cloned and the clone is returned. 
+
+
+    type - the content type 
+
+    Returns: the editor kit, or null if there is nothing registered for the given type 
+
+*javax.swing.JEditorPane.fireHyperlinkUpdate(HyperlinkEvent)*
+
+public void fireHyperlinkUpdate(javax.swing.event.HyperlinkEvent e)
+
+Notifies all listeners that have registered interest for notification on this event type. This is normally called by the currently installed EditorKit if a content type that 
+supports hyperlinks is currently active and there was activity with a link. The listener list is processed last to first. 
+
+
+    e - the event 
+
+*javax.swing.JEditorPane.getAccessibleContext()*
+
+public |javax.accessibility.AccessibleContext| getAccessibleContext()
+
+Gets the AccessibleContext associated with this JEditorPane. For editor panes, the AccessibleContext takes the form of an AccessibleJEditorPane. A new AccessibleJEditorPane 
+instance is created if necessary. 
+
+
+
+    Returns: an AccessibleJEditorPane that serves as the AccessibleContext of this JEditorPane 
+
+*javax.swing.JEditorPane.getContentType()*
+
+public final |java.lang.String| getContentType()
+
+Gets the type of content that this editor is currently set to deal with. This is defined to be the type associated with the currently installed EditorKit. 
+
+
+
+    Returns: the content type, null if no editor kit set 
+
+*javax.swing.JEditorPane.getEditorKit()*
+
+public |javax.swing.text.EditorKit| getEditorKit()
+
+Fetches the currently installed kit for handling content. createDefaultEditorKit is called to set up a default if necessary. 
+
+
+
+    Returns: the editor kit 
+
+*javax.swing.JEditorPane.getEditorKitClassNameForContentType(String)*
+
+public static |java.lang.String| getEditorKitClassNameForContentType(java.lang.String type)
+
+Returns the currently registered EditorKit class name for the type type. 
+
+
+    type - the non-null content type 
+
+*javax.swing.JEditorPane.getEditorKitForContentType(String)*
+
+public |javax.swing.text.EditorKit| getEditorKitForContentType(java.lang.String type)
+
+Fetches the editor kit to use for the given type of content. This is called when a type is requested that doesn't match the currently installed type. If the component doesn't have 
+an EditorKit registered for the given type, it will try to create an EditorKit from the default EditorKit registry. If that fails, a PlainEditorKit is used on the assumption that 
+all text documents can be represented as plain text. 
+
+This method can be reimplemented to use some other kind of type registry. This can be reimplemented to use the Java Activation Framework, for example. 
+
+
+    type - the non-null content type 
+
+    Returns: the editor kit 
+
+*javax.swing.JEditorPane.getHyperlinkListeners()*
+
+public synchronized |javax.swing.event.HyperlinkListener|[] getHyperlinkListeners()
+
+Returns an array of all the HyperLinkListeners added to this JEditorPane with addHyperlinkListener(). 
+
+
+
+    Returns: all of the HyperLinkListeners added or an empty array if no listeners have been added 
+
+*javax.swing.JEditorPane.getPage()*
+
+public |java.net.URL| getPage()
+
+Gets the current URL being displayed. If a URL was not specified in the creation of the document, this will return null, and relative URL's will not be resolved. 
+
+
+
+    Returns: the URL, or null if none 
+
+*javax.swing.JEditorPane.getPreferredSize()*
+
+public |java.awt.Dimension| getPreferredSize()
+
+Returns the preferred size for the JEditorPane. The preferred size for JEditorPane is slightly altered from the preferred size of the superclass. If the size of the viewport has 
+become smaller than the minimum size of the component, the scrollable definition for tracking width or height will turn to false. The default viewport layout will give the 
+preferred size, and that is not desired in the case where the scrollable is tracking. In that case the normal preferred size is adjusted to the minimum size. This allows things 
+like HTML tables to shrink down to their minimum size and then be laid out at their minimum size, refusing to shrink any further. 
+
+
+
+    Returns: a Dimension containing the preferred size 
+
+*javax.swing.JEditorPane.getScrollableTracksViewportHeight()*
+
+public boolean getScrollableTracksViewportHeight()
+
+Returns true if a viewport should always force the height of this Scrollable to match the height of the viewport. 
+
+
+
+    Returns: true if a viewport should force the Scrollable's height to match its own, false otherwise 
+
+*javax.swing.JEditorPane.getScrollableTracksViewportWidth()*
+
+public boolean getScrollableTracksViewportWidth()
+
+Returns true if a viewport should always force the width of this Scrollable to match the width of the viewport. 
+
+
+
+    Returns: true if a viewport should force the Scrollables width to match its own, false otherwise 
+
+*javax.swing.JEditorPane.getStream(URL)*
+
+protected |java.io.InputStream| getStream(java.net.URL page)
+  throws |java.io.IOException|
+         
+Fetches a stream for the given URL, which is about to be loaded by the setPage method. By default, this simply opens the URL and returns the stream. This can be reimplemented to 
+do useful things like fetch the stream from a cache, monitor the progress of the stream, etc. 
+
+This method is expected to have the the side effect of establishing the content type, and therefore setting the appropriate EditorKit to use for loading the stream. 
+
+If this the stream was an http connection, redirects will be followed and the resulting URL will be set as the Document.StreamDescriptionProperty so that relative URL's can be 
+properly resolved. 
+
+
+    page - the URL of the page 
+
+*javax.swing.JEditorPane.getText()*
+
+public |java.lang.String| getText()
+
+Returns the text contained in this TextComponent in terms of the content type of this editor. If an exception is thrown while attempting to retrieve the text, null will be 
+returned. This is implemented to call JTextComponent.write with a StringWriter. 
+
+
+
+    Returns: 
+
+*javax.swing.JEditorPane.getUIClassID()*
+
+public |java.lang.String| getUIClassID()
+
+Gets the class ID for the UI. 
+
+
+
+    Returns: the string "EditorPaneUI" 
+
+*javax.swing.JEditorPane.paramString()*
+
+protected |java.lang.String| paramString()
+
+Returns a string representation of this JEditorPane. This method is intended to be used only for debugging purposes, and the content and format of the returned string may vary 
+between implementations. The returned string may be empty but may not be null. 
+
+
+
+    Returns: a string representation of this JEditorPane 
+
+*javax.swing.JEditorPane.read(InputStream,Object)*
+
+public void read(
+  java.io.InputStream in,
+  java.lang.Object desc)
+  throws |java.io.IOException|
+         
+This method initializes from a stream. If the kit is set to be of type HTMLEditorKit, and the desc parameter is an HTMLDocument, then it invokes the HTMLEditorKit to initiate the 
+read. Otherwise it calls the superclass method which loads the model as plain text. 
+
+
+    in - the stream from which to read 
+    desc - an object describing the stream 
+
+*javax.swing.JEditorPane.registerEditorKitForContentType(String,String)*
+
+public static void registerEditorKitForContentType(
+  java.lang.String type,
+  java.lang.String classname)
+
+Establishes the default bindings of type to classname. The class will be dynamically loaded later when actually needed, and can be safely changed before attempted uses to avoid 
+loading unwanted classes. The prototype EditorKit will be loaded with Class.forName when registered with this method. 
+
+
+    type - the non-null content type 
+    classname - the class to load later 
+
+*javax.swing.JEditorPane.registerEditorKitForContentType(String,String,ClassLoader)*
+
+public static void registerEditorKitForContentType(
+  java.lang.String type,
+  java.lang.String classname,
+  java.lang.ClassLoader loader)
+
+Establishes the default bindings of type to classname. The class will be dynamically loaded later when actually needed using the given ClassLoader, and can be safely changed 
+before attempted uses to avoid loading unwanted classes. 
+
+
+    type - the non-null content type 
+    classname - the class to load later 
+    loader - the ClassLoader to use to load the name 
+
+*javax.swing.JEditorPane.removeHyperlinkListener(HyperlinkListener)*
+
+public synchronized void removeHyperlinkListener(javax.swing.event.HyperlinkListener listener)
+
+Removes a hyperlink listener. 
+
+
+    listener - the listener 
+
+*javax.swing.JEditorPane.replaceSelection(String)*
+
+public void replaceSelection(java.lang.String content)
+
+Replaces the currently selected content with new content represented by the given string. If there is no selection this amounts to an insert of the given text. If there is no 
+replacement text (i.e. the content string is empty or null) this amounts to a removal of the current selection. The replacement text will have the attributes currently defined for 
+input. If the component is not editable, beep and return. 
+
+This method is thread safe, although most Swing methods are not. Please see Threads and Swing for more information. 
+
+
+    content - the content to replace the selection with. This value can be null 
+
+*javax.swing.JEditorPane.scrollToReference(String)*
+
+public void scrollToReference(java.lang.String reference)
+
+Scrolls the view to the given reference location (that is, the value returned by the UL.getRef method for the URL being displayed). By default, this method only knows how to 
+locate a reference in an HTMLDocument. The implementation calls the scrollRectToVisible method to accomplish the actual scrolling. If scrolling to a reference location is needed 
+for document types other than HTML, this method should be reimplemented. This method will have no effect if the component is not visible. 
+
+
+    reference - the named location to scroll to 
+
+*javax.swing.JEditorPane.setContentType(String)*
+
+public final void setContentType(java.lang.String type)
+
+Sets the type of content that this editor handles. This calls getEditorKitForContentType, and then setEditorKit if an editor kit can be successfully located. This is mostly 
+convenience method that can be used as an alternative to calling setEditorKit directly. 
+
+If there is a charset definition specified as a parameter of the content type specification, it will be used when loading input streams using the associated EditorKit. For example 
+if the type is specified as text/html; charset=EUC-JP the content will be loaded using the EditorKit registered for text/html and the Reader provided to the EditorKit to load 
+unicode into the document will use the EUC-JP charset for translating to unicode. If the type is not recognized, the content will be loaded using the EditorKit registered for 
+plain text, text/plain. 
+
+
+    type - the non-null mime type for the content editing support 
+
+*javax.swing.JEditorPane.setEditorKit(EditorKit)*
+
+public void setEditorKit(javax.swing.text.EditorKit kit)
+
+Sets the currently installed kit for handling content. This is the bound property that establishes the content type of the editor. Any old kit is first deinstalled, then if kit is 
+non-null, the new kit is installed, and a default document created for it. A PropertyChange event ("editorKit") is always fired when setEditorKit is called. 
+
+NOTE: This has the side effect of changing the model, because the EditorKit is the source of how a particular type of content is modeled. This method will cause setDocument to be 
+called on behalf of the caller to ensure integrity of the internal state. 
+
+
+    kit - the desired editor behavior 
+
+*javax.swing.JEditorPane.setEditorKitForContentType(String,EditorKit)*
+
+public void setEditorKitForContentType(
+  java.lang.String type,
+  javax.swing.text.EditorKit k)
+
+Directly sets the editor kit to use for the given type. A look-and-feel implementation might use this in conjunction with createEditorKitForContentType to install handlers for 
+content types with a look-and-feel bias. 
+
+
+    type - the non-null content type 
+    k - the editor kit to be set 
+
+*javax.swing.JEditorPane.setPage(String)*
+
+public void setPage(java.lang.String url)
+  throws |java.io.IOException|
+         
+Sets the current URL being displayed. 
+
+
+    url - the URL for display 
+
+*javax.swing.JEditorPane.setPage(URL)*
+
+public void setPage(java.net.URL page)
+  throws |java.io.IOException|
+         
+Sets the current URL being displayed. The content type of the pane is set, and if the editor kit for the pane is non-null, then a new default document is created and the URL is 
+read into it. If the URL contains and reference location, the location will be scrolled to by calling the scrollToReference method. If the desired URL is the one currently being 
+displayed, the document will not be reloaded. To force a document reload it is necessary to clear the stream description property of the document. The following code shows how 
+this can be done: 
+
+
+
+Document doc = jEditorPane.getDocument(); doc.putProperty(Document.StreamDescriptionProperty, null); 
+
+If the desired URL is not the one currently being displayed, the getStream method is called to give subclasses control over the stream provided. 
+
+This may load either synchronously or asynchronously depending upon the document returned by the EditorKit. If the Document is of type AbstractDocument and has a value returned by 
+AbstractDocument.getAsynchronousLoadPriority that is greater than or equal to zero, the page will be loaded on a separate thread using that priority. 
+
+If the document is loaded synchronously, it will be filled in with the stream prior to being installed into the editor with a call to setDocument, which is bound and will fire a 
+property change event. If an IOException is thrown the partially loaded document will be discarded and neither the document or page property change events will be fired. If the 
+document is successfully loaded and installed, a view will be built for it by the UI which will then be scrolled if necessary, and then the page property change event will be 
+fired. 
+
+If the document is loaded asynchronously, the document will be installed into the editor immediately using a call to setDocument which will fire a document property change event, 
+then a thread will be created which will begin doing the actual loading. In this case, the page property change event will not be fired by the call to this method directly, but 
+rather will be fired when the thread doing the loading has finished. It will also be fired on the event-dispatch thread. Since the calling thread can not throw an IOException in 
+the event of failure on the other thread, the page property change event will be fired when the other thread is done whether the load was successful or not. 
+
+
+    page - the URL of the page 
+
+*javax.swing.JEditorPane.setText(String)*
+
+public void setText(java.lang.String t)
+
+Sets the text of this TextComponent to the specified content, which is expected to be in the format of the content type of this editor. For example, if the type is set to 
+text/html the string should be specified in terms of HTML. 
+
+This is implemented to remove the contents of the current document, and replace them by parsing the given string using the current EditorKit. This gives the semantics of the 
+superclass by not changing out the model, while supporting the content type currently set on this component. The assumption is that the previous content is relatively small, and 
+that the previous content doesn't have side effects. Both of those assumptions can be violated and cause undesirable results. To avoid this, create a new document, 
+getEditorKit().createDefaultDocument(), and replace the existing Document with the new one. You are then assured the previous Document won't have any lingering state. 
+
+Leaving the existing model in place means that the old view will be torn down, and a new view created, where replacing the document would avoid the tear down of the old view. 
+
+Some formats (such as HTML) can install things into the document that can influence future contents. HTML can have style information embedded that would influence the next content 
+installed unexpectedly. 
+
+An alternative way to load this component with a string would be to create a StringReader and call the read method. In this case the model would be replaced after it was 
+initialized with the contents of the string. 
+
+This method is thread safe, although most Swing methods are not. Please see Threads and Swing for more information. 
+
+
+    t - the new text to be set; if null the old text will be deleted 
+
+

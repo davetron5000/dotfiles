@@ -1,0 +1,111 @@
+*java.sql.BatchUpdateException* *BatchUpdateException* An exception thrown when an error
+ occurs during a batch update operation.
+
+public class BatchUpdateException
+  extends    |java.sql.SQLException|
+
+|java.sql.BatchUpdateException_Description|
+|java.sql.BatchUpdateException_Fields|
+|java.sql.BatchUpdateException_Constructors|
+|java.sql.BatchUpdateException_Methods|
+
+====================================================================================================================================================================================
+
+*java.sql.BatchUpdateException_Constructors*
+|java.sql.BatchUpdateException()|Constructs a BatchUpdateException object   with the reason, SQLState, and update count initialized to  null and the vendor code initialized to 0.
+|java.sql.BatchUpdateException(int[])|Constructs a BatchUpdateException initialized to   null for the reason and SQLState and 0 for the  vendor code.
+|java.sql.BatchUpdateException(String,int[])|Constructs a BatchUpdateException initialized with  reason, updateCounts and null  for the SQLState and 0 for the vendorCode.
+|java.sql.BatchUpdateException(String,String,int[])|Constructs a BatchUpdateException initialized with   the given arguments (reason,  SQLState, and updateCounts) and 0 for the ve
+|java.sql.BatchUpdateException(String,String,int,int[])|Constructs a fully-specified BatchUpdateException object,  initializing it with the given values.
+
+*java.sql.BatchUpdateException_Methods*
+|java.sql.BatchUpdateException.getUpdateCounts()|Retrieves the update count for each update statement in the batch  update that executed successfully before this exception occurre
+
+*java.sql.BatchUpdateException_Description*
+
+An exception thrown when an error occurs during a batch update operation. In addition to the information provided by (|java.sql.SQLException|) , a BatchUpdateException provides 
+the update counts for all commands that were executed successfully during the batch update, that is, all commands that were executed before the error occurred. The order of 
+elements in an array of update counts corresponds to the order in which commands were added to the batch. 
+
+After a command in a batch update fails to execute properly and a BatchUpdateException is thrown, the driver may or may not continue to process the remaining commands in the 
+batch. If the driver continues processing after a failure, the array returned by the method BatchUpdateException.getUpdateCounts will have an element for every command in the 
+batch rather than only elements for the commands that executed successfully before the error. In the case where the driver continues processing commands, the array element for any 
+command that failed is Statement.EXECUTE_FAILED. 
+
+
+
+*java.sql.BatchUpdateException()*
+
+public BatchUpdateException()
+
+Constructs a BatchUpdateException object with the reason, SQLState, and update count initialized to null and the vendor code initialized to 0. 
+
+
+*java.sql.BatchUpdateException(int[])*
+
+public BatchUpdateException(int[] updateCounts)
+
+Constructs a BatchUpdateException initialized to null for the reason and SQLState and 0 for the vendor code. 
+
+    updateCounts - an array of int, with each element indicating the update count for a SQL command that executed successfully before the exception was thrown 
+
+*java.sql.BatchUpdateException(String,int[])*
+
+public BatchUpdateException(
+  java.lang.String reason,
+  int[] updateCounts)
+
+Constructs a BatchUpdateException initialized with reason, updateCounts and null for the SQLState and 0 for the vendorCode. 
+
+    reason - a description of the exception 
+    updateCounts - an array of int, with each element indicating the update count for a SQL command that executed successfully before the exception was thrown 
+
+*java.sql.BatchUpdateException(String,String,int[])*
+
+public BatchUpdateException(
+  java.lang.String reason,
+  java.lang.String SQLState,
+  int[] updateCounts)
+
+Constructs a BatchUpdateException initialized with the given arguments (reason, SQLState, and updateCounts) and 0 for the vendor code. 
+
+    reason - a description of the exception 
+    SQLState - an X/OPEN code identifying the exception 
+    updateCounts - an array of int, with each element indicating the update count for a SQL command that executed successfully before the exception was thrown 
+
+*java.sql.BatchUpdateException(String,String,int,int[])*
+
+public BatchUpdateException(
+  java.lang.String reason,
+  java.lang.String SQLState,
+  int vendorCode,
+  int[] updateCounts)
+
+Constructs a fully-specified BatchUpdateException object, initializing it with the given values. 
+
+    reason - a description of the error 
+    SQLState - an X/OPEN code identifying the error 
+    vendorCode - an exception code used by a particular database vendor 
+    updateCounts - an array of int, with each element indicating the update count for a SQL command that executed successfully before the exception was thrown 
+
+*java.sql.BatchUpdateException.getUpdateCounts()*
+
+public int[] getUpdateCounts()
+
+Retrieves the update count for each update statement in the batch update that executed successfully before this exception occurred. A driver that implements batch updates may or 
+may not continue to process the remaining commands in a batch when one of the commands fails to execute properly. If the driver continues processing commands, the array returned 
+by this method will have as many elements as there are commands in the batch; otherwise, it will contain an update count for each command that executed successfully before the 
+BatchUpdateException was thrown. 
+
+The possible return values for this method were modified for the Java 2 SDK, Standard Edition, version 1.3. This was done to accommodate the new option of continuing to process 
+commands in a batch update after a BatchUpdateException object has been thrown. 
+
+
+
+    Returns: an array of int containing the update counts for the updates that were executed successfully before this error occurred. Or, if the driver continues to process commands after an 
+             error, one of the following for every command in the batch: 
+
+an update count Statement.SUCCESS_NO_INFO to indicate that the command executed successfully but the number of rows affected is unknown Statement.EXECUTE_FAILED to indicate that 
+             the command failed to execute successfully 
+
+

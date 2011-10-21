@@ -1,0 +1,83 @@
+*java.lang.Compiler* *Compiler* The Compiler class is provided to support
+ Java-to-native-code compilers and related services.
+
+public final class Compiler
+  extends    |java.lang.Object|
+
+|java.lang.Compiler_Description|
+|java.lang.Compiler_Fields|
+|java.lang.Compiler_Constructors|
+|java.lang.Compiler_Methods|
+
+====================================================================================================================================================================================
+
+*java.lang.Compiler_Methods*
+|java.lang.Compiler.command(Object)|Examines the argument type and its fields and perform some documented  operation.
+|java.lang.Compiler.compileClass(Class<?>)|Compiles the specified class.
+|java.lang.Compiler.compileClasses(String)|Compiles all classes whose name matches the specified string.
+|java.lang.Compiler.disable()|Cause the Compiler to cease operation.
+|java.lang.Compiler.enable()|Cause the Compiler to resume operation.
+
+*java.lang.Compiler_Description*
+
+The Compiler class is provided to support Java-to-native-code compilers and related services. By design, the Compiler class does nothing; it serves as a placeholder for a JIT 
+compiler implementation. 
+
+When the Java Virtual Machine first starts, it determines if the system property java.compiler exists. (System properties are accessible through getProperty and , a method defined 
+by the System class.) If so, it is assumed to be the name of a library (with a platform-dependent exact location and type); the loadLibrary method in class System is called to 
+load that library. If this loading succeeds, the function named java_lang_Compiler_start() in that library is called. 
+
+If no compiler is available, these methods do nothing. 
+
+
+
+*java.lang.Compiler.command(Object)*
+
+public static native |java.lang.Object| command(java.lang.Object any)
+
+Examines the argument type and its fields and perform some documented operation. No specific operations are required. 
+
+
+    any - an argument. 
+
+    Returns: a compiler-specific value, or null if no compiler is available. 
+
+*java.lang.Compiler.compileClass(Class<?>)*
+
+public static native boolean compileClass(java.lang.Class<?> clazz)
+
+Compiles the specified class. 
+
+
+    clazz - a class. 
+
+    Returns: true if the compilation succeeded; false if the compilation failed or no compiler is available. 
+
+*java.lang.Compiler.compileClasses(String)*
+
+public static native boolean compileClasses(java.lang.String string)
+
+Compiles all classes whose name matches the specified string. 
+
+
+    string - the name of the classes to compile. 
+
+    Returns: true if the compilation succeeded; false if the compilation failed or no compiler is available. 
+
+*java.lang.Compiler.disable()*
+
+public static native void disable()
+
+Cause the Compiler to cease operation. 
+
+
+
+*java.lang.Compiler.enable()*
+
+public static native void enable()
+
+Cause the Compiler to resume operation. 
+
+
+
+

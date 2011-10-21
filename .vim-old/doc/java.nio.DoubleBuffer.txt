@@ -1,0 +1,481 @@
+*java.nio.DoubleBuffer* *DoubleBuffer* A double buffer.
+
+public abstract class DoubleBuffer
+  extends    |java.nio.Buffer|
+  implements |java.lang.Comparable|
+
+|java.nio.DoubleBuffer_Description|
+|java.nio.DoubleBuffer_Fields|
+|java.nio.DoubleBuffer_Constructors|
+|java.nio.DoubleBuffer_Methods|
+
+====================================================================================================================================================================================
+
+*java.nio.DoubleBuffer_Methods*
+|java.nio.DoubleBuffer.allocate(int)|Allocates a new double buffer.
+|java.nio.DoubleBuffer.array()|Returns the double array that backs this  buffer(optional operation).
+|java.nio.DoubleBuffer.arrayOffset()|Returns the offset within this buffer's backing array of the first  element of the buffer(optional operation).
+|java.nio.DoubleBuffer.asReadOnlyBuffer()|Creates a new, read-only double buffer that shares this buffer's  content.
+|java.nio.DoubleBuffer.compact()|Compacts this buffer(optional operation).
+|java.nio.DoubleBuffer.compareTo(DoubleBuffer)|Compares this buffer to another.
+|java.nio.DoubleBuffer.duplicate()|Creates a new double buffer that shares this buffer's content.
+|java.nio.DoubleBuffer.equals(Object)|Tells whether or not this buffer is equal to another object.
+|java.nio.DoubleBuffer.get()|Relative get method.
+|java.nio.DoubleBuffer.get(double[])|Relative bulk get method.
+|java.nio.DoubleBuffer.get(double[],int,int)|Relative bulk get method.
+|java.nio.DoubleBuffer.get(int)|Absolute get method.
+|java.nio.DoubleBuffer.hasArray()|Tells whether or not this buffer is backed by an accessible double  array.
+|java.nio.DoubleBuffer.hashCode()|Returns the current hash code of this buffer.
+|java.nio.DoubleBuffer.isDirect()|Tells whether or not this double buffer is direct.
+|java.nio.DoubleBuffer.order()|Retrieves this buffer's byte order.
+|java.nio.DoubleBuffer.put(double)|Relative put method(optional operation).
+|java.nio.DoubleBuffer.put(double[])|Relative bulk put method(optional operation).
+|java.nio.DoubleBuffer.put(double[],int,int)|Relative bulk put method(optional operation).
+|java.nio.DoubleBuffer.put(DoubleBuffer)|Relative bulk put method(optional operation).
+|java.nio.DoubleBuffer.put(int,double)|Absolute put method(optional operation).
+|java.nio.DoubleBuffer.slice()|Creates a new double buffer whose content is a shared subsequence of  this buffer's content.
+|java.nio.DoubleBuffer.toString()|Returns a string summarizing the state of this buffer.
+|java.nio.DoubleBuffer.wrap(double[])|Wraps a double array into a buffer.
+|java.nio.DoubleBuffer.wrap(double[],int,int)|Wraps a double array into a buffer.
+
+*java.nio.DoubleBuffer_Description*
+
+A double buffer. 
+
+This class defines four categories of operations upon double buffers: 
+
+
+
+Absolute and relative </code><i>get</i><code>(|java.nio.DoubleBuffer|) and </code><i>put</i><code>(|java.nio.DoubleBuffer|) methods that read and write single doubles; 
+
+Relative </code><i>bulk get</i><code>(|java.nio.DoubleBuffer|) methods that transfer contiguous sequences of doubles from this buffer into an array; and 
+
+Relative </code><i>bulk put</i><code>(|java.nio.DoubleBuffer|) methods that transfer contiguous sequences of doubles from a double array or some other double buffer into this 
+buffer;and 
+
+Methods for </code>compacting<code>(|java.nio.DoubleBuffer|) , </code>duplicating<code>(|java.nio.DoubleBuffer|) , and </code>slicing<code>(|java.nio.DoubleBuffer|) a double 
+buffer. 
+
+
+
+Double buffers can be created either by </code><i>allocation</i><code>(|java.nio.DoubleBuffer|) , which allocates space for the buffer's 
+
+content, by </code><i>wrapping</i><code>(|java.nio.DoubleBuffer|) an existing double array into a buffer, or by creating a view of an existing byte buffer 
+
+Like a byte buffer, a double buffer is either direct or non-direct. A double buffer created via the wrap methods of this class will be non-direct. A double buffer created as a 
+view of a byte buffer will be direct if, and only if, the byte buffer itself is direct. Whether or not a double buffer is direct may be determined by invoking the 
+isDirect(|java.nio.DoubleBuffer|) method. 
+
+Methods in this class that do not otherwise have a value to return are specified to return the buffer upon which they are invoked. This allows method invocations to be chained. 
+
+
+
+*java.nio.DoubleBuffer.allocate(int)*
+
+public static |java.nio.DoubleBuffer| allocate(int capacity)
+
+Allocates a new double buffer. 
+
+The new buffer's position will be zero, its limit will be its capacity, and its mark will be undefined. It will have a </code>backing array<code>(|java.nio.DoubleBuffer|) , and 
+its </code>array offset<code>(|java.nio.DoubleBuffer|) will be zero. 
+
+
+    capacity - The new buffer's capacity, in doubles 
+
+    Returns: The new double buffer 
+
+*java.nio.DoubleBuffer.array()*
+
+public final double[] array()
+
+Returns the double array that backs this buffer(optional operation). 
+
+Modifications to this buffer's content will cause the returned array's content to be modified, and vice versa. 
+
+Invoke the hasArray(|java.nio.DoubleBuffer|) method before invoking this method in order to ensure that this buffer has an accessible backing array. 
+
+
+
+    Returns: The array that backs this buffer 
+
+*java.nio.DoubleBuffer.arrayOffset()*
+
+public final int arrayOffset()
+
+Returns the offset within this buffer's backing array of the first element of the buffer(optional operation). 
+
+If this buffer is backed by an array then buffer position p corresponds to array index p+arrayOffset(). 
+
+Invoke the hasArray(|java.nio.DoubleBuffer|) method before invoking this method in order to ensure that this buffer has an accessible backing array. 
+
+
+
+    Returns: The offset within this buffer's array of the first element of the buffer 
+
+*java.nio.DoubleBuffer.asReadOnlyBuffer()*
+
+public abstract |java.nio.DoubleBuffer| asReadOnlyBuffer()
+
+Creates a new, read-only double buffer that shares this buffer's content. 
+
+The content of the new buffer will be that of this buffer. Changes to this buffer's content will be visible in the new buffer; the new buffer itself, however, will be read-only 
+and will not allow the shared content to be modified. The two buffers' position, limit, and mark values will be independent. 
+
+The new buffer's capacity, limit, position, and mark values will be identical to those of this buffer. 
+
+If this buffer is itself read-only then this method behaves in exactly the same way as the duplicate(|java.nio.DoubleBuffer|) method. 
+
+
+
+    Returns: The new, read-only double buffer 
+
+*java.nio.DoubleBuffer.compact()*
+
+public abstract |java.nio.DoubleBuffer| compact()
+
+Compacts this buffer(optional operation). 
+
+The doubles between the buffer's current position and its limit, if any, are copied to the beginning of the buffer. That is, the double at index p=position() is copied to index 
+zero, the double at index p+1 is copied to index one, and so forth until the double at index limit()-1 is copied to index n=limit()-1-p. The buffer's position is then set to n+1 
+and its limit is set to its capacity. The mark, if defined, is discarded. 
+
+The buffer's position is set to the number of doubles copied, rather than to zero, so that an invocation of this method can be followed immediately by an invocation of another 
+relative put method. 
+
+
+
+    Returns: 
+
+*java.nio.DoubleBuffer.compareTo(DoubleBuffer)*
+
+public int compareTo(java.nio.DoubleBuffer that)
+
+Compares this buffer to another. 
+
+Two double buffers are compared by comparing their sequences of remaining elements lexicographically, without regard to the starting position of each sequence within its 
+corresponding buffer. 
+
+A double buffer is not comparable to any other type of object. 
+
+
+
+    Returns: A negative integer, zero, or a positive integer as this buffer is less than, equal to, or greater than the given buffer 
+
+*java.nio.DoubleBuffer.duplicate()*
+
+public abstract |java.nio.DoubleBuffer| duplicate()
+
+Creates a new double buffer that shares this buffer's content. 
+
+The content of the new buffer will be that of this buffer. Changes to this buffer's content will be visible in the new buffer, and vice versa; the two buffers' position, limit, 
+and mark values will be independent. 
+
+The new buffer's capacity, limit, position, and mark values will be identical to those of this buffer. The new buffer will be direct if, and only if, this buffer is direct, and it 
+will be read-only if, and only if, this buffer is read-only. 
+
+
+
+    Returns: The new double buffer 
+
+*java.nio.DoubleBuffer.equals(Object)*
+
+public boolean equals(java.lang.Object ob)
+
+Tells whether or not this buffer is equal to another object. 
+
+Two double buffers are equal if, and only if, 
+
+
+
+They have the same element type, 
+
+They have the same number of remaining elements, and 
+
+The two sequences of remaining elements, considered independently of their starting positions, are pointwise equal. 
+
+
+
+A double buffer is not equal to any other type of object. 
+
+
+    ob - The object to which this buffer is to be compared 
+
+    Returns: true if, and only if, this buffer is equal to the given object 
+
+*java.nio.DoubleBuffer.get()*
+
+public abstract double get()
+
+Relative get method. Reads the double at this buffer's current position, and then increments the position. 
+
+
+
+    Returns: The double at the buffer's current position 
+
+*java.nio.DoubleBuffer.get(double[])*
+
+public |java.nio.DoubleBuffer| get(double[] dst)
+
+Relative bulk get method. 
+
+This method transfers doubles from this buffer into the given destination array. An invocation of this method of the form src.get(a) behaves in exactly the same way as the 
+invocation 
+
+
+
+src.get(a, 0, a.length) 
+
+
+
+    Returns: 
+
+*java.nio.DoubleBuffer.get(double[],int,int)*
+
+public |java.nio.DoubleBuffer| get(
+  double[] dst,
+  int offset,
+  int length)
+
+Relative bulk get method. 
+
+This method transfers doubles from this buffer into the given destination array. If there are fewer doubles remaining in the buffer than are required to satisfy the request, that 
+is, if length>remaining(), then no doubles are transferred and a (|java.nio.BufferUnderflowException|) is thrown. 
+
+Otherwise, this method copies length doubles from this buffer into the given array, starting at the current position of this buffer and at the given offset in the array. The 
+position of this buffer is then incremented by length. 
+
+In other words, an invocation of this method of the form src.get(dst,off,len) has exactly the same effect as the loop 
+
+
+
+for (int i = off; i 
+
+
+    dst - The array into which doubles are to be written 
+    offset - The offset within the array of the first double to be written; must be non-negative and no larger than dst.length 
+    length - The maximum number of doubles to be written to the given array; must be non-negative and no larger than dst.length - offset 
+
+    Returns: 
+
+*java.nio.DoubleBuffer.get(int)*
+
+public abstract double get(int index)
+
+Absolute get method. Reads the double at the given index. 
+
+
+    index - The index from which the double will be read 
+
+    Returns: The double at the given index 
+
+*java.nio.DoubleBuffer.hasArray()*
+
+public final boolean hasArray()
+
+Tells whether or not this buffer is backed by an accessible double array. 
+
+If this method returns true then the array(|java.nio.DoubleBuffer|) and arrayOffset(|java.nio.DoubleBuffer|) methods may safely be invoked. 
+
+
+
+    Returns: true if, and only if, this buffer is backed by an array and is not read-only 
+
+*java.nio.DoubleBuffer.hashCode()*
+
+public int hashCode()
+
+Returns the current hash code of this buffer. 
+
+The hash code of a double buffer depends only upon its remaining elements; that is, upon the elements from position() up to, and including, the element at limit()-1. 
+
+Because buffer hash codes are content-dependent, it is inadvisable to use buffers as keys in hash maps or similar data structures unless it is known that their contents will not 
+change. 
+
+
+
+    Returns: The current hash code of this buffer 
+
+*java.nio.DoubleBuffer.isDirect()*
+
+public abstract boolean isDirect()
+
+Tells whether or not this double buffer is direct. 
+
+
+
+    Returns: true if, and only if, this buffer is direct 
+
+*java.nio.DoubleBuffer.order()*
+
+public abstract |java.nio.ByteOrder| order()
+
+Retrieves this buffer's byte order. 
+
+The byte order of a double buffer created by allocation or by wrapping an existing double array is the </code>native order<code>(|java.nio.ByteOrder|) of the underlying hardware. 
+The byte order of a double buffer created as a view of a byte buffer is that of the byte buffer at the moment that the view is created. 
+
+
+
+    Returns: This buffer's byte order 
+
+*java.nio.DoubleBuffer.put(double)*
+
+public abstract |java.nio.DoubleBuffer| put(double d)
+
+Relative put method(optional operation). 
+
+Writes the given double into this buffer at the current position, and then increments the position. 
+
+
+    d - The double to be written 
+
+    Returns: 
+
+*java.nio.DoubleBuffer.put(double[])*
+
+public final |java.nio.DoubleBuffer| put(double[] src)
+
+Relative bulk put method(optional operation). 
+
+This method transfers the entire content of the given source double array into this buffer. An invocation of this method of the form dst.put(a) behaves in exactly the same way as 
+the invocation 
+
+
+
+dst.put(a, 0, a.length) 
+
+
+
+    Returns: 
+
+*java.nio.DoubleBuffer.put(double[],int,int)*
+
+public |java.nio.DoubleBuffer| put(
+  double[] src,
+  int offset,
+  int length)
+
+Relative bulk put method(optional operation). 
+
+This method transfers doubles into this buffer from the given source array. If there are more doubles to be copied from the array than remain in this buffer, that is, if 
+length>remaining(), then no doubles are transferred and a (|java.nio.BufferOverflowException|) is thrown. 
+
+Otherwise, this method copies length doubles from the given array into this buffer, starting at the given offset in the array and at the current position of this buffer. The 
+position of this buffer is then incremented by length. 
+
+In other words, an invocation of this method of the form dst.put(src,off,len) has exactly the same effect as the loop 
+
+
+
+for (int i = off; i 
+
+
+    src - The array from which doubles are to be read 
+    offset - The offset within the array of the first double to be read; must be non-negative and no larger than array.length 
+    length - The number of doubles to be read from the given array; must be non-negative and no larger than array.length - offset 
+
+    Returns: 
+
+*java.nio.DoubleBuffer.put(DoubleBuffer)*
+
+public |java.nio.DoubleBuffer| put(java.nio.DoubleBuffer src)
+
+Relative bulk put method(optional operation). 
+
+This method transfers the doubles remaining in the given source buffer into this buffer. If there are more doubles remaining in the source buffer than in this buffer, that is, if 
+src.remaining()>remaining(), then no doubles are transferred and a (|java.nio.BufferOverflowException|) is thrown. 
+
+Otherwise, this method copies n=src.remaining() doubles from the given buffer into this buffer, starting at each buffer's current position. The positions of both buffers are then 
+incremented by n. 
+
+In other words, an invocation of this method of the form dst.put(src) has exactly the same effect as the loop 
+
+
+
+while (src.hasRemaining()) dst.put(src.get()); 
+
+except that it first checks that there is sufficient space in this buffer and it is potentially much more efficient. 
+
+
+    src - The source buffer from which doubles are to be read; must not be this buffer 
+
+    Returns: 
+
+*java.nio.DoubleBuffer.put(int,double)*
+
+public abstract |java.nio.DoubleBuffer| put(
+  int index,
+  double d)
+
+Absolute put method(optional operation). 
+
+Writes the given double into this buffer at the given index. 
+
+
+    index - The index at which the double will be written 
+    d - The double value to be written 
+
+    Returns: 
+
+*java.nio.DoubleBuffer.slice()*
+
+public abstract |java.nio.DoubleBuffer| slice()
+
+Creates a new double buffer whose content is a shared subsequence of this buffer's content. 
+
+The content of the new buffer will start at this buffer's current position. Changes to this buffer's content will be visible in the new buffer, and vice versa; the two buffers' 
+position, limit, and mark values will be independent. 
+
+The new buffer's position will be zero, its capacity and its limit will be the number of doubles remaining in this buffer, and its mark will be undefined. The new buffer will be 
+direct if, and only if, this buffer is direct, and it will be read-only if, and only if, this buffer is read-only. 
+
+
+
+    Returns: The new double buffer 
+
+*java.nio.DoubleBuffer.toString()*
+
+public |java.lang.String| toString()
+
+Returns a string summarizing the state of this buffer. 
+
+
+
+    Returns: A summary string 
+
+*java.nio.DoubleBuffer.wrap(double[])*
+
+public static |java.nio.DoubleBuffer| wrap(double[] array)
+
+Wraps a double array into a buffer. 
+
+The new buffer will be backed by the given double array; that is, modifications to the buffer will cause the array to be modified and vice versa. The new buffer's capacity and 
+limit will be array.length, its position will be zero, and its mark will be undefined. Its </code>backing array<code>(|java.nio.DoubleBuffer|) will be the given array, and its 
+</code>array offset<code>(|java.nio.DoubleBuffer|) will be zero. 
+
+
+    array - The array that will back this buffer 
+
+    Returns: The new double buffer 
+
+*java.nio.DoubleBuffer.wrap(double[],int,int)*
+
+public static |java.nio.DoubleBuffer| wrap(
+  double[] array,
+  int offset,
+  int length)
+
+Wraps a double array into a buffer. 
+
+The new buffer will be backed by the given double array; that is, modifications to the buffer will cause the array to be modified and vice versa. The new buffer's capacity will be 
+array.length, its position will be offset, its limit will be offset + length, and its mark will be undefined. Its </code>backing array<code>(|java.nio.DoubleBuffer|) will be the 
+given array, and its </code>array offset<code>(|java.nio.DoubleBuffer|) will be zero. 
+
+
+    array - The array that will back the new buffer 
+    offset - The offset of the subarray to be used; must be non-negative and no larger than array.length. The new buffer's position will be set to this value. 
+    length - The length of the subarray to be used; must be non-negative and no larger than array.length - offset. The new buffer's limit will be set to offset + length. 
+
+    Returns: The new double buffer 
+
+

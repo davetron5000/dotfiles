@@ -1,0 +1,106 @@
+*javax.naming.ldap.SortResponseControl* *SortResponseControl* Indicates whether the requested sort of search results was successful or not.
+
+public final class SortResponseControl
+  extends    |javax.naming.ldap.BasicControl|
+
+|javax.naming.ldap.SortResponseControl_Description|
+|javax.naming.ldap.SortResponseControl_Fields|
+|javax.naming.ldap.SortResponseControl_Constructors|
+|javax.naming.ldap.SortResponseControl_Methods|
+
+====================================================================================================================================================================================
+
+*javax.naming.ldap.SortResponseControl_Fields*
+|java.lang.String_javax.naming.ldap.SortResponseControl.OID|
+
+*javax.naming.ldap.SortResponseControl_Constructors*
+|javax.naming.ldap.SortResponseControl(String,boolean,byte[])|Constructs a control to indicate the outcome of a sort request.
+
+*javax.naming.ldap.SortResponseControl_Methods*
+|javax.naming.ldap.SortResponseControl.getAttributeID()|Retrieves the ID of the attribute that caused the sort to fail.
+|javax.naming.ldap.SortResponseControl.getException()|Retrieves the NamingException appropriate for the result code.
+|javax.naming.ldap.SortResponseControl.getResultCode()|Retrieves the LDAP result code of the sort operation.
+|javax.naming.ldap.SortResponseControl.isSorted()|Determines if the search results have been successfully sorted.
+
+*javax.naming.ldap.SortResponseControl_Description*
+
+Indicates whether the requested sort of search results was successful or not. When the result code indicates success then the results have been sorted as requested. Otherwise the 
+sort was unsuccessful and additional details regarding the cause of the error may have been provided by the server. 
+
+The code sample in (|javax.naming.ldap.SortControl|) shows how this class may be used. 
+
+This class implements the LDAPv3 Response Control for server-side sorting as defined in RFC 2891. 
+
+The control's value has the following ASN.1 definition: 
+
+SortResult ::= SEQUENCE { sortResult ENUMERATED { success (0), -- results are sorted operationsError (1), -- server internal failure timeLimitExceeded (3), -- timelimit reached 
+before -- sorting was completed strongAuthRequired (8), -- refused to return sorted -- results via insecure -- protocol adminLimitExceeded (11), -- too many matching entries -- 
+for the server to sort noSuchAttribute (16), -- unrecognized attribute -- type in sort key inappropriateMatching (18), -- unrecognized or inappro- -- priate matching rule in -- 
+sort key insufficientAccessRights (50), -- refused to return sorted -- results to this client busy (51), -- too busy to process unwillingToPerform (53), -- unable to sort other 
+(80) }, attributeType [0] AttributeType OPTIONAL } 
+
+
+
+
+
+*java.lang.String_javax.naming.ldap.SortResponseControl.OID*
+
+The server-side sort response control's assigned object identifier is 1.2.840.113556.1.4.474. 
+
+
+
+*javax.naming.ldap.SortResponseControl(String,boolean,byte[])*
+
+public SortResponseControl(
+  java.lang.String id,
+  boolean criticality,
+  byte[] value)
+  throws |java.io.IOException|
+         
+Constructs a control to indicate the outcome of a sort request. 
+
+    id - The control's object identifier string. 
+    criticality - The control's criticality. 
+    value - The control's ASN.1 BER encoded value. It is not cloned - any changes to value will affect the contents of the control. 
+
+*javax.naming.ldap.SortResponseControl.getAttributeID()*
+
+public |java.lang.String| getAttributeID()
+
+Retrieves the ID of the attribute that caused the sort to fail. Returns null if no ID was returned by the server. 
+
+
+
+    Returns: The possibly null ID of the bad attribute. 
+
+*javax.naming.ldap.SortResponseControl.getException()*
+
+public |javax.naming.NamingException| getException()
+
+Retrieves the NamingException appropriate for the result code. 
+
+
+
+    Returns: A NamingException or null if the result code indicates success. 
+
+*javax.naming.ldap.SortResponseControl.getResultCode()*
+
+public int getResultCode()
+
+Retrieves the LDAP result code of the sort operation. 
+
+
+
+    Returns: The result code. A zero value indicates success. 
+
+*javax.naming.ldap.SortResponseControl.isSorted()*
+
+public boolean isSorted()
+
+Determines if the search results have been successfully sorted. If an error occurred during sorting a NamingException is thrown. 
+
+
+
+    Returns: true if the search results have been sorted. 
+
+

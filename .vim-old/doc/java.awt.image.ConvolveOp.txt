@@ -1,0 +1,196 @@
+*java.awt.image.ConvolveOp* *ConvolveOp* This class implements a convolution from the source
+ to the destination.
+
+public class ConvolveOp
+  extends    |java.lang.Object|
+  implements |java.awt.image.BufferedImageOp|
+             |java.awt.image.RasterOp|
+
+|java.awt.image.ConvolveOp_Description|
+|java.awt.image.ConvolveOp_Fields|
+|java.awt.image.ConvolveOp_Constructors|
+|java.awt.image.ConvolveOp_Methods|
+
+====================================================================================================================================================================================
+
+*java.awt.image.ConvolveOp_Fields*
+|int_java.awt.image.ConvolveOp.EDGE_NO_OP|
+|int_java.awt.image.ConvolveOp.EDGE_ZERO_FILL|
+
+*java.awt.image.ConvolveOp_Constructors*
+|java.awt.image.ConvolveOp(Kernel)|Constructs a ConvolveOp given a Kernel.
+|java.awt.image.ConvolveOp(Kernel,int,RenderingHints)|Constructs a ConvolveOp given a Kernel, an edge condition, and a  RenderingHints object (which may be null).
+
+*java.awt.image.ConvolveOp_Methods*
+|java.awt.image.ConvolveOp.createCompatibleDestImage(BufferedImage,ColorModel)|Creates a zeroed destination image with the correct size and number   of bands.
+|java.awt.image.ConvolveOp.createCompatibleDestRaster(Raster)|Creates a zeroed destination Raster with the correct size and number   of bands, given this source.
+|java.awt.image.ConvolveOp.filter(BufferedImage,BufferedImage)|Performs a convolution on BufferedImages.
+|java.awt.image.ConvolveOp.filter(Raster,WritableRaster)|Performs a convolution on Rasters.
+|java.awt.image.ConvolveOp.getBounds2D(BufferedImage)|Returns the bounding box of the filtered destination image.
+|java.awt.image.ConvolveOp.getBounds2D(Raster)|Returns the bounding box of the filtered destination Raster.
+|java.awt.image.ConvolveOp.getEdgeCondition()|Returns the edge condition.
+|java.awt.image.ConvolveOp.getKernel()|Returns the Kernel.
+|java.awt.image.ConvolveOp.getPoint2D(Point2D,Point2D)|Returns the location of the destination point given a  point in the source.
+|java.awt.image.ConvolveOp.getRenderingHints()|Returns the rendering hints for this op.
+
+*java.awt.image.ConvolveOp_Description*
+
+This class implements a convolution from the source to the destination. Convolution using a convolution kernel is a spatial operation that computes the output pixel from an input 
+pixel by multiplying the kernel with the surround of the input pixel. This allows the output pixel to be affected by the immediate neighborhood in a way that can be mathematically 
+specified with a kernel. 
+
+This class operates with BufferedImage data in which color components are premultiplied with the alpha component. If the Source BufferedImage has an alpha component, and the color 
+components are not premultiplied with the alpha component, then the data are premultiplied before being convolved. If the Destination has color components which are not 
+premultiplied, then alpha is divided out before storing into the Destination (if alpha is 0, the color components are set to 0). If the Destination has no alpha component, then 
+the resulting alpha is discarded after first dividing it out of the color components. 
+
+Rasters are treated as having no alpha channel. If the above treatment of the alpha channel in BufferedImages is not desired, it may be avoided by getting the Raster of a source 
+BufferedImage and using the filter method of this class which works with Rasters. 
+
+If a RenderingHints object is specified in the constructor, the color rendering hint and the dithering hint may be used when color conversion is required. 
+
+Note that the Source and the Destination may not be the same object. 
+
+
+
+*int_java.awt.image.ConvolveOp.EDGE_NO_OP*
+
+Pixels at the edge of the source image are copied to the corresponding pixels in the destination without modification. 
+
+
+*int_java.awt.image.ConvolveOp.EDGE_ZERO_FILL*
+
+Pixels at the edge of the destination image are set to zero. This is the default. 
+
+
+
+*java.awt.image.ConvolveOp(Kernel)*
+
+public ConvolveOp(java.awt.image.Kernel kernel)
+
+Constructs a ConvolveOp given a Kernel. The edge condition will be EDGE_ZERO_FILL. 
+
+    kernel - the specified Kernel 
+
+*java.awt.image.ConvolveOp(Kernel,int,RenderingHints)*
+
+public ConvolveOp(
+  java.awt.image.Kernel kernel,
+  int edgeCondition,
+  java.awt.RenderingHints hints)
+
+Constructs a ConvolveOp given a Kernel, an edge condition, and a RenderingHints object (which may be null). 
+
+    kernel - the specified Kernel 
+    edgeCondition - the specified edge condition 
+    hints - the specified RenderingHints object 
+
+*java.awt.image.ConvolveOp.createCompatibleDestImage(BufferedImage,ColorModel)*
+
+public |java.awt.image.BufferedImage| createCompatibleDestImage(
+  java.awt.image.BufferedImage src,
+  java.awt.image.ColorModel destCM)
+
+Creates a zeroed destination image with the correct size and number of bands. If destCM is null, an appropriate ColorModel will be used. 
+
+
+    src - Source image for the filter operation. 
+    destCM - ColorModel of the destination. Can be null. 
+
+    Returns: a destination BufferedImage with the correct size and number of bands. 
+
+*java.awt.image.ConvolveOp.createCompatibleDestRaster(Raster)*
+
+public |java.awt.image.WritableRaster| createCompatibleDestRaster(java.awt.image.Raster src)
+
+Creates a zeroed destination Raster with the correct size and number of bands, given this source. 
+
+
+
+*java.awt.image.ConvolveOp.filter(BufferedImage,BufferedImage)*
+
+public final |java.awt.image.BufferedImage| filter(
+  java.awt.image.BufferedImage src,
+  java.awt.image.BufferedImage dst)
+
+Performs a convolution on BufferedImages. Each component of the source image will be convolved (including the alpha component, if present). If the color model in the source image 
+is not the same as that in the destination image, the pixels will be converted in the destination. If the destination image is null, a BufferedImage will be created with the 
+source ColorModel. The IllegalArgumentException may be thrown if the source is the same as the destination. 
+
+
+    src - the source BufferedImage to filter 
+    dst - the destination BufferedImage for the filtered src 
+
+    Returns: the filtered BufferedImage 
+
+*java.awt.image.ConvolveOp.filter(Raster,WritableRaster)*
+
+public final |java.awt.image.WritableRaster| filter(
+  java.awt.image.Raster src,
+  java.awt.image.WritableRaster dst)
+
+Performs a convolution on Rasters. Each band of the source Raster will be convolved. The source and destination must have the same number of bands. If the destination Raster is 
+null, a new Raster will be created. The IllegalArgumentException may be thrown if the source is the same as the destination. 
+
+
+    src - the source Raster to filter 
+    dst - the destination WritableRaster for the filtered src 
+
+    Returns: the filtered WritableRaster 
+
+*java.awt.image.ConvolveOp.getBounds2D(BufferedImage)*
+
+public final |java.awt.geom.Rectangle2D| getBounds2D(java.awt.image.BufferedImage src)
+
+Returns the bounding box of the filtered destination image. Since this is not a geometric operation, the bounding box does not change. 
+
+
+
+*java.awt.image.ConvolveOp.getBounds2D(Raster)*
+
+public final |java.awt.geom.Rectangle2D| getBounds2D(java.awt.image.Raster src)
+
+Returns the bounding box of the filtered destination Raster. Since this is not a geometric operation, the bounding box does not change. 
+
+
+
+*java.awt.image.ConvolveOp.getEdgeCondition()*
+
+public int getEdgeCondition()
+
+Returns the edge condition. 
+
+
+
+    Returns: the edge condition of this ConvolveOp. 
+
+*java.awt.image.ConvolveOp.getKernel()*
+
+public final |java.awt.image.Kernel| getKernel()
+
+Returns the Kernel. 
+
+
+
+    Returns: the Kernel of this ConvolveOp. 
+
+*java.awt.image.ConvolveOp.getPoint2D(Point2D,Point2D)*
+
+public final |java.awt.geom.Point2D| getPoint2D(
+  java.awt.geom.Point2D srcPt,
+  java.awt.geom.Point2D dstPt)
+
+Returns the location of the destination point given a point in the source. If dstPt is non-null, it will be used to hold the return value. Since this is not a geometric operation, 
+the srcPt will equal the dstPt. 
+
+
+
+*java.awt.image.ConvolveOp.getRenderingHints()*
+
+public final |java.awt.RenderingHints| getRenderingHints()
+
+Returns the rendering hints for this op. 
+
+
+
+

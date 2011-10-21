@@ -1,0 +1,364 @@
+*java.awt.image.MultiPixelPackedSampleModel* *MultiPixelPackedSampleModel* The MultiPixelPackedSampleModel class represents
+ one-banded images and can pack multiple one-sample
+ pix
+
+public class MultiPixelPackedSampleModel
+  extends    |java.awt.image.SampleModel|
+
+|java.awt.image.MultiPixelPackedSampleModel_Description|
+|java.awt.image.MultiPixelPackedSampleModel_Fields|
+|java.awt.image.MultiPixelPackedSampleModel_Constructors|
+|java.awt.image.MultiPixelPackedSampleModel_Methods|
+
+====================================================================================================================================================================================
+
+*java.awt.image.MultiPixelPackedSampleModel_Constructors*
+|java.awt.image.MultiPixelPackedSampleModel(int,int,int,int)|Constructs a MultiPixelPackedSampleModel with the  specified data type, width, height and number of bits per pixel.
+|java.awt.image.MultiPixelPackedSampleModel(int,int,int,int,int,int)|Constructs a MultiPixelPackedSampleModel with   specified data type, width, height, number of bits per pixel, 
+
+*java.awt.image.MultiPixelPackedSampleModel_Methods*
+|java.awt.image.MultiPixelPackedSampleModel.createCompatibleSampleModel(int,int)|Creates a new MultiPixelPackedSampleModel with the  specified width and height.
+|java.awt.image.MultiPixelPackedSampleModel.createDataBuffer()|Creates a DataBuffer that corresponds to this  MultiPixelPackedSampleModel.
+|java.awt.image.MultiPixelPackedSampleModel.createSubsetSampleModel(int[])|Creates a new MultiPixelPackedSampleModel with a  subset of the bands of this   MultiPixelPackedSampleMo
+|java.awt.image.MultiPixelPackedSampleModel.equals(Object)|
+|java.awt.image.MultiPixelPackedSampleModel.getBitOffset(int)|Returns the offset, in bits, into the data element in which it is   stored for the xth pixel of a scanline.
+|java.awt.image.MultiPixelPackedSampleModel.getDataBitOffset()|Returns the data bit offset in bits.
+|java.awt.image.MultiPixelPackedSampleModel.getDataElements(int,int,Object,DataBuffer)|Returns data for a single pixel in a primitive array of type  TransferType.
+|java.awt.image.MultiPixelPackedSampleModel.getNumDataElements()|Returns the number of data elements needed to transfer one pixel  via the#getDataElementsand#setDataElementsmethod
+|java.awt.image.MultiPixelPackedSampleModel.getOffset(int,int)|Returns the offset of pixel (x,y) in data array elements.
+|java.awt.image.MultiPixelPackedSampleModel.getPixel(int,int,int[],DataBuffer)|Returns the specified single band pixel in the first element  of an int array.
+|java.awt.image.MultiPixelPackedSampleModel.getPixelBitStride()|Returns the pixel bit stride in bits.
+|java.awt.image.MultiPixelPackedSampleModel.getSample(int,int,int,DataBuffer)|Returns as int the sample in a specified band for the  pixel located at (x,y).
+|java.awt.image.MultiPixelPackedSampleModel.getSampleSize()|Returns the number of bits per sample for all bands.
+|java.awt.image.MultiPixelPackedSampleModel.getSampleSize(int)|Returns the number of bits per sample for the specified band.
+|java.awt.image.MultiPixelPackedSampleModel.getScanlineStride()|Returns the scanline stride.
+|java.awt.image.MultiPixelPackedSampleModel.getTransferType()|Returns the TransferType used to transfer pixels by way of the   getDataElements and setDataElements    methods.
+|java.awt.image.MultiPixelPackedSampleModel.hashCode()|
+|java.awt.image.MultiPixelPackedSampleModel.setDataElements(int,int,Object,DataBuffer)|Sets the data for a single pixel in the specified   DataBuffer from a primitive array of typ
+|java.awt.image.MultiPixelPackedSampleModel.setPixel(int,int,int[],DataBuffer)|Sets a pixel in the DataBuffer using an  int array for input.
+|java.awt.image.MultiPixelPackedSampleModel.setSample(int,int,int,int,DataBuffer)|Sets a sample in the specified band for the pixel located at   (x,y) in the DataBuffer using an  
+
+*java.awt.image.MultiPixelPackedSampleModel_Description*
+
+The MultiPixelPackedSampleModel class represents one-banded images and can pack multiple one-sample pixels into one data element. Pixels are not allowed to span data elements. The 
+data type can be DataBuffer.TYPE_BYTE, DataBuffer.TYPE_USHORT, or DataBuffer.TYPE_INT. Each pixel must be a power of 2 number of bits and a power of 2 number of pixels must fit 
+exactly in one data element. Pixel bit stride is equal to the number of bits per pixel. Scanline stride is in data elements and the last several data elements might be padded with 
+unused pixels. Data bit offset is the offset in bits from the beginning of the (|java.awt.image.DataBuffer|) to the first pixel and must be a multiple of pixel bit stride. 
+
+The following code illustrates extracting the bits for pixel x,y from DataBuffer data and storing the pixel data in data elements of type dataType: 
+
+int dataElementSize = DataBuffer.getDataTypeSize(dataType); int bitnum = dataBitOffset + x*pixelBitStride; int element = data.getElem(y*scanlineStride + bitnum/dataElementSize); 
+int shift = dataElementSize - (bitnum & (dataElementSize-1)) - pixelBitStride; int pixel = (element >> shift) & ((1 << pixelBitStride) - 1); 
+
+
+
+*java.awt.image.MultiPixelPackedSampleModel(int,int,int,int)*
+
+public MultiPixelPackedSampleModel(
+  int dataType,
+  int w,
+  int h,
+  int numberOfBits)
+
+Constructs a MultiPixelPackedSampleModel with the specified data type, width, height and number of bits per pixel. 
+
+    dataType - the data type for storing samples 
+    w - the width, in pixels, of the region of image data described 
+    h - the height, in pixels, of the region of image data described 
+    numberOfBits - the number of bits per pixel 
+
+*java.awt.image.MultiPixelPackedSampleModel(int,int,int,int,int,int)*
+
+public MultiPixelPackedSampleModel(
+  int dataType,
+  int w,
+  int h,
+  int numberOfBits,
+  int scanlineStride,
+  int dataBitOffset)
+
+Constructs a MultiPixelPackedSampleModel with specified data type, width, height, number of bits per pixel, scanline stride and data bit offset. 
+
+    dataType - the data type for storing samples 
+    w - the width, in pixels, of the region of image data described 
+    h - the height, in pixels, of the region of image data described 
+    numberOfBits - the number of bits per pixel 
+    scanlineStride - the line stride of the image data 
+    dataBitOffset - the data bit offset for the region of image data described 
+
+*java.awt.image.MultiPixelPackedSampleModel.createCompatibleSampleModel(int,int)*
+
+public |java.awt.image.SampleModel| createCompatibleSampleModel(
+  int w,
+  int h)
+
+Creates a new MultiPixelPackedSampleModel with the specified width and height. The new MultiPixelPackedSampleModel has the same storage data type and number of bits per pixel as 
+this MultiPixelPackedSampleModel. 
+
+
+    w - the specified width 
+    h - the specified height 
+
+    Returns: a {@link SampleModel} with the specified width and height and with the same storage data type and number of bits per pixel as this MultiPixelPackedSampleModel. 
+
+*java.awt.image.MultiPixelPackedSampleModel.createDataBuffer()*
+
+public |java.awt.image.DataBuffer| createDataBuffer()
+
+Creates a DataBuffer that corresponds to this MultiPixelPackedSampleModel. The DataBuffer object's data type and size is consistent with this MultiPixelPackedSampleModel. The 
+DataBuffer has a single bank. 
+
+
+
+    Returns: a DataBuffer with the same data type and size as this MultiPixelPackedSampleModel. 
+
+*java.awt.image.MultiPixelPackedSampleModel.createSubsetSampleModel(int[])*
+
+public |java.awt.image.SampleModel| createSubsetSampleModel(int[] bands)
+
+Creates a new MultiPixelPackedSampleModel with a subset of the bands of this MultiPixelPackedSampleModel. Since a MultiPixelPackedSampleModel only has one band, the bands argument 
+must have a length of one and indicate the zeroth band. 
+
+
+    bands - the specified bands 
+
+    Returns: a new SampleModel with a subset of bands of this MultiPixelPackedSampleModel. 
+
+*java.awt.image.MultiPixelPackedSampleModel.equals(Object)*
+
+public boolean equals(java.lang.Object o)
+
+
+
+
+
+*java.awt.image.MultiPixelPackedSampleModel.getBitOffset(int)*
+
+public int getBitOffset(int x)
+
+Returns the offset, in bits, into the data element in which it is stored for the xth pixel of a scanline. This offset is the same for all scanlines. 
+
+
+    x - the specified pixel 
+
+    Returns: the bit offset of the specified pixel. 
+
+*java.awt.image.MultiPixelPackedSampleModel.getDataBitOffset()*
+
+public int getDataBitOffset()
+
+Returns the data bit offset in bits. 
+
+
+
+    Returns: the dataBitOffset of this MultiPixelPackedSampleModel. 
+
+*java.awt.image.MultiPixelPackedSampleModel.getDataElements(int,int,Object,DataBuffer)*
+
+public |java.lang.Object| getDataElements(
+  int x,
+  int y,
+  java.lang.Object obj,
+  java.awt.image.DataBuffer data)
+
+Returns data for a single pixel in a primitive array of type TransferType. For a MultiPixelPackedSampleModel, the array has one element, and the type is the smallest of 
+DataBuffer.TYPE_BYTE, DataBuffer.TYPE_USHORT, or DataBuffer.TYPE_INT that can hold a single pixel. Generally, obj should be passed in as null, so that the Object is created 
+automatically and is the correct primitive data type. 
+
+The following code illustrates transferring data for one pixel from DataBuffer db1, whose storage layout is described by MultiPixelPackedSampleModel mppsm1, to DataBuffer db2, 
+whose storage layout is described by MultiPixelPackedSampleModel mppsm2. The transfer is generally more efficient than using getPixel or setPixel. 
+
+MultiPixelPackedSampleModel mppsm1, mppsm2; DataBufferInt db1, db2; mppsm2.setDataElements(x, y, mppsm1.getDataElements(x, y, null, db1), db2); 
+
+Using getDataElements or setDataElements to transfer between two DataBuffer/SampleModel pairs is legitimate if the SampleModels have the same number of bands, corresponding bands 
+have the same number of bits per sample, and the TransferTypes are the same. 
+
+If obj is not null, it should be a primitive array of type TransferType. Otherwise, a ClassCastException is thrown. An ArrayIndexOutOfBoundsException is thrown if the coordinates 
+are not in bounds, or if obj is not null and is not large enough to hold the pixel data. 
+
+
+    x,&nbsp;y - coordinates of the pixel location. 
+    obj - a primitive array in which to return the pixel data or null. 
+    data - the DataBuffer containing the image data. 
+
+    Returns: an Object containing data for the specified pixel. 
+
+*java.awt.image.MultiPixelPackedSampleModel.getNumDataElements()*
+
+public int getNumDataElements()
+
+Returns the number of data elements needed to transfer one pixel via the (|java.awt.image.MultiPixelPackedSampleModel|) and (|java.awt.image.MultiPixelPackedSampleModel|) methods. 
+For a MultiPixelPackedSampleModel, this is one. 
+
+
+
+    Returns: the number of data elements. 
+
+*java.awt.image.MultiPixelPackedSampleModel.getOffset(int,int)*
+
+public int getOffset(
+  int x,
+  int y)
+
+Returns the offset of pixel (x,y) in data array elements. 
+
+
+    x,&nbsp;y - the specified pixel 
+
+    Returns: the offset of the specified pixel. 
+
+*java.awt.image.MultiPixelPackedSampleModel.getPixel(int,int,int[],DataBuffer)*
+
+public int[] getPixel(
+  int x,
+  int y,
+  int[] iArray,
+  java.awt.image.DataBuffer data)
+
+Returns the specified single band pixel in the first element of an int array. ArrayIndexOutOfBoundsException is thrown if the coordinates are not in bounds. 
+
+
+    x,&nbsp;y - the coordinates of the pixel location 
+    iArray - the array containing the pixel to be returned or null 
+    data - the DataBuffer where image data is stored 
+
+    Returns: an array containing the specified pixel. 
+
+*java.awt.image.MultiPixelPackedSampleModel.getPixelBitStride()*
+
+public int getPixelBitStride()
+
+Returns the pixel bit stride in bits. This value is the same as the number of bits per pixel. 
+
+
+
+    Returns: the pixelBitStride of this MultiPixelPackedSampleModel. 
+
+*java.awt.image.MultiPixelPackedSampleModel.getSample(int,int,int,DataBuffer)*
+
+public int getSample(
+  int x,
+  int y,
+  int b,
+  java.awt.image.DataBuffer data)
+
+Returns as int the sample in a specified band for the pixel located at (x,y). An ArrayIndexOutOfBoundsException is thrown if the coordinates are not in bounds. 
+
+
+    x,&nbsp;y - the coordinates of the specified pixel 
+    b - the band to return, which is assumed to be 0 
+    data - the DataBuffer containing the image data 
+
+    Returns: the specified band containing the sample of the specified pixel. 
+
+*java.awt.image.MultiPixelPackedSampleModel.getSampleSize()*
+
+public int[] getSampleSize()
+
+Returns the number of bits per sample for all bands. 
+
+
+
+    Returns: the number of bits per sample. 
+
+*java.awt.image.MultiPixelPackedSampleModel.getSampleSize(int)*
+
+public int getSampleSize(int band)
+
+Returns the number of bits per sample for the specified band. 
+
+
+    band - the specified band 
+
+    Returns: the number of bits per sample for the specified band. 
+
+*java.awt.image.MultiPixelPackedSampleModel.getScanlineStride()*
+
+public int getScanlineStride()
+
+Returns the scanline stride. 
+
+
+
+    Returns: the scanline stride of this MultiPixelPackedSampleModel. 
+
+*java.awt.image.MultiPixelPackedSampleModel.getTransferType()*
+
+public int getTransferType()
+
+Returns the TransferType used to transfer pixels by way of the getDataElements and setDataElements methods. The TransferType might or might not be the same as the storage 
+DataType. The TransferType is one of DataBuffer.TYPE_BYTE, DataBuffer.TYPE_USHORT, or DataBuffer.TYPE_INT. 
+
+
+
+    Returns: the transfertype. 
+
+*java.awt.image.MultiPixelPackedSampleModel.hashCode()*
+
+public int hashCode()
+
+
+
+
+
+*java.awt.image.MultiPixelPackedSampleModel.setDataElements(int,int,Object,DataBuffer)*
+
+public void setDataElements(
+  int x,
+  int y,
+  java.lang.Object obj,
+  java.awt.image.DataBuffer data)
+
+Sets the data for a single pixel in the specified DataBuffer from a primitive array of type TransferType. For a MultiPixelPackedSampleModel, only the first element of the array 
+holds valid data, and the type must be the smallest of DataBuffer.TYPE_BYTE, DataBuffer.TYPE_USHORT, or DataBuffer.TYPE_INT that can hold a single pixel. 
+
+The following code illustrates transferring data for one pixel from DataBuffer db1, whose storage layout is described by MultiPixelPackedSampleModel mppsm1, to DataBuffer db2, 
+whose storage layout is described by MultiPixelPackedSampleModel mppsm2. The transfer is generally more efficient than using getPixel or setPixel. 
+
+MultiPixelPackedSampleModel mppsm1, mppsm2; DataBufferInt db1, db2; mppsm2.setDataElements(x, y, mppsm1.getDataElements(x, y, null, db1), db2); 
+
+Using getDataElements or setDataElements to transfer between two DataBuffer/SampleModel pairs is legitimate if the SampleModel objects have the same number of bands, corresponding 
+bands have the same number of bits per sample, and the TransferTypes are the same. 
+
+obj must be a primitive array of type TransferType. Otherwise, a ClassCastException is thrown. An ArrayIndexOutOfBoundsException is thrown if the coordinates are not in bounds, or 
+if obj is not large enough to hold the pixel data. 
+
+
+    x,&nbsp;y - the coordinates of the pixel location 
+    obj - a primitive array containing pixel data 
+    data - the DataBuffer containing the image data 
+
+*java.awt.image.MultiPixelPackedSampleModel.setPixel(int,int,int[],DataBuffer)*
+
+public void setPixel(
+  int x,
+  int y,
+  int[] iArray,
+  java.awt.image.DataBuffer data)
+
+Sets a pixel in the DataBuffer using an int array for input. ArrayIndexOutOfBoundsException is thrown if the coordinates are not in bounds. 
+
+
+    x,&nbsp;y - the coordinates of the pixel location 
+    iArray - the input pixel in an int array 
+    data - the DataBuffer containing the image data 
+
+*java.awt.image.MultiPixelPackedSampleModel.setSample(int,int,int,int,DataBuffer)*
+
+public void setSample(
+  int x,
+  int y,
+  int b,
+  int s,
+  java.awt.image.DataBuffer data)
+
+Sets a sample in the specified band for the pixel located at (x,y) in the DataBuffer using an int for input. An ArrayIndexOutOfBoundsException is thrown if the coordinates are not 
+in bounds. 
+
+
+    x,&nbsp;y - the coordinates of the specified pixel 
+    b - the band to return, which is assumed to be 0 
+    s - the input sample as an int 
+    data - the DataBuffer where image data is stored 
+
+

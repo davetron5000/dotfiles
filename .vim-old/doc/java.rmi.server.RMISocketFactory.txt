@@ -1,0 +1,126 @@
+*java.rmi.server.RMISocketFactory* *RMISocketFactory* An RMISocketFactory instance is used by the RMI runtime
+ in order to obtain client and server sockets for RMI calls.
+
+public abstract class RMISocketFactory
+  extends    |java.lang.Object|
+  implements |java.rmi.server.RMIClientSocketFactory|
+             |java.rmi.server.RMIServerSocketFactory|
+
+|java.rmi.server.RMISocketFactory_Description|
+|java.rmi.server.RMISocketFactory_Fields|
+|java.rmi.server.RMISocketFactory_Constructors|
+|java.rmi.server.RMISocketFactory_Methods|
+
+====================================================================================================================================================================================
+
+*java.rmi.server.RMISocketFactory_Constructors*
+|java.rmi.server.RMISocketFactory()|Constructs an RMISocketFactory.
+
+*java.rmi.server.RMISocketFactory_Methods*
+|java.rmi.server.RMISocketFactory.createServerSocket(int)|Create a server socket on the specified port (port 0 indicates  an anonymous port).
+|java.rmi.server.RMISocketFactory.createSocket(String,int)|Creates a client socket connected to the specified host and port.
+|java.rmi.server.RMISocketFactory.getDefaultSocketFactory()|Returns a reference to the default socket factory used  by this RMI implementation.
+|java.rmi.server.RMISocketFactory.getFailureHandler()|Returns the handler for socket creation failure set by the  setFailureHandler method.
+|java.rmi.server.RMISocketFactory.getSocketFactory()|Returns the socket factory set by the setSocketFactory  method.
+|java.rmi.server.RMISocketFactory.setFailureHandler(RMIFailureHandler)|Sets the failure handler to be called by the RMI runtime if server  socket creation fails.
+|java.rmi.server.RMISocketFactory.setSocketFactory(RMISocketFactory)|Set the global socket factory from which RMI gets sockets (if the  remote object is not associated with a spec
+
+*java.rmi.server.RMISocketFactory_Description*
+
+An RMISocketFactory instance is used by the RMI runtime in order to obtain client and server sockets for RMI calls. An application may use the setSocketFactory method to request 
+that the RMI runtime use its socket factory instance instead of the default implementation. 
+
+The default socket factory implementation used goes through a three-tiered approach to creating client sockets. First, a direct socket connection to the remote VM is attempted. If 
+that fails (due to a firewall), the runtime uses HTTP with the explicit port number of the server. If the firewall does not allow this type of communication, then HTTP to a 
+cgi-bin script on the server is used to POST the RMI call. 
+
+
+
+*java.rmi.server.RMISocketFactory()*
+
+public RMISocketFactory()
+
+Constructs an RMISocketFactory. 
+
+
+*java.rmi.server.RMISocketFactory.createServerSocket(int)*
+
+public abstract |java.net.ServerSocket| createServerSocket(int port)
+  throws |java.io.IOException|
+         
+Create a server socket on the specified port (port 0 indicates an anonymous port). 
+
+
+    port - the port number 
+
+    Returns: the server socket on the specified port 
+
+*java.rmi.server.RMISocketFactory.createSocket(String,int)*
+
+public abstract |java.net.Socket| createSocket(
+  java.lang.String host,
+  int port)
+  throws |java.io.IOException|
+         
+Creates a client socket connected to the specified host and port. 
+
+
+    host - the host name 
+    port - the port number 
+
+    Returns: a socket connected to the specified host and port. 
+
+*java.rmi.server.RMISocketFactory.getDefaultSocketFactory()*
+
+public static synchronized |java.rmi.server.RMISocketFactory| getDefaultSocketFactory()
+
+Returns a reference to the default socket factory used by this RMI implementation. This will be the factory used by the RMI runtime when getSocketFactory returns null. 
+
+
+
+    Returns: the default RMI socket factory 
+
+*java.rmi.server.RMISocketFactory.getFailureHandler()*
+
+public static synchronized |java.rmi.server.RMIFailureHandler| getFailureHandler()
+
+Returns the handler for socket creation failure set by the setFailureHandler method. 
+
+
+
+    Returns: the failure handler 
+
+*java.rmi.server.RMISocketFactory.getSocketFactory()*
+
+public static synchronized |java.rmi.server.RMISocketFactory| getSocketFactory()
+
+Returns the socket factory set by the setSocketFactory method. Returns null if no socket factory has been set. 
+
+
+
+    Returns: the socket factory 
+
+*java.rmi.server.RMISocketFactory.setFailureHandler(RMIFailureHandler)*
+
+public static synchronized void setFailureHandler(java.rmi.server.RMIFailureHandler fh)
+
+Sets the failure handler to be called by the RMI runtime if server socket creation fails. By default, if no failure handler is installed and server socket creation fails, the RMI 
+runtime does attempt to recreate the server socket. 
+
+If there is a security manager, this method first calls the security manager's checkSetFactory method to ensure the operation is allowed. This could result in a SecurityException. 
+
+
+    fh - the failure handler 
+
+*java.rmi.server.RMISocketFactory.setSocketFactory(RMISocketFactory)*
+
+public static synchronized void setSocketFactory(java.rmi.server.RMISocketFactory fac)
+  throws |java.io.IOException|
+         
+Set the global socket factory from which RMI gets sockets (if the remote object is not associated with a specific client and/or server socket factory). The RMI socket factory can 
+only be set once. Note: The RMISocketFactory may only be set if the current security manager allows setting a socket factory; if disallowed, a SecurityException will be thrown. 
+
+
+    fac - the socket factory 
+
+

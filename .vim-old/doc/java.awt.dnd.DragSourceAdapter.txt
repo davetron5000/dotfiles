@@ -1,0 +1,120 @@
+*java.awt.dnd.DragSourceAdapter* *DragSourceAdapter* An abstract adapter class for receiving drag source events.
+
+public abstract class DragSourceAdapter
+  extends    |java.lang.Object|
+  implements |java.awt.dnd.DragSourceListener|
+             |java.awt.dnd.DragSourceMotionListener|
+
+|java.awt.dnd.DragSourceAdapter_Description|
+|java.awt.dnd.DragSourceAdapter_Fields|
+|java.awt.dnd.DragSourceAdapter_Constructors|
+|java.awt.dnd.DragSourceAdapter_Methods|
+
+====================================================================================================================================================================================
+
+*java.awt.dnd.DragSourceAdapter_Constructors*
+|java.awt.dnd.DragSourceAdapter()|
+
+*java.awt.dnd.DragSourceAdapter_Methods*
+|java.awt.dnd.DragSourceAdapter.dragDropEnd(DragSourceDropEvent)|This method is invoked to signify that the Drag and Drop  operation is complete.
+|java.awt.dnd.DragSourceAdapter.dragEnter(DragSourceDragEvent)|Called as the cursor's hotspot enters a platform-dependent drop site.
+|java.awt.dnd.DragSourceAdapter.dragExit(DragSourceEvent)|Called as the cursor's hotspot exits a platform-dependent drop site.
+|java.awt.dnd.DragSourceAdapter.dragMouseMoved(DragSourceDragEvent)|Called whenever the mouse is moved during a drag operation.
+|java.awt.dnd.DragSourceAdapter.dragOver(DragSourceDragEvent)|Called as the cursor's hotspot moves over a platform-dependent drop site.
+|java.awt.dnd.DragSourceAdapter.dropActionChanged(DragSourceDragEvent)|Called when the user has modified the drop gesture.
+
+*java.awt.dnd.DragSourceAdapter_Description*
+
+An abstract adapter class for receiving drag source events. The methods in this class are empty. This class exists only as a convenience for creating listener objects. 
+
+Extend this class to create a DragSourceEvent listener and override the methods for the events of interest. (If you implement the DragSourceListener interface, you have to define 
+all of the methods in it. This abstract class defines null methods for them all, so you only have to define methods for events you care about.) 
+
+Create a listener object using the extended class and then register it with a DragSource. When the drag enters, moves over, or exits a drop site, when the drop action changes, and 
+when the drag ends, the relevant method in the listener object is invoked, and the DragSourceEvent is passed to it. 
+
+The drop site is associated with the previous dragEnter() invocation if the latest invocation of dragEnter() on this adapter corresponds to that drop site and is not followed by a 
+dragExit() invocation on this adapter. 
+
+
+
+*java.awt.dnd.DragSourceAdapter()*
+
+public DragSourceAdapter()
+
+
+
+
+*java.awt.dnd.DragSourceAdapter.dragDropEnd(DragSourceDropEvent)*
+
+public void dragDropEnd(java.awt.dnd.DragSourceDropEvent dsde)
+
+This method is invoked to signify that the Drag and Drop operation is complete. The getDropSuccess() method of the DragSourceDropEvent can be used to determine the termination 
+state. The getDropAction() method returns the operation that the drop site selected to apply to the Drop operation. Once this method is complete, the current DragSourceContext and 
+associated resources become invalid. 
+
+
+    dsde - the DragSourceDropEvent 
+
+*java.awt.dnd.DragSourceAdapter.dragEnter(DragSourceDragEvent)*
+
+public void dragEnter(java.awt.dnd.DragSourceDragEvent dsde)
+
+Called as the cursor's hotspot enters a platform-dependent drop site. This method is invoked when all the following conditions are true: 
+
+The cursor's hotspot enters the operable part of a platform-dependent drop site. The drop site is active. The drop site accepts the drag. 
+
+
+    dsde - the DragSourceDragEvent 
+
+*java.awt.dnd.DragSourceAdapter.dragExit(DragSourceEvent)*
+
+public void dragExit(java.awt.dnd.DragSourceEvent dse)
+
+Called as the cursor's hotspot exits a platform-dependent drop site. This method is invoked when any of the following conditions are true: 
+
+The cursor's hotspot no longer intersects the operable part of the drop site associated with the previous dragEnter() invocation. 
+
+OR 
+
+The drop site associated with the previous dragEnter() invocation is no longer active. 
+
+OR 
+
+The drop site associated with the previous dragEnter() invocation has rejected the drag. 
+
+
+    dse - the DragSourceEvent 
+
+*java.awt.dnd.DragSourceAdapter.dragMouseMoved(DragSourceDragEvent)*
+
+public void dragMouseMoved(java.awt.dnd.DragSourceDragEvent dsde)
+
+Called whenever the mouse is moved during a drag operation. 
+
+
+    dsde - the DragSourceDragEvent 
+
+*java.awt.dnd.DragSourceAdapter.dragOver(DragSourceDragEvent)*
+
+public void dragOver(java.awt.dnd.DragSourceDragEvent dsde)
+
+Called as the cursor's hotspot moves over a platform-dependent drop site. This method is invoked when all the following conditions are true: 
+
+The cursor's hotspot has moved, but still intersects the operable part of the drop site associated with the previous dragEnter() invocation. The drop site is still active. The 
+drop site accepts the drag. 
+
+
+    dsde - the DragSourceDragEvent 
+
+*java.awt.dnd.DragSourceAdapter.dropActionChanged(DragSourceDragEvent)*
+
+public void dropActionChanged(java.awt.dnd.DragSourceDragEvent dsde)
+
+Called when the user has modified the drop gesture. This method is invoked when the state of the input device(s) that the user is interacting with changes. Such devices are 
+typically the mouse buttons or keyboard modifiers that the user is interacting with. 
+
+
+    dsde - the DragSourceDragEvent 
+
+

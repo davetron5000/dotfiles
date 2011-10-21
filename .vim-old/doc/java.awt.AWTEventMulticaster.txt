@@ -1,0 +1,979 @@
+*java.awt.AWTEventMulticaster* *AWTEventMulticaster* A class which implements efficient and thread-safe multi-cast event 
+ dispatching for the AWT events defined in the java.awt.ev
+
+public class AWTEventMulticaster
+  extends    |java.lang.Object|
+  implements |java.awt.event.ComponentListener|
+             |java.awt.event.ContainerListener|
+             |java.awt.event.FocusListener|
+             |java.awt.event.KeyListener|
+             |java.awt.event.MouseListener|
+             |java.awt.event.MouseMotionListener|
+             |java.awt.event.WindowListener|
+             |java.awt.event.WindowFocusListener|
+             |java.awt.event.WindowStateListener|
+             |java.awt.event.ActionListener|
+             |java.awt.event.ItemListener|
+             |java.awt.event.AdjustmentListener|
+             |java.awt.event.TextListener|
+             |java.awt.event.InputMethodListener|
+             |java.awt.event.HierarchyListener|
+             |java.awt.event.HierarchyBoundsListener|
+             |java.awt.event.MouseWheelListener|
+
+|java.awt.AWTEventMulticaster_Description|
+|java.awt.AWTEventMulticaster_Fields|
+|java.awt.AWTEventMulticaster_Constructors|
+|java.awt.AWTEventMulticaster_Methods|
+
+====================================================================================================================================================================================
+
+*java.awt.AWTEventMulticaster_Fields*
+|java.util.EventListener_java.awt.AWTEventMulticaster.a|
+|java.util.EventListener_java.awt.AWTEventMulticaster.b|
+
+*java.awt.AWTEventMulticaster_Constructors*
+|java.awt.AWTEventMulticaster(EventListener,EventListener)|Creates an event multicaster instance which chains listener-a  with listener-b.
+
+*java.awt.AWTEventMulticaster_Methods*
+|java.awt.AWTEventMulticaster.actionPerformed(ActionEvent)|Handles the actionPerformed event by invoking the  actionPerformed methods on listener-a and listener-b.
+|java.awt.AWTEventMulticaster.add(ActionListener,ActionListener)|Adds action-listener-a with action-listener-b and  returns the resulting multicast listener.
+|java.awt.AWTEventMulticaster.add(AdjustmentListener,AdjustmentListener)|Adds adjustment-listener-a with adjustment-listener-b and  returns the resulting multicast listener.
+|java.awt.AWTEventMulticaster.add(ComponentListener,ComponentListener)|Adds component-listener-a with component-listener-b and  returns the resulting multicast listener.
+|java.awt.AWTEventMulticaster.add(ContainerListener,ContainerListener)|Adds container-listener-a with container-listener-b and  returns the resulting multicast listener.
+|java.awt.AWTEventMulticaster.add(FocusListener,FocusListener)|Adds focus-listener-a with focus-listener-b and  returns the resulting multicast listener.
+|java.awt.AWTEventMulticaster.add(HierarchyBoundsListener,HierarchyBoundsListener)|Adds hierarchy-bounds-listener-a with hierarchy-bounds-listener-b and  returns the resulting mul
+|java.awt.AWTEventMulticaster.add(HierarchyListener,HierarchyListener)|Adds hierarchy-listener-a with hierarchy-listener-b and  returns the resulting multicast listener.
+|java.awt.AWTEventMulticaster.add(InputMethodListener,InputMethodListener)|Adds input-method-listener-a with input-method-listener-b and  returns the resulting multicast listener.
+|java.awt.AWTEventMulticaster.add(ItemListener,ItemListener)|Adds item-listener-a with item-listener-b and  returns the resulting multicast listener.
+|java.awt.AWTEventMulticaster.add(KeyListener,KeyListener)|Adds key-listener-a with key-listener-b and  returns the resulting multicast listener.
+|java.awt.AWTEventMulticaster.add(MouseListener,MouseListener)|Adds mouse-listener-a with mouse-listener-b and  returns the resulting multicast listener.
+|java.awt.AWTEventMulticaster.add(MouseMotionListener,MouseMotionListener)|Adds mouse-motion-listener-a with mouse-motion-listener-b and  returns the resulting multicast listener.
+|java.awt.AWTEventMulticaster.add(MouseWheelListener,MouseWheelListener)|Adds mouse-wheel-listener-a with mouse-wheel-listener-b and  returns the resulting multicast listener.
+|java.awt.AWTEventMulticaster.add(TextListener,TextListener)|
+|java.awt.AWTEventMulticaster.add(WindowFocusListener,WindowFocusListener)|Adds window-focus-listener-a with window-focus-listener-b  and returns the resulting multicast listener.
+|java.awt.AWTEventMulticaster.add(WindowListener,WindowListener)|Adds window-listener-a with window-listener-b and  returns the resulting multicast listener.
+|java.awt.AWTEventMulticaster.add(WindowStateListener,WindowStateListener)|Adds window-state-listener-a with window-state-listener-b  and returns the resulting multicast listener.
+|java.awt.AWTEventMulticaster.addInternal(EventListener,EventListener)|Returns the resulting multicast listener from adding listener-a  and listener-b together.
+|java.awt.AWTEventMulticaster.adjustmentValueChanged(AdjustmentEvent)|Handles the adjustmentValueChanged event by invoking the  adjustmentValueChanged methods on listener-a and li
+|java.awt.AWTEventMulticaster.ancestorMoved(HierarchyEvent)|Handles the ancestorMoved event by invoking the  ancestorMoved methods on listener-a and listener-b.
+|java.awt.AWTEventMulticaster.ancestorResized(HierarchyEvent)|Handles the ancestorResized event by invoking the  ancestorResized methods on listener-a and listener-b.
+|java.awt.AWTEventMulticaster.caretPositionChanged(InputMethodEvent)|Handles the caretPositionChanged event by invoking the  caretPositionChanged methods on listener-a and listene
+|java.awt.AWTEventMulticaster.componentAdded(ContainerEvent)|Handles the componentAdded container event by invoking the  componentAdded methods on listener-a and listener-b.
+|java.awt.AWTEventMulticaster.componentHidden(ComponentEvent)|Handles the componentHidden event by invoking the  componentHidden methods on listener-a and listener-b.
+|java.awt.AWTEventMulticaster.componentMoved(ComponentEvent)|Handles the componentMoved event by invoking the  componentMoved methods on listener-a and listener-b.
+|java.awt.AWTEventMulticaster.componentRemoved(ContainerEvent)|Handles the componentRemoved container event by invoking the  componentRemoved methods on listener-a and listener-b.
+|java.awt.AWTEventMulticaster.componentResized(ComponentEvent)|Handles the componentResized event by invoking the  componentResized methods on listener-a and listener-b.
+|java.awt.AWTEventMulticaster.componentShown(ComponentEvent)|Handles the componentShown event by invoking the  componentShown methods on listener-a and listener-b.
+|java.awt.AWTEventMulticaster.focusGained(FocusEvent)|Handles the focusGained event by invoking the  focusGained methods on listener-a and listener-b.
+|java.awt.AWTEventMulticaster.focusLost(FocusEvent)|Handles the focusLost event by invoking the  focusLost methods on listener-a and listener-b.
+|java.awt.AWTEventMulticaster.getListeners(EventListener,Class<T>)|Returns an array of all the objects chained as  FooListeners by the specified  java.util.EventListener.
+|java.awt.AWTEventMulticaster.hierarchyChanged(HierarchyEvent)|Handles the hierarchyChanged event by invoking the  hierarchyChanged methods on listener-a and listener-b.
+|java.awt.AWTEventMulticaster.inputMethodTextChanged(InputMethodEvent)|Handles the inputMethodTextChanged event by invoking the  inputMethodTextChanged methods on listener-a and l
+|java.awt.AWTEventMulticaster.itemStateChanged(ItemEvent)|Handles the itemStateChanged event by invoking the  itemStateChanged methods on listener-a and listener-b.
+|java.awt.AWTEventMulticaster.keyPressed(KeyEvent)|Handles the keyPressed event by invoking the  keyPressed methods on listener-a and listener-b.
+|java.awt.AWTEventMulticaster.keyReleased(KeyEvent)|Handles the keyReleased event by invoking the  keyReleased methods on listener-a and listener-b.
+|java.awt.AWTEventMulticaster.keyTyped(KeyEvent)|Handles the keyTyped event by invoking the  keyTyped methods on listener-a and listener-b.
+|java.awt.AWTEventMulticaster.mouseClicked(MouseEvent)|Handles the mouseClicked event by invoking the  mouseClicked methods on listener-a and listener-b.
+|java.awt.AWTEventMulticaster.mouseDragged(MouseEvent)|Handles the mouseDragged event by invoking the  mouseDragged methods on listener-a and listener-b.
+|java.awt.AWTEventMulticaster.mouseEntered(MouseEvent)|Handles the mouseEntered event by invoking the  mouseEntered methods on listener-a and listener-b.
+|java.awt.AWTEventMulticaster.mouseExited(MouseEvent)|Handles the mouseExited event by invoking the  mouseExited methods on listener-a and listener-b.
+|java.awt.AWTEventMulticaster.mouseMoved(MouseEvent)|Handles the mouseMoved event by invoking the  mouseMoved methods on listener-a and listener-b.
+|java.awt.AWTEventMulticaster.mousePressed(MouseEvent)|Handles the mousePressed event by invoking the  mousePressed methods on listener-a and listener-b.
+|java.awt.AWTEventMulticaster.mouseReleased(MouseEvent)|Handles the mouseReleased event by invoking the  mouseReleased methods on listener-a and listener-b.
+|java.awt.AWTEventMulticaster.mouseWheelMoved(MouseWheelEvent)|Handles the mouseWheelMoved event by invoking the  mouseWheelMoved methods on listener-a and listener-b.
+|java.awt.AWTEventMulticaster.remove(ActionListener,ActionListener)|Removes the old action-listener from action-listener-l and  returns the resulting multicast listener.
+|java.awt.AWTEventMulticaster.remove(AdjustmentListener,AdjustmentListener)|Removes the old adjustment-listener from adjustment-listener-l and  returns the resulting multicast lis
+|java.awt.AWTEventMulticaster.remove(ComponentListener,ComponentListener)|Removes the old component-listener from component-listener-l and  returns the resulting multicast listene
+|java.awt.AWTEventMulticaster.remove(ContainerListener,ContainerListener)|Removes the old container-listener from container-listener-l and  returns the resulting multicast listene
+|java.awt.AWTEventMulticaster.remove(EventListener)|Removes a listener from this multicaster and returns the  resulting multicast listener.
+|java.awt.AWTEventMulticaster.remove(FocusListener,FocusListener)|Removes the old focus-listener from focus-listener-l and  returns the resulting multicast listener.
+|java.awt.AWTEventMulticaster.remove(HierarchyBoundsListener,HierarchyBoundsListener)|Removes the old hierarchy-bounds-listener from  hierarchy-bounds-listener-l and returns the r
+|java.awt.AWTEventMulticaster.remove(HierarchyListener,HierarchyListener)|Removes the old hierarchy-listener from hierarchy-listener-l and  returns the resulting multicast listene
+|java.awt.AWTEventMulticaster.remove(InputMethodListener,InputMethodListener)|Removes the old input-method-listener from input-method-listener-l and  returns the resulting multica
+|java.awt.AWTEventMulticaster.remove(ItemListener,ItemListener)|Removes the old item-listener from item-listener-l and  returns the resulting multicast listener.
+|java.awt.AWTEventMulticaster.remove(KeyListener,KeyListener)|Removes the old key-listener from key-listener-l and  returns the resulting multicast listener.
+|java.awt.AWTEventMulticaster.remove(MouseListener,MouseListener)|Removes the old mouse-listener from mouse-listener-l and  returns the resulting multicast listener.
+|java.awt.AWTEventMulticaster.remove(MouseMotionListener,MouseMotionListener)|Removes the old mouse-motion-listener from mouse-motion-listener-l   and returns the resulting multic
+|java.awt.AWTEventMulticaster.remove(MouseWheelListener,MouseWheelListener)|Removes the old mouse-wheel-listener from mouse-wheel-listener-l   and returns the resulting multicast 
+|java.awt.AWTEventMulticaster.remove(TextListener,TextListener)|
+|java.awt.AWTEventMulticaster.remove(WindowFocusListener,WindowFocusListener)|Removes the old window-focus-listener from window-focus-listener-l  and returns the resulting multica
+|java.awt.AWTEventMulticaster.remove(WindowListener,WindowListener)|Removes the old window-listener from window-listener-l and  returns the resulting multicast listener.
+|java.awt.AWTEventMulticaster.remove(WindowStateListener,WindowStateListener)|Removes the old window-state-listener from window-state-listener-l  and returns the resulting multica
+|java.awt.AWTEventMulticaster.removeInternal(EventListener,EventListener)|Returns the resulting multicast listener after removing the  old listener from listener-l.
+|java.awt.AWTEventMulticaster.save(ObjectOutputStream,String,EventListener)|
+|java.awt.AWTEventMulticaster.saveInternal(ObjectOutputStream,String)|
+|java.awt.AWTEventMulticaster.textValueChanged(TextEvent)|
+|java.awt.AWTEventMulticaster.windowActivated(WindowEvent)|Handles the windowActivated event by invoking the  windowActivated methods on listener-a and listener-b.
+|java.awt.AWTEventMulticaster.windowClosed(WindowEvent)|Handles the windowClosed event by invoking the  windowClosed methods on listener-a and listener-b.
+|java.awt.AWTEventMulticaster.windowClosing(WindowEvent)|Handles the windowClosing event by invoking the  windowClosing methods on listener-a and listener-b.
+|java.awt.AWTEventMulticaster.windowDeactivated(WindowEvent)|Handles the windowDeactivated event by invoking the  windowDeactivated methods on listener-a and listener-b.
+|java.awt.AWTEventMulticaster.windowDeiconified(WindowEvent)|Handles the windowDeiconfied event by invoking the  windowDeiconified methods on listener-a and listener-b.
+|java.awt.AWTEventMulticaster.windowGainedFocus(WindowEvent)|Handles the windowGainedFocus event by invoking the windowGainedFocus  methods on listener-a and listener-b.
+|java.awt.AWTEventMulticaster.windowIconified(WindowEvent)|Handles the windowIconified event by invoking the  windowIconified methods on listener-a and listener-b.
+|java.awt.AWTEventMulticaster.windowLostFocus(WindowEvent)|Handles the windowLostFocus event by invoking the windowLostFocus  methods on listener-a and listener-b.
+|java.awt.AWTEventMulticaster.windowOpened(WindowEvent)|Handles the windowOpened event by invoking the  windowOpened methods on listener-a and listener-b.
+|java.awt.AWTEventMulticaster.windowStateChanged(WindowEvent)|Handles the windowStateChanged event by invoking the  windowStateChanged methods on listener-a and listener-b.
+
+*java.awt.AWTEventMulticaster_Description*
+
+A class which implements efficient and thread-safe multi-cast event dispatching for the AWT events defined in the java.awt.event package. This class will manage an immutable 
+structure consisting of a chain of event listeners and will dispatch events to those listeners. Because the structure is immutable, it is safe to use this API to add/remove 
+listeners during the process of an event dispatch operation. However, event listeners added during the process of an event dispatch operation will not be notified of the event 
+currently being dispatched. 
+
+An example of how this class could be used to implement a new component which fires "action" events: 
+
+
+
+public myComponent extends Component { ActionListener actionListener = null; 
+
+public synchronized void addActionListener(ActionListener l) { actionListener = AWTEventMulticaster.add(actionListener, l); } public synchronized void 
+removeActionListener(ActionListener l) { actionListener = AWTEventMulticaster.remove(actionListener, l); } public void processEvent(AWTEvent e) { // when event occurs which causes 
+"action" semantic ActionListener listener = actionListener; if (listener != null) { listener.actionPerformed(new ActionEvent()); } } } 
+
+
+
+*java.util.EventListener_java.awt.AWTEventMulticaster.a*
+
+
+
+
+*java.util.EventListener_java.awt.AWTEventMulticaster.b*
+
+
+
+
+
+*java.awt.AWTEventMulticaster(EventListener,EventListener)*
+
+protected AWTEventMulticaster(
+  java.util.EventListener a,
+  java.util.EventListener b)
+
+Creates an event multicaster instance which chains listener-a with listener-b. Input parameters a and b should not be null, though implementations may vary in choosing whether or 
+not to throw NullPointerException in that case. 
+
+    a - listener-a 
+    b - listener-b 
+
+*java.awt.AWTEventMulticaster.actionPerformed(ActionEvent)*
+
+public void actionPerformed(java.awt.event.ActionEvent e)
+
+Handles the actionPerformed event by invoking the actionPerformed methods on listener-a and listener-b. 
+
+
+    e - the action event 
+
+*java.awt.AWTEventMulticaster.add(ActionListener,ActionListener)*
+
+public static |java.awt.event.ActionListener| add(
+  java.awt.event.ActionListener a,
+  java.awt.event.ActionListener b)
+
+Adds action-listener-a with action-listener-b and returns the resulting multicast listener. 
+
+
+    a - action-listener-a 
+    b - action-listener-b 
+
+*java.awt.AWTEventMulticaster.add(AdjustmentListener,AdjustmentListener)*
+
+public static |java.awt.event.AdjustmentListener| add(
+  java.awt.event.AdjustmentListener a,
+  java.awt.event.AdjustmentListener b)
+
+Adds adjustment-listener-a with adjustment-listener-b and returns the resulting multicast listener. 
+
+
+    a - adjustment-listener-a 
+    b - adjustment-listener-b 
+
+*java.awt.AWTEventMulticaster.add(ComponentListener,ComponentListener)*
+
+public static |java.awt.event.ComponentListener| add(
+  java.awt.event.ComponentListener a,
+  java.awt.event.ComponentListener b)
+
+Adds component-listener-a with component-listener-b and returns the resulting multicast listener. 
+
+
+    a - component-listener-a 
+    b - component-listener-b 
+
+*java.awt.AWTEventMulticaster.add(ContainerListener,ContainerListener)*
+
+public static |java.awt.event.ContainerListener| add(
+  java.awt.event.ContainerListener a,
+  java.awt.event.ContainerListener b)
+
+Adds container-listener-a with container-listener-b and returns the resulting multicast listener. 
+
+
+    a - container-listener-a 
+    b - container-listener-b 
+
+*java.awt.AWTEventMulticaster.add(FocusListener,FocusListener)*
+
+public static |java.awt.event.FocusListener| add(
+  java.awt.event.FocusListener a,
+  java.awt.event.FocusListener b)
+
+Adds focus-listener-a with focus-listener-b and returns the resulting multicast listener. 
+
+
+    a - focus-listener-a 
+    b - focus-listener-b 
+
+*java.awt.AWTEventMulticaster.add(HierarchyBoundsListener,HierarchyBoundsListener)*
+
+public static |java.awt.event.HierarchyBoundsListener| add(
+  java.awt.event.HierarchyBoundsListener a,
+  java.awt.event.HierarchyBoundsListener b)
+
+Adds hierarchy-bounds-listener-a with hierarchy-bounds-listener-b and returns the resulting multicast listener. 
+
+
+    a - hierarchy-bounds-listener-a 
+    b - hierarchy-bounds-listener-b 
+
+*java.awt.AWTEventMulticaster.add(HierarchyListener,HierarchyListener)*
+
+public static |java.awt.event.HierarchyListener| add(
+  java.awt.event.HierarchyListener a,
+  java.awt.event.HierarchyListener b)
+
+Adds hierarchy-listener-a with hierarchy-listener-b and returns the resulting multicast listener. 
+
+
+    a - hierarchy-listener-a 
+    b - hierarchy-listener-b 
+
+*java.awt.AWTEventMulticaster.add(InputMethodListener,InputMethodListener)*
+
+public static |java.awt.event.InputMethodListener| add(
+  java.awt.event.InputMethodListener a,
+  java.awt.event.InputMethodListener b)
+
+Adds input-method-listener-a with input-method-listener-b and returns the resulting multicast listener. 
+
+
+    a - input-method-listener-a 
+    b - input-method-listener-b 
+
+*java.awt.AWTEventMulticaster.add(ItemListener,ItemListener)*
+
+public static |java.awt.event.ItemListener| add(
+  java.awt.event.ItemListener a,
+  java.awt.event.ItemListener b)
+
+Adds item-listener-a with item-listener-b and returns the resulting multicast listener. 
+
+
+    a - item-listener-a 
+    b - item-listener-b 
+
+*java.awt.AWTEventMulticaster.add(KeyListener,KeyListener)*
+
+public static |java.awt.event.KeyListener| add(
+  java.awt.event.KeyListener a,
+  java.awt.event.KeyListener b)
+
+Adds key-listener-a with key-listener-b and returns the resulting multicast listener. 
+
+
+    a - key-listener-a 
+    b - key-listener-b 
+
+*java.awt.AWTEventMulticaster.add(MouseListener,MouseListener)*
+
+public static |java.awt.event.MouseListener| add(
+  java.awt.event.MouseListener a,
+  java.awt.event.MouseListener b)
+
+Adds mouse-listener-a with mouse-listener-b and returns the resulting multicast listener. 
+
+
+    a - mouse-listener-a 
+    b - mouse-listener-b 
+
+*java.awt.AWTEventMulticaster.add(MouseMotionListener,MouseMotionListener)*
+
+public static |java.awt.event.MouseMotionListener| add(
+  java.awt.event.MouseMotionListener a,
+  java.awt.event.MouseMotionListener b)
+
+Adds mouse-motion-listener-a with mouse-motion-listener-b and returns the resulting multicast listener. 
+
+
+    a - mouse-motion-listener-a 
+    b - mouse-motion-listener-b 
+
+*java.awt.AWTEventMulticaster.add(MouseWheelListener,MouseWheelListener)*
+
+public static |java.awt.event.MouseWheelListener| add(
+  java.awt.event.MouseWheelListener a,
+  java.awt.event.MouseWheelListener b)
+
+Adds mouse-wheel-listener-a with mouse-wheel-listener-b and returns the resulting multicast listener. 
+
+
+    a - mouse-wheel-listener-a 
+    b - mouse-wheel-listener-b 
+
+*java.awt.AWTEventMulticaster.add(TextListener,TextListener)*
+
+public static |java.awt.event.TextListener| add(
+  java.awt.event.TextListener a,
+  java.awt.event.TextListener b)
+
+
+
+
+
+*java.awt.AWTEventMulticaster.add(WindowFocusListener,WindowFocusListener)*
+
+public static |java.awt.event.WindowFocusListener| add(
+  java.awt.event.WindowFocusListener a,
+  java.awt.event.WindowFocusListener b)
+
+Adds window-focus-listener-a with window-focus-listener-b and returns the resulting multicast listener. 
+
+
+    a - window-focus-listener-a 
+    b - window-focus-listener-b 
+
+*java.awt.AWTEventMulticaster.add(WindowListener,WindowListener)*
+
+public static |java.awt.event.WindowListener| add(
+  java.awt.event.WindowListener a,
+  java.awt.event.WindowListener b)
+
+Adds window-listener-a with window-listener-b and returns the resulting multicast listener. 
+
+
+    a - window-listener-a 
+    b - window-listener-b 
+
+*java.awt.AWTEventMulticaster.add(WindowStateListener,WindowStateListener)*
+
+public static |java.awt.event.WindowStateListener| add(
+  java.awt.event.WindowStateListener a,
+  java.awt.event.WindowStateListener b)
+
+Adds window-state-listener-a with window-state-listener-b and returns the resulting multicast listener. 
+
+
+    a - window-state-listener-a 
+    b - window-state-listener-b 
+
+*java.awt.AWTEventMulticaster.addInternal(EventListener,EventListener)*
+
+protected static |java.util.EventListener| addInternal(
+  java.util.EventListener a,
+  java.util.EventListener b)
+
+Returns the resulting multicast listener from adding listener-a and listener-b together. If listener-a is null, it returns listener-b; If listener-b is null, it returns listener-a 
+If neither are null, then it creates and returns a new AWTEventMulticaster instance which chains a with b. 
+
+
+    a - event listener-a 
+    b - event listener-b 
+
+*java.awt.AWTEventMulticaster.adjustmentValueChanged(AdjustmentEvent)*
+
+public void adjustmentValueChanged(java.awt.event.AdjustmentEvent e)
+
+Handles the adjustmentValueChanged event by invoking the adjustmentValueChanged methods on listener-a and listener-b. 
+
+
+    e - the adjustment event 
+
+*java.awt.AWTEventMulticaster.ancestorMoved(HierarchyEvent)*
+
+public void ancestorMoved(java.awt.event.HierarchyEvent e)
+
+Handles the ancestorMoved event by invoking the ancestorMoved methods on listener-a and listener-b. 
+
+
+    e - the item event 
+
+*java.awt.AWTEventMulticaster.ancestorResized(HierarchyEvent)*
+
+public void ancestorResized(java.awt.event.HierarchyEvent e)
+
+Handles the ancestorResized event by invoking the ancestorResized methods on listener-a and listener-b. 
+
+
+    e - the item event 
+
+*java.awt.AWTEventMulticaster.caretPositionChanged(InputMethodEvent)*
+
+public void caretPositionChanged(java.awt.event.InputMethodEvent e)
+
+Handles the caretPositionChanged event by invoking the caretPositionChanged methods on listener-a and listener-b. 
+
+
+    e - the item event 
+
+*java.awt.AWTEventMulticaster.componentAdded(ContainerEvent)*
+
+public void componentAdded(java.awt.event.ContainerEvent e)
+
+Handles the componentAdded container event by invoking the componentAdded methods on listener-a and listener-b. 
+
+
+    e - the component event 
+
+*java.awt.AWTEventMulticaster.componentHidden(ComponentEvent)*
+
+public void componentHidden(java.awt.event.ComponentEvent e)
+
+Handles the componentHidden event by invoking the componentHidden methods on listener-a and listener-b. 
+
+
+    e - the component event 
+
+*java.awt.AWTEventMulticaster.componentMoved(ComponentEvent)*
+
+public void componentMoved(java.awt.event.ComponentEvent e)
+
+Handles the componentMoved event by invoking the componentMoved methods on listener-a and listener-b. 
+
+
+    e - the component event 
+
+*java.awt.AWTEventMulticaster.componentRemoved(ContainerEvent)*
+
+public void componentRemoved(java.awt.event.ContainerEvent e)
+
+Handles the componentRemoved container event by invoking the componentRemoved methods on listener-a and listener-b. 
+
+
+    e - the component event 
+
+*java.awt.AWTEventMulticaster.componentResized(ComponentEvent)*
+
+public void componentResized(java.awt.event.ComponentEvent e)
+
+Handles the componentResized event by invoking the componentResized methods on listener-a and listener-b. 
+
+
+    e - the component event 
+
+*java.awt.AWTEventMulticaster.componentShown(ComponentEvent)*
+
+public void componentShown(java.awt.event.ComponentEvent e)
+
+Handles the componentShown event by invoking the componentShown methods on listener-a and listener-b. 
+
+
+    e - the component event 
+
+*java.awt.AWTEventMulticaster.focusGained(FocusEvent)*
+
+public void focusGained(java.awt.event.FocusEvent e)
+
+Handles the focusGained event by invoking the focusGained methods on listener-a and listener-b. 
+
+
+    e - the focus event 
+
+*java.awt.AWTEventMulticaster.focusLost(FocusEvent)*
+
+public void focusLost(java.awt.event.FocusEvent e)
+
+Handles the focusLost event by invoking the focusLost methods on listener-a and listener-b. 
+
+
+    e - the focus event 
+
+*java.awt.AWTEventMulticaster.getListeners(EventListener,Class<T>)*
+
+public static |T|[] getListeners(
+  java.util.EventListener l,
+  java.lang.Class<T> listenerType)
+
+Returns an array of all the objects chained as FooListeners by the specified java.util.EventListener. FooListeners are chained by the AWTEventMulticaster using the addFooListener 
+method. If a null listener is specified, this method returns an empty array. If the specified listener is not an instance of AWTEventMulticaster, this method returns an array 
+which contains only the specified listener. If no such listeners are chanined, this method returns an empty array. 
+
+
+    l - the specified java.util.EventListener 
+    listenerType - the type of listeners requested; this parameter should specify an interface that descends from java.util.EventListener 
+
+    Returns: an array of all objects chained as FooListeners by the specified multicast listener, or an empty array if no such listeners have been chained by the specified multicast listener 
+
+*java.awt.AWTEventMulticaster.hierarchyChanged(HierarchyEvent)*
+
+public void hierarchyChanged(java.awt.event.HierarchyEvent e)
+
+Handles the hierarchyChanged event by invoking the hierarchyChanged methods on listener-a and listener-b. 
+
+
+    e - the item event 
+
+*java.awt.AWTEventMulticaster.inputMethodTextChanged(InputMethodEvent)*
+
+public void inputMethodTextChanged(java.awt.event.InputMethodEvent e)
+
+Handles the inputMethodTextChanged event by invoking the inputMethodTextChanged methods on listener-a and listener-b. 
+
+
+    e - the item event 
+
+*java.awt.AWTEventMulticaster.itemStateChanged(ItemEvent)*
+
+public void itemStateChanged(java.awt.event.ItemEvent e)
+
+Handles the itemStateChanged event by invoking the itemStateChanged methods on listener-a and listener-b. 
+
+
+    e - the item event 
+
+*java.awt.AWTEventMulticaster.keyPressed(KeyEvent)*
+
+public void keyPressed(java.awt.event.KeyEvent e)
+
+Handles the keyPressed event by invoking the keyPressed methods on listener-a and listener-b. 
+
+
+    e - the key event 
+
+*java.awt.AWTEventMulticaster.keyReleased(KeyEvent)*
+
+public void keyReleased(java.awt.event.KeyEvent e)
+
+Handles the keyReleased event by invoking the keyReleased methods on listener-a and listener-b. 
+
+
+    e - the key event 
+
+*java.awt.AWTEventMulticaster.keyTyped(KeyEvent)*
+
+public void keyTyped(java.awt.event.KeyEvent e)
+
+Handles the keyTyped event by invoking the keyTyped methods on listener-a and listener-b. 
+
+
+    e - the key event 
+
+*java.awt.AWTEventMulticaster.mouseClicked(MouseEvent)*
+
+public void mouseClicked(java.awt.event.MouseEvent e)
+
+Handles the mouseClicked event by invoking the mouseClicked methods on listener-a and listener-b. 
+
+
+    e - the mouse event 
+
+*java.awt.AWTEventMulticaster.mouseDragged(MouseEvent)*
+
+public void mouseDragged(java.awt.event.MouseEvent e)
+
+Handles the mouseDragged event by invoking the mouseDragged methods on listener-a and listener-b. 
+
+
+    e - the mouse event 
+
+*java.awt.AWTEventMulticaster.mouseEntered(MouseEvent)*
+
+public void mouseEntered(java.awt.event.MouseEvent e)
+
+Handles the mouseEntered event by invoking the mouseEntered methods on listener-a and listener-b. 
+
+
+    e - the mouse event 
+
+*java.awt.AWTEventMulticaster.mouseExited(MouseEvent)*
+
+public void mouseExited(java.awt.event.MouseEvent e)
+
+Handles the mouseExited event by invoking the mouseExited methods on listener-a and listener-b. 
+
+
+    e - the mouse event 
+
+*java.awt.AWTEventMulticaster.mouseMoved(MouseEvent)*
+
+public void mouseMoved(java.awt.event.MouseEvent e)
+
+Handles the mouseMoved event by invoking the mouseMoved methods on listener-a and listener-b. 
+
+
+    e - the mouse event 
+
+*java.awt.AWTEventMulticaster.mousePressed(MouseEvent)*
+
+public void mousePressed(java.awt.event.MouseEvent e)
+
+Handles the mousePressed event by invoking the mousePressed methods on listener-a and listener-b. 
+
+
+    e - the mouse event 
+
+*java.awt.AWTEventMulticaster.mouseReleased(MouseEvent)*
+
+public void mouseReleased(java.awt.event.MouseEvent e)
+
+Handles the mouseReleased event by invoking the mouseReleased methods on listener-a and listener-b. 
+
+
+    e - the mouse event 
+
+*java.awt.AWTEventMulticaster.mouseWheelMoved(MouseWheelEvent)*
+
+public void mouseWheelMoved(java.awt.event.MouseWheelEvent e)
+
+Handles the mouseWheelMoved event by invoking the mouseWheelMoved methods on listener-a and listener-b. 
+
+
+    e - the mouse event 
+
+*java.awt.AWTEventMulticaster.remove(ActionListener,ActionListener)*
+
+public static |java.awt.event.ActionListener| remove(
+  java.awt.event.ActionListener l,
+  java.awt.event.ActionListener oldl)
+
+Removes the old action-listener from action-listener-l and returns the resulting multicast listener. 
+
+
+    l - action-listener-l 
+    oldl - the action-listener being removed 
+
+*java.awt.AWTEventMulticaster.remove(AdjustmentListener,AdjustmentListener)*
+
+public static |java.awt.event.AdjustmentListener| remove(
+  java.awt.event.AdjustmentListener l,
+  java.awt.event.AdjustmentListener oldl)
+
+Removes the old adjustment-listener from adjustment-listener-l and returns the resulting multicast listener. 
+
+
+    l - adjustment-listener-l 
+    oldl - the adjustment-listener being removed 
+
+*java.awt.AWTEventMulticaster.remove(ComponentListener,ComponentListener)*
+
+public static |java.awt.event.ComponentListener| remove(
+  java.awt.event.ComponentListener l,
+  java.awt.event.ComponentListener oldl)
+
+Removes the old component-listener from component-listener-l and returns the resulting multicast listener. 
+
+
+    l - component-listener-l 
+    oldl - the component-listener being removed 
+
+*java.awt.AWTEventMulticaster.remove(ContainerListener,ContainerListener)*
+
+public static |java.awt.event.ContainerListener| remove(
+  java.awt.event.ContainerListener l,
+  java.awt.event.ContainerListener oldl)
+
+Removes the old container-listener from container-listener-l and returns the resulting multicast listener. 
+
+
+    l - container-listener-l 
+    oldl - the container-listener being removed 
+
+*java.awt.AWTEventMulticaster.remove(EventListener)*
+
+protected |java.util.EventListener| remove(java.util.EventListener oldl)
+
+Removes a listener from this multicaster and returns the resulting multicast listener. 
+
+
+    oldl - the listener to be removed 
+
+*java.awt.AWTEventMulticaster.remove(FocusListener,FocusListener)*
+
+public static |java.awt.event.FocusListener| remove(
+  java.awt.event.FocusListener l,
+  java.awt.event.FocusListener oldl)
+
+Removes the old focus-listener from focus-listener-l and returns the resulting multicast listener. 
+
+
+    l - focus-listener-l 
+    oldl - the focus-listener being removed 
+
+*java.awt.AWTEventMulticaster.remove(HierarchyBoundsListener,HierarchyBoundsListener)*
+
+public static |java.awt.event.HierarchyBoundsListener| remove(
+  java.awt.event.HierarchyBoundsListener l,
+  java.awt.event.HierarchyBoundsListener oldl)
+
+Removes the old hierarchy-bounds-listener from hierarchy-bounds-listener-l and returns the resulting multicast listener. 
+
+
+    l - hierarchy-bounds-listener-l 
+    oldl - the hierarchy-bounds-listener being removed 
+
+*java.awt.AWTEventMulticaster.remove(HierarchyListener,HierarchyListener)*
+
+public static |java.awt.event.HierarchyListener| remove(
+  java.awt.event.HierarchyListener l,
+  java.awt.event.HierarchyListener oldl)
+
+Removes the old hierarchy-listener from hierarchy-listener-l and returns the resulting multicast listener. 
+
+
+    l - hierarchy-listener-l 
+    oldl - the hierarchy-listener being removed 
+
+*java.awt.AWTEventMulticaster.remove(InputMethodListener,InputMethodListener)*
+
+public static |java.awt.event.InputMethodListener| remove(
+  java.awt.event.InputMethodListener l,
+  java.awt.event.InputMethodListener oldl)
+
+Removes the old input-method-listener from input-method-listener-l and returns the resulting multicast listener. 
+
+
+    l - input-method-listener-l 
+    oldl - the input-method-listener being removed 
+
+*java.awt.AWTEventMulticaster.remove(ItemListener,ItemListener)*
+
+public static |java.awt.event.ItemListener| remove(
+  java.awt.event.ItemListener l,
+  java.awt.event.ItemListener oldl)
+
+Removes the old item-listener from item-listener-l and returns the resulting multicast listener. 
+
+
+    l - item-listener-l 
+    oldl - the item-listener being removed 
+
+*java.awt.AWTEventMulticaster.remove(KeyListener,KeyListener)*
+
+public static |java.awt.event.KeyListener| remove(
+  java.awt.event.KeyListener l,
+  java.awt.event.KeyListener oldl)
+
+Removes the old key-listener from key-listener-l and returns the resulting multicast listener. 
+
+
+    l - key-listener-l 
+    oldl - the key-listener being removed 
+
+*java.awt.AWTEventMulticaster.remove(MouseListener,MouseListener)*
+
+public static |java.awt.event.MouseListener| remove(
+  java.awt.event.MouseListener l,
+  java.awt.event.MouseListener oldl)
+
+Removes the old mouse-listener from mouse-listener-l and returns the resulting multicast listener. 
+
+
+    l - mouse-listener-l 
+    oldl - the mouse-listener being removed 
+
+*java.awt.AWTEventMulticaster.remove(MouseMotionListener,MouseMotionListener)*
+
+public static |java.awt.event.MouseMotionListener| remove(
+  java.awt.event.MouseMotionListener l,
+  java.awt.event.MouseMotionListener oldl)
+
+Removes the old mouse-motion-listener from mouse-motion-listener-l and returns the resulting multicast listener. 
+
+
+    l - mouse-motion-listener-l 
+    oldl - the mouse-motion-listener being removed 
+
+*java.awt.AWTEventMulticaster.remove(MouseWheelListener,MouseWheelListener)*
+
+public static |java.awt.event.MouseWheelListener| remove(
+  java.awt.event.MouseWheelListener l,
+  java.awt.event.MouseWheelListener oldl)
+
+Removes the old mouse-wheel-listener from mouse-wheel-listener-l and returns the resulting multicast listener. 
+
+
+    l - mouse-wheel-listener-l 
+    oldl - the mouse-wheel-listener being removed 
+
+*java.awt.AWTEventMulticaster.remove(TextListener,TextListener)*
+
+public static |java.awt.event.TextListener| remove(
+  java.awt.event.TextListener l,
+  java.awt.event.TextListener oldl)
+
+
+
+
+
+*java.awt.AWTEventMulticaster.remove(WindowFocusListener,WindowFocusListener)*
+
+public static |java.awt.event.WindowFocusListener| remove(
+  java.awt.event.WindowFocusListener l,
+  java.awt.event.WindowFocusListener oldl)
+
+Removes the old window-focus-listener from window-focus-listener-l and returns the resulting multicast listener. 
+
+
+    l - window-focus-listener-l 
+    oldl - the window-focus-listener being removed 
+
+*java.awt.AWTEventMulticaster.remove(WindowListener,WindowListener)*
+
+public static |java.awt.event.WindowListener| remove(
+  java.awt.event.WindowListener l,
+  java.awt.event.WindowListener oldl)
+
+Removes the old window-listener from window-listener-l and returns the resulting multicast listener. 
+
+
+    l - window-listener-l 
+    oldl - the window-listener being removed 
+
+*java.awt.AWTEventMulticaster.remove(WindowStateListener,WindowStateListener)*
+
+public static |java.awt.event.WindowStateListener| remove(
+  java.awt.event.WindowStateListener l,
+  java.awt.event.WindowStateListener oldl)
+
+Removes the old window-state-listener from window-state-listener-l and returns the resulting multicast listener. 
+
+
+    l - window-state-listener-l 
+    oldl - the window-state-listener being removed 
+
+*java.awt.AWTEventMulticaster.removeInternal(EventListener,EventListener)*
+
+protected static |java.util.EventListener| removeInternal(
+  java.util.EventListener l,
+  java.util.EventListener oldl)
+
+Returns the resulting multicast listener after removing the old listener from listener-l. If listener-l equals the old listener OR listener-l is null, returns null. Else if 
+listener-l is an instance of AWTEventMulticaster, then it removes the old listener from it. Else, returns listener l. 
+
+
+    l - the listener being removed from 
+    oldl - the listener being removed 
+
+*java.awt.AWTEventMulticaster.save(ObjectOutputStream,String,EventListener)*
+
+protected static void save(
+  java.io.ObjectOutputStream s,
+  java.lang.String k,
+  java.util.EventListener l)
+  throws |java.io.IOException|
+         
+
+
+
+
+*java.awt.AWTEventMulticaster.saveInternal(ObjectOutputStream,String)*
+
+protected void saveInternal(
+  java.io.ObjectOutputStream s,
+  java.lang.String k)
+  throws |java.io.IOException|
+         
+
+
+
+
+*java.awt.AWTEventMulticaster.textValueChanged(TextEvent)*
+
+public void textValueChanged(java.awt.event.TextEvent e)
+
+
+
+
+
+*java.awt.AWTEventMulticaster.windowActivated(WindowEvent)*
+
+public void windowActivated(java.awt.event.WindowEvent e)
+
+Handles the windowActivated event by invoking the windowActivated methods on listener-a and listener-b. 
+
+
+    e - the window event 
+
+*java.awt.AWTEventMulticaster.windowClosed(WindowEvent)*
+
+public void windowClosed(java.awt.event.WindowEvent e)
+
+Handles the windowClosed event by invoking the windowClosed methods on listener-a and listener-b. 
+
+
+    e - the window event 
+
+*java.awt.AWTEventMulticaster.windowClosing(WindowEvent)*
+
+public void windowClosing(java.awt.event.WindowEvent e)
+
+Handles the windowClosing event by invoking the windowClosing methods on listener-a and listener-b. 
+
+
+    e - the window event 
+
+*java.awt.AWTEventMulticaster.windowDeactivated(WindowEvent)*
+
+public void windowDeactivated(java.awt.event.WindowEvent e)
+
+Handles the windowDeactivated event by invoking the windowDeactivated methods on listener-a and listener-b. 
+
+
+    e - the window event 
+
+*java.awt.AWTEventMulticaster.windowDeiconified(WindowEvent)*
+
+public void windowDeiconified(java.awt.event.WindowEvent e)
+
+Handles the windowDeiconfied event by invoking the windowDeiconified methods on listener-a and listener-b. 
+
+
+    e - the window event 
+
+*java.awt.AWTEventMulticaster.windowGainedFocus(WindowEvent)*
+
+public void windowGainedFocus(java.awt.event.WindowEvent e)
+
+Handles the windowGainedFocus event by invoking the windowGainedFocus methods on listener-a and listener-b. 
+
+
+    e - the window event 
+
+*java.awt.AWTEventMulticaster.windowIconified(WindowEvent)*
+
+public void windowIconified(java.awt.event.WindowEvent e)
+
+Handles the windowIconified event by invoking the windowIconified methods on listener-a and listener-b. 
+
+
+    e - the window event 
+
+*java.awt.AWTEventMulticaster.windowLostFocus(WindowEvent)*
+
+public void windowLostFocus(java.awt.event.WindowEvent e)
+
+Handles the windowLostFocus event by invoking the windowLostFocus methods on listener-a and listener-b. 
+
+
+    e - the window event 
+
+*java.awt.AWTEventMulticaster.windowOpened(WindowEvent)*
+
+public void windowOpened(java.awt.event.WindowEvent e)
+
+Handles the windowOpened event by invoking the windowOpened methods on listener-a and listener-b. 
+
+
+    e - the window event 
+
+*java.awt.AWTEventMulticaster.windowStateChanged(WindowEvent)*
+
+public void windowStateChanged(java.awt.event.WindowEvent e)
+
+Handles the windowStateChanged event by invoking the windowStateChanged methods on listener-a and listener-b. 
+
+
+    e - the window event 
+
+

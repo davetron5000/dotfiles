@@ -1,0 +1,370 @@
+*javax.swing.JToolBar* *JToolBar* JToolBar provides a component that is useful for
+ displaying commonly used Actions or controls.
+
+public class JToolBar
+  extends    |javax.swing.JComponent|
+  implements |javax.swing.SwingConstants|
+             |javax.accessibility.Accessible|
+
+|javax.swing.JToolBar_Description|
+|javax.swing.JToolBar_Fields|
+|javax.swing.JToolBar_Constructors|
+|javax.swing.JToolBar_Methods|
+
+====================================================================================================================================================================================
+
+*javax.swing.JToolBar_Constructors*
+|javax.swing.JToolBar()|Creates a new tool bar; orientation defaults to HORIZONTAL.
+|javax.swing.JToolBar(int)|Creates a new tool bar with the specified orientation.
+|javax.swing.JToolBar(String)|Creates a new tool bar with the specified name.
+|javax.swing.JToolBar(String,int)|Creates a new tool bar with a specified name and  orientation.
+
+*javax.swing.JToolBar_Methods*
+|javax.swing.JToolBar.add(Action)|Adds a new JButton which dispatches the action.
+|javax.swing.JToolBar.addImpl(Component,Object,int)|If a JButton is being added, it is initially  set to be disabled.
+|javax.swing.JToolBar.addSeparator()|Appends a separator of default size to the end of the tool bar.
+|javax.swing.JToolBar.addSeparator(Dimension)|Appends a separator of a specified size to the end  of the tool bar.
+|javax.swing.JToolBar.createActionChangeListener(JButton)|Returns a properly configured PropertyChangeListener  which updates the control as changes to the Action occur,  or null 
+|javax.swing.JToolBar.createActionComponent(Action)|Factory method which creates the JButton for  Actions added to the JToolBar.
+|javax.swing.JToolBar.getAccessibleContext()|Gets the AccessibleContext associated with this JToolBar.
+|javax.swing.JToolBar.getComponentAtIndex(int)|Returns the component at the specified index.
+|javax.swing.JToolBar.getComponentIndex(Component)|Returns the index of the specified component.
+|javax.swing.JToolBar.getMargin()|Returns the margin between the tool bar's border and  its buttons.
+|javax.swing.JToolBar.getOrientation()|Returns the current orientation of the tool bar.
+|javax.swing.JToolBar.getUI()|Returns the tool bar's current UI.
+|javax.swing.JToolBar.getUIClassID()|Returns the name of the Lclass that renders this component.
+|javax.swing.JToolBar.isBorderPainted()|Gets the borderPainted property.
+|javax.swing.JToolBar.isFloatable()|Gets the floatable property.
+|javax.swing.JToolBar.isRollover()|Returns the rollover state.
+|javax.swing.JToolBar.paintBorder(Graphics)|Paints the tool bar's border if the borderPainted property  is true.
+|javax.swing.JToolBar.paramString()|Returns a string representation of this JToolBar.
+|javax.swing.JToolBar.setBorderPainted(boolean)|Sets the borderPainted property, which is  true if the border should be painted.
+|javax.swing.JToolBar.setFloatable(boolean)|Sets the floatable property,  which must be true for the user to move the tool bar.
+|javax.swing.JToolBar.setLayout(LayoutManager)|
+|javax.swing.JToolBar.setMargin(Insets)|Sets the margin between the tool bar's border and  its buttons.
+|javax.swing.JToolBar.setOrientation(int)|Sets the orientation of the tool bar.
+|javax.swing.JToolBar.setRollover(boolean)|Sets the rollover state of this toolbar.
+|javax.swing.JToolBar.setUI(ToolBarUI)|Sets the Lobject that renders this component.
+|javax.swing.JToolBar.updateUI()|Notification from the UIFactory that the Lhas changed.
+
+*javax.swing.JToolBar_Description*
+
+JToolBar provides a component that is useful for displaying commonly used Actions or controls. For examples and information on using tool bars see How to Use Tool Bars, a section 
+in The Java Tutorial. 
+
+With most look and feels, the user can drag out a tool bar into a separate window (unless the floatable property is set to false). For drag-out to work correctly, it is 
+recommended that you add JToolBar instances to one of the four "sides" of a container whose layout manager is a BorderLayout, and do not add children to any of the other four 
+"sides". 
+
+Warning: Serialized objects of this class will not be compatible with future Swing releases. The current serialization support is appropriate for short term storage or RMI between 
+applications running the same version of Swing. As of 1.4, support for long term storage of all JavaBeansTM has been added to the java.beans package. Please see 
+(|java.beans.XMLEncoder|) . 
+
+
+
+*javax.swing.JToolBar()*
+
+public JToolBar()
+
+Creates a new tool bar; orientation defaults to HORIZONTAL. 
+
+
+*javax.swing.JToolBar(int)*
+
+public JToolBar(int orientation)
+
+Creates a new tool bar with the specified orientation. The orientation must be either HORIZONTAL or VERTICAL. 
+
+    orientation - the orientation desired 
+
+*javax.swing.JToolBar(String)*
+
+public JToolBar(java.lang.String name)
+
+Creates a new tool bar with the specified name. The name is used as the title of the undocked tool bar. The default orientation is HORIZONTAL. 
+
+    name - the name of the tool bar 
+
+*javax.swing.JToolBar(String,int)*
+
+public JToolBar(
+  java.lang.String name,
+  int orientation)
+
+Creates a new tool bar with a specified name and orientation. All other constructors call this constructor. If orientation is an invalid value, an exception will be thrown. 
+
+    name - the name of the tool bar 
+    orientation - the initial orientation -- it must be either HORIZONTAL or VERTICAL 
+
+*javax.swing.JToolBar.add(Action)*
+
+public |javax.swing.JButton| add(javax.swing.Action a)
+
+Adds a new JButton which dispatches the action. 
+
+As of 1.3, this is no longer the preferred method for adding Actions to a container. Instead it is recommended to configure a control with an action using using setAction, and 
+then add that control directly to the Container. 
+
+
+    a - the Action object to add as a new menu item 
+
+    Returns: the new button which dispatches the action 
+
+*javax.swing.JToolBar.addImpl(Component,Object,int)*
+
+protected void addImpl(
+  java.awt.Component comp,
+  java.lang.Object constraints,
+  int index)
+
+If a JButton is being added, it is initially set to be disabled. 
+
+
+    comp - the component to be enhanced 
+    constraints - the constraints to be enforced on the component 
+    index - the index of the component 
+
+*javax.swing.JToolBar.addSeparator()*
+
+public void addSeparator()
+
+Appends a separator of default size to the end of the tool bar. The default size is determined by the current look and feel. 
+
+
+
+*javax.swing.JToolBar.addSeparator(Dimension)*
+
+public void addSeparator(java.awt.Dimension size)
+
+Appends a separator of a specified size to the end of the tool bar. 
+
+
+    size - the Dimension of the separator 
+
+*javax.swing.JToolBar.createActionChangeListener(JButton)*
+
+protected |java.beans.PropertyChangeListener| createActionChangeListener(javax.swing.JButton b)
+
+Returns a properly configured PropertyChangeListener which updates the control as changes to the Action occur, or null if the default property change listener for the control is 
+desired. 
+
+As of 1.3, this is no longer the preferred method for adding Actions to a Container. Instead it is recommended to configure a control with an action using setAction, and then add 
+that control directly to the Container. 
+
+
+
+    Returns: 
+
+*javax.swing.JToolBar.createActionComponent(Action)*
+
+protected |javax.swing.JButton| createActionComponent(javax.swing.Action a)
+
+Factory method which creates the JButton for Actions added to the JToolBar. The default name is empty if a null action is passed. 
+
+As of 1.3, this is no longer the preferred method for adding Actions to a Container. Instead it is recommended to configure a control with an action using setAction, and then add 
+that control directly to the Container. 
+
+
+    a - the Action for the button to be added 
+
+    Returns: the newly created button 
+
+*javax.swing.JToolBar.getAccessibleContext()*
+
+public |javax.accessibility.AccessibleContext| getAccessibleContext()
+
+Gets the AccessibleContext associated with this JToolBar. For tool bars, the AccessibleContext takes the form of an AccessibleJToolBar. A new AccessibleJToolBar instance is 
+created if necessary. 
+
+
+
+    Returns: an AccessibleJToolBar that serves as the AccessibleContext of this JToolBar 
+
+*javax.swing.JToolBar.getComponentAtIndex(int)*
+
+public |java.awt.Component| getComponentAtIndex(int i)
+
+Returns the component at the specified index. 
+
+
+    i - the component's position, where 0 is first 
+
+    Returns: the Component at that position, or null for an invalid index 
+
+*javax.swing.JToolBar.getComponentIndex(Component)*
+
+public int getComponentIndex(java.awt.Component c)
+
+Returns the index of the specified component. (Note: Separators occupy index positions.) 
+
+
+    c - the Component to find 
+
+    Returns: an integer indicating the component's position, where 0 is first 
+
+*javax.swing.JToolBar.getMargin()*
+
+public |java.awt.Insets| getMargin()
+
+Returns the margin between the tool bar's border and its buttons. 
+
+
+
+    Returns: an Insets object containing the margin values 
+
+*javax.swing.JToolBar.getOrientation()*
+
+public int getOrientation()
+
+Returns the current orientation of the tool bar. The value is either HORIZONTAL or VERTICAL. 
+
+
+
+    Returns: an integer representing the current orientation -- either HORIZONTAL or VERTICAL 
+
+*javax.swing.JToolBar.getUI()*
+
+public |javax.swing.plaf.ToolBarUI| getUI()
+
+Returns the tool bar's current UI. 
+
+
+
+*javax.swing.JToolBar.getUIClassID()*
+
+public |java.lang.String| getUIClassID()
+
+Returns the name of the Lclass that renders this component. 
+
+
+
+    Returns: the string "ToolBarUI" 
+
+*javax.swing.JToolBar.isBorderPainted()*
+
+public boolean isBorderPainted()
+
+Gets the borderPainted property. 
+
+
+
+    Returns: the value of the borderPainted property 
+
+*javax.swing.JToolBar.isFloatable()*
+
+public boolean isFloatable()
+
+Gets the floatable property. 
+
+
+
+    Returns: the value of the floatable property 
+
+*javax.swing.JToolBar.isRollover()*
+
+public boolean isRollover()
+
+Returns the rollover state. 
+
+
+
+    Returns: true if rollover toolbar buttons are to be drawn; otherwise false 
+
+*javax.swing.JToolBar.paintBorder(Graphics)*
+
+protected void paintBorder(java.awt.Graphics g)
+
+Paints the tool bar's border if the borderPainted property is true. 
+
+
+    g - the Graphics context in which the painting is done 
+
+*javax.swing.JToolBar.paramString()*
+
+protected |java.lang.String| paramString()
+
+Returns a string representation of this JToolBar. This method is intended to be used only for debugging purposes, and the content and format of the returned string may vary 
+between implementations. The returned string may be empty but may not be null. 
+
+
+
+    Returns: a string representation of this JToolBar. 
+
+*javax.swing.JToolBar.setBorderPainted(boolean)*
+
+public void setBorderPainted(boolean b)
+
+Sets the borderPainted property, which is true if the border should be painted. The default value for this property is true. Some look and feels might not implement painted 
+borders; they will ignore this property. 
+
+
+    b - if true, the border is painted 
+
+*javax.swing.JToolBar.setFloatable(boolean)*
+
+public void setFloatable(boolean b)
+
+Sets the floatable property, which must be true for the user to move the tool bar. Typically, a floatable tool bar can be dragged into a different position within the same 
+container or out into its own window. The default value of this property is true. Some look and feels might not implement floatable tool bars; they will ignore this property. 
+
+
+    b - if true, the tool bar can be moved; false otherwise 
+
+*javax.swing.JToolBar.setLayout(LayoutManager)*
+
+public void setLayout(java.awt.LayoutManager mgr)
+
+
+
+
+
+*javax.swing.JToolBar.setMargin(Insets)*
+
+public void setMargin(java.awt.Insets m)
+
+Sets the margin between the tool bar's border and its buttons. Setting to null causes the tool bar to use the default margins. The tool bar's default Border object uses this value 
+to create the proper margin. However, if a non-default border is set on the tool bar, it is that Border object's responsibility to create the appropriate margin space (otherwise 
+this property will effectively be ignored). 
+
+
+    m - an Insets object that defines the space between the border and the buttons 
+
+*javax.swing.JToolBar.setOrientation(int)*
+
+public void setOrientation(int o)
+
+Sets the orientation of the tool bar. The orientation must have either the value HORIZONTAL or VERTICAL. If orientation is an invalid value, an exception will be thrown. 
+
+
+    o - the new orientation -- either HORIZONTAL or VERTICAL 
+
+*javax.swing.JToolBar.setRollover(boolean)*
+
+public void setRollover(boolean rollover)
+
+Sets the rollover state of this toolbar. If the rollover state is true then the border of the toolbar buttons will be drawn only when the mouse pointer hovers over them. The 
+default value of this property is false. 
+
+The implementation of a look and feel may choose to ignore this property. 
+
+
+    rollover - true for rollover toolbar buttons; otherwise false 
+
+*javax.swing.JToolBar.setUI(ToolBarUI)*
+
+public void setUI(javax.swing.plaf.ToolBarUI ui)
+
+Sets the Lobject that renders this component. 
+
+
+    ui - the ToolBarUI Lobject 
+
+*javax.swing.JToolBar.updateUI()*
+
+public void updateUI()
+
+Notification from the UIFactory that the Lhas changed. Called to replace the UI with the latest version from the UIFactory. 
+
+
+
+

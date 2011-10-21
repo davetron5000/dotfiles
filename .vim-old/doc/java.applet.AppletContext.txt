@@ -1,0 +1,163 @@
+*java.applet.AppletContext* *AppletContext* This interface corresponds to an applet's environment: the
+ document containing the applet and the other applets in the same
+ document.
+
+public interface interface AppletContext
+
+
+|java.applet.AppletContext_Description|
+|java.applet.AppletContext_Fields|
+|java.applet.AppletContext_Constructors|
+|java.applet.AppletContext_Methods|
+
+====================================================================================================================================================================================
+
+*java.applet.AppletContext_Methods*
+|java.applet.AppletContext.getApplet(String)|Finds and returns the applet in the document represented by this  applet context with the given name.
+|java.applet.AppletContext.getApplets()|Finds all the applets in the document represented by this applet  context.
+|java.applet.AppletContext.getAudioClip(URL)|Creates an audio clip.
+|java.applet.AppletContext.getImage(URL)|Returns an Image object that can then be painted on  the screen.
+|java.applet.AppletContext.getStream(String)|Returns the stream to which specified key is associated within this   applet context.
+|java.applet.AppletContext.getStreamKeys()|Finds all the keys of the streams in this applet context.
+|java.applet.AppletContext.setStream(String,InputStream)|Associates the specified stream with the specified key in this  applet context.
+|java.applet.AppletContext.showDocument(URL)|Replaces the Web page currently being viewed with the given URL.
+|java.applet.AppletContext.showDocument(URL,String)|Requests that the browser or applet viewer show the Web page  indicated by the url argument.
+|java.applet.AppletContext.showStatus(String)|Requests that the argument string be displayed in the  "status window".
+
+*java.applet.AppletContext_Description*
+
+This interface corresponds to an applet's environment: the document containing the applet and the other applets in the same document. 
+
+The methods in this interface can be used by an applet to obtain information about its environment. 
+
+
+
+*java.applet.AppletContext.getApplet(String)*
+
+public |java.applet.Applet| getApplet(java.lang.String name)
+
+Finds and returns the applet in the document represented by this applet context with the given name. The name can be set in the HTML tag by setting the name attribute. 
+
+
+    name - an applet name. 
+
+    Returns: the applet with the given name, or null if not found. 
+
+*java.applet.AppletContext.getApplets()*
+
+public |java.util.Enumeration|<Applet> getApplets()
+
+Finds all the applets in the document represented by this applet context. 
+
+
+
+    Returns: an enumeration of all applets in the document represented by this applet context. 
+
+*java.applet.AppletContext.getAudioClip(URL)*
+
+public |java.applet.AudioClip| getAudioClip(java.net.URL url)
+
+Creates an audio clip. 
+
+
+    url - an absolute URL giving the location of the audio clip. 
+
+    Returns: the audio clip at the specified URL. 
+
+*java.applet.AppletContext.getImage(URL)*
+
+public |java.awt.Image| getImage(java.net.URL url)
+
+Returns an Image object that can then be painted on the screen. The url argument that is passed as an argument must specify an absolute URL. 
+
+This method always returns immediately, whether or not the image exists. When the applet attempts to draw the image on the screen, the data will be loaded. The graphics primitives 
+that draw the image will incrementally paint on the screen. 
+
+
+    url - an absolute URL giving the location of the image. 
+
+    Returns: the image at the specified URL. 
+
+*java.applet.AppletContext.getStream(String)*
+
+public |java.io.InputStream| getStream(java.lang.String key)
+
+Returns the stream to which specified key is associated within this applet context. Returns null if the applet context contains no stream for this key. 
+
+For security reasons, mapping of streams and keys exists for each codebase. In other words, applet from one codebase cannot access the streams created by an applet from a 
+different codebase 
+
+
+    key - key whose associated stream is to be returned. 
+
+    Returns: the stream to which this applet context maps the key 
+
+*java.applet.AppletContext.getStreamKeys()*
+
+public |java.util.Iterator|<String> getStreamKeys()
+
+Finds all the keys of the streams in this applet context. 
+
+For security reasons, mapping of streams and keys exists for each codebase. In other words, applet from one codebase cannot access the streams created by an applet from a 
+different codebase 
+
+
+
+    Returns: an Iterator of all the names of the streams in this applet context. 
+
+*java.applet.AppletContext.setStream(String,InputStream)*
+
+public void setStream(
+  java.lang.String key,
+  java.io.InputStream stream)
+  throws |java.io.IOException|
+         
+Associates the specified stream with the specified key in this applet context. If the applet context previously contained a mapping for this key, the old value is replaced. 
+
+For security reasons, mapping of streams and keys exists for each codebase. In other words, applet from one codebase cannot access the streams created by an applet from a 
+different codebase 
+
+
+    key - key with which the specified value is to be associated. 
+    stream - stream to be associated with the specified key. If this parameter is null, the specified key is removed in this applet context. 
+
+*java.applet.AppletContext.showDocument(URL)*
+
+public void showDocument(java.net.URL url)
+
+Replaces the Web page currently being viewed with the given URL. This method may be ignored by applet contexts that are not browsers. 
+
+
+    url - an absolute URL giving the location of the document. 
+
+*java.applet.AppletContext.showDocument(URL,String)*
+
+public void showDocument(
+  java.net.URL url,
+  java.lang.String target)
+
+Requests that the browser or applet viewer show the Web page indicated by the url argument. The target argument indicates in which HTML frame the document is to be displayed. The 
+target argument is interpreted as follows: 
+
+Target ArgumentDescription "_self" Show in the window and frame that contain the applet. "_parent"Show in the applet's parent frame. If the applet's frame has no parent frame, 
+acts the same as "_self". "_top" Show in the top-level frame of the applet's window. If the applet's frame is the top-level frame, acts the same as "_self". "_blank" Show in a 
+new, unnamed top-level window. nameShow in the frame or window named name. If a target named name does not already exist, a new top-level window with the specified name is 
+created, and the document is shown there. 
+
+An applet viewer or browser is free to ignore showDocument. 
+
+
+    url - an absolute URL giving the location of the document. 
+    target - a String indicating where to display the page. 
+
+*java.applet.AppletContext.showStatus(String)*
+
+public void showStatus(java.lang.String status)
+
+Requests that the argument string be displayed in the "status window". Many browsers and applet viewers provide such a window, where the application can inform users of its 
+current state. 
+
+
+    status - a string to display in the status window. 
+
+

@@ -1,0 +1,619 @@
+*java.awt.font.TextAttribute* *TextAttribute* The TextAttribute class defines attribute keys and
+ attribute values used for text rendering.
+
+public final class TextAttribute
+  extends    |java.text.AttributedCharacterIterator.Attribute|
+
+|java.awt.font.TextAttribute_Description|
+|java.awt.font.TextAttribute_Fields|
+|java.awt.font.TextAttribute_Constructors|
+|java.awt.font.TextAttribute_Methods|
+
+====================================================================================================================================================================================
+
+*java.awt.font.TextAttribute_Fields*
+|java.awt.font.TextAttribute_java.awt.font.TextAttribute.BACKGROUND|
+|java.awt.font.TextAttribute_java.awt.font.TextAttribute.BIDI_EMBEDDING|
+|java.awt.font.TextAttribute_java.awt.font.TextAttribute.CHAR_REPLACEMENT|
+|java.awt.font.TextAttribute_java.awt.font.TextAttribute.FAMILY|
+|java.awt.font.TextAttribute_java.awt.font.TextAttribute.FONT|
+|java.awt.font.TextAttribute_java.awt.font.TextAttribute.FOREGROUND|
+|java.awt.font.TextAttribute_java.awt.font.TextAttribute.INPUT_METHOD_HIGHLIGHT|
+|java.awt.font.TextAttribute_java.awt.font.TextAttribute.INPUT_METHOD_UNDERLINE|
+|java.awt.font.TextAttribute_java.awt.font.TextAttribute.JUSTIFICATION|
+|java.lang.Float_java.awt.font.TextAttribute.JUSTIFICATION_FULL|
+|java.lang.Float_java.awt.font.TextAttribute.JUSTIFICATION_NONE|
+|java.awt.font.TextAttribute_java.awt.font.TextAttribute.NUMERIC_SHAPING|
+|java.awt.font.TextAttribute_java.awt.font.TextAttribute.POSTURE|
+|java.lang.Float_java.awt.font.TextAttribute.POSTURE_OBLIQUE|
+|java.lang.Float_java.awt.font.TextAttribute.POSTURE_REGULAR|
+|java.awt.font.TextAttribute_java.awt.font.TextAttribute.RUN_DIRECTION|
+|java.lang.Boolean_java.awt.font.TextAttribute.RUN_DIRECTION_LTR|
+|java.lang.Boolean_java.awt.font.TextAttribute.RUN_DIRECTION_RTL|
+|java.awt.font.TextAttribute_java.awt.font.TextAttribute.SIZE|
+|java.awt.font.TextAttribute_java.awt.font.TextAttribute.STRIKETHROUGH|
+|java.lang.Boolean_java.awt.font.TextAttribute.STRIKETHROUGH_ON|
+|java.awt.font.TextAttribute_java.awt.font.TextAttribute.SUPERSCRIPT|
+|java.lang.Integer_java.awt.font.TextAttribute.SUPERSCRIPT_SUB|
+|java.lang.Integer_java.awt.font.TextAttribute.SUPERSCRIPT_SUPER|
+|java.awt.font.TextAttribute_java.awt.font.TextAttribute.SWAP_COLORS|
+|java.lang.Boolean_java.awt.font.TextAttribute.SWAP_COLORS_ON|
+|java.awt.font.TextAttribute_java.awt.font.TextAttribute.TRANSFORM|
+|java.awt.font.TextAttribute_java.awt.font.TextAttribute.UNDERLINE|
+|java.lang.Integer_java.awt.font.TextAttribute.UNDERLINE_LOW_DASHED|
+|java.lang.Integer_java.awt.font.TextAttribute.UNDERLINE_LOW_DOTTED|
+|java.lang.Integer_java.awt.font.TextAttribute.UNDERLINE_LOW_GRAY|
+|java.lang.Integer_java.awt.font.TextAttribute.UNDERLINE_LOW_ONE_PIXEL|
+|java.lang.Integer_java.awt.font.TextAttribute.UNDERLINE_LOW_TWO_PIXEL|
+|java.lang.Integer_java.awt.font.TextAttribute.UNDERLINE_ON|
+|java.awt.font.TextAttribute_java.awt.font.TextAttribute.WEIGHT|
+|java.lang.Float_java.awt.font.TextAttribute.WEIGHT_BOLD|
+|java.lang.Float_java.awt.font.TextAttribute.WEIGHT_DEMIBOLD|
+|java.lang.Float_java.awt.font.TextAttribute.WEIGHT_DEMILIGHT|
+|java.lang.Float_java.awt.font.TextAttribute.WEIGHT_EXTRA_LIGHT|
+|java.lang.Float_java.awt.font.TextAttribute.WEIGHT_EXTRABOLD|
+|java.lang.Float_java.awt.font.TextAttribute.WEIGHT_HEAVY|
+|java.lang.Float_java.awt.font.TextAttribute.WEIGHT_LIGHT|
+|java.lang.Float_java.awt.font.TextAttribute.WEIGHT_MEDIUM|
+|java.lang.Float_java.awt.font.TextAttribute.WEIGHT_REGULAR|
+|java.lang.Float_java.awt.font.TextAttribute.WEIGHT_SEMIBOLD|
+|java.lang.Float_java.awt.font.TextAttribute.WEIGHT_ULTRABOLD|
+|java.awt.font.TextAttribute_java.awt.font.TextAttribute.WIDTH|
+|java.lang.Float_java.awt.font.TextAttribute.WIDTH_CONDENSED|
+|java.lang.Float_java.awt.font.TextAttribute.WIDTH_EXTENDED|
+|java.lang.Float_java.awt.font.TextAttribute.WIDTH_REGULAR|
+|java.lang.Float_java.awt.font.TextAttribute.WIDTH_SEMI_CONDENSED|
+|java.lang.Float_java.awt.font.TextAttribute.WIDTH_SEMI_EXTENDED|
+
+*java.awt.font.TextAttribute_Constructors*
+|java.awt.font.TextAttribute(String)|Constructs a TextAttribute with the specified name.
+
+*java.awt.font.TextAttribute_Methods*
+|java.awt.font.TextAttribute.readResolve()|Resolves instances being deserialized to the predefined constants.
+
+*java.awt.font.TextAttribute_Description*
+
+The TextAttribute class defines attribute keys and attribute values used for text rendering. 
+
+TextAttribute instances are used as attribute keys to identify attributes in AttributedCharacterIterator(|java.text.AttributedCharacterIterator|) , Font(|java.awt.Font|) , and 
+other classes handling text attributes. Other constants defined in this class are used as attribute values. 
+
+For each text attribute, the documentation describes: 
+
+the type of their values, the valid values if there are limitations relevant constants the default effect if the attribute is absent (or has a null value). a description of the 
+effect. the fallback behavior if the exact attribute requested is not available. 
+
+Types of Values 
+
+The values of attributes must always be immutable. Where a list of limitations is given, any value outside of that set is reserved for future use, and ignored at present. If the 
+value is null or not of the proper type then it has the default effect. The effect of a particular value can be interpolated, especially in the case of multiple master fonts. This 
+interpolation is done based on the nearest defined constants above and below the request: 
+
+interpolation = (request - below)/(above - below); 
+
+Interpolation 
+
+Fonts should interpolate values in certain circumstances. For example, when the WEIGHT value is 2.13. If the nearest surrounding values in the font are WEIGHT_BOLD = 2.0 and 
+WEIGHT_HEAVY = 2.25 then font would then interpret the WEIGHT request as being 52% of the way between what it considers BOLD and what it considers HEAVY. If the nearest 
+surrounding values are WEIGHT_SEMIBOLD = 1.25 and WEIGHT_ULTRABOLD = 2.75 then the WEIGHT request is interpreted as being 58.67% of the way between SEMIBOLD and ULTRABOLD. Where a 
+font does not have enough capability to handle a given request, such as superscript, then it should simulate it to the best of its ability. To determine if simulation is being 
+performed, the client should query the font to see what actual attributes were used. 
+
+
+
+*java.awt.font.TextAttribute_java.awt.font.TextAttribute.BACKGROUND*
+
+Attribute key for the background Paint adornment. 
+
+
+
+Key BACKGROUND 
+
+Value Paint 
+
+Default null 
+
+Description Specify the background Paint (or Color) of the text. 
+
+
+*java.awt.font.TextAttribute_java.awt.font.TextAttribute.BIDI_EMBEDDING*
+
+Attribute key for the embedding level for nested bidirectional runs. 
+
+
+
+Key BIDI_EMBEDDING 
+
+Value Integer 
+
+Limits Positive values 1 through 61 are embedding levels, negative values through -61 are override levels 
+
+Default Use standard BIDI to compute levels from formatting characters in the text. 
+
+Description Specifies the bidi embedding level of the character. When this attribute is present anywhere in a paragraph, then the Unicode characters RLO, LRO, RLE, LRE, PDF are 
+disregarded in the BIDI analysis of that paragraph. See the Unicode Standard v. 2.0, section 3-11. 
+
+
+
+
+*java.awt.font.TextAttribute_java.awt.font.TextAttribute.CHAR_REPLACEMENT*
+
+Attribute key for a user_defined glyph to display in the text in lieu of a character. 
+
+Key CHAR_REPLACEMENT 
+
+Value GraphicAttribute 
+
+Description Allows the user to specify an empty position plus metric information. This method is used to reserve space for a graphic or other embedded component. Required for 
+correct BIDI position of 'inline' components within a line. An optional convenience method allows drawing for simple cases. Follows the Microsoft model: the character that this is 
+applied to should be uFFFC. 
+
+
+*java.awt.font.TextAttribute_java.awt.font.TextAttribute.FAMILY*
+
+Attribute key for the unlocalized font family name. 
+
+
+
+Key FAMILY 
+
+Value String 
+
+Constants Serif, SansSerif 
+
+Default Host default; 
+
+Description The name of the font family. If the family name is not found, the default font is used. The name should not be the full font name or specify other attributes (such as 
+the name Helvetica Bold). Such names might result in the default font if the name does not match a known family name. 
+
+
+*java.awt.font.TextAttribute_java.awt.font.TextAttribute.FONT*
+
+Attribute key for the font to use to render text. 
+
+Key FONT 
+
+Value Font 
+
+Default None, perform default resolution 
+
+Description A way for users to override the resolution of font attributes into a Font, or force use of a particular Font instance. This also allows users to specify subclasses of 
+Font in cases where a Font can be subclassed. 
+
+
+*java.awt.font.TextAttribute_java.awt.font.TextAttribute.FOREGROUND*
+
+Attribute key for the foreground paint adornment. 
+
+
+
+Key FOREGROUND 
+
+Value Paint 
+
+Default Color.black 
+
+Description Specify the foreground Paint (or Color) of the text. 
+
+
+*java.awt.font.TextAttribute_java.awt.font.TextAttribute.INPUT_METHOD_HIGHLIGHT*
+
+Attribute key for input method highlight styles. Values are instances of InputMethodHighlight(|java.awt.im.InputMethodHighlight|) . These instances should be wrapped in 
+Annotation(|java.text.Annotation|) instances if segments need to be highlighted separately. 
+
+Input method highlights are used while text is being composed using an input method. Text editing components should retain them even if they generally only deal with unstyled 
+text, and make them available to the drawing routines. 
+
+
+*java.awt.font.TextAttribute_java.awt.font.TextAttribute.INPUT_METHOD_UNDERLINE*
+
+Attribute key for input method underline adornments. 
+
+
+
+Key INPUT_METHOD_UNDERLINE 
+
+Value Integer 
+
+Constants UNDERLINE_LOW_ONE_PIXEL, UNDERLINE_LOW_TWO_PIXEL, UNDERLINE_LOW_DOTTED, UNDERLINE_LOW_GRAY, UNDERLINE_LOW_DASHED 
+
+Default no underline 
+
+
+*java.awt.font.TextAttribute_java.awt.font.TextAttribute.JUSTIFICATION*
+
+Attribute key for the justification of a paragraph. 
+
+
+
+Key JUSTIFICATION 
+
+Value Float 
+
+Limits 0.0 through1.0 
+
+Default 1.0 
+
+Description Specifies which fraction of the extra space to use when justification is requested. For example, if the line is 50 points wide and the margins are 70 points apart, a 
+value of 0.5 means that the line is padded to reach a width of 60 points. This attribute should have the same value over the whole paragraph. 
+
+
+*java.lang.Float_java.awt.font.TextAttribute.JUSTIFICATION_FULL*
+
+Justify the line to the full requested width. 
+
+
+*java.lang.Float_java.awt.font.TextAttribute.JUSTIFICATION_NONE*
+
+Do not allow the line to be justified. 
+
+
+*java.awt.font.TextAttribute_java.awt.font.TextAttribute.NUMERIC_SHAPING*
+
+Attribute key for converting ASCII decimal digits to other decimal ranges. 
+
+Values are instances of NumericShaping. The default is not to perform numeric shaping. 
+
+
+*java.awt.font.TextAttribute_java.awt.font.TextAttribute.POSTURE*
+
+Attribute key for the posture of a font. 
+
+
+
+Key POSTURE 
+
+Value Float 
+
+Constants POSTURE_REGULAR = 0, POSTURE_OBLIQUE = 0.20 
+
+Default POSTURE_REGULAR 
+
+Description The value is interpreted generally as a skew slope, positive leans to the right. If the font has a different value for specific constants, then the value is 
+interpolated as described in the class description. With fonts that have italic faces, not only the skew of the character changes, but also the letter shapes might change. Notes: 
+To set the value by angle, use: value = new Float(Math.tan(Math.PI*degrees/180.0) To determine the angle from the value, use: angle = Math.atan(value.floatValue())*180/Math.PI 
+
+Fallback If an Oblique font is available and matches, use that. Otherwise skew with a transform using the posture value interpreted as run/rise. 
+
+
+*java.lang.Float_java.awt.font.TextAttribute.POSTURE_OBLIQUE*
+
+The standard italic posture. 
+
+
+*java.lang.Float_java.awt.font.TextAttribute.POSTURE_REGULAR*
+
+The standard posture, upright. 
+
+
+*java.awt.font.TextAttribute_java.awt.font.TextAttribute.RUN_DIRECTION*
+
+Attribute key for the run direction of the line. 
+
+
+
+Key RUN_DIRECTION 
+
+Value Boolean 
+
+Constants RUN_DIRECTION_LTR = true, RUN_DIRECTION_RTL = false 
+
+Default Use the default Unicode base direction from the BIDI algorithm. 
+
+Description Specifies which base run direction to use when positioning mixed directional runs within a paragraph. If this value is RUN_DIRECTION_DEFAULT, TextLayout uses the 
+default Unicode base direction from the BIDI algorithm. This attribute should have the same value over the whole paragraph. 
+
+
+*java.lang.Boolean_java.awt.font.TextAttribute.RUN_DIRECTION_LTR*
+
+Left-to-right run direction. 
+
+
+*java.lang.Boolean_java.awt.font.TextAttribute.RUN_DIRECTION_RTL*
+
+Right-to-left run direction. 
+
+
+*java.awt.font.TextAttribute_java.awt.font.TextAttribute.SIZE*
+
+Attribute key for the font size. 
+
+
+
+Key SIZE 
+
+Value Float 
+
+Default from System Properties 
+
+Description Represents point size. Note that the appearance and metrics of a 12pt font with a 2X transform might be different than that of a 24 point font with no transform. 
+
+Fallback Scale to provided size. 
+
+
+*java.awt.font.TextAttribute_java.awt.font.TextAttribute.STRIKETHROUGH*
+
+Attribute key for the strikethrough adornment. 
+
+
+
+Key STRIKETHROUGH 
+
+Value Boolean 
+
+Constants true = on, false = off 
+
+Default off 
+
+Description An embellishment added to the glyphs rendered by a font. 
+
+
+*java.lang.Boolean_java.awt.font.TextAttribute.STRIKETHROUGH_ON*
+
+A single strikethrough. 
+
+
+*java.awt.font.TextAttribute_java.awt.font.TextAttribute.SUPERSCRIPT*
+
+Attribute key for super and subscripting. 
+
+
+
+Key SUPERSCRIPT 
+
+Value Integer 
+
+Constants SUPERSCRIPT_NONE = 0, SUPERSCRIPT_SUPER = 1, SUPERSCRIPT_SUB = -1 
+
+Default SUPERSCRIPT_NONE 
+
+Description Requests that the font display the characters with glyphs at a particular superscript level: 0 = none, 1 = superscript, 2 = superscript of superscript,...-1 = 
+subscript, -2 = subscript of subscript,... Requests that the font display text using default superscript (or subscript) glyphs and/or scaling. 
+
+Fallback Use transform with translation of +/-1/2 and scale of 2/3, progressively for each level. That is, for the transform at level N (with N != 0): offset = 
+sign(N)*1/2*(2/3)^(abs(N)-1) scale = (2/3)^abs(N) 
+
+
+*java.lang.Integer_java.awt.font.TextAttribute.SUPERSCRIPT_SUB*
+
+Standard subscript. 
+
+
+*java.lang.Integer_java.awt.font.TextAttribute.SUPERSCRIPT_SUPER*
+
+Standard superscript. 
+
+
+*java.awt.font.TextAttribute_java.awt.font.TextAttribute.SWAP_COLORS*
+
+Attribute key for swapping foreground and background Paints (or Colors). 
+
+Values are instances of Boolean. The default is not to swap the foreground and background. If the foreground and background attributes are both defined, this causes them to be 
+swapped when rendering text. If either is defaulted, the exact effect is undefined--generally it will produce an 'inverted' appearance. 
+
+
+*java.lang.Boolean_java.awt.font.TextAttribute.SWAP_COLORS_ON*
+
+Swap foreground and background. 
+
+
+*java.awt.font.TextAttribute_java.awt.font.TextAttribute.TRANSFORM*
+
+Attribute key for the transform of a font. 
+
+
+
+Key TRANSFORM 
+
+Value TransformAttribute 
+
+Default Identity transform 
+
+Description Used to transform glyphs rendered by this font. The primary intent is to support scaling, skewing, and translation. In general, large rotations do not produce very 
+useful results. The transform modifies both the glyph and the advance. The translations in the transform are interpreted as a ratio of the point size. That is, with a point size 
+of 12, a translation of 0.5 results in a movement of 6 points. 
+
+The advance point of the transformed glyph is the transform of the advance point projected onto the baseline. If the advance ends up to the left (top) of the glyph origin, the two 
+points are swapped. 
+
+Example one: The point size is 20, the original advance is 10.0, and the transform is a 60 degree counterclockwise rotation plus an offset up and to the right of 0.1, -0.1. The 
+translation results in an offset of <2.0, -2.0>. The original advance point is <10.0, 0.0>; after the rotation it is <6.0, -8.0>; when adding the offset this becomes <8.0,-10.0>, 
+when projecting on the (horizontal) baseline this becomes the new advance point: <8.0, 0.0>. The advance width is the distance from the origin to the advance point: 8.0. The 
+rotated glyph is rendered two points up and to the right of its origin and rotated. This does not affect the baseline for subsequent glyphs. 
+
+
+*java.awt.font.TextAttribute_java.awt.font.TextAttribute.UNDERLINE*
+
+Attribute key for underline adornments. 
+
+
+
+Key UNDERLINE 
+
+Value Integer 
+
+Constants UNDERLINE_ON = 0 
+
+Default none 
+
+Description An embellishment added to the glyphs rendered by a font. 
+
+Fallback 
+
+
+
+
+*java.lang.Integer_java.awt.font.TextAttribute.UNDERLINE_LOW_DASHED*
+
+Single pixel dashed low underline. 
+
+
+*java.lang.Integer_java.awt.font.TextAttribute.UNDERLINE_LOW_DOTTED*
+
+Single pixel dotted low underline. 
+
+
+*java.lang.Integer_java.awt.font.TextAttribute.UNDERLINE_LOW_GRAY*
+
+Double pixel gray low underline. 
+
+
+*java.lang.Integer_java.awt.font.TextAttribute.UNDERLINE_LOW_ONE_PIXEL*
+
+Single pixel solid low underline. 
+
+
+*java.lang.Integer_java.awt.font.TextAttribute.UNDERLINE_LOW_TWO_PIXEL*
+
+Double pixel solid low underline. 
+
+
+*java.lang.Integer_java.awt.font.TextAttribute.UNDERLINE_ON*
+
+Standard underline at the roman baseline for roman text, and below the decenders for other text. 
+
+
+*java.awt.font.TextAttribute_java.awt.font.TextAttribute.WEIGHT*
+
+Attribute key for the weight of a font. 
+
+
+
+Key WEIGHT 
+
+Value Float 
+
+Constants 
+
+WEIGHT_EXTRA_LIGHT = 0.5, WEIGHT_LIGHT = 0.75, WEIGHT_DEMILIGHT = 0.875, WEIGHT_REGULAR = 1.0, WEIGHT_SEMIBOLD = 1.25, WEIGHT_MEDIUM = 1.5, WEIGHT_DEMIBOLD = 1.75, WEIGHT_BOLD = 
+2.0, WEIGHT_HEAVY = 2.25, WEIGHT_EXTRABOLD = 2.5, WEIGHT_ULTRABOLD = 2.75 
+
+Default WEIGHT_REGULAR 
+
+Description The value is roughly the ratio of the stem width to that of the regular weight. If the font has a different value for specific constants, then the value is 
+interpolated as described in the class description. 
+
+Fallback Currently none. However, in the future, shape manipulations might be available to simulate weight variations for fonts that don't have them. 
+
+
+
+
+*java.lang.Float_java.awt.font.TextAttribute.WEIGHT_BOLD*
+
+The standard bold weight. 
+
+
+*java.lang.Float_java.awt.font.TextAttribute.WEIGHT_DEMIBOLD*
+
+A moderately lighter weight than BOLD. 
+
+
+*java.lang.Float_java.awt.font.TextAttribute.WEIGHT_DEMILIGHT*
+
+An intermediate weight between LIGHT and STANDARD. 
+
+
+*java.lang.Float_java.awt.font.TextAttribute.WEIGHT_EXTRA_LIGHT*
+
+The lightest predefined weight. 
+
+
+*java.lang.Float_java.awt.font.TextAttribute.WEIGHT_EXTRABOLD*
+
+An extra heavy weight. 
+
+
+*java.lang.Float_java.awt.font.TextAttribute.WEIGHT_HEAVY*
+
+A moderately heavier weight than BOLD. 
+
+
+*java.lang.Float_java.awt.font.TextAttribute.WEIGHT_LIGHT*
+
+The standard light weight. 
+
+
+*java.lang.Float_java.awt.font.TextAttribute.WEIGHT_MEDIUM*
+
+An intermediate weight between the REGULAR and BOLD weights. 
+
+
+*java.lang.Float_java.awt.font.TextAttribute.WEIGHT_REGULAR*
+
+The standard weight. This weight is used if WEIGHT is unspecified. 
+
+
+*java.lang.Float_java.awt.font.TextAttribute.WEIGHT_SEMIBOLD*
+
+A moderately heavier weight than REGULAR. 
+
+
+*java.lang.Float_java.awt.font.TextAttribute.WEIGHT_ULTRABOLD*
+
+The heaviest predefined weight. 
+
+
+*java.awt.font.TextAttribute_java.awt.font.TextAttribute.WIDTH*
+
+Attribute key for the width of a font. 
+
+
+
+Key WIDTH 
+
+Value Float 
+
+Constants WIDTH_CONDENSED = 0.75, WIDTH_SEMI_CONDENSED = 0.875, WIDTH_REGULAR = 1.0, WIDTH_SEMI_EXTENDED = 1.25, WIDTH_EXTENDED = 1.5 
+
+Default WIDTH_REGULAR 
+
+Description The value is roughly the ratio of the advance width to that of the regular width. If the font has a different value for specific constants, then the value is 
+interpolated as described in the class description. 
+
+Fallback If a Narrow font is available and matches, use that. Otherwise scale with a transform based on the value. 
+
+
+*java.lang.Float_java.awt.font.TextAttribute.WIDTH_CONDENSED*
+
+The most condensed predefined width. 
+
+
+*java.lang.Float_java.awt.font.TextAttribute.WIDTH_EXTENDED*
+
+The most extended predefined width. 
+
+
+*java.lang.Float_java.awt.font.TextAttribute.WIDTH_REGULAR*
+
+The standard width. This width is used if WIDTH is unspecified. 
+
+
+*java.lang.Float_java.awt.font.TextAttribute.WIDTH_SEMI_CONDENSED*
+
+A moderately condensed width. 
+
+
+*java.lang.Float_java.awt.font.TextAttribute.WIDTH_SEMI_EXTENDED*
+
+A moderately extended width. 
+
+
+
+*java.awt.font.TextAttribute(String)*
+
+protected TextAttribute(java.lang.String name)
+
+Constructs a TextAttribute with the specified name. 
+
+    name - the attribute name to assign to this TextAttribute 
+
+*java.awt.font.TextAttribute.readResolve()*
+
+protected |java.lang.Object| readResolve()
+  throws |java.io.InvalidObjectException|
+         
+Resolves instances being deserialized to the predefined constants. 
+
+
+
+

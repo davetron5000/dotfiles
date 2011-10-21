@@ -1,0 +1,1007 @@
+*java.awt.Graphics* *Graphics* The Graphics class is the abstract base class for 
+ all graphics contexts that allow an application to draw onto 
+ components that are realized on va
+
+public abstract class Graphics
+  extends    |java.lang.Object|
+
+|java.awt.Graphics_Description|
+|java.awt.Graphics_Fields|
+|java.awt.Graphics_Constructors|
+|java.awt.Graphics_Methods|
+
+====================================================================================================================================================================================
+
+*java.awt.Graphics_Constructors*
+|java.awt.Graphics()|Constructs a new Graphics object.
+
+*java.awt.Graphics_Methods*
+|java.awt.Graphics.clearRect(int,int,int,int)|Clears the specified rectangle by filling it with the background  color of the current drawing surface.
+|java.awt.Graphics.clipRect(int,int,int,int)|Intersects the current clip with the specified rectangle.
+|java.awt.Graphics.copyArea(int,int,int,int,int,int)|Copies an area of the component by a distance specified by   dx and dy.
+|java.awt.Graphics.create()|Creates a new Graphics object that is   a copy of this Graphics object.
+|java.awt.Graphics.create(int,int,int,int)|Creates a new Graphics object based on this   Graphics object, but with a new translation and clip area.
+|java.awt.Graphics.dispose()|Disposes of this graphics context and releases   any system resources that it is using.
+|java.awt.Graphics.draw3DRect(int,int,int,int,boolean)|Draws a 3-D highlighted outline of the specified rectangle.
+|java.awt.Graphics.drawArc(int,int,int,int,int,int)|Draws the outline of a circular or elliptical arc   covering the specified rectangle.
+|java.awt.Graphics.drawBytes(byte[],int,int,int,int)|Draws the text given by the specified byte array, using this   graphics context's current font and color.
+|java.awt.Graphics.drawChars(char[],int,int,int,int)|Draws the text given by the specified character array, using this   graphics context's current font and color.
+|java.awt.Graphics.drawImage(Image,int,int,Color,ImageObserver)|Draws as much of the specified image as is currently available.
+|java.awt.Graphics.drawImage(Image,int,int,ImageObserver)|Draws as much of the specified image as is currently available.
+|java.awt.Graphics.drawImage(Image,int,int,int,int,Color,ImageObserver)|Draws as much of the specified image as has already been scaled  to fit inside the specified rectangle.
+|java.awt.Graphics.drawImage(Image,int,int,int,int,ImageObserver)|Draws as much of the specified image as has already been scaled  to fit inside the specified rectangle.
+|java.awt.Graphics.drawImage(Image,int,int,int,int,int,int,int,int,Color,ImageObserver)|Draws as much of the specified area of the specified image as is  currently available, scal
+|java.awt.Graphics.drawImage(Image,int,int,int,int,int,int,int,int,ImageObserver)|Draws as much of the specified area of the specified image as is  currently available, scaling it
+|java.awt.Graphics.drawLine(int,int,int,int)|Draws a line, using the current color, between the points   (x1,y1) and (x2,y2)   in this graphics context's coordinate system.
+|java.awt.Graphics.drawOval(int,int,int,int)|Draws the outline of an oval.
+|java.awt.Graphics.drawPolygon(int[],int[],int)|Draws a closed polygon defined by   arrays of x and y coordinates.
+|java.awt.Graphics.drawPolygon(Polygon)|Draws the outline of a polygon defined by the specified   Polygon object.
+|java.awt.Graphics.drawPolyline(int[],int[],int)|Draws a sequence of connected lines defined by   arrays of x and y coordinates.
+|java.awt.Graphics.drawRect(int,int,int,int)|Draws the outline of the specified rectangle.
+|java.awt.Graphics.drawRoundRect(int,int,int,int,int,int)|Draws an outlined round-cornered rectangle using this graphics   context's current color.
+|java.awt.Graphics.drawString(AttributedCharacterIterator,int,int)|Draws the text given by the specified iterator, using this   graphics context's current color.
+|java.awt.Graphics.drawString(String,int,int)|Draws the text given by the specified string, using this   graphics context's current font and color.
+|java.awt.Graphics.fill3DRect(int,int,int,int,boolean)|Paints a 3-D highlighted rectangle filled with the current color.
+|java.awt.Graphics.fillArc(int,int,int,int,int,int)|Fills a circular or elliptical arc covering the specified rectangle.
+|java.awt.Graphics.fillOval(int,int,int,int)|Fills an oval bounded by the specified rectangle with the  current color.
+|java.awt.Graphics.fillPolygon(int[],int[],int)|Fills a closed polygon defined by   arrays of x and y coordinates.
+|java.awt.Graphics.fillPolygon(Polygon)|Fills the polygon defined by the specified Polygon object with  the graphics context's current color.
+|java.awt.Graphics.fillRect(int,int,int,int)|Fills the specified rectangle.
+|java.awt.Graphics.fillRoundRect(int,int,int,int,int,int)|Fills the specified rounded corner rectangle with the current color.
+|java.awt.Graphics.finalize()|Disposes of this graphics context once it is no longer referenced.
+|java.awt.Graphics.getClip()|Gets the current clipping area.
+|java.awt.Graphics.getClipBounds()|Returns the bounding rectangle of the current clipping area.
+|java.awt.Graphics.getClipBounds(Rectangle)|Returns the bounding rectangle of the current clipping area.
+|java.awt.Graphics.getClipRect()|Returns the bounding rectangle of the current clipping area.
+|java.awt.Graphics.getColor()|Gets this graphics context's current color.
+|java.awt.Graphics.getFont()|Gets the current font.
+|java.awt.Graphics.getFontMetrics()|Gets the font metrics of the current font.
+|java.awt.Graphics.getFontMetrics(Font)|Gets the font metrics for the specified font.
+|java.awt.Graphics.hitClip(int,int,int,int)|Returns true if the specified rectangular area might intersect   the current clipping area.
+|java.awt.Graphics.setClip(int,int,int,int)|Sets the current clip to the rectangle specified by the given  coordinates.
+|java.awt.Graphics.setClip(Shape)|Sets the current clipping area to an arbitrary clip shape.
+|java.awt.Graphics.setColor(Color)|Sets this graphics context's current color to the specified   color.
+|java.awt.Graphics.setFont(Font)|Sets this graphics context's font to the specified font.
+|java.awt.Graphics.setPaintMode()|Sets the paint mode of this graphics context to overwrite the   destination with this graphics context's current color.
+|java.awt.Graphics.setXORMode(Color)|Sets the paint mode of this graphics context to alternate between   this graphics context's current color and the new specified color.
+|java.awt.Graphics.toString()|Returns a String object representing this                          Graphics object's value.
+|java.awt.Graphics.translate(int,int)|Translates the origin of the graphics context to the point  (x,y) in the current coordinate system.
+
+*java.awt.Graphics_Description*
+
+The Graphics class is the abstract base class for all graphics contexts that allow an application to draw onto components that are realized on various devices, as well as onto 
+off-screen images. 
+
+A Graphics object encapsulates state information needed for the basic rendering operations that Java supports. This state information includes the following properties: 
+
+The Component object on which to draw. A translation origin for rendering and clipping coordinates. The current clip. The current color. The current font. The current logical 
+pixel operation function (XOR or Paint). The current XOR alternation color (see (|java.awt.Graphics|) ). 
+
+Coordinates are infinitely thin and lie between the pixels of the output device. Operations that draw the outline of a figure operate by traversing an infinitely thin path between 
+pixels with a pixel-sized pen that hangs down and to the right of the anchor point on the path. Operations that fill a figure operate by filling the interior of that infinitely 
+thin path. Operations that render horizontal text render the ascending portion of character glyphs entirely above the baseline coordinate. 
+
+The graphics pen hangs down and to the right from the path it traverses. This has the following implications: 
+
+If you draw a figure that covers a given rectangle, that figure occupies one extra row of pixels on the right and bottom edges as compared to filling a figure that is bounded by 
+that same rectangle. If you draw a horizontal line along the same y coordinate as the baseline of a line of text, that line is drawn entirely below the text, except for any 
+descenders. 
+
+All coordinates that appear as arguments to the methods of this Graphics object are considered relative to the translation origin of this Graphics object prior to the invocation 
+of the method. 
+
+All rendering operations modify only pixels which lie within the area bounded by the current clip, which is specified by a (|java.awt.Shape|) in user space and is controlled by 
+the program using the Graphics object. This user clip is transformed into device space and combined with the device clip, which is defined by the visibility of windows and device 
+extents. The combination of the user clip and device clip defines the composite clip, which determines the final clipping region. The user clip cannot be modified by the rendering 
+system to reflect the resulting composite clip. The user clip can only be changed through the setClip or clipRect methods. All drawing or writing is done in the current color, 
+using the current paint mode, and in the current font. 
+
+
+
+*java.awt.Graphics()*
+
+protected Graphics()
+
+Constructs a new Graphics object. This constructor is the default contructor for a graphics context. 
+
+Since Graphics is an abstract class, applications cannot call this constructor directly. Graphics contexts are obtained from other graphics contexts or are created by calling 
+getGraphics on a component. 
+
+
+*java.awt.Graphics.clearRect(int,int,int,int)*
+
+public abstract void clearRect(
+  int x,
+  int y,
+  int width,
+  int height)
+
+Clears the specified rectangle by filling it with the background color of the current drawing surface. This operation does not use the current paint mode. 
+
+Beginning with Java1.1, the background color of offscreen images may be system dependent. Applications should use setColor followed by fillRect to ensure that an offscreen image 
+is cleared to a specific color. 
+
+
+    x - the x coordinate of the rectangle to clear. 
+    y - the y coordinate of the rectangle to clear. 
+    width - the width of the rectangle to clear. 
+    height - the height of the rectangle to clear. 
+
+*java.awt.Graphics.clipRect(int,int,int,int)*
+
+public abstract void clipRect(
+  int x,
+  int y,
+  int width,
+  int height)
+
+Intersects the current clip with the specified rectangle. The resulting clipping area is the intersection of the current clipping area and the specified rectangle. If there is no 
+current clipping area, either because the clip has never been set, or the clip has been cleared using setClip(null), the specified rectangle becomes the new clip. This method sets 
+the user clip, which is independent of the clipping associated with device bounds and window visibility. This method can only be used to make the current clip smaller. To set the 
+current clip larger, use any of the setClip methods. Rendering operations have no effect outside of the clipping area. 
+
+
+    x - the x coordinate of the rectangle to intersect the clip with 
+    y - the y coordinate of the rectangle to intersect the clip with 
+    width - the width of the rectangle to intersect the clip with 
+    height - the height of the rectangle to intersect the clip with 
+
+*java.awt.Graphics.copyArea(int,int,int,int,int,int)*
+
+public abstract void copyArea(
+  int x,
+  int y,
+  int width,
+  int height,
+  int dx,
+  int dy)
+
+Copies an area of the component by a distance specified by dx and dy. From the point specified by x and y, this method copies downwards and to the right. To copy an area of the 
+component to the left or upwards, specify a negative value for dx or dy. If a portion of the source rectangle lies outside the bounds of the component, or is obscured by another 
+window or component, copyArea will be unable to copy the associated pixels. The area that is omitted can be refreshed by calling the component's paint method. 
+
+
+    x - the x coordinate of the source rectangle. 
+    y - the y coordinate of the source rectangle. 
+    width - the width of the source rectangle. 
+    height - the height of the source rectangle. 
+    dx - the horizontal distance to copy the pixels. 
+    dy - the vertical distance to copy the pixels. 
+
+*java.awt.Graphics.create()*
+
+public abstract |java.awt.Graphics| create()
+
+Creates a new Graphics object that is a copy of this Graphics object. 
+
+
+
+    Returns: a new graphics context that is a copy of this graphics context. 
+
+*java.awt.Graphics.create(int,int,int,int)*
+
+public |java.awt.Graphics| create(
+  int x,
+  int y,
+  int width,
+  int height)
+
+Creates a new Graphics object based on this Graphics object, but with a new translation and clip area. The new Graphics object has its origin translated to the specified point 
+(x,y). Its clip area is determined by the intersection of the original clip area with the specified rectangle. The arguments are all interpreted in the coordinate system of the 
+original Graphics object. The new graphics context is identical to the original, except in two respects: 
+
+
+
+The new graphics context is translated by (x,y). That is to say, the point (0,0) in the new graphics context is the same as (x,y) in the original graphics context. 
+
+The new graphics context has an additional clipping rectangle, in addition to whatever (translated) clipping rectangle it inherited from the original graphics context. The origin 
+of the new clipping rectangle is at (0,0), and its size is specified by the width and height arguments. 
+
+
+
+
+    x - the x coordinate. 
+    y - the y coordinate. 
+    width - the width of the clipping rectangle. 
+    height - the height of the clipping rectangle. 
+
+    Returns: a new graphics context. 
+
+*java.awt.Graphics.dispose()*
+
+public abstract void dispose()
+
+Disposes of this graphics context and releases any system resources that it is using. A Graphics object cannot be used after disposehas been called. 
+
+When a Java program runs, a large number of Graphics objects can be created within a short time frame. Although the finalization process of the garbage collector also disposes of 
+the same system resources, it is preferable to manually free the associated resources by calling this method rather than to rely on a finalization process which may not run to 
+completion for a long period of time. 
+
+Graphics objects which are provided as arguments to the paint and update methods of components are automatically released by the system when those methods return. For efficiency, 
+programmers should call dispose when finished using a Graphics object only if it was created directly from a component or another Graphics object. 
+
+
+
+*java.awt.Graphics.draw3DRect(int,int,int,int,boolean)*
+
+public void draw3DRect(
+  int x,
+  int y,
+  int width,
+  int height,
+  boolean raised)
+
+Draws a 3-D highlighted outline of the specified rectangle. The edges of the rectangle are highlighted so that they appear to be beveled and lit from the upper left corner. 
+
+The colors used for the highlighting effect are determined based on the current color. The resulting rectangle covers an area that is width+1 pixels wide by height+1 pixels tall. 
+
+
+    x - the x coordinate of the rectangle to be drawn. 
+    y - the y coordinate of the rectangle to be drawn. 
+    width - the width of the rectangle to be drawn. 
+    height - the height of the rectangle to be drawn. 
+    raised - a boolean that determines whether the rectangle appears to be raised above the surface or sunk into the surface. 
+
+*java.awt.Graphics.drawArc(int,int,int,int,int,int)*
+
+public abstract void drawArc(
+  int x,
+  int y,
+  int width,
+  int height,
+  int startAngle,
+  int arcAngle)
+
+Draws the outline of a circular or elliptical arc covering the specified rectangle. 
+
+The resulting arc begins at startAngle and extends for arcAngle degrees, using the current color. Angles are interpreted such that 0degrees is at the 3o'clock position. A positive 
+value indicates a counter-clockwise rotation while a negative value indicates a clockwise rotation. 
+
+The center of the arc is the center of the rectangle whose origin is (x,y) and whose size is specified by the width and height arguments. 
+
+The resulting arc covers an area width+1 pixels wide by height+1 pixels tall. 
+
+The angles are specified relative to the non-square extents of the bounding rectangle such that 45 degrees always falls on the line from the center of the ellipse to the upper 
+right corner of the bounding rectangle. As a result, if the bounding rectangle is noticeably longer in one axis than the other, the angles to the start and end of the arc segment 
+will be skewed farther along the longer axis of the bounds. 
+
+
+    x - the x coordinate of the upper-left corner of the arc to be drawn. 
+    y - the y coordinate of the upper-left corner of the arc to be drawn. 
+    width - the width of the arc to be drawn. 
+    height - the height of the arc to be drawn. 
+    startAngle - the beginning angle. 
+    arcAngle - the angular extent of the arc, relative to the start angle. 
+
+*java.awt.Graphics.drawBytes(byte[],int,int,int,int)*
+
+public void drawBytes(
+  byte[] data,
+  int offset,
+  int length,
+  int x,
+  int y)
+
+Draws the text given by the specified byte array, using this graphics context's current font and color. The baseline of the first character is at position (x,y) in this graphics 
+context's coordinate system. 
+
+
+    data - the data to be drawn 
+    offset - the start offset in the data 
+    length - the number of bytes that are drawn 
+    x - the x coordinate of the baseline of the text 
+    y - the y coordinate of the baseline of the text 
+
+*java.awt.Graphics.drawChars(char[],int,int,int,int)*
+
+public void drawChars(
+  char[] data,
+  int offset,
+  int length,
+  int x,
+  int y)
+
+Draws the text given by the specified character array, using this graphics context's current font and color. The baseline of the first character is at position (x,y) in this 
+graphics context's coordinate system. 
+
+
+    data - the array of characters to be drawn 
+    offset - the start offset in the data 
+    length - the number of characters to be drawn 
+    x - the x coordinate of the baseline of the text 
+    y - the y coordinate of the baseline of the text 
+
+*java.awt.Graphics.drawImage(Image,int,int,Color,ImageObserver)*
+
+public abstract boolean drawImage(
+  java.awt.Image img,
+  int x,
+  int y,
+  java.awt.Color bgcolor,
+  java.awt.image.ImageObserver observer)
+
+Draws as much of the specified image as is currently available. The image is drawn with its top-left corner at (x,y) in this graphics context's coordinate space. Transparent 
+pixels are drawn in the specified background color. 
+
+This operation is equivalent to filling a rectangle of the width and height of the specified image with the given color and then drawing the image on top of it, but possibly more 
+efficient. 
+
+This method returns immediately in all cases, even if the complete image has not yet been loaded, and it has not been dithered and converted for the current output device. 
+
+If the image has completely loaded and its pixels are no longer being changed, then drawImage returns true. Otherwise, drawImage returns false and as more of the image becomes 
+available or it is time to draw another frame of animation, the process that loads the image notifies the specified image observer. 
+
+
+    img - the specified image to be drawn. This method does nothing if img is null. 
+    x - the x coordinate. 
+    y - the y coordinate. 
+    bgcolor - the background color to paint under the non-opaque portions of the image. 
+    observer - object to be notified as more of the image is converted. 
+
+    Returns: false if the image pixels are still changing; true otherwise. 
+
+*java.awt.Graphics.drawImage(Image,int,int,ImageObserver)*
+
+public abstract boolean drawImage(
+  java.awt.Image img,
+  int x,
+  int y,
+  java.awt.image.ImageObserver observer)
+
+Draws as much of the specified image as is currently available. The image is drawn with its top-left corner at (x,y) in this graphics context's coordinate space. Transparent 
+pixels in the image do not affect whatever pixels are already there. 
+
+This method returns immediately in all cases, even if the complete image has not yet been loaded, and it has not been dithered and converted for the current output device. 
+
+If the image has completely loaded and its pixels are no longer being changed, then drawImage returns true. Otherwise, drawImage returns false and as more of the image becomes 
+available or it is time to draw another frame of animation, the process that loads the image notifies the specified image observer. 
+
+
+    img - the specified image to be drawn. This method does nothing if img is null. 
+    x - the x coordinate. 
+    y - the y coordinate. 
+    observer - object to be notified as more of the image is converted. 
+
+    Returns: false if the image pixels are still changing; true otherwise. 
+
+*java.awt.Graphics.drawImage(Image,int,int,int,int,Color,ImageObserver)*
+
+public abstract boolean drawImage(
+  java.awt.Image img,
+  int x,
+  int y,
+  int width,
+  int height,
+  java.awt.Color bgcolor,
+  java.awt.image.ImageObserver observer)
+
+Draws as much of the specified image as has already been scaled to fit inside the specified rectangle. 
+
+The image is drawn inside the specified rectangle of this graphics context's coordinate space, and is scaled if necessary. Transparent pixels are drawn in the specified background 
+color. This operation is equivalent to filling a rectangle of the width and height of the specified image with the given color and then drawing the image on top of it, but 
+possibly more efficient. 
+
+This method returns immediately in all cases, even if the entire image has not yet been scaled, dithered, and converted for the current output device. If the current output 
+representation is not yet complete then drawImage returns false. As more of the image becomes available, the process that loads the image notifies the specified image observer. 
+
+A scaled version of an image will not necessarily be available immediately just because an unscaled version of the image has been constructed for this output device. Each size of 
+the image may be cached separately and generated from the original data in a separate image production sequence. 
+
+
+    img - the specified image to be drawn. This method does nothing if img is null. 
+    x - the x coordinate. 
+    y - the y coordinate. 
+    width - the width of the rectangle. 
+    height - the height of the rectangle. 
+    bgcolor - the background color to paint under the non-opaque portions of the image. 
+    observer - object to be notified as more of the image is converted. 
+
+    Returns: false if the image pixels are still changing; true otherwise. 
+
+*java.awt.Graphics.drawImage(Image,int,int,int,int,ImageObserver)*
+
+public abstract boolean drawImage(
+  java.awt.Image img,
+  int x,
+  int y,
+  int width,
+  int height,
+  java.awt.image.ImageObserver observer)
+
+Draws as much of the specified image as has already been scaled to fit inside the specified rectangle. 
+
+The image is drawn inside the specified rectangle of this graphics context's coordinate space, and is scaled if necessary. Transparent pixels do not affect whatever pixels are 
+already there. 
+
+This method returns immediately in all cases, even if the entire image has not yet been scaled, dithered, and converted for the current output device. If the current output 
+representation is not yet complete, then drawImage returns false. As more of the image becomes available, the process that loads the image notifies the image observer by calling 
+its imageUpdate method. 
+
+A scaled version of an image will not necessarily be available immediately just because an unscaled version of the image has been constructed for this output device. Each size of 
+the image may be cached separately and generated from the original data in a separate image production sequence. 
+
+
+    img - the specified image to be drawn. This method does nothing if img is null. 
+    x - the x coordinate. 
+    y - the y coordinate. 
+    width - the width of the rectangle. 
+    height - the height of the rectangle. 
+    observer - object to be notified as more of the image is converted. 
+
+    Returns: false if the image pixels are still changing; true otherwise. 
+
+*java.awt.Graphics.drawImage(Image,int,int,int,int,int,int,int,int,Color,ImageObserver)*
+
+public abstract boolean drawImage(
+  java.awt.Image img,
+  int dx1,
+  int dy1,
+  int dx2,
+  int dy2,
+  int sx1,
+  int sy1,
+  int sx2,
+  int sy2,
+  java.awt.Color bgcolor,
+  java.awt.image.ImageObserver observer)
+
+Draws as much of the specified area of the specified image as is currently available, scaling it on the fly to fit inside the specified area of the destination drawable surface. 
+
+Transparent pixels are drawn in the specified background color. This operation is equivalent to filling a rectangle of the width and height of the specified image with the given 
+color and then drawing the image on top of it, but possibly more efficient. 
+
+This method returns immediately in all cases, even if the image area to be drawn has not yet been scaled, dithered, and converted for the current output device. If the current 
+output representation is not yet complete then drawImage returns false. As more of the image becomes available, the process that loads the image notifies the specified image 
+observer. 
+
+This method always uses the unscaled version of the image to render the scaled rectangle and performs the required scaling on the fly. It does not use a cached, scaled version of 
+the image for this operation. Scaling of the image from source to destination is performed such that the first coordinate of the source rectangle is mapped to the first coordinate 
+of the destination rectangle, and the second source coordinate is mapped to the second destination coordinate. The subimage is scaled and flipped as needed to preserve those 
+mappings. 
+
+
+    img - the specified image to be drawn. This method does nothing if img is null. 
+    dx1 - the x coordinate of the first corner of the destination rectangle. 
+    dy1 - the y coordinate of the first corner of the destination rectangle. 
+    dx2 - the x coordinate of the second corner of the destination rectangle. 
+    dy2 - the y coordinate of the second corner of the destination rectangle. 
+    sx1 - the x coordinate of the first corner of the source rectangle. 
+    sy1 - the y coordinate of the first corner of the source rectangle. 
+    sx2 - the x coordinate of the second corner of the source rectangle. 
+    sy2 - the y coordinate of the second corner of the source rectangle. 
+    bgcolor - the background color to paint under the non-opaque portions of the image. 
+    observer - object to be notified as more of the image is scaled and converted. 
+
+    Returns: false if the image pixels are still changing; true otherwise. 
+
+*java.awt.Graphics.drawImage(Image,int,int,int,int,int,int,int,int,ImageObserver)*
+
+public abstract boolean drawImage(
+  java.awt.Image img,
+  int dx1,
+  int dy1,
+  int dx2,
+  int dy2,
+  int sx1,
+  int sy1,
+  int sx2,
+  int sy2,
+  java.awt.image.ImageObserver observer)
+
+Draws as much of the specified area of the specified image as is currently available, scaling it on the fly to fit inside the specified area of the destination drawable surface. 
+Transparent pixels do not affect whatever pixels are already there. 
+
+This method returns immediately in all cases, even if the image area to be drawn has not yet been scaled, dithered, and converted for the current output device. If the current 
+output representation is not yet complete then drawImage returns false. As more of the image becomes available, the process that loads the image notifies the specified image 
+observer. 
+
+This method always uses the unscaled version of the image to render the scaled rectangle and performs the required scaling on the fly. It does not use a cached, scaled version of 
+the image for this operation. Scaling of the image from source to destination is performed such that the first coordinate of the source rectangle is mapped to the first coordinate 
+of the destination rectangle, and the second source coordinate is mapped to the second destination coordinate. The subimage is scaled and flipped as needed to preserve those 
+mappings. 
+
+
+    img - the specified image to be drawn. This method does nothing if img is null. 
+    dx1 - the x coordinate of the first corner of the destination rectangle. 
+    dy1 - the y coordinate of the first corner of the destination rectangle. 
+    dx2 - the x coordinate of the second corner of the destination rectangle. 
+    dy2 - the y coordinate of the second corner of the destination rectangle. 
+    sx1 - the x coordinate of the first corner of the source rectangle. 
+    sy1 - the y coordinate of the first corner of the source rectangle. 
+    sx2 - the x coordinate of the second corner of the source rectangle. 
+    sy2 - the y coordinate of the second corner of the source rectangle. 
+    observer - object to be notified as more of the image is scaled and converted. 
+
+    Returns: false if the image pixels are still changing; true otherwise. 
+
+*java.awt.Graphics.drawLine(int,int,int,int)*
+
+public abstract void drawLine(
+  int x1,
+  int y1,
+  int x2,
+  int y2)
+
+Draws a line, using the current color, between the points (x1,y1) and (x2,y2) in this graphics context's coordinate system. 
+
+
+    x1 - the first point's x coordinate. 
+    y1 - the first point's y coordinate. 
+    x2 - the second point's x coordinate. 
+    y2 - the second point's y coordinate. 
+
+*java.awt.Graphics.drawOval(int,int,int,int)*
+
+public abstract void drawOval(
+  int x,
+  int y,
+  int width,
+  int height)
+
+Draws the outline of an oval. The result is a circle or ellipse that fits within the rectangle specified by the x, y, width, and height arguments. 
+
+The oval covers an area that is width+1 pixels wide and height+1 pixels tall. 
+
+
+    x - the x coordinate of the upper left corner of the oval to be drawn. 
+    y - the y coordinate of the upper left corner of the oval to be drawn. 
+    width - the width of the oval to be drawn. 
+    height - the height of the oval to be drawn. 
+
+*java.awt.Graphics.drawPolygon(int[],int[],int)*
+
+public abstract void drawPolygon(
+  int[] xPoints,
+  int[] yPoints,
+  int nPoints)
+
+Draws a closed polygon defined by arrays of x and y coordinates. Each pair of (x,y) coordinates defines a point. 
+
+This method draws the polygon defined by nPoint line segments, where the first nPoint-1 line segments are line segments from (xPoints[i-1],yPoints[i-1]) to 
+(xPoints[i],yPoints[i]), for 1inPoints. The figure is automatically closed by drawing a line connecting the final point to the first point, if those points are different. 
+
+
+    xPoints - a an array of x coordinates. 
+    yPoints - a an array of y coordinates. 
+    nPoints - a the total number of points. 
+
+*java.awt.Graphics.drawPolygon(Polygon)*
+
+public void drawPolygon(java.awt.Polygon p)
+
+Draws the outline of a polygon defined by the specified Polygon object. 
+
+
+    p - the polygon to draw. 
+
+*java.awt.Graphics.drawPolyline(int[],int[],int)*
+
+public abstract void drawPolyline(
+  int[] xPoints,
+  int[] yPoints,
+  int nPoints)
+
+Draws a sequence of connected lines defined by arrays of x and y coordinates. Each pair of (x,y) coordinates defines a point. The figure is not closed if the first point differs 
+from the last point. 
+
+
+    xPoints - an array of x points 
+    yPoints - an array of y points 
+    nPoints - the total number of points 
+
+*java.awt.Graphics.drawRect(int,int,int,int)*
+
+public void drawRect(
+  int x,
+  int y,
+  int width,
+  int height)
+
+Draws the outline of the specified rectangle. The left and right edges of the rectangle are at x and x+width. The top and bottom edges are at y and y+height. The rectangle is 
+drawn using the graphics context's current color. 
+
+
+    x - the x coordinate of the rectangle to be drawn. 
+    y - the y coordinate of the rectangle to be drawn. 
+    width - the width of the rectangle to be drawn. 
+    height - the height of the rectangle to be drawn. 
+
+*java.awt.Graphics.drawRoundRect(int,int,int,int,int,int)*
+
+public abstract void drawRoundRect(
+  int x,
+  int y,
+  int width,
+  int height,
+  int arcWidth,
+  int arcHeight)
+
+Draws an outlined round-cornered rectangle using this graphics context's current color. The left and right edges of the rectangle are at x and x+width, respectively. The top and 
+bottom edges of the rectangle are at y and y+height. 
+
+
+    x - the x coordinate of the rectangle to be drawn. 
+    y - the y coordinate of the rectangle to be drawn. 
+    width - the width of the rectangle to be drawn. 
+    height - the height of the rectangle to be drawn. 
+    arcWidth - the horizontal diameter of the arc at the four corners. 
+    arcHeight - the vertical diameter of the arc at the four corners. 
+
+*java.awt.Graphics.drawString(AttributedCharacterIterator,int,int)*
+
+public abstract void drawString(
+  java.text.AttributedCharacterIterator iterator,
+  int x,
+  int y)
+
+Draws the text given by the specified iterator, using this graphics context's current color. The iterator has to specify a font for each character. The baseline of the leftmost 
+character is at position (x,y) in this graphics context's coordinate system. 
+
+
+    iterator - the iterator whose text is to be drawn 
+    x - the x coordinate. 
+    y - the y coordinate. 
+
+*java.awt.Graphics.drawString(String,int,int)*
+
+public abstract void drawString(
+  java.lang.String str,
+  int x,
+  int y)
+
+Draws the text given by the specified string, using this graphics context's current font and color. The baseline of the leftmost character is at position (x,y) in this graphics 
+context's coordinate system. 
+
+
+    str - the string to be drawn. 
+    x - the x coordinate. 
+    y - the y coordinate. 
+
+*java.awt.Graphics.fill3DRect(int,int,int,int,boolean)*
+
+public void fill3DRect(
+  int x,
+  int y,
+  int width,
+  int height,
+  boolean raised)
+
+Paints a 3-D highlighted rectangle filled with the current color. The edges of the rectangle will be highlighted so that it appears as if the edges were beveled and lit from the 
+upper left corner. The colors used for the highlighting effect will be determined from the current color. 
+
+
+    x - the x coordinate of the rectangle to be filled. 
+    y - the y coordinate of the rectangle to be filled. 
+    width - the width of the rectangle to be filled. 
+    height - the height of the rectangle to be filled. 
+    raised - a boolean value that determines whether the rectangle appears to be raised above the surface or etched into the surface. 
+
+*java.awt.Graphics.fillArc(int,int,int,int,int,int)*
+
+public abstract void fillArc(
+  int x,
+  int y,
+  int width,
+  int height,
+  int startAngle,
+  int arcAngle)
+
+Fills a circular or elliptical arc covering the specified rectangle. 
+
+The resulting arc begins at startAngle and extends for arcAngle degrees. Angles are interpreted such that 0degrees is at the 3o'clock position. A positive value indicates a 
+counter-clockwise rotation while a negative value indicates a clockwise rotation. 
+
+The center of the arc is the center of the rectangle whose origin is (x,y) and whose size is specified by the width and height arguments. 
+
+The resulting arc covers an area width+1 pixels wide by height+1 pixels tall. 
+
+The angles are specified relative to the non-square extents of the bounding rectangle such that 45 degrees always falls on the line from the center of the ellipse to the upper 
+right corner of the bounding rectangle. As a result, if the bounding rectangle is noticeably longer in one axis than the other, the angles to the start and end of the arc segment 
+will be skewed farther along the longer axis of the bounds. 
+
+
+    x - the x coordinate of the upper-left corner of the arc to be filled. 
+    y - the y coordinate of the upper-left corner of the arc to be filled. 
+    width - the width of the arc to be filled. 
+    height - the height of the arc to be filled. 
+    startAngle - the beginning angle. 
+    arcAngle - the angular extent of the arc, relative to the start angle. 
+
+*java.awt.Graphics.fillOval(int,int,int,int)*
+
+public abstract void fillOval(
+  int x,
+  int y,
+  int width,
+  int height)
+
+Fills an oval bounded by the specified rectangle with the current color. 
+
+
+    x - the x coordinate of the upper left corner of the oval to be filled. 
+    y - the y coordinate of the upper left corner of the oval to be filled. 
+    width - the width of the oval to be filled. 
+    height - the height of the oval to be filled. 
+
+*java.awt.Graphics.fillPolygon(int[],int[],int)*
+
+public abstract void fillPolygon(
+  int[] xPoints,
+  int[] yPoints,
+  int nPoints)
+
+Fills a closed polygon defined by arrays of x and y coordinates. 
+
+This method draws the polygon defined by nPoint line segments, where the first nPoint-1 line segments are line segments from (xPoints[i-1],yPoints[i-1]) to 
+(xPoints[i],yPoints[i]), for 1inPoints. The figure is automatically closed by drawing a line connecting the final point to the first point, if those points are different. 
+
+The area inside the polygon is defined using an even-odd fill rule, also known as the alternating rule. 
+
+
+    xPoints - a an array of x coordinates. 
+    yPoints - a an array of y coordinates. 
+    nPoints - a the total number of points. 
+
+*java.awt.Graphics.fillPolygon(Polygon)*
+
+public void fillPolygon(java.awt.Polygon p)
+
+Fills the polygon defined by the specified Polygon object with the graphics context's current color. 
+
+The area inside the polygon is defined using an even-odd fill rule, also known as the alternating rule. 
+
+
+    p - the polygon to fill. 
+
+*java.awt.Graphics.fillRect(int,int,int,int)*
+
+public abstract void fillRect(
+  int x,
+  int y,
+  int width,
+  int height)
+
+Fills the specified rectangle. The left and right edges of the rectangle are at x and x+width-1. The top and bottom edges are at y and y+height-1. The resulting rectangle covers 
+an area width pixels wide by height pixels tall. The rectangle is filled using the graphics context's current color. 
+
+
+    x - the x coordinate of the rectangle to be filled. 
+    y - the y coordinate of the rectangle to be filled. 
+    width - the width of the rectangle to be filled. 
+    height - the height of the rectangle to be filled. 
+
+*java.awt.Graphics.fillRoundRect(int,int,int,int,int,int)*
+
+public abstract void fillRoundRect(
+  int x,
+  int y,
+  int width,
+  int height,
+  int arcWidth,
+  int arcHeight)
+
+Fills the specified rounded corner rectangle with the current color. The left and right edges of the rectangle are at x and x+width-1, respectively. The top and bottom edges of 
+the rectangle are at y and y+height-1. 
+
+
+    x - the x coordinate of the rectangle to be filled. 
+    y - the y coordinate of the rectangle to be filled. 
+    width - the width of the rectangle to be filled. 
+    height - the height of the rectangle to be filled. 
+    arcWidth - the horizontal diameter of the arc at the four corners. 
+    arcHeight - the vertical diameter of the arc at the four corners. 
+
+*java.awt.Graphics.finalize()*
+
+public void finalize()
+
+Disposes of this graphics context once it is no longer referenced. 
+
+
+
+*java.awt.Graphics.getClip()*
+
+public abstract |java.awt.Shape| getClip()
+
+Gets the current clipping area. This method returns the user clip, which is independent of the clipping associated with device bounds and window visibility. If no clip has 
+previously been set, or if the clip has been cleared using setClip(null), this method returns null. 
+
+
+
+    Returns: a Shape object representing the current clipping area, or null if no clip is set. 
+
+*java.awt.Graphics.getClipBounds()*
+
+public abstract |java.awt.Rectangle| getClipBounds()
+
+Returns the bounding rectangle of the current clipping area. This method refers to the user clip, which is independent of the clipping associated with device bounds and window 
+visibility. If no clip has previously been set, or if the clip has been cleared using setClip(null), this method returns null. The coordinates in the rectangle are relative to the 
+coordinate system origin of this graphics context. 
+
+
+
+    Returns: the bounding rectangle of the current clipping area, or null if no clip is set. 
+
+*java.awt.Graphics.getClipBounds(Rectangle)*
+
+public |java.awt.Rectangle| getClipBounds(java.awt.Rectangle r)
+
+Returns the bounding rectangle of the current clipping area. The coordinates in the rectangle are relative to the coordinate system origin of this graphics context. This method 
+differs from getClipBounds(|java.awt.Graphics|) in that an existing rectangle is used instead of allocating a new one. This method refers to the user clip, which is independent of 
+the clipping associated with device bounds and window visibility. If no clip has previously been set, or if the clip has been cleared using setClip(null), this method returns the 
+specified Rectangle. 
+
+
+    r - the rectangle where the current clipping area is copied to. Any current values in this rectangle are overwritten. 
+
+    Returns: the bounding rectangle of the current clipping area. 
+
+*java.awt.Graphics.getClipRect()*
+
+public |java.awt.Rectangle| getClipRect()
+
+Returns the bounding rectangle of the current clipping area. 
+
+    Deprecated: As of JDK version 1.1,
+ replaced by <code>getClipBounds()</code>.
+
+
+    Returns: the bounding rectangle of the current clipping area or null if no clip is set. 
+
+*java.awt.Graphics.getColor()*
+
+public abstract |java.awt.Color| getColor()
+
+Gets this graphics context's current color. 
+
+
+
+    Returns: this graphics context's current color. 
+
+*java.awt.Graphics.getFont()*
+
+public abstract |java.awt.Font| getFont()
+
+Gets the current font. 
+
+
+
+    Returns: this graphics context's current font. 
+
+*java.awt.Graphics.getFontMetrics()*
+
+public |java.awt.FontMetrics| getFontMetrics()
+
+Gets the font metrics of the current font. 
+
+
+
+    Returns: the font metrics of this graphics context's current font. 
+
+*java.awt.Graphics.getFontMetrics(Font)*
+
+public abstract |java.awt.FontMetrics| getFontMetrics(java.awt.Font f)
+
+Gets the font metrics for the specified font. 
+
+
+    f - the specified font 
+
+    Returns: the font metrics for the specified font. 
+
+*java.awt.Graphics.hitClip(int,int,int,int)*
+
+public boolean hitClip(
+  int x,
+  int y,
+  int width,
+  int height)
+
+Returns true if the specified rectangular area might intersect the current clipping area. The coordinates of the specified rectangular area are in the user coordinate space and 
+are relative to the coordinate system origin of this graphics context. This method may use an algorithm that calculates a result quickly but which sometimes might return true even 
+if the specified rectangular area does not intersect the clipping area. The specific algorithm employed may thus trade off accuracy for speed, but it will never return false 
+unless it can guarantee that the specified rectangular area does not intersect the current clipping area. The clipping area used by this method can represent the intersection of 
+the user clip as specified through the clip methods of this graphics context as well as the clipping associated with the device or image bounds and window visibility. 
+
+
+    x - the x coordinate of the rectangle to test against the clip 
+    y - the y coordinate of the rectangle to test against the clip 
+    width - the width of the rectangle to test against the clip 
+    height - the height of the rectangle to test against the clip 
+
+    Returns: true if the specified rectangle intersects the bounds of the current clip; false otherwise. 
+
+*java.awt.Graphics.setClip(int,int,int,int)*
+
+public abstract void setClip(
+  int x,
+  int y,
+  int width,
+  int height)
+
+Sets the current clip to the rectangle specified by the given coordinates. This method sets the user clip, which is independent of the clipping associated with device bounds and 
+window visibility. Rendering operations have no effect outside of the clipping area. 
+
+
+    x - the x coordinate of the new clip rectangle. 
+    y - the y coordinate of the new clip rectangle. 
+    width - the width of the new clip rectangle. 
+    height - the height of the new clip rectangle. 
+
+*java.awt.Graphics.setClip(Shape)*
+
+public abstract void setClip(java.awt.Shape clip)
+
+Sets the current clipping area to an arbitrary clip shape. Not all objects that implement the Shape interface can be used to set the clip. The only Shape objects that are 
+guaranteed to be supported are Shape objects that are obtained via the getClip method and via Rectangle objects. This method sets the user clip, which is independent of the 
+clipping associated with device bounds and window visibility. 
+
+
+    clip - the Shape to use to set the clip 
+
+*java.awt.Graphics.setColor(Color)*
+
+public abstract void setColor(java.awt.Color c)
+
+Sets this graphics context's current color to the specified color. All subsequent graphics operations using this graphics context use this specified color. 
+
+
+    c - the new rendering color. 
+
+*java.awt.Graphics.setFont(Font)*
+
+public abstract void setFont(java.awt.Font font)
+
+Sets this graphics context's font to the specified font. All subsequent text operations using this graphics context use this font. 
+
+
+    font - the font. 
+
+*java.awt.Graphics.setPaintMode()*
+
+public abstract void setPaintMode()
+
+Sets the paint mode of this graphics context to overwrite the destination with this graphics context's current color. This sets the logical pixel operation function to the paint 
+or overwrite mode. All subsequent rendering operations will overwrite the destination with the current color. 
+
+
+
+*java.awt.Graphics.setXORMode(Color)*
+
+public abstract void setXORMode(java.awt.Color c1)
+
+Sets the paint mode of this graphics context to alternate between this graphics context's current color and the new specified color. This specifies that logical pixel operations 
+are performed in the XOR mode, which alternates pixels between the current color and a specified XOR color. 
+
+When drawing operations are performed, pixels which are the current color are changed to the specified color, and vice versa. 
+
+Pixels that are of colors other than those two colors are changed in an unpredictable but reversible manner; if the same figure is drawn twice, then all pixels are restored to 
+their original values. 
+
+
+    c1 - the XOR alternation color 
+
+*java.awt.Graphics.toString()*
+
+public |java.lang.String| toString()
+
+Returns a String object representing this Graphics object's value. 
+
+
+
+    Returns: a string representation of this graphics context. 
+
+*java.awt.Graphics.translate(int,int)*
+
+public abstract void translate(
+  int x,
+  int y)
+
+Translates the origin of the graphics context to the point (x,y) in the current coordinate system. Modifies this graphics context so that its new origin corresponds to the point 
+(x,y) in this graphics context's original coordinate system. All coordinates used in subsequent rendering operations on this graphics context will be relative to this new origin. 
+
+
+    x - the x coordinate. 
+    y - the y coordinate. 
+
+

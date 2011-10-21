@@ -1,0 +1,237 @@
+*javax.swing.text.GapContent* *GapContent* An implementation of the AbstractDocument.Content interface 
+ implemented using a gapped buffer similar to that used by emacs.
+
+public class GapContent
+  extends    |javax.swing.text.GapVector|
+  implements |javax.swing.text.AbstractDocument.Content|
+             |java.io.Serializable|
+
+|javax.swing.text.GapContent_Description|
+|javax.swing.text.GapContent_Fields|
+|javax.swing.text.GapContent_Constructors|
+|javax.swing.text.GapContent_Methods|
+
+====================================================================================================================================================================================
+
+*javax.swing.text.GapContent_Constructors*
+|javax.swing.text.GapContent()|Creates a new GapContent object.
+|javax.swing.text.GapContent(int)|Creates a new GapContent object, with the initial  size specified.
+
+*javax.swing.text.GapContent_Methods*
+|javax.swing.text.GapContent.allocateArray(int)|Allocate an array to store items of the type  appropriate (which is determined by the subclass).
+|javax.swing.text.GapContent.createPosition(int)|Creates a position within the content that will  track change as the content is mutated.
+|javax.swing.text.GapContent.getArrayLength()|Get the length of the allocated array.
+|javax.swing.text.GapContent.getChars(int,int,Segment)|Retrieves a portion of the content.
+|javax.swing.text.GapContent.getPositionsInRange(Vector,int,int)|Returns a Vector containing instances of UndoPosRef for the  Positions in the range  offset to offset + length.
+|javax.swing.text.GapContent.getString(int,int)|Retrieves a portion of the content.
+|javax.swing.text.GapContent.insertString(int,String)|Inserts a string into the content.
+|javax.swing.text.GapContent.length()|Returns the length of the content.
+|javax.swing.text.GapContent.remove(int,int)|Removes part of the content.
+|javax.swing.text.GapContent.resetMarksAtZero()|Resets all the marks that have an offset of 0 to have an index of  zero as well.
+|javax.swing.text.GapContent.shiftEnd(int)|Make the gap bigger, moving any necessary data and updating   the appropriate marks
+|javax.swing.text.GapContent.shiftGap(int)|Move the start of the gap to a new location,  without changing the size of the gap.
+|javax.swing.text.GapContent.shiftGapEndUp(int)|Adjust the gap end upward.
+|javax.swing.text.GapContent.shiftGapStartDown(int)|Adjust the gap end downward.
+|javax.swing.text.GapContent.updateUndoPositions(Vector,int,int)|Resets the location for all the UndoPosRef instances  in positions.
+
+*javax.swing.text.GapContent_Description*
+
+An implementation of the AbstractDocument.Content interface implemented using a gapped buffer similar to that used by emacs. The underlying storage is a array of unicode 
+characters with a gap somewhere. The gap is moved to the location of changes to take advantage of common behavior where most changes are in the same location. Changes that occur 
+at a gap boundary are generally cheap and moving the gap is generally cheaper than moving the array contents directly to accomodate the change. 
+
+The positions tracking change are also generally cheap to maintain. The Position implementations (marks) store the array index and can easily calculate the sequential position 
+from the current gap location. Changes only require update to the the marks between the old and new gap boundaries when the gap is moved, so generally updating the marks is pretty 
+cheap. The marks are stored sorted so they can be located quickly with a binary search. This increases the cost of adding a mark, and decreases the cost of keeping the mark 
+updated. 
+
+
+
+*javax.swing.text.GapContent()*
+
+public GapContent()
+
+Creates a new GapContent object. Initial size defaults to 10. 
+
+
+*javax.swing.text.GapContent(int)*
+
+public GapContent(int initialLength)
+
+Creates a new GapContent object, with the initial size specified. The initial size will not be allowed to go below 2, to give room for the implied break and the gap. 
+
+    initialLength - the initial size 
+
+*javax.swing.text.GapContent.allocateArray(int)*
+
+protected |java.lang.Object| allocateArray(int len)
+
+Allocate an array to store items of the type appropriate (which is determined by the subclass). 
+
+
+
+*javax.swing.text.GapContent.createPosition(int)*
+
+public |javax.swing.text.Position| createPosition(int offset)
+  throws |javax.swing.text.BadLocationException|
+         
+Creates a position within the content that will track change as the content is mutated. 
+
+
+    offset - the offset to track >= 0 
+
+    Returns: 
+
+*javax.swing.text.GapContent.getArrayLength()*
+
+protected int getArrayLength()
+
+Get the length of the allocated array. 
+
+
+
+*javax.swing.text.GapContent.getChars(int,int,Segment)*
+
+public void getChars(
+  int where,
+  int len,
+  javax.swing.text.Segment chars)
+  throws |javax.swing.text.BadLocationException|
+         
+Retrieves a portion of the content. If the desired content spans the gap, we copy the content. If the desired content does not span the gap, the actual store is returned to avoid 
+the copy since it is contiguous. 
+
+
+    where - the starting position >= 0, where + len <= length() 
+    len - the number of characters to retrieve >= 0 
+    chars - the Segment object to return the characters in 
+
+*javax.swing.text.GapContent.getPositionsInRange(Vector,int,int)*
+
+protected |java.util.Vector| getPositionsInRange(
+  java.util.Vector v,
+  int offset,
+  int length)
+
+Returns a Vector containing instances of UndoPosRef for the Positions in the range offset to offset + length. If v is not null the matching Positions are placed in there. The 
+vector with the resulting Positions are returned. 
+
+
+    v - the Vector to use, with a new one created on null 
+    offset - the starting offset >= 0 
+    length - the length >= 0 
+
+    Returns: the set of instances 
+
+*javax.swing.text.GapContent.getString(int,int)*
+
+public |java.lang.String| getString(
+  int where,
+  int len)
+  throws |javax.swing.text.BadLocationException|
+         
+Retrieves a portion of the content. 
+
+
+    where - the starting position >= 0 
+    len - the length to retrieve >= 0 
+
+    Returns: a string representing the content 
+
+*javax.swing.text.GapContent.insertString(int,String)*
+
+public |javax.swing.undo.UndoableEdit| insertString(
+  int where,
+  java.lang.String str)
+  throws |javax.swing.text.BadLocationException|
+         
+Inserts a string into the content. 
+
+
+    where - the starting position >= 0, < length() 
+    str - the non-null string to insert 
+
+    Returns: an UndoableEdit object for undoing 
+
+*javax.swing.text.GapContent.length()*
+
+public int length()
+
+Returns the length of the content. 
+
+
+
+    Returns: the length >= 1 
+
+*javax.swing.text.GapContent.remove(int,int)*
+
+public |javax.swing.undo.UndoableEdit| remove(
+  int where,
+  int nitems)
+  throws |javax.swing.text.BadLocationException|
+         
+Removes part of the content. 
+
+
+    where - the starting position >= 0, where + nitems < length() 
+    nitems - the number of characters to remove >= 0 
+
+    Returns: an UndoableEdit object for undoing 
+
+*javax.swing.text.GapContent.resetMarksAtZero()*
+
+protected void resetMarksAtZero()
+
+Resets all the marks that have an offset of 0 to have an index of zero as well. 
+
+
+
+*javax.swing.text.GapContent.shiftEnd(int)*
+
+protected void shiftEnd(int newSize)
+
+Make the gap bigger, moving any necessary data and updating the appropriate marks 
+
+
+
+*javax.swing.text.GapContent.shiftGap(int)*
+
+protected void shiftGap(int newGapStart)
+
+Move the start of the gap to a new location, without changing the size of the gap. This moves the data in the array and updates the marks accordingly. 
+
+
+
+*javax.swing.text.GapContent.shiftGapEndUp(int)*
+
+protected void shiftGapEndUp(int newGapEnd)
+
+Adjust the gap end upward. This doesn't move any data, but it does update any marks affected by the boundary change. All marks from the old gap end up to the new gap end are 
+squeezed to the end of the gap (their location has been removed). 
+
+
+
+*javax.swing.text.GapContent.shiftGapStartDown(int)*
+
+protected void shiftGapStartDown(int newGapStart)
+
+Adjust the gap end downward. This doesn't move any data, but it does update any marks affected by the boundary change. All marks from the old gap start down to the new gap start 
+are squeezed to the end of the gap (their location has been removed). 
+
+
+
+*javax.swing.text.GapContent.updateUndoPositions(Vector,int,int)*
+
+protected void updateUndoPositions(
+  java.util.Vector positions,
+  int offset,
+  int length)
+
+Resets the location for all the UndoPosRef instances in positions. 
+
+This is meant for internal usage, and is generally not of interest to subclasses. 
+
+
+    positions - the UndoPosRef instances to reset 
+
+

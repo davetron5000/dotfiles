@@ -1,0 +1,776 @@
+*java.net.Socket* *Socket* This class implements client sockets (also called just
+ "sockets").
+
+public class Socket
+  extends    |java.lang.Object|
+
+|java.net.Socket_Description|
+|java.net.Socket_Fields|
+|java.net.Socket_Constructors|
+|java.net.Socket_Methods|
+
+====================================================================================================================================================================================
+
+*java.net.Socket_Constructors*
+|java.net.Socket()|Creates an unconnected socket, with the  system-default type of SocketImpl.
+|java.net.Socket(InetAddress,int)|Creates a stream socket and connects it to the specified port  number at the specified IP address.
+|java.net.Socket(InetAddress,int,boolean)|Creates a socket and connects it to the specified port number at  the specified IP address.
+|java.net.Socket(InetAddress,int,InetAddress,int)|Creates a socket and connects it to the specified remote address on  the specified remote port.
+|java.net.Socket(Proxy)|Creates an unconnected socket, specifying the type of proxy, if any,  that should be used regardless of any other settings.
+|java.net.Socket(SocketImpl)|Creates an unconnected Socket with a user-specified  SocketImpl.
+|java.net.Socket(String,int)|Creates a stream socket and connects it to the specified port  number on the named host.
+|java.net.Socket(String,int,boolean)|Creates a stream socket and connects it to the specified port  number on the named host.
+|java.net.Socket(String,int,InetAddress,int)|Creates a socket and connects it to the specified remote host on  the specified remote port.
+
+*java.net.Socket_Methods*
+|java.net.Socket.bind(SocketAddress)|Binds the socket to a local address.
+|java.net.Socket.close()|Closes this socket.
+|java.net.Socket.connect(SocketAddress)|Connects this socket to the server.
+|java.net.Socket.connect(SocketAddress,int)|Connects this socket to the server with a specified timeout value.
+|java.net.Socket.getChannel()|Returns the uniquejava.nio.channels.SocketChannel SocketChannelobject associated with this socket, if any.
+|java.net.Socket.getInetAddress()|Returns the address to which the socket is connected.
+|java.net.Socket.getInputStream()|Returns an input stream for this socket.
+|java.net.Socket.getKeepAlive()|Tests if SO_KEEPALIVE is enabled.
+|java.net.Socket.getLocalAddress()|Gets the local address to which the socket is bound.
+|java.net.Socket.getLocalPort()|Returns the local port to which this socket is bound.
+|java.net.Socket.getLocalSocketAddress()|Returns the address of the endpoint this socket is bound to, or  null if it is not bound yet.
+|java.net.Socket.getOOBInline()|Tests if OOBINLINE is enabled.
+|java.net.Socket.getOutputStream()|Returns an output stream for this socket.
+|java.net.Socket.getPort()|Returns the remote port to which this socket is connected.
+|java.net.Socket.getReceiveBufferSize()|Gets the value of the SO_RCVBUF option for this Socket,   that is the buffer size used by the platform for   input on this Socket.
+|java.net.Socket.getRemoteSocketAddress()|Returns the address of the endpoint this socket is connected to, or  null if it is unconnected.
+|java.net.Socket.getReuseAddress()|Tests if SO_REUSEADDR is enabled.
+|java.net.Socket.getSendBufferSize()|Get value of the SO_SNDBUF option for this Socket,   that is the buffer size used by the platform   for output on this Socket.
+|java.net.Socket.getSoLinger()|Returns setting for SO_LINGER.
+|java.net.Socket.getSoTimeout()|Returns setting for SO_TIMEOUT.
+|java.net.Socket.getTcpNoDelay()|Tests if TCP_NODELAY is enabled.
+|java.net.Socket.getTrafficClass()|Gets traffic class or type-of-service in the IP header  for packets sent from this Socket
+|java.net.Socket.isBound()|Returns the binding state of the socket.
+|java.net.Socket.isClosed()|Returns the closed state of the socket.
+|java.net.Socket.isConnected()|Returns the connection state of the socket.
+|java.net.Socket.isInputShutdown()|Returns whether the read-half of the socket connection is closed.
+|java.net.Socket.isOutputShutdown()|Returns whether the write-half of the socket connection is closed.
+|java.net.Socket.sendUrgentData(int)|Send one byte of urgent data on the socket.
+|java.net.Socket.setKeepAlive(boolean)|Enable/disable SO_KEEPALIVE.
+|java.net.Socket.setOOBInline(boolean)|Enable/disable OOBINLINE (receipt of TCP urgent data)   By default, this option is disabled and TCP urgent data received on a   socket is si
+|java.net.Socket.setPerformancePreferences(int,int,int)|Sets performance preferences for this socket.
+|java.net.Socket.setReceiveBufferSize(int)|Sets the SO_RCVBUF option to the specified value for this  Socket.
+|java.net.Socket.setReuseAddress(boolean)|Enable/disable the SO_REUSEADDR socket option.
+|java.net.Socket.setSendBufferSize(int)|Sets the SO_SNDBUF option to the specified value for this  Socket.
+|java.net.Socket.setSocketImplFactory(SocketImplFactory)|Sets the client socket implementation factory for the  application.
+|java.net.Socket.setSoLinger(boolean,int)|Enable/disable SO_LINGER with the specified linger time in seconds.
+|java.net.Socket.setSoTimeout(int)|Enable/disable SO_TIMEOUT with the specified timeout, in   milliseconds.
+|java.net.Socket.setTcpNoDelay(boolean)|Enable/disable TCP_NODELAY (disable/enable Nagle's algorithm).
+|java.net.Socket.setTrafficClass(int)|Sets traffic class or type-of-service octet in the IP  header for packets sent from this Socket.
+|java.net.Socket.shutdownInput()|Places the input stream for this socket at "end of stream".
+|java.net.Socket.shutdownOutput()|Disables the output stream for this socket.
+|java.net.Socket.toString()|Converts this socket to a String.
+
+*java.net.Socket_Description*
+
+This class implements client sockets (also called just "sockets"). A socket is an endpoint for communication between two machines. 
+
+The actual work of the socket is performed by an instance of the SocketImpl class. An application, by changing the socket factory that creates the socket implementation, can 
+configure itself to create sockets appropriate to the local firewall. 
+
+
+
+*java.net.Socket()*
+
+public Socket()
+
+Creates an unconnected socket, with the system-default type of SocketImpl. 
+
+
+*java.net.Socket(InetAddress,int)*
+
+public Socket(
+  java.net.InetAddress address,
+  int port)
+  throws |java.io.IOException|
+         
+Creates a stream socket and connects it to the specified port number at the specified IP address. 
+
+If the application has specified a socket factory, that factory's createSocketImpl method is called to create the actual socket implementation. Otherwise a "plain" socket is 
+created. 
+
+If there is a security manager, its checkConnect method is called with the host address and port as its arguments. This could result in a SecurityException. 
+
+    address - the IP address. 
+    port - the port number. 
+
+*java.net.Socket(InetAddress,int,boolean)*
+
+public Socket(
+  java.net.InetAddress host,
+  int port,
+  boolean stream)
+  throws |java.io.IOException|
+         
+Creates a socket and connects it to the specified port number at the specified IP address. 
+
+If the stream argument is true, this creates a stream socket. If the stream argument is false, it creates a datagram socket. 
+
+If the application has specified a server socket factory, that factory's createSocketImpl method is called to create the actual socket implementation. Otherwise a "plain" socket 
+is created. 
+
+If there is a security manager, its checkConnect method is called with host.getHostAddress() and port as its arguments. This could result in a SecurityException. 
+
+If UDP socket is used, TCP/IP related socket options will not apply. 
+
+    host - the IP address. 
+    port - the port number. 
+    stream - if true, create a stream socket; otherwise, create a datagram socket. 
+
+*java.net.Socket(InetAddress,int,InetAddress,int)*
+
+public Socket(
+  java.net.InetAddress address,
+  int port,
+  java.net.InetAddress localAddr,
+  int localPort)
+  throws |java.io.IOException|
+         
+Creates a socket and connects it to the specified remote address on the specified remote port. The Socket will also bind() to the local address and port supplied. 
+
+If there is a security manager, its checkConnect method is called with the host address and port as its arguments. This could result in a SecurityException. 
+
+    address - the remote address 
+    port - the remote port 
+    localAddr - the local address the socket is bound to 
+    localPort - the local port the socket is bound to 
+
+*java.net.Socket(Proxy)*
+
+public Socket(java.net.Proxy proxy)
+
+Creates an unconnected socket, specifying the type of proxy, if any, that should be used regardless of any other settings. 
+
+If there is a security manager, its checkConnect method is called with the proxy host address and port number as its arguments. This could result in a SecurityException. 
+
+Examples: Socket s = new Socket(Proxy.NO_PROXY); will create a plain socket ignoring any other proxy configuration. Socket s = new Socket(new Proxy(Proxy.Type.SOCKS, new 
+InetSocketAddress("socks.mydom.com", 1080))); will create a socket connecting through the specified SOCKS proxy server. 
+
+    proxy - a {@link java.net.Proxy Proxy} object specifying what kind of proxying should be used. 
+
+*java.net.Socket(SocketImpl)*
+
+protected Socket(java.net.SocketImpl impl)
+  throws |java.net.SocketException|
+         
+Creates an unconnected Socket with a user-specified SocketImpl. 
+
+    impl - an instance of a SocketImpl the subclass wishes to use on the Socket. 
+
+*java.net.Socket(String,int)*
+
+public Socket(
+  java.lang.String host,
+  int port)
+  throws |java.io.IOException|
+         |java.net.UnknownHostException|
+         
+Creates a stream socket and connects it to the specified port number on the named host. 
+
+If the specified host is null it is the equivalent of specifying the address as InetAddress.getByName(|java.net.InetAddress|) (null). In other words, it is equivalent to 
+specifying an address of the loopback interface. 
+
+If the application has specified a server socket factory, that factory's createSocketImpl method is called to create the actual socket implementation. Otherwise a "plain" socket 
+is created. 
+
+If there is a security manager, its checkConnect method is called with the host address and port as its arguments. This could result in a SecurityException. 
+
+    host - the host name, or null for the loopback address. 
+    port - the port number. 
+
+*java.net.Socket(String,int,boolean)*
+
+public Socket(
+  java.lang.String host,
+  int port,
+  boolean stream)
+  throws |java.io.IOException|
+         
+Creates a stream socket and connects it to the specified port number on the named host. 
+
+If the specified host is null it is the equivalent of specifying the address as InetAddress.getByName(|java.net.InetAddress|) (null). In other words, it is equivalent to 
+specifying an address of the loopback interface. 
+
+If the stream argument is true, this creates a stream socket. If the stream argument is false, it creates a datagram socket. 
+
+If the application has specified a server socket factory, that factory's createSocketImpl method is called to create the actual socket implementation. Otherwise a "plain" socket 
+is created. 
+
+If there is a security manager, its checkConnect method is called with the host address and port as its arguments. This could result in a SecurityException. 
+
+If a UDP socket is used, TCP/IP related socket options will not apply. 
+
+    host - the host name, or null for the loopback address. 
+    port - the port number. 
+    stream - a boolean indicating whether this is a stream socket or a datagram socket. 
+
+*java.net.Socket(String,int,InetAddress,int)*
+
+public Socket(
+  java.lang.String host,
+  int port,
+  java.net.InetAddress localAddr,
+  int localPort)
+  throws |java.io.IOException|
+         
+Creates a socket and connects it to the specified remote host on the specified remote port. The Socket will also bind() to the local address and port supplied. 
+
+If the specified host is null it is the equivalent of specifying the address as InetAddress.getByName(|java.net.InetAddress|) (null). In other words, it is equivalent to 
+specifying an address of the loopback interface. 
+
+If there is a security manager, its checkConnect method is called with the host address and port as its arguments. This could result in a SecurityException. 
+
+    host - the name of the remote host, or null for the loopback address. 
+    port - the remote port 
+    localAddr - the local address the socket is bound to 
+    localPort - the local port the socket is bound to 
+
+*java.net.Socket.bind(SocketAddress)*
+
+public void bind(java.net.SocketAddress bindpoint)
+  throws |java.io.IOException|
+         
+Binds the socket to a local address. 
+
+If the address is null, then the system will pick up an ephemeral port and a valid local address to bind the socket. 
+
+
+    bindpoint - the SocketAddress to bind to 
+
+*java.net.Socket.close()*
+
+public synchronized void close()
+  throws |java.io.IOException|
+         
+Closes this socket. 
+
+Any thread currently blocked in an I/O operation upon this socket will throw a (|java.net.SocketException|) . 
+
+Once a socket has been closed, it is not available for further networking use (i.e. can't be reconnected or rebound). A new socket needs to be created. 
+
+If this socket has an associated channel then the channel is closed as well. 
+
+
+
+*java.net.Socket.connect(SocketAddress)*
+
+public void connect(java.net.SocketAddress endpoint)
+  throws |java.io.IOException|
+         
+Connects this socket to the server. 
+
+
+    endpoint - the SocketAddress 
+
+*java.net.Socket.connect(SocketAddress,int)*
+
+public void connect(
+  java.net.SocketAddress endpoint,
+  int timeout)
+  throws |java.io.IOException|
+         
+Connects this socket to the server with a specified timeout value. A timeout of zero is interpreted as an infinite timeout. The connection will then block until established or an 
+error occurs. 
+
+
+    endpoint - the SocketAddress 
+    timeout - the timeout value to be used in milliseconds. 
+
+*java.net.Socket.getChannel()*
+
+public |java.nio.channels.SocketChannel| getChannel()
+
+Returns the unique SocketChannel(|java.nio.channels.SocketChannel|) object associated with this socket, if any. 
+
+A socket will have a channel if, and only if, the channel itself was created via the SocketChannel.open(|java.nio.channels.SocketChannel|) or 
+ServerSocketChannel.accept(|java.nio.channels.ServerSocketChannel|) methods. 
+
+
+
+    Returns: the socket channel associated with this socket, or null if this socket was not created for a channel 
+
+*java.net.Socket.getInetAddress()*
+
+public |java.net.InetAddress| getInetAddress()
+
+Returns the address to which the socket is connected. 
+
+
+
+    Returns: the remote IP address to which this socket is connected, or null if the socket is not connected. 
+
+*java.net.Socket.getInputStream()*
+
+public |java.io.InputStream| getInputStream()
+  throws |java.io.IOException|
+         
+Returns an input stream for this socket. 
+
+If this socket has an associated channel then the resulting input stream delegates all of its operations to the channel. If the channel is in non-blocking mode then the input 
+stream's read operations will throw an (|java.nio.channels.IllegalBlockingModeException|) . 
+
+Under abnormal conditions the underlying connection may be broken by the remote host or the network software (for example a connection reset in the case of TCP connections). When 
+a broken connection is detected by the network software the following applies to the returned input stream :- 
+
+
+
+The network software may discard bytes that are buffered by the socket. Bytes that aren't discarded by the network software can be read using read(|java.io.InputStream|) . 
+
+If there are no bytes buffered on the socket, or all buffered bytes have been consumed by read(|java.io.InputStream|) , then all subsequent calls to read(|java.io.InputStream|) 
+will throw an IOException(|java.io.IOException|) . 
+
+If there are no bytes buffered on the socket, and the socket has not been closed using close(|java.net.Socket|) , then available(|java.io.InputStream|) will return 0. 
+
+
+
+
+
+    Returns: an input stream for reading bytes from this socket. 
+
+*java.net.Socket.getKeepAlive()*
+
+public boolean getKeepAlive()
+  throws |java.net.SocketException|
+         
+Tests if SO_KEEPALIVE is enabled. 
+
+
+
+    Returns: a boolean indicating whether or not SO_KEEPALIVE is enabled. 
+
+*java.net.Socket.getLocalAddress()*
+
+public |java.net.InetAddress| getLocalAddress()
+
+Gets the local address to which the socket is bound. 
+
+
+
+    Returns: the local address to which the socket is bound or InetAddress.anyLocalAddress() if the socket is not bound yet. 
+
+*java.net.Socket.getLocalPort()*
+
+public int getLocalPort()
+
+Returns the local port to which this socket is bound. 
+
+
+
+    Returns: the local port number to which this socket is bound or -1 if the socket is not bound yet. 
+
+*java.net.Socket.getLocalSocketAddress()*
+
+public |java.net.SocketAddress| getLocalSocketAddress()
+
+Returns the address of the endpoint this socket is bound to, or null if it is not bound yet. 
+
+
+
+    Returns: a SocketAddress representing the local endpoint of this socket, or null if it is not bound yet. 
+
+*java.net.Socket.getOOBInline()*
+
+public boolean getOOBInline()
+  throws |java.net.SocketException|
+         
+Tests if OOBINLINE is enabled. 
+
+
+
+    Returns: a boolean indicating whether or not OOBINLINE is enabled. 
+
+*java.net.Socket.getOutputStream()*
+
+public |java.io.OutputStream| getOutputStream()
+  throws |java.io.IOException|
+         
+Returns an output stream for this socket. 
+
+If this socket has an associated channel then the resulting output stream delegates all of its operations to the channel. If the channel is in non-blocking mode then the output 
+stream's write operations will throw an (|java.nio.channels.IllegalBlockingModeException|) . 
+
+
+
+    Returns: an output stream for writing bytes to this socket. 
+
+*java.net.Socket.getPort()*
+
+public int getPort()
+
+Returns the remote port to which this socket is connected. 
+
+
+
+    Returns: the remote port number to which this socket is connected, or 0 if the socket is not connected yet. 
+
+*java.net.Socket.getReceiveBufferSize()*
+
+public synchronized int getReceiveBufferSize()
+  throws |java.net.SocketException|
+         
+Gets the value of the SO_RCVBUF option for this Socket, that is the buffer size used by the platform for input on this Socket. 
+
+
+
+    Returns: the value of the SO_RCVBUF option for this Socket. 
+
+*java.net.Socket.getRemoteSocketAddress()*
+
+public |java.net.SocketAddress| getRemoteSocketAddress()
+
+Returns the address of the endpoint this socket is connected to, or null if it is unconnected. 
+
+
+
+    Returns: a SocketAddress reprensenting the remote endpoint of this socket, or null if it is not connected yet. 
+
+*java.net.Socket.getReuseAddress()*
+
+public boolean getReuseAddress()
+  throws |java.net.SocketException|
+         
+Tests if SO_REUSEADDR is enabled. 
+
+
+
+    Returns: a boolean indicating whether or not SO_REUSEADDR is enabled. 
+
+*java.net.Socket.getSendBufferSize()*
+
+public synchronized int getSendBufferSize()
+  throws |java.net.SocketException|
+         
+Get value of the SO_SNDBUF option for this Socket, that is the buffer size used by the platform for output on this Socket. 
+
+
+
+    Returns: the value of the SO_SNDBUF option for this Socket. 
+
+*java.net.Socket.getSoLinger()*
+
+public int getSoLinger()
+  throws |java.net.SocketException|
+         
+Returns setting for SO_LINGER. -1 returns implies that the option is disabled. 
+
+The setting only affects socket close. 
+
+
+
+    Returns: the setting for SO_LINGER. 
+
+*java.net.Socket.getSoTimeout()*
+
+public synchronized int getSoTimeout()
+  throws |java.net.SocketException|
+         
+Returns setting for SO_TIMEOUT. 0 returns implies that the option is disabled (i.e., timeout of infinity). 
+
+
+
+    Returns: the setting for SO_TIMEOUT 
+
+*java.net.Socket.getTcpNoDelay()*
+
+public boolean getTcpNoDelay()
+  throws |java.net.SocketException|
+         
+Tests if TCP_NODELAY is enabled. 
+
+
+
+    Returns: a boolean indicating whether or not TCP_NODELAY is enabled. 
+
+*java.net.Socket.getTrafficClass()*
+
+public int getTrafficClass()
+  throws |java.net.SocketException|
+         
+Gets traffic class or type-of-service in the IP header for packets sent from this Socket 
+
+As the underlying network implementation may ignore the traffic class or type-of-service set using (|java.net.Socket|) this method may return a different value than was previously 
+set using the (|java.net.Socket|) method on this Socket. 
+
+
+
+    Returns: the traffic class or type-of-service already set 
+
+*java.net.Socket.isBound()*
+
+public boolean isBound()
+
+Returns the binding state of the socket. 
+
+
+
+    Returns: true if the socket successfuly bound to an address 
+
+*java.net.Socket.isClosed()*
+
+public boolean isClosed()
+
+Returns the closed state of the socket. 
+
+
+
+    Returns: true if the socket has been closed 
+
+*java.net.Socket.isConnected()*
+
+public boolean isConnected()
+
+Returns the connection state of the socket. 
+
+
+
+    Returns: true if the socket successfuly connected to a server 
+
+*java.net.Socket.isInputShutdown()*
+
+public boolean isInputShutdown()
+
+Returns whether the read-half of the socket connection is closed. 
+
+
+
+    Returns: true if the input of the socket has been shutdown 
+
+*java.net.Socket.isOutputShutdown()*
+
+public boolean isOutputShutdown()
+
+Returns whether the write-half of the socket connection is closed. 
+
+
+
+    Returns: true if the output of the socket has been shutdown 
+
+*java.net.Socket.sendUrgentData(int)*
+
+public void sendUrgentData(int data)
+  throws |java.io.IOException|
+         
+Send one byte of urgent data on the socket. The byte to be sent is the lowest eight bits of the data parameter. The urgent byte is sent after any preceding writes to the socket 
+OutputStream and before any future writes to the OutputStream. 
+
+
+    data - The byte of data to send 
+
+*java.net.Socket.setKeepAlive(boolean)*
+
+public void setKeepAlive(boolean on)
+  throws |java.net.SocketException|
+         
+Enable/disable SO_KEEPALIVE. 
+
+
+    on - whether or not to have socket keep alive turned on. 
+
+*java.net.Socket.setOOBInline(boolean)*
+
+public void setOOBInline(boolean on)
+  throws |java.net.SocketException|
+         
+Enable/disable OOBINLINE (receipt of TCP urgent data) 
+
+By default, this option is disabled and TCP urgent data received on a socket is silently discarded. If the user wishes to receive urgent data, then this option must be enabled. 
+When enabled, urgent data is received inline with normal data. 
+
+Note, only limited support is provided for handling incoming urgent data. In particular, no notification of incoming urgent data is provided and there is no capability to 
+distinguish between normal data and urgent data unless provided by a higher level protocol. 
+
+
+    on - true to enable OOBINLINE, false to disable. 
+
+*java.net.Socket.setPerformancePreferences(int,int,int)*
+
+public void setPerformancePreferences(
+  int connectionTime,
+  int latency,
+  int bandwidth)
+
+Sets performance preferences for this socket. 
+
+Sockets use the TCP/IP protocol by default. Some implementations may offer alternative protocols which have different performance characteristics than TCP/IP. This method allows 
+the application to express its own preferences as to how these tradeoffs should be made when the implementation chooses from the available protocols. 
+
+Performance preferences are described by three integers whose values indicate the relative importance of short connection time, low latency, and high bandwidth. The absolute 
+values of the integers are irrelevant; in order to choose a protocol the values are simply compared, with larger values indicating stronger preferences. Negative values represent 
+a lower priority than positive values. If the application prefers short connection time over both low latency and high bandwidth, for example, then it could invoke this method 
+with the values (1, 0, 0). If the application prefers high bandwidth above low latency, and low latency above short connection time, then it could invoke this method with the 
+values (0, 1, 2). 
+
+Invoking this method after this socket has been connected will have no effect. 
+
+
+    connectionTime - An int expressing the relative importance of a short connection time 
+    latency - An int expressing the relative importance of low latency 
+    bandwidth - An int expressing the relative importance of high bandwidth 
+
+*java.net.Socket.setReceiveBufferSize(int)*
+
+public synchronized void setReceiveBufferSize(int size)
+  throws |java.net.SocketException|
+         
+Sets the SO_RCVBUF option to the specified value for this Socket. The SO_RCVBUF option is used by the platform's networking code as a hint for the size to set the underlying 
+network I/O buffers. 
+
+Increasing the receive buffer size can increase the performance of network I/O for high-volume connection, while decreasing it can help reduce the backlog of incoming data. 
+
+Because SO_RCVBUF is a hint, applications that want to verify what size the buffers were set to should call (|java.net.Socket|) . 
+
+The value of SO_RCVBUF is also used to set the TCP receive window that is advertized to the remote peer. Generally, the window size can be modified at any time when a socket is 
+connected. However, if a receive window larger than 64K is required then this must be requested before the socket is connected to the remote peer. There are two cases to be aware 
+of: 
+
+For sockets accepted from a ServerSocket, this must be done by calling (|java.net.ServerSocket|) before the ServerSocket is bound to a local address. For client sockets, 
+setReceiveBufferSize() must be called before connecting the socket to its remote peer. 
+
+
+    size - the size to which to set the receive buffer size. This value must be greater than 0. 
+
+*java.net.Socket.setReuseAddress(boolean)*
+
+public void setReuseAddress(boolean on)
+  throws |java.net.SocketException|
+         
+Enable/disable the SO_REUSEADDR socket option. 
+
+When a TCP connection is closed the connection may remain in a timeout state for a period of time after the connection is closed (typically known as the TIME_WAIT state or 2MSL 
+wait state). For applications using a well known socket address or port it may not be possible to bind a socket to the required SocketAddress if there is a connection in the 
+timeout state involving the socket address or port. 
+
+Enabling SO_REUSEADDR prior to binding the socket using (|java.net.Socket|) allows the socket to be bound even though a previous connection is in a timeout state. 
+
+When a Socket is created the initial setting of SO_REUSEADDR is disabled. 
+
+The behaviour when SO_REUSEADDR is enabled or disabled after a socket is bound (See (|java.net.Socket|) ) is not defined. 
+
+
+    on - whether to enable or disable the socket option 
+
+*java.net.Socket.setSendBufferSize(int)*
+
+public synchronized void setSendBufferSize(int size)
+  throws |java.net.SocketException|
+         
+Sets the SO_SNDBUF option to the specified value for this Socket. The SO_SNDBUF option is used by the platform's networking code as a hint for the size to set the underlying 
+network I/O buffers. 
+
+Because SO_SNDBUF is a hint, applications that want to verify what size the buffers were set to should call (|java.net.Socket|) . 
+
+
+    size - the size to which to set the send buffer size. This value must be greater than 0. 
+
+*java.net.Socket.setSocketImplFactory(SocketImplFactory)*
+
+public static synchronized void setSocketImplFactory(java.net.SocketImplFactory fac)
+  throws |java.io.IOException|
+         
+Sets the client socket implementation factory for the application. The factory can be specified only once. 
+
+When an application creates a new client socket, the socket implementation factory's createSocketImpl method is called to create the actual socket implementation. 
+
+Passing null to the method is a no-op unless the factory was already set. If there is a security manager, this method first calls the security manager's checkSetFactory method to 
+ensure the operation is allowed. This could result in a SecurityException. 
+
+
+    fac - the desired factory. 
+
+*java.net.Socket.setSoLinger(boolean,int)*
+
+public void setSoLinger(
+  boolean on,
+  int linger)
+  throws |java.net.SocketException|
+         
+Enable/disable SO_LINGER with the specified linger time in seconds. The maximum timeout value is platform specific. 
+
+The setting only affects socket close. 
+
+
+    on - whether or not to linger on. 
+    linger - how long to linger for, if on is true. 
+
+*java.net.Socket.setSoTimeout(int)*
+
+public synchronized void setSoTimeout(int timeout)
+  throws |java.net.SocketException|
+         
+Enable/disable SO_TIMEOUT with the specified timeout, in milliseconds. With this option set to a non-zero timeout, a read() call on the InputStream associated with this Socket 
+will block for only this amount of time. If the timeout expires, a java.net.SocketTimeoutException is raised, though the Socket is still valid. The option must be enabled prior to 
+entering the blocking operation to have effect. The timeout must be > 0. A timeout of zero is interpreted as an infinite timeout. 
+
+
+    timeout - the specified timeout, in milliseconds. 
+
+*java.net.Socket.setTcpNoDelay(boolean)*
+
+public void setTcpNoDelay(boolean on)
+  throws |java.net.SocketException|
+         
+Enable/disable TCP_NODELAY (disable/enable Nagle's algorithm). 
+
+
+    on - true to enable TCP_NODELAY, false to disable. 
+
+*java.net.Socket.setTrafficClass(int)*
+
+public void setTrafficClass(int tc)
+  throws |java.net.SocketException|
+         
+Sets traffic class or type-of-service octet in the IP header for packets sent from this Socket. As the underlying network implementation may ignore this value applications should 
+consider it a hint. 
+
+The tc must be in the range 0 or an IllegalArgumentException will be thrown. Notes: for Internet Protocol v4 the value consists of an octet with precedence and TOS fields as 
+detailed in RFC 1349. The TOS field is bitset created by bitwise-or'ing values such the following :- 
+
+IPTOS_LOWCOST (0x02) IPTOS_RELIABILITY (0x04) IPTOS_THROUGHPUT (0x08) IPTOS_LOWDELAY (0x10) 
+
+The last low order bit is always ignored as this corresponds to the MBZ (must be zero) bit. 
+
+Setting bits in the precedence field may result in a SocketException indicating that the operation is not permitted. 
+
+for Internet Protocol v6 tc is the value that would be placed into the sin6_flowinfo field of the IP header. 
+
+
+    tc - an int value for the bitset. 
+
+*java.net.Socket.shutdownInput()*
+
+public void shutdownInput()
+  throws |java.io.IOException|
+         
+Places the input stream for this socket at "end of stream". Any data sent to the input stream side of the socket is acknowledged and then silently discarded. 
+
+If you read from a socket input stream after invoking shutdownInput() on the socket, the stream will return EOF. 
+
+
+
+*java.net.Socket.shutdownOutput()*
+
+public void shutdownOutput()
+  throws |java.io.IOException|
+         
+Disables the output stream for this socket. For a TCP socket, any previously written data will be sent followed by TCP's normal connection termination sequence. 
+
+If you write to a socket output stream after invoking shutdownOutput() on the socket, the stream will throw an IOException. 
+
+
+
+*java.net.Socket.toString()*
+
+public |java.lang.String| toString()
+
+Converts this socket to a String. 
+
+
+
+    Returns: a string representation of this socket. 
+
+

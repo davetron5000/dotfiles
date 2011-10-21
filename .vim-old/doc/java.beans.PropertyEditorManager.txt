@@ -1,0 +1,94 @@
+*java.beans.PropertyEditorManager* *PropertyEditorManager* The PropertyEditorManager can be used to locate a property editor for
+ any given type name.
+
+public class PropertyEditorManager
+  extends    |java.lang.Object|
+
+|java.beans.PropertyEditorManager_Description|
+|java.beans.PropertyEditorManager_Fields|
+|java.beans.PropertyEditorManager_Constructors|
+|java.beans.PropertyEditorManager_Methods|
+
+====================================================================================================================================================================================
+
+*java.beans.PropertyEditorManager_Constructors*
+|java.beans.PropertyEditorManager()|
+
+*java.beans.PropertyEditorManager_Methods*
+|java.beans.PropertyEditorManager.findEditor(Class<?>)|Locate a value editor for a given target type.
+|java.beans.PropertyEditorManager.getEditorSearchPath()|Gets the package names that will be searched for property editors.
+|java.beans.PropertyEditorManager.registerEditor(Class<?>,Class<?>)|Register an editor class to be used to edit values of  a given target class.
+|java.beans.PropertyEditorManager.setEditorSearchPath(String[])|Change the list of package names that will be used for 		finding property editors.
+
+*java.beans.PropertyEditorManager_Description*
+
+The PropertyEditorManager can be used to locate a property editor for any given type name. This property editor must support the java.beans.PropertyEditor interface for editing a 
+given object. 
+
+The PropertyEditorManager uses three techniques for locating an editor for a given type. First, it provides a registerEditor method to allow an editor to be specifically 
+registered for a given type. Second it tries to locate a suitable class by adding "Editor" to the full qualified classname of the given type (e.g. "foo.bah.FozEditor"). Finally it 
+takes the simple classname (without the package name) adds "Editor" to it and looks in a search-path of packages for a matching class. 
+
+So for an input class foo.bah.Fred, the PropertyEditorManager would first look in its tables to see if an editor had been registered for foo.bah.Fred and if so use that. Then it 
+will look for a foo.bah.FredEditor class. Then it will look for (say) standardEditorsPackage.FredEditor class. 
+
+Default PropertyEditors will be provided for the Java primitive types "boolean", "byte", "short", "int", "long", "float", and "double"; and for the classes java.lang.String. 
+java.awt.Color, and java.awt.Font. 
+
+
+
+*java.beans.PropertyEditorManager()*
+
+public PropertyEditorManager()
+
+
+
+
+*java.beans.PropertyEditorManager.findEditor(Class<?>)*
+
+public static synchronized |java.beans.PropertyEditor| findEditor(java.lang.Class<?> targetType)
+
+Locate a value editor for a given target type. 
+
+
+    targetType - The Class object for the type to be edited 
+
+    Returns: An editor object for the given target class. The result is null if no suitable editor can be found. 
+
+*java.beans.PropertyEditorManager.getEditorSearchPath()*
+
+public static synchronized |java.lang.String|[] getEditorSearchPath()
+
+Gets the package names that will be searched for property editors. 
+
+
+
+    Returns: The array of package names that will be searched in order to find property editors. The default value for this array is implementation-dependent, e.g. Sun implementation initially 
+             sets to {"sun.beans.editors"}. 
+
+*java.beans.PropertyEditorManager.registerEditor(Class<?>,Class<?>)*
+
+public static void registerEditor(
+  java.lang.Class<?> targetType,
+  java.lang.Class<?> editorClass)
+
+Register an editor class to be used to edit values of a given target class. 
+
+First, if there is a security manager, its checkPropertiesAccess method is called. This could result in a SecurityException. 
+
+
+    targetType - the Class object of the type to be edited 
+    editorClass - the Class object of the editor class. If this is null, then any existing definition will be removed. 
+
+*java.beans.PropertyEditorManager.setEditorSearchPath(String[])*
+
+public static synchronized void setEditorSearchPath(java.lang.String[] path)
+
+Change the list of package names that will be used for finding property editors. 
+
+First, if there is a security manager, its checkPropertiesAccess method is called. This could result in a SecurityException. 
+
+
+    path - Array of package names. 
+
+

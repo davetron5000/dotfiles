@@ -1,0 +1,299 @@
+*java.text.Collator* *Collator* The Collator class performs locale-sensitive
+ String comparison.
+
+public abstract class Collator
+  extends    |java.lang.Object|
+  implements |java.util.Comparator|
+             |java.lang.Cloneable|
+
+|java.text.Collator_Description|
+|java.text.Collator_Fields|
+|java.text.Collator_Constructors|
+|java.text.Collator_Methods|
+
+====================================================================================================================================================================================
+
+*java.text.Collator_Fields*
+|int_java.text.Collator.CANONICAL_DECOMPOSITION|
+|int_java.text.Collator.FULL_DECOMPOSITION|
+|int_java.text.Collator.IDENTICAL|
+|int_java.text.Collator.NO_DECOMPOSITION|
+|int_java.text.Collator.PRIMARY|
+|int_java.text.Collator.SECONDARY|
+|int_java.text.Collator.TERTIARY|
+
+*java.text.Collator_Constructors*
+|java.text.Collator()|Default constructor.
+
+*java.text.Collator_Methods*
+|java.text.Collator.clone()|Overrides Cloneable
+|java.text.Collator.compare(Object,Object)|Compares its two arguments for order.
+|java.text.Collator.compare(String,String)|Compares the source string to the target string according to the  collation rules for this Collator.
+|java.text.Collator.equals(Object)|Compares the equality of two Collators.
+|java.text.Collator.equals(String,String)|Convenience method for comparing the equality of two strings based on  this Collator's collation rules.
+|java.text.Collator.getAvailableLocales()|Returns an array of all locales for which the  getInstance methods of this class can return  localized instances.
+|java.text.Collator.getCollationKey(String)|Transforms the String into a series of bits that can be compared bitwise  to other CollationKeys.
+|java.text.Collator.getDecomposition()|Get the decomposition mode of this Collator.
+|java.text.Collator.getInstance()|Gets the Collator for the current default locale.
+|java.text.Collator.getInstance(Locale)|Gets the Collator for the desired locale.
+|java.text.Collator.getStrength()|Returns this Collator's strength property.
+|java.text.Collator.hashCode()|Generates the hash code for this Collator.
+|java.text.Collator.setDecomposition(int)|Set the decomposition mode of this Collator.
+|java.text.Collator.setStrength(int)|Sets this Collator's strength property.
+
+*java.text.Collator_Description*
+
+The Collator class performs locale-sensitive String comparison. You use this class to build searching and sorting routines for natural language text. 
+
+Collator is an abstract base class. Subclasses implement specific collation strategies. One subclass, RuleBasedCollator, is currently provided with the Java 2 platform and is 
+applicable to a wide set of languages. Other subclasses may be created to handle more specialized needs. 
+
+Like other locale-sensitive classes, you can use the static factory method, getInstance, to obtain the appropriate Collator object for a given locale. You will only need to look 
+at the subclasses of Collator if you need to understand the details of a particular collation strategy or if you need to modify that strategy. 
+
+The following example shows how to compare two strings using the Collator for the default locale. 
+
+
+
+// Compare two strings in the default locale Collator myCollator = Collator.getInstance(); if( myCollator.compare("abc", "ABC") 
+
+You can set a Collator's strength property to determine the level of difference considered significant in comparisons. Four strengths are provided: PRIMARY, SECONDARY, TERTIARY, 
+and IDENTICAL. The exact assignment of strengths to language features is locale dependant. For example, in Czech, "e" and "f" are considered primary differences, while "e" and "ê" 
+are secondary differences, "e" and "E" are tertiary differences and "e" and "e" are identical. The following shows how both case and accents could be ignored for US English. 
+
+
+
+//Get the Collator for US English and set its strength to PRIMARY Collator usCollator = Collator.getInstance(Locale.US); usCollator.setStrength(Collator.PRIMARY); if( 
+usCollator.compare("abc", "ABC") == 0 ) { System.out.println("Strings are equivalent"); } 
+
+
+
+For comparing Strings exactly once, the compare method provides the best performance. When sorting a list of Strings however, it is generally necessary to compare each String 
+multiple times. In this case, CollationKeys provide better performance. The CollationKey class converts a String to a series of bits that can be compared bitwise against other 
+CollationKeys. A CollationKey is created by a Collator object for a given String. 
+
+Note: CollationKeys from different Collators can not be compared. See the class description for (|java.text.CollationKey|) for an example using CollationKeys. 
+
+
+
+*int_java.text.Collator.CANONICAL_DECOMPOSITION*
+
+Decomposition mode value. With CANONICAL_DECOMPOSITION set, characters that are canonical variants according to Unicode standard will be decomposed for collation. This should be 
+used to get correct collation of accented characters. 
+
+CANONICAL_DECOMPOSITION corresponds to Normalization Form D as described in Unicode Technical Report #15. 
+
+
+*int_java.text.Collator.FULL_DECOMPOSITION*
+
+Decomposition mode value. With FULL_DECOMPOSITION set, both Unicode canonical variants and Unicode compatibility variants will be decomposed for collation. This causes not only 
+accented characters to be collated, but also characters that have special formats to be collated with their norminal form. For example, the half-width and full-width ASCII and 
+Katakana characters are then collated together. FULL_DECOMPOSITION is the most complete and therefore the slowest decomposition mode. 
+
+FULL_DECOMPOSITION corresponds to Normalization Form KD as described in Unicode Technical Report #15. 
+
+
+*int_java.text.Collator.IDENTICAL*
+
+Collator strength value. When set, all differences are considered significant during comparison. The assignment of strengths to language features is locale dependant. A common 
+example is for control characters ("u0001" vs "u0002") to be considered equal at the PRIMARY, SECONDARY, and TERTIARY levels but different at the IDENTICAL level. Additionally, 
+differences between pre-composed accents such as "u00C0" (A-grave) and combining accents such as "Au0300" (A, combining-grave) will be considered significant at the IDENTICAL 
+level if decomposition is set to NO_DECOMPOSITION. 
+
+
+*int_java.text.Collator.NO_DECOMPOSITION*
+
+Decomposition mode value. With NO_DECOMPOSITION set, accented characters will not be decomposed for collation. This is the default setting and provides the fastest collation but 
+will only produce correct results for languages that do not use accents. 
+
+
+*int_java.text.Collator.PRIMARY*
+
+Collator strength value. When set, only PRIMARY differences are considered significant during comparison. The assignment of strengths to language features is locale dependant. A 
+common example is for different base letters ("a" vs "b") to be considered a PRIMARY difference. 
+
+
+*int_java.text.Collator.SECONDARY*
+
+Collator strength value. When set, only SECONDARY and above differences are considered significant during comparison. The assignment of strengths to language features is locale 
+dependant. A common example is for different accented forms of the same base letter ("a" vs "ä") to be considered a SECONDARY difference. 
+
+
+*int_java.text.Collator.TERTIARY*
+
+Collator strength value. When set, only TERTIARY and above differences are considered significant during comparison. The assignment of strengths to language features is locale 
+dependant. A common example is for case differences ("a" vs "A") to be considered a TERTIARY difference. 
+
+
+
+*java.text.Collator()*
+
+protected Collator()
+
+Default constructor. This constructor is protected so subclasses can get access to it. Users typically create a Collator sub-class by calling the factory method getInstance. 
+
+
+*java.text.Collator.clone()*
+
+public |java.lang.Object| clone()
+
+Overrides Cloneable 
+
+
+
+*java.text.Collator.compare(Object,Object)*
+
+public int compare(
+  java.lang.Object o1,
+  java.lang.Object o2)
+
+Compares its two arguments for order. Returns a negative integer, zero, or a positive integer as the first argument is less than, equal to, or greater than the second. 
+
+This implementation merely returns compare((String)o1, (String)o2) . 
+
+
+
+    Returns: a negative integer, zero, or a positive integer as the first argument is less than, equal to, or greater than the second. 
+
+*java.text.Collator.compare(String,String)*
+
+public abstract int compare(
+  java.lang.String source,
+  java.lang.String target)
+
+Compares the source string to the target string according to the collation rules for this Collator. Returns an integer less than, equal to or greater than zero depending on 
+whether the source String is less than, equal to or greater than the target string. See the Collator class description for an example of use. 
+
+For a one time comparison, this method has the best performance. If a given String will be involved in multiple comparisons, CollationKey.compareTo has the best performance. See 
+the Collator class description for an example using CollationKeys. 
+
+
+    source - the source string. 
+    target - the target string. 
+
+    Returns: Returns an integer value. Value is less than zero if source is less than target, value is zero if source and target are equal, value is greater than zero if source is greater than 
+             target. 
+
+*java.text.Collator.equals(Object)*
+
+public boolean equals(java.lang.Object that)
+
+Compares the equality of two Collators. 
+
+
+    that - the Collator to be compared with this. 
+
+    Returns: true if this Collator is the same as that Collator; false otherwise. 
+
+*java.text.Collator.equals(String,String)*
+
+public boolean equals(
+  java.lang.String source,
+  java.lang.String target)
+
+Convenience method for comparing the equality of two strings based on this Collator's collation rules. 
+
+
+    source - the source string to be compared with. 
+    target - the target string to be compared with. 
+
+    Returns: true if the strings are equal according to the collation rules. false, otherwise. 
+
+*java.text.Collator.getAvailableLocales()*
+
+public static synchronized |java.util.Locale|[] getAvailableLocales()
+
+Returns an array of all locales for which the getInstance methods of this class can return localized instances. The array returned must contain at least a Locale instance equal to 
+Locale.US(|java.util.Locale|) . 
+
+
+
+    Returns: An array of locales for which localized Collator instances are available. 
+
+*java.text.Collator.getCollationKey(String)*
+
+public abstract |java.text.CollationKey| getCollationKey(java.lang.String source)
+
+Transforms the String into a series of bits that can be compared bitwise to other CollationKeys. CollationKeys provide better performance than Collator.compare when Strings are 
+involved in multiple comparisons. See the Collator class description for an example using CollationKeys. 
+
+
+    source - the string to be transformed into a collation key. 
+
+    Returns: the CollationKey for the given String based on this Collator's collation rules. If the source String is null, a null CollationKey is returned. 
+
+*java.text.Collator.getDecomposition()*
+
+public synchronized int getDecomposition()
+
+Get the decomposition mode of this Collator. Decomposition mode determines how Unicode composed characters are handled. Adjusting decomposition mode allows the user to select 
+between faster and more complete collation behavior. The three values for decomposition mode are: 
+
+NO_DECOMPOSITION, CANONICAL_DECOMPOSITION FULL_DECOMPOSITION. 
+
+See the documentation for these three constants for a description of their meaning. 
+
+
+
+    Returns: the decomposition mode 
+
+*java.text.Collator.getInstance()*
+
+public static synchronized |java.text.Collator| getInstance()
+
+Gets the Collator for the current default locale. The default locale is determined by java.util.Locale.getDefault. 
+
+
+
+    Returns: the Collator for the default locale.(for example, en_US) 
+
+*java.text.Collator.getInstance(Locale)*
+
+public static synchronized |java.text.Collator| getInstance(java.util.Locale desiredLocale)
+
+Gets the Collator for the desired locale. 
+
+
+    desiredLocale - the desired locale. 
+
+    Returns: the Collator for the desired locale. 
+
+*java.text.Collator.getStrength()*
+
+public synchronized int getStrength()
+
+Returns this Collator's strength property. The strength property determines the minimum level of difference considered significant during comparison. See the Collator class 
+description for an example of use. 
+
+
+
+    Returns: this Collator's current strength property. 
+
+*java.text.Collator.hashCode()*
+
+public abstract int hashCode()
+
+Generates the hash code for this Collator. 
+
+
+
+*java.text.Collator.setDecomposition(int)*
+
+public synchronized void setDecomposition(int decompositionMode)
+
+Set the decomposition mode of this Collator. See getDecomposition for a description of decomposition mode. 
+
+
+    decompositionMode - the new decomposition mode. 
+
+*java.text.Collator.setStrength(int)*
+
+public synchronized void setStrength(int newStrength)
+
+Sets this Collator's strength property. The strength property determines the minimum level of difference considered significant during comparison. See the Collator class 
+description for an example of use. 
+
+
+    newStrength - the new strength value. 
+
+

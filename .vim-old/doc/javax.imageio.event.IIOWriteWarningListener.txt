@@ -1,0 +1,43 @@
+*javax.imageio.event.IIOWriteWarningListener* *IIOWriteWarningListener* An interface used by ImageWriter implementations to
+ notify callers of their image and thumbnail reading met
+
+public interface interface IIOWriteWarningListener
+
+  implements |java.util.EventListener|
+
+|javax.imageio.event.IIOWriteWarningListener_Description|
+|javax.imageio.event.IIOWriteWarningListener_Fields|
+|javax.imageio.event.IIOWriteWarningListener_Constructors|
+|javax.imageio.event.IIOWriteWarningListener_Methods|
+
+====================================================================================================================================================================================
+
+*javax.imageio.event.IIOWriteWarningListener_Methods*
+|javax.imageio.event.IIOWriteWarningListener.warningOccurred(ImageWriter,int,String)|Reports the occurence of a non-fatal error in encoding.
+
+*javax.imageio.event.IIOWriteWarningListener_Description*
+
+An interface used by ImageWriter implementations to notify callers of their image and thumbnail reading methods of warnings (non-fatal errors). Fatal errors cause the relevant 
+read method to throw an IIOException. 
+
+Localization is handled by associating a Locale with each IIOWriteWarningListener as it is registered with an ImageWriter. It is up to the ImageWriter to provide localized 
+messages. 
+
+
+
+*javax.imageio.event.IIOWriteWarningListener.warningOccurred(ImageWriter,int,String)*
+
+public void warningOccurred(
+  javax.imageio.ImageWriter source,
+  int imageIndex,
+  java.lang.String warning)
+
+Reports the occurence of a non-fatal error in encoding. Encoding will continue following the call to this method. The application may choose to display a dialog, print the warning 
+to the console, ignore the warning, or take any other action it chooses. 
+
+
+    source - the ImageWriter object calling this method. 
+    imageIndex - the index, starting with 0, of the image generating the warning. 
+    warning - a String containing the warning. 
+
+

@@ -1,0 +1,673 @@
+*javax.swing.JMenu* *JMenu* An implementation of a menu -- a popup window containing
+ JMenuItems that
+ is displayed when the user selects an item on the JMenuBar.
+
+public class JMenu
+  extends    |javax.swing.JMenuItem|
+  implements |javax.accessibility.Accessible|
+             |javax.swing.MenuElement|
+
+|javax.swing.JMenu_Description|
+|javax.swing.JMenu_Fields|
+|javax.swing.JMenu_Constructors|
+|javax.swing.JMenu_Methods|
+
+====================================================================================================================================================================================
+
+*javax.swing.JMenu_Fields*
+|javax.swing.JMenu.WinListener_javax.swing.JMenu.popupListener|
+
+*javax.swing.JMenu_Constructors*
+|javax.swing.JMenu()|Constructs a new JMenu with no text.
+|javax.swing.JMenu(Action)|Constructs a menu whose properties are taken from the   Action supplied.
+|javax.swing.JMenu(String)|Constructs a new JMenu with the supplied string  as its text.
+|javax.swing.JMenu(String,boolean)|Constructs a new JMenu with the supplied string as  its text and specified as a tear-off menu or not.
+
+*javax.swing.JMenu_Methods*
+|javax.swing.JMenu.add(Action)|Creates a new menu item attached to the specified   Action object and appends it to the end of this menu.
+|javax.swing.JMenu.add(Component)|Appends a component to the end of this menu.
+|javax.swing.JMenu.add(Component,int)|Adds the specified component to this container at the given   position.
+|javax.swing.JMenu.add(JMenuItem)|Appends a menu item to the end of this menu.
+|javax.swing.JMenu.add(String)|Creates a new menu item with the specified text and appends  it to the end of this menu.
+|javax.swing.JMenu.addMenuListener(MenuListener)|Adds a listener for menu events.
+|javax.swing.JMenu.addSeparator()|Appends a new separator to the end of the menu.
+|javax.swing.JMenu.applyComponentOrientation(ComponentOrientation)|Sets the ComponentOrientation property of this menu  and all components contained within it.
+|javax.swing.JMenu.configurePropertiesFromAction(Action)|Factory method which sets the ActionEvent  source's properties according to values from the  Action instance.
+|javax.swing.JMenu.createActionChangeListener(JMenuItem)|Returns a properly configured PropertyChangeListener  which updates the control as changes to the Action occur.
+|javax.swing.JMenu.createActionComponent(Action)|Factory method which creates the JMenuItem for   Actions added to the JMenu.
+|javax.swing.JMenu.createWinListener(JPopupMenu)|Creates a window-closing listener for the popup.
+|javax.swing.JMenu.doClick(int)|Programmatically performs a "click".
+|javax.swing.JMenu.fireMenuCanceled()|Notifies all listeners that have registered interest for  notification on this event type.
+|javax.swing.JMenu.fireMenuDeselected()|Notifies all listeners that have registered interest for  notification on this event type.
+|javax.swing.JMenu.fireMenuSelected()|Notifies all listeners that have registered interest for  notification on this event type.
+|javax.swing.JMenu.getAccessibleContext()|Gets the AccessibleContext associated with this JMenu.
+|javax.swing.JMenu.getComponent()|Returns the java.awt.Component used to   paint this MenuElement.
+|javax.swing.JMenu.getDelay()|Returns the suggested delay, in milliseconds, before submenus  are popped up or down.
+|javax.swing.JMenu.getItem(int)|Returns the JMenuItem at the specified position.
+|javax.swing.JMenu.getItemCount()|Returns the number of items on the menu, including separators.
+|javax.swing.JMenu.getMenuComponent(int)|Returns the component at position n.
+|javax.swing.JMenu.getMenuComponentCount()|Returns the number of components on the menu.
+|javax.swing.JMenu.getMenuComponents()|Returns an array of Components of the menu's  subcomponents.
+|javax.swing.JMenu.getMenuListeners()|Returns an array of all the MenuListeners added  to this JMenu with addMenuListener().
+|javax.swing.JMenu.getPopupMenu()|Returns the popupmenu associated with this menu.
+|javax.swing.JMenu.getPopupMenuOrigin()|Computes the origin for the JMenu's popup menu.
+|javax.swing.JMenu.getSubElements()|Returns an array of MenuElements containing the submenu   for this menu component.
+|javax.swing.JMenu.getUIClassID()|Returns the name of the Lclass that renders this component.
+|javax.swing.JMenu.insert(Action,int)|Inserts a new menu item attached to the specified Action   object at a given position.
+|javax.swing.JMenu.insert(JMenuItem,int)|Inserts the specified JMenuitem at a given position.
+|javax.swing.JMenu.insert(String,int)|Inserts a new menu item with the specified text at a   given position.
+|javax.swing.JMenu.insertSeparator(int)|Inserts a separator at the specified position.
+|javax.swing.JMenu.isMenuComponent(Component)|Returns true if the specified component exists in the   submenu hierarchy.
+|javax.swing.JMenu.isPopupMenuVisible()|Returns true if the menu's popup window is visible.
+|javax.swing.JMenu.isSelected()|Returns true if the menu is currently selected (highlighted).
+|javax.swing.JMenu.isTearOff()|Returns true if the menu can be torn off.
+|javax.swing.JMenu.isTopLevelMenu()|Returns true if the menu is a 'top-level menu', that is, if it is  the direct child of a menubar.
+|javax.swing.JMenu.menuSelectionChanged(boolean)|Messaged when the menubar selection changes to activate or  deactivate this menu.
+|javax.swing.JMenu.paramString()|Returns a string representation of this JMenu.
+|javax.swing.JMenu.processKeyEvent(KeyEvent)|Processes key stroke events such as mnemonics and accelerators.
+|javax.swing.JMenu.remove(Component)|Removes the component c from this menu.
+|javax.swing.JMenu.remove(int)|Removes the menu item at the specified index from this menu.
+|javax.swing.JMenu.remove(JMenuItem)|Removes the specified menu item from this menu.
+|javax.swing.JMenu.removeAll()|Removes all menu items from this menu.
+|javax.swing.JMenu.removeMenuListener(MenuListener)|Removes a listener for menu events.
+|javax.swing.JMenu.setAccelerator(KeyStroke)|setAccelerator is not defined for JMenu.
+|javax.swing.JMenu.setComponentOrientation(ComponentOrientation)|
+|javax.swing.JMenu.setDelay(int)|Sets the suggested delay before the menu's PopupMenu  is popped up or down.
+|javax.swing.JMenu.setMenuLocation(int,int)|Sets the location of the popup component.
+|javax.swing.JMenu.setModel(ButtonModel)|Sets the data model for the "menu button" -- the label  that the user clicks to open or close the menu.
+|javax.swing.JMenu.setPopupMenuVisible(boolean)|Sets the visibility of the menu's popup.
+|javax.swing.JMenu.setSelected(boolean)|Sets the selection status of the menu.
+|javax.swing.JMenu.updateUI()|Resets the UI property with a value from the current look and feel.
+
+*javax.swing.JMenu_Description*
+
+An implementation of a menu -- a popup window containing JMenuItems that is displayed when the user selects an item on the JMenuBar. In addition to JMenuItems, a JMenu can also 
+contain JSeparators. 
+
+In essence, a menu is a button with an associated JPopupMenu. When the "button" is pressed, the JPopupMenu appears. If the "button" is on the JMenuBar, the menu is a top-level 
+window. If the "button" is another menu item, then the JPopupMenu is "pull-right" menu. 
+
+For information and examples of using menus see How to Use Menus, a section in The Java Tutorial. 
+
+Warning: Serialized objects of this class will not be compatible with future Swing releases. The current serialization support is appropriate for short term storage or RMI between 
+applications running the same version of Swing. As of 1.4, support for long term storage of all JavaBeansTM has been added to the java.beans package. Please see 
+(|java.beans.XMLEncoder|) . 
+
+
+
+*javax.swing.JMenu.WinListener_javax.swing.JMenu.popupListener*
+
+The window-closing listener for the popup. 
+
+
+
+*javax.swing.JMenu()*
+
+public JMenu()
+
+Constructs a new JMenu with no text. 
+
+
+*javax.swing.JMenu(Action)*
+
+public JMenu(javax.swing.Action a)
+
+Constructs a menu whose properties are taken from the Action supplied. 
+
+    a - an Action 
+
+*javax.swing.JMenu(String)*
+
+public JMenu(java.lang.String s)
+
+Constructs a new JMenu with the supplied string as its text. 
+
+    s - the text for the menu label 
+
+*javax.swing.JMenu(String,boolean)*
+
+public JMenu(
+  java.lang.String s,
+  boolean b)
+
+Constructs a new JMenu with the supplied string as its text and specified as a tear-off menu or not. 
+
+    s - the text for the menu label 
+    b - can the menu be torn off (not yet implemented) 
+
+*javax.swing.JMenu.add(Action)*
+
+public |javax.swing.JMenuItem| add(javax.swing.Action a)
+
+Creates a new menu item attached to the specified Action object and appends it to the end of this menu. As of 1.3, this is no longer the preferred method for adding Actions to a 
+container. Instead it is recommended to configure a control with an action using setAction, and then add that control directly to the Container. 
+
+
+    a - the Action for the menu item to be added 
+
+*javax.swing.JMenu.add(Component)*
+
+public |java.awt.Component| add(java.awt.Component c)
+
+Appends a component to the end of this menu. Returns the component added. 
+
+
+    c - the Component to add 
+
+    Returns: the Component added 
+
+*javax.swing.JMenu.add(Component,int)*
+
+public |java.awt.Component| add(
+  java.awt.Component c,
+  int index)
+
+Adds the specified component to this container at the given position. If index equals -1, the component will be appended to the end. 
+
+
+    c - the Component to add 
+    index - the position at which to insert the component 
+
+    Returns: the Component added 
+
+*javax.swing.JMenu.add(JMenuItem)*
+
+public |javax.swing.JMenuItem| add(javax.swing.JMenuItem menuItem)
+
+Appends a menu item to the end of this menu. Returns the menu item added. 
+
+
+    menuItem - the JMenuitem to be added 
+
+    Returns: the JMenuItem added 
+
+*javax.swing.JMenu.add(String)*
+
+public |javax.swing.JMenuItem| add(java.lang.String s)
+
+Creates a new menu item with the specified text and appends it to the end of this menu. 
+
+
+    s - the string for the menu item to be added 
+
+*javax.swing.JMenu.addMenuListener(MenuListener)*
+
+public void addMenuListener(javax.swing.event.MenuListener l)
+
+Adds a listener for menu events. 
+
+
+    l - the listener to be added 
+
+*javax.swing.JMenu.addSeparator()*
+
+public void addSeparator()
+
+Appends a new separator to the end of the menu. 
+
+
+
+*javax.swing.JMenu.applyComponentOrientation(ComponentOrientation)*
+
+public void applyComponentOrientation(java.awt.ComponentOrientation o)
+
+Sets the ComponentOrientation property of this menu and all components contained within it. This includes all components returned by getMenuComponents(|javax.swing.JMenu|) . 
+
+
+    o - the new component orientation of this menu and the components contained within it. 
+
+*javax.swing.JMenu.configurePropertiesFromAction(Action)*
+
+protected void configurePropertiesFromAction(javax.swing.Action a)
+
+Factory method which sets the ActionEvent source's properties according to values from the Action instance. The properties which are set may differ for subclasses. By default, the 
+properties which get set are Text, Icon, Enabled, ToolTipText, ActionCommand, and Mnemonic. 
+
+
+    a - the Action from which to get the properties, or null 
+
+*javax.swing.JMenu.createActionChangeListener(JMenuItem)*
+
+protected |java.beans.PropertyChangeListener| createActionChangeListener(javax.swing.JMenuItem b)
+
+Returns a properly configured PropertyChangeListener which updates the control as changes to the Action occur. As of 1.3, this is no longer the preferred method for adding Actions 
+to a Container. Instead it is recommended to configure a control with an action using setAction, and then add that control directly to the Container. 
+
+
+
+*javax.swing.JMenu.createActionComponent(Action)*
+
+protected |javax.swing.JMenuItem| createActionComponent(javax.swing.Action a)
+
+Factory method which creates the JMenuItem for Actions added to the JMenu. As of 1.3, this is no longer the preferred method. Instead it is recommended to configure a control with 
+an action using setAction, and then adding that control directly to the Container. 
+
+
+    a - the Action for the menu item to be added 
+
+    Returns: the new menu item 
+
+*javax.swing.JMenu.createWinListener(JPopupMenu)*
+
+protected |javax.swing.JMenu.WinListener| createWinListener(javax.swing.JPopupMenu p)
+
+Creates a window-closing listener for the popup. 
+
+
+    p - the JPopupMenu 
+
+    Returns: the new window-closing listener 
+
+*javax.swing.JMenu.doClick(int)*
+
+public void doClick(int pressTime)
+
+Programmatically performs a "click". This overrides the method AbstractButton.doClick in order to make the menu pop up. 
+
+
+    pressTime - indicates the number of milliseconds the button was pressed for 
+
+*javax.swing.JMenu.fireMenuCanceled()*
+
+protected void fireMenuCanceled()
+
+Notifies all listeners that have registered interest for notification on this event type. The event instance is created lazily. 
+
+
+
+*javax.swing.JMenu.fireMenuDeselected()*
+
+protected void fireMenuDeselected()
+
+Notifies all listeners that have registered interest for notification on this event type. The event instance is created lazily. 
+
+
+
+*javax.swing.JMenu.fireMenuSelected()*
+
+protected void fireMenuSelected()
+
+Notifies all listeners that have registered interest for notification on this event type. The event instance is created lazily. 
+
+
+
+*javax.swing.JMenu.getAccessibleContext()*
+
+public |javax.accessibility.AccessibleContext| getAccessibleContext()
+
+Gets the AccessibleContext associated with this JMenu. For JMenus, the AccessibleContext takes the form of an AccessibleJMenu. A new AccessibleJMenu instance is created if 
+necessary. 
+
+
+
+    Returns: an AccessibleJMenu that serves as the AccessibleContext of this JMenu 
+
+*javax.swing.JMenu.getComponent()*
+
+public |java.awt.Component| getComponent()
+
+Returns the java.awt.Component used to paint this MenuElement. The returned component is used to convert events and detect if an event is inside a menu component. 
+
+
+
+*javax.swing.JMenu.getDelay()*
+
+public int getDelay()
+
+Returns the suggested delay, in milliseconds, before submenus are popped up or down. Each look and feel (Lmay determine its own policy for observing the delay property. In most 
+cases, the delay is not observed for top level menus or while dragging. The default for delay is 0. This method is a property of the look and feel code and is used to manage the 
+idiosyncracies of the various UI implementations. 
+
+
+
+    Returns: the delay property 
+
+*javax.swing.JMenu.getItem(int)*
+
+public |javax.swing.JMenuItem| getItem(int pos)
+
+Returns the JMenuItem at the specified position. If the component at pos is not a menu item, null is returned. This method is included for AWT compatibility. 
+
+
+    pos - an integer specifying the position 
+
+    Returns: the menu item at the specified position; or null if the item as the specified position is not a menu item 
+
+*javax.swing.JMenu.getItemCount()*
+
+public int getItemCount()
+
+Returns the number of items on the menu, including separators. This method is included for AWT compatibility. 
+
+
+
+    Returns: an integer equal to the number of items on the menu 
+
+*javax.swing.JMenu.getMenuComponent(int)*
+
+public |java.awt.Component| getMenuComponent(int n)
+
+Returns the component at position n. 
+
+
+    n - the position of the component to be returned 
+
+    Returns: the component requested, or null if there is no popup menu 
+
+*javax.swing.JMenu.getMenuComponentCount()*
+
+public int getMenuComponentCount()
+
+Returns the number of components on the menu. 
+
+
+
+    Returns: an integer containing the number of components on the menu 
+
+*javax.swing.JMenu.getMenuComponents()*
+
+public |java.awt.Component|[] getMenuComponents()
+
+Returns an array of Components of the menu's subcomponents. Note that this returns all Components in the popup menu, including separators. 
+
+
+
+    Returns: an array of Components or an empty array if there is no popup menu 
+
+*javax.swing.JMenu.getMenuListeners()*
+
+public |javax.swing.event.MenuListener|[] getMenuListeners()
+
+Returns an array of all the MenuListeners added to this JMenu with addMenuListener(). 
+
+
+
+    Returns: all of the MenuListeners added or an empty array if no listeners have been added 
+
+*javax.swing.JMenu.getPopupMenu()*
+
+public |javax.swing.JPopupMenu| getPopupMenu()
+
+Returns the popupmenu associated with this menu. If there is no popupmenu, it will create one. 
+
+
+
+*javax.swing.JMenu.getPopupMenuOrigin()*
+
+protected |java.awt.Point| getPopupMenuOrigin()
+
+Computes the origin for the JMenu's popup menu. This method uses Look and Feel properties named Menu.menuPopupOffsetX, Menu.menuPopupOffsetY, Menu.submenuPopupOffsetX, and 
+Menu.submenuPopupOffsetY to adjust the exact location of popup. 
+
+
+
+    Returns: a Point in the coordinate space of the menu which should be used as the origin of the JMenu's popup menu 
+
+*javax.swing.JMenu.getSubElements()*
+
+public |javax.swing.MenuElement|[] getSubElements()
+
+Returns an array of MenuElements containing the submenu for this menu component. If popup menu is null returns an empty array. This method is required to conform to the 
+MenuElement interface. Note that since JSeparators do not conform to the MenuElement interface, this array will only contain JMenuItems. 
+
+
+
+    Returns: an array of MenuElement objects 
+
+*javax.swing.JMenu.getUIClassID()*
+
+public |java.lang.String| getUIClassID()
+
+Returns the name of the Lclass that renders this component. 
+
+
+
+    Returns: the string "MenuUI" 
+
+*javax.swing.JMenu.insert(Action,int)*
+
+public |javax.swing.JMenuItem| insert(
+  javax.swing.Action a,
+  int pos)
+
+Inserts a new menu item attached to the specified Action object at a given position. 
+
+
+    a - the Action object for the menu item to add 
+    pos - an integer specifying the position at which to add the new menu item 
+
+*javax.swing.JMenu.insert(JMenuItem,int)*
+
+public |javax.swing.JMenuItem| insert(
+  javax.swing.JMenuItem mi,
+  int pos)
+
+Inserts the specified JMenuitem at a given position. 
+
+
+    mi - the JMenuitem to add 
+    pos - an integer specifying the position at which to add the new JMenuitem 
+
+    Returns: the new menu item 
+
+*javax.swing.JMenu.insert(String,int)*
+
+public void insert(
+  java.lang.String s,
+  int pos)
+
+Inserts a new menu item with the specified text at a given position. 
+
+
+    s - the text for the menu item to add 
+    pos - an integer specifying the position at which to add the new menu item 
+
+*javax.swing.JMenu.insertSeparator(int)*
+
+public void insertSeparator(int index)
+
+Inserts a separator at the specified position. 
+
+
+    index - an integer specifying the position at which to insert the menu separator 
+
+*javax.swing.JMenu.isMenuComponent(Component)*
+
+public boolean isMenuComponent(java.awt.Component c)
+
+Returns true if the specified component exists in the submenu hierarchy. 
+
+
+    c - the Component to be tested 
+
+    Returns: true if the Component exists, false otherwise 
+
+*javax.swing.JMenu.isPopupMenuVisible()*
+
+public boolean isPopupMenuVisible()
+
+Returns true if the menu's popup window is visible. 
+
+
+
+    Returns: true if the menu is visible, else false 
+
+*javax.swing.JMenu.isSelected()*
+
+public boolean isSelected()
+
+Returns true if the menu is currently selected (highlighted). 
+
+
+
+    Returns: true if the menu is selected, else false 
+
+*javax.swing.JMenu.isTearOff()*
+
+public boolean isTearOff()
+
+Returns true if the menu can be torn off. This method is not yet implemented. 
+
+
+
+    Returns: true if the menu can be torn off, else false 
+
+*javax.swing.JMenu.isTopLevelMenu()*
+
+public boolean isTopLevelMenu()
+
+Returns true if the menu is a 'top-level menu', that is, if it is the direct child of a menubar. 
+
+
+
+    Returns: true if the menu is activated from the menu bar; false if the menu is activated from a menu item on another menu 
+
+*javax.swing.JMenu.menuSelectionChanged(boolean)*
+
+public void menuSelectionChanged(boolean isIncluded)
+
+Messaged when the menubar selection changes to activate or deactivate this menu. Overrides JMenuItem.menuSelectionChanged. 
+
+
+    isIncluded - true if this menu is active, false if it is not 
+
+*javax.swing.JMenu.paramString()*
+
+protected |java.lang.String| paramString()
+
+Returns a string representation of this JMenu. This method is intended to be used only for debugging purposes, and the content and format of the returned string may vary between 
+implementations. The returned string may be empty but may not be null. 
+
+
+
+    Returns: a string representation of this JMenu. 
+
+*javax.swing.JMenu.processKeyEvent(KeyEvent)*
+
+protected void processKeyEvent(java.awt.event.KeyEvent evt)
+
+Processes key stroke events such as mnemonics and accelerators. 
+
+
+    evt - the key event to be processed 
+
+*javax.swing.JMenu.remove(Component)*
+
+public void remove(java.awt.Component c)
+
+Removes the component c from this menu. 
+
+
+    c - the component to be removed 
+
+*javax.swing.JMenu.remove(int)*
+
+public void remove(int pos)
+
+Removes the menu item at the specified index from this menu. 
+
+
+    pos - the position of the item to be removed 
+
+*javax.swing.JMenu.remove(JMenuItem)*
+
+public void remove(javax.swing.JMenuItem item)
+
+Removes the specified menu item from this menu. If there is no popup menu, this method will have no effect. 
+
+
+    item - the JMenuItem to be removed from the menu 
+
+*javax.swing.JMenu.removeAll()*
+
+public void removeAll()
+
+Removes all menu items from this menu. 
+
+
+
+*javax.swing.JMenu.removeMenuListener(MenuListener)*
+
+public void removeMenuListener(javax.swing.event.MenuListener l)
+
+Removes a listener for menu events. 
+
+
+    l - the listener to be removed 
+
+*javax.swing.JMenu.setAccelerator(KeyStroke)*
+
+public void setAccelerator(javax.swing.KeyStroke keyStroke)
+
+setAccelerator is not defined for JMenu. Use setMnemonic instead. 
+
+
+    keyStroke - the keystroke combination which will invoke the JMenuItem's actionlisteners without navigating the menu hierarchy 
+
+*javax.swing.JMenu.setComponentOrientation(ComponentOrientation)*
+
+public void setComponentOrientation(java.awt.ComponentOrientation o)
+
+
+
+
+
+*javax.swing.JMenu.setDelay(int)*
+
+public void setDelay(int d)
+
+Sets the suggested delay before the menu's PopupMenu is popped up or down. Each look and feel (Lmay determine it's own policy for observing the delay property. In most cases, the 
+delay is not observed for top level menus or while dragging. This method is a property of the look and feel code and is used to manage the idiosyncracies of the various UI 
+implementations. 
+
+
+    d - the number of milliseconds to delay 
+
+*javax.swing.JMenu.setMenuLocation(int,int)*
+
+public void setMenuLocation(
+  int x,
+  int y)
+
+Sets the location of the popup component. 
+
+
+    x - the x coordinate of the popup's new position 
+    y - the y coordinate of the popup's new position 
+
+*javax.swing.JMenu.setModel(ButtonModel)*
+
+public void setModel(javax.swing.ButtonModel newModel)
+
+Sets the data model for the "menu button" -- the label that the user clicks to open or close the menu. 
+
+
+    newModel - the ButtonModel 
+
+*javax.swing.JMenu.setPopupMenuVisible(boolean)*
+
+public void setPopupMenuVisible(boolean b)
+
+Sets the visibility of the menu's popup. If the menu is not enabled, this method will have no effect. 
+
+
+    b - a boolean value -- true to make the menu visible, false to hide it 
+
+*javax.swing.JMenu.setSelected(boolean)*
+
+public void setSelected(boolean b)
+
+Sets the selection status of the menu. 
+
+
+    b - true to select (highlight) the menu; false to de-select the menu 
+
+*javax.swing.JMenu.updateUI()*
+
+public void updateUI()
+
+Resets the UI property with a value from the current look and feel. 
+
+
+
+

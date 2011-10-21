@@ -1,0 +1,173 @@
+*java.awt.event.InvocationEvent* *InvocationEvent* An event which executes the run() method on a Runnable
+  when dispatched by the AWT event dispatcher thread.
+
+public class InvocationEvent
+  extends    |java.awt.AWTEvent|
+  implements |java.awt.ActiveEvent|
+
+|java.awt.event.InvocationEvent_Description|
+|java.awt.event.InvocationEvent_Fields|
+|java.awt.event.InvocationEvent_Constructors|
+|java.awt.event.InvocationEvent_Methods|
+
+====================================================================================================================================================================================
+
+*java.awt.event.InvocationEvent_Fields*
+|boolean_java.awt.event.InvocationEvent.catchExceptions|
+|int_java.awt.event.InvocationEvent.INVOCATION_DEFAULT|
+|int_java.awt.event.InvocationEvent.INVOCATION_FIRST|
+|int_java.awt.event.InvocationEvent.INVOCATION_LAST|
+|java.lang.Object_java.awt.event.InvocationEvent.notifier|
+|java.lang.Runnable_java.awt.event.InvocationEvent.runnable|
+
+*java.awt.event.InvocationEvent_Constructors*
+|java.awt.event.InvocationEvent(Object,int,Runnable,Object,boolean)|Constructs an InvocationEvent with the specified  source and ID which will execute the runnable's run  method w
+|java.awt.event.InvocationEvent(Object,Runnable)|Constructs an InvocationEvent with the specified  source which will execute the runnable's run  method when dispatched.
+|java.awt.event.InvocationEvent(Object,Runnable,Object,boolean)|Constructs an InvocationEvent with the specified  source which will execute the runnable's run  method when dispatc
+
+*java.awt.event.InvocationEvent_Methods*
+|java.awt.event.InvocationEvent.dispatch()|Executes the Runnable's run() method and notifies the  notifier (if any) when run() returns.
+|java.awt.event.InvocationEvent.getException()|Returns any Exception caught while executing the Runnable's run()   method.
+|java.awt.event.InvocationEvent.getThrowable()|Returns any Throwable caught while executing the Runnable's run()   method.
+|java.awt.event.InvocationEvent.getWhen()|Returns the timestamp of when this event occurred.
+|java.awt.event.InvocationEvent.paramString()|Returns a parameter string identifying this event.
+
+*java.awt.event.InvocationEvent_Description*
+
+An event which executes the run() method on a Runnable when dispatched by the AWT event dispatcher thread. This class can be used as a reference implementation of ActiveEvent 
+rather than declaring a new class and defining dispatch(). 
+
+Instances of this class are placed on the EventQueue by calls to invokeLater and invokeAndWait. Client code can use this fact to write replacement functions for invokeLater and 
+invokeAndWait without writing special-case code in any AWTEventListener objects. 
+
+
+
+*boolean_java.awt.event.InvocationEvent.catchExceptions*
+
+Set to true if dispatch() catches Throwable and stores it in the exception instance variable. If false, Throwables are propagated up to the EventDispatchThread's dispatch loop. 
+
+
+*int_java.awt.event.InvocationEvent.INVOCATION_DEFAULT*
+
+The default id for all InvocationEvents. 
+
+
+*int_java.awt.event.InvocationEvent.INVOCATION_FIRST*
+
+Marks the first integer id for the range of invocation event ids. 
+
+
+*int_java.awt.event.InvocationEvent.INVOCATION_LAST*
+
+Marks the last integer id for the range of invocation event ids. 
+
+
+*java.lang.Object_java.awt.event.InvocationEvent.notifier*
+
+The (potentially null) Object whose notifyAll() method will be called immediately after the Runnable.run() method returns. 
+
+
+*java.lang.Runnable_java.awt.event.InvocationEvent.runnable*
+
+The Runnable whose run() method will be called. 
+
+
+
+*java.awt.event.InvocationEvent(Object,int,Runnable,Object,boolean)*
+
+protected InvocationEvent(
+  java.lang.Object source,
+  int id,
+  java.lang.Runnable runnable,
+  java.lang.Object notifier,
+  boolean catchThrowables)
+
+Constructs an InvocationEvent with the specified source and ID which will execute the runnable's run method when dispatched. If notifier is non-null, notifyAll will be called on 
+it immediately after run returns. Note that passing in an invalid id results in unspecified behavior. This method throws an IllegalArgumentException if source is null. 
+
+    source - the Object that originated the event 
+    id - the ID for the event 
+    runnable - the Runnable whose run method will be executed 
+    notifier - the Object whose notifyAll method will be called after Runnable.run has returned 
+    catchThrowables - specifies whether dispatch should catch Throwable when executing the Runnable's run method, or should instead propagate those Throwables to the EventDispatchThread's dispatch loop 
+
+*java.awt.event.InvocationEvent(Object,Runnable)*
+
+public InvocationEvent(
+  java.lang.Object source,
+  java.lang.Runnable runnable)
+
+Constructs an InvocationEvent with the specified source which will execute the runnable's run method when dispatched. This is a convenience constructor. An invocation of the form 
+InvocationEvent(source, runnable) behaves in exactly the same way as the invocation of InvocationEvent(|java.awt.event.InvocationEvent|) (source, runnable, null, false). This 
+method throws an IllegalArgumentException if source is null. 
+
+    source - the Object that originated the event 
+    runnable - the Runnable whose run method will be executed 
+
+*java.awt.event.InvocationEvent(Object,Runnable,Object,boolean)*
+
+public InvocationEvent(
+  java.lang.Object source,
+  java.lang.Runnable runnable,
+  java.lang.Object notifier,
+  boolean catchThrowables)
+
+Constructs an InvocationEvent with the specified source which will execute the runnable's run method when dispatched. If notifier is non-null, notifyAll() will be called on it 
+immediately after run returns. An invocation of the form InvocationEvent(source, runnable, notifier, catchThrowables) behaves in exactly the same way as the invocation of 
+InvocationEvent(|java.awt.event.InvocationEvent|) (source, InvocationEvent.INVOCATION_DEFAULT, runnable, notifier, catchThrowables). This method throws an IllegalArgumentException 
+if source is null. 
+
+    source - the Object that originated the event 
+    runnable - the Runnable whose run method will be executed 
+    notifier - the Object whose notifyAll method will be called after Runnable.run has returned 
+    catchThrowables - specifies whether dispatch should catch Throwable when executing the Runnable's run method, or should instead propagate those Throwables to the EventDispatchThread's dispatch loop 
+
+*java.awt.event.InvocationEvent.dispatch()*
+
+public void dispatch()
+
+Executes the Runnable's run() method and notifies the notifier (if any) when run() returns. 
+
+
+
+*java.awt.event.InvocationEvent.getException()*
+
+public |java.lang.Exception| getException()
+
+Returns any Exception caught while executing the Runnable's run() method. 
+
+
+
+    Returns: A reference to the Exception if one was thrown; null if no Exception was thrown or if this InvocationEvent does not catch exceptions 
+
+*java.awt.event.InvocationEvent.getThrowable()*
+
+public |java.lang.Throwable| getThrowable()
+
+Returns any Throwable caught while executing the Runnable's run() method. 
+
+
+
+    Returns: A reference to the Throwable if one was thrown; null if no Throwable was thrown or if this InvocationEvent does not catch Throwables 
+
+*java.awt.event.InvocationEvent.getWhen()*
+
+public long getWhen()
+
+Returns the timestamp of when this event occurred. 
+
+
+
+    Returns: this event's timestamp 
+
+*java.awt.event.InvocationEvent.paramString()*
+
+public |java.lang.String| paramString()
+
+Returns a parameter string identifying this event. This method is useful for event-logging and for debugging. 
+
+
+
+    Returns: A string identifying the event and its attributes 
+
+

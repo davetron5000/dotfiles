@@ -1,0 +1,41 @@
+*javax.naming.ldap.HasControls* *HasControls* This interface is for returning controls with objects returned
+ in NamingEnumerations.
+
+public interface interface HasControls
+
+
+|javax.naming.ldap.HasControls_Description|
+|javax.naming.ldap.HasControls_Fields|
+|javax.naming.ldap.HasControls_Constructors|
+|javax.naming.ldap.HasControls_Methods|
+
+====================================================================================================================================================================================
+
+*javax.naming.ldap.HasControls_Methods*
+|javax.naming.ldap.HasControls.getControls()|Retrieves an array of Controls from the object that  implements this interface.
+
+*javax.naming.ldap.HasControls_Description*
+
+This interface is for returning controls with objects returned in NamingEnumerations. For example, suppose a server sends back controls with the results of a search operation, the 
+service provider would return a NamingEnumeration of objects that are both SearchResult and implement HasControls. 
+
+NamingEnumeration elts = ectx.search((Name)name, filter, sctls); while (elts.hasMore()) { Object entry = elts.next(); 
+
+// Get search result SearchResult res = (SearchResult)entry; // do something with it 
+
+// Get entry controls if (entry instanceof HasControls) { Control[] entryCtls = ((HasControls)entry).getControls(); // do something with controls } } 
+
+
+
+*javax.naming.ldap.HasControls.getControls()*
+
+public |javax.naming.ldap.Control|[] getControls()
+  throws |javax.naming.NamingException|
+         
+Retrieves an array of Controls from the object that implements this interface. It is null if there are no controls. 
+
+
+
+    Returns: A possibly null array of Control objects. 
+
+

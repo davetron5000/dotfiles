@@ -1,0 +1,105 @@
+*javax.imageio.plugins.jpeg.JPEGHuffmanTable* *JPEGHuffmanTable* A class encapsulating a single JPEG Huffman table.
+
+public class JPEGHuffmanTable
+  extends    |java.lang.Object|
+
+|javax.imageio.plugins.jpeg.JPEGHuffmanTable_Description|
+|javax.imageio.plugins.jpeg.JPEGHuffmanTable_Fields|
+|javax.imageio.plugins.jpeg.JPEGHuffmanTable_Constructors|
+|javax.imageio.plugins.jpeg.JPEGHuffmanTable_Methods|
+
+====================================================================================================================================================================================
+
+*javax.imageio.plugins.jpeg.JPEGHuffmanTable_Fields*
+|javax.imageio.plugins.jpeg.JPEGHuffmanTable_javax.imageio.plugins.jpeg.JPEGHuffmanTable.StdACChrominance|
+|javax.imageio.plugins.jpeg.JPEGHuffmanTable_javax.imageio.plugins.jpeg.JPEGHuffmanTable.StdACLuminance|
+|javax.imageio.plugins.jpeg.JPEGHuffmanTable_javax.imageio.plugins.jpeg.JPEGHuffmanTable.StdDCChrominance|
+|javax.imageio.plugins.jpeg.JPEGHuffmanTable_javax.imageio.plugins.jpeg.JPEGHuffmanTable.StdDCLuminance|
+
+*javax.imageio.plugins.jpeg.JPEGHuffmanTable_Constructors*
+|javax.imageio.plugins.jpeg.JPEGHuffmanTable(short[],short[])|Creates a Huffman table and initializes it.
+
+*javax.imageio.plugins.jpeg.JPEGHuffmanTable_Methods*
+|javax.imageio.plugins.jpeg.JPEGHuffmanTable.getLengths()|Return an array of shorts containing the number of  values for each length in the Huffman table.
+|javax.imageio.plugins.jpeg.JPEGHuffmanTable.getValues()|Return an array of shorts containing the  values arranged by increasing length of their corresponding  codes.
+|javax.imageio.plugins.jpeg.JPEGHuffmanTable.toString()|
+
+*javax.imageio.plugins.jpeg.JPEGHuffmanTable_Description*
+
+A class encapsulating a single JPEG Huffman table. Fields are provided for the "standard" tables from taken from Annex K of the JPEG specification. These are the tables used as 
+defaults. This class differs from the old unsupported com.sun.image.codec.jpeg.JPEGHuffmanTable in two ways: 
+
+The lengths arrays for this class do not contain an ignored 0th entry. The lengths array in a JPEG stream does not contain an extra entry, and this class is used to represent the 
+contents of a JPEG stream. 
+
+The old class incorrectly referred to Huffman "symbols", while expecting an array of values to be encoded. This class has a getValues method instead of a getSymbols method. 
+
+
+
+For more information about the operation of the built-in JPEG plug-ins, see the JPEG metadata format specification and usage notes. 
+
+
+
+*javax.imageio.plugins.jpeg.JPEGHuffmanTable_javax.imageio.plugins.jpeg.JPEGHuffmanTable.StdACChrominance*
+
+The standard AC chrominance Huffman table. 
+
+
+*javax.imageio.plugins.jpeg.JPEGHuffmanTable_javax.imageio.plugins.jpeg.JPEGHuffmanTable.StdACLuminance*
+
+The standard AC luminance Huffman table. 
+
+
+*javax.imageio.plugins.jpeg.JPEGHuffmanTable_javax.imageio.plugins.jpeg.JPEGHuffmanTable.StdDCChrominance*
+
+The standard DC chrominance Huffman table. 
+
+
+*javax.imageio.plugins.jpeg.JPEGHuffmanTable_javax.imageio.plugins.jpeg.JPEGHuffmanTable.StdDCLuminance*
+
+The standard DC luminance Huffman table. 
+
+
+
+*javax.imageio.plugins.jpeg.JPEGHuffmanTable(short[],short[])*
+
+public JPEGHuffmanTable(
+  short[] lengths,
+  short[] values)
+
+Creates a Huffman table and initializes it. The input arrays are copied. The arrays must describe a possible Huffman table. For example, 3 codes cannot be expressed with a single 
+bit. 
+
+    lengths - an array of shorts where lengths[k] is equal to the number of values with corresponding codes of length k + 1 bits. 
+    values - an array of shorts containing the values in order of increasing code length. 
+
+*javax.imageio.plugins.jpeg.JPEGHuffmanTable.getLengths()*
+
+public short[] getLengths()
+
+Return an array of shorts containing the number of values for each length in the Huffman table. The returned array is a copy. 
+
+
+
+    Returns: a short array where array[k-1] is equal to the number of values in the table of length k. 
+
+*javax.imageio.plugins.jpeg.JPEGHuffmanTable.getValues()*
+
+public short[] getValues()
+
+Return an array of shorts containing the values arranged by increasing length of their corresponding codes. The interpretation of the array is dependent on the values returned 
+from getLengths. The returned array is a copy. 
+
+
+
+    Returns: a short array of values. 
+
+*javax.imageio.plugins.jpeg.JPEGHuffmanTable.toString()*
+
+public |java.lang.String| toString()
+
+
+
+
+
+
