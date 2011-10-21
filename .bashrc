@@ -146,6 +146,7 @@ function colorless_update_prompt()
     PS1_GIT='$(__git_ps1 "git://%s") '
     PS1_RVM='[$(rvm-prompt)]'
     PS1_DIR='\w> '
+    PS1_DIR='\w❺➠ '
     export PS1=$PS1_START$PS1_RVM$PS1_TARGET$PS1_GIT$PS1_DIR
 }
 
@@ -155,7 +156,7 @@ function update_prompt()
     PS1_TARGET="\[\033[1;36m\][$1]\n"
     PS1_GIT='\[\033[1;33m\]$(__git_ps1 "git://%s")\[\033[0;32m\] '
     #PS1_DIR='\[\033[0;32m\]\w> '
-    PS1_DIR='\033[1;37m\]\w>\033[0;37m\] '
+    PS1_DIR='\033[1;37m\]\w❺➠\033[0;37m\] '
     export PS1=$PS1_START$PS1_TARGET$PS1_GIT$PS1_DIR
 }
 
