@@ -11,13 +11,7 @@ export LANG=en_US
 export CLASSPATH=
 export EDITOR=vim
 export GREP_OPTIONS='--exclude=\*\.svn\*'
-export SCALA_HOME=/Applications/scala
-#export PATH_BASE=${PATH}:${SCALA_HOME}/bin:${ANT_HOME}/bin:${HOME}/bin:${CXOFFICE_HOME}/bin:/opt/local/bin
-#export PATH=${PATH_BASE}
 export JAVA_ROOT=/System/Library/Frameworks/JavaVM.framework/Versions
-export TOMCAT_HOME=/Applications/tomcat
-export R_HOME=/Library/Frameworks/R.framework/Versions/2.8/Resources/
-export SVN_EDITOR='vim -u ~/.vimrc_for_fucking_subversion'
 export PATH=${PATH}:${HOME}/bin
 
 source ~/.git-completion.bash
@@ -36,19 +30,7 @@ function mysqld()
     fi
 }
 
-#function mvn()
-#{
-#    /usr/bin/mvn $*
-#    if [ $? == 0 ]; then
-#        growlnotify -s -n Maven -m "Build Successful" --image /Users/davec/Pictures/Icons/pass.jpg
-#    else
-#        growlnotify -s -n Maven -m "Build FAILED" --image /Users/davec/Pictures/Icons/fail.png
-#    fi
-#
-#}
-
 alias vi='mvim'
-alias gem_server="ruby -r rubygems/server -e 'Gem::Server.run(:gemdir=>\"/Library/Ruby/Gems/1.8\",:port=>8088)'"
 alias psi='/opt/psi/bin/psi'
 alias ps='ps auxwwwwwwww'
 alias ls='ls -FG'
@@ -90,6 +72,7 @@ PROMPT_CYAN="\[\033[0;34m\]"
 PROMPT_MAGENTA="\[\033[0;35m\]"
 PROMPT_GREY="\[\033[0;36m\]"
 PROMPT_WHITE="\[\033[0;37m\]"
+PROMPT_RESET="\[\033[0m\]"
 case $TERM in
     xterm*)
     TITLEBAR="\[\e]0;\u@\h:\w\007\]"
@@ -130,13 +113,19 @@ function go()
 
 function colorless_update_prompt()
 {
-    PS1_START='\u@\h '
-    PS1_TARGET="[$1]\n"
-    PS1_GIT='$(__git_ps1 "git://%s") '
-    PS1_RVM='[$(rvm-prompt)]'
-    PS1_DIR='\w> '
-    PS1_DIR='\w❺➠ '
-    export PS1=$PS1_START$PS1_RVM$PS1_TARGET$PS1_GIT$PS1_DIR
+    #PS1_START='⎛ \u@\h '
+    PS1_START='⎛ '
+    if [ -z $1 ]; then
+      PS1_TARGET=" "
+    else
+      PS1_TARGET="«$1» "
+    fi
+    PS1_GIT='$(__git_ps1 "⎇ %s") '
+    PS1_RVM='$(rvm-prompt v i g )'
+    #PS1_DIR='\w> '
+    PS1_DIR='\w ❺➠ '
+    PS1_LASTLINE="\n⎝ "
+    export PS1=$PROMPT_BOLD_WHITE$PS1_START$PROMPT_YELLOW$PS1_TARGET$PROMPT_BOLD_GREEN$PS1_RVM$PROMPT_BOLD_WHITE$PROMPT_MAGENTA$PS1_GIT$PROMPT_BOLD_WHITE$PS1_LASTLINE$PS1_DIR$PROMPT_RESET
 }
 
 function update_prompt()
