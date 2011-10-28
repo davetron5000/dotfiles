@@ -34,8 +34,7 @@ alias vi='mvim'
 alias psi='/opt/psi/bin/psi'
 alias ps='ps auxwwwwwwww'
 alias ls='ls -FG'
-export MYSQL_EXE='/usr/local/mysql/bin/mysql --show-warnings'
-alias mysql=$MYSQL_EXE
+alias irb=pry
 
 complete -F get_gliffy_targets gliffy
 function get_gliffy_targets() 
