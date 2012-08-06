@@ -13,8 +13,12 @@ export EDITOR=vim
 export GREP_OPTIONS='--exclude=\*\.svn\*'
 export JAVA_ROOT=/System/Library/Frameworks/JavaVM.framework/Versions
 export PATH=${PATH}:${HOME}/bin
+export GREP_OPTIONS='--color=auto'
 
 source ~/.git-completion.bash
+if [ -e ~/.ls.bashrc ]; then
+  source ~/.ls.bashrc
+fi
 
 function mysqld()
 {
@@ -23,9 +27,9 @@ function mysqld()
         return -1;
     else
         if [ $1 == "start" ] ; then
-            sudo -b /usr/local/mysql/bin/mysqld_safe
+            sudo -b mysqld_safe
         elif [ $1 == "stop" ] ; then
-            sudo /usr/local/mysql/bin/mysqladmin shutdown
+            sudo mysqladmin shutdown
         fi
     fi
 }
@@ -50,9 +54,9 @@ complete -F get_go_targets go
 function get_go_targets()
 {
     if [ -z $2 ] ; then
-        COMPREPLY=(`ls -1 ~/Projects | sed 's/\/$//'`)
+        COMPREPLY=(`\ls -1 ~/Projects | sed 's/\/$//'`)
     else
-        COMPREPLY=(`ls -1 ~/Projects | sed 's/\/$//' | grep "^$2"`)
+        COMPREPLY=(`\ls -1 ~/Projects | sed 's/\/$//' | grep "^$2"`)
     fi
 }
 
@@ -145,3 +149,5 @@ cd ~
 
 [[ -s $HOME/.rvm/scripts/rvm ]] && source $HOME/.rvm/scripts/rvm
 
+
+PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
