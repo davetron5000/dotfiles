@@ -12,7 +12,7 @@ export CLASSPATH=
 export EDITOR=vim
 export GREP_OPTIONS='--exclude=\*\.svn\*'
 export JAVA_ROOT=/System/Library/Frameworks/JavaVM.framework/Versions
-export PATH=${PATH}:${HOME}/bin
+export PATH=/usr/local/bin:${PATH}:${HOME}/bin
 export GREP_OPTIONS='--color=auto'
 
 source ~/.git-completion.bash
@@ -33,22 +33,25 @@ function mysqld()
         fi
     fi
 }
+function mobile() {
+  unmount "/Volumes/External Backup"
+  unmount "/Volumes/Laptop Backup"
+  unmount "/Volumes/Lion"
+  unmount "/Volumes/Time Machine"
+}
+
+function unmount() {
+  dir=$1
+  if [ -e "${dir}" ]; then
+    diskutil unmount "${dir}"
+  fi
+}
 
 alias vi='mvim'
 alias psi='/opt/psi/bin/psi'
-alias ps='ps auxwwwwwwww'
 alias ls='ls -FG'
 alias irb=pry
 
-complete -F get_gliffy_targets gliffy
-function get_gliffy_targets() 
-{
-    if [ -z $2 ] ; then
-        COMPREPLY=(`gliffy help -c`)
-    else
-        COMPREPLY=(`gliffy help -c $2`)
-    fi
-}
 complete -F get_go_targets go
 
 function get_go_targets()
@@ -95,19 +98,6 @@ function go()
             echo "$GO_TARGET not found!"
             return;
         fi
-        export CURRENT_PROJECT=$GO_TARGET
-        if [ ! -z $3 ];  then
-            if [ ! -z $4 ]; then
-                alias vi="mvim --cmd 'let g:project_root=\"$3\"' --cmd 'let g:build_file=\"$4\"' \$*"
-            else
-                alias vi="mvim --cmd 'let g:project_root=\"$3\"' \$*"
-            fi
-        else
-            alias vi="mvim --cmd 'let g:project_root=\"$GO_DIR\"' \$*"
-        fi
-        if [ $1 == 'pose' ]; then
-            alias vi="mvim --cmd 'let g:pose=\"true\"' \$*"
-        fi
     fi
     colorless_update_prompt $GO_TARGET
 
@@ -132,19 +122,7 @@ function colorless_update_prompt()
 }
 
 source /usr/local/bin/virtualenvwrapper.sh
-function update_prompt()
-{
-    PS1_START='\[\033[0;35m\]\u@\[\033[1;37m\]\h '
-    PS1_TARGET="\[\033[1;36m\][$1]\n"
-    PS1_GIT='\[\033[1;33m\]$(__git_ps1 "git://%s")\[\033[0;32m\] '
-    #PS1_DIR='\[\033[0;32m\]\w> '
-    PS1_DIR='\033[1;37m\]\w❺➠\033[0;37m\] '
-    export PS1=$PS1_START$PS1_TARGET$PS1_GIT$PS1_DIR
-}
 
-##
-# Your previous /Users/davec/.profile file was backed up as /Users/davec/.profile.macports-saved_2009-10-12_at_19:01:00
-##
 go 
 cd ~
 
@@ -152,3 +130,6 @@ cd ~
 
 
 PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
+
+### Added by the Heroku Toolbelt
+export PATH="/usr/local/heroku/bin:$PATH"
