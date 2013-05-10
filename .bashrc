@@ -131,6 +131,7 @@ function colorless_update_prompt()
     export PS1=$PROMPT_BOLD_WHITE$PS1_START$PROMPT_YELLOW$PS1_TARGET$PROMPT_BOLD_GREEN$PS1_RVM$PROMPT_BOLD_WHITE$PROMPT_MAGENTA$PS1_GIT$PROMPT_BOLD_WHITE$PS1_LASTLINE$PS1_DIR$PROMPT_RESET
 }
 
+source /usr/local/bin/virtualenvwrapper.sh
 function update_prompt()
 {
     PS1_START='\[\033[0;35m\]\u@\[\033[1;37m\]\h '
