@@ -41,7 +41,6 @@ syn on
 " Check for local .vimrc
 set exrc
 set noequalalways
-"set whichwrap+=hl
 set formatoptions-=t formatoptions+=croqn2
 set ai
 set expandtab
@@ -53,27 +52,66 @@ set vb t_vb=
 set nohls
 " Does vim help for any "K", as opposed to going to man page
 set keywordprg=
-" Based on http://macvim.muskokamug.org/OSX/index.php#FAQ
-"set nomacatsui anti enc=utf-8 termencoding=macroman gfn=Monaco:h13
-
 
 """" Mappings
-"exec "map g :grep  " . g:project_root . "<Home><Right><Right><Right><Right><Right>"
-"exec "map  :grep <cword> " . g:project_root
-"exec "map G :grep <cword> " . g:project_root . ""
+if ! exists("g:project_root")
+  let g:project_root=getcwd()
+endif
+
+" If we are in a 'project', set up a few convieniences, such as searching
+" and CommandT to know about the current project dir
+if exists("g:project_root")
+  exec "map g :Ag  " . g:project_root . "<Home><Right><Right><Right>"
+  exec "map  :Ag <cword> " . g:project_root
+  exec "map G :Ag <cword> " . g:project_root . ""
+  exec "map o :CommandT " . g:project_root . ""
+  exec "map  :CommandT " . g:project_root . ""
+
+  " If we are in Rails-land, set up some mappings to run tests
+  if exists(":Rake")
+    map m :Rake
+    map  :.Rake
+  endif
+
+  " If we find a spellfile, set up for 'writing' mode
+  if filereadable("spellfile.en.utf-8.add")
+    set spell spelllang=en_us
+    syn spell toplevel
+    exec "set spf=" . g:project_root . "/spellfile.en.utf-8.add"
+    ab taht that
+    ab builting built-in
+    ab builtin built-in
+  endif
+else
+  exec "map g :Ag  "
+  exec "map  :Ag <cword> "
+  exec "map G :Ag <cword> "
+endif
 
 " cd to directory of current file
 map c :cd %:p:h
 " open buffer list
-map b n\be
+map b \bs
 " next error
 map   :cnext
 " fold this line
 map f !!fold -w77 -s 
 " ^O tries to open the thing under the cursor using gf
 map  sgf
+" Remove dot from valid file name chars so gf works with method calls on classes
+set isfname-=.
 " Avoid annoying ^Z minimizing to nowhere
 map  
+" Ruby specific, but handy - depends on rails.vim existing.
+map m :Rake
+map  :.Rake
+
+map : :Tabularize /: /r0c0l0
+map = :Tabularize /=
+map > :Tabularize /=>
+
+nnoremap <silent> <Leader>t :CommandT<CR>
+nnoremap <silent> <Leader>b :CommandTBuffer<CR>
 
 " Stuff I'm not sure about
 "map   :%s/<lf>1G
@@ -84,12 +122,19 @@ au BufEnter *.scss set nocindent
 au BufLeave *.scss set cindent
 au BufEnter *.pml runtime syntax/xml.vim
 au BufEnter *.pml runtime indent/xml.vim
-let g:solarized_termcolors=256
-colorscheme solarized
+"let g:solarized_termcolors=256
+"colorscheme solarized
+colorscheme jellybeans
 set background=dark
 
-" make trailing whitespace really annoying
-highlight ExtraWhitespace ctermbg=red guibg=red
-match ExtraWhitespace /\s\+$/
+let g:bufExplorerFindActive=0 " Do not go to active window when opening the bufexplorer.
+
 let g:vimclojure#ParenRainbow=10 
 let g:vimclojure#HighlightBuiltins=1
+autocmd BufNewFile,BufRead *.txt set ft=markdown
+autocmd BufNewFile,BufRead *.asciidoc set ft=asciidoc
+
+let g:syntastic_check_on_open=1
+let g:syntastic_always_populate_loc_list=1
+let g:syntastic_auto_loc_list=1
+autocmd GUIEnter * let g:syntastic_error_symbol='✖'
