@@ -12,8 +12,10 @@ export CLASSPATH=
 export EDITOR=vim
 export GREP_OPTIONS='--exclude=\*\.svn\*'
 export JAVA_ROOT=/System/Library/Frameworks/JavaVM.framework/Versions
-export PATH=/usr/local/bin:${PATH}:${HOME}/bin
+export NPM_ROOT=/usr/local/share/npm/
+export PATH=/usr/local/bin:${PATH}:${HOME}/bin:/usr/texbin:${NPM_ROOT}/bin
 export GREP_OPTIONS='--color=auto'
+export JAVA_HOME='/System/Library/Frameworks/JavaVM.framework/Home'
 
 source ~/.git-completion.bash
 if [ -e ~/.ls.bashrc ]; then
@@ -37,7 +39,10 @@ function mobile() {
   unmount "/Volumes/External Backup"
   unmount "/Volumes/Laptop Backup"
   unmount "/Volumes/Lion"
+  unmount "/Volumes/LionDuped"
   unmount "/Volumes/Time Machine"
+  unmount "/Volumes/TM"
+  unmount "/Volumes/CODEMETER"
 }
 
 function unmount() {
@@ -51,6 +56,7 @@ alias vi='mvim'
 alias psi='/opt/psi/bin/psi'
 alias ls='ls -FG'
 alias irb=pry
+alias man='gem man -s'
 
 complete -F get_go_targets go
 
@@ -91,7 +97,11 @@ esac
 function go()
 {
     if [ ! -z $1 ]; then
-        GO_TARGET=$1
+        if [ ! -z $2 ]; then
+          GO_TARGET=$1/$2
+        else
+          GO_TARGET=$1
+        fi
         if [ -d ~/Projects/$GO_TARGET ] ; then
             GO_DIR=~/Projects/$GO_TARGET
         else
@@ -121,15 +131,19 @@ function colorless_update_prompt()
     export PS1=$PROMPT_BOLD_WHITE$PS1_START$PROMPT_YELLOW$PS1_TARGET$PROMPT_BOLD_GREEN$PS1_RVM$PROMPT_BOLD_WHITE$PROMPT_MAGENTA$PS1_GIT$PROMPT_BOLD_WHITE$PS1_LASTLINE$PS1_DIR$PROMPT_RESET
 }
 
-source /usr/local/bin/virtualenvwrapper.sh
+if [ -e /usr/local/bin/virtualenvwrapper.sh ]; then
+  source /usr/local/bin/virtualenvwrapper.sh
+else
+  echo "No virtualenvwrapper.sh, so no Python for you, dude"
+fi
+export HEROKU_ORGANIZATION=stitchfix
 
 go 
 cd ~
+### Added by the Heroku Toolbelt
+export PATH="/usr/local/heroku/bin:$PATH"
 
 [[ -s $HOME/.rvm/scripts/rvm ]] && source $HOME/.rvm/scripts/rvm
 
-
 PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
-
-### Added by the Heroku Toolbelt
-export PATH="/usr/local/heroku/bin:$PATH"
+eval "$(direnv hook $0)"

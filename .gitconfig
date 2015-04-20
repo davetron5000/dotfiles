@@ -24,7 +24,15 @@
   lol = log --oneline --graph --decorate
   update = pull --rebase
   up = pull --rebase
+  oldest-ancestor = !bash -c 'diff -u <(git rev-list --first-parent "${1:-master}") <(git rev-list --first-parent "${2:-HEAD}") | sed -ne \"s/^ //p\" | head -1' -
 [rerere]
   enabled = 0
 [mergetool]
 	keepBackup = true
+[github]
+	user = davetron5000
+[filter "media"]
+	clean = git-media-clean %f
+	smudge = git-media-smudge %f
+[push]
+	default = simple

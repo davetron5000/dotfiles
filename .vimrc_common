@@ -66,6 +66,8 @@ if exists("g:project_root")
   exec "map G :Ag <cword> " . g:project_root . ""
   exec "map o :CommandT " . g:project_root . ""
   exec "map  :CommandT " . g:project_root . ""
+  exec "set path+=" . g:project_root . "/**"
+  exec "set wildignore=spec/vcr-cassettes/**,db/tmp/**"
 
   " If we are in Rails-land, set up some mappings to run tests
   if exists(":Rake")
@@ -133,9 +135,13 @@ let g:vimclojure#ParenRainbow=10
 let g:vimclojure#HighlightBuiltins=1
 autocmd BufNewFile,BufRead *.txt set ft=markdown
 autocmd BufNewFile,BufRead *.asciidoc set ft=asciidoc
+autocmd BufNewFile,BufRead Procfile set ft=ruby
 
 let g:syntastic_check_on_open=1
 let g:syntastic_always_populate_loc_list=1
 let g:syntastic_auto_loc_list=1
 let g:syntastic_quiet_warnings=1
+let g:syntastic_ignore_files=['Procfile','.css','.css.scss','.py']
+let g:syntastic_haml_haml_exe = "LC_ALL=en_US.UTF-8 haml" " computering
+
 autocmd GUIEnter * let g:syntastic_error_symbol='✖'
