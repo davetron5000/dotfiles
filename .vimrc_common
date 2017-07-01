@@ -21,8 +21,8 @@
 " Needed on some linux distros.
 " " see http://www.adamlowe.me/2009/12/vim-destroys-all-other-rails-editors.html
 filetype off 
-call pathogen#helptags()
-call pathogen#runtime_append_all_bundles()
+"call pathogen#helptags()
+"call pathogen#runtime_append_all_bundles()
 
 " Config for XML editing plugin
 let xml_use_xhtml = 1
@@ -59,15 +59,15 @@ if ! exists("g:project_root")
 endif
 
 " If we are in a 'project', set up a few convieniences, such as searching
-" and CommandT to know about the current project dir
+" and CtrlP to know about the current project dir
 if exists("g:project_root")
-  exec "map g :Ag  " . g:project_root . "<Home><Right><Right><Right>"
-  exec "map  :Ag <cword> " . g:project_root
-  exec "map G :Ag <cword> " . g:project_root . ""
-  exec "map o :CommandT " . g:project_root . ""
-  exec "map  :CommandT " . g:project_root . ""
-  exec "set path+=" . g:project_root . "/**"
-  exec "set wildignore=spec/vcr-cassettes/**,db/tmp/**"
+  exec "map g :grep  " . g:project_root . "<Home><Right><Right><Right>"
+  exec "map  :grep <cword> " . g:project_root
+  exec "map G :grep <cword> " . g:project_root . ""
+  exec "map o :CtrlP " . g:project_root . ""
+  exec "map  :CtrlP " . g:project_root . ""
+  exec "set path+=" . fnameescape(g:project_root) . "/**"
+  exec "set wildignore=spec/vcr-cassettes/**,db/tmp/**,node_modules/**"
 
   " If we are in Rails-land, set up some mappings to run tests
   if exists(":Rake")
@@ -83,6 +83,7 @@ if exists("g:project_root")
     ab taht that
     ab builting built-in
     ab builtin built-in
+    ab endpoing endpoint
   endif
 else
   exec "map g :Ag  "
@@ -112,16 +113,16 @@ map : :Tabularize /: /r0c0l0
 map = :Tabularize /=
 map > :Tabularize /=>
 
-nnoremap <silent> <Leader>t :CommandT<CR>
-nnoremap <silent> <Leader>b :CommandTBuffer<CR>
+nnoremap <silent> <Leader>t :CtrlP<CR>
+nnoremap <silent> <Leader>b :CtrlPBuffer<CR>
 
 " Stuff I'm not sure about
 "map   :%s/<lf>1G
 
-au BufRead,BufNewFile *.java set sw=4
-au BufRead,BufNewFile *.java set ts=4
-au BufEnter *.scss set nocindent
-au BufLeave *.scss set cindent
+"au BufRead,BufNewFile *.java set sw=4
+"au BufRead,BufNewFile *.java set ts=4
+"au BufEnter *.scss set nocindent
+"au BufLeave *.scss set cindent
 au BufEnter *.pml runtime syntax/xml.vim
 au BufEnter *.pml runtime indent/xml.vim
 "let g:solarized_termcolors=256
@@ -131,17 +132,19 @@ set background=dark
 
 let g:bufExplorerFindActive=0 " Do not go to active window when opening the bufexplorer.
 
-let g:vimclojure#ParenRainbow=10 
-let g:vimclojure#HighlightBuiltins=1
-autocmd BufNewFile,BufRead *.txt set ft=markdown
+"let g:vimclojure#ParenRainbow=10 
+"let g:vimclojure#HighlightBuiltins=1
 autocmd BufNewFile,BufRead *.asciidoc set ft=asciidoc
 autocmd BufNewFile,BufRead Procfile set ft=ruby
 
 let g:syntastic_check_on_open=1
+let g:syntastic_quiet_messages = {'level': 'warnings'}
 let g:syntastic_always_populate_loc_list=1
 let g:syntastic_auto_loc_list=1
-let g:syntastic_quiet_warnings=1
 let g:syntastic_ignore_files=['Procfile','.css','.css.scss','.py']
 let g:syntastic_haml_haml_exe = "LC_ALL=en_US.UTF-8 haml" " computering
 
 autocmd GUIEnter * let g:syntastic_error_symbol='✖'
+
+highlight ExtraWhitespace ctermbg=red guibg=red
+autocmd Syntax * syn match ExtraWhitespace /\s\+$\| \+\ze\t/

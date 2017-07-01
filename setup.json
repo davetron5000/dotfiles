@@ -1,0 +1,121 @@
+{
+  "setup" : [
+    {
+      "name": "Dropbox",
+      "type": "manual",
+      "url": "https://www.dropbox.com/downloading?src=index"
+    },
+    {
+      "name": "BlueJeans",
+      "type": "manual",
+      "url": "https://www.bluejeans.com/downloads"
+    },
+    {
+      "name": "Docker",
+      "type": "manual",
+      "url": "https://store.docker.com/editions/community/docker-ce-desktop-mac"
+    },
+    {
+      "name": "XCode Command-line",
+      "type": "shell",
+      "command": "xcode-select --install",
+      "test": "gcc --help"
+    },
+    {
+      "name": "Homebrew",
+      "type": "shell",
+      "command": "/usr/bin/ruby -e \"$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)\"",
+      "test": "brew help"
+    },
+    {
+      "name": "rbenv",
+      "type": "homebrew",
+      "package": "rbenv"
+    },
+    {
+      "name": "ruby 2.3.4",
+      "type": "rbenv",
+      "ruby-version": "2.3.4"
+    },
+    {
+      "name": "ruby 2.4.1",
+      "type": "rbenv",
+      "ruby-version": "2.4.1"
+    },
+    {
+      "name": "node",
+      "type": "homebrew",
+      "package": "node"
+    },
+    {
+      "name": "yarn",
+      "type": "homebrew",
+      "package": "yarn"
+    },
+    {
+      "name": "git",
+      "type": "homebrew",
+      "package": "git"
+    },
+    {
+      "name": "Heroku Toolbelt",
+      "type": "homebrew",
+      "package": "heroku"
+    },
+    {
+      "name": "Homebrew Cask",
+      "type": "shell",
+      "command": "brew tap caskroom/cask",
+      "test": "brew tap | grep caskroom/cask"
+    },
+    {
+      "name": "Firefox",
+      "type": "homebrew",
+      "package": "caskroom/cask/firefox"
+    },
+    {
+      "name": "QT 5.5",
+      "type": "homebrew",
+      "package": "qt@5.5",
+      "after": [
+        "brew link --force qt55"
+      ]
+    },
+    {
+      "name": "Log in to Heroku",
+      "type": "manual",
+      "instructions": [
+        "In another window, type:",
+        "",
+        "heroku login",
+        "",
+        "Follow the instructions to log into Heroku"
+      ]
+    },
+    {
+      "name": "Gemfury access for Rubygems",
+      "type": "shell",
+      "command": "bundle config https://gem.fury.io/me/ $(heroku config:get BUNDLE_GEM__FURY__IO --app hellblazer-staging)",
+      "test": "bundle config | grep https://gem.fury.io/me/"
+    },
+    {
+      "name": "Gemfury access for NPM",
+      "type": "shell",
+      "command": "npm config set @stitchfix:registry https://$(bundle config https://gem.fury.io/me/ | tail -1 | cut -d':' -f2 | sed 's/[\" ]//g')@npm.fury.io/me/",
+      "test": "npm config list | grep stitchfix:registry"
+    },
+    {
+      "name": "Chrome",
+      "type": "homebrew",
+      "package": "caskroom/cask/google-chrome"
+    },
+    {
+      "name": "Postgres 9.5",
+      "type": "homebrew",
+      "package": "postgresql@9.5",
+      "after": [
+        "brew link --force postgresql@9.5"
+      ]
+    }
+  ]
+}

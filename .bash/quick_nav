@@ -1,0 +1,72 @@
+function colorless_update_prompt()
+{
+    #PS1_START='⎛ \u@\h '
+    PS1_START=''
+    if [ -z $1 ]; then
+      PS1_TARGET=" "
+    else
+      PS1_TARGET="«$1» "
+    fi
+    PS1_GIT='$(__git_ps1 "⎇ %s") '
+    #PS1_RVM='$(rvm-prompt v i g )'
+    #PS1_DIR='\w> '
+    PS1_DIR='\w> '
+    PS1_LASTLINE="\n"
+    export PS1=$PROMPT_BOLD_WHITE$PS1_START$PROMPT_YELLOW$PS1_TARGET$PROMPT_BOLD_GREEN$PS1_RVM$PROMPT_BOLD_WHITE$PROMPT_MAGENTA$PS1_GIT$PROMPT_BOLD_WHITE$PS1_LASTLINE$PS1_DIR$PROMPT_RESET
+}
+complete -F get_go_targets g
+complete -F get_sf_targets sf
+
+function get_go_targets()
+{
+    if [ -z $2 ] ; then
+        COMPREPLY=(`\ls -1 ~/Projects/Personal | sed 's/\/$//'`)
+    else
+        COMPREPLY=(`\ls -1 ~/Projects/Personal | sed 's/\/$//' | grep "^$2"`)
+    fi
+}
+function get_sf_targets()
+{
+    if [ -z $2 ] ; then
+        COMPREPLY=(`\ls -1 ~/Projects/StitchFix | sed 's/\/$//'`)
+    else
+        COMPREPLY=(`\ls -1 ~/Projects/StitchFix | sed 's/\/$//' | grep "^$2"`)
+    fi
+}
+function g()
+{
+    if [ ! -z $1 ]; then
+        if [ ! -z $2 ]; then
+          GO_TARGET=$1/$2
+        else
+          GO_TARGET=$1
+        fi
+        if [ -d ~/Projects/Personal/$GO_TARGET ] ; then
+            GO_DIR=~/Projects/Personal/$GO_TARGET
+        else
+            echo "$GO_TARGET not found!"
+            return;
+        fi
+    fi
+    colorless_update_prompt $GO_TARGET
+
+    cd $GO_DIR
+}
+function sf()
+{
+    if [ ! -z $1 ]; then
+        GO_TARGET=$1
+        if [ -d ~/Projects/StitchFix/$GO_TARGET ] ; then
+            GO_DIR=~/Projects/StitchFix/$GO_TARGET
+        else
+            echo "StitchFix/$GO_TARGET not found!"
+            return;
+        fi
+    fi
+    colorless_update_prompt $GO_TARGET
+
+    cd $GO_DIR
+}
+
+# vim: set ft=sh
+
