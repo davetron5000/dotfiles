@@ -93,10 +93,16 @@
       ]
     },
     {
-      "name": "Gemfury access for Rubygems",
+      "name": "Gemfury access for Bundler",
       "type": "shell",
       "command": "bundle config https://gem.fury.io/me/ $(heroku config:get BUNDLE_GEM__FURY__IO --app hellblazer-staging)",
       "test": "bundle config | grep https://gem.fury.io/me/"
+    },
+    {
+      "name": "Gemfury access for gem install",
+      "type": "shell",
+      "command": "gem sources --add https://gem.fury.io/$(bundle config https://gem.fury.io/me/ | grep \"Set for the current\" | cut -d: -f2 | sed 's/\"//g' | sed 's/ //g')/me/too",
+      "test": "gem sources | grep gem.fury"
     },
     {
       "name": "Gemfury access for NPM",
@@ -116,6 +122,11 @@
       "after": [
         "brew link --force postgresql@9.5"
       ]
+    },
+    {
+      "name": "adr-tools",
+      "type": "homebrew",
+      "package": "adr-tools"
     }
   ]
 }

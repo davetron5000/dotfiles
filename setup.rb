@@ -62,8 +62,12 @@ def install(setup,installed)
           puts "⛔ #{setup_step["name"]} has no test for pre-installation.  Add one and retry"
           exit -1
         end
-        if system("#{test} > /dev/null 2>&1")
-          puts "⛔ It looks like #{setup_step["name"]} is already installed"
+        if test == "ASK" || system("#{test} > /dev/null 2>&1")
+          if test == "ASK"
+            puts "⛔ Can't tell if #{setup_step["name"]} is already installed"
+          else
+            puts "⛔ It looks like #{setup_step["name"]} is already installed"
+          end
           puts "Type 'install' to force trying to install it anyway.  Anything else and we'll mark it installed"
           value = gets
           if value.chomp.strip == "install"
@@ -74,6 +78,30 @@ def install(setup,installed)
         else
           shell_install(installed,setup_step)
         end
+      when "file"
+        filename = setup_step["filename"]
+        File.open(filename,"w") do |file|
+          setup_step["contents"].each do |line|
+            file.puts line
+          end
+        end
+        if setup_step["post_install"]
+          setup_step["post_install"].each do |line|
+            puts line
+          end
+          puts "Hit return when done"
+          gets
+        end
+        mark_installed(installed,setup_step["name"])
+      when "postgres"
+        IO.popen("psql -h localhost -U postgres","w") do |io|
+          setup_step["commands"].each do |command|
+            io.write(command)
+            io.write("\n")
+          end
+          io.close_write
+        end
+        mark_installed(installed,setup_step["name"])
       else
         puts "‼ Don't know how to handle a #{setup_step["type"]} setup step…ignoring"
       end
