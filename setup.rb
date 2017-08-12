@@ -109,7 +109,6 @@ def install(setup,installed)
   end
 end
 
-
 [
   "setup",
   "additional_setup",
@@ -118,6 +117,17 @@ end
   setup = JSON.parse(File.read("#{setup_file}.json"))["setup"]
   installed = JSON.parse(File.read("installed.json")) if File.exist?("installed.json")
   installed ||= {}
+
+  homebrew = setup.detect { |software| software["name"] == "Homebrew" } != nil
+  if homebrew && installed["Homebrew"]
+    puts "🔸 updating Homebrew..."
+    if system("brew update")
+      puts "✅ Homebrew updated"
+    else
+      $stderr.puts "Problem updating homebrew"
+      exit 1
+    end
+  end
 
   install(setup,installed)
 end
