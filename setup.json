@@ -33,19 +33,29 @@
       "package": "rbenv"
     },
     {
-      "name": "ruby 2.3.4",
+      "name": "ruby 2.3.5",
       "type": "rbenv",
-      "ruby-version": "2.3.4"
+      "ruby-version": "2.3.5"
     },
     {
-      "name": "ruby 2.4.1",
+      "name": "ruby 2.4.2",
       "type": "rbenv",
-      "ruby-version": "2.4.1"
+      "ruby-version": "2.4.2"
     },
     {
-      "name": "node",
+      "name": "nvm",
       "type": "homebrew",
-      "package": "node"
+      "package": "nvm",
+      "after": [
+        "echo 'export NVM_DIR=\"$HOME/.nvm\"' >> ~/.bashrc",
+        "echo '. \"/usr/local/opt/nvm/nvm.sh\"' >> ~/.bashrc"
+      ]
+    },
+    {
+      "name": "avn",
+      "type": "shell",
+      "command": "npm install -g avn avn-nvm avn-n; avn setup",
+      "test": "avn"
     },
     {
       "name": "yarn",
@@ -116,11 +126,19 @@
       "package": "caskroom/cask/google-chrome"
     },
     {
-      "name": "Postgres 9.5",
+      "name": "Postgres 9.6",
       "type": "homebrew",
-      "package": "postgresql@9.5",
+      "package": "postgresql@9.6",
       "after": [
-        "brew link --force postgresql@9.5"
+        "brew link --force postgresql@9.6"
+      ]
+    },
+    {
+      "name": "Go",
+      "type": "homebrew",
+      "package": "go",
+      "after": [
+        "brew link --force postgresql@9.6"
       ]
     },
     {

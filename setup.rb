@@ -22,10 +22,25 @@ def shell_install(installed,setup_step, mark_installed: true)
   end
 end
 
-def install(setup,installed)
+def install(setup,installed,outdated)
   setup.each do |setup_step|
     if installed[setup_step["name"]]
-      puts "✅ #{setup_step["name"]} already installed"
+      if setup_step["type"] == "homebrew" && outdated[setup_step["package"]]
+        puts "⛔ #{setup_step['name']} is outdated: #{outdated[setup_step["package"]]}"
+        if setup_step["after"].nil?
+          puts "Hit return to upgrade; anything else will skip upgrading"
+          value = gets
+          if value.strip == ""
+            shell_install(installed,setup_step.merge("command" => "brew upgrade #{setup_step["package"]}"))
+          else
+            puts "⛔ Not upgrading #{setup_step['name']}"
+          end
+        else
+            puts "⛔ #{setup_step['name']} has 'after' steps, so we recommend you either upgrade manually, or uninstall, then reinstall"
+        end
+      else
+        puts "✅ #{setup_step["name"]} already installed"
+      end
     else
       case setup_step["type"]
       when "manual"
@@ -120,6 +135,7 @@ def install(setup,installed)
   end
 end
 
+outdated = {}
 [
   "setup",
   "additional_setup",
@@ -134,11 +150,16 @@ end
     puts "🔸 updating Homebrew..."
     if system("brew update")
       puts "✅ Homebrew updated"
+      puts "🔸 Checking for outdated installs"
+      outdated = Hash[`brew outdated -v`.split(/\n/).map { |package_desc|
+        package,rest = package_desc.split(/\s/,2)
+        [package,rest]
+      }]
     else
       $stderr.puts "Problem updating homebrew"
       exit 1
     end
   end
 
-  install(setup,installed)
+  install(setup,installed,outdated)
 end

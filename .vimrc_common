@@ -53,6 +53,11 @@ set nohls
 " Does vim help for any "K", as opposed to going to man page
 set keywordprg=
 set wildmenu
+set undofile
+set undodir=~/.vim/undo
+augroup vimrc
+  autocmd BufWritePre /tmp/* setlocal noundofile
+augroup END
 
 if ! exists("g:project_root")
   let g:project_root=getcwd()
@@ -67,7 +72,7 @@ if exists("g:project_root")
   exec "map o :CtrlP " . g:project_root . ""
   exec "map  :CtrlP " . g:project_root . ""
   exec "set path+=" . fnameescape(g:project_root) . "/**"
-  exec "set wildignore=*/spec/vcr-cassettes/**,*/db/tmp/**,*/node_modules/**"
+  exec "set wildignore=*/spec/vcr-cassettes/**,*/db/tmp/**,*/node_modules/**,*/coverage/**,*/vendor/**"
 
   " If we are in Rails-land, set up some mappings to run tests
   if exists(":Rake")
