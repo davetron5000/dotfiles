@@ -29,9 +29,9 @@ function get_go_targets()
 function get_sf_targets()
 {
     if [ -z $2 ] ; then
-        COMPREPLY=(`\ls -1 ~/Projects/StitchFix | sed 's/\/$//'`)
+        COMPREPLY=(`\ls -1 ~/Projects/StitchFix/{apps,gems,misc}/ | sed 's/\/$//'`)
     else
-        COMPREPLY=(`\ls -1 ~/Projects/StitchFix | sed 's/\/$//' | grep "^$2"`)
+        COMPREPLY=(`\ls -1 ~/Projects/StitchFix/{apps,gems,misc}/ | sed 's/\/$//' | grep "^$2"`)
     fi
 }
 function g()
@@ -57,11 +57,19 @@ function sf()
 {
     if [ ! -z $1 ]; then
         GO_TARGET=$1
-        if [ -d ~/Projects/StitchFix/$GO_TARGET ] ; then
-            GO_DIR=~/Projects/StitchFix/$GO_TARGET
+        if [ -d ~/Projects/StitchFix/apps/$GO_TARGET ] ; then
+            GO_DIR=~/Projects/StitchFix/apps/$GO_TARGET
         else
-            echo "StitchFix/$GO_TARGET not found!"
-            return;
+            if [ -d ~/Projects/StitchFix/gems/$GO_TARGET ] ; then
+                GO_DIR=~/Projects/StitchFix/gems/$GO_TARGET
+            else
+                if [ -d ~/Projects/StitchFix/misc/$GO_TARGET ] ; then
+                    GO_DIR=~/Projects/StitchFix/misc/$GO_TARGET
+                else
+                    echo "StitchFix/$GO_TARGET not found!"
+                    return;
+                fi
+            fi
         fi
     fi
     colorless_update_prompt $GO_TARGET

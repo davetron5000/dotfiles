@@ -27,11 +27,19 @@ def install(setup,installed,outdated)
     if installed[setup_step["name"]]
       if setup_step["type"] == "homebrew" && outdated[setup_step["package"]]
         puts "⛔ #{setup_step['name']} is outdated: #{outdated[setup_step["package"]]}"
-        if setup_step["after"].nil?
+        if setup_step["after"].nil? || setup_step["ignore_after_for_upgrade"] == true
           puts "Hit return to upgrade; anything else will skip upgrading"
           value = gets
           if value.strip == ""
             shell_install(installed,setup_step.merge("command" => "brew upgrade #{setup_step["package"]}"))
+            unless setup_step["after"].nil?
+              puts "❗️ There were after steps you asked to ignore.  The are:"
+              setup_step["after"].each do |step|
+                puts "  #{step}"
+              end
+              puts "❗️ Make sure you don't need to do something after the upgrade.  Hit Return to continue"
+              gets
+            end
           else
             puts "⛔ Not upgrading #{setup_step['name']}"
           end
@@ -82,6 +90,8 @@ def install(setup,installed,outdated)
         end
       when "rbenv"
         shell_install(installed,setup_step.merge("command" => "rbenv install #{setup_step["ruby-version"]} -s"))
+      when "npm"
+        shell_install(installed,setup_step.merge("command" => "npm install -g #{setup_step["package"]}"))
       when "shell"
         test = setup_step["test"]
         if !test
