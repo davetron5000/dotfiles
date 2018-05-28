@@ -146,30 +146,47 @@ def install(setup,installed,outdated)
 end
 
 outdated = {}
+to_install = {}
 [
   "setup",
   "additional_setup",
 ].each do |setup_file|
-  puts "🗃 installing packages from #{setup_file}.json"
   setup = JSON.parse(File.read("#{setup_file}.json"))["setup"]
-  installed = JSON.parse(File.read("installed.json")) if File.exist?("installed.json")
-  installed ||= {}
+  setup.each do |install_instructions|
+    to_install[install_instructions["name"]] = install_instructions
+  end
+end
 
-  homebrew = setup.detect { |software| software["name"] == "Homebrew" } != nil
-  if homebrew && installed["Homebrew"]
-    puts "🔸 updating Homebrew..."
-    if system("brew update")
-      puts "✅ Homebrew updated"
-      puts "🔸 Checking for outdated installs"
-      outdated = Hash[`brew outdated -v`.split(/\n/).map { |package_desc|
-        package,rest = package_desc.split(/\s/,2)
-        [package,rest]
-      }]
-    else
-      $stderr.puts "Problem updating homebrew"
-      exit 1
+installed = JSON.parse(File.read("installed.json")) if File.exist?("installed.json")
+installed ||= {}
+
+removed = installed.keys - to_install.keys
+unless removed.empty?
+  puts "🚫 Some installed software has been removed from your manifest."
+  removed.each do |name|
+    puts "🔥 #{name}"
+    puts "Hit return once you've removed it, or type 'skip' to leave it marked as installed"
+    value = gets
+    if value.chomp.strip != "skip"
+      installed.delete(name)
     end
   end
-
-  install(setup,installed,outdated)
 end
+
+homebrew = to_install.values.detect { |software| software["name"] == "Homebrew" } != nil
+if homebrew && installed["Homebrew"]
+  puts "🔸 updating Homebrew..."
+  if system("brew update")
+    puts "✅ Homebrew updated"
+    puts "🔸 Checking for outdated installs"
+    outdated = Hash[`brew outdated -v`.split(/\n/).map { |package_desc|
+      package,rest = package_desc.split(/\s/,2)
+      [package,rest]
+    }]
+  else
+    $stderr.puts "Problem updating homebrew"
+    exit 1
+  end
+end
+
+install(to_install.values,installed,outdated)
