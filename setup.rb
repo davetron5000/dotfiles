@@ -73,13 +73,13 @@ def install(setup,installed,outdated)
       when "homebrew"
         package = setup_step["package"]
         results = `brew info #{package} 2>&1`
-        unless results =~ /Not installed/i
+        if results !~ /Not installed/i && results !~ /no available formula/i
           puts "⛔ It looks like #{setup_step["name"]} is already installed"
           puts "Type 'install' to force trying to install it anyway.  Anything else and we'll mark it installed"
           value = gets
           if value.chomp.strip != "install"
             mark_installed(installed,setup_step["name"])
-            return
+            break
           end
         end
         shell_install(installed,setup_step.merge("command" => "brew install #{setup_step["package"]}"))

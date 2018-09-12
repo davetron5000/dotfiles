@@ -7,7 +7,11 @@ source ~/.bash/asdf
 source ~/.bash/direnv
 source ~/.bash/ftfc
 source ~/.git-completion.bash
-source ~/.bash/npm
+if [ -e ~/.bash/npm ]; then
+  source ~/.bash/npm
+else
+  echo "You need to create ~/.bash/npm with NPM_TOKEN=«your token»"
+fi
 source ~/.bash/github
 
 g

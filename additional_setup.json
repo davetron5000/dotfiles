@@ -33,7 +33,7 @@
     {
       "name": "chromedriver",
       "type": "homebrew",
-      "package": "chromedriver"
+      "package": "caskroom/cask/chromedriver"
     },
     {
       "name": "Solarized Terminal Themes",
@@ -54,55 +54,6 @@
       "name": "Fluid",
       "type": "homebrew",
       "package": "caskroom/cask/fluid"
-    },
-    {
-      "name": "Shared Infrastructure Docker Compose File",
-      "type": "file",
-      "filename": "/Users/davec/Projects/StitchFix/stitch-fix-infrastructure.yml",
-      "contents": [
-"version: '2'",
-"services:",
-"  rabbit:",
-"    image: rabbitmq:3.5.6-management",
-"    ports:",
-"      - \"5672:5672\"",
-"      - \"15672:15672\"",
-"  shared_db:",
-"    image: postgres:9.3.9",
-"    volumes:",
-"      - /Users/davec/Projects/StitchFix/Transmetropolitan/local-postgres-data:/var/lib/postgresql/data",
-"    ports:",
-"      - \"5432:5432\""
-      ],
-      "post_install":[
-        "In a new terminal window:",
-        "",
-        "cd /Users/davec/Projects/StitchFix",
-        "docker-compose -f stitch-fix-shared.yml up"
-      ]
-    },
-    {
-      "name": "Shared DB User",
-      "type": "postgres",
-      "commands": [
-        "CREATE USER stitchfix_owner WITH PASSWORD 'stitchfix_owner';",
-        "ALTER USER stitchfix_owner createdb;",
-        "ALTER USER stitchfix_owner with SUPERUSER;"
-      ]
-    },
-    {
-      "name": "Transmetropolitan Database",
-      "type": "postgres",
-      "commands": [
-        "CREATE DATABASE stitchfix_dev;",
-        "CREATE DATABASE stitchfix_test;"
-      ]
-    },
-    {
-      "name": "Slimmed Database Dump",
-      "type": "shell",
-      "command": "pg_restore --verbose --clean --no-acl --no-owner -h localhost -U stitchfix_owner -O -j3 -d stitchfix_dev /Users/davec/Downloads/transmetropolitan.dump",
-      "test": "ASK"
     },
     {
       "name": "Graphviz",
@@ -146,11 +97,6 @@
       "name": "LiceCap",
       "type": "homebrew",
       "package": "caskroom/cask/licecap"
-    },
-    {
-      "name": "jira-go",
-      "type": "manual",
-      "url": "https://github.com/Netflix-Skunkworks/go-jira/releases"
     },
     {
       "name": "blueutil",

@@ -1,2 +1,7 @@
-eval "$(direnv hook $0)"
+path_to_direnv=$(which direnv)
+if [ -x "$path_to_direnv" ] ; then
+  eval "$(direnv hook $0)"
+else
+  echo "direnv not installed"
+fi
 # vim: set ft=sh
