@@ -189,4 +189,16 @@ if homebrew && installed["Homebrew"]
   end
 end
 
+asdf = to_install.values.detect { |software| software["name"] == "asdf" } != nil
+if homebrew && installed["asdf"]
+  puts "🔸 updating asdf plugins..."
+  if system("asdf plugin-update --all")
+    puts "✅ asdf plugins updated"
+    puts "🔸 Checking for outdated installs"
+  else
+    $stderr.puts "Problem updating asdf plugins"
+    exit 1
+  end
+end
+
 install(to_install.values,installed,outdated)

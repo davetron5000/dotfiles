@@ -16,8 +16,6 @@ opts.parse!
 git_bundles = [
   "git://github.com/msanders/snipmate.vim.git",
   "git://github.com/tpope/vim-markdown.git",
-  "git@github.com:davetron5000/vim-pml.git",
-  "git://github.com/edsono/vim-matchit.git",
   "git://github.com/vim-ruby/vim-ruby.git",
   "https://github.com/ctrlpvim/ctrlp.vim",
   "git://github.com/thisivan/vim-bufexplorer.git",
@@ -32,11 +30,14 @@ git_bundles = [
   "https://github.com/fatih/vim-go",
   "https://github.com/tpope/vim-obsession",
   "https://github.com/tpope/vim-projectionist",
-  "https://github.com/janko-m/vim-test.git",
   "git@github.com:rizzatti/dash.vim.git",
+  "https://github.com/tpope/vim-bundler",
 ]
 
 disabled = [
+  "git://github.com/edsono/vim-matchit.git",
+  "https://github.com/janko-m/vim-test.git",
+  "git@github.com:davetron5000/vim-pml.git",
   "git://github.com/tpope/vim-git.git",
   "https://github.com/tpope/vim-fugitive.git",
   "git://github.com/vim-scripts/Command-T.git",
@@ -91,6 +92,7 @@ if options[:clean]
   end
 end
 
+updated_something = false
 git_bundles.each do |url|
   dir = url.split('/').last.sub(/\.git$/, '')
   if File.exists?(dir)
@@ -99,6 +101,7 @@ git_bundles.each do |url|
     puts "  Unpacking #{url} into #{dir}"
     `git clone #{url} #{dir}`
     if $?.success?
+      updated_something = true
       FileUtils.rm_rf(File.join(dir, ".git"))
     else
       STDERR.puts "Problem with #{url}"
@@ -112,8 +115,12 @@ disabled.each do |url|
     if options[:prune]
       puts "Cleaning #{dir} that is now disabled"
       FileUtils.rm_rf dir
+      updated_something = true
     else
       puts "You've disabled #{dir}, but haven't used --prune.  Being safe and leaving it"
     end
   end
+end
+if updated_something
+  puts "Your plugins have changed.  Run :helptags ALL next time you open vim!"
 end
