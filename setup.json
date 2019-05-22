@@ -11,6 +11,11 @@
       "url": "https://www.bluejeans.com/downloads"
     },
     {
+      "name": "Alfred",
+      "type": "manual",
+      "url": "https://www.alfredapp.com"
+    },
+    {
       "name": "Docker",
       "type": "manual",
       "url": "https://store.docker.com/editions/community/docker-ce-desktop-mac"
@@ -38,6 +43,12 @@
       "package": "git"
     },
     {
+      "name": "Heroku Brew Tap",
+      "type": "shell",
+      "command": "brew tap heroku/brew",
+      "test": "brew tap | grep heroku"
+    },
+    {
       "name": "Heroku Toolbelt",
       "type": "homebrew",
       "package": "heroku"
@@ -47,19 +58,6 @@
       "type": "shell",
       "command": "brew tap caskroom/cask",
       "test": "brew tap | grep caskroom/cask"
-    },
-    {
-      "name": "Firefox",
-      "type": "homebrew",
-      "package": "caskroom/cask/firefox"
-    },
-    {
-      "name": "QT 5.5",
-      "type": "homebrew",
-      "package": "qt@5.5",
-      "after": [
-        "brew link --force qt55"
-      ]
     },
     {
       "name": "Log in to Heroku",
@@ -84,74 +82,15 @@
       "test": "asdf list ruby"
     },
     {
-      "name": "Ruby 2.5.1",
+      "name": "Ruby 2.6.3",
       "type": "shell",
-      "command": "asdf install ruby 2.5.1",
-      "test": "asdf list ruby | grep 2.5.1"
-    },
-    {
-      "name": "Bundler for Ruby 2.5.1",
-      "type": "shell",
-      "command": "asdf local ruby 2.5.1 ; gem install bundler",
-      "test": "bundle help > /dev/null"
-    },
-    {
-      "name": "Ruby 2.5.3",
-      "type": "shell",
-      "command": "asdf install ruby 2.5.3",
-      "test": "asdf list ruby | grep 2.5.3"
-    },
-    {
-      "name": "Bundler for Ruby 2.5.3",
-      "type": "shell",
-      "command": "asdf local ruby 2.5.3 ; gem install bundler",
-      "test": "bundle help > /dev/null"
-    },
-    {
-      "name": "Ruby 2.6.0",
-      "type": "shell",
-      "command": "asdf install ruby 2.6.0",
-      "test": "asdf list ruby | grep 2.6.0"
-    },
-    {
-      "name": "Bundler for Ruby 2.6.0",
-      "type": "shell",
-      "command": "asdf local ruby 2.6.0 ; gem install bundler",
-      "test": "bundle help > /dev/null"
-    },
-    {
-      "name": "Gemfury access for Bundler",
-      "type": "manual",
-      "instructions": [
-        "Get the key for Gemfury from 1password",
-        "",
-        "Once you have that, run:",
-        "",
-        "    bundle config https://gem.fury.io/me/ «the key»"
-      ]
-    },
-    {
-      "name": "Gemfury access for gem install",
-      "type": "shell",
-      "command": "gem sources --add https://gem.fury.io/$(bundle config https://gem.fury.io/me/ | grep \"Set for the current\" | cut -d: -f2 | sed 's/\"//g' | sed 's/ //g')/me/too",
-      "test": "gem sources | grep gem.fury"
-    },
-    {
-      "name": "Gemfury access for NPM",
-      "type": "shell",
-      "command": "npm config set @stitchfix:registry https://$(bundle config https://gem.fury.io/me/ | tail -1 | cut -d':' -f2 | sed 's/[\" ]//g')@npm.fury.io/me/",
-      "test": "npm config list | grep stitchfix:registry"
+      "command": "asdf install ruby 2.6.3",
+      "test": "asdf list ruby | grep 2.6.3"
     },
     {
       "name": "Chrome",
       "type": "homebrew",
       "package": "caskroom/cask/google-chrome"
-    },
-    {
-      "name": "asdf postgres plugin",
-      "type": "shell",
-      "command": "asdf plugin-add postgres",
-      "test": "asdf list ruby"
     },
     {
       "name": "coreutils",
@@ -170,60 +109,16 @@
       "test": "asdf list nodejs"
     },
     {
-      "name": "Node 8.10",
+      "name": "asdf nodejus OpenPGP Keys",
       "type": "shell",
-      "command": "NODEJS_CHECK_SIGNATURES=no asdf install nodejs 8.10.0",
-      "test": "asdf list nodejs | grep 8.10"
+      "command": "bash ~/.asdf/plugins/nodejs/bin/import-release-team-keyring",
+      "test": "ASK"
     },
     {
-      "name": "Postgres 9.3.14",
+      "name": "Node 12.3.0",
       "type": "shell",
-"command": "LDFLAGS='-L/usr/local/opt/openssl/lib -L/usr/local/lib -L/usr/local/opt/expat/lib' CFLAGS='-I/usr/local/opt/openssl/include/ -I/usr/local/include -I/usr/local/opt/expat/include' CPPFLAGS='-I/usr/local/opt/openssl/include/ -I/usr/local/include -I/usr/local/opt/expat/include' POSTGRES_CONFIGURE_OPTIONS='--with-gssapi --with-ldap --with-openssl --with-pam --with-libxml --with-libxslt --with-uuid=e2fs' asdf install postgres 9.3.14",
-      "test": "asdf list postgres | grep 9.3.14"
-    },
-    {
-      "name": "Postgres 9.4.7",
-      "type": "shell",
-"command": "LDFLAGS='-L/usr/local/opt/openssl/lib -L/usr/local/lib -L/usr/local/opt/expat/lib' CFLAGS='-I/usr/local/opt/openssl/include/ -I/usr/local/include -I/usr/local/opt/expat/include' CPPFLAGS='-I/usr/local/opt/openssl/include/ -I/usr/local/include -I/usr/local/opt/expat/include' POSTGRES_CONFIGURE_OPTIONS='--with-gssapi --with-ldap --with-openssl --with-pam --with-libxml --with-libxslt --with-uuid=e2fs' asdf install postgres 9.4.7",
-      "test": "asdf list postgres | grep 9.4.7"
-    },
-    {
-      "name": "Postgres 9.6.8",
-      "type": "shell",
-"command": "LDFLAGS='-L/usr/local/opt/openssl/lib -L/usr/local/lib -L/usr/local/opt/expat/lib' CFLAGS='-I/usr/local/opt/openssl/include/ -I/usr/local/include -I/usr/local/opt/expat/include' CPPFLAGS='-I/usr/local/opt/openssl/include/ -I/usr/local/include -I/usr/local/opt/expat/include' POSTGRES_CONFIGURE_OPTIONS='--with-gssapi --with-ldap --with-openssl --with-pam --with-libxml --with-libxslt --with-uuid=e2fs' asdf install postgres 9.6.8",
-      "test": "asdf list postgres | grep 9.6.8"
-    },
-    {
-      "name": "Go",
-      "type": "homebrew",
-      "package": "go"
-    },
-    {
-      "name": "adr-tools",
-      "type": "homebrew",
-      "package": "adr-tools"
-    },
-    {
-      "name": "Update Homebrew",
-      "type": "shell",
-      "command": "brew update",
-      "test": "false"
-    },
-    {
-      "name": "Tunnelblick",
-      "type": "homebrew",
-      "package": "caskroom/cask/tunnelblick"
-    },
-    {
-      "name": "asdf",
-      "type": "shell",
-      "command": "git clone https://github.com/asdf-vm/asdf.git ~/.asdf --branch v0.4.3 && echo -e '\n. $HOME/.asdf/asdf.sh' >> ~/.bashrc && echo -e '\n. $HOME/.asdf/completions/asdf.bash' >> ~/.bashrc",
-      "test": "asdf --help"
-    },
-    {
-      "name": "gpg",
-      "type": "homebrew",
-      "package": "gpg"
+      "command": "asdf install nodejs 12.3.0",
+      "test": "asdf list nodejs | grep 12.3.0"
     },
     {
       "name": "Vim Packages",
@@ -233,9 +128,68 @@
       ]
     },
     {
-      "name": "Postgres 9.6 Dev",
+      "name": "Terraform",
       "type": "homebrew",
-      "package": "postgresql@9.6 "
+      "package": "terraform"
+    },
+    {
+      "name": "Subversion",
+      "type": "homebrew",
+      "package": "subversion"
+    },
+    {
+      "name": "Clone Solarized Terminal Themes",
+      "type": "shell",
+      "command": "cd ~/Projects/Personal && git clone https://github.com/tomislav/osx-terminal.app-colors-solarized.git",
+      "test": "ls ~/Projects/Personal/osx-terminal.app-colors-solarized.git"
+    },
+    {
+      "name": "Solarized Terminal Themes",
+      "type": "manual",
+      "instructions": [
+        "Open up your terminal and install the themes",
+        "They have been cloned into ~/Projects/Personal"
+      ]
+    },
+    {
+      "name": "Source Code Pro Font",
+      "type": "manual",
+      "url": "https://www.fontsquirrel.com/fonts/source-code-pro"
+    },
+    {
+      "name": "monofur Font",
+      "type": "manual",
+      "url": "https://www.dafont.com/monofur.font"
+    },
+    {
+      "name": "tig",
+      "type": "homebrew",
+      "package": "tig"
+    },
+    {
+      "name": "Graphviz",
+      "type": "homebrew",
+      "package": "graphviz"
+    },
+    {
+      "name": "direnv",
+      "type": "homebrew",
+      "package": "direnv"
+    },
+    {
+      "name": "ag",
+      "type": "homebrew",
+      "package": "the_silver_searcher"
+    },
+    {
+      "name": "AWS CLI",
+      "type": "homebrew",
+      "package": "awscli"
+    },
+    {
+      "name": "Postgres",
+      "type": "homebrew",
+      "package": "postgresql"
     }
   ]
 }

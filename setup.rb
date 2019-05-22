@@ -149,7 +149,6 @@ outdated = {}
 to_install = {}
 [
   "setup",
-  "additional_setup",
 ].each do |setup_file|
   setup = JSON.parse(File.read("#{setup_file}.json"))["setup"]
   setup.each do |install_instructions|
