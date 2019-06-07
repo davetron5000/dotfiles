@@ -8,31 +8,21 @@ function colorless_update_prompt()
       PS1_TARGET="⤇ $1 "
     fi
     PS1_GIT='$(__git_ps1 "⎇ %s") '
-    #PS1_RVM='$(rvm-prompt v i g )'
-    #PS1_DIR='\w> '
     PS1_DIR='\w> '
     PS1_LASTLINE="\n"
     export PS1=$PROMPT_BOLD_WHITE$PS1_START$PROMPT_YELLOW$PS1_TARGET$PROMPT_BOLD_WHITE$PROMPT_MAGENTA$PS1_GIT$PROMPT_BOLD_WHITE$PS1_LASTLINE$PS1_DIR$PROMPT_RESET
 }
 complete -F get_go_targets g
-complete -F get_sf_targets sf
 
 function get_go_targets()
 {
     if [ -z $2 ] ; then
-        COMPREPLY=(`\ls -1 ~/Projects/Personal | sed 's/\/$//'`)
+        COMPREPLY=(`\ls -1 ~/Projects/{OpenSouce,Personal,Other} | sed 's/\/$//'`)
     else
-        COMPREPLY=(`\ls -1 ~/Projects/Personal | sed 's/\/$//' | grep "^$2"`)
+        COMPREPLY=(`\ls -1 ~/Projects/{OpenSource,Personal,Other} | sed 's/\/$//' | grep "^$2"`)
     fi
 }
-function get_sf_targets()
-{
-    if [ -z $2 ] ; then
-        COMPREPLY=(`\ls -1 ~/Projects/StitchFix/{apps,gems,misc}/ | sed 's/\/$//'`)
-    else
-        COMPREPLY=(`\ls -1 ~/Projects/StitchFix/{apps,gems,misc}/ | sed 's/\/$//' | grep "^$2"`)
-    fi
-}
+
 function g()
 {
     if [ ! -z $1 ]; then
@@ -44,28 +34,13 @@ function g()
         if [ -d ~/Projects/Personal/$GO_TARGET ] ; then
             GO_DIR=~/Projects/Personal/$GO_TARGET
         else
-            echo "$GO_TARGET not found!"
-            return;
-        fi
-    fi
-    colorless_update_prompt $GO_TARGET
-
-    cd $GO_DIR
-}
-function sf()
-{
-    if [ ! -z $1 ]; then
-        GO_TARGET=$1
-        if [ -d ~/Projects/StitchFix/apps/$GO_TARGET ] ; then
-            GO_DIR=~/Projects/StitchFix/apps/$GO_TARGET
-        else
-            if [ -d ~/Projects/StitchFix/gems/$GO_TARGET ] ; then
-                GO_DIR=~/Projects/StitchFix/gems/$GO_TARGET
+            if [ -d ~/Projects/OpenSource/$GO_TARGET ] ; then
+              GO_DIR=~/Projects/OpenSource/$GO_TARGET
             else
-                if [ -d ~/Projects/StitchFix/misc/$GO_TARGET ] ; then
-                    GO_DIR=~/Projects/StitchFix/misc/$GO_TARGET
+                if [ -d ~/Projects/Other/$GO_TARGET ] ; then
+                    GO_DIR=~/Projects/Other/$GO_TARGET
                 else
-                    echo "StitchFix/$GO_TARGET not found!"
+                    echo "$GO_TARGET not found!"
                     return;
                 fi
             fi
@@ -75,6 +50,5 @@ function sf()
 
     cd $GO_DIR
 }
-
-# vim: set ft=sh
+# vim: ft=sh
 
