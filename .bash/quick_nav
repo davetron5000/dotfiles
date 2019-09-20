@@ -10,16 +10,17 @@ function colorless_update_prompt()
     PS1_GIT='$(__git_ps1 "⎇ %s") '
     PS1_DIR='\w> '
     PS1_LASTLINE="\n"
-    export PS1=$PROMPT_BOLD_WHITE$PS1_START$PROMPT_YELLOW$PS1_TARGET$PROMPT_BOLD_WHITE$PROMPT_MAGENTA$PS1_GIT$PROMPT_BOLD_WHITE$PS1_LASTLINE$PS1_DIR$PROMPT_RESET
+    #export PS1=$PROMPT_BOLD_WHITE$PS1_START$PROMPT_YELLOW$PS1_TARGET$PROMPT_BOLD_WHITE$PROMPT_MAGENTA$PS1_GIT$PROMPT_BOLD_WHITE$PS1_LASTLINE$PS1_DIR$PROMPT_RESET
+    export PS1='\w> '
 }
 complete -F get_go_targets g
 
 function get_go_targets()
 {
     if [ -z $2 ] ; then
-        COMPREPLY=(`\ls -1 ~/Projects/{OpenSouce,Personal,Other} | sed 's/\/$//'`)
+        COMPREPLY=(`\ls -1 ~/Projects/{Writing,OpenSouce,Personal,Other} | sed 's/\/$//'`)
     else
-        COMPREPLY=(`\ls -1 ~/Projects/{OpenSource,Personal,Other} | sed 's/\/$//' | grep "^$2"`)
+        COMPREPLY=(`\ls -1 ~/Projects/{Writing,OpenSource,Personal,Other} | sed 's/\/$//' | grep "^$2"`)
     fi
 }
 
@@ -40,8 +41,12 @@ function g()
                 if [ -d ~/Projects/Other/$GO_TARGET ] ; then
                     GO_DIR=~/Projects/Other/$GO_TARGET
                 else
-                    echo "$GO_TARGET not found!"
-                    return;
+                    if [ -d ~/Projects/Writing/$GO_TARGET ] ; then
+                        GO_DIR=~/Projects/Writing/$GO_TARGET
+                    else
+                        echo "$GO_TARGET not found!"
+                        return;
+                    fi
                 fi
             fi
         fi
