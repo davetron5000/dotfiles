@@ -6,6 +6,7 @@ source ~/.bash/asdf
 source ~/.bash/direnv
 source ~/.bash/ftfc
 source ~/.bash/vim
+source ~/.bash/golang
 source ~/.git-completion.bash
 if [ -e ~/.bash/npm ]; then
   source ~/.bash/npm
