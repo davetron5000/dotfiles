@@ -1,3 +1,6 @@
+# This is because fucking Apple has no respect for their users
+# and has to tell them that zsh is the default.  FUCK YOU.
+export BASH_SILENCE_DEPRECATION_WARNING=1
 source ~/.bash/bash_setup
 source ~/.bash/command_options
 source ~/.bash/prompt_colors
@@ -7,6 +10,7 @@ source ~/.bash/direnv
 source ~/.bash/ftfc
 source ~/.bash/vim
 source ~/.bash/golang
+source ~/.bash/user_rubygems
 source ~/.git-completion.bash
 if [ -e ~/.bash/npm ]; then
   source ~/.bash/npm
