@@ -72,7 +72,7 @@ if exists("g:project_root")
   exec "map o :CtrlP " . g:project_root . ""
   exec "map  :CtrlP " . g:project_root . ""
   exec "set path+=" . fnameescape(g:project_root) . "/**"
-  exec "set wildignore=*/spec/vcr-cassettes/**,*/db/tmp/**,*/node_modules/**,*/coverage/**,*/vendor/**"
+  exec "set wildignore=*/spec/vcr-cassettes/**,*/db/tmp/**,*/tmp/**,*/node_modules/**,*/coverage/**,*/vendor/**"
 
   " If we are in Rails-land, set up some mappings to run tests
   if exists(":Rake")
@@ -133,9 +133,17 @@ nnoremap <silent> <Leader>b :CtrlPBuffer<CR>
 "au BufLeave *.scss set cindent
 au BufEnter *.pml runtime syntax/xml.vim
 au BufEnter *.pml runtime indent/xml.vim
+au BufEnter *.yml set cuc
+au BufLeave *.yml set nocuc
+au BufEnter *.html.erb set cuc
+au BufLeave *.html.erb set nocuc
+au BufEnter *.html set cuc
+au BufLeave *.html set nocuc
+
 "let g:solarized_termcolors=256
 "colorscheme solarized
-colorscheme jellybeans
+"colorscheme jellybeans
+colorscheme medic_chalk
 set background=dark
 set backspace=indent,eol,start
 let g:bufExplorerFindActive=0 " Do not go to active window when opening the bufexplorer.
