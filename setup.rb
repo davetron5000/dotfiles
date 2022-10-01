@@ -73,19 +73,22 @@ def install(setup,installed,outdated)
       when "homebrew"
         package = setup_step["package"]
         results = `brew info #{package} 2>&1`
+        already_installed = false
         if results !~ /Not installed/i && results !~ /no available formula/i
           puts "⛔ It looks like #{setup_step["name"]} is already installed"
           puts "Type 'install' to force trying to install it anyway.  Anything else and we'll mark it installed"
           value = gets
           if value.chomp.strip != "install"
             mark_installed(installed,setup_step["name"])
-            break
+            already_installed = true
           end
         end
-        shell_install(installed,setup_step.merge("command" => "brew install #{setup_step["package"]}"))
-        if setup_step["after"]
-          setup_step["after"].each do |after_command|
-            shell_install(installed,setup_step.merge("command" => after_command, "name" => after_command), mark_installed: false)
+        if !already_installed
+          shell_install(installed,setup_step.merge("command" => "brew install #{setup_step["package"]}"))
+          if setup_step["after"]
+            setup_step["after"].each do |after_command|
+              shell_install(installed,setup_step.merge("command" => after_command, "name" => after_command), mark_installed: false)
+            end
           end
         end
       when "rbenv"
