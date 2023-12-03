@@ -8,45 +8,52 @@ function colorless_update_prompt()
     PS1_GIT='$(__git_ps1 "⎇ %s") '
     PS1_DIR='\w> '
     PS1_LASTLINE="\n"
-    export PS1=$PROMPT_BOLD_WHITE$PROMPT_BOLD_WHITE$PROMPT_MAGENTA$PS1_GIT$PROMPT_BOLD_WHITE$PS1_LASTLINE$PS1_DIR$PROMPT_RESET
+    export PS1=$PROMPT_BOLD_GREY$PROMPT_BOLD_GREY$PROMPT_MAGENTA$PS1_GIT$PROMPT_BOLD_GREY$PS1_LASTLINE$PS1_DIR$PROMPT_RESET
 }
 complete -F get_go_targets g
 
 function get_go_targets()
 {
     if [ -z $2 ] ; then
-        COMPREPLY=(`\ls -1 ~/Projects/{ThirdTank,OpenSouce,Personal,Other} | sed 's/\/$//'`)
+        COMPREPLY=(`\ls -1 ~/Projects/{ThirdTank,Mood,OpenSouce,Personal,Other} | sed 's/\/$//'`)
     else
-        COMPREPLY=(`\ls -1 ~/Projects/{ThirdTank,OpenSource,Personal,Other} | sed 's/\/$//' | grep "^$2"`)
+        COMPREPLY=(`\ls -1 ~/Projects/{ThirdTank,Mood,OpenSource,Personal,Other} | sed 's/\/$//' | grep "^$2"`)
     fi
 }
 
 function g()
 {
     if [ ! -z $1 ]; then
-        if [ ! -z $2 ]; then
-          GO_TARGET=$1/$2
+      if [ ! -z $2 ]; then
+        GO_TARGET=$1/$2
+      else
+        GO_TARGET=$1
+      fi
+      if [ -d ~/Projects/Personal/$GO_TARGET ] ; then
+        GO_DIR=~/Projects/Personal/$GO_TARGET
+      else
+        if [ -d ~/Projects/OpenSource/$GO_TARGET ] ; then
+          GO_DIR=~/Projects/OpenSource/$GO_TARGET
         else
-          GO_TARGET=$1
-        fi
-        if [ -d ~/Projects/Personal/$GO_TARGET ] ; then
-            GO_DIR=~/Projects/Personal/$GO_TARGET
-        else
-            if [ -d ~/Projects/OpenSource/$GO_TARGET ] ; then
-              GO_DIR=~/Projects/OpenSource/$GO_TARGET
+          if [ -d ~/Projects/Other/$GO_TARGET ] ; then
+            GO_DIR=~/Projects/Other/$GO_TARGET
+          else
+            if [ -d ~/Projects/ThirdTank/$GO_TARGET ] ; then
+              GO_DIR=~/Projects/ThirdTank/$GO_TARGET
             else
-                if [ -d ~/Projects/Other/$GO_TARGET ] ; then
-                    GO_DIR=~/Projects/Other/$GO_TARGET
-                else
-                    if [ -d ~/Projects/ThirdTank/$GO_TARGET ] ; then
-                        GO_DIR=~/Projects/ThirdTank/$GO_TARGET
-                    else
-                        echo "$GO_TARGET not found!"
-                        return;
-                    fi
-                fi
+              if [ -d ~/Projects/Mood/$GO_TARGET ] ; then
+                GO_DIR=~/Projects/Mood/$GO_TARGET
+              else
+                echo "$GO_TARGET not found!"
+                return;
+              fi
             fi
+          fi
         fi
+      fi
+    else
+      GO_DIR=`pwd`
+      GO_TARGET=$(basename `pwd`)
     fi
     colorless_update_prompt $GO_TARGET
 

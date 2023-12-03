@@ -8,6 +8,16 @@ export FIGNORE=~:.bak:.tmp:.swp
 export HISTCONTROL=ignoredups
 export LANG=en_US.UTF-8
 export PATH=/usr/local/bin:${PATH}:${HOME}/bin:/usr/texbin
-alias ls="exa -F"
-alias vi='vim'
+function ls() {
+  if [[ $0 == *"-l"* ]]; then
+    command ls "$@"
+  else
+    command exa "$@"
+  fi
+}
+#alias vi="/Applications/MacVim.app/Contents/bin/mvim"
+#alias vim="/Applications/MacVim.app/Contents/bin/mvim"
+alias vim="/Applications/VimR.app/Contents/Resources/vimr --nvim"
+alias vi="/Applications/VimR.app/Contents/Resources/vimr --nvim"
+alias cat="bat"
 # vim: ft=sh
