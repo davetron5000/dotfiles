@@ -3,6 +3,7 @@
 	email = davec@naildrivin5.com
 [core]
 	excludesfile = /Users/davec/.gitignore
+	attributesfile = ~/.gitattributes
 [color]
   branch = auto
   diff = auto
@@ -25,6 +26,10 @@
   update = pull --rebase
   up = pull --rebase
   oldest-ancestor = !bash -c 'diff -u <(git rev-list --first-parent "${1:-master}") <(git rev-list --first-parent "${2:-HEAD}") | sed -ne \"s/^ //p\" | head -1' -
+	checout = checkout
+	checkotu = checkout
+	chekcout = checkout
+	diff-image = "!f() { cd -- \"${GIT_PREFIX:-.}\"; GIT_DIFF_IMAGE_ENABLED=1 git diff \"$@\"; }; f"
 [rerere]
   enabled = 0
 [mergetool]
@@ -36,3 +41,12 @@
 	smudge = git-media-smudge %f
 [push]
 	default = simple
+[init]
+	templateDir = /Users/davec/.git-templateDir
+[diff "image"]
+	command = ~/Projects/OpenSource/git-diff-image/git_diff_image
+[filter "lfs"]
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true
