@@ -9,6 +9,7 @@ source ~/.bash/quick_nav
 source ~/.bash/direnv
 source ~/.bash/ftfc
 source ~/.bash/vim
+source ~/.bash/conda
 source ~/.git-completion.bash
 if [ -e ~/.bash/npm ]; then
   source ~/.bash/npm
@@ -18,3 +19,7 @@ else
 fi
 
 g
+
+# Added by OrbStack: command-line tools and integration
+# This won't be added again if you remove it.
+source ~/.orbstack/shell/init.bash 2>/dev/null || :
