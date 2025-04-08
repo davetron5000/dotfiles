@@ -15,9 +15,9 @@ complete -F get_go_targets g
 function get_go_targets()
 {
     if [ -z $2 ] ; then
-        COMPREPLY=(`\ls -1 ~/Projects/{Mood,OpenSouce,Personal,Other} | sed 's/\/$//'`)
+        COMPREPLY=(`\ls -1 ~/Projects/{ThirdTank,OpenSouce,Personal,Other} | sed 's/\/$//'`)
     else
-        COMPREPLY=(`\ls -1 ~/Projects/{Mood,OpenSource,Personal,Other} | sed 's/\/$//' | grep "^$2"`)
+        COMPREPLY=(`\ls -1 ~/Projects/{ThirdTank,OpenSource,Personal,Other} | sed 's/\/$//' | grep "^$2"`)
     fi
 }
 
@@ -38,8 +38,8 @@ function g()
                 if [ -d ~/Projects/Other/$GO_TARGET ] ; then
                     GO_DIR=~/Projects/Other/$GO_TARGET
                 else
-                    if [ -d ~/Projects/Mood/$GO_TARGET ] ; then
-                        GO_DIR=~/Projects/Mood/$GO_TARGET
+                    if [ -d ~/Projects/ThirdTank/$GO_TARGET ] ; then
+                        GO_DIR=~/Projects/ThirdTank/$GO_TARGET
                     else
                         echo "$GO_TARGET not found!"
                         return;

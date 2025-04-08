@@ -1,4 +1,22 @@
 alias vi='vim'
+alias vim='neovide --no-multigrid --fork --tabs'
 alias hk='herkou'
+alias icat='~/.local/kitty.app/bin/kitten icat'
 
+
+function ls_alias() {
+  if [ "${1}" == '-ltr' ]; then
+    \ls -ltr "${@:2}"
+  else
+    eza "${@}"
+  fi
+}
+if [ $(type -p eza) ]; then
+  alias ls='ls_alias'
+  export EZA_ICONS_AUTO=1
+fi
+if [ $(type -p batcat) ]; then
+  alias cat=batcat
+  export BAT_THEME=GitHub
+fi
 # vim: ft=sh

@@ -1,4 +1,4 @@
-" To use this, you must define the global variable "g:project_root" to be the
+"To use this, you must define the global variable "g:project_root" to be the
 " location of the root of your project.  This assumes that project is Java
 " and that it contains a directory called "src" beneath it. It also assumes
 " that the ant build file is in build/build.xml.  This also assumes you are
@@ -17,6 +17,7 @@
 " endif
 "
 " 
+
 
 " Needed on some linux distros.
 " " see http://www.adamlowe.me/2009/12/vim-destroys-all-other-rails-editors.html
@@ -42,6 +43,7 @@ syn on
 set exrc
 set noequalalways
 set formatoptions-=t formatoptions+=croqn2
+set noincsearch
 set ai
 set expandtab
 set ts=2
@@ -140,16 +142,8 @@ au BufLeave *.html.erb set nocuc
 au BufEnter *.html set cuc
 au BufLeave *.html set nocuc
 
-"let g:solarized_termcolors=256
-"colorscheme solarized
-"colorscheme jellybeans
-colorscheme medic_chalk
-set background=dark
 set backspace=indent,eol,start
-let g:bufExplorerFindActive=0 " Do not go to active window when opening the bufexplorer.
 
-"let g:vimclojure#ParenRainbow=10 
-"let g:vimclojure#HighlightBuiltins=1
 autocmd BufNewFile,BufRead *.asciidoc set ft=asciidoc
 autocmd BufNewFile,BufRead Procfile set ft=ruby
 
@@ -169,16 +163,83 @@ let g:terraform_align=1
 
 let g:netrw_keepdir=0
 
-autocmd BufNewFile,BufRead *.rb map K :Dash
-autocmd BufNewFile,BufRead *.js map K :Dash
-autocmd BufNewFile,BufRead *.jsx map K :Dash
-autocmd BufNewFile,BufRead *.html map K :Dash
-autocmd BufNewFile,BufRead *.erb map K :Dash
-autocmd BufNewFile,BufRead *.css map K :Dash
-autocmd BufNewFile,BufRead *.scss map K :Dash
+let g:copilot_filetypes = {
+      \ 'markdown': v:false,
+      \ 'json': v:false,
+      \ }
+
+if exists("g:neovide")
+  noremap <M-}> :tabnext
+  noremap <M-{> :tabprev
+  noremap <M-n> :tabnew
+  noremap <M-t> :tabnew
+
+  " In edit mode, pastes from the system buffer
+  imap <M-v> +
+  map <M-c> "+y
+
+
+  let g:neovide_scroll_animation_length = 0
+  let g:neovide_position_animation_length = 0
+  let g:neovide_cursor_animation_length = 0
+  let g:neovide_animation_trail_size = 0
+  let g:neovide_cursor_animate_command_line = v:false
+  let g:neovide_cursor_vfx_mode = ""
+  let g:neovide_opacity = 0.95
+  let g:neovide_normal_opacity = 0.95
+
+  set guifont=Monaspace\ Krypton:h14
+  colorscheme rose-pine-moon
+  set background=dark
+else
+  colorscheme rose-pine-dawn
+  set background=light
+endif
+
+"autocmd BufNewFile,BufRead *.rb map K :Dash
+"autocmd BufNewFile,BufRead *.js map K :Dash
+"autocmd BufNewFile,BufRead *.jsx map K :Dash
+"autocmd BufNewFile,BufRead *.html map K :Dash
+"autocmd BufNewFile,BufRead *.erb map K :Dash
+"autocmd BufNewFile,BufRead *.css map K :Dash
+"autocmd BufNewFile,BufRead *.scss map K :Dash
+autocmd BufNewFile,BufEnter,BufRead *.rb set keywordprg=:!devdocs-lookup\ ruby\ 
+autocmd BufNewFile,BufEnter,BufRead *.js set keywordprg=:!devdocs-lookup\ dom\
+autocmd BufNewFile,BufEnter,BufRead *.html set keywordprg=:!devdocs-lookup\ html\  
+autocmd BufNewFile,BufEnter,BufRead *.erb set keywordprg=:!devdocs-lookup\ ruby\ 
+autocmd BufNewFile,BufEnter,BufRead *.css set keywordprg=:!devdocs-lookup\ css\ 
+autocmd BufLeave *.rb   set keywordprg=:help
+autocmd BufLeave *.js   set keywordprg=:help
+autocmd BufLeave *.html set keywordprg=:help
+autocmd BufLeave *.erb  set keywordprg=:help
+autocmd BufLeave *.css  set keywordprg=:help
+
+
+" Opens a scratch buffer, per https://vi.stackexchange.com/a/21390/55771
+function! Scratch()
+  split
+  noswapfile hide enew
+  setlocal buftype=nofile
+  setlocal bufhidden=hide
+
+  " If uncommented, would not show this buffer in the buffer list
+  " setlocal nobuflisted
+
+  " If we are in a project, set the current directory
+  " for this buffer to the project root
+  if  exists("g:project_root")
+    execute 'lcd ' g:project_root
+  endif
+
+  file scratch
+endfunction
+map <Leader>ss :call Scratch()<CR>
 
 autocmd GUIEnter * let g:syntastic_error_symbol='✖'
 
 highlight ExtraWhitespace ctermbg=red guibg=red
 autocmd Syntax * syn match ExtraWhitespace /\s\+$\| \+\ze\t/
 packadd! matchit
+
+lua require('config')
+

@@ -20,6 +20,6 @@ else
   echo
 fi
 source ~/.bash/github
-
-g
-cd ~
+#g
+#cd ~
+colorless_update_prompt
