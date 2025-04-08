@@ -3,6 +3,8 @@
 	email = davec@naildrivin5.com
 [core]
 	excludesfile = /Users/davidcopeland/.gitignore
+	excludesfile = /Users/davec/.gitignore
+	attributesfile = ~/.gitattributes
 [color]
   branch = auto
   diff = auto
@@ -21,10 +23,7 @@
   changed = red bold
   untracked = cyan
 [alias]
-  lol = log --oneline --graph --decorate
-  update = pull --rebase
-  up = pull --rebase
-  oldest-ancestor = !bash -c 'diff -u <(git rev-list --first-parent "${1:-master}") <(git rev-list --first-parent "${2:-HEAD}") | sed -ne \"s/^ //p\" | head -1' -
+	diff-image = "!f() { cd -- \"${GIT_PREFIX:-.}\"; GIT_DIFF_IMAGE_ENABLED=1 git diff \"$@\"; }; f"
 [rerere]
   enabled = 0
 [mergetool]
@@ -46,3 +45,12 @@
 	helper = !/usr/bin/gh auth git-credential
 [safe]
 	directory = /root/work
+[diff "image"]
+	command = ~/Projects/OpenSource/git-diff-image/git_diff_image
+[filter "lfs"]
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true
+[init]
+  defaultBranch = main

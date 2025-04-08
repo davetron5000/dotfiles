@@ -18,30 +18,20 @@ git_bundles = [
   "git@github.com:tpope/vim-markdown.git",
   "git@github.com:vim-ruby/vim-ruby.git",
   "https://github.com/ctrlpvim/ctrlp.vim",
-  "git@github.com:jlanzarotta/bufexplorer.git",
+  "git@github.com:thisivan/vim-bufexplorer.git",
   "git@github.com:tpope/vim-rails.git",
-  "https://github.com/leshill/vim-json.git",
   "https://github.com/godlygeek/tabular.git",
-  "git@github.com:nanotech/jellybeans.vim.git",
+  "https://github.com/leshill/vim-json.git",
   "https://github.com/othree/html5.vim.git",
   "https://github.com/tpope/vim-obsession",
   "https://github.com/tpope/vim-projectionist",
   "git@github.com:rizzatti/dash.vim.git",
   "git@github.com:davetron5000/vim-timeline.git",
-  "https://github.com/mustache/vim-mustache-handlebars.git",
   "git@github.com:hashivim/vim-terraform.git",
-  "https://github.com/fatih/vim-go",
   "https://github.com/pangloss/vim-javascript.git",
   "git@github.com:maxmellon/vim-jsx-pretty",
   "git@github.com:davetron5000/vim-pml.git",
-  "git@github.com:ParamagicDev/vim-medic_chalk.git",
-  "git@github.com:vim-scripts/Risto-Color-Scheme.git",
-  "git@github.com:fneu/breezy.git",
-  "git@github.com:folke/tokyonight.nvim.git",
-  "git@github.com:catppuccin/nvim.git",
   "git@github.com:epmatsw/ag.vim.git",
-  "git@github.com:rose-pine/neovim.git",
-  "git@github.com:github/copilot.vim.git",
   "git@github.com:nvim-lua/plenary.nvim", # Needed by CopilotChat
   "git@github.com:CopilotC-Nvim/CopilotChat.nvim",
   "git@github.com:nvim-tree/nvim-web-devicons.git", # Unclear if needed
@@ -49,9 +39,24 @@ git_bundles = [
 ]
 
 disabled = [
+  "git@github.com:ParamagicDev/vim-medic_chalk.git",
+  "git@github.com:vim-scripts/Risto-Color-Scheme.git",
+  "git@github.com:fneu/breezy.git",
+  "git@github.com:folke/tokyonight.nvim.git",
+  "git@github.com:catppuccin/nvim.git",
+  "git@github.com:rose-pine/neovim.git",
+  "git@github.com:github/copilot.vim.git",
   "git@github.com:thisivan/vim-bufexplorer.git",
   "git@github.com:mistweaverco/bafa.nvim.git",
   "git@github.com:neovim/nvim-lspconfig.git",
+  "git@github.com:jlanzarotta/bufexplorer.git",
+  "git@github.com:nanotech/jellybeans.vim.git",
+  "git@github.com:kana/vim-textobj-user.git", # needed by textobj-quote
+  "git@github.com:preservim/vim-textobj-quote.git",
+  "git@github.com:TroyFletcher/vim-colors-synthwave.git",
+  "git@github.com:nanotech/jellybeans.vim.git",
+  "https://github.com/fatih/vim-go",
+  "https://github.com/mustache/vim-mustache-handlebars.git",
   "git@github.com:mxw/vim-jsx.git",
   "git@github.com:scrooloose/syntastic.git",
   "https://github.com/tpope/vim-bundler",
@@ -120,6 +125,12 @@ git_bundles.each do |url|
     puts "  Unpacking #{url} into #{dir}"
     if system({ "GIT_TERMINAL_PROMPT" => "0"},"git clone #{url} #{dir}")
       updated_something = true
+      FileUtils.cd(dir) do
+        `git rev-parse HEAD > HEAD-SHA-last-clone`
+        if !$?.success?
+          puts "WARNING: git rev-parse HEAD failed"
+        end
+      end
       FileUtils.rm_rf(File.join(dir, ".git"))
     else
       STDERR.puts "Problem with #{url}"
@@ -142,3 +153,4 @@ end
 if updated_something
   puts "Your plugins have changed.  Run :helptags ALL next time you open vim!"
 end
+puts "Don't forget to run this in `/Users/davec/.local/share/nvim/site` as well"
