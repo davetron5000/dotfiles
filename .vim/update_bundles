@@ -14,12 +14,12 @@ opts = OptionParser.new do |o|
 end
 opts.parse!
 git_bundles = [
-  "git://github.com/msanders/snipmate.vim.git",
-  "git://github.com/tpope/vim-markdown.git",
-  "git://github.com/vim-ruby/vim-ruby.git",
+  "git@github.com:msanders/snipmate.vim.git",
+  "git@github.com:tpope/vim-markdown.git",
+  "git@github.com:vim-ruby/vim-ruby.git",
   "https://github.com/ctrlpvim/ctrlp.vim",
-  "git://github.com/thisivan/vim-bufexplorer.git",
-  "git://github.com/tpope/vim-rails.git",
+  "git@github.com:thisivan/vim-bufexplorer.git",
+  "git@github.com:tpope/vim-rails.git",
   "https://github.com/leshill/vim-json.git",
   "https://github.com/godlygeek/tabular.git",
   "https://github.com/othree/html5.vim.git",
@@ -34,41 +34,43 @@ git_bundles = [
   "git@github.com:kana/vim-textobj-user.git", # needed by textobj-quote
   "git@github.com:preservim/vim-textobj-quote.git",
   "git@github.com:epmatsw/ag.vim.git",
+  "git@github.com:bignimbus/pop-punk.vim.git",
 ]
 
 disabled = [
-  "git://github.com/nanotech/jellybeans.vim.git",
+  "git@github.com:TroyFletcher/vim-colors-synthwave.git",
+  "git@github.com:nanotech/jellybeans.vim.git",
   "https://github.com/fatih/vim-go",
   "https://github.com/mustache/vim-mustache-handlebars.git",
   "git@github.com:mxw/vim-jsx.git",
-  "git://github.com/scrooloose/syntastic.git",
+  "git@github.com:scrooloose/syntastic.git",
   "https://github.com/tpope/vim-bundler",
   "git@github.com:freitass/todo.txt-vim.git",
-  "git://github.com/edsono/vim-matchit.git",
+  "git@github.com:edsono/vim-matchit.git",
   "https://github.com/janko-m/vim-test.git",
-  "git://github.com/tpope/vim-git.git",
+  "git@github.com:tpope/vim-git.git",
   "https://github.com/tpope/vim-fugitive.git",
-  "git://github.com/vim-scripts/Command-T.git",
+  "git@github.com:vim-scripts/Command-T.git",
   "https://github.com/w0rp/ale",
   "https://github.com/lambdatoast/elm.vim",
-  "git://github.com/davetron5000/java-javadoc-vim.git",
+  "git@github.com:davetron5000/java-javadoc-vim.git",
   "https://github.com/dag/vim-fish.git",
-  "git://github.com/davetron5000/javax-javadoc-vim.git",
-  "git://github.com/kana/vim-xml-autons.git",
-  "git://github.com/vim-scripts/VimClojure.git",
-  "git://github.com/jacekd/vim-iawriter.git",
-	"git://github.com/juvenn/mustache.vim.git",
-  "git://github.com/timcharper/textile.vim.git",
-  "git://github.com/tpope/vim-cucumber.git",
-  "git://github.com/derekwyatt/vim-scala.git",
-  "git://github.com/dagwieers/asciidoc-vim.git",
-  "git://github.com/elixir-lang/vim-elixir.git",
-  "git://github.com/tpope/vim-haml.git",
+  "git@github.com:davetron5000/javax-javadoc-vim.git",
+  "git@github.com:kana/vim-xml-autons.git",
+  "git@github.com:vim-scripts/VimClojure.git",
+  "git@github.com:jacekd/vim-iawriter.git",
+	"git@github.com:juvenn/mustache.vim.git",
+  "git@github.com:timcharper/textile.vim.git",
+  "git@github.com:tpope/vim-cucumber.git",
+  "git@github.com:derekwyatt/vim-scala.git",
+  "git@github.com:dagwieers/asciidoc-vim.git",
+  "git@github.com:elixir-lang/vim-elixir.git",
+  "git@github.com:tpope/vim-haml.git",
   "git@github.com:thoughtbot/vim-rspec.git",
-  "git://github.com/depuracao/vim-rdoc.git",
-  "git://github.com/tpope/vim-vividchalk.git",
-  "git://github.com/kchmck/vim-coffee-script.git",
-  "git://github.com/mikewest/vimroom.git",
+  "git@github.com:depuracao/vim-rdoc.git",
+  "git@github.com:tpope/vim-vividchalk.git",
+  "git@github.com:kchmck/vim-coffee-script.git",
+  "git@github.com:mikewest/vimroom.git",
   "https://github.com/leafgarland/typescript-vim.git",
 ]
 
@@ -108,6 +110,12 @@ git_bundles.each do |url|
     `git clone #{url} #{dir}`
     if $?.success?
       updated_something = true
+      FileUtils.cd(dir) do
+        `git rev-parse HEAD > HEAD-SHA-last-clone`
+        if !$?.success?
+          puts "WARNING: git rev-parse HEAD failed"
+        end
+      end
       FileUtils.rm_rf(File.join(dir, ".git"))
     else
       STDERR.puts "Problem with #{url}"

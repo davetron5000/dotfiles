@@ -114,15 +114,36 @@ map : :Tabularize /: /r0c0l0
 map = :Tabularize /=
 map > :Tabularize /=>
 
+" Opens a scratch buffer, per https://vi.stackexchange.com/a/21390/55771
+function! Scratch()
+    split
+    noswapfile hide enew
+    setlocal buftype=nofile
+    setlocal bufhidden=hide
+
+    " If uncommented, would not show this buffer in the buffer list
+    "setlocal nobuflisted
+
+    " If we are in a project, set the current directory
+    " for this buffer to the project root
+    if  exists("g:project_root")
+      execute 'lcd ' g:project_root
+    endif
+
+    file scratch
+endfunction
+map <Leader>ss :call Scratch()<CR>
+
+
 nnoremap <silent> <Leader>t :CtrlP<CR>
 nnoremap <silent> <Leader>b :CtrlPBuffer<CR>
 
 au BufEnter *.pml runtime syntax/xml.vim
 au BufEnter *.pml runtime indent/xml.vim
-colorscheme solarized
+colorscheme "pop-punk"
 set background=dark
 set backspace=indent,eol,start
-let g:bufExplorerFindActive=0 " Do not go to active window when opening the bufexplorer.
+let g:bufExplorerFindActive=1 " Do not go to active window when opening the bufexplorer.
 
 autocmd BufNewFile,BufRead *.asciidoc set ft=asciidoc
 autocmd BufNewFile,BufRead Procfile set ft=ruby
@@ -146,6 +167,8 @@ let g:netrw_keepdir=0
 let g:ctrlp_show_hidden=1
 
 autocmd BufNewFile,BufRead *.rb map K :Dash
+autocmd BufNewFile,BufRead Rakefile map K :Dash
+autocmd BufNewFile,BufRead *.ru map K :Dash
 autocmd BufNewFile,BufRead *.js map K :Dash
 autocmd BufNewFile,BufRead *.jsx map K :Dash
 autocmd BufNewFile,BufRead *.html map K :Dash
@@ -159,10 +182,12 @@ highlight ExtraWhitespace ctermbg=red guibg=red
 autocmd Syntax * syn match ExtraWhitespace /\s\+$\| \+\ze\t/
 packadd! matchit
 
-if g:gui_vimr == 1
-  "set gfn=Source\ Code\ Pro:h18
-  set gfn=Monaspace\ Krytpon\ Var:h18
-  noremap <S-D-}> :tabnext
-  noremap <S-D-{> :tabprevious
+if exists("g:gui_vimr")
+  if g:gui_vimr == 1
+    "set gfn=Source\ Code\ Pro:h18
+    set gfn="Monaspace_Krytpon_Var_Regular":h18
+    noremap <S-D-}> :tabnext
+    noremap <S-D-{> :tabprevious
+  endif
 endif
-let g:copilot_filetypes = { 'pml': v:false, 'markdown': v:false, 'txt': v:false, 'terraform': v:false }
+let g:copilot_filetypes = { 'pml': v:false, 'markdown': v:false, 'txt': v:false, 'terraform': v:false, 'json': v:false }
