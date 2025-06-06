@@ -150,19 +150,10 @@ au BufEnter *.html set cuc
 au BufLeave *.html set nocuc
 
 set backspace=indent,eol,start
-colorscheme "pop-punk"
-set background=dark
 set backspace=indent,eol,start
 
 autocmd BufNewFile,BufRead *.asciidoc set ft=asciidoc
 autocmd BufNewFile,BufRead Procfile set ft=ruby
-
-let g:syntastic_check_on_open=1
-let g:syntastic_quiet_messages = {'level': 'warnings'}
-let g:syntastic_always_populate_loc_list=1
-let g:syntastic_auto_loc_list=1
-let g:syntastic_ignore_files=['Procfile','.css','.css.scss','.py']
-let g:syntastic_haml_haml_exe = "LC_ALL=en_US.UTF-8 haml" " computering
 
 let g:ruby_indent_access_modifier_style = 'outdent'
 let g:ruby_indent_block_style = 'do'
@@ -215,8 +206,6 @@ autocmd BufNewFile,BufRead *.erb map K :Dash
 autocmd BufNewFile,BufRead *.css map K :Dash
 autocmd BufNewFile,BufRead *.scss map K :Dash
 
-autocmd GUIEnter * let g:syntastic_error_symbol='✖'
-
 highlight ExtraWhitespace ctermbg=red guibg=red
 autocmd Syntax * syn match ExtraWhitespace /\s\+$\| \+\ze\t/
 packadd! matchit
@@ -230,4 +219,6 @@ if exists("g:gui_vimr")
     noremap <S-D-{> :tabprevious
   endif
 endif
-"lua require('config')
+lua require('config')
+colorscheme tokyonight-day
+set background=light
