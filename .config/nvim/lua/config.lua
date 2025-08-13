@@ -4,15 +4,15 @@ local on_attach = function(client, bufnr)
   vim.keymap.set('n', 'gr', vim.lsp.buf.references, opts)
   vim.keymap.set('n', 'gs', vim.lsp.buf.document_symbol, opts)
   vim.keymap.set('n', 'gK', vim.lsp.buf.signature_help, opts)
-  vim.keymap.set('n', 'dn', function() vim.diagnostic.jump({ count = 1, float = true }) end, opts)
-  vim.keymap.set('n', 'dp', function() vim.diagnostic.jump({ count = -1, float = true }) end, opts)
-  vim.keymap.set('n', 'do', vim.diagnostic.open_float, opts)
+  vim.keymap.set('n', 'gn', function() vim.diagnostic.jump({ count = 1, float = true }) end, opts)
+  vim.keymap.set('n', 'gp', function() vim.diagnostic.jump({ count = -1, float = true }) end, opts)
+  vim.keymap.set('n', 'go', vim.diagnostic.open_float, opts)
   vim.keymap.set('n', 'K', vim.lsp.buf.hover, opts)
   vim.keymap.set('i', '<C-Space>', '<C-x><C-o>', opts)
-  vim.keymap.set('n', '<C-o>', function()
-    vim.cmd('split')
-    vim.lsp.buf.definition()
-  end, { buffer = bufnr, noremap = true, silent = true })
+  -- vim.keymap.set('n', '<C-o>', function()
+  --   vim.cmd('split')
+  --   vim.lsp.buf.definition()
+  -- end, { buffer = bufnr, noremap = true, silent = true })
 
 
   vim.lsp.inlay_hint.enable()
@@ -42,7 +42,7 @@ if useLSP then
 
   local lspconfig = require('lspconfig')
   lspconfig.ruby_lsp.setup({
-    cmd = { 'dx/exec', 'bash', '-lc', 'ruby-lsp', },
+    cmd = { 'dx/exec', 'ruby-lsp', },
     on_attach = on_attach,
     init_options = {
       featuresConfiguration = {
@@ -53,14 +53,14 @@ if useLSP then
     }
   })
   lspconfig.cssls.setup({
-    cmd = { 'dx/exec', 'bash', '-lc', 'npx vscode-css-language-server --stdio' },
+    cmd = { 'dx/exec', 'npx vscode-css-language-server --stdio' },
     on_attach = on_attach,
     before_init = function(params)
       params.processId = vim.NIL
     end,
   })
   lspconfig.ts_ls.setup({
-    cmd = { 'dx/exec', 'bash', '-lc', 'npx typescript-language-server --stdio --log-level 4' },
+    cmd = { 'dx/exec', 'npx typescript-language-server --stdio --log-level 4' },
     on_attach = on_attach,
     before_init = function(params)
       params.processId = vim.NIL
@@ -68,8 +68,31 @@ if useLSP then
   })
 end
 
-require("CopilotChat").setup({
-  window = {
-    layout = 'horizontal'
+local function short_path()
+  local filepath = vim.api.nvim_buf_get_name(0) -- full path
+  if filepath == '' then return '' end
+
+  local cwd = vim.fn.getcwd()
+  if vim.fn.fnamemodify(filepath, ':p:h') == cwd then
+    return vim.fn.fnamemodify(filepath, ':t') -- just filename
+  end
+
+  local parts = vim.split(filepath, '/')
+  local count = #parts
+  if count >= 3 then
+    return table.concat({ parts[count - 2], parts[count - 1], parts[count] }, '/')
+  else
+    return table.concat(parts, '/')
+  end
+end
+
+
+require('lualine').setup({
+  sections = {
+    lualine_a = { short_path },
+    lualine_b = {'branch', 'diff', 'diagnostics'},
+    lualine_c = {},
+    lualine_x = { 'lsp_status' },
+    lualine_y = { 'filetype' },
   }
 })

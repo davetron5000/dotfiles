@@ -2,7 +2,6 @@
 " location of the root of your project. 
 set nocompatible
 
-
 " Needed on some linux distros.
 " " see http://www.adamlowe.me/2009/12/vim-destroys-all-other-rails-editors.html
 filetype off
@@ -106,6 +105,10 @@ map   :cnext
 map f !!fold -w77 -s 
 " ^O tries to open the thing under the cursor using gf
 map  sgf
+" This cantation ensures that 'gf' actually works aftrer the split.
+" When using the old-school one that suddenly stopped work, the gf doesn't
+" go through as it's too fast or not parsed as a 'g' command
+" nnoremap <C-O> :split<CR>:normal gf<CR>
 " Avoid annoying ^Z minimizing to nowhere
 map  
 " Ruby specific, but handy - depends on rails.vim existing.
@@ -186,7 +189,7 @@ if exists("g:neovide")
   let g:neovide_opacity = 0.95
   let g:neovide_normal_opacity = 0.95
 
-  set guifont=Monaspace\ Krypton:h14
+  set guifont="Monofur_Nerd_Font_Mono":h18
   colorscheme rose-pine-moon
   set background=dark
 else
@@ -195,7 +198,12 @@ else
 endif
 
 let g:ctrlp_show_hidden=1
+let g:ctrlp_custom_ignore = {
+      \ 'dir': '\v[\/](\.git|local-repos|local-gems|node_modules|docs)$',
+      \ }
 
+" When LSP is not set up, K will allow us to use Dash
+" to look up documentation
 autocmd BufNewFile,BufRead *.rb map K :Dash
 autocmd BufNewFile,BufRead Rakefile map K :Dash
 autocmd BufNewFile,BufRead *.ru map K :Dash
@@ -205,6 +213,8 @@ autocmd BufNewFile,BufRead *.html map K :Dash
 autocmd BufNewFile,BufRead *.erb map K :Dash
 autocmd BufNewFile,BufRead *.css map K :Dash
 autocmd BufNewFile,BufRead *.scss map K :Dash
+" When LSP IS set up, it's still nice to go to Dash, so this allows that
+map  :Dash
 
 highlight ExtraWhitespace ctermbg=red guibg=red
 autocmd Syntax * syn match ExtraWhitespace /\s\+$\| \+\ze\t/
@@ -213,12 +223,14 @@ packadd! matchit
 
 if exists("g:gui_vimr")
   if g:gui_vimr == 1
-    "set gfn=Source\ Code\ Pro:h18
-    set gfn="Monaspace_Krytpon_Var_Regular":h18
+    set guifont="Monofur_Nerd_Font_Mono":h18
     noremap <S-D-}> :tabnext
     noremap <S-D-{> :tabprevious
   endif
 endif
 lua require('config')
-colorscheme tokyonight-day
-set background=light
+
+"colorscheme tokyonight-day
+"set background=light
+colorscheme desert
+set background=dark
