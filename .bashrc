@@ -10,16 +10,8 @@ source ~/.bash/quick_nav
 source ~/.bash/direnv
 source ~/.bash/ftfc
 source ~/.bash/vim
-source ~/.bash/conda
+source ~/.bash/cargo
 source ~/.git-completion.bash
-if [ -e ~/.bash/npm ]; then
-  source ~/.bash/npm
-else
- #echo "You need to create ~/.bash/npm with NPM_TOKEN=«your token»"
-  echo
-fi
-#g
-#cd ~
 colorless_update_prompt
 
 # Added by OrbStack: command-line tools and integration
