@@ -1,0 +1,35 @@
+#!/usr/bin/osascript
+on run argv
+  set passedCommand to item 1 of argv
+  set tabCount to 3
+  set terminalProfile to "Tomorrow"
+
+  set tabCommands to { ¬
+    {"🚢 Docker Compose", "dx/start", "Tomorrow"}, ¬
+    {"💻 In Container", "sleep 3 ; dx/exec bash", "Tomorrow Night Bright"}, ¬
+    {"⌨️ On Host Shell", "ls", "Tomorrow Night Bright"} ¬
+  }
+
+  tell application "Terminal"
+    activate
+
+    repeat with i from 1 to count of tabCommands
+      set tabTitle to item 1 of item i of tabCommands
+      set cmd to item 2 of item i of tabCommands
+      set colorScheme to item 3 of item i of tabCommands
+      set fullCmd to "printf '\\033]1;" & tabTitle & "\\007\\033]2;" & passedCommand & "\\007'; g " & passedCommand & "; " & cmd
+
+
+      if i = 1 then
+        do script fullCmd
+      else
+        tell application "System Events" to keystroke "t" using command down
+        delay 0.2
+        do script fullCmd in selected tab of front window
+      end if
+
+      set current settings of selected tab of front window to settings set colorScheme
+    end repeat
+  end tell
+end run
+
