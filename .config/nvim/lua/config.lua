@@ -86,8 +86,58 @@ local function short_path()
   end
 end
 
+-- Copied from gruvbox light
+local colors = {
+  black        = '#3c3836',
+  white        = '#f9f5d7',
+  orange       = '#af3a03',
+  green        = '#427b58',
+  blue         = '#076678',
+  gray         = '#d5c4a1',
+  darkgray     = '#7c6f64',
+  lightgray    = '#ebdbb2',
+  inactivegray = '#a89984'
+}
+
+-- theme to not show a difference between normal and insert modes because
+-- who the fuck cares.
+local lualinetheme = {
+  normal = {
+    a = { bg = colors.blue, fg = colors.white, gui = 'bold' },
+    b = { bg = colors.gray, fg = colors.darkgray },
+    c = { bg = colors.gray, fg = colors.black },
+  },
+  insert = {
+    a = { bg = colors.blue, fg = colors.white, gui = 'bold' },
+    b = { bg = colors.gray, fg = colors.darkgray },
+    c = { bg = colors.gray, fg = colors.black },
+  },
+  visual = {
+    a = { bg = colors.orange, fg = colors.white, gui = 'bold' },
+    b = { bg = colors.gray, fg = colors.darkgray },
+    c = { bg = colors.darkgray, fg = colors.white },
+  },
+  replace = {
+    a = { bg = colors.green, fg = colors.white, gui = 'bold' },
+    b = { bg = colors.gray, fg = colors.darkgray },
+    c = { bg = colors.gray, fg = colors.black },
+  },
+  command = {
+    a = { bg = colors.darkgray, fg = colors.white, gui = 'bold' },
+    b = { bg = colors.gray, fg = colors.darkgray },
+    c = { bg = colors.lightgray, fg = colors.darkgray },
+  },
+  inactive = {
+    a = { bg = colors.lightgray, fg = colors.inactivegray },
+    b = { bg = colors.lightgray, fg = colors.inactivegray },
+    c = { bg = colors.lightgray, fg = colors.inactivegray },
+  },
+}
 
 require('lualine').setup({
+  options = {
+    theme = lualinetheme,
+  },
   sections = {
     lualine_a = { short_path },
     lualine_b = {'branch', 'diff', 'diagnostics'},
