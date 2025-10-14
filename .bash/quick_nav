@@ -10,7 +10,6 @@ function colorless_update_prompt()
     PS1_LASTLINE="\n"
     export PS1=$PROMPT_BOLD_GREY$PROMPT_BOLD_GREY$PROMPT_MAGENTA$PS1_GIT$PROMPT_BOLD_GREY$PS1_LASTLINE$PS1_DIR$PROMPT_RESET
 }
-complete -F get_go_targets g
 
 function get_go_targets()
 {
@@ -59,4 +58,42 @@ function g()
 
     cd $GO_DIR
 }
+function gg()
+{
+    if [ ! -z $1 ]; then
+      if [ ! -z $2 ]; then
+        GO_TARGET=$1/$2
+      else
+        GO_TARGET=$1
+      fi
+      if [ -d ~/Projects/Personal/$GO_TARGET ] ; then
+        GO_DIR=~/Projects/Personal/$GO_TARGET
+      else
+        if [ -d ~/Projects/OpenSource/$GO_TARGET ] ; then
+          GO_DIR=~/Projects/OpenSource/$GO_TARGET
+        else
+          if [ -d ~/Projects/Other/$GO_TARGET ] ; then
+            GO_DIR=~/Projects/Other/$GO_TARGET
+          else
+            if [ -d ~/Projects/ThirdTank/$GO_TARGET ] ; then
+              GO_DIR=~/Projects/ThirdTank/$GO_TARGET
+            else
+              if [ -d ~/Projects/Mood/$GO_TARGET ] ; then
+                GO_DIR=~/Projects/Mood/$GO_TARGET
+              else
+                echo "$GO_TARGET not found!"
+                return;
+              fi
+            fi
+          fi
+        fi
+      fi
+    else
+      GO_DIR=`pwd`
+      GO_TARGET=$(basename `pwd`)
+    fi
+    open -na ghostty.app --args --working-directory="${GO_DIR}" --config-file="?${GO_DIR}/.ghostty.config"
+}
+complete -F get_go_targets g
+complete -F get_go_targets gg
 # vim: ft=sh
