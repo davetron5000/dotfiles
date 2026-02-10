@@ -167,35 +167,8 @@ let g:terraform_align=1
 
 let g:netrw_keepdir=0
 
-let g:copilot_filetypes = { 'pml': v:false, 'markdown': v:false, 'txt': v:false, 'terraform': v:false, 'json': v:false }
-
-if exists("g:neovide")
-  noremap <M-}> :tabnext
-  noremap <M-{> :tabprev
-  noremap <M-n> :tabnew
-  noremap <M-t> :tabnew
-
-  " In edit mode, pastes from the system buffer
-  imap <M-v> +
-  map <M-c> "+y
-
-
-  let g:neovide_scroll_animation_length = 0
-  let g:neovide_position_animation_length = 0
-  let g:neovide_cursor_animation_length = 0
-  let g:neovide_animation_trail_size = 0
-  let g:neovide_cursor_animate_command_line = v:false
-  let g:neovide_cursor_vfx_mode = ""
-  let g:neovide_opacity = 0.95
-  let g:neovide_normal_opacity = 0.95
-
-  set guifont="Monofur_Nerd_Font_Mono":h18
-  colorscheme rose-pine-moon
-  set background=dark
-else
-  "colorscheme rose-pine-dawn
-  "set background=light
-endif
+let g:copilot_filetypes = { 'pml': v:false, 'markdown': v:false, 'txt': v:false, 'terraform': v:false, 'json': v:false, 'jjdescription': v:false }
+inoremap <C-f><C-o> <Esc>:Copilot disable<CR>a
 
 let g:ctrlp_show_hidden=1
 let g:ctrlp_custom_ignore = {
@@ -223,11 +196,44 @@ packadd! matchit
 
 if exists("g:gui_vimr")
   if g:gui_vimr == 1
-    set guifont="Monofur_Nerd_Font_Mono":h18
+    set guifont="Monofur Nerd Font Mono:h18"
     noremap <S-D-}> :tabnext
     noremap <S-D-{> :tabprevious
   endif
 endif
+
+if exists("g:neovide")
+
+  if has("macunix")
+    noremap <D-}> :tabnext
+    noremap <D-{> :tabprevious
+    noremap <D-n> :tabnew
+    noremap <D-t> :tabnew
+    imap <D-v> *
+    map <D-c> "+y
+  else
+    noremap <M-}> :tabnext
+    noremap <M-{> :tabprev
+    noremap <M-n> :tabnew
+    noremap <M-t> :tabnew
+
+    " In edit mode, pastes from the system buffer
+    imap <M-v> +
+    map <M-c> "+y
+  endif
+
+  let g:neovide_scroll_animation_length = 0
+  let g:neovide_position_animation_length = 0
+  let g:neovide_cursor_animation_length = 0
+  let g:neovide_animation_trail_size = 0
+  let g:neovide_cursor_animate_command_line = v:false
+  let g:neovide_cursor_vfx_mode = ""
+  let g:neovide_opacity = 0.95
+  let g:neovide_normal_opacity = 0.95
+
+  set guifont=monofur:h18
+endif
+
 lua require('config')
 
 "colorscheme tokyonight-day

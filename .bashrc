@@ -11,9 +11,20 @@ source ~/.bash/direnv
 source ~/.bash/ftfc
 source ~/.bash/vim
 source ~/.bash/cargo
+source ~/.bash/jj
 source ~/.git-completion.bash
 colorless_update_prompt
 
 # Added by OrbStack: command-line tools and integration
 # This won't be added again if you remove it.
 source ~/.orbstack/shell/init.bash 2>/dev/null || :
+
+# Added by LM Studio CLI (lms)
+export PATH="$PATH:/Users/davec/.lmstudio/bin"
+# End of LM Studio CLI section
+
+
+# Added by LM Studio CLI (lms)
+export PATH="$PATH:/Users/davec/.lmstudio/bin"
+# End of LM Studio CLI section
+

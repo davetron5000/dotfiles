@@ -146,3 +146,4 @@ require('lualine').setup({
     lualine_y = { 'filetype' },
   }
 })
+
