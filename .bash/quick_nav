@@ -14,9 +14,9 @@ function colorless_update_prompt()
 function get_go_targets()
 {
     if [ -z $2 ] ; then
-        COMPREPLY=(`\ls -1 ~/Projects/{ThirdTank,Mood,OpenSouce,Personal,Other} | sed 's/\/$//'`)
+        COMPREPLY=(`\ls -1 ~/Projects/{ThirdTank,OpenSouce,Personal,Other} | sed 's/\/$//'`)
     else
-        COMPREPLY=(`\ls -1 ~/Projects/{ThirdTank,Mood,OpenSource,Personal,Other} | sed 's/\/$//' | grep "^$2"`)
+        COMPREPLY=(`\ls -1 ~/Projects/{ThirdTank,OpenSource,Personal,Other} | sed 's/\/$//' | grep "^$2"`)
     fi
 }
 
@@ -40,12 +40,8 @@ function g()
             if [ -d ~/Projects/ThirdTank/$GO_TARGET ] ; then
               GO_DIR=~/Projects/ThirdTank/$GO_TARGET
             else
-              if [ -d ~/Projects/Mood/$GO_TARGET ] ; then
-                GO_DIR=~/Projects/Mood/$GO_TARGET
-              else
-                echo "$GO_TARGET not found!"
-                return;
-              fi
+              echo "$GO_TARGET not found!"
+              return;
             fi
           fi
         fi
