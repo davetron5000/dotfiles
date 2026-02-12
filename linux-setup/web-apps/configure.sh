@@ -5,17 +5,22 @@ set -u
 set -o pipefail
 
 app_name=$1
+profile="${2:-}"
+domain="${3:-}"
 
-firefoxpwa profile list | grep -1 "${app_name}" | grep ID: | sed 's/^ID: //' > /tmp/configure-profile || (echo "Cannot find profile for ${app_name}"; exit 1)
-profile=$(cat /tmp/configure-profile)
+if [ -z $profile ] ; then
+  firefoxpwa profile list | grep -1 "${app_name}" | grep ID: | sed 's/^ID: //' > /tmp/configure-profile || (echo "Cannot find profile for ${app_name}"; exit 1)
+  profile=$(cat /tmp/configure-profile)
+fi
 if [ -z "${profile}" ]; then
   echo "No profile"
   exit 1
 fi
 
-firefoxpwa profile list | grep "${app_name}" | grep manifest | sed 's/^.*https:\/\///' | sed 's/\/.*$//' > /tmp/configure-domain || (echo "Cannot figure out domain name for ${app_name}"; exit 1)
-domain=$(cat /tmp/configure-domain)
-
+if [ -z $domain ]; then
+  firefoxpwa profile list | grep "${app_name}" | grep manifest | sed 's/^.*https:\/\///' | sed 's/\/.*$//' > /tmp/configure-domain || (echo "Cannot figure out domain name for ${app_name}"; exit 1)
+  domain=$(cat /tmp/configure-domain)
+fi
 echo $profile
 echo $domain,*.$domain
 
