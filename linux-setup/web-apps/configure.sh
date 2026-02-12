@@ -13,7 +13,7 @@ if [ -z "${profile}" ]; then
   exit 1
 fi
 
-firefoxpwa profile list | grep Mastodon | grep manifest | sed 's/^.*https:\/\///' | sed 's/\/.*$//' > /tmp/configure-domain || (echo "Cannot figure out domain name for ${app_name}"; exit 1)
+firefoxpwa profile list | grep "${app_name}" | grep manifest | sed 's/^.*https:\/\///' | sed 's/\/.*$//' > /tmp/configure-domain || (echo "Cannot figure out domain name for ${app_name}"; exit 1)
 domain=$(cat /tmp/configure-domain)
 
 echo $profile
