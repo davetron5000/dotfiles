@@ -40,7 +40,11 @@ gsettings set org.gnome.desktop.wm.keybindings switch-group "['<Super>Above_Tab'
 gsettings set org.gnome.desktop.wm.keybindings switch-group-backward "['<Shift><Super>Above_Tab', '<Shift><Alt>Above_Tab']"
 gsettings set org.gnome.desktop.wm.keybindings minimize "['<Alt>h']"
 
- 
+# Monitor Movement
+
+gsettings set org.gnome.desktop.wm.keybindings move-to-monitor-left "['<Super><Shift>Left', '<Super><Shift>h']"
+gsettings set org.gnome.desktop.wm.keybindings move-to-monitor-right "['<Super><Shift>Right', '<Super><Shift>l']"
+
 
 
 
