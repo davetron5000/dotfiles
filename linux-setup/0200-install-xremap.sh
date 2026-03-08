@@ -7,7 +7,7 @@ unzip xremap-linux-x86_64-gnome.zip
 mkdir -p ~/.local/bin
 mv xremap ~/.local/bin
 echo "#!/usr/bin/env bash" > ~/.local/bin/xremap-wrap.sh
-echo "/home/davec/.local/bin/xremap /home/davec/.config/xremap/xremap.yml" >> ~/.local/bin/xremap-wrap.sh
+echo "/home/davec/.local/bin/xremap --watch /home/davec/.config/xremap/xremap.yml" >> ~/.local/bin/xremap-wrap.sh
 chmod +x ~/.local/bin/xremap-wrap.sh
 rm xremap-linux-x86_64-gnome.zip
 open https://extensions.gnome.org/extension/5060/xremap/
